@@ -1,0 +1,40 @@
+/*
+Theme Name: ariajet
+Theme URI: https://ariajet.site
+Author: Aria
+Author URI: https://ariajet.site
+Description: Custom WordPress theme for Aria's 2D game showcase. Features pixel-perfect game displays, interactive game library, and modern gaming aesthetics. Perfect for showcasing 2D games like Aria's Wild World and Wildlife Adventure.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: ariajet
+Tags: games, 2d-games, game-showcase, pixel-art, interactive, custom-menu, featured-images, threaded-comments, translation-ready
+
+AriaJet WordPress Theme
+A custom theme designed for showcasing 2D games with pixel-perfect displays and modern gaming aesthetics.
+*/
+
+/* Base Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Game Container Styles */
+.game-showcase {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    backdrop-filter: blur(10px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-showcase {
+        padding: 15px;
+    }
+}
+

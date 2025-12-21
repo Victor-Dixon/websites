@@ -1,0 +1,20 @@
+/* Entry Title */
+.entry-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: $color-accent;
+  text-align: center;
+  margin-bottom: $spacing-lg;
+  text-transform: capitalize;
+  line-height: 1.2;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: $color-accent;
+    margin: $spacing-xs auto 0;
+    border-radius: 2px;
+  }
+}

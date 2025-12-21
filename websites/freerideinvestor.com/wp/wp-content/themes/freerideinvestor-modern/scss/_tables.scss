@@ -1,0 +1,25 @@
+/*--------------------------------------------------------------
+  Tables
+--------------------------------------------------------------*/
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $color-dark-grey;
+
+  &__header,
+  &__cell {
+    padding: $spacing-xs;
+    text-align: left;
+    border: 1px solid $color-border;
+    color: $color-text-muted;
+  }
+
+  &__header {
+    background-color: $color-dark-bg-alt;
+    font-weight: bold;
+  }
+
+  &__row:nth-child(even) {
+    background-color: $color-dark-bg-alt;
+  }
+}

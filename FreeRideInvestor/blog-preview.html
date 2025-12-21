@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeRide Investor Blog - Premium Template Preview</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+           FREERIDE INVESTOR - PREMIUM BLOG STYLES
+           ═══════════════════════════════════════════════════════════ */
+        
+        /* Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Design Tokens */
+        :root {
+            /* Core Dark Palette */
+            --blog-bg-primary: #0D0D0D;
+            --blog-bg-secondary: #141414;
+            --blog-bg-card: #1A1A1A;
+            --blog-bg-elevated: #222222;
+            --blog-bg-hover: #2A2A2A;
+            
+            /* Accent Colors */
+            --blog-accent: #2ECC71;
+            --blog-accent-light: #58D68D;
+            --blog-accent-dark: #27AE60;
+            --blog-accent-glow: rgba(46, 204, 113, 0.15);
+            --blog-accent-subtle: rgba(46, 204, 113, 0.08);
+            
+            /* Text Colors */
+            --blog-text-primary: #F5F5F5;
+            --blog-text-secondary: #B8B8B8;
+            --blog-text-muted: #888888;
+            --blog-text-subtle: #666666;
+            
+            /* Borders */
+            --blog-border: rgba(255, 255, 255, 0.06);
+            --blog-border-hover: rgba(255, 255, 255, 0.12);
+            
+            /* Shadows */
+            --blog-shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+            
+            /* Typography */
+            --blog-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            /* Radius */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+        
+        body {
+            font-family: var(--blog-font);
+            background: var(--blog-bg-primary);
+            color: var(--blog-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        a {
+            color: var(--blog-accent);
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+        
+        a:hover {
+            color: var(--blog-accent-light);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* ─────────────────────────────────────────
+           HEADER / NAVIGATION
+           ───────────────────────────────────────── */
+        .site-header {
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--blog-border);
+            padding: var(--space-md) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--blog-text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .logo-icon {
+            color: var(--blog-accent);
+        }
+        
+        .nav-list {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+        
+        .nav-list a {
+            color: var(--blog-text-secondary);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: all 0.25s ease;
+        }
+        
+        .nav-list a:hover {
+            color: var(--blog-text-primary);
+            background: var(--blog-bg-elevated);
+        }
+        
+        .nav-list a.active {
+            color: var(--blog-accent);
+        }
+        
+        /* ─────────────────────────────────────────
+           CONTAINER
+           ───────────────────────────────────────── */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+        
+        /* ─────────────────────────────────────────
+           BLOG HERO
+           ───────────────────────────────────────── */
+        .blog-hero {
+            position: relative;
+            padding: var(--space-3xl) 0 calc(var(--space-3xl) + 2rem);
+            background: linear-gradient(180deg, var(--blog-bg-secondary) 0%, var(--blog-bg-primary) 100%);
+            border-bottom: 1px solid var(--blog-border);
+            overflow: hidden;
+        }
+        
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(circle, var(--blog-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-md);
+            background: var(--blog-accent-subtle);
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            border-radius: var(--radius-xl);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--blog-accent);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .hero-title {
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--blog-text-primary);
+            margin: 0 0 var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-title span {
+            color: var(--blog-accent);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--blog-text-secondary);
+            margin: 0;
+        }
+        
+        /* ─────────────────────────────────────────
+           BLOG LAYOUT
+           ───────────────────────────────────────── */
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: var(--space-3xl);
+            padding: var(--space-3xl) 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ─────────────────────────────────────────
+           FILTER BAR
+           ───────────────────────────────────────── */
+        .blog-filters {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-lg);
+            padding: var(--space-lg) 0;
+            border-bottom: 1px solid var(--blog-border);
+            margin-bottom: var(--space-2xl);
+            flex-wrap: wrap;
+        }
+        
+        .filter-categories {
+            display: flex;
+            gap: var(--space-xs);
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            font-family: var(--blog-font);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--blog-text-muted);
+            padding: var(--space-sm) var(--space-lg);
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: var(--radius-xl);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        
+        .filter-btn:hover {
+            color: var(--blog-text-primary);
+            background: var(--blog-bg-elevated);
+        }
+        
+        .filter-btn.active {
+            color: var(--blog-bg-primary);
+            background: var(--blog-accent);
+            border-color: var(--blog-accent);
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-input {
+            font-family: var(--blog-font);
+            font-size: 0.875rem;
+            color: var(--blog-text-primary);
+            padding: var(--space-sm) var(--space-lg);
+            padding-left: 2.5rem;
+            background: var(--blog-bg-elevated);
+            border: 1px solid var(--blog-border);
+            border-radius: var(--radius-xl);
+            outline: none;
+            width: 240px;
+            transition: all 0.25s ease;
+        }
+        
+        .search-input:focus {
+            border-color: var(--blog-accent);
+            box-shadow: 0 0 0 3px var(--blog-accent-glow);
+        }
+        
+        .search-input::placeholder {
+            color: var(--blog-text-subtle);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: var(--space-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--blog-text-subtle);
+            pointer-events: none;
+        }
+        
+        /* ─────────────────────────────────────────
+           POSTS GRID
+           ───────────────────────────────────────── */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-xl);
+        }
+        
+        @media (max-width: 768px) {
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ─────────────────────────────────────────
+           POST CARD
+           ───────────────────────────────────────── */
+        .post-card {
+            position: relative;
+            background: var(--blog-bg-card);
+            border: 1px solid var(--blog-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .post-card:hover {
+            border-color: var(--blog-border-hover);
+            transform: translateY(-6px);
+            box-shadow: var(--blog-shadow-lg);
+        }
+        
+        .post-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-image {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: var(--blog-bg-elevated);
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .card-category {
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-md);
+            padding: var(--space-xs) var(--space-sm);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--blog-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .card-body {
+            padding: var(--space-xl);
+        }
+        
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .card-date {
+            font-size: 0.8125rem;
+            color: var(--blog-text-muted);
+        }
+        
+        .card-read-time {
+            font-size: 0.8125rem;
+            color: var(--blog-text-subtle);
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.35;
+            color: var(--blog-text-primary);
+            margin: 0 0 var(--space-sm);
+            transition: color 0.25s ease;
+        }
+        
+        .post-card:hover .card-title {
+            color: var(--blog-accent);
+        }
+        
+        .card-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .card-excerpt {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: var(--blog-text-secondary);
+            margin: 0 0 var(--space-lg);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .card-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--blog-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--blog-bg-primary);
+        }
+        
+        .author-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--blog-text-primary);
+        }
+        
+        .read-more {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--blog-accent);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap 0.25s ease;
+        }
+        
+        .read-more:hover {
+            gap: 8px;
+        }
+        
+        /* Featured Post */
+        .post-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            background: linear-gradient(135deg, var(--blog-bg-card) 0%, var(--blog-bg-elevated) 100%);
+        }
+        
+        .post-card.featured .card-image {
+            aspect-ratio: auto;
+            min-height: 320px;
+        }
+        
+        .post-card.featured .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: var(--space-2xl);
+        }
+        
+        .post-card.featured .card-title {
+            font-size: 1.75rem;
+        }
+        
+        .post-card.featured .card-excerpt {
+            -webkit-line-clamp: 4;
+        }
+        
+        @media (max-width: 900px) {
+            .post-card.featured {
+                grid-template-columns: 1fr;
+            }
+            
+            .post-card.featured .card-image {
+                aspect-ratio: 16 / 9;
+                min-height: auto;
+            }
+        }
+        
+        /* ─────────────────────────────────────────
+           SIDEBAR
+           ───────────────────────────────────────── */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+        }
+        
+        .widget {
+            background: var(--blog-bg-card);
+            border: 1px solid var(--blog-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+        }
+        
+        .widget-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--blog-text-primary);
+            margin: 0 0 var(--space-lg);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--blog-accent);
+            display: inline-block;
+        }
+        
+        /* Newsletter Widget */
+        .widget.newsletter {
+            background: linear-gradient(135deg, var(--blog-accent-subtle) 0%, var(--blog-bg-card) 100%);
+            border-color: rgba(46, 204, 113, 0.2);
+        }
+        
+        .newsletter-text {
+            font-size: 0.9375rem;
+            color: var(--blog-text-secondary);
+            margin: 0 0 var(--space-lg);
+            line-height: 1.6;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        
+        .newsletter-form input {
+            font-family: var(--blog-font);
+            font-size: 0.9375rem;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--blog-bg-primary);
+            border: 1px solid var(--blog-border);
+            border-radius: var(--radius-md);
+            color: var(--blog-text-primary);
+            outline: none;
+        }
+        
+        .newsletter-form input:focus {
+            border-color: var(--blog-accent);
+        }
+        
+        .newsletter-form button {
+            font-family: var(--blog-font);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--blog-accent);
+            border: none;
+            border-radius: var(--radius-md);
+            color: var(--blog-bg-primary);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: var(--blog-accent-light);
+            transform: translateY(-1px);
+        }
+        
+        /* Popular Posts */
+        .popular-posts {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        
+        .popular-post {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-sm);
+            margin: 0 calc(-1 * var(--space-sm));
+            border-radius: var(--radius-md);
+            transition: background 0.25s ease;
+        }
+        
+        .popular-post:hover {
+            background: var(--blog-bg-elevated);
+        }
+        
+        .popular-post-image {
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--blog-bg-elevated);
+        }
+        
+        .popular-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .popular-post-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .popular-post-title {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--blog-text-primary);
+            margin: 0 0 var(--space-xs);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .popular-post-title a {
+            color: inherit;
+        }
+        
+        .popular-post-title a:hover {
+            color: var(--blog-accent);
+        }
+        
+        .popular-post-date {
+            font-size: 0.8125rem;
+            color: var(--blog-text-muted);
+        }
+        
+        /* Categories */
+        .category-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+        
+        .category-list a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-sm) var(--space-md);
+            margin: 0 calc(-1 * var(--space-md));
+            border-radius: var(--radius-md);
+            font-size: 0.9375rem;
+            color: var(--blog-text-secondary);
+        }
+        
+        .category-list a:hover {
+            background: var(--blog-bg-elevated);
+            color: var(--blog-accent);
+        }
+        
+        .category-count {
+            font-size: 0.8125rem;
+            color: var(--blog-text-subtle);
+            background: var(--blog-bg-elevated);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+        }
+        
+        /* Tags */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+        }
+        
+        .tag {
+            font-size: 0.8125rem;
+            color: var(--blog-text-secondary);
+            padding: var(--space-xs) var(--space-sm);
+            background: var(--blog-bg-elevated);
+            border: 1px solid var(--blog-border);
+            border-radius: var(--radius-sm);
+            transition: all 0.25s ease;
+        }
+        
+        .tag:hover {
+            background: var(--blog-accent);
+            border-color: var(--blog-accent);
+            color: var(--blog-bg-primary);
+        }
+        
+        /* ─────────────────────────────────────────
+           PAGINATION
+           ───────────────────────────────────────── */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-xs);
+            margin-top: var(--space-3xl);
+            padding-top: var(--space-2xl);
+            border-top: 1px solid var(--blog-border);
+        }
+        
+        .pagination a,
+        .pagination span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            height: 44px;
+            padding: 0 var(--space-md);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--blog-text-secondary);
+            background: var(--blog-bg-card);
+            border: 1px solid var(--blog-border);
+            border-radius: var(--radius-md);
+            transition: all 0.25s ease;
+        }
+        
+        .pagination a:hover {
+            color: var(--blog-text-primary);
+            background: var(--blog-bg-elevated);
+            border-color: var(--blog-border-hover);
+        }
+        
+        .pagination .current {
+            color: var(--blog-bg-primary);
+            background: var(--blog-accent);
+            border-color: var(--blog-accent);
+        }
+        
+        /* ─────────────────────────────────────────
+           FOOTER
+           ───────────────────────────────────────── */
+        .site-footer {
+            background: var(--blog-bg-secondary);
+            border-top: 1px solid var(--blog-border);
+            padding: var(--space-3xl) 0 var(--space-xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        @media (max-width: 900px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-tagline {
+            font-size: 0.9375rem;
+            color: var(--blog-text-muted);
+            line-height: 1.6;
+        }
+        
+        .footer-heading {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--blog-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        
+        .footer-links a {
+            font-size: 0.9375rem;
+            color: var(--blog-text-muted);
+        }
+        
+        .footer-links a:hover {
+            color: var(--blog-accent);
+        }
+        
+        .footer-bottom {
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--blog-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        
+        .footer-copy {
+            font-size: 0.875rem;
+            color: var(--blog-text-muted);
+        }
+        
+        .footer-socials {
+            display: flex;
+            gap: var(--space-md);
+        }
+        
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--blog-bg-elevated);
+            border-radius: 50%;
+            color: var(--blog-text-muted);
+            font-size: 1.125rem;
+            transition: all 0.25s ease;
+        }
+        
+        .footer-socials a:hover {
+            background: var(--blog-accent);
+            color: var(--blog-bg-primary);
+        }
+        
+        /* ─────────────────────────────────────────
+           ANIMATIONS
+           ───────────────────────────────────────── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        .post-card:nth-child(1) { animation-delay: 0.05s; }
+        .post-card:nth-child(2) { animation-delay: 0.1s; }
+        .post-card:nth-child(3) { animation-delay: 0.15s; }
+        .post-card:nth-child(4) { animation-delay: 0.2s; }
+        .post-card:nth-child(5) { animation-delay: 0.25s; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 0 var(--space-md);
+            }
+            
+            .nav-list {
+                display: none;
+            }
+            
+            .container {
+                padding: 0 var(--space-md);
+            }
+            
+            .blog-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- ═══════════════════════════════════════
+         HEADER
+         ═══════════════════════════════════════ -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">📈</span>
+                FreeRide Investor
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#" class="active">Blog</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- ═══════════════════════════════════════
+         BLOG HERO
+         ═══════════════════════════════════════ -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">
+                    <span>📊</span>
+                    FreeRide Insights
+                </span>
+                
+                <h1 class="hero-title">
+                    Market Intelligence<br>
+                    & <span>Trading Insights</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Deep dives into market trends, trading strategies, technical analysis, 
+                    and the tools that power smart investing. Learn, grow, and trade smarter.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ═══════════════════════════════════════
+         BLOG CONTENT
+         ═══════════════════════════════════════ -->
+    <main class="container">
+        <div class="blog-layout">
+            
+            <!-- Main Content -->
+            <div class="blog-main">
+                
+                <!-- Filter Bar -->
+                <div class="blog-filters">
+                    <div class="filter-categories">
+                        <button class="filter-btn active">All Posts</button>
+                        <button class="filter-btn">Trading</button>
+                        <button class="filter-btn">Analysis</button>
+                        <button class="filter-btn">Strategy</button>
+                        <button class="filter-btn">News</button>
+                    </div>
+                    
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" placeholder="Search articles...">
+                    </div>
+                </div>
+                
+                <!-- Posts Grid -->
+                <div class="posts-grid">
+                    
+                    <!-- Featured Post -->
+                    <article class="post-card featured animate-in">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop" alt="Stock Market Trading">
+                            <span class="card-category">Featured</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="card-date">Dec 15, 2024</span>
+                                <span class="card-read-time">⏱️ 8 min read</span>
+                            </div>
+                            <h2 class="card-title">
+                                <a href="#">Mastering Technical Analysis: A Complete Guide for 2025</a>
+                            </h2>
+                            <p class="card-excerpt">
+                                Technical analysis is the cornerstone of successful trading. In this comprehensive guide, we explore the most effective chart patterns, indicators, and strategies that will help you make informed decisions in the new year.
+                            </p>
+                            <div class="card-footer">
+                                <div class="card-author">
+                                    <span class="author-avatar">V</span>
+                                    <span class="author-name">Victor Dixon</span>
+                                </div>
+                                <a href="#" class="read-more">Read more →</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Post Card 2 -->
+                    <article class="post-card animate-in">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&h=400&fit=crop" alt="Trading Charts">
+                            <span class="card-category">Trading</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="card-date">Dec 12, 2024</span>
+                                <span class="card-read-time">⏱️ 5 min read</span>
+                            </div>
+                            <h2 class="card-title">
+                                <a href="#">TBOW Tactics: Reading Market Momentum Like a Pro</a>
+                            </h2>
+                            <p class="card-excerpt">
+                                Learn how to identify and capitalize on momentum shifts using the TBOW methodology. This strategy has helped traders consistently find high-probability setups.
+                            </p>
+                            <div class="card-footer">
+                                <div class="card-author">
+                                    <span class="author-avatar">V</span>
+                                    <span class="author-name">Victor Dixon</span>
+                                </div>
+                                <a href="#" class="read-more">Read more →</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Post Card 3 -->
+                    <article class="post-card animate-in">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=600&h=400&fit=crop" alt="Crypto Trading">
+                            <span class="card-category">Strategy</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="card-date">Dec 10, 2024</span>
+                                <span class="card-read-time">⏱️ 6 min read</span>
+                            </div>
+                            <h2 class="card-title">
+                                <a href="#">Risk Management: Protecting Your Capital in Volatile Markets</a>
+                            </h2>
+                            <p class="card-excerpt">
+                                The difference between successful and unsuccessful traders often comes down to risk management. Here's how to protect your capital while maximizing gains.
+                            </p>
+                            <div class="card-footer">
+                                <div class="card-author">
+                                    <span class="author-avatar">V</span>
+                                    <span class="author-name">Victor Dixon</span>
+                                </div>
+                                <a href="#" class="read-more">Read more →</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Post Card 4 -->
+                    <article class="post-card animate-in">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop" alt="Market Analysis">
+                            <span class="card-category">Analysis</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="card-date">Dec 8, 2024</span>
+                                <span class="card-read-time">⏱️ 4 min read</span>
+                            </div>
+                            <h2 class="card-title">
+                                <a href="#">Weekly Market Outlook: Key Levels to Watch</a>
+                            </h2>
+                            <p class="card-excerpt">
+                                Our weekly breakdown of the major indices, sector rotations, and the key support and resistance levels every trader should have on their radar.
+                            </p>
+                            <div class="card-footer">
+                                <div class="card-author">
+                                    <span class="author-avatar">V</span>
+                                    <span class="author-name">Victor Dixon</span>
+                                </div>
+                                <a href="#" class="read-more">Read more →</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Post Card 5 -->
+                    <article class="post-card animate-in">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Data Analytics">
+                            <span class="card-category">Tools</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="card-date">Dec 5, 2024</span>
+                                <span class="card-read-time">⏱️ 7 min read</span>
+                            </div>
+                            <h2 class="card-title">
+                                <a href="#">Building Your Trading Dashboard: Essential Tools & Metrics</a>
+                            </h2>
+                            <p class="card-excerpt">
+                                A well-organized trading dashboard can make the difference between catching opportunities and missing them. Here's how to build yours.
+                            </p>
+                            <div class="card-footer">
+                                <div class="card-author">
+                                    <span class="author-avatar">V</span>
+                                    <span class="author-name">Victor Dixon</span>
+                                </div>
+                                <a href="#" class="read-more">Read more →</a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                </div>
+                
+                <!-- Pagination -->
+                <nav class="pagination">
+                    <a href="#">← Previous</a>
+                    <span class="current">1</span>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">Next →</a>
+                </nav>
+                
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                
+                <!-- Newsletter Widget -->
+                <div class="widget newsletter">
+                    <h3 class="widget-title">📬 Stay Updated</h3>
+                    <p class="newsletter-text">
+                        Get the latest market insights and trading strategies delivered to your inbox.
+                    </p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+                
+                <!-- Popular Posts -->
+                <div class="widget">
+                    <h3 class="widget-title">🔥 Popular Posts</h3>
+                    <div class="popular-posts">
+                        <div class="popular-post">
+                            <div class="popular-post-image">
+                                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=140&h=140&fit=crop" alt="">
+                            </div>
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">
+                                    <a href="#">The Ultimate Guide to Day Trading in 2025</a>
+                                </h4>
+                                <span class="popular-post-date">Dec 1, 2024</span>
+                            </div>
+                        </div>
+                        <div class="popular-post">
+                            <div class="popular-post-image">
+                                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=140&h=140&fit=crop" alt="">
+                            </div>
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">
+                                    <a href="#">Understanding Options: A Beginner's Guide</a>
+                                </h4>
+                                <span class="popular-post-date">Nov 28, 2024</span>
+                            </div>
+                        </div>
+                        <div class="popular-post">
+                            <div class="popular-post-image">
+                                <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=140&h=140&fit=crop" alt="">
+                            </div>
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">
+                                    <a href="#">Chart Patterns That Actually Work</a>
+                                </h4>
+                                <span class="popular-post-date">Nov 25, 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Categories -->
+                <div class="widget">
+                    <h3 class="widget-title">📂 Categories</h3>
+                    <ul class="category-list">
+                        <li>
+                            <a href="#">
+                                <span>Trading Strategies</span>
+                                <span class="category-count">24</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Technical Analysis</span>
+                                <span class="category-count">18</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Market News</span>
+                                <span class="category-count">32</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Trading Psychology</span>
+                                <span class="category-count">12</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Tools & Resources</span>
+                                <span class="category-count">8</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tags -->
+                <div class="widget">
+                    <h3 class="widget-title">🏷️ Tags</h3>
+                    <div class="tag-cloud">
+                        <a href="#" class="tag">#TSLA</a>
+                        <a href="#" class="tag">#DayTrading</a>
+                        <a href="#" class="tag">#TechnicalAnalysis</a>
+                        <a href="#" class="tag">#Options</a>
+                        <a href="#" class="tag">#SwingTrading</a>
+                        <a href="#" class="tag">#ChartPatterns</a>
+                        <a href="#" class="tag">#RiskManagement</a>
+                        <a href="#" class="tag">#TBOW</a>
+                        <a href="#" class="tag">#MarketTrends</a>
+                    </div>
+                </div>
+                
+            </aside>
+            
+        </div>
+    </main>
+    
+    <!-- ═══════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">📈</span>
+                        FreeRide Investor
+                    </div>
+                    <p class="footer-tagline">
+                        Empowering traders with insights, strategies, and tools to navigate the markets with confidence.
+                    </p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Trading Strategies</a></li>
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Twitch</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copy">
+                    © 2024 FreeRide Investor. All rights reserved. | Disclaimer: For educational purposes only.
+                </p>
+                <div class="footer-socials">
+                    <a href="#">📺</a>
+                    <a href="#">🐦</a>
+                    <a href="#">💬</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+    
+</body>
+</html>

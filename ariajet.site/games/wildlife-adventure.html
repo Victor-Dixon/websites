@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife Adventure - Survive the Wild</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #2d5016 0%, #1a3009 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .game-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #1a3009;
+            border: 4px solid #4a7c2a;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .game-header h1 {
+            font-size: 2.5em;
+            text-shadow: 3px 3px 0 #000;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .game-header .subtitle {
+            font-size: 1.2em;
+            color: #98D8C8;
+        }
+
+        .character-select {
+            text-align: center;
+        }
+
+        .character-select h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .character-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .character-card {
+            background: #2d5016;
+            border: 3px solid #4a7c2a;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .character-card:hover {
+            border-color: #ffd700;
+            transform: scale(1.05);
+        }
+
+        .character-card.selected {
+            border-color: #ff6b6b;
+            background: #3d6026;
+        }
+
+        .character-card .emoji {
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+
+        .character-card .name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .character-card .role {
+            font-size: 0.9em;
+            color: #98D8C8;
+            margin-bottom: 10px;
+        }
+
+        .character-card .power {
+            font-size: 0.85em;
+            color: #ff8b8b;
+            font-style: italic;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: #2d5016;
+            border: 2px solid #4a7c2a;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #98D8C8;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #1a3009;
+            border: 2px solid #4a7c2a;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s;
+        }
+
+        .progress-fill.hunger {
+            background: linear-gradient(90deg, #ff6b6b, #ff8b8b);
+        }
+
+        .progress-fill.energy {
+            background: linear-gradient(90deg, #4ecdc4, #6ee5dc);
+        }
+
+        .progress-fill.safety {
+            background: linear-gradient(90deg, #95e1d3, #a8e6cf);
+        }
+
+        .progress-fill.bravery {
+            background: linear-gradient(90deg, #f38181, #fce38a);
+        }
+
+        .game-area {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .story-panel {
+            background: #2d5016;
+            border: 2px solid #4a7c2a;
+            border-radius: 4px;
+            padding: 20px;
+            min-height: 400px;
+        }
+
+        .story-panel h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .story-text {
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            min-height: 200px;
+        }
+
+        .event-log {
+            background: #1a3009;
+            border: 1px solid #4a7c2a;
+            border-radius: 4px;
+            padding: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 0.9em;
+            color: #98D8C8;
+        }
+
+        .event-log .event {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-left: 3px solid #4a7c2a;
+            padding-left: 10px;
+        }
+
+        .actions-panel {
+            background: #2d5016;
+            border: 2px solid #4a7c2a;
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .actions-panel h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            background: #4a7c2a;
+            border: 2px solid #1a3009;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .btn:hover:not(:disabled) {
+            background: #5a8c3a;
+            border-color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn.primary {
+            background: #ff6b6b;
+            border-color: #ff8b8b;
+        }
+
+        .btn.primary:hover:not(:disabled) {
+            background: #ff8b8b;
+        }
+
+        .btn.power {
+            background: #9b59b6;
+            border-color: #8e44ad;
+        }
+
+        .btn.power:hover:not(:disabled) {
+            background: #8e44ad;
+        }
+
+        .btn.power:disabled {
+            opacity: 0.3;
+        }
+
+        .day-info {
+            text-align: center;
+            background: #2d5016;
+            border: 2px solid #4a7c2a;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .day-info h2 {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .day-rules {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .day-rule {
+            background: #1a3009;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .day-rule.complete {
+            border: 2px solid #4ecdc4;
+            color: #4ecdc4;
+        }
+
+        .choice-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .zone-info {
+            background: #1a3009;
+            border: 1px solid #4a7c2a;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .victory-screen {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .victory-screen h2 {
+            font-size: 3em;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .victory-screen p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🐾 Wildlife Adventure 🐾</h1>
+            <div class="subtitle">Survive 7 Days in the Wild</div>
+        </div>
+
+        <!-- Character Selection -->
+        <div id="characterSelect" class="character-select">
+            <h2>Choose Your Animal</h2>
+            <div class="character-options">
+                <div class="character-card" data-animal="lion">
+                    <div class="emoji">🦁</div>
+                    <div class="name">Lion</div>
+                    <div class="role">Brave Beginner</div>
+                    <div class="power">Power: ROAR</div>
+                </div>
+                <div class="character-card" data-animal="wolf">
+                    <div class="emoji">🐺</div>
+                    <div class="name">Wolf</div>
+                    <div class="role">Clever Pack Hunter</div>
+                    <div class="power">Power: HOWL</div>
+                </div>
+                <div class="character-card" data-animal="panda">
+                    <div class="emoji">🐼</div>
+                    <div class="name">Panda</div>
+                    <div class="role">Chill Forest Guardian</div>
+                    <div class="power">Power: ROLL</div>
+                </div>
+            </div>
+            <button class="btn primary" id="startBtn">Start Adventure!</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="hidden">
+            <div class="day-info">
+                <h2 id="dayTitle">Day 1</h2>
+                <div class="day-rules">
+                    <div class="day-rule" id="rule1">🍎 Eat 3 Food</div>
+                    <div class="day-rule" id="rule2">⚔️ 1 Brave Action</div>
+                    <div class="day-rule" id="rule3">🏠 Reach Den</div>
+                </div>
+            </div>
+
+            <div class="stats-panel">
+                <div class="stat-box">
+                    <div class="stat-label">Hunger</div>
+                    <div class="stat-value" id="hungerValue">100</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill hunger" id="hungerBar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Energy</div>
+                    <div class="stat-value" id="energyValue">100</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill energy" id="energyBar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Safety</div>
+                    <div class="stat-value" id="safetyValue">50</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill safety" id="safetyBar" style="width: 50%"></div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Bravery</div>
+                    <div class="stat-value" id="braveryValue">0</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill bravery" id="braveryBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-area">
+                <div class="story-panel">
+                    <h3 id="zoneTitle">Starting Zone</h3>
+                    <div class="story-text" id="storyText">
+                        Welcome to the wild! Your adventure begins...
+                    </div>
+                    <div class="zone-info" id="zoneInfo"></div>
+                    <div id="choiceButtons" class="choice-buttons hidden"></div>
+                </div>
+
+                <div class="actions-panel">
+                    <h3>Actions</h3>
+                    <div class="action-buttons">
+                        <button class="btn" id="exploreBtn">🔍 Explore</button>
+                        <button class="btn" id="eatBtn">🍎 Eat</button>
+                        <button class="btn" id="restBtn">😴 Rest</button>
+                        <button class="btn" id="denBtn">🏠 Build/Upgrade Den</button>
+                        <button class="btn power" id="powerBtn">⚡ Use Power</button>
+                        <button class="btn" id="nextZoneBtn">➡️ Next Zone</button>
+                        <button class="btn primary" id="endDayBtn">🌙 End Day</button>
+                    </div>
+                    <div class="event-log" id="eventLog">
+                        <div class="event">Game started!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Victory Screen -->
+        <div id="victoryScreen" class="hidden">
+            <div class="victory-screen">
+                <h2>🏆 LEGEND! 🏆</h2>
+                <p>You survived 7 days in the wild!</p>
+                <p>Your bravery and wisdom have made you a legend among the animals.</p>
+                <button class="btn primary" id="restartBtn">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        const gameState = {
+            animal: null,
+            day: 1,
+            hunger: 100,
+            energy: 100,
+            safety: 50,
+            bravery: 0,
+            foodEaten: 0,
+            braveActions: 0,
+            atDen: false,
+            currentZone: 0,
+            denLevel: 1,
+            powerCooldown: 0,
+            completedDays: []
+        };
+
+        // Animal Data
+        const animalData = {
+            lion: {
+                name: "Lion",
+                emoji: "🦁",
+                power: "ROAR",
+                powerDesc: "Scare small enemies for one turn",
+                zones: ["Grasslands", "Watering Hole", "Rocky Hill", "Human Camp"],
+                dangerZone: "Human Camp"
+            },
+            wolf: {
+                name: "Wolf",
+                emoji: "🐺",
+                power: "HOWL",
+                powerDesc: "Call pack to find food or warn danger",
+                zones: ["Deep Forest", "River Crossing", "Old Cave", "Hunter Trail"],
+                dangerZone: "Hunter Trail"
+            },
+            panda: {
+                name: "Panda",
+                emoji: "🐼",
+                power: "ROLL",
+                powerDesc: "Dodge one danger or escape trap",
+                zones: ["Bamboo Grove", "Misty Hill", "Quiet Stream", "Logging Site"],
+                dangerZone: "Logging Site"
+            }
+        };
+
+        // Zone Events
+        const zoneEvents = {
+            good: [
+                "You find a berry bush! +Food",
+                "A friendly animal shares food with you. +Food",
+                "You discover a safe resting spot. +Safety",
+                "You find fresh water. +Energy"
+            ],
+            choice: [
+                {
+                    text: "You hear noise in the bushes. What do you do?",
+                    options: [
+                        { text: "Investigate", effect: { energy: -10, food: 15, bravery: 5 } },
+                        { text: "Ignore", effect: { safety: 5 } }
+                    ]
+                },
+                {
+                    text: "You see a strange path. Follow it?",
+                    options: [
+                        { text: "Yes, explore", effect: { energy: -15, bravery: 10, food: 10 } },
+                        { text: "No, stay safe", effect: { safety: 10 } }
+                    ]
+                },
+                {
+                    text: "A small animal needs help. Help them?",
+                    options: [
+                        { text: "Help", effect: { energy: -10, bravery: 15, food: 5 } },
+                        { text: "Continue", effect: { safety: 5 } }
+                    ]
+                }
+            ],
+            bad: [
+                { text: "Trap! You escape but lose energy.", effect: { energy: -20, safety: -10 } },
+                { text: "Predator nearby! You hide quickly.", effect: { energy: -15, safety: -5 } },
+                { text: "Bad weather! You find shelter.", effect: { energy: -10, safety: -5 } }
+            ]
+        };
+
+        // Character Selection
+        const characterCards = document.querySelectorAll('.character-card');
+        const startBtn = document.getElementById('startBtn');
+        const characterSelect = document.getElementById('characterSelect');
+        const gameScreen = document.getElementById('gameScreen');
+
+        characterCards.forEach(card => {
+            card.addEventListener('click', () => {
+                characterCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                gameState.animal = card.dataset.animal;
+            });
+        });
+
+        startBtn.addEventListener('click', () => {
+            if (!gameState.animal) {
+                alert("Please choose an animal first!");
+                return;
+            }
+            characterSelect.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            startGame();
+        });
+
+        // Game Functions
+        function startGame() {
+            const animal = animalData[gameState.animal];
+            updateUI();
+            addEvent(`You are a ${animal.name} ${animal.emoji} starting your adventure!`);
+            addEvent(`Your power: ${animal.power} - ${animal.powerDesc}`);
+            updateStory(`You wake up in the ${animal.zones[0]}. The sun is rising, and a new day begins.`);
+            updateZoneInfo(animal.zones[0], 0);
+            checkDayRules();
+        }
+
+        function updateUI() {
+            document.getElementById('hungerValue').textContent = Math.max(0, gameState.hunger);
+            document.getElementById('energyValue').textContent = Math.max(0, gameState.energy);
+            document.getElementById('safetyValue').textContent = Math.max(0, gameState.safety);
+            document.getElementById('braveryValue').textContent = gameState.bravery;
+            
+            document.getElementById('hungerBar').style.width = Math.max(0, gameState.hunger) + '%';
+            document.getElementById('energyBar').style.width = Math.max(0, gameState.energy) + '%';
+            document.getElementById('safetyBar').style.width = Math.max(0, gameState.safety) + '%';
+            document.getElementById('braveryBar').style.width = Math.min(100, gameState.bravery) + '%';
+            
+            document.getElementById('dayTitle').textContent = `Day ${gameState.day}`;
+            
+            // Update power button
+            const powerBtn = document.getElementById('powerBtn');
+            const animal = animalData[gameState.animal];
+            powerBtn.textContent = `⚡ ${animal.power}${gameState.powerCooldown > 0 ? ` (${gameState.powerCooldown})` : ''}`;
+            powerBtn.disabled = gameState.powerCooldown > 0;
+            
+            // Update end day button
+            const endDayBtn = document.getElementById('endDayBtn');
+            endDayBtn.disabled = !canEndDay();
+        }
+
+        function updateStory(text) {
+            document.getElementById('storyText').textContent = text;
+        }
+
+        function updateZoneInfo(zoneName, zoneIndex) {
+            const animal = animalData[gameState.animal];
+            const isDanger = zoneName === animal.dangerZone;
+            document.getElementById('zoneTitle').textContent = zoneName + (isDanger ? ' ⚠️' : '');
+            document.getElementById('zoneInfo').textContent = 
+                isDanger ? '⚠️ DANGER ZONE - Be careful!' : 'Safe to explore';
+        }
+
+        function addEvent(text) {
+            const eventLog = document.getElementById('eventLog');
+            const event = document.createElement('div');
+            event.className = 'event';
+            event.textContent = text;
+            eventLog.insertBefore(event, eventLog.firstChild);
+            
+            // Keep only last 10 events
+            while (eventLog.children.length > 10) {
+                eventLog.removeChild(eventLog.lastChild);
+            }
+        }
+
+        function applyEffect(effect) {
+            Object.keys(effect).forEach(stat => {
+                if (stat === 'food') {
+                    gameState.foodEaten += effect[stat];
+                    addEvent(`Found ${effect[stat]} food!`);
+                } else if (stat === 'bravery') {
+                    gameState.bravery += effect[stat];
+                    if (effect[stat] > 0) {
+                        gameState.braveActions++;
+                        addEvent(`Brave action! +${effect[stat]} Bravery`);
+                    }
+                } else {
+                    gameState[stat] = Math.max(0, Math.min(100, gameState[stat] + effect[stat]));
+                }
+            });
+            updateUI();
+        }
+
+        // Action Buttons
+        document.getElementById('exploreBtn').addEventListener('click', () => {
+            if (gameState.energy < 10) {
+                addEvent("Not enough energy to explore!");
+                return;
+            }
+            
+            const animal = animalData[gameState.animal];
+            const currentZone = animal.zones[gameState.currentZone];
+            const isDanger = currentZone === animal.dangerZone;
+            
+            gameState.energy -= 10;
+            gameState.safety -= isDanger ? 5 : 2;
+            
+            // Random event
+            const rand = Math.random();
+            if (rand < 0.4) {
+                // Good event
+                const goodEvent = zoneEvents.good[Math.floor(Math.random() * zoneEvents.good.length)];
+                addEvent(goodEvent);
+                if (goodEvent.includes("Food")) {
+                    gameState.foodEaten += 1;
+                } else if (goodEvent.includes("Safety")) {
+                    gameState.safety += 10;
+                } else if (goodEvent.includes("Energy")) {
+                    gameState.energy += 15;
+                }
+            } else if (rand < 0.7) {
+                // Choice event
+                const choiceEvent = zoneEvents.choice[Math.floor(Math.random() * zoneEvents.choice.length)];
+                showChoice(choiceEvent);
+                return;
+            } else {
+                // Bad event
+                const badEvent = zoneEvents.bad[Math.floor(Math.random() * zoneEvents.bad.length)];
+                addEvent(badEvent.text);
+                applyEffect(badEvent.effect);
+            }
+            
+            updateUI();
+        });
+
+        function showChoice(choiceEvent) {
+            updateStory(choiceEvent.text);
+            const choiceButtons = document.getElementById('choiceButtons');
+            choiceButtons.classList.remove('hidden');
+            choiceButtons.innerHTML = '';
+            
+            choiceEvent.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'btn';
+                btn.textContent = option.text;
+                btn.addEventListener('click', () => {
+                    applyEffect(option.effect);
+                    choiceButtons.classList.add('hidden');
+                    updateStory(`You chose: ${option.text}`);
+                    setTimeout(() => {
+                        updateStory(`You continue exploring the area...`);
+                    }, 2000);
+                });
+                choiceButtons.appendChild(btn);
+            });
+        }
+
+        document.getElementById('eatBtn').addEventListener('click', () => {
+            if (gameState.foodEaten >= 3) {
+                addEvent("You've already eaten enough today!");
+                return;
+            }
+            
+            if (gameState.foodEaten < 3) {
+                gameState.foodEaten++;
+                gameState.hunger = Math.min(100, gameState.hunger + 30);
+                addEvent(`You eat food. (${gameState.foodEaten}/3 today)`);
+                checkDayRules();
+            }
+            updateUI();
+        });
+
+        document.getElementById('restBtn').addEventListener('click', () => {
+            gameState.energy = Math.min(100, gameState.energy + 30);
+            gameState.safety = Math.min(100, gameState.safety + 5);
+            addEvent("You rest and recover energy.");
+            updateUI();
+        });
+
+        document.getElementById('denBtn').addEventListener('click', () => {
+            if (gameState.energy < 20) {
+                addEvent("Not enough energy to build/upgrade den!");
+                return;
+            }
+            
+            gameState.energy -= 20;
+            gameState.denLevel++;
+            gameState.safety = Math.min(100, gameState.safety + 20);
+            gameState.atDen = true;
+            addEvent(`Den upgraded to level ${gameState.denLevel}! +20 Safety`);
+            checkDayRules();
+            updateUI();
+        });
+
+        document.getElementById('powerBtn').addEventListener('click', () => {
+            if (gameState.powerCooldown > 0) {
+                addEvent("Power is on cooldown!");
+                return;
+            }
+            
+            const animal = animalData[gameState.animal];
+            gameState.powerCooldown = 3;
+            
+            switch (gameState.animal) {
+                case 'lion':
+                    addEvent("🦁 ROAR! Small enemies flee!");
+                    gameState.safety += 15;
+                    gameState.bravery += 5;
+                    break;
+                case 'wolf':
+                    addEvent("🐺 HOWL! Pack helps you find food!");
+                    gameState.foodEaten += 1;
+                    gameState.safety += 10;
+                    break;
+                case 'panda':
+                    addEvent("🐼 ROLL! You dodge danger!");
+                    gameState.safety += 20;
+                    gameState.energy += 10;
+                    break;
+            }
+            updateUI();
+        });
+
+        document.getElementById('nextZoneBtn').addEventListener('click', () => {
+            const animal = animalData[gameState.animal];
+            if (gameState.currentZone >= animal.zones.length - 1) {
+                addEvent("You're at the last zone!");
+                return;
+            }
+            
+            gameState.currentZone++;
+            const newZone = animal.zones[gameState.currentZone];
+            updateStory(`You travel to the ${newZone}...`);
+            updateZoneInfo(newZone, gameState.currentZone);
+            gameState.energy -= 5;
+            addEvent(`Entered ${newZone}`);
+            updateUI();
+        });
+
+        document.getElementById('endDayBtn').addEventListener('click', () => {
+            if (!canEndDay()) {
+                addEvent("Complete all day rules first!");
+                return;
+            }
+            
+            endDay();
+        });
+
+        function canEndDay() {
+            return gameState.foodEaten >= 3 && 
+                   gameState.braveActions >= 1 && 
+                   gameState.atDen;
+        }
+
+        function checkDayRules() {
+            const rule1 = document.getElementById('rule1');
+            const rule2 = document.getElementById('rule2');
+            const rule3 = document.getElementById('rule3');
+            
+            rule1.classList.toggle('complete', gameState.foodEaten >= 3);
+            rule2.classList.toggle('complete', gameState.braveActions >= 1);
+            rule3.classList.toggle('complete', gameState.atDen);
+        }
+
+        function endDay() {
+            gameState.completedDays.push(gameState.day);
+            
+            // Day bonus
+            const bonuses = [
+                { text: "Extra food found!", effect: () => { gameState.foodEaten += 1; } },
+                { text: "A friendly animal joins you!", effect: () => { gameState.safety += 15; } },
+                { text: "You discover a new area!", effect: () => { gameState.bravery += 10; } }
+            ];
+            
+            const bonus = bonuses[Math.floor(Math.random() * bonuses.length)];
+            addEvent(`Good night! ${bonus.text}`);
+            bonus.effect();
+            
+            gameState.day++;
+            
+            if (gameState.day > 7) {
+                // Victory!
+                gameScreen.classList.add('hidden');
+                document.getElementById('victoryScreen').classList.remove('hidden');
+            } else {
+                // Reset for new day
+                gameState.foodEaten = 0;
+                gameState.braveActions = 0;
+                gameState.atDen = false;
+                gameState.currentZone = 0;
+                gameState.hunger = Math.max(0, gameState.hunger - 20);
+                gameState.energy = Math.max(50, gameState.energy);
+                gameState.powerCooldown = Math.max(0, gameState.powerCooldown - 1);
+                
+                const animal = animalData[gameState.animal];
+                updateStory(`Day ${gameState.day} begins! You wake up in the ${animal.zones[0]}.`);
+                updateZoneInfo(animal.zones[0], 0);
+                addEvent(`Day ${gameState.day} - New challenges await!`);
+            }
+            
+            checkDayRules();
+            updateUI();
+        }
+
+        // Restart button
+        document.getElementById('restartBtn').addEventListener('click', () => {
+            location.reload();
+        });
+
+        // Initialize
+        setInterval(() => {
+            // Natural stat decay
+            if (gameState.hunger > 0) gameState.hunger -= 0.1;
+            if (gameState.energy > 0) gameState.energy -= 0.05;
+            if (gameState.safety > 0 && !gameState.atDen) gameState.safety -= 0.05;
+            if (gameState.powerCooldown > 0) gameState.powerCooldown -= 0.1;
+            
+            updateUI();
+        }, 1000);
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,517 @@
+Nextend Facebook Connect - Security Fix Report
+==============================================
+
+Mission: WP-SEC-001
+Agent: Agent-2
+Date: 2025-10-17 01:49:25
+
+Files Processed: 104
+Issues Found: 83
+Issues Fixed: 82
+
+Issues by Type:
+---------------
+  UNSANITIZED_GET: 51
+  UNSANITIZED_REQUEST: 32
+
+
+Detailed Issues:
+----------------
+
+1. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\compat.php
+   Line: 37
+   Code: if ('wp-login.php' === $pagenow && !empty($_GET['loginSocial'])) {
+   Status: FIXED
+
+2. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 74
+   Code: if (isset($_GET['page']) && $_GET['page'] === 'nextend-social-login' && isset($_GET['view']) && $_GET['view'] === 'pro-addon') {
+   Status: FIXED
+
+3. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 86
+   Code: if (isset($_GET['page']) && $_GET['page'] === 'nextend-social-login' && isset($_GET['view']) && $_GET['view'] === 'pro-addon') {
+   Status: FIXED
+
+4. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 328
+   Code: } else if (isset($_REQUEST['repairnsl']) && current_user_can(NextendSocialLogin::getRequiredCapability()) && check_admin_referer('repairnsl')) {
+   Status: FIXED
+
+5. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 479
+   Code: if (!empty($_REQUEST['loginSocial'])) {
+   Status: FIXED
+
+6. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 487
+   Code: $_GET[$login_query] = $HideMyWP->opt('admin_key');
+   Status: PENDING
+
+7. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 492
+   Code: if (!empty($_REQUEST['loginSocial'])) {
+   Status: FIXED
+
+8. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 495
+   Code: if (empty($_GET['action'])) {
+   Status: FIXED
+
+9. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 496
+   Code: $_GET['action'] = 'nsl-login';
+   Status: FIXED
+
+10. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 500
+   Code: if (empty($_REQUEST['action'])) {
+   Status: FIXED
+
+11. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 501
+   Code: $_REQUEST['action'] = 'nsl-login';
+   Status: FIXED
+
+12. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 835
+   Code: if (!empty($_REQUEST['loginSocial']) || (isset($_GET['interim_login']) && $_GET['interim_login'] === 'nsl')) {
+   Status: FIXED
+
+13. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 835
+   Code: if (!empty($_REQUEST['loginSocial']) || (isset($_GET['interim_login']) && $_GET['interim_login'] === 'nsl')) {
+   Status: FIXED
+
+14. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 837
+   Code: $action = isset($_GET['action']) ? $_GET['action'] : 'login';
+   Status: FIXED
+
+15. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 903
+   Code: if (isset($_GET['interim_login']) && $_GET['interim_login'] === 'nsl' && is_user_logged_in()) {
+   Status: FIXED
+
+16. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 908
+   Code: if (isset($_REQUEST['loginFacebook']) && $_REQUEST['loginFacebook'] == '1') {
+   Status: FIXED
+
+17. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 909
+   Code: $_REQUEST['loginSocial'] = 'facebook';
+   Status: FIXED
+
+18. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 911
+   Code: if (isset($_REQUEST['loginGoogle']) && $_REQUEST['loginGoogle'] == '1') {
+   Status: FIXED
+
+19. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 912
+   Code: $_REQUEST['loginSocial'] = 'google';
+   Status: FIXED
+
+20. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 914
+   Code: if (isset($_REQUEST['loginTwitter']) && $_REQUEST['loginTwitter'] == '1') {
+   Status: FIXED
+
+21. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 915
+   Code: $_REQUEST['loginTwitter'] = 'twitter';
+   Status: FIXED
+
+22. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 918
+   Code: if (isset($_REQUEST['loginSocial']) && is_string($_REQUEST['loginSocial']) && isset(self::$providers[$_REQUEST['loginSocial']]) && (self::$providers[$_REQUEST['loginSocial']]->isEnabled() || self::$providers[$_REQUEST['loginSocial']]->isTest())) {
+   Status: FIXED
+
+23. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 922
+   Code: self::$providers[$_REQUEST['loginSocial']]->connect();
+   Status: FIXED
+
+24. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\nextend-social-login.php
+   Line: 1647
+   Code: $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'login';
+   Status: FIXED
+
+25. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\NSL\Notices.php
+   Line: 21
+   Code: if (is_admin() || (isset($_GET['nsl-notice']) && $_GET['nsl-notice'] == 1)) {
+   Status: FIXED
+
+26. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\NSL\Notices.php
+   Line: 27
+   Code: if ((!empty($_SERVER['PHP_SELF']) && basename($_SERVER['PHP_SELF']) !== 'options-general.php') || empty($_GET['page']) || $_GET['page'] !== 'nextend-social-login') {
+   Status: FIXED
+
+27. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 53
+   Code: $view = !empty($_REQUEST['view']) ? $_REQUEST['view'] : '';
+   Status: FIXED
+
+28. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 122
+   Code: if (!isset($_GET['page']) || $_GET['page'] != 'nextend-social-login' || !isset($_GET['view']) || $_GET['view'] != 'fix-redirect-uri') {
+   Status: FIXED
+
+29. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 137
+   Code: if (isset($_GET['page']) && $_GET['page'] == 'nextend-social-login') {
+   Status: FIXED
+
+30. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 138
+   Code: if (!empty($_GET['view'])) {
+   Status: FIXED
+
+31. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 139
+   Code: switch ($_GET['view']) {
+   Status: FIXED
+
+32. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 142
+   Code: if (!empty($_GET['provider'])) {
+   Status: FIXED
+
+33. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 143
+   Code: if (check_admin_referer('nextend-social-login_enable_' . $_GET['provider'])) {
+   Status: FIXED
+
+34. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 144
+   Code: NextendSocialLogin::enableProvider($_GET['provider']);
+   Status: FIXED
+
+35. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 146
+   Code: if ($_GET['view'] == 'sub-enable') {
+   Status: FIXED
+
+36. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 147
+   Code: wp_redirect(NextendSocialLogin::$providers[$_GET['provider']]->getAdmin()
+   Status: FIXED
+
+37. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 158
+   Code: if (!empty($_GET['provider'])) {
+   Status: FIXED
+
+38. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 159
+   Code: if (check_admin_referer('nextend-social-login_disable_' . $_GET['provider'])) {
+   Status: FIXED
+
+39. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 160
+   Code: NextendSocialLogin::disableProvider($_GET['provider']);
+   Status: FIXED
+
+40. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 162
+   Code: if ($_GET['view'] == 'sub-disable') {
+   Status: FIXED
+
+41. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 163
+   Code: wp_redirect(NextendSocialLogin::$providers[$_GET['provider']]->getAdmin()
+   Status: FIXED
+
+42. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 188
+   Code: if (!empty($_REQUEST['redirect_to'])) {
+   Status: FIXED
+
+43. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 189
+   Code: wp_safe_redirect($_REQUEST['redirect_to']);
+   Status: FIXED
+
+44. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 249
+   Code: $view = !empty($_REQUEST['view']) ? $_REQUEST['view'] : '';
+   Status: FIXED
+
+45. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 257
+   Code: wp_redirect(self::getAdminSettingsUrl(!empty($_REQUEST['subview']) ? $_REQUEST['subview'] : ''));
+   Status: FIXED
+
+46. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\admin.php
+   Line: 484
+   Code: if (isset($_GET['view']) && $_GET['view'] == 'pro-addon') {
+   Status: FIXED
+
+47. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\interim.php
+   Line: 7
+   Code: $customize_login = isset($_REQUEST['customize-login']);
+   Status: FIXED
+
+48. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\templates\global-settings.php
+   Line: 20
+   Code: $subview = (!empty($_GET['subview']) && in_array($_GET['subview'], $allowedSubviews)) ? $_GET['subview'] : 'general';
+   Status: FIXED
+
+49. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\templates\test-connection.php
+   Line: 3
+   Code: if (isset($_GET['provider'])) {
+   Status: FIXED
+
+50. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\admin\templates\test-connection.php
+   Line: 4
+   Code: $providerID = $_GET['provider'];
+   Status: FIXED
+
+51. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\compat-wp-login.php
+   Line: 347
+   Code: $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'login';
+   Status: FIXED
+
+52. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\oauth2.php
+   Line: 27
+   Code: if (isset($_REQUEST['error']) && isset($_REQUEST['error_description'])) {
+   Status: FIXED
+
+53. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\oauth2.php
+   Line: 29
+   Code: throw new NSLSanitizedRequestErrorMessageException($_REQUEST['error'] . ': ' . htmlspecialchars_decode($_REQUEST['error_description']));
+   Status: FIXED
+
+54. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\oauth2.php
+   Line: 39
+   Code: return isset($_REQUEST['code']);
+   Status: FIXED
+
+55. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\oauth2.php
+   Line: 113
+   Code: if (isset($_GET['code'])) {
+   Status: FIXED
+
+56. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\oauth2.php
+   Line: 123
+   Code: 'code'          => $_GET['code'],
+   Status: FIXED
+
+57. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\oauth2.php
+   Line: 184
+   Code: if (empty($_GET['state'])) {
+   Status: FIXED
+
+58. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\oauth2.php
+   Line: 188
+   Code: if ($_GET['state'] == $this->state) {
+   Status: FIXED
+
+59. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider-admin.php
+   Line: 148
+   Code: $subview = !empty($_REQUEST['subview']) ? $_REQUEST['subview'] : '';
+   Status: FIXED
+
+60. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 133
+   Code: if (isset($_REQUEST['interim-login'])) {
+   Status: FIXED
+
+61. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 298
+   Code: $interim_login = isset($_REQUEST['interim-login']);
+   Status: FIXED
+
+62. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 305
+   Code: $display = isset($_REQUEST['display']);
+   Status: FIXED
+
+63. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 306
+   Code: if ($display && $_REQUEST['display'] == 'popup') {
+   Status: FIXED
+
+64. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 581
+   Code: } else if (!empty($_GET['redirect_to'])) {
+   Status: FIXED
+
+65. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 582
+   Code: $arg['redirect'] = urlencode($_GET['redirect_to']);
+   Status: FIXED
+
+66. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 765
+   Code: if (isset($_GET['action']) && $_GET['action'] == 'unlink') {
+   Status: FIXED
+
+67. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 777
+   Code: if (isset($_GET['action']) && $_GET['action'] == 'link') {
+   Status: FIXED
+
+68. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 793
+   Code: if (!empty($_GET['trackerdata']) && !empty($_GET['trackerdata_hash'])) {
+   Status: FIXED
+
+69. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 794
+   Code: if (wp_hash($_GET['trackerdata']) === $_GET['trackerdata_hash']) {
+   Status: FIXED
+
+70. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 798
+   Code: if (!empty($_GET['redirect'])) {
+   Status: FIXED
+
+71. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 799
+   Code: Persistent::set('redirect', sanitize_url($_GET['redirect']));
+   Status: FIXED
+
+72. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 860
+   Code: * If fixed redirect url is not set, but redirect is in the url redirect to the $_GET['redirect'].
+   Status: FIXED
+
+73. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 891
+   Code: if (!empty($_GET['redirect']) && NextendSocialLogin::isAllowedRedirectUrl($_GET['redirect'])) {
+   Status: FIXED
+
+74. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 892
+   Code: $requested_redirect_to = $_GET['redirect'];
+   Status: FIXED
+
+75. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 907
+   Code: } else if (!empty($_GET['redirect']) && NextendSocialLogin::isAllowedRedirectUrl($_GET['redirect'])) {
+   Status: FIXED
+
+76. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 908
+   Code: $redirect_to = $_GET['redirect'];
+   Status: FIXED
+
+77. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\provider.php
+   Line: 967
+   Code: if (isset($_REQUEST['test'])) {
+   Status: FIXED
+
+78. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\includes\user.php
+   Line: 157
+   Code: * By default WordPress displays an error message if the $_GET['registration'] is set to "disabled"
+   Status: FIXED
+
+79. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\providers\facebook\facebook-client.php
+   Line: 40
+   Code: if ((isset($_GET['display']) && $_GET['display'] == 'popup') || $this->isTest) {
+   Status: FIXED
+
+80. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\providers\twitter\twitter-client.php
+   Line: 65
+   Code: if (isset($_GET['denied'])) {
+   Status: FIXED
+
+81. UNSANITIZED_REQUEST
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\providers\twitter\twitter-client.php
+   Line: 71
+   Code: return isset($_REQUEST['oauth_token']) && isset($_REQUEST['oauth_verifier']);
+   Status: FIXED
+
+82. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\providers\twitter\twitter-client.php
+   Line: 82
+   Code: 'oauth_verifier' => $_GET['oauth_verifier']
+   Status: FIXED
+
+83. UNSANITIZED_GET
+   File: D:\websites\FreeRideInvestor/plugins/nextend-facebook-connect\providers\twitter\twitterv2-client.php
+   Line: 64
+   Code: 'code'          => $_GET['code'],
+   Status: FIXED

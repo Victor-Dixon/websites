@@ -1,0 +1,427 @@
+/*--------------------------------------------------------------
+  Mobile Responsiveness Enhancements
+  Added by: Agent-3 (Infrastructure & DevOps)
+  Date: October 27, 2025
+  Purpose: Complete mobile responsiveness for FreeRideInvestor theme
+--------------------------------------------------------------*/
+
+/* ==============================================================
+   MOBILE-FIRST RESPONSIVE ENHANCEMENTS
+============================================================== */
+
+/* -----------------------------
+   Mobile Navigation (Hamburger Menu)
+----------------------------- */
+
+/* Hamburger Menu Toggle Button (Mobile Only) */
+.menu-toggle {
+  display: none; /* Hidden on desktop */
+  background: var(--color-accent, #116611);
+  color: var(--color-text-base, #FFF);
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.menu-toggle:hover {
+  background: var(--color-nav-hover-bg, #228822);
+}
+
+/* Show hamburger menu on mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  /* Hide navigation by default on mobile */
+  .main-nav .nav-list {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    width: 100%;
+    background: var(--color-dark-grey, #1E1E1E);
+    padding: var(--spacing-sm, 15px);
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  
+  /* Show navigation when toggled */
+  .main-nav .nav-list.active {
+    display: flex !important;
+  }
+}
+
+/* -----------------------------
+   Header Mobile Responsiveness
+----------------------------- */
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: var(--spacing-xs, 10px);
+  }
+  
+  .site-header .site-branding {
+    text-align: center;
+    margin-bottom: var(--spacing-xs, 10px);
+  }
+  
+  .site-header .site-title {
+    font-size: 1.5rem; /* Smaller on mobile */
+  }
+  
+  .site-header .site-description {
+    font-size: 0.85rem;
+  }
+}
+
+/* -----------------------------
+   Container Mobile Responsiveness
+----------------------------- */
+
+@media (max-width: 768px) {
+  .container,
+  .content-wrapper,
+  .main-content {
+    padding: var(--spacing-sm, 15px);
+    max-width: 100%;
+  }
+  
+  /* Remove excessive margins on mobile */
+  .section {
+    margin: var(--spacing-sm, 15px) 0;
+    padding: var(--spacing-sm, 15px);
+  }
+}
+
+/* -----------------------------
+   Typography Mobile Adjustments
+----------------------------- */
+
+@media (max-width: 768px) {
+  /* Base font size */
+  body {
+    font-size: 16px; /* Readable on mobile */
+  }
+  
+  /* Heading sizes for mobile */
+  h1 {
+    font-size: 2rem; /* 32px */
+  }
+  
+  h2 {
+    font-size: 1.75rem; /* 28px */
+  }
+  
+  h3 {
+    font-size: 1.5rem; /* 24px */
+  }
+  
+  h4 {
+    font-size: 1.25rem; /* 20px */
+  }
+  
+  h5, h6 {
+    font-size: 1rem; /* 16px */
+  }
+  
+  /* Paragraph spacing */
+  p {
+    line-height: 1.6; /* Better readability */
+    margin-bottom: 1em;
+  }
+}
+
+/* -----------------------------
+   Button Mobile Touch-Friendly
+----------------------------- */
+
+@media (max-width: 768px) {
+  .button,
+  .btn,
+  .cta-button,
+  button,
+  input[type="submit"],
+  input[type="button"] {
+    display: block;
+    width: 100%; /* Full width on mobile */
+    padding: 15px 20px; /* Larger touch target */
+    font-size: 1.1rem;
+    margin: 10px 0;
+    min-height: 44px; /* iOS minimum touch target */
+  }
+  
+  /* Link buttons */
+  a.button,
+  a.btn {
+    text-align: center;
+  }
+}
+
+/* -----------------------------
+   Form Mobile Responsiveness
+----------------------------- */
+
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px; /* Prevents iOS zoom */
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+/* -----------------------------
+   Image Mobile Responsiveness
+----------------------------- */
+
+@media (max-width: 768px) {
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .wp-post-image,
+  .featured-image {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* -----------------------------
+   Grid Layouts Mobile Stack
+----------------------------- */
+
+@media (max-width: 768px) {
+  .grid,
+  .benefits-grid,
+  .services-grid,
+  .features-grid,
+  .team-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: var(--spacing-sm, 15px);
+  }
+  
+  /* Flexbox grids */
+  .flex-grid {
+    flex-direction: column;
+  }
+  
+  .flex-grid > * {
+    flex: 1 1 100%;
+    margin-bottom: var(--spacing-sm, 15px);
+  }
+}
+
+/* -----------------------------
+   Cards Mobile Optimization
+----------------------------- */
+
+@media (max-width: 768px) {
+  .card,
+  .service-card,
+  .strategy-card {
+    margin: 10px 0;
+    padding: var(--spacing-sm, 15px);
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+  }
+  
+  .card-content {
+    font-size: 0.95rem;
+  }
+}
+
+/* -----------------------------
+   Footer Mobile Responsiveness
+----------------------------- */
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: var(--spacing-md, 20px) var(--spacing-sm, 15px);
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs, 10px);
+  }
+  
+  .footer-links a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+  }
+}
+
+/* -----------------------------
+   Developer Tools Page Specific
+----------------------------- */
+
+@media (max-width: 768px) {
+  .developer-tools-grid,
+  .tools-showcase {
+    grid-template-columns: 1fr;
+  }
+  
+  .tool-item {
+    margin: 15px 0;
+  }
+  
+  .tool-description {
+    font-size: 0.95rem;
+  }
+}
+
+/* -----------------------------
+   Spacing & Padding Adjustments
+----------------------------- */
+
+@media (max-width: 768px) {
+  /* Reduce overall spacing on mobile */
+  section {
+    padding: var(--spacing-md, 20px) var(--spacing-sm, 15px);
+  }
+  
+  /* Tighter vertical rhythm */
+  * + * {
+    margin-top: 1em;
+  }
+  
+  /* Remove excessive padding from containers */
+  .wrapper,
+  .container-fluid {
+    padding-left: var(--spacing-sm, 15px);
+    padding-right: var(--spacing-sm, 15px);
+  }
+}
+
+/* -----------------------------
+   Tablet Breakpoint (768px - 1024px)
+----------------------------- */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 95%;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+/* -----------------------------
+   Very Small Screens (<480px)
+----------------------------- */
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .button,
+  .btn {
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
+  
+  .site-header .site-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* -----------------------------
+   Touch-Friendly Enhancements
+----------------------------- */
+
+@media (max-width: 768px) {
+  /* Increase touch target sizes */
+  a,
+  button,
+  input[type="submit"],
+  .clickable {
+    min-height: 44px; /* iOS recommendation */
+    min-width: 44px;
+  }
+  
+  /* Add spacing between clickable elements */
+  a + a,
+  button + button {
+    margin-left: 10px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  @media (hover: none) {
+    a:hover,
+    button:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+/* -----------------------------
+   Print Styles (Bonus)
+----------------------------- */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .main-nav,
+  .menu-toggle {
+    display: none;
+  }
+  
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* ==============================================================
+   END OF MOBILE RESPONSIVENESS ENHANCEMENTS
+============================================================== */
+

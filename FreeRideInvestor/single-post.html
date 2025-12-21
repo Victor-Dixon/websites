@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Psychology of Diamond Hands | FreeRide Investor</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0D0D0D;
+            --bg-elevated: #141414;
+            --bg-card: #1A1A1A;
+            --bg-hover: #222222;
+            --accent: #FF4D00;
+            --accent-soft: rgba(255, 77, 0, 0.15);
+            --accent-glow: rgba(255, 77, 0, 0.4);
+            --gold: #FFB800;
+            --cyan: #00E5FF;
+            --white: #FFFFFF;
+            --gray-100: #F5F5F5;
+            --gray-200: #E0E0E0;
+            --gray-300: #B0B0B0;
+            --gray-400: #888888;
+            --gray-500: #666666;
+            --gray-600: #444444;
+            --gray-700: #333333;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-accent: rgba(255, 77, 0, 0.3);
+            --font-serif: 'Instrument Serif', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--gray-200);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        a { color: inherit; text-decoration: none; }
+        
+        /* ═══════════════════════════════════════
+           HEADER
+           ═══════════════════════════════════════ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--white);
+        }
+        
+        .logo span { color: var(--accent); }
+        
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .header-nav a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            transition: color 0.2s;
+        }
+        
+        .header-nav a:hover { color: var(--white); }
+        
+        .header-cta {
+            padding: 0.5rem 1.25rem;
+            background: var(--accent);
+            color: var(--white);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .header-cta:hover {
+            background: var(--white);
+            color: var(--bg);
+        }
+        
+        /* ═══════════════════════════════════════
+           PROGRESS BAR
+           ═══════════════════════════════════════ */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            width: 0%;
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+        
+        /* ═══════════════════════════════════════
+           ARTICLE HERO
+           ═══════════════════════════════════════ */
+        .article-hero {
+            padding: 10rem 2rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .article-meta-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .article-category {
+            padding: 0.375rem 0.875rem;
+            background: var(--accent-soft);
+            border: 1px solid var(--border-accent);
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .article-date {
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+        }
+        
+        .article-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .article-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-400);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+        
+        /* Author Card */
+        .author-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem 0.75rem 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        
+        .author-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-hover);
+        }
+        
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--white);
+        }
+        
+        .author-info {
+            text-align: left;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            font-size: 0.9375rem;
+            color: var(--white);
+        }
+        
+        .author-role {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+        }
+        
+        /* ═══════════════════════════════════════
+           FEATURED IMAGE
+           ═══════════════════════════════════════ */
+        .featured-image {
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+        
+        .featured-image-wrapper {
+            position: relative;
+            aspect-ratio: 21/9;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-card);
+        }
+        
+        .featured-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, var(--bg) 100%);
+            pointer-events: none;
+        }
+        
+        /* ═══════════════════════════════════════
+           ARTICLE CONTENT
+           ═══════════════════════════════════════ */
+        .article-container {
+            display: grid;
+            grid-template-columns: 1fr minmax(auto, 720px) 1fr;
+            gap: 0;
+            padding: 0 2rem;
+        }
+        
+        .article-sidebar-left {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            padding-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        
+        .share-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .share-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 1.125rem;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .share-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .article-content {
+            grid-column: 2;
+        }
+        
+        .article-sidebar-right {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            padding-left: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .article-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-sidebar-left,
+            .article-sidebar-right {
+                display: none;
+            }
+        }
+        
+        /* Content Typography */
+        .article-content p {
+            font-size: 1.125rem;
+            line-height: 1.85;
+            color: var(--gray-200);
+            margin-bottom: 1.75rem;
+        }
+        
+        .article-content h2 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--white);
+            margin: 3rem 0 1.25rem;
+            line-height: 1.3;
+        }
+        
+        .article-content h3 {
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--white);
+            margin: 2.5rem 0 1rem;
+        }
+        
+        .article-content strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .article-content a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s;
+        }
+        
+        .article-content a:hover {
+            color: var(--gold);
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+            color: var(--gray-200);
+        }
+        
+        .article-content li::marker {
+            color: var(--accent);
+        }
+        
+        /* Blockquote */
+        .article-content blockquote {
+            position: relative;
+            margin: 2.5rem 0;
+            padding: 2rem 2rem 2rem 2.5rem;
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+        }
+        
+        .article-content blockquote p {
+            font-family: var(--font-serif);
+            font-size: 1.375rem;
+            font-style: italic;
+            color: var(--gray-100);
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        .article-content blockquote cite {
+            display: block;
+            margin-top: 1rem;
+            font-family: var(--font-sans);
+            font-style: normal;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+        
+        /* Code Block */
+        .article-content pre {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+        
+        .article-content code {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--cyan);
+        }
+        
+        .article-content p code {
+            background: var(--bg-card);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        
+        /* Callout Box */
+        .callout {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--accent-soft);
+            border: 1px solid var(--border-accent);
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .callout-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .callout-content {
+            flex: 1;
+        }
+        
+        .callout-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.375rem;
+        }
+        
+        .callout-text {
+            font-size: 0.9375rem;
+            color: var(--gray-300);
+            line-height: 1.6;
+        }
+        
+        /* Image in Content */
+        .article-content figure {
+            margin: 2.5rem 0;
+        }
+        
+        .article-content figure img {
+            width: 100%;
+            border-radius: 12px;
+        }
+        
+        .article-content figcaption {
+            text-align: center;
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+            margin-top: 0.75rem;
+        }
+        
+        /* ═══════════════════════════════════════
+           ARTICLE FOOTER
+           ═══════════════════════════════════════ */
+        .article-footer {
+            max-width: 720px;
+            margin: 4rem auto 0;
+            padding: 0 2rem;
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tag {
+            padding: 0.375rem 0.875rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            transition: all 0.2s;
+        }
+        
+        .tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        /* Author Box */
+        .author-box {
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .author-box-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        
+        .author-box-info h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.375rem;
+        }
+        
+        .author-box-info p {
+            font-size: 0.9375rem;
+            color: var(--gray-400);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .author-socials {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .author-social-link {
+            padding: 0.375rem 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            transition: all 0.2s;
+        }
+        
+        .author-social-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        @media (max-width: 640px) {
+            .author-box {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .author-socials {
+                justify-content: center;
+            }
+        }
+        
+        /* ═══════════════════════════════════════
+           RELATED POSTS
+           ═══════════════════════════════════════ */
+        .related-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem 5rem;
+        }
+        
+        .related-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .related-header h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--white);
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .related-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .related-card-image {
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: var(--bg-elevated);
+        }
+        
+        .related-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .related-card:hover .related-card-image img {
+            transform: scale(1.05);
+        }
+        
+        .related-card-content {
+            padding: 1.25rem;
+        }
+        
+        .related-card-meta {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .related-card-meta .cat {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        .related-card-title {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            color: var(--white);
+            line-height: 1.35;
+            transition: color 0.2s;
+        }
+        
+        .related-card:hover .related-card-title {
+            color: var(--accent);
+        }
+        
+        /* ═══════════════════════════════════════
+           NEWSLETTER
+           ═══════════════════════════════════════ */
+        .newsletter {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .newsletter-inner {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter h3 {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+        
+        .newsletter p {
+            font-size: 1rem;
+            color: var(--gray-400);
+            margin-bottom: 1.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            color: var(--white);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .newsletter-input:focus {
+            border-color: var(--accent);
+        }
+        
+        .newsletter-input::placeholder {
+            color: var(--gray-600);
+        }
+        
+        .newsletter-btn {
+            padding: 0.875rem 1.5rem;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .newsletter-btn:hover {
+            background: var(--white);
+            color: var(--bg);
+        }
+        
+        @media (max-width: 480px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+        
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        .footer {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .footer p {
+            font-size: 0.8125rem;
+            color: var(--gray-600);
+        }
+        
+        .footer a {
+            color: var(--gray-500);
+            transition: color 0.2s;
+        }
+        
+        .footer a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo">Free<span>Ride</span></a>
+        <nav class="header-nav">
+            <a href="#">Home</a>
+            <a href="#">Blog</a>
+            <a href="#">Strategies</a>
+            <a href="#">Tools</a>
+            <a href="#" class="header-cta">Join Discord</a>
+        </nav>
+    </header>
+    
+    <!-- Article Hero -->
+    <section class="article-hero">
+        <div class="article-meta-top">
+            <span class="article-category">Trading Psychology</span>
+            <span class="article-date">December 17, 2024 · 14 min read</span>
+        </div>
+        <h1 class="article-title">The Psychology of Diamond Hands: Why Holding Through Pain Creates Wealth</h1>
+        <p class="article-subtitle">Understanding the mental framework that separates those who capture 10x gains from those who sell at 2x.</p>
+        <a href="#" class="author-card">
+            <div class="author-avatar">VD</div>
+            <div class="author-info">
+                <div class="author-name">Victor Dixon</div>
+                <div class="author-role">Founder & Lead Trader</div>
+            </div>
+        </a>
+    </section>
+    
+    <!-- Featured Image -->
+    <div class="featured-image">
+        <div class="featured-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1400&h=600&fit=crop" alt="Trading Psychology">
+        </div>
+    </div>
+    
+    <!-- Article Content -->
+    <div class="article-container">
+        
+        <!-- Left Sidebar -->
+        <aside class="article-sidebar-left">
+            <div class="share-buttons">
+                <button class="share-btn" title="Share on Twitter">𝕏</button>
+                <button class="share-btn" title="Copy Link">🔗</button>
+                <button class="share-btn" title="Bookmark">🔖</button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <article class="article-content">
+            
+            <p><strong>Most traders don't fail because of bad entries.</strong> They fail because they can't sit with discomfort. They see green, they sell. They see red, they panic. The few who build real wealth understand something different: conviction isn't about being right — it's about being patient.</p>
+            
+            <p>After 8 years of trading and watching thousands of retail traders make the same mistakes, I've identified the core psychological patterns that separate winners from everyone else. This isn't about blind optimism or ignoring risk — it's about building a mental framework that lets you capture asymmetric returns.</p>
+            
+            <h2>The 2x Trap: Why Most Traders Leave Money on the Table</h2>
+            
+            <p>Here's a pattern I see constantly: A trader buys into a position at $10. It runs to $20. They feel smart, validated, successful. The dopamine hits. And then they sell.</p>
+            
+            <p>What happens next? The stock continues to $50. Then $100. They watch from the sidelines, beating themselves up, promising they'll "hold longer next time." But they won't. Because they haven't fixed the underlying psychology.</p>
+            
+            <blockquote>
+                <p>"The stock market is a device for transferring money from the impatient to the patient."</p>
+                <cite>— Warren Buffett</cite>
+            </blockquote>
+            
+            <p>The problem isn't greed. The problem is that our brains are wired for short-term reward. A 2x gain feels incredible in the moment. But capturing a 10x gain means sitting through multiple 30% drawdowns, watching your unrealized gains shrink, and resisting the urge to "lock in" profits.</p>
+            
+            <h2>The Three Pillars of Conviction</h2>
+            
+            <p>Diamond hands aren't about stubbornness. They're about having a thesis, understanding your risk, and trusting the process. Here's the framework I use:</p>
+            
+            <h3>1. Thesis-Based Positioning</h3>
+            
+            <p>Every position needs a clear, written thesis. Not "I think this will go up" — that's not a thesis. A real thesis answers:</p>
+            
+            <ul>
+                <li><strong>What is the catalyst?</strong> What specific event or trend will drive the price higher?</li>
+                <li><strong>What's the timeline?</strong> Are you playing for a quarter, a year, or five years?</li>
+                <li><strong>What would invalidate this thesis?</strong> Under what conditions would you exit?</li>
+                <li><strong>What's the asymmetric upside?</strong> Is this a 2x opportunity or a 10x opportunity?</li>
+            </ul>
+            
+            <p>When you have a written thesis, price volatility becomes noise. You're not reacting to every red candle — you're checking whether your thesis is still intact.</p>
+            
+            <div class="callout">
+                <span class="callout-icon">💡</span>
+                <div class="callout-content">
+                    <div class="callout-title">Pro Tip</div>
+                    <div class="callout-text">Write your thesis before entering any position. Set a calendar reminder to review it monthly. If the thesis is still valid, ignore the price action.</div>
+                </div>
+            </div>
+            
+            <h3>2. Position Sizing for Sleep</h3>
+            
+            <p>You cannot have conviction if your position size keeps you up at night. The goal is to size positions where a 50% drawdown is uncomfortable but not catastrophic. If you can't handle seeing your position cut in half without panic selling, you're sized too big.</p>
+            
+            <p>My rule: Never put more than 10% of your portfolio in any single position, regardless of conviction. This lets you hold through volatility without emotional decision-making.</p>
+            
+            <h3>3. The 10-Year Mindset</h3>
+            
+            <p>The best trades of my career were positions I held for 2+ years. Not because I was patient by nature, but because I trained myself to think in decades, not quarters.</p>
+            
+            <p>When you zoom out to a 10-year time horizon, 30% drawdowns look like minor blips. The question isn't "what will this stock do tomorrow?" but "what will this company be worth in a decade?"</p>
+            
+            <h2>The Practical Playbook</h2>
+            
+            <p>Theory is useless without execution. Here's exactly how I implement diamond hands psychology:</p>
+            
+            <ol>
+                <li><strong>Pre-commit to holding periods.</strong> Before entering, I decide the minimum hold time. Usually 1 year for swing trades, 3+ years for conviction plays.</li>
+                <li><strong>Delete the app.</strong> Seriously. If you're checking prices hourly, you're not investing — you're gambling. Set alerts for major moves and walk away.</li>
+                <li><strong>Journal every urge to sell.</strong> When you feel the urge to take profits, write down why. 90% of the time, you'll realize it's emotion, not logic.</li>
+                <li><strong>Study the greats.</strong> Read about investors who held through 50% drawdowns to 100x gains. Their stories will rewire your psychology.</li>
+            </ol>
+            
+            <figure>
+                <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=1200&h=600&fit=crop" alt="Chart Analysis">
+                <figcaption>Long-term holders consistently outperform active traders. The data is clear.</figcaption>
+            </figure>
+            
+            <h2>When Diamond Hands Becomes Stupidity</h2>
+            
+            <p>Let me be clear: Diamond hands doesn't mean never selling. It means selling based on thesis invalidation, not price action.</p>
+            
+            <p><strong>Sell when:</strong></p>
+            <ul>
+                <li>Your original thesis is proven wrong (not just delayed)</li>
+                <li>Fundamentals deteriorate significantly</li>
+                <li>A better asymmetric opportunity emerges</li>
+                <li>You hit your price target (if you had one)</li>
+            </ul>
+            
+            <p><strong>Don't sell when:</strong></p>
+            <ul>
+                <li>The price drops 30% with no fundamental change</li>
+                <li>You see scary headlines (that's usually the buying opportunity)</li>
+                <li>You want to "lock in" gains out of fear</li>
+                <li>Everyone on Twitter is panicking</li>
+            </ul>
+            
+            <h2>The Bottom Line</h2>
+            
+            <p>Building wealth through markets isn't about finding the perfect entry or having insider information. It's about developing the psychological infrastructure to hold winning positions long enough for compounding to work.</p>
+            
+            <p>The next time you feel the urge to sell a winner, ask yourself: Has my thesis changed? Or am I just uncomfortable?</p>
+            
+            <p>Discomfort is the price of conviction. And conviction is the price of life-changing returns.</p>
+            
+            <p>Trade well. 🔥</p>
+            
+        </article>
+        
+        <!-- Right Sidebar -->
+        <aside class="article-sidebar-right">
+            <!-- Could add table of contents here -->
+        </aside>
+        
+    </div>
+    
+    <!-- Article Footer -->
+    <footer class="article-footer">
+        <div class="article-tags">
+            <a href="#" class="tag">Trading Psychology</a>
+            <a href="#" class="tag">Investing</a>
+            <a href="#" class="tag">Mindset</a>
+            <a href="#" class="tag">Long-Term</a>
+            <a href="#" class="tag">Strategy</a>
+        </div>
+        
+        <div class="author-box">
+            <div class="author-box-avatar">VD</div>
+            <div class="author-box-info">
+                <h4>Victor Dixon</h4>
+                <p>Day trader with 8+ years of experience. Sharing raw trading insights — the wins, the losses, and everything between.</p>
+                <div class="author-socials">
+                    <a href="#" class="author-social-link">𝕏 Twitter</a>
+                    <a href="#" class="author-social-link">▶ YouTube</a>
+                    <a href="#" class="author-social-link">💬 Discord</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Related Posts -->
+    <section class="related-section">
+        <div class="related-header">
+            <h3>Keep Reading</h3>
+        </div>
+        <div class="related-grid">
+            <a href="#" class="related-card">
+                <div class="related-card-image">
+                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&h=400&fit=crop" alt="">
+                </div>
+                <div class="related-card-content">
+                    <div class="related-card-meta">
+                        <span class="cat">Strategy</span>
+                        <span>·</span>
+                        <span>8 min</span>
+                    </div>
+                    <h4 class="related-card-title">The TBOW System: Complete Breakdown</h4>
+                </div>
+            </a>
+            <a href="#" class="related-card">
+                <div class="related-card-image">
+                    <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop" alt="">
+                </div>
+                <div class="related-card-content">
+                    <div class="related-card-meta">
+                        <span class="cat">Analysis</span>
+                        <span>·</span>
+                        <span>5 min</span>
+                    </div>
+                    <h4 class="related-card-title">Reading Order Flow Like a Pro</h4>
+                </div>
+            </a>
+            <a href="#" class="related-card">
+                <div class="related-card-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="">
+                </div>
+                <div class="related-card-content">
+                    <div class="related-card-meta">
+                        <span class="cat">Tools</span>
+                        <span>·</span>
+                        <span>6 min</span>
+                    </div>
+                    <h4 class="related-card-title">My Complete Trading Setup 2024</h4>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-inner">
+            <div class="newsletter-icon">📈</div>
+            <h3>Get the Edge</h3>
+            <p>Weekly trading insights, market breakdowns, and exclusive strategies. No spam, just alpha.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 FreeRide Investor · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </footer>
+    
+    <script>
+        // Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+    
+</body>
+</html>

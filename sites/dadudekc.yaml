@@ -1,0 +1,16 @@
+site_id: dadudekc
+domain: dadudekc.com
+voice_profile: content/voices/victor.md
+brand_profile: content/brands/dadudekc.yaml
+backlog: content/backlogs/dadudekc.yaml
+calendar: content/calendars/dadudekc.yaml
+examples_glob: content/examples/victor/*.md
+publish:
+  provider: wordpress
+  wp_base_url_env: DADUDEKC_WP_URL
+  wp_user_env: DADUDEKC_WP_USER
+  wp_app_password_env: DADUDEKC_WP_APP_PASS
+defaults:
+  word_count_min: 900
+  word_count_max: 1400
+  auto_publish: false

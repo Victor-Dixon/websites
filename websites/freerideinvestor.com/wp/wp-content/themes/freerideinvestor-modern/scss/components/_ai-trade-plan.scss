@@ -1,0 +1,101 @@
+/* AI Trade Plan Section */
+.ai-trade-plan {
+  background-color: $color-dark-bg-alt;
+  padding: $spacing-lg;
+  border-radius: 12px;
+  @include box-shadow($box-shadow-light);
+  color: $color-text-base;
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: $font-family-base;
+
+  &__title,
+  &__subtitle {
+    text-align: center;
+    color: $color-accent;
+    margin-bottom: $spacing-md;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+  }
+
+  &__step {
+    margin-bottom: $spacing-md;
+
+    &-title {
+      font-size: 1.3rem;
+      margin-bottom: $spacing-sm;
+      color: $color-accent;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        margin-right: $spacing-xs;
+      }
+    }
+
+    p,
+    ul {
+      margin: 0 0 $spacing-sm;
+      color: $color-text-muted;
+      line-height: 1.6;
+    }
+  }
+
+  &__highlight {
+    font-weight: bold;
+    color: $color-accent;
+  }
+
+  &__key-points {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+
+    &-item {
+      padding: $spacing-xs;
+      color: $color-text-muted;
+
+      &.title {
+        font-weight: bold;
+        color: $color-accent;
+      }
+    }
+  }
+
+  &__notes {
+    border-top: 2px dashed $color-border;
+    padding-top: $spacing-md;
+    margin-top: $spacing-md;
+    font-style: italic;
+    color: $color-text-muted;
+  }
+
+  &__recent-news {
+    margin-top: $spacing-lg;
+
+    &-title {
+      font-size: 1.2rem;
+      color: $color-accent;
+      margin-bottom: $spacing-sm;
+    }
+
+    &-list {
+      list-style-type: circle;
+      padding-left: $spacing-md;
+    }
+
+    &-link {
+      color: $color-accent;
+      text-decoration: none;
+      @include transition(color 0.3s);
+
+      &:hover {
+        color: $color-nav-hover-bg;
+        text-decoration: underline;
+      }
+    }
+  }
+}

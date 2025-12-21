@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeRide Investor Blog - Sleek & Edgy</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+           FREERIDE INVESTOR - SLEEK & EDGY BLOG
+           Dark. Bold. Sharp. No fluff.
+           ═══════════════════════════════════════════════════════════ */
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Blacks */
+            --black: #000000;
+            --black-rich: #050505;
+            --black-soft: #0a0a0a;
+            --dark: #111111;
+            --dark-elevated: #161616;
+            --dark-hover: #1a1a1a;
+            
+            /* Neon Accent */
+            --neon: #00FF88;
+            --neon-dim: #00cc6a;
+            --neon-glow: rgba(0, 255, 136, 0.15);
+            --neon-intense: rgba(0, 255, 136, 0.4);
+            
+            /* Secondary */
+            --electric-blue: #00D4FF;
+            --hot-pink: #FF0080;
+            --orange: #FF6B00;
+            
+            /* Text */
+            --white: #FFFFFF;
+            --gray-100: #F0F0F0;
+            --gray-300: #A0A0A0;
+            --gray-500: #666666;
+            --gray-700: #333333;
+            
+            /* Borders */
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --border-neon: rgba(0, 255, 136, 0.3);
+            
+            /* Fonts */
+            --font-main: 'Space Grotesk', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* ─────────────────────────────────────────
+           UTILITY
+           ───────────────────────────────────────── */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 4vw, 3rem);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px var(--neon-glow), 0 0 40px var(--neon-glow);
+        }
+        
+        /* ─────────────────────────────────────────
+           HEADER - Minimal & Sharp
+           ───────────────────────────────────────── */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--neon);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--black);
+            font-weight: 700;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .nav a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-300);
+            transition: color 0.2s;
+            position: relative;
+        }
+        
+        .nav a:hover {
+            color: var(--white);
+        }
+        
+        .nav a.active {
+            color: var(--neon);
+        }
+        
+        .nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--neon);
+            box-shadow: 0 0 10px var(--neon);
+        }
+        
+        .header-cta {
+            padding: 0.625rem 1.25rem;
+            background: var(--white);
+            color: var(--black);
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .header-cta:hover {
+            background: var(--neon);
+            transform: translateY(-1px);
+        }
+        
+        /* ─────────────────────────────────────────
+           HERO - Bold & Dramatic
+           ───────────────────────────────────────── */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 10rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, var(--neon-glow) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        /* Grid pattern overlay */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--dark);
+            border: 1px solid var(--border-neon);
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--neon);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-tag .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--neon);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--neon-intense); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 8px transparent; }
+        }
+        
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-title .highlight {
+            color: var(--neon);
+            position: relative;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-300);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon);
+            font-family: var(--font-mono);
+        }
+        
+        .stat-label {
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* ─────────────────────────────────────────
+           FILTER BAR - Sleek
+           ───────────────────────────────────────── */
+        .filters {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+            position: sticky;
+            top: 70px;
+            background: var(--black);
+            z-index: 50;
+        }
+        
+        .filters-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 0.25rem;
+            background: var(--dark);
+            padding: 4px;
+            border-radius: 8px;
+        }
+        
+        .filter-tab {
+            font-family: var(--font-main);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--gray-500);
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-tab:hover {
+            color: var(--white);
+        }
+        
+        .filter-tab.active {
+            background: var(--neon);
+            color: var(--black);
+        }
+        
+        .search-wrap {
+            position: relative;
+        }
+        
+        .search-input {
+            font-family: var(--font-main);
+            font-size: 0.875rem;
+            color: var(--white);
+            padding: 0.625rem 1rem 0.625rem 2.5rem;
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            width: 280px;
+            transition: all 0.2s;
+        }
+        
+        .search-input:focus {
+            border-color: var(--neon);
+            box-shadow: 0 0 0 3px var(--neon-glow);
+        }
+        
+        .search-input::placeholder {
+            color: var(--gray-500);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+        
+        /* ─────────────────────────────────────────
+           POSTS GRID - Edgy Cards
+           ───────────────────────────────────────── */
+        .posts-section {
+            padding-bottom: 6rem;
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        
+        /* Featured - Full width */
+        .post-card.featured {
+            grid-column: span 12;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            background: var(--dark);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .post-card.featured:hover {
+            border-color: var(--neon);
+            box-shadow: 0 0 40px var(--neon-glow);
+        }
+        
+        .post-card.featured .post-image {
+            aspect-ratio: 16/10;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .post-card.featured .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .post-card.featured:hover .post-image img {
+            transform: scale(1.05);
+        }
+        
+        .post-card.featured .post-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .post-card.featured .post-title {
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+        
+        /* Regular cards - Various sizes */
+        .post-card.large {
+            grid-column: span 8;
+        }
+        
+        .post-card.medium {
+            grid-column: span 4;
+        }
+        
+        .post-card.small {
+            grid-column: span 6;
+        }
+        
+        @media (max-width: 1024px) {
+            .post-card.featured { grid-template-columns: 1fr; }
+            .post-card.large, .post-card.medium { grid-column: span 6; }
+            .post-card.small { grid-column: span 12; }
+        }
+        
+        @media (max-width: 640px) {
+            .post-card.featured, .post-card.large, .post-card.medium, .post-card.small {
+                grid-column: span 12;
+            }
+        }
+        
+        /* Card Base */
+        .post-card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon), var(--electric-blue));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .post-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+        
+        .post-card:hover::before {
+            opacity: 1;
+        }
+        
+        .post-card:hover .post-image img {
+            transform: scale(1.05);
+        }
+        
+        .post-image {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            position: relative;
+            background: var(--dark-elevated);
+        }
+        
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .post-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.375rem 0.75rem;
+            background: var(--black);
+            border: 1px solid var(--border-neon);
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--neon);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        
+        .post-content {
+            padding: 1.5rem;
+        }
+        
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            font-family: var(--font-mono);
+        }
+        
+        .post-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+            transition: color 0.2s;
+        }
+        
+        .post-card:hover .post-title {
+            color: var(--neon);
+        }
+        
+        .post-excerpt {
+            font-size: 0.9375rem;
+            color: var(--gray-300);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .post-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+        
+        .author-avatar {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--neon), var(--electric-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+        
+        .author-name {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--gray-100);
+        }
+        
+        .read-link {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--neon);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            transition: gap 0.2s;
+        }
+        
+        .read-link:hover {
+            gap: 0.625rem;
+        }
+        
+        /* ─────────────────────────────────────────
+           NEWSLETTER - Bold CTA
+           ───────────────────────────────────────── */
+        .newsletter {
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--neon-glow) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .newsletter-box {
+            position: relative;
+            z-index: 1;
+            background: var(--dark);
+            border: 1px solid var(--border-neon);
+            padding: 4rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-title span {
+            color: var(--neon);
+        }
+        
+        .newsletter-text {
+            font-size: 1.125rem;
+            color: var(--gray-300);
+            margin-bottom: 2rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            padding: 1rem 1.25rem;
+            background: var(--black);
+            border: 1px solid var(--border);
+            color: var(--white);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .newsletter-form input:focus {
+            border-color: var(--neon);
+        }
+        
+        .newsletter-form button {
+            font-family: var(--font-main);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            background: var(--neon);
+            border: none;
+            color: var(--black);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .newsletter-form button:hover {
+            background: var(--white);
+            box-shadow: 0 0 30px var(--neon-glow);
+        }
+        
+        /* ─────────────────────────────────────────
+           FOOTER - Minimal
+           ───────────────────────────────────────── */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .footer-brand {
+            max-width: 300px;
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-tagline {
+            font-size: 0.9375rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+        
+        .footer-heading {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-links a {
+            font-size: 0.9375rem;
+            color: var(--gray-300);
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--neon);
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-copy {
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+        }
+        
+        .footer-socials {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .footer-socials a {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark);
+            border: 1px solid var(--border);
+            font-size: 1rem;
+            color: var(--gray-300);
+            transition: all 0.2s;
+        }
+        
+        .footer-socials a:hover {
+            background: var(--neon);
+            border-color: var(--neon);
+            color: var(--black);
+        }
+        
+        /* ─────────────────────────────────────────
+           ANIMATIONS
+           ───────────────────────────────────────── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeUp 0.6s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+    </style>
+</head>
+<body>
+    
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <span class="logo-icon">FR</span>
+                    FreeRide
+                </a>
+                
+                <nav class="nav">
+                    <a href="#">Home</a>
+                    <a href="#" class="active">Blog</a>
+                    <a href="#">Strategies</a>
+                    <a href="#">Tools</a>
+                    <a href="#">Discord</a>
+                </nav>
+                
+                <a href="#" class="header-cta">Get Started</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span class="dot"></span>
+                    Live Market Insights
+                </div>
+                
+                <h1 class="hero-title">
+                    Trade Smarter.<br>
+                    <span class="highlight">Win Bigger.</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Raw market intelligence. No fluff. Just actionable strategies 
+                    and analysis from traders who actually trade.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-value">147+</span>
+                        <span class="stat-label">Articles</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">12K</span>
+                        <span class="stat-label">Traders</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">89%</span>
+                        <span class="stat-label">Win Rate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FILTERS -->
+    <div class="filters">
+        <div class="container">
+            <div class="filters-inner">
+                <div class="filter-tabs">
+                    <button class="filter-tab active">All</button>
+                    <button class="filter-tab">Technical</button>
+                    <button class="filter-tab">Strategy</button>
+                    <button class="filter-tab">Market News</button>
+                    <button class="filter-tab">Tools</button>
+                </div>
+                
+                <div class="search-wrap">
+                    <span class="search-icon">⌘</span>
+                    <input type="text" class="search-input" placeholder="Search articles...">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- POSTS -->
+    <section class="posts-section">
+        <div class="container">
+            <div class="posts-grid">
+                
+                <!-- Featured -->
+                <article class="post-card featured animate delay-1">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=1000&h=600&fit=crop" alt="">
+                        <span class="post-category">Featured</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>Dec 17, 2024</span>
+                            <span>•</span>
+                            <span>12 min read</span>
+                        </div>
+                        <h2 class="post-title">The TBOW System: How I Turned $5K Into $50K in 90 Days</h2>
+                        <p class="post-excerpt">
+                            A complete breakdown of my proprietary trading system. Learn the exact entries, exits, and risk management that produced a 10x return. No BS, just raw data.
+                        </p>
+                        <div class="post-footer">
+                            <div class="post-author">
+                                <span class="author-avatar">VD</span>
+                                <span class="author-name">Victor Dixon</span>
+                            </div>
+                            <a href="#" class="read-link">Read Article →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Large -->
+                <article class="post-card large animate delay-2">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=450&fit=crop" alt="">
+                        <span class="post-category">Technical</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>Dec 15, 2024</span>
+                            <span>•</span>
+                            <span>8 min</span>
+                        </div>
+                        <h2 class="post-title">Reading Order Flow Like a Market Maker</h2>
+                        <p class="post-excerpt">
+                            Stop trading against the big players. Learn to read institutional order flow and trade with the smart money.
+                        </p>
+                        <div class="post-footer">
+                            <div class="post-author">
+                                <span class="author-avatar">VD</span>
+                                <span class="author-name">Victor Dixon</span>
+                            </div>
+                            <a href="#" class="read-link">Read →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Medium -->
+                <article class="post-card medium animate delay-3">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&h=400&fit=crop" alt="">
+                        <span class="post-category">Strategy</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>Dec 12, 2024</span>
+                            <span>•</span>
+                            <span>5 min</span>
+                        </div>
+                        <h2 class="post-title">The 3-Candle Reversal Setup</h2>
+                        <p class="post-excerpt">
+                            A simple pattern that catches major reversals with high accuracy.
+                        </p>
+                        <div class="post-footer">
+                            <div class="post-author">
+                                <span class="author-avatar">VD</span>
+                                <span class="author-name">Victor Dixon</span>
+                            </div>
+                            <a href="#" class="read-link">Read →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Small -->
+                <article class="post-card small animate delay-4">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop" alt="">
+                        <span class="post-category">Market</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>Dec 10, 2024</span>
+                            <span>•</span>
+                            <span>4 min</span>
+                        </div>
+                        <h2 class="post-title">Weekly Watchlist: TSLA, NVDA, AMD</h2>
+                        <p class="post-excerpt">
+                            Key levels and setups for the hottest tickers this week.
+                        </p>
+                        <div class="post-footer">
+                            <div class="post-author">
+                                <span class="author-avatar">VD</span>
+                                <span class="author-name">Victor</span>
+                            </div>
+                            <a href="#" class="read-link">Read →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Small -->
+                <article class="post-card small animate">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="">
+                        <span class="post-category">Tools</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>Dec 8, 2024</span>
+                            <span>•</span>
+                            <span>6 min</span>
+                        </div>
+                        <h2 class="post-title">My Trading Setup: Hardware & Software Stack</h2>
+                        <p class="post-excerpt">
+                            The exact tools, platforms, and monitors I use every day.
+                        </p>
+                        <div class="post-footer">
+                            <div class="post-author">
+                                <span class="author-avatar">VD</span>
+                                <span class="author-name">Victor</span>
+                            </div>
+                            <a href="#" class="read-link">Read →</a>
+                        </div>
+                    </div>
+                </article>
+                
+            </div>
+        </div>
+    </section>
+    
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-box">
+                <h2 class="newsletter-title">Get the <span>Edge</span></h2>
+                <p class="newsletter-text">
+                    Weekly insights, trade ideas, and exclusive strategies. 
+                    Join 12,000+ traders who don't miss a beat.
+                </p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="your@email.com">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">FR</span>
+                        FreeRide
+                    </a>
+                    <p class="footer-tagline">
+                        Trade smarter. Built by traders, for traders who want to win.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Navigate</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Strategies</a></li>
+                        <li><a href="#">Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Twitch</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2024 FreeRide Investor. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#">𝕏</a>
+                    <a href="#">▶</a>
+                    <a href="#">💬</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Tab switching
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+    
+</body>
+</html>

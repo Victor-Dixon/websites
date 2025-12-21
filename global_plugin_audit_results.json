@@ -1,0 +1,48 @@
+{
+  "audit_date": "2025-11-21T14:23:57.498479",
+  "websites": {
+    "DaDudeKC": {
+      "status": "skipped",
+      "reason": "Path not configured",
+      "plugins": []
+    },
+    "FreeRideInvestor": {
+      "status": "static_site",
+      "site_path": "D:\\websites\\FreeRideInvestor",
+      "plugins": [],
+      "plugin_count": 0,
+      "health_status": "unknown",
+      "reason": "Static HTML site (no WordPress plugins)"
+    },
+    "TradingRobotPlug": {
+      "status": "audited",
+      "site_path": "D:\\websites\\TradingRobotPlugWeb",
+      "plugins": [],
+      "plugin_count": 0,
+      "health_status": "unknown"
+    },
+    "WeAreSwarm": {
+      "status": "audited",
+      "site_path": "D:\\websites\\Swarm_website",
+      "plugins": [],
+      "plugin_count": 0,
+      "health_status": "unknown"
+    },
+    "SouthwestSecret": {
+      "status": "static_site",
+      "site_path": "D:\\websites\\southwestsecret.com",
+      "plugins": [],
+      "plugin_count": 0,
+      "health_status": "unknown",
+      "reason": "Static HTML site (no WordPress plugins)"
+    }
+  },
+  "summary": {
+    "total_websites": 5,
+    "websites_audited": 2,
+    "total_plugins": 0,
+    "healthy_plugins": 0,
+    "unhealthy_plugins": 0,
+    "missing_plugins": 0
+  }
+}

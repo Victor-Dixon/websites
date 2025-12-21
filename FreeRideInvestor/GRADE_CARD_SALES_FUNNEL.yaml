@@ -1,0 +1,272 @@
+gradecard:
+  version: v1
+  site: "freerideinvestor.com"
+  date: "2025-12-19"
+  total_points: 100
+
+  scoring_scale:
+    "0": missing
+    "1": exists_but_broken
+    "2": weak_incomplete
+    "3": usable
+    "4": strong
+    "5": elite
+
+  categories:
+    - name: Brand Core
+      weight_points: 15
+      criteria:
+        - id: BRAND-01
+          name: Positioning statement clarity
+          score_0_to_5: 2
+          evidence: "About page: 'Trading is a journey we take together' - vague positioning; no clear differentiation from other trading education sites"
+          gap: "Missing unique positioning statement; no clear 'for X who want Y, we provide Z unlike competitors because...' format"
+          fix: "Create positioning statement: 'For traders and investors who are tired of generic advice, we provide actionable TBOW tactics and proven strategies (unlike theory-heavy courses or signal services) because we focus on practical, tested methods that work in real markets'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: BRAND-02
+          name: Offer ladder defined
+          score_0_to_5: 2
+          evidence: "Premium content exists (single-premium.php), membership system exists, but no clear offer ladder visible"
+          gap: "No clear progression: free content → lead magnet → newsletter → premium membership; missing entry-level offers"
+          fix: "Create offer ladder: 1) Free TBOW tactics (blog), 2) Free resources (roadmap PDF, mindset journal), 3) Newsletter subscription, 4) Premium membership (courses, strategies, cheat sheets), 5) Advanced coaching/community"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: BRAND-03
+          name: ICP + pain/outcome defined
+          score_0_to_5: 2
+          evidence: "Target audience implied (traders/investors) but not explicitly defined on site"
+          gap: "No explicit ICP definition; pain points (losing trades, information overload) and outcomes (consistent profits, confidence) not clearly articulated"
+          fix: "Add ICP section: 'For active traders (day/swing traders, $10K-$500K accounts) struggling with inconsistent results, we eliminate guesswork and provide proven tactics. Your outcome: consistent edge, reduced losses, trading confidence.'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+
+    - name: Visual Identity
+      weight_points: 10
+      criteria:
+        - id: VIS-01
+          name: Logo set complete
+          score_0_to_5: 2
+          evidence: "Logo exists ('FR' icon + 'FreeRide' text) but completeness unknown"
+          gap: "May be missing logo variations (horizontal, stacked, icon, favicon), social media versions"
+          fix: "Audit logo assets: ensure primary logo, secondary (stacked), icon (favicon), social media variations exist. Create missing assets if needed"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-26"
+        - id: VIS-02
+          name: Palette + fonts + design rules
+          score_0_to_5: 3
+          evidence: "SCSS structure exists with organized styles, but no documented brand guidelines"
+          gap: "No brand style guide document, color palette not documented, typography choices not established, design rules not codified"
+          fix: "Create brand style guide: document color palette (likely dark theme for trading), typography (primary + heading fonts), spacing system, button styles, component library, chart/graph treatment"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-26"
+
+    - name: Social Presence
+      weight_points: 10
+      criteria:
+        - id: SOC-01
+          name: Accounts claimed + handle consistency
+          score_0_to_5: 1
+          evidence: "No social media links prominently visible on website"
+          gap: "Social accounts may exist but not linked/visible; handle consistency unknown (@freerideinvestor vs variations)"
+          fix: "Audit social accounts: claim @freerideinvestor on Twitter/X, LinkedIn, Instagram (if applicable). Ensure handle consistency. Add social links to header/footer"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+        - id: SOC-02
+          name: Profile completeness (bio/link/pfp/banner/pin)
+          score_0_to_5: 1
+          evidence: "Social profiles may exist but completeness unknown"
+          gap: "Profiles may be incomplete: missing optimized bio, profile picture, banner, pinned post, website link"
+          fix: "Complete all profiles: bio (trading education + TBOW tactics), professional headshot/branded icon, trading-themed banner, pin free resource (roadmap PDF), link to /subscribe"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+
+    - name: Funnel Infrastructure
+      weight_points: 20
+      criteria:
+        - id: FUN-01
+          name: Lead magnet + landing + thank-you
+          score_0_to_5: 2
+          evidence: "Free resources exist (roadmap PDF, trading mindset journal), subscribe page exists, but unclear if optimized as lead magnets"
+          gap: "Resources exist but may not have dedicated landing pages; missing thank-you pages with next steps; no clear lead magnet positioning"
+          fix: "Optimize free resources as lead magnets: create landing pages for roadmap PDF and mindset journal with value props, form capture, thank-you pages with download + premium upsell CTA"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-21"
+        - id: FUN-02
+          name: Email welcome + nurture sequence
+          score_0_to_5: 2
+          evidence: "Mailchimp integration exists (subscribe.php), but no welcome/nurture sequence documented"
+          gap: "Email service integrated but no welcome email, no nurture sequence for trading leads"
+          fix: "Create welcome email (deliver free resources, introduce premium membership), build nurture sequence (trading tips, TBOW tactic highlights, market insights, premium membership CTA) - 5 emails over 2 weeks"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: FUN-03
+          name: Booking/checkout works end-to-end
+          score_0_to_5: 2
+          evidence: "Membership system exists (FRATP_Membership), premium content exists, but payment/checkout flow unclear"
+          gap: "No visible payment processing for premium membership, no clear upgrade path, no automated confirmation system"
+          fix: "Implement: 1) Payment processing (Stripe) for premium membership, 2) Clear upgrade flow (free → premium), 3) Automated membership activation emails, 4) Member dashboard/portal"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-25"
+        - id: FUN-04
+          name: CRM stages / lead tracking exists
+          score_0_to_5: 1
+          evidence: "Membership system exists but no CRM integration visible"
+          gap: "No CRM integration, no lead stages defined, no tracking of visitor → subscriber → premium member → repeat customer"
+          fix: "Set up CRM (HubSpot free/Pipedrive): stages (Visitor → Subscriber → Free Resource Downloaded → Premium Member → Active User → Advocate), automate stage transitions"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-27"
+
+    - name: Website Conversion
+      weight_points: 20
+      criteria:
+        - id: WEB-01
+          name: Hero clarity + CTA clarity
+          score_0_to_5: 2
+          evidence: "Blog hero exists but may not be benefit-focused; CTAs unclear without site inspection"
+          gap: "Hero may not clearly communicate value; CTAs may not be optimized for conversion; missing urgency/value props"
+          fix: "A/B test hero: 'Stop Losing Money on Trades - Get Proven TBOW Tactics That Work' + 'Get Your Free Trading Roadmap' vs current. Add urgency: 'Limited Premium Spots Available'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-20"
+        - id: WEB-02
+          name: Services/pricing + proof/trust
+          score_0_to_5: 2
+          evidence: "Premium content exists but pricing transparency unknown; proof/trust elements unclear"
+          gap: "Pricing may not be visible or clear; missing testimonials, case studies, trading results, trust badges, social proof"
+          fix: "Add: pricing page for premium membership, real trader testimonials with photos/names, case studies (before/after trading results), performance metrics (win rate, ROI), trust badges (years trading, certifications)"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: WEB-03
+          name: Mobile UX + speed basics
+          score_0_to_5: 3
+          evidence: "Site exists and likely responsive, but no speed optimization documented"
+          gap: "No mobile testing documented, no page speed scores, likely missing image optimization, caching"
+          fix: "Test mobile UX (all pages), optimize images (WebP, lazy loading), implement caching (LiteSpeed Cache plugin), target PageSpeed 90+ mobile, 95+ desktop"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+        - id: WEB-04
+          name: Contact/booking friction low
+          score_0_to_5: 2
+          evidence: "Subscribe page exists but friction level unknown; premium upgrade path unclear"
+          gap: "Subscription form may have friction, no one-click premium upgrade, no phone number visible, no chat widget"
+          fix: "Reduce subscription form to email only, add prominent premium membership CTA, implement chat widget (Intercom/Crisp), add clear upgrade path from free to premium"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-21"
+
+    - name: Content System
+      weight_points: 15
+      criteria:
+        - id: CON-01
+          name: Content pillars + weekly schedule
+          score_0_to_5: 3
+          evidence: "Blog exists with TBOW tactics category, content structure visible, but pillars not explicitly defined"
+          gap: "Content pillars not explicitly defined; weekly schedule may not be documented as strategy"
+          fix: "Define 3 content pillars: 1) TBOW Tactics (actionable strategies), 2) Market Analysis & Insights, 3) Trading Psychology & Mindset. Document weekly schedule: 3-4 posts/week (Monday, Wednesday, Friday, Sunday)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: CON-02
+          name: 30-day calendar exists
+          score_0_to_5: 1
+          evidence: "Content calendar directory exists but may be empty or incomplete"
+          gap: "No 30-day calendar visible, no topics planned, no content bank"
+          fix: "Create 30-day calendar: Week 1 (TBOW tactics), Week 2 (market analysis), Week 3 (trading psychology), Week 4 (case studies). Use content templates, build content bank (10+ posts ready)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: CON-03
+          name: Repurpose pipeline defined
+          score_0_to_5: 1
+          evidence: "No repurposing system documented"
+          gap: "No plan to turn 1 piece into 5+ assets (blog → social posts → email → video → infographic)"
+          fix: "Create repurposing workflow: Blog post → 3 social posts (Twitter/X, LinkedIn, Instagram) → Email newsletter → YouTube short → Trading chart image → Twitter thread"
+          priority: P2
+          owner: "Agent-7"
+          eta: "2025-12-28"
+
+    - name: Blog & SEO System
+      weight_points: 5
+      criteria:
+        - id: SEO-01
+          name: Blog template + categories + internal links rules
+          score_0_to_5: 3
+          evidence: "Blog exists with categories (tbow-tactic), standardized template exists, but SEO optimization unknown"
+          gap: "Blog categories may not be optimized, SEO plugin status unknown, internal linking strategy may not be fully implemented"
+          fix: "Set up: blog categories (TBOW Tactics, Market Analysis, Trading Psychology), SEO plugin (Yoast/Rank Math), ensure internal links to premium content in every post, schema markup for trading content, sitemap"
+          priority: P2
+          owner: "Agent-7"
+          eta: "2025-12-26"
+
+    - name: Tracking & Ops
+      weight_points: 5
+      criteria:
+        - id: OPS-01
+          name: Analytics/pixels + UTMs + weekly metrics sheet
+          score_0_to_5: 2
+          evidence: "No analytics tracking mentioned in config"
+          gap: "No Google Analytics visible, no Facebook Pixel, no UTM parameters documented, no metrics dashboard"
+          fix: "Install: Google Analytics 4, Facebook Pixel (if running ads), set up UTM parameters (source, medium, campaign), create weekly metrics sheet (traffic, subscribers, free downloads, premium conversions, revenue)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+
+  final:
+    weighted_score_out_of_100: 38.5
+    letter_grade: "F"
+    top_10_fixes:
+      - priority: P0
+        item: "Optimize free resources (roadmap PDF, mindset journal) as lead magnets with landing pages + thank-you pages"
+        owner: "Agent-7"
+        eta: "2025-12-21"
+      - priority: P0
+        item: "Set up email welcome sequence + nurture campaign (5 emails over 2 weeks) for trading leads"
+        owner: "Agent-7"
+        eta: "2025-12-24"
+      - priority: P0
+        item: "Implement payment processing (Stripe) for premium membership + clear upgrade flow"
+        owner: "Agent-7"
+        eta: "2025-12-25"
+      - priority: P0
+        item: "Define positioning statement + offer ladder + ICP with pain/outcome on homepage"
+        owner: "Agent-7"
+        eta: "2025-12-22"
+      - priority: P0
+        item: "Reduce subscription friction + add premium membership CTA + chat widget"
+        owner: "Agent-7"
+        eta: "2025-12-21"
+      - priority: P0
+        item: "Add pricing transparency + trader testimonials + case studies + trading results"
+        owner: "Agent-7"
+        eta: "2025-12-22"
+      - priority: P0
+        item: "A/B test hero headline for better benefit focus + add urgency"
+        owner: "Agent-7"
+        eta: "2025-12-20"
+      - priority: P1
+        item: "Claim social media accounts (@freerideinvestor) + complete profiles with trading focus"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+      - priority: P1
+        item: "Install analytics (GA4) + set up UTM tracking + weekly metrics dashboard"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+      - priority: P1
+        item: "Optimize mobile UX + page speed (images, caching, target 90+ mobile score)"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+

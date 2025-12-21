@@ -1,0 +1,427 @@
+/**
+ * Crosby Business Plan Styles
+ * Professional styling for business plan display
+ */
+
+.crosby-business-plan {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: var(--font-primary, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+    line-height: 1.8;
+    color: var(--text-color, #333);
+}
+
+.crosby-business-plan * {
+    box-sizing: border-box;
+}
+
+/* Header Section */
+.crosby-business-plan-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid var(--primary-color, #d4af37);
+}
+
+.crosby-business-plan-header h1 {
+    font-size: 2.5rem;
+    color: var(--secondary-color, #2c3e50);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.crosby-business-plan-header .subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.crosby-business-plan-header .meta {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 1rem;
+}
+
+/* Download Link */
+.crosby-business-plan-download {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: var(--light-bg, #f8f9fa);
+    border-radius: 8px;
+}
+
+.crosby-business-plan-download a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color, #d4af37);
+    color: var(--white, #fff);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.crosby-business-plan-download a:hover {
+    background: #b8941f;
+}
+
+/* Table of Contents */
+.crosby-business-plan-toc {
+    background: var(--light-bg, #f8f9fa);
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    border-left: 4px solid var(--primary-color, #d4af37);
+}
+
+.crosby-business-plan-toc h2 {
+    margin-top: 0;
+    color: var(--secondary-color, #2c3e50);
+    font-size: 1.5rem;
+}
+
+.crosby-business-plan-toc ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.crosby-business-plan-toc li {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.crosby-business-plan-toc li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #d4af37);
+}
+
+.crosby-business-plan-toc a {
+    color: var(--secondary-color, #2c3e50);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.crosby-business-plan-toc a:hover {
+    color: var(--primary-color, #d4af37);
+}
+
+/* Section Styling */
+.crosby-business-plan-section {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.crosby-business-plan-section:last-child {
+    border-bottom: none;
+}
+
+.crosby-business-plan-section h2 {
+    font-size: 2rem;
+    color: var(--secondary-color, #2c3e50);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color, #d4af37);
+    font-weight: 700;
+}
+
+.crosby-business-plan-section h3 {
+    font-size: 1.5rem;
+    color: var(--secondary-color, #2c3e50);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.crosby-business-plan-section h4 {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.crosby-business-plan-section p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+/* Lists */
+.crosby-business-plan-section ul,
+.crosby-business-plan-section ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.crosby-business-plan-section li {
+    margin: 0.5rem 0;
+}
+
+.crosby-business-plan-section ul li {
+    list-style-type: disc;
+}
+
+.crosby-business-plan-section ol li {
+    list-style-type: decimal;
+}
+
+/* Executive Summary Special Styling */
+.crosby-business-plan-section.executive-summary {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid var(--primary-color, #d4af37);
+}
+
+.crosby-business-plan-section.executive-summary h2 {
+    border-bottom: none;
+    text-align: center;
+}
+
+/* Mission/Vision Boxes */
+.mission-vision-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.mission-box,
+.vision-box {
+    background: var(--white, #fff);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color, #d4af37);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.mission-box h3,
+.vision-box h3 {
+    margin-top: 0;
+    color: var(--primary-color, #d4af37);
+    font-size: 1.3rem;
+}
+
+/* Key Objectives */
+.key-objectives {
+    background: var(--light-bg, #f8f9fa);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.key-objectives ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.key-objectives li {
+    padding: 0.5rem 0 0.5rem 2rem;
+    position: relative;
+}
+
+.key-objectives li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #d4af37);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Service Packages */
+.service-packages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.service-package {
+    background: var(--white, #fff);
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-package:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    border-color: var(--primary-color, #d4af37);
+}
+
+.service-package h4 {
+    color: var(--primary-color, #d4af37);
+    font-size: 1.3rem;
+    margin-top: 0;
+}
+
+.service-package .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-color, #2c3e50);
+    margin: 1rem 0;
+}
+
+/* Tables */
+.crosby-business-plan-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: var(--white, #fff);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.crosby-business-plan-section table th {
+    background: var(--secondary-color, #2c3e50);
+    color: var(--white, #fff);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.crosby-business-plan-section table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.crosby-business-plan-section table tr:hover {
+    background: var(--light-bg, #f8f9fa);
+}
+
+/* Financial Highlights */
+.financial-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.financial-card {
+    background: linear-gradient(135deg, var(--primary-color, #d4af37) 0%, #b8941f 100%);
+    color: var(--white, #fff);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.financial-card .value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.financial-card .label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0;
+}
+
+.timeline:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary-color, #d4af37);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+.timeline-item:before {
+    content: "";
+    position: absolute;
+    left: -0.5rem;
+    top: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--primary-color, #d4af37);
+    border: 3px solid var(--white, #fff);
+    box-shadow: 0 0 0 2px var(--primary-color, #d4af37);
+}
+
+.timeline-item h4 {
+    margin-top: 0;
+    color: var(--secondary-color, #2c3e50);
+}
+
+/* Callout Boxes */
+.callout {
+    background: var(--light-bg, #f8f9fa);
+    border-left: 4px solid var(--primary-color, #d4af37);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+.callout.warning {
+    border-left-color: var(--accent-color, #e74c3c);
+    background: #fff5f5;
+}
+
+.callout.success {
+    border-left-color: #27ae60;
+    background: #f0fff4;
+}
+
+.callout.info {
+    border-left-color: #3498db;
+    background: #f0f8ff;
+}
+
+/* Print Styles */
+@media print {
+    .crosby-business-plan-download,
+    .crosby-business-plan-toc {
+        display: none;
+    }
+    
+    .crosby-business-plan-section {
+        page-break-inside: avoid;
+    }
+    
+    .crosby-business-plan-section h2 {
+        page-break-after: avoid;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .crosby-business-plan {
+        padding: 1rem;
+    }
+    
+    .crosby-business-plan-header h1 {
+        font-size: 2rem;
+    }
+    
+    .crosby-business-plan-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .service-packages,
+    .financial-highlights,
+    .mission-vision-container {
+        grid-template-columns: 1fr;
+    }
+}
+

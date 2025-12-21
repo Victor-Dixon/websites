@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AriaJet - Aria's World of Music, Games, and Wild Ideas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Unified Gaming/Creative Color Palette */
+            --gaming-primary: #3b82f6;         /* Blue */
+            --gaming-secondary: #1e3a8a;      /* Dark blue */
+            --gaming-accent: #f59e0b;         /* Orange */
+            --creative-primary: #667eea;       /* Purple (current gradient) */
+            --creative-secondary: #764ba2;    /* Purple (current gradient) */
+            --creative-accent: #f093fb;        /* Pink (current gradient) */
+            
+            /* Unified Spacing System (8px base) */
+            --spacing-1: 0.25rem;   /* 4px */
+            --spacing-2: 0.5rem;    /* 8px */
+            --spacing-3: 0.75rem;   /* 12px */
+            --spacing-4: 1rem;      /* 16px */
+            --spacing-5: 1.25rem;   /* 20px */
+            --spacing-6: 1.5rem;    /* 24px */
+            --spacing-8: 2rem;      /* 32px */
+            --spacing-10: 2.5rem;   /* 40px */
+            --spacing-12: 3rem;     /* 48px */
+            --spacing-16: 4rem;     /* 64px */
+            
+            /* Unified Typography */
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-size-base: 1rem;     /* 16px */
+            --font-size-lg: 1.125rem;   /* 18px */
+            --font-size-xl: 1.25rem;   /* 20px */
+            --font-size-2xl: 1.5rem;   /* 24px */
+            --font-size-3xl: 1.875rem; /* 30px */
+            --font-size-4xl: 2.25rem;  /* 36px */
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.6;
+            --line-height-relaxed: 1.75;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: linear-gradient(135deg, var(--creative-primary) 0%, var(--creative-secondary) 50%, var(--creative-accent) 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: var(--line-height-normal);
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            font-size: var(--font-size-base);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-5);
+        }
+
+        /* Header / Logo */
+        .header {
+            text-align: center;
+            padding: var(--spacing-10) var(--spacing-5);
+        }
+
+        .logo {
+            font-size: 3.5em;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+            margin-bottom: var(--spacing-5);
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: var(--spacing-16) var(--spacing-5);
+            margin-bottom: var(--spacing-20);
+        }
+
+        .main-heading {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: var(--spacing-8);
+            text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            line-height: var(--line-height-tight);
+        }
+
+        .sub-text {
+            font-size: var(--font-size-lg);
+            max-width: 700px;
+            margin: 0 auto var(--spacing-10);
+            opacity: 0.95;
+            line-height: var(--line-height-relaxed);
+        }
+
+        .main-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+            color: #fff;
+            padding: var(--spacing-4) var(--spacing-10);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 var(--spacing-2) var(--spacing-5) rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .main-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #ee5a6f, #ff6b6b);
+        }
+
+        .main-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Meet Aria Section */
+        .meet-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: var(--spacing-12) var(--spacing-10);
+            margin: var(--spacing-12) 0;
+            box-shadow: 0 var(--spacing-2) var(--spacing-10) rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--spacing-8);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .host-name {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: var(--spacing-8);
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .host-paragraph {
+            font-size: var(--font-size-lg);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: var(--line-height-relaxed);
+            opacity: 0.95;
+        }
+
+        /* Navigation / Links */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-8);
+            margin-top: var(--spacing-12);
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: var(--font-size-base);
+            padding: var(--spacing-2) var(--spacing-5);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5em;
+            }
+
+            .main-heading {
+                font-size: 2.5em;
+                letter-spacing: 2px;
+            }
+
+            .sub-text {
+                font-size: 1.1em;
+            }
+
+            .host-name {
+                font-size: 2em;
+            }
+
+            .host-paragraph {
+                font-size: 1em;
+            }
+
+            .meet-section {
+                padding: var(--spacing-10) var(--spacing-5);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: var(--spacing-10) var(--spacing-5);
+            margin-top: var(--spacing-12);
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header / Logo -->
+        <div class="header">
+            <div class="logo">AriaJet</div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1 class="main-heading">WELCOME TO ARIAJET</h1>
+            <p class="sub-text">
+                Aria's world of music, games, and wild ideas.<br>
+                Mixes, playlists, and creative projects all in one place.
+            </p>
+            <a href="#meet-aria" class="main-button">ENTER ARIA'S WORLD</a>
+        </div>
+
+        <!-- Meet Aria Section -->
+        <div class="meet-section" id="meet-aria">
+            <h2 class="section-title">MEET ARIA</h2>
+            <div class="host-name">ARIA JET</div>
+            <p class="host-paragraph">
+                Aria loves music, gaming, and building her own worlds.<br>
+                This site is where she shares her favorite songs, clips,<br>
+                artwork, and whatever she's creating next.
+            </p>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a href="#meet-aria" class="nav-link">About Aria</a>
+            <a href="games/" class="nav-link">Games</a>
+            <a href="playlists.html" class="nav-link">Playlists</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2025 AriaJet. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,19 @@
+/*--------------------------------------------------------------
+  Dark Theme
+--------------------------------------------------------------*/
+body.dark-theme {
+  background-color: $color-dark-bg-alt;
+  color: $color-text-muted;
+
+  .btn--primary {
+    background-color: $color-dark-green;
+    color: $color-text-base;
+
+    &:hover,
+    &:focus {
+      background-color: $color-light-dark-green;
+    }
+  }
+
+  /* Additional dark theme overrides can go here */
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Page Updates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Integrating and Enhancing the Discord Page</h1>
+        <p><em>January 1, 2025 - Development Blog</em></p>
+    </header>
+    <section>
+        <h2>November 12, 2025 - Homepage Cleanup</h2>
+        <p>
+            Tightened the top-of-page experience so the Developer Tools link now appears only once. Cleared the extra
+            cards and any duplicate CTAs, leaving the primary navigation entry as the single point of access. Verified
+            the home template to confirm no other sections render that link.
+        </p>
+        <ul>
+            <li>Removed duplicate Developer Tools cards from the services grid.</li>
+            <li>Added a primary-menu filter that drops any duplicate Developer Tools entries after the first.</li>
+            <li>Double-checked the layout to ensure only the main menu exposes the Developer Tools link.</li>
+        </ul>
+    </section>
+    <article>
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Our Discord page is evolving! Recently, we focused on enhancing user experience by showcasing live member activity with a widget and refining the structure of the page. Here's a breakdown of our updates and the logic behind them.
+            </p>
+        </section>
+
+        <section>
+            <h2>Visualizing the Setup</h2>
+            <p>
+                Below is a diagram showcasing the structure and workflow of our new Discord page. It outlines how visitors navigate through the page, interact with its features, and access dynamic elements like the online members count.
+            </p>
+            <img src="attachment-url" alt="Discord Page Workflow Diagram">
+        </section>
+
+        <section>
+            <h2>Key Updates</h2>
+            <ul>
+                <li>
+                    <strong>Dynamic Features:</strong> We integrated a Discord widget to display live online members count. This feature updates in real-time, allowing visitors to see the community's activity at a glance. If you’re the owner or the only member online, the widget still accurately displays the count for testing.
+                </li>
+                <li>
+                    <strong>Backend Enhancements:</strong> Automated weekly updates of the invite link using Discord's API (coming soon). Added a logic flow to distinguish between scenarios where members are online or offline.
+                </li>
+                <li>
+                    <strong>User-Friendly Benefits:</strong> Clear sections explaining why users should join. Links to educational resources, community support, and exclusive events to encourage engagement.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <p>The process flow is as follows:</p>
+            <ol>
+                <li>Users visit the Discord page and view the <strong>Introduction</strong> section.</li>
+                <li>They scroll through the <strong>Benefits</strong> section, linking to valuable resources.</li>
+                <li>The <strong>Join Discord Section</strong> provides:
+                    <ul>
+                        <li>A real-time widget showing online member counts.</li>
+                        <li>A join button that dynamically updates the invite link.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>What's Next?</h2>
+            <ul>
+                <li><strong>Automated Invite Links:</strong> We plan to fully integrate dynamic invite links that rotate weekly.</li>
+                <li><strong>Role-Specific Metrics:</strong> Displaying activity from specific user roles, such as moderators or admins.</li>
+                <li><strong>Improved Analytics:</strong> Incorporating member trends and activity logs for deeper insights.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Stay Connected</h2>
+            <p>
+                Our goal is to make FreeRideInvestor a hub for traders to connect, learn, and grow together. Check out our Discord page and let us know how we can improve!
+            </p>
+            <p>
+                <strong>Have feedback or ideas?</strong> Comment below or <a href="https://discord.gg/C5Dbqe8W" target="_blank" rel="noopener noreferrer">join our Discord</a> to share your thoughts!
+            </p>
+        </section>
+    </article>
+</body>
+</html>

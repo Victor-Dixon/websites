@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search: Options Trading | FreeRide Investor</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #09090B;
+            --bg-secondary: #0E0E11;
+            --bg-card: #131316;
+            --bg-elevated: #18181B;
+            --bg-input: #1C1C20;
+            --accent: #8B5CF6;
+            --accent-light: #A78BFA;
+            --accent-soft: rgba(139, 92, 246, 0.12);
+            --accent-border: rgba(139, 92, 246, 0.25);
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --white: #FAFAFA;
+            --gray-50: #F4F4F5;
+            --gray-100: #E4E4E7;
+            --gray-200: #D4D4D8;
+            --gray-300: #A1A1AA;
+            --gray-400: #71717A;
+            --gray-500: #52525B;
+            --gray-600: #3F3F46;
+            --gray-700: #27272A;
+            --gray-800: #1F1F23;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-light: rgba(255, 255, 255, 0.1);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+            --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-primary);
+            color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        a { color: inherit; text-decoration: none; }
+        
+        /* ═══════════════════════════════════════
+           HEADER
+           ═══════════════════════════════════════ */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.875rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent), #EC4899);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6875rem;
+            font-weight: 800;
+            color: white;
+        }
+        
+        /* Header Search */
+        .header-search {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .header-search-input {
+            width: 100%;
+            padding: 0.625rem 1rem 0.625rem 2.75rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: var(--font-main);
+            font-size: 0.875rem;
+            color: var(--white);
+            outline: none;
+            transition: all 0.2s;
+        }
+        
+        .header-search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+        
+        .header-search-input::placeholder {
+            color: var(--gray-500);
+        }
+        
+        .header-search-icon {
+            position: absolute;
+            left: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--gray-500);
+            pointer-events: none;
+        }
+        
+        .header-search-shortcut {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.125rem 0.375rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.625rem;
+            color: var(--gray-400);
+        }
+        
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        
+        .header-nav a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            transition: color 0.2s;
+        }
+        
+        .header-nav a:hover { color: var(--white); }
+        
+        .header-cta {
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            border-radius: var(--radius-sm);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: white;
+            transition: all 0.2s;
+        }
+        
+        .header-cta:hover {
+            background: var(--accent-light);
+        }
+        
+        /* ═══════════════════════════════════════
+           MAIN LAYOUT
+           ═══════════════════════════════════════ */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+        
+        /* ═══════════════════════════════════════
+           SIDEBAR
+           ═══════════════════════════════════════ */
+        .sidebar {
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+        
+        .sidebar-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-title {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+        
+        /* Filter Options */
+        .filter-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .filter-label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--gray-200);
+            margin-bottom: 0.625rem;
+            display: block;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 0.5rem 0.625rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .filter-option:hover {
+            background: var(--bg-elevated);
+        }
+        
+        .filter-option.active {
+            background: var(--accent-soft);
+        }
+        
+        .filter-checkbox {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--gray-600);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+            flex-shrink: 0;
+        }
+        
+        .filter-option.active .filter-checkbox {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .filter-checkbox::after {
+            content: '✓';
+            font-size: 0.625rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+        
+        .filter-option.active .filter-checkbox::after {
+            opacity: 1;
+        }
+        
+        .filter-text {
+            font-size: 0.8125rem;
+            color: var(--gray-300);
+            flex: 1;
+        }
+        
+        .filter-option.active .filter-text {
+            color: var(--accent-light);
+        }
+        
+        .filter-count {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            color: var(--gray-500);
+            background: var(--bg-elevated);
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+        }
+        
+        /* Date Range */
+        .date-range {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .date-input {
+            flex: 1;
+            padding: 0.5rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-main);
+            font-size: 0.75rem;
+            color: var(--white);
+            outline: none;
+        }
+        
+        .date-input:focus {
+            border-color: var(--accent);
+        }
+        
+        /* Clear Filters */
+        .clear-filters {
+            width: 100%;
+            padding: 0.625rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-main);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 1rem;
+        }
+        
+        .clear-filters:hover {
+            border-color: var(--error);
+            color: var(--error);
+        }
+        
+        /* ═══════════════════════════════════════
+           CONTENT AREA
+           ═══════════════════════════════════════ */
+        .content {
+            min-width: 0;
+        }
+        
+        /* Search Summary */
+        .search-summary {
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-query {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .search-query .term {
+            color: var(--accent);
+        }
+        
+        .search-stats {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--gray-400);
+        }
+        
+        .search-stats .divider {
+            width: 4px;
+            height: 4px;
+            background: var(--gray-600);
+            border-radius: 50%;
+        }
+        
+        /* Active Filters */
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .active-filter {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.625rem;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--accent-light);
+        }
+        
+        .active-filter-remove {
+            width: 14px;
+            height: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent);
+            border-radius: 50%;
+            font-size: 0.5rem;
+            color: white;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        
+        .active-filter-remove:hover {
+            background: var(--error);
+        }
+        
+        /* Results Header */
+        .results-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+        }
+        
+        .results-info {
+            font-size: 0.8125rem;
+            color: var(--gray-400);
+        }
+        
+        .results-info strong {
+            color: var(--white);
+        }
+        
+        .results-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .sort-select {
+            padding: 0.5rem 2rem 0.5rem 0.75rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-main);
+            font-size: 0.8125rem;
+            color: var(--white);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2371717A' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.625rem center;
+        }
+        
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .layout-toggle {
+            display: flex;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 3px;
+        }
+        
+        .layout-btn {
+            width: 32px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .layout-btn:hover { color: var(--white); }
+        .layout-btn.active { background: var(--accent); color: white; }
+        
+        /* ═══════════════════════════════════════
+           RESULTS LIST
+           ═══════════════════════════════════════ */
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .result-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 1.25rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            transition: all 0.2s;
+        }
+        
+        .result-item:hover {
+            border-color: var(--border-light);
+            box-shadow: var(--shadow);
+            transform: translateX(4px);
+        }
+        
+        @media (max-width: 640px) {
+            .result-item {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .result-thumb {
+            aspect-ratio: 16/10;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--bg-elevated);
+            position: relative;
+        }
+        
+        .result-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .result-item:hover .result-thumb img {
+            transform: scale(1.05);
+        }
+        
+        .result-badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            padding: 0.1875rem 0.5rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--accent-border);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.5625rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .result-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .result-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.6875rem;
+            color: var(--gray-500);
+        }
+        
+        .result-category {
+            padding: 0.125rem 0.375rem;
+            background: var(--accent-soft);
+            border-radius: 4px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        .result-title {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.4;
+            margin-bottom: 0.375rem;
+            transition: color 0.2s;
+        }
+        
+        .result-item:hover .result-title {
+            color: var(--accent-light);
+        }
+        
+        .result-title mark {
+            background: var(--accent-soft);
+            color: var(--accent);
+            padding: 0 0.125rem;
+            border-radius: 2px;
+        }
+        
+        .result-excerpt {
+            font-size: 0.8125rem;
+            color: var(--gray-400);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+        
+        .result-excerpt mark {
+            background: var(--accent-soft);
+            color: var(--accent-light);
+            padding: 0 0.125rem;
+            border-radius: 2px;
+        }
+        
+        .result-footer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .result-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .result-author-pic {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #EC4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .result-author-name {
+            font-size: 0.75rem;
+            color: var(--gray-300);
+        }
+        
+        .result-stats {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.6875rem;
+            color: var(--gray-500);
+        }
+        
+        .result-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        /* ═══════════════════════════════════════
+           GRID VIEW
+           ═══════════════════════════════════════ */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .results-grid .result-item {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+        
+        .results-grid .result-thumb {
+            aspect-ratio: 16/9;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+        
+        .results-grid .result-body {
+            padding-top: 1rem;
+        }
+        
+        /* ═══════════════════════════════════════
+           PAGINATION
+           ═══════════════════════════════════════ */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.375rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .page-btn {
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-main);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .page-btn:hover:not(.disabled) {
+            border-color: var(--border-light);
+            color: var(--white);
+        }
+        
+        .page-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        
+        .page-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .page-ellipsis {
+            padding: 0 0.5rem;
+            color: var(--gray-600);
+        }
+        
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        .footer {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .footer-copy {
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-links a {
+            font-size: 0.8125rem;
+            color: var(--gray-400);
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* ═══════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════ */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-item {
+            animation: slideIn 0.3s ease forwards;
+            opacity: 0;
+        }
+        
+        .result-item:nth-child(1) { animation-delay: 0.05s; }
+        .result-item:nth-child(2) { animation-delay: 0.1s; }
+        .result-item:nth-child(3) { animation-delay: 0.15s; }
+        .result-item:nth-child(4) { animation-delay: 0.2s; }
+        .result-item:nth-child(5) { animation-delay: 0.25s; }
+        .result-item:nth-child(6) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <span class="logo-icon">FR</span>
+                FreeRide
+            </a>
+            
+            <div class="header-search">
+                <span class="header-search-icon">🔍</span>
+                <input type="text" class="header-search-input" value="options trading" placeholder="Search articles, strategies, tools...">
+                <span class="header-search-shortcut">⌘K</span>
+            </div>
+            
+            <nav class="header-nav">
+                <a href="#">Blog</a>
+                <a href="#">Strategies</a>
+                <a href="#">Tools</a>
+                <a href="#" class="header-cta">Join Free</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- MAIN -->
+    <main class="main">
+        
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Filter Results</h3>
+                
+                <!-- Content Type -->
+                <div class="filter-group">
+                    <label class="filter-label">Content Type</label>
+                    <div class="filter-options">
+                        <div class="filter-option active" onclick="this.classList.toggle('active')">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-text">Articles</span>
+                            <span class="filter-count">18</span>
+                        </div>
+                        <div class="filter-option" onclick="this.classList.toggle('active')">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-text">Strategies</span>
+                            <span class="filter-count">6</span>
+                        </div>
+                        <div class="filter-option" onclick="this.classList.toggle('active')">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-text">Guides</span>
+                            <span class="filter-count">4</span>
+                        </div>
+                        <div class="filter-option" onclick="this.classList.toggle('active')">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-text">Videos</span>
+                            <span class="filter-count">3</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category -->
+                <div class="filter-group">
+                    <label class="filter-label">Category</label>
+                    <div class="filter-options">
+                        <div class="filter-option active" onclick="this.classList.toggle('active')">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-text">Options</span>
+                            <span class="filter-count">14</span>
+                        </div>
+                        <div class="filter-option" onclick="this.classList.toggle('active')">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-text">Day Trading</span>
+                            <span class="filter-count">8</span>
+                        </div>
+                        <div class="filter-option" onclick="this.classList.toggle('active')">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-text">Swing Trading</span>
+                            <span class="filter-count">5</span>
+                        </div>
+                        <div class="filter-option" onclick="this.classList.toggle('active')">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-text">Investing</span>
+                            <span class="filter-count">4</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Date Range -->
+                <div class="filter-group">
+                    <label class="filter-label">Date Range</label>
+                    <div class="date-range">
+                        <input type="date" class="date-input" placeholder="From">
+                        <input type="date" class="date-input" placeholder="To">
+                    </div>
+                </div>
+                
+                <button class="clear-filters">Clear All Filters</button>
+            </div>
+            
+        </aside>
+        
+        <!-- CONTENT -->
+        <div class="content">
+            
+            <!-- Search Summary -->
+            <div class="search-summary">
+                <h1 class="search-query">
+                    Results for "<span class="term">options trading</span>"
+                </h1>
+                <div class="search-stats">
+                    <span>31 results found</span>
+                    <span class="divider"></span>
+                    <span>0.18 seconds</span>
+                </div>
+            </div>
+            
+            <!-- Active Filters -->
+            <div class="active-filters">
+                <span class="active-filter">
+                    Articles
+                    <span class="active-filter-remove">✕</span>
+                </span>
+                <span class="active-filter">
+                    Options
+                    <span class="active-filter-remove">✕</span>
+                </span>
+            </div>
+            
+            <!-- Toolbar -->
+            <div class="results-toolbar">
+                <div class="results-info">
+                    Showing <strong>1-10</strong> of <strong>31</strong> results
+                </div>
+                <div class="results-actions">
+                    <select class="sort-select">
+                        <option>Most Relevant</option>
+                        <option>Newest First</option>
+                        <option>Oldest First</option>
+                        <option>Most Popular</option>
+                    </select>
+                    <div class="layout-toggle">
+                        <button class="layout-btn active" data-view="list" title="List View">☰</button>
+                        <button class="layout-btn" data-view="grid" title="Grid View">▦</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results -->
+            <div class="results-list" id="results">
+                
+                <article class="result-item">
+                    <div class="result-thumb">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop" alt="">
+                        <span class="result-badge">Featured</span>
+                    </div>
+                    <div class="result-body">
+                        <div class="result-meta">
+                            <span class="result-category">Options</span>
+                            <span>Dec 17, 2024</span>
+                        </div>
+                        <h3 class="result-title">Complete Guide to <mark>Options Trading</mark>: From Basics to Advanced Strategies</h3>
+                        <p class="result-excerpt">Everything you need to know about <mark>options trading</mark>, including calls, puts, spreads, and how to manage risk effectively in volatile markets.</p>
+                        <div class="result-footer">
+                            <div class="result-author">
+                                <div class="result-author-pic">VD</div>
+                                <span class="result-author-name">Victor Dixon</span>
+                            </div>
+                            <div class="result-stats">
+                                <span class="result-stat">📖 18 min</span>
+                                <span class="result-stat">👁 2.4k views</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="result-item">
+                    <div class="result-thumb">
+                        <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=250&fit=crop" alt="">
+                    </div>
+                    <div class="result-body">
+                        <div class="result-meta">
+                            <span class="result-category">Strategy</span>
+                            <span>Dec 14, 2024</span>
+                        </div>
+                        <h3 class="result-title">The Wheel Strategy: Generating Income with <mark>Options</mark></h3>
+                        <p class="result-excerpt">Learn how to use the wheel strategy to generate consistent income by selling cash-secured puts and covered calls on stocks you want to own.</p>
+                        <div class="result-footer">
+                            <div class="result-author">
+                                <div class="result-author-pic">VD</div>
+                                <span class="result-author-name">Victor Dixon</span>
+                            </div>
+                            <div class="result-stats">
+                                <span class="result-stat">📖 12 min</span>
+                                <span class="result-stat">👁 1.8k views</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="result-item">
+                    <div class="result-thumb">
+                        <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=250&fit=crop" alt="">
+                    </div>
+                    <div class="result-body">
+                        <div class="result-meta">
+                            <span class="result-category">Options</span>
+                            <span>Dec 10, 2024</span>
+                        </div>
+                        <h3 class="result-title">Understanding the Greeks: Delta, Gamma, Theta & Vega</h3>
+                        <p class="result-excerpt">Master the <mark>options</mark> Greeks and learn how to use them for better <mark>trading</mark> decisions and risk management in your portfolio.</p>
+                        <div class="result-footer">
+                            <div class="result-author">
+                                <div class="result-author-pic">VD</div>
+                                <span class="result-author-name">Victor Dixon</span>
+                            </div>
+                            <div class="result-stats">
+                                <span class="result-stat">📖 15 min</span>
+                                <span class="result-stat">👁 1.5k views</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="result-item">
+                    <div class="result-thumb">
+                        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=250&fit=crop" alt="">
+                    </div>
+                    <div class="result-body">
+                        <div class="result-meta">
+                            <span class="result-category">Strategy</span>
+                            <span>Dec 5, 2024</span>
+                        </div>
+                        <h3 class="result-title">Iron Condors: Profiting from Range-Bound Markets</h3>
+                        <p class="result-excerpt">A deep dive into the iron condor <mark>options</mark> strategy — when to use it, how to set it up, and how to adjust when trades go wrong.</p>
+                        <div class="result-footer">
+                            <div class="result-author">
+                                <div class="result-author-pic">VD</div>
+                                <span class="result-author-name">Victor Dixon</span>
+                            </div>
+                            <div class="result-stats">
+                                <span class="result-stat">📖 10 min</span>
+                                <span class="result-stat">👁 1.2k views</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="result-item">
+                    <div class="result-thumb">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop" alt="">
+                    </div>
+                    <div class="result-body">
+                        <div class="result-meta">
+                            <span class="result-category">Guide</span>
+                            <span>Nov 28, 2024</span>
+                        </div>
+                        <h3 class="result-title">Best Brokers for <mark>Options Trading</mark> in 2024</h3>
+                        <p class="result-excerpt">A comprehensive comparison of the best brokers for <mark>options trading</mark>, including fees, platforms, tools, and education resources.</p>
+                        <div class="result-footer">
+                            <div class="result-author">
+                                <div class="result-author-pic">VD</div>
+                                <span class="result-author-name">Victor Dixon</span>
+                            </div>
+                            <div class="result-stats">
+                                <span class="result-stat">📖 8 min</span>
+                                <span class="result-stat">👁 980 views</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="result-item">
+                    <div class="result-thumb">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" alt="">
+                    </div>
+                    <div class="result-body">
+                        <div class="result-meta">
+                            <span class="result-category">Options</span>
+                            <span>Nov 22, 2024</span>
+                        </div>
+                        <h3 class="result-title">0DTE <mark>Options</mark>: High Risk, High Reward <mark>Trading</mark></h3>
+                        <p class="result-excerpt">The complete guide to zero days to expiration <mark>options trading</mark> — strategies, risks, and why institutional traders love them.</p>
+                        <div class="result-footer">
+                            <div class="result-author">
+                                <div class="result-author-pic">VD</div>
+                                <span class="result-author-name">Victor Dixon</span>
+                            </div>
+                            <div class="result-stats">
+                                <span class="result-stat">📖 14 min</span>
+                                <span class="result-stat">👁 2.1k views</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+            </div>
+            
+            <!-- Pagination -->
+            <nav class="pagination">
+                <button class="page-btn disabled">←</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <span class="page-ellipsis">...</span>
+                <button class="page-btn">8</button>
+                <button class="page-btn">→</button>
+            </nav>
+            
+        </div>
+        
+    </main>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p class="footer-copy">© 2024 FreeRide Investor. All rights reserved.</p>
+            <nav class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </footer>
+    
+    <script>
+        // Layout Toggle
+        const layoutBtns = document.querySelectorAll('.layout-btn');
+        const resultsContainer = document.getElementById('results');
+        
+        layoutBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                layoutBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                if (this.dataset.view === 'grid') {
+                    resultsContainer.classList.remove('results-list');
+                    resultsContainer.classList.add('results-grid');
+                } else {
+                    resultsContainer.classList.remove('results-grid');
+                    resultsContainer.classList.add('results-list');
+                }
+            });
+        });
+        
+        // Remove active filter
+        document.querySelectorAll('.active-filter-remove').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.remove();
+            });
+        });
+    </script>
+    
+</body>
+</html>

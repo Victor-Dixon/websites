@@ -1,0 +1,272 @@
+gradecard:
+  version: v1
+  site: "crosbyultimateevents.com"
+  date: "2025-12-19"
+  total_points: 100
+
+  scoring_scale:
+    "0": missing
+    "1": exists_but_broken
+    "2": weak_incomplete
+    "3": usable
+    "4": strong
+    "5": elite
+
+  categories:
+    - name: Brand Core
+      weight_points: 15
+      criteria:
+        - id: BRAND-01
+          name: Positioning statement clarity
+          score_0_to_5: 3
+          evidence: "Homepage hero: 'Extraordinary Culinary Experiences & Flawless Event Planning' - clear but could be more specific"
+          gap: "Missing unique differentiator, target market specificity, and competitive positioning"
+          fix: "Create positioning statement: 'For [affluent professionals/corporate clients] who want [memorable events without stress], we provide [premium private chef + event planning] unlike [generic caterers/separate services] because [we combine culinary artistry with meticulous coordination in one seamless experience]'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: BRAND-02
+          name: Offer ladder defined
+          score_0_to_5: 2
+          evidence: "Service packages exist ($800-$1,500, $3,000-$8,000, $2,000-$10,000) but not structured as clear ladder"
+          gap: "No clear entry point → mid-tier → premium progression; missing lead magnet/free offer"
+          fix: "Create offer ladder: 1) Free consultation/event planning guide (lead magnet), 2) Intimate Dining ($800-$1,500), 3) Celebration Package ($3,000-$8,000), 4) Corporate Experience ($2,000-$10,000), 5) Full-service premium events ($10,000+)"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: BRAND-03
+          name: ICP + pain/outcome defined
+          score_0_to_5: 2
+          evidence: "Business plan mentions target markets but not clearly defined on website"
+          gap: "No explicit ICP definition on site; pain points and desired outcomes not clearly articulated"
+          fix: "Add ICP section: 'For busy professionals ($150K+ income, 35-65) who value time and quality, we eliminate event planning stress and deliver unforgettable experiences. Your outcome: flawless events that impress guests while you enjoy the moment.'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+
+    - name: Visual Identity
+      weight_points: 10
+      criteria:
+        - id: VIS-01
+          name: Logo set complete
+          score_0_to_5: 1
+          evidence: "No logo visible on site; text-based branding only"
+          gap: "Missing logo files (PNG, SVG, favicon), no brand mark/icon"
+          fix: "Create logo set: primary logo (horizontal), secondary (stacked), icon (favicon), social media variations. Design brief: premium, elegant, culinary + event planning fusion"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-26"
+        - id: VIS-02
+          name: Palette + fonts + design rules
+          score_0_to_5: 3
+          evidence: "CSS variables defined (gold #d4af37, dark blue #2c3e50, red accent #e74c3c) but no documented brand guidelines"
+          gap: "No brand style guide document, font choices not documented, design rules not established"
+          fix: "Create brand style guide: color palette (primary gold, secondary dark blue, accent red), typography (Segoe UI primary, Georgia headings), spacing rules, button styles, image treatment guidelines"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-26"
+
+    - name: Social Presence
+      weight_points: 10
+      criteria:
+        - id: SOC-01
+          name: Accounts claimed + handle consistency
+          score_0_to_5: 0
+          evidence: "No social media links or handles visible on website"
+          gap: "No social accounts claimed or linked; missing Instagram, Facebook, LinkedIn, Pinterest"
+          fix: "Claim accounts: @crosbyultimateevents (Instagram, Facebook, LinkedIn), @crosbyevents (Pinterest). Add social links to footer and header"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+        - id: SOC-02
+          name: Profile completeness (bio/link/pfp/banner/pin)
+          score_0_to_5: 0
+          evidence: "No social profiles exist"
+          gap: "All profiles missing: bio, profile picture, banner, pinned post, link to website"
+          fix: "Create complete profiles: bio (premium private chef + event planning), professional photos (food/events), branded banners, pin consultation booking link"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+
+    - name: Funnel Infrastructure
+      weight_points: 20
+      criteria:
+        - id: FUN-01
+          name: Lead magnet + landing + thank-you
+          score_0_to_5: 1
+          evidence: "Consultation form exists but no lead magnet; form submits to /consultation (no dedicated landing page)"
+          gap: "Missing lead magnet (event planning guide, menu templates, checklist), no dedicated landing page, no thank-you page with next steps"
+          fix: "Create: 1) Lead magnet 'Ultimate Event Planning Checklist' (PDF), 2) Landing page /event-planning-guide with form, 3) Thank-you page with download link + consultation booking CTA"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-21"
+        - id: FUN-02
+          name: Email welcome + nurture sequence
+          score_0_to_5: 0
+          evidence: "No email automation mentioned; form doesn't specify email opt-in"
+          gap: "No email service integrated, no welcome email, no nurture sequence (3-5 emails over 2 weeks)"
+          fix: "Set up email service (Mailchimp/ConvertKit), create welcome email (deliver lead magnet, introduce services), build nurture sequence (event planning tips, client stories, service highlights, consultation reminder)"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: FUN-03
+          name: Booking/checkout works end-to-end
+          score_0_to_5: 2
+          evidence: "Consultation form exists but no booking system; no payment processing visible"
+          gap: "Form submits via GET to /consultation (not ideal), no booking calendar integration, no payment processing for deposits"
+          fix: "Implement: 1) Calendly/Cal.com integration for consultation booking, 2) Payment processing (Stripe) for deposits, 3) Automated confirmation emails, 4) Booking confirmation page"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-25"
+        - id: FUN-04
+          name: CRM stages / lead tracking exists
+          score_0_to_5: 0
+          evidence: "No CRM system visible; no lead tracking mentioned"
+          gap: "No CRM integration, no lead stages defined, no tracking of consultation → booking → event → follow-up"
+          fix: "Set up CRM (HubSpot free/Pipedrive): stages (Lead → Consultation Scheduled → Proposal Sent → Booking Confirmed → Event Completed → Follow-up), automate stage transitions"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-27"
+
+    - name: Website Conversion
+      weight_points: 20
+      criteria:
+        - id: WEB-01
+          name: Hero clarity + CTA clarity
+          score_0_to_5: 3
+          evidence: "Hero exists with clear headline and 2 CTAs ('Book Consultation', 'Explore Services')"
+          gap: "Headline could be more benefit-focused; CTAs are clear but could test urgency/value props"
+          fix: "A/B test hero: 'Create Unforgettable Events Without the Stress' + 'Get Your Free Event Planning Guide' (lead magnet CTA) vs current. Add urgency: 'Limited December Availability'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-20"
+        - id: WEB-02
+          name: Services/pricing + proof/trust
+          score_0_to_5: 3
+          evidence: "Services clearly listed with pricing ranges; testimonials section exists with 3 testimonials"
+          gap: "Pricing is ranges only (no specific packages), testimonials are generic (no names/photos), missing trust badges (certifications, years in business, event count)"
+          fix: "Add: specific package pricing pages, real client testimonials with photos/names, trust badges (ServSafe certified, X years experience, 50+ events), case studies/portfolio"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: WEB-03
+          name: Mobile UX + speed basics
+          score_0_to_5: 2
+          evidence: "Theme is responsive but not tested; no speed optimization mentioned"
+          gap: "No mobile testing documented, no page speed scores, likely missing image optimization, caching"
+          fix: "Test mobile UX (all pages), optimize images (WebP, lazy loading), implement caching (LiteSpeed Cache plugin), target PageSpeed 90+ mobile, 95+ desktop"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+        - id: WEB-04
+          name: Contact/booking friction low
+          score_0_to_5: 2
+          evidence: "Form exists on homepage but requires multiple fields; no calendar booking visible"
+          gap: "Form has 5 required fields (high friction), no one-click booking, no phone number visible, no chat widget"
+          fix: "Reduce form to 3 fields (name, email, event date), add phone number prominently, implement chat widget (Intercom/Tawk.to), add calendar booking widget"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-21"
+
+    - name: Content System
+      weight_points: 15
+      criteria:
+        - id: CON-01
+          name: Content pillars + weekly schedule
+          score_0_to_5: 1
+          evidence: "No blog visible; no content schedule documented"
+          gap: "No content pillars defined, no posting schedule, no content strategy"
+          fix: "Define 3 pillars: 1) Event Planning Tips, 2) Culinary Inspiration (recipes, menu ideas), 3) Client Stories/Case Studies. Schedule: 2x/week (Tuesday, Friday)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: CON-02
+          name: 30-day calendar exists
+          score_0_to_5: 0
+          evidence: "No content calendar"
+          gap: "No calendar, no topics planned, no content bank"
+          fix: "Create 30-day calendar: Week 1 (event planning basics), Week 2 (menu planning), Week 3 (client stories), Week 4 (holiday events). Use content templates"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: CON-03
+          name: Repurpose pipeline defined
+          score_0_to_5: 0
+          evidence: "No repurposing system"
+          gap: "No plan to turn 1 piece into 5+ assets (blog → social posts → email → video → infographic)"
+          fix: "Create repurposing workflow: Blog post → 3 social posts (Instagram, Facebook, LinkedIn) → Email newsletter → YouTube short → Pinterest pin → Infographic"
+          priority: P2
+          owner: "Agent-7"
+          eta: "2025-12-28"
+
+    - name: Blog & SEO System
+      weight_points: 5
+      criteria:
+        - id: SEO-01
+          name: Blog template + categories + internal links rules
+          score_0_to_5: 1
+          evidence: "WordPress blog exists but no posts; no categories defined; no SEO plugin visible"
+          gap: "No blog posts, no categories (Event Planning, Recipes, Client Stories), no internal linking strategy, no SEO plugin (Yoast/Rank Math)"
+          fix: "Set up: blog categories, SEO plugin (Yoast), blog post template with internal links, schema markup for recipes/events, sitemap"
+          priority: P2
+          owner: "Agent-7"
+          eta: "2025-12-26"
+
+    - name: Tracking & Ops
+      weight_points: 5
+      criteria:
+        - id: OPS-01
+          name: Analytics/pixels + UTMs + weekly metrics sheet
+          score_0_to_5: 1
+          evidence: "No analytics visible; no tracking mentioned"
+          gap: "No Google Analytics, no Facebook Pixel, no UTM parameters on links, no metrics dashboard"
+          fix: "Install: Google Analytics 4, Facebook Pixel, set up UTM parameters (source, medium, campaign), create weekly metrics sheet (traffic, leads, consultations, bookings, revenue)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+
+  final:
+    weighted_score_out_of_100: 35.5
+    letter_grade: "F"
+    top_10_fixes:
+      - priority: P0
+        item: "Create lead magnet (Event Planning Checklist) + landing page + thank-you page"
+        owner: "Agent-7"
+        eta: "2025-12-21"
+      - priority: P0
+        item: "Set up email welcome sequence + nurture campaign (3-5 emails)"
+        owner: "Agent-7"
+        eta: "2025-12-24"
+      - priority: P0
+        item: "Implement booking calendar (Calendly) + payment processing (Stripe) for deposits"
+        owner: "Agent-7"
+        eta: "2025-12-25"
+      - priority: P0
+        item: "Define positioning statement + offer ladder + ICP with pain/outcome"
+        owner: "Agent-7"
+        eta: "2025-12-22"
+      - priority: P0
+        item: "Reduce contact form friction (3 fields) + add phone + chat widget"
+        owner: "Agent-7"
+        eta: "2025-12-21"
+      - priority: P0
+        item: "Add real testimonials with photos + trust badges + case studies"
+        owner: "Agent-7"
+        eta: "2025-12-22"
+      - priority: P0
+        item: "A/B test hero headline for better benefit focus + add urgency"
+        owner: "Agent-7"
+        eta: "2025-12-20"
+      - priority: P1
+        item: "Claim social media accounts (@crosbyultimateevents) + complete profiles"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+      - priority: P1
+        item: "Install analytics (GA4, Facebook Pixel) + set up UTM tracking + metrics sheet"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+      - priority: P1
+        item: "Optimize mobile UX + page speed (images, caching, target 90+ mobile score)"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+

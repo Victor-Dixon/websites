@@ -1,0 +1,16 @@
+site_id: corey
+domain: example.com
+voice_profile: content/voices/corey.md
+brand_profile: content/brands/corey_site.yaml
+backlog: content/backlogs/corey_site.yaml
+calendar: content/calendars/corey_site.yaml
+examples_glob: content/examples/corey/*.md
+publish:
+  provider: wordpress
+  wp_base_url_env: COREY_WP_URL
+  wp_user_env: COREY_WP_USER
+  wp_app_password_env: COREY_WP_APP_PASS
+defaults:
+  word_count_min: 900
+  word_count_max: 1400
+  auto_publish: false

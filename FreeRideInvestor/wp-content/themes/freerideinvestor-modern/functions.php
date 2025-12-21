@@ -1,0 +1,264 @@
+<?php
+
+/**
+ * FreeRideInvestor Modern Theme Functions
+ * 
+ * @package FreeRideInvestor_Modern
+ * @since 3.0.0
+ */
+
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
+ * Theme Setup
+ */
+function freerideinvestor_modern_setup()
+{
+    // Add theme support
+    add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
+    add_theme_support('html5', array(
+        'search-form',
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'caption',
+    ));
+    add_theme_support('custom-logo');
+    add_theme_support('automatic-feed-links');
+    add_theme_support('responsive-embeds');
+    add_theme_support('wp-block-styles');
+    add_theme_support('align-wide');
+
+    // Register navigation menus
+    register_nav_menus(array(
+        'primary' => __('Primary Menu', 'freerideinvestor-modern'),
+        'footer' => __('Footer Menu', 'freerideinvestor-modern'),
+    ));
+
+    // Set content width
+    if (!isset($content_width)) {
+        $content_width = 1200;
+    }
+}
+add_action('after_setup_theme', 'freerideinvestor_modern_setup');
+
+/**
+ * Enqueue Styles and Scripts
+ */
+function freerideinvestor_modern_scripts()
+{
+    // Enqueue theme stylesheet
+    wp_enqueue_style(
+        'freerideinvestor-modern-style',
+        get_stylesheet_uri(),
+        array(),
+        '3.0.0'
+    );
+
+    // Enqueue theme JavaScript
+    wp_enqueue_script(
+        'freerideinvestor-modern-script',
+        get_template_directory_uri() . '/js/theme.js',
+        array(),
+        '3.0.0',
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'freerideinvestor_modern_scripts');
+
+/**
+ * Register Widget Areas
+ */
+function freerideinvestor_modern_widgets_init()
+{
+    register_sidebar(array(
+        'name' => __('Sidebar', 'freerideinvestor-modern'),
+        'id' => 'sidebar-1',
+        'description' => __('Add widgets here.', 'freerideinvestor-modern'),
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget' => '</section>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ));
+
+    register_sidebar(array(
+        'name' => __('Footer Widget Area 1', 'freerideinvestor-modern'),
+        'id' => 'footer-1',
+        'description' => __('Add widgets here to appear in your footer.', 'freerideinvestor-modern'),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ));
+
+    register_sidebar(array(
+        'name' => __('Footer Widget Area 2', 'freerideinvestor-modern'),
+        'id' => 'footer-2',
+        'description' => __('Add widgets here to appear in your footer.', 'freerideinvestor-modern'),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ));
+
+    register_sidebar(array(
+        'name' => __('Footer Widget Area 3', 'freerideinvestor-modern'),
+        'id' => 'footer-3',
+        'description' => __('Add widgets here to appear in your footer.', 'freerideinvestor-modern'),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ));
+}
+add_action('widgets_init', 'freerideinvestor_modern_widgets_init');
+
+/**
+ * Custom Excerpt Length
+ */
+function freerideinvestor_modern_excerpt_length($length)
+{
+    return 30;
+}
+add_filter('excerpt_length', 'freerideinvestor_modern_excerpt_length');
+
+/**
+ * Custom Excerpt More
+ */
+function freerideinvestor_modern_excerpt_more($more)
+{
+    return '...';
+}
+add_filter('excerpt_more', 'freerideinvestor_modern_excerpt_more');
+
+/**
+ * Remove Query Strings from Static Resources
+ */
+function freerideinvestor_modern_remove_query_strings($src)
+{
+    if (strpos($src, '?ver=')) {
+        $src = remove_query_arg('ver', $src);
+    }
+    return $src;
+}
+add_filter('script_loader_src', 'freerideinvestor_modern_remove_query_strings', 15, 1);
+add_filter('style_loader_src', 'freerideinvestor_modern_remove_query_strings', 15, 1);
+
+/**
+ * Disable Emojis
+ */
+function freerideinvestor_modern_disable_emojis()
+{
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+}
+add_action('init', 'freerideinvestor_modern_disable_emojis');
+
+/**
+ * Security Headers
+ */
+function freerideinvestor_modern_security_headers()
+{
+    if (!is_admin()) {
+        header('X-Content-Type-Options: nosniff');
+        header('X-Frame-Options: SAMEORIGIN');
+        header('X-XSS-Protection: 1; mode=block');
+    }
+}
+add_action('send_headers', 'freerideinvestor_modern_security_headers');
+
+/**
+ * Handle Premium Report Purchase
+ */
+function freerideinvestor_handle_premium_purchase()
+{
+    if (!isset($_POST['action']) || $_POST['action'] !== 'purchase_premium_report') {
+        return;
+    }
+
+    $report_id = intval($_POST['report_id'] ?? 0);
+    $report_url = esc_url_raw($_POST['report_url'] ?? '');
+
+    // TODO: Integrate with payment processor (Stripe, PayPal, etc.)
+    // For now, this is a placeholder
+
+    // After successful payment, redirect with access token
+    $access_token = wp_generate_password(32, false);
+
+    // Store access token (in production, use database or transient)
+    set_transient('premium_access_' . $access_token, $report_id, DAY_IN_SECONDS * 365);
+
+    // Redirect to report with access token
+    wp_safe_redirect(add_query_arg('access_token', $access_token, $report_url));
+    exit;
+}
+add_action('admin_post_purchase_premium_report', 'freerideinvestor_handle_premium_purchase');
+add_action('admin_post_nopriv_purchase_premium_report', 'freerideinvestor_handle_premium_purchase');
+
+
+// Add Mcp Test Slug to menu
+function freerideinvestor_add_mcp-test-slug_menu($items, $args) {
+    if ($args->theme_location == 'primary') {
+        $mcp-test-slug_page = get_page_by_path('mcp-test-slug');
+        $mcp-test-slug_url = $mcp-test-slug_page ? get_permalink($mcp-test-slug_page->ID) : home_url('/mcp-test-slug');
+        $items .= '<li><a href="' . esc_url($mcp-test-slug_url) . '">Mcp Test Slug</a></li>';
+    }
+    return $items;
+}
+add_filter('wp_nav_menu_items', 'freerideinvestor_add_mcp-test-slug_menu', 10, 2);
+
+
+// Create MCP Test Page page
+function freerideinvestor_create_mcp_test_page_page() {
+    if (get_page_by_path('mcp-test-page')) return;
+    $mcp-test-page_page = array(
+        'post_title' => 'MCP Test Page',
+        'post_name' => 'mcp-test-page',
+        'post_status' => 'publish',
+        'post_type' => 'page',
+        'page_template' => 'page-mcp-test-page.php'
+    );
+    wp_insert_post($mcp-test-page_page);
+}
+add_action('after_switch_theme', 'freerideinvestor_create_mcp_test_page_page');
+
+
+// Add MCP Test Page to menu
+function freerideinvestor_add_mcp-test-page_menu($items, $args) {
+    if ($args->theme_location == 'primary') {
+        $mcp-test-page_page = get_page_by_path('mcp-test-page');
+        $mcp-test-page_url = $mcp-test-page_page ? get_permalink($mcp-test-page_page->ID) : home_url('/mcp-test-page');
+        $items .= '<li><a href="' . esc_url($mcp-test-page_url) . '">MCP Test Page</a></li>';
+    }
+    return $items;
+}
+add_filter('wp_nav_menu_items', 'freerideinvestor_add_mcp-test-page_menu', 10, 2);
+
+
+// Create Contact page
+function freerideinvestor_create_contact_page() {
+    if (get_page_by_path('contact')) return;
+    $contact_page = array(
+        'post_title' => 'Contact',
+        'post_name' => 'contact',
+        'post_status' => 'publish',
+        'post_type' => 'page',
+        'page_template' => 'page-contact.php'
+    );
+    wp_insert_post($contact_page);
+}
+add_action('after_setup_theme', 'freerideinvestor_create_contact_page');
+
+/**
+ * Include Blog Template Functions
+ */
+require_once get_template_directory() . '/freerideinvestor_blog_template.php';

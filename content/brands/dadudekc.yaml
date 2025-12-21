@@ -1,0 +1,31 @@
+audiences:
+  - service_business_owner
+  - founder_led_team
+  - tech_leaning_operator
+
+offer:
+  name: "2-Week Automation Sprint"
+  promise: "Automate 1–3 workflows end-to-end + SOP + simple dashboard"
+  cta_primary: "DM 'SPRINT' or book a call"
+  cta_secondary:
+    - "Download /audit"
+    - "Download /scoreboard"
+    - "Download /intake"
+
+content_rules:
+  word_count: [900, 1400]
+  structure:
+    - hook
+    - pain_story
+    - framework
+    - steps
+    - example
+    - cta
+
+seo:
+  include_keywords: true
+  include_internal_links: true
+  internal_links:
+    audit: "/audit"
+    scoreboard: "/scoreboard"
+    intake: "/intake"

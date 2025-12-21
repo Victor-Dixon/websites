@@ -1,0 +1,470 @@
+/*
+Theme Name: prismblossom
+Theme URI: https://prismblossom.online
+Author: Carmyn
+Author URI: https://prismblossom.online
+Description: Personal WordPress theme for prismblossom.online - Birthday celebration site with guestbook, invitations, and interactive features.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: prismblossom
+*/
+
+/* ============================================
+   CSS VARIABLES - Birthday Celebration Theme
+   ============================================ */
+
+:root {
+    /* Birthday Celebration Color Palette */
+    --celebration-primary: #ff6b9d;      /* Pink */
+    --celebration-secondary: #c44569;    /* Deep pink */
+    --celebration-accent: #f8b500;       /* Gold */
+    --celebration-bg: #fff5f8;           /* Light pink background */
+    --celebration-text: #2d2d2d;        /* Dark text */
+    --celebration-text-light: #666666;   /* Secondary text */
+    --celebration-gold: #FFD700;         /* Gold (for black/gold theme) */
+    --celebration-black: #000000;        /* Black (for black/gold theme) */
+    
+    /* Typography */
+    --font-primary: 'Rubik Bubbles', 'Arial', sans-serif;
+    --font-heading: 'Permanent Marker', 'Arial', sans-serif;
+    --font-size-xs: 0.75rem;     /* 12px */
+    --font-size-sm: 0.875rem;    /* 14px */
+    --font-size-base: 1rem;      /* 16px */
+    --font-size-lg: 1.125rem;    /* 18px */
+    --font-size-xl: 1.25rem;     /* 20px */
+    --font-size-2xl: 1.5rem;     /* 24px */
+    --font-size-3xl: 1.875rem;   /* 30px */
+    --font-size-4xl: 2.25rem;    /* 36px */
+    
+    /* Spacing */
+    --spacing-1: 0.25rem;   /* 4px */
+    --spacing-2: 0.5rem;    /* 8px */
+    --spacing-3: 0.75rem;   /* 12px */
+    --spacing-4: 1rem;      /* 16px */
+    --spacing-6: 1.5rem;    /* 24px */
+    --spacing-8: 2rem;      /* 32px */
+    --spacing-12: 3rem;     /* 48px */
+    
+    /* Layout */
+    --container-max-width: 1280px;
+    --border-radius: 0.5rem;
+    --border-radius-lg: 1rem;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-gold: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ============================================
+   BASE STYLES - Text Rendering Fixes
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body, body * {
+    font-family: var(--font-primary) !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    font-feature-settings: 'liga' 0 !important;
+    font-variant-ligatures: none !important;
+    font-variant: normal !important;
+}
+
+body {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--celebration-text);
+    background-color: var(--celebration-bg);
+}
+
+/* Fix for specific text rendering issues */
+h1, h2, h3, h4, h5, h6, p, span, div, a, label, button {
+    letter-spacing: 0 !important;
+    word-spacing: 0.1em !important;
+    font-feature-settings: 'liga' 0 !important;
+    font-variant-ligatures: none !important;
+}
+
+/* Ensure no font loading causes spacing issues */
+@font-face {
+    font-display: swap;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-4);
+    color: var(--celebration-primary);
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
+
+p {
+    margin-bottom: var(--spacing-4);
+}
+
+a {
+    color: var(--celebration-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--celebration-secondary);
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-6);
+    }
+}
+
+/* Grid System */
+.grid {
+    display: grid;
+    gap: var(--spacing-4);
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   COMPONENTS
+   ============================================ */
+
+/* Buttons */
+.btn, .btn-primary {
+    display: inline-block;
+    padding: var(--spacing-3) var(--spacing-6);
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--celebration-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--celebration-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--celebration-primary);
+    border: 2px solid var(--celebration-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--celebration-primary);
+    color: white;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: var(--spacing-4);
+}
+
+.form-label, label {
+    display: block;
+    margin-bottom: var(--spacing-2);
+    font-weight: 500;
+    color: var(--celebration-text);
+}
+
+.form-input,
+.form-textarea,
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: var(--spacing-3) var(--spacing-4);
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--celebration-primary);
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+.form-textarea,
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.main-nav, .site-header nav {
+    background: white;
+    padding: var(--spacing-4) 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-list, .main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-6);
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list a, .main-nav a {
+    color: var(--celebration-text);
+    font-weight: 500;
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+}
+
+.nav-list a:hover, .main-nav a:hover {
+    color: var(--celebration-primary);
+    background-color: var(--celebration-bg);
+}
+
+.menu-toggle {
+    display: none;
+    background: var(--celebration-primary);
+    color: white;
+    border: none;
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: var(--font-primary);
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-list, .main-nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: var(--spacing-4);
+    }
+    
+    .nav-list.active, .main-nav ul.active {
+        display: flex;
+    }
+}
+
+/* ============================================
+   PAGE TEMPLATES - Guestbook
+   ============================================ */
+
+.guestbook-section {
+    padding: var(--spacing-12) 0 var(--spacing-8);
+    min-height: 100vh;
+    background: var(--celebration-black);
+}
+
+.guestbook-form-container, .guestbook-form {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--celebration-gold);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-8);
+    margin-bottom: var(--spacing-8);
+    box-shadow: var(--shadow-gold);
+}
+
+.guestbook-form label {
+    display: block;
+    color: var(--celebration-gold);
+    margin-bottom: var(--spacing-2);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px var(--celebration-gold);
+}
+
+.guestbook-form input[type="text"],
+.guestbook-form textarea {
+    width: 100%;
+    padding: var(--spacing-3);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--celebration-gold);
+    border-radius: var(--border-radius);
+    color: var(--celebration-gold);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    transition: all 0.3s ease;
+}
+
+.guestbook-form input[type="text"]:focus,
+.guestbook-form textarea:focus {
+    outline: none;
+    border-color: var(--celebration-gold);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.guestbook-messages {
+    margin-top: var(--spacing-8);
+}
+
+.messages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-6);
+}
+
+.message-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--celebration-gold);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-4);
+    transition: all 0.3s ease;
+}
+
+.message-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-gold);
+}
+
+/* ============================================
+   PAGE TEMPLATES - Invitation
+   ============================================ */
+
+.invitation-section {
+    padding: var(--spacing-12) 0 var(--spacing-8);
+    min-height: 100vh;
+    text-align: center;
+    background: var(--celebration-black);
+}
+
+.invitation-card {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 3px solid var(--celebration-gold);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), inset 0 0 20px rgba(255, 215, 0, 0.1);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-12) var(--spacing-8);
+    margin-bottom: var(--spacing-8);
+}
+
+.invitation-title {
+    color: var(--celebration-gold);
+    text-shadow: 0 0 10px var(--celebration-gold), 0 0 20px var(--celebration-gold);
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-6);
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 10px var(--celebration-gold), 0 0 20px var(--celebration-gold);
+    }
+    50% {
+        text-shadow: 0 0 20px var(--celebration-gold), 0 0 40px var(--celebration-gold);
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    h1 { font-size: var(--font-size-3xl); }
+    h2 { font-size: var(--font-size-2xl); }
+    h3 { font-size: var(--font-size-xl); }
+    
+    .container {
+        padding: 0 var(--spacing-4);
+    }
+    
+    .btn, .btn-primary {
+        width: 100%;
+        padding: var(--spacing-4);
+    }
+    
+    .guestbook-form-container {
+        padding: var(--spacing-6);
+    }
+    
+    .messages-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .invitation-card {
+        padding: var(--spacing-8) var(--spacing-4);
+    }
+    
+    .invitation-title {
+        font-size: var(--font-size-2xl);
+    }
+}

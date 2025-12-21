@@ -1,0 +1,103 @@
+.replay-controls {
+  background: #2a2a2a;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.control-btn {
+  background: #3a3a3a;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: background 0.2s;
+}
+
+.control-btn:hover:not(:disabled) {
+  background: #4a4a4a;
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.play-pause-btn {
+  background: #26a69a;
+  font-size: 1.5rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.play-pause-btn:hover {
+  background: #2bb5a9;
+}
+
+.speed-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.speed-controls span {
+  color: #9ca3af;
+  margin-right: 0.5rem;
+}
+
+.speed-btn {
+  background: #3a3a3a;
+  border: 1px solid #4a4a4a;
+  color: #d1d5db;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.speed-btn.active {
+  background: #26a69a;
+  border-color: #26a69a;
+  color: #fff;
+}
+
+.speed-btn:hover {
+  background: #4a4a4a;
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #3a3a3a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #26a69a;
+  transition: width 0.3s;
+}
+
+.progress-text {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  text-align: center;
+}
+
+
+

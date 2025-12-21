@@ -1,0 +1,272 @@
+gradecard:
+  version: v1
+  site: "houstonsipqueen.com"
+  date: "2025-12-19"
+  total_points: 100
+
+  scoring_scale:
+    "0": missing
+    "1": exists_but_broken
+    "2": weak_incomplete
+    "3": usable
+    "4": strong
+    "5": elite
+
+  categories:
+    - name: Brand Core
+      weight_points: 15
+      criteria:
+        - id: BRAND-01
+          name: Positioning statement clarity
+          score_0_to_5: 3
+          evidence: "Tagline exists: 'Bringing the bar to you' - clear but could be more specific about luxury/differentiation"
+          gap: "Missing unique positioning statement; no clear 'for X who want Y, we provide Z unlike competitors because...' format"
+          fix: "Create positioning statement: 'For Houston event hosts who want luxury bartending without the venue limitations, we provide premium mobile bar service (unlike basic catering or DIY bars) because we bring craft cocktails, professional service, and Southern hospitality directly to your location'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: BRAND-02
+          name: Offer ladder defined
+          score_0_to_5: 2
+          evidence: "Services mentioned (weddings, corporate, private parties) but no clear offer ladder visible"
+          gap: "No clear progression: free resource → consultation → booking; missing entry-level offers/lead magnets"
+          fix: "Create offer ladder: 1) Free event planning guide/checklist (lead magnet), 2) Free consultation/quote request, 3) Basic mobile bar service ($X,XXX), 4) Premium luxury package ($X,XXX), 5) Full-service event coordination ($X,XXX+)"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: BRAND-03
+          name: ICP + pain/outcome defined
+          score_0_to_5: 2
+          evidence: "Target markets mentioned (weddings, corporate, private parties) but ICP not explicitly defined on site"
+          gap: "No explicit ICP definition; pain points (venue limitations, lack of expertise) and outcomes (impressive guests, stress-free hosting) not clearly articulated"
+          fix: "Add ICP section: 'For Houston event hosts (weddings, corporate, private parties) struggling with venue bar limitations, we eliminate the stress and deliver impressive experiences. Your outcome: guests rave about the cocktails, you enjoy your event, professional service throughout.'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+
+    - name: Visual Identity
+      weight_points: 10
+      criteria:
+        - id: VIS-01
+          name: Logo set complete
+          score_0_to_5: 2
+          evidence: "Site exists but logo completeness unknown; likely has basic branding"
+          gap: "May be missing logo variations (horizontal, stacked, icon, favicon), social media versions"
+          fix: "Audit logo assets: ensure primary logo, secondary (stacked), icon (favicon), social media variations exist. Design brief: luxury, elegant, cocktail/bar themed, Southern hospitality"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-26"
+        - id: VIS-02
+          name: Palette + fonts + design rules
+          score_0_to_5: 2
+          evidence: "Site has design but no documented brand guidelines visible"
+          gap: "No brand style guide document, color palette not documented, typography choices not established, design rules not codified"
+          fix: "Create brand style guide: document color palette (luxury colors - gold, deep purple, or elegant neutrals), typography (elegant serif + modern sans-serif), spacing system, button styles, component library, cocktail/event image treatment"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-26"
+
+    - name: Social Presence
+      weight_points: 10
+      criteria:
+        - id: SOC-01
+          name: Accounts claimed + handle consistency
+          score_0_to_5: 1
+          evidence: "No social media links prominently visible on website"
+          gap: "Social accounts may exist but not linked/visible; handle consistency unknown (@houstonsipqueen vs variations)"
+          fix: "Audit social accounts: claim @houstonsipqueen on Instagram, Facebook, LinkedIn, TikTok (if applicable). Ensure handle consistency. Add social links to header/footer"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+        - id: SOC-02
+          name: Profile completeness (bio/link/pfp/banner/pin)
+          score_0_to_5: 1
+          evidence: "Social profiles may exist but completeness unknown"
+          gap: "Profiles may be incomplete: missing optimized bio, profile picture, banner, pinned post, website link"
+          fix: "Complete all profiles: bio (luxury mobile bartending Houston, craft cocktails, weddings & events), professional photos (cocktails, events), branded banner, pin quote request link, link to website"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+
+    - name: Funnel Infrastructure
+      weight_points: 20
+      criteria:
+        - id: FUN-01
+          name: Lead magnet + landing + thank-you
+          score_0_to_5: 1
+          evidence: "Quote request likely exists but no lead magnet visible; no dedicated landing pages mentioned"
+          gap: "Missing lead magnet (event planning guide, cocktail menu templates, checklist), no dedicated landing pages, no thank-you pages with next steps"
+          fix: "Create: 1) Lead magnet 'Ultimate Event Bar Planning Checklist' (PDF), 2) Landing page /event-planning-guide with form, 3) Thank-you page with download link + quote request CTA"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-21"
+        - id: FUN-02
+          name: Email welcome + nurture sequence
+          score_0_to_5: 1
+          evidence: "No email automation mentioned in voice template or visible on site"
+          gap: "No email service integrated, no welcome email, no nurture sequence for event leads"
+          fix: "Set up email service (Mailchimp/ConvertKit), create welcome email (deliver lead magnet, introduce services), build nurture sequence (event planning tips, cocktail recipes, client stories, seasonal ideas, quote request reminder) - 5 emails over 2 weeks"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: FUN-03
+          name: Booking/checkout works end-to-end
+          score_0_to_5: 2
+          evidence: "Quote request likely exists but booking/checkout flow unclear"
+          gap: "No visible booking calendar integration, no payment processing for deposits, no automated confirmation system"
+          fix: "Implement: 1) Calendly/Cal.com for consultation booking, 2) Payment processing (Stripe) for deposits, 3) Automated confirmation emails, 4) Quote → consultation → booking → deposit flow"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-25"
+        - id: FUN-04
+          name: CRM stages / lead tracking exists
+          score_0_to_5: 1
+          evidence: "No CRM system visible or mentioned"
+          gap: "No CRM integration, no lead stages defined, no tracking of inquiry → consultation → quote → booking → event → follow-up"
+          fix: "Set up CRM (HubSpot free/Pipedrive): stages (Lead → Consultation Scheduled → Quote Sent → Booking Confirmed → Event Completed → Follow-up), automate stage transitions"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-27"
+
+    - name: Website Conversion
+      weight_points: 20
+      criteria:
+        - id: WEB-01
+          name: Hero clarity + CTA clarity
+          score_0_to_5: 3
+          evidence: "Homepage exists with tagline, but hero clarity unknown without site inspection"
+          gap: "Hero may not be benefit-focused enough; CTAs may not be optimized for conversion; missing urgency/value props"
+          fix: "A/B test hero: 'Impress Your Guests with Luxury Mobile Bartending' + 'Get Your Free Event Planning Guide' vs current. Add urgency: 'Limited Availability for Spring Events'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-20"
+        - id: WEB-02
+          name: Services/pricing + proof/trust
+          score_0_to_5: 2
+          evidence: "Services mentioned (weddings, corporate, private parties) but pricing transparency unknown; proof/trust elements unclear"
+          gap: "Pricing may not be visible or clear; missing testimonials, case studies, event photos, trust badges, social proof"
+          fix: "Add: pricing page or pricing ranges, real client testimonials with photos/names, case studies (before/after event photos), trust badges (certifications, years experience, events served), portfolio gallery"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: WEB-03
+          name: Mobile UX + speed basics
+          score_0_to_5: 3
+          evidence: "Site exists and likely responsive, but no speed optimization documented"
+          gap: "No mobile testing documented, no page speed scores, likely missing image optimization, caching"
+          fix: "Test mobile UX (all pages), optimize images (WebP, lazy loading), implement caching (LiteSpeed Cache plugin), target PageSpeed 90+ mobile, 95+ desktop"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+        - id: WEB-04
+          name: Contact/booking friction low
+          score_0_to_5: 2
+          evidence: "Quote request likely exists but friction level unknown"
+          gap: "Quote form may have too many fields, no one-click booking, no phone number visible, no chat widget"
+          fix: "Reduce quote form to 3-4 essential fields (name, email, event date, event type), add phone number prominently, implement chat widget (Intercom/Crisp), add calendar booking widget"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-21"
+
+    - name: Content System
+      weight_points: 15
+      criteria:
+        - id: CON-01
+          name: Content pillars + weekly schedule
+          score_0_to_5: 3
+          evidence: "Content themes defined in voice template (luxury bartending, craft cocktails, event planning, Houston events) but pillars not explicitly structured"
+          gap: "Content themes exist but not structured as pillars; weekly schedule may not be documented as strategy"
+          fix: "Define 3 content pillars: 1) Event Planning Tips & Advice, 2) Craft Cocktail Recipes & Trends, 3) Client Stories & Event Highlights. Document weekly schedule: 2-3 posts/week (Tuesday, Thursday, Saturday)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: CON-02
+          name: 30-day calendar exists
+          score_0_to_5: 1
+          evidence: "No content calendar visible"
+          gap: "No 30-day calendar, no topics planned, no content bank"
+          fix: "Create 30-day calendar: Week 1 (event planning tips), Week 2 (cocktail recipes), Week 3 (client stories), Week 4 (seasonal/holiday events). Use content templates, build content bank (10+ posts ready)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: CON-03
+          name: Repurpose pipeline defined
+          score_0_to_5: 1
+          evidence: "No repurposing system documented"
+          gap: "No plan to turn 1 piece into 5+ assets (blog → social posts → email → video → infographic)"
+          fix: "Create repurposing workflow: Blog post → 3 social posts (Instagram, Facebook, LinkedIn) → Email newsletter → YouTube short (cocktail making) → Pinterest pin → Infographic (cocktail recipe card)"
+          priority: P2
+          owner: "Agent-7"
+          eta: "2025-12-28"
+
+    - name: Blog & SEO System
+      weight_points: 5
+      criteria:
+        - id: SEO-01
+          name: Blog template + categories + internal links rules
+          score_0_to_5: 3
+          evidence: "SEO improvements report exists (meta tags, structured data, Open Graph) but blog optimization unknown"
+          gap: "SEO foundation exists but blog categories may not be optimized, internal linking strategy may not be fully implemented"
+          fix: "Set up: blog categories (Event Planning, Cocktail Recipes, Client Stories, Houston Events), SEO plugin (Yoast/Rank Math), ensure internal links to quote request in every post, schema markup for LocalBusiness, sitemap"
+          priority: P2
+          owner: "Agent-7"
+          eta: "2025-12-26"
+
+    - name: Tracking & Ops
+      weight_points: 5
+      criteria:
+        - id: OPS-01
+          name: Analytics/pixels + UTMs + weekly metrics sheet
+          score_0_to_5: 2
+          evidence: "No analytics tracking mentioned in config"
+          gap: "No Google Analytics visible, no Facebook Pixel, no UTM parameters documented, no metrics dashboard"
+          fix: "Install: Google Analytics 4, Facebook Pixel (if running ads), set up UTM parameters (source, medium, campaign), create weekly metrics sheet (traffic, leads, quote requests, consultations, bookings, revenue)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+
+  final:
+    weighted_score_out_of_100: 40.0
+    letter_grade: "F"
+    top_10_fixes:
+      - priority: P0
+        item: "Create lead magnet (Event Planning Checklist) + landing page + thank-you page"
+        owner: "Agent-7"
+        eta: "2025-12-21"
+      - priority: P0
+        item: "Set up email welcome sequence + nurture campaign (5 emails over 2 weeks) for event leads"
+        owner: "Agent-7"
+        eta: "2025-12-24"
+      - priority: P0
+        item: "Implement booking calendar (Calendly) + payment processing (Stripe) for deposits"
+        owner: "Agent-7"
+        eta: "2025-12-25"
+      - priority: P0
+        item: "Define positioning statement + offer ladder + ICP with pain/outcome on homepage"
+        owner: "Agent-7"
+        eta: "2025-12-22"
+      - priority: P0
+        item: "Reduce quote form friction (3-4 fields) + add phone + chat widget"
+        owner: "Agent-7"
+        eta: "2025-12-21"
+      - priority: P0
+        item: "Add pricing transparency + client testimonials + case studies + event portfolio"
+        owner: "Agent-7"
+        eta: "2025-12-22"
+      - priority: P0
+        item: "A/B test hero headline for better benefit focus + add urgency"
+        owner: "Agent-7"
+        eta: "2025-12-20"
+      - priority: P1
+        item: "Claim social media accounts (@houstonsipqueen) + complete profiles with luxury bartending focus"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+      - priority: P1
+        item: "Install analytics (GA4) + set up UTM tracking + weekly metrics dashboard"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+      - priority: P1
+        item: "Optimize mobile UX + page speed (images, caching, target 90+ mobile score)"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+

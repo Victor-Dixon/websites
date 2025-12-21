@@ -1,0 +1,42 @@
+/*--------------------------------------------------------------
+  Typography
+--------------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  margin-top: $spacing-md;
+  margin-bottom: $spacing-sm;
+  font-weight: bold;
+  line-height: 1.2;
+  color: $color-text-base;
+}
+
+p {
+  margin-bottom: $spacing-sm;
+  color: $color-text-muted;
+  line-height: $line-height-base;
+}
+
+a {
+  color: $color-accent;
+  text-decoration: none;
+  @include transition(color 0.2s ease-in-out);
+
+  &:hover,
+  &:focus {
+    color: $color-text-base;
+    text-decoration: underline;
+  }
+}
+
+ul, ol {
+  padding-left: $spacing-sm;
+  margin-bottom: $spacing-md;
+  color: $color-text-muted;
+}
+
+ul {
+  list-style: disc;
+}
+
+ol {
+  list-style: decimal;
+}

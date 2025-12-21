@@ -1,0 +1,16 @@
+site_id: kiki
+domain: example.com
+voice_profile: content/voices/kiki.md
+brand_profile: content/brands/kiki_site.yaml
+backlog: content/backlogs/kiki_site.yaml
+calendar: content/calendars/kiki_site.yaml
+examples_glob: content/examples/kiki/*.md
+publish:
+  provider: wordpress
+  wp_base_url_env: KIKI_WP_URL
+  wp_user_env: KIKI_WP_USER
+  wp_app_password_env: KIKI_WP_APP_PASS
+defaults:
+  word_count_min: 900
+  word_count_max: 1400
+  auto_publish: false

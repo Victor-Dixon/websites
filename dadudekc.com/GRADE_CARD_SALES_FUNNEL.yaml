@@ -1,0 +1,272 @@
+gradecard:
+  version: v1
+  site: "dadudekc.com"
+  date: "2025-12-19"
+  total_points: 100
+
+  scoring_scale:
+    "0": missing
+    "1": exists_but_broken
+    "2": weak_incomplete
+    "3": usable
+    "4": strong
+    "5": elite
+
+  categories:
+    - name: Brand Core
+      weight_points: 15
+      criteria:
+        - id: BRAND-01
+          name: Positioning statement clarity
+          score_0_to_5: 3
+          evidence: "Offer defined: '2-Week Automation Sprint' for service business owners, but positioning statement not explicitly stated on homepage"
+          gap: "Missing clear positioning statement that differentiates from other automation consultants; no 'for X who want Y, we provide Z unlike competitors because...' format"
+          fix: "Create positioning statement: 'For service business owners who are drowning in manual workflows, we provide done-for-you automation sprints (unlike DIY tools or expensive agencies) because we deliver working automations in 2 weeks with zero technical knowledge required'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: BRAND-02
+          name: Offer ladder defined
+          score_0_to_5: 2
+          evidence: "Primary offer exists (2-Week Automation Sprint) with CTAs to /audit, /scoreboard, /intake, but no clear progression ladder"
+          gap: "No clear entry point → consultation → sprint → retainer progression; missing free/low-cost entry offer"
+          fix: "Create offer ladder: 1) Free workflow audit (/audit), 2) Automation scoreboard (/scoreboard), 3) Discovery call/intake (/intake), 4) 2-Week Sprint ($X,XXX), 5) Ongoing automation retainer ($X,XXX/month)"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: BRAND-03
+          name: ICP + pain/outcome defined
+          score_0_to_5: 3
+          evidence: "ICP defined in brand YAML: service_business_owner, founder_led_team, tech_leaning_operator; pain/outcome implied but not explicit on site"
+          gap: "ICP exists in config but not clearly communicated on website; pain points (manual workflows, time waste) and outcomes (time back, efficiency) not prominently displayed"
+          fix: "Add ICP section to homepage: 'For service business owners ($50K-$500K revenue) drowning in manual tasks, we eliminate workflow bottlenecks. Your outcome: 10+ hours/week back, scalable operations, peace of mind.'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+
+    - name: Visual Identity
+      weight_points: 10
+      criteria:
+        - id: VIS-01
+          name: Logo set complete
+          score_0_to_5: 2
+          evidence: "Site exists but logo completeness unknown; likely has basic branding"
+          gap: "May be missing logo variations (horizontal, stacked, icon, favicon), social media versions"
+          fix: "Audit logo assets: ensure primary logo, secondary (stacked), icon (favicon), social media variations exist. Create missing assets if needed"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-26"
+        - id: VIS-02
+          name: Palette + fonts + design rules
+          score_0_to_5: 2
+          evidence: "Site has design but no documented brand guidelines visible"
+          gap: "No brand style guide document, color palette not documented, typography choices not established, design rules not codified"
+          fix: "Create brand style guide: document color palette, typography (primary + heading fonts), spacing system, button styles, component library, image treatment"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-26"
+
+    - name: Social Presence
+      weight_points: 10
+      criteria:
+        - id: SOC-01
+          name: Accounts claimed + handle consistency
+          score_0_to_5: 1
+          evidence: "No social media links prominently visible on website"
+          gap: "Social accounts may exist but not linked/visible; handle consistency unknown (@dadudekc vs variations)"
+          fix: "Audit social accounts: claim @dadudekc on Twitter/X, LinkedIn, Instagram (if applicable). Ensure handle consistency. Add social links to header/footer"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+        - id: SOC-02
+          name: Profile completeness (bio/link/pfp/banner/pin)
+          score_0_to_5: 1
+          evidence: "Social profiles may exist but completeness unknown"
+          gap: "Profiles may be incomplete: missing optimized bio, profile picture, banner, pinned post, website link"
+          fix: "Complete all profiles: bio (automation consultant for service businesses), professional headshot, branded banner, pin automation sprint offer, link to /intake"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+
+    - name: Funnel Infrastructure
+      weight_points: 20
+      criteria:
+        - id: FUN-01
+          name: Lead magnet + landing + thank-you
+          score_0_to_5: 2
+          evidence: "Pages exist: /audit, /scoreboard, /intake mentioned in brand config, but unclear if these are lead magnets with landing pages"
+          gap: "Pages exist but may not be optimized as lead magnets; missing dedicated landing pages with clear value props; no thank-you pages with next steps"
+          fix: "Optimize /audit as lead magnet: create dedicated landing page with value prop, form capture, thank-you page with download + next steps. Ensure /scoreboard and /intake have proper landing/thank-you flows"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-21"
+        - id: FUN-02
+          name: Email welcome + nurture sequence
+          score_0_to_5: 1
+          evidence: "No email automation mentioned in config or visible on site"
+          gap: "No email service integrated, no welcome email, no nurture sequence for automation leads"
+          fix: "Set up email service (ConvertKit/Mailchimp), create welcome email (deliver audit/scoreboard, introduce sprint offer), build nurture sequence (automation tips, case studies, sprint benefits, consultation CTA) - 5 emails over 2 weeks"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: FUN-03
+          name: Booking/checkout works end-to-end
+          score_0_to_5: 2
+          evidence: "/intake page exists but booking/checkout flow unclear"
+          gap: "No visible booking calendar integration, no payment processing for sprint deposits, no automated confirmation system"
+          fix: "Implement: 1) Calendly/Cal.com for discovery calls, 2) Payment processing (Stripe) for sprint deposits, 3) Automated booking confirmation emails, 4) Intake form → calendar → payment flow"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-25"
+        - id: FUN-04
+          name: CRM stages / lead tracking exists
+          score_0_to_5: 1
+          evidence: "No CRM system visible or mentioned"
+          gap: "No CRM integration, no lead stages defined, no tracking of audit → scoreboard → intake → call → sprint → retainer"
+          fix: "Set up CRM (HubSpot free/Pipedrive): stages (Lead → Audit Downloaded → Scoreboard Completed → Intake Submitted → Call Scheduled → Sprint Booked → Retainer), automate stage transitions"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-27"
+
+    - name: Website Conversion
+      weight_points: 20
+      criteria:
+        - id: WEB-01
+          name: Hero clarity + CTA clarity
+          score_0_to_5: 3
+          evidence: "Homepage exists with offer mentioned, but hero clarity unknown without site inspection"
+          gap: "Hero may not be benefit-focused enough; CTAs may not be optimized for conversion; missing urgency/value props"
+          fix: "A/B test hero: 'Stop Drowning in Manual Workflows - Get 10+ Hours Back Per Week' + 'Get Your Free Workflow Audit' vs current. Add urgency: 'Limited January Sprint Slots'"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-20"
+        - id: WEB-02
+          name: Services/pricing + proof/trust
+          score_0_to_5: 2
+          evidence: "Offer exists (2-Week Sprint) but pricing transparency unknown; proof/trust elements unclear"
+          gap: "Pricing may not be visible or clear; missing testimonials, case studies, client logos, results metrics, trust badges"
+          fix: "Add: pricing page or pricing ranges, real client testimonials with photos/names, case studies (before/after automation), results metrics (hours saved, ROI), trust badges (certifications, years experience)"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-22"
+        - id: WEB-03
+          name: Mobile UX + speed basics
+          score_0_to_5: 3
+          evidence: "Site exists and likely responsive, but no speed optimization documented"
+          gap: "No mobile testing documented, no page speed scores, likely missing image optimization, caching"
+          fix: "Test mobile UX (all pages), optimize images (WebP, lazy loading), implement caching, target PageSpeed 90+ mobile, 95+ desktop"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+        - id: WEB-04
+          name: Contact/booking friction low
+          score_0_to_5: 2
+          evidence: "/intake page exists but friction level unknown"
+          gap: "Intake form may have too many fields, no one-click booking, no phone number visible, no chat widget"
+          fix: "Reduce intake form to 3-4 essential fields (name, email, business type, main pain point), add phone number prominently, implement chat widget (Intercom/Crisp), add calendar booking widget"
+          priority: P0
+          owner: "Agent-7"
+          eta: "2025-12-21"
+
+    - name: Content System
+      weight_points: 15
+      criteria:
+        - id: CON-01
+          name: Content pillars + weekly schedule
+          score_0_to_5: 3
+          evidence: "Content calendar exists (30 days scheduled), content rules defined in brand YAML"
+          gap: "Content pillars not explicitly defined; weekly schedule exists but may not be documented as strategy"
+          fix: "Define 3 content pillars: 1) Automation Tips & Frameworks, 2) Service Business Operations, 3) Case Studies & Results. Document weekly schedule: 2-3 posts/week (Tuesday, Thursday, Saturday)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: CON-02
+          name: 30-day calendar exists
+          score_0_to_5: 4
+          evidence: "30-day content calendar exists in calendars/dadudekc.yaml with dates scheduled through Jan 18, 2026"
+          gap: "Calendar exists but may need topic refinement or content bank building"
+          fix: "Review calendar topics, ensure alignment with content pillars, build content bank (10+ posts ready), establish content templates"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-24"
+        - id: CON-03
+          name: Repurpose pipeline defined
+          score_0_to_5: 1
+          evidence: "No repurposing system documented"
+          gap: "No plan to turn 1 piece into 5+ assets (blog → social posts → email → video → infographic)"
+          fix: "Create repurposing workflow: Blog post → 3 social posts (Twitter/X, LinkedIn, Instagram) → Email newsletter → YouTube short → Infographic → Twitter thread"
+          priority: P2
+          owner: "Agent-7"
+          eta: "2025-12-28"
+
+    - name: Blog & SEO System
+      weight_points: 5
+      criteria:
+        - id: SEO-01
+          name: Blog template + categories + internal links rules
+          score_0_to_5: 3
+          evidence: "Blog exists with posts, standardized template exists, internal links mentioned in brand config (/audit, /scoreboard, /intake)"
+          gap: "Blog categories may not be optimized, SEO plugin status unknown, internal linking strategy may not be fully implemented"
+          fix: "Set up: blog categories (Automation, Operations, Case Studies), SEO plugin (Yoast/Rank Math), ensure internal links to /audit, /scoreboard, /intake in every post, schema markup, sitemap"
+          priority: P2
+          owner: "Agent-7"
+          eta: "2025-12-26"
+
+    - name: Tracking & Ops
+      weight_points: 5
+      criteria:
+        - id: OPS-01
+          name: Analytics/pixels + UTMs + weekly metrics sheet
+          score_0_to_5: 2
+          evidence: "No analytics tracking mentioned in config"
+          gap: "No Google Analytics visible, no Facebook Pixel, no UTM parameters documented, no metrics dashboard"
+          fix: "Install: Google Analytics 4, Facebook Pixel (if running ads), set up UTM parameters (source, medium, campaign), create weekly metrics sheet (traffic, leads, audit downloads, intake submissions, calls booked, sprints sold, revenue)"
+          priority: P1
+          owner: "Agent-7"
+          eta: "2025-12-23"
+
+  final:
+    weighted_score_out_of_100: 42.5
+    letter_grade: "F"
+    top_10_fixes:
+      - priority: P0
+        item: "Optimize /audit, /scoreboard, /intake as lead magnets with landing pages + thank-you pages"
+        owner: "Agent-7"
+        eta: "2025-12-21"
+      - priority: P0
+        item: "Set up email welcome sequence + nurture campaign (5 emails over 2 weeks)"
+        owner: "Agent-7"
+        eta: "2025-12-24"
+      - priority: P0
+        item: "Implement booking calendar (Calendly) + payment processing (Stripe) for sprint deposits"
+        owner: "Agent-7"
+        eta: "2025-12-25"
+      - priority: P0
+        item: "Define positioning statement + offer ladder + ICP with pain/outcome on homepage"
+        owner: "Agent-7"
+        eta: "2025-12-22"
+      - priority: P0
+        item: "Reduce intake form friction (3-4 fields) + add phone + chat widget"
+        owner: "Agent-7"
+        eta: "2025-12-21"
+      - priority: P0
+        item: "Add pricing transparency + testimonials + case studies + trust badges"
+        owner: "Agent-7"
+        eta: "2025-12-22"
+      - priority: P0
+        item: "A/B test hero headline for better benefit focus + add urgency"
+        owner: "Agent-7"
+        eta: "2025-12-20"
+      - priority: P1
+        item: "Claim social media accounts (@dadudekc) + complete profiles with automation focus"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+      - priority: P1
+        item: "Install analytics (GA4) + set up UTM tracking + weekly metrics dashboard"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+      - priority: P1
+        item: "Optimize mobile UX + page speed (images, caching, target 90+ mobile score)"
+        owner: "Agent-7"
+        eta: "2025-12-23"
+

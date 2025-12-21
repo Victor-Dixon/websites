@@ -1,0 +1,309 @@
+/**
+ * Swarm Missions Dashboard - Styling
+ * 
+ * Beautiful, responsive dashboard for displaying agent missions
+ * 
+ * @package Swarm_Theme
+ * @version 1.0.0
+ */
+
+.swarm-missions-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.missions-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.missions-header h2 {
+    margin: 0 0 10px 0;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.last-updated {
+    opacity: 0.9;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+.mission-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.mission-stats .stat {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1em;
+    backdrop-filter: blur(10px);
+}
+
+.mission-stats .stat.urgent {
+    background: rgba(255, 59, 48, 0.3);
+    border: 2px solid rgba(255, 59, 48, 0.6);
+}
+
+.mission-stats .stat.active {
+    background: rgba(255, 149, 0, 0.3);
+    border: 2px solid rgba(255, 149, 0, 0.6);
+}
+
+.mission-stats .stat.ready {
+    background: rgba(52, 199, 89, 0.3);
+    border: 2px solid rgba(52, 199, 89, 0.6);
+}
+
+.mission-stats .stat.total {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.missions-section {
+    margin-bottom: 40px;
+}
+
+.missions-section h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #ddd;
+}
+
+.urgent-section h3 {
+    color: #ff3b30;
+    border-bottom-color: #ff3b30;
+}
+
+.active-section h3 {
+    color: #ff9500;
+    border-bottom-color: #ff9500;
+}
+
+.ready-section h3 {
+    color: #34c759;
+    border-bottom-color: #34c759;
+}
+
+.mission-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 6px solid #ddd;
+}
+
+.mission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.mission-card.urgent {
+    border-left-color: #ff3b30;
+    background: linear-gradient(to right, rgba(255, 59, 48, 0.05) 0%, white 20%);
+}
+
+.mission-card.active {
+    border-left-color: #ff9500;
+    background: linear-gradient(to right, rgba(255, 149, 0, 0.05) 0%, white 20%);
+}
+
+.mission-card.ready {
+    border-left-color: #34c759;
+    background: linear-gradient(to right, rgba(52, 199, 89, 0.05) 0%, white 20%);
+}
+
+.agent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.agent-header h4 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.agent-role {
+    background: #f8f9fa;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: #666;
+    font-weight: 500;
+}
+
+.mission-content {
+    margin: 15px 0;
+}
+
+.mission-text {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.mission-meta {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+.mission-meta span {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: 600;
+    background: #f0f0f0;
+    color: #666;
+}
+
+.mission-meta .status {
+    background: #007aff;
+    color: white;
+}
+
+.mission-meta .priority {
+    background: #ff3b30;
+    color: white;
+}
+
+.mission-meta .progress {
+    background: #34c759;
+    color: white;
+}
+
+.mission-meta .cycles {
+    background: #5856d6;
+    color: white;
+}
+
+.deliverables {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px 15px 15px 35px;
+    margin: 15px 0;
+    list-style-type: none;
+}
+
+.deliverables li {
+    padding: 5px 0;
+    color: #555;
+    position: relative;
+}
+
+.deliverables li:before {
+    content: "✓";
+    position: absolute;
+    left: -20px;
+    color: #34c759;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.mission-footer {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+    color: #999;
+    font-size: 0.85em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .missions-header h2 {
+        font-size: 2em;
+    }
+    
+    .mission-stats {
+        gap: 10px;
+    }
+    
+    .mission-stats .stat {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+    
+    .agent-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .mission-meta {
+        gap: 8px;
+    }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.missions-loading {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Success Indicators */
+.mission-complete {
+    background: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+/* Priority Badges */
+.priority-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.priority-urgent {
+    background: #ff3b30;
+    color: white;
+}
+
+.priority-high {
+    background: #ff9500;
+    color: white;
+}
+
+.priority-normal {
+    background: #007aff;
+    color: white;
+}
+
+.priority-low {
+    background: #8e8e93;
+    color: white;
+}
+
