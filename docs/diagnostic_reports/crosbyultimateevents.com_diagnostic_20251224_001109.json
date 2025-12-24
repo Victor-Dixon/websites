@@ -1,0 +1,50 @@
+{
+  "site": "crosbyultimateevents.com",
+  "timestamp": "2025-12-24T00:09:55.620678",
+  "checks": {
+    "connectivity": {
+      "accessible": true,
+      "http_status": 200,
+      "response_time": 0.72,
+      "error": null
+    },
+    "syntax_errors": {
+      "errors": [],
+      "files_checked": 21
+    },
+    "plugin_conflicts": {
+      "conflicts": []
+    },
+    "database": {
+      "issues": []
+    },
+    "memory": {
+      "issues": [
+        {
+          "type": "memory_limit",
+          "severity": "MEDIUM",
+          "message": "No explicit memory limit set in wp-config.php",
+          "recommendation": "Add define('WP_MEMORY_LIMIT', '256M'); to wp-config.php if experiencing memory issues"
+        }
+      ]
+    },
+    "wordpress_core": {
+      "issues": []
+    },
+    "error_logs": {
+      "errors": []
+    }
+  },
+  "issues": [
+    {
+      "type": "memory_limit",
+      "severity": "MEDIUM",
+      "message": "No explicit memory limit set in wp-config.php",
+      "recommendation": "Add define('WP_MEMORY_LIMIT', '256M'); to wp-config.php if experiencing memory issues"
+    }
+  ],
+  "recommendations": [
+    "ℹ️  MEDIUM: 1 medium-priority issue(s) can be addressed when convenient"
+  ],
+  "severity": "MEDIUM"
+}

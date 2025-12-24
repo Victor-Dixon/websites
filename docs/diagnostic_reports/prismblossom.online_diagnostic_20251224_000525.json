@@ -1,0 +1,66 @@
+{
+  "site": "prismblossom.online",
+  "timestamp": "2025-12-24T00:03:31.345921",
+  "checks": {
+    "connectivity": {
+      "accessible": true,
+      "http_status": 200,
+      "response_time": 1.18,
+      "error": null
+    },
+    "syntax_errors": {
+      "errors": [],
+      "files_checked": 21
+    },
+    "plugin_conflicts": {
+      "conflicts": [
+        {
+          "type": "plugin_structure",
+          "severity": "MEDIUM",
+          "plugin": "wpforms-lite",
+          "message": "Plugin wpforms-lite missing main file",
+          "recommendation": "Check plugin structure for wpforms-lite"
+        },
+        {
+          "type": "plugin_structure",
+          "severity": "MEDIUM",
+          "plugin": "wp-super-cache",
+          "message": "Plugin wp-super-cache missing main file",
+          "recommendation": "Check plugin structure for wp-super-cache"
+        }
+      ]
+    },
+    "database": {
+      "issues": []
+    },
+    "memory": {
+      "issues": []
+    },
+    "wordpress_core": {
+      "issues": []
+    },
+    "error_logs": {
+      "errors": []
+    }
+  },
+  "issues": [
+    {
+      "type": "plugin_structure",
+      "severity": "MEDIUM",
+      "plugin": "wpforms-lite",
+      "message": "Plugin wpforms-lite missing main file",
+      "recommendation": "Check plugin structure for wpforms-lite"
+    },
+    {
+      "type": "plugin_structure",
+      "severity": "MEDIUM",
+      "plugin": "wp-super-cache",
+      "message": "Plugin wp-super-cache missing main file",
+      "recommendation": "Check plugin structure for wp-super-cache"
+    }
+  ],
+  "recommendations": [
+    "ℹ️  MEDIUM: 2 medium-priority issue(s) can be addressed when convenient"
+  ],
+  "severity": "MEDIUM"
+}

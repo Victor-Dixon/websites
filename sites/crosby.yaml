@@ -1,0 +1,16 @@
+site_id: crosby
+domain: crosbyultimateevents.com
+voice_profile: content/voices/corey.md
+brand_profile: content/brands/crosby.yaml
+backlog: content/backlogs/crosby.yaml
+calendar: content/calendars/crosby.yaml
+examples_glob: content/examples/corey/*.md
+publish:
+  provider: wordpress
+  wp_base_url_env: CROSBY_WP_URL
+  wp_user_env: CROSBY_WP_USER
+  wp_app_password_env: CROSBY_WP_APP_PASS
+defaults:
+  word_count_min: 1000
+  word_count_max: 1500
+  auto_publish: false

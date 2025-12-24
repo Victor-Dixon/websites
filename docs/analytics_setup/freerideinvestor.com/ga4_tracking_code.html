@@ -1,0 +1,32 @@
+<!-- Google Analytics 4 (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', {
+    'page_path': window.location.pathname,
+    'page_title': document.title,
+  });
+  
+  // Custom Events Tracking
+  // Track lead_magnet_submit event
+  gtag("event", "lead_magnet_submit", {
+    "event_category": "engagement",
+    "event_label": "lead_magnet_submit"
+  });
+
+  // Track subscription_form_submit event
+  gtag("event", "subscription_form_submit", {
+    "event_category": "engagement",
+    "event_label": "subscription_form_submit"
+  });
+
+  // Track premium_upgrade_click event
+  gtag("event", "premium_upgrade_click", {
+    "event_category": "engagement",
+    "event_label": "premium_upgrade_click"
+  });
+
+</script>
+<!-- End GA4 -->

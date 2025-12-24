@@ -28,6 +28,7 @@
                     'theme_location' => 'primary',
                     'menu_id' => 'primary-menu',
                     'container' => false,
+                    'fallback_cb' => false, // Don't show fallback menu
                 ));
                 ?>
             </nav>

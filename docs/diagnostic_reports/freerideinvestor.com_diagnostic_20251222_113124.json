@@ -1,0 +1,69 @@
+{
+  "site": "freerideinvestor.com",
+  "timestamp": "2025-12-22T11:29:53.478960",
+  "checks": {
+    "connectivity": {
+      "accessible": true,
+      "http_status": 200,
+      "response_time": 12.64,
+      "error": null
+    },
+    "syntax_errors": {
+      "errors": [
+        {
+          "type": "syntax_error",
+          "severity": "HIGH",
+          "file": "find: ‘domains/freerideinvestor.com/public_html/wp-content/plugins’: No such file or directory",
+          "message": "Unknown error",
+          "line": null,
+          "recommendation": "Fix PHP syntax error in find: ‘domains/freerideinvestor.com/public_html/wp-content/plugins’: No such file or directory. Check line unknown"
+        }
+      ],
+      "files_checked": 12
+    },
+    "plugin_conflicts": {
+      "conflicts": []
+    },
+    "database": {
+      "issues": []
+    },
+    "memory": {
+      "issues": [
+        {
+          "type": "memory_limit",
+          "severity": "MEDIUM",
+          "message": "No explicit memory limit set in wp-config.php",
+          "recommendation": "Add define('WP_MEMORY_LIMIT', '256M'); to wp-config.php if experiencing memory issues"
+        }
+      ]
+    },
+    "wordpress_core": {
+      "issues": []
+    },
+    "error_logs": {
+      "errors": []
+    }
+  },
+  "issues": [
+    {
+      "type": "syntax_error",
+      "severity": "HIGH",
+      "file": "find: ‘domains/freerideinvestor.com/public_html/wp-content/plugins’: No such file or directory",
+      "message": "Unknown error",
+      "line": null,
+      "recommendation": "Fix PHP syntax error in find: ‘domains/freerideinvestor.com/public_html/wp-content/plugins’: No such file or directory. Check line unknown"
+    },
+    {
+      "type": "memory_limit",
+      "severity": "MEDIUM",
+      "message": "No explicit memory limit set in wp-config.php",
+      "recommendation": "Add define('WP_MEMORY_LIMIT', '256M'); to wp-config.php if experiencing memory issues"
+    }
+  ],
+  "recommendations": [
+    "⚠️  HIGH: 1 high-priority issue(s) should be addressed soon",
+    "   - Unknown error: Fix PHP syntax error in find: ‘domains/freerideinvestor.com/public_html/wp-content/plugins’: No such file or directory. Check line unknown",
+    "ℹ️  MEDIUM: 1 medium-priority issue(s) can be addressed when convenient"
+  ],
+  "severity": "HIGH"
+}

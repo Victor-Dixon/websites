@@ -5,6 +5,12 @@
 - **primary_owner**: Aria
 - **notes**: Protected creative space
 
+### What is AriaJet?
+
+See **[WHAT_IS_ARIAJET.md](./WHAT_IS_ARIAJET.md)** for the full description.
+
+**TL;DR**: Aria's protected creative space for games, projects, and creative expression. A maintenance-mode site with no funnel pressure.
+
 ### Canonical theme locations (migrated)
 
 - `websites/ariajet.site/wp/wp-content/themes/ariajet/`

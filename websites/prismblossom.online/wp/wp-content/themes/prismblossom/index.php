@@ -261,35 +261,222 @@ endif;
     });
 </script>
 
-<style>
+<style id="homepage-neon-purple-styles">
+    /* Homepage Neon Purple Background - Force apply - Version 2 */
+    html,
+    body,
+    body.home,
+    body.page-template-default,
+    body.blog,
+    body.archive {
+        background: #bf00ff !important;
+        /* Neon purple */
+        background: linear-gradient(135deg, #bf00ff 0%, #9d00ff 50%, #7d00ff 100%) !important;
+        background-attachment: fixed !important;
+        min-height: 100vh !important;
+    }
+
+    /* Ensure it covers the entire viewport */
+    html {
+        background: #bf00ff !important;
+        height: 100% !important;
+    }
+
+    body {
+        background: #bf00ff !important;
+        background: linear-gradient(135deg, #bf00ff 0%, #9d00ff 50%, #7d00ff 100%) !important;
+        background-attachment: fixed !important;
+        min-height: 100vh !important;
+    }
+
+    /* Hero Section */
+    .hero {
+        background: transparent;
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .hero-title {
+        color: white !important;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    /* About Section */
+    .about {
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        padding: 60px 20px;
+        border-radius: 15px;
+        margin: 40px 0;
+        color: white;
+        border: 2px solid rgba(255, 0, 255, 0.3);
+        box-shadow: 0 4px 20px rgba(191, 0, 255, 0.3);
+    }
+
+    .about h2 {
+        color: white !important;
+        text-shadow: 0 0 20px rgba(255, 0, 255, 0.9), 0 0 40px rgba(191, 0, 255, 0.7);
+    }
+
+    .about p,
+    .about li {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    /* Featured Pages Section */
+    .featured-pages {
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        padding: 60px 20px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .featured-pages h2 {
+        color: white !important;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .pages-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .page-card {
+        background: rgba(255, 255, 255, 0.15);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 15px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .page-card:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .page-card h3 a {
+        color: white !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        font-size: 1.5rem;
+    }
+
+    .page-card p {
+        color: rgba(255, 255, 255, 0.9) !important;
+        margin-top: 10px;
+    }
+
+    /* Blog Posts Section */
+    .blog-posts {
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        padding: 60px 20px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .blog-posts h2 {
+        color: white !important;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .post-card {
+        background: rgba(255, 255, 255, 0.15);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        padding: 25px;
+        border-radius: 15px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .post-card h3 a {
+        color: white !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    .post-card .post-meta,
+    .post-card .post-excerpt {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
     /* Moods Library Styles */
     .moods-library {
         padding: 60px 20px;
-        background: var(--celebration-bg, #fff5f8);
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .moods-library .section-title {
+        color: white !important;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+
+    .moods-library .section-title .subtitle {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .library-subtitle {
+        color: rgba(255, 255, 255, 0.9) !important;
     }
 
     .moods-library .section-title {
         text-align: center;
         font-size: 2.5rem;
         margin-bottom: 10px;
-        color: var(--celebration-primary, #ff6b9d);
+        color: white !important;
+        text-shadow: 0 0 20px rgba(255, 0, 255, 0.9), 0 0 40px rgba(191, 0, 255, 0.7);
     }
 
     .moods-library .section-title .subtitle {
         display: block;
         font-size: 1.5rem;
-        color: var(--celebration-secondary, #c44569);
+        color: rgba(255, 255, 255, 0.95) !important;
         margin-top: 5px;
+        text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
     }
 
     .library-subtitle {
         text-align: center;
         font-size: 1.1rem;
-        color: var(--celebration-text-light, #666);
+        color: rgba(255, 255, 255, 0.9) !important;
         margin-bottom: 40px;
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
+        text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
     }
 
     .moods-grid {
@@ -303,26 +490,30 @@ endif;
     }
 
     .mood-card {
-        background: white;
+        background: rgba(255, 255, 255, 0.15);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
         border-radius: 15px;
         padding: 30px 20px;
         text-align: center;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 3px solid transparent;
+        box-shadow: 0 4px 20px rgba(191, 0, 255, 0.3);
+        border: 3px solid rgba(255, 0, 255, 0.5);
     }
 
     .mood-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        border-color: var(--celebration-primary, #ff6b9d);
+        box-shadow: 0 8px 30px rgba(255, 0, 255, 0.6), 0 0 40px rgba(191, 0, 255, 0.4);
+        border-color: #ff00ff;
+        background: rgba(255, 0, 255, 0.2);
     }
 
     .mood-card.active {
-        border-color: var(--celebration-primary, #ff6b9d);
-        background: var(--celebration-bg, #fff5f8);
+        border-color: #ff00ff;
+        background: rgba(255, 0, 255, 0.25);
         transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(255, 0, 255, 0.8), 0 0 60px rgba(191, 0, 255, 0.6);
     }
 
     .mood-icon {
@@ -332,20 +523,25 @@ endif;
 
     .mood-card h3 {
         font-size: 1.5rem;
-        color: var(--celebration-primary, #ff6b9d);
+        color: white !important;
         margin-bottom: 10px;
+        text-shadow: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(191, 0, 255, 0.6);
     }
 
     .mood-card p {
-        color: var(--celebration-text-light, #666);
+        color: rgba(255, 255, 255, 0.9) !important;
         font-size: 0.9rem;
+        text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
     }
 
     .mood-player {
-        background: white;
+        background: rgba(255, 255, 255, 0.15);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
         border-radius: 15px;
         padding: 30px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px rgba(191, 0, 255, 0.4), 0 0 40px rgba(255, 0, 255, 0.3);
+        border: 2px solid rgba(255, 0, 255, 0.5);
         max-width: 800px;
         margin: 0 auto;
     }
@@ -357,13 +553,15 @@ endif;
 
     .player-header h3 {
         font-size: 1.8rem;
-        color: var(--celebration-primary, #ff6b9d);
+        color: white !important;
         margin-bottom: 10px;
+        text-shadow: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(191, 0, 255, 0.6);
     }
 
     .current-mood-info {
-        color: var(--celebration-text-light, #666);
+        color: rgba(255, 255, 255, 0.9) !important;
         font-size: 1.1rem;
+        text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
     }
 
     .youtube-container {
@@ -394,8 +592,11 @@ endif;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: var(--celebration-bg, #fff5f8);
-        color: var(--celebration-text-light, #666);
+        background: rgba(191, 0, 255, 0.1);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
     }
 
     .play-icon {

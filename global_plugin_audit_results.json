@@ -1,48 +1,93 @@
 {
-  "audit_date": "2025-11-21T14:23:57.498479",
+  "audit_date": "2025-12-22T12:51:03.235662",
   "websites": {
-    "DaDudeKC": {
-      "status": "skipped",
-      "reason": "Path not configured",
-      "plugins": []
-    },
-    "FreeRideInvestor": {
-      "status": "static_site",
-      "site_path": "D:\\websites\\FreeRideInvestor",
+    "ariajet.site": {
+      "status": "audited_empty",
+      "reason": "Site directory found but no plugins detected",
       "plugins": [],
       "plugin_count": 0,
-      "health_status": "unknown",
-      "reason": "Static HTML site (no WordPress plugins)"
+      "site_path": "ariajet.site"
     },
-    "TradingRobotPlug": {
+    "crosbyultimateevents.com": {
+      "status": "audited_empty",
+      "reason": "Site directory found but no plugins detected",
+      "plugins": [],
+      "plugin_count": 0,
+      "site_path": "crosbyultimateevents.com"
+    },
+    "dadudekc.com": {
+      "status": "audited_empty",
+      "reason": "Site directory found but no plugins detected",
+      "plugins": [],
+      "plugin_count": 0,
+      "site_path": "dadudekc.com"
+    },
+    "digitaldreamscape.site": {
+      "status": "audited_empty",
+      "reason": "Site directory found but no plugins detected",
+      "plugins": [],
+      "plugin_count": 0,
+      "site_path": "sites/digitaldreamscape.site"
+    },
+    "freerideinvestor.com": {
       "status": "audited",
-      "site_path": "D:\\websites\\TradingRobotPlugWeb",
+      "reason": "Plugins found",
+      "plugins": [
+        "freeride-automated-trading-plan"
+      ],
+      "plugin_count": 1,
+      "site_path": "websites/freerideinvestor.com"
+    },
+    "houstonsipqueen.com": {
+      "status": "audited_empty",
+      "reason": "Site directory found but no plugins detected",
       "plugins": [],
       "plugin_count": 0,
-      "health_status": "unknown"
+      "site_path": "houstonsipqueen.com"
     },
-    "WeAreSwarm": {
+    "prismblossom.online": {
+      "status": "audited_empty",
+      "reason": "Site directory found but no plugins detected",
+      "plugins": [],
+      "plugin_count": 0,
+      "site_path": "prismblossom.online"
+    },
+    "southwestsecret.com": {
+      "status": "audited_empty",
+      "reason": "Site directory found but no plugins detected",
+      "plugins": [],
+      "plugin_count": 0,
+      "site_path": "southwestsecret.com"
+    },
+    "tradingrobotplug.com": {
       "status": "audited",
-      "site_path": "D:\\websites\\Swarm_website",
-      "plugins": [],
-      "plugin_count": 0,
-      "health_status": "unknown"
+      "reason": "Plugins found",
+      "plugins": [
+        "trading-robot-service",
+        "trp-paper-trading-stats",
+        "trp-swarm-status"
+      ],
+      "plugin_count": 3,
+      "site_path": "websites/tradingrobotplug.com"
     },
-    "SouthwestSecret": {
-      "status": "static_site",
-      "site_path": "D:\\websites\\southwestsecret.com",
+    "weareswarm.online": {
+      "status": "audited_empty",
+      "reason": "Site directory found but no plugins detected",
       "plugins": [],
       "plugin_count": 0,
-      "health_status": "unknown",
-      "reason": "Static HTML site (no WordPress plugins)"
+      "site_path": "sites/weareswarm.online"
+    },
+    "weareswarm.site": {
+      "status": "audited_empty",
+      "reason": "Site directory found but no plugins detected",
+      "plugins": [],
+      "plugin_count": 0,
+      "site_path": "websites/weareswarm.site"
     }
   },
   "summary": {
-    "total_websites": 5,
-    "websites_audited": 2,
-    "total_plugins": 0,
-    "healthy_plugins": 0,
-    "unhealthy_plugins": 0,
-    "missing_plugins": 0
+    "total_websites": 11,
+    "websites_audited": 11,
+    "total_plugins": 4
   }
 }

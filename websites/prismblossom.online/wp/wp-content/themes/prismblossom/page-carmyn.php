@@ -589,11 +589,11 @@ get_header();
                 <span class="graffiti-sub">BIRTHDAY</span>
                 <span class="bubble-sub">GUESTBOOK</span>
             </h2>
-            <p class="carmyn-text" style="margin-bottom: 30px;">Leave a birthday message! Your message will appear after approval.</p>
+            <p class="carmyn-text" style="margin-bottom: 30px;">Leave a birthday message! Your message will appear immediately below.</p>
 
             <!-- Guestbook Form -->
             <div class="guestbook-form-container">
-                <form id="guestbook-form" class="guestbook-form" method="post">
+                <form id="guestbook-form" class="guestbook-form" method="post" action="#" onsubmit="return false;">
                     <?php wp_nonce_field('guestbook_submit', 'guestbook_nonce'); ?>
                     
                     <div class="form-group">
@@ -792,6 +792,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Guestbook Script -->
 <script>
+// Helper function to escape HTML
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, m => map[m]);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('guestbook-form');
     const messageDiv = document.getElementById('form-message');
@@ -810,34 +822,93 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             const formData = new FormData(form);
+            
+            // Get nonce from form and append as 'nonce' (AJAX handler expects 'nonce', not 'guestbook_nonce')
+            const nonceField = form.querySelector('input[name="guestbook_nonce"]');
+            if (nonceField) {
+                formData.append('nonce', nonceField.value);
+            } else {
+                formData.append('nonce', '<?php echo wp_create_nonce('guestbook_submit'); ?>');
+            }
+            
             formData.append('action', 'prismblossom_submit_guestbook');
-            formData.append('nonce', '<?php echo wp_create_nonce('guestbook_submit'); ?>');
             
             fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
-                if (data.success) {
+                console.log('Full response:', data); // Debug log
+                
+                // Re-enable submit button
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Message';
+                }
+                
+                if (data.success && data.data && data.data.entry) {
                     messageDiv.className = 'form-message success';
-                    messageDiv.textContent = 'Thank you! Your message has been submitted and will appear after approval.';
+                    messageDiv.textContent = 'Thank you! Your message has been posted!';
                     form.reset();
-                    charCount.textContent = '0 / 500 characters';
+                    if (charCount) charCount.textContent = '0 / 500 characters';
                     
-                    setTimeout(() => {
-                        location.reload();
-                    }, 2000);
+                    // Add the new message to the top of the list immediately
+                    const entriesContainer = document.getElementById('guestbook-entries');
+                    const entry = data.data.entry;
+                    
+                    const messageCard = document.createElement('div');
+                    messageCard.className = 'message-card';
+                    messageCard.innerHTML = `
+                        <div class="message-header">
+                            <span class="message-name carmyn-text" style="font-weight: bold; font-size: 1.1rem;">${escapeHtml(entry.guest_name)}</span>
+                            <span class="message-date carmyn-text" style="font-size: 0.9rem; opacity: 0.8;">${entry.date_formatted}</span>
+                        </div>
+                        <div class="message-content carmyn-text" style="line-height: 1.6; margin-top: 10px;">${escapeHtml(entry.message)}</div>
+                    `;
+                    
+                    // Insert at the top
+                    if (entriesContainer) {
+                        // Remove "no messages" text if present
+                        const noMessages = entriesContainer.querySelector('.no-messages');
+                        if (noMessages) {
+                            noMessages.remove();
+                        }
+                        
+                        // Insert new message at the top
+                        if (entriesContainer.firstChild) {
+                            entriesContainer.insertBefore(messageCard, entriesContainer.firstChild);
+                        } else {
+                            entriesContainer.appendChild(messageCard);
+                        }
+                        
+                        // Scroll to the new message
+                        messageCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                } else if (data.success) {
+                    // Success but no entry data - might need page reload
+                    messageDiv.className = 'form-message success';
+                    messageDiv.textContent = 'Thank you! Your message has been posted! Refreshing...';
+                    setTimeout(() => location.reload(), 1500);
                 } else {
                     messageDiv.className = 'form-message error';
-                    // Fix error message text rendering
-                    const errorMsg = data.data || 'There was an error submitting your message. Please try again.';
-                    messageDiv.textContent = errorMsg.replace(/\s+/g, ' ').trim();
+                    messageDiv.textContent = data.data && data.data.message ? data.data.message : 'There was an error submitting your message. Please try again.';
                 }
             })
             .catch(error => {
+                console.error('Error:', error); // Debug log
+                // Re-enable submit button on error
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Message';
+                }
                 messageDiv.className = 'form-message error';
-                messageDiv.textContent = 'Network error. Please try again.';
+                messageDiv.textContent = 'Network error. Please try again. Error: ' + error.message;
             });
         });
     }
@@ -845,4 +916,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <?php get_footer(); ?>
-

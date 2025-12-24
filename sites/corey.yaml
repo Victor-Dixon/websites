@@ -1,10 +1,10 @@
 site_id: corey
-domain: example.com
+domain: freerideinvestor.com
 voice_profile: content/voices/corey.md
 brand_profile: content/brands/corey_site.yaml
 backlog: content/backlogs/corey_site.yaml
 calendar: content/calendars/corey_site.yaml
-examples_glob: content/examples/corey/*.md
+examples_glob: content/examples/victor/*.md
 publish:
   provider: wordpress
   wp_base_url_env: COREY_WP_URL

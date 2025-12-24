@@ -1,0 +1,38 @@
+<!-- Google Analytics 4 (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', {
+    'page_path': window.location.pathname,
+    'page_title': document.title,
+  });
+  
+  // Custom Events Tracking
+  // Track lead_magnet_submit event
+  gtag("event", "lead_magnet_submit", {
+    "event_category": "engagement",
+    "event_label": "lead_magnet_submit"
+  });
+
+  // Track contact_form_submit event
+  gtag("event", "contact_form_submit", {
+    "event_category": "engagement",
+    "event_label": "contact_form_submit"
+  });
+
+  // Track booking_click event
+  gtag("event", "booking_click", {
+    "event_category": "engagement",
+    "event_label": "booking_click"
+  });
+
+  // Track phone_click event
+  gtag("event", "phone_click", {
+    "event_category": "engagement",
+    "event_label": "phone_click"
+  });
+
+</script>
+<!-- End GA4 -->

@@ -1,0 +1,16 @@
+site_id: prismblossom
+domain: prismblossom.online
+voice_profile: content/voices/carmyn.md
+brand_profile: content/brands/prismblossom.yaml
+backlog: content/backlogs/prismblossom.yaml
+calendar: content/calendars/prismblossom.yaml
+examples_glob: content/examples/carmyn/*.md
+publish:
+  provider: wordpress
+  wp_base_url_env: PRISM_WP_URL
+  wp_user_env: PRISM_WP_USER
+  wp_app_password_env: PRISM_WP_APP_PASS
+defaults:
+  word_count_min: 500
+  word_count_max: 1000
+  auto_publish: false

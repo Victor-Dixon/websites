@@ -5,6 +5,12 @@
 - **primary_owner**: Victor
 - **notes**: Primary revenue engine
 
+### What is FreeRide Investor?
+
+See **[WHAT_IS_FREERIDEINVESTOR.md](./WHAT_IS_FREERIDEINVESTOR.md)** for the full description.
+
+**TL;DR**: A comprehensive trading education platform that transforms traders into profitable investors through automated plans, educational content, and trading tools. Primary revenue engine for the ecosystem.
+
 ### Current source locations
 
 - ✅ **Canonical theme**: `websites/freerideinvestor.com/wp/wp-content/themes/freerideinvestor-modern/` (MIGRATED 2025-12-20 - Phase 1)

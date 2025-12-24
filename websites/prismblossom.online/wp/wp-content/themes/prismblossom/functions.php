@@ -44,6 +44,24 @@ function prismblossom_scripts()
         'nonce' => wp_create_nonce('prismblossom_nonce')
     ));
 
+    // Add purple background to homepage
+    $purple_bg_css = "
+        html { background: #bf00ff !important; height: 100% !important; }
+        body { 
+            background: #bf00ff !important;
+            background: linear-gradient(135deg, #bf00ff 0%, #9d00ff 50%, #7d00ff 100%) !important;
+            background-attachment: fixed !important;
+            min-height: 100vh !important;
+        }
+        body.page-template-page-carmyn,
+        body.page-template-page-guestbook,
+        body.page-template-page-invitation,
+        body.page-template-page-birthday-fun {
+            background: inherit !important;
+        }
+    ";
+    wp_add_inline_style('southwestsecret-style', $purple_bg_css);
+
     // Add inline CSS for text rendering fixes - Enhanced to fix spacing issues
     $text_rendering_css = "
         body, body * {
@@ -138,27 +156,7 @@ function prismblossom_save_youtube_meta($post_id)
 }
 add_action('save_post', 'prismblossom_save_youtube_meta');
 
-// Create Aria page on theme activation
-function prismblossom_create_aria_page()
-{
-    if (get_page_by_path('aria')) {
-        return; // Page already exists
-    }
-
-    $aria_page = array(
-        'post_title'    => 'Aria',
-        'post_name'     => 'aria',
-        'post_content'  => '',
-        'post_status'   => 'publish',
-        'post_type'     => 'page',
-        'page_template' => 'page-aria.php'
-    );
-
-    wp_insert_post($aria_page);
-}
-
-// Run on theme activation
-add_action('after_switch_theme', 'prismblossom_create_aria_page');
+// Aria page creation removed - no longer needed
 
 // Create Carmyn page on theme activation
 function prismblossom_create_carmyn_page()
@@ -182,19 +180,11 @@ function prismblossom_create_carmyn_page()
 // Run on theme activation
 add_action('after_switch_theme', 'prismblossom_create_carmyn_page');
 
-// Add Aria, Carmyn, and Invitation links to navigation menu
+// Add Carmyn and Invitation links to navigation menu (Aria removed)
 function prismblossom_add_artist_menu_items($items, $args)
 {
     // Only add to primary menu
     if ($args->theme_location == 'primary') {
-        // Get Aria page URL
-        $aria_page = get_page_by_path('aria');
-        if ($aria_page) {
-            $aria_url = get_permalink($aria_page->ID);
-        } else {
-            $aria_url = home_url('/aria');
-        }
-
         // Get Carmyn page URL
         $carmyn_page = get_page_by_path('carmyn');
         if ($carmyn_page) {
@@ -211,27 +201,242 @@ function prismblossom_add_artist_menu_items($items, $args)
             $invitation_url = home_url('/invitation');
         }
 
-        $aria_item = '<li><a href="' . esc_url($aria_url) . '">Aria</a></li>';
         $carmyn_item = '<li><a href="' . esc_url($carmyn_url) . '">Carmyn</a></li>';
         $invitation_item = '<li><a href="' . esc_url($invitation_url) . '">Invitation</a></li>';
 
-        // Find Submit link and insert Aria right after it, then Carmyn, then Invitation
+        // Find Submit link and insert Carmyn and Invitation after it
         $submit_pos = stripos($items, '>Submit<');
         if ($submit_pos !== false) {
             // Find the closing </a></li> after Submit
             $after_submit = strpos($items, '</a></li>', $submit_pos);
             if ($after_submit !== false) {
                 $after_submit += 9; // Length of '</a></li>'
-                $items = substr($items, 0, $after_submit) . $aria_item . $carmyn_item . $invitation_item . substr($items, $after_submit);
+                $items = substr($items, 0, $after_submit) . $carmyn_item . $invitation_item . substr($items, $after_submit);
             }
         } else {
             // If no Submit link found, just append to end
-            $items .= $aria_item . $carmyn_item . $invitation_item;
+            $items .= $carmyn_item . $invitation_item;
         }
     }
     return $items;
 }
 add_filter('wp_nav_menu_items', 'prismblossom_add_artist_menu_items', 10, 2);
+
+// Remove unwanted menu items from navigation - ENHANCED
+function prismblossom_remove_menu_items($items, $args)
+{
+    // Only filter primary menu
+    if (isset($args->theme_location) && $args->theme_location == 'primary') {
+        // Items to remove (case-insensitive matching with variations)
+        $items_to_remove = array(
+            'Capabilities',
+            'Capabilitie',
+            'Capability',
+            'Live Activity',
+            'Live Activity',
+            'LiveActivity',
+            'Agent',
+            'Agents',
+            'Agent',
+            'Aria',
+            'Aria',
+            'aria'
+        );
+
+        foreach ($items_to_remove as $item_to_remove) {
+            // More robust regex to match menu items with the text
+            $patterns = array(
+                '/<li[^>]*>.*?<a[^>]*>.*?' . preg_quote($item_to_remove, '/') . '.*?<\/a>.*?<\/li>/is',
+                '/<li[^>]*>.*?<a[^>]*>' . preg_quote($item_to_remove, '/') . '<\/a>.*?<\/li>/is',
+                '/<li[^>]*>.*?<a[^>]*>.*?' . preg_quote(ucfirst($item_to_remove), '/') . '.*?<\/a>.*?<\/li>/is',
+                '/<li[^>]*>.*?<a[^>]*>.*?' . preg_quote(strtolower($item_to_remove), '/') . '.*?<\/a>.*?<\/li>/is'
+            );
+
+            foreach ($patterns as $pattern) {
+                $items = preg_replace($pattern, '', $items);
+            }
+        }
+
+        // Clean up any empty list items
+        $items = preg_replace('/<li[^>]*>\s*<\/li>/is', '', $items);
+    }
+    return $items;
+}
+add_filter('wp_nav_menu_items', 'prismblossom_remove_menu_items', 20, 2);
+
+// Alternative approach: Filter menu objects before rendering - ENHANCED
+function prismblossom_filter_menu_objects($sorted_menu_items, $args)
+{
+    // Only filter primary menu
+    if (isset($args->theme_location) && $args->theme_location == 'primary') {
+        $items_to_remove = array('Capabilities', 'Capabilitie', 'Live Activity', 'Agent', 'Agents', 'Aria');
+
+        foreach ($sorted_menu_items as $key => $item) {
+            $item_title_lower = strtolower(trim($item->title));
+            $item_slug_lower = isset($item->post_name) ? strtolower(trim($item->post_name)) : '';
+
+            // Remove items by exact title match (case-insensitive)
+            foreach ($items_to_remove as $remove_item) {
+                $remove_item_lower = strtolower(trim($remove_item));
+
+                // Check title
+                if ($item_title_lower === $remove_item_lower || stripos($item_title_lower, $remove_item_lower) !== false) {
+                    unset($sorted_menu_items[$key]);
+                    break;
+                }
+
+                // Check slug/post_name
+                if (!empty($item_slug_lower)) {
+                    if (
+                        $item_slug_lower === $remove_item_lower ||
+                        $item_slug_lower === str_replace(' ', '-', $remove_item_lower) ||
+                        stripos($item_slug_lower, $remove_item_lower) !== false
+                    ) {
+                        unset($sorted_menu_items[$key]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return $sorted_menu_items;
+}
+add_filter('wp_nav_menu_objects', 'prismblossom_filter_menu_objects', 999, 2); // Higher priority
+
+/**
+ * Delete unwanted pages (Capabilities, Live Activity, Agents, Aria)
+ * Runs on theme activation and admin_init to ensure they're removed
+ */
+function prismblossom_delete_unwanted_pages()
+{
+    // Pages to delete
+    $pages_to_delete = array(
+        'capabilities',
+        'live-activity',
+        'liveactivity',
+        'agent',
+        'agents',
+        'aria'
+    );
+
+    foreach ($pages_to_delete as $page_slug) {
+        $page = get_page_by_path($page_slug);
+        if ($page) {
+            // Force delete (bypass trash)
+            wp_delete_post($page->ID, true);
+        }
+
+        // Also try case variations
+        $page = get_page_by_path(ucfirst($page_slug));
+        if ($page) {
+            wp_delete_post($page->ID, true);
+        }
+    }
+
+    // Also search all pages by title (not using 'title' parameter as it's not reliable)
+    $titles_to_delete = array('Capabilities', 'Live Activity', 'Agent', 'Agents', 'Aria');
+    $all_pages = get_pages(array(
+        'post_status' => 'any', // Include all statuses
+        'number' => -1,
+        'post_type' => 'page'
+    ));
+
+    foreach ($all_pages as $page) {
+        $page_title_lower = strtolower(trim($page->post_title));
+        $page_slug_lower = strtolower(trim($page->post_name));
+
+        // Check if title or slug matches unwanted pages
+        foreach ($titles_to_delete as $unwanted_title) {
+            $unwanted_title_lower = strtolower(trim($unwanted_title));
+
+            if (
+                $page_title_lower === $unwanted_title_lower ||
+                stripos($page_title_lower, $unwanted_title_lower) !== false ||
+                in_array($page_slug_lower, $page_slugs_to_delete)
+            ) {
+
+                wp_delete_post($page->ID, true); // Force delete
+                break;
+            }
+        }
+    }
+
+    // Clear menu cache
+    wp_cache_delete('alloptions', 'options');
+}
+/**
+ * Remove unwanted menu items from WordPress menus
+ */
+function prismblossom_remove_unwanted_menu_items()
+{
+    $menu_ids_to_check = array('primary', 'Primary Menu', 1); // Common menu locations/IDs
+
+    $items_to_remove = array('Capabilities', 'Capabilitie', 'Live Activity', 'Agent', 'Agents', 'Aria');
+
+    foreach ($menu_ids_to_check as $menu_id) {
+        $menu = wp_get_nav_menu_object($menu_id);
+        if (!$menu && is_numeric($menu_id)) {
+            $menus = wp_get_nav_menus();
+            if (isset($menus[$menu_id - 1])) {
+                $menu = $menus[$menu_id - 1];
+            }
+        }
+
+        if ($menu) {
+            $menu_items = wp_get_nav_menu_items($menu->term_id);
+
+            if ($menu_items) {
+                foreach ($menu_items as $menu_item) {
+                    $title_lower = strtolower(trim($menu_item->title));
+
+                    foreach ($items_to_remove as $unwanted_item) {
+                        $unwanted_lower = strtolower(trim($unwanted_item));
+
+                        if (
+                            $title_lower === $unwanted_lower ||
+                            stripos($title_lower, $unwanted_lower) !== false
+                        ) {
+                            wp_delete_post($menu_item->ID, true); // Delete menu item
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Also check all menus
+    $all_menus = wp_get_nav_menus();
+    foreach ($all_menus as $menu) {
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+
+        if ($menu_items) {
+            foreach ($menu_items as $menu_item) {
+                $title_lower = strtolower(trim($menu_item->title));
+
+                foreach ($items_to_remove as $unwanted_item) {
+                    $unwanted_lower = strtolower(trim($unwanted_item));
+
+                    if (
+                        $title_lower === $unwanted_lower ||
+                        stripos($title_lower, $unwanted_lower) !== false
+                    ) {
+                        wp_delete_post($menu_item->ID, true);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+add_action('after_switch_theme', 'prismblossom_delete_unwanted_pages');
+add_action('admin_init', 'prismblossom_delete_unwanted_pages');
+add_action('template_redirect', 'prismblossom_delete_unwanted_pages', 1); // Run on every page load
+
+add_action('after_switch_theme', 'prismblossom_remove_unwanted_menu_items');
+add_action('admin_init', 'prismblossom_remove_unwanted_menu_items');
+add_action('template_redirect', 'prismblossom_remove_unwanted_menu_items', 1);
 
 // ============================================
 // GUESTBOOK FUNCTIONALITY
@@ -285,7 +490,7 @@ function prismblossom_handle_guestbook_submission()
         array(
             'guest_name' => $guest_name,
             'message' => $message,
-            'status' => 'pending'
+            'status' => 'approved'  // Auto-approve messages so they appear immediately
         ),
         array('%s', '%s', '%s')
     );
@@ -329,13 +534,26 @@ function prismblossom_ajax_guestbook_submission()
         array(
             'guest_name' => $guest_name,
             'message' => $message,
-            'status' => 'pending'
+            'status' => 'approved'  // Auto-approve messages so they appear immediately
         ),
         array('%s', '%s', '%s')
     );
 
     if ($result) {
-        wp_send_json_success('Message submitted successfully');
+        // Return the new entry data so it can be displayed immediately
+        $entry_id = $wpdb->insert_id;
+        $new_entry = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $entry_id));
+
+        wp_send_json_success(array(
+            'message' => 'Message submitted successfully',
+            'entry' => array(
+                'id' => $new_entry->id,
+                'guest_name' => $new_entry->guest_name,
+                'message' => $new_entry->message,
+                'created_at' => $new_entry->created_at,
+                'date_formatted' => date('M j, Y', strtotime($new_entry->created_at))
+            )
+        ));
     } else {
         wp_send_json_error('Database error');
     }
@@ -363,6 +581,42 @@ function prismblossom_guestbook_admin_page()
 {
     global $wpdb;
     $table_name = $wpdb->prefix . 'guestbook_entries';
+
+    // Handle bulk actions
+    if (isset($_POST['bulk_action']) && isset($_POST['entry_ids']) && check_admin_referer('guestbook_bulk_action')) {
+        $bulk_action = $_POST['bulk_action'];
+        $entry_ids = array_map('intval', $_POST['entry_ids']);
+        $deleted = 0;
+
+        foreach ($entry_ids as $entry_id) {
+            if ($bulk_action === 'delete') {
+                $wpdb->delete($table_name, array('id' => $entry_id), array('%d'));
+                $deleted++;
+            } elseif ($bulk_action === 'approve') {
+                $wpdb->update(
+                    $table_name,
+                    array('status' => 'approved'),
+                    array('id' => $entry_id),
+                    array('%s'),
+                    array('%d')
+                );
+            } elseif ($bulk_action === 'reject') {
+                $wpdb->update(
+                    $table_name,
+                    array('status' => 'rejected'),
+                    array('id' => $entry_id),
+                    array('%s'),
+                    array('%d')
+                );
+            }
+        }
+
+        if ($bulk_action === 'delete') {
+            echo '<div class="notice notice-success"><p>' . $deleted . ' message(s) deleted!</p></div>';
+        } else {
+            echo '<div class="notice notice-success"><p>Bulk action completed!</p></div>';
+        }
+    }
 
     // Handle approve/reject actions
     if (isset($_GET['action']) && isset($_GET['entry_id']) && check_admin_referer('guestbook_action')) {
@@ -399,48 +653,71 @@ function prismblossom_guestbook_admin_page()
 ?>
     <div class="wrap">
         <h1>Guestbook Management</h1>
-        <p>Review and approve birthday messages from visitors.</p>
+        <p>Review and manage birthday messages from visitors.</p>
 
-        <table class="wp-list-table widefat fixed striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Message</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($entries) : ?>
-                    <?php foreach ($entries as $entry) : ?>
-                        <tr>
-                            <td><?php echo $entry->id; ?></td>
-                            <td><strong><?php echo esc_html($entry->guest_name); ?></strong></td>
-                            <td><?php echo esc_html(wp_trim_words($entry->message, 20)); ?></td>
-                            <td>
-                                <span class="status-<?php echo esc_attr($entry->status); ?>">
-                                    <?php echo ucfirst($entry->status); ?>
-                                </span>
-                            </td>
-                            <td><?php echo date('M j, Y g:i A', strtotime($entry->created_at)); ?></td>
-                            <td>
-                                <?php if ($entry->status === 'pending') : ?>
-                                    <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=guestbook&action=approve&entry_id=' . $entry->id), 'guestbook_action'); ?>" class="button button-primary">Approve</a>
-                                    <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=guestbook&action=reject&entry_id=' . $entry->id), 'guestbook_action'); ?>" class="button">Reject</a>
-                                <?php endif; ?>
-                                <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=guestbook&action=delete&entry_id=' . $entry->id), 'guestbook_action'); ?>" class="button button-link-delete" onclick="return confirm('Are you sure?');">Delete</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else : ?>
+        <form method="post" id="guestbook-bulk-form">
+            <?php wp_nonce_field('guestbook_bulk_action'); ?>
+
+            <div class="tablenav top">
+                <div class="alignleft actions bulkactions">
+                    <label for="bulk-action-selector" class="screen-reader-text">Select bulk action</label>
+                    <select name="bulk_action" id="bulk-action-selector">
+                        <option value="">Bulk Actions</option>
+                        <option value="delete">Delete</option>
+                        <option value="approve">Approve</option>
+                        <option value="reject">Reject</option>
+                    </select>
+                    <input type="submit" class="button action" value="Apply" onclick="return confirm('Are you sure you want to perform this bulk action?');">
+                </div>
+            </div>
+
+            <table class="wp-list-table widefat fixed striped">
+                <thead>
                     <tr>
-                        <td colspan="6">No guestbook entries yet.</td>
+                        <td class="manage-column column-cb check-column">
+                            <input type="checkbox" id="cb-select-all">
+                        </td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php if ($entries) : ?>
+                        <?php foreach ($entries as $entry) : ?>
+                            <tr>
+                                <th scope="row" class="check-column">
+                                    <input type="checkbox" name="entry_ids[]" value="<?php echo $entry->id; ?>">
+                                </th>
+                                <td><?php echo $entry->id; ?></td>
+                                <td><strong><?php echo esc_html($entry->guest_name); ?></strong></td>
+                                <td><?php echo esc_html(wp_trim_words($entry->message, 20)); ?></td>
+                                <td>
+                                    <span class="status-<?php echo esc_attr($entry->status); ?>">
+                                        <?php echo ucfirst($entry->status); ?>
+                                    </span>
+                                </td>
+                                <td><?php echo date('M j, Y g:i A', strtotime($entry->created_at)); ?></td>
+                                <td>
+                                    <?php if ($entry->status === 'pending') : ?>
+                                        <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=guestbook&action=approve&entry_id=' . $entry->id), 'guestbook_action'); ?>" class="button button-primary">Approve</a>
+                                        <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=guestbook&action=reject&entry_id=' . $entry->id), 'guestbook_action'); ?>" class="button">Reject</a>
+                                    <?php endif; ?>
+                                    <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=guestbook&action=delete&entry_id=' . $entry->id), 'guestbook_action'); ?>" class="button button-link-delete" onclick="return confirm('Are you sure?');">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td colspan="7">No guestbook entries yet.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </form>
     </div>
 
     <style>
@@ -458,7 +735,28 @@ function prismblossom_guestbook_admin_page()
             color: #ff0000;
             font-weight: bold;
         }
+
+        .tablenav {
+            margin: 6px 0 4px;
+        }
+
+        .bulkactions {
+            padding: 8px 0;
+        }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectAll = document.getElementById('cb-select-all');
+            const checkboxes = document.querySelectorAll('input[name="entry_ids[]"]');
+
+            if (selectAll) {
+                selectAll.addEventListener('change', function() {
+                    checkboxes.forEach(cb => cb.checked = this.checked);
+                });
+            }
+        });
+    </script>
 <?php
 }
 

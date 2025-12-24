@@ -1,0 +1,16 @@
+site_id: ariajet
+domain: ariajet.site
+voice_profile: content/voices/aria.md
+brand_profile: content/brands/ariajet.yaml
+backlog: content/backlogs/ariajet.yaml
+calendar: content/calendars/ariajet.yaml
+examples_glob: content/examples/aria/*.md
+publish:
+  provider: wordpress
+  wp_base_url_env: ARIA_WP_URL
+  wp_user_env: ARIA_WP_USER
+  wp_app_password_env: ARIA_WP_APP_PASS
+defaults:
+  word_count_min: 400
+  word_count_max: 800
+  auto_publish: false

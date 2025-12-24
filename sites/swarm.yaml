@@ -1,0 +1,16 @@
+site_id: swarm
+domain: weareswarm.online
+voice_profile: content/voices/victor.md
+brand_profile: content/brands/swarm.yaml
+backlog: content/backlogs/swarm.yaml
+calendar: content/calendars/swarm.yaml
+examples_glob: content/examples/victor/*.md
+publish:
+  provider: wordpress
+  wp_base_url_env: SWARM_WP_URL
+  wp_user_env: SWARM_WP_USER
+  wp_app_password_env: SWARM_WP_APP_PASS
+defaults:
+  word_count_min: 1500
+  word_count_max: 2500
+  auto_publish: false

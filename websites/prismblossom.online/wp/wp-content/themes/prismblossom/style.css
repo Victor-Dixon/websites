@@ -16,36 +16,59 @@ Text Domain: prismblossom
 
 :root {
     /* Birthday Celebration Color Palette */
-    --celebration-primary: #ff6b9d;      /* Pink */
-    --celebration-secondary: #c44569;    /* Deep pink */
-    --celebration-accent: #f8b500;       /* Gold */
-    --celebration-bg: #fff5f8;           /* Light pink background */
-    --celebration-text: #2d2d2d;        /* Dark text */
-    --celebration-text-light: #666666;   /* Secondary text */
-    --celebration-gold: #FFD700;         /* Gold (for black/gold theme) */
-    --celebration-black: #000000;        /* Black (for black/gold theme) */
-    
+    --celebration-primary: #ff6b9d;
+    /* Pink */
+    --celebration-secondary: #c44569;
+    /* Deep pink */
+    --celebration-accent: #f8b500;
+    /* Gold */
+    --celebration-bg: #fff5f8;
+    /* Light pink background */
+    --celebration-text: #2d2d2d;
+    /* Dark text */
+    --celebration-text-light: #666666;
+    /* Secondary text */
+    --celebration-gold: #FFD700;
+    /* Gold (for black/gold theme) */
+    --celebration-black: #000000;
+    /* Black (for black/gold theme) */
+
     /* Typography */
     --font-primary: 'Rubik Bubbles', 'Arial', sans-serif;
     --font-heading: 'Permanent Marker', 'Arial', sans-serif;
-    --font-size-xs: 0.75rem;     /* 12px */
-    --font-size-sm: 0.875rem;    /* 14px */
-    --font-size-base: 1rem;      /* 16px */
-    --font-size-lg: 1.125rem;    /* 18px */
-    --font-size-xl: 1.25rem;     /* 20px */
-    --font-size-2xl: 1.5rem;     /* 24px */
-    --font-size-3xl: 1.875rem;   /* 30px */
-    --font-size-4xl: 2.25rem;    /* 36px */
-    
+    --font-size-xs: 0.75rem;
+    /* 12px */
+    --font-size-sm: 0.875rem;
+    /* 14px */
+    --font-size-base: 1rem;
+    /* 16px */
+    --font-size-lg: 1.125rem;
+    /* 18px */
+    --font-size-xl: 1.25rem;
+    /* 20px */
+    --font-size-2xl: 1.5rem;
+    /* 24px */
+    --font-size-3xl: 1.875rem;
+    /* 30px */
+    --font-size-4xl: 2.25rem;
+    /* 36px */
+
     /* Spacing */
-    --spacing-1: 0.25rem;   /* 4px */
-    --spacing-2: 0.5rem;    /* 8px */
-    --spacing-3: 0.75rem;   /* 12px */
-    --spacing-4: 1rem;      /* 16px */
-    --spacing-6: 1.5rem;    /* 24px */
-    --spacing-8: 2rem;      /* 32px */
-    --spacing-12: 3rem;     /* 48px */
-    
+    --spacing-1: 0.25rem;
+    /* 4px */
+    --spacing-2: 0.5rem;
+    /* 8px */
+    --spacing-3: 0.75rem;
+    /* 12px */
+    --spacing-4: 1rem;
+    /* 16px */
+    --spacing-6: 1.5rem;
+    /* 24px */
+    --spacing-8: 2rem;
+    /* 32px */
+    --spacing-12: 3rem;
+    /* 48px */
+
     /* Layout */
     --container-max-width: 1280px;
     --border-radius: 0.5rem;
@@ -71,7 +94,8 @@ html {
     scroll-behavior: smooth;
 }
 
-body, body * {
+body,
+body * {
     font-family: var(--font-primary) !important;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
@@ -93,8 +117,118 @@ body {
     background-color: var(--celebration-bg);
 }
 
+/* Homepage specific - Neon Purple Background */
+body.home,
+body.blog,
+body.archive,
+body.page-template-default:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) {
+    background: #bf00ff !important;
+    /* Neon purple */
+    background: linear-gradient(135deg, #bf00ff 0%, #9d00ff 50%, #7d00ff 100%) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh !important;
+}
+
+/* Neon Purple Theme Enhancements */
+body.home .btn-primary,
+body.blog .btn-primary,
+body.archive .btn-primary,
+body.page-template-default:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) .btn-primary {
+    background: linear-gradient(135deg, #ff00ff 0%, #bf00ff 100%) !important;
+    color: white !important;
+    border: 2px solid #ff00ff !important;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(191, 0, 255, 0.4) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+}
+
+body.home .btn-primary:hover,
+body.blog .btn-primary:hover,
+body.archive .btn-primary:hover,
+body.page-template-default:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) .btn-primary:hover {
+    background: linear-gradient(135deg, #ff00ff 0%, #ff00cc 100%) !important;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.9), 0 0 60px rgba(255, 0, 204, 0.6) !important;
+    transform: translateY(-2px) !important;
+}
+
+body.home .btn-outline,
+body.blog .btn-outline,
+body.archive .btn-outline,
+body.page-template-default:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) .btn-outline {
+    background: transparent !important;
+    color: white !important;
+    border: 2px solid #ff00ff !important;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.8) !important;
+}
+
+body.home .btn-outline:hover,
+body.blog .btn-outline:hover,
+body.archive .btn-outline:hover,
+body.page-template-default:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) .btn-outline:hover {
+    background: rgba(255, 0, 255, 0.2) !important;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.6) !important;
+}
+
+/* Apply to homepage regardless of body class */
+body:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) .hero {
+    background: transparent !important;
+}
+
+/* Fallback - apply to all body tags on homepage */
+body:not(.single):not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) {
+    background: #bf00ff !important;
+    background: linear-gradient(135deg, #bf00ff 0%, #9d00ff 50%, #7d00ff 100%) !important;
+    background-attachment: fixed !important;
+}
+
+/* Neon Purple Header Styling */
+body.home header,
+body.blog header,
+body.archive header,
+body.page-template-default:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) header {
+    background: rgba(191, 0, 255, 0.9) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 20px rgba(191, 0, 255, 0.5) !important;
+}
+
+body.home .site-title a,
+body.blog .site-title a,
+body.archive .site-title a,
+body.page-template-default:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) .site-title a {
+    color: white !important;
+    text-shadow: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(191, 0, 255, 0.6) !important;
+}
+
+body.home nav a,
+body.blog nav a,
+body.archive nav a,
+body.page-template-default:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) nav a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.6) !important;
+}
+
+body.home nav a:hover,
+body.blog nav a:hover,
+body.archive nav a:hover,
+body.page-template-default:not(.page-template-page-carmyn):not(.page-template-page-guestbook):not(.page-template-page-invitation):not(.page-template-page-birthday-fun) nav a:hover {
+    color: #ff00ff !important;
+    text-shadow: 0 0 20px rgba(255, 0, 255, 1), 0 0 40px rgba(255, 0, 255, 0.8) !important;
+    background: rgba(255, 0, 255, 0.2) !important;
+}
+
 /* Fix for specific text rendering issues */
-h1, h2, h3, h4, h5, h6, p, span, div, a, label, button {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+a,
+label,
+button {
     letter-spacing: 0 !important;
     word-spacing: 0.1em !important;
     font-feature-settings: 'liga' 0 !important;
@@ -107,7 +241,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, label, button {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
     font-weight: 400;
     line-height: 1.2;
@@ -115,12 +254,29 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--celebration-primary);
 }
 
-h1 { font-size: var(--font-size-4xl); }
-h2 { font-size: var(--font-size-3xl); }
-h3 { font-size: var(--font-size-2xl); }
-h4 { font-size: var(--font-size-xl); }
-h5 { font-size: var(--font-size-lg); }
-h6 { font-size: var(--font-size-base); }
+h1 {
+    font-size: var(--font-size-4xl);
+}
+
+h2 {
+    font-size: var(--font-size-3xl);
+}
+
+h3 {
+    font-size: var(--font-size-2xl);
+}
+
+h4 {
+    font-size: var(--font-size-xl);
+}
+
+h5 {
+    font-size: var(--font-size-lg);
+}
+
+h6 {
+    font-size: var(--font-size-base);
+}
 
 p {
     margin-bottom: var(--spacing-4);
@@ -158,12 +314,23 @@ a:hover {
     gap: var(--spacing-4);
 }
 
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
 
 @media (max-width: 768px) {
-    .grid-2, .grid-3, .grid-4 {
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
         grid-template-columns: 1fr;
     }
 }
@@ -173,7 +340,8 @@ a:hover {
    ============================================ */
 
 /* Buttons */
-.btn, .btn-primary {
+.btn,
+.btn-primary {
     display: inline-block;
     padding: var(--spacing-3) var(--spacing-6);
     border-radius: var(--border-radius);
@@ -214,7 +382,8 @@ a:hover {
     margin-bottom: var(--spacing-4);
 }
 
-.form-label, label {
+.form-label,
+label {
     display: block;
     margin-bottom: var(--spacing-2);
     font-weight: 500;
@@ -266,13 +435,15 @@ textarea {
    NAVIGATION
    ============================================ */
 
-.main-nav, .site-header nav {
+.main-nav,
+.site-header nav {
     background: white;
     padding: var(--spacing-4) 0;
     box-shadow: var(--shadow-sm);
 }
 
-.nav-list, .main-nav ul {
+.nav-list,
+.main-nav ul {
     display: flex;
     list-style: none;
     gap: var(--spacing-6);
@@ -282,7 +453,8 @@ textarea {
     padding: 0;
 }
 
-.nav-list a, .main-nav a {
+.nav-list a,
+.main-nav a {
     color: var(--celebration-text);
     font-weight: 500;
     padding: var(--spacing-2) var(--spacing-4);
@@ -290,7 +462,8 @@ textarea {
     transition: all 0.2s ease;
 }
 
-.nav-list a:hover, .main-nav a:hover {
+.nav-list a:hover,
+.main-nav a:hover {
     color: var(--celebration-primary);
     background-color: var(--celebration-bg);
 }
@@ -310,15 +483,17 @@ textarea {
     .menu-toggle {
         display: block;
     }
-    
-    .nav-list, .main-nav ul {
+
+    .nav-list,
+    .main-nav ul {
         display: none;
         flex-direction: column;
         width: 100%;
         margin-top: var(--spacing-4);
     }
-    
-    .nav-list.active, .main-nav ul.active {
+
+    .nav-list.active,
+    .main-nav ul.active {
         display: flex;
     }
 }
@@ -333,7 +508,8 @@ textarea {
     background: var(--celebration-black);
 }
 
-.guestbook-form-container, .guestbook-form {
+.guestbook-form-container,
+.guestbook-form {
     background: rgba(0, 0, 0, 0.8);
     border: 2px solid var(--celebration-gold);
     border-radius: var(--border-radius-lg);
@@ -409,6 +585,7 @@ textarea {
 
 .invitation-card {
     background: rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 3px solid var(--celebration-gold);
     box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), inset 0 0 20px rgba(255, 215, 0, 0.1);
@@ -426,9 +603,12 @@ textarea {
 }
 
 @keyframes glow {
-    0%, 100% {
+
+    0%,
+    100% {
         text-shadow: 0 0 10px var(--celebration-gold), 0 0 20px var(--celebration-gold);
     }
+
     50% {
         text-shadow: 0 0 20px var(--celebration-gold), 0 0 40px var(--celebration-gold);
     }
@@ -439,31 +619,40 @@ textarea {
    ============================================ */
 
 @media (max-width: 768px) {
-    h1 { font-size: var(--font-size-3xl); }
-    h2 { font-size: var(--font-size-2xl); }
-    h3 { font-size: var(--font-size-xl); }
-    
+    h1 {
+        font-size: var(--font-size-3xl);
+    }
+
+    h2 {
+        font-size: var(--font-size-2xl);
+    }
+
+    h3 {
+        font-size: var(--font-size-xl);
+    }
+
     .container {
         padding: 0 var(--spacing-4);
     }
-    
-    .btn, .btn-primary {
+
+    .btn,
+    .btn-primary {
         width: 100%;
         padding: var(--spacing-4);
     }
-    
+
     .guestbook-form-container {
         padding: var(--spacing-6);
     }
-    
+
     .messages-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .invitation-card {
         padding: var(--spacing-8) var(--spacing-4);
     }
-    
+
     .invitation-title {
         font-size: var(--font-size-2xl);
     }

@@ -1,0 +1,824 @@
+{
+  "timestamp": "2025-12-22T16:50:23.819689",
+  "total_sites": 11,
+  "grades": {
+    "A": 0,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "F": 0,
+    "FAIL": 11,
+    "ERROR": 0
+  },
+  "critical_issues_count": 11,
+  "sites_with_text_rendering_issues": 11,
+  "sites": [
+    {
+      "site": "freerideinvestor.com",
+      "url": "https://freerideinvestor.com",
+      "timestamp": "2025-12-22T16:49:46.431201",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 2330 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html lang",
+              "meta charset",
+              "meta name",
+              "meta http",
+              "meta name",
+              "3000px 1500px",
+              "link rel",
+              "link rel",
+              "Comments Feed"
+            ]
+          }
+        ],
+        "broken_words_count": 2330
+      },
+      "visual_structure": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "structure",
+            "severity": "MEDIUM",
+            "description": "Multiple H1 headings (230) - should be 1 for SEO"
+          }
+        ],
+        "h1_count": 230,
+        "has_main": true,
+        "has_article": true,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 80,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Generic or default title tag"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Missing meta description"
+          }
+        ],
+        "strengths": [
+          "Good heading structure",
+          "Clear call-to-action present"
+        ]
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 2330 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional",
+        "Multiple H1 headings (230) - should be 1 for SEO"
+      ]
+    },
+    {
+      "site": "tradingrobotplug.com",
+      "url": "https://tradingrobotplug.com",
+      "timestamp": "2025-12-22T16:49:48.444943",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 79 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html lang",
+              "meta charset",
+              "meta name",
+              "link rel",
+              "link rel",
+              "link rel",
+              "meta name",
+              "3000px 1500px",
+              "link rel"
+            ]
+          }
+        ],
+        "broken_words_count": 79
+      },
+      "visual_structure": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "structure",
+            "severity": "MEDIUM",
+            "description": "Multiple H1 headings (2) - should be 1 for SEO"
+          }
+        ],
+        "h1_count": 2,
+        "has_main": true,
+        "has_article": true,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 65,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Generic or default title tag"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Missing meta description"
+          },
+          {
+            "type": "professional",
+            "severity": "LOW",
+            "description": "Limited heading structure"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "No clear call-to-action found"
+          }
+        ],
+        "strengths": []
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 79 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional",
+        "Multiple H1 headings (2) - should be 1 for SEO"
+      ]
+    },
+    {
+      "site": "weareswarm.online",
+      "url": "https://weareswarm.online",
+      "timestamp": "2025-12-22T16:49:50.361497",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 347 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html dir",
+              "meta charset",
+              "meta name",
+              "meta name",
+              "swarm system",
+              "showcasing web",
+              "3000px 1500px",
+              "meta name",
+              "vitae augue"
+            ]
+          }
+        ],
+        "broken_words_count": 347
+      },
+      "visual_structure": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "structure",
+            "severity": "LOW",
+            "description": "No semantic main content area (main/article) - accessibility concern"
+          }
+        ],
+        "h1_count": 1,
+        "has_main": false,
+        "has_article": false,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 90,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "No clear call-to-action found"
+          }
+        ],
+        "strengths": [
+          "Descriptive title tag",
+          "Meta description present",
+          "Good heading structure"
+        ]
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 347 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional",
+        "No semantic main content area (main/article) - accessibility concern"
+      ]
+    },
+    {
+      "site": "weareswarm.site",
+      "url": "https://weareswarm.site",
+      "timestamp": "2025-12-22T16:49:52.028287",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 149 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html lang",
+              "meta charset",
+              "meta name",
+              "Bible ELS",
+              "Code Discovery",
+              "meta name",
+              "using Gematria",
+              "Discover divine",
+              "link rel"
+            ]
+          }
+        ],
+        "broken_words_count": 149
+      },
+      "visual_structure": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "structure",
+            "severity": "LOW",
+            "description": "No semantic main content area (main/article) - accessibility concern"
+          }
+        ],
+        "h1_count": 1,
+        "has_main": false,
+        "has_article": false,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 90,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "No clear call-to-action found"
+          }
+        ],
+        "strengths": [
+          "Descriptive title tag",
+          "Meta description present",
+          "Good heading structure"
+        ]
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 149 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional",
+        "No semantic main content area (main/article) - accessibility concern"
+      ]
+    },
+    {
+      "site": "prismblossom.online",
+      "url": "https://prismblossom.online",
+      "timestamp": "2025-12-22T16:49:53.441885",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 279 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html dir",
+              "meta charset",
+              "meta name",
+              "meta name",
+              "meta name",
+              "Miami Beach",
+              "Water Sport",
+              "Explore Miami",
+              "Beach With"
+            ]
+          }
+        ],
+        "broken_words_count": 279
+      },
+      "visual_structure": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "structure",
+            "severity": "MEDIUM",
+            "description": "Multiple H1 headings (2) - should be 1 for SEO"
+          }
+        ],
+        "h1_count": 2,
+        "has_main": true,
+        "has_article": true,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 100,
+        "issues": [],
+        "strengths": [
+          "Descriptive title tag",
+          "Meta description present",
+          "Good heading structure",
+          "Clear call-to-action present"
+        ]
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 279 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional",
+        "Multiple H1 headings (2) - should be 1 for SEO"
+      ]
+    },
+    {
+      "site": "southwestsecret.com",
+      "url": "https://southwestsecret.com",
+      "timestamp": "2025-12-22T16:49:54.802884",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 194 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html lang",
+              "meta charset",
+              "meta name",
+              "meta name",
+              "Catch the",
+              "Ride the",
+              "Hidden Gems",
+              "meta name",
+              "3000px 1500px"
+            ]
+          }
+        ],
+        "broken_words_count": 194
+      },
+      "visual_structure": {
+        "has_issues": false,
+        "issues": [],
+        "h1_count": 1,
+        "has_main": true,
+        "has_article": true,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 90,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "No clear call-to-action found"
+          }
+        ],
+        "strengths": [
+          "Descriptive title tag",
+          "Meta description present",
+          "Good heading structure"
+        ]
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 194 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional"
+      ]
+    },
+    {
+      "site": "ariajet.site",
+      "url": "https://ariajet.site",
+      "timestamp": "2025-12-22T16:49:56.610711",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 136 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html dir",
+              "meta charset",
+              "meta name",
+              "meta name",
+              "link rel",
+              "Google Fonts",
+              "link rel",
+              "link rel",
+              "link href"
+            ]
+          }
+        ],
+        "broken_words_count": 136
+      },
+      "visual_structure": {
+        "has_issues": false,
+        "issues": [],
+        "h1_count": 1,
+        "has_main": true,
+        "has_article": true,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 75,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Missing meta description"
+          },
+          {
+            "type": "professional",
+            "severity": "LOW",
+            "description": "Limited heading structure"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "No clear call-to-action found"
+          }
+        ],
+        "strengths": [
+          "Descriptive title tag"
+        ]
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 136 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional"
+      ]
+    },
+    {
+      "site": "dadudekc.com",
+      "url": "https://dadudekc.com",
+      "timestamp": "2025-12-22T16:49:58.046373",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 443 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html lang",
+              "meta charset",
+              "meta name",
+              "meta name",
+              "3000px 1500px",
+              "link rel",
+              "link rel",
+              "Comments Feed",
+              "This file"
+            ]
+          }
+        ],
+        "broken_words_count": 443
+      },
+      "visual_structure": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "structure",
+            "severity": "MEDIUM",
+            "description": "Multiple H1 headings (2) - should be 1 for SEO"
+          }
+        ],
+        "h1_count": 2,
+        "has_main": true,
+        "has_article": false,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 80,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Generic or default title tag"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Missing meta description"
+          }
+        ],
+        "strengths": [
+          "Good heading structure",
+          "Clear call-to-action present"
+        ]
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 443 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional",
+        "Multiple H1 headings (2) - should be 1 for SEO"
+      ]
+    },
+    {
+      "site": "crosbyultimateevents.com",
+      "url": "https://crosbyultimateevents.com",
+      "timestamp": "2025-12-22T16:50:09.623069",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 132 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html lang",
+              "meta charset",
+              "meta name",
+              "link rel",
+              "meta name",
+              "link rel",
+              "link rel",
+              "Comments Feed",
+              "3000px 1500px"
+            ]
+          }
+        ],
+        "broken_words_count": 132
+      },
+      "visual_structure": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "structure",
+            "severity": "MEDIUM",
+            "description": "Multiple H1 headings (2) - should be 1 for SEO"
+          }
+        ],
+        "h1_count": 2,
+        "has_main": true,
+        "has_article": false,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 80,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Generic or default title tag"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Missing meta description"
+          }
+        ],
+        "strengths": [
+          "Good heading structure",
+          "Clear call-to-action present"
+        ]
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 132 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional",
+        "Multiple H1 headings (2) - should be 1 for SEO"
+      ]
+    },
+    {
+      "site": "houstonsipqueen.com",
+      "url": "https://houstonsipqueen.com",
+      "timestamp": "2025-12-22T16:50:10.804011",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 182 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html lang",
+              "meta charset",
+              "meta name",
+              "meta name",
+              "link rel",
+              "link rel",
+              "Comments Feed",
+              "3000px 1500px",
+              "icon svg"
+            ]
+          }
+        ],
+        "broken_words_count": 182
+      },
+      "visual_structure": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "structure",
+            "severity": "MEDIUM",
+            "description": "Multiple H1 headings (2) - should be 1 for SEO"
+          }
+        ],
+        "h1_count": 2,
+        "has_main": true,
+        "has_article": false,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 70,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Generic or default title tag"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Missing meta description"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "No clear call-to-action found"
+          }
+        ],
+        "strengths": [
+          "Good heading structure"
+        ]
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 182 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional",
+        "Multiple H1 headings (2) - should be 1 for SEO"
+      ]
+    },
+    {
+      "site": "digitaldreamscape.site",
+      "url": "https://digitaldreamscape.site",
+      "timestamp": "2025-12-22T16:50:12.273654",
+      "text_rendering": {
+        "has_issues": true,
+        "issues": [
+          {
+            "type": "text_rendering",
+            "severity": "CRITICAL",
+            "description": "Text rendering issues detected: 78 potential broken words",
+            "examples": [
+              "DOCTYPE html",
+              "html lang",
+              "meta charset",
+              "meta name",
+              "link rel",
+              "meta name",
+              "link rel",
+              "link rel",
+              "Comments Feed",
+              "3000px 1500px"
+            ]
+          }
+        ],
+        "broken_words_count": 78
+      },
+      "visual_structure": {
+        "has_issues": false,
+        "issues": [],
+        "h1_count": 1,
+        "has_main": true,
+        "has_article": true,
+        "has_nav": true
+      },
+      "professional_appearance": {
+        "quality_score": 65,
+        "issues": [
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Generic or default title tag"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "Missing meta description"
+          },
+          {
+            "type": "professional",
+            "severity": "LOW",
+            "description": "Limited heading structure"
+          },
+          {
+            "type": "professional",
+            "severity": "MEDIUM",
+            "description": "No clear call-to-action found"
+          }
+        ],
+        "strengths": []
+      },
+      "overall_grade": "FAIL",
+      "critical_issues": [
+        "Text rendering issues detected: 78 potential broken words"
+      ],
+      "recommendations": [
+        "CRITICAL: Fix text rendering issues - broken words make site look unprofessional"
+      ]
+    }
+  ],
+  "priority_fixes": [
+    {
+      "site": "freerideinvestor.com",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "tradingrobotplug.com",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "weareswarm.online",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "weareswarm.site",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "prismblossom.online",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "southwestsecret.com",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "ariajet.site",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "dadudekc.com",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "crosbyultimateevents.com",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "houstonsipqueen.com",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    },
+    {
+      "site": "digitaldreamscape.site",
+      "priority": "CRITICAL",
+      "issue": "Text rendering problems - broken words",
+      "impact": "Makes site look unprofessional and broken"
+    }
+  ]
+}

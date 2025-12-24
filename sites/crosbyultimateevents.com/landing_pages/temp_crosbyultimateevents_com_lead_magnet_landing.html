@@ -4,64 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Your Free Event Planning Checklist - Crosby Ultimate Events</title>
+    <meta name="description" content="Create an unforgettable event without the stress. Get our Ultimate Event Planning Checklist designed for busy professionals.">
     <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --text: #333;
+            --light-bg: #f8f9fa;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
         }
         .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: var(--secondary);
+            margin-top: 40px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .card {
             background: white;
             border-radius: 10px;
             padding: 40px;
-            max-width: 600px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-top: -50px;
+            position: relative;
         }
         .form-group {
             margin-bottom: 20px;
         }
-        input {
+        input, select {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
+            box-sizing: border-box;
         }
         button {
             width: 100%;
             padding: 15px;
-            background: #667eea;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 5px;
             font-size: 18px;
             cursor: pointer;
             font-weight: bold;
+            transition: background 0.3s;
         }
         button:hover {
             background: #5568d3;
         }
+        .features {
+            padding: 60px 0;
+            background: var(--light-bg);
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .feature-list li {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .testimonial {
+            font-style: italic;
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            margin: 40px 0;
+        }
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-top: 20px;
+        }
+        .cta-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <div class="hero">
+        <div class="container">
+            <h1>Create an Unforgettable Event — Without the Stress</h1>
+            <p>Planning an event shouldn’t feel like a second job. Get our <strong>Ultimate Event Planning Checklist</strong> so you know exactly what to do (and when), without missing a detail.</p>
+        </div>
+    </div>
+
     <div class="container">
-        <h1>Get Your Free Event Planning Checklist</h1>
-        <p>Enter your email below to receive your free Event Planning Checklist instantly.</p>
-        <form method="POST" action="/thank-you">
-            <div class="form-group">
-                <input type="email" name="email" placeholder="Your Email Address" required>
-            </div>
-            <button type="submit">Get My Free Event Planning Checklist</button>
-        </form>
+        <div class="card">
+            <h2 style="text-align: center; margin-top: 0;">Get the Checklist (Free)</h2>
+            <p style="text-align: center;">We’ll email it to you instantly. No spam—unsubscribe anytime.</p>
+            
+            <form method="POST" action="/thank-you">
+                <div class="form-group">
+                    <label for="name">First Name</label>
+                    <input type="text" id="name" name="name" placeholder="Jane" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="event_date">Event Timeframe</label>
+                    <select id="event_date" name="event_date">
+                        <option value="">Select timeframe...</option>
+                        <option value="1-3_months">1-3 Months</option>
+                        <option value="3-6_months">3-6 Months</option>
+                        <option value="6-12_months">6-12 Months</option>
+                        <option value="just_browsing">Just browsing</option>
+                    </select>
+                </div>
+                
+                <p style="font-size: 0.8rem; color: #666;">By requesting the checklist, you agree to receive helpful event planning emails from Crosby Ultimate Events. Unsubscribe anytime.</p>
+                
+                <button type="submit">Get My Free Checklist</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="container">
+            <h2 style="text-align: center;">What’s Inside</h2>
+            <ul class="feature-list">
+                <li>✅ <strong>Pre-planning timeline</strong> (4–6 weeks out)</li>
+                <li>✅ <strong>Budget</strong> + contingency planning</li>
+                <li>✅ <strong>Vendor</strong> + timeline coordination checklist</li>
+                <li>✅ <strong>Menu</strong> + beverage planning prompts</li>
+                <li>✅ <strong>Day-of execution</strong> and contingency items</li>
+                <li>✅ <strong>Post-event</strong> follow-up and evaluation</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Why Crosby Ultimate Events</h2>
+        <p>For affluent professionals and corporate clients who want memorable events <strong>without the coordination headaches</strong>, we provide <strong>premium private chef services combined with meticulous event planning</strong>.</p>
+        <p><strong>Unlike</strong> generic caterers or separate service providers, we combine <strong>culinary artistry + flawless coordination</strong> in one seamless experience—so you don’t have to manage multiple vendors.</p>
+
+        <hr style="margin: 40px 0; border: 0; border-top: 1px solid #ddd;">
+
+        <div style="text-align: center;">
+            <h2>Optional: Book a Free Event Vision Consultation</h2>
+            <p>If you’re planning an event in the next <strong>30–90 days</strong>, we’ll help you clarify your vision, talk through options, and outline next steps.</p>
+            <a href="https://calendly.com/" target="_blank" style="text-decoration: none;">
+                <button class="cta-secondary">Book My Free Consultation</button>
+            </a>
+        </div>
+        
+        <div class="faq">
+            <h2>FAQ</h2>
+            <p><strong>Is the checklist really free?</strong><br>Yes—100% free.</p>
+            <p><strong>When will I receive it?</strong><br>Immediately after you submit the form.</p>
+            <p><strong>Do you plan corporate events?</strong><br>Yes—executive dinners, client appreciation, team gatherings, and more.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <h3>Want a flawless event you can actually enjoy?</h3>
+            <p>Book a free consultation or call us.</p>
+            <p>&copy; 2025 Crosby Ultimate Events. All rights reserved.</p>
+        </div>
     </div>
 </body>
 </html>

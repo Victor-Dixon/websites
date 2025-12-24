@@ -45,6 +45,29 @@
       "target_file": "wp-content/themes/{active_theme}/style.css"
     }
   },
+  "houstonsipqueen.com": {
+    "site_url": "https://houstonsipqueen.com",
+    "deployment_method": "sftp",
+    "rest_api": {
+      "username": "",
+      "app_password": "",
+      "site_url": "https://houstonsipqueen.com"
+    },
+    "sftp": {
+      "host": "",
+      "username": "",
+      "password": "",
+      "remote_path": "domains/houstonsipqueen.com/public_html"
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
+  },
   "digitaldreamscape.site": {
     "site_url": "https://digitaldreamscape.site",
     "deployment_method": "rest_api",

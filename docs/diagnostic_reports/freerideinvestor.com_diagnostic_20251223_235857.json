@@ -1,0 +1,22 @@
+{
+  "site": "freerideinvestor.com",
+  "timestamp": "2025-12-23T23:58:56.196348",
+  "checks": {
+    "connectivity": {
+      "accessible": false,
+      "http_status": 500,
+      "response_time": 1.27,
+      "error": "DOWN"
+    }
+  },
+  "issues": [
+    {
+      "type": "connectivity",
+      "severity": "CRITICAL",
+      "message": "Site not accessible: DOWN",
+      "recommendation": "Check DNS, hosting status, or server configuration"
+    }
+  ],
+  "recommendations": [],
+  "severity": "CRITICAL"
+}

@@ -1,0 +1,1551 @@
+{
+  "timestamp": "2025-12-22T16:27:12.852262",
+  "total_sites": 12,
+  "sites": {
+    "tradingrobotplug.com": {
+      "site": "tradingrobotplug.com",
+      "url": "https://tradingrobotplug.com",
+      "timestamp": "2025-12-22T16:22:56.604462",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 20716,
+        "issues": []
+      },
+      "seo": {
+        "title": "tradingrobotplug.com",
+        "title_length": 20,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 2,
+        "has_open_graph": false,
+        "has_canonical": true,
+        "issues": [
+          "Title too short (20 chars, recommended 30-60)",
+          "Missing meta description",
+          "Multiple H1 headings (2, should be 1)",
+          "Missing Open Graph tags"
+        ]
+      },
+      "performance": {
+        "load_time": 2.98,
+        "page_size_kb": 20.23,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R13"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "tradingrobotplug.com"
+              ]
+            ]
+          ],
+          "not_after": "Mar 15 23:06:59 2026 GMT",
+          "days_until_expiry": 83,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "tradingrobot-fixed",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (20 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Multiple H1 headings (2, should be 1)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing Open Graph tags"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "ariajet.site": {
+      "site": "ariajet.site",
+      "url": "https://ariajet.site",
+      "timestamp": "2025-12-22T16:23:12.995385",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 32463,
+        "issues": []
+      },
+      "seo": {
+        "title": "ariajet.site -",
+        "title_length": 14,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 1,
+        "has_open_graph": true,
+        "has_canonical": true,
+        "issues": [
+          "Title too short (14 chars, recommended 30-60)",
+          "Missing meta description"
+        ]
+      },
+      "performance": {
+        "load_time": 1.47,
+        "page_size_kb": 31.74,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Google Trust Services"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "WR1"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "ariajet.site"
+              ]
+            ]
+          ],
+          "not_after": "Feb 20 23:08:05 2026 GMT",
+          "days_until_expiry": 60,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "ariajet-cosmic",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (14 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "freerideinvestor": {
+      "site": "freerideinvestor",
+      "url": "https://freerideinvestor.com",
+      "timestamp": "2025-12-22T16:23:27.015395",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 151772,
+        "issues": []
+      },
+      "seo": {
+        "title": "freerideinvestor.com",
+        "title_length": 20,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 230,
+        "has_open_graph": false,
+        "has_canonical": false,
+        "issues": [
+          "Title too short (20 chars, recommended 30-60)",
+          "Missing meta description",
+          "Multiple H1 headings (230, should be 1)",
+          "Missing Open Graph tags",
+          "Missing canonical URL"
+        ]
+      },
+      "performance": {
+        "load_time": 16.23,
+        "page_size_kb": 149.12,
+        "http_status": 200,
+        "issues": [
+          "Slow load time (16.23s, target <3s)"
+        ]
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R13"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "freerideinvestor.com"
+              ]
+            ]
+          ],
+          "not_after": "Mar 15 20:58:16 2026 GMT",
+          "days_until_expiry": 83,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "freerideinvestor-modern",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (20 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Multiple H1 headings (230, should be 1)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing Open Graph tags"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing canonical URL"
+        },
+        {
+          "category": "performance",
+          "severity": "HIGH",
+          "message": "Slow load time (16.23s, target <3s)"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "prismblossom.online": {
+      "site": "prismblossom.online",
+      "url": "https://prismblossom.online",
+      "timestamp": "2025-12-22T16:23:54.832608",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 42918,
+        "issues": []
+      },
+      "seo": {
+        "title": "Home - prismblossom.online",
+        "title_length": 26,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 2,
+        "has_open_graph": true,
+        "has_canonical": true,
+        "issues": [
+          "Title too short (26 chars, recommended 30-60)",
+          "Missing meta description",
+          "Multiple H1 headings (2, should be 1)"
+        ]
+      },
+      "performance": {
+        "load_time": 1.72,
+        "page_size_kb": 41.94,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R12"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "prismblossom.online"
+              ]
+            ]
+          ],
+          "not_after": "Feb 20 22:49:09 2026 GMT",
+          "days_until_expiry": 60,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "Parse error: Unmatched '}' in /home/u996867598/domains/prismblossom.online/public_html/wp-content/themes/prismblossom/functions.php on line 2501\nError: There has been a critical error on this website.Learn more about troubleshooting WordPress. There has been a critical error on this website.",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (26 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Multiple H1 headings (2, should be 1)"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "southwestsecret.com": {
+      "site": "southwestsecret.com",
+      "url": "https://southwestsecret.com",
+      "timestamp": "2025-12-22T16:24:07.840288",
+      "accessibility": {
+        "accessible": false,
+        "http_status": 500,
+        "has_main_content": false,
+        "has_navigation": false,
+        "has_footer": false,
+        "has_headings": false,
+        "content_length": 0,
+        "issues": []
+      },
+      "seo": {
+        "title": "",
+        "title_length": 0,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 0,
+        "has_open_graph": false,
+        "has_canonical": false,
+        "issues": [
+          "Title too short (0 chars, recommended 30-60)",
+          "Missing meta description",
+          "No H1 heading found",
+          "Missing Open Graph tags",
+          "Missing canonical URL"
+        ]
+      },
+      "performance": {
+        "load_time": 1.24,
+        "page_size_kb": 0.0,
+        "http_status": 500,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R12"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "southwestsecret.com"
+              ]
+            ]
+          ],
+          "not_after": "Mar 14 21:38:25 2026 GMT",
+          "days_until_expiry": 82,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "southwestsecret",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "accessibility",
+          "severity": "CRITICAL",
+          "message": "Site not accessible (HTTP 500)"
+        },
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (0 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "No H1 heading found"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing Open Graph tags"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing canonical URL"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "CRITICAL"
+    },
+    "weareswarm.site": {
+      "site": "weareswarm.site",
+      "url": "https://weareswarm.site",
+      "timestamp": "2025-12-22T16:24:21.922369",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 19305,
+        "issues": []
+      },
+      "seo": {
+        "title": "Bible ELS Code Discovery System | Prophetical Analysis",
+        "title_length": 54,
+        "meta_description": "Advanced mathematical analysis of Hebrew Scripture using Gematria and ELS (Equidistant Letter Sequen...",
+        "meta_description_length": 149,
+        "h1_count": 1,
+        "has_open_graph": false,
+        "has_canonical": false,
+        "issues": [
+          "Missing Open Graph tags",
+          "Missing canonical URL"
+        ]
+      },
+      "performance": {
+        "load_time": 1.17,
+        "page_size_kb": 19.21,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R13"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "weareswarm.site"
+              ]
+            ]
+          ],
+          "not_after": "Feb  4 02:59:18 2026 GMT",
+          "days_until_expiry": 43,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "hostinger_deploy",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing Open Graph tags"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing canonical URL"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "weareswarm.online": {
+      "site": "weareswarm.online",
+      "url": "https://weareswarm.online",
+      "timestamp": "2025-12-22T16:24:44.279501",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 54586,
+        "issues": []
+      },
+      "seo": {
+        "title": "Home - weareswarm.online",
+        "title_length": 24,
+        "meta_description": "Multi-agent AI swarm system showcasing web development capabilities and live autonomous coordination...",
+        "meta_description_length": 130,
+        "h1_count": 1,
+        "has_open_graph": true,
+        "has_canonical": true,
+        "issues": [
+          "Title too short (24 chars, recommended 30-60)"
+        ]
+      },
+      "performance": {
+        "load_time": 1.44,
+        "page_size_kb": 53.36,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R12"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "weareswarm.online"
+              ]
+            ]
+          ],
+          "not_after": "Feb 20 23:22:53 2026 GMT",
+          "days_until_expiry": 60,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "swarm-theme",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (24 chars, recommended 30-60)"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "dadudekc.com": {
+      "site": "dadudekc.com",
+      "url": "https://dadudekc.com",
+      "timestamp": "2025-12-22T16:25:21.578526",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 100216,
+        "issues": []
+      },
+      "seo": {
+        "title": "dadudekc.com",
+        "title_length": 12,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 2,
+        "has_open_graph": false,
+        "has_canonical": false,
+        "issues": [
+          "Title too short (12 chars, recommended 30-60)",
+          "Missing meta description",
+          "Multiple H1 headings (2, should be 1)",
+          "Missing Open Graph tags",
+          "Missing canonical URL"
+        ]
+      },
+      "performance": {
+        "load_time": 1.76,
+        "page_size_kb": 98.0,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R13"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "dadudekc.com"
+              ]
+            ]
+          ],
+          "not_after": "Mar 15 20:38:29 2026 GMT",
+          "days_until_expiry": 83,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "accounting-grove-dark",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (12 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Multiple H1 headings (2, should be 1)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing Open Graph tags"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing canonical URL"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "digitaldreamscape.site": {
+      "site": "digitaldreamscape.site",
+      "url": "https://digitaldreamscape.site",
+      "timestamp": "2025-12-22T16:25:35.929556",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 22177,
+        "issues": []
+      },
+      "seo": {
+        "title": "digitaldreamscape.site",
+        "title_length": 22,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 1,
+        "has_open_graph": false,
+        "has_canonical": false,
+        "issues": [
+          "Title too short (22 chars, recommended 30-60)",
+          "Missing meta description",
+          "Missing Open Graph tags",
+          "Missing canonical URL"
+        ]
+      },
+      "performance": {
+        "load_time": 1.17,
+        "page_size_kb": 21.66,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R12"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "digitaldreamscape.site"
+              ]
+            ]
+          ],
+          "not_after": "Mar 16 08:57:04 2026 GMT",
+          "days_until_expiry": 83,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "/', '', str_replace(array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $new_content));\r\r\r\r\n    \r\r\r\r\n    return $new_content;\r\r\r\r\n}\r\r\r\r\nadd_filter('the_content', 'add_missing_alt_text_to_content', 20);\r\r\r\r\n\r\r\r\r\n// Add alt text to post thumbnails when missing\r\r\r\r\n\r\r\r\n\r\r\r\n?>)/i', '$1 alt=\"' . esc_attr($alt_text) . '\"$2', $html);\r\r\r\r\n        }\r\r\r\r\n    }\r\r\r\r\n    \r\r\r\r\n    return $html;\r\r\r\r\n}\r\r\r\r\nadd_filter('post_thumbnail_html', 'add_missing_alt_text_to_thumbnails', 10, 5);\r\r\r\r\n\r\r\r\r\n// Add alt text to widget images when missing\r\r\r\r\n\r\r\ndigitaldreamscape",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (22 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing Open Graph tags"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing canonical URL"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "crosbyultimateevents.com": {
+      "site": "crosbyultimateevents.com",
+      "url": "https://crosbyultimateevents.com",
+      "timestamp": "2025-12-22T16:25:58.116086",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 26172,
+        "issues": []
+      },
+      "seo": {
+        "title": "crosbyultimateevents.com",
+        "title_length": 24,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 2,
+        "has_open_graph": false,
+        "has_canonical": false,
+        "issues": [
+          "Title too short (24 chars, recommended 30-60)",
+          "Missing meta description",
+          "Multiple H1 headings (2, should be 1)",
+          "Missing Open Graph tags",
+          "Missing canonical URL"
+        ]
+      },
+      "performance": {
+        "load_time": 1.53,
+        "page_size_kb": 25.61,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R12"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "crosbyultimateevents.com"
+              ]
+            ]
+          ],
+          "not_after": "Mar 15 21:54:39 2026 GMT",
+          "days_until_expiry": 83,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "/', '', str_replace(array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $new_content));\r\r\r\r\n    \r\r\r\r\n    return $new_content;\r\r\r\r\n}\r\r\r\r\nadd_filter('the_content', 'add_missing_alt_text_to_content', 20);\r\r\r\r\n\r\r\r\r\n// Add alt text to post thumbnails when missing\r\r\r\r\n\r\r\r\n\r\r\r\n?>)/i', '$1 alt=\"' . esc_attr($alt_text) . '\"$2', $html);\r\r\r\r\n        }\r\r\r\r\n    }\r\r\r\r\n    \r\r\r\r\n    return $html;\r\r\r\r\n}\r\r\r\r\nadd_filter('post_thumbnail_html', 'add_missing_alt_text_to_thumbnails', 10, 5);\r\r\r\r\n\r\r\r\r\n// Add alt text to widget images when missing\r\r\r\r\n\r\r\ncrosbyultimateevents",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (24 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Multiple H1 headings (2, should be 1)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing Open Graph tags"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing canonical URL"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "houstonsipqueen.com": {
+      "site": "houstonsipqueen.com",
+      "url": "https://houstonsipqueen.com",
+      "timestamp": "2025-12-22T16:26:11.067282",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 79473,
+        "issues": []
+      },
+      "seo": {
+        "title": "houstonsipqueen.com",
+        "title_length": 19,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 2,
+        "has_open_graph": false,
+        "has_canonical": false,
+        "issues": [
+          "Title too short (19 chars, recommended 30-60)",
+          "Missing meta description",
+          "Multiple H1 headings (2, should be 1)",
+          "Missing Open Graph tags",
+          "Missing canonical URL"
+        ]
+      },
+      "performance": {
+        "load_time": 1.39,
+        "page_size_kb": 77.62,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R12"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "houstonsipqueen.com"
+              ]
+            ]
+          ],
+          "not_after": "Mar 15 17:49:12 2026 GMT",
+          "days_until_expiry": 83,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "twentytwentyfive",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (19 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Multiple H1 headings (2, should be 1)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing Open Graph tags"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing canonical URL"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    },
+    "freerideinvestor.com": {
+      "site": "freerideinvestor.com",
+      "url": "https://freerideinvestor.com",
+      "timestamp": "2025-12-22T16:26:47.583793",
+      "accessibility": {
+        "accessible": true,
+        "http_status": 200,
+        "has_main_content": true,
+        "has_navigation": true,
+        "has_footer": true,
+        "has_headings": true,
+        "content_length": 151772,
+        "issues": []
+      },
+      "seo": {
+        "title": "freerideinvestor.com",
+        "title_length": 20,
+        "meta_description": "",
+        "meta_description_length": 0,
+        "h1_count": 230,
+        "has_open_graph": false,
+        "has_canonical": false,
+        "issues": [
+          "Title too short (20 chars, recommended 30-60)",
+          "Missing meta description",
+          "Multiple H1 headings (230, should be 1)",
+          "Missing Open Graph tags",
+          "Missing canonical URL"
+        ]
+      },
+      "performance": {
+        "load_time": 2.86,
+        "page_size_kb": 149.12,
+        "http_status": 200,
+        "issues": []
+      },
+      "security": {
+        "https_enabled": true,
+        "security_headers": {
+          "strict_transport_security": false,
+          "x_frame_options": false,
+          "x_content_type_options": false,
+          "content_security_policy": true
+        },
+        "ssl_info": {
+          "valid": true,
+          "issuer": [
+            [
+              [
+                "countryName",
+                "US"
+              ]
+            ],
+            [
+              [
+                "organizationName",
+                "Let's Encrypt"
+              ]
+            ],
+            [
+              [
+                "commonName",
+                "R13"
+              ]
+            ]
+          ],
+          "subject": [
+            [
+              [
+                "commonName",
+                "freerideinvestor.com"
+              ]
+            ]
+          ],
+          "not_after": "Mar 15 20:58:16 2026 GMT",
+          "days_until_expiry": 83,
+          "expires_soon": false
+        },
+        "issues": [
+          "Missing Strict-Transport-Security header",
+          "Missing X-Frame-Options header",
+          "Missing X-Content-Type-Options header"
+        ]
+      },
+      "technical": {
+        "has_debug_log": false,
+        "recent_errors": [],
+        "active_theme": "freerideinvestor-modern",
+        "issues": []
+      },
+      "issues": [
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Title too short (20 chars, recommended 30-60)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing meta description"
+        },
+        {
+          "category": "seo",
+          "severity": "MEDIUM",
+          "message": "Multiple H1 headings (230, should be 1)"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing Open Graph tags"
+        },
+        {
+          "category": "seo",
+          "severity": "HIGH",
+          "message": "Missing canonical URL"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing Strict-Transport-Security header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Frame-Options header"
+        },
+        {
+          "category": "security",
+          "severity": "HIGH",
+          "message": "Missing X-Content-Type-Options header"
+        }
+      ],
+      "severity": "HIGH"
+    }
+  },
+  "summary": {
+    "total_sites": 12,
+    "accessible_sites": 11,
+    "accessibility_rate": 91.7,
+    "critical_issues": 1,
+    "high_issues": 11,
+    "medium_issues": 0,
+    "total_issues": 84
+  }
+}

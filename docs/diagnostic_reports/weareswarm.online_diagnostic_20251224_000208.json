@@ -1,0 +1,65 @@
+{
+  "site": "weareswarm.online",
+  "timestamp": "2025-12-24T00:00:26.606889",
+  "checks": {
+    "connectivity": {
+      "accessible": true,
+      "http_status": 200,
+      "response_time": 1.65,
+      "error": null
+    },
+    "syntax_errors": {
+      "errors": [],
+      "files_checked": 21
+    },
+    "plugin_conflicts": {
+      "conflicts": [
+        {
+          "type": "plugin_structure",
+          "severity": "MEDIUM",
+          "plugin": "wpforms-lite",
+          "message": "Plugin wpforms-lite missing main file",
+          "recommendation": "Check plugin structure for wpforms-lite"
+        }
+      ]
+    },
+    "database": {
+      "issues": []
+    },
+    "memory": {
+      "issues": [
+        {
+          "type": "memory_limit",
+          "severity": "MEDIUM",
+          "message": "No explicit memory limit set in wp-config.php",
+          "recommendation": "Add define('WP_MEMORY_LIMIT', '256M'); to wp-config.php if experiencing memory issues"
+        }
+      ]
+    },
+    "wordpress_core": {
+      "issues": []
+    },
+    "error_logs": {
+      "errors": []
+    }
+  },
+  "issues": [
+    {
+      "type": "plugin_structure",
+      "severity": "MEDIUM",
+      "plugin": "wpforms-lite",
+      "message": "Plugin wpforms-lite missing main file",
+      "recommendation": "Check plugin structure for wpforms-lite"
+    },
+    {
+      "type": "memory_limit",
+      "severity": "MEDIUM",
+      "message": "No explicit memory limit set in wp-config.php",
+      "recommendation": "Add define('WP_MEMORY_LIMIT', '256M'); to wp-config.php if experiencing memory issues"
+    }
+  ],
+  "recommendations": [
+    "ℹ️  MEDIUM: 2 medium-priority issue(s) can be addressed when convenient"
+  ],
+  "severity": "MEDIUM"
+}

@@ -1,0 +1,53 @@
+{
+  "timestamp": "20251222_133613",
+  "websites": {
+    "crosbyultimateevents.com": {
+      "domain": "crosbyultimateevents.com",
+      "status": "skipped",
+      "ga4_deployed": false,
+      "pixel_deployed": false,
+      "errors": [
+        "Theme directory not found: D:\\websites\\websites\\crosbyultimateevents.com\\wp\\wp-content\\themes"
+      ]
+    },
+    "dadudekc.com": {
+      "domain": "dadudekc.com",
+      "status": "skipped",
+      "ga4_deployed": false,
+      "pixel_deployed": false,
+      "errors": [
+        "Theme directory not found: D:\\websites\\websites\\dadudekc.com\\wp\\wp-content\\themes"
+      ]
+    },
+    "freerideinvestor.com": {
+      "domain": "freerideinvestor.com",
+      "status": "success",
+      "ga4_deployed": true,
+      "pixel_deployed": true,
+      "errors": [],
+      "functions_file": "websites\\freerideinvestor.com\\wp\\wp-content\\themes\\freerideinvestor-modern\\functions.php"
+    },
+    "houstonsipqueen.com": {
+      "domain": "houstonsipqueen.com",
+      "status": "success",
+      "ga4_deployed": true,
+      "pixel_deployed": true,
+      "errors": [],
+      "functions_file": "websites\\houstonsipqueen.com\\wp\\wp-content\\themes\\houstonsipqueen\\functions.php"
+    },
+    "tradingrobotplug.com": {
+      "domain": "tradingrobotplug.com",
+      "status": "success",
+      "ga4_deployed": true,
+      "pixel_deployed": true,
+      "errors": [],
+      "functions_file": "websites\\tradingrobotplug.com\\wp\\wp-content\\themes\\tradingrobotplug-theme\\functions.php"
+    }
+  },
+  "summary": {
+    "total": 5,
+    "success": 3,
+    "skipped": 2,
+    "failed": 0
+  }
+}

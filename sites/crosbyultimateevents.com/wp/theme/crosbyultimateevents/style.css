@@ -18,6 +18,9 @@ Tags: business, events, catering, one-column, custom-menu, featured-images, thre
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Ensure proper text rendering - prevent word spacing issues */
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
 }
 
 :root {
@@ -38,6 +41,12 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--white);
+    /* Fix text rendering issues - ensure proper word spacing */
+    word-spacing: normal;
+    letter-spacing: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* ============================================
@@ -54,6 +63,17 @@ h6 {
     line-height: 1.2;
     margin-bottom: 1rem;
     color: var(--secondary-color);
+    /* Fix text rendering - ensure proper spacing */
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    text-rendering: optimizeLegibility;
+}
+
+/* Global text rendering fix - override any plugin CSS */
+p, span, div, a, li, td, th, label, input, textarea, select, button {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    text-rendering: optimizeLegibility;
 }
 
 h1 {
@@ -141,6 +161,7 @@ a:hover {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-size: 0.9rem;
+    word-spacing: normal !important; /* Override any negative word-spacing */
 }
 
 .main-navigation a:hover {

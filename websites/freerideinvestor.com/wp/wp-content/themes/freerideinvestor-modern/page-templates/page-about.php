@@ -104,7 +104,7 @@ get_header();
             <p>
                 Have questions or suggestions for new tools? We’d love to hear from you!
             </p>
-            <a href="/contact" class="cta-button">Contact Us</a>
+            <a href="<?php echo esc_url(home_url('/contact')); ?>" class="cta-button">Contact Us</a>
         </section>
 
 

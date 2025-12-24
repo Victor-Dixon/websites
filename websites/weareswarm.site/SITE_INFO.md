@@ -5,6 +5,12 @@
 - **primary_owner**: Victor
 - **notes**: Sales sandbox
 
+### What is We Are Swarm Site?
+
+See **[WHAT_IS_WEARESWARM_SITE.md](./WHAT_IS_WEARESWARM_SITE.md)** for the full description.
+
+**TL;DR**: A client demos and rapid prototypes platform that serves as a sales sandbox for showcasing Dream.OS capabilities.
+
 ### Current source locations
 
 - ✅ **Canonical theme**: `websites/weareswarm.site/wp/wp-content/themes/swarm-theme/` (MIGRATED 2025-12-20)

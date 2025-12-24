@@ -46,10 +46,35 @@ function crosbyultimateevents_scripts()
     // Enqueue theme stylesheet
     wp_enqueue_style('crosbyultimateevents-style', get_stylesheet_uri(), array(), '1.0.0');
 
-    // Enqueue theme JavaScript (if needed)
-    // wp_enqueue_script('crosbyultimateevents-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true);
+    // Enqueue theme JavaScript
+    wp_enqueue_script('crosbyultimateevents-portfolio-filter', get_template_directory_uri() . '/js/portfolio-filter.js', array(), '1.0.0', true);
+    
+    // Add critical text rendering fix - loads after all plugins
+    wp_add_inline_style('crosbyultimateevents-style', '
+        /* CRITICAL FIX: Text rendering issues - ensure proper word spacing */
+        * {
+            word-spacing: normal !important;
+        }
+        body, p, span, div, a, li, h1, h2, h3, h4, h5, h6, 
+        td, th, label, input, textarea, select, button, 
+        .site-title, .main-navigation, .hero-content, 
+        .value-item, .service-card, .lead-capture-content {
+            word-spacing: normal !important;
+            letter-spacing: normal !important;
+            text-rendering: optimizeLegibility !important;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+        }
+        /* Override any negative word-spacing from plugins */
+        .main-navigation a {
+            word-spacing: normal !important;
+        }
+        .btn-primary, .btn-secondary, .btn-outline {
+            word-spacing: normal !important;
+        }
+    ');
 }
-add_action('wp_enqueue_scripts', 'crosbyultimateevents_scripts');
+add_action('wp_enqueue_scripts', 'crosbyultimateevents_scripts', 999); // High priority to load after plugins
 
 /**
  * Register Widget Areas
@@ -148,13 +173,16 @@ add_action('after_switch_theme', 'crosbyultimateevents_create_consultation_page'
  */
 function crosbyultimateevents_handle_contact_form()
 {
-    // Only process on contact page
-    if (!is_page('contact')) {
+    // Process on contact page or consultation page
+    if (!is_page('contact') && !is_page('consultation')) {
         return;
     }
 
-    // Check if form was submitted
-    if (!isset($_POST['contact_nonce']) || !wp_verify_nonce($_POST['contact_nonce'], 'contact_form')) {
+    // Check if form was submitted (contact form or consultation form)
+    $nonce_field = isset($_POST['contact_nonce']) ? 'contact_nonce' : (isset($_POST['consultation_nonce']) ? 'consultation_nonce' : null);
+    $nonce_action = isset($_POST['contact_nonce']) ? 'contact_form' : (isset($_POST['consultation_nonce']) ? (isset($_POST['front_page_consultation']) ? 'front_page_consultation' : 'consultation_request') : null);
+    
+    if (!$nonce_field || !wp_verify_nonce($_POST[$nonce_field], $nonce_action)) {
         return;
     }
 
@@ -163,12 +191,12 @@ function crosbyultimateevents_handle_contact_form()
         return; // Spam detected
     }
 
-    // Sanitize and validate input
-    $name = sanitize_text_field($_POST['contact_name'] ?? '');
-    $email = sanitize_email($_POST['contact_email'] ?? '');
-    $phone = sanitize_text_field($_POST['contact_phone'] ?? '');
-    $subject = sanitize_text_field($_POST['contact_subject'] ?? '');
-    $message = sanitize_textarea_field($_POST['contact_message'] ?? '');
+    // Sanitize and validate input (handle both contact and consultation forms)
+    $name = sanitize_text_field($_POST['contact_name'] ?? $_POST['name'] ?? $_POST['first_name'] . ' ' . ($_POST['last_name'] ?? ''));
+    $email = sanitize_email($_POST['contact_email'] ?? $_POST['email'] ?? '');
+    $phone = sanitize_text_field($_POST['contact_phone'] ?? $_POST['phone'] ?? '');
+    $subject = sanitize_text_field($_POST['contact_subject'] ?? $_POST['event_type'] ?? '');
+    $message = sanitize_textarea_field($_POST['contact_message'] ?? $_POST['message'] ?? '');
 
     // Validation
     $errors = array();
@@ -256,3 +284,52 @@ add_action('after_switch_theme', 'crosbyultimateevents_create_blog_page');
  * Include A/B Test Functionality
  */
 require_once get_template_directory() . '/ab-test-hero-headline.php';
+
+/**
+ * Fix Text Rendering Issues
+ * Ensures proper word spacing and prevents text corruption
+ */
+function crosbyultimateevents_fix_text_rendering($content) {
+    // Fix common text rendering issues
+    $fixes = array(
+        // Fix missing spaces (if any exist in content)
+        '/cro\s+byultimateevent/i' => 'crosbyultimateevents',
+        '/Con\s+ultation/i' => 'Consultation',
+        '/ervice\s+/i' => 'service ',
+        '/comprehen\s+ive/i' => 'comprehensive',
+        '/occa\s+ion/i' => 'occasion',
+        '/di\s+cu\s+/i' => 'discuss ',
+        '/re\s+pond/i' => 'respond',
+        '/chedule/i' => 'schedule',
+        '/hour\s+/i' => 'hours ',
+        '/tarted/i' => 'started',
+        '/vi\s+ion/i' => 'vision',
+        '/Flawle\s+/i' => 'Flawless',
+        '/Re\s+triction/i' => 'Restriction',
+        '/Partie\s+/i' => 'Parties',
+        '/cu\s+tom/i' => 'custom',
+        '/cla\s+e/i' => 'class',
+        '/cour\s+e/i' => 'course',
+    );
+    
+    // Only apply fixes if broken patterns are found (to avoid over-processing)
+    $has_issues = false;
+    foreach (array_keys($fixes) as $pattern) {
+        if (preg_match($pattern, $content)) {
+            $has_issues = true;
+            break;
+        }
+    }
+    
+    if ($has_issues) {
+        foreach ($fixes as $pattern => $replacement) {
+            $content = preg_replace($pattern, $replacement, $content);
+        }
+    }
+    
+    return $content;
+}
+// Apply to content with high priority to run after other filters
+add_filter('the_content', 'crosbyultimateevents_fix_text_rendering', 999);
+add_filter('the_title', 'crosbyultimateevents_fix_text_rendering', 999);
+add_filter('bloginfo', 'crosbyultimateevents_fix_text_rendering', 999);

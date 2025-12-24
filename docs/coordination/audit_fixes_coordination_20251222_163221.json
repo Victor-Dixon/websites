@@ -1,0 +1,216 @@
+{
+  "timestamp": "2025-12-22T16:32:21.478812",
+  "audit_report": "D:\\websites\\docs\\audit_reports\\comprehensive_audit_20251222_162525.json",
+  "summary": {
+    "healthy": 7,
+    "needs_improvement": 0,
+    "needs_attention": 3,
+    "critical": 1
+  },
+  "agent_assignments": {
+    "Agent-7": {
+      "total_issues": 11,
+      "sites_affected": 3,
+      "priority": "HIGH",
+      "issues": [
+        {
+          "site": "ariajet.site",
+          "issue": {
+            "severity": "HIGH",
+            "category": "SEO",
+            "issue": "Missing meta description"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "ariajet.site",
+          "issue": {
+            "severity": "MEDIUM",
+            "category": "SEO",
+            "issue": "Title tag length suboptimal (14 chars, target: 30-60)"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "ariajet.site",
+          "issue": {
+            "severity": "HIGH",
+            "category": "Content",
+            "issue": "CSS may be hiding content (display:none, visibility:hidden, opacity:0)"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "dadudekc.com",
+          "issue": {
+            "severity": "HIGH",
+            "category": "SEO",
+            "issue": "Missing meta description"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "dadudekc.com",
+          "issue": {
+            "severity": "MEDIUM",
+            "category": "SEO",
+            "issue": "Title tag length suboptimal (12 chars, target: 30-60)"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "dadudekc.com",
+          "issue": {
+            "severity": "MEDIUM",
+            "category": "Performance",
+            "issue": "Slow response time (11.72s, target: <3s)"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "dadudekc.com",
+          "issue": {
+            "severity": "HIGH",
+            "category": "Content",
+            "issue": "CSS may be hiding content (display:none, visibility:hidden, opacity:0)"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "houstonsipqueen.com",
+          "issue": {
+            "severity": "HIGH",
+            "category": "SEO",
+            "issue": "Missing meta description"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "houstonsipqueen.com",
+          "issue": {
+            "severity": "MEDIUM",
+            "category": "SEO",
+            "issue": "Title tag length suboptimal (19 chars, target: 30-60)"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "houstonsipqueen.com",
+          "issue": {
+            "severity": "MEDIUM",
+            "category": "SEO",
+            "issue": "Multiple H1 headings (2, should be 1)"
+          },
+          "status": "NEEDS_ATTENTION"
+        }
+      ]
+    },
+    "Agent-1": {
+      "total_issues": 1,
+      "sites_affected": 1,
+      "priority": "HIGH",
+      "issues": [
+        {
+          "site": "southwestsecret.com",
+          "issue": {
+            "severity": "CRITICAL",
+            "category": "Health",
+            "issue": "Site is DOWN - Unknown error"
+          },
+          "status": "CRITICAL"
+        }
+      ]
+    },
+    "Agent-3": {
+      "total_issues": 3,
+      "sites_affected": 3,
+      "priority": "MEDIUM",
+      "issues": [
+        {
+          "site": "ariajet.site",
+          "issue": {
+            "severity": "HIGH",
+            "category": "Security",
+            "issue": "Missing Strict-Transport-Security header"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "dadudekc.com",
+          "issue": {
+            "severity": "HIGH",
+            "category": "Security",
+            "issue": "Missing Strict-Transport-Security header"
+          },
+          "status": "NEEDS_ATTENTION"
+        },
+        {
+          "site": "houstonsipqueen.com",
+          "issue": {
+            "severity": "HIGH",
+            "category": "Security",
+            "issue": "Missing Strict-Transport-Security header"
+          },
+          "status": "NEEDS_ATTENTION"
+        }
+      ]
+    },
+    "Agent-8": {
+      "total_issues": 1,
+      "sites_affected": 1,
+      "priority": "HIGH",
+      "issues": [
+        {
+          "site": "southwestsecret.com",
+          "issue": {
+            "severity": "CRITICAL",
+            "category": "Health",
+            "issue": "Site is DOWN - Unknown error"
+          },
+          "status": "CRITICAL"
+        }
+      ]
+    }
+  },
+  "priority_actions": [
+    {
+      "priority": "CRITICAL",
+      "site": "southwestsecret.com",
+      "action": "Fix CRITICAL issues immediately",
+      "agents": [
+        "Agent-1",
+        "Agent-7",
+        "Agent-8"
+      ],
+      "issues": [
+        "Site is DOWN - Unknown error"
+      ]
+    }
+  ],
+  "coordination_needs": [
+    {
+      "type": "BATCH_FIX",
+      "category": "SEO",
+      "count": 19,
+      "agent": "Agent-7",
+      "action": "Batch fix SEO issues (meta descriptions, title tags, H1 headings)"
+    },
+    {
+      "type": "BATCH_FIX",
+      "category": "Security",
+      "count": 10,
+      "agent": "Agent-3",
+      "action": "Add missing security headers (HSTS, X-Frame-Options, etc.)"
+    },
+    {
+      "type": "IMMEDIATE",
+      "category": "Content",
+      "count": 5,
+      "agents": [
+        "Agent-7",
+        "Agent-8"
+      ],
+      "action": "Investigate and fix empty content areas"
+    }
+  ]
+}

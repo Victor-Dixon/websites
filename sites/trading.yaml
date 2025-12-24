@@ -1,0 +1,16 @@
+site_id: trading
+domain: tradingrobotplug.com
+voice_profile: content/voices/victor.md
+brand_profile: content/brands/trading.yaml
+backlog: content/backlogs/trading.yaml
+calendar: content/calendars/trading.yaml
+examples_glob: content/examples/victor/*.md
+publish:
+  provider: wordpress
+  wp_base_url_env: TRADING_WP_URL
+  wp_user_env: TRADING_WP_USER
+  wp_app_password_env: TRADING_WP_APP_PASS
+defaults:
+  word_count_min: 800
+  word_count_max: 1200
+  auto_publish: false

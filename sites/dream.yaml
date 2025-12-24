@@ -1,0 +1,16 @@
+site_id: dream
+domain: digitaldreamscape.site
+voice_profile: content/voices/victor.md
+brand_profile: content/brands/dream.yaml
+backlog: content/backlogs/dream.yaml
+calendar: content/calendars/dream.yaml
+examples_glob: content/examples/victor/*.md
+publish:
+  provider: wordpress
+  wp_base_url_env: DREAM_WP_URL
+  wp_user_env: DREAM_WP_USER
+  wp_app_password_env: DREAM_WP_APP_PASS
+defaults:
+  word_count_min: 1200
+  word_count_max: 1800
+  auto_publish: false

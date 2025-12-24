@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Carmyn - Featured DJ on SouthWest Secret">
+    <title>Carmyn - SouthWest Secret</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Permanent+Marker&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+    <style>
+        /* Carmyn Page - Purple Theme (Matching Aria's Theme) */
+        /* Color Palette: #a855f7 (primary purple), #000000 (black), #fcd34d (gold accent) */
+        
+        body {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .carmyn-page {
+            padding-top: 80px;
+        }
+
+        /* Hero Section */
+        .carmyn-hero {
+            background: linear-gradient(135deg, #1a0033 0%, #000000 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid #a855f7;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+        }
+
+        .carmyn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .carmyn-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(4rem, 20vw, 12rem);
+            color: #a855f7;
+            text-shadow: 0 0 20px #a855f7, 0 0 40px #a855f7, 0 0 60px rgba(168, 85, 247, 0.8);
+            margin: 0;
+            animation: carmyn-glow 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 5px;
+        }
+
+        @keyframes carmyn-glow {
+            0%, 100% {
+                text-shadow: 0 0 20px #a855f7, 0 0 40px #a855f7, 0 0 60px rgba(168, 85, 247, 0.8);
+            }
+            50% {
+                text-shadow: 0 0 30px #a855f7, 0 0 60px #a855f7, 0 0 90px rgba(168, 85, 247, 1);
+            }
+        }
+
+        .carmyn-hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #ffffff;
+            margin-top: 1rem;
+            opacity: 0.9;
+            font-family: 'Rubik Bubbles', cursive;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Music Section */
+        .carmyn-music {
+            background: #000000;
+            padding: 4rem 2rem;
+            border-top: 2px solid #a855f7;
+            border-bottom: 2px solid #a855f7;
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+        }
+
+        .music-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: #a855f7;
+            text-shadow: 0 0 15px #a855f7;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .music-styles {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .music-styles p {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .style-badge {
+            background: rgba(168, 85, 247, 0.1);
+            border: 2px solid #a855f7;
+            color: #a855f7;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .style-badge:hover {
+            background: rgba(168, 85, 247, 0.2);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .style-badge.gold {
+            border-color: #fcd34d;
+            color: #fcd34d;
+            box-shadow: 0 0 15px rgba(252, 211, 77, 0.3);
+        }
+
+        .style-badge.gold:hover {
+            box-shadow: 0 0 25px rgba(252, 211, 77, 0.6);
+        }
+
+        /* About Section */
+        .carmyn-about {
+            background: linear-gradient(135deg, #000000 0%, #1a0033 100%);
+            padding: 4rem 2rem;
+            border-top: 2px solid #a855f7;
+            border-bottom: 2px solid #a855f7;
+        }
+
+        .about-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: #a855f7;
+            text-shadow: 0 0 15px #a855f7;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            line-height: 1.8;
+            color: #ffffff;
+            font-style: italic;
+            padding: 2rem;
+            background: rgba(168, 85, 247, 0.05);
+            border-left: 4px solid #a855f7;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
+        }
+
+        .about-text strong {
+            color: #a855f7;
+            text-shadow: 0 0 10px #a855f7;
+        }
+
+        .about-text .gold {
+            color: #fcd34d;
+            text-shadow: 0 0 10px #fcd34d;
+        }
+
+        .btn-subscribe {
+            display: inline-block;
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            color: #000000;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #a855f7;
+        }
+
+        .btn-subscribe:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+            background: linear-gradient(135deg, #9333ea, #a855f7);
+        }
+
+        /* Contact Section */
+        .carmyn-contact {
+            background: #000000;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: #a855f7;
+            text-shadow: 0 0 15px #a855f7;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Music Player Controls - Purple Theme */
+        #musicControls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+
+        #playBtn {
+            background: rgba(168, 85, 247, 0.2);
+            border: 3px solid #a855f7;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.5), inset 0 0 10px rgba(168, 85, 247, 0.2);
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Rubik Bubbles', cursive;
+            transition: all 0.3s ease;
+        }
+
+        #playBtn:hover {
+            background: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.8), inset 0 0 15px rgba(168, 85, 247, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Navigation Purple Links */
+        .nav-menu a {
+            color: #a855f7;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #fcd34d;
+            text-shadow: 0 0 10px #fcd34d;
+        }
+
+        @media (max-width: 768px) {
+            .style-badge {
+                display: block;
+                width: fit-content;
+                margin: 8px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <a href="home.html"><img src="assets/images/logo.svg" alt="SouthWest Secret Logo" class="header-logo"></a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="#music">Music</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="aria.html">Aria</a></li>
+                    <li><a href="carmyn.html">Carmyn</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="carmyn-page">
+        <!-- Hero Section -->
+        <section class="carmyn-hero" id="home">
+            <div class="container">
+                <h1 class="carmyn-title">CARMYN</h1>
+                <p class="carmyn-hero-subtitle">Featured DJ</p>
+            </div>
+        </section>
+
+        <!-- Music Section -->
+        <section class="carmyn-music" id="music">
+            <div class="container">
+                <h2 class="music-title">Music</h2>
+                <div class="music-styles">
+                    <p>Music Styles</p>
+                    <div>
+                        <span class="style-badge">🎵 R&B</span>
+                        <span class="style-badge">💃 Dance</span>
+                        <span class="style-badge">🎷 Jazz</span>
+                        <span class="style-badge gold">🌟 Still Learning - Help me get better!</span>
+                    </div>
+                </div>
+                <div style="margin-top: 3rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+                    <div style="background: #000000; border: 2px solid #a855f7; border-radius: 15px; padding: 2rem; box-shadow: 0 0 40px rgba(168, 85, 247, 0.3), inset 0 0 30px rgba(168, 85, 247, 0.1);">
+                        <iframe 
+                            width="100%" 
+                            height="400" 
+                            src="https://www.youtube.com/embed/yWiKGctibjk?si=GIYVJK-5L3oLQ1AE" 
+                            title="Carmyn - Featured Song" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 10px; border: 2px solid #a855f7; box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="carmyn-about" id="about">
+            <div class="container">
+                <h2 class="about-title">About Carmyn</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        Welcome to <strong>Carmyn's</strong> space on SouthWest Secret!<br><br>
+                        I'm a DJ specializing in <strong>R&B</strong>, <strong>Dance</strong>, and <strong class="gold">Jazz</strong> music. 
+                        I'm still learning and growing as an artist, so I'd love your help getting better!<br><br>
+                        Check back soon for mixes and updates!
+                    </p>
+                    <div class="website-link" style="margin-top: 30px;">
+                        <a href="home.html" class="btn-subscribe">
+                            Visit SouthWest Secret
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="carmyn-contact" id="contact">
+            <div class="container">
+                <h2 class="contact-title">Stay Connected</h2>
+                <div class="contact-content">
+                    <p style="color: #ffffff; font-size: 1.2em; margin-bottom: 2rem;">Subscribe to SouthWest Secret for the latest mixes!</p>
+                    <a href="https://www.youtube.com/@SouthWestSecret" target="_blank" class="btn-subscribe">
+                        Subscribe Now
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SouthWest Secret. All Rights Reserved.</p>
+            <p class="footer-tagline">Keeping the Screwed Sound Alive</p>
+        </div>
+    </footer>
+
+    <!-- Music Player Controls -->
+    <div id="musicControls">
+        <button id="playBtn">Play Lofi Music</button>
+    </div>
+
+    <!-- Hidden YouTube Player -->
+    <div id="ytplayer" style="width:1px; height:1px; position:absolute; left:-9999px;"></div>
+
+    <script src="js/script.js"></script>
+    
+    <!-- YouTube Music Player Script -->
+    <script>
+        var tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player("ytplayer", {
+                videoId: "sF80I-TQiW0",
+                playerVars: { autoplay: 1, mute: 1, loop: 1, playlist: "sF80I-TQiW0" }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            document.getElementById("playBtn").onclick = function(){
+                player.unMute();
+                player.playVideo();
+                this.textContent = "Pause Music";
+                this.onclick = function(){
+                    if(player.getPlayerState() === 1){
+                        player.pauseVideo();
+                        this.textContent = "Play Lofi Music";
+                    } else {
+                        player.playVideo();
+                        player.unMute();
+                        this.textContent = "Pause Music";
+                    }
+                };
+            };
+        });
+    </script>
+</body>
+</html>

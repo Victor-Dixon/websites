@@ -644,3 +644,20 @@ a:hover {
     color: var(--text-secondary);
     text-decoration: underline;
 }
+
+
+/* Text Rendering Fixes - Agent-5 */
+.text-rendering-fix {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    font-variant-ligatures: none !important;
+    font-feature-settings: normal !important;
+}
+
+body, p, h1, h2, h3, h4, h5, h6, a, span, div, li, td, th {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    font-variant-ligatures: none !important;
+}

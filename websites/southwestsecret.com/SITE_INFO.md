@@ -5,6 +5,12 @@
 - **primary_owner**: Victor
 - **notes**: Event-driven updates only
 
+### What is Southwest Secret?
+
+See **[WHAT_IS_SOUTHWESTSECRET.md](./WHAT_IS_SOUTHWESTSECRET.md)** for the full description.
+
+**TL;DR**: A music and entertainment bookings platform that connects event organizers with performers and musicians. Updates are event-driven only.
+
 ### Current source locations
 
 - ✅ **Canonical theme**: `websites/southwestsecret.com/wp/wp-content/themes/southwestsecret/` (MIGRATED 2025-12-20)

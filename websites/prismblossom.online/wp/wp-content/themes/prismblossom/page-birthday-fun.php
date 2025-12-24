@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Birthday Fun
  * 
@@ -31,16 +32,45 @@ get_header();
         <!-- Birthday Images Gallery -->
         <div class="birthday-gallery" style="margin: 40px 0; padding: 30px; background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 15px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
             <h2 style="color: #FFD700; text-shadow: 0 0 10px #FFD700; margin-bottom: 20px;">📸 Birthday Memories</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
-                <div class="gallery-item" style="background: rgba(0, 0, 0, 0.6); border: 2px solid #FFD700; border-radius: 10px; padding: 20px; text-align: center; min-height: 200px; display: flex; align-items: center; justify-content: center;">
-                    <p style="color: #FFD700; text-shadow: 0 0 5px #FFD700;">[Birthday Image 1]<br><small style="opacity: 0.7;">Click to add image</small></p>
+
+            <!-- Upload Button -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <input type="file" id="gallery-upload-input" accept="image/*,video/*" multiple style="display: none;" onchange="if(this.files && this.files.length > 0 && window.processGalleryFiles) { window.processGalleryFiles(this.files); this.value=''; }">
+                <button id="upload-btn" type="button" onclick="var input = document.getElementById('gallery-upload-input'); if(input) input.click(); else alert('File upload not available');" style="background: rgba(0, 0, 0, 0.6); border: 2px solid #FFD700; color: #FFD700; padding: 15px 40px; border-radius: 25px; cursor: pointer; font-size: 18px; font-weight: bold; text-shadow: 0 0 5px #FFD700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); transition: all 0.3s ease;">
+                    📷 Add Photos & Videos
+                </button>
+                <p style="color: #FFD700; opacity: 0.8; margin-top: 15px; font-size: 0.9rem;">Select multiple photos and videos at once (Max 10MB each)</p>
+                <div id="upload-status" style="margin-top: 10px; color: #FFD700; font-size: 0.9rem;"></div>
+            </div>
+
+            <!-- Slideshow Gallery -->
+            <div id="gallery-slideshow" class="gallery-slideshow" style="display: none; position: relative; max-width: 800px; margin: 0 auto; min-height: 500px; background: rgba(0, 0, 0, 0.9); border: 2px solid #FFD700; border-radius: 15px; overflow: hidden;">
+                <!-- Navigation Arrows -->
+                <button class="gallery-nav gallery-prev" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(255, 215, 0, 0.8); border: 2px solid #FFD700; color: #000; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 24px; font-weight: bold; z-index: 100; transition: all 0.3s ease;">‹</button>
+                <button class="gallery-nav gallery-next" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(255, 215, 0, 0.8); border: 2px solid #FFD700; color: #000; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 24px; font-weight: bold; z-index: 100; transition: all 0.3s ease;">›</button>
+
+                <!-- Gallery Items Container -->
+                <div id="gallery-items-container" style="position: relative; width: 100%; height: 500px; display: flex; align-items: center; justify-content: center;">
+                    <!-- Items will be inserted here -->
                 </div>
-                <div class="gallery-item" style="background: rgba(0, 0, 0, 0.6); border: 2px solid #FFD700; border-radius: 10px; padding: 20px; text-align: center; min-height: 200px; display: flex; align-items: center; justify-content: center;">
-                    <p style="color: #FFD700; text-shadow: 0 0 5px #FFD700;">[Birthday Image 2]<br><small style="opacity: 0.7;">Click to add image</small></p>
+
+                <!-- Gallery Thumbnails -->
+                <div id="gallery-thumbnails" style="display: flex; gap: 10px; padding: 15px; overflow-x: auto; background: rgba(0, 0, 0, 0.7); justify-content: center; align-items: center;">
+                    <!-- Thumbnails will be inserted here -->
                 </div>
-                <div class="gallery-item" style="background: rgba(0, 0, 0, 0.6); border: 2px solid #FFD700; border-radius: 10px; padding: 20px; text-align: center; min-height: 200px; display: flex; align-items: center; justify-content: center;">
-                    <p style="color: #FFD700; text-shadow: 0 0 5px #FFD700;">[Birthday Image 3]<br><small style="opacity: 0.7;">Click to add image</small></p>
+
+                <!-- Counter -->
+                <div class="gallery-counter" style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.8); color: #FFD700; padding: 8px 15px; border-radius: 20px; font-size: 14px; z-index: 50;">
+                    <span id="current-index">1</span> / <span id="total-count">0</span>
                 </div>
+
+                <!-- Remove All Button -->
+                <button id="clear-all-btn" style="position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.8); border: 2px solid #ff0000; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px; z-index: 100; transition: all 0.3s ease;">Clear All</button>
+            </div>
+
+            <!-- Empty State -->
+            <div id="gallery-empty" style="text-align: center; padding: 40px; color: #FFD700; opacity: 0.7;">
+                <p style="font-size: 1.2rem;">No photos or videos added yet. Click the button above to add some memories! 📸</p>
             </div>
         </div>
 
@@ -93,6 +123,11 @@ get_header();
     </div>
 </section>
 
+<script>
+    // Global function for file processing - will be set up after DOM loads
+    window.processGalleryFiles = null; // Placeholder, will be defined in DOMContentLoaded
+</script>
+
 <style>
 .birthday-fun-section {
     padding: 120px 0 60px;
@@ -127,8 +162,15 @@ get_header();
 }
 
 @keyframes catBounce {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-20px) scale(1.1); }
+
+        0%,
+        100% {
+            transform: translateY(0) scale(1);
+        }
+
+        50% {
+            transform: translateY(-20px) scale(1.1);
+        }
 }
 
 .cat-body {
@@ -198,8 +240,16 @@ get_header();
 }
 
 @keyframes blink {
-    0%, 90%, 100% { height: 20px; }
-    95% { height: 2px; }
+
+        0%,
+        90%,
+        100% {
+            height: 20px;
+        }
+
+        95% {
+            height: 2px;
+        }
 }
 
 .pupil {
@@ -351,8 +401,45 @@ get_header();
 }
 
 @keyframes messagePop {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .gallery-thumbnail {
+        cursor: pointer;
+        opacity: 0.6;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        border-radius: 5px;
+    }
+
+    .gallery-thumbnail:hover {
+        opacity: 0.8;
+        border-color: #FFD700;
+    }
+
+    .gallery-thumbnail.active {
+        opacity: 1;
+        border-color: #FFD700;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    }
+
+    #gallery-items-container img,
+    #gallery-items-container video {
+        display: block;
+        margin: 0 auto;
+    }
+
+    #upload-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
 }
 
 @media (max-width: 768px) {
@@ -408,7 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function playSound() {
         // Create a simple beep sound using Web Audio API
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const audioContext = new(window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
         
@@ -475,44 +562,120 @@ document.addEventListener('DOMContentLoaded', function() {
     const goldenSparklesBtn = document.getElementById('golden-sparkles');
     const birthdaySongBtn = document.getElementById('birthday-song');
     
-    if (confettiBurstBtn) {
-        confettiBurstBtn.addEventListener('click', function() {
-            // Create massive confetti burst
-            for (let i = 0; i < 100; i++) {
-                setTimeout(() => {
-                    createConfetti();
-                }, i * 10);
+        // Enhanced confetti burst function
+        function createConfettiBurst() {
+            if (!confettiContainer) {
+                console.error('Confetti container not found!');
+                return;
             }
+
+            // Create massive confetti burst
+            const colors = ['#FFD700', '#FFA500', '#FFD700', '#FFA500', '#FFFF00', '#FFD700'];
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.position = 'absolute';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = (Math.random() * 8 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 8 + 5) + 'px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.boxShadow = '0 0 10px ' + colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+                    confetti.style.animationDelay = (Math.random() * 0.3) + 's';
+                    confetti.style.animation = 'confettiFall linear forwards';
+                    confettiContainer.appendChild(confetti);
+
+                    setTimeout(() => {
+                        if (confetti.parentNode) {
+                            confetti.remove();
+                        }
+                    }, 3500);
+                }, i * 5);
+            }
+        }
+
+        if (confettiBurstBtn) {
+            confettiBurstBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Confetti burst clicked!');
+                createConfettiBurst();
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = 'scale(1)';
             }, 100);
         });
-    }
-    
-    if (goldenSparklesBtn) {
-        goldenSparklesBtn.addEventListener('click', function() {
-            // Create golden sparkles effect
-            const sparklesContainer = document.getElementById('confetti-container');
-            for (let i = 0; i < 30; i++) {
+        } else {
+            console.error('Confetti burst button not found!');
+        }
+
+        // Enhanced golden sparkles function
+        function createGoldenSparkles() {
+            if (!confettiContainer) {
+                console.error('Confetti container not found!');
+                return;
+            }
+
+            // Create golden sparkles effect from multiple points
+            const sparkleCount = 50;
+            for (let i = 0; i < sparkleCount; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.style.position = 'absolute';
-                sparkle.style.width = '5px';
-                sparkle.style.height = '5px';
+                sparkle.style.width = (Math.random() * 6 + 4) + 'px';
+                sparkle.style.height = (Math.random() * 6 + 4) + 'px';
                 sparkle.style.background = '#FFD700';
                 sparkle.style.borderRadius = '50%';
-                sparkle.style.boxShadow = '0 0 10px #FFD700';
+                sparkle.style.boxShadow = '0 0 15px #FFD700, 0 0 25px #FFD700';
                 sparkle.style.left = Math.random() * 100 + '%';
                 sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.animation = 'confettiFall 2s linear forwards';
-                sparklesContainer.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 2000);
+                sparkle.style.animation = 'confettiFall 3s linear forwards';
+                sparkle.style.animationDelay = (Math.random() * 0.5) + 's';
+                sparkle.style.zIndex = '1000';
+                confettiContainer.appendChild(sparkle);
+
+                // Create additional smaller sparkles
+                setTimeout(() => {
+                    const miniSparkle = document.createElement('div');
+                    miniSparkle.style.position = 'absolute';
+                    miniSparkle.style.width = '3px';
+                    miniSparkle.style.height = '3px';
+                    miniSparkle.style.background = '#FFD700';
+                    miniSparkle.style.borderRadius = '50%';
+                    miniSparkle.style.boxShadow = '0 0 10px #FFD700';
+                    miniSparkle.style.left = sparkle.style.left;
+                    miniSparkle.style.top = sparkle.style.top;
+                    miniSparkle.style.animation = 'confettiFall 2s linear forwards';
+                    miniSparkle.style.opacity = '0.8';
+                    confettiContainer.appendChild(miniSparkle);
+
+                    setTimeout(() => {
+                        if (miniSparkle.parentNode) miniSparkle.remove();
+                    }, 2000);
+                }, i * 30);
+
+                setTimeout(() => {
+                    if (sparkle.parentNode) {
+                        sparkle.remove();
+                    }
+                }, 3000);
             }
+        }
+
+        if (goldenSparklesBtn) {
+            goldenSparklesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Golden sparkles clicked!');
+                createGoldenSparkles();
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = 'scale(1)';
             }, 100);
         });
+        } else {
+            console.error('Golden sparkles button not found!');
     }
     
     if (birthdaySongBtn) {
@@ -522,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
             notes.forEach((freq, index) => {
                 setTimeout(() => {
                     try {
-                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                            const audioContext = new(window.AudioContext || window.webkitAudioContext)();
                         const oscillator = audioContext.createOscillator();
                         const gainNode = audioContext.createGain();
                         
@@ -549,19 +712,419 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Gallery item click handlers
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', function() {
-            this.style.borderColor = '#FFA500';
-            this.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.8)';
-            setTimeout(() => {
-                this.style.borderColor = '#FFD700';
-                this.style.boxShadow = 'none';
-            }, 500);
+        // Slideshow Gallery Functionality
+        let galleryItems = [];
+        let currentIndex = 0;
+
+        const uploadInput = document.getElementById('gallery-upload-input');
+        const slideshow = document.getElementById('gallery-slideshow');
+        const emptyState = document.getElementById('gallery-empty');
+        const itemsContainer = document.getElementById('gallery-items-container');
+        const thumbnailsContainer = document.getElementById('gallery-thumbnails');
+        const prevBtn = document.querySelector('.gallery-prev');
+        const nextBtn = document.querySelector('.gallery-next');
+        const currentIndexSpan = document.getElementById('current-index');
+        const totalCountSpan = document.getElementById('total-count');
+        const clearAllBtn = document.getElementById('clear-all-btn');
+
+        console.log('Gallery elements initialized:', {
+            uploadInput: !!uploadInput,
+            slideshow: !!slideshow,
+            emptyState: !!emptyState
         });
-    });
+
+        // Load saved gallery from localStorage
+        function loadGallery() {
+            const saved = localStorage.getItem('birthday_gallery_slideshow');
+            if (saved) {
+                try {
+                    galleryItems = JSON.parse(saved);
+                    if (galleryItems.length > 0) {
+                        renderGallery();
+                    }
+                } catch (e) {
+                    console.error('Error loading gallery:', e);
+                }
+            }
+        }
+
+        // Save gallery to localStorage
+        function saveGallery() {
+            localStorage.setItem('birthday_gallery_slideshow', JSON.stringify(galleryItems));
+        }
+
+        // Render the entire gallery
+        function renderGallery() {
+            if (galleryItems.length === 0) {
+                slideshow.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            slideshow.style.display = 'block';
+            emptyState.style.display = 'none';
+
+            // Clear containers
+            itemsContainer.innerHTML = '';
+            thumbnailsContainer.innerHTML = '';
+
+            // Render main slideshow items
+            galleryItems.forEach((item, index) => {
+                const mediaElement = createMediaElement(item.data, item.type, 'main');
+                mediaElement.style.display = index === currentIndex ? 'block' : 'none';
+                mediaElement.dataset.index = index;
+                itemsContainer.appendChild(mediaElement);
+
+                // Create thumbnail
+                const thumbnail = createMediaElement(item.data, item.type, 'thumbnail');
+                thumbnail.classList.add('gallery-thumbnail');
+                thumbnail.dataset.index = index;
+                thumbnail.addEventListener('click', () => goToSlide(index));
+                if (index === currentIndex) {
+                    thumbnail.classList.add('active');
+                }
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+
+            updateCounter();
+            updateNavigation();
+        }
+
+        // Create media element (image or video)
+        function createMediaElement(dataUrl, type, size) {
+            let element;
+            if (type === 'video') {
+                element = document.createElement('video');
+                element.controls = true;
+                element.style.maxWidth = size === 'main' ? '100%' : '100px';
+                element.style.maxHeight = size === 'main' ? '500px' : '80px';
+                element.style.objectFit = 'contain';
+            } else {
+                element = document.createElement('img');
+                element.style.maxWidth = size === 'main' ? '100%' : '100px';
+                element.style.maxHeight = size === 'main' ? '500px' : '80px';
+                element.style.objectFit = 'contain';
+            }
+            element.src = dataUrl;
+            element.style.borderRadius = '10px';
+            element.style.margin = size === 'main' ? 'auto' : '0 5px';
+            return element;
+        }
+
+        // Navigate to specific slide
+        function goToSlide(index) {
+            if (index < 0 || index >= galleryItems.length) return;
+
+            currentIndex = index;
+
+            // Update main display
+            itemsContainer.querySelectorAll('img, video').forEach((el, i) => {
+                el.style.display = i === currentIndex ? 'block' : 'none';
+            });
+
+            // Update thumbnails
+            thumbnailsContainer.querySelectorAll('.gallery-thumbnail').forEach((el, i) => {
+                if (i === currentIndex) {
+                    el.classList.add('active');
+                } else {
+                    el.classList.remove('active');
+                }
+            });
+
+            updateCounter();
+            updateNavigation();
+        }
+
+        // Update counter
+        function updateCounter() {
+            currentIndexSpan.textContent = currentIndex + 1;
+            totalCountSpan.textContent = galleryItems.length;
+        }
+
+        // Update navigation buttons
+        function updateNavigation() {
+            if (prevBtn) {
+                prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                prevBtn.style.cursor = currentIndex === 0 ? 'not-allowed' : 'pointer';
+            }
+            if (nextBtn) {
+                nextBtn.style.opacity = currentIndex === galleryItems.length - 1 ? '0.5' : '1';
+                nextBtn.style.cursor = currentIndex === galleryItems.length - 1 ? 'not-allowed' : 'pointer';
+            }
+        }
+
+        // Next slide
+        function nextSlide() {
+            if (currentIndex < galleryItems.length - 1) {
+                goToSlide(currentIndex + 1);
+            }
+        }
+
+        // Previous slide
+        function prevSlide() {
+            if (currentIndex > 0) {
+                goToSlide(currentIndex - 1);
+            }
+        }
+
+        // Upload button click handler - keep inline onclick as backup
+        const uploadBtn = document.getElementById('upload-btn');
+        const uploadStatus = document.getElementById('upload-status');
+
+        if (uploadBtn) {
+            // Keep inline onclick AND add event listener for better compatibility
+            uploadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Upload button clicked (event listener)!');
+
+                const input = document.getElementById('gallery-upload-input');
+                if (input) {
+                    console.log('Triggering file input click');
+                    input.click();
+                } else {
+                    console.error('Upload input not found!');
+                    alert('Error: File upload not available. Please refresh the page.');
+                }
+            });
+
+            console.log('Upload button handler attached');
+        } else {
+            console.error('Upload button not found!');
+            if (uploadStatus) {
+                uploadStatus.textContent = 'Error: Upload button not found. Please refresh.';
+                uploadStatus.style.color = '#ff0000';
+            }
+        }
+
+        // Create global file processing function
+        function processGalleryFiles(filesArray) {
+            const files = Array.from(filesArray);
+            console.log('processGalleryFiles called - Files:', files.length);
+
+            if (files.length === 0) {
+                console.log('No files selected');
+                return;
+            }
+
+            if (uploadStatus) {
+                uploadStatus.textContent = `Uploading ${files.length} file(s)...`;
+                uploadStatus.style.color = '#FFD700';
+            }
+
+            let processed = 0;
+            let skipped = 0;
+            const newItems = [];
+
+            files.forEach((file, fileIndex) => {
+                console.log(`Processing file ${fileIndex + 1}/${files.length}:`, file.name, file.type, file.size);
+
+                // Check file size
+                if (file.size > 10 * 1024 * 1024) {
+                    alert(`File "${file.name}" is too large! Max size is 10MB.`);
+                    skipped++;
+                    processed++;
+                    if (processed === files.length) {
+                        finishUpload(newItems, files.length, skipped);
+                    }
+                    return;
+                }
+
+                // Validate file type
+                if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+                    alert(`File "${file.name}" is not a valid image or video file.`);
+                    skipped++;
+                    processed++;
+                    if (processed === files.length) {
+                        finishUpload(newItems, files.length, skipped);
+                    }
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    console.log('File read successfully:', file.name);
+                    newItems.push({
+                        data: event.target.result,
+                        type: file.type.startsWith('video/') ? 'video' : 'img',
+                        name: file.name
+                    });
+
+                    processed++;
+                    if (uploadStatus) {
+                        uploadStatus.textContent = `Processing ${processed}/${files.length}...`;
+                    }
+
+                    if (processed === files.length) {
+                        finishUpload(newItems, files.length, skipped);
+                    }
+                };
+
+                reader.onerror = function(error) {
+                    console.error('Error reading file:', file.name, error);
+                    alert(`Error reading file: ${file.name}`);
+                    skipped++;
+                    processed++;
+                    if (processed === files.length) {
+                        finishUpload(newItems, files.length, skipped);
+                    }
+                };
+
+                reader.onprogress = function(e) {
+                    if (e.lengthComputable) {
+                        const percentLoaded = Math.round((e.loaded / e.total) * 100);
+                        console.log(`Loading ${file.name}: ${percentLoaded}%`);
+                    }
+                };
+
+                try {
+                    reader.readAsDataURL(file);
+                } catch (error) {
+                    console.error('Error reading file as data URL:', error);
+                    alert(`Error reading file: ${file.name}`);
+                    skipped++;
+                    processed++;
+                    if (processed === files.length) {
+                        finishUpload(newItems, files.length, skipped);
+                    }
+                }
+            });
+
+        }
+
+        // Make function globally accessible for inline handlers
+        window.processGalleryFiles = processGalleryFiles;
+
+        // File upload handler - set up event listener
+        if (uploadInput) {
+            uploadInput.addEventListener('change', function(e) {
+                console.log('File input change event triggered');
+                const files = Array.from(e.target.files);
+                if (files.length > 0) {
+                    processGalleryFiles(files);
+                }
+                // Reset input after processing
+                this.value = '';
+            });
+
+            console.log('File upload handler attached to input');
+        } else {
+            console.error('Upload input element not found!');
+            if (uploadStatus) {
+                uploadStatus.textContent = 'Error: Upload functionality not available. Please refresh the page.';
+                uploadStatus.style.color = '#ff0000';
+            }
+        }
+
+        // Finish upload function
+        function finishUpload(newItems, totalFiles, skipped) {
+            if (newItems.length > 0) {
+                galleryItems = galleryItems.concat(newItems);
+                saveGallery();
+                renderGallery();
+                goToSlide(galleryItems.length - newItems.length);
+
+                console.log('Gallery updated!', galleryItems.length, 'items total');
+
+                if (uploadStatus) {
+                    const successMsg = `${newItems.length} file(s) uploaded successfully!`;
+                    const skipMsg = skipped > 0 ? ` (${skipped} skipped)` : '';
+                    uploadStatus.textContent = successMsg + skipMsg;
+                    uploadStatus.style.color = '#00ff00';
+
+                    setTimeout(() => {
+                        uploadStatus.textContent = '';
+                    }, 3000);
+                }
+            } else {
+                if (uploadStatus) {
+                    uploadStatus.textContent = skipped > 0 ? 'No files were uploaded. Please check file sizes and types.' : 'No files were uploaded.';
+                    uploadStatus.style.color = '#ff0000';
+
+            setTimeout(() => {
+                        uploadStatus.textContent = '';
+                    }, 3000);
+                }
+            }
+        }
+
+        // Navigation buttons
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (currentIndex > 0) {
+                    prevSlide();
+                }
+            });
+
+            prevBtn.addEventListener('mouseenter', function() {
+                if (currentIndex > 0) {
+                    this.style.background = 'rgba(255, 215, 0, 1)';
+                    this.style.transform = 'translateY(-50%) scale(1.1)';
+                }
+            });
+
+            prevBtn.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(255, 215, 0, 0.8)';
+                this.style.transform = 'translateY(-50%) scale(1)';
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (currentIndex < galleryItems.length - 1) {
+                    nextSlide();
+                }
+            });
+
+            nextBtn.addEventListener('mouseenter', function() {
+                if (currentIndex < galleryItems.length - 1) {
+                    this.style.background = 'rgba(255, 215, 0, 1)';
+                    this.style.transform = 'translateY(-50%) scale(1.1)';
+                }
+            });
+
+            nextBtn.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(255, 215, 0, 0.8)';
+                this.style.transform = 'translateY(-50%) scale(1)';
+            });
+        }
+
+        // Clear all button
+        if (clearAllBtn) {
+            clearAllBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to remove all photos and videos?')) {
+                    galleryItems = [];
+                    saveGallery();
+                    renderGallery();
+                }
+            });
+
+            clearAllBtn.addEventListener('mouseenter', function() {
+                this.style.background = 'rgba(255, 0, 0, 1)';
+            });
+
+            clearAllBtn.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(255, 0, 0, 0.8)';
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (slideshow.style.display === 'none') return;
+
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+
+        // Initialize gallery
+        loadGallery();
 });
 </script>
 
 <?php get_footer(); ?>
-

@@ -1,0 +1,62 @@
+# Voice Profiles Index
+# Quick reference for all available voice profiles
+
+profiles:
+  victor:
+    id: "victor_v1"
+    name: "Victor"
+    label: "Builder & Systems Thinker"
+    file: "victor_voice_profile.yaml"
+    chat_style: "Casual, loose grammar, shorthand"
+    blog_style: "Direct, confident, builder energy"
+    best_for: ["Technical content", "Systems thinking", "Builder content"]
+  
+  kiki:
+    id: "kiki_v1"
+    name: "Kiki"
+    label: "Clear, Warm, Decisive"
+    file: "kiki_voice_profile.yaml"
+    chat_style: "Clear, warm, decisive"
+    blog_style: "Clear structure with warm tone"
+    best_for: ["How-to guides", "Supportive content", "Clear instructions"]
+  
+  corey:
+    id: "corey_v1"
+    name: "Corey"
+    label: "Direct, Specific, No Fluff"
+    file: "corey_voice_profile.yaml"
+    chat_style: "Direct, efficient, to the point"
+    blog_style: "Short lines, concrete examples"
+    best_for: ["Quick guides", "Efficient content", "Action-oriented posts"]
+  
+  carmyn:
+    id: "carmyn_v1"
+    name: "Carmyn"
+    label: "Warm, Inviting, Personal"
+    file: "carmyn_voice_profile.yaml"
+    chat_style: "Warm, inviting, personal with emojis"
+    blog_style: "Memories, family, joy - Story → Lesson/Memory → Invitation"
+    best_for: ["Personal stories", "Family content", "Memories and joy", "Warm invitations"]
+  
+  aria:
+    id: "aria_v1"
+    name: "Aria"
+    label: "Creative, Playful, Imaginative"
+    file: "aria_voice_profile.yaml"
+    chat_style: "Creative, playful, imaginative"
+    blog_style: "Games, art, fun with gaming terminology"
+    best_for: ["Gaming content", "Creative projects", "Art and fun content", "Playful engagement"]
+
+# Quick selection guide
+selection_guide:
+  technical_content: "victor_v1"
+  how_to_guides: "kiki_v1"
+  quick_tips: "corey_v1"
+  personal_stories: "carmyn_v1"
+  gaming_creative: "aria_v1"
+  family_memories: "carmyn_v1"
+  systems_thinking: "victor_v1"
+  supportive_content: "kiki_v1"
+  action_oriented: "corey_v1"
+
+

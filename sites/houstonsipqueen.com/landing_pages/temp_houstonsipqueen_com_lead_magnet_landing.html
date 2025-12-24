@@ -3,65 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Your Free Event Planning Checklist - Houston Sip Queen</title>
+    <title>Ultimate Event Bar Planning Checklist - Houston Sip Queen</title>
+    <meta name="description" content="Impress your guests with a perfectly planned event bar. Get the free checklist for cocktails, staffing, and quantities.">
     <style>
+        :root {
+            --primary: #d4af37; /* Gold */
+            --secondary: #2c2c2c; /* Dark Grey */
+            --text: #333;
+            --bg: #fff;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Playfair Display', Georgia, serif; /* Luxury feel */
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-top: 0;
+        }
+        .hero {
+            background: var(--secondary);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
         }
         .container {
-            background: white;
-            border-radius: 10px;
-            padding: 40px;
-            max-width: 600px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         h1 {
-            color: #333;
+            font-size: 3rem;
+            color: var(--primary);
             margin-bottom: 20px;
         }
-        .form-group {
-            margin-bottom: 20px;
+        .hero p {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+        }
+        .hero .trust-line {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .form-box {
+            background: white;
+            color: var(--text);
+            padding: 40px;
+            border: 1px solid var(--primary);
+            max-width: 500px;
+            margin: 0 auto;
         }
         input {
             width: 100%;
             padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         }
         button {
             width: 100%;
             padding: 15px;
-            background: #667eea;
+            background: var(--primary);
             color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 18px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             cursor: pointer;
-            font-weight: bold;
+            transition: opacity 0.3s;
         }
         button:hover {
-            background: #5568d3;
+            opacity: 0.9;
+        }
+        .benefits {
+            padding: 60px 0;
+            background: #fafafa;
+        }
+        .benefits ul {
+            list-style: none;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .benefits li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+        }
+        .benefits li:before {
+            content: "🍸";
+            margin-right: 15px;
+        }
+        .cta-secondary {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--secondary);
+            color: white;
+        }
+        .cta-secondary a {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--primary);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Get Your Free Event Planning Checklist</h1>
-        <p>Enter your email below to receive your free Event Planning Checklist instantly.</p>
-        <form method="POST" action="/thank-you">
-            <div class="form-group">
-                <input type="email" name="email" placeholder="Your Email Address" required>
+    <div class="hero">
+        <div class="container">
+            <h1>Impress Your Guests With a Perfectly Planned Event Bar</h1>
+            <p>Get the <strong>Ultimate Event Bar Planning Checklist</strong> (free) and plan cocktails, staffing, quantities, and timeline—without the stress.</p>
+            <div class="trust-line">Luxury mobile bartending for Houston weddings, corporate events, and private parties</div>
+            
+            <div class="form-box">
+                <form method="POST" action="/thank-you">
+                    <input type="text" name="name" placeholder="First Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="text" name="date" placeholder="Event Date (Optional)">
+                    <button type="submit">Get the Free Checklist</button>
+                    <p style="font-family: sans-serif; font-size: 0.8rem; margin-top: 15px; color: #666;">We’ll email it to you instantly. No spam.</p>
+                </form>
             </div>
-            <button type="submit">Get My Free Event Planning Checklist</button>
-        </form>
+        </div>
+    </div>
+
+    <div class="benefits">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--secondary);">What You'll Get</h2>
+            <ul>
+                <li>A step-by-step bar planning timeline (weeks before → day-of)</li>
+                <li>What to buy + how much to buy (simple quantity guidance)</li>
+                <li>Staffing + setup notes that prevent long lines</li>
+                <li>Cocktail + spirit planning (including non-alcoholic options)</li>
+                <li>A final “day-of” checklist so nothing gets missed</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container" style="padding: 60px 20px;">
+        <h2 style="text-align: center;">Avoid The 3 Most Common Bar Mistakes</h2>
+        <div style="font-family: sans-serif; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+            <div>
+                <h3>1. Plan your vision first</h3>
+                <p>Then solve for venue restrictions. Don't let logistics kill the vibe before you start.</p>
+            </div>
+            <div>
+                <h3>2. Signature cocktails elevate everything</h3>
+                <p>Guests remember the experience. A custom drink makes it personal.</p>
+            </div>
+            <div>
+                <h3>3. Professional service = stress-free hosting</h3>
+                <p>You should actually enjoy your event, not pour drinks.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-secondary">
+        <div class="container">
+            <h2>Planning an event in the next 30–90 days?</h2>
+            <p style="font-family: sans-serif; margin-bottom: 30px;">Request a quote and we’ll recommend the right service level for your guest count, venue, and vibe.</p>
+            <a href="/quote" style="font-size: 1.2rem; margin-right: 20px;">Request a Quote</a>
+            <a href="/book" style="font-size: 1.2rem;">Book a Consultation</a>
+        </div>
     </div>
 </body>
 </html>

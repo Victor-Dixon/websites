@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer - Southwest Secret</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #8b00ff 0%, #6a00d4 50%, #4b0082 100%);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(106, 0, 212, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(75, 0, 130, 0.3) 0%, transparent 50%);
+            z-index: 0;
+            animation: pulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(139, 0, 255, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 0 20px rgba(139, 0, 255, 0.5),
+                0 0 30px rgba(139, 0, 255, 0.3);
+        }
+
+        .timer-display {
+            font-size: 4em;
+            font-weight: bold;
+            color: #fff;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 5px;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(139, 0, 255, 0.6),
+                0 0 30px rgba(139, 0, 255, 0.4);
+        }
+
+        .last-time {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            min-height: 30px;
+        }
+
+        .last-time.active {
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(255, 0, 100, 0.6);
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(139, 0, 255, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .start-btn {
+            border-color: rgba(76, 175, 80, 0.5);
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .start-btn:hover {
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 25px rgba(76, 175, 80, 0.6);
+        }
+
+        .stop-btn {
+            border-color: rgba(244, 67, 54, 0.5);
+            box-shadow: 0 0 15px rgba(244, 67, 54, 0.3);
+        }
+
+        .stop-btn:hover {
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 25px rgba(244, 67, 54, 0.6);
+        }
+
+        .stop-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .reset-btn {
+            border-color: rgba(33, 150, 243, 0.5);
+            box-shadow: 0 0 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .reset-btn:hover {
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 25px rgba(33, 150, 243, 0.6);
+        }
+
+        .audio-container {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .audio-container h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        audio {
+            width: 100%;
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: rgba(139, 0, 255, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .timer-display {
+                font-size: 2.5em;
+                letter-spacing: 2px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⏱️ Timer</h1>
+        
+        <div class="timer-display" id="timerDisplay">00:00:000</div>
+        
+        <div class="last-time" id="lastTime"></div>
+        
+        <div class="controls">
+            <button class="start-btn" id="startBtn">Start</button>
+            <button class="stop-btn" id="stopBtn" disabled>Stop</button>
+            <button class="reset-btn" id="resetBtn">Reset</button>
+        </div>
+
+        <div class="audio-container">
+            <h3>🎵 Audio</h3>
+            <audio id="audioPlayer" controls>
+                <source src="audio/timer-audio.mp3" type="audio/mpeg">
+                <source src="audio/timer-audio.ogg" type="audio/ogg">
+                <source src="audio/timer-audio.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        let timer = {
+            startTime: 0,
+            elapsedTime: 0,
+            intervalId: null,
+            isRunning: false
+        };
+
+        const timerDisplay = document.getElementById('timerDisplay');
+        const lastTime = document.getElementById('lastTime');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        function formatTime(milliseconds) {
+            const totalSeconds = Math.floor(milliseconds / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const ms = milliseconds % 1000;
+            
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(ms).padStart(3, '0')}`;
+        }
+
+        function updateDisplay() {
+            if (timer.isRunning) {
+                const currentTime = Date.now();
+                timer.elapsedTime = currentTime - timer.startTime;
+            }
+            timerDisplay.textContent = formatTime(timer.elapsedTime);
+        }
+
+        function startTimer() {
+            if (!timer.isRunning) {
+                timer.isRunning = true;
+                timer.startTime = Date.now() - timer.elapsedTime;
+                
+                timer.intervalId = setInterval(() => {
+                    updateDisplay();
+                }, 10); // Update every 10ms for smooth millisecond display
+                
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+            }
+        }
+
+        function stopTimer() {
+            if (timer.isRunning) {
+                timer.isRunning = false;
+                clearInterval(timer.intervalId);
+                
+                // Update one final time to capture exact stop time
+                const currentTime = Date.now();
+                timer.elapsedTime = currentTime - timer.startTime;
+                updateDisplay();
+                
+                // Display last set time
+                lastTime.textContent = `Last Time: ${formatTime(timer.elapsedTime)}`;
+                lastTime.classList.add('active');
+                
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            }
+        }
+
+        function resetTimer() {
+            timer.isRunning = false;
+            clearInterval(timer.intervalId);
+            timer.elapsedTime = 0;
+            timer.startTime = 0;
+            
+            updateDisplay();
+            lastTime.textContent = '';
+            lastTime.classList.remove('active');
+            
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        }
+
+        // Event listeners
+        startBtn.addEventListener('click', startTimer);
+        stopBtn.addEventListener('click', stopTimer);
+        resetBtn.addEventListener('click', resetTimer);
+
+        // Initialize display
+        updateDisplay();
+
+        // Test audio file loading
+        audioPlayer.addEventListener('loadstart', () => {
+            console.log('Audio file loading started');
+        });
+
+        audioPlayer.addEventListener('canplay', () => {
+            console.log('Audio file can play');
+        });
+
+        audioPlayer.addEventListener('error', (e) => {
+            console.log('Audio file error:', e);
+            // Don't show error to user - audio file will be provided later
+        });
+    </script>
+</body>
+</html>

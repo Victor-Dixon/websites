@@ -5,6 +5,12 @@
 - **primary_owner**: Victor
 - **notes**: Fed by FreeRideInvestor traffic
 
+### What is Trading Robot Plug?
+
+See **[WHAT_IS_TRADINGROBOTPLUG.md](./WHAT_IS_TRADINGROBOTPLUG.md)** for the full description.
+
+**TL;DR**: An automation tools and plugins platform that provides trading automation solutions and WordPress plugins for active traders. Receives traffic from FreeRide Investor.
+
 ### Current source locations
 
 - ✅ **Canonical theme**: `websites/tradingrobotplug.com/wp/wp-content/themes/tradingrobotplug-theme/` (MIGRATED 2025-12-20)

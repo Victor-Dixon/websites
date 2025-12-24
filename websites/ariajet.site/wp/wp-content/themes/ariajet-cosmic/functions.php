@@ -30,6 +30,8 @@ function ariajet_cosmic_setup() {
     // Add theme support
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
+    // Allow comments on pages (needed for About page comments)
+    add_post_type_support('page', 'comments');
     add_theme_support('custom-logo', array(
         'height'      => 100,
         'width'       => 300,
@@ -414,3 +416,148 @@ function ariajet_cosmic_admin_styles() {
     }
 }
 add_action('admin_head', 'ariajet_cosmic_admin_styles');
+
+/**
+ * Rewrite a "Capabilities" nav item to Home (/).
+ * (In WordPress, menu labels usually live in the database, not theme files.)
+ */
+function ariajet_cosmic_fix_capabilities_menu_item($items, $args) {
+    if (!isset($args->theme_location) || $args->theme_location !== 'primary') {
+        return $items;
+    }
+
+    foreach ($items as $item) {
+        $title = trim(wp_strip_all_tags($item->title));
+        $url = isset($item->url) ? trim((string) $item->url) : '';
+        $is_dead_link = ($url === '' || $url === '#' || strcasecmp($url, 'javascript:void(0)') === 0);
+
+        // If a menu item is labeled "Capabilities" or "Agents", make it Home → /
+        if (strcasecmp($title, 'Capabilities') === 0 || strcasecmp($title, 'Agents') === 0) {
+            $item->title = __('Home', 'ariajet-cosmic');
+            $item->url = home_url('/');
+            continue;
+        }
+
+        // If a menu item is labeled "Home" but points to a dead link, fix it.
+        if (strcasecmp($title, 'Home') === 0 && $is_dead_link) {
+            $item->url = home_url('/');
+        }
+    }
+
+    return $items;
+}
+add_filter('wp_nav_menu_objects', 'ariajet_cosmic_fix_capabilities_menu_item', 10, 2);
+
+/**
+ * Force comments open on the About page so the form is usable.
+ */
+function ariajet_cosmic_force_about_comments_open($open, $post_id) {
+    $slug = (string) get_post_field('post_name', $post_id);
+    if (strcasecmp($slug, 'about') === 0) {
+        return true;
+    }
+    return $open;
+}
+add_filter('comments_open', 'ariajet_cosmic_force_about_comments_open', 10, 2);
+
+
+/**
+ * Enhanced Template Loading Fix
+ * Ensures page templates load correctly and handles cache clearing
+ * Priority 999 ensures this runs before most other template filters
+ * 
+ * Applied: 2025-12-23
+ */
+add_filter('template_include', function ($template) {
+    // Skip admin and AJAX requests
+    if (is_admin() || wp_doing_ajax() || wp_doing_cron()) {
+        return $template;
+    }
+    
+    // Get the page slug from URL or post object
+    $page_slug = null;
+    
+    if (is_page()) {
+        global $post;
+        if ($post && isset($post->post_name)) {
+            $page_slug = $post->post_name;
+        }
+    }
+    
+    // Fallback: Check URL directly
+    if (!$page_slug && isset($_SERVER['REQUEST_URI'])) {
+        $request_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $request_parts = explode('/', $request_uri);
+        $page_slug = end($request_parts);
+    }
+    
+    // Map page slugs to templates (customize per site)
+    $page_templates = array(
+        // Add site-specific page templates here
+        // Example: 'about' => 'page-templates/page-about.php',
+        // Example: 'blog' => 'page-templates/page-blog.php',
+    );
+    
+    if ($page_slug && isset($page_templates[$page_slug])) {
+        $custom_template = locate_template($page_templates[$page_slug]);
+        
+        if ($custom_template && file_exists($custom_template)) {
+            // If page exists but template isn't set, update it
+            if (is_page()) {
+                global $post;
+                $current_template = get_page_template_slug($post->ID);
+                if ($current_template !== $page_templates[$page_slug]) {
+                    update_post_meta($post->ID, '_wp_page_template', $page_templates[$page_slug]);
+                }
+            }
+            
+            return $custom_template;
+        }
+    }
+    
+    // Handle 404 cases (fallback for pages that don't exist yet)
+    if (is_404() && isset($_SERVER['REQUEST_URI'])) {
+        $request_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $request_parts = explode('/', $request_uri);
+        $uri_slug = end($request_parts);
+        
+        if (isset($page_templates[$uri_slug])) {
+            $new_template = locate_template($page_templates[$uri_slug]);
+            if ($new_template && file_exists($new_template)) {
+                // Set up WordPress query to treat this as a page
+                global $wp_query;
+                $wp_query->is_404 = false;
+                $wp_query->is_page = true;
+                $wp_query->is_singular = true;
+                $wp_query->queried_object = (object) array(
+                    'post_type' => 'page',
+                    'post_name' => $uri_slug,
+                );
+                return $new_template;
+            }
+        }
+    }
+    
+    return $template;
+}, 999);
+
+/**
+ * Clear cache when theme is activated or updated
+ * This helps ensure template changes take effect immediately
+ */
+function clear_template_cache_on_theme_change() {
+    // Clear object cache
+    if (function_exists('wp_cache_flush')) {
+        wp_cache_flush();
+    }
+    
+    // Clear LiteSpeed Cache if active
+    if (class_exists('LiteSpeed_Cache') && method_exists('LiteSpeed_Cache', 'purge_all')) {
+        LiteSpeed_Cache::purge_all();
+    }
+    
+    // Clear rewrite rules to ensure permalinks work
+    flush_rewrite_rules(false);
+}
+add_action('after_switch_theme', 'clear_template_cache_on_theme_change');
+

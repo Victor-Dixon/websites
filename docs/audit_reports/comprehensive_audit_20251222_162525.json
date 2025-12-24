@@ -1,0 +1,786 @@
+{
+  "timestamp": "2025-12-22T16:25:25.142336",
+  "total_sites": 11,
+  "summary": {
+    "healthy": 7,
+    "needs_improvement": 0,
+    "needs_attention": 3,
+    "critical": 1
+  },
+  "issues_by_category": {
+    "Health": 1,
+    "SEO": 19,
+    "Security": 10,
+    "Performance": 1,
+    "Content": 5
+  },
+  "issues_by_severity": {
+    "CRITICAL": 1,
+    "HIGH": 22,
+    "MEDIUM": 13,
+    "LOW": 0
+  },
+  "sites": [
+    {
+      "site": "freerideinvestor.com",
+      "url": "https://freerideinvestor.com",
+      "timestamp": "2025-12-22T16:24:17.389753",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 2.03,
+        "content_length": 152697,
+        "timestamp": "2025-12-22T16:24:19.416183",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 83,
+          "not_after": "2026-03-15T20:58:16"
+        }
+      },
+      "seo": {
+        "has_meta_description": false,
+        "meta_description": null,
+        "has_title_tag": true,
+        "title_tag": "freerideinvestor.com",
+        "title_length": 20,
+        "h1_count": 11,
+        "h1_headings": [
+          "Building Sales Funnels: What I&#8217;ve Learned and Where We&#8217;re Going",
+          "Building Sales Funnels: What I&#8217;ve Learned and Where We&#8217;re Going",
+          "Improved TSLA Strategy Risk-True &#8211; Strategy Analysis 2025-12-16",
+          "Paper Trading vs Live Trading: When to Make the Switch",
+          "Risk Management for Algorithmic Trading: Lessons from 10,000 Trades"
+        ]
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 149.12,
+        "response_time": 2.03,
+        "content_length": 152697
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": false,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "HIGH",
+          "category": "SEO",
+          "issue": "Missing meta description"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Title tag length suboptimal (20 chars, target: 30-60)"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Multiple H1 headings (11, should be 1)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        }
+      ],
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "tradingrobotplug.com",
+      "url": "https://tradingrobotplug.com",
+      "timestamp": "2025-12-22T16:24:22.477874",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.91,
+        "content_length": 20716,
+        "timestamp": "2025-12-22T16:24:24.389749",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 83,
+          "not_after": "2026-03-15T23:06:59"
+        }
+      },
+      "seo": {
+        "has_meta_description": false,
+        "meta_description": null,
+        "has_title_tag": true,
+        "title_tag": "tradingrobotplug.com",
+        "title_length": 20,
+        "h1_count": 2,
+        "h1_headings": [
+          "Home",
+          "Welcome to TradingRobotPlug"
+        ]
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 20.23,
+        "response_time": 1.91,
+        "content_length": 20716
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": false,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "HIGH",
+          "category": "SEO",
+          "issue": "Missing meta description"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Title tag length suboptimal (20 chars, target: 30-60)"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Multiple H1 headings (2, should be 1)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        }
+      ],
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "weareswarm.online",
+      "url": "https://weareswarm.online",
+      "timestamp": "2025-12-22T16:24:25.901153",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.08,
+        "content_length": 54640,
+        "timestamp": "2025-12-22T16:24:26.984699",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 60,
+          "not_after": "2026-02-20T23:22:53"
+        }
+      },
+      "seo": {
+        "has_meta_description": true,
+        "meta_description": "Multi-agent AI swarm system showcasing web development capabilities and live autonomous coordination. Watch us build in real-time.",
+        "has_title_tag": true,
+        "title_tag": "Home - weareswarm.online",
+        "title_length": 24,
+        "h1_count": 1,
+        "h1_headings": [
+          "WE. ARE. SWARM."
+        ]
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 53.36,
+        "response_time": 1.08,
+        "content_length": 54640
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": true,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Title tag length suboptimal (24 chars, target: 30-60)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Content",
+          "issue": "CSS may be hiding content (display:none, visibility:hidden, opacity:0)"
+        }
+      ],
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "weareswarm.site",
+      "url": "https://weareswarm.site",
+      "timestamp": "2025-12-22T16:24:28.239360",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.77,
+        "content_length": 19671,
+        "timestamp": "2025-12-22T16:24:30.004546",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 43,
+          "not_after": "2026-02-04T02:59:18"
+        }
+      },
+      "seo": {
+        "has_meta_description": true,
+        "meta_description": "Advanced mathematical analysis of Hebrew Scripture using Gematria and ELS (Equidistant Letter Sequence) codes. Discover divine patterns in the Bible.",
+        "has_title_tag": true,
+        "title_tag": "Bible ELS Code Discovery System | Prophetical Analysis",
+        "title_length": 54,
+        "h1_count": 1,
+        "h1_headings": [
+          "\ud83d\udd2c BIBLE ELS CODE SYSTEM"
+        ]
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 19.21,
+        "response_time": 1.77,
+        "content_length": 19671
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": false,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        }
+      ],
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "prismblossom.online",
+      "url": "https://prismblossom.online",
+      "timestamp": "2025-12-22T16:24:42.914259",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.3,
+        "content_length": 42951,
+        "timestamp": "2025-12-22T16:24:44.217444",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 60,
+          "not_after": "2026-02-20T22:49:09"
+        }
+      },
+      "seo": {
+        "has_meta_description": true,
+        "meta_description": "Miami Beach Water Sport Explore Miami Beach With Us! Consequat dui venenatis, venenatis vestibulum eget arcu adipiscing mi, tempor amet, egestas pellentesque nunc in ultrices. Odio nam nibh turpis ut sed nunc nulla egestas libero congue tortor fames sed sed aliquet ac tincidunt gravida eget hendrerit lobortis eleifend volutpat in nascetur dignissim duis a, in",
+        "has_title_tag": true,
+        "title_tag": "Home - prismblossom.online",
+        "title_length": 26,
+        "h1_count": 1,
+        "h1_headings": [
+          "Welcome to PrismBlossom"
+        ]
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 41.94,
+        "response_time": 1.3,
+        "content_length": 42951
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": true,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Title tag length suboptimal (26 chars, target: 30-60)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Content",
+          "issue": "CSS may be hiding content (display:none, visibility:hidden, opacity:0)"
+        }
+      ],
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "southwestsecret.com",
+      "url": "https://southwestsecret.com",
+      "timestamp": "2025-12-22T16:24:51.180877",
+      "health": {
+        "status": "DOWN",
+        "http_status": 500,
+        "response_time": 1.27,
+        "content_length": 0,
+        "timestamp": "2025-12-22T16:24:52.449141"
+      },
+      "seo": {},
+      "security": {},
+      "performance": {},
+      "content": {},
+      "issues": [
+        {
+          "severity": "CRITICAL",
+          "category": "Health",
+          "issue": "Site is DOWN - Unknown error"
+        }
+      ],
+      "overall_status": "CRITICAL"
+    },
+    {
+      "site": "ariajet.site",
+      "url": "https://ariajet.site",
+      "timestamp": "2025-12-22T16:24:52.451142",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.57,
+        "content_length": 32502,
+        "timestamp": "2025-12-22T16:24:54.019701",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 60,
+          "not_after": "2026-02-20T23:08:05"
+        }
+      },
+      "seo": {
+        "has_meta_description": false,
+        "meta_description": null,
+        "has_title_tag": true,
+        "title_tag": "ariajet.site -",
+        "title_length": 14,
+        "h1_count": 0,
+        "h1_headings": []
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 31.74,
+        "response_time": 1.57,
+        "content_length": 32502
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": true,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "HIGH",
+          "category": "SEO",
+          "issue": "Missing meta description"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Title tag length suboptimal (14 chars, target: 30-60)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Content",
+          "issue": "CSS may be hiding content (display:none, visibility:hidden, opacity:0)"
+        }
+      ],
+      "overall_status": "NEEDS_ATTENTION"
+    },
+    {
+      "site": "dadudekc.com",
+      "url": "https://dadudekc.com",
+      "timestamp": "2025-12-22T16:24:56.259321",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 11.72,
+        "content_length": 100350,
+        "timestamp": "2025-12-22T16:25:07.983372",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 83,
+          "not_after": "2026-03-15T20:38:29"
+        }
+      },
+      "seo": {
+        "has_meta_description": false,
+        "meta_description": null,
+        "has_title_tag": true,
+        "title_tag": "dadudekc.com",
+        "title_length": 12,
+        "h1_count": 0,
+        "h1_headings": []
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 98.0,
+        "response_time": 11.72,
+        "content_length": 100350
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": true,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "HIGH",
+          "category": "SEO",
+          "issue": "Missing meta description"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Title tag length suboptimal (12 chars, target: 30-60)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Performance",
+          "issue": "Slow response time (11.72s, target: <3s)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Content",
+          "issue": "CSS may be hiding content (display:none, visibility:hidden, opacity:0)"
+        }
+      ],
+      "overall_status": "NEEDS_ATTENTION"
+    },
+    {
+      "site": "crosbyultimateevents.com",
+      "url": "https://crosbyultimateevents.com",
+      "timestamp": "2025-12-22T16:25:10.590382",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.21,
+        "content_length": 26229,
+        "timestamp": "2025-12-22T16:25:11.798998",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 83,
+          "not_after": "2026-03-15T21:54:39"
+        }
+      },
+      "seo": {
+        "has_meta_description": false,
+        "meta_description": null,
+        "has_title_tag": true,
+        "title_tag": "crosbyultimateevents.com",
+        "title_length": 24,
+        "h1_count": 1,
+        "h1_headings": [
+          "Extraordinary Culinary Experiences & Flawless Event Planning"
+        ]
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 25.61,
+        "response_time": 1.21,
+        "content_length": 26229
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": false,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "HIGH",
+          "category": "SEO",
+          "issue": "Missing meta description"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Title tag length suboptimal (24 chars, target: 30-60)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        }
+      ],
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "houstonsipqueen.com",
+      "url": "https://houstonsipqueen.com",
+      "timestamp": "2025-12-22T16:25:14.517255",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 2.29,
+        "content_length": 79481,
+        "timestamp": "2025-12-22T16:25:16.802573",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 83,
+          "not_after": "2026-03-15T17:49:12"
+        }
+      },
+      "seo": {
+        "has_meta_description": false,
+        "meta_description": null,
+        "has_title_tag": true,
+        "title_tag": "houstonsipqueen.com",
+        "title_length": 19,
+        "h1_count": 2,
+        "h1_headings": [
+          "Blog",
+          "Houston Sip Queen is Live \u2014 Luxury Mobile Bartending for Your Event"
+        ]
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 77.62,
+        "response_time": 2.29,
+        "content_length": 79481
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": true,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "HIGH",
+          "category": "SEO",
+          "issue": "Missing meta description"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Title tag length suboptimal (19 chars, target: 30-60)"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Multiple H1 headings (2, should be 1)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Content",
+          "issue": "CSS may be hiding content (display:none, visibility:hidden, opacity:0)"
+        }
+      ],
+      "overall_status": "NEEDS_ATTENTION"
+    },
+    {
+      "site": "digitaldreamscape.site",
+      "url": "https://digitaldreamscape.site",
+      "timestamp": "2025-12-22T16:25:19.889917",
+      "health": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.75,
+        "content_length": 22181,
+        "timestamp": "2025-12-22T16:25:21.642583",
+        "ssl": {
+          "valid": true,
+          "valid_for_days": 83,
+          "not_after": "2026-03-16T08:57:04"
+        }
+      },
+      "seo": {
+        "has_meta_description": false,
+        "meta_description": null,
+        "has_title_tag": true,
+        "title_tag": "digitaldreamscape.site",
+        "title_length": 22,
+        "h1_count": 0,
+        "h1_headings": []
+      },
+      "security": {
+        "has_hsts": false,
+        "has_x_frame_options": false,
+        "has_x_content_type_options": false,
+        "has_csp": true,
+        "headers": {
+          "strict_transport_security": null,
+          "x_frame_options": null,
+          "x_content_type_options": null,
+          "content_security_policy": "upgrade-insecure-requests"
+        }
+      },
+      "performance": {
+        "page_size_kb": 21.66,
+        "response_time": 1.75,
+        "content_length": 22181
+      },
+      "content": {
+        "main_content_empty": false,
+        "article_content_empty": false,
+        "css_hiding_content": false,
+        "potential_issues": []
+      },
+      "issues": [
+        {
+          "severity": "HIGH",
+          "category": "SEO",
+          "issue": "Missing meta description"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "SEO",
+          "issue": "Title tag length suboptimal (22 chars, target: 30-60)"
+        },
+        {
+          "severity": "HIGH",
+          "category": "Security",
+          "issue": "Missing Strict-Transport-Security header"
+        }
+      ],
+      "overall_status": "HEALTHY"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "category": "SEO",
+      "action": "Add meta descriptions and optimize title tags for sites missing them"
+    },
+    {
+      "priority": "HIGH",
+      "category": "Security",
+      "action": "Add missing security headers (HSTS, X-Frame-Options, etc.)"
+    },
+    {
+      "priority": "CRITICAL",
+      "category": "Content",
+      "action": "Investigate and fix empty content areas immediately"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "Performance",
+      "action": "Optimize slow-loading sites and reduce page sizes"
+    }
+  ]
+}

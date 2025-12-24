@@ -112,7 +112,8 @@ get_header(); ?>
                 <h2>Plan Your Perfect Event</h2>
                 <p>Get started with a free consultation to discuss your vision and explore how we can bring it to life</p>
                 <div class="lead-form-container">
-                    <form class="consultation-form" action="<?php echo esc_url(home_url('/consultation')); ?>" method="get">
+                    <form class="consultation-form" action="<?php echo esc_url(home_url('/consultation')); ?>" method="post">
+                        <?php wp_nonce_field('front_page_consultation', 'consultation_nonce'); ?>
                         <div class="form-row">
                             <input type="text" name="name" placeholder="Your Name" required>
                             <input type="email" name="email" placeholder="Your Email" required>

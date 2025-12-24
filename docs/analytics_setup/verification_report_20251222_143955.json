@@ -1,0 +1,64 @@
+{
+  "timestamp": "2025-12-22T14:39:53.574559",
+  "websites": {
+    "freerideinvestor.com": {
+      "file": "D:\\websites\\websites\\freerideinvestor.com\\wp\\wp-content\\themes\\freerideinvestor-modern\\functions.php",
+      "exists": true,
+      "ga4_present": true,
+      "ga4_configured": false,
+      "ga4_id": null,
+      "pixel_present": true,
+      "pixel_configured": false,
+      "pixel_id": null,
+      "wp_head_hook": true,
+      "function_name": "add_analytics_tracking_codes",
+      "issues": [
+        "GA4 ID still using placeholder (G-XXXXXXXXXX)",
+        "Facebook Pixel ID still using placeholder (YOUR_PIXEL_ID)"
+      ],
+      "status": "needs_configuration"
+    },
+    "houstonsipqueen.com": {
+      "file": "D:\\websites\\websites\\houstonsipqueen.com\\wp\\wp-content\\themes\\houstonsipqueen\\functions.php",
+      "exists": true,
+      "ga4_present": true,
+      "ga4_configured": false,
+      "ga4_id": null,
+      "pixel_present": true,
+      "pixel_configured": false,
+      "pixel_id": null,
+      "wp_head_hook": true,
+      "function_name": "add_analytics_tracking_codes",
+      "issues": [
+        "GA4 ID still using placeholder (G-XXXXXXXXXX)",
+        "Facebook Pixel ID still using placeholder (YOUR_PIXEL_ID)"
+      ],
+      "status": "needs_configuration"
+    },
+    "tradingrobotplug.com": {
+      "file": "D:\\websites\\websites\\tradingrobotplug.com\\wp\\wp-content\\themes\\tradingrobotplug-theme\\functions.php",
+      "exists": true,
+      "ga4_present": true,
+      "ga4_configured": false,
+      "ga4_id": null,
+      "pixel_present": true,
+      "pixel_configured": false,
+      "pixel_id": null,
+      "wp_head_hook": true,
+      "function_name": "add_analytics_tracking_codes",
+      "issues": [
+        "GA4 ID still using placeholder (G-XXXXXXXXXX)",
+        "Facebook Pixel ID still using placeholder (YOUR_PIXEL_ID)"
+      ],
+      "status": "needs_configuration"
+    }
+  },
+  "summary": {
+    "total": 3,
+    "configured": 0,
+    "deployed": 0,
+    "needs_configuration": 3,
+    "missing": 0,
+    "errors": 0
+  }
+}
