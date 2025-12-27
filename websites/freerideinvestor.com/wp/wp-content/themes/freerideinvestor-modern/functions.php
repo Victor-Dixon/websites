@@ -5,6 +5,7 @@
  */
 function freerideinvestor_profiler_start() {
     if (!defined('WP_DEBUG') || !WP_DEBUG) return;
+    if (!isset($_SERVER['REQUEST_URI'])) return; // Safety check
     
     global $fri_start_time;
     $fri_start_time = microtime(true);
