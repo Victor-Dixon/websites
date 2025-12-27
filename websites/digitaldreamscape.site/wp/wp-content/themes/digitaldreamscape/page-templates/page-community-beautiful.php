@@ -34,10 +34,59 @@ get_header(); ?>
                     Connect with builders, creators, and dreamers. Share your journey, learn from others, 
                     and be part of a community that builds in public.
                 </p>
+                <!-- Primary CTA -->
+                <div style="margin-top: 2rem;">
+                    <a href="#" class="beautiful-community-cta-primary" style="font-size: 1.2rem; padding: 1rem 2rem;">🚀 Join Discord Server</a>
+                </div>
             </div>
         </header>
 
-        <!-- Community Platforms Grid -->
+        <!-- New: Getting Started / Rules / Starter Actions -->
+        <section class="community-onboarding" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+            
+            <!-- Rules -->
+            <div class="onboarding-card" style="background: rgba(20,20,25,0.6); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 8px;">
+                <h3 style="color: #ae81ff; margin-bottom: 1rem;">📜 Community Code</h3>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="margin-bottom: 0.8rem;">1. <strong>Be Constructive:</strong> Critique ideas, not people.</li>
+                    <li style="margin-bottom: 0.8rem;">2. <strong>Build in Public:</strong> Share your work, even if it's messy.</li>
+                    <li style="margin-bottom: 0.8rem;">3. <strong>Give Back:</strong> Help others when you can.</li>
+                    <li>4. <strong>Stay Curious:</strong> Ask "what if" instead of saying "it won't work".</li>
+                </ul>
+            </div>
+
+            <!-- How to Join a Quest -->
+            <div class="onboarding-card" style="background: rgba(20,20,25,0.6); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 8px;">
+                <h3 style="color: #66d9ef; margin-bottom: 1rem;">⚔️ How to Join a Quest</h3>
+                <p style="margin-bottom: 1rem;">Quests are community-led projects where we build together.</p>
+                <ol style="padding-left: 1.2rem; color: #ccc;">
+                    <li style="margin-bottom: 0.5rem;">Look for the <strong>[OPEN QUEST]</strong> tag in Discord.</li>
+                    <li style="margin-bottom: 0.5rem;">Read the brief and required skills.</li>
+                    <li style="margin-bottom: 0.5rem;">Reply to the thread with your interest.</li>
+                    <li>Commit to the timeline and ship!</li>
+                </ol>
+            </div>
+
+            <!-- 3 Starter Actions -->
+            <div class="onboarding-card" style="background: rgba(20,20,25,0.6); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 8px;">
+                <h3 style="color: #a6e22e; margin-bottom: 1rem;">🌱 3 Starter Actions</h3>
+                <div class="action-item" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <span style="background: rgba(255,255,255,0.1); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 1rem;">1</span>
+                    <span>Introduce yourself in <strong>#introductions</strong></span>
+                </div>
+                <div class="action-item" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <span style="background: rgba(255,255,255,0.1); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 1rem;">2</span>
+                    <span>Share your current project in <strong>#showcase</strong></span>
+                </div>
+                <div class="action-item" style="display: flex; align-items: center;">
+                    <span style="background: rgba(255,255,255,0.1); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 1rem;">3</span>
+                    <span>Check the <strong>#quest-board</strong></span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Community Platforms Grid (Existing) -->
         <section class="beautiful-community-section">
             <h2 class="beautiful-community-section-title">Connect With Us</h2>
             <div class="beautiful-community-grid">
@@ -96,62 +145,6 @@ get_header(); ?>
                     </p>
                     <a href="#" class="beautiful-community-card-button">Follow →</a>
                 </div>
-
-                <!-- GitHub -->
-                <div class="beautiful-community-card">
-                    <div class="beautiful-community-card-icon">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-                            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                        </svg>
-                    </div>
-                    <h3 class="beautiful-community-card-title">GitHub</h3>
-                    <p class="beautiful-community-card-description">
-                        Explore our open-source projects and contribute to the codebase.
-                    </p>
-                    <a href="#" class="beautiful-community-card-button">View Code →</a>
-                </div>
-
-                <!-- Newsletter -->
-                <div class="beautiful-community-card beautiful-community-card-featured">
-                    <div class="beautiful-community-card-icon">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-                            <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
-                            <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
-                        </svg>
-                    </div>
-                    <h3 class="beautiful-community-card-title">Newsletter</h3>
-                    <p class="beautiful-community-card-description">
-                        Get weekly updates on progress, insights, and exclusive content.
-                    </p>
-                    <a href="#" class="beautiful-community-card-button">Subscribe →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Community Values Section -->
-        <section class="beautiful-community-values">
-            <h2 class="beautiful-community-section-title">Our Values</h2>
-            <div class="beautiful-community-values-grid">
-                <div class="beautiful-community-value">
-                    <div class="beautiful-community-value-number">01</div>
-                    <h3>Build in Public</h3>
-                    <p>Transparency in everything we do. Share the wins, the losses, and the lessons.</p>
-                </div>
-                <div class="beautiful-community-value">
-                    <div class="beautiful-community-value-number">02</div>
-                    <h3>Learn Together</h3>
-                    <p>No one has all the answers. We grow by sharing knowledge and asking questions.</p>
-                </div>
-                <div class="beautiful-community-value">
-                    <div class="beautiful-community-value-number">03</div>
-                    <h3>Ship & Iterate</h3>
-                    <p>Done is better than perfect. Launch, learn, and improve continuously.</p>
-                </div>
-                <div class="beautiful-community-value">
-                    <div class="beautiful-community-value-number">04</div>
-                    <h3>Support Each Other</h3>
-                    <p>Celebrate wins, offer help during struggles, and lift each other up.</p>
-                </div>
             </div>
         </section>
 
@@ -170,4 +163,3 @@ get_header(); ?>
 </main>
 
 <?php get_footer(); ?>
-

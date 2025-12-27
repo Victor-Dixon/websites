@@ -89,17 +89,47 @@ get_header(); ?>
                     <a href="<?php echo esc_url(home_url('/services#event-planning')); ?>" class="btn-outline">Learn More</a>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" style="grid-column: span 1;">
                     <div class="service-icon">🎁</div>
                     <h3>Service Packages</h3>
-                    <p>Combined services for complete event solutions</p>
-                    <ul class="service-features">
-                        <li>Intimate Dining Experience ($800-$1,500)</li>
-                        <li>Celebration Package ($3,000-$8,000)</li>
-                        <li>Corporate Experience ($2,000-$10,000)</li>
-                        <li>Custom Packages Available</li>
-                    </ul>
-                    <a href="<?php echo esc_url(home_url('/services#packages')); ?>" class="btn-outline">View Packages</a>
+                    <p>Transparent pricing for common event types</p>
+                    
+                    <div class="package-list" style="text-align: left; margin-top: 1rem;">
+                        <div class="package-item" style="border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 1rem;">
+                            <h4 style="color: var(--primary-color); margin-bottom: 0.25rem;">Intimate Dining</h4>
+                            <div class="price" style="font-weight: bold; font-size: 1.1rem;">Starting at $800</div>
+                            <ul style="font-size: 0.9rem; margin-top: 0.5rem; padding-left: 1.2rem; color: #666;">
+                                <li>Up to 6 guests</li>
+                                <li>4-Course Custom Menu</li>
+                                <li>Wine Pairing Options</li>
+                                <li>4 Hours of Service</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="package-item" style="border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 1rem;">
+                            <h4 style="color: var(--primary-color); margin-bottom: 0.25rem;">Celebration</h4>
+                            <div class="price" style="font-weight: bold; font-size: 1.1rem;">Starting at $3,000</div>
+                            <ul style="font-size: 0.9rem; margin-top: 0.5rem; padding-left: 1.2rem; color: #666;">
+                                <li>Up to 40 guests</li>
+                                <li>Buffet or Family Style</li>
+                                <li>Venue Coordination</li>
+                                <li>Setup & Cleanup</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="package-item">
+                            <h4 style="color: var(--primary-color); margin-bottom: 0.25rem;">Corporate Elite</h4>
+                            <div class="price" style="font-weight: bold; font-size: 1.1rem;">Custom Pricing</div>
+                            <ul style="font-size: 0.9rem; margin-top: 0.5rem; padding-left: 1.2rem; color: #666;">
+                                <li>50+ Guests</li>
+                                <li>Full Branding Integration</li>
+                                <li>Multi-day Options</li>
+                                <li>Vendor Management</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <a href="<?php echo esc_url(home_url('/services#packages')); ?>" class="btn-outline" style="margin-top: 1rem;">View Full Details</a>
                 </div>
             </div>
         </div>
