@@ -589,3 +589,71 @@ function clear_template_cache_on_theme_change() {
     flush_rewrite_rules(false);
 }
 add_action('after_switch_theme', 'clear_template_cache_on_theme_change');
+
+/**
+ * Add SEO Metadata
+ * Meta description, keywords, Open Graph, and Twitter Card tags
+ */
+function ariajet_seo_head() {
+    $site_url = home_url('/');
+    $site_name = get_bloginfo('name');
+    $site_description = get_bloginfo('description') ?: 'Personal gaming and development blog featuring indie games, music, and creative projects';
+    
+    // Get page-specific description if available
+    if (is_singular()) {
+        $meta_description = get_post_meta(get_the_ID(), '_ariajet_meta_description', true);
+        if ($meta_description) {
+            $site_description = $meta_description;
+        }
+    }
+    
+    // Limit description to 160 characters
+    $meta_description = mb_substr($site_description, 0, 160);
+    ?>
+<!-- AriaJet SEO Metadata -->
+<meta name="description" content="<?php echo esc_attr($meta_description); ?>">
+<meta name="keywords" content="gaming, development, personal blog, indie games, 2D games, game development">
+<meta name="author" content="<?php echo esc_attr($site_name); ?>">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="<?php echo esc_url($site_url); ?>">
+<meta property="og:title" content="<?php echo esc_attr($site_name); ?>">
+<meta property="og:description" content="<?php echo esc_attr($meta_description); ?>">
+<meta property="og:site_name" content="<?php echo esc_attr($site_name); ?>">
+<meta property="og:locale" content="en_US">
+<?php
+    // Add OG image if available
+    if (is_singular() && has_post_thumbnail()) {
+        $og_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+        if ($og_image) {
+            echo '<meta property="og:image" content="' . esc_url($og_image) . '">' . "\n";
+        }
+    } else {
+        // Default OG image
+        $default_image = get_template_directory_uri() . '/images/og-image.jpg';
+        if (file_exists(get_template_directory() . '/images/og-image.jpg')) {
+            echo '<meta property="og:image" content="' . esc_url($default_image) . '">' . "\n";
+        }
+    }
+    ?>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="<?php echo esc_url($site_url); ?>">
+<meta name="twitter:title" content="<?php echo esc_attr($site_name); ?>">
+<meta name="twitter:description" content="<?php echo esc_attr($meta_description); ?>">
+<?php
+    // Add Twitter image if available
+    if (is_singular() && has_post_thumbnail()) {
+        $twitter_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+        if ($twitter_image) {
+            echo '<meta name="twitter:image" content="' . esc_url($twitter_image) . '">' . "\n";
+        }
+    }
+    ?>
+<!-- Canonical URL -->
+<link rel="canonical" href="<?php echo esc_url($site_url); ?>">
+<?php
+}
+add_action('wp_head', 'ariajet_seo_head', 1);
