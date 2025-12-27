@@ -53,5 +53,7 @@ simplifiedtheme_load_files('inc/assets');
 // Load cron jobs
 simplifiedtheme_load_files('inc/cron-jobs');
 
-// Load CLI commands
-simplifiedtheme_load_files('inc/cli-commands');
+// Load CLI commands ONLY when in WP-CLI context
+if (defined('WP_CLI') && WP_CLI) {
+    simplifiedtheme_load_files('inc/cli-commands');
+}

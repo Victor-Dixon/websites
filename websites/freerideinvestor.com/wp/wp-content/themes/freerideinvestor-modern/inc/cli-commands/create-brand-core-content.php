@@ -48,7 +48,8 @@ function create_freerideinvestor_positioning_statement() {
         WP_CLI::success("Created positioning statement (ID: {$post_id})");
         return $post_id;
     } else {
-        WP_CLI::error("Failed to create positioning statement: " . ($post_id->get_error_message() ?? 'Unknown error'));
+        $error_msg = is_wp_error($post_id) ? $post_id->get_error_message() : 'Unknown error';
+        WP_CLI::error("Failed to create positioning statement: " . $error_msg);
         return false;
     }
 }
@@ -126,7 +127,8 @@ function create_freerideinvestor_offer_ladder() {
             $created[] = $post_id;
             WP_CLI::success("Created offer ladder level {$offer['level']} (ID: {$post_id})");
         } else {
-            WP_CLI::warning("Failed to create offer ladder level {$offer['level']}: " . ($post_id->get_error_message() ?? 'Unknown error'));
+            $error_msg = is_wp_error($post_id) ? $post_id->get_error_message() : 'Unknown error';
+            WP_CLI::warning("Failed to create offer ladder level {$offer['level']}: " . $error_msg);
         }
     }
 
@@ -153,13 +155,15 @@ function create_freerideinvestor_icp_definition() {
         WP_CLI::success("Created ICP definition (ID: {$post_id})");
         return $post_id;
     } else {
-        WP_CLI::error("Failed to create ICP definition: " . ($post_id->get_error_message() ?? 'Unknown error'));
+        $error_msg = is_wp_error($post_id) ? $post_id->get_error_message() : 'Unknown error';
+        WP_CLI::error("Failed to create ICP definition: " . $error_msg);
         return false;
     }
 }
 
-// Execute if run via WP-CLI
-if (defined('WP_CLI') && WP_CLI) {
+// Execute ONLY if run explicitly via WP-CLI eval-file (not during normal WordPress load)
+// Check for WP_CLI_RUNNER to ensure we're in a CLI context, not just WP_CLI being defined
+if (defined('WP_CLI') && WP_CLI && (php_sapi_name() === 'cli' || (isset($_SERVER['argv']) && in_array('eval-file', $_SERVER['argv'])))) {
     WP_CLI::line('Creating Brand Core content for freerideinvestor.com...');
     
     create_freerideinvestor_positioning_statement();
