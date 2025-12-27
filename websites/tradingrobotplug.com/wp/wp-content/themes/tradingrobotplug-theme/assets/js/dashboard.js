@@ -33,6 +33,12 @@
             this.setupEventListeners();
             this.startRealTimeUpdates();
             this.showConnectionStatus();
+            
+            // Track dashboard view
+            this.trackGA4Event('dashboard_view', {
+                page_title: 'Trading Performance Dashboard',
+                page_location: window.location.href
+            });
         },
 
         initRealTimeUpdates: function() {
@@ -287,8 +293,21 @@
 
         updateActiveStrategies: function(strategies) {
             // Update strategy-related metrics and charts
-            if (strategies.length > 0 && this.currentStrategy === null) {
-                this.currentStrategy = strategies[0].strategy_id;
+            if (strategies.length > 0) {
+                const previousStrategy = this.currentStrategy;
+                if (this.currentStrategy === null) {
+                    this.currentStrategy = strategies[0].strategy_id;
+                }
+                
+                // Track strategy selection change
+                if (previousStrategy !== this.currentStrategy && this.currentStrategy) {
+                    this.trackGA4Event('strategy_selected', {
+                        strategy_id: this.currentStrategy,
+                        previous_strategy: previousStrategy || 'none',
+                        total_strategies: strategies.length
+                    });
+                }
+                
                 this.loadChartData();
             }
         },
@@ -417,6 +436,15 @@
         setupEventListeners: function() {
             $('.chart-period-select').on('change', (e) => {
                 const chartType = $(e.target).data('chart');
+                const period = $(e.target).val();
+                
+                // Track chart interaction
+                this.trackGA4Event('chart_interaction', {
+                    chart_type: chartType,
+                    period: period,
+                    interaction_type: 'period_change'
+                });
+                
                 this.loadChartData();
             });
 
@@ -424,9 +452,79 @@
                 this.filterTrades();
             });
 
-            $('#tradesFilter').on('change', () => {
+            $('#tradesFilter').on('change', (e) => {
+                const filterValue = $(e.target).val();
+                
+                // Track strategy selection if filtering by strategy
+                if (filterValue !== 'all') {
+                    this.trackGA4Event('strategy_selected', {
+                        strategy_filter: filterValue,
+                        filter_type: 'trades_table'
+                    });
+                }
+                
                 this.filterTrades();
             });
+            
+            // Add chart interaction tracking (zoom/pan)
+            this.setupChartInteractionTracking();
+            
+            // Add trade expansion tracking
+            this.setupTradeExpansionTracking();
+            
+            // Add manual refresh button tracking
+            this.setupManualRefreshTracking();
+        },
+        
+        setupChartInteractionTracking: function() {
+            // Track Chart.js interactions (zoom, pan)
+            Object.keys(this.charts).forEach(chartKey => {
+                const chart = this.charts[chartKey];
+                if (chart && chart.canvas) {
+                    chart.canvas.addEventListener('click', () => {
+                        this.trackGA4Event('chart_interaction', {
+                            chart_type: chartKey,
+                            interaction_type: 'click'
+                        });
+                    });
+                }
+            });
+        },
+        
+        setupTradeExpansionTracking: function() {
+            // Track when trade rows are expanded for details
+            $(document).on('click', '#tradesTableBody tr', function() {
+                const tradeId = $(this).data('trade-id');
+                if (tradeId) {
+                    Dashboard.trackGA4Event('trade_expanded', {
+                        trade_id: tradeId,
+                        strategy: $(this).find('td').eq(1).text()
+                    });
+                }
+            });
+        },
+        
+        setupManualRefreshTracking: function() {
+            // Track manual refresh actions (if refresh button exists)
+            $(document).on('click', '[data-action="refresh-dashboard"]', () => {
+                this.trackGA4Event('metrics_refresh', {
+                    refresh_type: 'manual',
+                    timestamp: new Date().toISOString()
+                });
+                this.loadDashboardData();
+            });
+        },
+        
+        trackGA4Event: function(eventName, eventParams) {
+            // GA4 event tracking (gtag.js)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventParams);
+            }
+            
+            // Fallback: console log for debugging
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                console.log('GA4 Event:', eventName, eventParams);
+            }
         },
 
         filterTrades: function() {

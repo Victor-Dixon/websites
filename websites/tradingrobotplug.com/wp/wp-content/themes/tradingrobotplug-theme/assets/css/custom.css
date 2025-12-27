@@ -121,6 +121,45 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--spacing-4);
+    position: relative;
+}
+
+.tooltip-icon {
+    font-size: var(--font-size-sm);
+    cursor: help;
+    opacity: 0.6;
+    margin-left: var(--spacing-2);
+    transition: opacity var(--transition-base);
+}
+
+.tooltip-icon:hover {
+    opacity: 1;
+}
+
+.metric-card[data-tooltip] {
+    position: relative;
+}
+
+.metric-card[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-primary);
+    box-shadow: var(--shadow-lg);
+    font-size: var(--font-size-xs);
+    white-space: nowrap;
+    z-index: 1000;
+    margin-bottom: var(--spacing-2);
+    pointer-events: none;
+    max-width: 250px;
+    white-space: normal;
+    text-align: center;
 }
 
 .metric-label {
@@ -201,6 +240,53 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
     gap: var(--spacing-6);
+}
+
+/* Chart layout prioritization per Agent-5 recommendations */
+.chart-card-primary {
+    grid-column: 1 / -1; /* Full width for primary chart */
+    min-height: 400px;
+}
+
+.chart-card-secondary {
+    grid-column: span 1;
+    min-height: 300px;
+}
+
+.chart-card-side {
+    grid-column: span 1;
+    min-height: 300px;
+}
+
+.chart-card-bottom {
+    grid-column: 1 / -1; /* Full width for bottom chart */
+    min-height: 300px;
+}
+
+@media (min-width: 1200px) {
+    .charts-grid {
+        grid-template-columns: 2fr 1fr; /* Primary takes 2 columns, secondary takes 1 */
+    }
+    
+    .chart-card-primary {
+        grid-column: 1 / 2; /* Primary chart */
+        grid-row: 1 / 3; /* Spans 2 rows */
+    }
+    
+    .chart-card-secondary {
+        grid-column: 2 / 3; /* Secondary chart (side panel) */
+        grid-row: 1 / 2;
+    }
+    
+    .chart-card-side {
+        grid-column: 2 / 3; /* Strategy comparison (side panel) */
+        grid-row: 2 / 3;
+    }
+    
+    .chart-card-bottom {
+        grid-column: 1 / -1; /* Trades distribution (full width below) */
+        grid-row: 3 / 4;
+    }
 }
 
 .chart-card {
