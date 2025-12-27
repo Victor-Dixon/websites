@@ -286,6 +286,12 @@ function freerideinvestor_enqueue_assets() {
 add_action('wp_enqueue_scripts', 'freerideinvestor_enqueue_assets', 5);
 
 /**
+ * Load Helper Files (Auto-loads Custom Post Types, Taxonomies, Meta Boxes, etc.)
+ * TEMPORARILY DISABLED - Causing HTTP 500 error, needs investigation
+ */
+// require_once get_template_directory() . '/inc/helpers/load-files.php';
+
+/**
  * Load Brand Core Meta Boxes (Phase 1 P0 Fixes)
  */
 require_once get_template_directory() . '/inc/meta-boxes/brand-core-meta-boxes.php';
@@ -295,7 +301,6 @@ require_once get_template_directory() . '/inc/meta-boxes/brand-core-meta-boxes.p
  */
 require_once get_template_directory() . '/inc/lead-magnet-handlers.php';
 
-<?php
 /**
  * Combined Analytics Integration (GA4 + Facebook Pixel)
  * Site: freerideinvestor.com
