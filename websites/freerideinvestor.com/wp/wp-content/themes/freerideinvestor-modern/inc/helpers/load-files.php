@@ -24,8 +24,16 @@ function simplifiedtheme_load_files($directory) {
     }
 }
 
-// Load all helper files
-simplifiedtheme_load_files('inc/helpers');
+// Load all helper files (excluding load-files.php itself to prevent circular dependency)
+$helpers_dir = get_template_directory() . '/inc/helpers';
+if (is_dir($helpers_dir)) {
+    $helper_files = glob($helpers_dir . '/*.php');
+    foreach ($helper_files as $file) {
+        if (basename($file) !== 'load-files.php') {
+            require_once $file;
+        }
+    }
+}
 
 // Load all post type files
 simplifiedtheme_load_files('inc/post-types');
