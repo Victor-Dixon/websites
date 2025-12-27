@@ -152,6 +152,16 @@ function freerideinvestor_force_menu_styles() {
             text-decoration: none !important;
         }
         
+        /* Fix logo text rendering - prevent space collapse */
+        .logo-text {
+            white-space: normal !important;
+            letter-spacing: normal !important;
+            word-spacing: normal !important;
+            text-rendering: optimizeLegibility !important;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+        }
+        
         .site-logo a:hover,
         .logo-link:hover,
         a.logo-link:hover {
