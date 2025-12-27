@@ -8,9 +8,12 @@
  * @package SimplifiedTradingTheme
  */
 
-// Only run in CLI context
-if (!defined('WP_CLI') && php_sapi_name() !== 'cli') {
-    die('This script must be run via WP-CLI or command line.');
+// Only run in CLI context - prevent execution during normal WordPress load
+// This file should only be executed via: wp eval-file inc/cli-commands/create-brand-core-content.php
+if (!defined('WP_CLI') || !WP_CLI || php_sapi_name() !== 'cli') {
+    // Don't die() during normal WordPress load - just return silently
+    // This allows the file to be included without executing
+    return;
 }
 
 /**
@@ -162,8 +165,9 @@ function create_freerideinvestor_icp_definition() {
 }
 
 // Execute ONLY if run explicitly via WP-CLI eval-file (not during normal WordPress load)
-// Check for WP_CLI_RUNNER to ensure we're in a CLI context, not just WP_CLI being defined
-if (defined('WP_CLI') && WP_CLI && (php_sapi_name() === 'cli' || (isset($_SERVER['argv']) && in_array('eval-file', $_SERVER['argv'])))) {
+// The early return above prevents execution during normal WordPress load
+// This code only runs if the file is executed directly via wp eval-file
+if (defined('WP_CLI') && WP_CLI && php_sapi_name() === 'cli') {
     WP_CLI::line('Creating Brand Core content for freerideinvestor.com...');
     
     create_freerideinvestor_positioning_statement();

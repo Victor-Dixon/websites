@@ -53,7 +53,7 @@ simplifiedtheme_load_files('inc/assets');
 // Load cron jobs
 simplifiedtheme_load_files('inc/cron-jobs');
 
-// Load CLI commands ONLY when in WP-CLI context
-if (defined('WP_CLI') && WP_CLI) {
-    simplifiedtheme_load_files('inc/cli-commands');
-}
+// DON'T auto-load CLI commands - they should only be run explicitly via wp eval-file
+// Auto-loading causes fatal errors when CLI files execute during WordPress load
+// CLI commands should be called explicitly: wp eval-file inc/cli-commands/create-brand-core-content.php
+// simplifiedtheme_load_files('inc/cli-commands');

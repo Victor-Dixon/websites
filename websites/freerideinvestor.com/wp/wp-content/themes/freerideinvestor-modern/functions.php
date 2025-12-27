@@ -316,23 +316,22 @@ add_action('wp_enqueue_scripts', 'freerideinvestor_enqueue_assets', 5);
 
 /**
  * Load Helper Files (Auto-loads Custom Post Types, Taxonomies, Meta Boxes, etc.)
- * TEMPORARILY DISABLED - Causing HTTP 500 error, investigating runtime issue
  * Load load-files.php LAST to avoid circular dependencies
  * NOTE: load-files.php already loads inc/meta-boxes, so brand-core-meta-boxes.php is loaded automatically
+ * NOTE: CLI commands are now only loaded when in WP-CLI context (see load-files.php)
  */
-// require_once get_template_directory() . '/inc/helpers/load-files.php';
+require_once get_template_directory() . '/inc/helpers/load-files.php';
 
 /**
  * Load Brand Core Meta Boxes (Phase 1 P0 Fixes)
- * TEMPORARILY DISABLED - References Custom Post Types that may not be registered
+ * NOTE: Already loaded by load-files.php, but keeping for backward compatibility
  */
 // require_once get_template_directory() . '/inc/meta-boxes/brand-core-meta-boxes.php';
 
 /**
  * Load Lead Magnet Handlers (Phase 1 P0 Fixes - FUN-01)
- * TEMPORARILY DISABLED FOR DEBUGGING
  */
-// require_once get_template_directory() . '/inc/lead-magnet-handlers.php';
+require_once get_template_directory() . '/inc/lead-magnet-handlers.php';
 
 /**
  * Combined Analytics Integration (GA4 + Facebook Pixel)
