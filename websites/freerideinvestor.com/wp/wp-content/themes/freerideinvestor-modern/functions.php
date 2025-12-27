@@ -206,11 +206,9 @@ add_action('wp_enqueue_scripts', 'freerideinvestor_force_menu_styles', 9999);
 
 /**
  * Fix Duplicate Posts in Queries
+ * REMOVED: freerideinvestor_distinct_query - Invalid SQL syntax (GROUP BY in WHERE clause)
+ * Using posts_distinct filter instead which is the correct WordPress way
  */
-function freerideinvestor_distinct_query($where) {
-    return $where . " GROUP BY ID "; // Force distinct grouping by ID to avoid duplicates from joins
-}
-// Note: modifying GROUP BY is safer than DISTINCT for some DBs, but standard WP filter is posts_distinct
 function freerideinvestor_posts_distinct($distinct) {
     return "DISTINCT";
 }
