@@ -323,14 +323,15 @@ add_action('wp_enqueue_scripts', 'freerideinvestor_enqueue_assets', 5);
 
 /**
  * Load Brand Core Meta Boxes (Phase 1 P0 Fixes)
- * Re-enabled since load-files.php is temporarily disabled
+ * TEMPORARILY DISABLED - References Custom Post Types that may not be registered
  */
-require_once get_template_directory() . '/inc/meta-boxes/brand-core-meta-boxes.php';
+// require_once get_template_directory() . '/inc/meta-boxes/brand-core-meta-boxes.php';
 
 /**
  * Load Lead Magnet Handlers (Phase 1 P0 Fixes - FUN-01)
+ * TEMPORARILY DISABLED FOR DEBUGGING
  */
-require_once get_template_directory() . '/inc/lead-magnet-handlers.php';
+// require_once get_template_directory() . '/inc/lead-magnet-handlers.php';
 
 /**
  * Combined Analytics Integration (GA4 + Facebook Pixel)
