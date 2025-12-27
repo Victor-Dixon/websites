@@ -287,9 +287,9 @@ add_action('wp_enqueue_scripts', 'freerideinvestor_enqueue_assets', 5);
 
 /**
  * Load Helper Files (Auto-loads Custom Post Types, Taxonomies, Meta Boxes, etc.)
- * TEMPORARILY DISABLED - Causing HTTP 500 error, needs investigation
+ * Load load-files.php LAST to avoid circular dependencies
  */
-// require_once get_template_directory() . '/inc/helpers/load-files.php';
+require_once get_template_directory() . '/inc/helpers/load-files.php';
 
 /**
  * Load Brand Core Meta Boxes (Phase 1 P0 Fixes)
