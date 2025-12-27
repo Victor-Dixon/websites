@@ -599,8 +599,14 @@ function ariajet_seo_head() {
     $site_name = get_bloginfo('name');
     $site_description = get_bloginfo('description') ?: 'Personal gaming and development blog featuring indie games, music, and creative projects';
     
+    // Games archive page specific SEO
+    if (is_post_type_archive('game')) {
+        $site_url = home_url('/games/');
+        $site_description = 'Explore Aria\'s collection of amazing 2D games! Play indie games, adventure games, puzzle games, and survival games. Discover unique gaming experiences and creative game development projects.';
+        $site_name = 'Aria\'s 2D Games - ' . $site_name;
+    }
     // Get page-specific description if available
-    if (is_singular()) {
+    elseif (is_singular()) {
         $meta_description = get_post_meta(get_the_ID(), '_ariajet_meta_description', true);
         if ($meta_description) {
             $site_description = $meta_description;
@@ -612,7 +618,7 @@ function ariajet_seo_head() {
     ?>
 <!-- AriaJet SEO Metadata -->
 <meta name="description" content="<?php echo esc_attr($meta_description); ?>">
-<meta name="keywords" content="gaming, development, personal blog, indie games, 2D games, game development">
+<meta name="keywords" content="<?php echo is_post_type_archive('game') ? 'gaming, 2D games, indie games, adventure games, puzzle games, survival games, game development, play games online' : 'gaming, development, personal blog, indie games, 2D games, game development'; ?>">
 <meta name="author" content="<?php echo esc_attr($site_name); ?>">
 <meta name="robots" content="index, follow">
 
