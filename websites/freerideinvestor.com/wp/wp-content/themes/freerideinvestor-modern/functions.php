@@ -11,7 +11,8 @@ function freerideinvestor_profiler_start() {
     $fri_start_time = microtime(true);
     error_log("[Profiler] Request started: " . $_SERVER['REQUEST_URI']);
 }
-add_action('init', 'freerideinvestor_profiler_start', 1);
+// TEMPORARILY DISABLED - Investigating HTTP 500
+// add_action('init', 'freerideinvestor_profiler_start', 1);
 
 function freerideinvestor_profiler_end() {
     if (!defined('WP_DEBUG') || !WP_DEBUG) return;
@@ -33,7 +34,8 @@ function freerideinvestor_profiler_end() {
         }
     }
 }
-add_action('shutdown', 'freerideinvestor_profiler_end');
+// TEMPORARILY DISABLED - Investigating HTTP 500
+// add_action('shutdown', 'freerideinvestor_profiler_end');
 
 /**
  * Add custom rewrite rules for blog pagination
