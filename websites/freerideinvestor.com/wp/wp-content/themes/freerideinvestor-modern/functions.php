@@ -288,13 +288,15 @@ add_action('wp_enqueue_scripts', 'freerideinvestor_enqueue_assets', 5);
 /**
  * Load Helper Files (Auto-loads Custom Post Types, Taxonomies, Meta Boxes, etc.)
  * Load load-files.php LAST to avoid circular dependencies
+ * NOTE: load-files.php already loads inc/meta-boxes, so brand-core-meta-boxes.php is loaded automatically
  */
 require_once get_template_directory() . '/inc/helpers/load-files.php';
 
 /**
  * Load Brand Core Meta Boxes (Phase 1 P0 Fixes)
+ * REMOVED: Already loaded by load-files.php above to prevent redeclaration errors
  */
-require_once get_template_directory() . '/inc/meta-boxes/brand-core-meta-boxes.php';
+// require_once get_template_directory() . '/inc/meta-boxes/brand-core-meta-boxes.php';
 
 /**
  * Load Lead Magnet Handlers (Phase 1 P0 Fixes - FUN-01)
