@@ -29,6 +29,9 @@ get_header(); ?>
 
 <main class="site-main">
 
+    <!-- ICP Definition Section - BRAND-03 -->
+    <?php get_template_part('template-parts/components/icp-definition'); ?>
+
     <!-- Value Proposition Section -->
     <section class="value-proposition">
         <div class="container">
@@ -57,6 +60,9 @@ get_header(); ?>
             </div>
         </div>
     </section>
+
+    <!-- Offer Ladder Section - BRAND-02 -->
+    <?php get_template_part('template-parts/components/offer-ladder'); ?>
 
     <!-- Services Overview Section -->
     <section class="services-overview">

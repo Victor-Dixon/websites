@@ -348,6 +348,12 @@ function crosbyultimateevents_handle_contact_form()
 add_action('template_redirect', 'crosbyultimateevents_handle_contact_form');
 
 /**
+ * Include Custom Post Types
+ */
+require_once get_template_directory() . '/inc/post-types/icp-definition.php';
+require_once get_template_directory() . '/inc/post-types/offer-ladder.php';
+
+/**
  * Include A/B Test Functionality
  */
 require_once get_template_directory() . '/ab-test-hero-headline.php';

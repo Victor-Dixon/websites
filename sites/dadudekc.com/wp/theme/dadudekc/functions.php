@@ -114,3 +114,9 @@ function dadudekc_template_include($template) {
 }
 add_filter('template_include', 'dadudekc_template_include', 99);
 
+/**
+ * Include Custom Post Types
+ */
+require_once get_template_directory() . '/inc/post-types/icp-definition.php';
+require_once get_template_directory() . '/inc/post-types/offer-ladder.php';
+

@@ -37,6 +37,12 @@ get_header(); ?>
     </div>
 </section>
 
+<!-- ICP Definition Section - BRAND-03 -->
+<?php get_template_part('template-parts/components/icp-definition'); ?>
+
+<!-- Offer Ladder Section - BRAND-02 -->
+<?php get_template_part('template-parts/components/offer-ladder'); ?>
+
 <!-- What I Do Section - Build-In-Public Phase 0 -->
 <section class="what-i-do-section">
     <div class="container">
