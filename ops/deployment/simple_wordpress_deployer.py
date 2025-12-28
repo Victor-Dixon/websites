@@ -522,7 +522,43 @@ class SimpleWordPressDeployer:
                 "error_message": str(e),
                 "output": None
             }
-    
+
+    def download_file(self, remote_path: str, local_path: Path) -> bool:
+        """Download a single file from the server."""
+        if not self.sftp:
+            print("❌ Not connected. Call connect() first.")
+            return False
+        
+        try:
+            local_path.parent.mkdir(parents=True, exist_ok=True)
+            self.sftp.get(remote_path, str(local_path))
+            return True
+        except Exception as e:
+            print(f"❌ SFTP download error: {e}")
+            return False
+
+    def list_files(self, remote_path: str) -> List[str]:
+        """List files in a remote directory."""
+        if not self.sftp:
+            return []
+        
+        try:
+            return self.sftp.listdir(remote_path)
+        except Exception:
+            return []
+
+    def file_exists(self, remote_path: str) -> bool:
+        """Check if a file exists on the remote server."""
+        if not self.sftp:
+            return False
+        try:
+            self.sftp.stat(remote_path)
+            return True
+        except FileNotFoundError:
+            return False
+        except Exception:
+            return False
+
     def disconnect(self):
         """Disconnect from server."""
         if self.sftp:

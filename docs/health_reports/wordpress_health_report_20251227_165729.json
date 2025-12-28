@@ -1,0 +1,729 @@
+{
+  "timestamp": "2025-12-27T16:57:29.651275",
+  "summary": {
+    "total_sites": 11,
+    "healthy": 9,
+    "warning": 0,
+    "critical": 2,
+    "health_percentage": 81.8
+  },
+  "sites": [
+    {
+      "site": "freerideinvestor.com",
+      "url": "https://freerideinvestor.com",
+      "timestamp": "2025-12-27T16:56:32.236668",
+      "uptime": {
+        "status": "DOWN",
+        "http_status": 500,
+        "response_time": 1.22,
+        "timestamp": "2025-12-27T16:56:33.459963"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R13"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "freerideinvestor.com"
+            ]
+          ]
+        ],
+        "not_after": "Mar 15 20:58:16 2026 GMT",
+        "days_until_expiry": 78,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "CRITICAL"
+    },
+    {
+      "site": "tradingrobotplug.com",
+      "url": "https://tradingrobotplug.com",
+      "timestamp": "2025-12-27T16:56:43.637478",
+      "uptime": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.61,
+        "timestamp": "2025-12-27T16:56:45.252014"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R13"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "tradingrobotplug.com"
+            ]
+          ]
+        ],
+        "not_after": "Mar 15 23:06:59 2026 GMT",
+        "days_until_expiry": 78,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "weareswarm.online",
+      "url": "https://weareswarm.online",
+      "timestamp": "2025-12-27T16:56:55.417081",
+      "uptime": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.52,
+        "timestamp": "2025-12-27T16:56:56.936578"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R12"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "weareswarm.online"
+            ]
+          ]
+        ],
+        "not_after": "Feb 20 23:22:53 2026 GMT",
+        "days_until_expiry": 55,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "weareswarm.site",
+      "url": "https://weareswarm.site",
+      "timestamp": "2025-12-27T16:56:57.102725",
+      "uptime": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.55,
+        "timestamp": "2025-12-27T16:56:58.650390"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R13"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "weareswarm.site"
+            ]
+          ]
+        ],
+        "not_after": "Feb  4 02:59:18 2026 GMT",
+        "days_until_expiry": 38,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "prismblossom.online",
+      "url": "https://prismblossom.online",
+      "timestamp": "2025-12-27T16:56:58.834558",
+      "uptime": {
+        "status": "DOWN",
+        "http_status": 500,
+        "response_time": 1.46,
+        "timestamp": "2025-12-27T16:57:00.295887"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R12"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "prismblossom.online"
+            ]
+          ]
+        ],
+        "not_after": "Feb 20 22:49:09 2026 GMT",
+        "days_until_expiry": 55,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "CRITICAL"
+    },
+    {
+      "site": "southwestsecret.com",
+      "url": "https://southwestsecret.com",
+      "timestamp": "2025-12-27T16:57:10.470327",
+      "uptime": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.31,
+        "timestamp": "2025-12-27T16:57:11.779698"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R12"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "southwestsecret.com"
+            ]
+          ]
+        ],
+        "not_after": "Mar 14 21:38:25 2026 GMT",
+        "days_until_expiry": 77,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "ariajet.site",
+      "url": "https://ariajet.site",
+      "timestamp": "2025-12-27T16:57:11.952854",
+      "uptime": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.19,
+        "timestamp": "2025-12-27T16:57:13.141033"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Google Trust Services"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "WR1"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "ariajet.site"
+            ]
+          ]
+        ],
+        "not_after": "Feb 20 23:08:05 2026 GMT",
+        "days_until_expiry": 55,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "dadudekc.com",
+      "url": "https://dadudekc.com",
+      "timestamp": "2025-12-27T16:57:13.304182",
+      "uptime": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.55,
+        "timestamp": "2025-12-27T16:57:14.854662"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R13"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "dadudekc.com"
+            ]
+          ]
+        ],
+        "not_after": "Mar 15 20:38:29 2026 GMT",
+        "days_until_expiry": 78,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "crosbyultimateevents.com",
+      "url": "https://crosbyultimateevents.com",
+      "timestamp": "2025-12-27T16:57:15.011805",
+      "uptime": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.43,
+        "timestamp": "2025-12-27T16:57:16.442249"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R12"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "crosbyultimateevents.com"
+            ]
+          ]
+        ],
+        "not_after": "Mar 15 21:54:39 2026 GMT",
+        "days_until_expiry": 78,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "houstonsipqueen.com",
+      "url": "https://houstonsipqueen.com",
+      "timestamp": "2025-12-27T16:57:26.614393",
+      "uptime": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.52,
+        "timestamp": "2025-12-27T16:57:28.134816"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R12"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "houstonsipqueen.com"
+            ]
+          ]
+        ],
+        "not_after": "Mar 15 17:49:12 2026 GMT",
+        "days_until_expiry": 78,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "HEALTHY"
+    },
+    {
+      "site": "digitaldreamscape.site",
+      "url": "https://digitaldreamscape.site",
+      "timestamp": "2025-12-27T16:57:28.290957",
+      "uptime": {
+        "status": "UP",
+        "http_status": 200,
+        "response_time": 1.2,
+        "timestamp": "2025-12-27T16:57:29.489127"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R12"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "digitaldreamscape.site"
+            ]
+          ]
+        ],
+        "not_after": "Mar 16 08:57:04 2026 GMT",
+        "days_until_expiry": 78,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "HEALTHY"
+    }
+  ],
+  "alerts": [
+    {
+      "site": "freerideinvestor.com",
+      "url": "https://freerideinvestor.com",
+      "timestamp": "2025-12-27T16:56:32.236668",
+      "uptime": {
+        "status": "DOWN",
+        "http_status": 500,
+        "response_time": 1.22,
+        "timestamp": "2025-12-27T16:56:33.459963"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R13"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "freerideinvestor.com"
+            ]
+          ]
+        ],
+        "not_after": "Mar 15 20:58:16 2026 GMT",
+        "days_until_expiry": 78,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "CRITICAL"
+    },
+    {
+      "site": "prismblossom.online",
+      "url": "https://prismblossom.online",
+      "timestamp": "2025-12-27T16:56:58.834558",
+      "uptime": {
+        "status": "DOWN",
+        "http_status": 500,
+        "response_time": 1.46,
+        "timestamp": "2025-12-27T16:57:00.295887"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Let's Encrypt"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "R12"
+            ]
+          ]
+        ],
+        "subject": [
+          [
+            [
+              "commonName",
+              "prismblossom.online"
+            ]
+          ]
+        ],
+        "not_after": "Feb 20 22:49:09 2026 GMT",
+        "days_until_expiry": 55,
+        "expires_soon": false
+      },
+      "wordpress": {
+        "version": "UNKNOWN",
+        "needs_update": null,
+        "note": "WordPress version check requires REST API or SSH access"
+      },
+      "conflicts": {
+        "conflicts": [],
+        "note": "Plugin/theme conflict check requires REST API or SSH access"
+      },
+      "overall_status": "CRITICAL"
+    }
+  ]
+}
