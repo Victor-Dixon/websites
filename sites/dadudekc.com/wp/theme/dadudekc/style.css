@@ -348,6 +348,86 @@ body {
     color: var(--text-muted, #999);
 }
 
+/* ============================================
+   PROOF SECTION - WEB-02 ENHANCED
+   ============================================ */
+
+.proof-section .section-subtitle {
+    text-align: center;
+    color: var(--text-muted, #666);
+    margin-bottom: var(--spacing-lg, 30px);
+}
+
+.proof-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md, 20px);
+    margin-bottom: var(--spacing-xl, 48px);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.proof-metric {
+    text-align: center;
+    padding: var(--spacing-md, 20px);
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, rgba(0, 102, 255, 0.02) 100%);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 102, 255, 0.15);
+}
+
+.proof-metric-value {
+    display: block;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--primary-color, #0066ff);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.proof-metric-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted, #666);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.proof-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md, 20px);
+}
+
+.proof-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: var(--spacing-lg, 30px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color, #eee);
+}
+
+.proof-card .status-badge {
+    margin-bottom: var(--spacing-sm, 15px);
+}
+
+.proof-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.proof-list li {
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    color: var(--text-color, #333);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.proof-list li:last-child {
+    border-bottom: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .hero-cta-row {
@@ -369,6 +449,10 @@ body {
     .offer-cards-grid,
     .proof-cards-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .proof-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .section-title {

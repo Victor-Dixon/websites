@@ -15,7 +15,7 @@ import sys
 import os
 import re
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 
 try:
     import paramiko

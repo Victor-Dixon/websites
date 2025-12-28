@@ -87,6 +87,49 @@ get_header();
             </div>
         </section>
 
+        <!-- Proof & Trust Section - WEB-02 Tier 2 -->
+        <section id="proof-section" class="content-section proof-trust">
+            <h2 class="section-title"><?php esc_html_e('Why Traders Trust FreeRideInvestor', 'freerideinvestor'); ?></h2>
+            <p class="section-description"><?php esc_html_e('Transparent results. Proven methods. Real accountability.', 'freerideinvestor'); ?></p>
+            
+            <div class="proof-metrics">
+                <div class="metric-card">
+                    <span class="metric-value">12+</span>
+                    <span class="metric-label"><?php esc_html_e('Strategies Tested', 'freerideinvestor'); ?></span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">100%</span>
+                    <span class="metric-label"><?php esc_html_e('Paper Trade Validated', 'freerideinvestor'); ?></span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">24/7</span>
+                    <span class="metric-label"><?php esc_html_e('Market Monitoring', 'freerideinvestor'); ?></span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">0</span>
+                    <span class="metric-label"><?php esc_html_e('Hidden Fees', 'freerideinvestor'); ?></span>
+                </div>
+            </div>
+            
+            <div class="trust-elements">
+                <div class="trust-item">
+                    <span class="trust-icon">📊</span>
+                    <h4><?php esc_html_e('Transparent Performance', 'freerideinvestor'); ?></h4>
+                    <p><?php esc_html_e('Every strategy is paper-traded and results shared publicly—no cherry-picking.', 'freerideinvestor'); ?></p>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">🔍</span>
+                    <h4><?php esc_html_e('Build in Public', 'freerideinvestor'); ?></h4>
+                    <p><?php esc_html_e('Follow along as we develop, test, and refine strategies in real-time.', 'freerideinvestor'); ?></p>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">🎯</span>
+                    <h4><?php esc_html_e('No Guru Promises', 'freerideinvestor'); ?></h4>
+                    <p><?php esc_html_e('We focus on education and tested methods—not get-rich-quick schemes.', 'freerideinvestor'); ?></p>
+                </div>
+            </div>
+        </section>
+
         <!-- Dev-Log Section -->
         <section id="dev-log-section" class="content-section">
             <h2 class="section-title"><?php esc_html_e('Dev-Log', 'freerideinvestor'); ?></h2>
