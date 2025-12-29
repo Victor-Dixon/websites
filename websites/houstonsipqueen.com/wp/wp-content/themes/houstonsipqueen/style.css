@@ -37,6 +37,9 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--white);
+    white-space: normal;
+    letter-spacing: normal;
+    word-spacing: normal;
 }
 
 /* ============================================
@@ -69,6 +72,9 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     font-family: var(--font-heading);
+    white-space: normal;
+    letter-spacing: normal;
+    word-spacing: normal;
 }
 
 .main-navigation ul {
@@ -355,6 +361,517 @@ body {
 
     .form-row {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   HOMEPAGE HERO SECTION
+   ============================================ */
+.hero-section {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #2a2a2a 100%);
+    color: var(--white);
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.hero-urgency {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* ============================================
+   POSITIONING SECTION
+   ============================================ */
+.positioning-section {
+    padding: 4rem 0;
+    background-color: var(--light-bg);
+}
+
+.positioning-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--secondary-color);
+}
+
+.positioning-text {
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+}
+
+.outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.outcome-item {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.outcome-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.outcome-item ul {
+    list-style: none;
+    padding: 0;
+}
+
+.outcome-item li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.outcome-item li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* ============================================
+   OFFER LADDER SECTION
+   ============================================ */
+.offer-ladder-section {
+    padding: 4rem 0;
+    background-color: var(--white);
+}
+
+.offer-ladder-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--secondary-color);
+}
+
+.offer-ladder {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.offer-tier {
+    background-color: var(--light-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.offer-tier:hover {
+    border-color: var(--primary-color);
+}
+
+.tier-number {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1rem;
+}
+
+.offer-tier h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.offer-tier p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.btn-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.btn-link:hover {
+    color: var(--accent-color);
+}
+
+/* ============================================
+   SERVICES SECTION
+   ============================================ */
+.services-section {
+    padding: 4rem 0;
+    background-color: var(--light-bg);
+}
+
+.services-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--secondary-color);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.service-item {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   SOCIAL PROOF SECTION
+   ============================================ */
+.social-proof-section {
+    padding: 4rem 0;
+    background-color: var(--white);
+}
+
+.social-proof-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--secondary-color);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.testimonial {
+    background-color: var(--light-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    margin: 0;
+}
+
+.testimonial p {
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.testimonial cite {
+    display: block;
+    text-align: right;
+    font-style: normal;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: var(--white);
+    text-align: center;
+}
+
+.cta-section h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.cta-section .btn-primary,
+.cta-section .btn-secondary {
+    background-color: var(--white);
+    color: var(--secondary-color);
+}
+
+.cta-section .btn-primary:hover,
+.cta-section .btn-secondary:hover {
+    background-color: var(--light-bg);
+}
+
+.cta-phone {
+    margin-top: 1.5rem;
+}
+
+.phone-link {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.phone-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   LEAD MAGNET PAGE STYLES
+   ============================================ */
+.lead-magnet-form-section {
+    background-color: var(--light-bg);
+    padding: 3rem;
+    border-radius: 8px;
+    margin: 3rem 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lead-magnet-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.lead-magnet-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.lead-magnet-form input[type="text"],
+.lead-magnet-form input[type="email"],
+.lead-magnet-form input[type="date"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.benefits-section,
+.target-audience-section,
+.quick-wins-section,
+.about-section,
+.secondary-cta-section,
+.faq-section {
+    margin: 3rem 0;
+    padding: 2rem 0;
+}
+
+.benefits-list,
+.audience-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits-list li,
+.audience-list li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.benefits-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.quick-wins-list {
+    list-style: decimal;
+    padding-left: 2rem;
+}
+
+.quick-wins-list li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.faq-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.faq-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   THANK YOU PAGE STYLES
+   ============================================ */
+.thank-you-page {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.download-section,
+.next-step-section,
+.process-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+}
+
+.process-list {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    list-style: decimal;
+    padding-left: 2rem;
+}
+
+.process-list li {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* ============================================
+   CALENDLY & STRIPE STYLES
+   ============================================ */
+.calendly-inline-widget {
+    margin: 2rem 0;
+}
+
+.btn-calendly {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-calendly:hover {
+    background-color: var(--accent-color);
+}
+
+.stripe-payment-form {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+}
+
+.stripe-card-element {
+    padding: 1rem;
+    background-color: var(--white);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.stripe-card-errors {
+    color: #dc3545;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.payment-summary {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.payment-summary p {
+    margin: 0.5rem 0;
+}
+
+/* Mobile Responsive for New Sections */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-ctas {
+        flex-direction: column;
+    }
+    
+    .outcomes-grid,
+    .offer-ladder,
+    .services-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
     }
 }
 

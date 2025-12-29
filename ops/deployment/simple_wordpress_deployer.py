@@ -326,25 +326,44 @@ class SimpleWordPressDeployer:
             remote_dir = str(Path(full_remote_path).parent)
             
             # Create directory recursively using absolute paths
-            parts = remote_dir.strip('/').split('/')
+            # Normalize path - remove double slashes and ensure proper format
+            remote_dir = remote_dir.replace('//', '/').replace('\\', '/')
+            if not remote_dir.startswith('/'):
+                remote_dir = '/' + remote_dir
+            
+            parts = [p for p in remote_dir.split('/') if p]  # Filter empty parts
             current = ''
             for part in parts:
-                if part:
-                    current = f"{current}/{part}" if current else f"/{part}"
+                current = f"{current}/{part}" if current else f"/{part}"
+                try:
+                    # Check if path exists (file or directory)
+                    self.sftp.stat(current)
+                except (FileNotFoundError, IOError):
+                    # Directory doesn't exist, create it
                     try:
-                        self.sftp.stat(current)
-                    except FileNotFoundError:
+                        self.sftp.mkdir(current)
+                    except (IOError, OSError) as e:
+                        # Directory might already exist (race condition) or permission issue
+                        # Try to verify it exists now
                         try:
-                            self.sftp.mkdir(current)
-                        except Exception as e:
-                            # Directory might already exist or permission issue
+                            self.sftp.stat(current)
+                        except (FileNotFoundError, IOError):
+                            # Still doesn't exist, might be permission issue
+                            # Don't print warning for every file - only if upload fails
                             pass
+            
+            # Normalize remote path
+            full_remote_path = full_remote_path.replace('//', '/').replace('\\', '/')
+            if not full_remote_path.startswith('/'):
+                full_remote_path = '/' + full_remote_path
             
             # Upload file (use absolute path)
             # Ensure local_path is absolute and exists
             local_path_str = str(Path(local_path).resolve())
             if not Path(local_path_str).exists():
                 raise FileNotFoundError(f"Local file does not exist: {local_path_str}")
+            
+            # Try to upload
             self.sftp.put(local_path_str, full_remote_path)
             return True
         except paramiko.SSHException as e:

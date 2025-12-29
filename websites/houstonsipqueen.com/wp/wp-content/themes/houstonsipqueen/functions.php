@@ -41,6 +41,18 @@ function houstonsipqueen_setup() {
 add_action('after_setup_theme', 'houstonsipqueen_setup');
 
 /**
+ * Prevent posts from loading on front page
+ * This ensures front-page.php template shows custom content, not blog posts
+ */
+function houstonsipqueen_prevent_posts_on_front_page($query) {
+    if (!is_admin() && $query->is_main_query() && is_front_page()) {
+        $query->set('post_type', 'none');
+        $query->set('posts_per_page', 0);
+    }
+}
+add_action('pre_get_posts', 'houstonsipqueen_prevent_posts_on_front_page');
+
+/**
  * Enqueue Styles and Scripts
  */
 function houstonsipqueen_scripts() {
@@ -185,66 +197,479 @@ function houstonsipqueen_handle_quote_form() {
 }
 add_action('template_redirect', 'houstonsipqueen_handle_quote_form');
 
+/**
+ * Handle Lead Magnet Form Submission (Event Planning Guide)
+ */
+function houstonsipqueen_handle_lead_magnet_form() {
+    if (!is_page('event-planning-guide')) {
+        return;
+    }
+
+    if (!isset($_POST['lead_magnet_nonce']) || !wp_verify_nonce($_POST['lead_magnet_nonce'], 'lead_magnet_form')) {
+        return;
+    }
+
+    // Honeypot spam protection
+    if (!empty($_POST['website_url'])) {
+        return; // Spam detected
+    }
+
+    // Sanitize and validate input
+    $first_name = sanitize_text_field($_POST['lead_first_name'] ?? '');
+    $email = sanitize_email($_POST['lead_email'] ?? '');
+    $event_date = sanitize_text_field($_POST['lead_event_date'] ?? '');
+
+    // Validation
+    $errors = array();
+    if (empty($first_name)) {
+        $errors[] = 'First name is required.';
+    }
+    if (empty($email) || !is_email($email)) {
+        $errors[] = 'Valid email is required.';
+    }
+
+    // If validation fails, store errors in transient
+    if (!empty($errors)) {
+        set_transient('lead_magnet_form_errors', $errors, 30);
+        return;
+    }
+
+    // Email service integration (Mailchimp/ConvertKit)
+    $email_service = get_option('hsq_email_service', 'mailchimp'); // 'mailchimp' or 'convertkit'
+    $email_api_key = get_option('hsq_email_api_key', '');
+    $email_list_id = get_option('hsq_email_list_id', '');
+
+    // Add to email service if configured
+    if (!empty($email_api_key) && !empty($email_list_id)) {
+        houstonsipqueen_add_to_email_service($email, $first_name, $event_date, $email_service, $email_api_key, $email_list_id);
+    }
+
+    // Send lead magnet email with download link
+    $to = $email;
+    $subject = 'Your Event Bar Planning Checklist - Houston Sip Queen';
+    $download_url = home_url('/wp-content/uploads/event-bar-planning-checklist.pdf');
+    
+    $message = "Hi {$first_name},\n\n";
+    $message .= "Thank you for requesting the Ultimate Event Bar Planning Checklist!\n\n";
+    $message .= "Download your free checklist here:\n";
+    $message .= "{$download_url}\n\n";
+    $message .= "This comprehensive guide includes:\n";
+    $message .= "- Step-by-step planning timeline\n";
+    $message .= "- Beverage quantity guidance\n";
+    $message .= "- Staffing and setup recommendations\n";
+    $message .= "- Day-of event checklist\n\n";
+    $message .= "Need help planning your event bar?\n";
+    $message .= "Request a free quote: " . home_url('/quote') . "\n";
+    $message .= "Book a consultation: " . home_url('/book') . "\n\n";
+    $message .= "Best regards,\n";
+    $message .= "Houston Sip Queen Team\n\n";
+    $message .= "---\n";
+    $message .= "Houston Sip Queen - Luxury Mobile Bartending\n";
+    $message .= "Bringing craft cocktails and professional service to your event";
+
+    $headers = array(
+        'From: Houston Sip Queen <' . get_option('admin_email') . '>',
+        'Reply-To: ' . get_option('admin_email'),
+        'Content-Type: text/plain; charset=UTF-8'
+    );
+
+    $sent = wp_mail($to, $subject, $message, $headers);
+
+    // Track conversion in analytics
+    if (function_exists('add_analytics_tracking_codes')) {
+        // Event will be tracked via JavaScript on thank-you page
+    }
+
+    // Redirect to thank-you page
+    if ($sent) {
+        wp_safe_redirect(home_url('/event-planning-guide/thank-you'));
+        exit;
+    } else {
+        set_transient('lead_magnet_form_errors', array('Failed to send email. Please try again.'), 30);
+    }
+}
+add_action('template_redirect', 'houstonsipqueen_handle_lead_magnet_form');
+
+/**
+ * Add subscriber to email service (Mailchimp/ConvertKit)
+ */
+function houstonsipqueen_add_to_email_service($email, $first_name, $event_date, $service, $api_key, $list_id) {
+    if (empty($api_key) || empty($list_id)) {
+        return false;
+    }
+
+    $data = array(
+        'email' => $email,
+        'first_name' => $first_name,
+        'tags' => array('lead_magnet_event_bar_checklist'),
+    );
+
+    if (!empty($event_date)) {
+        $data['event_date'] = $event_date;
+    }
+
+    if ($service === 'mailchimp') {
+        // Mailchimp API integration
+        $dc = substr($api_key, strpos($api_key, '-') + 1); // Extract datacenter
+        $url = "https://{$dc}.api.mailchimp.com/3.0/lists/{$list_id}/members";
+        
+        $body = json_encode(array(
+            'email_address' => $email,
+            'status' => 'subscribed',
+            'merge_fields' => array(
+                'FNAME' => $first_name,
+            ),
+            'tags' => array('lead_magnet_event_bar_checklist'),
+        ));
+
+        $response = wp_remote_post($url, array(
+            'headers' => array(
+                'Authorization' => 'Basic ' . base64_encode('apikey:' . $api_key),
+                'Content-Type' => 'application/json',
+            ),
+            'body' => $body,
+            'timeout' => 15,
+        ));
+
+        return !is_wp_error($response);
+    } elseif ($service === 'convertkit') {
+        // ConvertKit API integration
+        $url = "https://api.convertkit.com/v3/forms/{$list_id}/subscribe";
+        
+        $body = array(
+            'api_key' => $api_key,
+            'email' => $email,
+            'first_name' => $first_name,
+            'tags' => array('lead_magnet_event_bar_checklist'),
+        );
+
+        $response = wp_remote_post($url, array(
+            'body' => $body,
+            'timeout' => 15,
+        ));
+
+        return !is_wp_error($response);
+    }
+
+    return false;
+}
+
+/**
+ * Create Lead Magnet Pages if they don't exist
+ */
+function houstonsipqueen_create_lead_magnet_pages() {
+    // Create Event Planning Guide landing page
+    if (!get_page_by_path('event-planning-guide')) {
+        $landing_page = array(
+            'post_title' => 'Event Bar Planning Guide',
+            'post_name' => 'event-planning-guide',
+            'post_status' => 'publish',
+            'post_type' => 'page',
+            'page_template' => 'page-event-planning-guide.php'
+        );
+        wp_insert_post($landing_page);
+    }
+    
+    // Create Thank-You page
+    if (!get_page_by_path('event-planning-guide/thank-you')) {
+        $thank_you_page = array(
+            'post_title' => 'Thank You - Event Planning Guide',
+            'post_name' => 'thank-you',
+            'post_status' => 'publish',
+            'post_type' => 'page',
+            'post_parent' => get_page_by_path('event-planning-guide')->ID ?? 0,
+            'page_template' => 'page-thank-you-guide.php'
+        );
+        wp_insert_post($thank_you_page);
+    }
+}
+add_action('after_switch_theme', 'houstonsipqueen_create_lead_magnet_pages');
+
+/**
+ * Add Calendly Booking Widget
+ */
+function houstonsipqueen_add_calendly_widget($calendly_url = '') {
+    if (empty($calendly_url)) {
+        $calendly_url = get_option('hsq_calendly_url', '');
+    }
+    
+    if (empty($calendly_url)) {
+        return;
+    }
+    
+    ?>
+    <!-- Calendly inline widget -->
+    <div class="calendly-inline-widget" data-url="<?php echo esc_url($calendly_url); ?>" style="min-width:320px;height:630px;"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <?php
+}
+
+/**
+ * Add Calendly popup button
+ */
+function houstonsipqueen_calendly_button($text = 'Book a Consultation', $calendly_url = '') {
+    if (empty($calendly_url)) {
+        $calendly_url = get_option('hsq_calendly_url', '');
+    }
+    
+    if (empty($calendly_url)) {
+        return;
+    }
+    
+    ?>
+    <a href="<?php echo esc_url($calendly_url); ?>" 
+       class="btn-calendly" 
+       onclick="Calendly.initPopupWidget({url: '<?php echo esc_js($calendly_url); ?>'});return false;">
+        <?php echo esc_html($text); ?>
+    </a>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <?php
+}
+
+/**
+ * Stripe Payment Processing for Deposits
+ */
+function houstonsipqueen_stripe_payment_form($amount = 0, $description = 'Event Deposit', $success_url = '', $cancel_url = '') {
+    $stripe_publishable_key = get_option('hsq_stripe_publishable_key', '');
+    
+    if (empty($stripe_publishable_key)) {
+        return '<p>Payment processing not configured. Please contact us directly.</p>';
+    }
+    
+    if (empty($success_url)) {
+        $success_url = home_url('/booking-confirmation');
+    }
+    if (empty($cancel_url)) {
+        $cancel_url = home_url('/quote');
+    }
+    
+    $amount_cents = intval($amount * 100); // Convert to cents
+    
+    ?>
+    <form id="stripe-payment-form" class="stripe-payment-form">
+        <div class="form-group">
+            <label for="card-element">Credit or Debit Card</label>
+            <div id="card-element" class="stripe-card-element">
+                <!-- Stripe Elements will create form elements here -->
+            </div>
+            <div id="card-errors" role="alert" class="stripe-card-errors"></div>
+        </div>
+        
+        <div class="payment-summary">
+            <p><strong>Amount:</strong> $<?php echo number_format($amount, 2); ?></p>
+            <p><strong>Description:</strong> <?php echo esc_html($description); ?></p>
+        </div>
+        
+        <button type="submit" id="submit-payment" class="btn-primary btn-large">
+            Pay Deposit
+        </button>
+    </form>
+    
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+    var stripe = Stripe('<?php echo esc_js($stripe_publishable_key); ?>');
+    var elements = stripe.elements();
+    
+    var cardElement = elements.create('card');
+    cardElement.mount('#card-element');
+    
+    var form = document.getElementById('stripe-payment-form');
+    var submitButton = document.getElementById('submit-payment');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitButton.disabled = true;
+        submitButton.textContent = 'Processing...';
+        
+        stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+        }).then(function(result) {
+            if (result.error) {
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+                submitButton.disabled = false;
+                submitButton.textContent = 'Pay Deposit';
+            } else {
+                // Send payment method to server for processing
+                fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        action: 'hsq_process_stripe_payment',
+                        payment_method_id: result.paymentMethod.id,
+                        amount: <?php echo $amount_cents; ?>,
+                        description: '<?php echo esc_js($description); ?>',
+                        nonce: '<?php echo wp_create_nonce('stripe_payment_nonce'); ?>'
+                    })
+                }).then(function(response) {
+                    return response.json();
+                }).then(function(data) {
+                    if (data.success) {
+                        window.location.href = '<?php echo esc_url($success_url); ?>';
+                    } else {
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = data.message || 'Payment failed. Please try again.';
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Pay Deposit';
+                    }
+                });
+            }
+        });
+    });
+    </script>
+    <?php
+}
+
+/**
+ * Process Stripe Payment (AJAX handler)
+ */
+function houstonsipqueen_process_stripe_payment() {
+    check_ajax_referer('stripe_payment_nonce', 'nonce');
+    
+    $stripe_secret_key = get_option('hsq_stripe_secret_key', '');
+    
+    if (empty($stripe_secret_key)) {
+        wp_send_json_error(array('message' => 'Payment processing not configured.'));
+        return;
+    }
+    
+    $payment_method_id = sanitize_text_field($_POST['payment_method_id'] ?? '');
+    $amount = intval($_POST['amount'] ?? 0);
+    $description = sanitize_text_field($_POST['description'] ?? 'Event Deposit');
+    
+    if (empty($payment_method_id) || $amount <= 0) {
+        wp_send_json_error(array('message' => 'Invalid payment details.'));
+        return;
+    }
+    
+    // Process payment via Stripe API
+    // Note: This requires Stripe PHP SDK or cURL
+    // For production, use Stripe PHP SDK: composer require stripe/stripe-php
+    
+    $response = wp_remote_post('https://api.stripe.com/v1/payment_intents', array(
+        'headers' => array(
+            'Authorization' => 'Bearer ' . $stripe_secret_key,
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ),
+        'body' => array(
+            'amount' => $amount,
+            'currency' => 'usd',
+            'payment_method' => $payment_method_id,
+            'confirmation_method' => 'manual',
+            'confirm' => 'true',
+            'description' => $description,
+        ),
+        'timeout' => 15,
+    ));
+    
+    if (is_wp_error($response)) {
+        wp_send_json_error(array('message' => 'Payment processing error.'));
+        return;
+    }
+    
+    $body = json_decode(wp_remote_retrieve_body($response), true);
+    
+    if (isset($body['status']) && $body['status'] === 'succeeded') {
+        // Payment successful - save to database, send confirmation email, etc.
+        wp_send_json_success(array(
+            'message' => 'Payment processed successfully.',
+            'payment_intent_id' => $body['id'] ?? '',
+        ));
+    } else {
+        wp_send_json_error(array('message' => $body['error']['message'] ?? 'Payment failed.'));
+    }
+}
+add_action('wp_ajax_hsq_process_stripe_payment', 'houstonsipqueen_process_stripe_payment');
+add_action('wp_ajax_nopriv_hsq_process_stripe_payment', 'houstonsipqueen_process_stripe_payment');
+
 
 /**
  * Add Google Analytics 4 and Facebook Pixel tracking codes
- * Generated by batch_analytics_setup.py
+ * 
+ * IMPORTANT: Replace placeholder IDs with actual tracking IDs:
+ * - GA4: Get from Google Analytics 4 property
+ * - Facebook Pixel: Get from Facebook Business Manager
+ * 
+ * To configure:
+ * 1. Get GA4 property ID (format: G-XXXXXXXXXX)
+ * 2. Get Facebook Pixel ID (numeric ID)
+ * 3. Replace placeholders below or use WordPress options
  */
 function add_analytics_tracking_codes() {
+    // Get tracking IDs from WordPress options or use placeholders
+    $ga4_id = get_option('hsq_ga4_id', 'G-XXXXXXXXXX'); // TODO: Replace with actual GA4 ID
+    $fb_pixel_id = get_option('hsq_fb_pixel_id', 'YOUR_PIXEL_ID'); // TODO: Replace with actual Pixel ID
+    
+    // Only output if IDs are configured (not placeholders)
+    if ($ga4_id === 'G-XXXXXXXXXX' && $fb_pixel_id === 'YOUR_PIXEL_ID') {
+        return; // Skip if not configured
+    }
+    
     // Google Analytics 4 (GA4)
-        echo '<!-- Google Analytics 4 (GA4) -->\n';
-        echo '<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>\n';
-        echo '<script>\n';
-        echo 'window.dataLayer = window.dataLayer || [];\n';
-        echo 'function gtag(){dataLayer.push(arguments);}\n';
-        echo 'gtag(\'js\', new Date());\n';
-        echo 'gtag(\'config\', \'G-XXXXXXXXXX\', {\n';
-        echo '\'page_path\': window.location.pathname,\n';
-        echo '\'page_title\': document.title,\n';
-        echo '});\n';
-        echo '// Custom Events Tracking\n';
-        echo '// Track lead_magnet_submit event\n';
-        echo 'gtag("event", "lead_magnet_submit", {\n';
-        echo '"event_category": "engagement",\n';
-        echo '"event_label": "lead_magnet_submit"\n';
-        echo '});\n';
-        echo '// Track quote_form_submit event\n';
-        echo 'gtag("event", "quote_form_submit", {\n';
-        echo '"event_category": "engagement",\n';
-        echo '"event_label": "quote_form_submit"\n';
-        echo '});\n';
-        echo '// Track booking_click event\n';
-        echo 'gtag("event", "booking_click", {\n';
-        echo '"event_category": "engagement",\n';
-        echo '"event_label": "booking_click"\n';
-        echo '});\n';
-        echo '// Track phone_click event\n';
-        echo 'gtag("event", "phone_click", {\n';
-        echo '"event_category": "engagement",\n';
-        echo '"event_label": "phone_click"\n';
-        echo '});\n';
-        echo '</script>\n';
-        echo '<!-- End GA4 -->\n';
+    if ($ga4_id !== 'G-XXXXXXXXXX') {
+        ?>
+        <!-- Google Analytics 4 (GA4) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_js($ga4_id); ?>"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '<?php echo esc_js($ga4_id); ?>', {
+            'page_path': window.location.pathname,
+            'page_title': document.title,
+        });
+        // Custom Events Tracking
+        // Track lead_magnet_submit event
+        gtag("event", "lead_magnet_submit", {
+            "event_category": "engagement",
+            "event_label": "lead_magnet_submit"
+        });
+        // Track quote_form_submit event
+        gtag("event", "quote_form_submit", {
+            "event_category": "engagement",
+            "event_label": "quote_form_submit"
+        });
+        // Track booking_click event
+        gtag("event", "booking_click", {
+            "event_category": "engagement",
+            "event_label": "booking_click"
+        });
+        // Track phone_click event
+        gtag("event", "phone_click", {
+            "event_category": "engagement",
+            "event_label": "phone_click"
+        });
+        </script>
+        <!-- End GA4 -->
+        <?php
+    }
     
     // Facebook Pixel
-        echo '<!-- Facebook Pixel Code -->\n';
-        echo '<script>\n';
-        echo '!function(f,b,e,v,n,t,s)\n';
-        echo '{{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?\n';
-        echo 'n.callMethod.apply(n,arguments):n.queue.push(arguments)}};\n';
-        echo 'if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=\'2.0\';\n';
-        echo 'n.queue=[];t=b.createElement(e);t.async=!0;\n';
-        echo 't.src=v;s=b.getElementsByTagName(e)[0];\n';
-        echo 's.parentNode.insertBefore(t,s)}}(window, document,\'script\',\n';
-        echo '\'https://connect.facebook.net/en_US/fbevents.js\');\n';
-        echo 'fbq(\'init\', \'YOUR_PIXEL_ID\');\n';
-        echo 'fbq(\'track\', \'PageView\');\n';
-        echo '</script>\n';
-        echo '<noscript>\n';
-        echo '<img height="1" width="1" style="display:none"\n';
-        echo 'src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>\n';
-        echo '</noscript>\n';
-        echo '<!-- End Facebook Pixel Code -->\n';
+    if ($fb_pixel_id !== 'YOUR_PIXEL_ID') {
+        ?>
+        <!-- Facebook Pixel Code -->
+        <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '<?php echo esc_js($fb_pixel_id); ?>');
+        fbq('track', 'PageView');
+        </script>
+        <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=<?php echo esc_attr($fb_pixel_id); ?>&ev=PageView&noscript=1"/>
+        </noscript>
+        <!-- End Facebook Pixel Code -->
+        <?php
+    }
 }
 add_action('wp_head', 'add_analytics_tracking_codes', 99);
 
