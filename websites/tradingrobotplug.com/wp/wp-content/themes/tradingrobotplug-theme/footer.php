@@ -63,8 +63,9 @@ Author: Victor Dixon
             <hr>
             <p>&copy; <?php echo date('Y'); ?> TradingRobotPlug. All rights reserved.
                 <span class="footer-links">
-                    <a href="#privacy">Privacy</a> |
-                    <a href="#terms">Terms</a>
+                    <a href="<?php echo esc_url(home_url('/privacy')); ?>">Privacy</a> |
+                    <a href="<?php echo esc_url(home_url('/terms-of-service')); ?>">Terms</a> |
+                    <a href="<?php echo esc_url(home_url('/product-terms')); ?>">Risk Disclosure</a>
                 </span>
             </p>
         </div>

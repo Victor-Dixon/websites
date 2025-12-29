@@ -55,6 +55,10 @@ function trp_template_include($template)
         'contact' => 'page-contact.php',
         'waitlist' => 'page-waitlist.php',
         'thank-you' => 'page-thank-you.php',
+        // P0 Compliance - Legal pages
+        'privacy' => 'page-privacy.php',
+        'terms-of-service' => 'page-terms-of-service.php',
+        'product-terms' => 'page-product-terms.php',
     );
     
     // Check if custom template exists
