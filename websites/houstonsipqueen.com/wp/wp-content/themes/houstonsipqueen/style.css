@@ -286,7 +286,7 @@ body {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 0 2px rgba(0, 45, 98, 0.2); /* Astros Blue with transparency */
 }
 
 .form-submit {
