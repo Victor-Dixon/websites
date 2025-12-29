@@ -368,7 +368,7 @@ body {
    HOMEPAGE HERO SECTION
    ============================================ */
 .hero-section {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, #2a2a2a 100%);
+    background-color: var(--secondary-color);
     color: var(--white);
     padding: 5rem 0;
     text-align: center;
@@ -391,7 +391,7 @@ body {
 .hero-subtitle {
     font-size: 1.25rem;
     margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--white);
     line-height: 1.6;
 }
 
@@ -628,7 +628,7 @@ body {
    ============================================ */
 .cta-section {
     padding: 4rem 0;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    background-color: var(--primary-color);
     color: var(--white);
     text-align: center;
 }
@@ -641,7 +641,7 @@ body {
 .cta-section p {
     font-size: 1.1rem;
     margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--white);
 }
 
 .cta-buttons {
