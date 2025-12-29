@@ -25,7 +25,15 @@ add_action('after_setup_theme', 'swarm_setup');
  * Enqueue Styles and Scripts
  */
 function swarm_scripts() {
-    wp_enqueue_style('swarm-style', get_stylesheet_uri(), array(), '1.0.0');
+    // Load Google Fonts - Inter for body text
+    wp_enqueue_style(
+        'swarm-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+        array(),
+        null
+    );
+    
+    wp_enqueue_style('swarm-style', get_stylesheet_uri(), array('swarm-google-fonts'), '1.0.1');
 }
 add_action('wp_enqueue_scripts', 'swarm_scripts');
 
