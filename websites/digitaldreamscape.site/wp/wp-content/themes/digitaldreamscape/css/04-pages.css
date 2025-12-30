@@ -1,0 +1,88 @@
+/* ============================================
+   ARCHIVE / BLOG LISTING STYLES
+   ============================================ */
+.archive-header.dreamscape-archive-header {
+    margin-bottom: 4rem;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    background: var(--gradient-1);
+    color: var(--white);
+    border-radius: 0 0 40px 40px;
+    margin-left: -20px;
+    margin-right: -20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.archive-header.dreamscape-archive-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 40px);
+    opacity: 0.5;
+}
+
+.archive-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+}
+
+.archive-title.dreamscape-archive-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--white);
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.archive-description.dreamscape-archive-desc {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+.archive-description.dreamscape-archive-desc p {
+    margin-bottom: 1rem;
+}
+
+.archive-description.dreamscape-archive-desc strong {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.archive-description {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .archive-title {
+        font-size: 2rem;
+    }
+}

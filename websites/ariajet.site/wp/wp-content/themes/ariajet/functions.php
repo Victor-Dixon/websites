@@ -261,9 +261,31 @@ function ariajet_fix_capabilities_menu_item($items, $args) {
         $url = isset($item->url) ? trim((string) $item->url) : '';
         $is_dead_link = ($url === '' || $url === '#' || strcasecmp($url, 'javascript:void(0)') === 0);
 
-        // If a menu item is labeled "Capabilities" or "Capabilitie", change it to MUSIC → /music
-        if (strcasecmp($title, 'Capabilities') === 0 || strcasecmp($title, 'Capabilitie') === 0) {
-            $item->title = __('MUSIC', 'ariajet');
+        // If a menu item is labeled "Live Activity", rename it to "Music".
+        // (On AriaJet, this typically links to the Playlists/Music page.)
+        if (strcasecmp($title, 'Live Activity') === 0) {
+            $item->title = __('Music', 'ariajet');
+
+            // If the existing link is a placeholder or points at an old activity route, fix it.
+            if (
+                $is_dead_link ||
+                stripos($url, '#activity') !== false ||
+                preg_match('~/(live-activity|activity)/?$~i', $url)
+            ) {
+                $item->url = home_url('/music');
+            }
+            continue;
+        }
+
+        // If a menu item is labeled "Music" but points to a dead link, fix it.
+        if (strcasecmp($title, 'Music') === 0 && $is_dead_link) {
+            $item->url = home_url('/music');
+        }
+
+        // If a menu item is labeled "Capabilities" (or "Capabilitie", etc.), rename it to "Music".
+        // Match anywhere to handle labels like "🔥 Capabilities".
+        if (preg_match('~capabilit~i', $title)) {
+            $item->title = __('Music', 'ariajet');
             $item->url = home_url('/music');
             continue;
         }
@@ -285,17 +307,166 @@ function ariajet_fix_capabilities_menu_item($items, $args) {
 }
 add_filter('wp_nav_menu_objects', 'ariajet_fix_capabilities_menu_item', 10, 2);
 
+// Note: About page is intentionally kept minimal; do not force comments open.
+
 /**
- * Force comments open on the About page so the form is usable.
+ * Music tracks helper for the Music page templates.
+ *
+ * Scans wp-content/uploads/music/ for audio files.
+ * Optional curated list: uploads/music/tracks.json
+ *
+ * tracks.json format:
+ * [
+ *   {"file":"song.mp3","title":"Song Title","artist":"Aria","icon":"🎵","emojis":["🪐","🌙","⭐","🌟"]}
+ * ]
+ *
+ * @return array<int, array{title:string, artist:string, url:string, mime:string, icon:string, emojis:array<int,string>}>
  */
-function ariajet_force_about_comments_open($open, $post_id) {
-    $slug = (string) get_post_field('post_name', $post_id);
-    if (strcasecmp($slug, 'about') === 0) {
-        return true;
+if (!function_exists('ariajet_get_music_tracks')) {
+    function ariajet_get_music_tracks(): array {
+        $upload = wp_upload_dir();
+        $music_dir = trailingslashit($upload['basedir']) . 'music/';
+        $music_url = trailingslashit($upload['baseurl']) . 'music/';
+
+        $default_emojis = array('🪐', '🌙', '⭐', '🌟');
+        $default_artist = 'Aria';
+        $default_icon = '🎵';
+
+        $tracks = array();
+
+        // Theme-curated list (ships with the theme): wp-content/themes/ariajet/data/music-tracks.json
+        $theme_tracks_path = trailingslashit(get_template_directory()) . 'data/music-tracks.json';
+        if (is_readable($theme_tracks_path)) {
+            $json = file_get_contents($theme_tracks_path);
+            $data = json_decode($json, true);
+            if (is_array($data)) {
+                foreach ($data as $row) {
+                    if (!is_array($row) || empty($row['url'])) {
+                        continue;
+                    }
+                    $url = (string) $row['url'];
+                    $mime = !empty($row['mime']) ? (string) $row['mime'] : null;
+
+                    $tracks[] = array(
+                        'title'  => !empty($row['title']) ? (string) $row['title'] : (string) wp_basename($url),
+                        'artist' => !empty($row['artist']) ? (string) $row['artist'] : $default_artist,
+                        'url'    => $url,
+                        'mime'   => $mime ?: 'audio/mpeg',
+                        'icon'   => !empty($row['icon']) ? (string) $row['icon'] : $default_icon,
+                        'emojis' => (!empty($row['emojis']) && is_array($row['emojis'])) ? array_values($row['emojis']) : $default_emojis,
+                    );
+                }
+            }
+        }
+
+        // Prefer a curated list if present.
+        $tracks_json_path = $music_dir . 'tracks.json';
+        if (is_dir($music_dir) && is_readable($tracks_json_path)) {
+            $json = file_get_contents($tracks_json_path);
+            $data = json_decode($json, true);
+            if (is_array($data)) {
+                foreach ($data as $row) {
+                    if (!is_array($row) || empty($row['file'])) {
+                        continue;
+                    }
+                    $file = (string) $row['file'];
+                    $abs = $music_dir . $file;
+                    if (!is_file($abs)) {
+                        continue;
+                    }
+
+                    $mime = wp_check_filetype($file);
+                    $tracks[] = array(
+                        'title'  => !empty($row['title']) ? (string) $row['title'] : (string) pathinfo($file, PATHINFO_FILENAME),
+                        'artist' => !empty($row['artist']) ? (string) $row['artist'] : $default_artist,
+                        'url'    => $music_url . rawurlencode($file),
+                        'mime'   => !empty($mime['type']) ? (string) $mime['type'] : 'audio/mpeg',
+                        'icon'   => !empty($row['icon']) ? (string) $row['icon'] : $default_icon,
+                        'emojis' => (!empty($row['emojis']) && is_array($row['emojis'])) ? array_values($row['emojis']) : $default_emojis,
+                    );
+                }
+            }
+        }
+
+        // Fallback: scan uploads/music directory for audio files.
+        if (empty($tracks) && is_dir($music_dir)) {
+            $files = glob($music_dir . '*.{mp3,MP3,m4a,M4A,ogg,OGG,wav,WAV}', GLOB_BRACE);
+            if (is_array($files) && !empty($files)) {
+                natsort($files);
+                foreach ($files as $abs) {
+                    if (!is_string($abs) || !is_file($abs)) {
+                        continue;
+                    }
+                    $basename = wp_basename($abs);
+                    $title_raw = (string) pathinfo($basename, PATHINFO_FILENAME);
+                    $title_raw = urldecode($title_raw);
+                    $title_raw = str_replace(array('_', '-'), ' ', $title_raw);
+                    $title = trim(preg_replace('/\s+/', ' ', $title_raw) ?: $title_raw);
+
+                    $mime = wp_check_filetype($basename);
+                    $tracks[] = array(
+                        'title'  => $title !== '' ? $title : $basename,
+                        'artist' => $default_artist,
+                        'url'    => $music_url . rawurlencode($basename),
+                        'mime'   => !empty($mime['type']) ? (string) $mime['type'] : 'audio/mpeg',
+                        'icon'   => $default_icon,
+                        'emojis' => $default_emojis,
+                    );
+                }
+            }
+        }
+
+        // Final fallback: pull audio attachments from the WordPress Media Library.
+        if (empty($tracks)) {
+            $attachments = get_posts(array(
+                'post_type'      => 'attachment',
+                'post_status'    => 'inherit',
+                'post_mime_type' => 'audio',
+                'posts_per_page' => 50,
+                'orderby'        => 'date',
+                'order'          => 'DESC',
+                'fields'         => 'ids',
+            ));
+
+            if (is_array($attachments) && !empty($attachments)) {
+                foreach ($attachments as $attachment_id) {
+                    $url = wp_get_attachment_url($attachment_id);
+                    if (!$url) {
+                        continue;
+                    }
+                    $mime = get_post_mime_type($attachment_id);
+                    $title = get_the_title($attachment_id);
+
+                    $tracks[] = array(
+                        'title'  => $title ? (string) $title : (string) wp_basename((string) $url),
+                        'artist' => $default_artist,
+                        'url'    => (string) $url,
+                        'mime'   => $mime ? (string) $mime : 'audio/mpeg',
+                        'icon'   => $default_icon,
+                        'emojis' => $default_emojis,
+                    );
+                }
+            }
+        }
+
+        // Dedupe by URL (prevents duplicates if the same song is found multiple ways).
+        if (!empty($tracks)) {
+            $seen = array();
+            $unique = array();
+            foreach ($tracks as $track) {
+                $url = isset($track['url']) ? (string) $track['url'] : '';
+                if ($url === '' || isset($seen[$url])) {
+                    continue;
+                }
+                $seen[$url] = true;
+                $unique[] = $track;
+            }
+            $tracks = $unique;
+        }
+
+        return $tracks;
     }
-    return $open;
 }
-add_filter('comments_open', 'ariajet_force_about_comments_open', 10, 2);
 
 
 
@@ -419,3 +590,76 @@ function clear_template_cache_on_theme_change() {
 }
 add_action('after_switch_theme', 'clear_template_cache_on_theme_change');
 
+/**
+ * Add SEO Metadata
+ * Meta description, keywords, Open Graph, and Twitter Card tags
+ */
+function ariajet_seo_head() {
+    $site_url = home_url('/');
+    $site_name = get_bloginfo('name');
+    $site_description = get_bloginfo('description') ?: 'Personal gaming and development blog featuring indie games, music, and creative projects';
+    
+    // Games archive page specific SEO
+    if (is_post_type_archive('game')) {
+        $site_url = home_url('/games/');
+        $site_description = 'Explore Aria\'s collection of amazing 2D games! Play indie games, adventure games, puzzle games, and survival games. Discover unique gaming experiences and creative game development projects.';
+        $site_name = 'Aria\'s 2D Games - ' . $site_name;
+    }
+    // Get page-specific description if available
+    elseif (is_singular()) {
+        $meta_description = get_post_meta(get_the_ID(), '_ariajet_meta_description', true);
+        if ($meta_description) {
+            $site_description = $meta_description;
+        }
+    }
+    
+    // Limit description to 160 characters
+    $meta_description = mb_substr($site_description, 0, 160);
+    ?>
+<!-- AriaJet SEO Metadata -->
+<meta name="description" content="<?php echo esc_attr($meta_description); ?>">
+<meta name="keywords" content="<?php echo is_post_type_archive('game') ? 'gaming, 2D games, indie games, adventure games, puzzle games, survival games, game development, play games online' : 'gaming, development, personal blog, indie games, 2D games, game development'; ?>">
+<meta name="author" content="<?php echo esc_attr($site_name); ?>">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="<?php echo esc_url($site_url); ?>">
+<meta property="og:title" content="<?php echo esc_attr($site_name); ?>">
+<meta property="og:description" content="<?php echo esc_attr($meta_description); ?>">
+<meta property="og:site_name" content="<?php echo esc_attr($site_name); ?>">
+<meta property="og:locale" content="en_US">
+<?php
+    // Add OG image if available
+    if (is_singular() && has_post_thumbnail()) {
+        $og_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+        if ($og_image) {
+            echo '<meta property="og:image" content="' . esc_url($og_image) . '">' . "\n";
+        }
+    } else {
+        // Default OG image
+        $default_image = get_template_directory_uri() . '/images/og-image.jpg';
+        if (file_exists(get_template_directory() . '/images/og-image.jpg')) {
+            echo '<meta property="og:image" content="' . esc_url($default_image) . '">' . "\n";
+        }
+    }
+    ?>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="<?php echo esc_url($site_url); ?>">
+<meta name="twitter:title" content="<?php echo esc_attr($site_name); ?>">
+<meta name="twitter:description" content="<?php echo esc_attr($meta_description); ?>">
+<?php
+    // Add Twitter image if available
+    if (is_singular() && has_post_thumbnail()) {
+        $twitter_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+        if ($twitter_image) {
+            echo '<meta name="twitter:image" content="' . esc_url($twitter_image) . '">' . "\n";
+        }
+    }
+    ?>
+<!-- Canonical URL -->
+<link rel="canonical" href="<?php echo esc_url($site_url); ?>">
+<?php
+}
+add_action('wp_head', 'ariajet_seo_head', 1);

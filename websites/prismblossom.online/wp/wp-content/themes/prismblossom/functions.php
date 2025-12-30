@@ -1,9 +1,9 @@
 <?php
 
 /**
- * SouthWest Secret Theme Functions
+ * PrismBlossom Theme Functions
  * 
- * @package SouthWestSecret
+ * @package PrismBlossom
  * @version 1.0.0
  */
 
@@ -18,7 +18,7 @@ function prismblossom_setup()
 
     // Register navigation menus
     register_nav_menus(array(
-        'primary' => __('Primary Menu', 'southwestsecret'),
+        'primary' => __('Primary Menu', 'prismblossom'),
     ));
 }
 add_action('after_setup_theme', 'prismblossom_setup');
@@ -26,20 +26,20 @@ add_action('after_setup_theme', 'prismblossom_setup');
 // Enqueue styles and scripts
 function prismblossom_scripts()
 {
-    // Main stylesheet
-    wp_enqueue_style('southwestsecret-style', get_template_directory_uri() . '/css/style.css', array(), '1.0.0');
+    // Main stylesheet (theme root style.css)
+    wp_enqueue_style('prismblossom-style', get_stylesheet_uri(), array(), '1.0.0');
 
     // Google Fonts with fallback
-    wp_enqueue_style('southwestsecret-fonts', 'https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Permanent+Marker&family=Rubik+Bubbles&display=swap', array(), null);
+    wp_enqueue_style('prismblossom-fonts', 'https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Permanent+Marker&family=Rubik+Bubbles&display=swap', array(), null);
 
     // jQuery (WordPress includes it, but ensure it's available)
     wp_enqueue_script('jquery');
 
     // Main JavaScript
-    wp_enqueue_script('southwestsecret-script', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('prismblossom-script', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.0', true);
 
     // Localize script for AJAX
-    wp_localize_script('southwestsecret-script', 'prismblossomAjax', array(
+    wp_localize_script('prismblossom-script', 'prismblossomAjax', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('prismblossom_nonce')
     ));
@@ -90,7 +90,7 @@ function prismblossom_scripts()
             font-display: swap;
         }
     ";
-    wp_add_inline_style('southwestsecret-style', $text_rendering_css);
+    wp_add_inline_style('prismblossom-style', $text_rendering_css);
 }
 add_action('wp_enqueue_scripts', 'prismblossom_scripts');
 
@@ -222,6 +222,54 @@ function prismblossom_add_artist_menu_items($items, $args)
 }
 add_filter('wp_nav_menu_items', 'prismblossom_add_artist_menu_items', 10, 2);
 
+// Remove unwanted pages from menus (even if they exist in WP)
+function prismblossom_filter_nav_menu_objects($sorted_menu_items, $args)
+{
+    if (!is_array($sorted_menu_items)) {
+        return $sorted_menu_items;
+    }
+
+    $blocked_slugs = array(
+        'agents',
+        'live-activity',
+        'capabilities',
+        'about',
+        'aria',
+    );
+
+    $filtered = array();
+    foreach ($sorted_menu_items as $item) {
+        $url = isset($item->url) ? (string) $item->url : '';
+
+        $path = (string) wp_parse_url($url, PHP_URL_PATH);
+        $path = trim($path, '/');
+
+        $last_segment = $path !== '' ? basename($path) : '';
+        if ($last_segment !== '' && in_array($last_segment, $blocked_slugs, true)) {
+            continue;
+        }
+
+        $filtered[] = $item;
+    }
+
+    return $filtered;
+}
+add_filter('wp_nav_menu_objects', 'prismblossom_filter_nav_menu_objects', 10, 2);
+
+// Block direct access to unwanted pages (redirect to home)
+function prismblossom_block_unwanted_pages()
+{
+    if (!is_page()) {
+        return;
+    }
+
+    if (is_page(array('agents', 'live-activity', 'capabilities', 'about', 'aria'))) {
+        wp_safe_redirect(home_url('/'), 301);
+        exit;
+    }
+}
+add_action('template_redirect', 'prismblossom_block_unwanted_pages');
+
 // Remove unwanted menu items from navigation - ENHANCED
 function prismblossom_remove_menu_items($items, $args)
 {
@@ -352,7 +400,7 @@ function prismblossom_delete_unwanted_pages()
             if (
                 $page_title_lower === $unwanted_title_lower ||
                 stripos($page_title_lower, $unwanted_title_lower) !== false ||
-                in_array($page_slug_lower, $page_slugs_to_delete)
+                in_array($page_slug_lower, $pages_to_delete)
             ) {
 
                 wp_delete_post($page->ID, true); // Force delete
@@ -991,6 +1039,110 @@ function prismblossom_ajax_invitation_message_submission()
 }
 add_action('wp_ajax_prismblossom_submit_invitation_message', 'prismblossom_ajax_invitation_message_submission');
 add_action('wp_ajax_nopriv_prismblossom_submit_invitation_message', 'prismblossom_ajax_invitation_message_submission');
+
+// ============================================
+// CARMYN PAGE PROFILE FIELDS
+// ============================================
+
+function prismblossom_add_carmyn_meta_box()
+{
+    add_meta_box(
+        'prismblossom_carmyn_profile',
+        'Carmyn Profile',
+        'prismblossom_carmyn_meta_box_callback',
+        'page',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'prismblossom_add_carmyn_meta_box');
+
+function prismblossom_carmyn_meta_box_callback($post)
+{
+    if (get_page_template_slug($post->ID) !== 'page-carmyn.php') {
+        echo '<p>This meta box is only available on the Carmyn page template.</p>';
+        return;
+    }
+
+    wp_nonce_field('prismblossom_save_carmyn_profile', 'prismblossom_carmyn_nonce');
+
+    $tagline = get_post_meta($post->ID, '_carmyn_tagline', true);
+    $highlights = get_post_meta($post->ID, '_carmyn_highlights', true);
+    $lofi_youtube_id = get_post_meta($post->ID, '_carmyn_lofi_youtube_id', true);
+
+    $tagline = $tagline ?: 'Family & friends';
+    $highlights = $highlights ?: 'Family, Memories, Music';
+    $lofi_youtube_id = $lofi_youtube_id ?: 'sF80I-TQiW0';
+?>
+    <table class="form-table">
+        <tr>
+            <th><label for="carmyn_tagline">Tagline</label></th>
+            <td>
+                <input type="text" id="carmyn_tagline" name="carmyn_tagline"
+                    value="<?php echo esc_attr($tagline); ?>"
+                    class="regular-text"
+                    placeholder="e.g., Family & friends">
+                <p class="description">Short line shown under the page title.</p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="carmyn_highlights">Highlights (comma-separated)</label></th>
+            <td>
+                <input type="text" id="carmyn_highlights" name="carmyn_highlights"
+                    value="<?php echo esc_attr($highlights); ?>"
+                    class="regular-text"
+                    placeholder="e.g., Family, Memories, Music">
+                <p class="description">Displayed as badges on the page.</p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="carmyn_lofi_youtube_id">Background Music YouTube Video ID</label></th>
+            <td>
+                <input type="text" id="carmyn_lofi_youtube_id" name="carmyn_lofi_youtube_id"
+                    value="<?php echo esc_attr($lofi_youtube_id); ?>"
+                    class="regular-text"
+                    placeholder="e.g., sF80I-TQiW0">
+                <p class="description">Used by the “Play Music” button. (Video ID only, not full URL.)</p>
+            </td>
+        </tr>
+    </table>
+<?php
+}
+
+function prismblossom_save_carmyn_meta($post_id)
+{
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (
+        !isset($_POST['prismblossom_carmyn_nonce']) ||
+        !wp_verify_nonce($_POST['prismblossom_carmyn_nonce'], 'prismblossom_save_carmyn_profile')
+    ) {
+        return;
+    }
+
+    if (!current_user_can('edit_page', $post_id)) {
+        return;
+    }
+
+    if (get_page_template_slug($post_id) !== 'page-carmyn.php') {
+        return;
+    }
+
+    if (isset($_POST['carmyn_tagline'])) {
+        update_post_meta($post_id, '_carmyn_tagline', sanitize_text_field($_POST['carmyn_tagline']));
+    }
+
+    if (isset($_POST['carmyn_highlights'])) {
+        update_post_meta($post_id, '_carmyn_highlights', sanitize_text_field($_POST['carmyn_highlights']));
+    }
+
+    if (isset($_POST['carmyn_lofi_youtube_id'])) {
+        update_post_meta($post_id, '_carmyn_lofi_youtube_id', sanitize_text_field($_POST['carmyn_lofi_youtube_id']));
+    }
+}
+add_action('save_post', 'prismblossom_save_carmyn_meta');
 
 // ============================================
 // FUTURE BLOG STRUCTURE (Not implemented yet)

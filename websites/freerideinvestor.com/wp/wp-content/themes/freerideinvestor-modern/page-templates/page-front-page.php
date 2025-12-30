@@ -9,11 +9,18 @@ get_header();
 ?>
 
 <section class="hero">
-  <h1 id="hero-heading"><?php esc_html_e('FREERIDEINVESTOR', 'simplifiedtradingtheme'); ?></h1>
-  <p><?php esc_html_e('Master the markets with proven strategies, robust tools, and a supportive community designed for traders at all levels.', 'simplifiedtradingtheme'); ?></p>
-  <a class="cta-button" href="<?php echo esc_url(home_url('/discord')); ?>" role="button">
-    <?php esc_html_e('Join Now', 'simplifiedtradingtheme'); ?>
-  </a>
+  <h1 id="hero-heading"><?php esc_html_e('Stop Losing Money on Trades', 'simplifiedtradingtheme'); ?></h1>
+  <p class="hero-subheadline"><?php esc_html_e('Get Proven TBOW Tactics That Work - Join 1,000+ Traders Building Consistent Edge', 'simplifiedtradingtheme'); ?></p>
+  <?php get_template_part('template-parts/components/positioning-statement'); ?>
+  <div class="hero-cta-row">
+    <a class="cta-button primary" href="<?php echo esc_url(home_url('/roadmap')); ?>" role="button">
+      <?php esc_html_e('Get Your Free Trading Roadmap →', 'simplifiedtradingtheme'); ?>
+    </a>
+    <a class="cta-button secondary" href="<?php echo esc_url(home_url('/discord')); ?>" role="button">
+      <?php esc_html_e('Join Community', 'simplifiedtradingtheme'); ?>
+    </a>
+  </div>
+  <p class="hero-urgency"><?php esc_html_e('Limited spots available - Start your trading transformation today', 'simplifiedtradingtheme'); ?></p>
 </section>
 
 <!-- Main Container -->
@@ -30,6 +37,7 @@ get_header();
         'simplifiedtradingtheme'
       ); ?>
     </p>
+    <?php get_template_part('template-parts/components/icp-definition'); ?>
     <a href="<?php echo esc_url(home_url('/about')); ?>" class="cta-button">
       <?php esc_html_e('Learn More', 'simplifiedtradingtheme'); ?>
     </a>
@@ -38,6 +46,14 @@ get_header();
 
   <!-- Services Section -->
   <?php get_template_part('template-parts/services-section'); ?>
+
+  <!-- Offer Ladder Section -->
+  <section class="offer-ladder-section" aria-labelledby="offer-ladder-heading">
+    <h2 id="offer-ladder-heading" class="section-heading">
+      <?php esc_html_e('Your Path to Trading Success', 'simplifiedtradingtheme'); ?>
+    </h2>
+    <?php get_template_part('template-parts/components/offer-ladder'); ?>
+  </section>
 
   <!-- Tbow Tactics Section -->
   <section class="tbow-tactics" aria-labelledby="tbow-tactics-heading">
@@ -134,33 +150,40 @@ get_header();
     ?>
   </section>
 
-  <!-- Subscription Section -->
+  <!-- Subscription Section - Low Friction (WEB-04 Quick Win) -->
   <section class="subscription-section" aria-labelledby="subscription-heading">
-    <h2 id="subscription-heading"><?php esc_html_e('Subscribe for Exclusive Updates', 'simplifiedtradingtheme'); ?></h2>
+    <h2 id="subscription-heading"><?php esc_html_e('Get Free Trading Insights', 'simplifiedtradingtheme'); ?></h2>
+    <p class="subscription-intro"><?php esc_html_e('Join our newsletter and get weekly trading tips delivered to your inbox', 'simplifiedtradingtheme'); ?></p>
     <form
       action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
       method="POST"
-      class="subscription-form"
+      class="subscription-form low-friction"
       aria-label="<?php esc_attr_e('Subscription Form', 'simplifiedtradingtheme'); ?>">
       <?php
       wp_nonce_field('mailchimp_subscription', 'mailchimp_subscription_nonce');
       ?>
       <input type="hidden" name="action" value="mailchimp_subscription_form">
       <input type="hidden" name="redirect_to" value="<?php echo esc_url(get_permalink()); ?>">
-
-      <label for="subscription-email" class="screen-reader-text">
-        <?php esc_html_e('Email Address', 'simplifiedtradingtheme'); ?>
-      </label>
-      <input
-        type="email"
-        id="subscription-email"
-        name="subscribe_email"
-        placeholder="<?php esc_attr_e('Your email', 'simplifiedtradingtheme'); ?>"
-        required>
-      <button type="submit" class="cta-button">
-        <?php esc_html_e('Subscribe', 'simplifiedtradingtheme'); ?>
-      </button>
+      <div class="subscription-form-simple">
+        <input
+          type="email"
+          id="subscription-email"
+          name="subscribe_email"
+          placeholder="<?php esc_attr_e('Enter your email', 'simplifiedtradingtheme'); ?>"
+          required
+          class="email-only-input">
+        <button type="submit" class="cta-button">
+          <?php esc_html_e('Subscribe Free →', 'simplifiedtradingtheme'); ?>
+        </button>
+      </div>
+      <p class="subscription-note"><?php esc_html_e('No spam. Unsubscribe anytime.', 'simplifiedtradingtheme'); ?></p>
     </form>
+    <div class="premium-upgrade-cta">
+      <p><?php esc_html_e('Ready to level up?', 'simplifiedtradingtheme'); ?></p>
+      <a href="<?php echo esc_url(home_url('/premium')); ?>" class="cta-button">
+        <?php esc_html_e('Explore Premium Membership →', 'simplifiedtradingtheme'); ?>
+      </a>
+    </div>
   </section>
 
 </div>

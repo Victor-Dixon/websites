@@ -8,6 +8,167 @@ Description: Custom theme for Trading Robot Plug Service Platform
 Version: 1.0.0
 */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --dark: #343a40;
+    --light: #f8f9fa;
+    --white: #ffffff;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   HEADER & NAVIGATION
+   ============================================ */
+.site-header {
+    background: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-branding a {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-branding a:hover {
+    color: #0056b3;
+}
+
+.main-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.main-navigation a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: color 0.2s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.main-navigation a:hover {
+    color: var(--primary);
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.main-navigation .current-menu-item > a,
+.main-navigation .current_page_item > a {
+    color: var(--primary);
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-outline {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--primary);
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+    border-color: #0056b3;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .header-inner {
+        flex-wrap: wrap;
+    }
+    
+    .main-navigation {
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    .main-navigation ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .main-navigation a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 15px;
+    }
 }

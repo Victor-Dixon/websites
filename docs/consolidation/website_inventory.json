@@ -1,508 +1,12 @@
 {
-  "timestamp": "2025-12-22T02:50:11.388161",
+  "timestamp": "2025-12-27T02:49:55.639017",
   "websites_root": "D:\\websites",
   "sites": {
     "ariajet.site": {
       "root": {
-        "exists": true,
-        "files": [
-          {
-            "name": "FIX_SERVICE_UNAVAILABLE.md",
-            "size": 3868,
-            "path": "ariajet.site\\FIX_SERVICE_UNAVAILABLE.md"
-          },
-          {
-            "name": "index.html",
-            "size": 9436,
-            "path": "ariajet.site\\index.html"
-          },
-          {
-            "name": "index.php",
-            "size": 998,
-            "path": "ariajet.site\\index.php"
-          },
-          {
-            "name": "playlists.html",
-            "size": 5539,
-            "path": "ariajet.site\\playlists.html"
-          },
-          {
-            "name": "projects.html",
-            "size": 5771,
-            "path": "ariajet.site\\projects.html"
-          }
-        ],
-        "directories": [
-          "games",
-          "wordpress-theme"
-        ],
-        "total_files": 5,
-        "total_size": 25612
-      },
-      "websites": {
-        "exists": true,
-        "files": [
-          {
-            "name": "SITE_INFO.md",
-            "size": 593,
-            "path": "websites\\ariajet.site\\SITE_INFO.md"
-          }
-        ],
-        "directories": [
-          "wp"
-        ],
-        "total_files": 1,
-        "total_size": 593
-      },
-      "unique_to_root": [
-        "playlists.html",
-        "FIX_SERVICE_UNAVAILABLE.md",
-        "projects.html",
-        "index.html",
-        "index.php"
-      ],
-      "unique_to_websites": [
-        "SITE_INFO.md"
-      ],
-      "common_files": [],
-      "safe_to_move": [
-        {
-          "file": "playlists.html",
-          "from": "ariajet.site",
-          "to": "websites/ariajet.site/"
-        },
-        {
-          "file": "FIX_SERVICE_UNAVAILABLE.md",
-          "from": "ariajet.site",
-          "to": "websites/ariajet.site/docs/"
-        },
-        {
-          "file": "projects.html",
-          "from": "ariajet.site",
-          "to": "websites/ariajet.site/"
-        },
-        {
-          "file": "index.html",
-          "from": "ariajet.site",
-          "to": "websites/ariajet.site/"
-        }
-      ]
-    },
-    "crosbyultimateevents.com": {
-      "root": {
-        "exists": true,
-        "files": [
-          {
-            "name": "GRADE_CARD_SALES_FUNNEL.yaml",
-            "size": 14250,
-            "path": "crosbyultimateevents.com\\GRADE_CARD_SALES_FUNNEL.yaml"
-          },
-          {
-            "name": "POSITIONING_STATEMENT.md",
-            "size": 2025,
-            "path": "crosbyultimateevents.com\\POSITIONING_STATEMENT.md"
-          },
-          {
-            "name": "LEAD_MAGNET_EVENT_PLANNING_CHECKLIST.md",
-            "size": 4582,
-            "path": "crosbyultimateevents.com\\LEAD_MAGNET_EVENT_PLANNING_CHECKLIST.md"
-          },
-          {
-            "name": "OFFER_LADDER.md",
-            "size": 2821,
-            "path": "crosbyultimateevents.com\\OFFER_LADDER.md"
-          },
-          {
-            "name": "ICP_DEFINITION.md",
-            "size": 3887,
-            "path": "crosbyultimateevents.com\\ICP_DEFINITION.md"
-          },
-          {
-            "name": "CONTENT_CALENDAR_30_DAYS.md",
-            "size": 4683,
-            "path": "crosbyultimateevents.com\\CONTENT_CALENDAR_30_DAYS.md"
-          },
-          {
-            "name": "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
-            "size": 11493,
-            "path": "crosbyultimateevents.com\\EMAIL_SEQUENCE_WELCOME_NURTURE.md"
-          },
-          {
-            "name": "SOCIAL_MEDIA_PROFILES.md",
-            "size": 9191,
-            "path": "crosbyultimateevents.com\\SOCIAL_MEDIA_PROFILES.md"
-          },
-          {
-            "name": "IMPLEMENTATION_CHECKLIST.md",
-            "size": 2590,
-            "path": "crosbyultimateevents.com\\IMPLEMENTATION_CHECKLIST.md"
-          }
-        ],
-        "directories": [
-          "pages",
-          "setup"
-        ],
-        "total_files": 9,
-        "total_size": 55522
-      },
-      "websites": {
-        "exists": true,
-        "files": [
-          {
-            "name": "SITE_INFO.md",
-            "size": 399,
-            "path": "websites\\crosbyultimateevents.com\\SITE_INFO.md"
-          }
-        ],
-        "directories": [],
-        "total_files": 1,
-        "total_size": 399
-      },
-      "unique_to_root": [
-        "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
-        "ICP_DEFINITION.md",
-        "OFFER_LADDER.md",
-        "POSITIONING_STATEMENT.md",
-        "LEAD_MAGNET_EVENT_PLANNING_CHECKLIST.md",
-        "IMPLEMENTATION_CHECKLIST.md",
-        "SOCIAL_MEDIA_PROFILES.md",
-        "CONTENT_CALENDAR_30_DAYS.md",
-        "GRADE_CARD_SALES_FUNNEL.yaml"
-      ],
-      "unique_to_websites": [
-        "SITE_INFO.md"
-      ],
-      "common_files": [],
-      "safe_to_move": [
-        {
-          "file": "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
-          "from": "crosbyultimateevents.com",
-          "to": "websites/crosbyultimateevents.com/docs/"
-        },
-        {
-          "file": "ICP_DEFINITION.md",
-          "from": "crosbyultimateevents.com",
-          "to": "websites/crosbyultimateevents.com/docs/"
-        },
-        {
-          "file": "OFFER_LADDER.md",
-          "from": "crosbyultimateevents.com",
-          "to": "websites/crosbyultimateevents.com/docs/"
-        },
-        {
-          "file": "POSITIONING_STATEMENT.md",
-          "from": "crosbyultimateevents.com",
-          "to": "websites/crosbyultimateevents.com/docs/"
-        },
-        {
-          "file": "LEAD_MAGNET_EVENT_PLANNING_CHECKLIST.md",
-          "from": "crosbyultimateevents.com",
-          "to": "websites/crosbyultimateevents.com/docs/"
-        },
-        {
-          "file": "IMPLEMENTATION_CHECKLIST.md",
-          "from": "crosbyultimateevents.com",
-          "to": "websites/crosbyultimateevents.com/docs/"
-        },
-        {
-          "file": "SOCIAL_MEDIA_PROFILES.md",
-          "from": "crosbyultimateevents.com",
-          "to": "websites/crosbyultimateevents.com/docs/"
-        },
-        {
-          "file": "CONTENT_CALENDAR_30_DAYS.md",
-          "from": "crosbyultimateevents.com",
-          "to": "websites/crosbyultimateevents.com/docs/"
-        },
-        {
-          "file": "GRADE_CARD_SALES_FUNNEL.yaml",
-          "from": "crosbyultimateevents.com",
-          "to": "websites/crosbyultimateevents.com/"
-        }
-      ]
-    },
-    "dadudekc.com": {
-      "root": {
-        "exists": true,
-        "files": [
-          {
-            "name": "GRADE_CARD_SALES_FUNNEL.yaml",
-            "size": 14902,
-            "path": "dadudekc.com\\GRADE_CARD_SALES_FUNNEL.yaml"
-          },
-          {
-            "name": "POSITIONING_STATEMENT.md",
-            "size": 1752,
-            "path": "dadudekc.com\\POSITIONING_STATEMENT.md"
-          },
-          {
-            "name": "OFFER_LADDER.md",
-            "size": 2387,
-            "path": "dadudekc.com\\OFFER_LADDER.md"
-          },
-          {
-            "name": "ICP_DEFINITION.md",
-            "size": 3735,
-            "path": "dadudekc.com\\ICP_DEFINITION.md"
-          },
-          {
-            "name": "LEAD_MAGNET_WORKFLOW_AUDIT.md",
-            "size": 4777,
-            "path": "dadudekc.com\\LEAD_MAGNET_WORKFLOW_AUDIT.md"
-          },
-          {
-            "name": "CONTENT_CALENDAR_30_DAYS.md",
-            "size": 4725,
-            "path": "dadudekc.com\\CONTENT_CALENDAR_30_DAYS.md"
-          },
-          {
-            "name": "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
-            "size": 12569,
-            "path": "dadudekc.com\\EMAIL_SEQUENCE_WELCOME_NURTURE.md"
-          },
-          {
-            "name": "SOCIAL_MEDIA_PROFILES.md",
-            "size": 9361,
-            "path": "dadudekc.com\\SOCIAL_MEDIA_PROFILES.md"
-          }
-        ],
-        "directories": [
-          "blog-posts"
-        ],
-        "total_files": 8,
-        "total_size": 54208
-      },
-      "websites": {
-        "exists": true,
-        "files": [
-          {
-            "name": "SITE_INFO.md",
-            "size": 372,
-            "path": "websites\\dadudekc.com\\SITE_INFO.md"
-          }
-        ],
-        "directories": [],
-        "total_files": 1,
-        "total_size": 372
-      },
-      "unique_to_root": [
-        "LEAD_MAGNET_WORKFLOW_AUDIT.md",
-        "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
-        "ICP_DEFINITION.md",
-        "OFFER_LADDER.md",
-        "POSITIONING_STATEMENT.md",
-        "SOCIAL_MEDIA_PROFILES.md",
-        "CONTENT_CALENDAR_30_DAYS.md",
-        "GRADE_CARD_SALES_FUNNEL.yaml"
-      ],
-      "unique_to_websites": [
-        "SITE_INFO.md"
-      ],
-      "common_files": [],
-      "safe_to_move": [
-        {
-          "file": "LEAD_MAGNET_WORKFLOW_AUDIT.md",
-          "from": "dadudekc.com",
-          "to": "websites/dadudekc.com/docs/"
-        },
-        {
-          "file": "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
-          "from": "dadudekc.com",
-          "to": "websites/dadudekc.com/docs/"
-        },
-        {
-          "file": "ICP_DEFINITION.md",
-          "from": "dadudekc.com",
-          "to": "websites/dadudekc.com/docs/"
-        },
-        {
-          "file": "OFFER_LADDER.md",
-          "from": "dadudekc.com",
-          "to": "websites/dadudekc.com/docs/"
-        },
-        {
-          "file": "POSITIONING_STATEMENT.md",
-          "from": "dadudekc.com",
-          "to": "websites/dadudekc.com/docs/"
-        },
-        {
-          "file": "SOCIAL_MEDIA_PROFILES.md",
-          "from": "dadudekc.com",
-          "to": "websites/dadudekc.com/docs/"
-        },
-        {
-          "file": "CONTENT_CALENDAR_30_DAYS.md",
-          "from": "dadudekc.com",
-          "to": "websites/dadudekc.com/docs/"
-        },
-        {
-          "file": "GRADE_CARD_SALES_FUNNEL.yaml",
-          "from": "dadudekc.com",
-          "to": "websites/dadudekc.com/"
-        }
-      ]
-    },
-    "houstonsipqueen.com": {
-      "root": {
-        "exists": true,
-        "files": [
-          {
-            "name": "GRADE_CARD_SALES_FUNNEL.yaml",
-            "size": 15158,
-            "path": "houstonsipqueen.com\\GRADE_CARD_SALES_FUNNEL.yaml"
-          },
-          {
-            "name": "POSITIONING_STATEMENT.md",
-            "size": 1868,
-            "path": "houstonsipqueen.com\\POSITIONING_STATEMENT.md"
-          },
-          {
-            "name": "OFFER_LADDER.md",
-            "size": 2428,
-            "path": "houstonsipqueen.com\\OFFER_LADDER.md"
-          },
-          {
-            "name": "ICP_DEFINITION.md",
-            "size": 3732,
-            "path": "houstonsipqueen.com\\ICP_DEFINITION.md"
-          },
-          {
-            "name": "LEAD_MAGNET_EVENT_BAR_CHECKLIST.md",
-            "size": 4617,
-            "path": "houstonsipqueen.com\\LEAD_MAGNET_EVENT_BAR_CHECKLIST.md"
-          },
-          {
-            "name": "CONTENT_CALENDAR_30_DAYS.md",
-            "size": 4702,
-            "path": "houstonsipqueen.com\\CONTENT_CALENDAR_30_DAYS.md"
-          },
-          {
-            "name": "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
-            "size": 12318,
-            "path": "houstonsipqueen.com\\EMAIL_SEQUENCE_WELCOME_NURTURE.md"
-          },
-          {
-            "name": "SOCIAL_MEDIA_PROFILES.md",
-            "size": 9089,
-            "path": "houstonsipqueen.com\\SOCIAL_MEDIA_PROFILES.md"
-          },
-          {
-            "name": "FUNNEL_URL_MAP.md",
-            "size": 1042,
-            "path": "houstonsipqueen.com\\FUNNEL_URL_MAP.md"
-          },
-          {
-            "name": "PAGE_LANDING_EVENT_BAR_CHECKLIST.md",
-            "size": 2634,
-            "path": "houstonsipqueen.com\\PAGE_LANDING_EVENT_BAR_CHECKLIST.md"
-          },
-          {
-            "name": "PAGE_THANK_YOU_EVENT_BAR_CHECKLIST.md",
-            "size": 1378,
-            "path": "houstonsipqueen.com\\PAGE_THANK_YOU_EVENT_BAR_CHECKLIST.md"
-          }
-        ],
-        "directories": [],
-        "total_files": 11,
-        "total_size": 58966
-      },
-      "websites": {
-        "exists": true,
-        "files": [
-          {
-            "name": "SITE_INFO.md",
-            "size": 389,
-            "path": "websites\\houstonsipqueen.com\\SITE_INFO.md"
-          }
-        ],
-        "directories": [
-          "wp"
-        ],
-        "total_files": 1,
-        "total_size": 389
-      },
-      "unique_to_root": [
-        "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
-        "ICP_DEFINITION.md",
-        "OFFER_LADDER.md",
-        "POSITIONING_STATEMENT.md",
-        "FUNNEL_URL_MAP.md",
-        "LEAD_MAGNET_EVENT_BAR_CHECKLIST.md",
-        "SOCIAL_MEDIA_PROFILES.md",
-        "PAGE_THANK_YOU_EVENT_BAR_CHECKLIST.md",
-        "CONTENT_CALENDAR_30_DAYS.md",
-        "GRADE_CARD_SALES_FUNNEL.yaml",
-        "PAGE_LANDING_EVENT_BAR_CHECKLIST.md"
-      ],
-      "unique_to_websites": [
-        "SITE_INFO.md"
-      ],
-      "common_files": [],
-      "safe_to_move": [
-        {
-          "file": "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        },
-        {
-          "file": "ICP_DEFINITION.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        },
-        {
-          "file": "OFFER_LADDER.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        },
-        {
-          "file": "POSITIONING_STATEMENT.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        },
-        {
-          "file": "FUNNEL_URL_MAP.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        },
-        {
-          "file": "LEAD_MAGNET_EVENT_BAR_CHECKLIST.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        },
-        {
-          "file": "SOCIAL_MEDIA_PROFILES.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        },
-        {
-          "file": "PAGE_THANK_YOU_EVENT_BAR_CHECKLIST.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        },
-        {
-          "file": "CONTENT_CALENDAR_30_DAYS.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        },
-        {
-          "file": "GRADE_CARD_SALES_FUNNEL.yaml",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/"
-        },
-        {
-          "file": "PAGE_LANDING_EVENT_BAR_CHECKLIST.md",
-          "from": "houstonsipqueen.com",
-          "to": "websites/houstonsipqueen.com/docs/"
-        }
-      ]
-    },
-    "prismblossom.online": {
-      "root": {
-        "exists": true,
+        "exists": false,
         "files": [],
-        "directories": [
-          "wordpress-theme"
-        ],
+        "directories": [],
         "total_files": 0,
         "total_size": 0
       },
@@ -511,228 +15,502 @@
         "files": [
           {
             "name": "SITE_INFO.md",
-            "size": 473,
-            "path": "websites\\prismblossom.online\\SITE_INFO.md"
+            "size": 832,
+            "path": "websites\\ariajet.site\\SITE_INFO.md"
+          },
+          {
+            "name": "playlists.html",
+            "size": 5539,
+            "path": "websites\\ariajet.site\\playlists.html"
+          },
+          {
+            "name": "projects.html",
+            "size": 5771,
+            "path": "websites\\ariajet.site\\projects.html"
+          },
+          {
+            "name": "index.html",
+            "size": 9436,
+            "path": "websites\\ariajet.site\\index.html"
+          },
+          {
+            "name": "index.php",
+            "size": 998,
+            "path": "websites\\ariajet.site\\index.php"
+          },
+          {
+            "name": "WHAT_IS_ARIAJET.md",
+            "size": 1783,
+            "path": "websites\\ariajet.site\\WHAT_IS_ARIAJET.md"
+          },
+          {
+            "name": "FIX_SERVICE_UNAVAILABLE.md",
+            "size": 3868,
+            "path": "websites\\ariajet.site\\FIX_SERVICE_UNAVAILABLE.md"
           }
         ],
         "directories": [
-          "wp"
+          "wp",
+          "docs",
+          "blog",
+          "games",
+          "wordpress-theme"
         ],
-        "total_files": 1,
-        "total_size": 473
+        "total_files": 7,
+        "total_size": 28227
       },
       "unique_to_root": [],
       "unique_to_websites": [
-        "SITE_INFO.md"
+        "index.php",
+        "projects.html",
+        "index.html",
+        "playlists.html",
+        "WHAT_IS_ARIAJET.md",
+        "SITE_INFO.md",
+        "FIX_SERVICE_UNAVAILABLE.md"
       ],
       "common_files": [],
       "safe_to_move": []
     },
-    "southwestsecret.com": {
+    "crosbyultimateevents.com": {
       "root": {
-        "exists": true,
-        "files": [
-          {
-            "name": "index.html",
-            "size": 5391,
-            "path": "southwestsecret.com\\index.html"
-          },
-          {
-            "name": "README.md",
-            "size": 5642,
-            "path": "southwestsecret.com\\README.md"
-          },
-          {
-            "name": "DEPLOYMENT_GUIDE.md",
-            "size": 6533,
-            "path": "southwestsecret.com\\DEPLOYMENT_GUIDE.md"
-          },
-          {
-            "name": "QUICK_START.txt",
-            "size": 7670,
-            "path": "southwestsecret.com\\QUICK_START.txt"
-          },
-          {
-            "name": "HOSTINGER_DEPLOYMENT.md",
-            "size": 9613,
-            "path": "southwestsecret.com\\HOSTINGER_DEPLOYMENT.md"
-          },
-          {
-            "name": "HOSTINGER_QUICK_START.txt",
-            "size": 4075,
-            "path": "southwestsecret.com\\HOSTINGER_QUICK_START.txt"
-          },
-          {
-            "name": "FIX_VIDEO_EMBED.txt",
-            "size": 7080,
-            "path": "southwestsecret.com\\FIX_VIDEO_EMBED.txt"
-          },
-          {
-            "name": "VIDEO_TROUBLESHOOTING.txt",
-            "size": 6905,
-            "path": "southwestsecret.com\\VIDEO_TROUBLESHOOTING.txt"
-          },
-          {
-            "name": "products.html",
-            "size": 5233,
-            "path": "southwestsecret.com\\products.html"
-          },
-          {
-            "name": "aria.html",
-            "size": 17404,
-            "path": "southwestsecret.com\\aria.html"
-          },
-          {
-            "name": "dabighomiecheese.html",
-            "size": 5035,
-            "path": "southwestsecret.com\\dabighomiecheese.html"
-          },
-          {
-            "name": "menu.html",
-            "size": 5322,
-            "path": "southwestsecret.com\\menu.html"
-          },
-          {
-            "name": "home.html",
-            "size": 10405,
-            "path": "southwestsecret.com\\home.html"
-          },
-          {
-            "name": "carmyn.html",
-            "size": 15051,
-            "path": "southwestsecret.com\\carmyn.html"
-          },
-          {
-            "name": "timer.html",
-            "size": 11040,
-            "path": "southwestsecret.com\\timer.html"
-          }
-        ],
-        "directories": [
-          "css",
-          "js",
-          "assets",
-          "wordpress-theme",
-          "music",
-          "audio",
-          "games"
-        ],
-        "total_files": 15,
-        "total_size": 122399
+        "exists": false,
+        "files": [],
+        "directories": [],
+        "total_files": 0,
+        "total_size": 0
       },
       "websites": {
         "exists": true,
         "files": [
           {
             "name": "SITE_INFO.md",
-            "size": 710,
-            "path": "websites\\southwestsecret.com\\SITE_INFO.md"
+            "size": 709,
+            "path": "websites\\crosbyultimateevents.com\\SITE_INFO.md"
+          },
+          {
+            "name": "GRADE_CARD_SALES_FUNNEL.yaml",
+            "size": 14250,
+            "path": "websites\\crosbyultimateevents.com\\GRADE_CARD_SALES_FUNNEL.yaml"
+          },
+          {
+            "name": "WHAT_IS_CROSBYULTIMATEEVENTS.md",
+            "size": 2180,
+            "path": "websites\\crosbyultimateevents.com\\WHAT_IS_CROSBYULTIMATEEVENTS.md"
+          },
+          {
+            "name": "CONTENT_CALENDAR_30_DAYS.md",
+            "size": 4683,
+            "path": "websites\\crosbyultimateevents.com\\CONTENT_CALENDAR_30_DAYS.md"
+          },
+          {
+            "name": "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
+            "size": 11493,
+            "path": "websites\\crosbyultimateevents.com\\EMAIL_SEQUENCE_WELCOME_NURTURE.md"
+          },
+          {
+            "name": "ICP_DEFINITION.md",
+            "size": 3887,
+            "path": "websites\\crosbyultimateevents.com\\ICP_DEFINITION.md"
+          },
+          {
+            "name": "IMPLEMENTATION_CHECKLIST.md",
+            "size": 2590,
+            "path": "websites\\crosbyultimateevents.com\\IMPLEMENTATION_CHECKLIST.md"
+          },
+          {
+            "name": "LEAD_MAGNET_EVENT_PLANNING_CHECKLIST.md",
+            "size": 4582,
+            "path": "websites\\crosbyultimateevents.com\\LEAD_MAGNET_EVENT_PLANNING_CHECKLIST.md"
+          },
+          {
+            "name": "OFFER_LADDER.md",
+            "size": 2821,
+            "path": "websites\\crosbyultimateevents.com\\OFFER_LADDER.md"
+          },
+          {
+            "name": "POSITIONING_STATEMENT.md",
+            "size": 2025,
+            "path": "websites\\crosbyultimateevents.com\\POSITIONING_STATEMENT.md"
+          },
+          {
+            "name": "SOCIAL_MEDIA_PROFILES.md",
+            "size": 9191,
+            "path": "websites\\crosbyultimateevents.com\\SOCIAL_MEDIA_PROFILES.md"
           }
         ],
         "directories": [
-          "wp"
+          "docs",
+          "blog",
+          "pages",
+          "setup"
         ],
-        "total_files": 1,
-        "total_size": 710
+        "total_files": 11,
+        "total_size": 58411
       },
-      "unique_to_root": [
-        "carmyn.html",
-        "dabighomiecheese.html",
-        "home.html",
-        "menu.html",
-        "products.html",
-        "index.html",
-        "FIX_VIDEO_EMBED.txt",
-        "DEPLOYMENT_GUIDE.md",
-        "HOSTINGER_QUICK_START.txt",
-        "aria.html",
-        "README.md",
-        "timer.html",
-        "HOSTINGER_DEPLOYMENT.md",
-        "VIDEO_TROUBLESHOOTING.txt",
-        "QUICK_START.txt"
-      ],
+      "unique_to_root": [],
       "unique_to_websites": [
+        "WHAT_IS_CROSBYULTIMATEEVENTS.md",
+        "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
+        "ICP_DEFINITION.md",
+        "SOCIAL_MEDIA_PROFILES.md",
+        "CONTENT_CALENDAR_30_DAYS.md",
+        "OFFER_LADDER.md",
+        "LEAD_MAGNET_EVENT_PLANNING_CHECKLIST.md",
+        "GRADE_CARD_SALES_FUNNEL.yaml",
+        "POSITIONING_STATEMENT.md",
+        "IMPLEMENTATION_CHECKLIST.md",
         "SITE_INFO.md"
       ],
       "common_files": [],
-      "safe_to_move": [
-        {
-          "file": "carmyn.html",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "dabighomiecheese.html",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "home.html",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "menu.html",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "products.html",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "index.html",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "FIX_VIDEO_EMBED.txt",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "DEPLOYMENT_GUIDE.md",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/docs/"
-        },
-        {
-          "file": "HOSTINGER_QUICK_START.txt",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "aria.html",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "README.md",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/docs/"
-        },
-        {
-          "file": "timer.html",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "HOSTINGER_DEPLOYMENT.md",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/docs/"
-        },
-        {
-          "file": "VIDEO_TROUBLESHOOTING.txt",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        },
-        {
-          "file": "QUICK_START.txt",
-          "from": "southwestsecret.com",
-          "to": "websites/southwestsecret.com/"
-        }
-      ]
+      "safe_to_move": []
+    },
+    "dadudekc.com": {
+      "root": {
+        "exists": false,
+        "files": [],
+        "directories": [],
+        "total_files": 0,
+        "total_size": 0
+      },
+      "websites": {
+        "exists": true,
+        "files": [
+          {
+            "name": "SITE_INFO.md",
+            "size": 614,
+            "path": "websites\\dadudekc.com\\SITE_INFO.md"
+          },
+          {
+            "name": "GRADE_CARD_SALES_FUNNEL.yaml",
+            "size": 14902,
+            "path": "websites\\dadudekc.com\\GRADE_CARD_SALES_FUNNEL.yaml"
+          },
+          {
+            "name": "WHAT_IS_DADUDEKC.md",
+            "size": 2118,
+            "path": "websites\\dadudekc.com\\WHAT_IS_DADUDEKC.md"
+          },
+          {
+            "name": "CONTENT_CALENDAR_30_DAYS.md",
+            "size": 4725,
+            "path": "websites\\dadudekc.com\\CONTENT_CALENDAR_30_DAYS.md"
+          },
+          {
+            "name": "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
+            "size": 12569,
+            "path": "websites\\dadudekc.com\\EMAIL_SEQUENCE_WELCOME_NURTURE.md"
+          },
+          {
+            "name": "ICP_DEFINITION.md",
+            "size": 3735,
+            "path": "websites\\dadudekc.com\\ICP_DEFINITION.md"
+          },
+          {
+            "name": "LEAD_MAGNET_WORKFLOW_AUDIT.md",
+            "size": 4777,
+            "path": "websites\\dadudekc.com\\LEAD_MAGNET_WORKFLOW_AUDIT.md"
+          },
+          {
+            "name": "OFFER_LADDER.md",
+            "size": 2387,
+            "path": "websites\\dadudekc.com\\OFFER_LADDER.md"
+          },
+          {
+            "name": "POSITIONING_STATEMENT.md",
+            "size": 1752,
+            "path": "websites\\dadudekc.com\\POSITIONING_STATEMENT.md"
+          },
+          {
+            "name": "SOCIAL_MEDIA_PROFILES.md",
+            "size": 9361,
+            "path": "websites\\dadudekc.com\\SOCIAL_MEDIA_PROFILES.md"
+          }
+        ],
+        "directories": [
+          "docs",
+          "blog",
+          "blog-posts",
+          "optimizations"
+        ],
+        "total_files": 10,
+        "total_size": 56940
+      },
+      "unique_to_root": [],
+      "unique_to_websites": [
+        "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
+        "ICP_DEFINITION.md",
+        "SOCIAL_MEDIA_PROFILES.md",
+        "LEAD_MAGNET_WORKFLOW_AUDIT.md",
+        "CONTENT_CALENDAR_30_DAYS.md",
+        "OFFER_LADDER.md",
+        "GRADE_CARD_SALES_FUNNEL.yaml",
+        "POSITIONING_STATEMENT.md",
+        "SITE_INFO.md",
+        "WHAT_IS_DADUDEKC.md"
+      ],
+      "common_files": [],
+      "safe_to_move": []
+    },
+    "houstonsipqueen.com": {
+      "root": {
+        "exists": false,
+        "files": [],
+        "directories": [],
+        "total_files": 0,
+        "total_size": 0
+      },
+      "websites": {
+        "exists": true,
+        "files": [
+          {
+            "name": "SITE_INFO.md",
+            "size": 686,
+            "path": "websites\\houstonsipqueen.com\\SITE_INFO.md"
+          },
+          {
+            "name": "GRADE_CARD_SALES_FUNNEL.yaml",
+            "size": 15158,
+            "path": "websites\\houstonsipqueen.com\\GRADE_CARD_SALES_FUNNEL.yaml"
+          },
+          {
+            "name": "WHAT_IS_HOUSTONSIPQUEEN.md",
+            "size": 2138,
+            "path": "websites\\houstonsipqueen.com\\WHAT_IS_HOUSTONSIPQUEEN.md"
+          },
+          {
+            "name": "CONTENT_CALENDAR_30_DAYS.md",
+            "size": 4702,
+            "path": "websites\\houstonsipqueen.com\\CONTENT_CALENDAR_30_DAYS.md"
+          },
+          {
+            "name": "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
+            "size": 12318,
+            "path": "websites\\houstonsipqueen.com\\EMAIL_SEQUENCE_WELCOME_NURTURE.md"
+          },
+          {
+            "name": "FUNNEL_URL_MAP.md",
+            "size": 1042,
+            "path": "websites\\houstonsipqueen.com\\FUNNEL_URL_MAP.md"
+          },
+          {
+            "name": "ICP_DEFINITION.md",
+            "size": 3732,
+            "path": "websites\\houstonsipqueen.com\\ICP_DEFINITION.md"
+          },
+          {
+            "name": "LEAD_MAGNET_EVENT_BAR_CHECKLIST.md",
+            "size": 4617,
+            "path": "websites\\houstonsipqueen.com\\LEAD_MAGNET_EVENT_BAR_CHECKLIST.md"
+          },
+          {
+            "name": "OFFER_LADDER.md",
+            "size": 2428,
+            "path": "websites\\houstonsipqueen.com\\OFFER_LADDER.md"
+          },
+          {
+            "name": "PAGE_LANDING_EVENT_BAR_CHECKLIST.md",
+            "size": 2634,
+            "path": "websites\\houstonsipqueen.com\\PAGE_LANDING_EVENT_BAR_CHECKLIST.md"
+          },
+          {
+            "name": "PAGE_THANK_YOU_EVENT_BAR_CHECKLIST.md",
+            "size": 1378,
+            "path": "websites\\houstonsipqueen.com\\PAGE_THANK_YOU_EVENT_BAR_CHECKLIST.md"
+          },
+          {
+            "name": "POSITIONING_STATEMENT.md",
+            "size": 1868,
+            "path": "websites\\houstonsipqueen.com\\POSITIONING_STATEMENT.md"
+          },
+          {
+            "name": "SOCIAL_MEDIA_PROFILES.md",
+            "size": 9089,
+            "path": "websites\\houstonsipqueen.com\\SOCIAL_MEDIA_PROFILES.md"
+          }
+        ],
+        "directories": [
+          "wp",
+          "docs",
+          "blog"
+        ],
+        "total_files": 13,
+        "total_size": 61790
+      },
+      "unique_to_root": [],
+      "unique_to_websites": [
+        "EMAIL_SEQUENCE_WELCOME_NURTURE.md",
+        "ICP_DEFINITION.md",
+        "FUNNEL_URL_MAP.md",
+        "SOCIAL_MEDIA_PROFILES.md",
+        "PAGE_THANK_YOU_EVENT_BAR_CHECKLIST.md",
+        "CONTENT_CALENDAR_30_DAYS.md",
+        "OFFER_LADDER.md",
+        "WHAT_IS_HOUSTONSIPQUEEN.md",
+        "GRADE_CARD_SALES_FUNNEL.yaml",
+        "POSITIONING_STATEMENT.md",
+        "SITE_INFO.md",
+        "PAGE_LANDING_EVENT_BAR_CHECKLIST.md",
+        "LEAD_MAGNET_EVENT_BAR_CHECKLIST.md"
+      ],
+      "common_files": [],
+      "safe_to_move": []
+    },
+    "prismblossom.online": {
+      "root": {
+        "exists": false,
+        "files": [],
+        "directories": [],
+        "total_files": 0,
+        "total_size": 0
+      },
+      "websites": {
+        "exists": true,
+        "files": [
+          {
+            "name": "SITE_INFO.md",
+            "size": 696,
+            "path": "websites\\prismblossom.online\\SITE_INFO.md"
+          },
+          {
+            "name": "WHAT_IS_PRISMBLOSSOM.md",
+            "size": 1492,
+            "path": "websites\\prismblossom.online\\WHAT_IS_PRISMBLOSSOM.md"
+          }
+        ],
+        "directories": [
+          "wp",
+          "blog",
+          "wordpress-theme",
+          "optimizations"
+        ],
+        "total_files": 2,
+        "total_size": 2188
+      },
+      "unique_to_root": [],
+      "unique_to_websites": [
+        "SITE_INFO.md",
+        "WHAT_IS_PRISMBLOSSOM.md"
+      ],
+      "common_files": [],
+      "safe_to_move": []
+    },
+    "southwestsecret.com": {
+      "root": {
+        "exists": false,
+        "files": [],
+        "directories": [],
+        "total_files": 0,
+        "total_size": 0
+      },
+      "websites": {
+        "exists": true,
+        "files": [
+          {
+            "name": "SITE_INFO.md",
+            "size": 984,
+            "path": "websites\\southwestsecret.com\\SITE_INFO.md"
+          },
+          {
+            "name": "carmyn.html",
+            "size": 15051,
+            "path": "websites\\southwestsecret.com\\carmyn.html"
+          },
+          {
+            "name": "dabighomiecheese.html",
+            "size": 5035,
+            "path": "websites\\southwestsecret.com\\dabighomiecheese.html"
+          },
+          {
+            "name": "home.html",
+            "size": 10405,
+            "path": "websites\\southwestsecret.com\\home.html"
+          },
+          {
+            "name": "menu.html",
+            "size": 5322,
+            "path": "websites\\southwestsecret.com\\menu.html"
+          },
+          {
+            "name": "products.html",
+            "size": 5233,
+            "path": "websites\\southwestsecret.com\\products.html"
+          },
+          {
+            "name": "index.html",
+            "size": 5391,
+            "path": "websites\\southwestsecret.com\\index.html"
+          },
+          {
+            "name": "FIX_VIDEO_EMBED.txt",
+            "size": 7080,
+            "path": "websites\\southwestsecret.com\\FIX_VIDEO_EMBED.txt"
+          },
+          {
+            "name": "HOSTINGER_QUICK_START.txt",
+            "size": 4075,
+            "path": "websites\\southwestsecret.com\\HOSTINGER_QUICK_START.txt"
+          },
+          {
+            "name": "aria.html",
+            "size": 17404,
+            "path": "websites\\southwestsecret.com\\aria.html"
+          },
+          {
+            "name": "timer.html",
+            "size": 11040,
+            "path": "websites\\southwestsecret.com\\timer.html"
+          },
+          {
+            "name": "VIDEO_TROUBLESHOOTING.txt",
+            "size": 6905,
+            "path": "websites\\southwestsecret.com\\VIDEO_TROUBLESHOOTING.txt"
+          },
+          {
+            "name": "QUICK_START.txt",
+            "size": 7670,
+            "path": "websites\\southwestsecret.com\\QUICK_START.txt"
+          },
+          {
+            "name": "WHAT_IS_SOUTHWESTSECRET.md",
+            "size": 2059,
+            "path": "websites\\southwestsecret.com\\WHAT_IS_SOUTHWESTSECRET.md"
+          }
+        ],
+        "directories": [
+          "wp",
+          "docs",
+          "css",
+          "js",
+          "assets",
+          "wordpress-theme",
+          "music",
+          "audio",
+          "games",
+          "optimizations"
+        ],
+        "total_files": 14,
+        "total_size": 103654
+      },
+      "unique_to_root": [],
+      "unique_to_websites": [
+        "aria.html",
+        "products.html",
+        "menu.html",
+        "FIX_VIDEO_EMBED.txt",
+        "dabighomiecheese.html",
+        "timer.html",
+        "home.html",
+        "WHAT_IS_SOUTHWESTSECRET.md",
+        "index.html",
+        "HOSTINGER_QUICK_START.txt",
+        "SITE_INFO.md",
+        "carmyn.html",
+        "QUICK_START.txt",
+        "VIDEO_TROUBLESHOOTING.txt"
+      ],
+      "common_files": [],
+      "safe_to_move": []
     },
     "digitaldreamscape.site": {
       "root": {
@@ -747,19 +525,129 @@
         "files": [
           {
             "name": "SITE_INFO.md",
-            "size": 373,
+            "size": 766,
             "path": "websites\\digitaldreamscape.site\\SITE_INFO.md"
+          },
+          {
+            "name": "WHAT_IS_DIGITAL_DREAMSCAPE.md",
+            "size": 8873,
+            "path": "websites\\digitaldreamscape.site\\WHAT_IS_DIGITAL_DREAMSCAPE.md"
+          },
+          {
+            "name": "PROFESSIONAL_WEBSITE_ROADMAP.md",
+            "size": 5166,
+            "path": "websites\\digitaldreamscape.site\\PROFESSIONAL_WEBSITE_ROADMAP.md"
+          },
+          {
+            "name": "IMPROVEMENTS_SUMMARY.md",
+            "size": 6367,
+            "path": "websites\\digitaldreamscape.site\\IMPROVEMENTS_SUMMARY.md"
+          },
+          {
+            "name": "THEME_CONSISTENCY_IMPROVEMENTS.md",
+            "size": 4349,
+            "path": "websites\\digitaldreamscape.site\\THEME_CONSISTENCY_IMPROVEMENTS.md"
+          },
+          {
+            "name": "HEADER_ISSUE_ROOT_CAUSE.md",
+            "size": 3830,
+            "path": "websites\\digitaldreamscape.site\\HEADER_ISSUE_ROOT_CAUSE.md"
+          },
+          {
+            "name": "HEADER_INVESTIGATION_RESULTS.md",
+            "size": 3903,
+            "path": "websites\\digitaldreamscape.site\\HEADER_INVESTIGATION_RESULTS.md"
+          },
+          {
+            "name": "DEEP_INVESTIGATION_SUMMARY.md",
+            "size": 3568,
+            "path": "websites\\digitaldreamscape.site\\DEEP_INVESTIGATION_SUMMARY.md"
+          },
+          {
+            "name": "AUTOBLOGGER_TEMPLATE_INTEGRATION.md",
+            "size": 4449,
+            "path": "websites\\digitaldreamscape.site\\AUTOBLOGGER_TEMPLATE_INTEGRATION.md"
+          },
+          {
+            "name": "BLOG_POST_DESIGN_IMPROVEMENTS.md",
+            "size": 5178,
+            "path": "websites\\digitaldreamscape.site\\BLOG_POST_DESIGN_IMPROVEMENTS.md"
+          },
+          {
+            "name": "DEPLOYMENT_SUCCESS.md",
+            "size": 2348,
+            "path": "websites\\digitaldreamscape.site\\DEPLOYMENT_SUCCESS.md"
+          },
+          {
+            "name": "GRADE_CARD_REEVALUATION_2025-12-23.md",
+            "size": 14924,
+            "path": "websites\\digitaldreamscape.site\\GRADE_CARD_REEVALUATION_2025-12-23.md"
+          },
+          {
+            "name": "TEXT_RENDERING_FIX_2025-12-23.md",
+            "size": 5692,
+            "path": "websites\\digitaldreamscape.site\\TEXT_RENDERING_FIX_2025-12-23.md"
+          },
+          {
+            "name": "HEADER_CONSISTENCY_FIX_2025-12-25.md",
+            "size": 3620,
+            "path": "websites\\digitaldreamscape.site\\HEADER_CONSISTENCY_FIX_2025-12-25.md"
+          },
+          {
+            "name": "HEADER_FIX_VERIFICATION_2025-12-25.md",
+            "size": 7198,
+            "path": "websites\\digitaldreamscape.site\\HEADER_FIX_VERIFICATION_2025-12-25.md"
+          },
+          {
+            "name": "MODULARIZATION_COMPLETE_2025-12-25.md",
+            "size": 9881,
+            "path": "websites\\digitaldreamscape.site\\MODULARIZATION_COMPLETE_2025-12-25.md"
+          },
+          {
+            "name": "PHASE_2_COMPLETE_2025-12-25.md",
+            "size": 12789,
+            "path": "websites\\digitaldreamscape.site\\PHASE_2_COMPLETE_2025-12-25.md"
+          },
+          {
+            "name": "DARK_THEME_IMPLEMENTATION_2025-12-25.md",
+            "size": 9085,
+            "path": "websites\\digitaldreamscape.site\\DARK_THEME_IMPLEMENTATION_2025-12-25.md"
+          },
+          {
+            "name": "STATUS_SUMMARY_2025-12-25.md",
+            "size": 6900,
+            "path": "websites\\digitaldreamscape.site\\STATUS_SUMMARY_2025-12-25.md"
           }
         ],
         "directories": [
-          "wp"
+          "wp",
+          "blog",
+          "docs"
         ],
-        "total_files": 1,
-        "total_size": 373
+        "total_files": 19,
+        "total_size": 118886
       },
       "unique_to_root": [],
       "unique_to_websites": [
-        "SITE_INFO.md"
+        "TEXT_RENDERING_FIX_2025-12-23.md",
+        "GRADE_CARD_REEVALUATION_2025-12-23.md",
+        "MODULARIZATION_COMPLETE_2025-12-25.md",
+        "PROFESSIONAL_WEBSITE_ROADMAP.md",
+        "HEADER_INVESTIGATION_RESULTS.md",
+        "IMPROVEMENTS_SUMMARY.md",
+        "THEME_CONSISTENCY_IMPROVEMENTS.md",
+        "HEADER_ISSUE_ROOT_CAUSE.md",
+        "DEEP_INVESTIGATION_SUMMARY.md",
+        "SITE_INFO.md",
+        "BLOG_POST_DESIGN_IMPROVEMENTS.md",
+        "STATUS_SUMMARY_2025-12-25.md",
+        "DEPLOYMENT_SUCCESS.md",
+        "DARK_THEME_IMPLEMENTATION_2025-12-25.md",
+        "HEADER_FIX_VERIFICATION_2025-12-25.md",
+        "AUTOBLOGGER_TEMPLATE_INTEGRATION.md",
+        "WHAT_IS_DIGITAL_DREAMSCAPE.md",
+        "PHASE_2_COMPLETE_2025-12-25.md",
+        "HEADER_CONSISTENCY_FIX_2025-12-25.md"
       ],
       "common_files": [],
       "safe_to_move": []
@@ -777,19 +665,32 @@
         "files": [
           {
             "name": "SITE_INFO.md",
-            "size": 3375,
+            "size": 3715,
             "path": "websites\\freerideinvestor.com\\SITE_INFO.md"
+          },
+          {
+            "name": "WHAT_IS_FREERIDEINVESTOR.md",
+            "size": 3881,
+            "path": "websites\\freerideinvestor.com\\WHAT_IS_FREERIDEINVESTOR.md"
+          },
+          {
+            "name": "POSITIONING_STATEMENT.md",
+            "size": 3616,
+            "path": "websites\\freerideinvestor.com\\POSITIONING_STATEMENT.md"
           }
         ],
         "directories": [
-          "wp"
+          "wp",
+          "blog"
         ],
-        "total_files": 1,
-        "total_size": 3375
+        "total_files": 3,
+        "total_size": 11212
       },
       "unique_to_root": [],
       "unique_to_websites": [
-        "SITE_INFO.md"
+        "SITE_INFO.md",
+        "POSITIONING_STATEMENT.md",
+        "WHAT_IS_FREERIDEINVESTOR.md"
       ],
       "common_files": [],
       "safe_to_move": []
@@ -807,19 +708,26 @@
         "files": [
           {
             "name": "SITE_INFO.md",
-            "size": 1154,
+            "size": 1462,
             "path": "websites\\tradingrobotplug.com\\SITE_INFO.md"
+          },
+          {
+            "name": "WHAT_IS_TRADINGROBOTPLUG.md",
+            "size": 2217,
+            "path": "websites\\tradingrobotplug.com\\WHAT_IS_TRADINGROBOTPLUG.md"
           }
         ],
         "directories": [
-          "wp"
+          "wp",
+          "blog"
         ],
-        "total_files": 1,
-        "total_size": 1154
+        "total_files": 2,
+        "total_size": 3679
       },
       "unique_to_root": [],
       "unique_to_websites": [
-        "SITE_INFO.md"
+        "SITE_INFO.md",
+        "WHAT_IS_TRADINGROBOTPLUG.md"
       ],
       "common_files": [],
       "safe_to_move": []
@@ -837,17 +745,25 @@
         "files": [
           {
             "name": "SITE_INFO.md",
-            "size": 382,
+            "size": 637,
             "path": "websites\\weareswarm.online\\SITE_INFO.md"
+          },
+          {
+            "name": "WHAT_IS_WEARESWARM_ONLINE.md",
+            "size": 2044,
+            "path": "websites\\weareswarm.online\\WHAT_IS_WEARESWARM_ONLINE.md"
           }
         ],
-        "directories": [],
-        "total_files": 1,
-        "total_size": 382
+        "directories": [
+          "blog"
+        ],
+        "total_files": 2,
+        "total_size": 2681
       },
       "unique_to_root": [],
       "unique_to_websites": [
-        "SITE_INFO.md"
+        "SITE_INFO.md",
+        "WHAT_IS_WEARESWARM_ONLINE.md"
       ],
       "common_files": [],
       "safe_to_move": []
@@ -865,19 +781,25 @@
         "files": [
           {
             "name": "SITE_INFO.md",
-            "size": 836,
+            "size": 1088,
             "path": "websites\\weareswarm.site\\SITE_INFO.md"
+          },
+          {
+            "name": "WHAT_IS_WEARESWARM_SITE.md",
+            "size": 1950,
+            "path": "websites\\weareswarm.site\\WHAT_IS_WEARESWARM_SITE.md"
           }
         ],
         "directories": [
           "wp"
         ],
-        "total_files": 1,
-        "total_size": 836
+        "total_files": 2,
+        "total_size": 3038
       },
       "unique_to_root": [],
       "unique_to_websites": [
-        "SITE_INFO.md"
+        "SITE_INFO.md",
+        "WHAT_IS_WEARESWARM_SITE.md"
       ],
       "common_files": [],
       "safe_to_move": []

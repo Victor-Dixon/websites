@@ -1,0 +1,143 @@
+/*--------------------------------------------------------------
+  Hero Optimization - Tier 1 Quick Win WEB-01
+  Site: tradingrobotplug.com
+  Phase 1 P0 Fix - Conversion Optimization
+--------------------------------------------------------------*/
+
+.hero-cta-row {
+  display: flex;
+  gap: var(--spacing-md, 20px);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: var(--spacing-lg, 30px) 0;
+}
+
+.hero-cta-row .cta-button.primary {
+  background: #00ff88;
+  color: #fff;
+  padding: 18px 36px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.hero-cta-row .cta-button.primary:hover {
+  background: #00ff88;
+  opacity: 0.9;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 102, 255, 0.4);
+}
+
+.hero-cta-row .cta-button.secondary {
+  background: transparent;
+  color: var(--text-color, #333);
+  border: 2px solid #00ff88;
+  padding: 18px 36px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.hero-cta-row .cta-button.secondary:hover {
+  background: rgba(0, 102, 255, 0.1);
+  border-color: #00ff88;
+}
+
+.hero-subheadline {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--text-muted, #666);
+  margin-bottom: var(--spacing-md, 20px);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-urgency {
+  font-size: 0.95rem;
+  color: var(--accent-color, #ffb300);
+  font-style: italic;
+  margin-top: var(--spacing-sm, 15px);
+  text-align: center;
+}
+
+/* Low Friction Form Styles - WEB-04 Quick Win */
+.subscription-form.low-friction {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.subscription-form-simple {
+  display: flex;
+  gap: var(--spacing-sm, 15px);
+  margin-bottom: var(--spacing-sm, 15px);
+}
+
+.subscription-form-simple .email-only-input {
+  flex: 1;
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--text-color, #333);
+}
+
+.subscription-form-simple .email-only-input:focus {
+  outline: none;
+  border-color: #00ff88;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.subscription-intro {
+  text-align: center;
+  color: var(--text-muted, #666);
+  margin-bottom: var(--spacing-md, 20px);
+}
+
+.subscription-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted, #666);
+  margin-top: var(--spacing-xs, 10px);
+}
+
+.premium-upgrade-cta {
+  margin-top: var(--spacing-lg, 30px);
+  padding: var(--spacing-md, 20px);
+  background: rgba(0, 102, 255, 0.1);
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.premium-upgrade-cta p {
+  margin-bottom: var(--spacing-sm, 15px);
+  color: var(--text-color, #333);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-cta-row {
+    flex-direction: column;
+  }
+  
+  .hero-cta-row .cta-button {
+    width: 100%;
+  }
+  
+  .subscription-form-simple {
+    flex-direction: column;
+  }
+  
+  .subscription-form-simple .email-only-input {
+    width: 100%;
+  }
+}

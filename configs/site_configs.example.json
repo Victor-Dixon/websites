@@ -1,0 +1,27 @@
+{
+  "example-site.com": {
+    "site_url": "https://example-site.com",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "REPLACE_WITH_WORDPRESS_USERNAME",
+      "app_password": "REPLACE_WITH_APPLICATION_PASSWORD",
+      "site_url": "https://example-site.com"
+    },
+    "sftp": {
+      "host": "REPLACE_WITH_SFTP_HOST",
+      "username": "REPLACE_WITH_SFTP_USERNAME",
+      "password": "REPLACE_WITH_SFTP_PASSWORD",
+      "remote_path": "domains/example-site.com/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
+  }
+}
+

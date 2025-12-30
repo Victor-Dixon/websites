@@ -31,6 +31,88 @@ ALL_SITES = [
     "weareswarm.site",
 ]
 
+def _normalize_php_file(content: str) -> str:
+    """
+    Normalize a PHP file string to avoid accidental output and tag issues.
+
+    - Strip UTF-8 BOM
+    - Normalize newlines to LF
+    - Ensure file begins at first '<?php' (removes accidental leading output)
+    - Remove any mid-file '?> ... <?php' transitions (not needed in functions.php)
+    - Remove trailing '?>' (best practice)
+    """
+    if not content:
+        return content
+
+    # Normalize newlines early to keep regex stable.
+    content = content.replace("\r\n", "\n").replace("\r", "\n")
+
+    # Strip BOM if present.
+    content = content.lstrip("\ufeff")
+
+    # If there's anything before the first PHP open tag, drop it.
+    first_php = content.find("<?php")
+    if first_php > 0:
+        content = content[first_php:]
+
+    # Remove close/open tag transitions (avoid accidental output segments).
+    content = re.sub(r"\?>\s*<\?php\s*", "\n", content, flags=re.IGNORECASE)
+
+    # Remove a trailing closing tag (common best practice for WP).
+    content = re.sub(r"\?>\s*\Z", "", content, flags=re.IGNORECASE)
+
+    return content
+
+
+def _remove_alt_text_snippets(content: str) -> tuple[str, bool]:
+    """
+    Remove known alt-text snippet blocks safely.
+
+    Important: avoid broad regexes that can cut through regex literals inside PHP,
+    which previously caused corrupted outputs like stray '?>/' fragments.
+    """
+    if not content:
+        return content, False
+
+    original = content
+
+    # Prefer removing the whole "Agent-7" block as a single unit.
+    agent7_block = re.compile(
+        r"""
+        /\*\*                                      # opening docblock
+        [\s\S]*?
+        Add\s+Missing\s+Alt\s+Text\s+to\s+Images    # title
+        \s*-\s*Added\s+by\s+Agent-7                 # signature
+        [\s\S]*?
+        add_filter\(\s*['"]the_excerpt['"]\s*,\s*['"]add_missing_alt_text_to_widgets['"]\s*,\s*20\s*\)\s*;
+        \s*
+        """,
+        flags=re.IGNORECASE | re.VERBOSE,
+    )
+    content = agent7_block.sub("", content)
+
+    # Other known legacy variants (remove function + its specific hook line).
+    # These are anchored to the exact hook registration line to avoid over-matching.
+    legacy_blocks = [
+        re.compile(
+            r"(?is)function\s+add_alt_to_content_images\s*\([^)]*\)\s*\{[\s\S]*?\}\s*add_filter\(\s*['\"]the_content['\"]\s*,\s*['\"]add_alt_to_content_images['\"]\s*,[\s\S]*?\);\s*"
+        ),
+        re.compile(
+            r"(?is)function\s+add_missing_alt_text_to_content\s*\([^)]*\)\s*\{[\s\S]*?\}\s*add_filter\(\s*['\"]the_content['\"]\s*,\s*['\"]add_missing_alt_text_to_content['\"]\s*,[\s\S]*?\);\s*"
+        ),
+        re.compile(
+            r"(?is)function\s+add_missing_alt_text_to_thumbnails\s*\([^)]*\)\s*\{[\s\S]*?\}\s*add_filter\(\s*['\"]post_thumbnail_html['\"]\s*,\s*['\"]add_missing_alt_text_to_thumbnails['\"]\s*,[\s\S]*?\);\s*"
+        ),
+        re.compile(
+            r"(?is)function\s+add_missing_alt_text_to_widgets\s*\([^)]*\)\s*\{[\s\S]*?\}\s*add_filter\(\s*['\"]widget_text['\"]\s*,\s*['\"]add_missing_alt_text_to_widgets['\"]\s*,[\s\S]*?\);\s*add_filter\(\s*['\"]the_excerpt['\"]\s*,\s*['\"]add_missing_alt_text_to_widgets['\"]\s*,[\s\S]*?\);\s*"
+        ),
+    ]
+    for pat in legacy_blocks:
+        content = pat.sub("", content)
+
+    removed = content != original
+    return content, removed
+
 
 def cleanup_broken_functions(site_name: str):
     """Remove broken alt text functions."""
@@ -83,25 +165,15 @@ def cleanup_broken_functions(site_name: str):
         if not content:
             return False
         
-        # Remove broken alt text functions
-        patterns_to_remove = [
-            r'/\*\*[\s\S]*?Add missing alt text[\s\S]*?\*/',
-            r'function add_missing_alt_text[\s\S]*?add_filter.*?wp_get_attachment_image_attributes.*?\);',
-            r'function add_alt_to_content_images[\s\S]*?add_filter.*?the_content.*?\);',
-            r'function add_missing_image_alt[\s\S]*?add_filter.*?wp_get_attachment_image_attributes.*?\);',
-        ]
-        
-        cleaned = content
-        removed = False
-        
-        for pattern in patterns_to_remove:
-            if re.search(pattern, cleaned, re.IGNORECASE | re.DOTALL):
-                cleaned = re.sub(pattern, '', cleaned, flags=re.IGNORECASE | re.DOTALL)
-                removed = True
+        # Remove broken alt text functions (safe, block-based removal).
+        cleaned, removed = _remove_alt_text_snippets(content)
         
         if not removed:
             print("   ✅ No broken functions found")
             return True
+
+        # Normalize tags/newlines and avoid accidental output.
+        cleaned = _normalize_php_file(cleaned)
         
         # Clean up extra blank lines
         cleaned = re.sub(r'\n{3,}', '\n\n', cleaned)

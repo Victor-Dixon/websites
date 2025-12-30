@@ -14,6 +14,22 @@ function simplifiedtheme_enqueue_assets() {
         wp_get_theme()->get('Version')
     );
 
+    // Navigation CSS - Directly enqueue (bypasses @import issues)
+    wp_enqueue_style(
+        'freeride-navigation-css',
+        get_template_directory_uri() . '/css/styles/components/_navigation.css',
+        ['main-css'],
+        wp_get_theme()->get('Version')
+    );
+
+    // Header/Footer CSS - Directly enqueue
+    wp_enqueue_style(
+        'freeride-header-footer-css',
+        get_template_directory_uri() . '/css/styles/layout/_header-footer.css',
+        ['main-css'],
+        wp_get_theme()->get('Version')
+    );
+
     // Google Fonts
     wp_enqueue_style(
         'google-fonts',
@@ -43,7 +59,7 @@ function simplifiedtheme_enqueue_assets() {
     wp_enqueue_style(
         'custom-css',
         get_template_directory_uri() . '/css/custom.css',
-        ['main-css'],
+        ['main-css', 'freeride-main-css'],
         '1.1'
     );
 

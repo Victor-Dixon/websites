@@ -1,14 +1,15 @@
 {
   "site": "southwestsecret.com",
-  "generated": "2025-12-22T08:48:05.840498",
+  "generated": "2025-12-25T10:40:04.728318",
   "target_response_time": "<3s",
   "current_response_time": "22.56s",
   "files_generated": [
-    "southwestsecret.com\\optimizations\\wp-config-cache.php",
-    "southwestsecret.com\\optimizations\\htaccess-optimizations.txt",
-    "southwestsecret.com\\optimizations\\functions-php-optimizations.php",
-    "southwestsecret.com\\optimizations\\meta-description.html",
-    "southwestsecret.com\\optimizations\\DEPLOYMENT_INSTRUCTIONS.md"
+    "optimizations\\wp-config-cache.php",
+    "optimizations\\htaccess-optimizations.txt",
+    "optimizations\\functions-php-optimizations.php",
+    "optimizations\\meta-description.html",
+    "optimizations\\h1-heading.html",
+    "optimizations\\DEPLOYMENT_INSTRUCTIONS.md"
   ],
   "optimizations": [
     "WordPress caching (WP_CACHE)",
@@ -18,8 +19,6 @@
     "Database optimization",
     "JavaScript defer loading",
     "Remove unnecessary scripts",
-    "Meta description",
-    "Alt text (accessibility)",
-    "ARIA labels (accessibility)"
+    "Meta description"
   ]
 }

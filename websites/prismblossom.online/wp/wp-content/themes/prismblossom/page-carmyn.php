@@ -3,7 +3,7 @@
  * Template Name: Carmyn Page
  * Template for Carmyn's dedicated showcase page
  * 
- * @package SouthWestSecret
+ * @package PrismBlossom
  */
 
 get_header();
@@ -449,32 +449,43 @@ get_header();
 
 <!-- No water theme decorations - clean solid background -->
 
-<main>
+<?php
+$carmyn_tagline = get_post_meta(get_the_ID(), '_carmyn_tagline', true) ?: 'Family & friends';
+$carmyn_highlights_raw = get_post_meta(get_the_ID(), '_carmyn_highlights', true) ?: 'Family, Memories, Music';
+$carmyn_highlights = array_values(array_filter(array_map('trim', explode(',', $carmyn_highlights_raw))));
+$carmyn_lofi_youtube_id = get_post_meta(get_the_ID(), '_carmyn_lofi_youtube_id', true) ?: 'sF80I-TQiW0';
+?>
     <!-- Hero Section -->
     <section id="home" class="hero carmyn-section">
         <div class="container">
             <h1 class="graffiti-title carmyn-title">
                 <span class="graffiti">CARMYN</span>
             </h1>
-            <p class="tagline carmyn-text">Featured DJ</p>
+            <p class="tagline carmyn-text"><?php echo esc_html($carmyn_tagline); ?></p>
         </div>
     </section>
 
-    <!-- Music Section -->
+    <!-- Highlights Section -->
     <section id="music" class="screw-tapes-library carmyn-section">
         <div class="container">
             <h2 class="section-title carmyn-title">
                 <span class="graffiti-sub">CARMYN</span>
-                <span class="bubble-sub">MUSIC</span>
+                <span class="bubble-sub">HIGHLIGHTS</span>
             </h2>
             <div class="carmyn-text" style="text-align: center; margin-top: 30px;">
-                <p style="font-size: 1.3em; margin-bottom: 20px;">Music Styles</p>
+                <p style="font-size: 1.3em; margin-bottom: 20px;">A few favorite things</p>
                 <div style="margin: 20px 0;">
-                    <span class="carmyn-music-badge">🎵 R&B</span>
-                    <span class="carmyn-music-badge">💃 Dance</span>
-                    <span class="carmyn-music-badge">🎷 Jazz</span>
+                    <?php if (!empty($carmyn_highlights)) : ?>
+                        <?php foreach ($carmyn_highlights as $highlight) : ?>
+                            <span class="carmyn-music-badge"><?php echo esc_html($highlight); ?></span>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <span class="carmyn-music-badge">Family</span>
+                        <span class="carmyn-music-badge">Memories</span>
+                        <span class="carmyn-music-badge">Music</span>
+                    <?php endif; ?>
                 </div>
-                <span class="carmyn-learning-badge">🌟 Still Learning - Help me get better!</span>
+                <span class="carmyn-learning-badge">Add your own note in the guestbook 💌</span>
             </div>
         </div>
     </section>
@@ -488,20 +499,25 @@ get_header();
             </h2>
             <div class="about-content">
                 <div class="carmyn-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <p style="font-size: 1.2em; margin-bottom: 20px;">
-                        Welcome to <strong style="color: #ffffff; text-shadow: 0 0 10px #ffffff;">Carmyn's</strong> space on SouthWest Secret!
-                    </p>
-                    <p style="font-size: 1.1em; margin-bottom: 20px;">
-                        I'm a DJ specializing in <strong style="color: #ffffff; text-shadow: 0 0 5px #ffffff;">R&B</strong>, <strong style="color: #ffffff; text-shadow: 0 0 5px #ffffff;">Dance</strong>, and <strong style="color: #ffffff; text-shadow: 0 0 5px #ffffff;">Jazz</strong> music. 
-                        I'm still learning and growing as an artist, so I'd love your help getting better!
-                    </p>
-                    <p style="font-size: 1.1em; margin-top: 30px; color: #ffffff; text-shadow: 0 0 5px #ffffff;">
-                        Check back soon for mixes and updates!
-                    </p>
+                    <?php if (trim((string) get_the_content()) !== '') : ?>
+                        <div style="font-size: 1.1em; line-height: 1.8;">
+                            <?php the_content(); ?>
+                        </div>
+                    <?php else : ?>
+                        <p style="font-size: 1.2em; margin-bottom: 20px;">
+                            Welcome to my little corner of <strong style="color: #ffffff; text-shadow: 0 0 10px #ffffff;">Prism Blossom</strong>.
+                        </p>
+                        <p style="font-size: 1.1em; margin-bottom: 20px;">
+                            This is a simple space for family and friends — for memories, updates, and celebrating the moments that matter.
+                        </p>
+                        <p style="font-size: 1.1em; margin-top: 30px; color: #ffffff; text-shadow: 0 0 5px #ffffff;">
+                            Leave a note in the guestbook — I’d love to hear from you.
+                        </p>
+                    <?php endif; ?>
                 </div>
                 <div class="website-link" style="margin-top: 30px; text-align: center;">
                     <a href="<?php echo home_url(); ?>" class="btn-subscribe" style="display: inline-block; background: rgba(255, 255, 255, 0.2); border: 2px solid #ffffff; color: #ffffff; text-shadow: 0 0 5px #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);">
-                        Visit SouthWest Secret
+                        Back to Prism Blossom
                     </a>
                 </div>
             </div>
@@ -516,9 +532,9 @@ get_header();
                 <span class="bubble-sub">CONNECTED</span>
             </h2>
             <div class="contact-content">
-                <p class="carmyn-text">Subscribe to SouthWest Secret for the latest mixes!</p>
-                <a href="https://www.youtube.com/@SouthWestSecret" target="_blank" class="btn-subscribe" style="background: rgba(255, 255, 255, 0.2); border: 2px solid #ffffff; color: #ffffff; text-shadow: 0 0 5px #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);">
-                    Subscribe Now
+                <p class="carmyn-text">Leave a note and sign the guestbook!</p>
+                <a href="<?php echo esc_url(home_url('/guestbook')); ?>" class="btn-subscribe" style="background: rgba(255, 255, 255, 0.2); border: 2px solid #ffffff; color: #ffffff; text-shadow: 0 0 5px #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);">
+                    Sign the Guestbook
                 </a>
             </div>
         </div>
@@ -651,8 +667,6 @@ get_header();
             </div>
         </div>
     </section>
-</main>
-
 <!-- Music Player Controls -->
 <div id="musicControls" style="position:fixed; bottom:20px; left:20px; z-index:9999;">
     <button id="playBtn" style="background: rgba(255, 255, 255, 0.2); border: 2px solid #ffffff; color: #ffffff; padding: 10px 20px; border-radius: 25px; cursor: pointer; text-shadow: 0 0 5px #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); font-size: 16px; font-weight: bold;">Play Lofi Music</button>
@@ -669,8 +683,8 @@ get_header();
     var player;
     function onYouTubeIframeAPIReady() {
         player = new YT.Player("ytplayer", {
-            videoId: "sF80I-TQiW0",
-            playerVars: { autoplay: 1, mute: 1, loop: 1, playlist: "sF80I-TQiW0" }
+            videoId: "<?php echo esc_js($carmyn_lofi_youtube_id); ?>",
+            playerVars: { autoplay: 1, mute: 1, loop: 1, playlist: "<?php echo esc_js($carmyn_lofi_youtube_id); ?>" }
         });
     }
 

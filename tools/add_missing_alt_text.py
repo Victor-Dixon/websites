@@ -34,7 +34,8 @@ SITES = [
 
 def generate_alt_text_function():
     """Generate WordPress function to add missing alt text."""
-    return '''
+    # Raw string avoids Python "invalid escape sequence" warnings from PHP regexes.
+    return r'''
 /**
  * Add Missing Alt Text to Images - Added by Agent-7
  * Automatically adds descriptive alt text to images that are missing it
@@ -235,11 +236,15 @@ def add_alt_text_functionality(site_name: str):
         # Generate alt text function
         alt_text_function = generate_alt_text_function()
         
-        # Add to functions.php
-        if '?>' in functions_content:
-            new_content = functions_content.replace('?>', '\n' + alt_text_function + '\n?>')
-        else:
-            new_content = functions_content + '\n' + alt_text_function
+        # Add to functions.php (SAFELY).
+        # If the file ends with a PHP closing tag, remove it first so we never
+        # accidentally append PHP code outside of PHP mode (which would get
+        # printed as raw text at the top of the site).
+        stripped = functions_content.rstrip()
+        if stripped.endswith('?>'):
+            stripped = stripped[:-2].rstrip()
+
+        new_content = stripped + '\n' + alt_text_function + '\n'
         
         # Save locally first
         local_file = Path(__file__).parent.parent / "temp" / f"{site_name}_functions_with_alt_text.php"

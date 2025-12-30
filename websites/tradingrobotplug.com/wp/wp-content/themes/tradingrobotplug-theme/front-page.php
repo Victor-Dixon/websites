@@ -8,17 +8,18 @@ Updated: 2025-11-02
 */
 get_header(); ?>
 
-<!-- ===== HERO SECTION ===== -->
+<!-- ===== HERO SECTION - Tier 1 Quick Win WEB-01 Optimized ===== -->
 <section class="hero">
     <div class="container">
         <div class="hero-content">
-            <h1 class="gradient-text">BUILDING TRADING ROBOTS</h1>
-            <p style="font-size: 20px; line-height: 1.8; max-width: 800px; margin: 0 auto 32px;">We're experimenting with different trading robot approaches to find a winning strategy. Right now we're in <strong>building mode</strong> - testing paper trading bots, analyzing performance, and iterating until we find what works. Watch our swarm of AI agents work in real-time as we build towards the ultimate trading bot.</p>
+            <h1 id="hero-heading" class="gradient-text">Join the Waitlist for AI-Powered Trading Robots</h1>
+            <p class="hero-subheadline">We're building and testing trading robots in real-time. Join the waitlist to get early access when we launch—watch our swarm build live.</p>
 
-            <div class="cta-group">
-                <a href="#swarm-status" class="btn btn-primary">🐝 Watch Us Build Live</a>
-                <a href="#paper-trading" class="btn btn-secondary">📊 See Paper Trading Results</a>
+            <div class="hero-cta-row">
+                <a class="cta-button primary" href="<?php echo esc_url(home_url('/waitlist')); ?>" role="button">Join the Waitlist →</a>
+                <a class="cta-button secondary" href="#swarm-status" role="button">Watch Us Build Live</a>
             </div>
+            <p class="hero-urgency">Limited early access spots—join now to be first in line</p>
             
             <!-- Real-Time Swarm Status -->
             <div style="margin-top: 48px; background: rgba(255,255,255,0.05); border-radius: 16px; padding: 32px;">
@@ -26,36 +27,107 @@ get_header(); ?>
                 <?php echo do_shortcode('[trp_swarm_status mode="summary" refresh="30"]'); ?>
             </div>
 
-            <!-- Live Market Preview -->
-            <div class="market-preview">
+            <!-- Live Market Preview - Dynamic Data from REST API -->
+            <div class="market-preview" id="live-market-preview">
                 <h4>📈 Live Market Data</h4>
-                <div class="market-item">
-                    <span class="market-symbol">SPY</span>
-                    <span class="market-price">$450.23</span>
-                    <span class="market-change positive">↑ +2.34%</span>
+                <div id="market-items-container">
+                    <!-- Stock items loaded dynamically via JavaScript -->
+                    <div class="market-item loading">
+                        <span class="market-symbol">Loading...</span>
+                        <span class="market-price">--</span>
+                        <span class="market-change">--</span>
+                    </div>
                 </div>
-                <div class="market-item">
-                    <span class="market-symbol">QQQ</span>
-                    <span class="market-price">$380.15</span>
-                    <span class="market-change positive">↑ +1.87%</span>
-                </div>
-                <div class="market-item">
-                    <span class="market-symbol">AAPL</span>
-                    <span class="market-price">$185.92</span>
-                    <span class="market-change negative">↓ -0.45%</span>
-                </div>
-                <div class="market-item">
-                    <span class="market-symbol">TSLA</span>
-                    <span class="market-price">$248.50</span>
-                    <span class="market-change positive">↑ +3.12%</span>
-                </div>
-                <div class="market-item">
-                    <span class="market-symbol">NVDA</span>
-                    <span class="market-price">$485.67</span>
-                    <span class="market-change positive">↑ +1.95%</span>
-                </div>
-                <p style="font-size: 12px; margin-top: 8px; opacity: 0.8;">Powered by Alpha Vantage, Polygon, IEX Cloud | Updated every second</p>
+                <p id="market-update-time" style="font-size: 12px; margin-top: 8px; opacity: 0.8;">Powered by Yahoo Finance | Updated every 30 seconds</p>
             </div>
+            
+            <script>
+            (function() {
+                'use strict';
+                
+                const apiEndpoint = '<?php echo esc_url(rest_url('tradingrobotplug/v1/stock-data')); ?>';
+                const refreshInterval = 30000; // 30 seconds
+                let updateTimer = null;
+                
+                function formatPrice(price) {
+                    return '$' + parseFloat(price).toFixed(2);
+                }
+                
+                function formatChange(changePercent) {
+                    const change = parseFloat(changePercent);
+                    const arrow = change >= 0 ? '↑' : '↓';
+                    const sign = change >= 0 ? '+' : '';
+                    return arrow + ' ' + sign + change.toFixed(2) + '%';
+                }
+                
+                function getChangeClass(changePercent) {
+                    return parseFloat(changePercent) >= 0 ? 'positive' : 'negative';
+                }
+                
+                function renderStockItems(stockData) {
+                    const container = document.getElementById('market-items-container');
+                    if (!container) return;
+                    
+                    if (!stockData || stockData.length === 0) {
+                        container.innerHTML = '<div class="market-item"><span>No data available</span></div>';
+                        return;
+                    }
+                    
+                    // Sort by symbol to maintain consistent order: TSLA, QQQ, SPY, NVDA
+                    const symbolOrder = ['TSLA', 'QQQ', 'SPY', 'NVDA'];
+                    stockData.sort((a, b) => symbolOrder.indexOf(a.symbol) - symbolOrder.indexOf(b.symbol));
+                    
+                    const html = stockData.map(stock => `
+                        <div class="market-item" data-symbol="${stock.symbol}">
+                            <span class="market-symbol">${stock.symbol}</span>
+                            <span class="market-price">${formatPrice(stock.price)}</span>
+                            <span class="market-change ${getChangeClass(stock.change_percent)}">${formatChange(stock.change_percent)}</span>
+                        </div>
+                    `).join('');
+                    
+                    container.innerHTML = html;
+                }
+                
+                function updateTimestamp(timestamp) {
+                    const el = document.getElementById('market-update-time');
+                    if (el && timestamp) {
+                        const date = new Date(timestamp);
+                        el.textContent = 'Powered by Yahoo Finance | Last updated: ' + date.toLocaleTimeString();
+                    }
+                }
+                
+                function fetchStockData() {
+                    fetch(apiEndpoint)
+                        .then(response => {
+                            if (!response.ok) throw new Error('Network response was not ok');
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.stock_data && data.stock_data.length > 0) {
+                                renderStockItems(data.stock_data);
+                                updateTimestamp(data.timestamp);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching stock data:', error);
+                            // Keep existing data on error, just log it
+                        });
+                }
+                
+                // Initial fetch
+                document.addEventListener('DOMContentLoaded', function() {
+                    fetchStockData();
+                    
+                    // Set up auto-refresh
+                    updateTimer = setInterval(fetchStockData, refreshInterval);
+                    
+                    // Cleanup on page unload
+                    window.addEventListener('beforeunload', function() {
+                        if (updateTimer) clearInterval(updateTimer);
+                    });
+                });
+            })();
+            </script>
             
         </div>
     </div>
@@ -459,5 +531,31 @@ get_header(); ?>
     </div>
 </section>
 
+<!-- ===== WAITLIST SIGNUP - Tier 1 Quick Win WEB-04 ===== -->
+<section class="section section--light" id="waitlist">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 48px;">Join the Waitlist</h2>
+        <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Get early access when we launch. We'll notify you as soon as our trading robots are ready.
+        </p>
+        <div class="subscription-form low-friction">
+            <p class="subscription-intro">Join the waitlist for early access to our trading robots.</p>
+            <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST" class="subscription-form-simple" aria-label="Waitlist Form">
+                <?php wp_nonce_field('waitlist_form', 'waitlist_nonce'); ?>
+                <input type="hidden" name="action" value="handle_waitlist_signup">
+                <input 
+                    type="email" 
+                    name="email" 
+                    class="email-only-input" 
+                    placeholder="Enter your email address" 
+                    required
+                    aria-label="Email address"
+                >
+                <button type="submit" class="cta-button primary">Join the Waitlist</button>
+            </form>
+            <p class="subscription-note">We'll notify you when we launch and give you priority access.</p>
+        </div>
+    </div>
+</section>
 
 <?php get_footer(); ?>

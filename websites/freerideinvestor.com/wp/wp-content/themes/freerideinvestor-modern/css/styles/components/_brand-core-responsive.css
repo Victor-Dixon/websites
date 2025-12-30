@@ -1,0 +1,276 @@
+/*--------------------------------------------------------------
+  Brand Core Components - Responsive Styles
+  Phase 1 P0 Fixes - Mobile Responsiveness
+  Date: 2025-12-25
+--------------------------------------------------------------*/
+
+/* ==============================================================
+   POSITIONING STATEMENT - Styled Component
+============================================================== */
+
+.positioning-statement.hero-positioning {
+  margin: var(--spacing-md, 20px) 0;
+  padding: 0;
+}
+
+.positioning-card {
+  background: rgba(240, 246, 252, 0.03);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 8px;
+  padding: var(--spacing-md, 20px);
+  margin: var(--spacing-sm, 15px) 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.positioning-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--fri-text-light, #f0f6fc);
+  word-wrap: break-word;
+}
+
+.positioning-text strong {
+  color: var(--fri-primary, #0066ff);
+  font-weight: 700;
+}
+
+.positioning-text .differentiation {
+  color: var(--fri-text-muted, #8b949e);
+  font-size: 0.95em;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .positioning-statement {
+    margin: var(--spacing-sm, 15px) 0;
+    padding: var(--spacing-xs, 10px);
+  }
+  
+  .positioning-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .positioning-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* ==============================================================
+   OFFER LADDER - Styled Component (Matches Services Grid)
+============================================================== */
+
+.offer-ladder-section {
+  margin: var(--spacing-lg, 40px) 0;
+  padding: var(--spacing-md, 20px) 0;
+}
+
+.offer-ladder {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-md, 20px);
+  margin-top: var(--spacing-lg, 30px);
+  max-width: 100%;
+}
+
+.offer-level {
+  padding: var(--spacing-md, 20px);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 8px;
+  background: rgba(240, 246, 252, 0.03);
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.offer-level:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+  border-color: rgba(0, 102, 255, 0.3);
+}
+
+.offer-level-badge {
+  position: absolute;
+  top: -12px;
+  right: 15px;
+  background: var(--fri-primary, #0066ff);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.offer-level h3 {
+  margin-top: 10px;
+  margin-bottom: var(--spacing-sm, 15px);
+  font-size: 1.5rem;
+  color: var(--fri-primary, #0066ff);
+}
+
+.offer-level .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--fri-accent-green, #00c853);
+  margin: 10px 0;
+}
+
+.offer-level .description {
+  margin: 15px 0;
+  line-height: 1.6;
+  color: var(--fri-text-muted, #8b949e);
+}
+
+.offer-level .cta-button {
+  display: inline-block;
+  padding: 12px 24px;
+  margin-top: 15px;
+  min-height: 44px;
+  text-align: center;
+  background: var(--fri-primary, #0066ff);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.offer-level .cta-button:hover {
+  background: var(--fri-primary-dark, #0052cc);
+}
+
+@media (max-width: 768px) {
+  .offer-ladder-section {
+    margin: var(--spacing-md, 20px) 0;
+    padding: var(--spacing-sm, 15px);
+  }
+  
+  .offer-ladder {
+    gap: var(--spacing-sm, 15px);
+  }
+  
+  .offer-level {
+    padding: var(--spacing-sm, 15px);
+  }
+  
+  .offer-level h3 {
+    font-size: 1.25rem;
+  }
+  
+  .offer-level .price {
+    font-size: 1.1rem;
+  }
+  
+  .offer-level .cta-button {
+    width: 100%;
+    display: block;
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .offer-level h3 {
+    font-size: 1.1rem;
+  }
+  
+  .offer-level .description {
+    font-size: 0.95rem;
+  }
+}
+
+/* ==============================================================
+   ICP DEFINITION - Styled Component (Card Style)
+============================================================== */
+
+.icp-definition.icp-card {
+  margin: var(--spacing-md, 20px) 0;
+  padding: var(--spacing-md, 20px);
+  max-width: 100%;
+  background: rgba(240, 246, 252, 0.03);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.icp-definition .icp-heading {
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-md, 20px);
+  color: var(--fri-primary, #0066ff);
+  text-align: center;
+}
+
+.icp-content {
+  text-align: center;
+}
+
+.icp-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md, 20px);
+  color: var(--fri-text-light, #f0f6fc);
+}
+
+.icp-text strong {
+  color: var(--fri-primary, #0066ff);
+  font-weight: 700;
+}
+
+.outcome-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: var(--fri-accent-green, #00c853);
+  padding: var(--spacing-sm, 15px);
+  background: rgba(0, 200, 83, 0.1);
+  border-radius: 6px;
+  border-left: 4px solid var(--fri-accent-green, #00c853);
+}
+
+.outcome-text strong {
+  color: var(--fri-accent-green, #00c853);
+}
+
+@media (max-width: 768px) {
+  .icp-definition {
+    margin: var(--spacing-sm, 15px) 0;
+    padding: var(--spacing-xs, 10px);
+  }
+  
+  .icp-definition h2 {
+    font-size: 1.5rem;
+  }
+  
+  .icp-text {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+  
+  .outcome-text {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .icp-definition h2 {
+    font-size: 1.25rem;
+  }
+  
+  .icp-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* ==============================================================
+   END OF BRAND CORE RESPONSIVE STYLES
+============================================================== */
+

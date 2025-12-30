@@ -1,20 +1,18 @@
-<?php
+
 /**
- * WordPress Performance Optimizations - Added by Agent-7
- * Date: 2025-12-22
+ * Performance optimizations for southwestsecret.com
+ * Add these functions to your theme's functions.php file
  */
 
-// Disable emoji scripts (reduces HTTP requests)
+// Disable emoji scripts
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
-remove_action('admin_print_scripts', 'print_emoji_detection_script');
-remove_action('admin_print_styles', 'print_emoji_styles');
 
-// Remove unnecessary scripts
-remove_action('wp_head', 'wp_generator');
-remove_action('wp_head', 'wlwmanifest_link');
-remove_action('wp_head', 'rsd_link');
-remove_action('wp_head', 'wp_shortlink_wp_head');
+// Disable embed scripts
+function disable_embeds() {
+    wp_deregister_script('wp-embed');
+}
+add_action('wp_footer', 'disable_embeds');
 
 // Defer JavaScript loading
 function defer_parsing_of_js($url) {
@@ -25,15 +23,17 @@ function defer_parsing_of_js($url) {
 }
 add_filter('script_loader_tag', 'defer_parsing_of_js', 10);
 
-// Limit post revisions
-if (!defined('WP_POST_REVISIONS')) {
-    define('WP_POST_REVISIONS', 3);
-}
+// Remove unnecessary WordPress features
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'wp_shortlink_wp_head');
 
 // Optimize database queries
 function optimize_database_queries() {
-    // Clean up transients
-    global $wpdb;
-    $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%' AND option_name NOT LIKE '_transient_timeout_%'");
+    // Clean up expired transients
+    $wpdb = $GLOBALS['wpdb'];
+    $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_%' AND option_value < UNIX_TIMESTAMP()");
+    $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%' AND option_value < UNIX_TIMESTAMP()");
 }
 add_action('wp_scheduled_delete', 'optimize_database_queries');

@@ -1,0 +1,80 @@
+<?php
+/**
+ * Digital Dreamscape Theme Functions
+ * 
+ * Living, narrative-driven AI world theme
+ * Modularized for maintainability and extensibility
+ * 
+ * @package DigitalDreamscape
+ * @since 3.0.0
+ * @updated 2025-12-25 - Modularized into inc/ directory
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
+ * Get template directory
+ * Helper function for consistent path resolution
+ */
+function digitaldreamscape_get_template_directory() {
+    return get_template_directory();
+}
+
+/**
+ * Load modular theme functions
+ * 
+ * Each module handles a specific aspect of theme functionality:
+ * - setup.php: Theme setup, menus, widgets
+ * - enqueue.php: Scripts and styles loading
+ * - template-tags.php: Template helper functions
+ * - template-loader.php: Custom template loading logic
+ * - performance.php: Performance optimizations
+ * - seo.php: SEO meta tags and structured data
+ */
+
+$module_files = array(
+    'inc/setup.php',           // Theme setup and widget areas
+    'inc/enqueue.php',         // Enqueue styles and scripts
+    'inc/template-tags.php',   // Template helper functions
+    'inc/template-loader.php', // Custom template loading
+    'inc/performance.php',     // Performance optimizations
+    'inc/seo.php',            // SEO and meta tags
+);
+
+foreach ($module_files as $module_file) {
+    $file_path = digitaldreamscape_get_template_directory() . '/' . $module_file;
+    
+    if (file_exists($file_path)) {
+        require_once $file_path;
+    } else {
+        // Log missing file in debug mode
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log('Digital Dreamscape: Missing module file - ' . $module_file);
+        }
+    }
+}
+
+/**
+ * Theme version for cache busting
+ * Update this version when making significant changes
+ */
+define('DIGITALDREAMSCAPE_VERSION', '3.0.1');
+
+/**
+ * Module Status Check (for debugging)
+ * Uncomment to verify all modules are loaded
+ */
+// add_action('wp_footer', function() {
+//     if (current_user_can('manage_options') && isset($_GET['debug_modules'])) {
+//         echo '<!-- Digital Dreamscape Modules Loaded: ' . count($module_files) . ' -->';
+//     }
+// });
+
+// =========================================
+// Legacy Comments
+// =========================================
+// CTA removal functions removed - CTAs now properly managed in header.php
+// Date: 2025-12-25 - Consistency fix for header across all pages
+// Modularization completed: 2025-12-25 - Split into inc/ directory

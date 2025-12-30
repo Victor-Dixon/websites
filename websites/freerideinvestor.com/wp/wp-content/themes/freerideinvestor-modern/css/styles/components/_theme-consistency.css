@@ -1,0 +1,65 @@
+/*--------------------------------------------------------------
+  Theme Consistency - Apply Homepage Styling to All Pages
+  Generated: 2025-12-25
+--------------------------------------------------------------*/
+
+/* Apply homepage gradient background to all page containers */
+.page,
+.single,
+.archive,
+.search-results {
+  background: linear-gradient(145deg, #121212, #1a1a1a);
+  min-height: 100vh;
+}
+
+/* Consistent section styling */
+.section,
+.content-area {
+  background: linear-gradient(145deg, #121212, #1a1a1a);
+  border-radius: 12px;
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Consistent heading styling */
+h1, h2, h3 {
+  color: #2ecc71;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Consistent link styling */
+a {
+  color: #2ecc71;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #27ae60;
+  transform: translateY(-2px);
+}
+
+/* Consistent button styling */
+.button,
+.btn,
+.cta-button {
+  background: linear-gradient(145deg, #27ae60, #2ecc71);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover,
+.btn:hover,
+.cta-button:hover {
+  background: linear-gradient(145deg, #2ecc71, #27ae60);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+}

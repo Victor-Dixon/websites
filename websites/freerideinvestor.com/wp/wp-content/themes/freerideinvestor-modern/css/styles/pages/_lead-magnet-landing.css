@@ -1,0 +1,215 @@
+/*--------------------------------------------------------------
+  Lead Magnet Landing Pages - Styling
+  Phase 1 P0 Fix - FUN-01
+--------------------------------------------------------------*/
+
+.lead-magnet-landing {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg, 40px) 0;
+  background: linear-gradient(135deg, var(--fri-bg-darker, #010409) 0%, var(--fri-bg-dark, #0d1117) 100%);
+}
+
+.landing-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--fri-text-light, #f0f6fc);
+}
+
+.landing-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md, 20px);
+  color: var(--fri-primary, #0066ff);
+}
+
+.lead-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-lg, 30px);
+  color: var(--fri-text-muted, #8b949e);
+}
+
+.value-props {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 15px);
+  margin-bottom: var(--spacing-lg, 30px);
+  text-align: left;
+}
+
+.value-prop {
+  padding: var(--spacing-sm, 15px);
+  background: rgba(240, 246, 252, 0.03);
+  border-left: 4px solid var(--fri-accent-green, #00c853);
+  border-radius: 4px;
+}
+
+.lead-form-container {
+  background: rgba(240, 246, 252, 0.05);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 8px;
+  padding: var(--spacing-lg, 30px);
+  margin-top: var(--spacing-lg, 30px);
+}
+
+.lead-magnet-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 20px);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 10px);
+}
+
+.form-group label {
+  color: var(--fri-text-light, #f0f6fc);
+  font-weight: 600;
+  text-align: left;
+}
+
+.form-group input[type="email"] {
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid rgba(240, 246, 252, 0.2);
+  border-radius: 4px;
+  background: rgba(240, 246, 252, 0.05);
+  color: var(--fri-text-light, #f0f6fc);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input[type="email"]:focus {
+  outline: none;
+  border-color: var(--fri-primary, #0066ff);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.form-group input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.form-group label[for=""] {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  font-size: 0.95rem;
+}
+
+.cta-button {
+  padding: 15px 30px;
+  background: var(--fri-primary, #0066ff);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.cta-button:hover {
+  background: var(--fri-primary-dark, #0052cc);
+  transform: translateY(-2px);
+}
+
+/* Thank You Page Styles */
+.thank-you-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg, 40px) 0;
+  background: linear-gradient(135deg, var(--fri-bg-darker, #010409) 0%, var(--fri-bg-dark, #0d1117) 100%);
+}
+
+.thank-you-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--fri-text-light, #f0f6fc);
+}
+
+.thank-you-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md, 20px);
+  color: var(--fri-accent-green, #00c853);
+}
+
+.success-message {
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-lg, 30px);
+  color: var(--fri-text-muted, #8b949e);
+}
+
+.download-section {
+  background: rgba(240, 246, 252, 0.03);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 8px;
+  padding: var(--spacing-lg, 30px);
+  margin: var(--spacing-lg, 30px) 0;
+  text-align: left;
+}
+
+.download-section h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-md, 20px);
+  color: var(--fri-primary, #0066ff);
+}
+
+.next-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 20px);
+}
+
+.step {
+  padding: var(--spacing-md, 20px);
+  background: rgba(240, 246, 252, 0.05);
+  border-radius: 4px;
+}
+
+.step strong {
+  color: var(--fri-primary, #0066ff);
+  display: block;
+  margin-bottom: var(--spacing-xs, 10px);
+}
+
+.cta-section {
+  margin-top: var(--spacing-lg, 30px);
+  padding: var(--spacing-lg, 30px);
+  background: rgba(0, 102, 255, 0.1);
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  border-radius: 8px;
+}
+
+.cta-section h3 {
+  color: var(--fri-primary, #0066ff);
+  margin-bottom: var(--spacing-sm, 15px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .landing-content h1 {
+    font-size: 2rem;
+  }
+  
+  .lead-text {
+    font-size: 1.1rem;
+  }
+  
+  .lead-form-container {
+    padding: var(--spacing-md, 20px);
+  }
+  
+  .value-props {
+    text-align: center;
+  }
+}
+

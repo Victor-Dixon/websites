@@ -232,6 +232,10 @@ get_header();
       <p>
         <a href="mailto:support@freerideinvestor.com">support@freerideinvestor.com</a>
       </p>
+      <p class="contact-phone" style="margin-top: 1rem;">
+        <strong><?php esc_html_e('Phone:', 'simplifiedtradingtheme'); ?></strong>
+        <a href="tel:+1-XXX-XXX-XXXX"><?php esc_html_e('+1 (XXX) XXX-XXXX', 'simplifiedtradingtheme'); ?></a>
+      </p>
     </div>
 
     <!-- Discord -->
@@ -270,28 +274,22 @@ get_header();
         ?>
         <input type="hidden" name="action" value="handle_custom_contact_form">
 
-        <!-- Name Field -->
+        <!-- Email Field (Primary - Low Friction) -->
         <div class="form-group">
-          <label for="contact-name"><?php esc_html_e('Name', 'simplifiedtradingtheme'); ?></label>
-          <input type="text" id="contact-name" name="contact_name" required placeholder="<?php esc_attr_e('Your Name', 'simplifiedtradingtheme'); ?>">
-        </div>
-
-        <!-- Email Field -->
-        <div class="form-group">
-          <label for="contact-email"><?php esc_html_e('Email', 'simplifiedtradingtheme'); ?></label>
+          <label for="contact-email"><?php esc_html_e('Your Email', 'simplifiedtradingtheme'); ?></label>
           <input type="email" id="contact-email" name="contact_email" required placeholder="<?php esc_attr_e('you@example.com', 'simplifiedtradingtheme'); ?>">
         </div>
 
-        <!-- Subject Field -->
+        <!-- Name Field (Optional) -->
         <div class="form-group">
-          <label for="contact-subject"><?php esc_html_e('Subject', 'simplifiedtradingtheme'); ?></label>
-          <input type="text" id="contact-subject" name="contact_subject" required placeholder="<?php esc_attr_e('Subject', 'simplifiedtradingtheme'); ?>">
+          <label for="contact-name"><?php esc_html_e('Name (Optional)', 'simplifiedtradingtheme'); ?></label>
+          <input type="text" id="contact-name" name="contact_name" placeholder="<?php esc_attr_e('Your Name', 'simplifiedtradingtheme'); ?>">
         </div>
 
         <!-- Message Field -->
         <div class="form-group">
-          <label for="contact-message"><?php esc_html_e('Message', 'simplifiedtradingtheme'); ?></label>
-          <textarea id="contact-message" name="contact_message" rows="5" required placeholder="<?php esc_attr_e('Your Message', 'simplifiedtradingtheme'); ?>"></textarea>
+          <label for="contact-message"><?php esc_html_e('How can we help?', 'simplifiedtradingtheme'); ?></label>
+          <textarea id="contact-message" name="contact_message" rows="4" required placeholder="<?php esc_attr_e('Tell us what you need...', 'simplifiedtradingtheme'); ?>"></textarea>
         </div>
 
         <!-- Submit Button -->

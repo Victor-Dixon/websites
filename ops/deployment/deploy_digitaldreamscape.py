@@ -64,12 +64,39 @@ def deploy_digitaldreamscape_theme():
     site_name = "digitaldreamscape.site"
     site_key = "digitaldreamscape"
 
-    # Files to deploy - Homepage styling and fixes
+    # Files to deploy - ALL theme files to ensure consistent headers
     files_to_deploy = [
         "wp/wp-content/themes/digitaldreamscape/style.css",
         "wp/wp-content/themes/digitaldreamscape/functions.php",
         "wp/wp-content/themes/digitaldreamscape/header.php",
-        "wp/wp-content/themes/digitaldreamscape/front-page.php"
+        "wp/wp-content/themes/digitaldreamscape/footer.php",
+        "wp/wp-content/themes/digitaldreamscape/front-page.php",
+        "wp/wp-content/themes/digitaldreamscape/index.php",
+        "wp/wp-content/themes/digitaldreamscape/page.php",  # Generic page template
+        "wp/wp-content/themes/digitaldreamscape/page-blog.php",
+        "wp/wp-content/themes/digitaldreamscape/page-about.php",
+        "wp/wp-content/themes/digitaldreamscape/single.php",
+        "wp/wp-content/themes/digitaldreamscape/single-beautiful.php",
+        "wp/wp-content/themes/digitaldreamscape/archive.php",
+        "wp/wp-content/themes/digitaldreamscape/page-streaming.php",
+        "wp/wp-content/themes/digitaldreamscape/js/main.js",
+        # Beautiful template files
+        "wp/wp-content/themes/digitaldreamscape/page-templates/page-blog-beautiful.php",
+        "wp/wp-content/themes/digitaldreamscape/page-templates/page-streaming-beautiful.php",
+        "wp/wp-content/themes/digitaldreamscape/page-templates/page-community-beautiful.php",
+        "wp/wp-content/themes/digitaldreamscape/page-templates/page-about-beautiful.php",
+        "wp/wp-content/themes/digitaldreamscape/assets/css/beautiful-blog.css",
+        "wp/wp-content/themes/digitaldreamscape/assets/css/beautiful-streaming.css",
+        "wp/wp-content/themes/digitaldreamscape/assets/css/beautiful-community.css",
+        "wp/wp-content/themes/digitaldreamscape/assets/css/beautiful-single.css",
+        "wp/wp-content/themes/digitaldreamscape/assets/css/beautiful-about.css",
+        # Modular functions (inc/ directory) - Added 2025-12-25
+        "wp/wp-content/themes/digitaldreamscape/inc/setup.php",
+        "wp/wp-content/themes/digitaldreamscape/inc/enqueue.php",
+        "wp/wp-content/themes/digitaldreamscape/inc/template-tags.php",
+        "wp/wp-content/themes/digitaldreamscape/inc/template-loader.php",
+        "wp/wp-content/themes/digitaldreamscape/inc/performance.php",
+        "wp/wp-content/themes/digitaldreamscape/inc/seo.php"
     ]
 
     try:
@@ -142,7 +169,15 @@ def deploy_digitaldreamscape_theme():
             try:
                 if SIMPLE_DEPLOYER_AVAILABLE:
                     filename = local_path.name
-                    remote_path = f"wp-content/themes/digitaldreamscape/{filename}"
+                    # Handle files in subdirectories
+                    if 'js/' in file_path:
+                        remote_path = f"wp-content/themes/digitaldreamscape/js/{filename}"
+                    elif 'page-templates/' in file_path:
+                        remote_path = f"wp-content/themes/digitaldreamscape/page-templates/{filename}"
+                    elif 'assets/css/' in file_path:
+                        remote_path = f"wp-content/themes/digitaldreamscape/assets/css/{filename}"
+                    else:
+                        remote_path = f"wp-content/themes/digitaldreamscape/{filename}"
                     success = manager.deploy_file(local_path, remote_path)
                 else:
                     success = manager.deploy_file(local_path)

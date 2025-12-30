@@ -81,7 +81,7 @@ SSOT & Quality Assurance
 <ul>
 <li>Function size limits (max 30 lines)</li>
 <li>Class size limits (max 200 lines)</li>
-<li>File size limits (max 300 lines)</li>
+<li>File size guidelines (~400 lines, clean code principles prioritized)</li>
 <li>Complexity limits (max 10 cyclomatic complexity)</li>
 </ul>
 <p>These constraints force good design decisions and prevent technical debt.</p>

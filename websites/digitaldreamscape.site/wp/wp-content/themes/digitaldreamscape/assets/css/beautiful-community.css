@@ -1,0 +1,324 @@
+/**
+ * Beautiful Community Styles
+ * @package DigitalDreamscape
+ * @since 2.0.0
+ */
+
+/* Text Rendering Fix - Ensure proper word spacing */
+.beautiful-community-main,
+.beautiful-community-main *,
+.beautiful-community-description,
+.beautiful-community-card-content,
+.beautiful-community-card-description {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    font-feature-settings: 'liga' 0, 'kern' 1 !important;
+    font-variant-ligatures: none !important;
+}
+
+.beautiful-community-title,
+.beautiful-community-badge {
+    word-spacing: normal !important;
+}
+
+/* Force dark background on body when community template is active */
+body.page-template-page-templates-page-community-beautiful-php,
+body.page-template-page-community-beautiful,
+body:has(.beautiful-community-main) {
+    background: #0a0a0a !important;
+}
+
+/* Container */
+.beautiful-community-main {
+    padding: 4rem 0;
+    background: #0a0a0a !important;
+    min-height: 100vh;
+}
+
+.beautiful-community-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header */
+.beautiful-community-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+}
+
+.beautiful-community-header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.beautiful-community-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 50px;
+    color: var(--accent-color, #a78bfa);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.beautiful-community-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 1.5rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.beautiful-community-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    margin: 0;
+}
+
+/* Sections */
+.beautiful-community-section {
+    margin-bottom: 5rem;
+}
+
+.beautiful-community-section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Platform Cards Grid */
+.beautiful-community-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .beautiful-community-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Platform Card */
+.beautiful-community-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.03));
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.beautiful-community-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.beautiful-community-card-featured {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.beautiful-community-card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+    border-radius: 50%;
+    color: #a78bfa;
+    transition: all 0.3s ease;
+}
+
+.beautiful-community-card:hover .beautiful-community-card-icon {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+}
+
+.beautiful-community-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.75rem 0;
+}
+
+.beautiful-community-card-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1.5rem 0;
+}
+
+.beautiful-community-card-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.beautiful-community-card-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* Values Section */
+.beautiful-community-values {
+    margin-bottom: 5rem;
+    padding: 4rem 0;
+    background: linear-gradient(180deg, rgba(99, 102, 241, 0.05) 0%, transparent 100%);
+    border-radius: 24px;
+}
+
+.beautiful-community-values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+    .beautiful-community-values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.beautiful-community-value {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.beautiful-community-value-number {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.beautiful-community-value h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.75rem 0;
+}
+
+.beautiful-community-value p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+/* CTA Section */
+.beautiful-community-cta {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.beautiful-community-cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+}
+
+.beautiful-community-cta-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 2rem 0;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.beautiful-community-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.beautiful-community-cta-primary {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.beautiful-community-cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5);
+}
+
+.beautiful-community-cta-secondary {
+    padding: 1rem 2rem;
+    background: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.beautiful-community-cta-secondary:hover {
+    border-color: #a78bfa;
+    background: rgba(167, 139, 250, 0.1);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+    .beautiful-community-main {
+        padding: 2rem 0;
+    }
+    
+    .beautiful-community-container {
+        padding: 0 1rem;
+    }
+    
+    .beautiful-community-header {
+        margin-bottom: 2rem;
+        padding: 1.5rem 0;
+    }
+    
+    .beautiful-community-cta {
+        padding: 2rem 1rem;
+    }
+    
+    .beautiful-community-cta-content h2 {
+        font-size: 1.75rem;
+    }
+}
+

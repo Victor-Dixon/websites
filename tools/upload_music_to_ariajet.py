@@ -14,6 +14,7 @@ sys.path.insert(0, str(project_root))
 
 try:
     from ops.deployment.simple_wordpress_deployer import SimpleWordPressDeployer, load_site_configs
+    from ops.deployment.wp_remote_utils import detect_wp_path
 except ImportError:
     try:
         sys.path.insert(0, str(project_root / "ops" / "deployment"))
@@ -41,7 +42,11 @@ def upload_music_file(local_file_path: str, site_domain: str = "ariajet.site"):
         print("❌ Failed to connect")
         sys.exit(1)
     
-    wp_path = f"/home/u996867598/domains/{site_domain}/public_html"
+    wp_path = detect_wp_path(deployer=deployer, site_domain=site_domain)
+    if not wp_path:
+        print("❌ Could not detect WordPress path on server.")
+        deployer.disconnect()
+        sys.exit(1)
     uploads_dir = f"{wp_path}/wp-content/uploads"
     
     # Create music directory if it doesn't exist

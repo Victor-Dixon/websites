@@ -26,14 +26,17 @@ get_header();
                 </p>
                 
                 <h1 class="hero-title">
-                    I'm Aria, and this is<br>
-                    my little corner of<br>
-                    the internet.
+                    <?php echo esc_html(get_bloginfo('name')); ?>
                 </h1>
                 
+                <?php $tagline = get_bloginfo('description', 'display'); ?>
                 <p class="hero-subtitle lead">
-                    I make games, playlists, and all kinds of creative things. 
-                    <span class="text-coral">Come explore</span> — I think you'll like it here.
+                    <?php if (!empty($tagline)) : ?>
+                        <?php echo esc_html($tagline); ?>
+                    <?php else : ?>
+                        I make games, playlists, and all kinds of creative things.
+                        <span class="text-coral">Come explore</span> — I think you'll like it here.
+                    <?php endif; ?>
                 </p>
                 
                 <div class="hero-actions">

@@ -1,0 +1,325 @@
+/**
+ * Beautiful Streaming Template Styles
+ * Modern, elegant streaming hub design matching blog template
+ */
+
+/* Text Rendering Fix - Ensure proper word spacing */
+.beautiful-streaming-main,
+.beautiful-streaming-main *,
+.beautiful-streaming-description,
+.beautiful-streaming-card-content,
+.beautiful-streaming-card-description {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    font-feature-settings: 'liga' 0, 'kern' 1 !important;
+    font-variant-ligatures: none !important;
+}
+
+.beautiful-streaming-title,
+.beautiful-streaming-badge {
+    word-spacing: normal !important;
+}
+
+/* Force dark background on body when streaming template is active */
+body.page-template-page-templates-page-streaming-beautiful-php,
+body.page-template-page-streaming-beautiful,
+body:has(.beautiful-streaming-main) {
+    background: #0a0a0a !important;
+}
+
+/* Container */
+.beautiful-streaming-main {
+    padding: 4rem 0;
+    background: #0a0a0a !important;
+    min-height: 100vh;
+}
+
+.beautiful-streaming-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header */
+.beautiful-streaming-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+}
+
+.beautiful-streaming-header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.beautiful-streaming-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-primary, #ffffff);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.beautiful-streaming-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 1.5rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.beautiful-streaming-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    margin: 0;
+}
+
+.beautiful-streaming-description strong {
+    color: var(--text-primary, #ffffff);
+    font-weight: 700;
+}
+
+/* Status Card */
+.beautiful-streaming-status-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.03));
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.beautiful-streaming-status-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.beautiful-streaming-status-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+    text-transform: uppercase;
+}
+
+.beautiful-streaming-status-value {
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.beautiful-streaming-status-value.offline {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+.beautiful-streaming-status-value.live {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.beautiful-streaming-status-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary, #ffffff);
+    margin: 0 0 0.75rem 0;
+}
+
+.beautiful-streaming-status-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    margin: 0;
+}
+
+/* Grid */
+.beautiful-streaming-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .beautiful-streaming-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Card */
+.beautiful-streaming-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.03));
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+}
+
+.beautiful-streaming-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* Card Icon */
+.beautiful-streaming-card-icon {
+    padding: 2rem 2rem 1rem;
+    text-align: center;
+}
+
+.beautiful-streaming-card-icon-bg {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.beautiful-streaming-card:hover .beautiful-streaming-card-icon-bg {
+    transform: scale(1.1);
+}
+
+.beautiful-streaming-card-icon-bg.twitch {
+    background: linear-gradient(135deg, #9146ff 0%, #772ce8 100%);
+    color: #ffffff;
+}
+
+.beautiful-streaming-card-icon-bg.youtube {
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    color: #ffffff;
+}
+
+.beautiful-streaming-card-icon-bg.schedule {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+}
+
+/* Card Content */
+.beautiful-streaming-card-content {
+    padding: 0 2rem 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.beautiful-streaming-card-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-color, #a78bfa);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+.beautiful-streaming-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 1rem 0;
+    color: var(--text-primary, #ffffff);
+}
+
+.beautiful-streaming-card-description {
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+    font-size: 0.9375rem;
+}
+
+.beautiful-streaming-card-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 8px;
+    color: var(--accent-color, #a78bfa);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+    text-align: center;
+    margin-top: auto;
+}
+
+.beautiful-streaming-card-button:hover {
+    background: rgba(99, 102, 241, 0.3);
+    border-color: rgba(99, 102, 241, 0.5);
+    color: var(--accent-hover, #c4b5fd);
+    transform: translateY(-2px);
+}
+
+.beautiful-streaming-card-schedule {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+    font-style: italic;
+    font-size: 0.9375rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .beautiful-streaming-main {
+        padding: 2rem 0;
+    }
+    
+    .beautiful-streaming-container {
+        padding: 0 1rem;
+    }
+    
+    .beautiful-streaming-header {
+        margin-bottom: 2rem;
+        padding: 2rem 0;
+    }
+    
+    .beautiful-streaming-status-card {
+        padding: 1.5rem;
+    }
+    
+    .beautiful-streaming-card-content {
+        padding: 0 1.5rem 1.5rem;
+    }
+    
+    .beautiful-streaming-card-icon {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+}
+

@@ -3,92 +3,255 @@
     "mode": "ACTIVE",
     "purpose": "Trading education funnel",
     "primary_owner": "Victor",
-    "execution": ["Swarm"],
-    "allowed_tasks": ["content", "cta", "email", "analytics", "repurposing"],
+    "execution": [
+      "Swarm"
+    ],
+    "allowed_tasks": [
+      "content",
+      "cta",
+      "email",
+      "analytics",
+      "repurposing"
+    ],
     "notes": "Primary revenue engine"
   },
   "tradingrobotplug.com": {
     "mode": "WARM",
     "purpose": "Automation tools / plugins",
     "primary_owner": "Victor",
-    "execution": ["Swarm"],
-    "allowed_tasks": ["demo_pages", "copy", "pricing"],
-    "notes": "Fed by FreeRideInvestor traffic"
+    "execution": [
+      "Swarm"
+    ],
+    "allowed_tasks": [
+      "demo_pages",
+      "copy",
+      "pricing"
+    ],
+    "notes": "Fed by FreeRideInvestor traffic",
+    "categories": [
+      "Trading Robots",
+      "Strategy Analysis",
+      "Market Analysis"
+    ],
+    "default_tags": [
+      "trading-bot",
+      "strategy",
+      "analysis",
+      "backtesting",
+      "trading-robot",
+      "automation"
+    ]
   },
   "weareswarm.online": {
     "mode": "WARM",
     "purpose": "Dream.OS documentation & case studies",
     "primary_owner": "Victor",
-    "execution": ["Swarm"],
-    "allowed_tasks": ["docs", "case_studies"],
-    "notes": "Authority site, not mass marketing"
+    "execution": [
+      "Swarm"
+    ],
+    "allowed_tasks": [
+      "docs",
+      "case_studies"
+    ],
+    "notes": "Authority site, not mass marketing",
+    "categories": [
+      "System Architecture",
+      "Agent Operations",
+      "MCP Tools"
+    ],
+    "default_tags": [
+      "swarm",
+      "multi-agent",
+      "architecture",
+      "operations",
+      "mcp"
+    ]
   },
   "weareswarm.site": {
     "mode": "ACTIVE",
     "purpose": "Client demos & rapid prototypes",
     "primary_owner": "Victor",
-    "execution": ["Swarm"],
-    "allowed_tasks": ["mockups", "examples", "landing_pages"],
-    "notes": "Sales sandbox"
+    "execution": [
+      "Swarm"
+    ],
+    "allowed_tasks": [
+      "mockups",
+      "examples",
+      "landing_pages"
+    ],
+    "notes": "Sales sandbox",
+    "categories": [
+      "System Architecture",
+      "Agent Operations",
+      "MCP Tools"
+    ],
+    "default_tags": [
+      "swarm",
+      "multi-agent",
+      "architecture",
+      "operations",
+      "mcp"
+    ]
   },
   "prismblossom.online": {
     "mode": "MAINTENANCE",
     "purpose": "Personal / family site",
     "primary_owner": "Carmyn",
     "execution": [],
-    "allowed_tasks": ["bugfix"],
-    "notes": "No funnel, no experiments"
+    "allowed_tasks": [
+      "bugfix"
+    ],
+    "notes": "No funnel, no experiments",
+    "categories": [
+      "Personal",
+      "Memory Archive"
+    ],
+    "default_tags": [
+      "personal",
+      "update",
+      "memories",
+      "photos"
+    ]
   },
   "southwestsecret.com": {
     "mode": "WARM",
     "purpose": "Music & entertainment bookings",
     "primary_owner": "Victor",
-    "execution": ["Swarm"],
-    "allowed_tasks": ["events", "booking_flow"],
-    "notes": "Event-driven updates only"
+    "execution": [
+      "Swarm"
+    ],
+    "allowed_tasks": [
+      "events",
+      "booking_flow"
+    ],
+    "notes": "Event-driven updates only",
+    "categories": [
+      "Music",
+      "Releases",
+      "Shows & Events"
+    ],
+    "default_tags": [
+      "music",
+      "release",
+      "dj",
+      "mixes",
+      "events"
+    ]
   },
   "ariajet.site": {
     "mode": "MAINTENANCE",
     "purpose": "Aria creative / games",
     "primary_owner": "Aria",
     "execution": [],
-    "allowed_tasks": ["bugfix"],
-    "notes": "Protected creative space"
+    "allowed_tasks": [
+      "bugfix"
+    ],
+    "notes": "Protected creative space",
+    "categories": [
+      "Personal",
+      "Games",
+      "Devlog"
+    ],
+    "default_tags": [
+      "personal",
+      "games",
+      "updates",
+      "devlog"
+    ]
   },
   "dadudekc.com": {
     "mode": "WARM",
     "purpose": "Personal brand & consulting hub",
     "primary_owner": "Victor",
-    "execution": ["Swarm"],
-    "allowed_tasks": ["about", "consult_cta"],
-    "notes": "Routes to Smoke Session"
+    "execution": [
+      "Swarm"
+    ],
+    "allowed_tasks": [
+      "about",
+      "consult_cta"
+    ],
+    "notes": "Routes to Smoke Session",
+    "categories": [
+      "Code Reviews",
+      "Projects",
+      "Development",
+      "AI & Swarm"
+    ],
+    "default_tags": [
+      "coding",
+      "review",
+      "projects",
+      "development",
+      "ai",
+      "swarm"
+    ]
   },
   "crosbyultimateevents.com": {
     "mode": "ACTIVE",
     "purpose": "Event services sales funnel",
     "primary_owner": "Victor",
-    "execution": ["Swarm"],
-    "allowed_tasks": ["conversion", "followups", "testimonials"],
-    "notes": "Blueprint funnel"
+    "execution": [
+      "Swarm"
+    ],
+    "allowed_tasks": [
+      "conversion",
+      "followups",
+      "testimonials"
+    ],
+    "notes": "Blueprint funnel",
+    "categories": [
+      "Events",
+      "Business",
+      "Portfolio",
+      "Client Stories"
+    ],
+    "default_tags": [
+      "events",
+      "weddings",
+      "parties",
+      "portfolio",
+      "business",
+      "updates"
+    ]
   },
   "houstonsipqueen.com": {
     "mode": "BUILDING",
     "purpose": "Mobile bartending brand",
     "primary_owner": "Victor",
-    "execution": ["Family", "Swarm"],
-    "allowed_tasks": ["design", "copy", "booking"],
-    "notes": "Sister design lane test"
+    "execution": [
+      "Family",
+      "Swarm"
+    ],
+    "allowed_tasks": [
+      "design",
+      "copy",
+      "booking"
+    ],
+    "notes": "Sister design lane test",
+    "categories": [
+      "Business",
+      "Mobile Bartending",
+      "Events"
+    ],
+    "default_tags": [
+      "business",
+      "bartending",
+      "events",
+      "cocktails",
+      "updates"
+    ]
   },
   "digitaldreamscape.site": {
     "mode": "WARM",
     "purpose": "Build-in-public & streaming hub",
     "primary_owner": "Victor",
-    "execution": ["Swarm"],
-    "allowed_tasks": ["content", "stream_pages"],
+    "execution": [
+      "Swarm"
+    ],
+    "allowed_tasks": [
+      "content",
+      "stream_pages"
+    ],
     "notes": "Narrative + community"
   }
 }
-
-
-
-

@@ -20,11 +20,18 @@ get_header();
             <div class="hero-content">
                 <h1 class="hero-title">
                     <span class="hero-emoji">🚀</span>
-                    <?php _e("Welcome to Aria's Cosmic World", 'ariajet-cosmic'); ?>
+                    <?php echo esc_html(get_bloginfo('name')); ?>
                 </h1>
-                <p class="hero-subtitle">
-                    <?php _e('Explore amazing 2D games, creative projects, and wild adventures in the cosmic universe!', 'ariajet-cosmic'); ?>
-                </p>
+                <?php $tagline = get_bloginfo('description', 'display'); ?>
+                <?php if (!empty($tagline)) : ?>
+                    <p class="hero-subtitle">
+                        <?php echo esc_html($tagline); ?>
+                    </p>
+                <?php else : ?>
+                    <p class="hero-subtitle">
+                        <?php _e('Explore amazing 2D games, creative projects, and wild adventures in the cosmic universe!', 'ariajet-cosmic'); ?>
+                    </p>
+                <?php endif; ?>
                 <div class="hero-buttons">
                     <a href="<?php echo esc_url(get_post_type_archive_link('game')); ?>" class="cosmic-button">
                         <span class="button-icon">🎮</span>

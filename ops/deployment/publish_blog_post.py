@@ -12,6 +12,8 @@ Date: 2025-12-22
 import sys
 import json
 import base64
+import os
+import re
 from pathlib import Path
 from typing import Dict, Optional
 
@@ -24,11 +26,17 @@ except ImportError:
     print("❌ 'requests' library not installed. Install with: pip install requests")
 
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+
+def _normalize_site_key(site_key: str) -> str:
+    token = re.sub(r"[^A-Za-z0-9]+", "_", site_key).upper().strip("_")
+    return token or "SITE"
+
+
 def load_site_configs():
     """Load site configurations from configs/site_configs.json"""
-    config_path = Path("D:/websites/configs/site_configs.json")
-    if not config_path.exists():
-        config_path = Path(__file__).parent.parent.parent / "configs" / "site_configs.json"
+    config_path = Path(os.getenv("SITE_CONFIGS_PATH", str(REPO_ROOT / "configs" / "site_configs.json")))
     
     if config_path.exists():
         try:
@@ -53,10 +61,18 @@ def publish_post_via_rest_api(site_domain: str, title: str, content: str, status
     username = rest_api.get('username')
     app_password = rest_api.get('app_password')
     site_url = rest_api.get('site_url', site_config.get('site_url', f"https://{site_domain}"))
+
+    # Allow environment-variable overrides (no secrets in repo)
+    # {SITE}_WP_USERNAME / {SITE}_WP_APP_PASSWORD / {SITE}_WP_SITE_URL
+    norm = _normalize_site_key(site_domain)
+    username = os.getenv(f"{norm}_WP_USERNAME") or os.getenv("WP_USERNAME") or username
+    app_password = os.getenv(f"{norm}_WP_APP_PASSWORD") or os.getenv("WP_APP_PASSWORD") or app_password
+    site_url = os.getenv(f"{norm}_WP_SITE_URL") or os.getenv("WP_SITE_URL") or site_url
     
     if not username or not app_password:
         print(f"❌ Missing REST API credentials for {site_domain}")
-        print("   Please add username and app_password to configs/site_configs.json")
+        print("   Add username/app_password to configs/site_configs.json OR set env vars:")
+        print(f"   - {norm}_WP_USERNAME and {norm}_WP_APP_PASSWORD (optional: {norm}_WP_SITE_URL)")
         return False
     
     print(f"📝 Publishing blog post via REST API...")

@@ -51,8 +51,43 @@ get_header(); ?>
                         <h2>Request Your Consultation</h2>
                         <p>Fill out the form below and we'll contact you within 24 hours to schedule your free consultation.</p>
 
+                        <?php
+                        // Display success/error messages from handler redirect
+                        $submitted = isset($_GET['submitted']) ? $_GET['submitted'] : '';
+                        $errors = get_transient('consultation_form_errors');
+                        $success = get_transient('consultation_form_success');
+
+                        if ($submitted === 'success' || $success) {
+                            delete_transient('consultation_form_success');
+                            echo '<div class="form-success" style="background: #d4edda; color: #155724; padding: 1.5rem; border-radius: 5px; margin-bottom: 2rem; border-left: 4px solid #28a745;">';
+                            echo '<p style="margin: 0;"><strong>✓ Thank you!</strong> We\'ve received your consultation request and will contact you within 24 hours.</p>';
+                            echo '</div>';
+                        }
+
+                        if ($errors && is_array($errors)) {
+                            delete_transient('consultation_form_errors');
+                            echo '<div class="form-errors" style="background: #f8d7da; color: #721c24; padding: 1.5rem; border-radius: 5px; margin-bottom: 2rem; border-left: 4px solid #dc3545;">';
+                            echo '<p style="margin: 0 0 0.5rem 0;"><strong>Please correct the following errors:</strong></p>';
+                            echo '<ul style="margin: 0; padding-left: 1.5rem;">';
+                            foreach ($errors as $error) {
+                                echo '<li>' . esc_html($error) . '</li>';
+                            }
+                            echo '</ul></div>';
+                        } elseif ($submitted === 'error') {
+                            echo '<div class="form-errors" style="background: #f8d7da; color: #721c24; padding: 1.5rem; border-radius: 5px; margin-bottom: 2rem; border-left: 4px solid #dc3545;">';
+                            echo '<p style="margin: 0;"><strong>Error:</strong> Failed to send message. Please try again or contact us directly.</p>';
+                            echo '</div>';
+                        }
+                        ?>
+
                         <form class="consultation-form detailed-form" action="<?php echo esc_url(home_url('/consultation')); ?>" method="post">
                             <?php wp_nonce_field('consultation_request', 'consultation_nonce'); ?>
+
+                            <!-- Honeypot spam protection (hidden from users) -->
+                            <div style="position: absolute; left: -9999px;" aria-hidden="true">
+                                <label for="website_url">Website URL (leave blank)</label>
+                                <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+                            </div>
 
                             <div class="form-section">
                                 <h3>Contact Information</h3>
@@ -152,16 +187,6 @@ get_header(); ?>
                                 <p class="form-note">We respect your privacy. Your information will only be used to contact you about your consultation request.</p>
                             </div>
                         </form>
-
-                        <?php
-                        // Handle form submission (basic example - should be enhanced with proper email handling)
-                        if (isset($_POST['consultation_nonce']) && wp_verify_nonce($_POST['consultation_nonce'], 'consultation_request')) {
-                            // In production, integrate with email service or CRM
-                            echo '<div class="form-success" style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 5px; margin-top: 2rem;">';
-                            echo '<p><strong>Thank you for your request!</strong> We\'ve received your consultation request and will contact you within 24 hours.</p>';
-                            echo '</div>';
-                        }
-                        ?>
                     </div>
                 </div>
 

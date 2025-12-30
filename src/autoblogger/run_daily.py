@@ -23,6 +23,7 @@ from .selector import (
 )
 from .validator import validate_markdown
 from .wp_publisher import load_wp_env, publish_wordpress_post
+from .html_formatter import markdown_to_beautiful_html
 
 
 def _slugify(s: str) -> str:
@@ -188,10 +189,13 @@ def run_daily_for_site(
                     user_env=site_cfg.publish.wp_user_env,
                     app_password_env=site_cfg.publish.wp_app_password_env,
                 )
+                # Convert markdown to beautiful HTML for the Digital Dreamscape template
+                html_content = markdown_to_beautiful_html(md)
+                
                 publish_result = publish_wordpress_post(
                     cfg=wp_env,
                     title=item.title,
-                    content=md,
+                    content=html_content,
                     excerpt=item.angle,
                     status=wp_status,
                 )

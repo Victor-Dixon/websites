@@ -1,0 +1,369 @@
+/**
+ * Beautiful About Template Styles
+ * Modern, elegant about page design matching blog/streaming/community pages
+ */
+
+/* Text Rendering Fix - Ensure proper word spacing */
+.beautiful-about-main,
+.beautiful-about-main *,
+.beautiful-about-description,
+.beautiful-about-section-content,
+.beautiful-about-card-text {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    font-feature-settings: 'liga' 0, 'kern' 1 !important;
+    font-variant-ligatures: none !important;
+}
+
+.beautiful-about-title,
+.beautiful-about-badge,
+.beautiful-about-section-title,
+.beautiful-about-card-title {
+    word-spacing: normal !important;
+}
+
+/* Container */
+.beautiful-about-main {
+    padding: 4rem 0;
+    background: var(--bg-primary, #0a0a0a);
+    min-height: 80vh;
+}
+
+.beautiful-about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header */
+.beautiful-about-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+}
+
+.beautiful-about-header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.beautiful-about-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-primary, #ffffff);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.beautiful-about-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 1.5rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.beautiful-about-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    margin: 0;
+}
+
+.beautiful-about-description strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Content Sections */
+.beautiful-about-content {
+    margin-bottom: 4rem;
+}
+
+.beautiful-about-article {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    margin-bottom: 3rem;
+}
+
+.beautiful-about-entry-content {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.beautiful-about-entry-content p {
+    margin-bottom: 1.5rem;
+}
+
+.beautiful-about-entry-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+.beautiful-about-entry-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #a78bfa;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.beautiful-about-entry-content ul,
+.beautiful-about-entry-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.beautiful-about-entry-content li {
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+}
+
+.beautiful-about-entry-content a {
+    color: #818cf8;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.beautiful-about-entry-content a:hover {
+    color: #a78bfa;
+}
+
+/* Section Styles */
+.beautiful-about-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.beautiful-about-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.beautiful-about-section:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.beautiful-about-section-header {
+    margin-bottom: 2rem;
+}
+
+.beautiful-about-section-title {
+    font-size: clamp(1.875rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.beautiful-about-section-divider {
+    height: 2px;
+    width: 60px;
+    background: linear-gradient(90deg, #6366f1 0%, #a78bfa 100%);
+    border-radius: 2px;
+}
+
+.beautiful-about-section-content {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.beautiful-about-section-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* List Styles */
+.beautiful-about-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 2rem 0;
+}
+
+.beautiful-about-list li {
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+}
+
+.beautiful-about-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #a78bfa;
+    font-weight: 600;
+}
+
+.beautiful-about-list a {
+    color: #818cf8;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.beautiful-about-list a:hover {
+    color: #a78bfa;
+}
+
+/* Cards Grid */
+.beautiful-about-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .beautiful-about-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.beautiful-about-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.beautiful-about-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.beautiful-about-card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.beautiful-about-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+}
+
+.beautiful-about-card-text {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* CTA Section */
+.beautiful-about-cta {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+.beautiful-about-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.beautiful-about-cta-button {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.beautiful-about-cta-primary {
+    background: #ffffff;
+    color: #6366f1;
+    border: 2px solid #ffffff;
+}
+
+.beautiful-about-cta-primary:hover {
+    background: transparent;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.beautiful-about-cta-secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.beautiful-about-cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .beautiful-about-container {
+        padding: 0 1.5rem;
+    }
+
+    .beautiful-about-header {
+        padding: 2rem 0;
+        margin-bottom: 3rem;
+    }
+
+    .beautiful-about-article,
+    .beautiful-about-section {
+        padding: 2rem;
+    }
+
+    .beautiful-about-sections {
+        gap: 3rem;
+    }
+
+    .beautiful-about-cta-buttons {
+        flex-direction: column;
+    }
+
+    .beautiful-about-cta-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+

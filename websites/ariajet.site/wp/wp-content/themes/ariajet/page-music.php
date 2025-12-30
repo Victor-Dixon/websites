@@ -30,29 +30,51 @@ get_header();
                 
                 <div class="entry-content music-content">
                     <?php the_content(); ?>
-                    
+
+					<?php
+					$tracks = function_exists('ariajet_get_music_tracks') ? ariajet_get_music_tracks() : array();
+					?>
+
                     <div class="music-grid">
-                        <div class="music-track">
-                            <div class="track-header">
-                                <div class="track-icon">🎵</div>
-                                <div class="track-info">
-                                    <h2 class="track-title">Oxygen (Smino Mix)</h2>
-                                    <p class="track-artist">Aria</p>
-                                </div>
-                            </div>
-                            <div class="audio-player-wrapper">
-                                <audio controls class="audio-player">
-                                    <source src="<?php echo esc_url('https://ariajet.site/wp-content/uploads/music/oxygen%20smino.mp3'); ?>" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                            </div>
-                            <div class="cosmic-elements">
-                                <span class="cosmic-emoji">🪐</span>
-                                <span class="cosmic-emoji">🌙</span>
-                                <span class="cosmic-emoji">⭐</span>
-                                <span class="cosmic-emoji">🌟</span>
-                            </div>
-                        </div>
+						<?php if (empty($tracks)) : ?>
+							<div class="music-placeholder">
+								<div class="music-icon">🎵</div>
+								<h2>No songs uploaded yet</h2>
+								<p>
+									To add music, upload an MP3 to your WordPress Media Library, or place it in
+									<code>wp-content/uploads/music/</code>. Once an MP3 is in that folder, it will appear here automatically.
+								</p>
+								<div class="cosmic-elements">
+									<span class="cosmic-emoji">🪐</span>
+									<span class="cosmic-emoji">🌙</span>
+									<span class="cosmic-emoji">⭐</span>
+									<span class="cosmic-emoji">🌟</span>
+								</div>
+							</div>
+						<?php else : ?>
+							<?php foreach ($tracks as $track) : ?>
+								<div class="music-track">
+									<div class="track-header">
+										<div class="track-icon"><?php echo esc_html($track['icon']); ?></div>
+										<div class="track-info">
+											<h2 class="track-title"><?php echo esc_html($track['title']); ?></h2>
+											<p class="track-artist"><?php echo esc_html($track['artist']); ?></p>
+										</div>
+									</div>
+									<div class="audio-player-wrapper">
+										<audio controls class="audio-player" preload="none">
+											<source src="<?php echo esc_url($track['url']); ?>" type="<?php echo esc_attr($track['mime']); ?>">
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+									<div class="cosmic-elements">
+										<?php foreach ($track['emojis'] as $emoji) : ?>
+											<span class="cosmic-emoji"><?php echo esc_html((string) $emoji); ?></span>
+										<?php endforeach; ?>
+									</div>
+								</div>
+							<?php endforeach; ?>
+						<?php endif; ?>
                     </div>
                 </div>
                 <?php

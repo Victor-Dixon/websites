@@ -57,6 +57,13 @@ logs/
 # Deployment credentials (never commit secrets)
 .deploy_credentials/
 
+# Site configuration files with credentials
+configs/site_configs.json
+configs/sites_registry.json
+# Allow example files
+!configs/*.example.json
+!configs/*.example.*
+
 # Deployment
 deploy.log
 deployment_cache/

@@ -1,7 +1,14 @@
-/* Site Header */
+/* Site Header - Match Homepage Gradient Background */
 .site-header {
-  background: var(--color-dark-grey);
+  background: linear-gradient(145deg, #121212, #1a1a1a) !important;
   padding: var(--spacing-sm);
+  border-bottom: 2px solid rgba(46, 204, 113, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation Container */
+.main-nav {
+  background: transparent;
 }
 
 /* Footer */
@@ -23,39 +30,17 @@
   color: var(--color-text-muted);
   font-size: 0.85rem;
 }
-.site-header {
-  background: var(--color-dark-grey);
-  padding: var(--spacing-sm);
-}
 
-.site-footer {
-  background: var(--color-dark-grey);
-  padding: var(--spacing-sm);
-  text-align: center;
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-sm);
-}
-
-.site-footer p {
-  color: var(--color-text-muted);
-  font-size: 0.85rem;
-}
 /* Global Spacing Fix for Sections and Footer */
 .section:last-of-type {
-    margin-bottom: 40px; /* Ensure spacing at the bottom of the last section */
+    margin-bottom: 40px;
 }
 
 .site-main {
-    padding-bottom: 20px; /* Add a global padding to main content if needed */
+    padding-bottom: 20px;
 }
 
 .footer {
-    margin-top: 0; /* Remove unnecessary margin */
-    padding-top: 20px; /* Add padding to footer */
+    margin-top: 0;
+    padding-top: 20px;
 }

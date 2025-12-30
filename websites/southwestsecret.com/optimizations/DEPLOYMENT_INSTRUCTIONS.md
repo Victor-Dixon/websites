@@ -1,5 +1,5 @@
 # southwestsecret.com Performance Optimization Instructions
-Generated: 2025-12-22 08:48:05
+Generated: 2025-12-25 10:40:04
 
 ## Current Status
 - Response Time: 22.56s (CRITICAL)
@@ -40,16 +40,15 @@ wp db optimize --allow-root
 wp transient delete --all --allow-root
 ```
 
+Or via phpMyAdmin:
+1. Select database
+2. Run OPTIMIZE TABLE on all wp_* tables
+
 ### 6. SEO Improvements
 1. Add meta description to header.php or via SEO plugin
 2. File: meta-description.html
 
-### 7. Accessibility Improvements
-1. Add alt text to all images (descriptive text)
-2. Add ARIA labels to interactive elements
-3. Review forms and buttons for accessibility
-
-### 8. Additional Recommendations
+### 7. Additional Recommendations
 - Optimize images (compress, use WebP)
 - Minify CSS and JavaScript
 - Use CDN for static assets
@@ -60,7 +59,6 @@ wp transient delete --all --allow-root
 ## Expected Results
 - Response time: <3s
 - Improved SEO (meta description)
-- Better accessibility (alt text + ARIA labels)
 - Better caching (reduced server load)
 - Faster page loads for users
 

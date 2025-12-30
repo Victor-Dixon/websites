@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flowr — Timer UI Mock</title>
+    <style>
+      :root {
+        --bg0: #070a12;
+        --bg1: #0b1024;
+        --card: rgba(255, 255, 255, 0.06);
+        --card-2: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.7);
+        --faint: rgba(255, 255, 255, 0.55);
+        --danger: #ff4d6d;
+        --ok: #36d399;
+        --accent: #7c3aed;
+        --accent-2: #22d3ee;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+        --radius: 18px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--text);
+        background: radial-gradient(1000px 800px at 20% 20%, rgba(124, 58, 237, 0.22), transparent 55%),
+          radial-gradient(900px 700px at 80% 40%, rgba(34, 211, 238, 0.18), transparent 60%),
+          linear-gradient(180deg, var(--bg0), var(--bg1));
+      }
+
+      .wrap {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 28px 16px 64px;
+      }
+
+      .top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .brand {
+        display: grid;
+        gap: 6px;
+      }
+
+      .title {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.4;
+        max-width: 64ch;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+      }
+
+      .pill strong {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+      }
+
+      .pill span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 14px;
+        align-items: start;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+
+      .card .hd {
+        padding: 16px 16px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .card .hd h2 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+      }
+
+      .card .hd p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .card .bd {
+        padding: 14px 16px 16px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 12px;
+      }
+
+      .time {
+        font-family: var(--mono);
+        font-size: 44px;
+        line-height: 1;
+        letter-spacing: 0.5px;
+        padding: 16px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+        text-align: center;
+      }
+
+      .meta {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .kv {
+        padding: 12px 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .kv .k {
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+
+      .kv .v {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8px;
+      }
+
+      button {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        border-radius: 12px;
+        padding: 11px 14px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        cursor: pointer;
+        transition: transform 140ms ease, background 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+      }
+
+      button:hover:not(:disabled) {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.26);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      }
+
+      button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .primary {
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(34, 211, 238, 0.75));
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .danger {
+        background: rgba(255, 77, 109, 0.14);
+        border-color: rgba(255, 77, 109, 0.34);
+      }
+
+      .ghost {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .stack {
+        display: grid;
+        gap: 10px;
+      }
+
+      .row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      label {
+        font-size: 12px;
+        color: var(--muted);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      input[type="text"] {
+        width: min(320px, 100%);
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(0, 0, 0, 0.24);
+        color: var(--text);
+        outline: none;
+      }
+
+      input[type="text"]::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      select {
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(0, 0, 0, 0.24);
+        color: var(--text);
+        outline: none;
+      }
+
+      .hint {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .notice {
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 10px 12px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .notice .badge {
+        font-family: var(--mono);
+        font-weight: 800;
+        font-size: 11px;
+        padding: 5px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        white-space: nowrap;
+      }
+
+      .notice .msg {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .notice.good .badge {
+        border-color: rgba(54, 211, 153, 0.35);
+        background: rgba(54, 211, 153, 0.14);
+      }
+
+      .notice.bad .badge {
+        border-color: rgba(255, 77, 109, 0.35);
+        background: rgba(255, 77, 109, 0.14);
+      }
+
+      .history {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .history th,
+      .history td {
+        padding: 10px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 12px;
+        vertical-align: top;
+      }
+
+      .history th {
+        text-align: left;
+        color: var(--muted);
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .history td {
+        color: rgba(255, 255, 255, 0.82);
+        font-family: var(--mono);
+      }
+
+      .tag {
+        font-family: var(--sans);
+        font-weight: 800;
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .tag.ok {
+        border-color: rgba(54, 211, 153, 0.35);
+        background: rgba(54, 211, 153, 0.14);
+      }
+
+      .tag.danger {
+        border-color: rgba(255, 77, 109, 0.35);
+        background: rgba(255, 77, 109, 0.14);
+      }
+
+      .split {
+        display: grid;
+        gap: 12px;
+      }
+
+      .fineprint {
+        color: var(--faint);
+        font-size: 12px;
+        margin-top: 14px;
+        line-height: 1.45;
+      }
+
+      .fineprint code {
+        font-family: var(--mono);
+        color: rgba(255, 255, 255, 0.86);
+        background: rgba(255, 255, 255, 0.06);
+        padding: 2px 6px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .time {
+          font-size: 40px;
+        }
+        .meta {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">
+        <div class="brand">
+          <div class="title">Flowr — timer mock UI</div>
+          <div class="subtitle">
+            Tracks <strong>start time</strong>, <strong>end time</strong>, and <strong>duration</strong>. Optional “stop after
+            a word” mode uses browser speech recognition when available.
+          </div>
+        </div>
+        <div class="pill" aria-live="polite">
+          <div class="dot" id="statusDot"></div>
+          <div>
+            <strong id="statusLabel">Idle</strong><br />
+            <span id="statusDetail">Ready</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card" aria-labelledby="timerCardTitle">
+          <div class="hd">
+            <div>
+              <h2 id="timerCardTitle">Session</h2>
+              <p>Single Flowr session</p>
+            </div>
+            <div class="tag" id="stopReasonTag">stop: —</div>
+          </div>
+          <div class="bd">
+            <div class="hero">
+              <div class="time" id="elapsedDisplay">00:00.000</div>
+              <div class="meta">
+                <div class="kv">
+                  <div class="k">Start time</div>
+                  <div class="v" id="startTimeText">—</div>
+                </div>
+                <div class="kv">
+                  <div class="k">End time</div>
+                  <div class="v" id="endTimeText">—</div>
+                </div>
+                <div class="kv">
+                  <div class="k">Duration</div>
+                  <div class="v" id="durationText">—</div>
+                </div>
+              </div>
+
+              <div class="controls">
+                <button class="primary" id="startBtn">Start Flowr</button>
+                <button class="danger" id="stopBtn" disabled>Stop</button>
+                <button class="ghost" id="resetBtn">Reset</button>
+              </div>
+
+              <div class="notice" id="speechNotice" role="status" aria-live="polite">
+                <div class="badge" id="speechBadge">VOICE</div>
+                <div class="msg" id="speechMsg">Checking speech recognition support…</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="card" aria-labelledby="settingsTitle">
+          <div class="hd">
+            <div>
+              <h2 id="settingsTitle">Auto-stop (voice)</h2>
+              <p>Optional: stop after hearing a word</p>
+            </div>
+          </div>
+          <div class="bd">
+            <div class="split">
+              <div class="stack">
+                <div class="row">
+                  <label>
+                    <input type="checkbox" id="enableVoiceStop" />
+                    Enable voice auto-stop
+                  </label>
+                </div>
+
+                <div class="row" style="align-items: flex-start">
+                  <label for="voiceMode">Mode</label>
+                  <select id="voiceMode">
+                    <option value="any">Stop after any word</option>
+                    <option value="keyword">Stop only on keyword</option>
+                  </select>
+                </div>
+
+                <div class="row" style="align-items: flex-start">
+                  <label for="keywordInput">Keyword</label>
+                  <input id="keywordInput" type="text" placeholder="example: flowr" autocomplete="off" />
+                </div>
+
+                <div class="row">
+                  <button id="testWordBtn" type="button">Simulate “word heard”</button>
+                  <button id="clearHistoryBtn" type="button">Clear history</button>
+                </div>
+
+                <div class="hint" id="hintText">
+                  If your browser supports speech recognition, starting a session with voice auto-stop enabled will request mic
+                  permission. On the first recognized word (or keyword), the timer stops automatically.
+                </div>
+              </div>
+
+              <div class="stack">
+                <div class="notice" id="lastWordNotice">
+                  <div class="badge">LAST</div>
+                  <div class="msg" id="lastWordMsg">No transcript yet.</div>
+                </div>
+
+                <table class="history" aria-label="Session history">
+                  <thead>
+                    <tr>
+                      <th style="width: 28%">Start</th>
+                      <th style="width: 28%">End</th>
+                      <th style="width: 18%">Duration</th>
+                      <th style="width: 26%">Stop reason</th>
+                    </tr>
+                  </thead>
+                  <tbody id="historyBody">
+                    <tr>
+                      <td colspan="4" style="font-family: var(--sans); color: rgba(255, 255, 255, 0.6)">
+                        No sessions yet.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="fineprint">
+                  Mock UI note: in real Flowr, “stop after a word” could also mean “stop after the user speaks once”, or “stop
+                  after a specific phrase.” This mock supports both by toggling <code>Mode</code>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <script>
+      // ===== Utilities =====
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function pad3(n) {
+        return String(n).padStart(3, "0");
+      }
+
+      function formatElapsed(ms) {
+        const totalSeconds = Math.floor(ms / 1000);
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        const millis = ms % 1000;
+        return `${pad2(minutes)}:${pad2(seconds)}.${pad3(millis)}`;
+      }
+
+      function formatClock(d) {
+        if (!d) return "—";
+        const hh = pad2(d.getHours());
+        const mm = pad2(d.getMinutes());
+        const ss = pad2(d.getSeconds());
+        return `${hh}:${mm}:${ss}`;
+      }
+
+      function setStatus({ label, detail, color }) {
+        statusLabel.textContent = label;
+        statusDetail.textContent = detail;
+        statusDot.style.background = color;
+        statusDot.style.boxShadow = `0 0 0 4px ${color}22`;
+      }
+
+      // ===== DOM =====
+      const elapsedDisplay = document.getElementById("elapsedDisplay");
+      const startTimeText = document.getElementById("startTimeText");
+      const endTimeText = document.getElementById("endTimeText");
+      const durationText = document.getElementById("durationText");
+      const stopReasonTag = document.getElementById("stopReasonTag");
+
+      const startBtn = document.getElementById("startBtn");
+      const stopBtn = document.getElementById("stopBtn");
+      const resetBtn = document.getElementById("resetBtn");
+
+      const enableVoiceStop = document.getElementById("enableVoiceStop");
+      const voiceMode = document.getElementById("voiceMode");
+      const keywordInput = document.getElementById("keywordInput");
+      const testWordBtn = document.getElementById("testWordBtn");
+      const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+
+      const speechNotice = document.getElementById("speechNotice");
+      const speechBadge = document.getElementById("speechBadge");
+      const speechMsg = document.getElementById("speechMsg");
+      const lastWordNotice = document.getElementById("lastWordNotice");
+      const lastWordMsg = document.getElementById("lastWordMsg");
+      const historyBody = document.getElementById("historyBody");
+
+      const statusDot = document.getElementById("statusDot");
+      const statusLabel = document.getElementById("statusLabel");
+      const statusDetail = document.getElementById("statusDetail");
+
+      // ===== Timer state =====
+      const state = {
+        isRunning: false,
+        startedAt: null,
+        endedAt: null,
+        elapsedMs: 0,
+        intervalId: null,
+        stopReason: null, // "manual" | "voice:any" | "voice:keyword"
+        lastTranscript: "",
+        history: [],
+      };
+
+      // ===== Speech recognition =====
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const isSpeechSupported = typeof SpeechRecognition === "function";
+      let recognition = null;
+
+      function setSpeechNotice(ok, message) {
+        speechNotice.classList.toggle("good", ok);
+        speechNotice.classList.toggle("bad", !ok);
+        speechMsg.textContent = message;
+      }
+
+      function refreshSpeechUi() {
+        if (!isSpeechSupported) {
+          speechBadge.textContent = "VOICE";
+          setSpeechNotice(false, "Speech recognition is not supported in this browser. Use “Simulate” to preview auto-stop.");
+          enableVoiceStop.checked = false;
+          enableVoiceStop.disabled = true;
+          voiceMode.disabled = true;
+          keywordInput.disabled = true;
+          return;
+        }
+
+        enableVoiceStop.disabled = false;
+        voiceMode.disabled = !enableVoiceStop.checked;
+        keywordInput.disabled = !enableVoiceStop.checked || voiceMode.value !== "keyword";
+
+        const modeLabel =
+          enableVoiceStop.checked && voiceMode.value === "keyword"
+            ? "Will stop on keyword."
+            : enableVoiceStop.checked
+              ? "Will stop after first word."
+              : "Voice auto-stop is off.";
+
+        speechBadge.textContent = "VOICE";
+        setSpeechNotice(true, `Speech recognition supported. ${modeLabel}`);
+      }
+
+      function ensureRecognition() {
+        if (!isSpeechSupported) return null;
+        if (recognition) return recognition;
+
+        recognition = new SpeechRecognition();
+        recognition.lang = "en-US";
+        recognition.interimResults = true;
+        recognition.continuous = true;
+
+        recognition.onresult = (event) => {
+          let combined = "";
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const res = event.results[i];
+            if (!res || !res[0]) continue;
+            combined += (res[0].transcript || "") + " ";
+          }
+          const transcript = (combined || "").trim();
+          if (transcript) {
+            state.lastTranscript = transcript;
+            lastWordMsg.textContent = `Heard: "${transcript}"`;
+          }
+
+          // Stop behavior: first "word" or keyword match.
+          const normalized = transcript.toLowerCase();
+          const words = normalized.split(/\s+/).filter(Boolean);
+          if (!words.length) return;
+
+          if (!state.isRunning || !enableVoiceStop.checked) return;
+
+          if (voiceMode.value === "any") {
+            stopTimer("voice:any");
+            return;
+          }
+
+          const kw = (keywordInput.value || "").trim().toLowerCase();
+          if (!kw) return;
+
+          // keyword match: exact token match OR substring match for short phrases
+          const tokenMatch = words.includes(kw);
+          const substringMatch = normalized.includes(kw);
+          if (tokenMatch || substringMatch) {
+            stopTimer("voice:keyword");
+          }
+        };
+
+        recognition.onerror = () => {
+          // Don't hard-fail the UI; just indicate voice is unavailable right now.
+          setSpeechNotice(false, "Speech recognition error. You can still run the timer and/or use “Simulate”.");
+        };
+
+        recognition.onend = () => {
+          // If we are running and voice-stop is enabled, keep listening.
+          if (state.isRunning && enableVoiceStop.checked) {
+            try {
+              recognition.start();
+            } catch {
+              // Ignore repeated start errors.
+            }
+          }
+        };
+
+        return recognition;
+      }
+
+      function startListeningIfNeeded() {
+        if (!enableVoiceStop.checked) return;
+        const r = ensureRecognition();
+        if (!r) return;
+        try {
+          r.start();
+          setSpeechNotice(true, "Listening… say a word to stop the session.");
+        } catch {
+          // Ignore "already started" errors.
+        }
+      }
+
+      function stopListening() {
+        if (!recognition) return;
+        try {
+          recognition.stop();
+        } catch {
+          // ignore
+        }
+      }
+
+      // ===== Timer functions =====
+      function updateElapsed() {
+        if (!state.isRunning || !state.startedAt) return;
+        state.elapsedMs = Date.now() - state.startedAt.getTime();
+        elapsedDisplay.textContent = formatElapsed(state.elapsedMs);
+        durationText.textContent = formatElapsed(state.elapsedMs);
+      }
+
+      function startTimer() {
+        if (state.isRunning) return;
+
+        state.isRunning = true;
+        state.stopReason = null;
+        state.startedAt = new Date();
+        state.endedAt = null;
+        state.elapsedMs = 0;
+
+        startTimeText.textContent = formatClock(state.startedAt);
+        endTimeText.textContent = "—";
+        durationText.textContent = "—";
+        stopReasonTag.textContent = "stop: —";
+        stopReasonTag.classList.remove("ok", "danger");
+
+        elapsedDisplay.textContent = "00:00.000";
+
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+
+        setStatus({ label: "Running", detail: "Tracking Flowr session", color: "rgba(54, 211, 153, 0.95)" });
+
+        state.intervalId = window.setInterval(updateElapsed, 10);
+        startListeningIfNeeded();
+      }
+
+      function stopTimer(reason = "manual") {
+        if (!state.isRunning) return;
+        state.isRunning = false;
+
+        window.clearInterval(state.intervalId);
+        state.intervalId = null;
+
+        state.endedAt = new Date();
+        state.elapsedMs = state.startedAt ? state.endedAt.getTime() - state.startedAt.getTime() : state.elapsedMs;
+
+        elapsedDisplay.textContent = formatElapsed(state.elapsedMs);
+        endTimeText.textContent = formatClock(state.endedAt);
+        durationText.textContent = formatElapsed(state.elapsedMs);
+
+        state.stopReason = reason;
+
+        const reasonText =
+          reason === "manual" ? "manual" : reason === "voice:any" ? "voice (any word)" : "voice (keyword)";
+        stopReasonTag.textContent = `stop: ${reasonText}`;
+        stopReasonTag.classList.toggle("ok", reason !== "manual");
+        stopReasonTag.classList.toggle("danger", reason === "manual");
+
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+
+        setStatus({ label: "Stopped", detail: `Saved (${reasonText})`, color: "rgba(255, 77, 109, 0.95)" });
+
+        stopListening();
+        addToHistory({
+          start: state.startedAt,
+          end: state.endedAt,
+          durationMs: state.elapsedMs,
+          reason: reasonText,
+        });
+      }
+
+      function resetTimer() {
+        window.clearInterval(state.intervalId);
+        state.intervalId = null;
+        state.isRunning = false;
+
+        state.startedAt = null;
+        state.endedAt = null;
+        state.elapsedMs = 0;
+        state.stopReason = null;
+
+        elapsedDisplay.textContent = "00:00.000";
+        startTimeText.textContent = "—";
+        endTimeText.textContent = "—";
+        durationText.textContent = "—";
+
+        stopReasonTag.textContent = "stop: —";
+        stopReasonTag.classList.remove("ok", "danger");
+
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+
+        setStatus({ label: "Idle", detail: "Ready", color: "rgba(255, 255, 255, 0.25)" });
+        stopListening();
+      }
+
+      function addToHistory(entry) {
+        state.history.unshift(entry);
+        state.history = state.history.slice(0, 6);
+        renderHistory();
+      }
+
+      function renderHistory() {
+        historyBody.innerHTML = "";
+        if (!state.history.length) {
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.colSpan = 4;
+          td.style.fontFamily = "var(--sans)";
+          td.style.color = "rgba(255, 255, 255, 0.6)";
+          td.textContent = "No sessions yet.";
+          tr.appendChild(td);
+          historyBody.appendChild(tr);
+          return;
+        }
+
+        for (const h of state.history) {
+          const tr = document.createElement("tr");
+
+          const tdStart = document.createElement("td");
+          tdStart.textContent = formatClock(h.start);
+          const tdEnd = document.createElement("td");
+          tdEnd.textContent = formatClock(h.end);
+          const tdDur = document.createElement("td");
+          tdDur.textContent = formatElapsed(h.durationMs);
+          const tdReason = document.createElement("td");
+          tdReason.style.fontFamily = "var(--sans)";
+          tdReason.innerHTML = `<span class="tag ${h.reason.startsWith("voice") ? "ok" : "danger"}">${h.reason}</span>`;
+
+          tr.appendChild(tdStart);
+          tr.appendChild(tdEnd);
+          tr.appendChild(tdDur);
+          tr.appendChild(tdReason);
+          historyBody.appendChild(tr);
+        }
+      }
+
+      function simulateWordHeard() {
+        state.lastTranscript = "flowr";
+        lastWordMsg.textContent = `Heard: "flowr" (simulated)`;
+        if (!state.isRunning || !enableVoiceStop.checked) return;
+
+        if (voiceMode.value === "any") {
+          stopTimer("voice:any");
+          return;
+        }
+
+        const kw = (keywordInput.value || "").trim().toLowerCase();
+        if (!kw || kw === "flowr") stopTimer("voice:keyword");
+      }
+
+      // ===== Wire up =====
+      startBtn.addEventListener("click", startTimer);
+      stopBtn.addEventListener("click", () => stopTimer("manual"));
+      resetBtn.addEventListener("click", resetTimer);
+
+      enableVoiceStop.addEventListener("change", () => {
+        refreshSpeechUi();
+        if (state.isRunning) startListeningIfNeeded();
+      });
+      voiceMode.addEventListener("change", refreshSpeechUi);
+      keywordInput.addEventListener("input", refreshSpeechUi);
+
+      testWordBtn.addEventListener("click", simulateWordHeard);
+      clearHistoryBtn.addEventListener("click", () => {
+        state.history = [];
+        renderHistory();
+      });
+
+      // Init
+      setStatus({ label: "Idle", detail: "Ready", color: "rgba(255, 255, 255, 0.25)" });
+      renderHistory();
+      refreshSpeechUi();
+    </script>
+  </body>
+</html>
+

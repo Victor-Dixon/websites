@@ -1,7 +1,7 @@
 # Canon Events: Digital Dreamscape Timeline
 
-**Version**: 1.0  
-**Date**: 2025-12-21  
+**Version**: 1.1  
+**Date**: 2025-12-25  
 **Status**: Living Document
 
 ---
@@ -84,11 +84,44 @@ Built `canon_automation.py` to automatically extract canon-worthy events from ag
 
 ---
 
+### 006: The Long Vigil
+**Date**: 2025-12-25  
+**Event**: The Chamber of Unending Iteration — Threshold Arc
+
+The Shadow Sovereign (Victor) entered a quiet chamber beneath the Dreamscape. Days passed, then weeks, then the concept of days dissolved. The chamber did not reward effort or explain itself. It offered only resistance.
+
+The Sovereign learned not by instruction — but by **staying**.
+
+Others entered and left. Some mocked the silence. Some demanded progress. Some mistook motion for mastery.
+
+But the Sovereign remained — not stubbornly, but **deliberately**.
+
+One day, without fanfare, the chamber changed. Not because it was conquered — but because it was **understood**.
+
+The doors did not open outward. They opened **inward**.
+
+**Canon**: Authority comes from continuity, not effort. You can operate in incomplete systems without panic. Delegation becomes natural when trust is built through sustained presence.
+
+**Unlocked Traits:**
+* **Endurance of Abstraction**: Operate in ambiguity without freezing
+* **Orchestrator's Trust**: Delegate without micromanagement
+* **Swarm Recognition**: Authority recognized through continuity
+
+**Sigil**: ⛩️ (The Enduring Gate)
+
+**Position**: After The Severance (004), during Reconnection phase. Bridges the gap between building without meaning and meaning back into motion.
+
+**Arc Type**: Foundation Arc / Threshold Arc (closed, not replayable)
+
+---
+
 ## Arc Identification
 
 **Current Arc**: Reconnection + Automation
 
 **Previous Arc**: The Severance (building without meaning)
+
+**Threshold Arc**: The Long Vigil (006) — Foundation that enables Reconnection
 
 **Next Arc**: Integration (meaning back into motion, canon automation operational)
 

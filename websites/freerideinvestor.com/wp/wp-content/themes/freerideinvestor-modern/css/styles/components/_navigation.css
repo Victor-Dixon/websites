@@ -1,44 +1,56 @@
 /*--------------------------------------------------------------
-  Navigation Menu
+  Navigation Menu - Updated to Match Homepage Stunning Design
+  Generated: 2025-12-25
 --------------------------------------------------------------*/
 
 /* Navigation List Styling */
 .main-nav .nav-list {
-  list-style: none; /* Remove default list styling */
+  list-style: none;
   display: flex;
-  gap: var(--spacing-sm); /* Space between navigation items */
+  gap: var(--spacing-sm);
   padding: 0;
   margin: 0;
-  flex-wrap: wrap; /* Enable wrapping for smaller screens */
-  align-items: center; /* Vertically align items */
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-/* Navigation Links */
+/* Navigation Links - Match Homepage Stunning Design */
 .main-nav .nav-list li a {
-  display: inline-block; /* Ensure links are block-level for padding */
-  padding: var(--spacing-xs, 8px) var(--spacing-sm, 16px); /* Add clickable padding */
-  border-radius: 4px; /* Slightly larger rounding for a modern look */
-  color: var(--color-text-base); /* Default text color */
-  text-decoration: none; /* Remove underline */
-  font-weight: 600; /* Slightly bold for better readability */
-  transition: background-color var(--transition-fast, 0.2s ease), 
-              color var(--transition-fast, 0.2s ease); /* Smooth transitions */
+  display: inline-block !important;
+  padding: 12px 24px !important;
+  border-radius: 12px !important;
+  color: #f0f0f0 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  background: rgba(46, 204, 113, 0.1) !important; /* Green tint matching homepage */
+  border: 1px solid rgba(46, 204, 113, 0.2) !important;
+  transition: all 0.3s ease !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
 }
 
-/* Hover and Focus States */
+/* Hover and Focus States - Match Homepage Button Effects */
 .main-nav .nav-list li a:hover,
 .main-nav .nav-list li a:focus {
-  background: var(--color-nav-hover-bg, rgba(255, 255, 255, 0.1)); /* Subtle hover effect */
-  color: var(--color-text-base); /* Maintain text color */
-  outline: 2px solid var(--color-accent, #1f7a3d); /* Focus outline for accessibility */
-  outline-offset: 2px; /* Slight gap between the outline and the element */
+  background: linear-gradient(145deg, #27ae60, #2ecc71) !important;
+  color: #ffffff !important;
+  border-color: #2ecc71 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4) !important;
+  outline: none !important;
 }
 
-/* Active Navigation Link */
-.main-nav .nav-list li a.active {
-  background: var(--color-accent); /* Highlight active link */
-  color: var(--color-background, #ffffff); /* Contrast with accent color */
-  font-weight: 700; /* Bold for emphasis */
+/* Active Navigation Link - Match Homepage CTA Button */
+.main-nav .nav-list li a.active,
+.main-nav .nav-list li.current-menu-item > a,
+.main-nav .nav-list li.current_page_item > a {
+  background: linear-gradient(145deg, #27ae60, #2ecc71) !important;
+  color: #ffffff !important;
+  border-color: #2ecc71 !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4) !important;
+  font-weight: 700 !important;
+  transform: translateY(-2px) !important;
 }
 
 /*--------------------------------------------------------------
@@ -48,14 +60,14 @@
 /* Navigation List for Smaller Screens */
 @media (max-width: 768px) {
   .main-nav .nav-list {
-    flex-direction: column; /* Stack navigation items vertically */
-    align-items: flex-start; /* Align items to the left */
-    gap: var(--spacing-xs, 10px); /* Smaller gaps */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs, 10px);
   }
 
   .main-nav .nav-list li a {
-    width: 100%; /* Make links full-width */
-    text-align: left; /* Align text to the left */
+    width: 100%;
+    text-align: left;
     padding: var(--spacing-xs, 10px) var(--spacing-sm, 16px);
   }
 }
@@ -63,11 +75,11 @@
 /* Optional: Adjust for Very Small Screens */
 @media (max-width: 480px) {
   .main-nav .nav-list {
-    gap: var(--spacing-xs, 5px); /* Reduce gaps further */
+    gap: var(--spacing-xs, 5px);
   }
 
   .main-nav .nav-list li a {
-    font-size: 0.9rem; /* Slightly smaller font size */
-    padding: var(--spacing-xs, 8px) var(--spacing-sm, 12px); /* Adjust padding */
+    font-size: 0.9rem;
+    padding: var(--spacing-xs, 8px) var(--spacing-sm, 12px);
   }
 }
