@@ -1,0 +1,61 @@
+# Generated Drafts - Test Run
+# Generated: 2025-12-30
+# Input: trade_journal payload
+
+status: "SUCCESS"
+generated_at: "2025-12-30T07:00:00Z"
+drafts:
+  - brand: "freerideinvestor"
+    site_url: "https://freerideinvestor.com"
+    content_type: "trade_journal"
+    draft:
+      title: "QQQ Trade - 2025-12-30 | Follow My Signals"
+      meta_description: "Trade journal entry for QQQ on 2025-12-30. Entry: $385.50, Exit: $389.25. Results: 0.97% gain with momentum break strategy."
+      content: |
+        # QQQ Trade - 2025-12-30 | Follow My Signals
+        
+        ## Trade Overview
+        
+        **Symbol:** QQQ
+        **Entry Date:** 2025-12-30
+        **Entry Price:** $385.50
+        **Exit Price:** $389.25
+        **Position Size:** 100 shares
+        
+        ## Visual Record
+        
+        [Screenshot 1: Entry chart showing momentum break above $384 resistance]
+        [Screenshot 2: Momentum indicator showing RSI divergence and strength]
+        [Screenshot 3: Exit chart at $389.25]
+        [Screenshot 4: Trade summary with key metrics]
+        
+        ## The Plan
+        
+        Enter on momentum break above $384 resistance. Target $392 (1.8% gain), stop loss at $383 (0.4% risk). Monitor for volume confirmation and RSI strength.
+        
+        ## What Happened
+        
+        Exited at $389.25 for 0.97% gain ($3.75 per share). Position held for 2 hours. Stop loss at $383 was never tested. Volume was strong on entry but tapered. RSI peaked at 72, showing some overbought conditions.
+        
+        ## What I Learned
+        
+        Momentum break strategy worked well. The key was waiting for volume confirmation. Exit was conservative but appropriate given Fed announcement risk. Should track similar setups to build pattern recognition. Risk management (stop loss) was properly placed and not needed, which is good.
+        
+        ## Trade Journal Entry
+        
+        Entered QQQ at $385.50 after identifying strong momentum break above key resistance at $384. The setup showed RSI divergence and volume confirmation. Held position through some volatility and exited at $389.25 for a 0.97% gain. The trade aligned with my momentum strategy but could have been held longer if not for upcoming Fed announcement risk.
+        
+        **Entry Rationale:** Break above key resistance with volume confirmation and RSI divergence
+        
+        **Exit Rationale:** Approaching Fed announcement, took profits to reduce risk
+        
+        **Market Conditions:** Bullish momentum, moderate volatility
+        
+    promo_snippets:
+      - "Just completed a QQQ trade. Entry: $385.50, Exit: $389.25. Key learning: Momentum break strategy worked well with volume confirmation. Full breakdown: {blog_url}"
+      - "New trade journal entry: QQQ on 2025-12-30. 0.97% gain with proper risk management. Exit was conservative given Fed announcement risk. Full analysis: {blog_url}"
+      - "QQQ trade results: 0.97% gain on momentum break. Volume confirmation was key to the setup. Read the full analysis: {blog_url}"
+
+# Note: This test run generates only 1 draft (FreerideInvestor) because content_type is "trade_journal"
+# For a full 4-site run, we would need multiple content types or a multi-brand payload
+

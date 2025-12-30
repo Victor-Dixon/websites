@@ -1,0 +1,141 @@
+# Project Devlog Template - WeAreSwarm.online
+# DoD: Documents + implements + publicizes projects (DreamOS + agent tools)
+
+template_name: "project_devlog"
+brand: "weareswarm"
+content_type: "project_devlog"
+
+required_inputs:
+  - project_name
+  - project_type  # dreamos_update, agent_tools, swarm_project
+  - project_status
+  - devlog_text
+  - content_type  # project_devlog, dreamos_update, agent_tools_documentation
+
+optional_inputs:
+  - project_id
+  - project_description
+  - updates_made
+  - challenges_faced
+  - solutions_implemented
+  - next_steps
+  - code_snippets[]
+  - screenshots[]
+  - links[]
+  - related_projects[]
+
+structure:
+  title:
+    pattern: "{project_name} Devlog | WeAreSwarm.online"
+    alternative_patterns:
+      - "DreamOS Update: {project_name}"
+      - "Agent Tools: {project_name} Documentation"
+      - "Swarm Project: {project_name}"
+    max_length: 80
+  
+  meta_description:
+    pattern: "Project devlog for {project_name}. Status: {project_status}. {devlog_summary}"
+    max_length: 160
+  
+  content_sections:
+    - section: "project_overview"
+      heading: "Project Overview"
+      required_fields:
+        - project_name
+        - project_type
+        - project_status
+      template: |
+        **Project:** {project_name}
+        **Type:** {project_type}
+        **Status:** {project_status}
+        
+        {project_description_section}
+    
+    - section: "devlog_content"
+      heading: "Development Log"
+      required_fields:
+        - devlog_text
+      template: |
+        {devlog_text}
+    
+    - section: "updates_made"
+      heading: "What's New"
+      required_fields: []
+      optional_fields:
+        - updates_made
+      template: |
+        {# If updates_made provided #}
+        {updates_made}
+    
+    - section: "challenges_solutions"
+      heading: "Challenges & Solutions"
+      required_fields: []
+      optional_fields:
+        - challenges_faced
+        - solutions_implemented
+      template: |
+        {# If challenges_faced provided #}
+        ## Challenges Faced
+        
+        {challenges_faced}
+        
+        {# If solutions_implemented provided #}
+        ## Solutions Implemented
+        
+        {solutions_implemented}
+    
+    - section: "next_steps"
+      heading: "What's Next"
+      required_fields: []
+      optional_fields:
+        - next_steps
+      template: |
+        {next_steps}
+    
+    - section: "code_snippets"
+      heading: "Code Snippets"
+      required_fields: []
+      optional_fields:
+        - code_snippets[]
+      template: |
+        {# Code snippets with syntax highlighting #}
+        {code_snippets}
+    
+    - section: "screenshots"
+      heading: "Screenshots"
+      required_fields: []
+      optional_fields:
+        - screenshots[]
+      template: |
+        {screenshots_with_captions}
+    
+    - section: "links"
+      heading: "Related Links"
+      required_fields: []
+      optional_fields:
+        - links[]
+      template: |
+        {# List of related links #}
+        {links}
+
+  voice_guidelines:
+    - "Documentation tone: Clear, technical, accessible"
+    - "Explain how projects enable the Swarm ecosystem"
+    - "Focus on practical implementation details"
+    - "Show how DreamOS/agent tools work together"
+    - "Publicize projects while documenting them"
+
+  citation_rules:
+    - "Only cite data provided in input payload"
+    - "Do not invent project details"
+    - "If project_name missing, output NEEDED_INPUTS: project_name"
+    - "If devlog_text < 300 chars, output NEEDED_INPUTS: devlog_text (needs more content)"
+
+  promo_snippet_patterns:
+    - pattern: "New devlog: {project_name} - {project_status}. {update_teaser}. Read more: {blog_url}"
+      max_length: 280
+    - pattern: "{project_type} update: {project_name}. {key_update}. Full documentation: {blog_url}"
+      max_length: 280
+    - pattern: "Swarm project update: {project_name}. {devlog_teaser}. Check it out: {blog_url}"
+      max_length: 280
+

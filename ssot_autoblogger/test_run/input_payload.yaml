@@ -1,0 +1,34 @@
+# Test Run Input Payload
+# Using latest available data for demonstration
+
+content_type: "trade_journal"
+source_data:
+  trade_id: "TRADE_TEST_001"
+  trade_date: "2025-12-30"
+  symbol: "QQQ"
+  entry_price: "385.50"
+  exit_price: "389.25"
+  screenshots:
+    - "entry_chart.png"
+    - "momentum_indicator.png"
+    - "exit_chart.png"
+    - "trade_summary.png"
+  journal_entry_text: "Entered QQQ at $385.50 after identifying strong momentum break above key resistance at $384. The setup showed RSI divergence and volume confirmation. Held position through some volatility and exited at $389.25 for a 0.97% gain. The trade aligned with my momentum strategy but could have been held longer if not for upcoming Fed announcement risk."
+  plan: "Enter on momentum break above $384 resistance. Target $392 (1.8% gain), stop loss at $383 (0.4% risk). Monitor for volume confirmation and RSI strength."
+  results: "Exited at $389.25 for 0.97% gain ($3.75 per share). Position held for 2 hours. Stop loss at $383 was never tested. Volume was strong on entry but tapered. RSI peaked at 72, showing some overbought conditions."
+  learnings: "Momentum break strategy worked well. The key was waiting for volume confirmation. Exit was conservative but appropriate given Fed announcement risk. Should track similar setups to build pattern recognition. Risk management (stop loss) was properly placed and not needed, which is good."
+  position_size: "100 shares"
+  market_conditions: "Bullish momentum, moderate volatility"
+  entry_rationale: "Break above key resistance with volume confirmation and RSI divergence"
+  exit_rationale: "Approaching Fed announcement, took profits to reduce risk"
+metadata:
+  author: "dadudekc"
+  timestamp: "2025-12-30T06:00:00Z"
+  source: "trade_journal"
+tags:
+  - "trading"
+  - "qqq"
+  - "momentum"
+categories:
+  - "Trade Journal"
+

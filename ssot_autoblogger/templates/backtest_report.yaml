@@ -1,0 +1,144 @@
+# Backtest Report Template - TradingRobotPlug
+# DoD: Backtests → blog posts, iteration logs mandatory
+
+template_name: "backtest_report"
+brand: "tradingrobotplug"
+content_type: "backtest_report"
+
+required_inputs:
+  - backtest_id
+  - backtest_name
+  - results_json
+  - iteration_number
+  - iteration_notes
+  - preset_name
+  - script_version
+
+optional_inputs:
+  - backtest_date
+  - symbol
+  - time_range
+  - initial_capital
+  - final_capital
+  - total_return
+  - max_drawdown
+  - win_rate
+  - total_trades
+  - avg_trade_duration
+  - plans
+  - learnings
+  - results_summary
+  - charts[]
+  - screenshots[]
+
+structure:
+  title:
+    pattern: "Backtest: {backtest_name} | TradingRobotPlug Lab"
+    max_length: 80
+  
+  meta_description:
+    pattern: "Backtest report for {backtest_name} using {preset_name} preset. Iteration #{iteration_number}. Results: {results_summary}"
+    max_length: 160
+  
+  content_sections:
+    - section: "backtest_overview"
+      heading: "Backtest Overview"
+      required_fields:
+        - backtest_name
+        - preset_name
+        - script_version
+        - iteration_number
+      template: |
+        **Backtest Name:** {backtest_name}
+        **Preset:** {preset_name}
+        **Script Version:** {script_version}
+        **Iteration:** #{iteration_number}
+        **Date:** {backtest_date}
+        
+        {symbol_section}
+        {time_range_section}
+    
+    - section: "results"
+      heading: "Backtest Results"
+      required_fields:
+        - results_json
+      template: |
+        {# Parse and format results_json #}
+        
+        {# Key metrics #}
+        - **Initial Capital:** ${initial_capital}
+        - **Final Capital:** ${final_capital}
+        - **Total Return:** {total_return}%
+        - **Max Drawdown:** {max_drawdown}%
+        - **Win Rate:** {win_rate}%
+        - **Total Trades:** {total_trades}
+        - **Avg Trade Duration:** {avg_trade_duration}
+        
+        {# Full results JSON available for detailed analysis #}
+    
+    - section: "iteration_log"
+      heading: "Iteration Log"
+      required_fields:
+        - iteration_number
+        - iteration_notes
+      template: |
+        ## Iteration #{iteration_number} Notes
+        
+        {iteration_notes}
+        
+        {# This is MANDATORY per DoD #}
+    
+    - section: "analysis"
+      heading: "Analysis"
+      required_fields: []
+      optional_fields:
+        - plans
+        - learnings
+        - results_summary
+      template: |
+        {# If plans provided #}
+        ## Plans
+        
+        {plans}
+        
+        {# If learnings provided #}
+        ## Learnings
+        
+        {learnings}
+        
+        {# If results_summary provided #}
+        ## Results Summary
+        
+        {results_summary}
+    
+    - section: "charts_screenshots"
+      heading: "Charts & Visualizations"
+      required_fields: []
+      optional_fields:
+        - charts[]
+        - screenshots[]
+      template: |
+        {charts_and_screenshots}
+
+  voice_guidelines:
+    - "Algorithmic trading lab tone: Technical, data-driven, iterative"
+    - "Focus on backtest methodology and results"
+    - "Document iteration process (mandatory)"
+    - "Share learnings from each iteration"
+    - "Explain preset/script changes"
+
+  citation_rules:
+    - "Only cite data provided in input payload"
+    - "Do not invent backtest results"
+    - "If backtest_id missing, output NEEDED_INPUTS: backtest_id"
+    - "If iteration_number missing, output NEEDED_INPUTS: iteration_number (mandatory)"
+    - "If iteration_notes missing, output NEEDED_INPUTS: iteration_notes (mandatory)"
+
+  promo_snippet_patterns:
+    - pattern: "New backtest: {backtest_name} (Iteration #{iteration_number}). Results: {total_return}% return, {win_rate}% win rate. Full report: {blog_url}"
+      max_length: 280
+    - pattern: "Backtest update: {preset_name} preset, Iteration #{iteration_number}. {key_result}. Analysis: {blog_url}"
+      max_length: 280
+    - pattern: "Trading lab update: {backtest_name} iteration #{iteration_number}. {learning_teaser}. Check results: {blog_url}"
+      max_length: 280
+
