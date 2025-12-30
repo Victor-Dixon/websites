@@ -56,43 +56,144 @@
 
         shouldUseWebSocket: function() {
             // Check if WebSocket endpoint is available
-            // For now, use polling as WordPress doesn't have native WebSocket
-            return false;
+            // WebSocket endpoint: ws://localhost:8765/events (dev) or wss://api.tradingrobotplug.com/events (prod)
+            const wsUrl = this.getWebSocketUrl();
+            return wsUrl !== null;
+        },
+        
+        getWebSocketUrl: function() {
+            // Get WebSocket URL from WordPress settings or use default
+            // Development: ws://localhost:8765/events
+            // Production: wss://api.tradingrobotplug.com/events
+            if (typeof tradingRobotPlugConfig !== 'undefined' && tradingRobotPlugConfig.websocketUrl) {
+                return tradingRobotPlugConfig.websocketUrl;
+            }
+            // Default to production WebSocket endpoint
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                ? 'localhost:8765' 
+                : 'api.tradingrobotplug.com';
+            return `${protocol}//${host}/events`;
         },
 
         initWebSocket: function() {
-            // WebSocket implementation (for future enhancement)
-            const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsUrl = wsProtocol + '//' + window.location.host + '/ws/dashboard';
+            // WebSocket implementation for Phase 3
+            const wsUrl = this.getWebSocketUrl();
+            if (!wsUrl) {
+                console.warn('WebSocket URL not configured, falling back to polling');
+                this.fallbackToPolling();
+                return;
+            }
             
             try {
                 this.ws = new WebSocket(wsUrl);
+                this.clientId = null;
+                this.heartbeatInterval = 30000; // 30 seconds
+                this.heartbeatTimer = null;
                 
                 this.ws.onopen = () => {
+                    console.log('WebSocket connected to:', wsUrl);
                     this.isConnected = true;
                     this.retryCount = 0;
                     this.updateConnectionStatus('connected');
+                    this.startHeartbeat();
                 };
                 
                 this.ws.onmessage = (event) => {
-                    const data = JSON.parse(event.data);
-                    this.handleRealTimeUpdate(data);
+                    try {
+                        const message = JSON.parse(event.data);
+                        this.handleWebSocketMessage(message);
+                    } catch (error) {
+                        console.error('Failed to parse WebSocket message:', error);
+                    }
                 };
                 
-                this.ws.onerror = () => {
+                this.ws.onerror = (error) => {
+                    console.error('WebSocket error:', error);
                     this.updateConnectionStatus('error');
-                    this.fallbackToPolling();
+                    // Don't immediately fallback - let onclose handle reconnection
                 };
                 
-                this.ws.onclose = () => {
+                this.ws.onclose = (event) => {
+                    console.log('WebSocket closed:', event.code, event.reason);
                     this.isConnected = false;
+                    this.stopHeartbeat();
                     this.updateConnectionStatus('disconnected');
-                    this.retryConnection();
+                    
+                    // Only fallback to polling if max retries exceeded
+                    if (this.retryCount < this.maxRetries) {
+                        this.retryConnection();
+                    } else {
+                        this.fallbackToPolling();
+                    }
                 };
             } catch (error) {
                 console.error('WebSocket initialization failed:', error);
                 this.fallbackToPolling();
             }
+        },
+        
+        handleWebSocketMessage: function(message) {
+            // Handle connection.established
+            if (message.type === 'connection.established') {
+                this.clientId = message.data.client_id;
+                console.log('WebSocket client ID:', this.clientId);
+                // Subscribe to all events
+                this.subscribeToEvents(['*']);
+            }
+            // Handle pong (heartbeat response)
+            else if (message.type === 'pong') {
+                // Heartbeat response received
+            }
+            // Handle error events
+            else if (message.type === 'error.occurred') {
+                console.error('WebSocket error event:', message.data);
+                this.handleErrorEvent(message.data);
+            }
+            // Handle all other events
+            else {
+                this.handleRealTimeUpdate(message);
+            }
+        },
+        
+        subscribeToEvents: function(eventTypes) {
+            if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
+                console.warn('WebSocket not open, cannot subscribe');
+                return;
+            }
+            
+            const subscribeMessage = {
+                type: 'subscribe',
+                event_types: eventTypes
+            };
+            
+            this.ws.send(JSON.stringify(subscribeMessage));
+            console.log('Subscribed to events:', eventTypes);
+        },
+        
+        startHeartbeat: function() {
+            if (this.heartbeatTimer) {
+                clearInterval(this.heartbeatTimer);
+            }
+            
+            this.heartbeatTimer = setInterval(() => {
+                if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+                    this.ws.send(JSON.stringify({ type: 'ping' }));
+                }
+            }, this.heartbeatInterval);
+        },
+        
+        stopHeartbeat: function() {
+            if (this.heartbeatTimer) {
+                clearInterval(this.heartbeatTimer);
+                this.heartbeatTimer = null;
+            }
+        },
+        
+        handleErrorEvent: function(errorData) {
+            // Display error notification to user
+            console.error('Trading error:', errorData);
+            // Could add UI notification here
         },
 
         initPolling: function() {
@@ -110,24 +211,115 @@
         retryConnection: function() {
             if (this.retryCount < this.maxRetries) {
                 this.retryCount++;
+                const delay = this.retryDelay * this.retryCount;
+                console.log(`Retrying WebSocket connection (attempt ${this.retryCount}/${this.maxRetries}) in ${delay}ms...`);
                 setTimeout(() => {
                     this.initWebSocket();
-                }, this.retryDelay * this.retryCount);
+                }, delay);
             } else {
+                console.warn('Max WebSocket retries exceeded, falling back to polling');
                 this.fallbackToPolling();
             }
         },
-
-        handleRealTimeUpdate: function(data) {
-            if (data.type === 'metrics') {
-                this.updateMetrics(data.metrics);
-            } else if (data.type === 'chart') {
-                this.updateChartData(data.chartType, data.chartData);
-            } else if (data.type === 'trade') {
-                this.addNewTrade(data.trade);
-            } else if (data.type === 'full_update') {
-                this.loadDashboardData();
+        
+        disconnectWebSocket: function() {
+            this.stopHeartbeat();
+            if (this.ws) {
+                this.ws.close();
+                this.ws = null;
             }
+            this.isConnected = false;
+            this.clientId = null;
+        },
+
+        handleRealTimeUpdate: function(message) {
+            // Handle events based on Phase 3 Event Schema
+            const eventType = message.type;
+            const eventData = message.data || {};
+            
+            switch (eventType) {
+                // Trade events
+                case 'trade.executed':
+                    this.addNewTrade(eventData);
+                    this.updateMetrics({ total_trades: 'increment' });
+                    break;
+                
+                // Order events
+                case 'order.placed':
+                case 'order.filled':
+                case 'order.cancelled':
+                    // Refresh trades table to show updated order status
+                    this.loadTrades();
+                    break;
+                
+                // Position events
+                case 'position.update':
+                    // Update positions display if exists
+                    this.updatePosition(eventData);
+                    break;
+                
+                // Account events
+                case 'account.update':
+                    // Update account metrics
+                    this.updateAccountMetrics(eventData);
+                    break;
+                
+                // Strategy events
+                case 'strategy.loaded':
+                case 'strategy.unloaded':
+                case 'strategy.signal':
+                case 'strategy.paused':
+                case 'strategy.resumed':
+                    // Refresh strategies and metrics
+                    this.loadOverview();
+                    break;
+                
+                // Market data events
+                case 'market.data.update':
+                    // Update market data charts if needed
+                    if (eventData.symbol && this.currentStrategy) {
+                        this.loadChartData();
+                    }
+                    break;
+                
+                // Engine events
+                case 'engine.initialized':
+                case 'engine.started':
+                case 'engine.stopped':
+                    // Update engine status if displayed
+                    this.updateEngineStatus(eventData);
+                    break;
+                
+                // Fallback for unknown events
+                default:
+                    console.log('Unhandled event type:', eventType, eventData);
+                    // For unknown events, do a full refresh
+                    if (eventType.startsWith('trade.') || eventType.startsWith('strategy.')) {
+                        this.loadDashboardData();
+                    }
+            }
+        },
+        
+        updatePosition: function(positionData) {
+            // Update position display if position widget exists
+            // This would update a positions table or widget
+            console.log('Position update:', positionData);
+        },
+        
+        updateAccountMetrics: function(accountData) {
+            // Update account-related metrics
+            const metrics = {
+                buying_power: accountData.buying_power,
+                cash: accountData.cash,
+                equity: accountData.equity,
+                portfolio_value: accountData.portfolio_value
+            };
+            this.updateMetrics(metrics);
+        },
+        
+        updateEngineStatus: function(engineData) {
+            // Update engine status indicator if displayed
+            console.log('Engine status:', engineData);
         },
 
         initCharts: function() {
@@ -231,19 +423,24 @@
         },
 
         updateMetrics: function(metrics) {
+            // Handle increment/decrement for real-time updates
+            const currentMetrics = this.getCurrentMetrics();
+            
             const metricMap = {
-                total_strategies: metrics.total_strategies || 0,
-                active_strategies: metrics.active_strategies || 0,
-                total_trades: metrics.total_trades || 0,
-                total_pnl: this.formatCurrency(metrics.total_pnl || 0),
-                win_rate: this.formatPercent(metrics.win_rate || 0),
-                avg_return: this.formatPercent(metrics.avg_return || 0),
-                sharpe_ratio: (metrics.sharpe_ratio || 0).toFixed(2),
-                max_drawdown: this.formatPercent(metrics.max_drawdown || 0),
-                profit_factor: (metrics.profit_factor || 0).toFixed(2),
-                daily_pnl: this.formatCurrency(metrics.daily_pnl || 0),
-                monthly_pnl: this.formatCurrency(metrics.monthly_pnl || 0),
-                roi: this.formatPercent(metrics.roi || 0)
+                total_strategies: metrics.total_strategies !== undefined ? metrics.total_strategies : currentMetrics.total_strategies,
+                active_strategies: metrics.active_strategies !== undefined ? metrics.active_strategies : currentMetrics.active_strategies,
+                total_trades: metrics.total_trades === 'increment' 
+                    ? (currentMetrics.total_trades + 1)
+                    : (metrics.total_trades !== undefined ? metrics.total_trades : currentMetrics.total_trades),
+                total_pnl: this.formatCurrency(metrics.total_pnl !== undefined ? metrics.total_pnl : currentMetrics.total_pnl),
+                win_rate: this.formatPercent(metrics.win_rate !== undefined ? metrics.win_rate : currentMetrics.win_rate),
+                avg_return: this.formatPercent(metrics.avg_return !== undefined ? metrics.avg_return : currentMetrics.avg_return),
+                sharpe_ratio: (metrics.sharpe_ratio !== undefined ? metrics.sharpe_ratio : currentMetrics.sharpe_ratio).toFixed(2),
+                max_drawdown: this.formatPercent(metrics.max_drawdown !== undefined ? metrics.max_drawdown : currentMetrics.max_drawdown),
+                profit_factor: (metrics.profit_factor !== undefined ? metrics.profit_factor : currentMetrics.profit_factor).toFixed(2),
+                daily_pnl: this.formatCurrency(metrics.daily_pnl !== undefined ? metrics.daily_pnl : currentMetrics.daily_pnl),
+                monthly_pnl: this.formatCurrency(metrics.monthly_pnl !== undefined ? metrics.monthly_pnl : currentMetrics.monthly_pnl),
+                roi: this.formatPercent(metrics.roi !== undefined ? metrics.roi : currentMetrics.roi)
             };
 
             Object.keys(metricMap).forEach(key => {
@@ -547,28 +744,41 @@
         },
 
         startRealTimeUpdates: function() {
-            // Start separate update intervals for different data types
-            this.stopRealTimeUpdates(); // Clear any existing timers
+            // If WebSocket is connected, use it for real-time updates
+            // Otherwise, use polling as fallback
+            if (this.isConnected && this.ws && this.ws.readyState === WebSocket.OPEN) {
+                // WebSocket handles real-time updates via events
+                // Only start minimal polling as backup
+                this.stopRealTimeUpdates();
+                
+                // Backup polling (less frequent when WebSocket is active)
+                this.updateTimers.backup = setInterval(() => {
+                    this.loadDashboardData();
+                }, this.updateInterval * 4); // Every 20 seconds as backup
+            } else {
+                // Full polling mode when WebSocket is not available
+                this.stopRealTimeUpdates();
 
-            // Metrics updates (most frequent)
-            this.updateTimers.metrics = setInterval(() => {
-                this.loadOverview();
-            }, this.metricsUpdateInterval);
+                // Metrics updates (most frequent)
+                this.updateTimers.metrics = setInterval(() => {
+                    this.loadOverview();
+                }, this.metricsUpdateInterval);
 
-            // Chart updates (less frequent to reduce load)
-            this.updateTimers.charts = setInterval(() => {
-                this.loadChartData();
-            }, this.chartsUpdateInterval);
+                // Chart updates (less frequent to reduce load)
+                this.updateTimers.charts = setInterval(() => {
+                    this.loadChartData();
+                }, this.chartsUpdateInterval);
 
-            // Trades updates
-            this.updateTimers.trades = setInterval(() => {
-                this.loadTrades();
-            }, this.tradesUpdateInterval);
+                // Trades updates
+                this.updateTimers.trades = setInterval(() => {
+                    this.loadTrades();
+                }, this.tradesUpdateInterval);
 
-            // Full dashboard refresh (backup)
-            this.updateTimers.full = setInterval(() => {
-                this.loadDashboardData();
-            }, this.updateInterval * 2); // Every 10 seconds
+                // Full dashboard refresh (backup)
+                this.updateTimers.full = setInterval(() => {
+                    this.loadDashboardData();
+                }, this.updateInterval * 2); // Every 10 seconds
+            }
         },
 
         stopRealTimeUpdates: function() {
@@ -647,38 +857,69 @@
             }
         },
 
+        getCurrentMetrics: function() {
+            // Get current metric values from DOM
+            return {
+                total_strategies: parseInt($('[data-metric="total_strategies"]').text()) || 0,
+                active_strategies: parseInt($('[data-metric="active_strategies"]').text()) || 0,
+                total_trades: parseInt($('[data-metric="total_trades"]').text()) || 0,
+                total_pnl: parseFloat($('[data-metric="total_pnl"]').text().replace(/[^0-9.-]/g, '')) || 0,
+                win_rate: parseFloat($('[data-metric="win_rate"]').text().replace(/[^0-9.-]/g, '')) || 0,
+                avg_return: parseFloat($('[data-metric="avg_return"]').text().replace(/[^0-9.-]/g, '')) || 0,
+                sharpe_ratio: parseFloat($('[data-metric="sharpe_ratio"]').text()) || 0,
+                max_drawdown: parseFloat($('[data-metric="max_drawdown"]').text().replace(/[^0-9.-]/g, '')) || 0,
+                profit_factor: parseFloat($('[data-metric="profit_factor"]').text()) || 0,
+                daily_pnl: parseFloat($('[data-metric="daily_pnl"]').text().replace(/[^0-9.-]/g, '')) || 0,
+                monthly_pnl: parseFloat($('[data-metric="monthly_pnl"]').text().replace(/[^0-9.-]/g, '')) || 0,
+                roi: parseFloat($('[data-metric="roi"]').text().replace(/[^0-9.-]/g, '')) || 0
+            };
+        },
+        
         addNewTrade: function(trade) {
-            // Add new trade to top of table
+            // Add new trade to top of table (from trade.executed event)
             const tbody = $('#tradesTableBody');
             const existingRows = tbody.find('tr').length;
+            const tradeId = trade.trade_id || trade.id;
             
-            if (existingRows > 0 && !tbody.find(`tr[data-trade-id="${trade.trade_id}"]`).length) {
-                const newRow = $(`
-                    <tr data-trade-id="${trade.trade_id}" style="animation: slideIn 0.3s ease-out;">
-                        <td>${trade.trade_id || '-'}</td>
-                        <td>${trade.strategy_id || '-'}</td>
-                        <td>${trade.symbol || '-'}</td>
-                        <td>${trade.side || '-'}</td>
-                        <td>${trade.quantity || 0}</td>
-                        <td>${this.formatCurrency(trade.price || 0)}</td>
-                        <td class="trade-pnl ${(trade.pnl || 0) >= 0 ? 'positive' : 'negative'}">
-                            ${this.formatCurrency(trade.pnl || 0)}
-                        </td>
-                        <td>${this.formatDate(trade.execution_time || trade.created_at)}</td>
-                        <td>
-                            <span class="trade-status ${this.getTradeStatus(trade)}">
-                                ${this.getTradeStatusLabel(trade)}
-                            </span>
-                        </td>
-                    </tr>
-                `);
-                tbody.prepend(newRow);
-                
-                // Limit to 50 rows
-                if (existingRows >= 50) {
-                    tbody.find('tr').slice(50).remove();
-                }
+            // Check if trade already exists
+            if (tradeId && tbody.find(`tr[data-trade-id="${tradeId}"]`).length > 0) {
+                return; // Trade already displayed
             }
+            
+            // Add new trade row
+            const newRow = $(`
+                <tr data-trade-id="${tradeId || 'new-' + Date.now()}" style="animation: slideIn 0.3s ease-out;">
+                    <td>${tradeId || '-'}</td>
+                    <td>${trade.strategy_id || '-'}</td>
+                    <td>${trade.symbol || '-'}</td>
+                    <td>${trade.side || '-'}</td>
+                    <td>${trade.quantity || 0}</td>
+                    <td>${this.formatCurrency(trade.price || 0)}</td>
+                    <td class="trade-pnl ${(trade.pnl || 0) >= 0 ? 'positive' : 'negative'}">
+                        ${this.formatCurrency(trade.pnl || 0)}
+                    </td>
+                    <td>${this.formatDate(trade.timestamp || trade.execution_time || trade.created_at)}</td>
+                    <td>
+                        <span class="trade-status ${this.getTradeStatus(trade)}">
+                            ${this.getTradeStatusLabel(trade)}
+                        </span>
+                    </td>
+                </tr>
+            `);
+            tbody.prepend(newRow);
+            
+            // Limit to 50 rows
+            if (existingRows >= 50) {
+                tbody.find('tr').slice(50).remove();
+            }
+            
+            // Track trade execution event
+            this.trackGA4Event('trade_executed', {
+                trade_id: tradeId,
+                symbol: trade.symbol,
+                strategy_id: trade.strategy_id,
+                pnl: trade.pnl || 0
+            });
         }
     };
 
