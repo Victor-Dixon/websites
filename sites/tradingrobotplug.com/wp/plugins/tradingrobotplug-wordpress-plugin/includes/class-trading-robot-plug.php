@@ -23,6 +23,9 @@ class Trading_Robot_Plug {
         // Load API Client
         require_once TRADINGROBOTPLUG_PLUGIN_DIR . 'includes/api-client/class-api-client.php';
         
+        // Load REST API Controller (Phase 3)
+        require_once TRADINGROBOTPLUG_PLUGIN_DIR . 'includes/rest-api/class-rest-api-controller.php';
+        
         // Load Managers
         require_once TRADINGROBOTPLUG_PLUGIN_DIR . 'includes/user-manager/class-user-manager.php';
         require_once TRADINGROBOTPLUG_PLUGIN_DIR . 'includes/performance-tracker/class-performance-tracker.php';
@@ -63,11 +66,16 @@ class Trading_Robot_Plug {
     }
     
     public function register_rest_routes() {
+        // Legacy endpoint (keep for backward compatibility)
         register_rest_route('tradingrobotplug/v1', '/chart-data', [
             'methods' => 'GET',
             'callback' => [$this, 'get_chart_data'],
             'permission_callback' => '__return_true', // Public endpoint for now
         ]);
+        
+        // Phase 3 REST API endpoints
+        $rest_api_controller = new REST_API_Controller();
+        $rest_api_controller->register_routes();
     }
     
     public function get_chart_data($request) {

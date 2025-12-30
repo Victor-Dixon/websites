@@ -119,4 +119,12 @@ add_filter('template_include', 'dadudekc_template_include', 99);
  */
 require_once get_template_directory() . '/inc/post-types/icp-definition.php';
 require_once get_template_directory() . '/inc/post-types/offer-ladder.php';
+require_once get_template_directory() . '/inc/post-types/experiment.php';
+require_once get_template_directory() . '/inc/post-types/project.php';
+require_once get_template_directory() . '/inc/post-types/resume-item.php';
+
+/**
+ * Include Helper Functions
+ */
+require_once get_template_directory() . '/inc/functions/proof-metrics.php';
 

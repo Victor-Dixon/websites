@@ -26,18 +26,27 @@ add_action('rest_api_init', function () {
  * Get feed data (loads from static file or remote URL)
  */
 function swarm_get_feed($request) {
-    // Try to load from local file first
-    $feed_path = get_template_directory() . '/../runtime/feeds/public_build_feed.json';
+    // Try multiple paths (in order of preference)
+    $feed_paths = array(
+        get_template_directory() . '/../runtime/feeds/public_build_feed.json',
+        wp_upload_dir()['basedir'] . '/public_build_feed.json',
+    );
     
     // Fallback to remote URL if local file doesn't exist
-    $feed_url = apply_filters('swarm_feed_url', 'https://weareswarm.online/wp-content/themes/runtime/feeds/public_build_feed.json');
+    $feed_url = apply_filters('swarm_feed_url', 'https://weareswarm.online/wp-content/uploads/public_build_feed.json');
     
     $feed_data = null;
     
-    if (file_exists($feed_path)) {
-        $feed_data = file_get_contents($feed_path);
-    } else {
-        // Try to fetch from remote URL
+    // Try local paths first
+    foreach ($feed_paths as $feed_path) {
+        if (file_exists($feed_path)) {
+            $feed_data = file_get_contents($feed_path);
+            break;
+        }
+    }
+    
+    // If no local file found, try remote URL
+    if (!$feed_data) {
         $response = wp_remote_get($feed_url);
         if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
             $feed_data = wp_remote_retrieve_body($response);

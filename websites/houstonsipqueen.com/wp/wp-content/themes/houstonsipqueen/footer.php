@@ -50,9 +50,11 @@
                                 <?php echo esc_html(get_option('houstonsipqueen_phone')); ?>
                             </a></p>
                         <?php endif; ?>
-                        <?php if (get_option('admin_email')) : ?>
-                            <p><a href="mailto:<?php echo esc_attr(get_option('admin_email')); ?>">
-                                <?php echo esc_html(get_option('admin_email')); ?>
+                        <?php 
+                        $contact_email = get_option('houstonsipqueen_contact_email', 'houstonsipqueen@gmail.com');
+                        if ($contact_email) : ?>
+                            <p><a href="mailto:<?php echo esc_attr($contact_email); ?>">
+                                <?php echo esc_html($contact_email); ?>
                             </a></p>
                         <?php endif; ?>
                     </div>
