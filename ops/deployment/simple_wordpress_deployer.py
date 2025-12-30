@@ -27,10 +27,17 @@ def load_hostinger_env_credentials():
     import os
     from dotenv import load_dotenv
     
-    # Try to load .env from main repository
-    env_path = Path("D:/Agent_Cellphone_V2_Repository/.env")
-    if env_path.exists():
-        load_dotenv(env_path)
+    # Try multiple .env locations
+    env_paths = [
+        Path(".env"),  # Current directory
+        Path("D:/Agent_Cellphone_V2_Repository/.env"),  # Windows main repo
+        Path.home() / ".hostinger_env",  # Home directory
+    ]
+    
+    for env_path in env_paths:
+        if env_path.exists():
+            load_dotenv(env_path)
+            break
     
     host = os.getenv("HOSTINGER_HOST")
     username = os.getenv("HOSTINGER_USER")
@@ -143,9 +150,17 @@ class SimpleWordPressDeployer:
         import os
         from dotenv import load_dotenv
         
-        env_path = Path("D:/Agent_Cellphone_V2_Repository/.env")
-        if env_path.exists():
-            load_dotenv(env_path)
+        # Try multiple .env locations
+        env_paths = [
+            Path(".env"),  # Current directory
+            Path("D:/Agent_Cellphone_V2_Repository/.env"),  # Windows main repo
+            Path.home() / ".hostinger_env",  # Home directory
+        ]
+        
+        for env_path in env_paths:
+            if env_path.exists():
+                load_dotenv(env_path)
+                break
         
         # Check environment variables first (Hostinger tool credentials)
         host = os.getenv("HOSTINGER_HOST")
