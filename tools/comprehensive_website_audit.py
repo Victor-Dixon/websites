@@ -7,12 +7,15 @@ Performs comprehensive audit of all websites including:
 - Health checks (uptime, response time, SSL)
 - SEO compliance (meta descriptions, title tags, H1 headings)
 - Performance metrics (page size, load time)
-- Security headers (HSTS, X-Frame-Options, etc.)
+- Security headers (Content-Security-Policy, X-Frame-Options, X-Content-Type-Options,
+  Strict-Transport-Security, Referrer-Policy, Permissions-Policy, Access-Control-Allow-Origin)
+- Subresource Integrity (SRI) checks for external resources
+- Premium security (rate limiting analysis, API endpoints, debug endpoints, backend info)
 - Accessibility (alt text, content structure)
 - Content issues (empty pages, rendering problems)
 
-Agent-6: Coordination & Communication Specialist
-Task: Comprehensive website audit
+Agent-3: Infrastructure & DevOps Specialist
+Task: Enhanced security headers and premium security checks for website audit
 """
 
 import json
@@ -117,18 +120,155 @@ def check_seo_metadata(html_content: str) -> Dict:
 def check_security_headers(response: requests.Response) -> Dict:
     """Checks security headers in HTTP response."""
     headers = {
-        "strict_transport_security": response.headers.get("Strict-Transport-Security"),
+        "content_security_policy": response.headers.get("Content-Security-Policy"),
         "x_frame_options": response.headers.get("X-Frame-Options"),
         "x_content_type_options": response.headers.get("X-Content-Type-Options"),
-        "content_security_policy": response.headers.get("Content-Security-Policy")
+        "strict_transport_security": response.headers.get("Strict-Transport-Security"),
+        "referrer_policy": response.headers.get("Referrer-Policy"),
+        "permissions_policy": response.headers.get("Permissions-Policy"),
+        "access_control_allow_origin": response.headers.get("Access-Control-Allow-Origin")
     }
     
+    # Check for server information exposure
+    server_header = response.headers.get("Server")
+    x_powered_by = response.headers.get("X-Powered-By")
+    server_info_exposed = server_header is not None or x_powered_by is not None
+    
     return {
-        "has_hsts": headers["strict_transport_security"] is not None,
+        "has_csp": headers["content_security_policy"] is not None,
         "has_x_frame_options": headers["x_frame_options"] is not None,
         "has_x_content_type_options": headers["x_content_type_options"] is not None,
-        "has_csp": headers["content_security_policy"] is not None,
+        "has_hsts": headers["strict_transport_security"] is not None,
+        "has_referrer_policy": headers["referrer_policy"] is not None,
+        "has_permissions_policy": headers["permissions_policy"] is not None,
+        "has_access_control_allow_origin": headers["access_control_allow_origin"] is not None,
+        "server_info_exposed": server_info_exposed,
+        "server_header": server_header,
+        "x_powered_by": x_powered_by,
         "headers": headers
+    }
+
+def check_subresource_integrity(html_content: str) -> Dict:
+    """Checks for Subresource Integrity (SRI) on external resources."""
+    # Find script tags with external src
+    script_tags = re.findall(r'<script[^>]*>', html_content, re.IGNORECASE)
+    link_tags = re.findall(r'<link[^>]*>', html_content, re.IGNORECASE)
+    
+    external_resources = []
+    resources_with_sri = []
+    resources_without_sri = []
+    
+    # Check script tags
+    for tag in script_tags:
+        src_match = re.search(r'src=["\']([^"\']+)["\']', tag, re.IGNORECASE)
+        if src_match:
+            src_url = src_match.group(1)
+            # Check if external
+            if src_url.startswith('http://') or src_url.startswith('https://') or src_url.startswith('//'):
+                external_resources.append(src_url)
+                # Check if has integrity attribute in same tag
+                if 'integrity=' in tag.lower():
+                    resources_with_sri.append(src_url)
+                else:
+                    resources_without_sri.append(src_url)
+    
+    # Check link tags (stylesheets)
+    for tag in link_tags:
+        href_match = re.search(r'href=["\']([^"\']+)["\']', tag, re.IGNORECASE)
+        rel_match = re.search(r'rel=["\']([^"\']+)["\']', tag, re.IGNORECASE)
+        if href_match and rel_match and 'stylesheet' in rel_match.group(1).lower():
+            href_url = href_match.group(1)
+            # Check if external
+            if href_url.startswith('http://') or href_url.startswith('https://') or href_url.startswith('//'):
+                if href_url not in external_resources:  # Avoid duplicates
+                    external_resources.append(href_url)
+                    # Check if has integrity attribute in same tag
+                    if 'integrity=' in tag.lower():
+                        resources_with_sri.append(href_url)
+                    else:
+                        resources_without_sri.append(href_url)
+    
+    # Check for untrusted CDNs (basic check for common CDN patterns)
+    trusted_cdns = ['cdnjs.cloudflare.com', 'cdn.jsdelivr.net', 'ajax.googleapis.com', 
+                    'cdn.shopify.com', 'fonts.googleapis.com', 'fonts.gstatic.com',
+                    'unpkg.com', 'cdnjs.com', 'stackpath.bootstrapcdn.com']
+    untrusted_resources = [r for r in resources_without_sri if not any(cdn in r for cdn in trusted_cdns)]
+    
+    return {
+        "external_resources_count": len(external_resources),
+        "resources_with_sri": len(resources_with_sri),
+        "resources_without_sri": len(resources_without_sri),
+        "untrusted_cdn_resources": len(untrusted_resources),
+        "missing_sri": len(resources_without_sri) > 0,
+        "untrusted_cdns_detected": len(untrusted_resources) > 0
+    }
+
+def check_premium_security(url: str, html_content: str, response: requests.Response) -> Dict:
+    """Checks premium security features (requires external service or advanced checks)."""
+    # Rate limiting check - attempt multiple rapid requests
+    rate_limit_detected = False
+    try:
+        # Send 5 rapid requests
+        rapid_requests = []
+        for _ in range(5):
+            try:
+                resp = requests.get(url, timeout=5, allow_redirects=True)
+                rapid_requests.append(resp.status_code)
+            except:
+                pass
+        
+        # If any request returns 429 (Too Many Requests) or different status, rate limiting might be present
+        if 429 in rapid_requests or len(set(rapid_requests)) > 1:
+            rate_limit_detected = True
+    except:
+        pass
+    
+    # Detect API endpoints (common patterns)
+    api_patterns = [
+        r'["\'](/api/[^"\']+)["\']',
+        r'["\'](/v\d+/[^"\']+)["\']',
+        r'["\'](/graphql[^"\']*)["\']',
+        r'["\'](/rest/[^"\']+)["\']'
+    ]
+    api_endpoints = set()
+    for pattern in api_patterns:
+        matches = re.findall(pattern, html_content, re.IGNORECASE)
+        api_endpoints.update(matches[:10])  # Limit to first 10
+    
+    # Detect debug endpoints
+    debug_patterns = [
+        r'["\'](/debug[^"\']*)["\']',
+        r'["\'](/test[^"\']*)["\']',
+        r'["\'](/dev[^"\']*)["\']',
+        r'["\'](/staging[^"\']*)["\']',
+        r'["\'](/\?debug[^"\']*)["\']'
+    ]
+    debug_endpoints = set()
+    for pattern in debug_patterns:
+        matches = re.findall(pattern, html_content, re.IGNORECASE)
+        debug_endpoints.update(matches[:10])
+    
+    # Backend information detection (from headers/content)
+    backend_info = {}
+    server_header = response.headers.get("Server", "")
+    x_powered_by = response.headers.get("X-Powered-By", "")
+    
+    if "PHP" in x_powered_by or "php" in server_header.lower():
+        backend_info["detected"] = "PHP"
+    elif "nginx" in server_header.lower():
+        backend_info["detected"] = "Nginx"
+    elif "Apache" in server_header or "apache" in server_header.lower():
+        backend_info["detected"] = "Apache"
+    
+    return {
+        "rate_limiting_detected": rate_limit_detected,
+        "rate_limiting_status": "DETECTED" if rate_limit_detected else "NOT_DETECTED",
+        "api_endpoints_found": len(api_endpoints) > 0,
+        "api_endpoints": list(api_endpoints)[:10],  # Limit to 10
+        "debug_endpoints_found": len(debug_endpoints) > 0,
+        "debug_endpoints": list(debug_endpoints)[:10],
+        "backend_info": backend_info,
+        "premium_checks_available": True
     }
 
 def check_content_visibility(html_content: str) -> Dict:
@@ -195,6 +335,15 @@ def audit_site(site_name: str, site_info: Dict) -> Dict:
         
         # Security headers
         security_data = check_security_headers(response)
+        
+        # Subresource Integrity check
+        sri_data = check_subresource_integrity(html_content)
+        security_data["sri"] = sri_data
+        
+        # Premium security checks
+        premium_data = check_premium_security(site_url, html_content, response)
+        security_data["premium"] = premium_data
+        
         audit_result["security"] = security_data
         
         # Content visibility
@@ -246,11 +395,87 @@ def audit_site(site_name: str, site_info: Dict) -> Dict:
             "issue": f"Multiple H1 headings ({seo_data.get('h1_count')}, should be 1)"
         })
     
+    # Security header checks
+    if not security_data.get("has_csp"):
+        audit_result["issues"].append({
+            "severity": "HIGH",
+            "category": "Security",
+            "issue": "Missing Content-Security-Policy header"
+        })
+    
+    if not security_data.get("has_x_frame_options"):
+        audit_result["issues"].append({
+            "severity": "MEDIUM",
+            "category": "Security",
+            "issue": "Missing X-Frame-Options header"
+        })
+    
+    if not security_data.get("has_x_content_type_options"):
+        audit_result["issues"].append({
+            "severity": "MEDIUM",
+            "category": "Security",
+            "issue": "Missing X-Content-Type-Options header"
+        })
+    
     if not security_data.get("has_hsts"):
         audit_result["issues"].append({
             "severity": "HIGH",
             "category": "Security",
             "issue": "Missing Strict-Transport-Security header"
+        })
+    
+    if not security_data.get("has_referrer_policy"):
+        audit_result["issues"].append({
+            "severity": "MEDIUM",
+            "category": "Security",
+            "issue": "Missing Referrer-Policy header"
+        })
+    
+    if not security_data.get("has_permissions_policy"):
+        audit_result["issues"].append({
+            "severity": "LOW",
+            "category": "Security",
+            "issue": "Missing Permissions-Policy header"
+        })
+    
+    # SRI checks
+    sri_data = security_data.get("sri", {})
+    if sri_data.get("missing_sri"):
+        audit_result["issues"].append({
+            "severity": "MEDIUM",
+            "category": "Security",
+            "issue": f"Missing Subresource Integrity - {sri_data.get('resources_without_sri', 0)} external resources without SRI"
+        })
+    
+    if sri_data.get("untrusted_cdns_detected"):
+        audit_result["issues"].append({
+            "severity": "MEDIUM",
+            "category": "Security",
+            "issue": f"Untrusted CDN Resources - {sri_data.get('untrusted_cdn_resources', 0)} resources from untrusted CDNs"
+        })
+    
+    # Server information exposure
+    if security_data.get("server_info_exposed"):
+        audit_result["issues"].append({
+            "severity": "LOW",
+            "category": "Security",
+            "issue": "Server Information Exposed in HTTP headers"
+        })
+    
+    # Premium security checks
+    premium_data = security_data.get("premium", {})
+    if not premium_data.get("rate_limiting_detected"):
+        audit_result["issues"].append({
+            "severity": "MEDIUM",
+            "category": "Security",
+            "issue": "No Rate Limiting Detected"
+        })
+    
+    if premium_data.get("debug_endpoints_found"):
+        audit_result["issues"].append({
+            "severity": "HIGH",
+            "category": "Security",
+            "issue": f"Debug Endpoints Detected - {len(premium_data.get('debug_endpoints', []))} potential debug endpoints found"
         })
     
     if health_data.get("response_time", 0) > 3.0:
@@ -372,7 +597,17 @@ def generate_audit_report(audit_results: List[Dict]) -> Dict:
         report["recommendations"].append({
             "priority": "HIGH",
             "category": "Security",
-            "action": "Add missing security headers (HSTS, X-Frame-Options, etc.)"
+            "action": "Add missing security headers (Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Strict-Transport-Security, Referrer-Policy, Permissions-Policy)"
+        })
+        report["recommendations"].append({
+            "priority": "MEDIUM",
+            "category": "Security",
+            "action": "Add Subresource Integrity (SRI) hashes to external JavaScript and CSS resources"
+        })
+        report["recommendations"].append({
+            "priority": "MEDIUM",
+            "category": "Security",
+            "action": "Implement rate limiting and remove debug endpoints from production"
         })
     
     if report["issues_by_category"]["Content"] > 0:
