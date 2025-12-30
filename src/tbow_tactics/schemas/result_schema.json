@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://freerideinvestor.com/schemas/tbow/result.json",
+  "title": "TBOW Tactics Result",
+  "description": "Trade outcome record for credibility tracking",
+  "type": "object",
+  "required": [
+    "plan_id",
+    "outcome",
+    "result_r"
+  ],
+  "properties": {
+    "plan_id": {
+      "type": "string",
+      "pattern": "^TBOW-[A-Z]{1,5}-\\d{8}T\\d{4}-[A-Z0-9]+-[a-f0-9]{6}$",
+      "description": "Unique plan identifier"
+    },
+    "resolved_timestamp_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the trade was resolved (ISO 8601)"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "target1",
+        "target2", 
+        "target3",
+        "stopped_out",
+        "breakeven",
+        "partial",
+        "invalidated",
+        "cancelled",
+        "pending"
+      ],
+      "description": "Trade outcome"
+    },
+    "result_r": {
+      "type": "number",
+      "description": "Result in R-multiples (positive = profit, negative = loss)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes about the trade execution"
+    },
+    "followed_rules": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether trading rules were followed"
+    },
+    "max_adverse_excursion_r": {
+      "type": ["number", "null"],
+      "description": "Maximum adverse excursion in R (optional)"
+    },
+    "max_favorable_excursion_r": {
+      "type": ["number", "null"],
+      "description": "Maximum favorable excursion in R (optional)"
+    }
+  },
+  "additionalProperties": false
+}

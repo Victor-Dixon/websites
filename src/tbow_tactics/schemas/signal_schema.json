@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://freerideinvestor.com/schemas/tbow/signal.json",
+  "title": "TBOW Tactics Signal",
+  "description": "Single Source of Truth (SSOT) for a TBOW Tactics trade signal",
+  "type": "object",
+  "required": [
+    "strategy",
+    "version",
+    "ticker",
+    "timeframe",
+    "timestamp_utc",
+    "setup",
+    "bias",
+    "levels",
+    "rules"
+  ],
+  "properties": {
+    "strategy": {
+      "type": "string",
+      "const": "TBOW_Tactics",
+      "description": "Strategy identifier"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version (semver)"
+    },
+    "ticker": {
+      "type": "string",
+      "pattern": "^[A-Z]{1,5}$",
+      "description": "Stock ticker symbol"
+    },
+    "timeframe": {
+      "type": "string",
+      "enum": ["1m", "5m", "15m", "30m", "1H", "4H", "D", "W"],
+      "description": "Chart timeframe"
+    },
+    "timestamp_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Signal generation timestamp (ISO 8601)"
+    },
+    "setup": {
+      "type": "string",
+      "description": "Setup name from TBOW catalog"
+    },
+    "bias": {
+      "type": "string",
+      "enum": ["bullish", "bearish", "neutral"],
+      "description": "Trade direction bias"
+    },
+    "levels": {
+      "type": "object",
+      "required": ["entry_zone", "invalidation", "targets"],
+      "properties": {
+        "entry_zone": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Entry zone [low, high]"
+        },
+        "invalidation": {
+          "type": "number",
+          "description": "Stop/invalidation price level"
+        },
+        "targets": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 1,
+          "maxItems": 5,
+          "description": "Target price levels"
+        }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "required": ["trigger", "risk_per_trade_r"],
+      "properties": {
+        "trigger": {
+          "type": "string",
+          "description": "Entry trigger condition"
+        },
+        "risk_per_trade_r": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 2.0,
+          "description": "Risk per trade in R-multiples"
+        },
+        "max_trades_today": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Maximum trades allowed today"
+        }
+      }
+    },
+    "context": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Context tags (trend, volatility, etc.)"
+    },
+    "post": {
+      "type": "object",
+      "properties": {
+        "include_chart": {
+          "type": "boolean",
+          "description": "Whether to include chart in post"
+        },
+        "post_type": {
+          "type": "string",
+          "enum": ["plan", "update", "stopout", "target_hit", "recap"],
+          "description": "Type of post to generate"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
