@@ -4,7 +4,98 @@
 
 All WordPress management tools have been refactored to be **generic and reusable** across all sites. Instead of hardcoded site-specific tools, we now use unified tools that work with any site in `site_configs.json`.
 
+---
+
+## 🚀 QUICK START: Blog Post Management
+
+**For agents who need to manage blog posts, use `blog_manager.py`:**
+
+```bash
+# List all posts on a site
+python tools/blog_manager.py list ariajet.site
+
+# Create a new post (draft by default)
+python tools/blog_manager.py create ariajet.site --title "My Post" --content "<p>Hello!</p>"
+
+# Create and publish immediately
+python tools/blog_manager.py create ariajet.site --title "Live Post" --content "<p>Content</p>" --status publish
+
+# Edit a post
+python tools/blog_manager.py edit ariajet.site --id 5 --title "New Title" --content "<p>Updated content</p>"
+
+# Delete a post (permanent)
+python tools/blog_manager.py delete ariajet.site --id 1
+
+# Delete the default "Hello World" post
+python tools/blog_manager.py delete ariajet.site --id 1
+
+# View post details
+python tools/blog_manager.py get ariajet.site --id 5
+
+# List all configured sites
+python tools/blog_manager.py sites
+```
+
+**Configuration:** All credentials are in `configs/site_configs.json`
+
+---
+
 ## Core Generic Tools
+
+### 0. `blog_manager.py` ⭐ (RECOMMENDED FOR BLOG POSTS)
+
+**The go-to tool for managing WordPress blog posts.** Supports listing, creating, editing, and deleting posts on any configured site.
+
+**Usage:**
+```bash
+# List all posts
+python tools/blog_manager.py list <site>
+
+# Create a post
+python tools/blog_manager.py create <site> --title "Title" --content "<p>HTML content</p>"
+python tools/blog_manager.py create <site> --title "Title" --content-file content.html --status publish
+
+# Edit a post
+python tools/blog_manager.py edit <site> --id <post_id> --title "New Title"
+python tools/blog_manager.py edit <site> --id <post_id> --content "<p>New content</p>" --status publish
+
+# Delete a post
+python tools/blog_manager.py delete <site> --id <post_id>
+python tools/blog_manager.py delete <site> --id <post_id> --trash  # Move to trash instead
+
+# View post details
+python tools/blog_manager.py get <site> --id <post_id>
+
+# List all sites
+python tools/blog_manager.py sites
+```
+
+**Examples:**
+```bash
+# Delete the default "Hello World" post from ariajet.site
+python tools/blog_manager.py delete ariajet.site --id 1
+
+# Create a new published blog post
+python tools/blog_manager.py create freerideinvestor.com \
+  --title "5 Tips for Smart Investing" \
+  --content "<h2>Introduction</h2><p>Here are my top tips...</p>" \
+  --status publish
+
+# List all drafts on a site
+python tools/blog_manager.py list tradingrobotplug.com --status draft
+
+# Update an existing post's content from a file
+python tools/blog_manager.py edit digitaldreamscape.site \
+  --id 42 \
+  --content-file updated_article.html
+```
+
+**How it works:**
+- Uses WordPress REST API for most operations (fast, reliable)
+- Falls back to WP-CLI via SSH for operations requiring elevated permissions (like deleting)
+- Credentials loaded automatically from `configs/site_configs.json`
+
+---
 
 ### 1. `generic_update_page_content.py`
 
