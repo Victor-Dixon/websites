@@ -74,7 +74,7 @@ class Trading_Robot_Plug {
         ]);
         
         // Phase 3 REST API endpoints
-        $rest_api_controller = new REST_API_Controller();
+        $rest_api_controller = new \TradingRobotPlug\REST_API_Controller();
         $rest_api_controller->register_routes();
     }
     

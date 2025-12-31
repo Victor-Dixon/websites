@@ -178,15 +178,28 @@ add_action('trp_collect_stock_data', 'trp_collect_stock_data_cron');
  * @param string $symbol Stock symbol (e.g., 'AAPL', 'MSFT', 'GOOGL')
  * @return array|WP_Error Stock data or error
  */
-function trp_fetch_stock_data($symbol = 'AAPL')
+/**
+ * Fetch stock data using IEX Cloud as fallback (requires API key)
+ * Get API key from: https://iexcloud.io/console/
+ * Store in WordPress options: trp_iex_cloud_api_key
+ */
+function trp_fetch_stock_data_iex($symbol = 'AAPL')
 {
-    // Use Yahoo Finance API (free, no API key required)
-    $url = 'https://query1.finance.yahoo.com/v8/finance/chart/' . urlencode($symbol);
+    // Check if API key is available
+    $api_key = get_option('trp_iex_cloud_api_key', '');
+    
+    if (empty($api_key)) {
+        return new WP_Error('no_api_key', 'IEX Cloud API key not configured', array('status' => 500));
+    }
+    
+    // Use production endpoint if API key is available
+    $url = 'https://cloud.iexapis.com/stable/stock/' . urlencode($symbol) . '/quote?token=' . urlencode($api_key);
     $args = array(
         'timeout' => 10,
         'headers' => array(
-            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-        )
+            'Accept' => 'application/json',
+        ),
+        'sslverify' => true,
     );
     
     $response = wp_remote_get($url, $args);
@@ -195,26 +208,226 @@ function trp_fetch_stock_data($symbol = 'AAPL')
         return $response;
     }
     
+    $response_code = wp_remote_retrieve_response_code($response);
+    if ($response_code !== 200) {
+        return new WP_Error('api_error', 'IEX Cloud API returned error code: ' . $response_code, array('status' => $response_code));
+    }
+    
     $body = wp_remote_retrieve_body($response);
     $data = json_decode($body, true);
     
-    if (!$data || !isset($data['chart']['result'][0])) {
-        return new WP_Error('no_data', 'Failed to fetch stock data', array('status' => 500));
+    if (!$data || !isset($data['latestPrice'])) {
+        return new WP_Error('no_data', 'Failed to parse stock data from IEX Cloud', array('status' => 500));
     }
     
-    $result = $data['chart']['result'][0];
-    $quote = $result['meta'];
+    $price = floatval($data['latestPrice']);
+    $previous_close = isset($data['previousClose']) ? floatval($data['previousClose']) : $price;
+    $change = isset($data['change']) ? floatval($data['change']) : ($price - $previous_close);
+    $change_percent = isset($data['changePercent']) ? floatval($data['changePercent']) * 100 : (($price - $previous_close) / $previous_close) * 100;
     
     return array(
-        'symbol' => $quote['symbol'],
-        'price' => $quote['regularMarketPrice'],
-        'previous_close' => $quote['previousClose'],
-        'change' => $quote['regularMarketPrice'] - $quote['previousClose'],
-        'change_percent' => (($quote['regularMarketPrice'] - $quote['previousClose']) / $quote['previousClose']) * 100,
-        'volume' => $quote['regularMarketVolume'],
-        'market_cap' => isset($quote['marketCap']) ? $quote['marketCap'] : null,
+        'symbol' => isset($data['symbol']) ? $data['symbol'] : $symbol,
+        'price' => $price,
+        'previous_close' => $previous_close,
+        'change' => $change,
+        'change_percent' => $change_percent,
+        'volume' => isset($data['volume']) ? intval($data['volume']) : 0,
+        'market_cap' => isset($data['marketCap']) ? intval($data['marketCap']) : null,
         'timestamp' => current_time('mysql'),
+        'source' => 'iex_cloud',
     );
+}
+
+/**
+ * Fetch stock data using Alpha Vantage as fallback (requires API key)
+ */
+function trp_fetch_stock_data_alpha_vantage($symbol = 'AAPL')
+{
+    // Check if API key is available (store in WordPress options)
+    $api_key = get_option('trp_alpha_vantage_api_key', '');
+    
+    if (empty($api_key)) {
+        return new WP_Error('no_api_key', 'Alpha Vantage API key not configured', array('status' => 500));
+    }
+    
+    $url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' . urlencode($symbol) . '&apikey=' . urlencode($api_key);
+    $args = array(
+        'timeout' => 15,
+        'headers' => array(
+            'Accept' => 'application/json',
+        ),
+        'sslverify' => true,
+    );
+    
+    $response = wp_remote_get($url, $args);
+    
+    if (is_wp_error($response)) {
+        return $response;
+    }
+    
+    $response_code = wp_remote_retrieve_response_code($response);
+    if ($response_code !== 200) {
+        return new WP_Error('api_error', 'Alpha Vantage API returned error code: ' . $response_code, array('status' => $response_code));
+    }
+    
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
+    
+    if (!$data || !isset($data['Global Quote']) || empty($data['Global Quote'])) {
+        return new WP_Error('no_data', 'Failed to parse stock data from Alpha Vantage', array('status' => 500));
+    }
+    
+    $quote = $data['Global Quote'];
+    
+    // Alpha Vantage format: "05. price", "08. previous close", etc.
+    $price = isset($quote['05. price']) ? floatval($quote['05. price']) : 0;
+    $previous_close = isset($quote['08. previous close']) ? floatval($quote['08. previous close']) : $price;
+    $change = $price - $previous_close;
+    $change_percent = $previous_close != 0 ? ($change / $previous_close) * 100 : 0;
+    
+    return array(
+        'symbol' => isset($quote['01. symbol']) ? $quote['01. symbol'] : $symbol,
+        'price' => $price,
+        'previous_close' => $previous_close,
+        'change' => $change,
+        'change_percent' => $change_percent,
+        'volume' => isset($quote['06. volume']) ? intval($quote['06. volume']) : 0,
+        'market_cap' => null, // Alpha Vantage doesn't provide market cap in GLOBAL_QUOTE
+        'timestamp' => current_time('mysql'),
+        'source' => 'alpha_vantage',
+    );
+}
+
+function trp_fetch_stock_data($symbol = 'AAPL')
+{
+    // Method 1: Try Yahoo Finance API first (free, no API key required)
+    $url = 'https://query1.finance.yahoo.com/v8/finance/chart/' . urlencode($symbol) . '?interval=1d&range=1d';
+    $args = array(
+        'timeout' => 15,
+        'headers' => array(
+            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept' => 'application/json',
+            'Accept-Language' => 'en-US,en;q=0.9',
+        ),
+        'sslverify' => true,
+    );
+    
+    $response = wp_remote_get($url, $args);
+    $yahoo_error = null;
+    
+    if (is_wp_error($response)) {
+        $yahoo_error = $response;
+    } else {
+        $response_code = wp_remote_retrieve_response_code($response);
+        if ($response_code === 200) {
+            $body = wp_remote_retrieve_body($response);
+            $data = json_decode($body, true);
+            
+            if ($data && isset($data['chart']['result'][0]) && isset($data['chart']['result'][0]['meta'])) {
+                $result = $data['chart']['result'][0];
+                $quote = $result['meta'];
+                
+                if (isset($quote['regularMarketPrice']) && isset($quote['previousClose'])) {
+                    $price = floatval($quote['regularMarketPrice']);
+                    $previous_close = floatval($quote['previousClose']);
+                    $change = $price - $previous_close;
+                    $change_percent = $previous_close != 0 ? ($change / $previous_close) * 100 : 0;
+                    
+                    return array(
+                        'symbol' => isset($quote['symbol']) ? $quote['symbol'] : $symbol,
+                        'price' => $price,
+                        'previous_close' => $previous_close,
+                        'change' => $change,
+                        'change_percent' => $change_percent,
+                        'volume' => isset($quote['regularMarketVolume']) ? intval($quote['regularMarketVolume']) : 0,
+                        'market_cap' => isset($quote['marketCap']) ? intval($quote['marketCap']) : null,
+                        'timestamp' => current_time('mysql'),
+                        'source' => 'yahoo_finance',
+                    );
+                }
+            }
+        }
+    }
+    
+    // Method 2: Try alternative Yahoo Finance endpoint
+    if ($yahoo_error || (!isset($response) || wp_remote_retrieve_response_code($response) !== 200)) {
+        $url2 = 'https://query2.finance.yahoo.com/v8/finance/chart/' . urlencode($symbol) . '?interval=1d&range=1d';
+        $response2 = wp_remote_get($url2, $args);
+        
+        if (!is_wp_error($response2)) {
+            $response_code2 = wp_remote_retrieve_response_code($response2);
+            if ($response_code2 === 200) {
+                $body2 = wp_remote_retrieve_body($response2);
+                $data2 = json_decode($body2, true);
+                
+                if ($data2 && isset($data2['chart']['result'][0]) && isset($data2['chart']['result'][0]['meta'])) {
+                    $result2 = $data2['chart']['result'][0];
+                    $quote2 = $result2['meta'];
+                    
+                    if (isset($quote2['regularMarketPrice']) && isset($quote2['previousClose'])) {
+                        $price = floatval($quote2['regularMarketPrice']);
+                        $previous_close = floatval($quote2['previousClose']);
+                        $change = $price - $previous_close;
+                        $change_percent = $previous_close != 0 ? ($change / $previous_close) * 100 : 0;
+                        
+                        return array(
+                            'symbol' => isset($quote2['symbol']) ? $quote2['symbol'] : $symbol,
+                            'price' => $price,
+                            'previous_close' => $previous_close,
+                            'change' => $change,
+                            'change_percent' => $change_percent,
+                            'volume' => isset($quote2['regularMarketVolume']) ? intval($quote2['regularMarketVolume']) : 0,
+                            'market_cap' => isset($quote2['marketCap']) ? intval($quote2['marketCap']) : null,
+                            'timestamp' => current_time('mysql'),
+                            'source' => 'yahoo_finance_alt',
+                        );
+                    }
+                }
+            }
+        }
+    }
+    
+    // Method 3: Try Alpha Vantage (if API key is configured)
+    $alpha_result = trp_fetch_stock_data_alpha_vantage($symbol);
+    if (!is_wp_error($alpha_result)) {
+        error_log('TradingRobotPlug: Using Alpha Vantage for ' . $symbol);
+        return $alpha_result;
+    }
+    
+    // Method 4: Try IEX Cloud (if API key is configured)
+    $iex_result = trp_fetch_stock_data_iex($symbol);
+    if (!is_wp_error($iex_result)) {
+        error_log('TradingRobotPlug: Using IEX Cloud for ' . $symbol);
+        return $iex_result;
+    }
+    
+    // Method 5: Try to get cached/stale data from database as last resort
+    global $wpdb;
+    trp_create_stock_data_table();
+    $table_name = $wpdb->prefix . 'trp_stock_data';
+    $cached = $wpdb->get_row($wpdb->prepare(
+        "SELECT * FROM $table_name WHERE symbol = %s ORDER BY timestamp DESC LIMIT 1",
+        $symbol
+    ), ARRAY_A);
+    
+    if ($cached) {
+        error_log('TradingRobotPlug: Using cached/stale data for ' . $symbol . ' (all APIs failed)');
+        return array(
+            'symbol' => $cached['symbol'],
+            'price' => floatval($cached['price']),
+            'previous_close' => floatval($cached['previous_close']),
+            'change' => floatval($cached['change']),
+            'change_percent' => floatval($cached['change_percent']),
+            'volume' => intval($cached['volume']),
+            'market_cap' => $cached['market_cap'] ? intval($cached['market_cap']) : null,
+            'timestamp' => $cached['timestamp'],
+            'source' => 'cached_fallback',
+        );
+    }
+    
+    // All methods failed, including cache
+    error_log('TradingRobotPlug: All stock data APIs failed for ' . $symbol . '. Yahoo error: ' . ($yahoo_error ? $yahoo_error->get_error_message() : 'unknown'));
+    return new WP_Error('all_apis_failed', 'All stock data APIs failed and no cached data available. Yahoo Finance unavailable. Configure Alpha Vantage or IEX Cloud API key for fallback support.', array('status' => 500));
 }
 
 /**
@@ -233,47 +446,45 @@ function trp_save_stock_data($stock_data)
     $table_name = $wpdb->prefix . 'trp_stock_data';
     
     // Check if data for this symbol and timestamp already exists (avoid duplicates)
-    $existing = $wpdb->get_var($wpdb->prepare(
-        "SELECT id FROM $table_name WHERE symbol = %s AND timestamp = %s",
-        $stock_data['symbol'],
-        $stock_data['timestamp']
-    ));
-    
-    if ($existing) {
-        // Update existing record
-        return $wpdb->update(
-            $table_name,
-            array(
-                'price' => $stock_data['price'],
-                'previous_close' => $stock_data['previous_close'],
-                'change' => $stock_data['change'],
-                'change_percent' => $stock_data['change_percent'],
-                'volume' => $stock_data['volume'],
-                'market_cap' => $stock_data['market_cap'],
-                'updated_at' => current_time('mysql'),
-            ),
-            array('id' => $existing),
-            array('%f', '%f', '%f', '%f', '%d', '%d', '%s'),
-            array('%d')
-        ) !== false;
+            $existing = $wpdb->get_var($wpdb->prepare(
+                "SELECT id FROM $table_name WHERE symbol = %s AND timestamp = %s",
+                $stock_data['symbol'],
+                $stock_data['timestamp']
+            ));
+            
+            if ($existing) {
+                // Update existing record (use backticks for reserved keyword 'change')
+                $result = $wpdb->query($wpdb->prepare(
+                    "UPDATE $table_name 
+                    SET price = %f, previous_close = %f, `change` = %f, change_percent = %f, volume = %d, market_cap = %d, updated_at = %s 
+                    WHERE id = %d",
+                    $stock_data['price'],
+                    $stock_data['previous_close'],
+                    $stock_data['change'],
+                    $stock_data['change_percent'],
+                    $stock_data['volume'],
+                    $stock_data['market_cap'],
+                    current_time('mysql'),
+                    $existing
+                ));
+                return $result !== false;
     } else {
-        // Insert new record
-        return $wpdb->insert(
-            $table_name,
-            array(
-                'symbol' => $stock_data['symbol'],
-                'price' => $stock_data['price'],
-                'previous_close' => $stock_data['previous_close'],
-                'change' => $stock_data['change'],
-                'change_percent' => $stock_data['change_percent'],
-                'volume' => $stock_data['volume'],
-                'market_cap' => $stock_data['market_cap'],
-                'timestamp' => $stock_data['timestamp'],
-                'created_at' => current_time('mysql'),
-                'updated_at' => current_time('mysql'),
-            ),
-            array('%s', '%f', '%f', '%f', '%f', '%d', '%d', '%s', '%s', '%s')
-        ) !== false;
+        // Insert new record (use backticks for reserved keyword 'change')
+        $result = $wpdb->query($wpdb->prepare(
+            "INSERT INTO $table_name (symbol, price, previous_close, `change`, change_percent, volume, market_cap, timestamp, created_at, updated_at) 
+            VALUES (%s, %f, %f, %f, %f, %d, %d, %s, %s, %s)",
+            $stock_data['symbol'],
+            $stock_data['price'],
+            $stock_data['previous_close'],
+            $stock_data['change'],
+            $stock_data['change_percent'],
+            $stock_data['volume'],
+            $stock_data['market_cap'],
+            $stock_data['timestamp'],
+            current_time('mysql'),
+            current_time('mysql')
+        ));
+        return $result !== false;
     }
 }
 
@@ -292,7 +503,7 @@ function trp_create_stock_data_table()
         symbol varchar(10) NOT NULL,
         price decimal(15,4) NOT NULL,
         previous_close decimal(15,4) DEFAULT NULL,
-        change decimal(15,4) DEFAULT NULL,
+        `change` decimal(15,4) DEFAULT NULL,
         change_percent decimal(10,4) DEFAULT NULL,
         volume bigint(20) DEFAULT NULL,
         market_cap bigint(20) DEFAULT NULL,
@@ -643,6 +854,7 @@ function trp_get_strategies($request)
 /**
  * Get stored stock data for trading plugins
  * Returns latest data for all primary symbols
+ * Falls back to live fetch if database is empty or stale
  */
 function trp_get_stored_stock_data($request)
 {
@@ -652,20 +864,87 @@ function trp_get_stored_stock_data($request)
     $table_name = $wpdb->prefix . 'trp_stock_data';
     $primary_symbols = array('TSLA', 'QQQ', 'SPY', 'NVDA');
     
-    // Get latest data for each symbol
+    // Get latest data for each symbol from database
     $results = array();
+    $needs_live_fetch = false;
+    
     foreach ($primary_symbols as $symbol) {
+        // Use backticks for reserved keyword 'change'
         $latest = $wpdb->get_row($wpdb->prepare(
-            "SELECT * FROM $table_name 
+            "SELECT id, symbol, price, previous_close, `change`, change_percent, volume, market_cap, timestamp 
+            FROM $table_name 
             WHERE symbol = %s 
             ORDER BY timestamp DESC 
             LIMIT 1",
             $symbol
         ), ARRAY_A);
         
+        // Check if data exists and is recent (within last 10 minutes)
         if ($latest) {
-            $results[] = $latest;
+            $data_time = strtotime($latest['timestamp']);
+            $current_time = current_time('timestamp');
+            $age_minutes = ($current_time - $data_time) / 60;
+            
+            if ($age_minutes < 10) {
+                // Data is fresh, use it
+                $results[] = $latest;
+            } else {
+                // Data is stale, need to fetch live
+                $needs_live_fetch = true;
+            }
+        } else {
+            // No data in database, need to fetch live
+            $needs_live_fetch = true;
         }
+    }
+    
+    // If database is empty or stale, fetch live data
+    if ($needs_live_fetch || count($results) < count($primary_symbols)) {
+        $live_results = array();
+        $fresh_symbols = array();
+        
+        // Track which symbols we already have fresh data for
+        foreach ($results as $existing) {
+            $fresh_symbols[] = $existing['symbol'];
+        }
+        
+        foreach ($primary_symbols as $symbol) {
+            // Skip if we already have fresh data for this symbol
+            if (in_array($symbol, $fresh_symbols)) {
+                continue;
+            }
+            
+            // Fetch live data
+            error_log('TradingRobotPlug: Fetching live data for ' . $symbol);
+            $stock_data = trp_fetch_stock_data($symbol);
+            
+            if (is_wp_error($stock_data)) {
+                error_log('TradingRobotPlug: Error fetching ' . $symbol . ': ' . $stock_data->get_error_message());
+            } else {
+                error_log('TradingRobotPlug: Successfully fetched ' . $symbol . ', price: ' . $stock_data['price']);
+                // Save to database for future use
+                trp_save_stock_data($stock_data);
+                
+                // Format for response (match database column names)
+                $live_results[] = array(
+                    'id' => null,
+                    'symbol' => $stock_data['symbol'],
+                    'price' => floatval($stock_data['price']),
+                    'previous_close' => floatval($stock_data['previous_close']),
+                    'change' => floatval($stock_data['change']),
+                    'change_percent' => floatval($stock_data['change_percent']),
+                    'volume' => intval($stock_data['volume']),
+                    'market_cap' => $stock_data['market_cap'] ? intval($stock_data['market_cap']) : null,
+                    'timestamp' => $stock_data['timestamp'],
+                );
+            }
+            
+            // Small delay to avoid rate limiting
+            usleep(200000); // 0.2 seconds
+        }
+        
+        // Merge fresh database results with live results
+        $results = array_merge($results, $live_results);
     }
     
     return array(

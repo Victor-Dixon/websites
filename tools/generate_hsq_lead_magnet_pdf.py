@@ -240,3 +240,4 @@ if __name__ == "__main__":
     else:
         print("❌ PDF generation failed")
 
+

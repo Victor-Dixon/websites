@@ -56,24 +56,25 @@
 
         shouldUseWebSocket: function() {
             // Check if WebSocket endpoint is available
-            // WebSocket endpoint: ws://localhost:8765/events (dev) or wss://api.tradingrobotplug.com/events (prod)
+            // FastAPI WebSocket endpoint: ws://localhost:8001/ws/events (dev) or wss://api.tradingrobotplug.com/ws/events (prod)
             const wsUrl = this.getWebSocketUrl();
             return wsUrl !== null;
         },
         
         getWebSocketUrl: function() {
             // Get WebSocket URL from WordPress settings or use default
-            // Development: ws://localhost:8765/events
-            // Production: wss://api.tradingrobotplug.com/events
+            // FastAPI WebSocket endpoint: /ws/events
+            // Development: ws://localhost:8001/ws/events
+            // Production: wss://api.tradingrobotplug.com/ws/events
             if (typeof tradingRobotPlugConfig !== 'undefined' && tradingRobotPlugConfig.websocketUrl) {
                 return tradingRobotPlugConfig.websocketUrl;
             }
-            // Default to production WebSocket endpoint
+            // Default to FastAPI WebSocket endpoint
             const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
             const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                ? 'localhost:8765' 
+                ? 'localhost:8001' 
                 : 'api.tradingrobotplug.com';
-            return `${protocol}//${host}/events`;
+            return `${protocol}//${host}/ws/events`;
         },
 
         initWebSocket: function() {

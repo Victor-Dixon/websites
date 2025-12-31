@@ -77,13 +77,22 @@ get_header(); ?>
                     const symbolOrder = ['TSLA', 'QQQ', 'SPY', 'NVDA'];
                     stockData.sort((a, b) => symbolOrder.indexOf(a.symbol) - symbolOrder.indexOf(b.symbol));
                     
-                    const html = stockData.map(stock => `
-                        <div class="market-item" data-symbol="${stock.symbol}">
-                            <span class="market-symbol">${stock.symbol}</span>
-                            <span class="market-price">${formatPrice(stock.price)}</span>
-                            <span class="market-change ${getChangeClass(stock.change_percent)}">${formatChange(stock.change_percent)}</span>
+                    const html = stockData.map(stock => {
+                        // Handle both database format and API format
+                        const symbol = stock.symbol || stock.SYMBOL || 'N/A';
+                        // Convert price to number (handle string values from database)
+                        const price = parseFloat(stock.price || stock.PRICE || 0);
+                        // Convert change_percent to number (handle string values from database)
+                        const changePercent = parseFloat(stock.change_percent || stock.CHANGE_PERCENT || stock.changePercent || 0);
+                        
+                        return `
+                        <div class="market-item" data-symbol="${symbol}">
+                            <span class="market-symbol">${symbol}</span>
+                            <span class="market-price">${formatPrice(price)}</span>
+                            <span class="market-change ${getChangeClass(changePercent)}">${formatChange(changePercent)}</span>
                         </div>
-                    `).join('');
+                    `;
+                    }).join('');
                     
                     container.innerHTML = html;
                 }
@@ -99,18 +108,36 @@ get_header(); ?>
                 function fetchStockData() {
                     fetch(apiEndpoint)
                         .then(response => {
-                            if (!response.ok) throw new Error('Network response was not ok');
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok: ' + response.status);
+                            }
                             return response.json();
                         })
                         .then(data => {
+                            console.log('Stock data received:', data);
                             if (data.stock_data && data.stock_data.length > 0) {
                                 renderStockItems(data.stock_data);
                                 updateTimestamp(data.timestamp);
+                            } else {
+                                console.warn('No stock data in response:', data);
+                                // Show error message
+                                const container = document.getElementById('market-items-container');
+                                if (container) {
+                                    container.innerHTML = '<div class="market-item"><span style="color: #ff6b6b;">No data available. API may be temporarily unavailable.</span></div>';
+                                }
                             }
                         })
                         .catch(error => {
                             console.error('Error fetching stock data:', error);
-                            // Keep existing data on error, just log it
+                            // Show error message to user
+                            const container = document.getElementById('market-items-container');
+                            if (container) {
+                                container.innerHTML = '<div class="market-item"><span style="color: #ff6b6b;">Error loading market data. Please refresh the page.</span></div>';
+                            }
+                            const timeEl = document.getElementById('market-update-time');
+                            if (timeEl) {
+                                timeEl.textContent = 'Error: ' + error.message;
+                            }
                         });
                 }
                 
