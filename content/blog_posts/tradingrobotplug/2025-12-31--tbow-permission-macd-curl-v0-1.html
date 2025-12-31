@@ -1,0 +1,256 @@
+<div class="trp-post">
+  <section class="trp-hero" style="padding: 32px 0 16px; border-bottom: 1px solid #eee;">
+    <p style="text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px; margin: 0 0 8px; color: #666;">TradingRobotPlug • Execution Lab Notes</p>
+    <h1 style="margin: 0 0 12px; font-size: 32px; line-height: 1.2;">TBOW Permission + MACD Curl (v0.1) — TSLA call scalps, tight stops</h1>
+    <p style="margin: 0 0 16px; font-size: 18px; color: #444;">Algorithmic trading lab log for a TSLA scalp framework: permission, entry triggers, tight invalidation, and the first indicator release.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: #555;">
+      <span><strong>Pillar:</strong> Execution</span>
+      <span><strong>Version:</strong> v0.1</span>
+      <span><strong>Instrument:</strong> TSLA (options scalps)</span>
+    </div>
+  </section>
+
+  <section style="padding: 24px 0;">
+    <h2 id="problem">Problem</h2>
+    <p>TSLA scalps melt accounts when entries ignore higher-timeframe direction. You get the signal, but you’re fighting permission. That leads to late entries, loose stops, and a slow bleed of small losses.</p>
+    <p>If you’re doing this at night, you need a system. This post documents the lab iteration that narrows permission, compresses risk, and keeps the trade logic mechanically clean.</p>
+  </section>
+
+  <section style="padding: 24px 0;">
+    <h2 id="fix">Fix</h2>
+    <p>We locked the framework to a “permission-first” model: 30m EMA + MACD slope define bias, and the scalp trigger only fires when VWAP + MACD curl are aligned. Tight stops are hard-coded with explicit invalidation.</p>
+
+    <div class="trp-callout" style="background: #f7f7f9; border-left: 4px solid #111; padding: 16px; margin: 16px 0;">
+      <strong>Iteration Log (v0.1)</strong>
+      <ul style="margin: 8px 0 0; padding-left: 18px;">
+        <li><strong>Changed:</strong> Added 30m EMA + MACD slope permission and a MACD curl trigger on LTF.</li>
+        <li><strong>Why:</strong> Reduce counter-trend entries and make signals unambiguous for automation.</li>
+        <li><strong>Result:</strong> Cleaner signal framing and explicit invalidation rules (no performance claims yet).</li>
+        <li><strong>Next test:</strong> Log 20 sessions, measure VWAP-hold continuation vs. VWAP-loss exits, and evaluate time filters.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="padding: 24px 0;">
+    <h2 id="steps">Steps</h2>
+
+    <h3>1) Permission Rules (HTF 30m EMA + MACD)</h3>
+    <p><strong>Permission</strong> = higher-timeframe bias. We use the 30m EMA and MACD slope to decide if the market is allowed to trend or must be treated as reversion-only.</p>
+    <ul>
+      <li><strong>Bull permission:</strong> 30m close above 30m EMA and EMA slope up.</li>
+      <li><strong>Bear permission:</strong> 30m close below 30m EMA and EMA slope down.</li>
+      <li><strong>Call rule when below EMA:</strong> Calls are <em>reversion-only</em> if price is below the 30m EMA. No trend chasing. You only scalp back to VWAP/BB mid and you keep stops tight.</li>
+    </ul>
+
+    <h3>2) Entry Trigger Checklist (VWAP + MACD Curl)</h3>
+    <p>Entry is a checklist. No checklist, no trade.</p>
+    <ul>
+      <li><strong>VWAP reclaim</strong> (price above VWAP with a reclaim candle).</li>
+      <li><strong>MACD curl or cross up</strong> on the LTF.</li>
+      <li><strong>RSI &gt; 50</strong> confirms momentum alignment.</li>
+    </ul>
+
+    <h3>3) Tight Stop Rules (Explicit Invalidation)</h3>
+    <p>Tight stops are mandatory. The invalidation is explicit, not optional:</p>
+    <ul>
+      <li><strong>Hard stop:</strong> Close back below VWAP on the LTF.</li>
+      <li><strong>Momentum stop:</strong> MACD curl down or MACD cross down.</li>
+      <li><strong>Execution note:</strong> Stops are part of the setup, not the trade. If invalidation prints, you’re out.</li>
+    </ul>
+
+    <h3>4) Take-Profit Logic (BB Mid → Upper Band → Runner)</h3>
+    <ul>
+      <li><strong>TP1:</strong> BB mid (mean reversion target).</li>
+      <li><strong>TP2:</strong> BB upper band if VWAP holds and momentum remains intact.</li>
+      <li><strong>Runner:</strong> Only if VWAP holds and MACD stays curled up.</li>
+    </ul>
+
+    <h3>5) Hold Decision Rules</h3>
+    <ul>
+      <li><strong>Hold:</strong> VWAP holds + no lower-lows on the LTF.</li>
+      <li><strong>Exit:</strong> VWAP breaks + MACD curl down. Don’t debate it.</li>
+    </ul>
+  </section>
+
+  <section style="padding: 24px 0;">
+    <h2 id="example">Example</h2>
+    <p><strong>Example TSLA call scalp (rule-based walkthrough, hypothetical):</strong></p>
+    <ol>
+      <li><strong>Permission:</strong> 30m close above 30m EMA with positive slope. Calls allowed.</li>
+      <li><strong>Entry:</strong> Price reclaims VWAP, MACD curls up, RSI prints above 50. Entry triggers on the reclaim candle.</li>
+      <li><strong>Stop:</strong> Invalidation if price closes back below VWAP or MACD curls down.</li>
+      <li><strong>Exit:</strong> Partial at BB mid; next target at BB upper band. Runner only while VWAP holds.</li>
+    </ol>
+    <p>This is the exact behavior encoded in v0.1. The goal is clarity and repeatability—not hindsight perfection.</p>
+  </section>
+
+  <section style="padding: 24px 0;">
+    <h2>TBOW Permission + MACD Curl (v0.1) — Pine Script</h2>
+    <p><strong>How to Use</strong></p>
+    <ul>
+      <li>Apply to TSLA (or any liquid name) on your LTF chart (5m/2m).</li>
+      <li>Keep the HTF permission on 30m unless you explicitly test another timeframe.</li>
+      <li>Only take signals that match the permission + checklist.</li>
+    </ul>
+    <p><strong>Alert Notes</strong></p>
+    <ul>
+      <li>Alerts fire on call/put setup conditions and on exit triggers.</li>
+      <li>Use alerts to mark structure; do not auto-execute without separate validation.</li>
+    </ul>
+
+    <pre style="background: #111; color: #f5f5f5; padding: 16px; overflow-x: auto; border-radius: 6px;"><code>//@version=5
+indicator("TBOW Permission + MACD Curl (VWAP/BB/RSI)", overlay=true, max_labels_count=500)
+
+//────────────────────────────────────────────────────────────────────
+// Inputs
+//────────────────────────────────────────────────────────────────────
+htfTf      = input.timeframe("30", "HTF Permission TF")
+htfEmaLen  = input.int(50, "HTF EMA Length", minval=1)
+
+bbLen      = input.int(20, "BB Length", minval=1)
+bbMult     = input.float(2.0, "BB Mult", step=0.1)
+
+emaFastLen = input.int(9, "LTF EMA Fast", minval=1)
+emaSlowLen = input.int(21, "LTF EMA Slow", minval=1)
+
+rsiLen     = input.int(14, "RSI Length", minval=1)
+
+showBG     = input.bool(true, "Background Permission")
+showLabels = input.bool(true, "Show Labels")
+
+//────────────────────────────────────────────────────────────────────
+// LTF Indicators
+//────────────────────────────────────────────────────────────────────
+vwap  = ta.vwap(hlc3)
+
+emaFast = ta.ema(close, emaFastLen)
+emaSlow = ta.ema(close, emaSlowLen)
+
+basis = ta.sma(close, bbLen)
+dev   = bbMult * ta.stdev(close, bbLen)
+upper = basis + dev
+lower = basis - dev
+
+rsi = ta.rsi(close, rsiLen)
+
+[macdLine, signalLine, histLine] = ta.macd(close, 12, 26, 9)
+macdDelta = macdLine - macdLine[1]
+
+// “Curl” = momentum slope flips direction
+macdCurlUp   = ta.crossover(macdDelta, 0)
+macdCurlDown = ta.crossunder(macdDelta, 0)
+
+macdXUp   = ta.crossover(macdLine, signalLine)
+macdXDown = ta.crossunder(macdLine, signalLine)
+
+//────────────────────────────────────────────────────────────────────
+// HTF “Permission” (30m by default)
+//────────────────────────────────────────────────────────────────────
+htfClose = request.security(syminfo.tickerid, htfTf, close)
+htfEma   = request.security(syminfo.tickerid, htfTf, ta.ema(close, htfEmaLen))
+htfSlope = request.security(syminfo.tickerid, htfTf, ta.ema(close, htfEmaLen) - ta.ema(close, htfEmaLen)[1])
+
+htfBull = (htfClose > htfEma) and (htfSlope > 0)
+htfBear = (htfClose < htfEma) and (htfSlope < 0)
+
+//────────────────────────────────────────────────────────────────────
+// Setups (simple + readable)
+//────────────────────────────────────────────────────────────────────
+reclaimVWAP = close > vwap and close[1] <= vwap
+loseVWAP    = close < vwap and close[1] >= vwap
+
+callSetup =
+     (htfBull or not htfBear) and           // allow scalps when HTF not screaming bear
+     close > vwap and
+     close > basis and
+     rsi > 50 and
+     (macdCurlUp or macdXUp)
+
+putSetup =
+     (htfBear or not htfBull) and
+     close < vwap and
+     close < basis and
+     rsi < 50 and
+     (macdCurlDown or macdXDown)
+
+// Exits (tight-stop logic helpers)
+callExit = loseVWAP or macdCurlDown or macdXDown
+putExit  = reclaimVWAP or macdCurlUp or macdXUp
+
+//────────────────────────────────────────────────────────────────────
+// Plots
+//────────────────────────────────────────────────────────────────────
+plot(vwap, "VWAP", linewidth=2)
+plot(emaFast, "EMA Fast", linewidth=1)
+plot(emaSlow, "EMA Slow", linewidth=1)
+plot(basis, "BB Mid", linewidth=1)
+plot(upper, "BB Upper", linewidth=1)
+plot(lower, "BB Lower", linewidth=1)
+
+// Permission background
+bgCol =
+    htfBull ? color.new(color.green, 88) :
+    htfBear ? color.new(color.red, 88) :
+              color.new(color.gray, 92)
+
+bgcolor(showBG ? bgCol : na)
+
+// Signals (X marks like you wanted)
+plotshape(callSetup, title="CALL", style=shape.xcross, location=location.belowbar, size=size.small, text="CALL")
+plotshape(putSetup,  title="PUT",  style=shape.xcross, location=location.abovebar, size=size.small, text="PUT")
+
+// MACD Curl markers (info-only)
+plotshape(macdCurlUp,   title="MACD Curl Up",   style=shape.triangleup,   location=location.belowbar, size=size.tiny, text="curl↑")
+plotshape(macdCurlDown, title="MACD Curl Down", style=shape.triangledown, location=location.abovebar, size=size.tiny, text="curl↓")
+
+// Optional labels
+if showLabels and callSetup
+    label.new(bar_index, low, "CALL\nVWAP hold", style=label.style_label_up, textcolor=color.white)
+if showLabels and putSetup
+    label.new(bar_index, high, "PUT\nVWAP reject", style=label.style_label_down, textcolor=color.white)
+
+if showLabels and callExit
+    label.new(bar_index, high, "CALL EXIT\n(VWAP/MACD)", style=label.style_label_down, textcolor=color.white)
+if showLabels and putExit
+    label.new(bar_index, low, "PUT EXIT\n(VWAP/MACD)", style=label.style_label_up, textcolor=color.white)
+
+// Alerts
+alertcondition(callSetup, "CALL Setup", "TBOW CALL setup: HTF ok + VWAP + BB mid + RSI + MACD curl/cross")
+alertcondition(putSetup,  "PUT Setup",  "TBOW PUT setup: HTF ok + VWAP + BB mid + RSI + MACD curl/cross")
+
+alertcondition(callExit, "CALL Exit", "CALL exit trigger: VWAP loss or MACD curl/cross down")
+alertcondition(putExit,  "PUT Exit",  "PUT exit trigger: VWAP reclaim or MACD curl/cross up")</code></pre>
+  </section>
+
+  <section style="padding: 24px 0;">
+    <h2>Version Notes</h2>
+    <ul>
+      <li><strong>v0.1:</strong> Initial release with HTF permission, VWAP/BB alignment, MACD curl/cross, and alert hooks.</li>
+      <li><strong>Planned:</strong> Session filters, ATR-based stop sizing, and post-trade tagging for performance analysis.</li>
+    </ul>
+  </section>
+
+  <section style="padding: 24px 0;">
+    <h2>Disclaimers</h2>
+    <div class="trp-callout" style="background: #fff7f7; border-left: 4px solid #d22; padding: 16px; margin: 12px 0;">
+      <p style="margin: 0 0 8px;"><strong>Educational only.</strong> This is not financial advice. Trading options involves significant risk and can result in rapid losses.</p>
+      <p style="margin: 0;">Tight stops can reduce drawdown but increase stop-outs. Use proper sizing and test before risking capital.</p>
+    </div>
+  </section>
+
+  <section style="padding: 24px 0;">
+    <h2 id="cta">CTA</h2>
+    <p>Want the full TradingRobotPlug workflow and automation stack? Stop buying tools. Fix one workflow end-to-end.</p>
+    <p><a href="https://tradingrobotplug.com" style="display: inline-block; padding: 10px 16px; background: #111; color: #fff; text-decoration: none; border-radius: 4px;">Get the Plug</a></p>
+  </section>
+
+  <section style="padding: 24px 0;">
+    <h2>Needed Inputs</h2>
+    <p>To complete this lab log with verified metrics and visuals, the following inputs are still required:</p>
+    <ul>
+      <li>Backtest or forward-test metrics (win rate, sample size, average R).</li>
+      <li>Chart screenshots showing example entries/exits with VWAP + MACD curl.</li>
+      <li>Session notes on which market conditions break the rules.</li>
+    </ul>
+  </section>
+</div>
