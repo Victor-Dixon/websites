@@ -23,13 +23,13 @@ define( 'WP_CACHE', true );
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'u996867598_6cbPB' );
+define( 'DB_NAME', 'REPLACE_WITH_DB_NAME' );
 
 /** Database username */
-define( 'DB_USER', 'u996867598_9dVzt' );
+define( 'DB_USER', 'REPLACE_WITH_DB_USER' );
 
 /** Database password */
-define( 'DB_PASSWORD', '3aZq7XTxA6' );
+define( 'DB_PASSWORD', 'REPLACE_WITH_DB_PASSWORD' );
 
 /** Database hostname */
 define( 'DB_HOST', '127.0.0.1' );
@@ -51,15 +51,15 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',          '(KwCj+aZf6}GJZr0heL=1{+k,-7BhB-|B3]v7[kut=wj?hg-.^kdgMZp,!gZ!Rh]' );
-define( 'SECURE_AUTH_KEY',   't,BUgr0xMpWEGZQF)*.7eugUBgE~DtBKZY:x(?pad#Ny3U2-OMU:JRYZi>GV5:Ln' );
-define( 'LOGGED_IN_KEY',     '2mZQT0F;ZM75y/!XV*|6rhy$7W]U.MSo(?}J/IF?[[aTchY::emyTMY{[+E#04/D' );
-define( 'NONCE_KEY',         'UU9+En/N1WuC9F-n@)//NR}+bOmA.Kdbqz*Y]h[2=`|%YQIh`q/O5zR|74!}YA&8' );
-define( 'AUTH_SALT',         '|JbLG=Yj3}-.{Ng`/,tBQEb/k4z9-+c,Fk%Yt5^p]YVvEk(8xW,||e$!@d %ShjY' );
-define( 'SECURE_AUTH_SALT',  'q _#:+9!.r<Y:%}c,,>N:=2~i7}:eVG~uiK[)ZmBbYDMvuFJ|9_Ug8=Jp%GXkeW_' );
-define( 'LOGGED_IN_SALT',    'W:J**~avxn^u6<<. !jau<<MS6NEJ.HE18}UDzl~jAyj<AR%S.Spc^0AV2]L1C~m' );
-define( 'NONCE_SALT',        '4Lah17P.l+N{z(z&# ~JHKlzDJ{UBnA:#K8,Yb*] Q2N>CO^[}#r]6Y$Bx}TXV1U' );
-define( 'WP_CACHE_KEY_SALT', '%`]P7>E?h LPX]sv=8*?oCs=Wye9Z5.pm=%}ku|t_]KdB=rLQZ Te`C!;1:bCp.9' );
+define( 'AUTH_KEY',          'REPLACE_WITH_AUTH_KEY' );
+define( 'SECURE_AUTH_KEY',   'REPLACE_WITH_SECURE_AUTH_KEY' );
+define( 'LOGGED_IN_KEY',     'REPLACE_WITH_LOGGED_IN_KEY' );
+define( 'NONCE_KEY',         'REPLACE_WITH_NONCE_KEY' );
+define( 'AUTH_SALT',         'REPLACE_WITH_AUTH_SALT' );
+define( 'SECURE_AUTH_SALT',  'REPLACE_WITH_SECURE_AUTH_SALT' );
+define( 'LOGGED_IN_SALT',    'REPLACE_WITH_LOGGED_IN_SALT' );
+define( 'NONCE_SALT',        'REPLACE_WITH_NONCE_SALT' );
+define( 'WP_CACHE_KEY_SALT', 'REPLACE_WITH_CACHE_KEY_SALT' );
 
 
 /**#@-*/
@@ -94,7 +94,7 @@ if ( ! defined( 'WP_DEBUG' ) ) {
 }
 
 define( 'FS_METHOD', 'direct' );
-define( 'COOKIEHASH', '4d22f306a86667e9d349ccd82dfc67ab' );
+define( 'COOKIEHASH', 'REPLACE_WITH_COOKIEHASH' );
 define( 'WP_AUTO_UPDATE_CORE', 'minor' );
 
 // Enable WordPress debug mode
