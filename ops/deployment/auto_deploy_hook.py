@@ -36,7 +36,7 @@ SITE_MAPPING = {
     "FreeRideInvestor": "freerideinvestor",
     "southwestsecret.com": "southwestsecret",
     "Swarm_website": "weareswarm",
-    "TradingRobotPlugWeb": "tradingrobotplug",
+    # TradingRobotPlugWeb removed: now ignored and uses canonical websites/tradingrobotplug.com/ layout
     "prismblossom.online": "prismblossom",
 }
 
