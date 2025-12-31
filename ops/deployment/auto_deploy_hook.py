@@ -61,6 +61,26 @@ THEME_FILES = {
 }
 PLUGIN_FILES = {"*.php", "*.js", "*.css"}
 
+SKIP_BASENAMES = {".gitignore", ".gitmodules"}
+SKIP_PREFIXES = {"agent_workspaces/", "docs/", "ssot_autoblogger/", "tools/"}
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+
+def normalize_path(file_path: str) -> str:
+    """Normalize a file path for prefix checks."""
+    return file_path.replace("\\", "/")
+
+
+def should_skip_path(file_path: str) -> bool:
+    """Check if a path should be skipped for deployment."""
+    normalized = normalize_path(file_path)
+    if Path(normalized).name in SKIP_BASENAMES:
+        return True
+    if any(normalized.startswith(prefix) for prefix in SKIP_PREFIXES):
+        return True
+    local_path = REPO_ROOT / file_path
+    return local_path.is_dir()
+
 
 def get_changed_files() -> List[str]:
     """Get list of changed files from git staging area."""
@@ -239,19 +259,29 @@ def auto_deploy() -> bool:
     # Group files by site
     files_by_site: Dict[str, List[str]] = {}
     skipped_files: List[str] = []
+    unmapped_files: List[str] = []
     
     for file_path in changed_files:
+        if should_skip_path(file_path):
+            skipped_files.append(file_path)
+            continue
         site_key = detect_site_from_path(file_path)
         if site_key:
             if site_key not in files_by_site:
                 files_by_site[site_key] = []
             files_by_site[site_key].append(file_path)
         else:
-            skipped_files.append(file_path)
+            unmapped_files.append(file_path)
     
     if skipped_files:
-        print("⚠️  Files not mapped to any site (skipped):")
+        print("ℹ️  Skipped files (ignored by deploy rules):")
         for f in skipped_files:
+            print(f"   - {f}")
+        print()
+
+    if unmapped_files:
+        print("⚠️  Files not mapped to any site (skipped):")
+        for f in unmapped_files:
             print(f"   - {f}")
         print()
     
