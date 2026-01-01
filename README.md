@@ -13,14 +13,9 @@ This repository contains the source (themes/templates/content) for multiple smal
 
 | Path | What it contains | Notes |
 |------|------------------|-------|
-| `FreeRideInvestor/` | WordPress theme code + a large snapshot of plugins/assets | Legacy/monolithic; includes `docker-compose.yml` and many third-party plugin files. |
-| `FreeRideInvestor_V2/` | A cleaner standalone WordPress theme | Theme files at the folder root (e.g., `functions.php`, `style.css`). |
-| `prismblossom.online/wordpress-theme/prismblossom/` | WordPress theme for `prismblossom.online` | Theme-only folder. |
-| `ariajet.site/` | Static pages + WordPress theme | Static `index.html` + games; theme in `wordpress-theme/ariajet/`. |
-| `Swarm_website/wp-content/themes/swarm-theme/` | WordPress theme for the Swarm site | Includes theme templates and JS/CSS. |
-| `dadudekc.com/blog-posts/` | Blog drafts/content | Markdown + HTML drafts. |
-| `crosbyultimateevents.com/` | Site docs + funnel pages | Copy, checklists, and setup notes. |
-| `houstonsipqueen.com/` | Site docs + funnel pages | Copy, funnel URL maps, and landing/thank-you pages. |
+| `archive/FreeRideInvestor/` | WordPress theme code + a large snapshot of plugins/assets | Legacy/monolithic; archived. Includes `docker-compose.yml` and many third-party plugin files. |
+| `websites/freerideinvestor.com/wp/wp-content/themes/freerideinvestor-v2/` | A cleaner standalone WordPress theme | Theme files (e.g., `functions.php`, `style.css`). |
+| `websites/<domain>/` | Canonical site structure | See `websites/README.md` for details. All sites organized here. |
 | `content/` | Content SSOT for autoblogger | Voices, brands, backlogs, calendars, drafts. |
 | `src/` | Python packages (autoblogger, helpers) | Prefer importing from here for tooling. |
 | `side-projects/` | Small experimental pages | Standalone HTML content. |
@@ -49,7 +44,7 @@ This repository **does not store production credentials**. Deployment is expecte
 
 - **Do not commit secrets** (hosting credentials, API keys, application passwords).
 - Keep any credentials in **local-only** files (ignored by git) or injected via environment variables.
-- This repo contains **third-party code** (notably under `FreeRideInvestor/plugins/`). Treat updates and security reviews as part of routine maintenance.
+- This repo contains **third-party code** (notably under `archive/FreeRideInvestor/plugins/`). Treat updates and security reviews as part of routine maintenance.
 
 ## Contributing guidelines
 
