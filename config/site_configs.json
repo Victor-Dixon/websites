@@ -238,5 +238,29 @@
     "method": "additional_css",
     "target_file": "wp-content/themes/{active_theme}/style.css"
   }
-}
+},
+"dadudekc.com": {
+  "site_url": "https://dadudekc.com",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "DadudeKC@Gmail.com",
+      "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
+    "site_url": "https://dadudekc.com"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+    "remote_path": "domains/dadudekc.com/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
+  }
 }
