@@ -14,7 +14,7 @@ See **[WHAT_IS_HOUSTONSIPQUEEN.md](./WHAT_IS_HOUSTONSIPQUEEN.md)** for the full 
 ### Current source locations (legacy pointers)
 
 - `houstonsipqueen.com`
-- `sites/houstonsipqueen.com`
+- `websites/houstonsipqueen.com/overlays`
 
 ### Target layout (when migrated)
 

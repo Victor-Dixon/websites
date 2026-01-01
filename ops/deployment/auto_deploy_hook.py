@@ -51,7 +51,7 @@ DOMAIN_SITE_KEY_OVERRIDES = {
 }
 
 SKIP_BASENAMES = {".gitignore", ".gitmodules"}
-SKIP_PREFIXES = {"agent_workspaces/", "docs/", "ssot_autoblogger/", "tools/"}
+SKIP_PREFIXES = {"agent_workspaces/", "docs/", "src/autoblogger/ssot/", "tools/"}
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 

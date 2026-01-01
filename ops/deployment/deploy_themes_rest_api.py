@@ -4,7 +4,7 @@ Deploy Themes via WordPress REST API
 ====================================
 
 Uploads and activates themes using WordPress REST API with Application Passwords.
-Uses credentials from configs/site_configs.json.
+Uses credentials from config/site_configs.json.
 
 Author: Agent-7 (Web Development Specialist)
 Date: 2025-12-21
@@ -39,10 +39,10 @@ THEME_CONFIGS = {
 
 
 def load_site_configs():
-    """Load site configurations from configs/site_configs.json"""
-    config_path = Path("D:/websites/configs/site_configs.json")
+    """Load site configurations from config/site_configs.json"""
+    config_path = Path("D:/websites/config/site_configs.json")
     if not config_path.exists():
-        config_path = Path(__file__).parent.parent.parent / "configs" / "site_configs.json"
+        config_path = Path(__file__).parent.parent.parent / "config" / "site_configs.json"
     
     if config_path.exists():
         try:
@@ -189,7 +189,7 @@ def deploy_theme(site_domain: str, theme_config: dict, site_configs: dict) -> Tu
     
     if not username or not app_password:
         print(f"❌ Missing REST API credentials for {site_domain}")
-        print("   Please add username and app_password to configs/site_configs.json")
+        print("   Please add username and app_password to config/site_configs.json")
         return False, False
     
     # Create ZIP package

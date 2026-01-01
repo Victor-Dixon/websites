@@ -91,7 +91,7 @@ THEME_CONFIGS = {
 
 
 def load_site_configs():
-    """Load site configurations from .deploy_credentials/sites.json or configs/site_configs.json"""
+    """Load site configurations from .deploy_credentials/sites.json or config/site_configs.json"""
     import json
     # Try .deploy_credentials/sites.json first (WordPressManager format)
     sites_json_path = Path("D:/Agent_Cellphone_V2_Repository/.deploy_credentials/sites.json")
@@ -103,9 +103,9 @@ def load_site_configs():
             print(f"⚠️  Could not load sites.json: {e}")
     
     # Fallback to site_configs.json
-    config_path = Path("D:/websites/configs/site_configs.json")
+    config_path = Path("D:/websites/config/site_configs.json")
     if not config_path.exists():
-        config_path = Path(__file__).parent.parent.parent / "configs" / "site_configs.json"
+        config_path = Path(__file__).parent.parent.parent / "config" / "site_configs.json"
     
     if config_path.exists():
         try:
@@ -237,7 +237,7 @@ def deploy_and_activate_theme(site_domain: str, config: dict, activate: bool = T
         if not site_configs:
             print("❌ WordPressManager not available and site_configs.json not found!")
             print(f"   Expected WordPressManager at: {MAIN_REPO_TOOLS}/wordpress_manager.py")
-            print("   Or site_configs.json at: D:/websites/configs/site_configs.json")
+            print("   Or site_configs.json at: D:/websites/config/site_configs.json")
             return False, False
     
     if not WORDPRESS_MANAGER_AVAILABLE and not SIMPLE_DEPLOYER_AVAILABLE:

@@ -148,10 +148,10 @@
    - ✅ Form now properly submits to consultation page
 
 **Files Fixed:**
-- `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/js/portfolio-filter.js` ✅ (NEW)
-- `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/functions.php` ✅
-- `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/page-blog.php` ✅
-- `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/front-page.php` ✅
+- `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/js/portfolio-filter.js` ✅ (NEW)
+- `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/functions.php` ✅
+- `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/page-blog.php` ✅
+- `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/front-page.php` ✅
 
 ## freerideinvestor.com
 

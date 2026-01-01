@@ -189,7 +189,7 @@ def main():
     print()
     
     # Load site configs
-    config_path = Path(__file__).parent.parent / "configs" / "site_configs.json"
+    config_path = Path(__file__).parent.parent / "config" / "site_configs.json"
     if not config_path.exists():
         print("❌ site_configs.json not found")
         return 1
@@ -202,7 +202,7 @@ def main():
     
     if not site_config:
         # Create minimal config from sites_registry if available
-        registry_path = Path(__file__).parent.parent / "configs" / "sites_registry.json"
+        registry_path = Path(__file__).parent.parent / "config" / "sites_registry.json"
         if registry_path.exists():
             with open(registry_path, 'r', encoding='utf-8') as f:
                 registry = json.load(f)

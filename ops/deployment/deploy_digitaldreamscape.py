@@ -85,7 +85,7 @@ def deploy_digitaldreamscape_theme():
                     "   1. Hostinger env vars (HOSTINGER_HOST, HOSTINGER_USER, HOSTINGER_PASS)")
                 print(
                     "   2. D:/Agent_Cellphone_V2_Repository/.deploy_credentials/sites.json")
-                print("   3. D:/websites/configs/site_configs.json")
+                print("   3. D:/websites/config/site_configs.json")
                 return False
 
         # Initialize deployment manager
@@ -114,7 +114,7 @@ def deploy_digitaldreamscape_theme():
         if SIMPLE_DEPLOYER_AVAILABLE and base_remote_path:
             if not manager.connect():
                 print(f"❌ Failed to connect to {site_key}")
-                print("   Check SFTP credentials in configs/site_configs.json")
+                print("   Check SFTP credentials in config/site_configs.json")
                 return False
         else:
             if not manager.connect():
@@ -122,7 +122,7 @@ def deploy_digitaldreamscape_theme():
                 if WORDPRESS_MANAGER_AVAILABLE:
                     print("   Check credentials in .deploy_credentials/sites.json")
                 else:
-                    print("   Check SFTP credentials in configs/site_configs.json")
+                    print("   Check SFTP credentials in config/site_configs.json")
                 return False
         print("✅ Connected!\n")
 

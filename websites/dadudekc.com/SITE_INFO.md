@@ -14,7 +14,7 @@ See **[WHAT_IS_DADUDEKC.md](./WHAT_IS_DADUDEKC.md)** for the full description.
 ### Current source locations (legacy pointers)
 
 - `dadudekc.com`
-- `sites/dadudekc.com`
+- `websites/dadudekc.com/overlays`
 
 ### Target layout (when migrated)
 

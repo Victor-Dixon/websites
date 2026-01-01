@@ -38,7 +38,7 @@ websites/
 ├── .git/                          # Repository root (legitimate)
 ├── _incoming/                     # Temporary files (legitimate)
 ├── autoblogger/                   # Autoblogger system (legitimate)
-├── configs/                       # Configuration files (legitimate)
+├── config/                       # Configuration files (legitimate)
 ├── content/                       # Content SSOT (legitimate)
 ├── deploy/                        # Deployment results (legitimate)
 ├── docs/                          # Repository documentation (legitimate)

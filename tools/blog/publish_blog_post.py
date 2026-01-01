@@ -3,7 +3,7 @@
 Publish a blog post using site configs as SSOT.
 
 Credential priority:
-1) configs/site_configs.json (rest_api block)
+1) config/site_configs.json (rest_api block)
 2) .deploy_credentials/blogging_api.json
 3) .deploy_credentials/sites.json
 """
@@ -21,7 +21,7 @@ from tools.blog.unified_blogging_automation import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-SITE_CONFIGS_JSON = REPO_ROOT / "configs" / "site_configs.json"
+SITE_CONFIGS_JSON = REPO_ROOT / "config" / "site_configs.json"
 BLOGGING_API_JSON = REPO_ROOT / ".deploy_credentials" / "blogging_api.json"
 SITES_JSON = REPO_ROOT / ".deploy_credentials" / "sites.json"
 
@@ -88,7 +88,7 @@ def main() -> int:
     credentials = resolve_credentials(args.site)
     if not credentials:
         logger.error(
-            "❌ No credentials found for site '%s'. Expected in configs/site_configs.json, "
+            "❌ No credentials found for site '%s'. Expected in config/site_configs.json, "
             ".deploy_credentials/blogging_api.json, or .deploy_credentials/sites.json.",
             args.site,
         )

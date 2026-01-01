@@ -97,7 +97,7 @@ websites/
 ├── shared/
 │   └── security-headers/
 │       ├── security-headers.php (core module)
-│       └── csp-configs/
+│       └── csp-config/
 │           ├── default-csp.php
 │           ├── ariajet-site-csp.php
 │           ├── crosbyultimateevents-com-csp.php

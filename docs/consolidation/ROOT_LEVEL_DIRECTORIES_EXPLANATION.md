@@ -71,7 +71,7 @@ These are **legitimate** repository infrastructure:
 - `.benchmarks/` - Test benchmarks
 - `.pytest_cache/` - Pytest cache
 - `autoblogger/` - Autoblogger system
-- `configs/` - Configuration files
+- `config/` - Configuration files
 - `content/` - Content SSOT
 - `deploy/` - Deployment results
 - `docs/` - Repository documentation
@@ -96,7 +96,7 @@ These are **legitimate** repository infrastructure:
 
 1. ✅ **Keep** root-level directories with content (ariajet.site, crosbyultimateevents.com, dadudekc.com, southwestsecret.com)
 2. ⏳ **Remove** empty directories (houstonsipqueen.com, prismblossom.online)
-3. ✅ **Keep** all infrastructure directories (autoblogger, configs, content, etc.)
+3. ✅ **Keep** all infrastructure directories (autoblogger, config, content, etc.)
 
 ## Summary
 

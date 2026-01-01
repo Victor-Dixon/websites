@@ -14,7 +14,7 @@ ops/
 │   ├── check_wordpress_versions.py
 │   ├── wordpress_version_checker.py
 │   └── verify_website_fixes.py
-└── site-overlays/       # Generated snippets used by automation (future migration from sites/)
+└── site-overlays/       # Generated snippets used by automation (future migration from websites/<domain>/overlays/)
 ```
 
 ## Deployment Tools
@@ -43,7 +43,7 @@ Deploy website fixes and updates.
 ## Integration
 
 These tools integrate with:
-- `configs/sites_registry.json` - Site registry
+- `config/sites_registry.json` - Site registry
 - `websites/<domain>/` - Canonical site locations
 - Legacy paths (during transition period)
 

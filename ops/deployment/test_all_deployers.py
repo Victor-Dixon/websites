@@ -53,7 +53,7 @@ except Exception:
 
 def load_site_registry():
     """Load site registry."""
-    registry_path = Path("D:/websites/configs/sites_registry.json")
+    registry_path = Path("D:/websites/config/sites_registry.json")
     if registry_path.exists():
         with open(registry_path, 'r') as f:
             return json.load(f)
@@ -121,8 +121,8 @@ def main():
     print("="*60 + "\n")
     
     # Load configurations
-    site_configs_path = Path("D:/websites/configs/site_configs.json")
-    site_registry_path = Path("D:/websites/configs/sites_registry.json")
+    site_configs_path = Path("D:/websites/config/site_configs.json")
+    site_registry_path = Path("D:/websites/config/sites_registry.json")
     
     if not site_configs_path.exists():
         print("❌ site_configs.json not found!")

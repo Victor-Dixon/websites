@@ -3,7 +3,7 @@
 Deploy Themes Using site_configs.json
 =====================================
 
-Deploys WordPress themes using credentials from configs/site_configs.json.
+Deploys WordPress themes using credentials from config/site_configs.json.
 Works with SFTP directly, no WordPressManager required.
 
 Author: Agent-7 (Web Development Specialist)
@@ -31,10 +31,10 @@ THEME_CONFIGS = {
 
 
 def load_site_configs():
-    """Load site configurations from configs/site_configs.json"""
-    config_path = Path("D:/websites/configs/site_configs.json")
+    """Load site configurations from config/site_configs.json"""
+    config_path = Path("D:/websites/config/site_configs.json")
     if not config_path.exists():
-        config_path = Path(__file__).parent.parent.parent / "configs" / "site_configs.json"
+        config_path = Path(__file__).parent.parent.parent / "config" / "site_configs.json"
     
     if config_path.exists():
         try:
@@ -190,7 +190,7 @@ def deploy_theme(site_domain: str, theme_config: dict, site_configs: dict, activ
     
     if not all([host, username, password]):
         print(f"❌ Incomplete SFTP credentials for {site_domain}")
-        print("   Please add SFTP credentials to configs/site_configs.json")
+        print("   Please add SFTP credentials to config/site_configs.json")
         return False, False
     
     port = 22  # Default SFTP port

@@ -3,8 +3,8 @@
 ## ✅ Completed
 
 ### Phase 1: Config Directory Consolidation
-- ✅ Merged `config/` into `configs/`
-- ✅ Renamed `configs/` to `config/` (single unified directory)
+- ✅ Confirmed `config/` as the SSOT directory
+- ✅ Updated references to `config/` across scripts/docs
 - ✅ All configuration files now in `config/`:
   - `config/site_configs.json`
   - `config/sites_registry.json`
@@ -17,26 +17,21 @@
 
 ### Phase 2: Site Directory Consolidation
 **Current State:**
-- `sites/` - Contains overlays and deployment snippets (per README)
-- `websites/` - Canonical navigation hub for WordPress themes/plugins
+- `sites/` - Autoblogger YAML site configs only
+- `websites/` - Canonical navigation hub for WordPress themes/plugins + overlays
 - Root-level legacy: `FreeRideInvestor/`, `Swarm_website/`, `southwestsecret.com/`
 
-**Decision Needed:**
-1. Should we consolidate `sites/` and `websites/` into a single `sites/` directory?
-2. Or keep `websites/` as canonical and move `sites/` content there?
-3. Where should root-level legacy directories go?
+**Decision:** Keep `websites/` as canonical and move overlays into `websites/<domain>/overlays/`.
 
 ## 📋 Pending
 
 ### Phase 3: Autoblogger Consolidation
-- `autoblogger/` - Legacy?
-- `src/autoblogger/` - Python package (preferred per README)
-- `ssot_autoblogger/` - SSOT implementation
-
-**Action**: Determine canonical implementation and consolidate.
+- `autoblogger/` - Entry-point shims
+- `src/autoblogger/` - Python package (SSOT)
+- `src/autoblogger/ssot/` - SSOT assets (moved)
 
 ### Phase 4: Root Directory Cleanup
-- Move temp files (`temp_*.md`) to `temp/`
+- ✅ Moved temp files (`temp_*.md`) to `temp/root/`
 - Move/archive large legacy `FreeRideInvestor/` (309MB)
 - Move `Swarm_website/` to appropriate site directory
 - Move `southwestsecret.com/` to `sites/` or `websites/`
@@ -64,18 +59,18 @@ website/
 │   ├── voice_profiles/
 │   └── FreeRideInvestor_V2/   ⚠️  Theme (needs moving)
 │
-├── sites/                     ⚠️  Overlays/snippets
-├── websites/                  ⚠️  Canonical hub
+├── sites/                     ✅ Autoblogger site configs
+├── websites/                  ✅ Canonical hub + overlays
 │
 ├── autoblogger/               ⚠️  Legacy?
 ├── src/autoblogger/           ✅ Preferred
-├── ssot_autoblogger/          ⚠️  SSOT variant
+├── src/autoblogger/ssot/      ✅ SSOT assets
 │
 ├── FreeRideInvestor/           ⚠️  309MB legacy
 ├── Swarm_website/              ⚠️  Should be in sites/
 ├── southwestsecret.com/        ⚠️  Should be in sites/
 │
-├── temp_*.md                   ⚠️  Should be in temp/
+├── temp/root/                 ✅ Root temp files moved
 └── ...
 ```
 
@@ -94,4 +89,3 @@ website/
 - Test deployment scripts after each phase
 - Keep backup/rollback plan
 - Update documentation as we go
-

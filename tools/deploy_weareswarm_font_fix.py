@@ -33,7 +33,7 @@ def main():
         print(f"❌ Failed to connect to {site_key}")
         print("   Check SFTP credentials in:")
         print("   - .deploy_credentials/sites.json")
-        print("   - configs/site_configs.json")
+        print("   - config/site_configs.json")
         print("   - Environment variables (HOSTINGER_*)")
         return 1
     

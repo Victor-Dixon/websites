@@ -14,7 +14,7 @@ See **[WHAT_IS_CROSBYULTIMATEEVENTS.md](./WHAT_IS_CROSBYULTIMATEEVENTS.md)** for
 ### Current source locations (legacy pointers)
 
 - `crosbyultimateevents.com`
-- `sites/crosbyultimateevents.com`
+- `websites/crosbyultimateevents.com/overlays`
 
 ### Target layout (when migrated)
 

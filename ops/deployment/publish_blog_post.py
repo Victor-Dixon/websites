@@ -25,10 +25,10 @@ except ImportError:
 
 
 def load_site_configs():
-    """Load site configurations from configs/site_configs.json"""
-    config_path = Path("D:/websites/configs/site_configs.json")
+    """Load site configurations from config/site_configs.json"""
+    config_path = Path("D:/websites/config/site_configs.json")
     if not config_path.exists():
-        config_path = Path(__file__).parent.parent.parent / "configs" / "site_configs.json"
+        config_path = Path(__file__).parent.parent.parent / "config" / "site_configs.json"
     
     if config_path.exists():
         try:
@@ -56,7 +56,7 @@ def publish_post_via_rest_api(site_domain: str, title: str, content: str, status
     
     if not username or not app_password:
         print(f"❌ Missing REST API credentials for {site_domain}")
-        print("   Please add username and app_password to configs/site_configs.json")
+        print("   Please add username and app_password to config/site_configs.json")
         return False
     
     print(f"📝 Publishing blog post via REST API...")

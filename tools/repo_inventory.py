@@ -4,7 +4,7 @@ Repo Inventory (Websites / Themes / Plugins)
 ==========================================
 
 Produces a deterministic inventory of:
-- websites listed in configs/sites_registry.json
+- websites listed in config/sites_registry.json
 - where each site's theme(s) appear in the repo
 - where each site's plugin(s) appear in the repo (best-effort)
 
@@ -21,7 +21,7 @@ from typing import Iterable, List, Optional, Tuple
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SITES_REGISTRY = REPO_ROOT / "configs" / "sites_registry.json"
+SITES_REGISTRY = REPO_ROOT / "config" / "sites_registry.json"
 
 
 @dataclass(frozen=True)
@@ -82,11 +82,11 @@ def classify_theme_candidates(domains: List[str]) -> List[ThemeCandidate]:
 
 def find_site_locations(domain: str) -> List[Path]:
     locations: List[Path] = []
-    # Common patterns in this repo: root folder named as domain, or under sites/<domain>
+    # Common patterns in this repo: root folder named as domain, or under websites/<domain>
     for p in [
         REPO_ROOT / domain,
-        REPO_ROOT / "sites" / domain,
-        REPO_ROOT / "sites" / f"{domain}",
+        REPO_ROOT / "websites" / domain,
+        REPO_ROOT / "websites" / domain / "overlays",
     ]:
         if p.exists():
             locations.append(p)
@@ -100,7 +100,7 @@ def main() -> int:
     domains = load_domains()
     theme_candidates = classify_theme_candidates(domains)
 
-    print("== Website inventory (from configs/sites_registry.json) ==")
+    print("== Website inventory (from config/sites_registry.json) ==")
     for d in domains:
         locs = find_site_locations(d)
         loc_str = ", ".join(str(p.relative_to(REPO_ROOT)) for p in locs) if locs else "(no directory found)"
@@ -121,4 +121,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -188,7 +188,7 @@ def main():
     
     # Load site configs
     import json
-    config_path = Path(__file__).parent.parent / "configs" / "site_configs.json"
+    config_path = Path(__file__).parent.parent / "config" / "site_configs.json"
     if not config_path.exists():
         print("❌ site_configs.json not found")
         return 1

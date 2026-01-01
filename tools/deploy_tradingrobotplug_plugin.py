@@ -19,9 +19,9 @@ SITE_NAME = "tradingrobotplug.com"
 
 # Files to deploy (relative to project root)
 FILES_TO_DEPLOY = [
-    ("sites/tradingrobotplug.com/wp/plugins/tradingrobotplug-wordpress-plugin/includes/class-trading-robot-plug.php", "wp-content/plugins/tradingrobotplug-wordpress-plugin/includes/class-trading-robot-plug.php"),
-    ("sites/tradingrobotplug.com/wp/plugins/tradingrobotplug-wordpress-plugin/public/class-public.php", "wp-content/plugins/tradingrobotplug-wordpress-plugin/public/class-public.php"),
-    ("sites/tradingrobotplug.com/wp/plugins/tradingrobotplug-wordpress-plugin/public/js/public.js", "wp-content/plugins/tradingrobotplug-wordpress-plugin/public/js/public.js"),
+    ("websites/tradingrobotplug.com/overlays/wp/plugins/tradingrobotplug-wordpress-plugin/includes/class-trading-robot-plug.php", "wp-content/plugins/tradingrobotplug-wordpress-plugin/includes/class-trading-robot-plug.php"),
+    ("websites/tradingrobotplug.com/overlays/wp/plugins/tradingrobotplug-wordpress-plugin/public/class-public.php", "wp-content/plugins/tradingrobotplug-wordpress-plugin/public/class-public.php"),
+    ("websites/tradingrobotplug.com/overlays/wp/plugins/tradingrobotplug-wordpress-plugin/public/js/public.js", "wp-content/plugins/tradingrobotplug-wordpress-plugin/public/js/public.js"),
 ]
 
 

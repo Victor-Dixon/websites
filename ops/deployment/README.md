@@ -95,14 +95,14 @@ python ops/deployment/check_wordpress_updates.py
 ## Integration
 
 These tools work with:
-- **Site Registry:** `configs/sites_registry.json`
+- **Site Registry:** `config/sites_registry.json`
 - **Canonical Locations:** `websites/<domain>/wp/wp-content/`
 - **Legacy Paths:** Maintained for backward compatibility during transition
 
 ## Dependencies
 
 - SimpleWordPressDeployer from `simple_wordpress_deployer.py` (included)
-- Site configurations in `configs/site_configs.json`
+- Site configurations in `config/site_configs.json`
 - Hostinger credentials via environment variables (`.env` file)
 - Deployment credentials (stored securely, not in repo)
 

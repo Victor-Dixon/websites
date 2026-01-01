@@ -15,7 +15,7 @@ See **[WHAT_IS_TRADINGROBOTPLUG.md](./WHAT_IS_TRADINGROBOTPLUG.md)** for the ful
 
 - ✅ **Canonical theme**: `websites/tradingrobotplug.com/wp/wp-content/themes/tradingrobotplug-theme/` (MIGRATED 2025-12-20)
 - **Legacy source**: `TradingRobotPlugWeb/wordpress/wp-content/themes/my-custom-theme/` (preserved for backward compatibility)
-- **Generated overlays**: `sites/tradingrobotplug.com/` (to be migrated to `ops/site-overlays/`)
+- **Generated overlays**: `websites/tradingrobotplug.com/overlays/`
 
 ### Theme structure
 

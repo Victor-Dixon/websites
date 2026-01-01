@@ -38,13 +38,13 @@
 #### Medium Priority (Generated Overlays)
 
 5. **crosbyultimateevents.com**
-   - **Current Overlay**: `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/`
+   - **Current Overlay**: `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/`
    - **Target**: `websites/crosbyultimateevents.com/wp/wp-content/themes/crosbyultimateevents/`
    - **Notes**: Generated overlay, may need source theme identification.
 
 6. **All sites with `sites/<domain>/` overlays**
    - **Current**: Various locations in `sites/<domain>/`
-   - **Target**: `ops/site-overlays/<domain>/` (per target standard)
+   - **Target**: `websites/<domain>/overlays/` (per current standard)
    - **Affected**: ariajet.site, crosbyultimateevents.com, dadudekc.com, digitaldreamscape.site, freerideinvestor.com, houstonsipqueen.com, tradingrobotplug.com, weareswarm.online
 
 ## Migration Strategy
@@ -62,7 +62,7 @@
 4. ✅ **freerideinvestor.com** - **PHASES 1 & 2 COMPLETE** (2025-12-20) - Theme (13 files) and core plugin (29 files) migrated to `websites/freerideinvestor.com/wp/wp-content/`. Phases 3 & 4 pending (root-level files analysis, non-WordPress components). See `docs/FREERIDEINVESTOR_MIGRATION_PLAN.md` for details.
 
 ### Phase 3: Overlay Migration
-- Move all `sites/<domain>/` to `ops/site-overlays/<domain>/`
+- Move all `sites/<domain>/` to `websites/<domain>/overlays/`
 - Update deployment automation to reference new locations
 
 ### Phase 4: Shared Resources
@@ -133,7 +133,7 @@ For each migration:
 - `tools/organize_repo.py` - Creates target structure
 - `tools/repo_inventory.py` - Validates current state
 - `tools/auto_deploy_hook.py` - Needs updates for new paths
-- `configs/sites_registry.json` - Canonical site list
+- `config/sites_registry.json` - Canonical site list
 
 ## Next Actions
 

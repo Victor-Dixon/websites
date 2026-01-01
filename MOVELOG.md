@@ -19,31 +19,31 @@ This document tracks the consolidation of website artifacts from the Agent_Cellp
 #### SEO and UX Snippets
 - **From**: Root-level `temp_*_site_seo.php` and `temp_*_site_ux.css` files
 - **To**: `sites/<site>/seo/` and `sites/<site>/ux/` (per site)
-- **Special**: `temp_hsq_functions.php` → `sites/houstonsipqueen.com/wp/theme/`
+- **Special**: `temp_hsq_functions.php` → `websites/houstonsipqueen.com/overlays/wp/theme/`
 - **Sites**: All sites with matching patterns (crosby, dadudekc, freeride, hsq/houston, tradingrobotplug, swarm, ariajet, digitaldreamscape, prismblossom, southwestsecret)
 
 #### WordPress Themes and Plugins
-- **From**: `sites/weareswarm.online/swarm_theme.css`
-- **To**: `sites/weareswarm.online/theme/swarm_theme.css`
+- **From**: `websites/weareswarm.online/overlays/swarm_theme.css`
+- **To**: `websites/weareswarm.online/overlays/theme/swarm_theme.css`
 
 - **From**: `temp_repos/crosbyultimateevents.com/wordpress-theme/`
-- **To**: `sites/crosbyultimateevents.com/wp/theme/`
+- **To**: `websites/crosbyultimateevents.com/overlays/wp/theme/`
 
 - **From**: `temp_repos/crosbyultimateevents.com/wordpress-plugins/`
-- **To**: `sites/crosbyultimateevents.com/wp/plugins/`
+- **To**: `websites/crosbyultimateevents.com/overlays/wp/plugins/`
 
 #### Site Configuration Files
 - **From**: `site_configs.json`
-- **To**: `configs/site_configs.json`
+- **To**: `config/site_configs.json`
 
 - **From**: `sites_registry.json`
-- **To**: `configs/sites_registry.json`
+- **To**: `config/sites_registry.json`
 
 #### Site Documentation
-- **From**: `sites/houstonsipqueen.com/HSQ_SALES_FUNNEL.md`
+- **From**: `websites/houstonsipqueen.com/overlays/HSQ_SALES_FUNNEL.md`
 - **To**: `docs/per_site/houstonsipqueen/HSQ_SALES_FUNNEL.md`
 
-- **From**: `sites/houstonsipqueen.com/HSQ_SITE_COPY_HOMEPAGE_AND_BOOKING.md`
+- **From**: `websites/houstonsipqueen.com/overlays/HSQ_SITE_COPY_HOMEPAGE_AND_BOOKING.md`
 - **To**: `docs/per_site/houstonsipqueen/HSQ_SITE_COPY_HOMEPAGE_AND_BOOKING.md`
 
 ## Structure
@@ -59,7 +59,7 @@ websites/
 │   │   │   ├── theme/
 │   │   │   └── plugins/
 │   │   └── docs/
-├── configs/
+├── config/
 │   ├── site_configs.json
 │   └── sites_registry.json
 ├── deploy/

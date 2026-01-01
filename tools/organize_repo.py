@@ -6,7 +6,7 @@ Systematic repo organization helper
 This script makes the repo navigable and ready for migration into a single layout.
 
 What it does (safe by default):
-- Ensures `websites/<domain>/` exists for each domain in configs/sites_registry.json
+- Ensures `websites/<domain>/` exists for each domain in config/sites_registry.json
 - Creates standard subfolders:
   - docs/, static/, overlays/, wp/wp-content/themes/, wp/wp-content/plugins/
 - Writes `websites/<domain>/SITE_INFO.md` with pointers to current legacy locations
@@ -24,7 +24,7 @@ from typing import Dict, List, Optional
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SITES_REGISTRY = REPO_ROOT / "configs" / "sites_registry.json"
+SITES_REGISTRY = REPO_ROOT / "config" / "sites_registry.json"
 
 
 @dataclass(frozen=True)

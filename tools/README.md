@@ -40,7 +40,7 @@ python tools/blog_manager.py get ariajet.site --id 5
 python tools/blog_manager.py sites
 ```
 
-**Configuration:** `configs/site_configs.json` (contains REST API and SFTP credentials for all sites)
+**Configuration:** `config/site_configs.json` (contains REST API and SFTP credentials for all sites)
 
 ---
 

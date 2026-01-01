@@ -25,17 +25,17 @@ Duplicate website directories exist at two levels:
 - `Swarm_website/` - Swarm site theme
 
 ### Nested `websites/` Directory (Canonical Hub)
-According to `websites/websites/README.md`, this is the **navigation hub** and **migration target**:
-- `websites/ariajet.site/` - Canonical themes in `wp/wp-content/themes/`
-- `websites/crosbyultimateevents.com/` - SITE_INFO.md
-- `websites/dadudekc.com/` - SITE_INFO.md
-- `websites/digitaldreamscape.site/` - Full WordPress structure
-- `websites/freerideinvestor.com/` - Full WordPress structure with themes/plugins
-- `websites/houstonsipqueen.com/` - SITE_INFO.md
+According to `websites/README.md`, this is the **navigation hub** and **migration target**:
+- `websites/ariajet.site/` - Canonical themes in `wp/wp-content/themes/` + overlays in `overlays/`
+- `websites/crosbyultimateevents.com/` - SITE_INFO.md + overlays in `overlays/`
+- `websites/dadudekc.com/` - SITE_INFO.md + overlays in `overlays/`
+- `websites/digitaldreamscape.site/` - Full WordPress structure + overlays in `overlays/`
+- `websites/freerideinvestor.com/` - Full WordPress structure with themes/plugins + overlays in `overlays/`
+- `websites/houstonsipqueen.com/` - SITE_INFO.md + overlays in `overlays/`
 - `websites/prismblossom.online/` - Full WordPress structure
 - `websites/southwestsecret.com/` - Full WordPress structure
-- `websites/tradingrobotplug.com/` - Full WordPress structure with plugins
-- `websites/weareswarm.online/` - SITE_INFO.md
+- `websites/tradingrobotplug.com/` - Full WordPress structure with plugins + overlays in `overlays/`
+- `websites/weareswarm.online/` - SITE_INFO.md + overlays in `overlays/`
 - `websites/weareswarm.site/` - Full WordPress structure
 
 ## Duplicate Sites Identified
@@ -50,7 +50,7 @@ Sites existing in both locations:
 
 ## Root Cause
 
-According to `websites/websites/README.md`:
+According to `websites/README.md`:
 - The `websites/` subdirectory is the **canonical navigation hub**
 - It's the **migration target for a standardized layout**
 - Legacy layouts still exist at root level
@@ -109,7 +109,7 @@ websites/<domain>/
 
 ## Files to Check
 
-1. `configs/sites_registry.json` - Which paths are referenced?
+1. `config/sites_registry.json` - Which paths are referenced?
 2. `tools/` scripts - Do they reference root or nested paths?
 3. `ops/deployment/` - Which paths are used for deployment?
 4. Documentation - Are paths documented correctly?

@@ -20,7 +20,7 @@ See **[WHAT_IS_ARIAJET.md](./WHAT_IS_ARIAJET.md)** for the full description.
 ### Current source locations (legacy pointers)
 
 - `ariajet.site`
-- `sites/ariajet.site`
+- `websites/ariajet.site/overlays`
 
 ### Target layout (when migrated)
 

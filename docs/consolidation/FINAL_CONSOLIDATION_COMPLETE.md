@@ -13,17 +13,17 @@ Successfully migrated **ALL** remaining content from root-level site directories
 ### Content Migrated: 13 items across 4 sites
 
 1. **ariajet.site** (2 items)
-   - ✅ `games/` → `websites/ariajet.site/games/`
-   - ✅ `index.php` → `websites/ariajet.site/index.php`
+   - ✅ `games/` → `websites/ariajet.site/overlays/games/`
+   - ✅ `index.php` → `websites/ariajet.site/overlays/index.php`
    - ✅ Root directory now empty
 
 2. **crosbyultimateevents.com** (2 items)
-   - ✅ `pages/` → `websites/crosbyultimateevents.com/pages/`
-   - ✅ `setup/` → `websites/crosbyultimateevents.com/setup/`
+   - ✅ `pages/` → `websites/crosbyultimateevents.com/overlays/pages/`
+   - ✅ `setup/` → `websites/crosbyultimateevents.com/overlays/setup/`
    - ✅ Root directory now empty
 
 3. **dadudekc.com** (1 item)
-   - ✅ `blog-posts/` → `websites/dadudekc.com/blog-posts/`
+   - ✅ `blog-posts/` → `websites/dadudekc.com/overlays/blog-posts/`
    - ✅ Root directory now empty
 
 4. **southwestsecret.com** (8 items)
