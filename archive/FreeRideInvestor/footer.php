@@ -12,7 +12,12 @@
     <nav class="footer-links" aria-label="<?php esc_attr_e( 'Footer Navigation', 'freerideinvestor' ); ?>">
       <a href="<?php echo home_url('/'); ?>"><?php esc_html_e( 'Home', 'freerideinvestor' ); ?></a>
       <a href="<?php echo home_url('/about'); ?>"><?php esc_html_e( 'About Us', 'freerideinvestor' ); ?></a>
-      <a href="<?php echo home_url('/services'); ?>"><?php esc_html_e( 'Services', 'freerideinvestor' ); ?></a>
+      <?php
+      $services_page = get_page_by_path('services');
+      if ($services_page && $services_page->post_status === 'publish') :
+      ?>
+        <a href="<?php echo esc_url(get_permalink($services_page)); ?>"><?php esc_html_e( 'Services', 'freerideinvestor' ); ?></a>
+      <?php endif; ?>
       <a href="<?php echo home_url('/contact'); ?>"><?php esc_html_e( 'Contact', 'freerideinvestor' ); ?></a>
       <?php /* Dev Blog link removed - not for public display */ ?>
       <a href="<?php echo home_url('/discord'); ?>"><?php esc_html_e( 'Join Discord', 'freerideinvestor' ); ?></a>
