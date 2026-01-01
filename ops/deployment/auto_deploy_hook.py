@@ -45,6 +45,7 @@ SITE_MAPPING = {
 DOMAIN_SITE_KEY_OVERRIDES = {
     # Canonical domain -> deploy manager key (legacy)
     "freerideinvestor.com": "freerideinvestor",
+    "dadudekc.com": "dadudekc.com",
     "southwestsecret.com": "southwestsecret",
     "weareswarm.site": "weareswarm",
     "prismblossom.online": "prismblossom",
