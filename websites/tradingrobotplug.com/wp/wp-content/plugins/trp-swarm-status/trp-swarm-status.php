@@ -25,6 +25,8 @@ define('TRP_SWARM_PLUGIN_URL', plugin_dir_url(__FILE__));
 class TRP_Swarm_Status {
     
     private static $instance = null;
+    private $cache_key = 'trp_swarm_status_cache';
+    private $cache_ttl = 300;
     
     public static function get_instance() {
         if (null === self::$instance) {
@@ -92,6 +94,13 @@ class TRP_Swarm_Status {
             }
             
             if (!$python_script) {
+                $cached_response = $this->get_cached_response(
+                    'Live swarm status unavailable. Showing cached snapshot instead.'
+                );
+                if ($cached_response) {
+                    return $cached_response;
+                }
+
                 return new WP_Error(
                     'script_not_found',
                     'Swarm status service not found. Please configure project root path in plugin settings.',
@@ -106,6 +115,13 @@ class TRP_Swarm_Status {
         $output = shell_exec($command . ' 2>&1');
         
         if ($output === null) {
+            $cached_response = $this->get_cached_response(
+                'Live swarm status unavailable. Showing cached snapshot instead.'
+            );
+            if ($cached_response) {
+                return $cached_response;
+            }
+
             return new WP_Error(
                 'execution_failed',
                 'Failed to execute swarm status service',
@@ -117,14 +133,79 @@ class TRP_Swarm_Status {
         $status = json_decode($output, true);
         
         if (json_last_error() !== JSON_ERROR_NONE) {
+            $cached_response = $this->get_cached_response(
+                'Live swarm status unavailable. Showing cached snapshot instead.'
+            );
+            if ($cached_response) {
+                return $cached_response;
+            }
+
             return new WP_Error(
                 'invalid_json',
                 'Invalid JSON response from status service',
                 array('status' => 500, 'raw_output' => substr($output, 0, 200))
             );
         }
-        
+
+        $this->store_cache($status);
+
         return rest_ensure_response($status);
+    }
+
+    private function store_cache($status) {
+        if (!is_array($status)) {
+            return;
+        }
+
+        set_transient($this->cache_key, array(
+            'cached_at' => gmdate('c'),
+            'data' => $status,
+        ), $this->cache_ttl);
+    }
+
+    private function get_cached_response($message) {
+        $cached = get_transient($this->cache_key);
+        if (!$cached || !is_array($cached) || empty($cached['data'])) {
+            return rest_ensure_response($this->get_fallback_payload($message));
+        }
+
+        $response = $cached['data'];
+        if (!is_array($response)) {
+            $response = array();
+        }
+
+        $cached_at = isset($cached['cached_at']) ? $cached['cached_at'] : gmdate('c');
+
+        $response['status'] = 'stale';
+        $response['is_cached'] = true;
+        $response['cache_notice'] = $message;
+        $response['cached_at'] = $cached_at;
+        if (empty($response['last_updated'])) {
+            $response['last_updated'] = $cached_at;
+        }
+
+        return rest_ensure_response($response);
+    }
+
+    private function get_fallback_payload($message) {
+        $timestamp = gmdate('c');
+
+        return array(
+            'status' => 'fallback',
+            'is_cached' => true,
+            'cache_notice' => $message ?: 'Live swarm status unavailable. Showing last known snapshot.',
+            'cached_at' => $timestamp,
+            'last_updated' => $timestamp,
+            'swarm_metrics' => array(
+                'swarm_health' => 0,
+                'active_agents' => 0,
+                'total_agents' => 8,
+                'total_gas_sent' => 0,
+                'total_gas_received' => 0,
+                'active_partnerships' => 0,
+            ),
+            'agents' => array(),
+        );
     }
     
     /**
