@@ -352,6 +352,46 @@ function freeride_dedupe_developer_tools_menu(array $items, $args)
 add_filter('wp_nav_menu_objects', __NAMESPACE__ . '\freeride_dedupe_developer_tools_menu', 999, 2);
 
 /**
+ * Hide nav items that point to missing or unpublished pages.
+ */
+function freeride_filter_menu_items_for_existing_pages(array $items, $args)
+{
+    if (!isset($args->theme_location) || $args->theme_location !== 'primary') {
+        return $items;
+    }
+
+    $slugs_to_check = [
+        'services',
+        'dev-blog',
+        'get-free-report',
+    ];
+
+    $filtered_items = [];
+
+    foreach ($items as $item) {
+        if (!isset($item->url)) {
+            $filtered_items[] = $item;
+            continue;
+        }
+
+        $path = parse_url($item->url, PHP_URL_PATH);
+        $slug = $path ? basename(rtrim($path, '/')) : '';
+
+        if ($slug && in_array($slug, $slugs_to_check, true)) {
+            $page = get_page_by_path($slug);
+            if (!$page || $page->post_status !== 'publish') {
+                continue;
+            }
+        }
+
+        $filtered_items[] = $item;
+    }
+
+    return $filtered_items;
+}
+add_filter('wp_nav_menu_objects', __NAMESPACE__ . '\freeride_filter_menu_items_for_existing_pages', 900, 2);
+
+/**
  * Comprehensive menu deduplication filter
  * Removes ALL duplicate menu items (not just Developer Tools)
  * Prevents any duplicate menu items from appearing in navigation
@@ -409,6 +449,22 @@ function freeride_remove_developer_tools_from_menu_html($items, $args)
     return $items;
 }
 add_filter('wp_nav_menu_items', __NAMESPACE__ . '\freeride_remove_developer_tools_from_menu_html', 999, 2);
+
+/**
+ * Strip internal SEO scaffolding fields from rendered content.
+ */
+function freeride_strip_internal_seo_scaffolding($content)
+{
+    $patterns = [
+        '/<p>\s*(?:<strong>)?\s*Target Keywords\s*:.*?<\/p>/is',
+        '/<p>\s*(?:<strong>)?\s*Meta Description\s*:.*?<\/p>/is',
+        '/^\s*[*_]*\s*Target Keywords\s*:.*$/mi',
+        '/^\s*[*_]*\s*Meta Description\s*:.*$/mi',
+    ];
+
+    return preg_replace($patterns, '', $content);
+}
+add_filter('the_content', __NAMESPACE__ . '\freeride_strip_internal_seo_scaffolding', 20);
 
 // Enqueue main theme assets
 function freeride_enqueue_assets()
