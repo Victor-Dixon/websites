@@ -85,6 +85,34 @@ function dadudekc_register_project_meta() {
         'single' => true,
         'show_in_rest' => true,
     ]);
+
+    register_post_meta('project', 'project_problem', [
+        'type' => 'string',
+        'description' => 'Problem statement',
+        'single' => true,
+        'show_in_rest' => true,
+    ]);
+
+    register_post_meta('project', 'project_approach', [
+        'type' => 'string',
+        'description' => 'Approach taken',
+        'single' => true,
+        'show_in_rest' => true,
+    ]);
+
+    register_post_meta('project', 'project_outcome', [
+        'type' => 'string',
+        'description' => 'Outcome or results',
+        'single' => true,
+        'show_in_rest' => true,
+    ]);
+
+    register_post_meta('project', 'project_stack', [
+        'type' => 'string',
+        'description' => 'Stack and tools',
+        'single' => true,
+        'show_in_rest' => true,
+    ]);
 }
 add_action('init', 'dadudekc_register_project_meta');
 
