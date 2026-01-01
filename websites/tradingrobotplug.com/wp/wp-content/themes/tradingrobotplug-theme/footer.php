@@ -21,30 +21,27 @@ Author: Victor Dixon
             <div class="footer-section">
                 <h4>Product</h4>
                 <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/features')); ?>">Features</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/pricing')); ?>">Pricing</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/ai-swarm')); ?>">AI Swarm</a></li>
                     <li><a href="https://weareswarm.site" target="_blank" rel="noopener noreferrer">🐝 See the Swarm</a></li>
-                    <li><a href="#changelog">Changelog</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#careers">Careers</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#blog">Blog</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
                 <h4>Resources</h4>
                 <ul>
-                    <li><a href="#docs">Documentation</a></li>
-                    <li><a href="#api">API</a></li>
-                    <li><a href="#support">Support</a></li>
-                    <li><a href="#community">Community</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/blog')); ?>">Blog</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/contact')); ?>">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="<?php echo esc_url(home_url('/privacy')); ?>">Privacy Policy</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/terms-of-service')); ?>">Terms of Service</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/product-terms')); ?>">Product Terms & Risk Disclosure</a></li>
                 </ul>
             </div>
 
@@ -61,12 +58,27 @@ Author: Victor Dixon
 
         <div class="footer-bottom">
             <hr>
-            <p>&copy; <?php echo date('Y'); ?> TradingRobotPlug. All rights reserved.
-                <span class="footer-links">
-                    <a href="#privacy">Privacy</a> |
-                    <a href="#terms">Terms</a>
-                </span>
-            </p>
+            <p>&copy; <?php echo date('Y'); ?> TradingRobotPlug. All rights reserved.</p>
+            <?php
+            // Display footer menu if available
+            if (has_nav_menu('footer')) {
+                wp_nav_menu(array(
+                    'theme_location' => 'footer',
+                    'container' => false,
+                    'menu_class' => 'footer-links',
+                    'depth' => 1,
+                ));
+            } else {
+                // Fallback to simple links
+                ?>
+                <div class="footer-links">
+                    <a href="<?php echo esc_url(home_url('/privacy')); ?>">Privacy Policy</a> |
+                    <a href="<?php echo esc_url(home_url('/terms-of-service')); ?>">Terms of Service</a> |
+                    <a href="<?php echo esc_url(home_url('/product-terms')); ?>">Product Terms</a>
+                </div>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </footer>

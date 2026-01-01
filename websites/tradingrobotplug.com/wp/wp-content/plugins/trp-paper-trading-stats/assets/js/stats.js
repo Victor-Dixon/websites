@@ -46,7 +46,7 @@
             success: function(data) {
                 $loading.hide();
                 
-                if (data.status === 'error' || data.status === 'no_data') {
+                if ((data.status === 'error' || data.status === 'no_data') && !data.is_cached) {
                     renderError($widget, data);
                 } else {
                     renderStats($widget, data, mode);
@@ -76,18 +76,24 @@
         html += '<div class="trp-stats-header">';
         html += '<h2>Trading Bot Performance</h2>';
         html += '<span class="trp-stats-mode-badge">' + (data.mode === 'live_trading' ? 'Live' : 'Paper Trading') + '</span>';
+        if (data.is_cached || data.status === 'stale') {
+            html += '<span class="trp-stats-mode-badge">Cached</span>';
+        }
         html += '</div>';
         
         // Stats grid
         html += '<div class="trp-stats-grid">';
         
         // Total PnL
-        const pnlClass = stats.total_pnl >= 0 ? 'positive' : 'negative';
-        const pnlSign = stats.total_pnl >= 0 ? '+' : '';
+        const totalPnl = parseFloat(stats.total_pnl || 0);
+        const startingBalance = parseFloat(stats.starting_balance || 0);
+        const pnlClass = totalPnl >= 0 ? 'positive' : 'negative';
+        const pnlSign = totalPnl >= 0 ? '+' : '';
+        const returnPercent = startingBalance > 0 ? (totalPnl / startingBalance) * 100 : 0;
         html += '<div class="trp-stat-card ' + pnlClass + '">';
         html += '<div class="trp-stat-label">Total P&L</div>';
-        html += '<div class="trp-stat-value">' + pnlSign + '$' + formatCurrency(stats.total_pnl) + '</div>';
-        html += '<div class="trp-stat-subvalue">' + formatPercent((stats.total_pnl / stats.starting_balance) * 100) + '% return</div>';
+        html += '<div class="trp-stat-value">' + pnlSign + '$' + formatCurrency(totalPnl) + '</div>';
+        html += '<div class="trp-stat-subvalue">' + formatPercent(returnPercent) + '% return</div>';
         html += '</div>';
         
         // Win Rate
@@ -130,7 +136,10 @@
         
         // Footer
         html += '<div class="trp-stats-footer">';
-        html += '<p>Last updated: ' + formatDate(data.last_updated) + '</p>';
+        html += '<p>Last updated: ' + formatDate(data.last_updated || data.cached_at) + '</p>';
+        if (data.is_cached || data.status === 'stale') {
+            html += '<p><em>' + (data.cache_notice || 'Showing cached snapshot while live stats are unavailable.') + '</em></p>';
+        }
         if (data.mode === 'paper_trading') {
             html += '<p><em>These are paper trading results. Live trading coming soon!</em></p>';
         }

@@ -1,0 +1,123 @@
+# Trade Entry Template - FreerideInvestor
+# DoD: Per trade 4-6 screenshots → journal entry → blog post
+
+template_name: "trade_entry"
+brand: "freerideinvestor"
+content_type: "trade_journal"
+
+required_inputs:
+  - trade_id
+  - trade_date
+  - symbol
+  - entry_price
+  - exit_price
+  - screenshots[]  # 4-6 screenshots
+  - journal_entry_text
+  - plan
+  - results
+  - learnings
+
+optional_inputs:
+  - position_size
+  - stop_loss
+  - take_profit
+  - trade_duration
+  - market_conditions
+  - entry_rationale
+  - exit_rationale
+  - emotions_during_trade
+  - mistakes_made
+  - improvements_for_next_time
+
+structure:
+  title:
+    pattern: "{symbol} Trade - {entry_date} | Follow My Signals"
+    max_length: 80
+  
+  meta_description:
+    pattern: "Trade journal entry for {symbol} on {entry_date}. Entry: ${entry_price}, Exit: ${exit_price}. Results: {results_summary}."
+    max_length: 160
+  
+  content_sections:
+    - section: "trade_overview"
+      heading: "Trade Overview"
+      required_fields:
+        - symbol
+        - entry_date
+        - entry_price
+        - exit_price
+        - position_size (if available)
+      template: |
+        **Symbol:** {symbol}
+        **Entry Date:** {trade_date}
+        **Entry Price:** ${entry_price}
+        **Exit Price:** ${exit_price}
+        {position_size_section}
+        
+        {screenshots_section}
+    
+    - section: "trading_plan"
+      heading: "Trading Plan"
+      required_fields:
+        - plan
+      template: |
+        ## The Plan
+        
+        {plan}
+    
+    - section: "results"
+      heading: "Results"
+      required_fields:
+        - results
+      template: |
+        ## What Happened
+        
+        {results}
+    
+    - section: "learnings"
+      heading: "Key Learnings"
+      required_fields:
+        - learnings
+      template: |
+        ## What I Learned
+        
+        {learnings}
+    
+    - section: "screenshots"
+      heading: "Trade Screenshots"
+      required_fields:
+        - screenshots[]
+      template: |
+        ## Visual Record
+        
+        {# Each screenshot gets a descriptive caption #}
+        {# Screenshots should be numbered and described #}
+        
+        [Screenshot 1: {screenshot_1_description}]
+        [Screenshot 2: {screenshot_2_description}]
+        [Screenshot 3: {screenshot_3_description}]
+        [Screenshot 4: {screenshot_4_description}]
+        {# Screenshots 5-6 if available #}
+
+  voice_guidelines:
+    - "Learn-with-me tone: Share the journey, not just results"
+    - "Be transparent about mistakes and wins"
+    - "Help readers follow signals by explaining rationale"
+    - "Use 'I' statements to maintain personal voice"
+    - "Include emotions and thought process"
+
+  citation_rules:
+    - "Only cite data provided in input payload"
+    - "Do not invent trade details"
+    - "If screenshot count < 4, output NEEDED_INPUTS: screenshots[]"
+    - "If missing plan/results/learnings, output NEEDED_INPUTS list"
+
+  promo_snippet_patterns:
+    - pattern: "Just completed a {symbol} trade. Entry: ${entry_price}, Exit: ${exit_price}. Key learning: {top_learning_point}"
+      max_length: 280
+    - pattern: "New trade journal entry: {symbol} on {trade_date}. {results_summary}. Full breakdown: {blog_url}"
+      max_length: 280
+    - pattern: "{symbol} trade results: {key_result}. {learning_teaser}. Read the full analysis: {blog_url}"
+      max_length: 280
+
+

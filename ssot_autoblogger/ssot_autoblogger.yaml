@@ -1,0 +1,218 @@
+# SSOT Autoblogger Pipeline Configuration
+# Routing + DoD Gates for 4 Brands
+
+version: "1.0"
+description: "Single Source of Truth publishing pipeline across 4 brands"
+
+brands:
+  dadudekc:
+    site_url: "https://dadudekc.com"
+    site_key: "dadudekc"
+    purpose: "sound like me hub"
+    content_types:
+      - ideas_brainstorms
+      - experiments_learnings
+      - project_demos
+      - resume_updates
+      - portfolio_items
+    dod_gates:
+      - name: "dreamvault_source"
+        required: false
+        description: "Dreamvault + ChatGPT conversation history"
+        validation: "dreamvault_id OR chatgpt_conversation_id"
+      - name: "resume_delta"
+        required: false
+        description: "Resume delta tracking"
+        validation: "resume_before AND resume_after"
+      - name: "content_voice"
+        required: true
+        description: "Content must sound like user"
+        validation: "voice_consistency_check"
+    template: "templates/general_post.yaml"
+    category: "Personal Development"
+    tags:
+      - "portfolio"
+      - "experiments"
+      - "learning"
+    draft_count: 1
+    promo_snippets: 3
+
+  freerideinvestor:
+    site_url: "https://freerideinvestor.com"
+    site_key: "freerideinvestor"
+    purpose: "learn-with-me + follow signals"
+    content_types:
+      - trade_journal
+      - trade_analysis
+      - trading_plans
+      - trading_results
+      - trading_learnings
+    dod_gates:
+      - name: "trade_screenshots"
+        required: true
+        description: "Per trade: 4-6 screenshots"
+        validation: "screenshots_count >= 4 AND screenshots_count <= 6"
+        needed_inputs:
+          - "trade_id"
+          - "screenshots[]"
+          - "trade_date"
+          - "symbol"
+          - "entry_price"
+          - "exit_price"
+      - name: "journal_entry"
+        required: true
+        description: "Comprehensive trade journal entry"
+        validation: "journal_entry_text.length > 200"
+      - name: "plan_results_learnings"
+        required: true
+        description: "Plan/results/learnings content"
+        validation: "plan AND results AND learnings"
+    template: "templates/trade_entry.yaml"
+    category: "Trade Journal"
+    tags:
+      - "trading"
+      - "journal"
+      - "signals"
+    draft_count: 1
+    promo_snippets: 3
+
+  tradingrobotplug:
+    site_url: "https://tradingrobotplug.com"
+    site_key: "tradingrobotplug"
+    purpose: "algorithmic trading lab"
+    content_types:
+      - backtest_report
+      - preset_analysis
+      - script_documentation
+      - iteration_log
+      - trading_results
+      - trading_plans
+      - trading_learnings
+    dod_gates:
+      - name: "backtest_data"
+        required: true
+        description: "Backtest results data"
+        validation: "backtest_id AND results_json"
+        needed_inputs:
+          - "backtest_id"
+          - "backtest_name"
+          - "results_json"
+          - "preset_name"
+          - "script_version"
+      - name: "iteration_log"
+        required: true
+        description: "Iteration log (mandatory)"
+        validation: "iteration_number AND iteration_notes"
+      - name: "content_completeness"
+        required: true
+        description: "Plans/learnings/results content"
+        validation: "plans OR learnings OR results"
+    template: "templates/backtest_report.yaml"
+    category: "Backtests"
+    tags:
+      - "backtesting"
+      - "algorithmic-trading"
+      - "trading-lab"
+    draft_count: 1
+    promo_snippets: 3
+
+  weareswarm:
+    site_url: "https://weareswarm.online"
+    site_key: "weareswarm"
+    purpose: "documents + implements + publicizes projects"
+    content_types:
+      - project_devlog
+      - dreamos_update
+      - agent_tools_documentation
+      - project_announcement
+    dod_gates:
+      - name: "project_identification"
+        required: true
+        description: "Project must be identified"
+        validation: "project_name OR project_id"
+        needed_inputs:
+          - "project_name"
+          - "project_type"
+          - "project_status"
+      - name: "devlog_content"
+        required: true
+        description: "Project devlog content"
+        validation: "devlog_text.length > 300"
+      - name: "publication_ready"
+        required: true
+        description: "Content must be publication-ready"
+        validation: "no_invented_facts AND citations_valid"
+    template: "templates/project_devlog.yaml"
+    category: "Project Updates"
+    tags:
+      - "dreamos"
+      - "agent-tools"
+      - "swarm"
+    draft_count: 1
+    promo_snippets: 3
+
+# Global Rules
+global_rules:
+  - rule: "no_invented_facts"
+    description: "Never invent facts, only use provided data"
+    enforcement: "strict"
+  - rule: "cite_only_provided_data"
+    description: "Only cite data explicitly provided in input"
+    enforcement: "strict"
+  - rule: "missing_inputs_output"
+    description: "If required inputs missing, output NEEDED_INPUTS list"
+    enforcement: "strict"
+  - rule: "voice_consistency"
+    description: "Maintain consistent voice per brand"
+    enforcement: "moderate"
+
+# Input Payload Structure
+input_payload_schema:
+  type: "object"
+  required_fields:
+    - "content_type"
+    - "source_data"
+  optional_fields:
+    - "metadata"
+    - "tags"
+    - "categories"
+    - "publish_date"
+  structure:
+    content_type: "string (one of: trade_journal, backtest_report, project_devlog, general_post)"
+    source_data: "object (site-specific data structure)"
+    metadata:
+      author: "string"
+      timestamp: "datetime"
+      source: "string"
+    tags: "array of strings"
+    categories: "array of strings"
+    publish_date: "datetime (optional)"
+
+# Routing Logic
+routing:
+  method: "content_type_based"
+  mapping:
+    trade_journal: "freerideinvestor"
+    backtest_report: "tradingrobotplug"
+    project_devlog: "weareswarm"
+    general_post: "dadudekc"
+    resume_update: "dadudekc"
+    experiment: "dadudekc"
+    portfolio_item: "dadudekc"
+
+# Output Structure
+output_structure:
+  per_site:
+    drafts: 1
+    promo_snippets: 3
+  format:
+    drafts: "markdown"
+    promo_snippets: "text (max 280 chars each)"
+  delivery:
+    method: "file_output"
+    path: "output/{site_key}/{timestamp}_{content_type}/"
+    files:
+      - "draft.md"
+      - "promo_snippets.txt"
+
+

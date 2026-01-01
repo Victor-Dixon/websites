@@ -46,7 +46,7 @@
             success: function(data) {
                 $loading.hide();
                 
-                if (data.status === 'error') {
+                if (data.status === 'error' && !data.is_cached) {
                     renderError($widget, data);
                 } else {
                     renderSwarmStatus($widget, data, mode);
@@ -87,6 +87,11 @@
         html += '<span class="trp-swarm-health-badge ' + healthClass + '">';
         html += health + '% Health';
         html += '</span>';
+
+        if (data.is_cached || data.status === 'stale') {
+            html += '<span class="trp-swarm-health-badge warning">Cached</span>';
+        }
+
         html += '</div>';
         
         // Metrics grid
@@ -159,7 +164,10 @@
         
         // Footer
         html += '<div class="trp-swarm-footer">';
-        html += '<p>Last updated: ' + formatDate(data.last_updated) + '</p>';
+        html += '<p>Last updated: ' + formatDate(data.last_updated || data.cached_at) + '</p>';
+        if (data.is_cached || data.status === 'stale') {
+            html += '<p><em>' + (data.cache_notice || 'Showing cached snapshot while live status is unavailable.') + '</em></p>';
+        }
         html += '<p><em>Real-time swarm intelligence - building trading robots in parallel</em></p>';
         html += '</div>';
         

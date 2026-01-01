@@ -6,6 +6,12 @@
  * @since 1.0.0
  */
 
+// If this is the front page and front-page.php exists, use it instead
+if (is_front_page() && locate_template('front-page.php')) {
+    include(locate_template('front-page.php'));
+    return;
+}
+
 get_header(); ?>
 
 <main class="site-main">

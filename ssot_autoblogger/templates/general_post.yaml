@@ -1,0 +1,157 @@
+# General Post Template - Dadudekc
+# DoD: Dreamvault + ChatGPT convo → blog posts, resume delta → blog posts
+
+template_name: "general_post"
+brand: "dadudekc"
+content_types:
+  - ideas_brainstorms
+  - experiments_learnings
+  - project_demos
+  - resume_updates
+  - portfolio_items
+  - general_post
+
+required_inputs:
+  - content_type
+  - content_text
+
+optional_inputs:
+  - dreamvault_id
+  - chatgpt_conversation_id
+  - resume_before
+  - resume_after
+  - experiment_name
+  - project_name
+  - skill_learned
+  - idea_text
+  - brainstorm_text
+  - learning_text
+  - metadata:
+      author: "string"
+      timestamp: "datetime"
+      source: "string"
+
+structure:
+  title:
+    pattern: "{content_title} | Dadudekc"
+    max_length: 80
+    content_type_specific:
+      ideas_brainstorms: "{idea_title} - Brainstorming"
+      experiments_learnings: "{experiment_name} - Learnings"
+      project_demos: "{project_name} Demo"
+      resume_updates: "Resume Update: {skill_learned}"
+      portfolio_items: "{item_name} - Portfolio"
+  
+  meta_description:
+    pattern: "{content_summary}. {meta_teaser}"
+    max_length: 160
+  
+  content_sections:
+    - section: "source_attribution"
+      heading: "Source"
+      required_fields: []
+      optional_fields:
+        - dreamvault_id
+        - chatgpt_conversation_id
+      template: |
+        {# If dreamvault_id provided #}
+        *Source: Dreamvault Entry {dreamvault_id}*
+        
+        {# If chatgpt_conversation_id provided #}
+        *Source: ChatGPT Conversation {chatgpt_conversation_id}*
+    
+    - section: "main_content"
+      heading: null
+      required_fields:
+        - content_text
+      template: |
+        {content_text}
+    
+    - section: "experiment_section"
+      heading: "Experiment: {experiment_name}"
+      required_fields: []
+      optional_fields:
+        - experiment_name
+        - learning_text
+      template: |
+        {# If content_type == experiments_learnings #}
+        ## The Experiment
+        
+        {experiment_details}
+        
+        ## What I Learned
+        
+        {learning_text}
+    
+    - section: "resume_delta_section"
+      heading: "Resume Update"
+      required_fields: []
+      optional_fields:
+        - resume_before
+        - resume_after
+        - skill_learned
+      template: |
+        {# If content_type == resume_updates #}
+        
+        **New Skill:** {skill_learned}
+        
+        **Before:**
+        {resume_before}
+        
+        **After:**
+        {resume_after}
+        
+        **What Changed:**
+        {resume_delta_explanation}
+    
+    - section: "project_demo_section"
+      heading: "{project_name} Demo"
+      required_fields: []
+      optional_fields:
+        - project_name
+        - project_demo_text
+      template: |
+        {# If content_type == project_demos #}
+        
+        {project_demo_text}
+    
+    - section: "idea_brainstorm_section"
+      heading: "Idea: {idea_title}"
+      required_fields: []
+      optional_fields:
+        - idea_text
+        - brainstorm_text
+      template: |
+        {# If content_type == ideas_brainstorms #}
+        
+        {idea_text}
+        
+        ## Brainstorming
+        
+        {brainstorm_text}
+
+  voice_guidelines:
+    - "Sound like me: Personal, authentic, reflective"
+    - "Maintain consistent voice across all content types"
+    - "Be transparent about sources (Dreamvault, ChatGPT)"
+    - "Share the journey, not just outcomes"
+    - "Connect ideas, experiments, projects, and learnings"
+    - "Portfolio items should showcase growth"
+
+  citation_rules:
+    - "Only cite data provided in input payload"
+    - "Do not invent facts or conversations"
+    - "If Dreamvault source, cite dreamvault_id"
+    - "If ChatGPT source, cite chatgpt_conversation_id"
+    - "If content_text missing, output NEEDED_INPUTS: content_text"
+    - "For resume_updates, if resume_before/after missing, output NEEDED_INPUTS"
+
+  promo_snippet_patterns:
+    - pattern: "New post: {content_title}. {content_teaser}. Read more: {blog_url}"
+      max_length: 280
+    - pattern: "{content_type_label}: {content_title}. {key_point}. Full post: {blog_url}"
+      max_length: 280
+    - pattern: "Latest from my portfolio: {content_title}. {teaser}. Check it out: {blog_url}"
+      max_length: 280
+
+
