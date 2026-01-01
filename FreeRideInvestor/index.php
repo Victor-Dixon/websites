@@ -13,120 +13,12 @@ get_header();
 <main id="main-content" class="site-main">
     <div class="container">
 
-        <!-- Hero Section with Positioning Statement -->
+        <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-content">
-                <h1 class="hero-title"><?php esc_html_e('Stop Losing Money on Untested Trading Strategies', 'freerideinvestor'); ?></h1>
-                <p class="hero-description"><?php esc_html_e('For traders tired of generic advice and backtest-only bots that fail in live markets. We provide actionable TBOW tactics and proven strategies—validated through rigorous paper trading—that actually work in real market conditions.', 'freerideinvestor'); ?></p>
-                <div class="hero-cta-group">
-                    <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="cta-button cta-primary"><?php esc_html_e('Get Started Free', 'freerideinvestor'); ?></a>
-                    <a href="#tbow-tactics-section" class="cta-button cta-secondary"><?php esc_html_e('See Our Tactics', 'freerideinvestor'); ?></a>
-                </div>
-                <p class="hero-subtext"><?php esc_html_e('Unlike theory-heavy courses or untested signal services—we focus on practical, tested methods.', 'freerideinvestor'); ?></p>
-            </div>
-        </section>
-
-        <!-- Offer Ladder Section - BRAND-02 Tier 2 -->
-        <section id="offer-ladder-section" class="content-section offer-ladder">
-            <h2 class="section-title"><?php esc_html_e('Your Path to Profitable Trading', 'freerideinvestor'); ?></h2>
-            <p class="section-description"><?php esc_html_e('From free resources to premium strategies—choose your level.', 'freerideinvestor'); ?></p>
-            
-            <div class="offer-grid">
-                <!-- Tier 1: Free Content -->
-                <div class="offer-tier offer-free">
-                    <div class="offer-badge"><?php esc_html_e('FREE', 'freerideinvestor'); ?></div>
-                    <h3 class="offer-title"><?php esc_html_e('TBOW Tactics Blog', 'freerideinvestor'); ?></h3>
-                    <p class="offer-description"><?php esc_html_e('Actionable trading strategies, market insights, and proven tactics—free forever.', 'freerideinvestor'); ?></p>
-                    <ul class="offer-features">
-                        <li><?php esc_html_e('✓ Weekly strategy posts', 'freerideinvestor'); ?></li>
-                        <li><?php esc_html_e('✓ Market analysis', 'freerideinvestor'); ?></li>
-                        <li><?php esc_html_e('✓ Trading psychology tips', 'freerideinvestor'); ?></li>
-                    </ul>
-                    <a href="#tbow-tactics-section" class="offer-cta"><?php esc_html_e('Read Latest Tactics →', 'freerideinvestor'); ?></a>
-                </div>
-
-                <!-- Tier 2: Lead Magnets -->
-                <div class="offer-tier offer-starter">
-                    <div class="offer-badge"><?php esc_html_e('FREE DOWNLOAD', 'freerideinvestor'); ?></div>
-                    <h3 class="offer-title"><?php esc_html_e('Trading Resource Pack', 'freerideinvestor'); ?></h3>
-                    <p class="offer-description"><?php esc_html_e('Essential PDFs to accelerate your trading journey—Trading Roadmap + Mindset Journal.', 'freerideinvestor'); ?></p>
-                    <ul class="offer-features">
-                        <li><?php esc_html_e('✓ Trading Roadmap PDF', 'freerideinvestor'); ?></li>
-                        <li><?php esc_html_e('✓ Mindset Journal Template', 'freerideinvestor'); ?></li>
-                        <li><?php esc_html_e('✓ Strategy Cheat Sheet', 'freerideinvestor'); ?></li>
-                    </ul>
-                    <a href="<?php echo esc_url(home_url('/resources/')); ?>" class="offer-cta"><?php esc_html_e('Download Free Resources →', 'freerideinvestor'); ?></a>
-                </div>
-
-                <!-- Tier 3: Newsletter -->
-                <div class="offer-tier offer-growth">
-                    <div class="offer-badge offer-popular"><?php esc_html_e('POPULAR', 'freerideinvestor'); ?></div>
-                    <h3 class="offer-title"><?php esc_html_e('Weekly Newsletter', 'freerideinvestor'); ?></h3>
-                    <p class="offer-description"><?php esc_html_e('Get exclusive insights, trade setups, and market analysis delivered to your inbox.', 'freerideinvestor'); ?></p>
-                    <ul class="offer-features">
-                        <li><?php esc_html_e('✓ Weekly trade setups', 'freerideinvestor'); ?></li>
-                        <li><?php esc_html_e('✓ Exclusive market analysis', 'freerideinvestor'); ?></li>
-                        <li><?php esc_html_e('✓ Early access to content', 'freerideinvestor'); ?></li>
-                    </ul>
-                    <a href="<?php echo esc_url(home_url('/newsletter/')); ?>" class="offer-cta offer-cta-primary"><?php esc_html_e('Subscribe Now →', 'freerideinvestor'); ?></a>
-                </div>
-
-                <!-- Tier 4: Premium (Coming Soon) -->
-                <div class="offer-tier offer-premium">
-                    <div class="offer-badge"><?php esc_html_e('COMING SOON', 'freerideinvestor'); ?></div>
-                    <h3 class="offer-title"><?php esc_html_e('Premium Membership', 'freerideinvestor'); ?></h3>
-                    <p class="offer-description"><?php esc_html_e('Advanced strategies, exclusive courses, and performance analytics.', 'freerideinvestor'); ?></p>
-                    <ul class="offer-features">
-                        <li><?php esc_html_e('✓ Advanced TBOW strategies', 'freerideinvestor'); ?></li>
-                        <li><?php esc_html_e('✓ Trading courses', 'freerideinvestor'); ?></li>
-                        <li><?php esc_html_e('✓ Performance dashboard', 'freerideinvestor'); ?></li>
-                        <li><?php esc_html_e('✓ Community access', 'freerideinvestor'); ?></li>
-                    </ul>
-                    <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="offer-cta offer-cta-secondary"><?php esc_html_e('Join Waitlist →', 'freerideinvestor'); ?></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Proof & Trust Section - WEB-02 Tier 2 -->
-        <section id="proof-section" class="content-section proof-trust">
-            <h2 class="section-title"><?php esc_html_e('Why Traders Trust FreeRideInvestor', 'freerideinvestor'); ?></h2>
-            <p class="section-description"><?php esc_html_e('Transparent results. Proven methods. Real accountability.', 'freerideinvestor'); ?></p>
-            
-            <div class="proof-metrics">
-                <div class="metric-card">
-                    <span class="metric-value">12+</span>
-                    <span class="metric-label"><?php esc_html_e('Strategies Tested', 'freerideinvestor'); ?></span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">100%</span>
-                    <span class="metric-label"><?php esc_html_e('Paper Trade Validated', 'freerideinvestor'); ?></span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">24/7</span>
-                    <span class="metric-label"><?php esc_html_e('Market Monitoring', 'freerideinvestor'); ?></span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">0</span>
-                    <span class="metric-label"><?php esc_html_e('Hidden Fees', 'freerideinvestor'); ?></span>
-                </div>
-            </div>
-            
-            <div class="trust-elements">
-                <div class="trust-item">
-                    <span class="trust-icon">📊</span>
-                    <h4><?php esc_html_e('Transparent Performance', 'freerideinvestor'); ?></h4>
-                    <p><?php esc_html_e('Every strategy is paper-traded and results shared publicly—no cherry-picking.', 'freerideinvestor'); ?></p>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">🔍</span>
-                    <h4><?php esc_html_e('Build in Public', 'freerideinvestor'); ?></h4>
-                    <p><?php esc_html_e('Follow along as we develop, test, and refine strategies in real-time.', 'freerideinvestor'); ?></p>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">🎯</span>
-                    <h4><?php esc_html_e('No Guru Promises', 'freerideinvestor'); ?></h4>
-                    <p><?php esc_html_e('We focus on education and tested methods—not get-rich-quick schemes.', 'freerideinvestor'); ?></p>
-                </div>
+                <h1 class="hero-title"><?php esc_html_e('Welcome to FreeRideInvestor', 'freerideinvestor'); ?></h1>
+                <p class="hero-description"><?php esc_html_e('Your go-to platform for actionable trading insights, strategies, and community-driven growth.', 'freerideinvestor'); ?></p>
+                <a href="#tbow-tactics-section" class="cta-button"><?php esc_html_e('Explore Tbow Tactics', 'freerideinvestor'); ?></a>
             </div>
         </section>
 

@@ -33,36 +33,24 @@
 /* Show hamburger menu on mobile */
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block !important;
+    display: block;
     margin: 10px 0;
   }
   
-  /* Hide navigation by default on mobile - ONLY on mobile */
+  /* Hide navigation by default on mobile */
   .main-nav .nav-list {
-    display: none !important; /* Hidden by default on mobile only */
+    display: none; /* Hidden by default */
     flex-direction: column;
     width: 100%;
-    background: linear-gradient(135deg, #010409 0%, #0d1117 100%) !important;
+    background: var(--color-dark-grey, #1E1E1E);
     padding: var(--spacing-sm, 15px);
-    border-radius: 8px;
+    border-radius: 4px;
     margin-top: 10px;
-    border: 1px solid rgba(240, 246, 252, 0.1);
   }
   
   /* Show navigation when toggled */
   .main-nav .nav-list.active {
     display: flex !important;
-  }
-}
-
-/* DESKTOP - Ensure navigation is visible */
-@media (min-width: 769px) {
-  .main-nav .nav-list {
-    display: flex !important; /* Force visible on desktop */
-  }
-  
-  .menu-toggle {
-    display: none !important; /* Hide hamburger on desktop */
   }
 }
 

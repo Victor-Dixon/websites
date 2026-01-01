@@ -5,7 +5,7 @@
  * 
  * Birthday invitation page
  * 
- * @package PrismBlossom
+ * @package SouthWestSecret
  */
 
 get_header();

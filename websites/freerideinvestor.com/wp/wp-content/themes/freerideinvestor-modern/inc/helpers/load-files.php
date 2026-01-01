@@ -24,16 +24,8 @@ function simplifiedtheme_load_files($directory) {
     }
 }
 
-// Load all helper files (excluding load-files.php itself to prevent circular dependency)
-$helpers_dir = get_template_directory() . '/inc/helpers';
-if (is_dir($helpers_dir)) {
-    $helper_files = glob($helpers_dir . '/*.php');
-    foreach ($helper_files as $file) {
-        if (basename($file) !== 'load-files.php') {
-            require_once $file;
-        }
-    }
-}
+// Load all helper files
+simplifiedtheme_load_files('inc/helpers');
 
 // Load all post type files
 simplifiedtheme_load_files('inc/post-types');
@@ -53,7 +45,5 @@ simplifiedtheme_load_files('inc/assets');
 // Load cron jobs
 simplifiedtheme_load_files('inc/cron-jobs');
 
-// DON'T auto-load CLI commands - they should only be run explicitly via wp eval-file
-// Auto-loading causes fatal errors when CLI files execute during WordPress load
-// CLI commands should be called explicitly: wp eval-file inc/cli-commands/create-brand-core-content.php
-// simplifiedtheme_load_files('inc/cli-commands');
+// Load CLI commands
+simplifiedtheme_load_files('inc/cli-commands');

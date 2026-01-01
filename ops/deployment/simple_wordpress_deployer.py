@@ -12,10 +12,8 @@ Date: 2025-12-21
 
 import json
 import sys
-import os
-import re
 from pathlib import Path
-from typing import Dict, Optional, List
+from typing import Dict, Optional
 
 try:
     import paramiko
@@ -24,59 +22,23 @@ except ImportError:
     PARAMIKO_AVAILABLE = False
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-
-
-def _normalize_site_key(site_key: str) -> str:
-    """Normalize a domain/site key into an ENV-safe token (e.g. ariajet.site -> ARIAJET_SITE)."""
-    token = re.sub(r"[^A-Za-z0-9]+", "_", site_key).upper().strip("_")
-    return token or "SITE"
-
-
-def _load_dotenv_if_available(*candidate_paths: Path) -> None:
-    """
-    Best-effort .env loading.
-
-    - Does nothing if python-dotenv isn't installed.
-    - Does nothing if no candidate path exists.
-    - Never raises.
-    """
-    try:
-        from dotenv import load_dotenv  # type: ignore
-    except Exception:
-        return
-
-    for p in candidate_paths:
-        try:
-            if p and p.exists():
-                load_dotenv(p, override=False)
-        except Exception:
-            # Best-effort only
-            continue
-
-
-def _get_env_credential(site_key: str, name: str) -> Optional[str]:
-    """
-    Credential lookup with site-specific override.
-
-    Priority:
-    1) {NORMALIZED_SITE_KEY}_{NAME}
-    2) HOSTINGER_* (legacy)
-    3) generic {NAME}
-    """
-    norm = _normalize_site_key(site_key)
-    return (
-        os.getenv(f"{norm}_{name}")
-        or os.getenv(f"HOSTINGER_{name.replace('SFTP_', '')}")  # e.g. HOSTINGER_HOST
-        or os.getenv(name)
-    )
-
-
 def load_hostinger_env_credentials():
     """Load Hostinger credentials from environment variables or .env file."""
-    # Try to load .env from this repository root
-    _load_dotenv_if_available(REPO_ROOT / ".env")
-
+    import os
+    from dotenv import load_dotenv
+    
+    # Try multiple .env locations
+    env_paths = [
+        Path(".env"),  # Current directory
+        Path("D:/Agent_Cellphone_V2_Repository/.env"),  # Windows main repo
+        Path.home() / ".hostinger_env",  # Home directory
+    ]
+    
+    for env_path in env_paths:
+        if env_path.exists():
+            load_dotenv(env_path)
+            break
+    
     host = os.getenv("HOSTINGER_HOST")
     username = os.getenv("HOSTINGER_USER")
     password = os.getenv("HOSTINGER_PASS")
@@ -109,7 +71,7 @@ def load_site_configs():
         }
     
     # Priority 2: .deploy_credentials/sites.json (WordPressManager format)
-    sites_json_path = REPO_ROOT / ".deploy_credentials" / "sites.json"
+    sites_json_path = Path("D:/Agent_Cellphone_V2_Repository/.deploy_credentials/sites.json")
     if sites_json_path.exists():
         try:
             with open(sites_json_path, 'r') as f:
@@ -127,7 +89,9 @@ def load_site_configs():
             print(f"⚠️  Could not load sites.json: {e}")
     
     # Priority 3: site_configs.json
-    config_path = Path(os.getenv("SITE_CONFIGS_PATH", str(REPO_ROOT / "configs" / "site_configs.json")))
+    config_path = Path("D:/websites/configs/site_configs.json")
+    if not config_path.exists():
+        config_path = Path(__file__).parent.parent.parent / "configs" / "site_configs.json"
     
     if config_path.exists():
         try:
@@ -182,23 +146,27 @@ class SimpleWordPressDeployer:
             print("❌ paramiko library not installed. Install with: pip install paramiko")
             return False
         
-        # Load .env (best effort)
-        _load_dotenv_if_available(REPO_ROOT / ".env")
-
-        # Environment variable support (site-specific first)
-        # Supported:
-        # - {SITE}_SFTP_HOST / _SFTP_USER / _SFTP_PASS / _SFTP_PORT
-        # - HOSTINGER_HOST / HOSTINGER_USER / HOSTINGER_PASS / HOSTINGER_PORT (legacy)
-        # - SFTP_HOST / SFTP_USER / SFTP_PASS / SFTP_PORT (generic)
-        host = _get_env_credential(self.site_key, "SFTP_HOST") or os.getenv("HOSTINGER_HOST")
-        username = _get_env_credential(self.site_key, "SFTP_USER") or os.getenv("HOSTINGER_USER")
-        password = _get_env_credential(self.site_key, "SFTP_PASS") or os.getenv("HOSTINGER_PASS")
-        port_str = (
-            _get_env_credential(self.site_key, "SFTP_PORT")
-            or os.getenv("HOSTINGER_PORT")
-            or "65002"
-        )
-        port = int(port_str)
+        # Try to get credentials from Hostinger environment variables first
+        import os
+        from dotenv import load_dotenv
+        
+        # Try multiple .env locations
+        env_paths = [
+            Path(".env"),  # Current directory
+            Path("D:/Agent_Cellphone_V2_Repository/.env"),  # Windows main repo
+            Path.home() / ".hostinger_env",  # Home directory
+        ]
+        
+        for env_path in env_paths:
+            if env_path.exists():
+                load_dotenv(env_path)
+                break
+        
+        # Check environment variables first (Hostinger tool credentials)
+        host = os.getenv("HOSTINGER_HOST")
+        username = os.getenv("HOSTINGER_USER")
+        password = os.getenv("HOSTINGER_PASS")
+        port = int(os.getenv("HOSTINGER_PORT", "65002"))
         
         # If env vars not available, try site config
         if not all([host, username, password]):
@@ -233,11 +201,6 @@ class SimpleWordPressDeployer:
             print(f"      - HOSTINGER_USER: {'✅ Set' if username else '❌ Missing'}")
             print(f"      - HOSTINGER_PASS: {'✅ Set' if password else '❌ Missing'}")
             print(f"      - HOSTINGER_PORT: {port if port else '❌ Missing (default: 65002)'}")
-            norm = _normalize_site_key(self.site_key)
-            print("   📋 Site-specific ENV option:")
-            print(f"      - {norm}_SFTP_HOST / {norm}_SFTP_USER / {norm}_SFTP_PASS / {norm}_SFTP_PORT")
-            print("   📋 Generic ENV option:")
-            print("      - SFTP_HOST / SFTP_USER / SFTP_PASS / SFTP_PORT")
             print("   📋 Configuration Sources Checked:")
             print("      1. Environment variables (.env file)")
             if 'sftp' in self.site_config:
@@ -326,45 +289,22 @@ class SimpleWordPressDeployer:
             remote_dir = str(Path(full_remote_path).parent)
             
             # Create directory recursively using absolute paths
-            # Normalize path - remove double slashes and ensure proper format
-            remote_dir = remote_dir.replace('//', '/').replace('\\', '/')
-            if not remote_dir.startswith('/'):
-                remote_dir = '/' + remote_dir
-            
-            parts = [p for p in remote_dir.split('/') if p]  # Filter empty parts
+            parts = remote_dir.strip('/').split('/')
             current = ''
             for part in parts:
-                current = f"{current}/{part}" if current else f"/{part}"
-                try:
-                    # Check if path exists (file or directory)
-                    self.sftp.stat(current)
-                except (FileNotFoundError, IOError):
-                    # Directory doesn't exist, create it
+                if part:
+                    current = f"{current}/{part}" if current else f"/{part}"
                     try:
-                        self.sftp.mkdir(current)
-                    except (IOError, OSError) as e:
-                        # Directory might already exist (race condition) or permission issue
-                        # Try to verify it exists now
+                        self.sftp.stat(current)
+                    except FileNotFoundError:
                         try:
-                            self.sftp.stat(current)
-                        except (FileNotFoundError, IOError):
-                            # Still doesn't exist, might be permission issue
-                            # Don't print warning for every file - only if upload fails
+                            self.sftp.mkdir(current)
+                        except Exception as e:
+                            # Directory might already exist or permission issue
                             pass
             
-            # Normalize remote path
-            full_remote_path = full_remote_path.replace('//', '/').replace('\\', '/')
-            if not full_remote_path.startswith('/'):
-                full_remote_path = '/' + full_remote_path
-            
             # Upload file (use absolute path)
-            # Ensure local_path is absolute and exists
-            local_path_str = str(Path(local_path).resolve())
-            if not Path(local_path_str).exists():
-                raise FileNotFoundError(f"Local file does not exist: {local_path_str}")
-            
-            # Try to upload
-            self.sftp.put(local_path_str, full_remote_path)
+            self.sftp.put(str(local_path), full_remote_path)
             return True
         except paramiko.SSHException as e:
             print(f"❌ SFTP upload error for {self.site_key}")
@@ -400,17 +340,18 @@ class SimpleWordPressDeployer:
         
         try:
             # Use same credential loading logic as connect() method
-            _load_dotenv_if_available(REPO_ROOT / ".env")
-
-            host = _get_env_credential(self.site_key, "SFTP_HOST") or os.getenv("HOSTINGER_HOST")
-            username = _get_env_credential(self.site_key, "SFTP_USER") or os.getenv("HOSTINGER_USER")
-            password = _get_env_credential(self.site_key, "SFTP_PASS") or os.getenv("HOSTINGER_PASS")
-            port_str = (
-                _get_env_credential(self.site_key, "SFTP_PORT")
-                or os.getenv("HOSTINGER_PORT")
-                or "65002"
-            )
-            port = int(port_str)  # Hostinger uses 65002
+            import os
+            from dotenv import load_dotenv
+            
+            env_path = Path("D:/Agent_Cellphone_V2_Repository/.env")
+            if env_path.exists():
+                load_dotenv(env_path)
+            
+            # Check environment variables first (Hostinger tool credentials)
+            host = os.getenv("HOSTINGER_HOST")
+            username = os.getenv("HOSTINGER_USER")
+            password = os.getenv("HOSTINGER_PASS")
+            port = int(os.getenv("HOSTINGER_PORT", "65002"))  # Hostinger uses 65002
             
             # If env vars not available, try site config
             if not all([host, username, password]):
@@ -541,43 +482,7 @@ class SimpleWordPressDeployer:
                 "error_message": str(e),
                 "output": None
             }
-
-    def download_file(self, remote_path: str, local_path: Path) -> bool:
-        """Download a single file from the server."""
-        if not self.sftp:
-            print("❌ Not connected. Call connect() first.")
-            return False
-        
-        try:
-            local_path.parent.mkdir(parents=True, exist_ok=True)
-            self.sftp.get(remote_path, str(local_path))
-            return True
-        except Exception as e:
-            print(f"❌ SFTP download error: {e}")
-            return False
-
-    def list_files(self, remote_path: str) -> List[str]:
-        """List files in a remote directory."""
-        if not self.sftp:
-            return []
-        
-        try:
-            return self.sftp.listdir(remote_path)
-        except Exception:
-            return []
-
-    def file_exists(self, remote_path: str) -> bool:
-        """Check if a file exists on the remote server."""
-        if not self.sftp:
-            return False
-        try:
-            self.sftp.stat(remote_path)
-            return True
-        except FileNotFoundError:
-            return False
-        except Exception:
-            return False
-
+    
     def disconnect(self):
         """Disconnect from server."""
         if self.sftp:

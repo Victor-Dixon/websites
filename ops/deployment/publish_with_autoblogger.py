@@ -237,18 +237,7 @@ def publish_post_via_wpcli(site_domain: str, title: str, content: str, status: s
 
 
 def format_content_as_html(content: str) -> str:
-    """Convert markdown-like content to beautiful HTML for Digital Dreamscape template."""
-    try:
-        # Use the beautiful HTML formatter for proper code blocks, tables, etc.
-        from beautiful_html_formatter import format_beautiful_html
-        return format_beautiful_html(content, include_meta=True)
-    except ImportError:
-        # Fallback to basic formatting if formatter not available
-        return _basic_format_content_as_html(content)
-
-
-def _basic_format_content_as_html(content: str) -> str:
-    """Basic fallback HTML formatter."""
+    """Convert markdown-like content to HTML."""
     paragraphs = content.split('\n\n')
     html_parts = []
     

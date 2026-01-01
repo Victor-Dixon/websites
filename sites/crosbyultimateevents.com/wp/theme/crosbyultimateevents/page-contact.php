@@ -37,21 +37,14 @@ get_header(); ?>
                                     <div class="contact-icon">📞</div>
                                     <div>
                                         <h3>Phone</h3>
-                                        <p><a href="tel:+19175550198">(917) 555-0198</a></p>
+                                        <p><a href="tel:+1234567890">(123) 456-7890</a></p>
                                     </div>
                                 </div>
                                 <div class="contact-item">
                                     <div class="contact-icon">📍</div>
                                     <div>
                                         <h3>Service Area</h3>
-                                        <p>New York City, The Hamptons, & Tri-State Area</p>
-                                    </div>
-                                </div>
-                                <div class="contact-item">
-                                    <div class="contact-icon">⏰</div>
-                                    <div>
-                                        <h3>Hours</h3>
-                                        <p>Mon-Sun: 9:00 AM - 8:00 PM</p>
+                                        <p>Serving the greater metropolitan area</p>
                                     </div>
                                 </div>
                                 <div class="contact-item">

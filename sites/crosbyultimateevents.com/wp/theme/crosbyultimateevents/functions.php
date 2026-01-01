@@ -153,64 +153,20 @@ function crosbyultimateevents_custom_post_types()
 add_action('init', 'crosbyultimateevents_custom_post_types');
 
 
-/**
- * Default menu fallback (used by wp_nav_menu fallback_cb).
- */
-function crosbyultimateevents_default_menu()
+// Create consultation page
+function crosbyultimateevents_create_consultation_page()
 {
-    echo '<ul class="nav-menu">';
-    echo '<li><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
-    echo '<li><a href="' . esc_url(home_url('/services')) . '">Services</a></li>';
-    echo '<li><a href="' . esc_url(home_url('/portfolio')) . '">Portfolio</a></li>';
-    echo '<li><a href="' . esc_url(home_url('/blog')) . '">Blog</a></li>';
-    echo '<li><a href="' . esc_url(home_url('/contact')) . '">Contact</a></li>';
-    echo '</ul>';
-}
-
-/**
- * Create/ensure key pages exist and have correct templates.
- *
- * Note: WordPress stores page templates in post meta `_wp_page_template`;
- * passing `page_template` into `wp_insert_post()` is ignored.
- */
-function crosbyultimateevents_ensure_page(string $slug, string $title, string $template = 'default'): int
-{
-    $existing = get_page_by_path($slug);
-    if ($existing instanceof WP_Post) {
-        // Ensure template is correct
-        $current_template = (string) get_post_meta($existing->ID, '_wp_page_template', true);
-        if ($template && $current_template !== $template) {
-            update_post_meta($existing->ID, '_wp_page_template', $template);
-        }
-        return (int) $existing->ID;
-    }
-
-    $page_id = wp_insert_post(array(
-        'post_title'  => $title,
-        'post_name'   => $slug,
+    if (get_page_by_path('consultation')) return;
+    $consultation_page = array(
+        'post_title' => 'consultation',
+        'post_name' => 'consultation',
         'post_status' => 'publish',
-        'post_type'   => 'page',
-    ));
-
-    if (!is_wp_error($page_id) && $template) {
-        update_post_meta((int) $page_id, '_wp_page_template', $template);
-    }
-
-    return is_wp_error($page_id) ? 0 : (int) $page_id;
+        'post_type' => 'page',
+        'page_template' => 'page-consultation.php'
+    );
+    wp_insert_post($consultation_page);
 }
-
-/**
- * Ensure core site pages exist on theme activation.
- */
-function crosbyultimateevents_create_core_pages(): void
-{
-    crosbyultimateevents_ensure_page('consultation', 'Consultation', 'page-consultation.php');
-    crosbyultimateevents_ensure_page('services', 'Services', 'page-services.php');
-    crosbyultimateevents_ensure_page('portfolio', 'Portfolio', 'page-portfolio.php');
-    crosbyultimateevents_ensure_page('contact', 'Contact', 'page-contact.php');
-    crosbyultimateevents_ensure_page('blog', 'Blog', 'page-blog.php');
-}
-add_action('after_switch_theme', 'crosbyultimateevents_create_core_pages');
+add_action('after_switch_theme', 'crosbyultimateevents_create_consultation_page');
 
 /**
  * Handle Contact Form Submission
@@ -223,25 +179,10 @@ function crosbyultimateevents_handle_contact_form()
     }
 
     // Check if form was submitted (contact form or consultation form)
-    $is_contact_form = isset($_POST['contact_nonce']);
-    $is_consultation_form = isset($_POST['consultation_nonce']);
-
-    if (!$is_contact_form && !$is_consultation_form) {
-        return;
-    }
-
-    // Nonce verification:
-    // - Contact uses: contact_form
-    // - Consultation can originate from the consultation page OR the front page lead form.
-    $nonce_valid = false;
-    if ($is_contact_form) {
-        $nonce_valid = wp_verify_nonce($_POST['contact_nonce'], 'contact_form');
-    } else {
-        $nonce_value = $_POST['consultation_nonce'] ?? '';
-        $nonce_valid = wp_verify_nonce($nonce_value, 'consultation_request') || wp_verify_nonce($nonce_value, 'front_page_consultation');
-    }
-
-    if (!$nonce_valid) {
+    $nonce_field = isset($_POST['contact_nonce']) ? 'contact_nonce' : (isset($_POST['consultation_nonce']) ? 'consultation_nonce' : null);
+    $nonce_action = isset($_POST['contact_nonce']) ? 'contact_form' : (isset($_POST['consultation_nonce']) ? (isset($_POST['front_page_consultation']) ? 'front_page_consultation' : 'consultation_request') : null);
+    
+    if (!$nonce_field || !wp_verify_nonce($_POST[$nonce_field], $nonce_action)) {
         return;
     }
 
@@ -251,21 +192,11 @@ function crosbyultimateevents_handle_contact_form()
     }
 
     // Sanitize and validate input (handle both contact and consultation forms)
-    $name = '';
-    if (!empty($_POST['contact_name'])) {
-        $name = sanitize_text_field($_POST['contact_name']);
-    } elseif (!empty($_POST['name'])) {
-        $name = sanitize_text_field($_POST['name']);
-    } elseif (!empty($_POST['first_name']) || !empty($_POST['last_name'])) {
-        $first_name = !empty($_POST['first_name']) ? sanitize_text_field($_POST['first_name']) : '';
-        $last_name = !empty($_POST['last_name']) ? sanitize_text_field($_POST['last_name']) : '';
-        $name = trim($first_name . ' ' . $last_name);
-    }
-
-    $email = sanitize_email($_POST['contact_email'] ?? ($_POST['email'] ?? ''));
-    $phone = sanitize_text_field($_POST['contact_phone'] ?? ($_POST['phone'] ?? ''));
-    $subject = sanitize_text_field($_POST['contact_subject'] ?? ($_POST['event_type'] ?? ''));
-    $message = sanitize_textarea_field($_POST['contact_message'] ?? ($_POST['message'] ?? ''));
+    $name = sanitize_text_field($_POST['contact_name'] ?? $_POST['name'] ?? $_POST['first_name'] . ' ' . ($_POST['last_name'] ?? ''));
+    $email = sanitize_email($_POST['contact_email'] ?? $_POST['email'] ?? '');
+    $phone = sanitize_text_field($_POST['contact_phone'] ?? $_POST['phone'] ?? '');
+    $subject = sanitize_text_field($_POST['contact_subject'] ?? $_POST['event_type'] ?? '');
+    $message = sanitize_textarea_field($_POST['contact_message'] ?? $_POST['message'] ?? '');
 
     // Validation
     $errors = array();
@@ -284,11 +215,7 @@ function crosbyultimateevents_handle_contact_form()
 
     // If validation fails, store errors in transient
     if (!empty($errors)) {
-        if ($is_contact_form) {
-            set_transient('contact_form_errors', $errors, 30);
-        } else {
-            set_transient('consultation_form_errors', $errors, 30);
-        }
+        set_transient('contact_form_errors', $errors, 30);
         return;
     }
 
@@ -297,7 +224,7 @@ function crosbyultimateevents_handle_contact_form()
     $email_subject = 'New Contact Form Submission: ' . ucfirst(str_replace('-', ' ', $subject));
 
     // Build email message
-    $email_message = ($is_contact_form ? "New contact form submission from crosbyultimateevents.com\n\n" : "New consultation request from crosbyultimateevents.com\n\n");
+    $email_message = "New contact form submission from crosbyultimateevents.com\n\n";
     $email_message .= "Name: {$name}\n";
     $email_message .= "Email: {$email}\n";
     if (!empty($phone)) {
@@ -321,11 +248,7 @@ function crosbyultimateevents_handle_contact_form()
 
     // Store result in transient for display
     if ($sent) {
-        if ($is_contact_form) {
-            set_transient('contact_form_success', true, 30);
-        } else {
-            set_transient('consultation_form_success', true, 30);
-        }
+        set_transient('contact_form_success', true, 30);
         // Optional: Send auto-reply to user
         $auto_reply_subject = 'Thank you for contacting Crosby Ultimate Events';
         $auto_reply_message = "Dear {$name},\n\n";
@@ -333,12 +256,7 @@ function crosbyultimateevents_handle_contact_form()
         $auto_reply_message .= "Best regards,\nCrosby Ultimate Events Team";
         wp_mail($email, $auto_reply_subject, $auto_reply_message);
     } else {
-        $fallback_error = array('Failed to send message. Please try again or contact us directly.');
-        if ($is_contact_form) {
-            set_transient('contact_form_errors', $fallback_error, 30);
-        } else {
-            set_transient('consultation_form_errors', $fallback_error, 30);
-        }
+        set_transient('contact_form_errors', array('Failed to send message. Please try again or contact us directly.'), 30);
     }
 
     // Redirect to prevent form resubmission
@@ -347,11 +265,20 @@ function crosbyultimateevents_handle_contact_form()
 }
 add_action('template_redirect', 'crosbyultimateevents_handle_contact_form');
 
-/**
- * Include Custom Post Types
- */
-require_once get_template_directory() . '/inc/post-types/icp-definition.php';
-require_once get_template_directory() . '/inc/post-types/offer-ladder.php';
+
+// Create Blog page
+function crosbyultimateevents_create_blog_page() {
+    if (get_page_by_path('blog')) return;
+    $blog_page = array(
+        'post_title' => 'Blog',
+        'post_name' => 'blog',
+        'post_status' => 'publish',
+        'post_type' => 'page',
+        'page_template' => 'page-blog.php'
+    );
+    wp_insert_post($blog_page);
+}
+add_action('after_switch_theme', 'crosbyultimateevents_create_blog_page');
 
 /**
  * Include A/B Test Functionality
@@ -406,30 +333,3 @@ function crosbyultimateevents_fix_text_rendering($content) {
 add_filter('the_content', 'crosbyultimateevents_fix_text_rendering', 999);
 add_filter('the_title', 'crosbyultimateevents_fix_text_rendering', 999);
 add_filter('bloginfo', 'crosbyultimateevents_fix_text_rendering', 999);
-
-/**
- * Event Inquiry Form Handler - Tier 1 Quick Win WEB-04
- */
-add_action('admin_post_handle_event_inquiry', 'handle_event_inquiry');
-add_action('admin_post_nopriv_handle_event_inquiry', 'handle_event_inquiry');
-
-function handle_event_inquiry() {
-    // Verify nonce
-    if (!isset($_POST['event_inquiry_nonce']) || !wp_verify_nonce($_POST['event_inquiry_nonce'], 'event_inquiry_form')) {
-        wp_die('Security check failed');
-    }
-    
-    $email = sanitize_email($_POST['email']);
-    
-    if (!is_email($email)) {
-        wp_die('Invalid email address');
-    }
-    
-    // Process email (add to mailing list, send notification, etc.)
-    // Example: wp_mail($admin_email, 'New Event Inquiry', 'Email: ' . $email);
-    // TODO: Integrate with email marketing platform or CRM
-    
-    // Redirect to thank you page or consultation page
-    wp_redirect(home_url('/consultation?source=front_page&email=' . urlencode($email)));
-    exit;
-}

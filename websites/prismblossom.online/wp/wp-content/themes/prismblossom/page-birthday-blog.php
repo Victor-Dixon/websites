@@ -4,7 +4,7 @@
  * 
  * Blog post draft about Carmyn's birthday
  * 
- * @package PrismBlossom
+ * @package SouthWestSecret
  */
 
 get_header();

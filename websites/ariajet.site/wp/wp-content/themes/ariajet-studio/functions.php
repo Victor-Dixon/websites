@@ -319,7 +319,6 @@ function ariajet_studio_nav_menu_icons($items, $args) {
         $icons = array(
             'Home'   => '🏠',
             'Games'  => '🎮',
-            'Music'  => '🎵',
             'About'  => '✨',
             'Blog'   => '📝',
             'Contact' => '💌',
@@ -342,8 +341,7 @@ add_filter('wp_nav_menu_objects', 'ariajet_studio_nav_menu_icons', 10, 2);
  * (Menu labels usually live in the WordPress database.)
  */
 function ariajet_studio_fix_capabilities_menu_item($items, $args) {
-    // Only affect frontend menus. (Avoid rewriting labels in WP Admin > Appearance > Menus.)
-    if (is_admin()) {
+    if (!isset($args->theme_location) || $args->theme_location !== 'primary') {
         return $items;
     }
 
@@ -352,45 +350,10 @@ function ariajet_studio_fix_capabilities_menu_item($items, $args) {
         $url = isset($item->url) ? trim((string) $item->url) : '';
         $is_dead_link = ($url === '' || $url === '#' || strcasecmp($url, 'javascript:void(0)') === 0);
 
-        // If a menu item is labeled "Live Activity", rename it to "Music".
-        // (On AriaJet, this typically links to the Playlists/Music page.)
-        if (strcasecmp($title, 'Live Activity') === 0) {
-            $item->title = __('Music', 'ariajet-studio');
-
-            // If the existing link is a placeholder or points at an old activity route, fix it.
-            if (
-                $is_dead_link ||
-                stripos($url, '#activity') !== false ||
-                preg_match('~/(live-activity|activity)/?$~i', $url)
-            ) {
-                $item->url = home_url('/music');
-            }
-            continue;
-        }
-
-        // If a menu item is labeled "Music" but points to a dead link, fix it.
-        if (strcasecmp($title, 'Music') === 0 && $is_dead_link) {
-            $item->url = home_url('/music');
-        }
-
-        // If a menu item is labeled "Capabilities" (or "Capabilitie", etc.), rename it to "Music".
-        // Match anywhere to handle labels like "🔥 Capabilities".
-        if (preg_match('~capabilit~i', $title)) {
-            $item->title = __('Music', 'ariajet-studio');
-            $item->url = home_url('/music');
-            continue;
-        }
-
-        // If a menu item is labeled "Agents", make it Home → /
-        if (strcasecmp($title, 'Agents') === 0) {
+        // If a menu item is labeled "Capabilities" or "Agents", make it Home → /
+        if (strcasecmp($title, 'Capabilities') === 0 || strcasecmp($title, 'Agents') === 0) {
             $item->title = __('Home', 'ariajet-studio');
             $item->url = home_url('/');
-            continue;
-        }
-
-        // Rename "Live Activity" to "Music" (keep existing URL).
-        if (strcasecmp($title, 'Live Activity') === 0) {
-            $item->title = __('Music', 'ariajet-studio');
             continue;
         }
 
@@ -404,7 +367,17 @@ function ariajet_studio_fix_capabilities_menu_item($items, $args) {
 }
 add_filter('wp_nav_menu_objects', 'ariajet_studio_fix_capabilities_menu_item', 9, 2);
 
-// Note: About page is intentionally kept minimal; do not force comments open.
+/**
+ * Force comments open on the About page so the form is usable.
+ */
+function ariajet_studio_force_about_comments_open($open, $post_id) {
+    $slug = (string) get_post_field('post_name', $post_id);
+    if (strcasecmp($slug, 'about') === 0) {
+        return true;
+    }
+    return $open;
+}
+add_filter('comments_open', 'ariajet_studio_force_about_comments_open', 10, 2);
 
 
 /**

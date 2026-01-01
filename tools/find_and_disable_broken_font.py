@@ -201,6 +201,3 @@ if __name__ == "__main__":
     sys.exit(0 if find_and_disable_font() else 1)
 
 
-
-
-

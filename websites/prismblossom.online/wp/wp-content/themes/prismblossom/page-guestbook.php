@@ -5,7 +5,7 @@
  * 
  * Guestbook page template for birthday messages
  * 
- * @package PrismBlossom
+ * @package SouthWestSecret
  */
 
 get_header();
