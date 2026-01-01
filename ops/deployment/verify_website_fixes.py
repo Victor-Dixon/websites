@@ -19,10 +19,14 @@ class WebsiteFixVerifier:
     """Verifies website fixes are properly deployed."""
     
     def __init__(self):
-        self.sites = {
+        self.sites = self._dedupe_site_fixes({
             'FreeRideInvestor': {
                 'url': 'https://freerideinvestor.com',
                 'fixes': ['text_rendering', 'css_404s']
+            },
+            'dadudekc': {
+                'url': 'https://dadudekc.com',
+                'fixes': ['homepage_marker']
             },
             'prismblossom': {
                 'url': 'https://prismblossom.online',
@@ -32,7 +36,19 @@ class WebsiteFixVerifier:
                 'url': 'https://southwestsecret.com',
                 'fixes': ['text_rendering', 'hello_world']
             }
-        }
+        })
+
+    @staticmethod
+    def _dedupe_site_fixes(sites: Dict[str, Dict]) -> Dict[str, Dict]:
+        """Ensure per-site fix lists are deduplicated and stable."""
+        deduped = {}
+        for site_name, site_info in sites.items():
+            fixes = site_info.get('fixes', [])
+            deduped[site_name] = {
+                **site_info,
+                'fixes': list(dict.fromkeys(fixes)),
+            }
+        return deduped
     
     def check_text_rendering(self, url: str) -> Tuple[bool, str]:
         """Check if text rendering issue is fixed."""
@@ -84,6 +100,17 @@ class WebsiteFixVerifier:
             return len(errors) == 0, errors
         except Exception as e:
             return False, [f"Error checking CSS: {str(e)}"]
+
+    def check_homepage_marker(self, url: str, marker: str) -> Tuple[bool, str]:
+        """Check for a marker string in the homepage HTML."""
+        try:
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
+            if marker in response.text:
+                return True, f"Marker found: {marker}"
+            return False, f"Marker missing: {marker}"
+        except Exception as e:
+            return False, f"Error checking homepage marker: {str(e)}"
     
     def verify_all(self) -> Dict[str, Dict]:
         """Verify all fixes for all sites."""
@@ -108,6 +135,16 @@ class WebsiteFixVerifier:
                 results[site_name]['checks']['css_404s'] = {
                     'status': status,
                     'errors': errors if not status else []
+                }
+
+            if 'homepage_marker' in site_info['fixes']:
+                status, message = self.check_homepage_marker(
+                    url,
+                    marker="Victor builds ambitious systems"
+                )
+                results[site_name]['checks']['homepage_marker'] = {
+                    'status': status,
+                    'message': message
                 }
         
         return results
