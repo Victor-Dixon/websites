@@ -22,8 +22,8 @@ if AUTOBLOGGER_PATH.exists():
     sys.path.insert(0, str(AUTOBLOGGER_PATH))
 
 try:
-    from autoblogger.services.blog_generator import BlogGenerator
-    from autoblogger.services.vector_db import VectorDB
+    from src.autoblogger.services.blog_generator import BlogGenerator
+    from src.autoblogger.services.vector_db import VectorDB
     from mistralai.client import MistralClient
     AUTOBLOGGER_AVAILABLE = True
 except ImportError as e:
