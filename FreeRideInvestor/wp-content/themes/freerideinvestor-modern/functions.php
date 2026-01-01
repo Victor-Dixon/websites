@@ -258,6 +258,37 @@ function freerideinvestor_create_contact_page() {
 }
 add_action('after_setup_theme', 'freerideinvestor_create_contact_page');
 
+// Create Strategy Report pages
+function freerideinvestor_create_report_pages() {
+    $report_pages = array(
+        array(
+            'title' => 'TSLA Strategy Report',
+            'slug' => 'tsla-strategy-report',
+        ),
+        array(
+            'title' => 'TSLA Strategy Report - Premium',
+            'slug' => 'tsla-strategy-report-premium',
+        ),
+    );
+
+    foreach ($report_pages as $report_page) {
+        if (get_page_by_path($report_page['slug'])) {
+            continue;
+        }
+
+        $page_data = array(
+            'post_title' => $report_page['title'],
+            'post_name' => $report_page['slug'],
+            'post_status' => 'publish',
+            'post_type' => 'page',
+            'page_template' => 'page-report.php',
+        );
+
+        wp_insert_post($page_data);
+    }
+}
+add_action('after_setup_theme', 'freerideinvestor_create_report_pages');
+
 /**
  * Include Blog Template Functions
  */

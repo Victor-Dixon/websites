@@ -51,7 +51,7 @@ get_header(); ?>
                         <p class="subscription-note">We'll notify you when our trading robots are ready and give you priority access.</p>
                         <div class="premium-upgrade-cta">
                             <p><strong>Ready to get started?</strong> Book a free consultation to discuss your trading needs.</p>
-                            <a href="<?php echo esc_url(home_url('/consultation')); ?>" class="cta-button secondary">Schedule Consultation</a>
+                            <a href="<?php echo esc_url('mailto:support@tradingrobotplug.com?subject=Consultation%20Request'); ?>" class="cta-button secondary">Schedule Consultation</a>
                         </div>
                     </div>
                 </section>
