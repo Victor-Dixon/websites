@@ -55,20 +55,20 @@
 - crosbyultimateevents.com
 - houstonsipqueen.com
 - digitaldreamscape.site
-
-**Note**: `dadudekc.com` not in site_configs.json (may need to be added if deployment needed)
+- **dadudekc.com** ✅ Added to config and deployed (24 files deployed successfully)
 
 ## 🎯 Deployment Recommendations
 
-### Immediate Action: None Required
-- Organization changes are structural only
-- No breaking changes to live code
-- All changes committed and pushed
+### Immediate Action: ✅ dadudekc.com Deployed
+- **dadudekc.com**: ✅ Deployed successfully (2025-01-01)
+  - 24 theme files deployed via SFTP
+  - Deployment script: `tools/deploy_dadudekc_dark_theme.py`
+  - Remote path: `domains/dadudekc.com/public_html/wp-content/themes/dadudekc`
+  - Note: Site returns 500 error (WordPress issue, not deployment)
 
 ### Future Deployment (if needed)
-1. **dadudekc.com overlays**: Deploy if these are new/updated theme files
-2. **Theme activations**: If freerideinvestor-v2 or swarm-theme need activation
-3. **Regular updates**: Use unified_deployer.py for ongoing deployments
+1. **Theme activations**: If freerideinvestor-v2 or swarm-theme need activation
+2. **Regular updates**: Use unified_deployer.py or site-specific scripts for ongoing deployments
 
 ## 📝 Deployment Commands
 
