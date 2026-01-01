@@ -36,7 +36,7 @@
 - [ ] Test blog page after configuration
 
 **Files to Verify:**
-- `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/page-blog.php`
+- `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/page-blog.php`
 
 ---
 

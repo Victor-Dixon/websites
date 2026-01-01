@@ -89,9 +89,9 @@ def load_site_configs():
             print(f"⚠️  Could not load sites.json: {e}")
     
     # Priority 3: site_configs.json
-    config_path = Path("D:/websites/configs/site_configs.json")
+    config_path = Path("D:/websites/config/site_configs.json")
     if not config_path.exists():
-        config_path = Path(__file__).parent.parent.parent / "configs" / "site_configs.json"
+        config_path = Path(__file__).parent.parent.parent / "config" / "site_configs.json"
     
     if config_path.exists():
         try:

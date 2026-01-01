@@ -4,7 +4,7 @@ This repo contains multiple website codebases, WordPress themes, WordPress plugi
 
 ## Canonical inventory
 
-The canonical list of websites is in `configs/sites_registry.json` (currently **11 sites**).
+The canonical list of websites is in `config/sites_registry.json` (currently **11 sites**).
 
 ## Current reality (legacy layout)
 
@@ -13,7 +13,7 @@ Right now, themes/plugins are stored in multiple patterns:
 - Site root holds theme files and a `plugins/` subtree (example: `FreeRideInvestor/`)
 - Site contains `wordpress-theme/<theme>/` (example: `ariajet.site/wordpress-theme/...`, `prismblossom.online/wordpress-theme/...`)
 - Site contains `wp-content/themes/...` (example: `Swarm_website/wp-content/themes/...`)
-- Generated “overlays” and deployment-ready snippets live under `sites/<domain>/...` (example: `sites/crosbyultimateevents.com/wp/theme/...`, `sites/crosbyultimateevents.com/wp/plugins/...`)
+- Generated “overlays” and deployment-ready snippets live under `websites/<domain>/overlays/...` (example: `websites/crosbyultimateevents.com/overlays/wp/theme/...`, `websites/crosbyultimateevents.com/overlays/wp/plugins/...`)
 - Shared plugins (not tied to one site) live under `wordpress-plugins/`
 
 There is also an **auto-deploy hook** at `tools/auto_deploy_hook.py` that currently maps a few legacy top-level directories to live sites.
@@ -32,12 +32,12 @@ websites/
           <theme-name>/
         plugins/
           <plugin-slug>/
+    overlays/                  # generated snippets used by automation
     static/                    # non-WP static site files (if any)
 shared/
   wordpress-plugins/           # shared plugins not owned by one site
 ops/
   deployment/                  # WordPress deployment tools and automation
-  site-overlays/               # generated snippets used by automation (current `sites/`)
 ```
 
 ## Migration approach (safe + systematic)
@@ -52,4 +52,3 @@ ops/
 ## Security note
 
 Credentials must never be committed. Store them in `.deploy_credentials/` (gitignored) or environment variables.
-

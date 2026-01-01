@@ -17,7 +17,7 @@ This audit evaluates the current state of content publishing workflows across 4 
 ### 1. **Dadudekc.com** - "Sound Like Me" Hub
 
 **Current State:**
-- ✅ WordPress site exists at `sites/dadudekc.com/`
+- ✅ WordPress site exists at `websites/dadudekc.com/overlays/`
 - ✅ Theme with dynamic content system (`DYNAMIC_CONTENT_SYSTEM.md`)
 - ✅ Post types: experiments, projects, resume items
 - ❌ No automated Dreamvault → blog post workflow
@@ -49,7 +49,7 @@ This audit evaluates the current state of content publishing workflows across 4 
 ### 2. **FreerideInvestor.com** - Learn-With-Me + Trade Signals
 
 **Current State:**
-- ✅ WordPress site exists at `sites/freerideinvestor.com/`
+- ✅ WordPress site exists at `websites/freerideinvestor.com/overlays/`
 - ✅ Trading plugin infrastructure
 - ❌ No automated trade journal workflow
 - ❌ No screenshot → journal entry automation
@@ -76,7 +76,7 @@ This audit evaluates the current state of content publishing workflows across 4 
 ### 3. **TradingRobotPlug.com** - Algorithmic Trading Lab
 
 **Current State:**
-- ✅ WordPress site exists at `sites/tradingrobotplug.com/`
+- ✅ WordPress site exists at `websites/tradingrobotplug.com/overlays/`
 - ✅ Trading plugin with dashboard
 - ✅ Chart data endpoints
 - ❌ No backtest log automation
@@ -108,7 +108,7 @@ This audit evaluates the current state of content publishing workflows across 4 
 ### 4. **WeAreSwarm.online** - DreamOS + Agent Tools Documentation
 
 **Current State:**
-- ✅ WordPress site exists at `sites/weareswarm.online/`
+- ✅ WordPress site exists at `websites/weareswarm.online/overlays/`
 - ✅ Theme with project documentation structure
 - ✅ Swarm manifesto page
 - ❌ No automated project devlog generation

@@ -76,7 +76,7 @@ def deploy_prismblossom_theme():
         # Load site configs - SimpleWordPressDeployer.load_site_configs() checks:
         # 1. Hostinger env vars (.env)
         # 2. .deploy_credentials/sites.json (WordPressManager format)
-        # 3. configs/site_configs.json
+        # 3. config/site_configs.json
         site_configs = None
         if SIMPLE_DEPLOYER_AVAILABLE:
             from simple_wordpress_deployer import load_site_configs
@@ -88,7 +88,7 @@ def deploy_prismblossom_theme():
                     "   1. Hostinger env vars (HOSTINGER_HOST, HOSTINGER_USER, HOSTINGER_PASS)")
                 print(
                     "   2. D:/Agent_Cellphone_V2_Repository/.deploy_credentials/sites.json")
-                print("   3. D:/websites/configs/site_configs.json")
+                print("   3. D:/websites/config/site_configs.json")
                 return False
 
         # Initialize deployment manager
@@ -120,7 +120,7 @@ def deploy_prismblossom_theme():
             # SimpleWordPressDeployer.connect() doesn't take parameters, remote_path is stored in config
             if not manager.connect():
                 print(f"❌ Failed to connect to {site_key}")
-                print("   Check SFTP credentials in configs/site_configs.json")
+                print("   Check SFTP credentials in config/site_configs.json")
                 return False
         else:
             if not manager.connect():
@@ -128,7 +128,7 @@ def deploy_prismblossom_theme():
                 if WORDPRESS_MANAGER_AVAILABLE:
                     print("   Check credentials in .deploy_credentials/sites.json")
                 else:
-                    print("   Check SFTP credentials in configs/site_configs.json")
+                    print("   Check SFTP credentials in config/site_configs.json")
                 return False
         print("✅ Connected!\n")
 

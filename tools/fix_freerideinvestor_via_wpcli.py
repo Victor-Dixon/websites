@@ -35,7 +35,7 @@ except ImportError:
 
 def load_site_configs():
     """Load site configurations."""
-    config_path = Path(__file__).parent.parent / "configs" / "site_configs.json"
+    config_path = Path(__file__).parent.parent / "config" / "site_configs.json"
     if config_path.exists():
         import json
         with open(config_path, 'r', encoding='utf-8') as f:

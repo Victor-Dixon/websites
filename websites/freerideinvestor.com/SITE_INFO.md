@@ -16,7 +16,7 @@ See **[WHAT_IS_FREERIDEINVESTOR.md](./WHAT_IS_FREERIDEINVESTOR.md)** for the ful
 - ✅ **Canonical theme**: `websites/freerideinvestor.com/wp/wp-content/themes/freerideinvestor-modern/` (MIGRATED 2025-12-20 - Phase 1)
 - ✅ **Canonical plugins**: `websites/freerideinvestor.com/wp/wp-content/plugins/` (MIGRATED 2025-12-20 - Phase 2)
 - **Legacy source**: `FreeRideInvestor/` (preserved for backward compatibility - 12,619 files)
-- **Generated overlays**: `sites/freerideinvestor.com/` (to be migrated to `ops/site-overlays/`)
+- **Generated overlays**: `websites/freerideinvestor.com/overlays/`
 
 ### Theme structure
 

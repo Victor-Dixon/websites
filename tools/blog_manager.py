@@ -21,7 +21,7 @@ QUICK START:
     python tools/blog_manager.py edit ariajet.site --id 5 --title "New Title"
 
 CONFIGURATION:
-    Site credentials are loaded from: configs/site_configs.json
+    Site credentials are loaded from: config/site_configs.json
     
     Each site needs:
     - rest_api.username
@@ -71,11 +71,11 @@ except ImportError:
 # =============================================================================
 
 def load_site_configs() -> dict:
-    """Load site configurations from configs/site_configs.json"""
-    config_path = REPO_ROOT / "configs" / "site_configs.json"
+    """Load site configurations from config/site_configs.json"""
+    config_path = REPO_ROOT / "config" / "site_configs.json"
     if not config_path.exists():
         print(f"❌ Config file not found: {config_path}")
-        print("   Create configs/site_configs.json with your site credentials")
+        print("   Create config/site_configs.json with your site credentials")
         sys.exit(1)
     
     with open(config_path) as f:
@@ -95,7 +95,7 @@ def get_site_config(site: str) -> dict:
         if site in domain or domain in site:
             return config
     
-    print(f"❌ Site '{site}' not found in configs/site_configs.json")
+    print(f"❌ Site '{site}' not found in config/site_configs.json")
     print(f"   Available sites: {', '.join(configs.keys())}")
     sys.exit(1)
 

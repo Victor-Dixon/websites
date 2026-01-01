@@ -72,10 +72,10 @@ All critical (P0) website audit issues have been resolved across 5 websites. The
 - Implemented fade-in animations for filtered items
 
 **Files Modified:**
-- `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/js/portfolio-filter.js` (NEW)
-- `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/functions.php`
-- `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/page-blog.php`
-- `sites/crosbyultimateevents.com/wp/theme/crosbyultimateevents/front-page.php`
+- `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/js/portfolio-filter.js` (NEW)
+- `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/functions.php`
+- `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/page-blog.php`
+- `websites/crosbyultimateevents.com/overlays/wp/theme/crosbyultimateevents/front-page.php`
 
 ---
 

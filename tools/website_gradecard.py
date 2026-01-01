@@ -5,7 +5,7 @@ from pathlib import Path
 from datetime import datetime
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SITES_REGISTRY = REPO_ROOT / "configs" / "sites_registry.json"
+SITES_REGISTRY = REPO_ROOT / "config" / "sites_registry.json"
 GRADECARD_FILE = REPO_ROOT / "global_website_gradecard.json"
 
 def load_domains():

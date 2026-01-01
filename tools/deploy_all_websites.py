@@ -111,7 +111,7 @@ def deploy_site(site_name: str, config: dict) -> bool:
     
     try:
         # Load site configs for SimpleWordPressDeployer
-        config_path = Path(__file__).parent.parent / "configs" / "site_configs.json"
+        config_path = Path(__file__).parent.parent / "config" / "site_configs.json"
         site_configs = {}
         if config_path.exists():
             with open(config_path, 'r', encoding='utf-8') as f:
@@ -127,7 +127,7 @@ def deploy_site(site_name: str, config: dict) -> bool:
         print(f"📡 Connecting to {config['site_key']}...")
         if not manager.connect():
             print(f"❌ Failed to connect to {config['site_key']}")
-            print("   Check credentials in configs/site_configs.json or .env")
+            print("   Check credentials in config/site_configs.json or .env")
             return False
         print("✅ Connected!\n")
         

@@ -51,7 +51,7 @@ if sites_json_path.exists():
 print()
 
 # Check site_configs.json
-config_path = Path("D:/websites/configs/site_configs.json")
+config_path = Path("D:/websites/config/site_configs.json")
 print(f"3. site_configs.json:")
 print(f"   Location: {config_path}")
 print(f"   Exists: {'✅ Yes' if config_path.exists() else '❌ No'}")

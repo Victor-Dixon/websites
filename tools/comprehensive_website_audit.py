@@ -29,8 +29,8 @@ import time
 import re
 
 def load_site_registry(project_root: Path) -> Dict:
-    """Loads the site registry from configs/sites_registry.json."""
-    registry_file = project_root / "configs" / "sites_registry.json"
+    """Loads the site registry from config/sites_registry.json."""
+    registry_file = project_root / "config" / "sites_registry.json"
     if registry_file.exists():
         with open(registry_file, 'r', encoding='utf-8', errors='ignore') as f:
             try:

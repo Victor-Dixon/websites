@@ -27,9 +27,9 @@ import requests
 from urllib.parse import urlparse
 
 def load_site_registry() -> Dict:
-    """Load site registry from configs/sites_registry.json."""
+    """Load site registry from config/sites_registry.json."""
     project_root = Path(__file__).parent.parent
-    registry_file = project_root / "configs" / "sites_registry.json"
+    registry_file = project_root / "config" / "sites_registry.json"
     
     if not registry_file.exists():
         print(f"⚠️  Site registry not found: {registry_file}")

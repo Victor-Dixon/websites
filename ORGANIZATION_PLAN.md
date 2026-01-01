@@ -8,13 +8,12 @@
    - Root-level site directories (legacy): `FreeRideInvestor/`, `Swarm_website/`, `southwestsecret.com/`
 
 2. **Multiple Autoblogger Implementations**
-   - `autoblogger/` - Legacy?
-   - `src/autoblogger/` - Python package (preferred)
-   - `ssot_autoblogger/` - SSOT implementation
+   - `autoblogger/` - Entry-point shims
+   - `src/autoblogger/` - Python package (SSOT)
+   - `src/autoblogger/ssot/` - SSOT docs/config/prompt assets
 
 3. **Config Duplication**
-   - `config/` - Contains analytics_ids.json and voice_profiles
-   - `configs/` - Contains site_configs.json and sites_registry.json
+   - `config/` - Unified configuration directory (site registry, site configs, analytics, voice profiles)
 
 4. **Root-Level Clutter**
    - Temporary files (`temp_*.md`)
@@ -88,12 +87,12 @@ website/
 ## Migration Steps
 
 ### Phase 1: Consolidate Config Directories
-- [ ] Merge `config/` into `configs/` OR rename `configs/` to `config/`
+- [ ] Confirm `config/` as the SSOT directory
 - [ ] Update all references to config paths
 
 ### Phase 2: Consolidate Site Directories
-- [ ] Move root-level site dirs to `sites/` or `websites/` (standardize on one)
-- [ ] Consolidate `sites/` and `websites/` into single `sites/` directory
+- [ ] Move overlays from `sites/<domain>/` → `websites/<domain>/overlays/`
+- [ ] Keep `sites/` for autoblogger YAML configs
 - [ ] Update deployment scripts and references
 
 ### Phase 3: Consolidate Autoblogger
@@ -103,7 +102,7 @@ website/
 
 ### Phase 4: Clean Root Directory
 - [ ] Move temp files to `temp/`
-- [ ] Move legacy `FreeRideInvestor/` to `sites/freerideinvestor.com/` or archive
+- [ ] Move legacy `FreeRideInvestor/` to `websites/freerideinvestor.com/legacy/` or archive
 - [ ] Clean up root-level markdown files
 
 ### Phase 5: Organize Documentation
@@ -123,4 +122,3 @@ website/
 - Update all scripts that reference old paths
 - Test after each phase
 - Keep backup/rollback plan
-

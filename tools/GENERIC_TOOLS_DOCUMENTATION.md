@@ -36,7 +36,7 @@ python tools/blog_manager.py get ariajet.site --id 5
 python tools/blog_manager.py sites
 ```
 
-**Configuration:** All credentials are in `configs/site_configs.json`
+**Configuration:** All credentials are in `config/site_configs.json`
 
 ---
 
@@ -93,7 +93,7 @@ python tools/blog_manager.py edit digitaldreamscape.site \
 **How it works:**
 - Uses WordPress REST API for most operations (fast, reliable)
 - Falls back to WP-CLI via SSH for operations requiring elevated permissions (like deleting)
-- Credentials loaded automatically from `configs/site_configs.json`
+- Credentials loaded automatically from `config/site_configs.json`
 
 ---
 
@@ -310,7 +310,7 @@ python tools/generic_deploy_template.py --site digitaldreamscape.site --template
 
 ## Available Sites
 
-All tools work with any site in `configs/site_configs.json`. Common sites include:
+All tools work with any site in `config/site_configs.json`. Common sites include:
 
 - `digitaldreamscape.site`
 - `freerideinvestor.com`
@@ -322,7 +322,7 @@ All tools work with any site in `configs/site_configs.json`. Common sites includ
 
 To see all available sites:
 ```bash
-python -c "import json; from pathlib import Path; configs = json.load(open(Path('configs/site_configs.json'))); print('\n'.join(configs.keys()))"
+python -c "import json; from pathlib import Path; configs = json.load(open(Path('config/site_configs.json'))); print('\n'.join(configs.keys()))"
 ```
 
 ---
@@ -343,7 +343,7 @@ python -c "import json; from pathlib import Path; configs = json.load(open(Path(
 ```
 ❌ Site example.com not found in site_configs.json
 ```
-**Solution**: Verify the site exists in `configs/site_configs.json` and the domain matches exactly.
+**Solution**: Verify the site exists in `config/site_configs.json` and the domain matches exactly.
 
 ### Template not found
 ```

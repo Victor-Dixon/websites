@@ -34,8 +34,8 @@ except ImportError:
 
 
 def load_site_registry() -> Dict:
-    """Load site registry from configs/sites_registry.json."""
-    registry_path = Path(__file__).parent.parent.parent / "configs" / "sites_registry.json"
+    """Load site registry from config/sites_registry.json."""
+    registry_path = Path(__file__).parent.parent.parent / "config" / "sites_registry.json"
     if registry_path.exists():
         with open(registry_path, 'r') as f:
             return json.load(f)
@@ -144,7 +144,7 @@ def deploy_site(site_domain: str, site_config: Dict, dry_run: bool = False) -> b
         site_configs = load_site_configs()
         if not site_configs:
             print("❌ No site configurations found")
-            print("   Check configs/site_configs.json or .env file for credentials")
+            print("   Check config/site_configs.json or .env file for credentials")
             return False
         
         # Initialize deployer
@@ -220,10 +220,10 @@ def main():
     print("="*60)
     
     # Load configurations
-    site_configs_path = Path(__file__).parent.parent.parent / "configs" / "site_configs.json"
+    site_configs_path = Path(__file__).parent.parent.parent / "config" / "site_configs.json"
     if not site_configs_path.exists():
         print(f"\n❌ Site configurations not found at: {site_configs_path}")
-        print("   Please create configs/site_configs.json with site configurations")
+        print("   Please create config/site_configs.json with site configurations")
         return 1
     
     with open(site_configs_path, 'r') as f:

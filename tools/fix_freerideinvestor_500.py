@@ -366,7 +366,7 @@ def main():
         return 1
     
     # Load site config
-    config_path = Path("D:/websites/configs/site_configs.json")
+    config_path = Path("D:/websites/config/site_configs.json")
     if not config_path.exists():
         print("❌ Site config not found")
         return 1

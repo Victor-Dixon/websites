@@ -13,7 +13,7 @@ See **[WHAT_IS_WEARESWARM_ONLINE.md](./WHAT_IS_WEARESWARM_ONLINE.md)** for the f
 
 ### Current source locations (legacy pointers)
 
-- `sites/weareswarm.online`
+- `websites/weareswarm.online/overlays`
 
 ### Target layout (when migrated)
 

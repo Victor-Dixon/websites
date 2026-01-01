@@ -23,7 +23,7 @@ import re
 def get_site_info():
     """Get freerideinvestor.com site information."""
     project_root = Path(__file__).parent.parent
-    registry_file = project_root / "configs" / "sites_registry.json"
+    registry_file = project_root / "config" / "sites_registry.json"
     
     with open(registry_file, 'r', encoding='utf-8') as f:
         registry = json.load(f)

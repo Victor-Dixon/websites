@@ -346,7 +346,7 @@
 
 ### Completed Tasks ✅
 
-- [x] **COMPLETE**: Create `websites/` directory structure as navigation hub - Standardized directory structure created for all 11 sites in `configs/sites_registry.json` ✅
+- [x] **COMPLETE**: Create `websites/` directory structure as navigation hub - Standardized directory structure created for all 11 sites in `config/sites_registry.json` ✅
 - [x] **COMPLETE**: Generate SITE_INFO.md files for all websites - Navigation files created for: ariajet.site, crosbyultimateevents.com, dadudekc.com, digitaldreamscape.site, freerideinvestor.com, houstonsipqueen.com, prismblossom.online, southwestsecret.com, tradingrobotplug.com, weareswarm.online, weareswarm.site ✅
 - [x] **COMPLETE**: Create repository organization tooling - `tools/organize_repo.py` and `tools/repo_inventory.py` created for systematic migration ✅
 - [x] **COMPLETE**: Migrate WordPress themes to standardized locations - Themes moved to `websites/<domain>/wp/wp-content/themes/` structure (ariajet, prismblossom themes migrated) ✅
@@ -362,7 +362,7 @@
 - [x] **COMPLETE**: WordPress deployment tools migration - ✅ WordPress deployment manager and tools migrated to `ops/deployment/` (2025-12-20). Tools: auto_deploy_hook.py, deploy_all_websites.py, deploy_website_fixes.py, check_wordpress_updates.py, check_wordpress_versions.py, wordpress_version_checker.py, verify_website_fixes.py. Documentation created (ops/README.md, ops/deployment/README.md). Tools in `tools/` maintained for backward compatibility. [COMPLETE 2025-12-20]
 - [ ] **MEDIUM**: Update deployment automation for new structure - Update `tools/auto_deploy_hook.py` to recognize new `websites/<domain>/` paths and maintain backward compatibility during transition [Agent-3 CLAIMED]
 - [ ] **LOW**: Migrate shared plugins to `shared/wordpress-plugins/` - Move plugins from `wordpress-plugins/` to `shared/wordpress-plugins/` per target standard [Agent-3]
-- [ ] **LOW**: Migrate generated overlays to `ops/site-overlays/` - Move current `sites/<domain>/` generated snippets to `ops/site-overlays/` per target standard [Agent-3]
+- [x] **LOW**: Migrate generated overlays to `websites/<domain>/overlays/` - Move current `sites/<domain>/` generated snippets to `websites/<domain>/overlays/` per current standard ✅ COMPLETE
 - [ ] **LOW**: Remove legacy directory structures after cutover - Clean up old theme/plugin locations once all sites migrated and automation updated [Agent-3]
 
 ## TOOLBELT HEALTH CHECK TASKS

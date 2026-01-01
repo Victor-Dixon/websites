@@ -4,7 +4,7 @@
   - https://tradingrobotplug.com/wp-json/wp/v2/categories
   - https://tradingrobotplug.com/wp-json/wp/v2/tags
   - https://tradingrobotplug.com/wp-json/wp/v2/posts
-- Use credentials from `configs/site_configs.json` under `tradingrobotplug.com` → `rest_api`.
+- Use credentials from `config/site_configs.json` under `tradingrobotplug.com` → `rest_api`.
 - Recommended local publish flow:
   1. Create/verify categories: Execution, Algorithmic Trading.
   2. Create/verify tags: TSLA, VWAP, MACD curl, Bollinger Bands, RSI, tight stops, TradingView indicator, scalping, options.

@@ -13,7 +13,7 @@ See **[WHAT_IS_DIGITAL_DREAMSCAPE.md](./WHAT_IS_DIGITAL_DREAMSCAPE.md)** for the
 
 ### Current source locations (legacy pointers)
 
-- `sites/digitaldreamscape.site`
+- `websites/digitaldreamscape.site/overlays`
 
 ### Target layout (when migrated)
 

@@ -38,20 +38,20 @@ All documentation files moved to canonical locations:
 
 ### Sites Consolidated
 1. **ariajet.site**
-   - 1 doc → `websites/ariajet.site/docs/`
-   - 3 HTML files → `websites/ariajet.site/`
+   - 1 doc → `websites/ariajet.site/overlays/docs/`
+   - 3 HTML files → `websites/ariajet.site/overlays/`
 
 2. **crosbyultimateevents.com**
-   - 8 docs → `websites/crosbyultimateevents.com/docs/`
-   - 1 YAML → `websites/crosbyultimateevents.com/`
+   - 8 docs → `websites/crosbyultimateevents.com/overlays/docs/`
+   - 1 YAML → `websites/crosbyultimateevents.com/overlays/`
 
 3. **dadudekc.com**
-   - 7 docs → `websites/dadudekc.com/docs/`
-   - 1 YAML → `websites/dadudekc.com/`
+   - 7 docs → `websites/dadudekc.com/overlays/docs/`
+   - 1 YAML → `websites/dadudekc.com/overlays/`
 
 4. **houstonsipqueen.com**
-   - 10 docs → `websites/houstonsipqueen.com/docs/`
-   - 1 YAML → `websites/houstonsipqueen.com/`
+   - 10 docs → `websites/houstonsipqueen.com/overlays/docs/`
+   - 1 YAML → `websites/houstonsipqueen.com/overlays/`
 
 5. **southwestsecret.com**
    - 3 docs → `websites/southwestsecret.com/docs/`

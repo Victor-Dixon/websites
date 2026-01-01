@@ -72,7 +72,7 @@ class UnifiedWordPressManager:
     
     def _load_config(self) -> Dict:
         """Load site configuration."""
-        config_path = Path("D:/websites/configs/site_configs.json")
+        config_path = Path("D:/websites/config/site_configs.json")
         if config_path.exists():
             with open(config_path, 'r', encoding='utf-8') as f:
                 configs = json.load(f)
@@ -81,7 +81,7 @@ class UnifiedWordPressManager:
     
     def _load_site_configs(self) -> Dict:
         """Load all site configurations."""
-        config_path = Path("D:/websites/configs/site_configs.json")
+        config_path = Path("D:/websites/config/site_configs.json")
         if config_path.exists():
             with open(config_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
