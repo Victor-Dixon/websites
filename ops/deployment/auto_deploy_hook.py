@@ -32,12 +32,14 @@ class DeployClassification:
 
 
 # Site mapping: local directory → site key
+# NOTE: Legacy root-level directories archived/moved to websites/
 SITE_MAPPING = {
-    "FreeRideInvestor": "freerideinvestor",
-    "southwestsecret.com": "southwestsecret",
-    "Swarm_website": "weareswarm",
+    # Legacy mappings removed - all sites now in websites/<domain>/
+    # "FreeRideInvestor": "freerideinvestor",  # Archived to archive/FreeRideInvestor/
+    # "southwestsecret.com": "southwestsecret",  # Moved to websites/southwestsecret.com/
+    # "Swarm_website": "weareswarm",  # Moved to websites/weareswarm.site/
     # TradingRobotPlugWeb removed: now ignored and uses canonical websites/tradingrobotplug.com/ layout
-    "prismblossom.online": "prismblossom",
+    "prismblossom.online": "prismblossom",  # Still at root (legacy)
 }
 
 # New canonical layout support: websites/<domain>/...

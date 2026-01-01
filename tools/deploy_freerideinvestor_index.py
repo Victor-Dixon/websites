@@ -26,10 +26,17 @@ def main():
         sys.exit(1)
     
     try:
-        # Read local index.php
-        local_index = Path("D:/websites/FreeRideInvestor/index.php")
+        # Read local index.php from canonical location
+        # FreeRideInvestor archived - use archive or websites location
+        repo_root = Path(__file__).parent.parent.parent
+        local_index = repo_root / "archive" / "FreeRideInvestor" / "index.php"
         if not local_index.exists():
-            print(f"❌ Local index.php not found: {local_index}")
+            # Fallback to websites location if theme has index.php
+            local_index = repo_root / "websites" / "freerideinvestor.com" / "wp" / "wp-content" / "themes" / "freerideinvestor-modern" / "index.php"
+        if not local_index.exists():
+            print(f"❌ Local index.php not found. Checked:")
+            print(f"   - archive/FreeRideInvestor/index.php")
+            print(f"   - websites/freerideinvestor.com/wp/wp-content/themes/freerideinvestor-modern/index.php")
             sys.exit(1)
         
         with open(local_index, 'r', encoding='utf-8') as f:
@@ -49,7 +56,9 @@ def main():
         
         # Write new index.php using deploy_file method
         # Create temp file locally
-        temp_file = Path("D:/websites/temp_index.php")
+        repo_root = Path(__file__).parent.parent.parent
+        temp_file = repo_root / "temp" / "temp_index.php"
+        temp_file.parent.mkdir(parents=True, exist_ok=True)
         with open(temp_file, 'w', encoding='utf-8') as f:
             f.write(index_content)
         

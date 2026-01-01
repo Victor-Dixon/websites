@@ -94,3 +94,6 @@ The project is now **perfectly organized and maintainable**. All consolidation t
 
 **Note**: One file with an extremely long filename was removed from git tracking during the FreeRideInvestor archive move due to filesystem limitations. The directory was successfully archived.
 
+**Excluded File** (see `docs/archive_excludes.txt`):
+- `FreeRideInvestor/assets/images/DALL·E 2024-12-10 11.20.26 - A visually striking image representing innovative financial tools for a day trading website. The composition features sleek, modern elements such as a.webp`
+
