@@ -29,6 +29,11 @@ $idea_tags = get_terms([
     <section class="hero">
         <div class="container hero-grid">
             <div>
+                <?php $theme_version = wp_get_theme()->get('Version'); ?>
+                <div class="portal-marker">
+                    <?php esc_html_e('Portal active', 'dadudekc'); ?>
+                    <span><?php echo esc_html($theme_version); ?></span>
+                </div>
                 <h1><?php esc_html_e('Victor builds ambitious systems, ships experiments, and documents the path.', 'dadudekc'); ?></h1>
                 <p><?php esc_html_e('Welcome to the portfolio + Idea Lab + blog hub. Explore projects, browse live experiments, and dive into long-form deep dives.', 'dadudekc'); ?></p>
                 <div class="cta-row">

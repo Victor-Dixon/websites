@@ -3,7 +3,7 @@ Theme Name: DaDudeKC
 Theme URI: https://dadudekc.com/
 Author: Victor (DaDudeKC)
 Description: Portfolio + Idea Lab + Blog portal with first-class dark mode.
-Version: 1.0.1
+Version: 1.0.2
 Text Domain: dadudekc
 */
 
@@ -142,6 +142,26 @@ img {
 
 .hero {
   padding: 5rem 0 3rem;
+}
+
+.portal-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.portal-marker span {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .hero-grid {
