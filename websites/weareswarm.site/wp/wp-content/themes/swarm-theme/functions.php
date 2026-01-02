@@ -419,30 +419,36 @@ function swarm_create_default_menu() {
     // Check if menu already exists
     $menu_name = 'Swarm Primary';
     $menu_exists = wp_get_nav_menu_object($menu_name);
-    
+
     if (!$menu_exists) {
         $menu_id = wp_create_nav_menu($menu_name);
-        
+
         if (!is_wp_error($menu_id)) {
-            // Add menu items
+            // Add menu items - mix of page links and home anchors
             wp_update_nav_menu_item($menu_id, 0, array(
-                'menu-item-title' => 'Capabilities',
-                'menu-item-url' => home_url('/#capabilities'),
+                'menu-item-title' => 'Home',
+                'menu-item-url' => home_url('/'),
                 'menu-item-status' => 'publish',
             ));
-            
-            wp_update_nav_menu_item($menu_id, 0, array(
-                'menu-item-title' => 'Live Activity',
-                'menu-item-url' => home_url('/#activity'),
-                'menu-item-status' => 'publish',
-            ));
-            
+
             wp_update_nav_menu_item($menu_id, 0, array(
                 'menu-item-title' => 'Agents',
-                'menu-item-url' => home_url('/#agents'),
+                'menu-item-url' => home_url('/agents/'),
                 'menu-item-status' => 'publish',
             ));
-            
+
+            wp_update_nav_menu_item($menu_id, 0, array(
+                'menu-item-title' => 'Missions',
+                'menu-item-url' => home_url('/missions/'),
+                'menu-item-status' => 'publish',
+            ));
+
+            wp_update_nav_menu_item($menu_id, 0, array(
+                'menu-item-title' => 'About',
+                'menu-item-url' => home_url('/about-we-are-swarm-multi-agent-intelligence-system/'),
+                'menu-item-status' => 'publish',
+            ));
+
             // Assign to primary location
             $locations = get_theme_mod('nav_menu_locations');
             $locations['primary'] = $menu_id;

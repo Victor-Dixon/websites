@@ -42,11 +42,10 @@
                 'container' => false,
                 'fallback_cb' => function() {
                     echo '<ul>';
-                    echo '<li><a href="' . home_url('/') . '#capabilities">Capabilities</a></li>';
-                    echo '<li><a href="' . home_url('/') . '#agent-modes">Agent Modes</a></li>';
-                    echo '<li><a href="' . home_url('/') . '#activity">Live Activity</a></li>';
-                    echo '<li><a href="' . home_url('/') . '#agents">Agents</a></li>';
-                    echo '<li><a href="' . home_url('/') . '#blog">Blog</a></li>';
+                    echo '<li><a href="' . home_url('/') . '">Home</a></li>';
+                    echo '<li><a href="' . home_url('/agents/') . '">Agents</a></li>';
+                    echo '<li><a href="' . home_url('/missions/') . '">Missions</a></li>';
+                    echo '<li><a href="' . home_url('/about-we-are-swarm-multi-agent-intelligence-system/') . '">About</a></li>';
                     echo '</ul>';
                 }
             ));
