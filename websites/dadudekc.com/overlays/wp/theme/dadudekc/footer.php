@@ -16,7 +16,7 @@
             <a href="<?php echo esc_url(dadudekc_get_portfolio_url()); ?>"><?php esc_html_e('Portfolio', 'dadudekc'); ?></a>
             <a href="<?php echo esc_url(dadudekc_get_idea_lab_url()); ?>"><?php esc_html_e('Idea Lab', 'dadudekc'); ?></a>
             <a href="<?php echo esc_url(dadudekc_get_blog_page_url()); ?>"><?php esc_html_e('Blog', 'dadudekc'); ?></a>
-            <a href="<?php echo esc_url(feed_link('rss2')); ?>"><?php esc_html_e('RSS Feed', 'dadudekc'); ?></a>
+            <a href="<?php echo esc_url(get_feed_link('rss2')); ?>"><?php esc_html_e('RSS Feed', 'dadudekc'); ?></a>
         </div>
         <div>
             <strong><?php esc_html_e('Stay in the loop', 'dadudekc'); ?></strong>
