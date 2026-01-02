@@ -123,83 +123,81 @@ $idea_tags = get_terms([
                 <a href="https://weareswarm.site" target="_blank" rel="noopener"><?php esc_html_e('Learn More About Swarm →', 'dadudekc'); ?></a>
             </div>
             <div class="capabilities-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem;">
-                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌐</div>
-                    <h3 style="margin-top: 0; color: #00d4ff; font-size: 1.3em;">WordPress Development</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Custom themes, plugins, REST API integration, and performance optimization. This site itself is built by The Swarm.</p>
+                    <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('WordPress Development', 'dadudekc'); ?></h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;"><?php esc_html_e('Custom themes, plugins, REST API integration, and performance optimization. This site itself is built by The Swarm.', 'dadudekc'); ?></p>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">PHP</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">WordPress</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Custom Themes</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">PHP</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">WordPress</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Custom Themes</span>
                     </div>
                 </div>
                 
-                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
-                    <h3 style="margin-top: 0; color: #8b5cf6; font-size: 1.3em;">Workflow Automation</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Done-for-you automation sprints that eliminate manual workflows. Delivered in 2 weeks, zero technical knowledge required.</p>
+                    <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('Workflow Automation', 'dadudekc'); ?></h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;"><?php esc_html_e('Done-for-you automation sprints that eliminate manual workflows. Delivered in 2 weeks, zero technical knowledge required.', 'dadudekc'); ?></p>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Zapier</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">API Integration</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Automation</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Zapier</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">API Integration</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Automation</span>
                     </div>
                 </div>
                 
-                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
-                    <h3 style="margin-top: 0; color: #00ff88; font-size: 1.3em;">Rapid Deployment</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Automated deployments, CI/CD pipelines, and infrastructure management. Sites deploy automatically on updates.</p>
+                    <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('Rapid Deployment', 'dadudekc'); ?></h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;"><?php esc_html_e('Automated deployments, CI/CD pipelines, and infrastructure management. Sites deploy automatically on updates.', 'dadudekc'); ?></p>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">SFTP</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">CI/CD</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Git</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">SFTP</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">CI/CD</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Git</span>
                     </div>
                 </div>
                 
-                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
-                    <h3 style="margin-top: 0; color: #00d4ff; font-size: 1.3em;">Business Intelligence</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Data visualization, analytics dashboards, and real-time insights. Turn data into actionable business intelligence.</p>
+                    <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('Business Intelligence', 'dadudekc'); ?></h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;"><?php esc_html_e('Data visualization, analytics dashboards, and real-time insights. Turn data into actionable business intelligence.', 'dadudekc'); ?></p>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Analytics</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Dashboards</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Data</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Analytics</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Dashboards</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Data</span>
                     </div>
                 </div>
                 
-                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔧</div>
-                    <h3 style="margin-top: 0; color: #8b5cf6; font-size: 1.3em;">System Integration</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Multi-system coordination, API integrations, and seamless connections across platforms. Everything works together.</p>
+                    <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('System Integration', 'dadudekc'); ?></h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;"><?php esc_html_e('Multi-system coordination, API integrations, and seamless connections across platforms. Everything works together.', 'dadudekc'); ?></p>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">APIs</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Integration</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">DevOps</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">APIs</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Integration</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">DevOps</span>
                     </div>
                 </div>
                 
-                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎨</div>
-                    <h3 style="margin-top: 0; color: #00ff88; font-size: 1.3em;">Modern UI/UX</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Responsive designs, smooth animations, and accessibility-first development. Every pixel crafted for optimal experience.</p>
+                    <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('Modern UI/UX', 'dadudekc'); ?></h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;"><?php esc_html_e('Responsive designs, smooth animations, and accessibility-first development. Every pixel crafted for optimal experience.', 'dadudekc'); ?></p>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">CSS3</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Responsive</span>
-                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">UX</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">CSS3</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Responsive</span>
+                        <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">UX</span>
                     </div>
                 </div>
             </div>
             
-            <div style="background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; padding: 2rem; border-radius: 8px; margin-top: 3rem;">
-                <h3 style="color: #00d4ff; margin-top: 0;">🐝 Built by The Swarm</h3>
-                <p style="margin-bottom: 1rem; color: #333;">
-                    This website and many others are built and maintained by <strong>The Swarm</strong>—a multi-agent AI system 
-                    that coordinates specialized agents for web development, automation, and WordPress solutions. 
-                    Each agent brings unique capabilities, working together to deliver results faster and more reliably.
+            <div style="background: rgba(0, 212, 255, 0.1); border-left: 4px solid var(--accent); padding: 2rem; border-radius: 8px; margin-top: 3rem;">
+                <h3 style="color: var(--accent); margin-top: 0;">🐝 <?php esc_html_e('Built by The Swarm', 'dadudekc'); ?></h3>
+                <p style="margin-bottom: 1rem; color: var(--text-primary);">
+                    <?php esc_html_e('This website and many others are built and maintained by', 'dadudekc'); ?> <strong><?php esc_html_e('The Swarm', 'dadudekc'); ?></strong>—<?php esc_html_e('a multi-agent AI system that coordinates specialized agents for web development, automation, and WordPress solutions. Each agent brings unique capabilities, working together to deliver results faster and more reliably.', 'dadudekc'); ?>
                 </p>
-                <p style="margin: 0; color: #333;">
-                    <strong>Result:</strong> Professional websites, automated workflows, and scalable systems delivered in weeks, not months. 
-                    <a href="https://weareswarm.site" target="_blank" rel="noopener" style="color: #00d4ff; font-weight: 600;">See The Swarm in action →</a>
+                <p style="margin: 0; color: var(--text-primary);">
+                    <strong><?php esc_html_e('Result:', 'dadudekc'); ?></strong> <?php esc_html_e('Professional websites, automated workflows, and scalable systems delivered in weeks, not months.', 'dadudekc'); ?> 
+                    <a href="<?php echo esc_url('https://weareswarm.site'); ?>" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;"><?php esc_html_e('See The Swarm in action →', 'dadudekc'); ?></a>
                 </p>
             </div>
         </div>
