@@ -9,19 +9,17 @@ get_header();
 
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-// Get blog posts (excluding idea lab content)
+// Get blog posts
 $blog_query = new WP_Query([
     'post_type' => 'post',
     'posts_per_page' => 12,
     'paged' => $paged,
-    'category__not_in' => [get_cat_ID('idea-lab')], // Exclude idea-lab category
     'post_status' => 'publish',
 ]);
 
 // Get all categories for filtering
 $categories = get_categories([
     'hide_empty' => true,
-    'exclude' => [get_cat_ID('idea-lab')], // Exclude idea-lab category
 ]);
 
 // Get current category filter
@@ -116,7 +114,6 @@ if ($current_cat) {
                                 $post_categories = get_the_category();
                                 if (!empty($post_categories)) :
                                     foreach ($post_categories as $category) :
-                                        if ($category->slug !== 'idea-lab') : // Skip idea-lab category
                                 ?>
                                             <span style="background: var(--accent); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.8rem; font-weight: 500;">
                                                 <?php echo esc_html($category->name); ?>
@@ -185,9 +182,6 @@ if ($current_cat) {
                 <h2 style="margin-bottom: 1rem; color: var(--text-primary);"><?php esc_html_e('No blog posts yet', 'dadudekc'); ?></h2>
                 <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;"><?php esc_html_e('Articles and insights are being crafted. Check back soon for fresh content and deep dives.', 'dadudekc'); ?></p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="<?php echo esc_url(dadudekc_get_idea_lab_url()); ?>" style="background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
-                        <?php esc_html_e('Check Idea Lab →', 'dadudekc'); ?>
-                    </a>
                     <a href="<?php echo esc_url(dadudekc_get_contact_url()); ?>" style="background: var(--surface); color: var(--text-primary); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid var(--border);">
                         <?php esc_html_e('Get Updates', 'dadudekc'); ?>
                     </a>

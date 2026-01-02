@@ -14,7 +14,6 @@
         <div class="footer-links">
             <strong><?php esc_html_e('Quick Links', 'dadudekc'); ?></strong>
             <a href="<?php echo esc_url(dadudekc_get_portfolio_url()); ?>"><?php esc_html_e('Portfolio', 'dadudekc'); ?></a>
-            <a href="<?php echo esc_url(dadudekc_get_idea_lab_url()); ?>"><?php esc_html_e('Idea Lab', 'dadudekc'); ?></a>
             <a href="<?php echo esc_url(dadudekc_get_blog_page_url()); ?>"><?php esc_html_e('Blog', 'dadudekc'); ?></a>
             <a href="<?php echo esc_url(get_feed_link('rss2')); ?>"><?php esc_html_e('RSS Feed', 'dadudekc'); ?></a>
         </div>

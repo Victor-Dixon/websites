@@ -12,18 +12,6 @@ $latest_posts = new WP_Query([
     'posts_per_page' => 3,
     'post_status' => 'publish',
 ]);
-
-$latest_notes = new WP_Query([
-    'post_type' => 'note',
-    'posts_per_page' => 4,
-    'post_status' => 'publish',
-]);
-
-$idea_tags = get_terms([
-    'taxonomy' => 'post_tag',
-    'hide_empty' => true,
-    'number' => 12,
-]);
 ?>
 
 <main>
@@ -48,7 +36,6 @@ $idea_tags = get_terms([
             </div>
             <div class="primary-links">
                 <a href="<?php echo esc_url(dadudekc_get_portfolio_url()); ?>"><?php esc_html_e('Portfolio: shipped systems', 'dadudekc'); ?> <span>→</span></a>
-                <a href="<?php echo esc_url(dadudekc_get_idea_lab_url()); ?>"><?php esc_html_e('Idea Lab: notes + articles', 'dadudekc'); ?> <span>→</span></a>
                 <a href="<?php echo esc_url(dadudekc_get_blog_page_url()); ?>"><?php esc_html_e('Latest writing + series', 'dadudekc'); ?> <span>→</span></a>
             </div>
         </div>
@@ -82,42 +69,6 @@ $idea_tags = get_terms([
 
     <?php get_template_part('template-parts/components/project-demos'); ?>
 
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <div>
-                    <h2 class="section-title"><?php esc_html_e('Idea Lab', 'dadudekc'); ?></h2>
-                    <p class="section-subtitle"><?php esc_html_e('Notes, experiments, and brainstorms organized by tag.', 'dadudekc'); ?></p>
-                </div>
-                <a href="<?php echo esc_url(dadudekc_get_idea_lab_url()); ?>"><?php esc_html_e('Browse Idea Lab →', 'dadudekc'); ?></a>
-            </div>
-            <div class="tag-list">
-                <?php if (!empty($idea_tags) && !is_wp_error($idea_tags)) : ?>
-                    <?php foreach ($idea_tags as $tag) : ?>
-                        <a class="tag-pill" href="<?php echo esc_url(add_query_arg('tag', $tag->slug, dadudekc_get_idea_lab_url())); ?>">
-                            <?php echo esc_html($tag->name); ?>
-                        </a>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <span class="tag-pill"><?php esc_html_e('Add tags to notes and posts to populate filters.', 'dadudekc'); ?></span>
-                <?php endif; ?>
-            </div>
-            <div class="grid" style="margin-top: 2rem;">
-                <?php if ($latest_notes->have_posts()) : ?>
-                    <?php while ($latest_notes->have_posts()) : $latest_notes->the_post(); ?>
-                        <article class="card">
-                            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                            <p class="post-meta"><?php esc_html_e('Note', 'dadudekc'); ?> · <?php echo esc_html(get_the_date()); ?></p>
-                            <p><?php echo esc_html(wp_trim_words(get_the_excerpt() ?: get_the_content(), 20)); ?></p>
-                        </article>
-                    <?php endwhile; ?>
-                <?php else : ?>
-                    <div class="card"><?php esc_html_e('Idea Lab notes will appear here.', 'dadudekc'); ?></div>
-                <?php endif; ?>
-                <?php wp_reset_postdata(); ?>
-            </div>
-        </div>
-    </section>
 
     <section class="section swarm-capabilities-section" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%); padding: 4rem 0;">
         <div class="container">
