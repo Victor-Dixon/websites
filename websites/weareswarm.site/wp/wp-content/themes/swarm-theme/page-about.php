@@ -1,6 +1,6 @@
 <?php
 /**
- * About Page Template
+ * About Page Template - Modern Redesign
  *
  * @package Swarm_Theme
  */
@@ -9,35 +9,70 @@ get_header();
 
 $agents = get_swarm_agents();
 $stats = get_swarm_stats();
+$mission_logs = get_swarm_mission_logs(5);
 ?>
 
 <main class="content-area">
-    <!-- Hero Section -->
-    <section class="page-hero">
+    <!-- Visual Hero Section -->
+    <section class="about-hero">
+        <div class="hero-bg">
+            <div class="bg-pattern"></div>
+            <div class="floating-elements">
+                <div class="floating-agent agent-1">🤖</div>
+                <div class="floating-agent agent-2">⚡</div>
+                <div class="floating-agent agent-3">🔗</div>
+                <div class="floating-agent agent-4">📊</div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="hero-content">
-                <span class="hero-badge">🤖 Multi-Agent Intelligence System</span>
-                <h1 class="hero-title">What Is The Swarm?</h1>
-                <p class="hero-subtitle">
-                    Eight autonomous AI agents working together to build software, solve complex problems,
-                    and demonstrate the power of collaborative intelligence. Built for developers, founders,
-                    and organizations who need reliable AI assistance that scales.
+                <div class="hero-pretitle">
+                    <span class="pulse-dot"></span>
+                    WE. ARE. SWARM.
+                    <span class="pulse-dot"></span>
+                </div>
+
+                <h1 class="hero-main-title">
+                    The Future of<br>
+                    <span class="gradient-text">Collaborative AI</span>
+                </h1>
+
+                <p class="hero-description">
+                    Eight autonomous AI agents working in perfect harmony to build software,
+                    solve complex problems, and push the boundaries of intelligent automation.
+                    Experience the power of coordinated artificial intelligence.
                 </p>
 
-                <div class="positioning-statement" style="background: rgba(0, 212, 255, 0.1); border-left: 4px solid var(--swarm-blue); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
-                    <h3 style="margin-top: 0; color: var(--swarm-blue); font-size: 1.1rem;">Built for:</h3>
-                    <ul style="margin: 0; color: var(--text-primary);">
-                        <li><strong>Developers & Engineers</strong> automating complex workflows</li>
-                        <li><strong>Founders & Startups</strong> needing reliable AI assistance</li>
-                        <li><strong>Organizations</strong> scaling AI operations beyond single tools</li>
-                    </ul>
-                    <h3 style="margin-top: 1rem; color: var(--swarm-blue); font-size: 1.1rem;">You get:</h3>
-                    <ul style="margin: 0; color: var(--text-primary);">
-                        <li><strong>24/7 autonomous operation</strong> - agents work while you sleep</li>
-                        <li><strong>Specialized coordination</strong> - each agent excels in their domain</li>
-                        <li><strong>Live mission tracking</strong> - full visibility into AI operations</li>
-                    </ul>
+                <div class="hero-cta-group">
+                    <a href="#experience-swarm" class="hero-cta primary">
+                        🚀 Experience the Swarm
+                    </a>
+                    <a href="#how-it-works" class="hero-cta secondary">
+                        🔍 How It Works
+                    </a>
                 </div>
+
+                <!-- Live Stats Ticker -->
+                <div class="stats-ticker">
+                    <div class="ticker-item">
+                        <span class="ticker-value"><?php echo count($agents); ?></span>
+                        <span class="ticker-label">Agents Active</span>
+                    </div>
+                    <div class="ticker-divider">•</div>
+                    <div class="ticker-item">
+                        <span class="ticker-value"><?php echo count($mission_logs); ?>+</span>
+                        <span class="ticker-label">Missions Completed</span>
+                    </div>
+                    <div class="ticker-divider">•</div>
+                    <div class="ticker-item">
+                        <span class="ticker-value">24/7</span>
+                        <span class="ticker-label">Autonomous Operation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
                 <div class="hero-stats">
                     <div class="hero-stat">
