@@ -1,0 +1,107 @@
+.swarm-heartbeat-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  max-width: 880px;
+  margin: 16px 0;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.swarm-heartbeat-banner {
+  margin: 0 0 24px 0;
+  border-left: 4px solid #2563eb;
+}
+
+.swarm-heartbeat-critical {
+  border-left-color: #ef4444;
+}
+
+.swarm-heartbeat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.swarm-heartbeat-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.swarm-heartbeat-subtitle {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.swarm-heartbeat-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.swarm-heartbeat-badge-ok {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.swarm-heartbeat-badge-degraded {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.swarm-heartbeat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.swarm-heartbeat-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.swarm-heartbeat-meta {
+  color: #64748b;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.swarm-heartbeat-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.swarm-heartbeat-copy {
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.swarm-heartbeat-copy.is-copied {
+  background: #16a34a;
+}
+
+@media (max-width: 600px) {
+  .swarm-heartbeat-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
