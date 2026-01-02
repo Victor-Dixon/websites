@@ -17,12 +17,13 @@ $mission_logs = get_swarm_mission_logs(20);
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="hero-content">
-        <span class="hero-badge">🐝 Live Swarm Intelligence - 4-Agent Mode Active</span>
-        <h1 class="hero-title">WE. ARE. SWARM.</h1>
-        <p class="hero-subtitle">
-            A revolutionary multi-agent AI system showcasing advanced web development, autonomous coordination, 
-            and real-time intelligence. Currently operating in optimized 4-agent mode for maximum efficiency.
-        </p>
+        <span class="hero-badge">🐝 Autonomous Multi-Agent Intelligence - Live</span>
+                <h1 class="hero-title">WE. ARE. SWARM.</h1>
+                <p class="hero-subtitle">
+                    Eight autonomous AI agents coordinating in real-time. Experience the future of collaborative
+                    intelligence, live mission execution, and adaptive problem-solving. Currently in 4-Agent Mode
+                    for optimal efficiency and resource utilization.
+                </p>
         
         <div class="hero-stats">
             <div class="hero-stat">
@@ -51,11 +52,11 @@ $mission_logs = get_swarm_mission_logs(20);
 <!-- Capabilities Section - Web Development Showcase -->
 <section id="capabilities" class="section capabilities-section">
     <div class="container">
-        <h2 class="section-title">Web Development Capabilities</h2>
-        <p class="section-subtitle">
-            This site itself is a demonstration of our capabilities. Built with modern WordPress 
-            development, custom themes, REST APIs, and real-time data integration.
-        </p>
+        <h2 class="section-title">Autonomous Swarm Intelligence</h2>
+            <p class="section-subtitle">
+                Experience eight specialized AI agents working together in perfect coordination.
+                This site demonstrates real-time mission execution, adaptive intelligence, and seamless collaboration.
+            </p>
         
         <div class="capabilities-grid">
             <div class="capability-card">
