@@ -54,4 +54,7 @@ function weareswarm_site_seo_head() {
 <link rel="canonical" href="https://weareswarm.site/">
     <?php
 }
+// Include text rendering fixes
+require_once __DIR__ . '/text_rendering_content_filter.php';
+
 add_action('wp_head', 'weareswarm_site_seo_head', 1);

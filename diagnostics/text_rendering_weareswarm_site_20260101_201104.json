@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-01-01T20:11:04.496533",
+  "site_url": "https://weareswarm.site",
+  "status": "analyzed",
+  "content_sources": [
+    "services_content"
+  ],
+  "issues": [
+    {
+      "type": "word_spacing_issue",
+      "text": "SYSTEM\nPROPHETICAL EQUIDISTANT",
+      "severity": "MEDIUM",
+      "description": "Potentially spaced word: \"SYSTEM\nPROPHETICAL EQUIDISTANT\""
+    },
+    {
+      "type": "word_spacing_issue",
+      "text": "SYSTEM OVERVIEW\nAdvanced",
+      "severity": "MEDIUM",
+      "description": "Potentially spaced word: \"SYSTEM OVERVIEW\nAdvanced\""
+    }
+  ],
+  "severity_counts": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 2,
+    "LOW": 0
+  }
+}

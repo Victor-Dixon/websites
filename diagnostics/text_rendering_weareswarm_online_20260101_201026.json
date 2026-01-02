@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-01-01T20:10:26.190189",
+  "site_url": "https://weareswarm.online",
+  "status": "analyzed",
+  "content_sources": [
+    "services_content"
+  ],
+  "issues": [
+    {
+      "type": "word_spacing_issue",
+      "text": "online                    \n\n\nCapabilities\nLive",
+      "severity": "MEDIUM",
+      "description": "Potentially spaced word: \"online                    \n\n\nCapabilities\nLive\""
+    }
+  ],
+  "severity_counts": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 1,
+    "LOW": 0
+  }
+}

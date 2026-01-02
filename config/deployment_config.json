@@ -1,0 +1,122 @@
+{
+  "version": "1.0",
+  "description": "Automated Website Deployment Configuration",
+
+  "deployment": {
+    "enabled": true,
+    "auto_deploy_on_commit": true,
+    "auto_deploy_on_push": true,
+    "parallel_deployments": 3,
+    "timeout_seconds": 300,
+    "retry_attempts": 2,
+    "rollback_on_failure": false
+  },
+
+  "validation": {
+    "php_syntax_check": true,
+    "file_size_limits": {
+      "max_php_size_kb": 500,
+      "max_css_size_kb": 200,
+      "max_js_size_kb": 300
+    },
+    "blocked_extensions": [".exe", ".bat", ".cmd", ".scr"],
+    "required_files": []
+  },
+
+  "sites": {
+    "freerideinvestor.com": {
+      "enabled": true,
+      "deployment_method": "sftp",
+      "health_check_url": "https://freerideinvestor.com",
+      "backup_before_deploy": true,
+      "verify_after_deploy": true
+    },
+    "dadudekc.com": {
+      "enabled": true,
+      "deployment_method": "sftp",
+      "health_check_url": "https://dadudekc.com",
+      "backup_before_deploy": true,
+      "verify_after_deploy": true
+    },
+    "southwestsecret.com": {
+      "enabled": true,
+      "deployment_method": "sftp",
+      "health_check_url": "https://southwestsecret.com",
+      "backup_before_deploy": true,
+      "verify_after_deploy": true
+    },
+    "weareswarm.site": {
+      "enabled": true,
+      "deployment_method": "sftp",
+      "health_check_url": "https://weareswarm.site",
+      "backup_before_deploy": true,
+      "verify_after_deploy": true
+    },
+    "prismblossom.online": {
+      "enabled": true,
+      "deployment_method": "sftp",
+      "health_check_url": "https://prismblossom.online",
+      "backup_before_deploy": true,
+      "verify_after_deploy": true
+    }
+  },
+
+  "notifications": {
+    "console": true,
+    "file": true,
+    "email": false,
+    "slack": false,
+    "discord": false
+  },
+
+  "email": {
+    "enabled": false,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "",
+    "password": "",
+    "from_email": "",
+    "to_emails": [],
+    "notify_on_success": false,
+    "notify_on_failure": true
+  },
+
+  "slack": {
+    "enabled": false,
+    "webhook_url": "",
+    "channel": "#deployments",
+    "username": "DeploymentBot",
+    "notify_on_success": true,
+    "notify_on_failure": true
+  },
+
+  "discord": {
+    "enabled": false,
+    "webhook_url": "",
+    "username": "DeploymentBot",
+    "notify_on_success": true,
+    "notify_on_failure": true
+  },
+
+  "monitoring": {
+    "enabled": true,
+    "log_retention_days": 30,
+    "performance_tracking": true,
+    "error_tracking": true,
+    "health_checks": true
+  },
+
+  "rollback": {
+    "enabled": false,
+    "auto_rollback_on_failure": false,
+    "backup_retention_count": 5,
+    "rollback_timeout_seconds": 120
+  },
+
+  "ci_cd": {
+    "github_actions_enabled": false,
+    "gitlab_ci_enabled": false,
+    "jenkins_enabled": false,
+    "supported_branches": ["main", "master", "production", "staging"]
+  }
+}

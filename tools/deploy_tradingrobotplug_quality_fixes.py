@@ -1,106 +1,82 @@
 #!/usr/bin/env python3
 """
-Deploy Trading Robot Plug Quality Fixes
-========================================
-
-Deploys quality fixes to WordPress:
-1. Updated footer.php (copyright fix)
-2. Updated functions.php (page title fix)
-
-Note: Navigation menu typo must be fixed in WordPress Admin → Appearance → Menus
+Deploy Trading Robot Plug quality fixes
 """
 
-import sys
+import json
+import paramiko
+import os
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "ops" / "deployment"))
-from simple_wordpress_deployer import SimpleWordPressDeployer, load_site_configs
+def load_site_config():
+    """Load tradingrobotplug.com config"""
+    with open('config/site_configs.json', 'r') as f:
+        configs = json.load(f)
 
-SITE_NAME = "tradingrobotplug.com"
-THEME_NAME = "tradingrobotplug-theme"
+    return configs.get('tradingrobotplug.com', {})
 
-def deploy_quality_fixes():
-    """Deploy quality fixes to WordPress."""
-    print(f"🚀 Deploying Quality Fixes to {SITE_NAME}...\n")
-    
-    project_root = Path(__file__).parent.parent
-    
-    # Try multiple possible paths
-    possible_paths = [
-        project_root / "websites" / SITE_NAME / "wp" / "wp-content" / "themes" / THEME_NAME,
-        project_root / "sites" / SITE_NAME / "wp" / "wp-content" / "themes" / THEME_NAME,
-        project_root / SITE_NAME / "wp" / "wp-content" / "themes" / THEME_NAME,
+def deploy_files_sftp():
+    """Deploy files using SFTP"""
+    config = load_site_config()
+    sftp_config = config.get('sftp', {})
+
+    if not sftp_config:
+        print("❌ No SFTP config found for tradingrobotplug.com")
+        return False
+
+    # Files to deploy
+    files_to_deploy = [
+        'websites/tradingrobotplug.com/overlays/wp/theme/tradingrobotplug-theme/quality_fixes.php',
+        'websites/tradingrobotplug.com/overlays/wp/theme/tradingrobotplug-theme/functions.php',
+        'websites/tradingrobotplug.com/overlays/wp/theme/tradingrobotplug-theme/front-page.php'
     ]
-    
-    theme_path = None
-    for path in possible_paths:
-        if path.exists():
-            theme_path = path
-            break
-    
-    if not theme_path:
-        print(f"❌ Theme directory not found. Tried:")
-        for path in possible_paths:
-            print(f"   - {path}")
-        return False
-    
-    site_configs = load_site_configs()
-    
+
     try:
-        deployer = SimpleWordPressDeployer(SITE_NAME, site_configs)
+        # Connect via SFTP
+        transport = paramiko.Transport((sftp_config['host'], sftp_config['port']))
+        transport.connect(username=sftp_config['username'], password=sftp_config['password'])
+
+        sftp = paramiko.SFTPClient.from_transport(transport)
+
+        # Deploy each file
+        remote_base = sftp_config['remote_path'] + '/wp-content/themes/tradingrobotplug-theme/'
+
+        for local_file in files_to_deploy:
+            if not os.path.exists(local_file):
+                print(f"❌ Local file not found: {local_file}")
+                continue
+
+            filename = os.path.basename(local_file)
+            remote_file = remote_base + filename
+
+            print(f"📤 Deploying {local_file} -> {remote_file}")
+            sftp.put(local_file, remote_file)
+
+        sftp.close()
+        transport.close()
+
+        print("✅ Deployment completed successfully!")
+        return True
+
     except Exception as e:
-        print(f"❌ Failed to initialize deployer: {e}")
+        print(f"❌ Deployment failed: {e}")
         return False
-    
-    if not deployer.connect():
-        print("❌ Failed to connect to server")
-        return False
-    
-    try:
-        remote_base = deployer.remote_path or f"/home/u996867598/domains/{SITE_NAME}/public_html"
-        theme_remote_path = f"{remote_base}/wp-content/themes/{THEME_NAME}"
-        
-        deployed_count = 0
-        
-        # Deploy footer.php
-        footer_file = theme_path / "footer.php"
-        if footer_file.exists():
-            remote_footer = f"{theme_remote_path}/footer.php"
-            print(f"📤 Deploying footer.php...")
-            if deployer.deploy_file(footer_file, remote_footer):
-                print(f"   ✅ Deployed successfully")
-                deployed_count += 1
-            else:
-                print(f"   ❌ Deployment failed")
-        
-        # Deploy functions.php
-        functions_file = theme_path / "functions.php"
-        if functions_file.exists():
-            remote_functions = f"{theme_remote_path}/functions.php"
-            print(f"📤 Deploying functions.php...")
-            if deployer.deploy_file(functions_file, remote_functions):
-                print(f"   ✅ Deployed successfully")
-                deployed_count += 1
-            else:
-                print(f"   ❌ Deployment failed")
-        
-        print(f"\n✅ Deployment complete!")
-        print(f"📊 Files deployed: {deployed_count}/2")
-        
-        print(f"\n⚠️  IMPORTANT: Navigation Menu Typo Fix Required")
-        print(f"   The 'Capabilitie' → 'Capabilities' fix must be done manually:")
-        print(f"   1. Log into WordPress Admin")
-        print(f"   2. Go to Appearance → Menus")
-        print(f"   3. Find 'Capabilitie' menu item")
-        print(f"   4. Edit to 'Capabilities'")
-        print(f"   5. Save menu")
-        
-        return deployed_count > 0
-    
-    finally:
-        deployer.disconnect()
 
-if __name__ == "__main__":
-    success = deploy_quality_fixes()
-    sys.exit(0 if success else 1)
+def main():
+    print("🚀 Deploying Trading Robot Plug quality fixes...")
 
+    success = deploy_files_sftp()
+
+    if success:
+        print("\n📋 NEXT STEPS:")
+        print("1. Clear WordPress cache on tradingrobotplug.com")
+        print("2. Clear browser cache (Ctrl+F5)")
+        print("3. Test site: https://tradingrobotplug.com")
+        print("4. Verify navigation shows 'Capabilities' (not 'Capabilitie')")
+        print("5. Verify footer shows 'All rights reserved' (not 'All right re erved')")
+        print("6. Verify homepage has substantial content")
+    else:
+        print("\n❌ Deployment failed. Check credentials and try again.")
+
+if __name__ == '__main__':
+    main()

@@ -1,244 +1,204 @@
 #!/usr/bin/env python3
 """
-Diagnose Text Rendering Issues
-===============================
-
-Investigates text spacing/rendering problems across WordPress sites.
-Checks CSS for word-break, letter-spacing, font loading, and text-spacing issues.
-
-Author: Agent-1
-Date: 2025-12-22
+Diagnose text rendering issues on websites.
+Check for character spacing, encoding issues, and malformed text.
 """
 
-import sys
+import requests
+from bs4 import BeautifulSoup
 import re
-from pathlib import Path
-from typing import Dict, List
+import json
+from datetime import datetime
 
-sys.path.insert(0, str(Path(__file__).parent))
-sys.path.insert(0, str(Path(__file__).parent.parent / "ops" / "deployment"))
+class TextRenderingDiagnostic:
+    def __init__(self, site_url):
+        self.site_url = site_url.rstrip('/')
+        self.session = requests.Session()
+        self.session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        })
 
-from simple_wordpress_deployer import SimpleWordPressDeployer, load_site_configs
+    def get_page_content(self):
+        """Get the page content"""
+        try:
+            response = self.session.get(self.site_url, timeout=10)
+            if response.status_code == 200:
+                return response.text
+            else:
+                return None
+        except Exception as e:
+            print(f"Error fetching {self.site_url}: {e}")
+            return None
 
+    def analyze_text_rendering(self, html_content):
+        """Analyze text for rendering issues"""
+        issues = []
 
-def check_css_for_text_issues(deployer, site_key, theme_name):
-    """Check CSS files for text rendering issues."""
-    remote_path = "domains/{}/public_html".format(site_key)
-    css_path = f"{remote_path}/wp-content/themes/{theme_name}/style.css"
-    
-    print(f"\n📄 Checking style.css for {site_key}...")
-    
-    # Check if file exists
-    exists = deployer.execute_command(f"test -f {css_path} && echo 'EXISTS' || echo 'MISSING'")
-    if "MISSING" in exists:
-        print(f"   ⚠️  style.css not found")
-        return {}
-    
-    content = deployer.execute_command(f"cat {css_path}")
-    
-    issues = {
-        "word_break": [],
-        "word_wrap": [],
-        "letter_spacing": [],
-        "text_spacing": [],
-        "font_family": [],
-        "text_transform": [],
-    }
-    
-    lines = content.split('\n')
-    for i, line in enumerate(lines, 1):
-        # Check for word-break
-        if 'word-break' in line.lower():
-            issues["word_break"].append(f"Line {i}: {line.strip()}")
-        
-        # Check for word-wrap/overflow-wrap
-        if 'word-wrap' in line.lower() or 'overflow-wrap' in line.lower():
-            issues["word_wrap"].append(f"Line {i}: {line.strip()}")
-        
-        # Check for letter-spacing (can cause spacing issues if negative)
-        if 'letter-spacing' in line.lower():
-            issues["letter_spacing"].append(f"Line {i}: {line.strip()}")
-        
-        # Check for text-spacing (CSS Text Level 3)
-        if 'text-spacing' in line.lower():
-            issues["text_spacing"].append(f"Line {i}: {line.strip()}")
-        
-        # Check for font-family declarations (font loading issues)
-        if 'font-family' in line.lower():
-            issues["font_family"].append(f"Line {i}: {line.strip()[:100]}")
-        
-        # Check for text-transform (unlikely but possible)
-        if 'text-transform' in line.lower() and 'uppercase' in line.lower():
-            issues["text_transform"].append(f"Line {i}: {line.strip()}")
-    
-    return issues
+        if not html_content:
+            return issues
 
+        soup = BeautifulSoup(html_content, 'html.parser')
 
-def check_functions_php_for_fonts(deployer, site_key, theme_name):
-    """Check functions.php for font enqueuing."""
-    remote_path = "domains/{}/public_html".format(site_key)
-    functions_path = f"{remote_path}/wp-content/themes/{theme_name}/functions.php"
-    
-    print(f"\n📄 Checking functions.php for font loading...")
-    
-    exists = deployer.execute_command(f"test -f {functions_path} && echo 'EXISTS' || echo 'MISSING'")
-    if "MISSING" in exists:
-        print(f"   ⚠️  functions.php not found")
-        return {}
-    
-    content = deployer.execute_command(f"cat {functions_path}")
-    
-    font_loading = {
-        "wp_enqueue_style": [],
-        "google_fonts": [],
-        "font_face": [],
-        "font_display": [],
-    }
-    
-    lines = content.split('\n')
-    for i, line in enumerate(lines, 1):
-        if 'wp_enqueue_style' in line and ('font' in line.lower() or 'google' in line.lower()):
-            font_loading["wp_enqueue_style"].append(f"Line {i}: {line.strip()[:100]}")
-        
-        if 'fonts.googleapis.com' in line or 'fonts.gstatic.com' in line:
-            font_loading["google_fonts"].append(f"Line {i}: {line.strip()[:100]}")
-        
-        if '@font-face' in line:
-            font_loading["font_face"].append(f"Line {i}: {line.strip()[:100]}")
-        
-        if 'font-display' in line:
-            font_loading["font_display"].append(f"Line {i}: {line.strip()[:100]}")
-    
-    return font_loading
+        # Remove script and style elements
+        for script in soup(["script", "style"]):
+            script.extract()
 
+        # Get all text content
+        text_content = soup.get_text()
 
-def check_header_for_fonts(deployer, site_key, theme_name):
-    """Check header.php for inline font loading."""
-    remote_path = "domains/{}/public_html".format(site_key)
-    header_path = f"{remote_path}/wp-content/themes/{theme_name}/header.php"
-    
-    print(f"\n📄 Checking header.php for inline font loading...")
-    
-    exists = deployer.execute_command(f"test -f {header_path} && echo 'EXISTS' || echo 'MISSING'")
-    if "MISSING" in exists:
-        print(f"   ⚠️  header.php not found")
-        return []
-    
-    content = deployer.execute_command(f"cat {header_path}")
-    
-    font_refs = []
-    lines = content.split('\n')
-    for i, line in enumerate(lines, 1):
-        if 'fonts.googleapis.com' in line or 'fonts.gstatic.com' in line or '@font-face' in line:
-            font_refs.append(f"Line {i}: {line.strip()[:150]}")
-    
-    return font_refs
+        # Check for known problematic patterns
+        problematic_patterns = [
+            (r'\bCapabilitie\b', 'Capabilities'),  # Missing 's'
+            (r'\bWordPre\b', 'WordPress'),  # Missing 's'
+            (r'\bre\s*erved\b', 'reserved'),  # Spaced 'reserved'
+            (r'\bA multi-agent AI\s+y\s+tem\s+howca\s+ing\b', 'A multi-agent AI system showcasing'),  # Spaced text
+            (r'\bSpecialize\s+d\s+in\s+y\s+tem\s+integration\b', 'Specialized in system integration'),  # Spaced text
+            (r'\b©\s+2025\s+weare\s+warm\.online\b', '© 2025 weareswarm.online'),  # Spaced domain
+        ]
 
+        for pattern, correct_text in problematic_patterns:
+            matches = re.findall(pattern, text_content, re.IGNORECASE)
+            if matches:
+                issues.append({
+                    'type': 'malformed_text',
+                    'pattern': pattern,
+                    'found': matches,
+                    'correct': correct_text,
+                    'severity': 'HIGH',
+                    'description': f'Found malformed text: "{matches[0]}" should be "{correct_text}"'
+                })
 
-def diagnose_site(deployer, site_key, theme_name):
-    """Diagnose text rendering issues for a site."""
-    print("\n" + "=" * 70)
-    print(f"DIAGNOSING TEXT RENDERING: {site_key}")
-    print("=" * 70)
-    
-    css_issues = check_css_for_text_issues(deployer, site_key, theme_name)
-    font_loading = check_functions_php_for_fonts(deployer, site_key, theme_name)
-    header_fonts = check_header_for_fonts(deployer, site_key, theme_name)
-    
-    print("\n📊 CSS Issues Found:")
-    if any(css_issues.values()):
-        for category, items in css_issues.items():
-            if items:
-                print(f"\n   {category.upper()}:")
-                for item in items[:5]:  # Show first 5
-                    print(f"      {item}")
-    else:
-        print("   ✅ No obvious CSS text-spacing issues found")
-    
-    print("\n📊 Font Loading:")
-    if any(font_loading.values()) or header_fonts:
-        if font_loading["google_fonts"]:
-            print("   Google Fonts detected:")
-            for item in font_loading["google_fonts"][:3]:
-                print(f"      {item}")
-        if font_loading["font_face"]:
-            print("   @font-face declarations:")
-            for item in font_loading["font_face"][:3]:
-                print(f"      {item}")
-        if header_fonts:
-            print("   Inline font loading in header:")
-            for item in header_fonts[:3]:
-                print(f"      {item}")
-    else:
-        print("   ⚠️  No font loading detected")
-    
-    return {
-        "css_issues": css_issues,
-        "font_loading": font_loading,
-        "header_fonts": header_fonts,
-    }
+        # Check for excessive spacing in words
+        words_with_spacing = re.findall(r'\b\w+\s+\w+\s+\w+\b', text_content)
+        for word in words_with_spacing[:10]:  # Check first 10
+            if len(word.split()) > 2 and len(word) > 20:
+                # Look for words that should be single words but are spaced
+                if re.search(r'\b(system|integration|development|capabilities|specialized|showcasing)\b', word.lower()):
+                    issues.append({
+                        'type': 'word_spacing_issue',
+                        'text': word,
+                        'severity': 'MEDIUM',
+                        'description': f'Potentially spaced word: "{word}"'
+                    })
 
+        # Check for HTML entity issues
+        raw_html = str(soup)
+        if '&#' in raw_html or '&nbsp' in raw_html:
+            issues.append({
+                'type': 'html_entities',
+                'severity': 'LOW',
+                'description': 'HTML entities found - check encoding'
+            })
+
+        return issues
+
+    def check_content_sources(self, html_content):
+        """Check where content is coming from"""
+        sources = []
+
+        if not html_content:
+            return sources
+
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        # Check for WordPress indicators
+        if soup.find('meta', attrs={'name': 'generator'}):
+            generator = soup.find('meta', attrs={'name': 'generator'})
+            if generator and 'WordPress' in generator.get('content', ''):
+                sources.append('wordpress')
+
+        # Check for specific content patterns
+        text_content = soup.get_text()
+
+        if 'multi-agent AI' in text_content.lower():
+            sources.append('ai_content')
+        if 'system architecture' in text_content.lower():
+            sources.append('technical_content')
+        if 'capabilities' in text_content.lower() or 'capabilitie' in text_content.lower():
+            sources.append('services_content')
+
+        return sources
+
+    def run_diagnosis(self):
+        """Run complete diagnosis"""
+        print(f"🔍 Diagnosing text rendering issues on {self.site_url}")
+        print("=" * 60)
+
+        html_content = self.get_page_content()
+        if not html_content:
+            return {
+                'timestamp': datetime.now().isoformat(),
+                'site_url': self.site_url,
+                'status': 'unreachable',
+                'issues': []
+            }
+
+        issues = self.analyze_text_rendering(html_content)
+        sources = self.check_content_sources(html_content)
+
+        print(f"Content Sources: {', '.join(sources) if sources else 'Unknown'}")
+        print(f"Issues Found: {len(issues)}")
+        print("-" * 40)
+
+        severity_counts = {'CRITICAL': 0, 'HIGH': 0, 'MEDIUM': 0, 'LOW': 0}
+        for issue in issues:
+            severity = issue.get('severity', 'UNKNOWN')
+            severity_counts[severity] = severity_counts.get(severity, 0) + 1
+
+            print(f"{severity}: {issue['description']}")
+            if 'found' in issue:
+                print(f"  Found: {issue['found']}")
+            if 'correct' in issue:
+                print(f"  Should be: {issue['correct']}")
+
+        print(f"\nSeverity Breakdown:")
+        for severity, count in severity_counts.items():
+            if count > 0:
+                print(f"  {severity}: {count}")
+
+        return {
+            'timestamp': datetime.now().isoformat(),
+            'site_url': self.site_url,
+            'status': 'analyzed',
+            'content_sources': sources,
+            'issues': issues,
+            'severity_counts': severity_counts
+        }
 
 def main():
-    """Main execution."""
+    # Focus on remaining sites that haven't been audited yet
     sites_to_check = [
-        ("freerideinvestor.com", "freerideinvestor-modern"),
-        ("crosbyultimateevents.com", None),  # Will detect theme
-        ("houstonsipqueen.com", None),
-        ("tradingrobotplug.com", None),
-        ("ariajet.site", None),
+        'https://ariajet.site',
+        'https://dadudekc.com',
+        'https://digitaldreamscape.site',
+        'https://houstonsipqueen.com',
+        'https://southwestsecret.com',
+        'https://weareswarm.site'
     ]
-    
-    site_configs = load_site_configs()
-    
+
     all_results = {}
-    
-    for site_key, theme_name in sites_to_check:
-        deployer = SimpleWordPressDeployer(site_key, site_configs)
-        
-        if not deployer.connect():
-            print(f"❌ Failed to connect to {site_key}")
-            continue
-        
-        try:
-            # Detect theme if not provided
-            if not theme_name:
-                remote_path = "domains/{}/public_html".format(site_key)
-                active_theme = deployer.execute_command(
-                    f"cd {remote_path} && wp theme list --status=active --field=name --allow-root 2>/dev/null || "
-                    f"grep -r 'stylesheet' wp-content/themes/*/style.css | head -1 | cut -d'/' -f4"
-                ).strip()
-                theme_name = active_theme if active_theme else "default"
-                print(f"📌 Detected theme: {theme_name}")
-            
-            result = diagnose_site(deployer, site_key, theme_name)
-            all_results[site_key] = result
-            
-        except Exception as e:
-            print(f"❌ Error diagnosing {site_key}: {e}")
-        finally:
-            deployer.disconnect()
-    
-    # Summary
-    print("\n" + "=" * 70)
-    print("SUMMARY")
-    print("=" * 70)
-    
-    for site_key, result in all_results.items():
-        print(f"\n{site_key}:")
-        css_has_issues = any(result["css_issues"].values())
-        has_fonts = any(result["font_loading"].values()) or result["header_fonts"]
-        
-        if css_has_issues:
-            print("   ⚠️  CSS text-spacing properties found")
-        if has_fonts:
-            print("   ⚠️  Font loading detected (potential FOUT/FOIT)")
-        if not css_has_issues and not has_fonts:
-            print("   ✅ No obvious issues detected")
-    
-    return 0
 
+    for site_url in sites_to_check:
+        diagnostic = TextRenderingDiagnostic(site_url)
+        results = diagnostic.run_diagnosis()
+        all_results[site_url] = results
 
-if __name__ == "__main__":
-    sys.exit(main())
+        # Save individual results
+        output_file = f"diagnostics/text_rendering_{site_url.replace('https://', '').replace('.', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        import os
+        os.makedirs('diagnostics', exist_ok=True)
 
+        with open(output_file, 'w') as f:
+            json.dump(results, f, indent=2)
+
+        print(f"📄 Results saved to: {output_file}\n")
+
+    # Save summary
+    summary_file = f"diagnostics/text_rendering_summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    with open(summary_file, 'w') as f:
+        json.dump(all_results, f, indent=2)
+
+    print(f"📋 Summary saved to: {summary_file}")
+
+if __name__ == '__main__':
+    main()

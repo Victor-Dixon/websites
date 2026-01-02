@@ -1,31 +1,65 @@
-# WordPress Deployment Tools
+# 🚀 Comprehensive Website Deployment System
 
 **Location:** `ops/deployment/`  
-**Purpose:** WordPress site deployment and management automation
+**Purpose:** Automated deployment pipeline for all WordPress websites with validation, rollback, and monitoring
 
-## Tools Overview
+## 🎯 Key Features
 
-### Core Deployment
+- ✅ **Automated Deployment** - Triggers on every git commit/push
+- ✅ **PHP Syntax Validation** - Prevents broken deployments
+- ✅ **Parallel Processing** - Deploys to multiple sites simultaneously
+- ✅ **Rollback Capability** - Automatic rollback on failures
+- ✅ **Health Monitoring** - Post-deployment verification
+- ✅ **Multi-Channel Notifications** - Email, Slack, Discord
+- ✅ **Comprehensive Logging** - Full deployment history and reporting
+- ✅ **WP_DEBUG Self-Healing** - Intelligent error monitoring and auto-fixing
 
-- **unified_deployer.py** ⭐ - Unified deployment tool for all websites (RECOMMENDED)
-- **deploy_and_activate_themes.py** - Deploy and activate WordPress themes automatically
-- **auto_deploy_hook.py** - Auto-deployment hook for git commits
-- **deploy_prismblossom.py** - Site-specific convenience script for prismblossom.online
+## 🏗️ Architecture
 
-### WordPress Management
+### Core Components
 
-- **check_wordpress_updates.py** - Check for WordPress core updates
-- **check_wordpress_versions.py** - Check versions across sites
-- **wordpress_version_checker.py** - Version checking utility
-- **activate_themes.py** - Activate themes on WordPress sites (updated with WordPressManager support)
+- **`deployment_pipeline.py`** ⭐ - Complete deployment pipeline (RECOMMENDED)
+- **`deployment_automation.py`** - Automated deployment with parallel processing
+- **`deploy_on_push.py`** - CI/CD and push-triggered deployments
+- **`deployment_monitor.py`** - Notifications and monitoring system
+- **`deployment_rollback.py`** - Backup and rollback management
+- **`auto_deploy_hook.py`** - Git hook integration
 
-### Verification
+### Self-Healing System
 
-- **verify_website_fixes.py** - Verify deployed fixes
+- **`wp_debug_self_healing.py`** - Intelligent error detection and auto-fixing
+- **`wp_error_monitor.py`** - Real-time WordPress error monitoring daemon
+- **`wp_monitor_config.json`** - Self-healing configuration and patterns
+- **`start_wp_self_healing.sh`** - Complete self-healing system startup
 
-## Usage
+### Supporting Tools
 
-### 🎯 Quick Start - Unified Deployer (Recommended)
+- **`unified_deployer.py`** - Legacy unified deployment tool
+- **`deploy_and_activate_themes.py`** - Theme deployment and activation
+- **Git Hooks** - Pre-commit, post-commit, post-merge automation
+
+## 🚀 Quick Start
+
+### Full Automated Pipeline (Recommended)
+
+```bash
+# Deploy all websites with full validation and monitoring
+python ops/deployment/deployment_pipeline.py --full
+
+# Deploy specific site
+python ops/deployment/deployment_pipeline.py --site dadudekc.com
+
+# CI/CD mode (auto-detects changes)
+python ops/deployment/deployment_pipeline.py --ci-cd
+
+# Validation only (no deployment)
+python ops/deployment/deployment_pipeline.py --validate-only
+
+# Health checks only
+python ops/deployment/deployment_pipeline.py --health-check
+```
+
+### Legacy Tools (Still Supported)
 
 ```bash
 # Deploy single site
@@ -36,75 +70,212 @@ python ops/deployment/unified_deployer.py --all
 
 # Test without deploying
 python ops/deployment/unified_deployer.py --site prismblossom.online --dry-run
-
-# Test all deployers
-python ops/deployment/test_all_deployers.py
 ```
 
-### Auto-Deployment Hook
+## 🔄 Automated Deployment
+
+### Git Hook Integration
+
+The system automatically runs on:
+- **Pre-commit**: PHP syntax validation
+- **Post-commit**: Automated deployment
+- **Post-merge**: Full deployment after branch merges
+- **Push to main/master**: CI/CD pipeline execution
+
+### Configuration
+
+Edit `config/deployment_config.json` to customize:
+- Site-specific settings
+- Notification channels
+- Rollback policies
+- Validation rules
+
+## 📊 Monitoring & Notifications
+
+### Real-time Monitoring
 
 ```bash
-# Automatically triggered on git commit
-# Or run manually:
-python ops/deployment/auto_deploy_hook.py --auto-deploy
+# View deployment status
+python ops/deployment/deployment_monitor.py --report
+
+# Send test notification
+python ops/deployment/deployment_monitor.py --notify dadudekc.com success "Test deployment completed"
 ```
 
-### Deploy All Websites
+### Notification Channels
+
+Configure in `config/deployment_config.json`:
+- **Console**: Local terminal output
+- **Email**: SMTP notifications
+- **Slack**: Webhook notifications
+- **Discord**: Webhook notifications
+
+## 🔙 Rollback & Recovery
+
+### Automatic Rollback
 
 ```bash
-# Use unified deployer (recommended)
-python ops/deployment/unified_deployer.py --all
+# Create backup before deployment
+python ops/deployment/deployment_rollback.py --create-backup dadudekc.com
+
+# Rollback to specific version
+python ops/deployment/deployment_rollback.py --rollback dadudekc.com --version 20260101_120000
+
+# List available backups
+python ops/deployment/deployment_rollback.py --list-backups dadudekc.com
+
+# Cleanup old backups
+python ops/deployment/deployment_rollback.py --cleanup dadudekc.com --keep-count 5
 ```
 
-### Site-Specific Deployers
+## 📋 Workflow Examples
+
+### Standard Development Workflow
+
+1. **Make changes** to website files in `websites/<domain>/`
+2. **Commit changes** - triggers PHP validation
+3. **Post-commit hook** automatically deploys to affected sites
+4. **Receive notifications** via configured channels
+5. **Monitor health checks** and deployment status
+
+### CI/CD Pipeline (GitHub Actions)
+
+```yaml
+# .github/workflows/deploy.yml (already configured)
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'websites/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        run: python ops/deployment/deployment_pipeline.py --ci-cd
+```
+
+### Manual Deployment
 
 ```bash
-# PrismBlossom
-python ops/deployment/deploy_prismblossom.py
+# Full pipeline with validation and rollback
+python ops/deployment/deployment_pipeline.py --full
+
+# Quick deploy specific site
+python ops/deployment/deploy_on_push.py --site dadudekc.com
+
+# Dry run to see what would deploy
+python ops/deployment/deployment_automation.py --dry-run
 ```
 
-### Deploy and Activate Themes
+## ⚙️ Configuration
+
+### Sites Configuration
+
+```json
+// config/site_configs.json
+{
+  "dadudekc.com": {
+    "sftp": {
+      "host": "ftp.dadudekc.com",
+      "remote_path": "/public_html"
+    },
+    "deployment_method": "sftp"
+  }
+}
+```
+
+### Pipeline Configuration
+
+```json
+// config/deployment_config.json
+{
+  "deployment": {
+    "auto_deploy_on_commit": true,
+    "parallel_deployments": 3,
+    "rollback_on_failure": false
+  },
+  "sites": {
+    "dadudekc.com": {
+      "enabled": true,
+      "backup_before_deploy": true,
+      "verify_after_deploy": true
+    }
+  }
+}
+```
+
+## 📈 Performance & Scaling
+
+- **Parallel Deployment**: Up to 3 sites simultaneously
+- **Smart File Detection**: Only deploys changed files
+- **Caching**: Reduces deployment time for unchanged files
+- **Health Checks**: Automatic post-deployment verification
+- **Monitoring**: Real-time performance tracking
+
+## 🔧 Troubleshooting
+
+### Common Issues
 
 ```bash
-# Deploy and activate theme for specific site
-python ops/deployment/deploy_and_activate_themes.py --site houstonsipqueen.com
+# Check deployment logs
+tail -f deployment.log
 
-# Deploy themes for all configured sites
-python ops/deployment/deploy_and_activate_themes.py --all
+# View recent deployments
+python ops/deployment/deployment_monitor.py --report
 
-# Upload only, don't activate
-python ops/deployment/deploy_and_activate_themes.py --all --upload-only
+# Test deployment connectivity
+python ops/deployment/deployment_automation.py --dry-run
+
+# Validate configuration
+python ops/deployment/deployment_pipeline.py --validate-only
 ```
 
-### Activate Themes (Upload Already Complete)
+### Debug Mode
 
 ```bash
-# Activate theme for specific site
-python ops/deployment/activate_themes.py --site houstonsipqueen.com
-
-# Activate themes for all sites
-python ops/deployment/activate_themes.py --all
+# Enable verbose logging
+export DEPLOYMENT_DEBUG=1
+python ops/deployment/deployment_pipeline.py --full
 ```
 
-### Check WordPress Updates
+## 🔒 Security
 
-```bash
-python ops/deployment/check_wordpress_updates.py
-```
+- Credentials stored securely (not in repo)
+- SFTP with key-based authentication
+- File permission validation
+- Backup encryption (future feature)
+- Audit logging for all operations
 
-## Integration
+## 📚 Integration
 
-These tools work with:
-- **Site Registry:** `config/sites_registry.json`
-- **Canonical Locations:** `websites/<domain>/wp/wp-content/`
-- **Legacy Paths:** Maintained for backward compatibility during transition
+### With Existing Tools
 
-## Dependencies
+- **Compatible** with all existing deployment scripts
+- **Gradual migration** path from legacy tools
+- **Backward compatibility** maintained
 
-- SimpleWordPressDeployer from `simple_wordpress_deployer.py` (included)
-- Site configurations in `config/site_configs.json`
-- Hostinger credentials via environment variables (`.env` file)
-- Deployment credentials (stored securely, not in repo)
+### External Systems
+
+- **GitHub Actions**: Pre-configured workflow
+- **GitLab CI**: Pipeline templates available
+- **Jenkins**: Plugin integration support
+- **Monitoring**: Integration with external monitoring systems
+
+## 🎯 Best Practices
+
+1. **Always test locally** before pushing
+2. **Use feature branches** for major changes
+3. **Monitor deployments** via notifications
+4. **Keep backups** for critical rollbacks
+5. **Review deployment reports** regularly
+6. **Update configurations** as sites change
+
+---
+
+**🎉 Your websites now deploy automatically on every push!**
 
 ## Migration Status
 

@@ -1,0 +1,86 @@
+/* We Are Swarm Text Rendering Fixes */
+/* Applied: 2026-01-01 */
+/* Based on crosbyultimateevents.com fixes */
+
+/* ===== CRITICAL TEXT RENDERING FIXES ===== */
+
+/* Global fix - ensure proper word spacing */
+* {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* Body-level fixes */
+body {
+    word-spacing: normal;
+    letter-spacing: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography fixes - comprehensive coverage */
+h1, h2, h3, h4, h5, h6,
+p, span, div, a, li, td, th, label,
+input, textarea, select, button,
+.site-title, .main-navigation, .hero-content,
+.value-item, .service-card, .lead-capture-content,
+.content-area, .entry-content, .post-content,
+.widget, .sidebar, .footer-widget {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Specific fixes for known issues */
+.capabilities-text,
+.services-content,
+.about-content,
+.hero-subtitle,
+.feature-description {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    white-space: normal !important;
+}
+
+/* Fix for multi-word elements that might be broken */
+.multi-agent-text,
+.system-architecture-text,
+.swarm-intelligence-text {
+    word-spacing: normal !important;
+    letter-spacing: 0 !important;
+}
+
+/* Navigation fixes */
+.main-navigation a,
+.site-navigation a,
+.nav-menu a {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* Content area fixes */
+.site-main,
+.content-area,
+.main-content {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* Footer fixes */
+.site-footer,
+.footer-content,
+.footer-text {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* ===== MOBILE RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+    body, p, span, div, a, li, h1, h2, h3, h4, h5, h6 {
+        word-spacing: normal !important;
+        letter-spacing: normal !important;
+    }
+}

@@ -1,0 +1,119 @@
+{
+  "https://ariajet.site": {
+    "timestamp": "2026-01-01T20:10:59.355205",
+    "site_url": "https://ariajet.site",
+    "status": "analyzed",
+    "content_sources": [],
+    "issues": [],
+    "severity_counts": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0
+    }
+  },
+  "https://dadudekc.com": {
+    "timestamp": "2026-01-01T20:11:00.362173",
+    "site_url": "https://dadudekc.com",
+    "status": "analyzed",
+    "content_sources": [
+      "wordpress",
+      "services_content"
+    ],
+    "issues": [
+      {
+        "type": "word_spacing_issue",
+        "text": "specialized agent teams",
+        "severity": "MEDIUM",
+        "description": "Potentially spaced word: \"specialized agent teams\""
+      }
+    ],
+    "severity_counts": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 1,
+      "LOW": 0
+    }
+  },
+  "https://digitaldreamscape.site": {
+    "timestamp": "2026-01-01T20:11:01.393109",
+    "site_url": "https://digitaldreamscape.site",
+    "status": "analyzed",
+    "content_sources": [
+      "services_content"
+    ],
+    "issues": [],
+    "severity_counts": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0
+    }
+  },
+  "https://houstonsipqueen.com": {
+    "timestamp": "2026-01-01T20:11:02.485103",
+    "site_url": "https://houstonsipqueen.com",
+    "status": "analyzed",
+    "content_sources": [
+      "wordpress"
+    ],
+    "issues": [],
+    "severity_counts": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0
+    }
+  },
+  "https://southwestsecret.com": {
+    "timestamp": "2026-01-01T20:11:03.394799",
+    "site_url": "https://southwestsecret.com",
+    "status": "analyzed",
+    "content_sources": [
+      "wordpress",
+      "services_content"
+    ],
+    "issues": [
+      {
+        "type": "word_spacing_issue",
+        "text": "Capabilities\nLive Activity",
+        "severity": "MEDIUM",
+        "description": "Potentially spaced word: \"Capabilities\nLive Activity\""
+      }
+    ],
+    "severity_counts": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 1,
+      "LOW": 0
+    }
+  },
+  "https://weareswarm.site": {
+    "timestamp": "2026-01-01T20:11:04.496533",
+    "site_url": "https://weareswarm.site",
+    "status": "analyzed",
+    "content_sources": [
+      "services_content"
+    ],
+    "issues": [
+      {
+        "type": "word_spacing_issue",
+        "text": "SYSTEM\nPROPHETICAL EQUIDISTANT",
+        "severity": "MEDIUM",
+        "description": "Potentially spaced word: \"SYSTEM\nPROPHETICAL EQUIDISTANT\""
+      },
+      {
+        "type": "word_spacing_issue",
+        "text": "SYSTEM OVERVIEW\nAdvanced",
+        "severity": "MEDIUM",
+        "description": "Potentially spaced word: \"SYSTEM OVERVIEW\nAdvanced\""
+      }
+    ],
+    "severity_counts": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 2,
+      "LOW": 0
+    }
+  }
+}

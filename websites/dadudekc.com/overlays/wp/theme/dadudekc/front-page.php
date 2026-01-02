@@ -25,6 +25,7 @@ $idea_tags = get_terms([
     'number' => 12,
 ]);
 ?>
+
 <main>
     <section class="hero">
         <div class="container hero-grid">
@@ -133,7 +134,7 @@ $idea_tags = get_terms([
                         <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Custom Themes</span>
                     </div>
                 </div>
-                
+
                 <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
                     <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('Workflow Automation', 'dadudekc'); ?></h3>
@@ -144,7 +145,7 @@ $idea_tags = get_terms([
                         <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Automation</span>
                     </div>
                 </div>
-                
+
                 <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
                     <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('Rapid Deployment', 'dadudekc'); ?></h3>
@@ -155,7 +156,7 @@ $idea_tags = get_terms([
                         <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Git</span>
                     </div>
                 </div>
-                
+
                 <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
                     <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('Business Intelligence', 'dadudekc'); ?></h3>
@@ -166,7 +167,7 @@ $idea_tags = get_terms([
                         <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">Data</span>
                     </div>
                 </div>
-                
+
                 <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔧</div>
                     <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('System Integration', 'dadudekc'); ?></h3>
@@ -177,7 +178,7 @@ $idea_tags = get_terms([
                         <span style="background: var(--border); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem; color: var(--text-secondary);">DevOps</span>
                     </div>
                 </div>
-                
+
                 <div class="capability-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎨</div>
                     <h3 style="margin-top: 0; color: var(--accent); font-size: 1.3em;"><?php esc_html_e('Modern UI/UX', 'dadudekc'); ?></h3>
@@ -189,14 +190,18 @@ $idea_tags = get_terms([
                     </div>
                 </div>
             </div>
-            
+
             <div style="background: rgba(0, 212, 255, 0.1); border-left: 4px solid var(--accent); padding: 2rem; border-radius: 8px; margin-top: 3rem;">
                 <h3 style="color: var(--accent); margin-top: 0;">🐝 <?php esc_html_e('Built by The Swarm', 'dadudekc'); ?></h3>
                 <p style="margin-bottom: 1rem; color: var(--text-primary);">
-                    <?php esc_html_e('This website and many others are built and maintained by', 'dadudekc'); ?> <strong><?php esc_html_e('The Swarm', 'dadudekc'); ?></strong>—<?php esc_html_e('a multi-agent AI system that coordinates specialized agents for web development, automation, and WordPress solutions. Each agent brings unique capabilities, working together to deliver results faster and more reliably.', 'dadudekc'); ?>
+                    <?php
+                    esc_html_e('This website and many others are built and maintained by', 'dadudekc');
+                    ?> <strong><?php esc_html_e('The Swarm', 'dadudekc'); ?></strong>—<?php
+                    esc_html_e("a multi-agent AI system that coordinates specialized agents for web development, automation, and WordPress solutions. Each agent brings unique capabilities, working together to deliver results faster and more reliably.", 'dadudekc');
+                    ?>
                 </p>
                 <p style="margin: 0; color: var(--text-primary);">
-                    <strong><?php esc_html_e('Result:', 'dadudekc'); ?></strong> <?php esc_html_e('Professional websites, automated workflows, and scalable systems delivered in weeks, not months.', 'dadudekc'); ?> 
+                    <strong><?php esc_html_e('Result:', 'dadudekc'); ?></strong> <?php esc_html_e('Professional websites, automated workflows, and scalable systems delivered in weeks, not months.', 'dadudekc'); ?>
                     <a href="<?php echo esc_url('https://weareswarm.site'); ?>" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;"><?php esc_html_e('See The Swarm in action →', 'dadudekc'); ?></a>
                 </p>
             </div>
@@ -208,17 +213,24 @@ $idea_tags = get_terms([
             <div class="section-header">
                 <div>
                     <h2 class="section-title"><?php esc_html_e('Quick Links', 'dadudekc'); ?></h2>
-                    <p class="section-subtitle"><?php esc_html_e('Jump into Victor's current focus, latest series, and active builds.', 'dadudekc'); ?></p>
+                    <p class="section-subtitle"><?php esc_html_e('Jump into Victor\'s current focus, latest series, and active builds.', 'dadudekc'); ?></p>
                 </div>
             </div>
             <div class="quick-links">
-                <a class="quick-link" href="<?php echo esc_url(dadudekc_get_now_url()); ?>"><?php esc_html_e('Now: current focus + status →', 'dadudekc'); ?></a>
-                <a class="quick-link" href="<?php echo esc_url(add_query_arg('series', 'dreamscape', dadudekc_get_blog_page_url())); ?>"><?php esc_html_e('Series: Dreamscape →', 'dadudekc'); ?></a>
-                <a class="quick-link" href="<?php echo esc_url(add_query_arg('series', 'swarm', dadudekc_get_blog_page_url())); ?>"><?php esc_html_e('Series: Swarm →', 'dadudekc'); ?></a>
-                <a class="quick-link" href="<?php echo esc_url(add_query_arg('series', 'trading-systems', dadudekc_get_blog_page_url())); ?>"><?php esc_html_e('Series: Trading Systems →', 'dadudekc'); ?></a>
+                <?php
+                $now_url = dadudekc_get_now_url();
+                $blog_url = dadudekc_get_blog_page_url();
+                ?>
+                <a class="quick-link" href="<?php echo esc_url($now_url); ?>"><?php esc_html_e('Now: current focus + status →', 'dadudekc'); ?></a>
+                <a class="quick-link" href="<?php echo esc_url(add_query_arg('series', 'dreamscape', $blog_url)); ?>"><?php esc_html_e('Series: Dreamscape →', 'dadudekc'); ?></a>
+                <a class="quick-link" href="<?php echo esc_url(add_query_arg('series', 'swarm', $blog_url)); ?>"><?php esc_html_e('Series: Swarm →', 'dadudekc'); ?></a>
+                <a class="quick-link" href="<?php echo esc_url(add_query_arg('series', 'trading-systems', $blog_url)); ?>"><?php esc_html_e('Series: Trading Systems →', 'dadudekc'); ?></a>
             </div>
         </div>
     </section>
+
+    </section>
 </main>
+
 <?php
 get_footer();

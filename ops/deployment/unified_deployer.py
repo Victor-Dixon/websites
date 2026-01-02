@@ -42,37 +42,88 @@ def load_site_registry() -> Dict:
     return {}
 
 
+def get_ssot_paths(site_domain: str) -> Dict[str, List[Path]]:
+    """Get canonical paths for a site according to SSOT map."""
+    base_dir = Path(__file__).parent.parent.parent / "websites" / site_domain
+
+    # SSOT canonical paths per domain
+    ssot_paths = {
+        'dadudekc.com': {
+            'theme': [base_dir / "overlays" / "wp" / "theme" / "dadudekc"],
+            'plugins': [],
+            'content': [base_dir / "blog-posts"]
+        },
+        'freerideinvestor.com': {
+            'theme': [base_dir / "wp" / "wp-content" / "themes" / "freerideinvestor-modern"],
+            'plugins': [base_dir / "wp" / "wp-content" / "plugins"],
+            'content': [base_dir / "blog"]
+        },
+        'tradingrobotplug.com': {
+            'theme': [base_dir / "overlays" / "wp" / "theme" / "tradingrobotplug-theme"],
+            'plugins': [base_dir / "overlays" / "wp" / "plugins"],
+            'content': [base_dir / "blog"]
+        },
+        'crosbyultimateevents.com': {
+            'theme': [base_dir / "overlays" / "wp" / "theme" / "crosbyultimateevents"],
+            'plugins': [base_dir / "overlays" / "wp" / "plugins"],
+            'content': [base_dir / "blog"]
+        },
+        # Domains needing consolidation (use current paths until migrated)
+        'southwestsecret.com': {
+            'theme': [
+                base_dir / "wordpress-theme" / "southwestsecret",  # Preferred canonical
+                base_dir / "wp" / "wp-content" / "themes" / "southwestsecret"  # Legacy
+            ],
+            'plugins': [base_dir / "wp" / "wp-content" / "plugins"],
+            'content': []
+        },
+        'ariajet.site': {
+            'theme': [
+                base_dir / "wordpress-theme" / "ariajet",  # Preferred
+                base_dir / "wp"  # Legacy mixed
+            ],
+            'plugins': [],
+            'content': []
+        }
+    }
+
+    # Default fallback for unmapped domains
+    if site_domain not in ssot_paths:
+        ssot_paths[site_domain] = {
+            'theme': [base_dir / "overlays" / "wp" / "theme"],
+            'plugins': [base_dir / "overlays" / "wp" / "plugins"],
+            'content': [base_dir / "content" / "posts"]
+        }
+
+    return ssot_paths[site_domain]
+
+
 def find_theme_files(site_domain: str) -> List[Path]:
-    """Find theme files for a site."""
-    base_paths = [
-        Path(__file__).parent.parent.parent / "websites" / site_domain / "wp" / "wp-content" / "themes",
-        Path(__file__).parent.parent.parent / "websites" / site_domain / "wordpress-theme",
-        Path(__file__).parent.parent.parent / site_domain.replace(".", "_") / "wp-content" / "themes",
-    ]
-    
+    """Find theme files for a site using SSOT canonical paths only."""
+    ssot_paths = get_ssot_paths(site_domain)
+    theme_dirs = ssot_paths.get('theme', [])
+
     theme_files = []
-    for base_path in base_paths:
-        if base_path.exists():
-            # Find all PHP, CSS, JS files in theme directories
-            for ext in ['*.php', '*.css', '*.js']:
-                theme_files.extend(base_path.rglob(ext))
-    
+    for theme_dir in theme_dirs:
+        if theme_dir.exists():
+            # Find all PHP, CSS, JS files in canonical theme directories
+            for ext in ['*.php', '*.css', '*.js', '*.scss']:
+                theme_files.extend(theme_dir.rglob(ext))
+
     return theme_files
 
 
 def find_plugin_files(site_domain: str) -> List[Path]:
-    """Find plugin files for a site."""
-    base_paths = [
-        Path(__file__).parent.parent.parent / "websites" / site_domain / "wp" / "wp-content" / "plugins",
-        Path(__file__).parent.parent.parent / "sites" / site_domain / "wp" / "plugins",
-    ]
-    
+    """Find plugin files for a site using SSOT canonical paths only."""
+    ssot_paths = get_ssot_paths(site_domain)
+    plugin_dirs = ssot_paths.get('plugins', [])
+
     plugin_files = []
-    for base_path in base_paths:
-        if base_path.exists():
-            for ext in ['*.php', '*.css', '*.js']:
-                plugin_files.extend(base_path.rglob(ext))
-    
+    for plugin_dir in plugin_dirs:
+        if plugin_dir.exists():
+            for ext in ['*.php', '*.css', '*.js', '*.py']:
+                plugin_files.extend(plugin_dir.rglob(ext))
+
     return plugin_files
 
 

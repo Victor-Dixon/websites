@@ -1,0 +1,150 @@
+{
+  "check_interval_seconds": 60,
+  "error_threshold": 5,
+  "critical_error_threshold": 1,
+  "healing_cooldown_minutes": 15,
+  "max_concurrent_healing": 2,
+  "enable_auto_healing": true,
+  "enable_notifications": true,
+  "kill_switch_file": "DISABLE_SELF_HEALING",
+
+  "error_patterns": {
+    "php_syntax_error": {
+      "enabled": true,
+      "priority": "high",
+      "auto_heal": true,
+      "notify_on_detection": true
+    },
+    "undefined_function": {
+      "enabled": true,
+      "priority": "medium",
+      "auto_heal": true,
+      "notify_on_detection": false
+    },
+    "db_connection_error": {
+      "enabled": true,
+      "priority": "critical",
+      "auto_heal": false,
+      "notify_on_detection": true
+    },
+    "memory_limit_error": {
+      "enabled": true,
+      "priority": "medium",
+      "auto_heal": true,
+      "notify_on_detection": false
+    },
+    "file_permission_error": {
+      "enabled": true,
+      "priority": "medium",
+      "auto_heal": true,
+      "notify_on_detection": false
+    },
+    "plugin_activation_error": {
+      "enabled": true,
+      "priority": "high",
+      "auto_heal": true,
+      "notify_on_detection": true
+    },
+    "theme_error": {
+      "enabled": true,
+      "priority": "high",
+      "auto_heal": true,
+      "notify_on_detection": true
+    },
+    "missing_file": {
+      "enabled": true,
+      "priority": "low",
+      "auto_heal": true,
+      "notify_on_detection": false
+    }
+  },
+
+  "healing_strategies": {
+    "backup_before_healing": true,
+    "test_after_healing": true,
+    "rollback_on_failure": true,
+    "escalation_threshold": 3,
+    "manual_intervention_threshold": 5
+  },
+
+  "notifications": {
+    "console": true,
+    "file": true,
+    "email": false,
+    "slack": false,
+    "discord": false,
+
+    "email_config": {
+      "smtp_server": "smtp.gmail.com",
+      "smtp_port": 587,
+      "from_email": "",
+      "to_emails": [],
+      "notify_success": false,
+      "notify_failure": true,
+      "notify_critical": true
+    },
+
+    "slack_config": {
+      "webhook_url": "",
+      "channel": "#wordpress-monitoring",
+      "username": "WPMonitor",
+      "notify_success": true,
+      "notify_failure": true,
+      "notify_critical": true
+    },
+
+    "discord_config": {
+      "webhook_url": "",
+      "username": "WPMonitor",
+      "notify_success": true,
+      "notify_failure": true,
+      "notify_critical": true
+    }
+  },
+
+  "monitoring": {
+    "log_retention_days": 30,
+    "performance_tracking": true,
+    "error_rate_tracking": true,
+    "healing_success_tracking": true,
+    "generate_daily_reports": true
+  },
+
+  "sites": {
+    "freerideinvestor.com": {
+      "monitoring_enabled": true,
+      "healing_enabled": true,
+      "priority": "high",
+      "custom_error_patterns": [],
+      "notification_override": null
+    },
+    "dadudekc.com": {
+      "monitoring_enabled": true,
+      "healing_enabled": true,
+      "priority": "high",
+      "custom_error_patterns": [],
+      "notification_override": null
+    },
+    "southwestsecret.com": {
+      "monitoring_enabled": true,
+      "healing_enabled": true,
+      "priority": "medium",
+      "custom_error_patterns": [],
+      "notification_override": null
+    },
+    "weareswarm.site": {
+      "monitoring_enabled": true,
+      "healing_enabled": true,
+      "priority": "medium",
+      "custom_error_patterns": [],
+      "notification_override": null
+    },
+    "prismblossom.online": {
+      "monitoring_enabled": true,
+      "healing_enabled": true,
+      "priority": "low",
+      "custom_error_patterns": [],
+      "notification_override": null
+    }
+  }
+}
