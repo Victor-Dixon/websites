@@ -21,6 +21,7 @@ Text Domain: swarm-theme
   --swarm-purple: #8b5cf6;
   --swarm-electric: #00ff88;
   --swarm-pink: #ff00ff;
+  --swarm-green: #00ff88;
 
   /* Gradients */
   --swarm-gradient: linear-gradient(135deg, var(--swarm-blue) 0%, var(--swarm-purple) 100%);
@@ -35,7 +36,9 @@ Text Domain: swarm-theme
 
   /* UI Elements */
   --border-color: #2d3748;
+  --border: #2d3748;
   --card-bg: #1a1f36;
+  --surface: #1a1f36;
   --card-hover: #252b45;
   --glass-bg: rgba(26, 31, 54, 0.8);
 
