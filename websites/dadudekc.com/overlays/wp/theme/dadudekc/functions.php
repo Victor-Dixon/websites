@@ -42,6 +42,36 @@ function dadudekc_get_reading_time($post_id = null) {
     return sprintf(_n('%d min read', '%d min read', $minutes, 'dadudekc'), $minutes);
 }
 
+function dadudekc_is_swarm_intro_post($post_id = null) {
+    if (!is_singular('post')) {
+        return false;
+    }
+
+    $post_id = $post_id ?: get_the_ID();
+    if (!$post_id) {
+        return false;
+    }
+
+    $post = get_post($post_id);
+    if (!$post) {
+        return false;
+    }
+
+    return $post->post_name === 'introducing-the-swarm-a-new-paradigm-in-collaborative-development';
+}
+
+function dadudekc_demote_swarm_headings($content) {
+    if (!dadudekc_is_swarm_intro_post()) {
+        return $content;
+    }
+
+    $content = preg_replace('/<h1([^>]*)>/i', '<h2$1>', $content);
+    $content = preg_replace('/<\\/h1>/i', '</h2>', $content);
+
+    return $content;
+}
+add_filter('the_content', 'dadudekc_demote_swarm_headings', 20);
+
 function dadudekc_get_blog_page_url() {
     $page_for_posts = get_option('page_for_posts');
     if ($page_for_posts) {

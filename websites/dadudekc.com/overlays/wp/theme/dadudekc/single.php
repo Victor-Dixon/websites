@@ -21,6 +21,9 @@ get_header();
                 <div class="post-content">
                     <?php the_content(); ?>
                 </div>
+                <?php if (dadudekc_is_swarm_intro_post()) : ?>
+                    <?php get_template_part('template-parts/components/swarm-post-extras'); ?>
+                <?php endif; ?>
                 <?php
                 $series_slugs = ['dreamscape', 'swarm', 'trading-systems'];
                 $post_categories = wp_get_post_categories(get_the_ID(), ['fields' => 'slugs']);
