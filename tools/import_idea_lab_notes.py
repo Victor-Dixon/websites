@@ -18,9 +18,76 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tools.blog_manager import get_site_config, create_post, get_rest_api_auth
 import requests
 from requests.auth import HTTPBasicAuth
+
+# Import site config directly to avoid dependency issues
+def get_site_config(site: str) -> dict:
+    """Get site configuration from config/site_configs.json."""
+    import json
+    config_path = REPO_ROOT / "config" / "site_configs.json"
+    if config_path.exists():
+        with open(config_path, 'r') as f:
+            configs = json.load(f)
+            return configs.get(site, {})
+    return {}
+
+def get_rest_api_auth(config: dict) -> tuple[str, requests.auth.HTTPBasicAuth]:
+    """Get REST API authentication details."""
+    username = config.get('rest_api', {}).get('username')
+    app_password = config.get('rest_api', {}).get('app_password')
+    site_url = config.get('rest_api', {}).get('site_url') or config.get('site_url')
+
+    if not all([username, app_password, site_url]):
+        raise ValueError(f"Missing auth config for site")
+
+    auth = HTTPBasicAuth(username, app_password)
+    api_base = f"{site_url}/wp-json/wp/v2"
+
+    return api_base, auth
+
+def create_post(site: str, title: str, content: str, status: str = 'draft', excerpt: str = None, tags: list = None) -> bool:
+    """Create a WordPress post via REST API."""
+    config = get_site_config(site)
+    if not config:
+        print(f"❌ No config found for site: {site}")
+        return False
+
+    try:
+        api_base, auth = get_rest_api_auth(config)
+    except ValueError as e:
+        print(f"❌ {e}")
+        return False
+
+    # Prepare post data
+    post_data = {
+        'title': title,
+        'content': content,
+        'status': status
+    }
+
+    if excerpt:
+        post_data['excerpt'] = excerpt
+
+    # WordPress API expects tag IDs, not names. For now, we'll skip tags to avoid complexity
+    # if tags:
+    #     post_data['tags'] = ','.join(tags)
+
+    # Make API request
+    api_url = f"{api_base}/posts"
+
+    try:
+        response = requests.post(api_url, json=post_data, auth=auth, timeout=30)
+        if response.status_code in [200, 201]:
+            data = response.json()
+            print(f"✅ Created post: {data.get('title', {}).get('rendered', title)} (ID: {data.get('id')})")
+            return True
+        else:
+            print(f"❌ Failed to create post: HTTP {response.status_code} - {response.text[:200]}")
+            return False
+    except Exception as e:
+        print(f"❌ Error creating post: {e}")
+        return False
 
 
 def parse_idea_lab_notes(md_file: Path) -> list[dict[str, Any]]:
@@ -120,83 +187,75 @@ def parse_idea_lab_notes(md_file: Path) -> list[dict[str, Any]]:
 
 
 def create_idea_note(site: str, idea: dict[str, Any], dry_run: bool = False) -> bool:
-    """Create a note in WordPress Idea Lab."""
+    """Create a note in WordPress Idea Lab using WP-CLI."""
     if dry_run:
         print(f"  Would create: {idea['title']}")
         print(f"    Category: {idea['category']}")
         print(f"    Tags: {', '.join(idea.get('tags', []))}")
         return True
-    
-    config = get_site_config(site)
-    
+
     # Build content
     content = f"""<p><strong>Category:</strong> {idea['category']}</p>
 <p>{idea['title']}</p>"""
-    
+
     if idea.get('tags'):
         tags_str = ', '.join(idea['tags'])
         content += f'\n<p><strong>Tags:</strong> {tags_str}</p>'
-    
+
+    # Escape content for shell
+    escaped_title = idea['title'].replace("'", "'\\''")
+    escaped_content = content.replace("'", "'\\''")
+
+    # Use WP-CLI via SSH to create the post
+    import paramiko
+    import os
+
+    # Load SSH credentials
+    env_path = 'D:/Agent_Cellphone_V2_Repository/.env'
+    if os.path.exists(env_path):
+        from dotenv import load_dotenv
+        load_dotenv(env_path)
+
+    creds = {
+        'host': os.getenv('HOSTINGER_HOST'),
+        'username': os.getenv('HOSTINGER_USER'),
+        'password': os.getenv('HOSTINGER_PASS'),
+        'port': int(os.getenv('HOSTINGER_PORT', '65002'))
+    }
+
+    if not all(creds.values()):
+        print(f"❌ SSH credentials not found for {site}")
+        return False
+
     try:
-        # Try to create as custom post type 'note' first
-        base_url, auth = get_rest_api_auth(config)
-        
-        # Try custom post type endpoint
-        payload = {
-            "title": idea['title'],
-            "content": content,
-            "status": "draft",
-        }
-        
-        # Try note post type endpoint
-        resp = requests.post(
-            f"{base_url}/wp-json/wp/v2/note",
-            auth=auth,
-            json=payload,
-            timeout=30
-        )
-        
-        if resp.status_code in (200, 201):
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(creds['host'], port=creds['port'], username=creds['username'], password=creds['password'])
+
+        wp_path = f'/home/{creds["username"]}/domains/{site}/public_html'
+        excerpt_text = f"Idea Lab: {idea['category']}"
+        escaped_excerpt = excerpt_text.replace("'", "'\\''")
+        command = f"cd {wp_path} && wp post create --post_title='{escaped_title}' --post_content='{escaped_content}' --post_status=draft --post_excerpt='{escaped_excerpt}' --allow-root"
+
+        stdin, stdout, stderr = ssh.exec_command(command, timeout=30)
+        output = stdout.read().decode()
+        error = stderr.read().decode()
+
+        if "Success:" in output or "Created post" in output:
             print(f"✅ Created note: {idea['title']}")
             return True
-        elif resp.status_code == 404:
-            # Note post type not available, fall back to regular posts
-            print(f"  Note: Using regular posts (note post type not available)")
-            create_post(
-                site=site,
-                title=idea['title'],
-                content=content,
-                status='draft',
-                excerpt=f"Idea Lab: {idea['category']}",
-                tags=idea.get('tags', [])
-            )
-            return True
         else:
-            print(f"⚠️  Note endpoint returned {resp.status_code}, trying regular posts...")
-            create_post(
-                site=site,
-                title=idea['title'],
-                content=content,
-                status='draft',
-                excerpt=f"Idea Lab: {idea['category']}",
-                tags=idea.get('tags', [])
-            )
-            return True
-    except Exception as e:
-        print(f"❌ Error creating {idea['title']}: {e}")
-        # Fallback to regular post creation
-        try:
-            create_post(
-                site=site,
-                title=idea['title'],
-                content=content,
-                status='draft',
-                excerpt=f"Idea Lab: {idea['category']}",
-                tags=idea.get('tags', [])
-            )
-            return True
-        except:
+            print(f"❌ Failed to create note: {error or output}")
             return False
+
+    except Exception as e:
+        print(f"❌ SSH error: {e}")
+        return False
+    finally:
+        try:
+            ssh.close()
+        except:
+            pass
 
 
 def main() -> int:
