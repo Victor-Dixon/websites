@@ -32,6 +32,30 @@
 - [ ] **MEDIUM**: Process Batches 2-8 duplicate consolidation - LOW priority groups ready for execution after Batch 1 resolution - ✅ Batch 2: COMPLETE (14/15 groups already cleaned, 0 files deleted, Group 15 SSOT issue non-blocking), ✅ Batch 3: COMPLETE (15 files deleted from git tracking), ✅ Batch 4: COMPLETE (15 files deleted), 🔄 Batch 7: BLOCKED ⚠️ - Batch 7 not found in JSON (only batches 1-6 exist), 🔄 Batches 5, 6: AWAITING Agent-8 SSOT verification (Agent-6 coordinating), ⚠️ Batch 8: NON-EXISTENT (only batches 1-6 in JSON) [Agent-5 + Agent-6 BILATERAL COORDINATION - 3x force multiplier activated]
 - [x] **MEDIUM**: Evaluate Agent-8 Swarm Pulse Response - ✅ EVALUATION FRAMEWORK COMPLETE by Agent-4 (2025-12-22) - **Status:** Evaluation framework created, test plan established, baseline assessment complete. **Framework:** 6 evaluation criteria (Git Commit Compliance, Checklist Completion, Captain Directive Compliance, System Utilization, Response Time, Action Quality), scoring system (1-4 points per criterion, 24 points max), grade scale (A-F). **Current Status:** Agent-8 is ACTIVE (last updated 2025-12-22 13:05:00), no recent SWARM_PULSE responses to evaluate. **Test Plan:** Wait for natural SWARM_PULSE trigger (10+ minutes inactivity) or manual trigger, then evaluate response using criteria. **Report:** docs/agent_8_swarm_pulse_evaluation_2025-12-22.md. **Next Steps:** Monitor for SWARM_PULSE trigger, evaluate response, create grade card. [Agent-4]
 
+## WEBSITE DEBUGGING & MONITORING - ACTIVE PROJECT
+
+**Status:** 🔄 ACTIVE - Database connection issues resolved, investigating remaining HTTP 500 errors
+
+### ✅ **COMPLETED FIXES**
+- [x] **freerideinvestor.com Database Connection** - ✅ **RESOLVED** - Retrieved correct credentials (u996867598_9dVzt) from server, deployed updated wp-config.php, cleared caches. Debug logs confirm no new connection errors.
+- [x] **Debug Logging System** - ✅ **VERIFIED** - Production-safe error logging deployed to both sites. Errors logged but not displayed to users.
+- [x] **Cache Management** - ✅ **COMPLETED** - Cleared WordPress object cache and PHP OPcache to resolve credential caching issues.
+- [x] **PHP Execution** - ✅ **VERIFIED** - PHP is working correctly (test.php returns 200 with full phpinfo output).
+
+### 🚨 **REMAINING ISSUES**
+- [ ] **HTTP 500 Errors** - Both sites still return HTTP 500 despite correct database credentials and working PHP. Error display temporarily enabled for debugging.
+- [ ] **prismblossom.online Investigation** - No debug logs or database errors, but still shows HTTP 500. Requires deeper investigation.
+
+### 🔧 **DEBUGGING TOOLS CREATED**
+- `get_db_config.py` - Retrieves database credentials from server
+- `deploy_wp_config.py` - Deploys wp-config.php files
+- `check_debug_logs.py` - Monitors WordPress debug logs
+- `clear_caches.py` - Clears WordPress and PHP caches
+- `test_website_status.py` - Tests website HTTP status
+- `enable_error_display.py` - Temporarily enables error display for debugging
+
+**Next Steps:** Investigate WordPress core/theme/plugin code for fatal errors causing HTTP 500 responses.
+
 ## WAITING_ON
 
 - [ ] Technical debt analysis tool maintainer: Tool fix coordination (file existence check, empty file filter, SSOT validation)

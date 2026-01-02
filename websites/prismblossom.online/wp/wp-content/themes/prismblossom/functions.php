@@ -335,6 +335,7 @@ function prismblossom_delete_unwanted_pages()
 
     // Also search all pages by title (not using 'title' parameter as it's not reliable)
     $titles_to_delete = array('Capabilities', 'Live Activity', 'Agent', 'Agents', 'Aria');
+    $page_slugs_to_delete = array('capabilities', 'live-activity', 'liveactivity', 'agent', 'agents', 'aria');
     $all_pages = get_pages(array(
         'post_status' => 'any', // Include all statuses
         'number' => -1,
