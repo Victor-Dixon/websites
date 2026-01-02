@@ -29,9 +29,9 @@ Blog posts and articles:
 ## 📄 Root Documentation
 
 - `WEBSITE_MAINTENANCE_GUIDE.md` - General maintenance guide
+- `WORDPRESS_CPT_SLUG_NOTICE.md` - CPT slug length warning troubleshooting steps
 
 ## 🔍 Quick Links
 
 - [Main README](../README.md) - Overview of all websites
 - [Organization Assessment](../ORGANIZATION_ASSESSMENT.md) - Detailed organization analysis
-
