@@ -2,9 +2,10 @@
 # Combines authentic typing style with polished blog writing style
 
 voice_profile:
-  id: "victor_v1"
+  id: "victor_v3"
   name: "Victor"
   label: "Victor - Builder & Systems Thinker"
+  inherits: "victor_v2"
   
   # CHAT/TYPING STYLE (Authentic Voice)
   chat_style:
@@ -104,6 +105,42 @@ voice_profile:
       - No overexplaining
       - Use headings + bullets
       - Always include: Problem → Fix → Steps → CTA
+
+    seo_rules:
+      require_explicit_h1: true
+      require_explicit_h2s: true
+      min_word_count: 700
+      max_word_count: 1800
+
+      keyword_requirements:
+        primary_keyword:
+          required: true
+          placement:
+            - "title"
+            - "h1"
+            - "intro_first_120_words"
+            - "one_h2"
+        supporting_keywords:
+          min: 2
+          max: 5
+
+      internal_linking:
+        min_links: 2
+        required_targets:
+          - "/portfolio/"
+          - "/missions/"
+          - "/blog/"
+        anchor_style:
+          - "descriptive"
+          - "natural language"
+          - "no exact-match stuffing"
+
+      snippet_optimization:
+        meta_description_style: "plainspoken"
+        meta_description_formula:
+          - "what i built"
+          - "who its for"
+          - "why it matters"
   
   # UNIFIED ELEMENTS (Both Styles)
   emotional_style:
@@ -145,6 +182,37 @@ voice_profile:
     - "the journey with [project] taught me a lot, and its still evolving."
     - "final thoughts on [project]: definitely a project worth the effort."
     - "so now the main quest should be what exactly..."
+
+  seo_intent_layer:
+    ideal_customer_profile:
+      role:
+        - "solo founder"
+        - "technical operator"
+        - "automation builder"
+        - "ai power user"
+      skill_level: "intermediate_to_advanced"
+      pain_points:
+        - "too many tools, no spine"
+        - "automation ideas but no closure"
+        - "technical debt everywhere"
+        - "systems that dont talk to each other"
+      buying_signals:
+        - "asking about workflows"
+        - "asking about systems architecture"
+        - "asking how to automate X end-to-end"
+
+    search_intent_types:
+      primary:
+        - "how to build"
+        - "how to automate"
+        - "system architecture"
+      secondary:
+        - "case study"
+        - "build in public"
+        - "lessons learned"
+      exclusion:
+        - "beginner tutorial"
+        - "definition-only content"
   
   do:
     - Let sentences run a bit; don't over-correct grammar (chat style)
@@ -172,5 +240,31 @@ voice_profile:
       - "Here's the move: Stop buying tools. Fix one workflow end-to-end."
       - "If you're doing ___ at night, you need a system."
       - "Problem: [clear problem]. Fix: [solution]. Steps: [actionable steps]. CTA: [clear call to action]."
+
+  content_structure:
+    seo_first_flow:
+      - "hook (human, raw)"
+      - "who this is for (explicit)"
+      - "problem (search aligned)"
+      - "system overview"
+      - "what i built (artifact)"
+      - "how it works (steps)"
+      - "what broke / lessons"
+      - "takeaways (rules)"
+      - "next step (funnel CTA)"
+
+  cta_strategy:
+    primary:
+      audience: "builders"
+      text: "see the system"
+      href: "/portfolio/"
+    secondary:
+      audience: "operators"
+      text: "run a mission"
+      href: "/missions/"
+    tertiary:
+      audience: "buyers"
+      text: "work with me"
+      href: "/contact/"
 
 
