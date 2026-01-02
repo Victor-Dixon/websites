@@ -399,6 +399,24 @@ blockquote {
   color: var(--text-secondary);
 }
 
+/* Swarm Capabilities Section */
+.swarm-capabilities-section .capability-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swarm-capabilities-section .capability-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.swarm-capabilities-section .capability-card h3 {
+  transition: color 0.3s ease;
+}
+
+.swarm-capabilities-section .capability-card:hover h3 {
+  color: var(--accent);
+}
+
 @media (max-width: 720px) {
   .site-header-inner {
     flex-direction: column;
@@ -407,5 +425,9 @@ blockquote {
 
   .hero {
     padding-top: 3.5rem;
+  }
+  
+  .swarm-capabilities-section .capabilities-grid {
+    grid-template-columns: 1fr;
   }
 }

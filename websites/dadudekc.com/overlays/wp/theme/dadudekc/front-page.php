@@ -113,12 +113,104 @@ $idea_tags = get_terms([
         </div>
     </section>
 
+    <section class="section swarm-capabilities-section" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%); padding: 4rem 0;">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title"><?php esc_html_e('Swarm Capabilities', 'dadudekc'); ?></h2>
+                    <p class="section-subtitle"><?php esc_html_e('Built by The Swarm: A multi-agent AI system that delivers web development, automation, and WordPress solutions at scale.', 'dadudekc'); ?></p>
+                </div>
+                <a href="https://weareswarm.site" target="_blank" rel="noopener"><?php esc_html_e('Learn More About Swarm →', 'dadudekc'); ?></a>
+            </div>
+            <div class="capabilities-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌐</div>
+                    <h3 style="margin-top: 0; color: #00d4ff; font-size: 1.3em;">WordPress Development</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Custom themes, plugins, REST API integration, and performance optimization. This site itself is built by The Swarm.</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">PHP</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">WordPress</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Custom Themes</span>
+                    </div>
+                </div>
+                
+                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
+                    <h3 style="margin-top: 0; color: #8b5cf6; font-size: 1.3em;">Workflow Automation</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Done-for-you automation sprints that eliminate manual workflows. Delivered in 2 weeks, zero technical knowledge required.</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Zapier</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">API Integration</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Automation</span>
+                    </div>
+                </div>
+                
+                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
+                    <h3 style="margin-top: 0; color: #00ff88; font-size: 1.3em;">Rapid Deployment</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Automated deployments, CI/CD pipelines, and infrastructure management. Sites deploy automatically on updates.</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">SFTP</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">CI/CD</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Git</span>
+                    </div>
+                </div>
+                
+                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
+                    <h3 style="margin-top: 0; color: #00d4ff; font-size: 1.3em;">Business Intelligence</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Data visualization, analytics dashboards, and real-time insights. Turn data into actionable business intelligence.</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Analytics</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Dashboards</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Data</span>
+                    </div>
+                </div>
+                
+                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔧</div>
+                    <h3 style="margin-top: 0; color: #8b5cf6; font-size: 1.3em;">System Integration</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Multi-system coordination, API integrations, and seamless connections across platforms. Everything works together.</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">APIs</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Integration</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">DevOps</span>
+                    </div>
+                </div>
+                
+                <div class="capability-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎨</div>
+                    <h3 style="margin-top: 0; color: #00ff88; font-size: 1.3em;">Modern UI/UX</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Responsive designs, smooth animations, and accessibility-first development. Every pixel crafted for optimal experience.</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">CSS3</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">Responsive</span>
+                        <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.875rem;">UX</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; padding: 2rem; border-radius: 8px; margin-top: 3rem;">
+                <h3 style="color: #00d4ff; margin-top: 0;">🐝 Built by The Swarm</h3>
+                <p style="margin-bottom: 1rem; color: #333;">
+                    This website and many others are built and maintained by <strong>The Swarm</strong>—a multi-agent AI system 
+                    that coordinates specialized agents for web development, automation, and WordPress solutions. 
+                    Each agent brings unique capabilities, working together to deliver results faster and more reliably.
+                </p>
+                <p style="margin: 0; color: #333;">
+                    <strong>Result:</strong> Professional websites, automated workflows, and scalable systems delivered in weeks, not months. 
+                    <a href="https://weareswarm.site" target="_blank" rel="noopener" style="color: #00d4ff; font-weight: 600;">See The Swarm in action →</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
             <div class="section-header">
                 <div>
                     <h2 class="section-title"><?php esc_html_e('Quick Links', 'dadudekc'); ?></h2>
-                    <p class="section-subtitle"><?php esc_html_e('Jump into Victor’s current focus, latest series, and active builds.', 'dadudekc'); ?></p>
+                    <p class="section-subtitle"><?php esc_html_e('Jump into Victor's current focus, latest series, and active builds.', 'dadudekc'); ?></p>
                 </div>
             </div>
             <div class="quick-links">
