@@ -198,7 +198,7 @@ if ($projects) {
                     <a href="<?php echo esc_url(dadudekc_get_contact_url()); ?>" style="background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
                         <?php esc_html_e('Start a Conversation →', 'dadudekc'); ?>
                     </a>
-                    <a href="https://calendly.com/dadudekc/30min?back=1&month=2026-01" target="_blank" rel="noopener" style="background: var(--surface); color: var(--text-primary); border: 2px solid var(--border); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
+                    <a href="https://calendly.com/dadudekc/consultation" target="_blank" rel="noopener" style="background: var(--surface); color: var(--text-primary); border: 2px solid var(--border); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
                         <?php esc_html_e('Schedule a Call →', 'dadudekc'); ?>
                     </a>
                 </div>

@@ -5,6 +5,7 @@
  * @package DaDudeKC
  */
 
+
 get_header();
 ?>
 <main class="content-area">

@@ -15,6 +15,19 @@ get_header();
                 <p class="post-meta" style="font-size: 1.2rem; color: var(--text-secondary);"><?php esc_html_e('Ready to turn your vision into reality? Let\'s discuss your project and explore possibilities.', 'dadudekc'); ?></p>
             </header>
 
+            <!-- Profile Introduction -->
+            <section class="profile-intro" style="text-align: center; margin-bottom: 4rem;">
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <img src="<?php echo esc_url(get_site_url()); ?>/wp-content/uploads/2026/01/dadudekc_profile.png"
+                         alt="DaDudeKC Profile"
+                         style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin-bottom: 2rem; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border: 4px solid var(--accent);">
+                    <h2 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 1rem;"><?php esc_html_e('Hi, I\'m DaDudeKC', 'dadudekc'); ?></h2>
+                    <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0;">
+                        <?php esc_html_e('A passionate developer and problem-solver who loves turning complex challenges into elegant solutions. With expertise in web development, automation, and AI integration, I help businesses and entrepreneurs bring their ideas to life.', 'dadudekc'); ?>
+                    </p>
+                </div>
+            </section>
+
             <div class="contact-content" style="max-width: 1200px; margin: 0 auto;">
                 <!-- Contact Options Grid -->
                 <section class="contact-options" style="margin-bottom: 4rem;">
@@ -24,7 +37,7 @@ get_header();
                             <div style="font-size: 3rem; margin-bottom: 1rem;">💬</div>
                             <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.8rem;"><?php esc_html_e('Direct Conversation', 'dadudekc'); ?></h3>
                             <p style="margin-bottom: 2rem; opacity: 0.9; font-size: 1.1rem;"><?php esc_html_e('The fastest way to get started. Schedule a call to discuss your project in detail.', 'dadudekc'); ?></p>
-                            <a href="https://calendly.com/dadudekc/consultation" target="_blank" rel="noopener" style="background: white; color: var(--accent); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                            <a href="https://calendly.com/dadudekc/30min?back=1&month=2026-01" target="_blank" rel="noopener" style="background: white; color: var(--accent); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
                                 <?php esc_html_e('Schedule a Call →', 'dadudekc'); ?>
                             </a>
                         </div>
@@ -34,7 +47,7 @@ get_header();
                             <div style="font-size: 3rem; margin-bottom: 1rem;">✉️</div>
                             <h3 style="margin-top: 0; margin-bottom: 1rem; color: var(--accent); font-size: 1.8rem;"><?php esc_html_e('Email Discussion', 'dadudekc'); ?></h3>
                             <p style="margin-bottom: 2rem; color: var(--text-secondary); font-size: 1.1rem;"><?php esc_html_e('Send details about your project. I typically respond within 24 hours.', 'dadudekc'); ?></p>
-                            <a href="mailto:victor@dadudekc.com?subject=Project%20Inquiry" style="background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
+                            <a href="mailto:dadudekc@gmail.com?subject=Project%20Inquiry" style="background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
                                 <?php esc_html_e('Send Email →', 'dadudekc'); ?>
                             </a>
                         </div>
@@ -165,7 +178,7 @@ get_header();
                             <span><?php esc_html_e('LinkedIn', 'dadudekc'); ?></span>
                         </a>
 
-                        <a href="https://github.com/dadudekc" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); text-decoration: none; padding: 1rem; border-radius: 8px; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(0, 212, 255, 0.1)'" onmouseout="this.style.backgroundColor='transparent'">
+                        <a href="https://github.com/victor-dixon" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); text-decoration: none; padding: 1rem; border-radius: 8px; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(0, 212, 255, 0.1)'" onmouseout="this.style.backgroundColor='transparent'">
                             <span style="font-size: 1.5rem;">💻</span>
                             <span><?php esc_html_e('GitHub', 'dadudekc'); ?></span>
                         </a>

@@ -34,8 +34,14 @@ $custom_style = get_post_meta(get_the_ID(), 'blog_style', true);
 if ($custom_style && in_array($custom_style, ['magazine', 'newsletter', 'technical', 'essay'])) {
     $blog_style = $custom_style;
 }
+
+// Check for design variant (allows custom designs per post)
+$design_variant = get_post_meta(get_the_ID(), 'design_variant', true);
+if (!$design_variant) {
+    $design_variant = 'default';
+}
 ?>
-<main class="content-area blog-style-<?php echo esc_attr($blog_style); ?>">
+<main class="content-area blog-style-<?php echo esc_attr($blog_style); ?> design-variant-<?php echo esc_attr($design_variant); ?>" data-post-id="<?php echo get_the_ID(); ?>">
     <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
 
@@ -138,30 +144,55 @@ if ($custom_style && in_array($custom_style, ['magazine', 'newsletter', 'technic
                     <?php the_content(); ?>
                 </div>
 
-                <?php if ($blog_style === 'magazine') : ?>
-                    <!-- Magazine Style Author Bio -->
-                    <div class="author-bio">
-                        <div class="author-avatar">V</div>
-                        <div class="author-info">
-                            <h4>Victor Dixon</h4>
-                            <p>Building systems that matter. Writing about AI, automation, and the future of software development.</p>
-                            <div class="social-share">
-                                <a href="https://twitter.com/dadudekc" target="_blank" rel="noopener">Twitter</a>
-                                <a href="https://github.com/dadudekc" target="_blank" rel="noopener">GitHub</a>
-                                <a href="/contact">Contact</a>
+                <?php if ($blog_style === 'technical') : ?>
+                    <!-- Technical Style Showcase Section -->
+                    <div class="technical-showcase" style="margin: 3rem 0;">
+                        <h3 style="text-align: center; margin: 2rem 0 1rem 0; color: var(--accent); font-size: 1.5rem;">🚀 Technical Showcase</h3>
+                        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Advanced tools, metrics, and capabilities demonstrated</p>
+
+                        <!-- Key Metrics Grid -->
+                        <div class="metrics-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                            <div class="metric-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; box-shadow: var(--shadow);">
+                                <div class="metric-number" style="font-size: 3rem; font-weight: bold; color: var(--accent); margin-bottom: 0.5rem;">4</div>
+                                <div class="metric-label" style="color: var(--text-secondary); font-size: 0.9rem;">Core BI Tools Developed</div>
+                            </div>
+                            <div class="metric-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; box-shadow: var(--shadow);">
+                                <div class="metric-number" style="font-size: 3rem; font-weight: bold; color: var(--accent); margin-bottom: 0.5rem;">100%</div>
+                                <div class="metric-label" style="color: var(--text-secondary); font-size: 0.9rem;">V2 Compliance Achieved</div>
+                            </div>
+                            <div class="metric-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; box-shadow: var(--shadow);">
+                                <div class="metric-number" style="font-size: 3rem; font-weight: bold; color: var(--accent); margin-bottom: 0.5rem;">∞</div>
+                                <div class="metric-label" style="color: var(--text-secondary); font-size: 0.9rem;">Optimization Potential</div>
+                            </div>
+                            <div class="metric-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; box-shadow: var(--shadow);">
+                                <div class="metric-number" style="font-size: 3rem; font-weight: bold; color: var(--accent); margin-bottom: 0.5rem;">24/7</div>
+                                <div class="metric-label" style="color: var(--text-secondary); font-size: 0.9rem;">Automated Analytics</div>
                             </div>
                         </div>
                     </div>
-
-                <?php elseif ($blog_style === 'newsletter') : ?>
-                    <!-- Newsletter Style Signoff -->
-                    <div class="newsletter-signoff">
-                        <p>Thanks for reading,</p>
-                        <p><strong>Victor</strong></p>
-                        <p>Building and breaking systems daily. If you found this useful, share it with someone who might too.</p>
-                    </div>
-
                 <?php endif; ?>
+
+                <!-- Author Face Card - Home Page Style -->
+                <div class="author-face-card" style="background: var(--surface); border-radius: 12px; padding: 2rem; margin-top: 3rem; border: 1px solid var(--border);">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent); margin-bottom: 1rem;">V</div>
+                        <h4 style="margin: 0 0 1rem 0; color: var(--text-primary);">Victor Dixon</h4>
+                        <p style="margin: 0 0 1.5rem 0; color: var(--text-secondary); line-height: 1.6;">
+                            Building ambitious systems, shipping experiments, and documenting the path.
+                        </p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="<?php echo esc_url(dadudekc_get_portfolio_url()); ?>" style="background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">
+                                View Portfolio →
+                            </a>
+                            <a href="<?php echo esc_url(dadudekc_get_blog_page_url()); ?>" style="background: var(--surface); color: var(--text-primary); padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid var(--border); font-size: 0.9rem;">
+                                More Writing
+                            </a>
+                            <a href="<?php echo esc_url(dadudekc_get_contact_url()); ?>" style="background: transparent; color: var(--text-secondary); padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid var(--border); font-size: 0.9rem;">
+                                Contact
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
                 <?php
                 // Series Navigation (works with all styles)

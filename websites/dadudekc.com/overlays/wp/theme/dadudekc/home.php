@@ -1,9 +1,11 @@
 <?php
 /**
- * Template Name: Blog
+ * Home template for blog posts page.
+ * Used when a page is set as the Posts page in WordPress settings.
  *
  * @package DaDudeKC
  */
+
 
 get_header();
 
@@ -30,6 +32,7 @@ $current_series = isset($_GET['series']) ? sanitize_text_field(wp_unslash($_GET[
 
 // Define available series
 $available_series = ['dreamscape', 'swarm', 'trading-systems'];
+
 
 if ($current_cat) {
     $cat_obj = get_category_by_slug($current_cat);
@@ -92,6 +95,38 @@ if ($current_cat) {
         </div>
     </header>
 
+    <!-- Series Filter -->
+    <?php if ($current_series && in_array($current_series, $available_series)) : ?>
+    <div class="series-filter" style="background: var(--surface); border-radius: 12px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid var(--border);">
+        <div class="filter-header" style="text-align: center; margin-bottom: 2rem;">
+            <h3 style="margin: 0; color: var(--text-primary);"><?php esc_html_e('Series', 'dadudekc'); ?></h3>
+        </div>
+
+        <!-- Active Series Display -->
+        <div class="active-series" style="text-align: center;">
+            <strong><?php esc_html_e('Reading:', 'dadudekc'); ?></strong>
+            <span style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 1rem; font-weight: 500; margin-left: 0.5rem;">
+                <?php echo esc_html(ucfirst(str_replace('-', ' ', $current_series))); ?> Series
+                <a href="<?php echo esc_url(get_permalink()); ?>" style="color: white; text-decoration: none; margin-left: 0.5rem; font-weight: bold;">×</a>
+            </span>
+        </div>
+
+        <!-- Series Description -->
+        <div class="series-description" style="text-align: center; margin-top: 1.5rem; padding: 1.5rem; background: rgba(0, 212, 255, 0.05); border-radius: 8px;">
+            <?php
+            $series_descriptions = [
+                'dreamscape' => 'Explorations into creative coding, generative art, and the intersection of technology and imagination.',
+                'swarm' => 'Deep dives into multi-agent AI systems, swarm intelligence, and autonomous coordination platforms.',
+                'trading-systems' => 'Technical analysis of algorithmic trading systems, quantitative strategies, and market automation.'
+            ];
+            if (isset($series_descriptions[$current_series])) {
+                echo '<p style="margin: 0; color: var(--text-primary); font-style: italic;">' . esc_html($series_descriptions[$current_series]) . '</p>';
+            }
+            ?>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <!-- Category Filter -->
     <?php if (!empty($categories)) : ?>
     <div class="category-filter" style="background: var(--surface); border-radius: 12px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
@@ -124,38 +159,6 @@ if ($current_cat) {
                 </span>
             </div>
         <?php endif; ?>
-    </div>
-    <?php endif; ?>
-
-    <!-- Series Filter -->
-    <?php if ($current_series && in_array($current_series, $available_series)) : ?>
-    <div class="series-filter" style="background: var(--surface); border-radius: 12px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid var(--border);">
-        <div class="filter-header" style="text-align: center; margin-bottom: 2rem;">
-            <h3 style="margin: 0; color: var(--text-primary);"><?php esc_html_e('Series', 'dadudekc'); ?></h3>
-        </div>
-
-        <!-- Active Series Display -->
-        <div class="active-series" style="text-align: center;">
-            <strong><?php esc_html_e('Reading:', 'dadudekc'); ?></strong>
-            <span style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 1rem; font-weight: 500; margin-left: 0.5rem;">
-                <?php echo esc_html(ucfirst(str_replace('-', ' ', $current_series))); ?> Series
-                <a href="<?php echo esc_url(get_permalink()); ?>" style="color: white; text-decoration: none; margin-left: 0.5rem; font-weight: bold;">×</a>
-            </span>
-        </div>
-
-        <!-- Series Description -->
-        <div class="series-description" style="text-align: center; margin-top: 1.5rem; padding: 1.5rem; background: rgba(0, 212, 255, 0.05); border-radius: 8px;">
-            <?php
-            $series_descriptions = [
-                'dreamscape' => 'Explorations into creative coding, generative art, and the intersection of technology and imagination.',
-                'swarm' => 'Deep dives into multi-agent AI systems, swarm intelligence, and autonomous coordination platforms.',
-                'trading-systems' => 'Technical analysis of algorithmic trading systems, quantitative strategies, and market automation.'
-            ];
-            if (isset($series_descriptions[$current_series])) {
-                echo '<p style="margin: 0; color: var(--text-primary); font-style: italic;">' . esc_html($series_descriptions[$current_series]) . '</p>';
-            }
-            ?>
-        </div>
     </div>
     <?php endif; ?>
 

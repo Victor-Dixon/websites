@@ -258,12 +258,184 @@ def create_idea_note(site: str, idea: dict[str, Any], dry_run: bool = False) -> 
             pass
 
 
+def extract_context_for_title(category: str) -> str:
+    """Extract a clean context string from category for title suffix."""
+    # Mapping of category patterns to clean context labels
+    context_mapping = {
+        'High-Value Repositories Identified:': 'General Overview',
+        'Agent & AI Systems: Auto_Blogger': 'Auto_Blogger Project',
+        'Agent & AI Systems: Agent_Cellphone_V2_Repository': 'Agent_Cellphone_V2',
+        'Agent & AI Systems: AI_Debugger_Assistant': 'AI_Debugger_Assistant',
+        'Web & Full-Stack Projects: basicbot': 'BasicBot Project',
+        'Web & Full-Stack Projects: bolt-project': 'Bolt Project',
+        'Automation & Productivity: contract-leads': 'Contract Leads System',
+        'Specialized Applications: bible-application': 'Bible Application',
+        'Specialized Applications: dreambank': 'Dreambank Project',
+        'Website Projects: DaDudeKC-Website': 'DaDudeKC Website',
+        'Pattern-Based Ideas': 'General Patterns'
+    }
+
+    for key, label in context_mapping.items():
+        if key in category:
+            return label
+
+    # Fallback: clean up the category string
+    context = category.split(':')[-1].strip()[:25]  # Take last part, limit length
+    return context or 'Context'
+
+
+def get_existing_titles(site_domain: str) -> set:
+    """Get set of existing post titles to check for duplicates."""
+    success, output, error = run_wp_cli_command(
+        site_domain,
+        "wp post list --post_type=post --posts_per_page=-1 --format=json --fields=post_title"
+    )
+
+    if not success:
+        print(f"⚠️  Could not fetch existing titles: {error}")
+        return set()
+
+    try:
+        import json
+        posts = json.loads(output)
+        existing_titles = {post['post_title'].lower().strip() for post in posts}
+        print(f"📊 Found {len(existing_titles)} existing post titles")
+        return existing_titles
+    except json.JSONDecodeError:
+        print(f"⚠️  Could not parse existing titles")
+        return set()
+
+
+def run_wp_cli_command(site_domain: str, command: str) -> tuple[bool, str, str]:
+    """Run a WP-CLI command via SSH and return the result."""
+    import paramiko
+    import os
+
+    # Load credentials
+    env_path = 'D:/Agent_Cellphone_V2_Repository/.env'
+    if os.path.exists(env_path):
+        from dotenv import load_dotenv
+        load_dotenv(env_path)
+
+    creds = {
+        'host': os.getenv('HOSTINGER_HOST'),
+        'username': os.getenv('HOSTINGER_USER'),
+        'password': os.getenv('HOSTINGER_PASS'),
+        'port': int(os.getenv('HOSTINGER_PORT', '65002'))
+    }
+
+    if not all(creds.values()):
+        return False, "", "SSH credentials not found"
+
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(creds['host'], port=creds['port'], username=creds['username'], password=creds['password'])
+
+        wp_path = f'/home/{creds["username"]}/domains/{site_domain}/public_html'
+        full_command = f'cd {wp_path} && {command} --allow-root 2>&1'
+
+        stdin, stdout, stderr = ssh.exec_command(full_command, timeout=30)
+        output = stdout.read().decode()
+        error = stderr.read().decode()
+
+        ssh.close()
+        return True, output.strip(), error.strip()
+
+    except Exception as e:
+        return False, "", str(e)
+
+
+def create_idea_note(site: str, idea: dict[str, Any], existing_titles: set = None, dry_run: bool = False) -> tuple[bool, str]:
+    """Create a note in WordPress Idea Lab using WP-CLI with automatic duplicate handling."""
+    if dry_run:
+        print(f"  Would create: {idea['title']}")
+        print(f"    Category: {idea['category']}")
+        print(f"    Tags: {', '.join(idea.get('tags', []))}")
+        return True, idea['title']
+
+    # Check for duplicate titles and rename if needed
+    original_title = idea['title']
+    final_title = original_title
+
+    if existing_titles is not None:
+        title_lower = original_title.lower().strip()
+        if title_lower in existing_titles:
+            # This title already exists, add context to make it unique
+            context = extract_context_for_title(idea['category'])
+            final_title = f"{original_title} ({context})"
+            print(f"  📝 Title exists, renaming: '{original_title}' → '{final_title}'")
+
+    # Build content
+    content = f"""<p><strong>Category:</strong> {idea['category']}</p>
+<p>{final_title}</p>"""
+
+    if idea.get('tags'):
+        tags_str = ', '.join(idea['tags'])
+        content += f'\n<p><strong>Tags:</strong> {tags_str}</p>'
+
+    # Escape content for shell
+    escaped_title = final_title.replace("'", "'\\''")
+    escaped_content = content.replace("'", "'\\''")
+
+    # Use WP-CLI via SSH to create the post
+    import paramiko
+    import os
+
+    # Load SSH credentials
+    env_path = 'D:/Agent_Cellphone_V2_Repository/.env'
+    if os.path.exists(env_path):
+        from dotenv import load_dotenv
+        load_dotenv(env_path)
+
+    creds = {
+        'host': os.getenv('HOSTINGER_HOST'),
+        'username': os.getenv('HOSTINGER_USER'),
+        'password': os.getenv('HOSTINGER_PASS'),
+        'port': int(os.getenv('HOSTINGER_PORT', '65002'))
+    }
+
+    if not all(creds.values()):
+        print(f"❌ SSH credentials not found for {site}")
+        return False, final_title
+
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(creds['host'], port=creds['port'], username=creds['username'], password=creds['password'])
+
+        wp_path = f'/home/{creds["username"]}/domains/{site}/public_html'
+        excerpt_text = f"Idea Lab: {idea['category']}"
+        escaped_excerpt = excerpt_text.replace("'", "'\\''")
+        command = f"cd {wp_path} && wp post create --post_title='{escaped_title}' --post_content='{escaped_content}' --post_status=draft --post_excerpt='{escaped_excerpt}' --allow-root"
+
+        stdin, stdout, stderr = ssh.exec_command(command, timeout=30)
+        output = stdout.read().decode()
+        error = stderr.read().decode()
+
+        if "Success:" in output or "Created post" in output:
+            print(f"✅ Created note: {final_title}")
+            return True, final_title
+        else:
+            print(f"❌ Failed to create note: {error or output}")
+            return False, final_title
+
+    except Exception as e:
+        print(f"❌ SSH error: {e}")
+        return False, final_title
+    finally:
+        try:
+            ssh.close()
+        except:
+            pass
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description='Import Idea Lab notes from IDEA_LAB_NOTES.md')
     parser.add_argument(
         '--file',
         type=Path,
-        default=Path('/home/dream/Development/projects/repositories/IDEA_LAB_NOTES.md'),
+        default=Path('docs/IDEA_LAB_NOTES.md'),
         help='Path to IDEA_LAB_NOTES.md file'
     )
     parser.add_argument(
@@ -281,42 +453,56 @@ def main() -> int:
         type=int,
         help='Limit number of ideas to import'
     )
-    
+
     args = parser.parse_args()
-    
+
     print(f"📖 Parsing {args.file}...")
     ideas = parse_idea_lab_notes(args.file)
-    
+
     if not ideas:
         print("❌ No ideas found in file")
         return 1
-    
+
     print(f"✅ Found {len(ideas)} ideas")
-    
+
     if args.limit:
         ideas = ideas[:args.limit]
         print(f"📝 Limiting to {len(ideas)} ideas")
-    
+
+    # Get existing titles for duplicate checking
+    existing_titles = None
+    if not args.dry_run:
+        print("🔍 Checking existing post titles for duplicates...")
+        existing_titles = get_existing_titles(args.site)
+
     if args.dry_run:
         print("\n🔍 DRY RUN - Would create the following:")
     else:
-        print(f"\n📤 Importing to {args.site}...")
-    
+        print(f"\n📤 Importing to {args.site} with automatic duplicate handling...")
+
     success = 0
     failed = 0
-    
+    renamed = 0
+
     for i, idea in enumerate(ideas, 1):
         print(f"\n[{i}/{len(ideas)}] {idea['title']}")
-        if create_idea_note(args.site, idea, dry_run=args.dry_run):
+        result, final_title = create_idea_note(args.site, idea, existing_titles, dry_run=args.dry_run)
+        if result:
             success += 1
+            if final_title != idea['title']:
+                renamed += 1
         else:
             failed += 1
-    
+
     print(f"\n{'='*60}")
     print(f"✅ Success: {success}")
+    print(f"📝 Renamed: {renamed}")
     print(f"❌ Failed: {failed}")
     print(f"📊 Total: {len(ideas)}")
-    
+
+    if renamed > 0:
+        print(f"\n🎯 Automatic duplicate handling: {renamed} posts renamed with context")
+
     return 0 if failed == 0 else 1
 
 
