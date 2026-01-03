@@ -17,10 +17,10 @@ get_header();
 
             <!-- Profile Introduction -->
             <section class="profile-intro" style="text-align: center; margin-bottom: 4rem;">
-                <div style="max-width: 600px; margin: 0 auto;">
+                <div style="max-width: 800px; margin: 0 auto;">
                     <img src="<?php echo esc_url(get_site_url()); ?>/wp-content/uploads/2026/01/dadudekc_profile.png"
                          alt="DaDudeKC Profile"
-                         style="width: 300px; height: auto; max-width: 100%; object-fit: contain; margin-bottom: 2rem; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border: 4px solid var(--accent); border-radius: 12px;">
+                         style="width: 450px; height: auto; max-width: 100%; object-fit: contain; margin-bottom: 2rem; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border: 4px solid var(--accent); border-radius: 12px;">
                     <h2 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 1rem;"><?php esc_html_e('Hi, I\'m DaDudeKC', 'dadudekc'); ?></h2>
                     <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0;">
                         <?php esc_html_e('A passionate developer and problem-solver who loves turning complex challenges into elegant solutions. With expertise in web development, automation, and AI integration, I help businesses and entrepreneurs bring their ideas to life.', 'dadudekc'); ?>
