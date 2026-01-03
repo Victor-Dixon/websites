@@ -37,9 +37,15 @@ These are forked projects that can be skipped:
 
 ---
 
-## Repositories with Review but Missing Deliverables
+## Repositories with Review but Missing Deliverables (3 repos)
 
-*To be populated by checking which reviewed repos are missing grade cards, task lists, or blogs*
+These repos have reviews but are missing some deliverables:
+
+1. **FocusForge** - needs grade card, task list, blog
+2. **FreeRideInvestor** - needs task list, blog
+3. **Superpowered-TTRPG** - needs grade card, task list, blog
+
+**Action:** Complete the missing deliverables to finish these repos.
 
 ---
 
@@ -90,14 +96,7 @@ Based on IDEA_LAB_NOTES.md and current project relevance:
 
 ---
 
-## Repositories with Review but Missing Deliverables
-
-*Run status check script to see current list*
-
-These repos have reviews but are missing grade cards, task lists, or blog posts.
-Complete the missing deliverables to finish these repos.
-
----
-
 **Last Updated:** 2025-01-02  
-**Next Action:** Start reviewing high-priority repos
+**Next Action:** 
+1. Complete deliverables for 3 repos (FocusForge, FreeRideInvestor, Superpowered-TTRPG)
+2. Start reviewing high-priority repos (websites, TBOWTactics, Thea)
