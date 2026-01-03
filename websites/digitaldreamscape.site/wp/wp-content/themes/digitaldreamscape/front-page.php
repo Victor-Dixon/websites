@@ -10,27 +10,76 @@
 get_header(); ?>
 
 <main class="site-main">
-    <!-- Hero Section -->
-    <section class="hero-section">
+    <!-- Streaming Status & Hero Section -->
+    <?php
+    $is_live = digitaldreamscape_is_streaming_live();
+    $stream_info = digitaldreamscape_get_stream_info();
+    ?>
+
+    <section class="hero-section <?php echo $is_live ? 'streaming-live' : 'streaming-offline'; ?>">
         <div class="hero-background">
             <div class="hero-overlay"></div>
         </div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="hero-title-line">Build in Public</span>
-                    <span class="hero-title-line">Stream & Create</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Join the journey of building Digital Dreamscape in real-time.
-                    Watch live streams, read updates, and be part of the community.
-                </p>
-                <div class="hero-cta">
-                    <a href="<?php echo esc_url(home_url('/streaming')); ?>" class="btn btn-primary">
-                        Watch Live Streams
+                <?php if ($is_live): ?>
+                    <!-- LIVE STREAMING HERO -->
+                    <div class="live-indicator">
+                        <span class="live-badge">🔴 LIVE NOW</span>
+                        <span class="viewer-count">
+                            <?php if ($stream_info && isset($stream_info['viewer_count'])): ?>
+                                <?php echo number_format($stream_info['viewer_count']); ?> watching
+                            <?php endif; ?>
+                        </span>
+                    </div>
+                    <h1 class="hero-title live-title">
+                        <span class="hero-title-line">Digital Dreamscape</span>
+                        <span class="hero-title-line">is LIVE!</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        <?php if ($stream_info && isset($stream_info['title'])): ?>
+                            <?php echo esc_html($stream_info['title']); ?>
+                        <?php else: ?>
+                            Join the live stream and see what's being built in real-time!
+                        <?php endif; ?>
+                    </p>
+                    <div class="hero-cta">
+                        <a href="https://www.twitch.tv/digital_dreamscape" target="_blank" rel="noopener" class="btn btn-primary btn-live">
+                            🎮 Watch Live Stream →
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/blog')); ?>" class="btn btn-secondary">
+                            Read Updates
+                        </a>
+                    </div>
+                <?php else: ?>
+                    <!-- OFFLINE HERO -->
+                    <h1 class="hero-title">
+                        <span class="hero-title-line">Digital Dreamscape</span>
+                        <span class="hero-title-line">Twitch Channel</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Follow for live coding sessions, AI experiments, and the journey of building
+                        an autonomous narrative-driven world. Currently offline, but check back soon!
+                    </p>
+                    <div class="hero-cta">
+                        <a href="https://www.twitch.tv/digital_dreamscape" target="_blank" rel="noopener" class="btn btn-primary">
+                            📺 Follow on Twitch →
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/blog')); ?>" class="btn btn-secondary">
+                            Read the Blog
+                        </a>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="https://www.twitch.tv/digital_dreamscape" target="_blank" rel="noopener" class="social-link twitch">
+                        <span class="social-icon">📺</span>
+                        <span class="social-text">Twitch</span>
                     </a>
-                    <a href="<?php echo esc_url(home_url('/blog')); ?>" class="btn btn-secondary">
-                        Read the Blog
+                    <a href="<?php echo esc_url(home_url('/blog')); ?>" class="social-link blog">
+                        <span class="social-icon">📝</span>
+                        <span class="social-text">Blog</span>
                     </a>
                 </div>
             </div>

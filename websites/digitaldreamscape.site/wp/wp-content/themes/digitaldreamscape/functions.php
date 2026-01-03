@@ -322,6 +322,159 @@ function clear_template_cache_on_theme_change()
 add_action('after_switch_theme', 'clear_template_cache_on_theme_change');
 
 /**
+ * Twitch Streaming Detection
+ * Checks if digital_dreamscape is currently live on Twitch
+ */
+function digitaldreamscape_is_streaming_live() {
+    // Cache the result for 5 minutes to avoid excessive API calls
+    $cache_key = 'twitch_streaming_status';
+    $cached_result = get_transient($cache_key);
+
+    if ($cached_result !== false) {
+        return $cached_result;
+    }
+
+    // Twitch API endpoint for streams
+    $twitch_api_url = 'https://api.twitch.tv/helix/streams?user_login=digital_dreamscape';
+
+    // You'll need to get these from Twitch Developer Console
+    // For now, we'll use a fallback method or set up placeholders
+    $client_id = get_theme_mod('twitch_client_id', '');
+    $access_token = get_theme_mod('twitch_access_token', '');
+
+    if (empty($client_id) || empty($access_token)) {
+        // Fallback: Try to check via Twitch's public embed (less reliable)
+        $is_live = digitaldreamscape_check_stream_via_embed();
+        set_transient($cache_key, $is_live, 300); // Cache for 5 minutes
+        return $is_live;
+    }
+
+    // Make API request to Twitch
+    $args = array(
+        'headers' => array(
+            'Client-ID' => $client_id,
+            'Authorization' => 'Bearer ' . $access_token,
+        ),
+        'timeout' => 10,
+    );
+
+    $response = wp_remote_get($twitch_api_url, $args);
+
+    if (is_wp_error($response)) {
+        // On error, assume not streaming
+        set_transient($cache_key, false, 300);
+        return false;
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
+
+    $is_live = !empty($data['data']) && count($data['data']) > 0;
+    set_transient($cache_key, $is_live, 300); // Cache for 5 minutes
+
+    return $is_live;
+}
+
+/**
+ * Fallback method to check streaming status via embed
+ * Less reliable but doesn't require API keys
+ */
+function digitaldreamscape_check_stream_via_embed() {
+    // Try to get stream info from Twitch embed endpoint
+    $embed_check_url = 'https://player.twitch.tv/?channel=digital_dreamscape&parent=digitaldreamscape.site';
+
+    $response = wp_remote_head($embed_check_url, array('timeout' => 5));
+
+    // This is a basic check - in production you'd want more sophisticated detection
+    // For now, we'll just return false (not streaming) as a safe default
+    return false;
+}
+
+/**
+ * Get current stream info if live
+ */
+function digitaldreamscape_get_stream_info() {
+    $cache_key = 'twitch_stream_info';
+    $cached_info = get_transient($cache_key);
+
+    if ($cached_info !== false) {
+        return $cached_info;
+    }
+
+    $client_id = get_theme_mod('twitch_client_id', '');
+    $access_token = get_theme_mod('twitch_access_token', '');
+
+    if (empty($client_id) || empty($access_token)) {
+        return null;
+    }
+
+    $twitch_api_url = 'https://api.twitch.tv/helix/streams?user_login=digital_dreamscape';
+
+    $args = array(
+        'headers' => array(
+            'Client-ID' => $client_id,
+            'Authorization' => 'Bearer ' . $access_token,
+        ),
+        'timeout' => 10,
+    );
+
+    $response = wp_remote_get($twitch_api_url, $args);
+
+    if (is_wp_error($response)) {
+        return null;
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
+
+    if (!empty($data['data']) && count($data['data']) > 0) {
+        $stream_info = $data['data'][0];
+        set_transient($cache_key, $stream_info, 300); // Cache for 5 minutes
+        return $stream_info;
+    }
+
+    return null;
+}
+
+/**
+ * Theme customizer for Twitch API settings
+ */
+function digitaldreamscape_customizer_settings($wp_customize) {
+    // Twitch API Section
+    $wp_customize->add_section('twitch_settings', array(
+        'title' => __('Twitch Integration', 'digitaldreamscape'),
+        'priority' => 30,
+    ));
+
+    // Client ID
+    $wp_customize->add_setting('twitch_client_id', array(
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+
+    $wp_customize->add_control('twitch_client_id', array(
+        'label' => __('Twitch Client ID', 'digitaldreamscape'),
+        'section' => 'twitch_settings',
+        'type' => 'text',
+        'description' => __('Get this from Twitch Developer Console', 'digitaldreamscape'),
+    ));
+
+    // Access Token
+    $wp_customize->add_setting('twitch_access_token', array(
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+
+    $wp_customize->add_control('twitch_access_token', array(
+        'label' => __('Twitch Access Token', 'digitaldreamscape'),
+        'section' => 'twitch_settings',
+        'type' => 'password',
+        'description' => __('Twitch App Access Token', 'digitaldreamscape'),
+    ));
+}
+add_action('customize_register', 'digitaldreamscape_customizer_settings');
+
+/**
  * Default menu fallback if no menu is set
  */
 function digitaldreamscape_default_menu()
@@ -329,8 +482,8 @@ function digitaldreamscape_default_menu()
 ?>
     <ul id="primary-menu" class="menu">
         <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
+        <li><a href="https://www.twitch.tv/digital_dreamscape" target="_blank" rel="noopener">Twitch ↗</a></li>
         <li><a href="<?php echo esc_url(home_url('/blog')); ?>">Blog</a></li>
-        <li><a href="<?php echo esc_url(home_url('/streaming')); ?>">Streaming</a></li>
         <li><a href="<?php echo esc_url(home_url('/community')); ?>">Community</a></li>
         <li><a href="<?php echo esc_url(home_url('/about')); ?>">About</a></li>
     </ul>
