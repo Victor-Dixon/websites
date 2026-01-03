@@ -29,9 +29,26 @@
 
 ## 🎯 Remaining Work
 
-### Repositories Needing Review (17 remaining)
+### Repositories Needing Review (18 remaining)
 
-*To be identified by comparing completed reviews with all repos*
+1. SouthwestsSecretDjBoard
+2. Streamertools
+3. TBOWTactics
+4. TRPlugLibrary
+5. Thea
+6. fastapi
+7. gpt_automation
+8. ideas
+9. langchain-google (forked - can skip)
+10. osrsbot
+11. practice
+12. projectscanner
+13. prompt-library
+14. self-evolving-ai
+15. socialmediamanager
+16. trading-leads-bot
+17. transformers (forked - can skip)
+18. websites
 
 ### Next Steps
 
