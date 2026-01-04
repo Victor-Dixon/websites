@@ -178,8 +178,8 @@ class DeployOnPush:
             print("✅ All PHP files passed syntax validation")
 
         # Classify files by site
-        print("🏷️  Classifying files by deployment target...")
-        site_files = self.automation.classify_files_by_site(changed_files)
+        print("
+🏷️  Classifying files by deployment target..."        site_files = self.automation.classify_files_by_site(changed_files)
 
         if not site_files:
             print("⚠️  No files mapped to deployable websites")
@@ -191,21 +191,21 @@ class DeployOnPush:
             print(f"   - {site}: {len(files)} file(s)")
 
         # Run deployment
-        print("🚀 Starting deployment...")
-        success = self.automation.run_automated_deployment(dry_run=False)
+        print("
+🚀 Starting deployment..."        success = self.automation.run_automated_deployment(dry_run=False)
 
         if success:
-            print("🎉 PUSH DEPLOYMENT COMPLETED SUCCESSFULLY!")
-            print("   All websites have been updated with the latest changes")
+            print("
+🎉 PUSH DEPLOYMENT COMPLETED SUCCESSFULLY!"            print("   All websites have been updated with the latest changes")
 
             # Suggest cache clearing
-            print("💡 Recommended next steps:")
-            print("   1. Clear browser cache to see changes")
+            print("
+💡 Recommended next steps:"            print("   1. Clear browser cache to see changes")
             print("   2. Test website functionality")
             print("   3. Monitor for any issues in logs")
         else:
-            print("❌ PUSH DEPLOYMENT FAILED")
-            print("   Check the errors above and fix any issues")
+            print("
+❌ PUSH DEPLOYMENT FAILED"            print("   Check the errors above and fix any issues")
             print("   You may need to deploy manually or rollback changes")
 
         return success

@@ -1,600 +1,418 @@
 <?php
 /**
- * World Archive - Digital Dreamscape Repository
+ * Dreamscape Codex - The Central Lore Repository
  *
- * Episodes, canon, artifacts, and unfinished quests
+ * Comprehensive archive of all Dreamscape narratives, episodes, lore, and canonical content
  *
  * @package DigitalDreamscape
- * @since 4.0.0 - World Archive Edition
+ * @since 3.0.0 - Codex Edition
  */
 
-get_header();
+get_header(); ?>
 
-// Get world statistics
-$total_posts = wp_count_posts()->publish;
-$categories = get_categories();
-$total_categories = count($categories);
-$last_post = wp_get_recent_posts(array('numberposts' => 1))[0] ?? null;
-$last_update = $last_post ? date('M j, Y', strtotime($last_post['post_date'])) : 'Unknown';
-
-// Get current filters
-$current_type = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
-$current_questline = isset($_GET['questline']) ? sanitize_text_field($_GET['questline']) : '';
-$current_state = isset($_GET['state']) ? sanitize_text_field($_GET['state']) : '';
-$current_search = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
-
-// Build dynamic SEO content based on filters
-$page_title = 'world archive';
-$page_description = 'episodes, canon, artifacts, and unfinished quests.';
-$seo_intro = '';
-$canonical_url = home_url('/blog/');
-
-if ($current_type) {
-    $canonical_url = add_query_arg('type', $current_type, $canonical_url);
-    $page_title = "world archive: {$current_type}";
-    $seo_intro = get_filter_description($current_type);
-} elseif ($current_questline) {
-    $canonical_url = add_query_arg('questline', $current_questline, $canonical_url);
-    $questline_name = get_term_by('slug', $current_questline, 'category')->name ?? $current_questline;
-    $page_title = "world archive: {$questline_name}";
-    $seo_intro = get_questline_description($current_questline);
-} elseif ($current_state) {
-    $canonical_url = add_query_arg('state', $current_state, $canonical_url);
-    $page_title = "world archive: {$current_state} artifacts";
-    $seo_intro = get_state_description($current_state);
-} elseif ($current_search) {
-    $canonical_url = add_query_arg('s', urlencode($current_search), $canonical_url);
-    $page_title = "world archive: \"{$current_search}\"";
-    $seo_intro = "search results for \"{$current_search}\" in the digital dreamscape archive.";
-}
-
-function get_filter_description($type) {
-    $descriptions = [
-        'canon' => 'sacred entries. stable lore. no noise. these are the permanent artifacts that define the digital dreamscape.',
-        'episode' => 'narrative fragments. world snapshots. these entries capture specific moments in the simulation\'s evolution.',
-        'artifact' => 'discovered objects. system outputs. tools, fixes, and creations that emerged from the world.',
-        'devlog' => 'builder\'s notes. raw telemetry. direct from the development trenches of digital dreamscape.'
-    ];
-    return $descriptions[$type] ?? '';
-}
-
-function get_questline_description($questline_slug) {
-    $questline = get_term_by('slug', $questline_slug, 'category');
-    if (!$questline) return '';
-
-    $post_count = $questline->count;
-    $description = "questline: {$questline->name}. {$post_count} artifacts. ";
-
-    // Add questline-specific description based on name
-    if (stripos($questline->name, 'debt') !== false) {
-        $description .= "tracking the purge of technical debt. fixes, regressions, and what survived the optimization.";
-    } elseif (stripos($questline->name, 'system') !== false) {
-        $description .= "system architecture evolution. patterns, constraints, and emergent behaviors.";
-    } else {
-        $description .= "ongoing questline in the digital dreamscape. follow the artifacts for progress updates.";
-    }
-
-    return $description;
-}
-
-function get_state_description($state) {
-    $descriptions = [
-        'active' => 'living artifacts. unresolved loops. these entries represent current quests and open problems.',
-        'resolved' => 'completed quests. closed loops. artifacts that reached their conclusion or stable state.',
-        'abandoned' => 'forgotten paths. abandoned branches. historical artifacts that were set aside or superseded.'
-    ];
-    return $descriptions[$state] ?? '';
-}
-
-// Clear filters URL
-$clear_filters_url = home_url('/blog/');
-
-?>
-
-<!-- SEO Meta -->
-<link rel="canonical" href="<?php echo esc_url($canonical_url); ?>" />
-<meta property="og:title" content="<?php echo esc_attr($page_title); ?>" />
-<meta property="og:description" content="<?php echo esc_attr($page_description); ?>" />
-<meta property="og:url" content="<?php echo esc_url($canonical_url); ?>" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="description" content="<?php echo esc_attr($page_description); ?>" />
-
-<!-- Schema.org CollectionPage -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "<?php echo esc_js($page_title); ?>",
-  "description": "<?php echo esc_js($page_description); ?>",
-  "url": "<?php echo esc_url($canonical_url); ?>",
-  "mainEntity": {
-    "@type": "ItemList",
-    "numberOfItems": "<?php echo $total_posts; ?>",
-    "itemListElement": [
-      <?php
-      $schema_items = array();
-      $recent_posts = get_posts(array('numberposts' => 10, 'orderby' => 'date', 'order' => 'DESC'));
-      foreach ($recent_posts as $index => $post) {
-          $schema_items[] = '{
-            "@type": "ListItem",
-            "position": "' . ($index + 1) . '",
-            "item": {
-              "@type": "BlogPosting",
-              "headline": "' . esc_js(get_the_title($post)) . '",
-              "url": "' . esc_url(get_permalink($post)) . '",
-              "datePublished": "' . get_the_date('c', $post) . '",
-              "author": {
-                "@type": "Person",
-                "name": "' . esc_js(get_the_author_meta('display_name', $post->post_author)) . '"
-              }
-            }
-          }';
-      }
-      echo implode(',', $schema_items);
-      ?>
-    ]
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Digital Dreamscape",
-    "description": "A living world where systems evolve, agents act, and nothing you build is lost."
-  }
-}
-</script>
-
-<!-- World Archive Portal Header -->
-<section class="ds-portal">
-    <div class="ds-portal__inner">
-        <div class="ds-portal__head">
-            <h1><?php echo esc_html($page_title); ?></h1>
-            <p><?php echo esc_html($page_description); ?></p>
-            <?php if ($seo_intro): ?>
-                <div class="ds-seo-intro"><?php echo esc_html($seo_intro); ?></div>
-            <?php endif; ?>
-        </div>
-
-        <div class="ds-status">
-            <span class="ds-status__chip">world state: <?php echo $total_posts > 10 ? 'stable' : 'emerging'; ?></span>
-            <span class="ds-status__chip">last update: <time><?php echo $last_update; ?></time></span>
-            <span class="ds-status__chip">active questlines: <?php echo min($total_categories, 7); ?></span>
-        </div>
-
-        <div class="ds-portal__cta">
-            <a class="ds-btn ds-btn--primary" href="#latest">enter latest</a>
-            <a class="ds-btn" href="?type=canon">canon only</a>
-            <?php if ($current_type || $current_questline || $current_state || $current_search): ?>
-                <a class="ds-btn ds-btn--secondary" href="<?php echo esc_url($clear_filters_url); ?>">clear filters</a>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
-
-<!-- World Archive Interface -->
-<section class="ds-archive">
-    <!-- Filter Rail -->
-    <aside class="ds-filters">
-        <h2>filters</h2>
-
-        <div class="ds-filter">
-            <label>type</label>
-            <div class="ds-chips">
-                <a class="ds-chip <?php echo $current_type === 'episode' ? 'active' : ''; ?>" href="<?php echo esc_url(add_query_arg('type', 'episode', remove_query_arg(array('questline', 'state', 's')))); ?>">episode</a>
-                <a class="ds-chip <?php echo $current_type === 'canon' ? 'active' : ''; ?>" href="<?php echo esc_url(add_query_arg('type', 'canon', remove_query_arg(array('questline', 'state', 's')))); ?>">canon</a>
-                <a class="ds-chip <?php echo $current_type === 'artifact' ? 'active' : ''; ?>" href="<?php echo esc_url(add_query_arg('type', 'artifact', remove_query_arg(array('questline', 'state', 's')))); ?>">artifact</a>
-                <a class="ds-chip <?php echo $current_type === 'devlog' ? 'active' : ''; ?>" href="<?php echo esc_url(add_query_arg('type', 'devlog', remove_query_arg(array('questline', 'state', 's')))); ?>">devlog</a>
+<main class="site-main codex-main">
+    <div class="container">
+        <!-- Codex Header - Scholarly Archive Interface -->
+        <header class="codex-header">
+            <div class="codex-badge">[DREAMSCAPE CODEX]</div>
+            <h1 class="codex-title">
+                <span class="codex-icon">📚</span>
+                The Dreamscape Codex
+                <span class="codex-subtitle">Central Lore Repository</span>
+            </h1>
+            <div class="codex-description">
+                <p><strong>The Dreamscape Codex</strong> serves as the comprehensive archive for all canonical narratives, episodes, lore, and historical records of the Digital Dreamscape universe.</p>
+                <p>Every interaction, decision, and development within the simulation becomes part of the persistent <strong>canonical timeline</strong>, documented and organized for reference and continuity.</p>
             </div>
-        </div>
 
-        <div class="ds-filter">
-            <label>questline</label>
-            <div class="ds-chips">
-                <?php
-                $questlines = get_categories(array('hide_empty' => false, 'number' => 8));
-                foreach ($questlines as $questline) {
-                    $active_class = $current_questline === $questline->slug ? 'active' : '';
-                    $filter_url = add_query_arg('questline', $questline->slug, remove_query_arg(array('type', 'state', 's')));
-                    echo '<a class="ds-chip ' . $active_class . '" href="' . esc_url($filter_url) . '">' . esc_html($questline->name) . '</a>';
-                }
-                ?>
-            </div>
-        </div>
+            <!-- Codex Navigation -->
+            <nav class="codex-navigation">
+                <div class="codex-nav-tabs">
+                    <button class="codex-tab active" data-filter="all">
+                        <span class="tab-icon">📖</span>
+                        All Entries
+                    </button>
+                    <button class="codex-tab" data-filter="episodes">
+                        <span class="tab-icon">🎭</span>
+                        Episodes
+                    </button>
+                    <button class="codex-tab" data-filter="lore">
+                        <span class="tab-icon">🏛️</span>
+                        World Lore
+                    </button>
+                    <button class="codex-tab" data-filter="characters">
+                        <span class="tab-icon">👥</span>
+                        Characters
+                    </button>
+                    <button class="codex-tab" data-filter="technology">
+                        <span class="tab-icon">⚙️</span>
+                        Technology
+                    </button>
+                    <button class="codex-tab" data-filter="events">
+                        <span class="tab-icon">📅</span>
+                        Key Events
+                    </button>
+                </div>
 
-        <div class="ds-filter">
-            <label>status</label>
-            <div class="ds-chips">
-                <a class="ds-chip <?php echo $current_state === 'active' ? 'active' : ''; ?>" href="<?php echo esc_url(add_query_arg('state', 'active', remove_query_arg(array('type', 'questline', 's')))); ?>">active</a>
-                <a class="ds-chip <?php echo $current_state === 'resolved' ? 'active' : ''; ?>" href="<?php echo esc_url(add_query_arg('state', 'resolved', remove_query_arg(array('type', 'questline', 's')))); ?>">resolved</a>
-                <a class="ds-chip <?php echo $current_state === 'abandoned' ? 'active' : ''; ?>" href="<?php echo esc_url(add_query_arg('state', 'abandoned', remove_query_arg(array('type', 'questline', 's')))); ?>">abandoned</a>
-            </div>
-        </div>
-
-        <div class="ds-filter">
-            <label>search</label>
-            <input class="ds-input" type="search" placeholder="find artifact..." value="<?php echo isset($_GET['s']) ? esc_attr($_GET['s']) : ''; ?>" />
-        </div>
-    </aside>
-
-    <!-- Start Here Rails -->
-    <aside class="ds-start-here">
-        <h2>start here</h2>
-
-        <div class="ds-rail">
-            <h3>essential artifacts</h3>
-            <div class="ds-rail-items">
-                <?php
-                $essential_posts = get_posts(array(
-                    'meta_key' => 'canonical',
-                    'meta_value' => 'true',
-                    'numberposts' => 3,
-                    'orderby' => 'date',
-                    'order' => 'DESC'
-                ));
-
-                if (empty($essential_posts)) {
-                    $essential_posts = get_posts(array('numberposts' => 3, 'orderby' => 'date', 'order' => 'DESC'));
-                }
-
-                foreach ($essential_posts as $post) {
-                    setup_postdata($post);
-                    $artifact_id = 'EP-' . str_pad(get_the_ID(), 4, '0', STR_PAD_LEFT);
-                    echo '<div class="ds-rail-item">';
-                    echo '<div class="ds-rail-glyph">📜</div>';
-                    echo '<div class="ds-rail-content">';
-                    echo '<a href="' . get_permalink() . '">' . get_the_title() . '</a>';
-                    echo '<div class="ds-rail-meta">' . $artifact_id . ' • ' . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago</div>';
-                    echo '</div></div>';
-                }
-                wp_reset_postdata();
-                ?>
-            </div>
-        </div>
-
-        <div class="ds-rail">
-            <h3>latest canon</h3>
-            <div class="ds-rail-items">
-                <?php
-                $canon_posts = get_posts(array(
-                    'meta_key' => 'canonical',
-                    'meta_value' => 'true',
-                    'numberposts' => 3,
-                    'orderby' => 'date',
-                    'order' => 'DESC'
-                ));
-
-                foreach ($canon_posts as $post) {
-                    setup_postdata($post);
-                    $artifact_id = 'EP-' . str_pad(get_the_ID(), 4, '0', STR_PAD_LEFT);
-                    echo '<div class="ds-rail-item">';
-                    echo '<div class="ds-rail-glyph">⚔️</div>';
-                    echo '<div class="ds-rail-content">';
-                    echo '<a href="' . get_permalink() . '">' . get_the_title() . '</a>';
-                    echo '<div class="ds-rail-meta">' . $artifact_id . ' • canon</div>';
-                    echo '</div></div>';
-                }
-                wp_reset_postdata();
-                ?>
-            </div>
-        </div>
-
-        <div class="ds-rail">
-            <h3>active quests</h3>
-            <div class="ds-rail-items">
-                <?php
-                $active_posts = get_posts(array(
-                    'meta_key' => 'artifact_state',
-                    'meta_value' => 'active',
-                    'numberposts' => 3,
-                    'orderby' => 'date',
-                    'order' => 'DESC'
-                ));
-
-                if (empty($active_posts)) {
-                    $active_posts = get_posts(array('numberposts' => 3, 'orderby' => 'date', 'order' => 'ASC'));
-                }
-
-                foreach ($active_posts as $post) {
-                    setup_postdata($post);
-                    $artifact_id = 'EP-' . str_pad(get_the_ID(), 4, '0', STR_PAD_LEFT);
-                    echo '<div class="ds-rail-item">';
-                    echo '<div class="ds-rail-glyph">🎯</div>';
-                    echo '<div class="ds-rail-content">';
-                    echo '<a href="' . get_permalink() . '">' . get_the_title() . '</a>';
-                    echo '<div class="ds-rail-meta">' . $artifact_id . ' • active</div>';
-                    echo '</div></div>';
-                }
-                wp_reset_postdata();
-                ?>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Archive Feed -->
-    <main class="ds-feed">
-        <header class="ds-feed__head" id="latest">
-            <h2>archive feed</h2>
-            <p>sorted by newest world state.</p>
+                <!-- Search and Filter Controls -->
+                <div class="codex-controls">
+                    <div class="search-container">
+                        <input type="text" id="codex-search" placeholder="Search the codex..." class="codex-search-input">
+                        <button class="search-clear" id="search-clear">×</button>
+                    </div>
+                    <div class="sort-controls">
+                        <select id="codex-sort" class="codex-sort-select">
+                            <option value="date-desc">Newest First</option>
+                            <option value="date-asc">Oldest First</option>
+                            <option value="title-asc">Title A-Z</option>
+                            <option value="title-desc">Title Z-A</option>
+                        </select>
+                    </div>
+                </div>
+            </nav>
         </header>
 
-        <?php
-        // Build WP_Query based on filters
-        $query_args = array(
-            'post_type' => 'post',
-            'posts_per_page' => 12,
-            'post_status' => 'publish',
-            'orderby' => 'date',
-            'order' => 'DESC'
-        );
+        <!-- Codex Statistics -->
+        <div class="codex-stats">
+            <?php
+            $total_posts = wp_count_posts()->publish;
+            $total_authors = count(get_users(['role__in' => ['administrator', 'editor', 'author']]));
+            $categories = get_categories();
+            $total_categories = count($categories);
+            ?>
+            <div class="stat-item">
+                <div class="stat-number"><?php echo $total_posts; ?></div>
+                <div class="stat-label">Canonical Entries</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><?php echo $total_categories; ?></div>
+                <div class="stat-label">Lore Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><?php echo $total_authors; ?></div>
+                <div class="stat-label">Contributors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="reading-time">—</div>
+                <div class="stat-label">Total Read Time</div>
+            </div>
+        </div>
 
-        // Apply filters
-        if ($current_type) {
-            $query_args['meta_query'] = array(
-                array(
-                    'key' => 'artifact_type',
-                    'value' => $current_type,
-                    'compare' => '='
-                )
-            );
-        }
+        <!-- Codex Entries Grid -->
+        <div class="codex-entries-grid" id="codex-entries">
+            <?php
+            // Query all published posts for the codex
+            $codex_query = new WP_Query(array(
+                'post_type' => 'post',
+                'posts_per_page' => -1, // Get all posts
+                'post_status' => 'publish',
+                'orderby' => 'date',
+                'order' => 'DESC'
+            ));
 
-        if ($current_questline) {
-            $query_args['category_name'] = $current_questline;
-        }
+            $total_reading_time = 0;
 
-        if ($current_state) {
-            $query_args['meta_query'][] = array(
-                'key' => 'artifact_state',
-                'value' => $current_state,
-                'compare' => '='
-            );
-        }
+            if ($codex_query->have_posts()) :
+                while ($codex_query->have_posts()) : $codex_query->the_post();
 
-        if (isset($_GET['s']) && !empty($_GET['s'])) {
-            $query_args['s'] = sanitize_text_field($_GET['s']);
-        }
+                    // Calculate reading time
+                    $content = get_the_content();
+                    $word_count = str_word_count(strip_tags($content));
+                    $reading_time_minutes = ceil($word_count / 200); // Average 200 words per minute
+                    $total_reading_time += $reading_time_minutes;
 
-        $archive_query = new WP_Query($query_args);
-        $total_reading_time = 0;
+                    // Get categories for filtering
+                    $post_categories = get_the_category();
+                    $category_classes = '';
+                    $primary_category = '';
 
-        if ($archive_query->have_posts()) :
-            while ($archive_query->have_posts()) : $archive_query->the_post();
+                    if (!empty($post_categories)) {
+                        $primary_category = $post_categories[0]->name;
+                        $category_classes = ' ' . implode(' ', array_map(function($cat) {
+                            return 'category-' . sanitize_title($cat->name);
+                        }, $post_categories));
+                    }
 
-                // Calculate reading time
-                $content = get_the_content();
-                $word_count = str_word_count(strip_tags($content));
-                $reading_time_minutes = ceil($word_count / 200);
-                $total_reading_time += $reading_time_minutes;
+                    // Determine entry type based on content or category
+                    $entry_type = 'episode'; // default
+                    if (stripos($primary_category, 'lore') !== false || stripos(get_the_title(), 'lore') !== false) {
+                        $entry_type = 'lore';
+                    } elseif (stripos($primary_category, 'character') !== false || stripos(get_the_title(), 'character') !== false) {
+                        $entry_type = 'character';
+                    } elseif (stripos($primary_category, 'tech') !== false || stripos($primary_category, 'system') !== false) {
+                        $entry_type = 'technology';
+                    } elseif (stripos($primary_category, 'event') !== false) {
+                        $entry_type = 'event';
+                    }
+                    ?>
+                    <article id="post-<?php the_ID(); ?>"
+                             class="codex-entry codex-<?php echo $entry_type; ?><?php echo $category_classes; ?>"
+                             data-type="<?php echo $entry_type; ?>"
+                             data-title="<?php echo esc_attr(get_the_title()); ?>"
+                             data-date="<?php echo get_the_date('Y-m-d'); ?>"
+                             data-reading-time="<?php echo $reading_time_minutes; ?>">
 
-                // Get artifact metadata
-                $artifact_type = get_post_meta(get_the_ID(), 'artifact_type', true) ?: 'episode';
-                $artifact_state = get_post_meta(get_the_ID(), 'artifact_state', true) ?: 'active';
-                $questline = get_the_category()[0]->name ?? 'General';
-                $artifact_id = 'EP-' . str_pad(get_the_ID(), 4, '0', STR_PAD_LEFT);
+                        <!-- Entry Header with Type Indicator -->
+                        <div class="codex-entry-header">
+                            <div class="entry-type-badge">
+                                <?php
+                                $type_icons = [
+                                    'episode' => '🎭',
+                                    'lore' => '🏛️',
+                                    'character' => '👤',
+                                    'technology' => '⚙️',
+                                    'event' => '📅'
+                                ];
+                                $type_labels = [
+                                    'episode' => 'EPISODE',
+                                    'lore' => 'WORLD LORE',
+                                    'character' => 'CHARACTER',
+                                    'technology' => 'TECHNOLOGY',
+                                    'event' => 'KEY EVENT'
+                                ];
+                                ?>
+                                <span class="type-icon"><?php echo $type_icons[$entry_type]; ?></span>
+                                <span class="type-label"><?php echo $type_labels[$entry_type]; ?></span>
+                            </div>
 
-                // Type icons
-                $type_icons = [
-                    'episode' => '🎭',
-                    'canon' => '📜',
-                    'artifact' => '🔮',
-                    'devlog' => '⚙️'
-                ];
-
-                $glyph_icon = $type_icons[$artifact_type] ?? '📄';
-                ?>
-
-                <article class="ds-card">
-                    <div class="ds-card__rail">
-                        <div class="ds-glyph" style="background: radial-gradient(circle at 30% 30%, rgba(184,107,255,.35), rgba(77,227,255,.12));">
-                            <?php echo $glyph_icon; ?>
+                            <div class="entry-meta">
+                                <time datetime="<?php echo get_the_date('c'); ?>" class="entry-date">
+                                    <?php echo get_the_date('M j, Y'); ?>
+                                </time>
+                                <span class="reading-time">
+                                    <span class="time-icon">⏱️</span>
+                                    <?php echo $reading_time_minutes; ?> min read
+                                </span>
+                            </div>
                         </div>
-                        <div class="ds-id"><?php echo $artifact_id; ?></div>
-                    </div>
 
-                    <div class="ds-card__body">
-                        <div class="ds-badges">
-                            <span class="ds-badge is-<?php echo $artifact_type; ?>"><?php echo $artifact_type; ?></span>
-                            <?php if (get_post_meta(get_the_ID(), 'canonical', true) === 'true') : ?>
-                                <span class="ds-badge is-canon">canon</span>
+                        <!-- Entry Visual -->
+                        <div class="codex-entry-visual">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <div class="entry-image">
+                                    <?php the_post_thumbnail('medium_large', array('class' => 'entry-img')); ?>
+                                    <div class="entry-overlay"></div>
+                                </div>
+                            <?php else : ?>
+                                <div class="entry-placeholder">
+                                    <div class="placeholder-pattern"></div>
+                                    <div class="placeholder-icon">
+                                        <?php echo $type_icons[$entry_type]; ?>
+                                    </div>
+                                </div>
                             <?php endif; ?>
                         </div>
 
-                        <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                        <p><?php echo get_the_excerpt() ?: wp_trim_words(get_the_content(), 20, '...'); ?></p>
+                        <!-- Entry Content -->
+                        <div class="codex-entry-content">
+                            <div class="entry-categories">
+                                <?php
+                                if (!empty($post_categories)) {
+                                    foreach ($post_categories as $category) {
+                                        echo '<span class="entry-category">' . esc_html($category->name) . '</span>';
+                                    }
+                                }
+                                ?>
+                            </div>
 
-                        <div class="ds-meta">
-                            <span>questline: <?php echo esc_html($questline); ?></span>
-                            <span>era: <?php echo date('Y', get_the_time('U')); ?></span>
-                            <span>state: <?php echo $artifact_state; ?></span>
-                            <span>updated: <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')); ?> ago</span>
+                            <h3 class="entry-title">
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                            </h3>
+
+                            <div class="entry-excerpt">
+                                <?php
+                                $excerpt = get_the_excerpt();
+                                if (empty($excerpt)) {
+                                    $excerpt = wp_trim_words(get_the_content(), 30, '...');
+                                }
+                                echo $excerpt;
+                                ?>
+                            </div>
+
+                            <div class="entry-author">
+                                <div class="author-avatar">
+                                    <?php echo get_avatar(get_the_author_meta('ID'), 32); ?>
+                                </div>
+                                <span class="author-name"><?php the_author(); ?></span>
+                            </div>
                         </div>
 
-                        <div class="ds-actions">
-                            <a class="ds-btn ds-btn--primary" href="<?php the_permalink(); ?>">read artifact</a>
-                            <a class="ds-btn" href="?questline=<?php echo esc_attr(get_the_category()[0]->slug ?? ''); ?>">view questline</a>
+                        <!-- Entry Actions -->
+                        <div class="codex-entry-actions">
+                            <a href="<?php the_permalink(); ?>" class="entry-link">
+                                <span class="link-text">Read Entry</span>
+                                <span class="link-arrow">→</span>
+                            </a>
+                        </div>
+                    </article>
+                    <?php
+                endwhile;
+                wp_reset_postdata();
+            else :
+                ?>
+                <div class="codex-empty">
+                    <div class="empty-icon">📚</div>
+                    <h3>The Codex Awaits</h3>
+                    <p>The Dreamscape Codex is currently empty. As the simulation evolves, all canonical events, decisions, and developments will be recorded here.</p>
+                    <p><em>The narrative begins with the first entry...</em></p>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <!-- Codex Footer with Timeline -->
+        <div class="codex-footer">
+            <div class="timeline-section">
+                <h3 class="timeline-title">📅 Canonical Timeline</h3>
+                <p class="timeline-description">
+                    All entries in the Dreamscape Codex follow a canonical timeline. Events are recorded chronologically as they occur within the simulation.
+                </p>
+
+                <div class="timeline-stats">
+                    <div class="timeline-stat">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="total-entries"><?php echo $total_posts; ?></div>
+                            <div class="stat-label">Total Entries</div>
                         </div>
                     </div>
-                </article>
-
-            <?php
-            endwhile;
-            wp_reset_postdata();
-        else :
-            ?>
-            <div class="ds-empty">
-                <div class="ds-empty-icon">📚</div>
-                <h3>No artifacts found</h3>
-                <p>The archive contains no entries matching your current filters.</p>
-                <a class="ds-btn ds-btn--primary" href="<?php echo esc_url(remove_query_arg(array('type', 'questline', 'state', 's'))); ?>">clear filters</a>
-            </div>
-        <?php endif; ?>
-    </main>
-
-    <!-- World Intel Sidebar -->
-    <aside class="ds-intel">
-        <h2>world intel</h2>
-
-        <!-- Email Capture -->
-        <div class="ds-panel ds-capture">
-            <h3>join the archive</h3>
-            <p>new canon + new tools when they drop.</p>
-            <form class="ds-capture-form" action="#" method="post">
-                <input type="email" name="email" placeholder="your.email@example.com" required class="ds-capture-input">
-                <button type="submit" class="ds-btn ds-btn--primary ds-capture-submit">join archive</button>
-            </form>
-        </div>
-
-        <div class="ds-panel">
-            <h3>active questlines</h3>
-            <ul>
-                <?php
-                $active_questlines = get_categories(array(
-                    'hide_empty' => true,
-                    'number' => 5,
-                    'orderby' => 'count',
-                    'order' => 'DESC'
-                ));
-                foreach ($active_questlines as $questline) {
-                    echo '<li><a href="?questline=' . $questline->slug . '">' . esc_html($questline->name) . '</a> <span>(' . $questline->count . ')</span></li>';
-                }
-                ?>
-            </ul>
-        </div>
-
-        <div class="ds-panel">
-            <h3>recent canon</h3>
-            <ul>
-                <?php
-                $recent_canon = get_posts(array(
-                    'meta_key' => 'canonical',
-                    'meta_value' => 'true',
-                    'numberposts' => 5,
-                    'orderby' => 'date',
-                    'order' => 'DESC'
-                ));
-                foreach ($recent_canon as $canon_post) {
-                    echo '<li><a href="' . get_permalink($canon_post) . '">' . esc_html($canon_post->post_title) . '</a></li>';
-                }
-                ?>
-            </ul>
-        </div>
-
-        <div class="ds-panel">
-            <h3>unresolved loops</h3>
-            <ul>
-                <?php
-                $unresolved = get_posts(array(
-                    'meta_key' => 'artifact_state',
-                    'meta_value' => 'active',
-                    'numberposts' => 5,
-                    'orderby' => 'date',
-                    'order' => 'ASC'
-                ));
-                foreach ($unresolved as $unresolved_post) {
-                    echo '<li><a href="' . get_permalink($unresolved_post) . '">' . esc_html($unresolved_post->post_title) . '</a></li>';
-                }
-                ?>
-            </ul>
-        </div>
-
-        <div class="ds-panel">
-            <h3>top artifacts</h3>
-            <ul>
-                <?php
-                $top_artifacts = get_posts(array(
-                    'numberposts' => 5,
-                    'orderby' => 'comment_count',
-                    'order' => 'DESC'
-                ));
-                foreach ($top_artifacts as $artifact) {
-                    echo '<li><a href="' . get_permalink($artifact) . '">' . esc_html($artifact->post_title) . '</a></li>';
-                }
-                ?>
-            </ul>
-        </div>
-
-        <!-- Builder Proof -->
-        <div class="ds-panel ds-builder-proof">
-            <h3>builder proof</h3>
-            <div class="ds-proof-stats">
-                <div class="ds-proof-stat">
-                    <span class="ds-proof-number">6k+</span>
-                    <span class="ds-proof-label">commits last year</span>
-                </div>
-                <div class="ds-proof-links">
-                    <a href="https://github.com/Victor-Dixon" class="ds-proof-link" target="_blank">github</a>
-                    <a href="<?php echo home_url('/systems/'); ?>" class="ds-proof-link">systems</a>
+                    <div class="timeline-stat">
+                        <div class="stat-icon">⏰</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="total-reading-time"><?php echo round($total_reading_time / 60, 1); ?>h</div>
+                            <div class="stat-label">Total Read Time</div>
+                        </div>
+                    </div>
+                    <div class="timeline-stat">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <div class="stat-number"><?php echo $total_categories; ?></div>
+                            <div class="stat-label">Categories</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </aside>
-</section>
+    </div>
+</main>
 
-<!-- World Archive JavaScript -->
+<!-- Codex JavaScript for Filtering and Search -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.querySelector('.ds-input');
-    const searchForm = document.querySelector('.ds-filter:last-child');
+    const codex = {
+        entries: document.querySelectorAll('.codex-entry'),
+        tabs: document.querySelectorAll('.codex-tab'),
+        searchInput: document.getElementById('codex-search'),
+        searchClear: document.getElementById('search-clear'),
+        sortSelect: document.getElementById('codex-sort'),
 
-    // Search functionality - redirect to search URL
-    if (searchInput && searchForm) {
-        let searchTimeout;
+        init() {
+            this.bindEvents();
+            this.updateStats();
+        },
 
-        searchInput.addEventListener('input', function(e) {
-            clearTimeout(searchTimeout);
-            const searchTerm = e.target.value.trim();
+        bindEvents() {
+            // Tab filtering
+            this.tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    this.setActiveTab(tab);
+                    this.filterEntries(tab.dataset.filter);
+                });
+            });
 
-            if (searchTerm.length >= 3) {
-                searchTimeout = setTimeout(() => {
-                    const searchUrl = new URL(window.location);
-                    searchUrl.searchParams.set('s', searchTerm);
-                    // Clear other filters when searching
-                    searchUrl.searchParams.delete('type');
-                    searchUrl.searchParams.delete('questline');
-                    searchUrl.searchParams.delete('state');
-                    window.location.href = searchUrl.toString();
-                }, 1000); // 1 second delay
-            }
-        });
+            // Search functionality
+            this.searchInput.addEventListener('input', (e) => {
+                this.searchEntries(e.target.value);
+            });
 
-        // Handle Enter key for immediate search
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const searchTerm = e.target.value.trim();
-                if (searchTerm) {
-                    const searchUrl = new URL(window.location);
-                    searchUrl.searchParams.set('s', searchTerm);
-                    searchUrl.searchParams.delete('type');
-                    searchUrl.searchParams.delete('questline');
-                    searchUrl.searchParams.delete('state');
-                    window.location.href = searchUrl.toString();
+            this.searchClear.addEventListener('click', () => {
+                this.searchInput.value = '';
+                this.searchEntries('');
+            });
+
+            // Sort functionality
+            this.sortSelect.addEventListener('change', (e) => {
+                this.sortEntries(e.target.value);
+            });
+        },
+
+        setActiveTab(activeTab) {
+            this.tabs.forEach(tab => tab.classList.remove('active'));
+            activeTab.classList.add('active');
+        },
+
+        filterEntries(filterType) {
+            this.entries.forEach(entry => {
+                const entryType = entry.dataset.type;
+                const shouldShow = filterType === 'all' || entryType === filterType;
+                entry.style.display = shouldShow ? 'block' : 'none';
+            });
+            this.updateVisibleStats();
+        },
+
+        searchEntries(query) {
+            const searchTerm = query.toLowerCase();
+
+            this.entries.forEach(entry => {
+                const title = entry.dataset.title.toLowerCase();
+                const content = entry.querySelector('.entry-excerpt').textContent.toLowerCase();
+                const shouldShow = !query || title.includes(searchTerm) || content.includes(searchTerm);
+                entry.style.display = shouldShow ? 'block' : 'none';
+            });
+
+            this.updateVisibleStats();
+        },
+
+        sortEntries(sortType) {
+            const entriesArray = Array.from(this.entries);
+            const container = document.getElementById('codex-entries');
+
+            entriesArray.sort((a, b) => {
+                switch(sortType) {
+                    case 'date-asc':
+                        return new Date(a.dataset.date) - new Date(b.dataset.date);
+                    case 'date-desc':
+                        return new Date(b.dataset.date) - new Date(a.dataset.date);
+                    case 'title-asc':
+                        return a.dataset.title.localeCompare(b.dataset.title);
+                    case 'title-desc':
+                        return b.dataset.title.localeCompare(a.dataset.title);
+                    default:
+                        return 0;
                 }
-            }
-        });
-    }
+            });
 
-    // Email capture form handling
-    const captureForm = document.querySelector('.ds-capture-form');
-    if (captureForm) {
-        captureForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
+            entriesArray.forEach(entry => container.appendChild(entry));
+        },
 
-            // For now, just show a success message
-            // In production, this would submit to your email service
-            const submitBtn = this.querySelector('.ds-capture-submit');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'joined!';
-            submitBtn.disabled = true;
+        updateStats() {
+            const totalTime = Array.from(this.entries).reduce((sum, entry) => {
+                return sum + parseInt(entry.dataset.readingTime || 0);
+            }, 0);
 
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                this.reset();
-            }, 2000);
-        });
-    }
+            document.getElementById('reading-time').textContent = `${Math.round(totalTime / 60 * 10) / 10}h`;
+        },
+
+        updateVisibleStats() {
+            const visibleEntries = Array.from(this.entries).filter(entry =>
+                entry.style.display !== 'none'
+            );
+
+            const visibleTime = visibleEntries.reduce((sum, entry) => {
+                return sum + parseInt(entry.dataset.readingTime || 0);
+            }, 0);
+
+            // Update displayed stats for visible entries
+            const totalEntriesEl = document.getElementById('total-entries');
+            const totalTimeEl = document.getElementById('total-reading-time');
+
+            if (totalEntriesEl) totalEntriesEl.textContent = visibleEntries.length;
+            if (totalTimeEl) totalTimeEl.textContent = `${Math.round(visibleTime / 60 * 10) / 10}h`;
+        }
+    };
+
+    codex.init();
 });
 </script>
 
 <?php get_footer(); ?>
+
