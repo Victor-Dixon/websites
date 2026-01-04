@@ -1,0 +1,52 @@
+{
+  "questline": "world-building",
+  "description": "Expand the Digital Dreamscape world with new domains, lore, and interactive elements",
+  "created": "2026-01-15",
+  "status": "active",
+  "tasks": [
+    {
+      "id": "domain_discovery",
+      "title": "Discover and document new world domains",
+      "description": "Identify emerging domains in the system that need formal recognition",
+      "completed": true,
+      "progress": "12 new domains identified",
+      "agent": "Agent-8",
+      "date_completed": "2026-01-16"
+    },
+    {
+      "id": "lore_development",
+      "title": "Develop canonical lore for discovered domains",
+      "description": "Create foundational narratives and rules for each new domain",
+      "completed": false,
+      "progress": "3 domains lore-complete",
+      "agent": "Thea",
+      "estimated_completion": "2026-01-25"
+    },
+    {
+      "id": "interaction_design",
+      "title": "Design domain interaction mechanisms",
+      "description": "Create systems for agents and users to interact with each domain",
+      "completed": false,
+      "progress": "Initial framework designed",
+      "agent": "Agent-2",
+      "estimated_completion": "2026-01-30"
+    },
+    {
+      "id": "artifact_integration",
+      "title": "Integrate domain artifacts into world systems",
+      "description": "Connect domain-specific artifacts with broader world mechanics",
+      "completed": false,
+      "progress": "Planning phase",
+      "agent": "Agent-1",
+      "estimated_completion": "2026-02-05"
+    }
+  ],
+  "metrics": {
+    "total_tasks": 4,
+    "completed_tasks": 1,
+    "completion_percentage": 25,
+    "estimated_completion": "2026-02-05",
+    "primary_agent": "Multiple",
+    "affected_domains": ["world-building", "system-expansion", "narrative-development"]
+  }
+}

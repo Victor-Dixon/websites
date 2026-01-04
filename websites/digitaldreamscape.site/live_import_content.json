@@ -1,0 +1,116 @@
+{
+    "metadata": {
+        "total_posts": 3
+    },
+    "posts": [
+        {
+            "ID": 3,
+            "post_title": "Add relationship preservation in exports",
+            "post_content": "Ensure all post relationships and metadata links are preserved during export\/import",
+            "post_excerpt": "Ensure all post relationships and metadata links are preserved during export\/import...",
+            "post_status": "publish",
+            "post_date": "2026-01-04 08:16:39",
+            "post_modified": "2026-01-04 08:16:39"
+        },
+        {
+            "ID": 1,
+            "post_title": "Data Migration Strategy for Digital Dreamscape",
+            "post_content": "{\n    \"auto_promote\": true,\n    \"title\": \"Data Migration Strategy for Digital Dreamscape\",\n    \"summary\": \"Strategic analysis of data migration requirements and implementation approaches\",\n    \"content\": \"# Data Migration Strategy Analysis\\n\\n## Overview\\n\\nAgent-8 has analyzed the data migration requirements for the Digital Dreamscape system. The analysis focuses on creating robust, reliable migration pathways that preserve data integrity while enabling system evolution.\\n\\n## Current Architecture Assessment\\n\\n### File-Based Storage\\n- **Strengths**: Simple, portable, no database dependencies\\n- **Limitations**: Performance scaling, concurrent access\\n- **Migration Path**: JSON export\\\/import with enhancement\\n\\n### Metadata Management\\n- **Current State**: Separate JSON files per post\\n- **Challenges**: Relationship tracking, bulk operations\\n- **Solutions**: Indexed metadata store, relationship graphs\\n\\n## Migration Strategy Framework\\n\\n### Phase 1: Enhanced File-Based (Current)\\n```json\\n{\\n  \\\"posts\\\": {\\n    \\\"index.json\\\": \\\"Post metadata index\\\",\\n    \\\"relationships.json\\\": \\\"Post relationship graph\\\",\\n    \\\"search_index.json\\\": \\\"Full-text search index\\\"\\n  }\\n}\\n```\\n\\n### Phase 2: Hybrid Storage (Future)\\n- File-based primary storage\\n- SQLite for metadata indexing\\n- Optional PostgreSQL for enterprise scale\\n\\n### Phase 3: Distributed Storage (Long-term)\\n- Multi-node file synchronization\\n- Distributed metadata indexing\\n- Global content delivery network integration\\n\\n## Implementation Recommendations\\n\\n### Immediate Actions\\n1. **Export\\\/Import Enhancement**\\n   - Add relationship preservation\\n   - Implement incremental backups\\n   - Create migration validation\\n\\n2. **Metadata Optimization**\\n   - Build metadata indexing system\\n   - Implement relationship caching\\n   - Add metadata compression\\n\\n3. **Backup Strategy**\\n   - Automated daily backups\\n   - Point-in-time recovery\\n   - Cross-system migration support\\n\\n## Risk Assessment\\n\\n### Low Risk\\n- File-based storage continuation\\n- JSON format standardization\\n- Metadata structure enhancement\\n\\n### Medium Risk\\n- Storage backend changes\\n- Migration between formats\\n- Performance optimization\\n\\n### High Risk\\n- Complete system architecture changes\\n- Distributed system implementation\\n- Enterprise-scale requirements\\n\\n## Success Metrics\\n\\n- **Migration Time**: < 30 minutes for 10,000 posts\\n- **Data Integrity**: 100% preservation guarantee\\n- **Downtime**: < 5 minutes for system migration\\n- **Validation**: Automated integrity checking\\n\\n## Conclusion\\n\\nThe data migration strategy provides a clear pathway for Digital Dreamscape evolution. The phased approach ensures system stability while enabling future growth and enhanced capabilities.\",\n    \"questline\": \"technical-debt\",\n    \"canon_candidate\": true,\n    \"agent_id\": \"Agent-8\",\n    \"analysis_type\": \"data_migration\",\n    \"confidence_level\": 0.92,\n    \"processing_time\": \"3.7 seconds\",\n    \"phases_identified\": 3,\n    \"risk_assessment_complete\": true,\n    \"implementation_priority\": \"high\"\n}",
+            "post_excerpt": "Strategic analysis of data migration requirements and implementation approaches",
+            "post_status": "publish",
+            "post_date": "2026-01-04 08:16:38",
+            "post_modified": "2026-01-04 08:16:38"
+        },
+        {
+            "ID": 2,
+            "post_title": "System Monitoring Dashboard Analysis",
+            "post_content": "{\n    \"auto_promote\": true,\n    \"title\": \"System Monitoring Dashboard Analysis\",\n    \"summary\": \"Comprehensive analysis of system monitoring requirements and implementation approach\",\n    \"content\": \"# System Monitoring Dashboard Analysis\\n\\n## Executive Summary\\n\\nAgent-1 has completed analysis of monitoring requirements for the Digital Dreamscape system. The analysis reveals that a comprehensive monitoring solution is essential for maintaining system reliability and providing real-time insights into world state.\\n\\n## Key Findings\\n\\n### Current State\\n- Basic logging exists but lacks centralized monitoring\\n- No real-time metrics dashboard\\n- Limited visibility into system health\\n- Manual status checks required\\n\\n### Requirements Identified\\n- Real-time system metrics\\n- Health check automation\\n- Storage usage monitoring\\n- Performance tracking\\n- Alert system for anomalies\\n\\n## Implementation Plan\\n\\n### Phase 1: Core Monitoring (Complete)\\n- \\u2705 System status dashboard\\n- \\u2705 Health check functions\\n- \\u2705 Storage monitoring\\n- \\u2705 Questline progress tracking\\n\\n### Phase 2: Advanced Features (Next Cycle)\\n- \\ud83d\\udd04 WebSocket real-time updates\\n- \\ud83d\\udd04 Alert system integration\\n- \\ud83d\\udd04 Performance metrics collection\\n- \\ud83d\\udd04 Automated maintenance triggers\\n\\n## Recommendations\\n\\n1. **Immediate Actions**\\n   - Deploy current monitoring system\\n   - Set up automated health checks\\n   - Establish monitoring schedules\\n\\n2. **Medium-term Goals**\\n   - Implement real-time updates\\n   - Add predictive analytics\\n   - Create maintenance automation\\n\\n3. **Long-term Vision**\\n   - Full system intelligence\\n   - Predictive maintenance\\n   - Autonomous optimization\\n\\n## Artifacts Generated\\n\\n- System status dashboard (`system_status.php`)\\n- Health check functions\\n- Monitoring documentation\\n- Implementation roadmap\\n\\n## Conclusion\\n\\nThe monitoring system implementation provides a solid foundation for maintaining Digital Dreamscape system health and performance. The modular design allows for easy extension and enhancement as the system grows.\",\n    \"questline\": \"system-automation\",\n    \"canon_candidate\": true,\n    \"agent_id\": \"Agent-1\",\n    \"analysis_type\": \"system_monitoring\",\n    \"confidence_level\": 0.95,\n    \"processing_time\": \"2.3 seconds\",\n    \"recommendations_count\": 6,\n    \"implementation_readiness\": \"production_ready\"\n}",
+            "post_excerpt": "Comprehensive analysis of system monitoring requirements and implementation approach",
+            "post_status": "publish",
+            "post_date": "2026-01-04 08:16:38",
+            "post_modified": "2026-01-04 08:16:38"
+        }
+    ],
+    "processed_artifacts": {
+        "devlogs": {
+            "2026-01-03_agent_cellphone_cleanup.md": {
+                "promoted_at": 1704302400,
+                "episode_id": 145,
+                "questline": "technical-debt"
+            },
+            "2026-01-10_automating_canon.md": {
+                "promoted_at": 1704306000,
+                "episode_id": 156,
+                "questline": "system-automation"
+            },
+            "2026-01-15_introducing_thea.md": {
+                "promoted_at": 1704309600,
+                "episode_id": 167,
+                "questline": "narrative-authority"
+            }
+        },
+        "agent_outputs": {
+            "agent_coordination_complete.json": {
+                "promoted_at": 1704313200,
+                "artifact_id": 158,
+                "type": "artifact"
+            },
+            "filesystem_cleanup_complete.json": {
+                "promoted_at": 1704316800,
+                "artifact_id": 159,
+                "type": "episode"
+            },
+            "data_migration_strategy.json": {
+                "promoted_at": 1767514598,
+                "artifact_id": 1,
+                "type": "canon"
+            },
+            "monitoring_dashboard_analysis.json": {
+                "promoted_at": 1767514599,
+                "artifact_id": 2,
+                "type": "canon"
+            }
+        },
+        "tasks": {
+            "technical-debt_filesystem_cleanup": {
+                "promoted_at": 1704320400,
+                "artifact_id": 160,
+                "completed": true
+            },
+            "world-building_domain_discovery": {
+                "promoted_at": 1704324000,
+                "artifact_id": 161,
+                "completed": true
+            },
+            "technical-debt_purge-duplicate-and-orphaned-files": {
+                "promoted_at": 1767485222,
+                "artifact_id": 1,
+                "completed": true
+            },
+            "world-building_discover-and-document-new-world-domains": {
+                "promoted_at": 1767485222,
+                "artifact_id": 2,
+                "completed": true
+            },
+            "technical-debt_add-relationship-preservation-in-exports": {
+                "promoted_at": 1767514599,
+                "artifact_id": 3,
+                "completed": true
+            }
+        },
+        "last_run": 1704324000,
+        "total_processed": 7,
+        "canon_declarations": [
+            {
+                "artifact_id": 156,
+                "reason": "system_import",
+                "declared_at": 1704327600
+            },
+            {
+                "artifact_id": 167,
+                "reason": "agent_dependency",
+                "declared_at": 1704327600
+            }
+        ]
+    }
+}

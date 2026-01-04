@@ -16,29 +16,46 @@ from pathlib import Path
 # Add deployment tools to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-# Try WordPressManager first, then fallback to SimpleWordPressDeployer
+# Add deployment tools to path (try multiple locations)
 MAIN_REPO_TOOLS = Path("D:/Agent_Cellphone_V2_Repository/tools")
+CURRENT_DIR = Path(__file__).parent
 WORDPRESS_MANAGER_AVAILABLE = False
 SIMPLE_DEPLOYER_AVAILABLE = False
 
-if MAIN_REPO_TOOLS.exists():
-    sys.path.insert(0, str(MAIN_REPO_TOOLS))
-    try:
-        from wordpress_manager import WordPressManager
-        WORDPRESS_MANAGER_AVAILABLE = True
-    except ImportError:
-        pass
+# Try multiple paths for deployment tools
+tool_paths = [str(MAIN_REPO_TOOLS), str(CURRENT_DIR)]
+for path in tool_paths:
+    if path not in sys.path:
+        sys.path.insert(0, path)
+
+# Try WordPressManager first
+try:
+    from wordpress_manager import WordPressManager
+    WORDPRESS_MANAGER_AVAILABLE = True
+    print("✅ Using WordPressManager for deployment")
+except ImportError:
+    print("⚠️ WordPressManager not available, trying SimpleWordPressDeployer")
 
 # Try SimpleWordPressDeployer as fallback
 if not WORDPRESS_MANAGER_AVAILABLE:
     try:
-        from simple_wordpress_deployer import SimpleWordPressDeployer
+        from simple_wordpress_deployer import SimpleWordPressDeployer, load_site_configs
         WordPressManager = SimpleWordPressDeployer  # Alias for compatibility
         SIMPLE_DEPLOYER_AVAILABLE = True
-    except ImportError:
+        print("✅ Using SimpleWordPressDeployer for deployment")
+    except ImportError as e:
         print("❌ ERROR: No deployment method available!")
-        print("   WordPressManager not found and SimpleWordPressDeployer not available")
+        print(f"   WordPressManager not found: {e}")
+        print("   SimpleWordPressDeployer not found")
         sys.exit(1)
+
+# Ensure we have the load_site_configs function
+if not SIMPLE_DEPLOYER_AVAILABLE:
+    try:
+        from simple_wordpress_deployer import load_site_configs
+    except ImportError:
+        # Fallback: try to load from any available module
+        pass
 
 # Load .env file for credentials
 try:
@@ -62,69 +79,79 @@ def deploy_digitaldreamscape_theme():
     print("="*60 + "\n")
 
     site_name = "digitaldreamscape.site"
-    site_key = "digitaldreamscape"
+    site_key = "digitaldreamscape.site"
 
-    # Files to deploy - Homepage styling and fixes
+    # Files to deploy - Dreamscape Codex implementation
     files_to_deploy = [
         "wp/wp-content/themes/digitaldreamscape/style.css",
         "wp/wp-content/themes/digitaldreamscape/functions.php",
         "wp/wp-content/themes/digitaldreamscape/header.php",
-        "wp/wp-content/themes/digitaldreamscape/front-page.php"
+        "wp/wp-content/themes/digitaldreamscape/page-blog.php"  # Dreamscape Codex
     ]
 
     try:
-        # Load site configs
+        # Load site configs (needed for both deployment methods)
         site_configs = None
-        if SIMPLE_DEPLOYER_AVAILABLE:
-            from simple_wordpress_deployer import load_site_configs
+        try:
             site_configs = load_site_configs()
-            if not site_configs:
-                print("❌ No site configurations found!")
-                print("   Expected one of:")
-                print(
-                    "   1. Hostinger env vars (HOSTINGER_HOST, HOSTINGER_USER, HOSTINGER_PASS)")
-                print(
-                    "   2. D:/Agent_Cellphone_V2_Repository/.deploy_credentials/sites.json")
-                print("   3. D:/websites/config/site_configs.json")
-                return False
+            print(f"📋 Loaded {len(site_configs) if site_configs else 0} site configurations")
+        except Exception as e:
+            print(f"⚠️ Error loading site configs: {e}")
+
+        if not site_configs:
+            print("❌ No site configurations found!")
+            print("   Expected one of:")
+            print(
+                "   1. Hostinger env vars (HOSTINGER_HOST, HOSTINGER_USER, HOSTINGER_PASS)")
+            print(
+                "   2. D:/Agent_Cellphone_V2_Repository/.deploy_credentials/sites.json")
+            print("   3. D:/websites/config/site_configs.json")
+            return False
+
+        # Debug: Check if our site is in the configs
+        if site_key in site_configs:
+            print(f"✅ Site '{site_key}' found in configurations")
+        else:
+            print(f"⚠️ Site '{site_key}' not found in configurations")
+            available_sites = list(site_configs.keys())[:5]
+            print(f"   Available sites: {available_sites}")
+            # Try alternative site keys
+            alt_keys = ['digitaldreamscape', 'digitaldreamscape.site']
+            for alt_key in alt_keys:
+                if alt_key in site_configs and alt_key != site_key:
+                    print(f"   Found alternative: {alt_key}")
+                    site_key = alt_key
+                    break
 
         # Initialize deployment manager
-        if WORDPRESS_MANAGER_AVAILABLE:
-            manager = WordPressManager(site_key)
+        if WORDPRESS_MANAGER_AVAILABLE and site_configs:
+            # WordPressManager needs site configs passed to it
+            manager = WordPressManager(site_key, site_configs)
         elif SIMPLE_DEPLOYER_AVAILABLE:
             manager = WordPressManager(site_key, site_configs)
         else:
             print("❌ No deployment method available!")
             return False
 
-        # For SimpleWordPressDeployer, get base remote path from config before connecting
-        base_remote_path = None
-        if SIMPLE_DEPLOYER_AVAILABLE:
-            site_config = site_configs.get(
-                site_key) or site_configs.get(site_name, {})
-            if 'sftp' in site_config:
-                sftp_config = site_config.get('sftp', {})
-            else:
-                sftp_config = site_config
-            base_remote_path = sftp_config.get(
-                'remote_path', 'domains/digitaldreamscape.site/public_html')
+        # Get site configuration
+        site_config = site_configs.get(site_key)
+        if not site_config:
+            print(f"❌ Site configuration for '{site_key}' not found!")
+            return False
+
+        print(f"🔧 Site config: {site_config.get('site_url', 'unknown')}")
 
         # Connect to server
         print(f"📡 Connecting to {site_key}...")
-        if SIMPLE_DEPLOYER_AVAILABLE and base_remote_path:
+        try:
             if not manager.connect():
                 print(f"❌ Failed to connect to {site_key}")
-                print("   Check SFTP credentials in config/site_configs.json")
+                print("   Check SFTP credentials in configuration")
                 return False
-        else:
-            if not manager.connect():
-                print(f"❌ Failed to connect to {site_key}")
-                if WORDPRESS_MANAGER_AVAILABLE:
-                    print("   Check credentials in .deploy_credentials/sites.json")
-                else:
-                    print("   Check SFTP credentials in config/site_configs.json")
-                return False
-        print("✅ Connected!\n")
+            print("✅ Connected!\n")
+        except Exception as e:
+            print(f"❌ Connection error: {e}")
+            return False
 
         # Deploy each file
         base_path = Path("D:/websites/websites") / site_name
@@ -141,10 +168,12 @@ def deploy_digitaldreamscape_theme():
             print(f"📤 Deploying: {file_path}...")
             try:
                 if SIMPLE_DEPLOYER_AVAILABLE:
+                    # For SimpleWordPressDeployer, construct the full remote path
                     filename = local_path.name
                     remote_path = f"wp-content/themes/digitaldreamscape/{filename}"
                     success = manager.deploy_file(local_path, remote_path)
                 else:
+                    # For WordPressManager, just pass the local path
                     success = manager.deploy_file(local_path)
 
                 if success:
@@ -155,8 +184,6 @@ def deploy_digitaldreamscape_theme():
                     fail_count += 1
             except Exception as e:
                 print(f"❌ Error deploying {file_path}: {e}")
-                import traceback
-                traceback.print_exc()
                 fail_count += 1
 
         # Disconnect

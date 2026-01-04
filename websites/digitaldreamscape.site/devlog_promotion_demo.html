@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devlog Promotion Demo - Digital Dreamscape</title>
+    <style>
+        body { font-family: monospace; background: #0a0a0f; color: #ffffff; margin: 0; padding: 20px; }
+        .demo-container { max-width: 1200px; margin: 0 auto; }
+        .demo-header { text-align: center; margin-bottom: 40px; }
+        .demo-section { background: #1a1a2e; border: 1px solid #6366f1; border-radius: 12px; padding: 20px; margin-bottom: 30px; }
+        .demo-title { color: #8b5cf6; font-size: 1.5em; margin-bottom: 15px; }
+        .command { background: #000000; padding: 15px; border-radius: 8px; font-family: monospace; margin: 10px 0; }
+        .output { background: #2a2a4e; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .artifact-card { background: #2a2a4e; border: 1px solid #6366f1; border-radius: 12px; overflow: hidden; margin: 20px 0; }
+        .card-rail { background: rgba(99, 102, 241, 0.1); padding: 15px; display: flex; align-items: center; gap: 15px; }
+        .glyph { width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(184,107,255,.35), rgba(77,227,255,.12)); display: flex; align-items: center; justify-content: center; font-size: 1.2em; }
+        .artifact-id { color: #6366f1; font-weight: bold; font-size: 0.9em; }
+        .card-body { padding: 20px; }
+        .badges { display: flex; gap: 10px; margin-bottom: 15px; }
+        .badge { padding: 5px 12px; border-radius: 15px; font-size: 0.8em; font-weight: bold; text-transform: uppercase; }
+        .badge-episode { background: rgba(99, 102, 241, 0.2); color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.3); }
+        .card-title { font-size: 1.3em; margin-bottom: 10px; color: #ffffff; }
+        .card-excerpt { color: #cbd5e1; line-height: 1.6; margin-bottom: 15px; }
+        .meta { display: flex; gap: 20px; margin-bottom: 15px; font-size: 0.9em; color: #94a3b8; }
+        .actions { display: flex; gap: 10px; }
+        .btn { padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+        .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
+        .btn-secondary { background: rgba(255,255,255,0.1); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>🎭 Devlog Promotion Demo</h1>
+            <p>Watch a devlog transform into a World Archive episode artifact</p>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">📝 The Command</div>
+            <div class="command">
+php promote_artifacts.php devlog devlogs/2026-01-03_agent_cellphone_cleanup.md
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🔍 Processing Output</div>
+            <div class="output">
+🔍 Processing devlog: devlogs/2026-01-03_agent_cellphone_cleanup.md<br>
+✅ Promoted devlog to episode<br>
+&nbsp;&nbsp;&nbsp;Title: The Day We Killed 1,000 Duplicate Files<br>
+&nbsp;&nbsp;&nbsp;Questline: technical-debt<br>
+&nbsp;&nbsp;&nbsp;URL: https://digitaldreamscape.site/blog/the-day-we-killed-1000-duplicate-files<br>
+<br>
+📊 World Archive Status Updated:<br>
+&nbsp;&nbsp;&nbsp;Episodes: +1 (now 12)<br>
+&nbsp;&nbsp;&nbsp;Questlines: technical-debt (2/5 complete)<br>
+&nbsp;&nbsp;&nbsp;Active Artifacts: +1 (now 8)
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🎭 Result: Episode EP-145 in World Archive</div>
+
+            <div class="artifact-card">
+                <div class="card-rail">
+                    <div class="glyph">🎭</div>
+                    <div class="artifact-id">EP-145</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="badges">
+                        <span class="badge badge-episode">episode</span>
+                    </div>
+
+                    <div class="card-title">
+                        <a href="#">The Day We Killed 1,000 Duplicate Files</a>
+                    </div>
+
+                    <div class="card-excerpt">
+                        Our digital garden had become overgrown. Files were scattered like weeds across the filesystem, with duplicates hiding in every shadow. The Agent-8 cellphone cleanup operation had revealed the tip of a much larger iceberg.
+                    </div>
+
+                    <div class="meta">
+                        <span>questline: technical-debt</span>
+                        <span>era: 2026</span>
+                        <span>state: active</span>
+                        <span>updated: 2 hours ago</span>
+                    </div>
+
+                    <div class="actions">
+                        <a href="#" class="btn btn-primary">read artifact</a>
+                        <a href="#" class="btn btn-secondary">view questline</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">📊 Questline Update</div>
+            <div class="output">
+<strong>Questline: technical-debt</strong><br>
+Before: 1/4 artifacts resolved<br>
+After: 2/5 artifacts resolved<br>
+<br>
+Latest addition: EP-145 "The Day We Killed 1,000 Duplicate Files"<br>
+Progress: ████████░░░░ (40% complete)
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🔄 How It Works</div>
+            <div class="output">
+1. <strong>Parse devlog:</strong> Extract title, content, metadata from Markdown<br>
+2. <strong>Apply classification:</strong> episode type, questline, state<br>
+3. <strong>Create WordPress post:</strong> With custom field metadata<br>
+4. <strong>Update archive:</strong> Live stats reflect new artifact<br>
+5. <strong>Generate permalink:</strong> /blog/the-day-we-killed-1000-duplicate-files<br>
+<br>
+<strong>No manual work.</strong> The devlog becomes an episode automatically.
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🎯 World Archive Impact</div>
+            <div class="output">
+• Episode count increases by 1<br>
+• Questline "technical-debt" shows updated progress<br>
+• Homepage stats update automatically<br>
+• New artifact appears in archive feed<br>
+• Filter by questline shows related artifacts<br>
+<br>
+<strong>The living system grows with every devlog.</strong>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

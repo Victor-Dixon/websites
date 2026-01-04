@@ -1,0 +1,58 @@
+{
+  "questline": "system-automation",
+  "description": "Expand system monitoring capabilities with advanced features and real-time updates",
+  "tasks": [
+    {
+      "title": "Implement WebSocket real-time updates",
+      "description": "Add WebSocket support for live system status updates without page refresh",
+      "completed": false,
+      "progress": "Planning phase complete",
+      "priority": "high",
+      "dependencies": ["system_status.php"],
+      "estimated_hours": 8
+    },
+    {
+      "title": "Create alert system for anomalies",
+      "description": "Build automated alerting for system health issues and performance degradation",
+      "completed": false,
+      "progress": "Requirements gathered",
+      "priority": "medium",
+      "dependencies": ["health_checks"],
+      "estimated_hours": 6
+    },
+    {
+      "title": "Add performance metrics collection",
+      "description": "Implement detailed performance tracking for promotion cycles and system operations",
+      "completed": false,
+      "progress": "Metrics defined",
+      "priority": "medium",
+      "dependencies": ["system_status.php"],
+      "estimated_hours": 4
+    },
+    {
+      "title": "Mobile-responsive monitoring dashboard",
+      "description": "Ensure system status dashboard works perfectly on mobile devices",
+      "completed": false,
+      "progress": "Design mockups created",
+      "priority": "low",
+      "dependencies": ["system_status.php"],
+      "estimated_hours": 3
+    },
+    {
+      "title": "Integration with external monitoring systems",
+      "description": "Connect Digital Dreamscape monitoring to external services like Grafana or DataDog",
+      "completed": false,
+      "progress": "API research complete",
+      "priority": "low",
+      "dependencies": ["alert_system"],
+      "estimated_hours": 10
+    }
+  ],
+  "overall_progress": "2/5 tasks in planning",
+  "priority": "high",
+  "status": "active",
+  "created_at": "2026-01-04T12:00:00Z",
+  "last_updated": "2026-01-04T18:30:00Z",
+  "assigned_agents": ["Agent-1", "Agent-8"],
+  "estimated_completion": "2026-02-01"
+}

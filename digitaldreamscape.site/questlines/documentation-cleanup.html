@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questline: Documentation Cleanup - Digital Dreamscape</title>
+    <style>
+        /* Digital Dreamscape Visual Grammar */
+        :root {
+            --void-black: #0a0a0f;
+            --void-dark: #1a1a2e;
+            --void-surface: #2a2a4e;
+            --energy-primary: #6366f1;
+            --energy-secondary: #8b5cf6;
+            --energy-tertiary: #ec4899;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--void-black);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .site-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(139, 92, 246, 0.95));
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .site-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        /* Questline Hero */
+        .questline-hero {
+            background: linear-gradient(135deg, var(--void-dark), var(--void-black));
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .questline-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            padding: 12px 24px;
+            margin-bottom: 20px;
+        }
+
+        .questline-icon {
+            font-size: 1.5rem;
+        }
+
+        .questline-id {
+            font-weight: bold;
+            color: var(--energy-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .questline-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--energy-primary), var(--energy-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .questline-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .questline-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Progress Section */
+        .questline-progress {
+            background: var(--void-surface);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .progress-header {
+            margin-bottom: 30px;
+        }
+
+        .progress-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--energy-primary);
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 20px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--energy-secondary), var(--energy-tertiary));
+            width: 87.5%; /* 7/8 complete */
+        }
+
+        .progress-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            background: var(--void-dark);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--energy-primary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Episodes Grid */
+        .episodes-section {
+            background: var(--void-surface);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .episodes-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--energy-primary);
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .episode-card {
+            background: var(--void-dark);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .episode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+            border-color: var(--energy-primary);
+        }
+
+        .episode-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .episode-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
+            color: var(--energy-primary);
+            font-size: 1.1rem;
+        }
+
+        .episode-status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(99, 102, 241, 0.1);
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+
+        .episode-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .episode-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .episode-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Questline Overview */
+        .questline-overview {
+            background: var(--void-dark);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .overview-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--energy-secondary);
+            margin-bottom: 20px;
+        }
+
+        .overview-content p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .questline-footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .questline-title {
+                font-size: 2rem;
+            }
+
+            .questline-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .episodes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Site Header -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">🌌 Digital Dreamscape</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Questline Hero -->
+        <section class="questline-hero">
+            <div class="questline-badge">
+                <span class="questline-icon">📚</span>
+                <span class="questline-id">QUESTLINE</span>
+                <span>Documentation Cleanup</span>
+            </div>
+
+            <h1 class="questline-title">documentation entropy reduction</h1>
+
+            <div class="questline-meta">
+                <div class="meta-item">
+                    <span>🏛️</span>
+                    <span>Domain: system-maintenance</span>
+                </div>
+                <div class="meta-item">
+                    <span>📅</span>
+                    <span>Era: 2026</span>
+                </div>
+                <div class="meta-item">
+                    <span>⚡</span>
+                    <span>State: active</span>
+                </div>
+                <div class="meta-item">
+                    <span>🎯</span>
+                    <span>Priority: high</span>
+                </div>
+            </div>
+
+            <div class="questline-description">
+                <p>systematic codebase stewardship through entropy reduction. redundant files identified, single sources of truth established, maintenance overhead eliminated.</p>
+            </div>
+        </section>
+
+        <!-- Questline Progress -->
+        <section class="questline-progress">
+            <div class="progress-header">
+                <h2 class="progress-title">questline progress</h2>
+                <div class="progress-bar-container">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-text">7/8 cycles complete</div>
+            </div>
+
+            <div class="progress-stats">
+                <div class="stat-item">
+                    <span class="stat-number">28</span>
+                    <span class="stat-label">files eliminated</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">episodes logged</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">13</span>
+                    <span class="stat-label">markdown files remaining</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">87%</span>
+                    <span class="stat-label">questline complete</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Questline Overview -->
+        <section class="questline-overview">
+            <h2 class="overview-title">questline overview</h2>
+            <div class="overview-content">
+                <p>This questline represents a systematic approach to codebase stewardship. Documentation entropy had accumulated across the repository - duplicate files, overlapping READMEs, and redundant test scripts created maintenance overhead.</p>
+                <p>Through seven cycles of targeted cleanup, single sources of truth were established, legacy code was removed, and the documentation structure was rationalized. Each episode represents a distinct phase of entropy reduction.</p>
+                <p>The questline demonstrates how systematic maintenance becomes preservation, and how identifying patterns of accumulation leads to sustainable development practices.</p>
+            </div>
+        </section>
+
+        <!-- Episodes Grid -->
+        <section class="episodes-section">
+            <h2 class="episodes-title">episode archive</h2>
+            <div class="episodes-grid">
+                <a href="../episodes/ep_145_documentation_cleanup_cycle_1.html" class="episode-card">
+                    <div class="episode-header">
+                        <span class="episode-id">EP-145</span>
+                        <span class="episode-status">canon</span>
+                    </div>
+                    <h3 class="episode-title">Documentation Cleanup Cycle 1</h3>
+                    <p class="episode-description">Initial entropy assessment. PRD duplicates and legacy documentation removed. SSOT consolidation established.</p>
+                    <div class="episode-meta">files deleted: 8 • state: resolved</div>
+                </a>
+
+                <a href="../episodes/ep_146_documentation_cleanup_cycle_2.html" class="episode-card">
+                    <div class="episode-header">
+                        <span class="episode-id">EP-146</span>
+                        <span class="episode-status">canon</span>
+                    </div>
+                    <h3 class="episode-title">Documentation Cleanup Cycle 2</h3>
+                    <p class="episode-description">Archive directory cleaned. Misnamed files removed. Documentation inventory updated with consolidation targets.</p>
+                    <div class="episode-meta">files deleted: 5 • state: resolved</div>
+                </a>
+
+                <a href="../episodes/ep_147_documentation_cleanup_cycle_3.html" class="episode-card">
+                    <div class="episode-header">
+                        <span class="episode-id">EP-147</span>
+                        <span class="episode-status">canon</span>
+                    </div>
+                    <h3 class="episode-title">Documentation Cleanup Cycle 3</h3>
+                    <p class="episode-description">Legacy entry points eliminated. Bot launcher consolidation complete. Archive directory fully cleaned.</p>
+                    <div class="episode-meta">files deleted: 4 • state: resolved</div>
+                </a>
+
+                <a href="../episodes/ep_148_documentation_cleanup_cycle_4.html" class="episode-card">
+                    <div class="episode-header">
+                        <span class="episode-id">EP-148</span>
+                        <span class="episode-status">canon</span>
+                    </div>
+                    <h3 class="episode-title">Documentation Cleanup Cycle 4</h3>
+                    <p class="episode-description">README consolidation complete. Troubleshooting content preserved. Single source of truth for setup established.</p>
+                    <div class="episode-meta">files deleted: 1 • state: resolved</div>
+                </a>
+
+                <a href="../episodes/ep_149_documentation_cleanup_cycle_5.html" class="episode-card">
+                    <div class="episode-header">
+                        <span class="episode-id">EP-149</span>
+                        <span class="episode-status">canon</span>
+                    </div>
+                    <h3 class="episode-title">Documentation Cleanup Cycle 5</h3>
+                    <p class="episode-description">Test infrastructure consolidated. Completed consolidation docs archived. Root directory streamlined.</p>
+                    <div class="episode-meta">files deleted: 9 • state: resolved</div>
+                </a>
+
+                <a href="../episodes/ep_150_documentation_cleanup_cycle_6.html" class="episode-card">
+                    <div class="episode-header">
+                        <span class="episode-id">EP-150</span>
+                        <span class="episode-status">canon</span>
+                    </div>
+                    <h3 class="episode-title">Documentation Cleanup Cycle 6</h3>
+                    <p class="episode-description">Mission system overlap analysis complete. Orphaned code removed. Consolidation plan created.</p>
+                    <div class="episode-meta">files deleted: 1 • state: resolved</div>
+                </a>
+
+                <a href="../episodes/ep_151_documentation_cleanup_cycle_7.html" class="episode-card">
+                    <div class="episode-header">
+                        <span class="episode-id">EP-151</span>
+                        <span class="episode-status">canon</span>
+                    </div>
+                    <h3 class="episode-title">Documentation Cleanup Cycle 7</h3>
+                    <p class="episode-description">Jutsu consolidation plan moved to docs/. Documentation structure consistency achieved.</p>
+                    <div class="episode-meta">files moved: 1 • state: resolved</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="questline-footer">
+            <p>documentation-cleanup questline • 7/8 cycles complete • canon authority established</p>
+            <p>entropy reduced • systems maintained • binding precedent created</p>
+        </footer>
+    </div>
+</body>
+
+</html>

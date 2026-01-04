@@ -58,6 +58,13 @@
       "health_check_url": "https://prismblossom.online",
       "backup_before_deploy": true,
       "verify_after_deploy": true
+    },
+    "digitaldreamscape.site": {
+      "enabled": true,
+      "deployment_method": "sftp",
+      "health_check_url": "https://digitaldreamscape.site",
+      "backup_before_deploy": true,
+      "verify_after_deploy": true
     }
   },
 
