@@ -1,119 +1,152 @@
-# Websites Monorepo
+# Websites Repository - Organized Structure
 
-This repository contains the source (themes/templates/content) for multiple small websites and WordPress-based sites, plus internal tooling for packaging and verifying changes.
+This repository contains the complete infrastructure for managing multiple websites, with a focus on automated content generation, deployment, and maintenance.
 
-## What’s in this repo
+## 🏗️ Directory Structure
 
-- **WordPress themes** stored alongside each site/domain folder
-- **Static HTML/CSS/JS** for lightweight pages and side projects
-- **Custom utilities** under `tools/` (verification, packaging, maintenance scripts)
-- **Custom WordPress plugins** under `wordpress-plugins/`
+### 📁 Root Level
+```
+websites/
+├── scripts/           # All automation scripts
+├── sites/            # Website files and assets
+├── config/           # Configuration files
+├── content/          # Content management
+├── docs/             # Documentation
+├── tools/            # Utility tools
+├── ops/              # Operations scripts
+├── src/              # Source code
+├── tests/            # Test files
+├── archive/          # Archived content
+├── temp/             # Temporary files
+├── assets/           # Shared assets
+├── backup/           # Backup files
+└── config/paths.py   # Path management system
+```
 
-## Repository layout (high level)
-
-| Path | What it contains | Notes |
-|------|------------------|-------|
-| `archive/FreeRideInvestor/` | WordPress theme code + a large snapshot of plugins/assets | Legacy/monolithic; archived. Includes `docker-compose.yml` and many third-party plugin files. |
-| `websites/freerideinvestor.com/wp/wp-content/themes/freerideinvestor-v2/` | A cleaner standalone WordPress theme | Theme files (e.g., `functions.php`, `style.css`). |
-| `websites/<domain>/` | Canonical site structure | See `websites/README.md` for details. All sites organized here. |
-| `content/` | Content SSOT for autoblogger | Voices, brands, backlogs, calendars, drafts. |
-| `src/` | Python packages (autoblogger, helpers) | Prefer importing from here for tooling. |
-| `side-projects/` | Small experimental pages | Standalone HTML content. |
-| `wordpress-plugins/` | Custom plugins | Each plugin has its own folder and readme. |
-| `docs/` | Internal maintenance documentation | Operational notes and guides. |
-| `tools/` | Helper scripts | Packaging, verification, and maintenance automation. |
-
-## Working with WordPress themes
-
-- **Theme locations vary** by site. Look for either:
-  - `*/wordpress-theme/<theme-name>/` (theme-only folder), or
-  - `*/wp-content/themes/<theme-name>/` (WordPress-style tree), or
-  - a theme stored at the folder root (e.g., `FreeRideInvestor_V2/`).
-- **To install a theme**: copy the theme folder into your WordPress install at `wp-content/themes/`, then activate it in **Appearance → Themes**.
-
-## Deployment (high level)
-
-This repository **does not store production credentials**. Deployment is expected to be done via one of:
-
-- **Manual upload** (SFTP / hosting file manager / WordPress Theme Editor) of the changed theme files
-- **Packaging + verification helpers**:
-  - `python tools/deploy_website_fixes.py` (creates zip packages and prints file-by-file instructions)
-  - `python tools/verify_website_fixes.py` (sanity-checks a few live endpoints)
-
-## Security & secrets
-
-- **Do not commit secrets** (hosting credentials, API keys, application passwords).
-- Keep any credentials in **local-only** files (ignored by git) or injected via environment variables.
-- This repo contains **third-party code** (notably under `archive/FreeRideInvestor/plugins/`). Treat updates and security reviews as part of routine maintenance.
-
-## Contributing guidelines
-
- - Keep changes **scoped to one site** when possible (makes review and deployment safer).
- - Prefer small, well-described commits (what changed + why).
- - For WordPress PHP changes, validate syntax before deployment if you have PHP available (`php -l <file>`).
-
-## Autoblogger — calendar + backlog → daily drafts
-
-Autoblogger runs a **daily pipeline** that selects a post from a rolling calendar/backlog, generates a draft in the correct site's voice, validates it, and saves it to `content/drafts/<site_id>/`.
-
-### SSOT file contract
+### 📂 Scripts Directory (`scripts/`)
+Organized automation scripts by function:
 
 ```
-content/
-  voices/
-  brands/
-  backlogs/
-  calendars/
-  drafts/
+scripts/
+├── audit/            # Website auditing scripts
+├── deploy/           # Deployment and publishing scripts
+├── check/            # Health checking and monitoring scripts
+├── debug/            # Debugging and diagnostic scripts
+├── test/             # Testing scripts
+└── services/         # Content and service management scripts
+```
+
+### 🌐 Sites Directory (`sites/`)
+Website organization by environment:
+
+```
 sites/
-  dadudekc.yaml
-  corey.yaml
-  kiki.yaml
-runtime/
-  autoblogger_state__<site_id>.json
+├── production/       # Live production websites
+├── staging/          # Staging/test environments
+├── development/      # Development versions
+├── wordpress-plugins/# WordPress plugins
+├── website_design/   # Design assets
+└── *.php             # Utility PHP files
 ```
 
-### Run (queue-only by default)
+### ⚙️ Configuration (`config/`)
+Centralized configuration management:
 
+```
+config/
+├── paths.py          # Path management system
+├── *.yaml            # Site configurations
+├── *.json            # Runtime data
+├── diagnostics/      # Diagnostic reports
+├── runtime/          # Runtime state files
+└── message_queue/    # Message queue data
+```
+
+## 🚀 Key Features
+
+### 🔧 Portable Path Management
+- **No hardcoded paths**: All scripts use the centralized `config/paths.py` system
+- **Environment agnostic**: Works across different machines and setups
+- **Scalable**: Easy to add new websites or environments
+
+### 📊 Automated Content Pipeline
+- **Episode generation**: Automated content creation from conversation data
+- **Canon declaration**: Identifies and declares canonical elements
+- **Multi-platform publishing**: Automated deployment to multiple platforms
+
+### 🌐 Multi-Site Management
+- **Production sites**: Live websites under `sites/production/`
+- **Environment separation**: Clear staging/production/development separation
+- **Shared assets**: Common resources in `assets/` directory
+
+## 🛠️ Usage
+
+### Running Scripts
+All scripts are now organized by function. Use the path management system:
+
+```python
+from config.paths import paths
+
+# Get path to a website
+site_path = paths.get_website_path("digitaldreamscape.site")
+
+# Get path to scripts
+deploy_script = paths.get_script_path("deploy_system_scripts.py", "deploy")
+```
+
+### Adding New Websites
+1. Create directory in appropriate environment: `sites/production/new-site/`
+2. Add configuration in `config/`
+3. Update path management if needed
+
+### Deployment
 ```bash
-python3 -m autoblogger.run_daily --site dadudekc
+# Deploy system scripts
+python scripts/deploy/deploy_system_scripts.py site-name
+
+# Run canon declaration
+python scripts/services/run_canon_declaration.py
 ```
 
-### Dry-run (writes prompt to a draft, no LLM, no publish)
+## 📋 Organization Benefits
 
-```bash
-python3 -m autoblogger.run_daily --site dadudekc --dry-run --date 2025-12-20
-```
+### ✅ Before (Chaotic)
+- Scripts scattered across root
+- Hardcoded paths everywhere
+- Mixed content types
+- Difficult maintenance
 
-### Enable generation (OpenAI-compatible)
+### ✅ After (Organized)
+- **Clear separation**: Each directory has a specific purpose
+- **Portable**: No hardcoded paths, works anywhere
+- **Scalable**: Easy to add new sites, scripts, or environments
+- **Maintainable**: Logical organization makes finding things easy
 
-Set env vars:
+## 🔍 Finding Things
 
-- `AUTOBLOGGER_OPENAI_API_KEY` (or `OPENAI_API_KEY`)
-- `AUTOBLOGGER_OPENAI_MODEL` (default: `gpt-4o-mini`)
-- `AUTOBLOGGER_OPENAI_BASE_URL` (default: `https://api.openai.com/v1`)
+| What | Where |
+|------|-------|
+| Website files | `sites/production/website-name/` |
+| Deployment scripts | `scripts/deploy/` |
+| Configuration | `config/` |
+| Content templates | `content/` |
+| Documentation | `docs/` |
+| Utility tools | `tools/` |
 
-### Optional: publish to WordPress
+## 🚨 Important Notes
 
-Uses per-site WordPress env vars configured in `sites/<site>.yaml` (see `publish.wp_*_env` keys).
+- **Path Management**: Always use `config/paths.py` for path resolution
+- **Environment Variables**: Scripts respect standard environment variables
+- **Backups**: Regular backups are stored in `backup/`
+- **Archives**: Old content moved to `archive/` to reduce clutter
 
-```bash
-python3 -m autoblogger.run_daily --site dadudekc --auto-publish --wp-status draft
-```
+## 🤝 Contributing
 
-### Cron example (06:00 America/Chicago)
+1. Follow the directory structure
+2. Use the path management system
+3. Add documentation for new scripts
+4. Test across environments
 
-```cron
-0 6 * * * TZ=America/Chicago cd /path/to/repo && python3 -m autoblogger.run_daily --site dadudekc >> runtime/autoblogger_cron.log 2>&1
-```
+---
 
-### Run all sites (single runner)
-
-```bash
-python3 -m autoblogger.run_all_sites --dry-run
-```
-
-## Notes
-
-- Credentials should be provided via environment variables or local-only (gitignored) files.
-- Do not commit hosting credentials, API keys, or WordPress application passwords.
+**Status**: 🏗️ Repository successfully reorganized with portable, scalable structure.

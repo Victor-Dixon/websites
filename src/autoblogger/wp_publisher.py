@@ -7,6 +7,13 @@ from typing import Any
 import requests
 from requests.auth import HTTPBasicAuth
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv not available, continue without it
+
 
 @dataclass(frozen=True)
 class WordPressEnvConfig:

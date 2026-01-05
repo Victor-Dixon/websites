@@ -68,62 +68,39 @@ def load_victor_voice_template() -> Optional[Dict]:
 
 
 def process_with_autoblogger(content: str, title: str, voice_template: Optional[Dict] = None) -> Optional[str]:
-    """Process content through voice pattern processor with Victor's voice."""
+    """Process content through Ollama-enabled voice pattern processor with Victor's voice."""
     try:
-        # Use the voice pattern processor instead of full autoblogger
-        from voice_pattern_processor import VoicePatternProcessor
-        
-        print("🤖 Processing with Victor's voice patterns...")
-        
-        processor = VoicePatternProcessor()
-        if processor.voice_template is None and voice_template:
-            processor.voice_template = voice_template
-        
-        processed = processor.apply_voice_patterns(content, title)
-        
+        # Use the Ollama-enabled voice pattern processor
+        from voice_pattern_processor import process_content_with_voice
+
+        print("🤖 Processing with Victor's voice patterns (Ollama)...")
+
+        # Use Ollama with Qwen model (no API keys needed)
+        processed = process_content_with_voice(
+            content=content,
+            title=title,
+            template_path=None,  # Auto-load from standard locations
+            use_local_llm=True,  # Use local Ollama
+            model="qwen2.5:7b"   # Use downloaded Qwen model
+        )
+
         if processed and processed != content:
-            print("✅ Voice patterns applied successfully")
+            print("✅ Voice patterns applied successfully (Ollama)")
             return processed
         else:
             print("⚠️  Voice processing returned original content")
             return content
-        
-    except ImportError:
-        # Fallback: try to use autoblogger if available
-        if not AUTOBLOGGER_AVAILABLE:
-            print("⚠️  Voice pattern processor not available, skipping voice processing")
-            return None
-        
-        try:
-            # Load environment
-            env_path = Path("D:/Agent_Cellphone_V2_Repository/.env")
-            if env_path.exists() and DOTENV_AVAILABLE:
-                load_dotenv(env_path)
-            
-            mistral_key = os.getenv("MISTRAL_API_KEY")
-            if not mistral_key:
-                print("⚠️  MISTRAL_API_KEY not found, skipping voice processing")
-                return None
-            
-            print("🤖 Processing through autoblogger with Victor's voice...")
-            
-            # Initialize services
-            client = MistralClient(api_key=mistral_key)
-            vector_db = VectorDB()
-            generator = BlogGenerator(mistral_client=client, vector_db=vector_db)
-            
-            # For existing content, we need to use the voice pattern processor approach
-            # Full autoblogger is for generating new content from scratch
-            print("   ⚠️  Full autoblogger is for generating new content")
-            print("   ✅ Using voice pattern processor instead")
-            
-            return content  # Will be processed by voice_pattern_processor
-        
-        except Exception as e:
-            print(f"⚠️  Autoblogger processing error: {e}")
-            import traceback
-            traceback.print_exc()
-            return None
+
+    except ImportError as e:
+        print(f"⚠️  Ollama voice pattern processor not available: {e}")
+        print("💡 Make sure voice_pattern_processor.py is in ops/deployment/")
+        return None
+
+    except Exception as e:
+        print(f"⚠️  Ollama processing error: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
 
 
 def publish_post_via_wpcli(site_domain: str, title: str, content: str, status: str = 'publish') -> bool:
@@ -319,36 +296,50 @@ def main():
     if not args.skip_autoblogger:
         voice_template = load_victor_voice_template()
     
-    # Process through voice pattern processor
+    # Process through Ollama-enabled voice pattern processor
     processed_content = content
     if not args.skip_autoblogger:
-        # Try to import and use voice pattern processor
+        # Import the Ollama-enabled voice pattern processor from ops/deployment/
         try:
-            # Add current directory to path for voice_pattern_processor
-            current_dir = Path(__file__).parent
-            if str(current_dir) not in sys.path:
-                sys.path.insert(0, str(current_dir))
-            from voice_pattern_processor import VoicePatternProcessor
-            
-            processor = VoicePatternProcessor()
-            if voice_template and not processor.voice_template:
-                processor.voice_template = voice_template
-            
-            processed = processor.apply_voice_patterns(content, args.title)
+            # Add ops/deployment to path for the Ollama-enabled voice_pattern_processor
+            ops_deployment_dir = Path(__file__).parent
+            if str(ops_deployment_dir) not in sys.path:
+                sys.path.insert(0, str(ops_deployment_dir))
+
+            # Import the Ollama-enabled voice pattern processor
+            from voice_pattern_processor import VoicePatternProcessor, process_content_with_voice
+
+            # Use the convenience function that prefers Ollama (Qwen model)
+            processed = process_content_with_voice(
+                content=content,
+                title=args.title,
+                template_path=None,  # Will auto-load from standard locations
+                use_local_llm=True,  # Prefer Ollama/Qwen over API
+                model="qwen2.5:7b"   # Use the downloaded Qwen model
+            )
+
             if processed and processed != content:
                 processed_content = processed
-                print("✅ Content processed with Victor's voice patterns")
+                print("✅ Content processed with Victor's voice patterns (Ollama Qwen)")
             else:
                 print("⚠️  Voice processing returned original content")
         except Exception as e:
-            print(f"⚠️  Voice pattern processor error: {e}")
-            # Fallback to autoblogger method
-            processed = process_with_autoblogger(content, args.title, voice_template)
-            if processed:
-                processed_content = processed
-                print("✅ Content processed with Victor's voice patterns (fallback)")
-            else:
-                print("⚠️  Using original content (voice processing unavailable)")
+            print(f"⚠️  Ollama voice pattern processor error: {e}")
+            # Fallback to direct Ollama call
+            try:
+                from voice_pattern_processor import VoicePatternProcessor
+                processor = VoicePatternProcessor(use_local_llm=True)
+                if voice_template and not processor.voice_template:
+                    processor.voice_template = voice_template
+                processed = processor.apply_voice_patterns(content, args.title, model="qwen2.5:7b")
+                if processed and processed != content:
+                    processed_content = processed
+                    print("✅ Content processed with Victor's voice patterns (Ollama fallback)")
+                else:
+                    print("⚠️  Voice processing returned original content")
+            except Exception as e2:
+                print(f"⚠️  All voice processing failed: {e2}")
+                print("⚠️  Using original content (Ollama unavailable)")
     else:
         print("⚠️  Skipping voice pattern processing")
     
