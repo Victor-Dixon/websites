@@ -17,11 +17,13 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 # Import all pipeline components
 from content_pipeline import ContentPipeline, ContentPipelineProcessor, ContentMetadata, PipelineStatus
-from victor_voice_processor import VictorVoiceProcessor, VoiceIntensity, ContentCategory as VoiceCategory
-from seo_enhancement_processor import SEOEnhancementProcessor
-from template_engine import TemplateEngine
-# Consolidated quality assessment - replaces episode_quality_scorer
+# Consolidated SEO service - replaces seo_enhancement_processor
+from consolidated_seo_service import ConsolidatedSEOService
+# Consolidated template service - replaces template_engine
+from consolidated_template_service import ConsolidatedTemplateService
+# Consolidated quality assessment - replaces episode_quality_scorer and victor_voice_processor
 from consolidated_quality_assessment import ConsolidatedQualityAssessmentService
+from consolidated_quality_assessment import ContentCategory as VoiceCategory
 
 class DigitalDreamscapePipeline:
     """
@@ -35,9 +37,9 @@ class DigitalDreamscapePipeline:
         self.content_pipeline = ContentPipeline()
         self.pipeline_processor = ContentPipelineProcessor(self.content_pipeline)
 
-        self.voice_processor = VictorVoiceProcessor()
-        self.seo_processor = SEOEnhancementProcessor()
-        self.template_engine = TemplateEngine()
+        # Voice processing now integrated into quality assessment service
+        self.seo_processor = ConsolidatedSEOService()
+        self.template_engine = ConsolidatedTemplateService()
         self.quality_scorer = ConsolidatedQualityAssessmentService()
 
         print("🎬 Digital Dreamscape Pipeline initialized")
@@ -91,10 +93,10 @@ The system is rock solid now. But it taught me to be paranoid about concurrent a
 
         # Step 3: VOICE_APPLIED - Apply Victor voice
         print("3️⃣ VOICE_APPLIED: Applying Victor voice...")
-        voice_result = self.voice_processor.apply_victor_voice(
+        voice_result = self.quality_scorer.apply_victor_voice(
             sample_content.strip(),
             VoiceCategory.TECHNICAL,
-            VoiceIntensity.STRONG
+            0.8  # Equivalent to VoiceIntensity.STRONG
         )
 
         # Update metadata with voice result
@@ -124,7 +126,7 @@ The system is rock solid now. But it taught me to be paranoid about concurrent a
 
         # Step 5: TEMPLATE_SELECTED - Select template
         print("5️⃣ TEMPLATE_SELECTED: Choosing template...")
-        template_id = self.template_engine.select_template(
+        template_id = self.template_engine.select_template(content,
             category="technical",
             questline=None,
             mission_type="lesson"
@@ -134,7 +136,7 @@ The system is rock solid now. But it taught me to be paranoid about concurrent a
 
         # Step 6: STYLED_HTML - Generate HTML
         print("6️⃣ STYLED_HTML: Rendering HTML...")
-        html_content = self.template_engine.render_content({
+        rendered = self.template_engine.render_content({
             'title': "Race Condition Debugging Session",
             'content': seo_result.enhanced_content,
             'excerpt': seo_result.enhanced_content[:200] + "...",
@@ -143,13 +145,18 @@ The system is rock solid now. But it taught me to be paranoid about concurrent a
             'tags': ['debugging', 'concurrency', 'go', 'race-conditions']
         }, template_id)
 
+        html_content = rendered.html_content
+
         print("   ✓ HTML rendered successfully")
         print(f"   ✓ HTML length: {len(html_content)} characters")
+        if rendered.validation_errors:
+            print(f"   ⚠️  Template validation errors: {rendered.validation_errors}")
         print()
 
         # Step 7: QA_READY - Quality assurance
         print("7️⃣ QA_READY: Quality validation...")
-        qa_issues = self.template_engine.validate_html(html_content)
+        # Consolidated service doesn't have validate_html, but we can check validation_errors from render
+        qa_issues = rendered.validation_errors if rendered.validation_errors else []
         if qa_issues:
             print(f"   ⚠️  QA issues found: {len(qa_issues)}")
             for issue in qa_issues[:3]:
@@ -233,8 +240,8 @@ The system is rock solid now. But it taught me to be paranoid about concurrent a
             print(f"Expected: {test['expected'].upper()}")
 
             # Apply Victor voice
-            voice_result = self.voice_processor.apply_victor_voice(
-                test['content'], VoiceCategory.TECHNICAL, VoiceIntensity.MEDIUM
+            voice_result = self.quality_scorer.apply_victor_voice(
+                test['content'], VoiceCategory.TECHNICAL, 0.6  # Equivalent to VoiceIntensity.MEDIUM
             )
 
             # Quality assessment

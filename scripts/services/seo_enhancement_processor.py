@@ -12,8 +12,18 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 from collections import Counter
+import warnings
 
 logger = logging.getLogger(__name__)
+
+# DEPRECATED: This module is deprecated in Phase 4
+# Use consolidated_seo_service.ConsolidatedSEOService instead
+warnings.warn(
+    "DEPRECATED: seo_enhancement_processor is deprecated. "
+    "Use consolidated_seo_service.ConsolidatedSEOService instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 class SERPIntent(Enum):
     """Search intent categories"""

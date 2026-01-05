@@ -11,8 +11,18 @@ from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass
 from enum import Enum
 import logging
+import warnings
 
 logger = logging.getLogger(__name__)
+
+# DEPRECATED: This module is deprecated in Phase 4
+# Use consolidated_template_service.ConsolidatedTemplateService instead
+warnings.warn(
+    "DEPRECATED: template_engine is deprecated. "
+    "Use consolidated_template_service.ConsolidatedTemplateService instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 class BlockType(Enum):
     """Available block types in the design system"""
@@ -520,7 +530,7 @@ class TemplateEngine:
         tag_html = ''
         if tags:
             tag_items = [f'<span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm mr-2 mb-2">#{tag}</span>' for tag in tags]
-            tag_html = f'<div class="mb-4"><div class="flex flex-wrap">{''.join(tag_items)}</div></div>'
+            tag_html = f'<div class="mb-4"><div class="flex flex-wrap">{"".join(tag_items)}</div></div>'
 
         return f'''
         <footer class="footer-block border-t pt-8 mt-12">

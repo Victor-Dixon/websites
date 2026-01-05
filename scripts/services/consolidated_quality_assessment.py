@@ -122,12 +122,12 @@ class QualityMetrics:
 
     @property
     def quality_tier(self) -> QualityTier:
-        """Get quality tier based on calibrated score"""
+        """Get quality tier based on calibrated score - aligned with original system"""
         score = self.overall_score
-        if score >= 0.75: return QualityTier.PLATINUM
-        elif score >= 0.60: return QualityTier.GOLD
-        elif score >= 0.45: return QualityTier.SILVER
-        elif score >= 0.35: return QualityTier.BRONZE
+        if score >= 0.80: return QualityTier.PLATINUM
+        elif score >= 0.65: return QualityTier.GOLD
+        elif score >= 0.50: return QualityTier.SILVER
+        elif score >= 0.40: return QualityTier.BRONZE
         else: return QualityTier.REJECTED
 
     @property
@@ -664,9 +664,23 @@ class ConsolidatedQualityAssessmentService:
     def apply_victor_voice(self, content: str, category=None, intensity=None):
         """Legacy method for backward compatibility with victor_voice_processor.py"""
         try:
-            from victor_voice_processor import VictorVoiceProcessor
+            from victor_voice_processor import VictorVoiceProcessor, VoiceIntensity
             processor = VictorVoiceProcessor()
-            result = processor.apply_victor_voice(content, category, intensity)
+
+            # Convert float intensity to enum
+            if isinstance(intensity, float):
+                if intensity >= 0.9:
+                    intensity_enum = VoiceIntensity.MAXIMUM
+                elif intensity >= 0.7:
+                    intensity_enum = VoiceIntensity.STRONG
+                elif intensity >= 0.5:
+                    intensity_enum = VoiceIntensity.MEDIUM
+                else:
+                    intensity_enum = VoiceIntensity.LIGHT
+            else:
+                intensity_enum = intensity or VoiceIntensity.MEDIUM
+
+            result = processor.apply_victor_voice(content, category, intensity_enum)
             return result.transformed_content
         except ImportError:
             # Basic fallback transformation

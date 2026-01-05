@@ -4,17 +4,17 @@
 import sys
 from pathlib import Path
 
-# Add paths for our new services
+# Add paths for our consolidated services
 WEBSITES_DIR = Path(__file__).parent
 sys.path.insert(0, str(WEBSITES_DIR / 'scripts' / 'services'))
 
-from episode_quality_scorer import EpisodeQualityScorer, QualityMetrics, ContentCategory
+from consolidated_quality_assessment import ConsolidatedQualityAssessmentService, QualityMetrics, ContentCategory
 
 
 def test_score_calibration():
     """Test different score thresholds for quality tiers"""
 
-    scorer = EpisodeQualityScorer()
+    scorer = ConsolidatedQualityAssessmentService()
 
     # Test content that should definitely be high quality
     high_quality_content = """
@@ -38,7 +38,7 @@ The system? Rock solid now. And I sleep better at night.
     print("🎯 Quality Score Calibration Analysis")
     print("=" * 50)
     print(f"Current Score: {metrics.overall_score:.3f}")
-    print(f"Current Tier: {metrics.quality_tier}")
+    print(f"Current Tier: {metrics.quality_tier.value}")
     print()
 
     # Test different threshold scenarios

@@ -1,0 +1,20 @@
+{
+  "id": "learning_devlog_00",
+  "title": "Learning Experience 1",
+  "category": "learning",
+  "content_type": "devlog",
+  "raw_content": "# Building Resilient APIs: A Practical Guide\n\nAPIs are the connective tissue of modern applications. But building them resilient? That's an art.\n\nStart with the basics: proper error handling. Don't let one bad request crash your service. Use circuit breakers for downstream calls. Implement retries with exponential backoff.\n\nBut the real resilience comes from design. Make your APIs idempotent. Design for failure. What happens when the database is slow? When a service is down? When traffic spikes?\n\nMy framework: RED metrics (Rate, Errors, Duration) plus custom business metrics. Monitor everything. Alert on anomalies.\n\nThe resilient API isn't complex - it's thoughtful. It anticipates failure and handles it gracefully.\n\nWhat's your strategy for building resilient systems?",
+  "tags": [
+    "learning",
+    "devlog",
+    "skills",
+    "knowledge"
+  ],
+  "expected_quality_tier": "BRONZE",
+  "expected_publish_ready": true,
+  "metadata": {
+    "template_used": "learning_tutorial",
+    "generated": true,
+    "test_category": "learning_devlog"
+  }
+}

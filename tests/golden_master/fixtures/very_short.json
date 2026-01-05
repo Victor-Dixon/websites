@@ -1,0 +1,18 @@
+{
+  "id": "very_short",
+  "title": "Very Short Content",
+  "category": "operational",
+  "content_type": "edge_case",
+  "raw_content": "OK",
+  "tags": [
+    "edge_case",
+    "testing"
+  ],
+  "expected_quality_tier": "REJECTED",
+  "expected_publish_ready": false,
+  "metadata": {
+    "template_used": "edge_case_very_short",
+    "generated": true,
+    "test_category": "edge_case"
+  }
+}

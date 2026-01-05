@@ -1,0 +1,18 @@
+{
+  "id": "empty_content",
+  "title": "Empty Content",
+  "category": "operational",
+  "content_type": "edge_case",
+  "raw_content": "",
+  "tags": [
+    "edge_case",
+    "testing"
+  ],
+  "expected_quality_tier": "REJECTED",
+  "expected_publish_ready": false,
+  "metadata": {
+    "template_used": "edge_case_empty",
+    "generated": true,
+    "test_category": "edge_case"
+  }
+}

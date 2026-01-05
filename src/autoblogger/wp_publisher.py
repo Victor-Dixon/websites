@@ -34,7 +34,7 @@ def load_wp_env(*, base_url_env: str, user_env: str, app_password_env: str) -> W
     return WordPressEnvConfig(base_url=base_url.rstrip("/"), username=username, app_password=app_password)
 
 
-def publish_wordpress_post(*, cfg: WordPressEnvConfig, title: str, content: str, excerpt: str | None, status: str) -> dict[str, Any]:
+def publish_wordpress_post(*, cfg: WordPressEnvConfig, title: str, content: str, excerpt: str | None, status: str, categories: list[int] | None = None) -> dict[str, Any]:
     api_url = f"{cfg.base_url}/wp-json/wp/v2/posts"
     auth = HTTPBasicAuth(cfg.username, cfg.app_password)
 
@@ -45,6 +45,8 @@ def publish_wordpress_post(*, cfg: WordPressEnvConfig, title: str, content: str,
     }
     if excerpt:
         payload["excerpt"] = excerpt
+    if categories:
+        payload["categories"] = categories
 
     resp = requests.post(api_url, auth=auth, json=payload, timeout=30)
     if resp.status_code not in (200, 201):

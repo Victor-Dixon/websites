@@ -14,8 +14,18 @@ from typing import List, Dict, Any, Optional, Iterator
 from dataclasses import dataclass
 from datetime import datetime
 import logging
+import warnings
 
 logger = logging.getLogger(__name__)
+
+# DEPRECATED: This module is deprecated in Phase 4
+# Use consolidated_content_discovery.ConsolidatedContentDiscoveryService instead
+warnings.warn(
+    "DEPRECATED: content_discovery_service is deprecated. "
+    "Use consolidated_content_discovery.ConsolidatedContentDiscoveryService instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 @dataclass
 class ContentSource:

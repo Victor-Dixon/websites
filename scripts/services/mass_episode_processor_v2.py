@@ -24,7 +24,8 @@ import logging
 
 # Import our services
 from config_service import ConfigurationService, ProcessingConfig
-from content_discovery_service import ContentDiscoveryService, DiscoveryResult
+# Consolidated content discovery - replaces content_discovery_service
+from consolidated_content_discovery import ConsolidatedContentDiscoveryService, DiscoveryResult
 from content_processing_service import ContentProcessingService, ProcessedEpisode
 from episode_publishing_service import WordPressPublishingService, BatchPublishingResult
 # Consolidated quality assessment - replaces episode_quality_scorer
@@ -55,7 +56,7 @@ class MassEpisodeProcessorV2:
         # Initialize services
         service_configs = ConfigurationService().get_service_configs()
 
-        self.discovery_service = ContentDiscoveryService(service_configs['content_discovery'])
+        self.discovery_service = ConsolidatedContentDiscoveryService(service_configs.get('content_discovery'))
         self.quality_scorer = ConsolidatedQualityAssessmentService()
         self.processing_service = ContentProcessingService(self.quality_scorer)
         self.publishing_service = WordPressPublishingService(service_configs['wordpress_publishing'])

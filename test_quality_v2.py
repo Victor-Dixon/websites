@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
 """Test the NEW quality assessment system (V2)"""
 
-from content_processing_service import ContentProcessingService, EpisodeData, VictorVoiceProcessor
-from episode_quality_scorer import EpisodeQualityScorer, QualityMetrics, ContentCategory
+from consolidated_quality_assessment import ConsolidatedQualityAssessmentService, QualityMetrics, ContentCategory
+from content_processing_service import ContentProcessingService, EpisodeData
 import sys
 from pathlib import Path
 
-# Add paths for our new services
+# Add paths for our services
 WEBSITES_DIR = Path(__file__).parent
+SERVICES_DIR = WEBSITES_DIR / "scripts" / "services"
 sys.path.insert(0, str(WEBSITES_DIR))
+sys.path.insert(0, str(SERVICES_DIR))
+
+# Use consolidated services instead of deprecated modules
 
 
 def test_quality_assessment_v2():
     """Test the NEW quality assessment system with 12 criteria"""
 
-    # Initialize our new services
-    quality_scorer = EpisodeQualityScorer()
-    victor_processor = VictorVoiceProcessor()
+    # Initialize our consolidated services
+    quality_scorer = ConsolidatedQualityAssessmentService()
     processing_service = ContentProcessingService(quality_scorer)
 
     # Test cases with different quality levels
@@ -156,7 +159,8 @@ What complex decision are you avoiding today that your future self needs despera
         print()
 
         # Show overall results
-        print(f"   🎯 Overall Score: {score:.3f} ({metrics.quality_tier})")
+        print(
+            f"   🎯 Overall Score: {score:.3f} ({metrics.quality_tier.value})")
         print(f"   📤 Publish Ready: {'✅ Yes' if ready else '❌ No'}")
         print()
 
@@ -194,7 +198,8 @@ What complex decision are you avoiding today that your future self needs despera
         print(f"      Score Range: {metrics.overall_score:.3f}")
         print(
             f"      Expected Ready: {'✅' if expected_ready else '❌'} {test_case['expected_quality']}")
-        print(f"      Actual Ready: {'✅' if ready else '❌'} {tier.lower()}")
+        print(
+            f"      Actual Ready: {'✅' if ready else '❌'} {tier.value.lower()}")
 
         # Check if result matches expectation (with some tolerance)
         tier_matches = (
@@ -239,7 +244,7 @@ def test_victor_voice_transformation():
     print("\n🎭 Testing Victor Voice Transformation")
     print("=" * 50)
 
-    victor_processor = VictorVoiceProcessor()
+    victor_processor = ConsolidatedQualityAssessmentService()
 
     test_content = """
 I think the problem is with the database connection. I believe we need to add proper error handling. However, the current approach should work. Therefore, let's implement it this way.
@@ -272,7 +277,7 @@ def test_individual_scorers():
     print("\n🔬 Testing Individual Scoring Components")
     print("=" * 50)
 
-    quality_scorer = EpisodeQualityScorer()
+    quality_scorer = ConsolidatedQualityAssessmentService()
 
     test_content = """
 # The Architecture Decision That Saved Us

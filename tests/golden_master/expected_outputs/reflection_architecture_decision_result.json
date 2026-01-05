@@ -1,0 +1,33 @@
+{
+  "fixture_id": "reflection_architecture_decision",
+  "quality_metrics": {
+    "overall_score": 0.4436943162393163,
+    "quality_tier": "BRONZE",
+    "publish_ready": true,
+    "word_count": 250,
+    "sentence_count": 38,
+    "content_density": 1.0,
+    "structural_integrity": 0.13,
+    "factual_accuracy": 0.6,
+    "victor_voice_authenticity": 0.5,
+    "readability_score": 0.4938863247863253
+  },
+  "victor_voice_result": null,
+  "seo_analysis": {
+    "primary_keyword": "content creation",
+    "seo_score": 0.0,
+    "intent": "unknown",
+    "readability_score": 0.0
+  },
+  "template_rendering": {
+    "render_success": false,
+    "error": "Template not found: autoblogger_reflection_post"
+  },
+  "processing_time": 0.005004167556762695,
+  "errors": [
+    "Victor voice processing failed: 'float' object has no attribute 'value'",
+    "Template rendering failed: Template not found: autoblogger_reflection_post"
+  ],
+  "timestamp": 1767622434.9083247,
+  "version": "consolidated_v1"
+}

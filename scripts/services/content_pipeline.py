@@ -83,7 +83,7 @@ class ContentMetadata:
     slug: str = ""
 
     # Template selection
-    selected_template: str = "base_default"
+    selected_template: str = "autoblogger_general_post"  # Use consolidated template service
     template_metadata: Dict[str, Any] = field(default_factory=dict)
 
     # Publishing

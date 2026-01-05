@@ -1,0 +1,20 @@
+{
+  "id": "technical_devlog_00",
+  "title": "Technical Solution 1",
+  "category": "technical",
+  "content_type": "devlog",
+  "raw_content": "# Advanced Performance Optimization Techniques\n\nWorking on a high-throughput system that needed to handle 10k requests per second. The bottleneck was clear: our database queries were N+1 hell. Each request triggered 47 separate DB calls. Ouch.\n\nThe solution? Query consolidation with eager loading. Instead of fetching users, then their posts, then comments - one massive join query. Result? From 47 queries to 3. Response time dropped from 2.3 seconds to 147ms.\n\nBut the real insight? Premature optimization is the root of all evil, but planned optimization is your competitive advantage. Know your bottlenecks before they break you.\n\nThe system now scales beautifully. And I sleep better knowing we can handle 5x traffic without breaking a sweat.",
+  "tags": [
+    "technical",
+    "devlog",
+    "performance",
+    "coding"
+  ],
+  "expected_quality_tier": "BRONZE",
+  "expected_publish_ready": true,
+  "metadata": {
+    "template_used": "technical_high",
+    "generated": true,
+    "test_category": "technical_devlog"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "narrative_devlog_00",
+  "title": "Team Story 1",
+  "category": "narrative",
+  "content_type": "devlog",
+  "raw_content": "# The Night the System Went Down\n\nIt was 3:17 AM when the alert hit. \"Database connection pool exhausted.\" Our core payment system was down. Customers couldn't complete purchases. Revenue stopped.\n\nThe on-call engineer (me) jumped into action. First check: monitoring dashboards. Connection pool at 100% utilization. Cause? A memory leak in the payment processor.\n\nThe fix was surgical: restart the service, implement connection pool monitoring, add circuit breaker. System back online in 23 minutes.\n\nBut the real story? The preparation. We had runbooks. We had monitoring. We had practiced this scenario. When crisis hit, we were ready.\n\nThat night taught me: systems fail. But well-prepared teams don't. Invest in reliability engineering. It pays dividends when you need it most.\n\nWhat's your crisis readiness plan?",
+  "tags": [
+    "narrative",
+    "devlog",
+    "story",
+    "experience"
+  ],
+  "expected_quality_tier": "BRONZE",
+  "expected_publish_ready": true,
+  "metadata": {
+    "template_used": "narrative_story",
+    "generated": true,
+    "test_category": "narrative_devlog"
+  }
+}

@@ -13,6 +13,16 @@ from enum import Enum
 import nltk
 from collections import Counter
 import math
+import warnings
+
+# DEPRECATED: This module is deprecated in Phase 4
+# Use consolidated_quality_assessment.ConsolidatedQualityAssessmentService instead
+warnings.warn(
+    "DEPRECATED: episode_quality_scorer is deprecated. "
+    "Use consolidated_quality_assessment.ConsolidatedQualityAssessmentService instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 class ContentCategory(Enum):
     """Enhanced content categories"""

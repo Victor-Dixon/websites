@@ -10,8 +10,18 @@ from typing import Dict, List, Tuple, Optional, Any
 from dataclasses import dataclass
 from enum import Enum
 import logging
+import warnings
 
 logger = logging.getLogger(__name__)
+
+# DEPRECATED: This module is deprecated in Phase 4
+# Victor voice processing is now integrated into consolidated_quality_assessment
+warnings.warn(
+    "DEPRECATED: victor_voice_processor is deprecated. "
+    "Victor voice processing is now integrated into consolidated_quality_assessment.",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 class VoiceIntensity(Enum):
     """Voice transformation intensity levels"""
