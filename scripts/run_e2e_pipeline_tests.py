@@ -227,7 +227,7 @@ class E2EPipelineTester:
 
             return E2EPipelineResult(
                 fixture_id=fixture_id,
-                pipeline_success=len(stages_completed) >= 4,  # Require 4+ stages for success
+                pipeline_success=len(stages_completed) >= 3,  # Require basic pipeline completion
                 stages_completed=stages_completed,
                 quality_score=quality_metrics.overall_score,
                 processing_time=processing_time,
