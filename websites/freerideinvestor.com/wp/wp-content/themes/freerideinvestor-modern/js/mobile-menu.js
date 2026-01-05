@@ -14,23 +14,24 @@
   function initMobileMenu() {
     const menuToggle = document.getElementById('mobile-menu-toggle');
     const primaryMenu = document.getElementById('primary-menu');
+    const mainNav = menuToggle ? menuToggle.closest('.main-navigation') : null;
     
-    if (!menuToggle || !primaryMenu) {
+    if (!menuToggle || !primaryMenu || !mainNav) {
       return; // Exit if elements don't exist
     }
     
     // Toggle menu visibility on button click
     menuToggle.addEventListener('click', function() {
-      const isActive = primaryMenu.classList.contains('active');
+      const isActive = mainNav.classList.contains('active');
       
       if (isActive) {
         // Close menu
-        primaryMenu.classList.remove('active');
+        mainNav.classList.remove('active');
         menuToggle.setAttribute('aria-expanded', 'false');
         menuToggle.innerHTML = '<span>☰ Menu</span>';
       } else {
         // Open menu
-        primaryMenu.classList.add('active');
+        mainNav.classList.add('active');
         menuToggle.setAttribute('aria-expanded', 'true');
         menuToggle.innerHTML = '<span>✕ Close</span>';
       }
@@ -38,10 +39,10 @@
     
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-      const isClickInside = menuToggle.contains(event.target) || primaryMenu.contains(event.target);
+      const isClickInside = menuToggle.contains(event.target) || mainNav.contains(event.target);
       
-      if (!isClickInside && primaryMenu.classList.contains('active')) {
-        primaryMenu.classList.remove('active');
+      if (!isClickInside && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
         menuToggle.setAttribute('aria-expanded', 'false');
         menuToggle.innerHTML = '<span>☰ Menu</span>';
       }
@@ -52,8 +53,8 @@
     window.addEventListener('resize', function() {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
-        if (window.innerWidth > 768 && primaryMenu.classList.contains('active')) {
-          primaryMenu.classList.remove('active');
+        if (window.innerWidth > 768 && mainNav.classList.contains('active')) {
+          mainNav.classList.remove('active');
           menuToggle.setAttribute('aria-expanded', 'false');
           menuToggle.innerHTML = '<span>☰ Menu</span>';
         }
@@ -62,11 +63,20 @@
     
     // Close menu when ESC key is pressed
     document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape' && primaryMenu.classList.contains('active')) {
-        primaryMenu.classList.remove('active');
+      if (event.key === 'Escape' && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
         menuToggle.setAttribute('aria-expanded', 'false');
         menuToggle.innerHTML = '<span>☰ Menu</span>';
         menuToggle.focus(); // Return focus to toggle button
+      }
+    });
+
+    // Close menu when a link is clicked (mobile UX)
+    primaryMenu.addEventListener('click', function(event) {
+      if (event.target.matches('a') && window.innerWidth <= 768) {
+        mainNav.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.innerHTML = '<span>☰ Menu</span>';
       }
     });
   }
