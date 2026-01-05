@@ -1,0 +1,10 @@
+{
+  "id": "technical_race_condition",
+  "title": "The Race Condition That Almost Broke Production",
+  "category": "technical",
+  "content_type": "devlog",
+  "raw_content": "# The Race Condition That Almost Broke Production\n\nSo there I was, 2 AM on a Thursday, staring at logs that made no sense. Our payment processing system was losing transactions randomly - like once every 500 requests. In development? Perfect. In staging? Perfect. Production? Chaos.\n\nThe issue was subtle. We had this shared cache map that multiple goroutines were hitting. One goroutine writing payment states, another reading to validate transactions. No mutex. Classic race condition, but finding it was a nightmare.\n\nWhat made it worse? The bug only triggered under load. Our local testing never hit the concurrency patterns that production saw. I'd spend hours with `go run -race`, but it was clean. The real issue? Different timing in the production environment.\n\nThe fix was embarrassing. One line: add a sync.RWMutex. But the lesson? Race conditions don't show up in testing. You need to design for concurrency from day one.\n\nNow I ask: \"What breaks if two instances run this code simultaneously?\" If the answer isn't \"nothing\", it's not thread-safe.\n\nThat race condition detector in the IDE? tbh, it's saved me more times than I can count. Don't skip the concurrency checks. Your future self will thank you.\n\nThe system? Rock solid now. And I sleep better at night.",
+  "tags": ["concurrency", "debugging", "production", "goroutines"],
+  "expected_quality_tier": "BRONZE",
+  "expected_publish_ready": true
+}

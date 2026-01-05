@@ -1,0 +1,20 @@
+{
+  "id": "technical_conversation_01",
+  "title": "Debug Session 2",
+  "category": "technical",
+  "content_type": "conversation",
+  "raw_content": "## Database Migration Strategy\n\nImplementing a zero-downtime database migration for our user authentication system. The challenge: migrating 2M user records while keeping the system live.\n\nCurrent approach: Dual-writing to both old and new tables, then gradually cut over. Using feature flags to control the migration path.\n\nKey considerations:\n- Backward compatibility during transition\n- Rollback strategy if issues arise\n- Data consistency validation\n- Performance impact monitoring\n\nThis should be straightforward, but database migrations always have surprises.",
+  "tags": [
+    "technical",
+    "conversation",
+    "performance",
+    "coding"
+  ],
+  "expected_quality_tier": "BRONZE",
+  "expected_publish_ready": true,
+  "metadata": {
+    "template_used": "technical_medium",
+    "generated": true,
+    "test_category": "technical_conversation"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "strategic_devlog_01",
+  "title": "Architecture Decision 2",
+  "category": "strategic",
+  "content_type": "devlog",
+  "raw_content": "# Q2 Strategic Planning Session\n\nThe board meeting was intense. They're pushing for 3x growth, but our infrastructure isn't ready. Current architecture supports 100k daily active users. Target? 500k by end of Q2.\n\nThe numbers don't lie: we need microservices. Monolithic scaling won't cut it. But the team resists - \"too complex\" they say. Yet staying monolithic means we can't scale features independently.\n\nMy take: invest now or pay later. The extra 2 months building services buys us 6 months of confidence. Sometimes over-engineering is just engineering done right.\n\nWhat strategic bet are you avoiding that your future self desperately needs?",
+  "tags": [
+    "strategic",
+    "devlog",
+    "leadership",
+    "planning"
+  ],
+  "expected_quality_tier": "SILVER",
+  "expected_publish_ready": true,
+  "metadata": {
+    "template_used": "strategic_planning",
+    "generated": true,
+    "test_category": "strategic_devlog"
+  }
+}

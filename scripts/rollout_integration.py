@@ -73,8 +73,7 @@ class RolloutIntegration:
             mode=self.mode.value,
             content_id=content_id,
             content_data=content_data,
-            publish_function=publish_function,
-            output_dir=self.output_dir
+            publish_function=publish_function
         )
 
         # Execute rollout
@@ -239,7 +238,6 @@ if __name__ == "__main__":
         os.environ['ROLLOUT_MODE'] = mode
 
         # Reset integration instance to pick up new mode
-        global _rollout_integration
         _rollout_integration = None
 
         result = process_content_with_rollout(test_content)

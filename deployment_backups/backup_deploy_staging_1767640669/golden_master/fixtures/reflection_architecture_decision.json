@@ -1,0 +1,10 @@
+{
+  "id": "reflection_architecture_decision",
+  "title": "The Architecture Decision That Almost Killed the Company",
+  "category": "reflection",
+  "content_type": "devlog",
+  "raw_content": "# The Architecture Decision That Almost Killed the Company\n\nSix months ago, we made what seemed like a small choice: event sourcing for our domain events. The team pushed back hard. \"Overkill!\" they said. \"We're moving fast - CRUD tables would be simpler!\" The product manager wanted features yesterday. The CEO questioned the timeline.\n\nBut I fought for it. Something in my gut said this was important. We spent an extra two weeks building the event store, the projectors, the replay capabilities. The team grumbled. \"Why complicate things?\" they asked.\n\nThen the crisis hit. A critical bug corrupted our core transaction data. With traditional CRUD, we'd have lost everything. Recovery would take weeks. But with event sourcing? We replayed the events from the last good backup. System back online in 4 hours.\n\nThe audit requirements came next. \"Show us every change to customer balances,\" regulators demanded. With events? Trivial. We had perfect audit trails from day one.\n\nThe complex correlations the data team needed? Event streams made it possible. \"What happened to this account in the last 30 days?\" became a simple query.\n\nNow I see it clearly: that \"over-engineering\" was actually strategic thinking. The extra week bought us months of confidence. The \"complexity\" became our competitive moat.\n\nThe lesson? Sometimes over-engineering is just engineering. Invest in fundamentals. Build for the hard problems you don't see yet. Your future self won't just thank you - they'll celebrate.\n\nWhat complex decision are you avoiding today that your future self needs desperately?",
+  "tags": ["architecture", "event-sourcing", "decision-making", "leadership"],
+  "expected_quality_tier": "REJECTED",
+  "expected_publish_ready": false
+}

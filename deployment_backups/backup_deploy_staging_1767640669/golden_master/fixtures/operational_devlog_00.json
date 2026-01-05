@@ -1,0 +1,20 @@
+{
+  "id": "operational_devlog_00",
+  "title": "Status Update 1",
+  "category": "operational",
+  "content_type": "devlog",
+  "raw_content": "## Daily Status Update\n\nCompleted the API documentation for the payment service. Fixed 3 validation bugs in the error handling. Need to coordinate with frontend team on the new response format.\n\nBlockers: Waiting for security review approval.\nNext: Integration testing with the mobile app.",
+  "tags": [
+    "operational",
+    "devlog",
+    "monitoring",
+    "status"
+  ],
+  "expected_quality_tier": "REJECTED",
+  "expected_publish_ready": false,
+  "metadata": {
+    "template_used": "operational_status",
+    "generated": true,
+    "test_category": "operational_devlog"
+  }
+}

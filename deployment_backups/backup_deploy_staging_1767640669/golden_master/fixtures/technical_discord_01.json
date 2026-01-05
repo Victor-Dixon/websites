@@ -1,0 +1,20 @@
+{
+  "id": "technical_discord_01",
+  "title": "Debug Session 2",
+  "category": "technical",
+  "content_type": "discord",
+  "raw_content": "Hey team, just pushed the new authentication flow. Uses JWT with refresh tokens, proper expiration handling. Should fix the session timeout issues we've been seeing.\n\nTested locally and staging. Let me know if you hit any edge cases. The mobile app integration might need some tweaks on the token refresh logic.\n\ncc @frontend @mobile",
+  "tags": [
+    "technical",
+    "discord",
+    "debugging",
+    "coding"
+  ],
+  "expected_quality_tier": "REJECTED",
+  "expected_publish_ready": false,
+  "metadata": {
+    "template_used": "discord_community",
+    "generated": true,
+    "test_category": "technical_discord"
+  }
+}
