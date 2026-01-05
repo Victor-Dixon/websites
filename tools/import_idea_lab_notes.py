@@ -18,9 +18,76 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tools.blog_manager import get_site_config, create_post, get_rest_api_auth
 import requests
 from requests.auth import HTTPBasicAuth
+
+# Import site config directly to avoid dependency issues
+def get_site_config(site: str) -> dict:
+    """Get site configuration from config/site_configs.json."""
+    import json
+    config_path = REPO_ROOT / "config" / "site_configs.json"
+    if config_path.exists():
+        with open(config_path, 'r') as f:
+            configs = json.load(f)
+            return configs.get(site, {})
+    return {}
+
+def get_rest_api_auth(config: dict) -> tuple[str, requests.auth.HTTPBasicAuth]:
+    """Get REST API authentication details."""
+    username = config.get('rest_api', {}).get('username')
+    app_password = config.get('rest_api', {}).get('app_password')
+    site_url = config.get('rest_api', {}).get('site_url') or config.get('site_url')
+
+    if not all([username, app_password, site_url]):
+        raise ValueError(f"Missing auth config for site")
+
+    auth = HTTPBasicAuth(username, app_password)
+    api_base = f"{site_url}/wp-json/wp/v2"
+
+    return api_base, auth
+
+def create_post(site: str, title: str, content: str, status: str = 'draft', excerpt: str = None, tags: list = None) -> bool:
+    """Create a WordPress post via REST API."""
+    config = get_site_config(site)
+    if not config:
+        print(f"❌ No config found for site: {site}")
+        return False
+
+    try:
+        api_base, auth = get_rest_api_auth(config)
+    except ValueError as e:
+        print(f"❌ {e}")
+        return False
+
+    # Prepare post data
+    post_data = {
+        'title': title,
+        'content': content,
+        'status': status
+    }
+
+    if excerpt:
+        post_data['excerpt'] = excerpt
+
+    # WordPress API expects tag IDs, not names. For now, we'll skip tags to avoid complexity
+    # if tags:
+    #     post_data['tags'] = ','.join(tags)
+
+    # Make API request
+    api_url = f"{api_base}/posts"
+
+    try:
+        response = requests.post(api_url, json=post_data, auth=auth, timeout=30)
+        if response.status_code in [200, 201]:
+            data = response.json()
+            print(f"✅ Created post: {data.get('title', {}).get('rendered', title)} (ID: {data.get('id')})")
+            return True
+        else:
+            print(f"❌ Failed to create post: HTTP {response.status_code} - {response.text[:200]}")
+            return False
+    except Exception as e:
+        print(f"❌ Error creating post: {e}")
+        return False
 
 
 def parse_idea_lab_notes(md_file: Path) -> list[dict[str, Any]]:
@@ -120,83 +187,247 @@ def parse_idea_lab_notes(md_file: Path) -> list[dict[str, Any]]:
 
 
 def create_idea_note(site: str, idea: dict[str, Any], dry_run: bool = False) -> bool:
-    """Create a note in WordPress Idea Lab."""
+    """Create a note in WordPress Idea Lab using WP-CLI."""
     if dry_run:
         print(f"  Would create: {idea['title']}")
         print(f"    Category: {idea['category']}")
         print(f"    Tags: {', '.join(idea.get('tags', []))}")
         return True
-    
-    config = get_site_config(site)
-    
+
     # Build content
     content = f"""<p><strong>Category:</strong> {idea['category']}</p>
 <p>{idea['title']}</p>"""
-    
+
     if idea.get('tags'):
         tags_str = ', '.join(idea['tags'])
         content += f'\n<p><strong>Tags:</strong> {tags_str}</p>'
-    
+
+    # Escape content for shell
+    escaped_title = idea['title'].replace("'", "'\\''")
+    escaped_content = content.replace("'", "'\\''")
+
+    # Use WP-CLI via SSH to create the post
+    import paramiko
+    import os
+
+    # Load SSH credentials
+    env_path = 'D:/Agent_Cellphone_V2_Repository/.env'
+    if os.path.exists(env_path):
+        from dotenv import load_dotenv
+        load_dotenv(env_path)
+
+    creds = {
+        'host': os.getenv('HOSTINGER_HOST'),
+        'username': os.getenv('HOSTINGER_USER'),
+        'password': os.getenv('HOSTINGER_PASS'),
+        'port': int(os.getenv('HOSTINGER_PORT', '65002'))
+    }
+
+    if not all(creds.values()):
+        print(f"❌ SSH credentials not found for {site}")
+        return False
+
     try:
-        # Try to create as custom post type 'note' first
-        base_url, auth = get_rest_api_auth(config)
-        
-        # Try custom post type endpoint
-        payload = {
-            "title": idea['title'],
-            "content": content,
-            "status": "draft",
-        }
-        
-        # Try note post type endpoint
-        resp = requests.post(
-            f"{base_url}/wp-json/wp/v2/note",
-            auth=auth,
-            json=payload,
-            timeout=30
-        )
-        
-        if resp.status_code in (200, 201):
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(creds['host'], port=creds['port'], username=creds['username'], password=creds['password'])
+
+        wp_path = f'/home/{creds["username"]}/domains/{site}/public_html'
+        excerpt_text = f"Idea Lab: {idea['category']}"
+        escaped_excerpt = excerpt_text.replace("'", "'\\''")
+        command = f"cd {wp_path} && wp post create --post_title='{escaped_title}' --post_content='{escaped_content}' --post_status=draft --post_excerpt='{escaped_excerpt}' --allow-root"
+
+        stdin, stdout, stderr = ssh.exec_command(command, timeout=30)
+        output = stdout.read().decode()
+        error = stderr.read().decode()
+
+        if "Success:" in output or "Created post" in output:
             print(f"✅ Created note: {idea['title']}")
             return True
-        elif resp.status_code == 404:
-            # Note post type not available, fall back to regular posts
-            print(f"  Note: Using regular posts (note post type not available)")
-            create_post(
-                site=site,
-                title=idea['title'],
-                content=content,
-                status='draft',
-                excerpt=f"Idea Lab: {idea['category']}",
-                tags=idea.get('tags', [])
-            )
-            return True
         else:
-            print(f"⚠️  Note endpoint returned {resp.status_code}, trying regular posts...")
-            create_post(
-                site=site,
-                title=idea['title'],
-                content=content,
-                status='draft',
-                excerpt=f"Idea Lab: {idea['category']}",
-                tags=idea.get('tags', [])
-            )
-            return True
-    except Exception as e:
-        print(f"❌ Error creating {idea['title']}: {e}")
-        # Fallback to regular post creation
-        try:
-            create_post(
-                site=site,
-                title=idea['title'],
-                content=content,
-                status='draft',
-                excerpt=f"Idea Lab: {idea['category']}",
-                tags=idea.get('tags', [])
-            )
-            return True
-        except:
+            print(f"❌ Failed to create note: {error or output}")
             return False
+
+    except Exception as e:
+        print(f"❌ SSH error: {e}")
+        return False
+    finally:
+        try:
+            ssh.close()
+        except:
+            pass
+
+
+def extract_context_for_title(category: str) -> str:
+    """Extract a clean context string from category for title suffix."""
+    # Mapping of category patterns to clean context labels
+    context_mapping = {
+        'High-Value Repositories Identified:': 'General Overview',
+        'Agent & AI Systems: Auto_Blogger': 'Auto_Blogger Project',
+        'Agent & AI Systems: Agent_Cellphone_V2_Repository': 'Agent_Cellphone_V2',
+        'Agent & AI Systems: AI_Debugger_Assistant': 'AI_Debugger_Assistant',
+        'Web & Full-Stack Projects: basicbot': 'BasicBot Project',
+        'Web & Full-Stack Projects: bolt-project': 'Bolt Project',
+        'Automation & Productivity: contract-leads': 'Contract Leads System',
+        'Specialized Applications: bible-application': 'Bible Application',
+        'Specialized Applications: dreambank': 'Dreambank Project',
+        'Website Projects: DaDudeKC-Website': 'DaDudeKC Website',
+        'Pattern-Based Ideas': 'General Patterns'
+    }
+
+    for key, label in context_mapping.items():
+        if key in category:
+            return label
+
+    # Fallback: clean up the category string
+    context = category.split(':')[-1].strip()[:25]  # Take last part, limit length
+    return context or 'Context'
+
+
+def get_existing_titles(site_domain: str) -> set:
+    """Get set of existing post titles to check for duplicates."""
+    success, output, error = run_wp_cli_command(
+        site_domain,
+        "wp post list --post_type=post --posts_per_page=-1 --format=json --fields=post_title"
+    )
+
+    if not success:
+        print(f"⚠️  Could not fetch existing titles: {error}")
+        return set()
+
+    try:
+        import json
+        posts = json.loads(output)
+        existing_titles = {post['post_title'].lower().strip() for post in posts}
+        print(f"📊 Found {len(existing_titles)} existing post titles")
+        return existing_titles
+    except json.JSONDecodeError:
+        print(f"⚠️  Could not parse existing titles")
+        return set()
+
+
+def run_wp_cli_command(site_domain: str, command: str) -> tuple[bool, str, str]:
+    """Run a WP-CLI command via SSH and return the result."""
+    import paramiko
+    import os
+
+    # Load credentials
+    env_path = 'D:/Agent_Cellphone_V2_Repository/.env'
+    if os.path.exists(env_path):
+        from dotenv import load_dotenv
+        load_dotenv(env_path)
+
+    creds = {
+        'host': os.getenv('HOSTINGER_HOST'),
+        'username': os.getenv('HOSTINGER_USER'),
+        'password': os.getenv('HOSTINGER_PASS'),
+        'port': int(os.getenv('HOSTINGER_PORT', '65002'))
+    }
+
+    if not all(creds.values()):
+        return False, "", "SSH credentials not found"
+
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(creds['host'], port=creds['port'], username=creds['username'], password=creds['password'])
+
+        wp_path = f'/home/{creds["username"]}/domains/{site_domain}/public_html'
+        full_command = f'cd {wp_path} && {command} --allow-root 2>&1'
+
+        stdin, stdout, stderr = ssh.exec_command(full_command, timeout=30)
+        output = stdout.read().decode()
+        error = stderr.read().decode()
+
+        ssh.close()
+        return True, output.strip(), error.strip()
+
+    except Exception as e:
+        return False, "", str(e)
+
+
+def create_idea_note(site: str, idea: dict[str, Any], existing_titles: set = None, dry_run: bool = False) -> tuple[bool, str]:
+    """Create a note in WordPress Idea Lab using WP-CLI with automatic duplicate handling."""
+    if dry_run:
+        print(f"  Would create: {idea['title']}")
+        print(f"    Category: {idea['category']}")
+        print(f"    Tags: {', '.join(idea.get('tags', []))}")
+        return True, idea['title']
+
+    # Check for duplicate titles and rename if needed
+    original_title = idea['title']
+    final_title = original_title
+
+    if existing_titles is not None:
+        title_lower = original_title.lower().strip()
+        if title_lower in existing_titles:
+            # This title already exists, add context to make it unique
+            context = extract_context_for_title(idea['category'])
+            final_title = f"{original_title} ({context})"
+            print(f"  📝 Title exists, renaming: '{original_title}' → '{final_title}'")
+
+    # Build content
+    content = f"""<p><strong>Category:</strong> {idea['category']}</p>
+<p>{final_title}</p>"""
+
+    if idea.get('tags'):
+        tags_str = ', '.join(idea['tags'])
+        content += f'\n<p><strong>Tags:</strong> {tags_str}</p>'
+
+    # Escape content for shell
+    escaped_title = final_title.replace("'", "'\\''")
+    escaped_content = content.replace("'", "'\\''")
+
+    # Use WP-CLI via SSH to create the post
+    import paramiko
+    import os
+
+    # Load SSH credentials
+    env_path = 'D:/Agent_Cellphone_V2_Repository/.env'
+    if os.path.exists(env_path):
+        from dotenv import load_dotenv
+        load_dotenv(env_path)
+
+    creds = {
+        'host': os.getenv('HOSTINGER_HOST'),
+        'username': os.getenv('HOSTINGER_USER'),
+        'password': os.getenv('HOSTINGER_PASS'),
+        'port': int(os.getenv('HOSTINGER_PORT', '65002'))
+    }
+
+    if not all(creds.values()):
+        print(f"❌ SSH credentials not found for {site}")
+        return False, final_title
+
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(creds['host'], port=creds['port'], username=creds['username'], password=creds['password'])
+
+        wp_path = f'/home/{creds["username"]}/domains/{site}/public_html'
+        excerpt_text = f"Idea Lab: {idea['category']}"
+        escaped_excerpt = excerpt_text.replace("'", "'\\''")
+        command = f"cd {wp_path} && wp post create --post_title='{escaped_title}' --post_content='{escaped_content}' --post_status=draft --post_excerpt='{escaped_excerpt}' --allow-root"
+
+        stdin, stdout, stderr = ssh.exec_command(command, timeout=30)
+        output = stdout.read().decode()
+        error = stderr.read().decode()
+
+        if "Success:" in output or "Created post" in output:
+            print(f"✅ Created note: {final_title}")
+            return True, final_title
+        else:
+            print(f"❌ Failed to create note: {error or output}")
+            return False, final_title
+
+    except Exception as e:
+        print(f"❌ SSH error: {e}")
+        return False, final_title
+    finally:
+        try:
+            ssh.close()
+        except:
+            pass
 
 
 def main() -> int:
@@ -204,7 +435,7 @@ def main() -> int:
     parser.add_argument(
         '--file',
         type=Path,
-        default=Path('/home/dream/Development/projects/repositories/IDEA_LAB_NOTES.md'),
+        default=Path('docs/IDEA_LAB_NOTES.md'),
         help='Path to IDEA_LAB_NOTES.md file'
     )
     parser.add_argument(
@@ -222,42 +453,56 @@ def main() -> int:
         type=int,
         help='Limit number of ideas to import'
     )
-    
+
     args = parser.parse_args()
-    
+
     print(f"📖 Parsing {args.file}...")
     ideas = parse_idea_lab_notes(args.file)
-    
+
     if not ideas:
         print("❌ No ideas found in file")
         return 1
-    
+
     print(f"✅ Found {len(ideas)} ideas")
-    
+
     if args.limit:
         ideas = ideas[:args.limit]
         print(f"📝 Limiting to {len(ideas)} ideas")
-    
+
+    # Get existing titles for duplicate checking
+    existing_titles = None
+    if not args.dry_run:
+        print("🔍 Checking existing post titles for duplicates...")
+        existing_titles = get_existing_titles(args.site)
+
     if args.dry_run:
         print("\n🔍 DRY RUN - Would create the following:")
     else:
-        print(f"\n📤 Importing to {args.site}...")
-    
+        print(f"\n📤 Importing to {args.site} with automatic duplicate handling...")
+
     success = 0
     failed = 0
-    
+    renamed = 0
+
     for i, idea in enumerate(ideas, 1):
         print(f"\n[{i}/{len(ideas)}] {idea['title']}")
-        if create_idea_note(args.site, idea, dry_run=args.dry_run):
+        result, final_title = create_idea_note(args.site, idea, existing_titles, dry_run=args.dry_run)
+        if result:
             success += 1
+            if final_title != idea['title']:
+                renamed += 1
         else:
             failed += 1
-    
+
     print(f"\n{'='*60}")
     print(f"✅ Success: {success}")
+    print(f"📝 Renamed: {renamed}")
     print(f"❌ Failed: {failed}")
     print(f"📊 Total: {len(ideas)}")
-    
+
+    if renamed > 0:
+        print(f"\n🎯 Automatic duplicate handling: {renamed} posts renamed with context")
+
     return 0 if failed == 0 else 1
 
 

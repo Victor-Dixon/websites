@@ -95,8 +95,8 @@ $stats = get_swarm_stats();
                                     <span class="metric-label">Points</span>
                                 </div>
                                 <div class="metric">
-                                    <span class="metric-value"><?php echo esc_html($agent['coordinates']); ?></span>
-                                    <span class="metric-label">Position</span>
+                                    <span class="metric-value" title="Agent's position in the swarm intelligence network"><?php echo esc_html($agent['coordinates']); ?></span>
+                                    <span class="metric-label" title="Agent's position in the swarm intelligence network">Position</span>
                                 </div>
                             </div>
 

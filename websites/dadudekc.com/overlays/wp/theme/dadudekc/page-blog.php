@@ -9,23 +9,28 @@ get_header();
 
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-// Get blog posts (excluding idea lab content)
+// Get blog posts
 $blog_query = new WP_Query([
     'post_type' => 'post',
     'posts_per_page' => 12,
     'paged' => $paged,
-    'category__not_in' => [get_cat_ID('idea-lab')], // Exclude idea-lab category
     'post_status' => 'publish',
 ]);
 
 // Get all categories for filtering
 $categories = get_categories([
     'hide_empty' => true,
-    'exclude' => [get_cat_ID('idea-lab')], // Exclude idea-lab category
 ]);
 
 // Get current category filter
 $current_cat = isset($_GET['category']) ? sanitize_text_field(wp_unslash($_GET['category'])) : '';
+
+// Get current series filter
+$current_series = isset($_GET['series']) ? sanitize_text_field(wp_unslash($_GET['series'])) : '';
+
+// Define available series
+$available_series = ['dreamscape', 'swarm', 'trading-systems'];
+
 if ($current_cat) {
     $cat_obj = get_category_by_slug($current_cat);
     if ($cat_obj) {
@@ -37,13 +42,38 @@ if ($current_cat) {
             'post_status' => 'publish',
         ]);
     }
+} elseif ($current_series && in_array($current_series, $available_series)) {
+    $series_cat = get_category_by_slug($current_series);
+    if ($series_cat) {
+        $blog_query = new WP_Query([
+            'post_type' => 'post',
+            'posts_per_page' => 12,
+            'paged' => $paged,
+            'cat' => $series_cat->term_id,
+            'post_status' => 'publish',
+        ]);
+    }
 }
 ?>
 
 <main class="content-area">
     <header class="page-header" style="text-align: center; margin-bottom: 4rem;">
-        <h1 style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--accent), var(--text-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"><?php esc_html_e('Blog', 'dadudekc'); ?></h1>
-        <p class="post-meta" style="font-size: 1.2rem; color: var(--text-secondary);"><?php esc_html_e('Deep dives, tutorials, and insights from my journey in technology and entrepreneurship.', 'dadudekc'); ?></p>
+        <?php if ($current_series && in_array($current_series, $available_series)) : ?>
+            <h1 style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--accent), var(--text-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"><?php echo esc_html(ucfirst(str_replace('-', ' ', $current_series))); ?> Series</h1>
+            <p class="post-meta" style="font-size: 1.2rem; color: var(--text-secondary);">
+                <?php
+                $series_subtitles = [
+                    'dreamscape' => 'Creative coding explorations and technological imagination.',
+                    'swarm' => 'Multi-agent AI systems and autonomous coordination.',
+                    'trading-systems' => 'Algorithmic trading, quantitative strategies, and market automation.'
+                ];
+                echo esc_html($series_subtitles[$current_series] ?? 'Series articles and deep dives.');
+                ?>
+            </p>
+        <?php else : ?>
+            <h1 style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--accent), var(--text-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"><?php esc_html_e('Blog', 'dadudekc'); ?></h1>
+            <p class="post-meta" style="font-size: 1.2rem; color: var(--text-secondary);"><?php esc_html_e('Deep dives, tutorials, and insights from my journey in technology and entrepreneurship.', 'dadudekc'); ?></p>
+        <?php endif; ?>
 
         <!-- Blog Stats -->
         <div class="blog-stats" style="display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;">
@@ -97,6 +127,38 @@ if ($current_cat) {
     </div>
     <?php endif; ?>
 
+    <!-- Series Filter -->
+    <?php if ($current_series && in_array($current_series, $available_series)) : ?>
+    <div class="series-filter" style="background: var(--surface); border-radius: 12px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid var(--border);">
+        <div class="filter-header" style="text-align: center; margin-bottom: 2rem;">
+            <h3 style="margin: 0; color: var(--text-primary);"><?php esc_html_e('Series', 'dadudekc'); ?></h3>
+        </div>
+
+        <!-- Active Series Display -->
+        <div class="active-series" style="text-align: center;">
+            <strong><?php esc_html_e('Reading:', 'dadudekc'); ?></strong>
+            <span style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 1rem; font-weight: 500; margin-left: 0.5rem;">
+                <?php echo esc_html(ucfirst(str_replace('-', ' ', $current_series))); ?> Series
+                <a href="<?php echo esc_url(get_permalink()); ?>" style="color: white; text-decoration: none; margin-left: 0.5rem; font-weight: bold;">×</a>
+            </span>
+        </div>
+
+        <!-- Series Description -->
+        <div class="series-description" style="text-align: center; margin-top: 1.5rem; padding: 1.5rem; background: rgba(0, 212, 255, 0.05); border-radius: 8px;">
+            <?php
+            $series_descriptions = [
+                'dreamscape' => 'Explorations into creative coding, generative art, and the intersection of technology and imagination.',
+                'swarm' => 'Deep dives into multi-agent AI systems, swarm intelligence, and autonomous coordination platforms.',
+                'trading-systems' => 'Technical analysis of algorithmic trading systems, quantitative strategies, and market automation.'
+            ];
+            if (isset($series_descriptions[$current_series])) {
+                echo '<p style="margin: 0; color: var(--text-primary); font-style: italic;">' . esc_html($series_descriptions[$current_series]) . '</p>';
+            }
+            ?>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <!-- Blog Posts Grid -->
     <section class="blog-posts">
         <?php if ($blog_query->have_posts()) : ?>
@@ -116,13 +178,11 @@ if ($current_cat) {
                                 $post_categories = get_the_category();
                                 if (!empty($post_categories)) :
                                     foreach ($post_categories as $category) :
-                                        if ($category->slug !== 'idea-lab') : // Skip idea-lab category
                                 ?>
                                             <span style="background: var(--accent); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.8rem; font-weight: 500;">
                                                 <?php echo esc_html($category->name); ?>
                                             </span>
                                 <?php
-                                        endif;
                                     endforeach;
                                 endif;
                                 ?>
@@ -172,6 +232,9 @@ if ($current_cat) {
                 if ($current_cat) {
                     $pagination_args['base'] = add_query_arg('category', $current_cat, get_permalink() . '%_%');
                     $pagination_args['format'] = '?paged=%#%';
+                } elseif ($current_series) {
+                    $pagination_args['base'] = add_query_arg('series', $current_series, get_permalink() . '%_%');
+                    $pagination_args['format'] = '?paged=%#%';
                 }
 
                 echo paginate_links($pagination_args);
@@ -185,9 +248,6 @@ if ($current_cat) {
                 <h2 style="margin-bottom: 1rem; color: var(--text-primary);"><?php esc_html_e('No blog posts yet', 'dadudekc'); ?></h2>
                 <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;"><?php esc_html_e('Articles and insights are being crafted. Check back soon for fresh content and deep dives.', 'dadudekc'); ?></p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="<?php echo esc_url(dadudekc_get_idea_lab_url()); ?>" style="background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
-                        <?php esc_html_e('Check Idea Lab →', 'dadudekc'); ?>
-                    </a>
                     <a href="<?php echo esc_url(dadudekc_get_contact_url()); ?>" style="background: var(--surface); color: var(--text-primary); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid var(--border);">
                         <?php esc_html_e('Get Updates', 'dadudekc'); ?>
                     </a>

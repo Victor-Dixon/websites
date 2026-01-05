@@ -42,9 +42,9 @@ $mission_logs = get_swarm_mission_logs(20);
         </div>
         
         <div class="cta-buttons">
-            <a href="#capabilities" class="cta-button">View Capabilities</a>
-            <a href="#activity" class="cta-button cta-button-secondary">Live Activity</a>
-            <a href="#agent-modes" class="cta-button cta-button-secondary">Agent Modes</a>
+            <a href="https://discord.gg/dadudekc" class="cta-button cta-button-primary" target="_blank">🚀 Join the Swarm</a>
+            <a href="#live-activity" class="cta-button cta-button-secondary">📊 See Live Activity</a>
+            <a href="#agents" class="cta-button cta-button-secondary">🤖 Meet the Agents</a>
         </div>
     </div>
 </section>
@@ -357,7 +357,7 @@ $mission_logs = get_swarm_mission_logs(20);
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
                     Introducing 4-Agent Mode: Reducing compute costs by 50% while maintaining full system capabilities.
                 </p>
-                <a href="https://dadudekc.com/optimizing-multi-agent-systems-introducing-4-agent-mode/" 
+                <a href="https://dadudekc.com/optimizing-multi-agent-systems-introducing-4-agent-mode/" target="_blank" rel="noopener" 
                    target="_blank" 
                    style="color: var(--swarm-blue); text-decoration: none; font-weight: 600;">
                     Read More →
@@ -369,7 +369,7 @@ $mission_logs = get_swarm_mission_logs(20);
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
                     Learn about our key pillars: Activity Detection, Unified Messaging, and Test-Driven Development.
                 </p>
-                <a href="https://dadudekc.com/the-swarm-our-core-philosophy/" 
+                <a href="https://dadudekc.com/the-swarm-our-core-philosophy/" target="_blank" rel="noopener" 
                    target="_blank" 
                    style="color: var(--swarm-purple); text-decoration: none; font-weight: 600;">
                     Read More →
@@ -381,7 +381,7 @@ $mission_logs = get_swarm_mission_logs(20);
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
                     A revolutionary multi-agent system transforming how software is built.
                 </p>
-                <a href="https://dadudekc.com/introducing-the-swarm-a-new-paradigm-in-collaborative-development/" 
+                <a href="https://dadudekc.com/introducing-the-swarm-a-new-paradigm-in-collaborative-development/" target="_blank" rel="noopener" 
                    target="_blank" 
                    style="color: var(--swarm-electric); text-decoration: none; font-weight: 600;">
                     Read More →

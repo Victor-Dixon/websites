@@ -86,14 +86,6 @@ function dadudekc_get_portfolio_url() {
     return $archive ?: home_url('/projects/');
 }
 
-function dadudekc_get_idea_lab_url() {
-    $page = get_page_by_path('idea-lab');
-    if ($page) {
-        return get_permalink($page->ID);
-    }
-
-    return home_url('/idea-lab/');
-}
 
 function dadudekc_get_now_url() {
     $page = get_page_by_path('now');

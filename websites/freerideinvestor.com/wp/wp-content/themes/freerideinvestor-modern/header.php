@@ -7,8 +7,8 @@
 </head>
 <body <?php body_class(); ?>>
 
-<header class="site-header container">
-  <div class="header-content">
+<header class="site-header">
+  <div class="header-container container">
     <!-- Logo -->
     <?php if (has_custom_logo()) : ?>
       <div class="site-logo">
@@ -22,9 +22,9 @@
       </div>
     <?php endif; ?>
     
-    <nav class="main-nav">
+    <nav class="main-navigation" aria-label="<?php esc_attr_e('Primary Menu', 'freerideinvestor-modern'); ?>">
       <!-- Mobile Menu Toggle Button -->
-      <button class="menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="<?php esc_attr_e('Toggle navigation menu', 'freerideinvestor-modern'); ?>" aria-expanded="false">
         <span>☰ Menu</span>
       </button>
       
@@ -34,11 +34,11 @@
           wp_nav_menu([
             'theme_location' => 'primary',
             'container' => '',
-            'menu_class' => 'nav-list',
+            'menu_class' => 'nav-menu',
             'menu_id' => 'primary-menu'
           ]); 
         } else {
-          echo '<ul class="nav-list"><li><a href="' . esc_url(home_url('/')) . '">Home</a></li></ul>';
+          echo '<ul class="nav-menu"><li><a href="' . esc_url(home_url('/')) . '">Home</a></li></ul>';
         }
       ?>
     </nav>
