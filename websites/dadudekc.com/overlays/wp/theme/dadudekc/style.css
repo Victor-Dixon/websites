@@ -348,6 +348,137 @@ blockquote {
   border: 1px solid var(--border);
 }
 
+.swarm-proof,
+.swarm-quickstart,
+.swarm-use-cases,
+.swarm-results,
+.swarm-cta {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.swarm-proof__grid,
+.swarm-quickstart__grid,
+.swarm-use-cases__grid,
+.swarm-cta {
+  display: grid;
+  gap: 2rem;
+}
+
+.swarm-proof__grid {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+}
+
+.swarm-proof__figure img {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.swarm-proof__metrics {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+.swarm-proof__metric {
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.35);
+}
+
+[data-theme='light'] .swarm-proof__metric {
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.swarm-proof__value {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+}
+
+.swarm-proof__demo {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.swarm-quickstart__card,
+.swarm-use-cases__card {
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.25);
+}
+
+[data-theme='light'] .swarm-quickstart__card,
+[data-theme='light'] .swarm-use-cases__card {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.swarm-quickstart__expect span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.swarm-use-cases__grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.swarm-results ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.swarm-cta {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(99, 102, 241, 0.12));
+}
+
+.swarm-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.swarm-cta__links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #0b0f14;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 900px) {
+  .swarm-proof__grid,
+  .swarm-quickstart__grid,
+  .swarm-cta {
+    grid-template-columns: 1fr;
+  }
+}
+
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 3rem 0;
