@@ -1,0 +1,66 @@
+{
+  "timestamp": "20260105_130801",
+  "test_type": "e2e_pipeline_integration",
+  "performance": {
+    "total_tests": 14,
+    "successful_tests": 0,
+    "failed_tests": 14,
+    "avg_processing_time": 0.00471874645778111,
+    "median_processing_time": 0.0025016069412231445,
+    "p95_processing_time": 0.032027482986450195,
+    "throughput_items_per_sec": 179.3105368910278,
+    "success_rate": 0.0
+  },
+  "regressions": {
+    "max_time_regression": false,
+    "avg_time_regression": false,
+    "p95_time_regression": false,
+    "throughput_regression": false,
+    "success_rate_regression": true
+  },
+  "category_breakdown": {
+    "learning": {
+      "total": 2,
+      "success": 0,
+      "avg_time": 0.01901555061340332,
+      "success_rate": 0.0
+    },
+    "operational": {
+      "total": 5,
+      "success": 0,
+      "avg_time": 0.0018023967742919922,
+      "success_rate": 0.0
+    },
+    "reflection": {
+      "total": 1,
+      "success": 0,
+      "avg_time": 0.004002094268798828,
+      "success_rate": 0.0
+    },
+    "strategic": {
+      "total": 2,
+      "success": 0,
+      "avg_time": 0.0025020837783813477,
+      "success_rate": 0.0
+    },
+    "technical": {
+      "total": 4,
+      "success": 0,
+      "avg_time": 0.0025032758712768555,
+      "success_rate": 0.0
+    }
+  },
+  "stage_completion": {
+    "content_validation": 1.0,
+    "quality_assessment": 1.0,
+    "victor_voice": 0.0,
+    "seo_enhancement": 1.0,
+    "template_rendering": 0.0
+  },
+  "quality_distribution": {
+    "excellent": 0,
+    "good": 0,
+    "acceptable": 0,
+    "poor": 14
+  }
+}

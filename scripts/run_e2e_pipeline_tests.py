@@ -435,7 +435,7 @@ class E2EPipelineTester:
         # Stage completion
         print("\n🔧 Pipeline Stage Completion:")
         for stage, rate in summary['stage_completion_rates'].items():
-            print(".1%"
+            print(f"   {stage}: {rate:.1f}%")
         # Quality distribution
         print("\n🏆 Quality Score Distribution:")
         for level, count in summary['quality_distribution'].items():
@@ -450,7 +450,7 @@ class E2EPipelineTester:
                     print(f"   ❌ {regression_type.replace('_', ' ').title()}")
         else:
             print("\n✅ No performance regressions detected")
-        print(".2f"
+        print(f"⚡ Throughput: {perf.throughput_items_per_sec:.2f} items/sec")
 def main():
     """Run E2E pipeline tests with performance benchmarking"""
     fixtures_dir = Path(__file__).parent.parent / "tests" / "golden_master" / "fixtures"

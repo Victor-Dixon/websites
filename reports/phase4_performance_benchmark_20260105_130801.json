@@ -1,0 +1,18 @@
+{
+  "timestamp": "20260105_130801",
+  "benchmark_type": "pipeline_performance",
+  "metrics": {
+    "avg_latency_ms": 4.71874645778111,
+    "p95_latency_ms": 32.027482986450195,
+    "throughput_items_sec": 179.3105368910278,
+    "success_rate_percent": 0.0
+  },
+  "thresholds": {
+    "max_processing_time": 2.0,
+    "avg_processing_time": 0.5,
+    "p95_processing_time": 1.0,
+    "throughput_min": 2.0,
+    "success_rate_min": 0.95
+  },
+  "regressions_detected": true
+}
