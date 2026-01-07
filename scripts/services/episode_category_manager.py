@@ -11,10 +11,8 @@ import os
 import requests
 from typing import Dict, List, Optional, Any
 from pathlib import Path
-from dotenv import load_dotenv
 
-# Load environment
-load_dotenv()
+# Environment variables are loaded from system/shell
 
 class EpisodeCategoryManager:
     """Manages WordPress categories for Digital Dreamscape episodes"""

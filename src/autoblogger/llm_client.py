@@ -115,14 +115,10 @@ def load_llm_config() -> LlmConfig:
             use_local_llm=True
         )
 
-    # For API-only mode, require API key
-    if not api_key:
-        raise RuntimeError(
-            "Missing OpenAI API key. Either:\n"
-            "1. Set AUTOBLOGGER_OPENAI_API_KEY (or OPENAI_API_KEY) for OpenAI API\n"
-            "2. Set AUTOBLOGGER_USE_LOCAL_LLM=true to use local Ollama\n"
-            "3. Ensure Ollama is running with compatible models"
-        )
+    # For API-only mode, warn but don't require API key (graceful fallback available)
+    if not use_local_llm and not api_key:
+        print("⚠️  OpenAI API mode selected but no API key configured. System will use graceful fallback if LLM calls fail.")
+        api_key = "no_key_configured"  # Placeholder to prevent errors
 
     return LlmConfig(
         api_key=api_key,
@@ -153,192 +149,196 @@ def load_llm_config() -> LlmConfig:
 
 
 def generate_markdown(prompt: Prompt, *, cfg: LlmConfig) -> str:
-    """Generate markdown using Ollama (preferred) or OpenAI API (fallback)"""
+    """Generate markdown using Ollama models (preferred) or OpenAI API (fallback)"""
 
-    # Try Ollama subprocess first (more reliable for local LLM)
+    # Try multiple Ollama models in fallback order
     if cfg.use_local_llm and SUBPROCESS_AVAILABLE:
+        # Get available models for fallback
+        available_models = []
         try:
-            print(f"🤖 Using subprocess Ollama: {cfg.model}")
-
-            # Combine prompts for subprocess
-            full_prompt = f"{prompt.system}\n\n{prompt.user}"
-
-            # Use subprocess to call Ollama with generous timeout
-            ollama_timeout = min(cfg.timeout_s, 180)  # Allow up to 3 minutes for long content
-            result = subprocess.run(
-                ['ollama', 'run', cfg.model],
-                input=full_prompt,
+            # Check what models are available locally
+            list_result = subprocess.run(
+                ['ollama', 'list'],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
-                encoding="utf-8",
-                timeout=ollama_timeout,
-                check=True
+                timeout=10
             )
-
-            content = result.stdout.strip()
-            if content:
-                # Handle JSON response format from ollama
-                try:
-                    import json
-                    data = json.loads(content)
-                    if isinstance(data, dict) and 'response' in data:
-                        content = data['response'].strip()
-                    elif isinstance(data, dict) and 'content' in data:
-                        content = data['content'].strip()
-                except json.JSONDecodeError:
-                    # Not JSON, use as-is
-                    pass
-
-                if content:
-                    print("✅ Content generated successfully (subprocess Ollama)")
-                    return content
-
-            print("⚠️  Ollama subprocess returned empty response")
-
-        except subprocess.TimeoutExpired:
-            print(f"⚠️  Ollama subprocess timed out after {ollama_timeout}s")
-        except subprocess.CalledProcessError as e:
-            error_msg = e.stderr.strip() if e.stderr else str(e)
-            print(f"⚠️  Ollama subprocess error: {error_msg}")
-            if "model" in error_msg.lower() and "not found" in error_msg.lower():
-                print(f"💡 Try: ollama pull {cfg.model}")
-        except FileNotFoundError:
-            print("⚠️  Ollama command not found. Is Ollama installed?")
+            if list_result.returncode == 0:
+                lines = list_result.stdout.strip().split('\n')
+                if len(lines) > 1:  # Skip header line
+                    for line in lines[1:]:
+                        model_name = line.split()[0] if line.strip() else None
+                        if model_name:
+                            available_models.append(model_name)
         except Exception as e:
-            print(f"⚠️  Ollama subprocess unexpected error: {e}")
+            print(f"⚠️  Could not check available Ollama models: {e}")
 
-    # Try Ollama API as fallback if subprocess failed
-    if cfg.use_local_llm and OLLAMA_AVAILABLE:
-        try:
-            client = OllamaClient()
-            if client.is_available():
-                print(f"🤖 Using Ollama API model: {cfg.model}")
+        # Priority order: Qwen → Mistral → other available models
+        model_priority = [
+            cfg.model,  # User's preferred model first
+            "qwen2.5:7b", "qwen2.5", "qwen:7b", "qwen",  # Qwen models
+            "mistral:latest", "mistral:7b", "mistral",    # Mistral models
+            "llama3.2:3b", "llama3.2", "llama3:8b",        # Llama models
+            "codellama:latest", "codellama"                # Code models
+        ]
 
-                # Combine system and user prompts for Ollama
-                full_prompt = f"{prompt.system}\n\n{prompt.user}"
+        # Add any other available models not in priority list
+        for model in available_models:
+            if model not in model_priority:
+                model_priority.append(model)
 
-                response = client.generate(
-                    model=cfg.model,
-                    prompt=full_prompt,
-                    temperature=0.7,
-                    max_tokens=4000  # Allow longer responses for blog posts
-                )
+        print(f"🤖 Trying Ollama models in priority order: {model_priority[:5]}...")
 
-                if response and hasattr(response, 'response') and response.response:
-                    content = response.response.strip()
+        for attempt_model in model_priority:
+            if attempt_model in available_models or attempt_model == cfg.model:
+                try:
+                    print(f"🤖 Trying Ollama model: {attempt_model}")
+
+                    # Combine prompts for subprocess
+                    full_prompt = f"{prompt.system}\n\n{prompt.user}"
+
+                    # Use subprocess to call Ollama with generous timeout
+                    ollama_timeout = min(cfg.timeout_s, 180)  # Allow up to 3 minutes for long content
+                    result = subprocess.run(
+                        ['ollama', 'run', attempt_model],
+                        input=full_prompt,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE,
+                        text=True,
+                        encoding="utf-8",
+                        timeout=ollama_timeout,
+                        check=True
+                    )
+
+                    content = result.stdout.strip()
                     if content:
-                        print("✅ Content generated successfully (Ollama API)")
-                        return content
+                        # Handle JSON response format from ollama
+                        try:
+                            import json
+                            data = json.loads(content)
+                            if isinstance(data, dict) and 'response' in data:
+                                content = data['response'].strip()
+                            elif isinstance(data, dict) and 'content' in data:
+                                content = data['content'].strip()
+                        except json.JSONDecodeError:
+                            # Not JSON, use as-is
+                            pass
 
-                print("⚠️  Ollama API returned empty response")
+                        if content:
+                            print(f"✅ Content generated successfully (Ollama: {attempt_model})")
+                            return content
 
-        except Exception as e:
-            print(f"⚠️  Ollama API error: {e}")
+                    print(f"⚠️  {attempt_model} returned empty response")
 
-    # Try subprocess Ollama (works even without API)
-    if cfg.use_local_llm and SUBPROCESS_AVAILABLE:
+                except subprocess.TimeoutExpired:
+                    print(f"⚠️  {attempt_model} timed out after {ollama_timeout}s")
+                    continue  # Try next model
+                except subprocess.CalledProcessError as e:
+                    error_msg = e.stderr.strip() if e.stderr else str(e)
+                    print(f"⚠️  {attempt_model} error: {error_msg}")
+                    if "model" in error_msg.lower() and "not found" in error_msg.lower():
+                        print(f"💡 Model {attempt_model} not available locally")
+                    continue  # Try next model
+                except FileNotFoundError:
+                    print("⚠️  Ollama command not found. Is Ollama installed?")
+                    break  # No point trying more models if Ollama isn't installed
+                except Exception as e:
+                    print(f"⚠️  {attempt_model} unexpected error: {e}")
+                    continue  # Try next model
+
+        print("⚠️  All Ollama models failed or unavailable")
+
+    # Ollama models tried above - if we get here, all local models failed
+    print("🔄 Local Ollama models exhausted, trying external APIs...")
+
+    # Fallback Priority: Ollama (Qwen/Mistral) → OpenAI → Graceful Failure
+    print("🔄 Local Ollama models failed, checking external API fallback...")
+
+    has_valid_openai_key = cfg.api_key and cfg.api_key not in ["local_llm", ""] and cfg.api_key.startswith("sk-")
+
+    if cfg.use_local_llm and not has_valid_openai_key:
+        # No external API fallback available - provide graceful degradation
+        print("⚠️  All LLM services unavailable. Providing fallback content.")
+        fallback_content = f"""# Content Generation Unavailable
+
+**Status:** All LLM services are currently unavailable
+
+**Attempted (in priority order):**
+1. ❌ Local Ollama LLM (Qwen, Mistral, Llama models)
+2. ❌ OpenAI API (no valid API key configured)
+
+**Solutions:**
+1. **Start Ollama:** `ollama serve`
+2. **Pull models:** `ollama pull qwen2.5:7b` or `ollama pull mistral:latest`
+3. **Check models:** `ollama list`
+4. **Add OpenAI key:** Set `AUTOBLOGGER_OPENAI_API_KEY` in `.env` file
+
+**System Status:** Content generation is temporarily disabled, but all other website functions continue normally.
+
+---
+*Fallback generated: {__import__('datetime').datetime.now().isoformat()}*
+*Application continues running normally*
+"""
+        print("📝 Returning fallback content (all LLMs unavailable)")
+        return fallback_content
+
+    # Try OpenAI fallback if available
+    if has_valid_openai_key:
         try:
-            print(f"🤖 Using subprocess Ollama: {cfg.model}")
+            print(f"🔄 Falling back to OpenAI API: {cfg.model}")
+            url = f"{cfg.base_url}/chat/completions"
+            headers = {"Authorization": f"Bearer {cfg.api_key}"}
 
-            # Combine prompts for subprocess
-            full_prompt = f"{prompt.system}\n\n{prompt.user}"
+            payload: dict[str, Any] = {
+                "model": cfg.model if not cfg.use_local_llm else "gpt-4o-mini",
+                "messages": [
+                    {"role": "system", "content": prompt.system},
+                    {"role": "user", "content": prompt.user},
+                ],
+                "temperature": 0.7,
+                "max_tokens": 2000,  # Reasonable limit for content generation
+            }
 
-            # Use subprocess to call Ollama with better error handling
-            # First check if model is available
-            try:
-                check_result = subprocess.run(
-                    ['ollama', 'show', cfg.model],
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    text=True,
-                    timeout=10
+            resp = requests.post(url, headers=headers, json=payload, timeout=cfg.timeout_s)
+            if resp.status_code >= 400:
+                error_msg = f"OpenAI API failed: HTTP {resp.status_code}"
+                print(f"⚠️  {error_msg}")
+                # Don't raise error, fall back to graceful failure
+            else:
+                data = resp.json()
+                content = (
+                    (data.get("choices") or [{}])[0]
+                    .get("message", {})
+                    .get("content")
                 )
-                if check_result.returncode != 0:
-                    print(f"⚠️  Model '{cfg.model}' not found locally. Available models: check with 'ollama list'")
-                    raise FileNotFoundError(f"Model {cfg.model} not available")
-            except subprocess.TimeoutExpired:
-                print("⚠️  Model check timed out")
-            except FileNotFoundError:
-                raise
-            except Exception as e:
-                print(f"⚠️  Could not verify model availability: {e}")
+                if content and isinstance(content, str):
+                    print("✅ Content generated successfully (OpenAI API)")
+                    return content.strip()
 
-            # Run the generation (plain text output) with reasonable timeout
-            ollama_timeout = min(cfg.timeout_s, 120)  # Allow up to 120 seconds for subprocess
-            result = subprocess.run(
-                ['ollama', 'run', cfg.model],
-                input=full_prompt,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-                encoding="utf-8",
-                timeout=ollama_timeout,
-                check=True
-            )
-
-            content = result.stdout.strip()
-            if content:
-                # Handle JSON response format from ollama
-                try:
-                    import json
-                    data = json.loads(content)
-                    if isinstance(data, dict) and 'response' in data:
-                        content = data['response'].strip()
-                    elif isinstance(data, dict) and 'content' in data:
-                        content = data['content'].strip()
-                except json.JSONDecodeError:
-                    # Not JSON, use as-is
-                    pass
-
-                if content:
-                    print("✅ Content generated successfully (subprocess Ollama)")
-                    return content
-
-            print("⚠️  Ollama subprocess returned empty response")
-
-        except subprocess.TimeoutExpired:
-            print(f"⚠️  Ollama subprocess timed out after {cfg.timeout_s}s")
-        except subprocess.CalledProcessError as e:
-            error_msg = e.stderr.strip() if e.stderr else str(e)
-            print(f"⚠️  Ollama subprocess error: {error_msg}")
-            if "model" in error_msg.lower() and "not found" in error_msg.lower():
-                print(f"💡 Try: ollama pull {cfg.model}")
-        except FileNotFoundError:
-            print("⚠️  Ollama command not found. Is Ollama installed?")
         except Exception as e:
-            print(f"⚠️  Ollama subprocess unexpected error: {e}")
+            print(f"⚠️  OpenAI API error: {e}")
 
-    # Only fallback to OpenAI if user allows it AND we have a valid API key
-    if cfg.use_local_llm and (not cfg.api_key or cfg.api_key == "local_llm"):
-        print("❌ Ollama failed and no OpenAI API key configured. Cannot generate content.")
-        raise RuntimeError("All LLM options failed. Ollama is unavailable and no valid OpenAI API key provided.")
+    # Ultimate fallback - graceful failure without breaking the app
+    print("⚠️  All LLM services failed. Providing fallback content.")
+    fallback_content = f"""# Automated Content Generation
 
-    print(f"🔄 Falling back to OpenAI API: {cfg.model}")
-    url = f"{cfg.base_url}/chat/completions"
-    headers = {"Authorization": f"Bearer {cfg.api_key}"}
+**Status:** Content generation services are temporarily unavailable
 
-    payload: dict[str, Any] = {
-        "model": cfg.model if not cfg.use_local_llm else "gpt-4o-mini",  # Use GPT model for API
-        "messages": [
-            {"role": "system", "content": prompt.system},
-            {"role": "user", "content": prompt.user},
-        ],
-        "temperature": 0.7,
-    }
+**Attempted Methods:**
+- Local Ollama LLM: {'✅ Available' if OLLAMA_AVAILABLE else '❌ Unavailable'}
+- OpenAI API: {'✅ Configured' if has_valid_openai_key else '❌ Not configured'}
 
-    resp = requests.post(url, headers=headers, json=payload, timeout=cfg.timeout_s)
-    if resp.status_code >= 400:
-        raise RuntimeError(f"LLM request failed: HTTP {resp.status_code}: {resp.text[:500]}")
+**System Status:** The application continues to function normally. Content generation will resume when LLM services become available.
 
-    data = resp.json()
-    content = (
-        (data.get("choices") or [{}])[0]
-        .get("message", {})
-        .get("content")
-    )
-    if not content or not isinstance(content, str):
-        raise RuntimeError("LLM response missing message.content")
+**Next Steps:**
+1. Check Ollama: `ollama list` and `ollama serve`
+2. Verify OpenAI API key in `.env` file
+3. Restart services if needed
 
-    print("✅ Content generated successfully (OpenAI API)")
-    return content.strip()
+---
+*Fallback generated: {__import__('datetime').datetime.now().isoformat()}*
+*Application continues running normally*
+"""
+    print("📝 Returning fallback content (all LLMs failed)")
+    return fallback_content

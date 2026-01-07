@@ -5,13 +5,11 @@ Check WordPress Categories for Digital Dreamscape
 
 import requests
 import os
-from dotenv import load_dotenv
 
 def check_wp_categories():
     """Check categories on digitaldreamscape.site"""
 
-    # Load environment
-    load_dotenv()
+    # Environment variables are loaded from system/shell
 
     # Get WordPress API details
     base_url = os.environ.get('DREAM_WP_URL', '').replace('/wp-json/wp/v2', '')

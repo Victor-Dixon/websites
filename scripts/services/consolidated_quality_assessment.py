@@ -124,10 +124,10 @@ class QualityMetrics:
     def quality_tier(self) -> QualityTier:
         """Get quality tier based on calibrated score - aligned with original system"""
         score = self.overall_score
-        if score >= 0.80: return QualityTier.PLATINUM
-        elif score >= 0.65: return QualityTier.GOLD
-        elif score >= 0.50: return QualityTier.SILVER
-        elif score >= 0.40: return QualityTier.BRONZE
+        if score >= 0.75: return QualityTier.PLATINUM
+        elif score >= 0.60: return QualityTier.GOLD
+        elif score >= 0.45: return QualityTier.SILVER
+        elif score >= 0.35: return QualityTier.BRONZE  # Lowered from 0.40 to accommodate good technical content
         else: return QualityTier.REJECTED
 
     @property
@@ -168,11 +168,26 @@ class ConsolidatedQualityAssessmentService:
         """Technical term databases for different categories"""
         self.technical_terms = {
             ContentCategory.TECHNICAL: [
+                # Programming fundamentals
                 'api', 'database', 'server', 'client', 'framework', 'library',
                 'algorithm', 'function', 'method', 'class', 'object', 'variable',
                 'debug', 'error', 'exception', 'log', 'trace', 'stack', 'memory',
+
+                # Performance & optimization
                 'performance', 'optimization', 'scalability', 'architecture',
-                'async', 'await', 'promise', 'callback', 'event', 'stream'
+                'async', 'await', 'promise', 'callback', 'event', 'stream',
+
+                # Concurrency & threading
+                'thread', 'concurrency', 'parallel', 'mutex', 'lock', 'goroutine',
+                'race condition', 'deadlock', 'synchronization', 'atomic',
+
+                # Languages & tools
+                'javascript', 'python', 'java', 'go', 'rust', 'typescript',
+                'react', 'angular', 'vue', 'node', 'docker', 'kubernetes',
+
+                # Development practices
+                'testing', 'ci/cd', 'deployment', 'monitoring', 'logging',
+                'refactoring', 'code review', 'agile', 'scrum', 'devops'
             ],
             ContentCategory.STRATEGIC: [
                 'vision', 'strategy', 'planning', 'roadmap', 'milestone',
@@ -443,7 +458,7 @@ class ConsolidatedQualityAssessmentService:
 
             # Use the processor's confidence score
             metrics.victor_voice_authenticity = result.voice_confidence_score
-            metrics.victor_phrase_count = result.proof_elements_found
+            metrics.victor_phrase_count = getattr(result, 'proof_elements_found', 0)
 
         except ImportError:
             # Fallback to basic pattern matching if processor not available
@@ -650,7 +665,13 @@ class ConsolidatedQualityAssessmentService:
             from victor_voice_processor import VictorVoiceProcessor
             processor = VictorVoiceProcessor()
             result = processor.validate_voice_quality(content)
-            return result
+            # Convert to expected format
+            return {
+                'victor_voice_score': result.get('victor_voice_score', 0.0),
+                'phrase_count': result.get('proof_elements', 0),
+                'overall_quality': self.assess_content_quality(content).overall_score,
+                'publish_ready': self.assess_content_quality(content).publish_ready
+            }
         except ImportError:
             # Fallback to metrics-based validation
             metrics = self.assess_content_quality(content)

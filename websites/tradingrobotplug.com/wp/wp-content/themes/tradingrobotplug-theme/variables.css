@@ -1,0 +1,32 @@
+:root {
+    --header-bg-color: #1e73be;
+    --footer-bg-color: #333333;
+    --footer-border-color: #d05454;
+    --body-bg-color: #f4f4f4;
+    --body-text-color: #333333;
+    --heading-text-color: #222222;
+    --link-color: #1e73be;
+    --link-hover-color: #d05454;
+}
+
+body {
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+}
+
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+header {
+    background-color: var(--header-bg-color);
+}
+
+footer {
+    background-color: var(--footer-bg-color);
+    border-top: 3px solid var(--footer-border-color);
+}
