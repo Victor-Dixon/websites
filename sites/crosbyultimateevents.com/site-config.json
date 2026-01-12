@@ -1,0 +1,51 @@
+{
+  "site": "crosbyultimateevents.com",
+  "domain": "crosbyultimateevents.com",
+  "description": "Crosby Ultimate Events - Trading Robot Platform",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "crosbyultimateevents-theme",
+        "version": "1.0.0",
+        "active": true,
+        "package": "crosbyultimateevents-theme.zip",
+        "description": "Complete WordPress theme with ultimate frisbee field animations, custom event post types, and trading robot integration"
+      }
+    ],
+    "plugins": [
+      {
+        "name": "trading-robot-plugin",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "trp-paper-trading-stats",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "trp-swarm-status",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "trading_robot": true,
+    "paper_trading": true,
+    "swarm_status": true,
+    "analytics": true
+  },
+  "author": "Agent-7",
+  "contact": "https://crosbyultimateevents.com",
+  "repository": "https://github.com/weareswarm/crosby-ultimate-events",
+  "last_updated": "2026-01-11",
+  "status": "maintenance"
+}

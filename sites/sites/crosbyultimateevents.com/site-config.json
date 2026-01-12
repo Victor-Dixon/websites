@@ -1,0 +1,52 @@
+{
+  "site": "crosbyultimateevents.com",
+  "domain": "crosbyultimateevents.com",
+  "description": "Crosby Ultimate Events - Professional Event Planning and Catering Services",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "crosbyultimateevents-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "event-planning-manager",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "catering-services",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "client-inquiry-system",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "swarm_intelligence": true,
+    "agent_monitoring": true,
+    "event_services": true,
+    "catering_management": true,
+    "client_inquiries": true,
+    "portfolio_showcase": true,
+    "business_services": true
+  },
+  "author": "Swarm Intelligence Team",
+  "contact": "https://crosbyultimateevents.com/contact",
+  "repository": "https://github.com/weareswarm/crosby-ultimate-events",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

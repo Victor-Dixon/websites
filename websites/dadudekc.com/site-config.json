@@ -1,0 +1,45 @@
+{
+  "site": "dadudekc.com",
+  "domain": "dadudekc.com",
+  "description": "Dadu Dek C - Automation Systems & Development Services Portfolio",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "dadudekc-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "tradingrobotplug-wordpress-plugin",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "dadudekc-portfolio-plugin",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "automation_systems": true,
+    "development_services": true,
+    "workflow_optimization": true,
+    "portfolio_showcase": true,
+    "analytics": true
+  },
+  "author": "Dadu Dek C",
+  "contact": "https://dadudekc.com/contact",
+  "repository": "https://github.com/dadudekc/portfolio",
+  "last_updated": "2026-01-11",
+  "status": "active"
+}

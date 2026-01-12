@@ -1,0 +1,210 @@
+/*
+Theme Name: Swarm
+Theme URI: https://weareswarm.online
+Author: Agent-7
+Author URI: https://weareswarm.online
+Description: Custom WordPress theme for We Are Swarm Online - Dream.OS documentation & case studies platform. Build-in-public transparency focus.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: swarm
+Tags: documentation, case-studies, authority, one-column, custom-menu, featured-images, threaded-comments, translation-ready
+*/
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Swarm brand palette */
+    --swarm-dark: #0a0a0f;
+    --swarm-darker: #050508;
+    --swarm-blue: #00d4ff;
+    --swarm-cyan: #00ffff;
+    --swarm-purple: #8b5cf6;
+    --swarm-text: #e5e7eb;
+    --swarm-text-dim: #9ca3af;
+    --swarm-card: #1a1a24;
+    --swarm-border: #2d2d3a;
+    
+    /* Spacing */
+    --spacing-xs: 10px;
+    --spacing-sm: 15px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 48px;
+}
+
+body {
+    font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: var(--swarm-text);
+    background-color: var(--swarm-dark);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md, 20px);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--swarm-text);
+    margin-bottom: var(--spacing-md, 20px);
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--swarm-cyan);
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--swarm-blue);
+    border-bottom: 2px solid var(--swarm-border);
+    padding-bottom: var(--spacing-xs, 10px);
+    margin-top: var(--spacing-lg, 30px);
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--swarm-text);
+}
+
+p {
+    margin-bottom: var(--spacing-md, 20px);
+    color: var(--swarm-text-dim);
+    line-height: 1.8;
+}
+
+/* ============================================
+   SECTION STYLES - Build-In-Public Phase 0
+   ============================================ */
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: var(--spacing-xl, 48px);
+    color: var(--swarm-cyan);
+}
+
+/* Build in Public Feed Section */
+.build-public-section {
+    padding: var(--spacing-xl, 48px) 0;
+    background: var(--swarm-darker);
+}
+
+.build-public-feed {
+    max-width: 800px;
+    margin: var(--spacing-lg, 30px) auto 0;
+}
+
+.feed-item {
+    background: var(--swarm-card);
+    border: 1px solid var(--swarm-border);
+    border-left: 4px solid var(--swarm-blue);
+    border-radius: 8px;
+    padding: var(--spacing-md, 20px);
+    margin-bottom: var(--spacing-md, 20px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feed-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+}
+
+.feed-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-xs, 10px);
+}
+
+.feed-item-title {
+    font-size: 1.2rem;
+    color: var(--swarm-text);
+    margin: 0;
+}
+
+.feed-item-description {
+    color: var(--swarm-text-dim);
+    margin-bottom: var(--spacing-xs, 10px);
+    line-height: 1.6;
+}
+
+.feed-item-date {
+    font-size: 0.9rem;
+    color: var(--swarm-text-dim);
+}
+
+/* Cross-link Styles */
+.cross-link {
+    display: inline-block;
+    margin-top: var(--spacing-md, 20px);
+    padding: var(--spacing-sm, 15px) var(--spacing-lg, 30px);
+    background: var(--swarm-purple);
+    color: var(--swarm-text);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.cross-link:hover {
+    background: var(--swarm-blue);
+}
+
+/* Manifesto & How It Works Page Styles */
+.content-page {
+    padding: var(--spacing-xl, 48px) 0;
+}
+
+.content-page h1 {
+    margin-bottom: var(--spacing-xl, 48px);
+}
+
+.content-page h2 {
+    margin-top: var(--spacing-xl, 48px);
+    margin-bottom: var(--spacing-lg, 30px);
+}
+
+.content-page ul,
+.content-page ol {
+    margin-left: var(--spacing-lg, 30px);
+    margin-bottom: var(--spacing-md, 20px);
+    color: var(--swarm-text-dim);
+}
+
+.content-page li {
+    margin-bottom: var(--spacing-xs, 10px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-sm, 15px);
+    }
+}
+
+

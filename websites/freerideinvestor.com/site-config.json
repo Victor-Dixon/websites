@@ -1,0 +1,46 @@
+{
+  "site": "freerideinvestor.com",
+  "domain": "freerideinvestor.com",
+  "description": "Free Ride Investor - Advanced trading strategies and market analysis platform",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "freerideinvestor-theme",
+        "version": "1.1.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "trading-plans-automator",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "trading-robot-plugin",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "trading_strategies": true,
+    "market_analysis": true,
+    "automated_trading": true,
+    "performance_tracking": true,
+    "educational_content": true,
+    "analytics": true
+  },
+  "author": "Trading Strategy Team",
+  "contact": "https://freerideinvestor.com/contact",
+  "repository": "https://github.com/freerideinvestor/platform",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

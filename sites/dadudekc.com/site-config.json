@@ -1,0 +1,32 @@
+{
+  "site": "dadudekc.com",
+  "domain": "dadudekc.com",
+  "packages": {
+    "plugins": {
+      "trading-robot-plugin": "v1.0.0"
+    },
+    "themes": {
+      "dadudekc-theme": "v1.0.0"
+    },
+    "utilities": {}
+  },
+  "environment": {
+    "type": "production",
+    "debug": false,
+    "wp_debug": false
+  },
+  "api": {
+    "fastapi_url": "https://api.dadudekc.com",
+    "ingestion_url": "https://api.dadudekc.com/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89",
+    "websocket_url": "wss://api.dadudekc.com/ws/events"
+  },
+  "database": {
+    "backup_before_deploy": true,
+    "migrate_on_deploy": false
+  },
+  "deployment": {
+    "auto_backup": true,
+    "rollback_enabled": true,
+    "maintenance_mode": true
+  }
+}

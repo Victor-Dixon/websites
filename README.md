@@ -1,152 +1,157 @@
-# Websites Repository - Organized Structure
+# 🌐 WordPress Multi-Site Architecture
 
-This repository contains the complete infrastructure for managing multiple websites, with a focus on automated content generation, deployment, and maintenance.
+## Overview
 
-## 🏗️ Directory Structure
+This directory contains a **package-based WordPress multi-site architecture** designed to eliminate code duplication and enable efficient deployment across multiple websites.
 
-### 📁 Root Level
-```
-websites/
-├── scripts/           # All automation scripts
-├── sites/            # Website files and assets
-├── config/           # Configuration files
-├── content/          # Content management
-├── docs/             # Documentation
-├── tools/            # Utility tools
-├── ops/              # Operations scripts
-├── src/              # Source code
-├── tests/            # Test files
-├── archive/          # Archived content
-├── temp/             # Temporary files
-├── assets/           # Shared assets
-├── backup/           # Backup files
-└── config/paths.py   # Path management system
-```
-
-### 📂 Scripts Directory (`scripts/`)
-Organized automation scripts by function:
+## Directory Structure
 
 ```
-scripts/
-├── audit/            # Website auditing scripts
-├── deploy/           # Deployment and publishing scripts
-├── check/            # Health checking and monitoring scripts
-├── debug/            # Debugging and diagnostic scripts
-├── test/             # Testing scripts
-└── services/         # Content and service management scripts
+D:\websites\
+├── packages/                    # ← Versioned, reusable components
+│   ├── trading-robot-plugin/
+│   │   ├── v1.0.0/             # ← Actual plugin code
+│   │   └── package.json        # ← Package metadata
+│   └── [other packages]/
+├── sites/                       # ← Site-specific configurations
+│   ├── tradingrobotplug.com/
+│   │   └── site-config.json     # ← Which packages to use
+│   └── [other sites]/
+├── websites/                    # ← Live WordPress installations
+│   ├── tradingrobotplug.com/    # ← Deployed site (no code duplication)
+│   └── [other live sites]/
+├── deployment/                  # ← Deployment scripts
+│   ├── deploy.ps1              # ← Main deployment script
+│   └── [other scripts]/
+└── docs/                        # ← Documentation
 ```
 
-### 🌐 Sites Directory (`sites/`)
-Website organization by environment:
+## Key Principles
 
+### 📦 **Package-Based Architecture**
+- **Reusable components** are versioned and packaged
+- **No code duplication** between sites
+- **Semantic versioning** for stability
+- **Clear dependencies** between packages
+
+### 🎯 **Configuration-Driven Deployment**
+- **Site configs** define which packages to use
+- **Automated deployment** from packages to sites
+- **Environment-specific** settings per site
+- **Rollback capability** for safety
+
+### 🚀 **Single Source of Truth**
+- **Packages** = Canonical source for shared code
+- **Sites** = Configuration only
+- **Live sites** = Deployed instances (no manual editing)
+
+## Usage
+
+### Deploy All Sites
+```powershell
+.\deployment\deploy.ps1 -All
+```
+
+### Deploy Specific Site
+```powershell
+.\deployment\deploy.ps1 -Site tradingrobotplug.com
+```
+
+### Deploy Specific Package
+```powershell
+.\deployment\deploy.ps1 -Package trading-robot-plugin
+```
+
+### Dry Run (see what would happen)
+```powershell
+.\deployment\deploy.ps1 -All -DryRun
+```
+
+## Package Development
+
+### Creating a New Package Version
+1. Create version directory: `packages/my-package/v1.1.0/`
+2. Copy/update code in version directory
+3. Update `package.json` with new version
+4. Update site configs to use new version
+5. Deploy: `.\deployment\deploy.ps1 -Package my-package`
+
+### Package Structure
+```
+packages/my-package/
+├── v1.0.0/           # ← Actual code lives here
+├── v1.1.0/           # ← New versions
+├── package.json      # ← Package metadata
+└── README.md         # ← Package documentation
+```
+
+## Site Configuration
+
+Each site has a `site-config.json` that defines:
+
+```json
+{
+  "packages": {
+    "plugins": {
+      "trading-robot-plugin": "v1.0.0"
+    }
+  },
+  "environment": {
+    "type": "production"
+  },
+  "api": {
+    "fastapi_url": "https://api.tradingrobotplug.com"
+  }
+}
+```
+
+## Development Workflow
+
+1. **Develop** in packages (or repository for testing)
+2. **Version** new releases in packages
+3. **Update** site configs to use new versions
+4. **Deploy** to live sites
+5. **Monitor** and rollback if needed
+
+## Benefits
+
+### ✅ **Eliminates Duplication**
+- No more duplicate plugin code across sites
+- Single source of truth for shared functionality
+
+### ✅ **Version Control**
+- Semantic versioning for stability
+- Easy rollbacks to previous versions
+- Clear upgrade paths
+
+### ✅ **Scalable**
+- Easy to add new sites
+- Easy to share packages between sites
+- Easy to update multiple sites at once
+
+### ✅ **Maintainable**
+- Clear separation of concerns
+- Automated deployment reduces errors
+- Configuration-driven approach
+
+## Migration Notes
+
+### From: Duplicated Architecture
 ```
 sites/
-├── production/       # Live production websites
-├── staging/          # Staging/test environments
-├── development/      # Development versions
-├── wordpress-plugins/# WordPress plugins
-├── website_design/   # Design assets
-└── *.php             # Utility PHP files
+├── site1/wp-content/plugins/plugin/  # ← Duplicate code
+├── site2/wp-content/plugins/plugin/  # ← Duplicate code
+└── site3/wp-content/plugins/plugin/  # ← Duplicate code
 ```
 
-### ⚙️ Configuration (`config/`)
-Centralized configuration management:
-
+### To: Package-Based Architecture
 ```
-config/
-├── paths.py          # Path management system
-├── *.yaml            # Site configurations
-├── *.json            # Runtime data
-├── diagnostics/      # Diagnostic reports
-├── runtime/          # Runtime state files
-└── message_queue/    # Message queue data
+packages/
+├── plugin/v1.0.0/                   # ← Single source of truth
+sites/
+├── site1/site-config.json           # ← Uses plugin v1.0.0
+├── site2/site-config.json           # ← Uses plugin v1.0.0
+└── site3/site-config.json           # ← Uses plugin v1.0.0
 ```
 
-## 🚀 Key Features
-
-### 🔧 Portable Path Management
-- **No hardcoded paths**: All scripts use the centralized `config/paths.py` system
-- **Environment agnostic**: Works across different machines and setups
-- **Scalable**: Easy to add new websites or environments
-
-### 📊 Automated Content Pipeline
-- **Episode generation**: Automated content creation from conversation data
-- **Canon declaration**: Identifies and declares canonical elements
-- **Multi-platform publishing**: Automated deployment to multiple platforms
-
-### 🌐 Multi-Site Management
-- **Production sites**: Live websites under `sites/production/`
-- **Environment separation**: Clear staging/production/development separation
-- **Shared assets**: Common resources in `assets/` directory
-
-## 🛠️ Usage
-
-### Running Scripts
-All scripts are now organized by function. Use the path management system:
-
-```python
-from config.paths import paths
-
-# Get path to a website
-site_path = paths.get_website_path("digitaldreamscape.site")
-
-# Get path to scripts
-deploy_script = paths.get_script_path("deploy_system_scripts.py", "deploy")
-```
-
-### Adding New Websites
-1. Create directory in appropriate environment: `sites/production/new-site/`
-2. Add configuration in `config/`
-3. Update path management if needed
-
-### Deployment
-```bash
-# Deploy system scripts
-python scripts/deploy/deploy_system_scripts.py site-name
-
-# Run canon declaration
-python scripts/services/run_canon_declaration.py
-```
-
-## 📋 Organization Benefits
-
-### ✅ Before (Chaotic)
-- Scripts scattered across root
-- Hardcoded paths everywhere
-- Mixed content types
-- Difficult maintenance
-
-### ✅ After (Organized)
-- **Clear separation**: Each directory has a specific purpose
-- **Portable**: No hardcoded paths, works anywhere
-- **Scalable**: Easy to add new sites, scripts, or environments
-- **Maintainable**: Logical organization makes finding things easy
-
-## 🔍 Finding Things
-
-| What | Where |
-|------|-------|
-| Website files | `sites/production/website-name/` |
-| Deployment scripts | `scripts/deploy/` |
-| Configuration | `config/` |
-| Content templates | `content/` |
-| Documentation | `docs/` |
-| Utility tools | `tools/` |
-
-## 🚨 Important Notes
-
-- **Path Management**: Always use `config/paths.py` for path resolution
-- **Environment Variables**: Scripts respect standard environment variables
-- **Backups**: Regular backups are stored in `backup/`
-- **Archives**: Old content moved to `archive/` to reduce clutter
-
-## 🤝 Contributing
-
-1. Follow the directory structure
-2. Use the path management system
-3. Add documentation for new scripts
-4. Test across environments
-
----
-
-**Status**: 🏗️ Repository successfully reorganized with portable, scalable structure.
+This architecture eliminates the duplication problem while maintaining flexibility and scalability! 🚀

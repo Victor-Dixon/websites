@@ -1,0 +1,21 @@
+world_state:
+  world_clock:
+    current_cycle: "Cycle 2"
+    phase: "Consolidation"
+    timestamp: "2025-12-28T12:00:00Z"
+  active_quests:
+    - id: "QUEST_V2_COMPLIANCE"
+      title: "The Great Refactoring"
+      status: "in_progress"
+      owner: "Agent-2"
+    - id: "QUEST_LORE_CODEX"
+      title: "Forging the Codex"
+      status: "in_progress"
+      owner: "Agent-4"
+  active_repos:
+    - "Dream.OS"
+    - "TradingRobotPlug"
+    - "HoustonSipQueen"
+  system_health:
+    status: "nominal"
+    alert_level: "green"

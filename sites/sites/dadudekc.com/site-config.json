@@ -1,0 +1,52 @@
+{
+  "site": "dadudekc.com",
+  "domain": "dadudekc.com",
+  "description": "Dad Dek - Professional Portfolio and Design Showcase Platform",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "portfolio-design-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "portfolio-showcase",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "project-gallery",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "client-testimonials",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "swarm_intelligence": true,
+    "agent_monitoring": true,
+    "portfolio_platform": true,
+    "project_showcase": true,
+    "client_management": true,
+    "design_collaboration": true,
+    "analytics_tracking": true
+  },
+  "author": "Swarm Intelligence Team",
+  "contact": "https://dadudekc.com/contact",
+  "repository": "https://github.com/weareswarm/dad-dek-portfolio",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "hostinger-reach-online-plugin",
+  "version": "1.0.0",
+  "description": "Hostinger Reach subscription and engagement plugin for We Are Swarm Online",
+  "type": "wordpress-plugin",
+  "author": "Hostinger",
+  "license": "GPL-2.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hostinger/hostinger-reach"
+  },
+  "wordpress": {
+    "version-required": "5.0",
+    "tested-up-to": "6.8"
+  },
+  "files": [
+    "hostinger-reach/hostinger-reach.php",
+    "hostinger-reach/frontend/dist/blocks/subscription.css"
+  ],
+  "dependencies": [],
+  "tags": ["subscription", "engagement", "newsletter", "blocks"],
+  "homepage": "https://hostinger.com"
+}

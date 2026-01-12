@@ -1,0 +1,34 @@
+{
+  "site": "weareswarm.site",
+  "domain": "weareswarm.site",
+  "description": "WeAreSwarm - Swarm Intelligence and Agent Coordination Platform",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "swarm-theme",
+        "version": "2.0.0",
+        "active": true
+      }
+    ],
+    "plugins": []
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.2.28",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "swarm_intelligence": true,
+    "agent_coordination": true,
+    "missions_system": true,
+    "els_suite": true,
+    "api_integration": true
+  },
+  "author": "Swarm Intelligence Collective",
+  "contact": "https://weareswarm.site",
+  "repository": "https://github.com/weareswarm/swarm-theme",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

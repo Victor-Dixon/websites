@@ -1,0 +1,39 @@
+{
+  "site": "digitaldreamscape.site",
+  "domain": "digitaldreamscape.site",
+  "description": "Digital Dreamscape - Build-in-public & streaming hub",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "digitaldreamscape-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "hostinger-reach-plugin",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "streaming": true,
+    "community": true,
+    "build_in_public": true,
+    "analytics": false
+  },
+  "author": "Victor Dixon",
+  "contact": "https://dadudekc.com",
+  "repository": "https://github.com/dadudekc/digitaldreamscape",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

@@ -1,0 +1,234 @@
+/*
+Theme Name: WeAreSwarm
+Description: Swarm Intelligence & Collective AI Agent Coordination Theme
+Version: 1.0.0
+Author: Swarm Intelligence Collective
+Text Domain: weareswarmonline
+*/
+
+/* ==========================================================================
+   SWARM INTELLIGENCE THEME - Core Styles
+   ========================================================================== */
+
+:root {
+    /* Swarm Intelligence Color Palette */
+    --swarm-purple: #a855f7;
+    --swarm-cyan: #06b6d4;
+    --swarm-pink: #ec4899;
+    --swarm-yellow: #f59e0b;
+    --swarm-dark: #1a1a2e;
+    --swarm-darker: #16213e;
+    --swarm-text: #ffffff;
+    --swarm-text-secondary: #e2e8f0;
+
+    /* Swarm Animation Variables */
+    --swarm-pulse-duration: 2s;
+    --swarm-orbit-duration: 8s;
+    --swarm-connect-duration: 2s;
+    --swarm-glow-duration: 4s;
+}
+
+/* Base Swarm Styling */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, var(--swarm-dark) 0%, var(--swarm-darker) 100%);
+    color: var(--swarm-text);
+    line-height: 1.6;
+}
+
+/* Swarm Gradient Backgrounds */
+.swarm-bg-primary {
+    background: linear-gradient(135deg, var(--swarm-dark) 0%, var(--swarm-darker) 50%, var(--swarm-purple) 100%);
+}
+
+.swarm-bg-secondary {
+    background: linear-gradient(135deg, var(--swarm-purple) 0%, var(--swarm-cyan) 50%, var(--swarm-pink) 100%);
+}
+
+/* Swarm Animations */
+@keyframes swarmPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(168, 85, 247, 0.6), 0 0 60px rgba(168, 85, 247, 0.3);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes swarmOrbit {
+    0% { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+}
+
+@keyframes swarmConnect {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes swarmGlow {
+    0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+    50% { filter: hue-rotate(180deg) brightness(1.2); }
+}
+
+/* Swarm Interactive Elements */
+.swarm-pulse { animation: swarmPulse var(--swarm-pulse-duration) ease-in-out infinite; }
+.swarm-orbit { animation: swarmOrbit var(--swarm-orbit-duration) linear infinite; }
+.swarm-connect { animation: swarmConnect var(--swarm-connect-duration) ease-in-out infinite; }
+.swarm-glow { animation: swarmGlow var(--swarm-glow-duration) ease-in-out infinite; }
+
+/* Agent Node Styling */
+.agent-node {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--swarm-purple);
+    border-radius: 50%;
+    animation: swarmConnect 3s ease-in-out infinite;
+}
+
+.agent-node.agent-1 { background: var(--swarm-purple); }
+.agent-node.agent-2 { background: var(--swarm-cyan); }
+.agent-node.agent-3 { background: var(--swarm-pink); }
+.agent-node.agent-4 { background: var(--swarm-yellow); }
+
+/* Swarm Card Components */
+.swarm-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.swarm-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(168, 85, 247, 0.3);
+    transform: translateY(-4px);
+}
+
+/* Swarm Button Styles */
+.swarm-btn-primary {
+    background: linear-gradient(135deg, var(--swarm-purple) 0%, var(--swarm-cyan) 100%);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.swarm-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
+}
+
+.swarm-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.swarm-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Swarm Typography */
+.swarm-heading-primary {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.swarm-heading-secondary {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+}
+
+.swarm-text-primary {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--swarm-text);
+}
+
+.swarm-text-secondary {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--swarm-text-secondary);
+}
+
+/* Swarm Grid Layouts */
+.swarm-grid-agents {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.swarm-grid-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+/* Swarm Neural Network Background */
+.neural-network-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+    background-size: 100px 100px;
+    animation: swarmGlow 8s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .swarm-grid-agents {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .swarm-grid-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .swarm-heading-primary {
+        font-size: clamp(2rem, 8vw, 4rem);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .swarm-pulse,
+    .swarm-orbit,
+    .swarm-connect,
+    .swarm-glow {
+        animation: none;
+    }
+}
+
+/* Legacy Support */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+header { background: var(--swarm-dark); color: var(--swarm-text); padding: 20px 0; }
+footer { background: rgba(255, 255, 255, 0.05); padding: 20px 0; text-align: center; }

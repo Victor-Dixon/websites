@@ -1,8 +1,13 @@
 // Public JS placeholder
 console.log('Trading Robot Plug Public Scripts Loaded');
 
+// #region API Configuration
+// Load centralized API configuration utilities
+// Note: This file should be loaded before this script via WordPress enqueue
+// #endregion
+
 // #region agent log
-(function() {
+(function () {
     const logData = {
         location: 'public.js:4',
         message: 'Public script loaded',
@@ -12,18 +17,18 @@ console.log('Trading Robot Plug Public Scripts Loaded');
         runId: 'run1',
         hypothesisId: 'E'
     };
-    fetch('http://127.0.0.1:7245/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89', {
+    fetch(getIngestionApiUrl(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(logData)
-    }).catch(() => {});
+    }).catch(() => { });
 })();
 // #endregion
 
 // Chart loading functionality
-(function() {
+(function () {
     // #region agent log
-    (function() {
+    (function () {
         const logData = {
             location: 'public.js:chart-init',
             message: 'Chart initialization started',
@@ -33,44 +38,28 @@ console.log('Trading Robot Plug Public Scripts Loaded');
             runId: 'run1',
             hypothesisId: 'B'
         };
-        fetch('http://127.0.0.1:7245/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89', {
+        fetch(getIngestionApiUrl(), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(logData)
-        }).catch(() => {});
+        }).catch(() => { });
     })();
     // #endregion
 
-    const chartPlaceholder = document.querySelector('.trp-chart-placeholder');
-    if (!chartPlaceholder) {
-        // #region agent log
-        (function() {
-            const logData = {
-                location: 'public.js:chart-check',
-                message: 'Chart placeholder not found',
-                data: {},
-                timestamp: Date.now(),
-                sessionId: 'debug-session',
-                runId: 'run1',
-                hypothesisId: 'B'
-            };
-            fetch('http://127.0.0.1:7245/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(logData)
-            }).catch(() => {});
-        })();
-        // #endregion
-        return;
+    // Initialize trading chart
+    const chartContainer = document.querySelector('.trp-chart-container');
+    if (chartContainer) {
+        initializeTradingChart(chartContainer);
+    }
     }
 
     // Check if Chart.js is loaded
     // #region agent log
-    (function() {
+    (function () {
         const logData = {
             location: 'public.js:chart-library-check',
             message: 'Checking for chart library',
-            data: { 
+            data: {
                 chartJsExists: typeof Chart !== 'undefined',
                 windowChart: typeof window.Chart !== 'undefined'
             },
@@ -79,53 +68,39 @@ console.log('Trading Robot Plug Public Scripts Loaded');
             runId: 'run1',
             hypothesisId: 'B'
         };
-        fetch('http://127.0.0.1:7245/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89', {
+        fetch(getIngestionApiUrl(), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(logData)
-        }).catch(() => {});
+        }).catch(() => { });
     })();
     // #endregion
 
     // Try to load chart data
-    // #region agent log
-    console.log('[DEBUG] Chart loading started');
-    // #endregion
-    
     // Get REST API URL from localized script or fallback
     let restUrl;
     if (window.tradingRobotPlug && window.tradingRobotPlug.restUrl) {
         restUrl = window.tradingRobotPlug.restUrl;
-        console.log('[DEBUG] Using localized REST URL:', restUrl);
     } else if (window.wpApiSettings && window.wpApiSettings.root) {
         // Remove /wp/v2/ from the root URL and add our namespace
         restUrl = window.wpApiSettings.root.replace(/\/wp\/v2\/?$/, '') + 'tradingrobotplug/v1/';
-        console.log('[DEBUG] Using wpApiSettings REST URL:', restUrl);
     } else {
         restUrl = '/wp-json/tradingrobotplug/v1/';
-        console.log('[DEBUG] Using fallback REST URL:', restUrl);
     }
-    
+
     // Ensure restUrl ends with /
     if (!restUrl.endsWith('/')) {
         restUrl += '/';
     }
-    
+
     const chartDataUrl = restUrl + 'chart-data';
-    console.log('[DEBUG] Final chart data URL:', chartDataUrl);
-    
+
     // #region agent log
-    console.log('[DEBUG] REST URL:', restUrl);
-    console.log('[DEBUG] Chart data URL:', chartDataUrl);
-    console.log('[DEBUG] wpApiSettings exists:', !!window.wpApiSettings);
-    // #endregion
-    
-    // #region agent log
-    (function() {
+    (function () {
         const logData = {
             location: 'public.js:before-fetch',
             message: 'Before fetching chart data',
-            data: { 
+            data: {
                 restUrl: restUrl,
                 chartDataUrl: chartDataUrl,
                 wpApiSettingsExists: !!window.wpApiSettings
@@ -135,17 +110,17 @@ console.log('Trading Robot Plug Public Scripts Loaded');
             runId: 'run1',
             hypothesisId: 'A'
         };
-        fetch('http://127.0.0.1:7245/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89', {
+        fetch(getIngestionApiUrl(), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(logData)
-        }).catch(() => {});
+        }).catch(() => { });
     })();
     // #endregion
 
     // Test endpoint first
     console.log('[DEBUG] Testing endpoint accessibility:', chartDataUrl);
-    
+
     fetch(chartDataUrl, {
         method: 'GET',
         headers: {
@@ -157,11 +132,11 @@ console.log('Trading Robot Plug Public Scripts Loaded');
         .then(response => {
             // #region agent log
             console.log('[DEBUG] Fetch response:', response.status, response.statusText);
-            (function() {
+            (function () {
                 const logData = {
                     location: 'public.js:fetch-response',
                     message: 'Fetch response received',
-                    data: { 
+                    data: {
                         status: response.status,
                         statusText: response.statusText,
                         ok: response.ok,
@@ -172,11 +147,11 @@ console.log('Trading Robot Plug Public Scripts Loaded');
                     runId: 'run1',
                     hypothesisId: 'A'
                 };
-                fetch('http://127.0.0.1:7245/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89', {
+                fetch(getIngestionApiUrl(), {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(logData)
-                }).catch(() => {});
+                }).catch(() => { });
             })();
             // #endregion
 
@@ -191,11 +166,11 @@ console.log('Trading Robot Plug Public Scripts Loaded');
         })
         .then(data => {
             // #region agent log
-            (function() {
+            (function () {
                 const logData = {
                     location: 'public.js:fetch-success',
                     message: 'Chart data received',
-                    data: { 
+                    data: {
                         hasData: !!data,
                         dataKeys: data ? Object.keys(data) : [],
                         dataLength: data && data.length ? data.length : 0
@@ -205,11 +180,11 @@ console.log('Trading Robot Plug Public Scripts Loaded');
                     runId: 'run1',
                     hypothesisId: 'A'
                 };
-                fetch('http://127.0.0.1:7245/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89', {
+                fetch(getIngestionApiUrl(), {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(logData)
-                }).catch(() => {});
+                }).catch(() => { });
             })();
             // #endregion
 
@@ -226,11 +201,11 @@ console.log('Trading Robot Plug Public Scripts Loaded');
             console.error('[DEBUG] Error message:', error.message);
             console.error('[DEBUG] Error stack:', error.stack);
             console.error('[DEBUG] Chart data URL attempted:', chartDataUrl);
-            (function() {
+            (function () {
                 const logData = {
                     location: 'public.js:fetch-error',
                     message: 'Chart data fetch failed',
-                    data: { 
+                    data: {
                         errorMessage: error.message,
                         errorStack: error.stack,
                         errorName: error.name,
@@ -241,25 +216,25 @@ console.log('Trading Robot Plug Public Scripts Loaded');
                     runId: 'run1',
                     hypothesisId: 'A'
                 };
-                fetch('http://127.0.0.1:7245/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89', {
+                fetch(getIngestionApiUrl(), {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(logData)
-                }).catch(() => {});
+                }).catch(() => { });
             })();
             // #endregion
 
             // Show detailed error message and try fallback
             const errorMsg = error.message || 'Unknown error';
             console.warn('[DEBUG] Attempting fallback with mock data');
-            
+
             // Generate fallback mock data
             const fallbackData = generateMockChartData();
             if (typeof Chart !== 'undefined' && fallbackData) {
                 console.log('[DEBUG] Rendering chart with fallback data');
                 renderChart(fallbackData);
             } else {
-                chartPlaceholder.innerHTML = 'FAILED TO LOAD CHART DATA<br><small style="font-size: 12px; color: #999;">' + 
+                chartPlaceholder.innerHTML = 'FAILED TO LOAD CHART DATA<br><small style="font-size: 12px; color: #999;">' +
                     errorMsg.substring(0, 100) + '<br>Endpoint: ' + chartDataUrl + '</small>';
                 chartPlaceholder.style.color = '#dc3545';
                 chartPlaceholder.style.textAlign = 'center';
@@ -271,17 +246,17 @@ console.log('Trading Robot Plug Public Scripts Loaded');
         const labels = [];
         const data = [];
         let cumulative = 0;
-        
+
         for (let i = 29; i >= 0; i--) {
             const date = new Date();
             date.setDate(date.getDate() - i);
             labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
-            
+
             const dailyPnl = 100 + Math.random() * 50 - 25; // Random between 75-125
             cumulative += dailyPnl;
             data.push(Math.round(cumulative * 100) / 100);
         }
-        
+
         return {
             labels: labels,
             datasets: [{
@@ -298,11 +273,11 @@ console.log('Trading Robot Plug Public Scripts Loaded');
     function renderChart(data) {
         // #region agent log
         console.log('[DEBUG] Rendering chart with data:', data);
-        (function() {
+        (function () {
             const logData = {
                 location: 'public.js:render-chart',
                 message: 'Rendering chart',
-                data: { 
+                data: {
                     chartType: typeof Chart,
                     dataProvided: !!data,
                     hasLabels: data && data.labels ? data.labels.length : 0,
@@ -313,11 +288,11 @@ console.log('Trading Robot Plug Public Scripts Loaded');
                 runId: 'run1',
                 hypothesisId: 'B'
             };
-            fetch('http://127.0.0.1:7245/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89', {
+            fetch(getIngestionApiUrl(), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(logData)
-            }).catch(() => {});
+            }).catch(() => { });
         })();
         // #endregion
 
@@ -362,7 +337,7 @@ console.log('Trading Robot Plug Public Scripts Loaded');
                         y: {
                             beginAtZero: false,
                             ticks: {
-                                callback: function(value) {
+                                callback: function (value) {
                                     return '$' + value.toFixed(2);
                                 }
                             }
@@ -377,3 +352,163 @@ console.log('Trading Robot Plug Public Scripts Loaded');
         }
     }
 })();
+
+/**
+ * Trading Chart Implementation
+ * Uses Canvas API for lightweight charting without external dependencies
+ */
+function initializeTradingChart(container) {
+    if (!container) return;
+
+    // Create canvas element
+    const canvas = document.createElement('canvas');
+    canvas.width = container.clientWidth || 800;
+    canvas.height = container.clientHeight || 400;
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    container.innerHTML = '';
+    container.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+
+    // Sample trading data (replace with real API data)
+    const sampleData = generateSampleTradingData();
+
+    // Chart configuration
+    const config = {
+        data: sampleData,
+        colors: {
+            background: '#1a1a1a',
+            grid: '#333',
+            bullish: '#10b981',
+            bearish: '#ef4444',
+            volume: 'rgba(59, 130, 246, 0.3)'
+        }
+    };
+
+    // Render chart
+    renderTradingChart(ctx, config);
+
+    // Auto-refresh every 30 seconds
+    setInterval(() => {
+        const newData = generateSampleTradingData();
+        config.data = newData;
+        renderTradingChart(ctx, config);
+    }, 30000);
+}
+
+function generateSampleTradingData() {
+    const data = [];
+    const basePrice = 100;
+    let currentPrice = basePrice;
+
+    for (let i = 0; i < 100; i++) {
+        const change = (Math.random() - 0.5) * 4; // Random change between -2 and +2
+        currentPrice += change;
+        currentPrice = Math.max(50, Math.min(150, currentPrice)); // Keep within bounds
+
+        data.push({
+            time: new Date(Date.now() - (99 - i) * 60000), // 1 minute intervals
+            price: currentPrice,
+            volume: Math.floor(Math.random() * 1000) + 100
+        });
+    }
+
+    return data;
+}
+
+function renderTradingChart(ctx, config) {
+    const { data, colors } = config;
+    const { width, height } = ctx.canvas;
+
+    // Clear canvas
+    ctx.fillStyle = colors.background;
+    ctx.fillRect(0, 0, width, height);
+
+    if (!data || data.length === 0) return;
+
+    // Calculate price range
+    const prices = data.map(d => d.price);
+    const minPrice = Math.min(...prices);
+    const maxPrice = Math.max(...prices);
+    const priceRange = maxPrice - minPrice;
+    const padding = priceRange * 0.1;
+
+    // Chart dimensions
+    const chartHeight = height * 0.7;
+    const volumeHeight = height * 0.2;
+    const chartTop = 20;
+    const volumeTop = chartTop + chartHeight + 10;
+
+    // Draw grid
+    ctx.strokeStyle = colors.grid;
+    ctx.lineWidth = 0.5;
+
+    // Horizontal grid lines
+    for (let i = 0; i <= 5; i++) {
+        const y = chartTop + (chartHeight * i) / 5;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+
+        // Price labels
+        const price = maxPrice - (priceRange * i) / 5;
+        ctx.fillStyle = '#999';
+        ctx.font = '12px monospace';
+        ctx.fillText(price.toFixed(2), 5, y - 5);
+    }
+
+    // Draw price line
+    ctx.strokeStyle = colors.bullish;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+
+    data.forEach((point, index) => {
+        const x = (index / (data.length - 1)) * width;
+        const y = chartTop + chartHeight - ((point.price - minPrice) / priceRange) * chartHeight;
+
+        if (index === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    });
+
+    ctx.stroke();
+
+    // Draw volume bars
+    const maxVolume = Math.max(...data.map(d => d.volume));
+
+    data.forEach((point, index) => {
+        const x = (index / (data.length - 1)) * width;
+        const barWidth = width / data.length;
+        const barHeight = (point.volume / maxVolume) * volumeHeight;
+
+        ctx.fillStyle = colors.volume;
+        ctx.fillRect(x - barWidth/2, volumeTop + volumeHeight - barHeight, barWidth, barHeight);
+    });
+
+    // Draw current price indicator
+    const currentPrice = data[data.length - 1].price;
+    const currentY = chartTop + chartHeight - ((currentPrice - minPrice) / priceRange) * chartHeight;
+
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(0, currentY);
+    ctx.lineTo(width, currentY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Current price label
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 14px monospace';
+    ctx.fillText(`$${currentPrice.toFixed(2)}`, width - 80, currentY - 10);
+}
+
+// Export for potential external use
+if (typeof window !== 'undefined') {
+    window.initializeTradingChart = initializeTradingChart;
+}

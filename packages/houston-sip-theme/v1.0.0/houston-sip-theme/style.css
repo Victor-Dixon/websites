@@ -1,0 +1,542 @@
+/*
+Theme Name: Houston Sip Queen
+Description: A luxury mobile bartending WordPress theme for Houston Sip Queen - Southern glam, nightlife elegance, and premium cocktail experiences.
+Author: Agent-7 Web Development Specialist
+Version: 1.0.0
+Text Domain: houstonsipqueen
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tags: luxury, bartending, mobile, cocktails, nightlife, southern, glam, events
+*/
+
+/* ==========================================================================
+   Houston Sip Queen Theme - Luxury Mobile Bartending
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #0B0B0F;
+    background-color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Luxury Brand Colors - Houston Sip Queen
+   ========================================================================== */
+
+:root {
+    --onyx: #0B0B0F;
+    --champagne: #F5E6C8;
+    --rosegold: #C9A26A;
+    --berry: #7A1E3A;
+    --white: #FFFFFF;
+    --onyx-light: #2A2A35;
+    --champagne-dark: #E8D5B7;
+    --berry-light: #9B4A5F;
+}
+
+/* ==========================================================================
+   Typography - Luxury Southern Glam
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', 'Cinzel', serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--onyx);
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.8rem; }
+h3 { font-size: 2.2rem; }
+h4 { font-size: 1.8rem; }
+h5 { font-size: 1.5rem; }
+h6 { font-size: 1.25rem; }
+
+p {
+    margin-bottom: 1.5rem;
+    color: var(--onyx-light);
+    line-height: 1.7;
+}
+
+/* ==========================================================================
+   Layout - Luxury Mobile-First
+   ========================================================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.site-header {
+    background: linear-gradient(135deg, var(--onyx) 0%, var(--onyx-light) 100%);
+    color: white;
+    padding: 1.5rem 0;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(11, 11, 15, 0.3);
+}
+
+.site-main {
+    min-height: calc(100vh - 250px);
+}
+
+.site-footer {
+    background: var(--onyx);
+    color: var(--champagne);
+    padding: 3rem 0 2rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Navigation - Elegant Mobile Bartending
+   ========================================================================== */
+
+.main-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-branding h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--rosegold), var(--champagne));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: var(--champagne);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: var(--rosegold);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--rosegold);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Buttons - Luxury Pill Design
+   ========================================================================== */
+
+.btn, .button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: 2px solid var(--rosegold);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--rosegold);
+    color: var(--onyx);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.btn:hover, .button:hover {
+    background: var(--berry);
+    border-color: var(--berry);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(122, 30, 58, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--rosegold);
+    border: 2px solid var(--rosegold);
+}
+
+.btn-secondary:hover {
+    background: var(--rosegold);
+    color: var(--onyx);
+}
+
+/* ==========================================================================
+   Hero Section - Luxury Mobile Bartending
+   ========================================================================== */
+
+.hero-luxury {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--onyx) 0%, var(--onyx-light) 50%, var(--berry) 100%);
+}
+
+.hero-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(201, 162, 106, 0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(201, 162, 106, 0.08)"/><circle cx="40" cy="70" r="0.8" fill="rgba(201, 162, 106, 0.12)"/><circle cx="90" cy="80" r="1.2" fill="rgba(201, 162, 106, 0.09)"/></svg>');
+    opacity: 0.6;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--champagne), var(--rosegold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from { filter: brightness(1); }
+    to { filter: brightness(1.2); }
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--champagne);
+    margin-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+
+.hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Cocktail Cards - Luxury Presentation
+   ========================================================================== */
+
+.cocktail-card {
+    background: linear-gradient(135deg, var(--white) 0%, var(--champagne) 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(11, 11, 15, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(201, 162, 106, 0.2);
+}
+
+.cocktail-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(11, 11, 15, 0.2);
+}
+
+.cocktail-image {
+    height: 250px;
+    background: linear-gradient(135deg, var(--champagne) 0%, var(--rosegold) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cocktail-glass {
+    font-size: 4rem;
+    opacity: 0.8;
+    filter: drop-shadow(0 4px 8px rgba(11, 11, 15, 0.3));
+}
+
+.cocktail-content {
+    padding: 2rem;
+}
+
+.cocktail-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--onyx);
+}
+
+.cocktail-description {
+    color: var(--onyx-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Package Cards - Premium Offerings
+   ========================================================================== */
+
+.package-card {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(11, 11, 15, 0.08);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.package-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rosegold), var(--berry));
+}
+
+.package-card:hover {
+    border-color: var(--rosegold);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(11, 11, 15, 0.15);
+}
+
+.package-featured {
+    border-color: var(--rosegold);
+    position: relative;
+}
+
+.package-featured::after {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: var(--berry);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   Animations - Luxury Interactions
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Responsive Design - Mobile Bartending Focus
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none; /* Mobile menu implementation needed */
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+
+    .cocktail-card {
+        margin: 0 1rem 2rem;
+    }
+}
+
+/* ==========================================================================
+   Form Styling - Luxury Quote Forms
+   ========================================================================== */
+
+.quote-form {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(11, 11, 15, 0.1);
+    border: 1px solid rgba(201, 162, 106, 0.2);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--onyx);
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(201, 162, 106, 0.3);
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s ease;
+    background: rgba(245, 230, 200, 0.1);
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--rosegold);
+    box-shadow: 0 0 0 3px rgba(201, 162, 106, 0.1);
+}
+
+/* ==========================================================================
+   Gallery - Luxury Event Photography
+   ========================================================================== */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(122, 30, 58, 0.8), rgba(11, 11, 15, 0.6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Footer Luxury Styling
+   ========================================================================== */
+
+.footer-luxury {
+    background: linear-gradient(135deg, var(--onyx) 0%, var(--onyx-light) 100%);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: var(--champagne);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--rosegold);
+}

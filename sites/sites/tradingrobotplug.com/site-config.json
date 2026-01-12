@@ -1,0 +1,57 @@
+{
+  "site": "tradingrobotplug.com",
+  "domain": "tradingrobotplug.com",
+  "description": "Trading Robot Plug - Advanced trading platform with AI-powered strategies and performance analytics",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "trading-robot-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "trading-robot-plugin",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "trading-plans-automator",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "trp-paper-trading-stats",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "trading-robot-service",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "trading_robot": true,
+    "ai_strategies": true,
+    "performance_analytics": true,
+    "paper_trading": true,
+    "automated_execution": true,
+    "real_time_data": true,
+    "blog_integration": true
+  },
+  "author": "Trading Robot Development Team",
+  "contact": "https://tradingrobotplug.com/contact",
+  "repository": "https://github.com/tradingrobotplug/platform",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

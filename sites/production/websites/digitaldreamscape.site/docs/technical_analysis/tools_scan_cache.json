@@ -1,0 +1,4511 @@
+{
+  "scan_metadata": {
+    "project_path": "D:\\Agent_Cellphone_V2_Repository\\tools",
+    "scan_timestamp": "2026-01-01T18:38:47.806705",
+    "scan_duration": 0.99,
+    "scanner_version": "universal_v1",
+    "cached": false
+  },
+  "scan_data": {
+    "validate_closure_format.py": {
+      "language": "python",
+      "functions": [
+        "validate_file",
+        "main",
+        "__init__",
+        "validate",
+        "_check_required_fields",
+        "_check_forbidden_elements",
+        "_check_public_build_signal",
+        "_check_verification_block",
+        "_check_status",
+        "_check_audit_evidence"
+      ],
+      "classes": {
+        "ClosureValidator": [
+          "__init__",
+          "validate",
+          "_check_required_fields",
+          "_check_forbidden_elements",
+          "_check_public_build_signal",
+          "_check_verification_block",
+          "_check_status",
+          "_check_audit_evidence"
+        ]
+      },
+      "routes": []
+    },
+    "test_deployment_staging.py": {
+      "language": "python",
+      "functions": [
+        "test_snapshot_creation",
+        "test_snapshot_listing",
+        "test_snapshot_deletion",
+        "test_staging_deployment",
+        "test_rollback_functionality",
+        "cleanup_test_data",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "configuration_sync_checker.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "extract_wp_config_constants",
+        "analyze_site_config",
+        "analyze_all_sites",
+        "compare_configs",
+        "generate_report",
+        "save_report"
+      ],
+      "classes": {
+        "ConfigAnalysis": [],
+        "ConfigurationSyncChecker": [
+          "__init__",
+          "extract_wp_config_constants",
+          "analyze_site_config",
+          "analyze_all_sites",
+          "compare_configs",
+          "generate_report",
+          "save_report"
+        ]
+      },
+      "routes": []
+    },
+    "devlog_manager.py": {
+      "language": "python",
+      "functions": [
+        "_repo_root",
+        "_run",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "tag_analyzer.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "analyze_file",
+        "analyze_directory",
+        "generate_report",
+        "save_report"
+      ],
+      "classes": {
+        "TagAnalysis": [],
+        "ToolTaggingAnalyzer": [
+          "__init__",
+          "analyze_file",
+          "analyze_directory",
+          "generate_report",
+          "save_report"
+        ]
+      },
+      "routes": []
+    },
+    "master_task_log_to_cycle_planner.py": {
+      "language": "python",
+      "functions": [
+        "_now_iso",
+        "_detect_section",
+        "_extract_priority",
+        "_extract_points",
+        "_extract_assigned_agents",
+        "_strip_agent_tags",
+        "parse_master_task_log",
+        "_filter_tasks_for_agent",
+        "build_cycle_planner_payload",
+        "write_cycle_planner_file",
+        "main"
+      ],
+      "classes": {
+        "MasterTask": []
+      },
+      "routes": []
+    },
+    "ssot_tagging_validator.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "_load_ssot_domains",
+        "validate_file",
+        "_suggest_domain_from_path",
+        "validate_directory",
+        "generate_report"
+      ],
+      "classes": {
+        "SSOTValidationResult": [],
+        "SSOTDomainStats": [],
+        "SSOTTaggingValidator": [
+          "__init__",
+          "_load_ssot_domains",
+          "validate_file",
+          "_suggest_domain_from_path",
+          "validate_directory",
+          "generate_report"
+        ]
+      },
+      "routes": []
+    },
+    "verify_deployment_integration.py": {
+      "language": "python",
+      "functions": [
+        "_write_outputs",
+        "main",
+        "__init__",
+        "_build_api_url",
+        "_get",
+        "check_accessibility",
+        "check_wp_api",
+        "check_rest_endpoint",
+        "verify_site",
+        "run"
+      ],
+      "classes": {
+        "DeploymentVerifier": [
+          "__init__",
+          "_build_api_url",
+          "_get",
+          "check_accessibility",
+          "check_wp_api",
+          "check_rest_endpoint",
+          "verify_site",
+          "run"
+        ]
+      },
+      "routes": []
+    },
+    "audit_broken_tools_phase3.py": {
+      "language": "python",
+      "functions": [
+        "audit_tool",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "check_audit_evidence.py": {
+      "language": "python",
+      "functions": [
+        "check_latest_audit_evidence"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "protocol_validator.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "validate_file",
+        "_validate_session_closure",
+        "_validate_messaging_contracts",
+        "_validate_git_hygiene"
+      ],
+      "classes": {
+        "ProtocolValidator": [
+          "__init__",
+          "validate_file",
+          "_validate_session_closure",
+          "_validate_messaging_contracts",
+          "_validate_git_hygiene"
+        ]
+      },
+      "routes": []
+    },
+    "comprehensive_audit.py": {
+      "language": "python",
+      "functions": [
+        "audit_tool",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "discord_health_monitor.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "start_monitoring",
+        "stop_monitoring",
+        "update_heartbeat",
+        "_monitor_loop",
+        "_handle_timeout",
+        "_restart_heartbeat",
+        "_attempt_graceful_restart",
+        "_trigger_shutdown",
+        "_check_bot_responsiveness",
+        "get_health_status"
+      ],
+      "classes": {
+        "DiscordHealthMonitor": [
+          "__init__",
+          "start_monitoring",
+          "stop_monitoring",
+          "update_heartbeat",
+          "_monitor_loop",
+          "_handle_timeout",
+          "_restart_heartbeat",
+          "_attempt_graceful_restart",
+          "_trigger_shutdown",
+          "_check_bot_responsiveness",
+          "get_health_status"
+        ]
+      },
+      "routes": []
+    },
+    "calibrate_agent_coordinates.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "calibrate_all_agents",
+        "_calibrate_agent",
+        "validate_screen_bounds",
+        "generate_coordinate_report",
+        "save_report"
+      ],
+      "classes": {
+        "CoordinateCalibrator": [
+          "__init__",
+          "calibrate_all_agents",
+          "_calibrate_agent",
+          "validate_screen_bounds",
+          "generate_coordinate_report",
+          "save_report"
+        ]
+      },
+      "routes": []
+    },
+    "system_health_dashboard.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "start_monitoring",
+        "stop_monitoring",
+        "update_service_pid",
+        "_monitor_loop",
+        "_check_all_services",
+        "_check_system_resources",
+        "_check_agent_coordinates",
+        "_add_alert",
+        "_cleanup_old_alerts",
+        "get_dashboard_data",
+        "_get_system_info",
+        "_get_summary",
+        "print_dashboard"
+      ],
+      "classes": {
+        "SystemHealthDashboard": [
+          "__init__",
+          "start_monitoring",
+          "stop_monitoring",
+          "update_service_pid",
+          "_monitor_loop",
+          "_check_all_services",
+          "_check_system_resources",
+          "_check_agent_coordinates",
+          "_add_alert",
+          "_cleanup_old_alerts",
+          "get_dashboard_data",
+          "_get_system_info",
+          "_get_summary",
+          "print_dashboard"
+        ]
+      },
+      "routes": []
+    },
+    "ssot_tagging_batch_assigner.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "create_tagging_batches",
+        "_infer_domain_from_file",
+        "_create_batch",
+        "_estimate_time",
+        "_generate_instructions",
+        "_create_summary",
+        "_create_assignments",
+        "generate_assignment_report"
+      ],
+      "classes": {
+        "SSOTTaggingBatchAssigner": [
+          "__init__",
+          "create_tagging_batches",
+          "_infer_domain_from_file",
+          "_create_batch",
+          "_estimate_time",
+          "_generate_instructions",
+          "_create_summary",
+          "_create_assignments",
+          "generate_assignment_report"
+        ]
+      },
+      "routes": []
+    },
+    "devlog_poster_agent_channel.py": {
+      "language": "python",
+      "functions": [
+        "post_devlog",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "ssot_coordination_report.py": {
+      "language": "python",
+      "functions": [
+        "load_batch_assignments",
+        "generate_coordination_report",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "start_discord_bot.py": {
+      "language": "python",
+      "functions": [
+        "get_existing_pid",
+        "check_process_running",
+        "write_pid",
+        "stop_existing_bot",
+        "start_bot"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "start_discord_system.py": {
+      "language": "python",
+      "functions": [
+        "_repo_root",
+        "_load_env",
+        "_taskkill",
+        "_read_pid",
+        "_write_pid",
+        "_start_detached",
+        "_iter_pids_by_cmd_substrings",
+        "_kill_by_cmd_substrings",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "add_mcp_to_cursor_settings.py": {
+      "language": "python",
+      "functions": [
+        "get_cursor_settings_path",
+        "load_mcp_config",
+        "add_mcp_to_settings",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "wordpress_manager.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "_resolve_site_domain",
+        "_load_site_configs",
+        "connect",
+        "disconnect",
+        "execute_wp_cli",
+        "create_page",
+        "list_pages",
+        "add_to_menu",
+        "deploy_theme",
+        "deploy_plugin_file",
+        "deploy_file",
+        "purge_caches",
+        "activate_theme",
+        "list_themes",
+        "activate_plugin",
+        "deactivate_plugin",
+        "list_plugins"
+      ],
+      "classes": {
+        "WordPressManager": [
+          "__init__",
+          "_resolve_site_domain",
+          "_load_site_configs",
+          "connect",
+          "disconnect",
+          "execute_wp_cli",
+          "create_page",
+          "list_pages",
+          "add_to_menu",
+          "deploy_theme",
+          "deploy_plugin_file",
+          "deploy_file",
+          "purge_caches",
+          "activate_theme",
+          "list_themes",
+          "activate_plugin",
+          "deactivate_plugin",
+          "list_plugins"
+        ]
+      },
+      "routes": []
+    },
+    "__init__.py": {
+      "language": "python",
+      "functions": [
+        "__getattr__"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "advisor_cli.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "_print_recommendation",
+        "_print_validation",
+        "_print_swarm_analysis"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "setup_cursor_mcp.py": {
+      "language": "python",
+      "functions": [
+        "get_cursor_config_paths",
+        "load_mcp_config",
+        "create_cursor_mcp_config",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "update_github_repo_description.py": {
+      "language": "python",
+      "functions": [
+        "get_github_token",
+        "update_repo_description",
+        "get_repo_info",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_mcp_server_protocol.py": {
+      "language": "python",
+      "functions": [
+        "test_mcp_protocol_response"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "generate_cycle_accomplishments_report.py": {
+      "language": "python",
+      "functions": [
+        "load_agent_status",
+        "collect_all_agent_status",
+        "generate_cycle_report",
+        "save_report",
+        "post_to_discord_channel",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "agent_bump_script.py": {
+      "language": "python",
+      "functions": [
+        "bump_agents_by_number",
+        "main",
+        "__init__",
+        "get_agent_status",
+        "update_agent_status",
+        "bump_agent_version",
+        "sync_agent_status",
+        "get_swarm_status",
+        "print_swarm_status"
+      ],
+      "classes": {
+        "AgentBumpScript": [
+          "__init__",
+          "get_agent_status",
+          "update_agent_status",
+          "bump_agent_version",
+          "sync_agent_status",
+          "get_swarm_status",
+          "print_swarm_status"
+        ]
+      },
+      "routes": []
+    },
+    "deploy_tradingrobotplug_now.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "audit_toolbelt_comprehensive.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "scan_for_tools",
+        "_scan_categories",
+        "_scan_scripts",
+        "generate_report"
+      ],
+      "classes": {
+        "ToolDiscoveryAuditor": [
+          "__init__",
+          "scan_for_tools",
+          "_scan_categories",
+          "_scan_scripts",
+          "generate_report"
+        ]
+      },
+      "routes": []
+    },
+    "generate_blog_preview.py": {
+      "language": "python",
+      "functions": [
+        "generate_preview"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "post_cycle_report_to_blog.py": {
+      "language": "python",
+      "functions": [
+        "parse_frontmatter",
+        "convert_to_html_with_styling",
+        "post_to_wordpress",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "unified_cycle_accomplishments_report.py": {
+      "language": "python",
+      "functions": [
+        "load_voice_profile",
+        "apply_victor_voice",
+        "generate_narrative_blog_content",
+        "generate_report"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "deploy_weareswarm_font_fix.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "sync_feed_to_weareswarm.py": {
+      "language": "python",
+      "functions": [
+        "parse_devlog_file",
+        "generate_feed",
+        "deploy_feed",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "deploy_weareswarm_feed_system.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "test_bi_tools.py": {
+      "language": "python",
+      "functions": [
+        "test_bi_metrics",
+        "test_bi_roi_task",
+        "test_bi_roi_optimize",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "test_toolbelt_basic.py": {
+      "language": "python",
+      "functions": [
+        "test_basic_functionality"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "tool_registry.py": {
+      "language": "python",
+      "functions": [
+        "get_tool_registry",
+        "get_mcp_servers",
+        "get_mcp_server",
+        "list_mcp_servers_by_category",
+        "get_mcp_categories",
+        "get_all_mcp_tools",
+        "count_mcp_tools",
+        "__init__",
+        "_load_registry_data",
+        "_resolve_tool_class",
+        "get_tool_class",
+        "resolve",
+        "get_tool",
+        "list_tools",
+        "list_by_category",
+        "get_categories",
+        "clear_cache"
+      ],
+      "classes": {
+        "ToolRegistry": [
+          "__init__",
+          "_load_registry_data",
+          "_resolve_tool_class",
+          "get_tool_class",
+          "resolve",
+          "get_tool",
+          "list_tools",
+          "list_by_category",
+          "get_categories",
+          "clear_cache"
+        ]
+      },
+      "routes": []
+    },
+    "toolbelt_core.py": {
+      "language": "python",
+      "functions": [
+        "get_toolbelt_core",
+        "__init__",
+        "run",
+        "list_tools",
+        "list_categories",
+        "get_tool_help",
+        "get_execution_history",
+        "clear_history",
+        "_record_execution"
+      ],
+      "classes": {
+        "ToolbeltCore": [
+          "__init__",
+          "run",
+          "list_tools",
+          "list_categories",
+          "get_tool_help",
+          "get_execution_history",
+          "clear_history",
+          "_record_execution"
+        ]
+      },
+      "routes": []
+    },
+    "tag_web_domain_ssot.py": {
+      "language": "python",
+      "functions": [
+        "has_ssot_tag",
+        "add_ssot_tag_to_file",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "test_unified_tool_registry_mcp.py": {
+      "language": "python",
+      "functions": [
+        "test_registry_health",
+        "test_tool_discovery",
+        "test_cache_management",
+        "test_mcp_server_protocol",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "test_risk_websocket.py": {
+      "language": "python",
+      "functions": [
+        "__init__",
+        "print_summary"
+      ],
+      "classes": {
+        "RiskWebSocketTester": [
+          "__init__",
+          "print_summary"
+        ]
+      },
+      "routes": []
+    },
+    "find_missing_ssot_tags.py": {
+      "language": "python",
+      "functions": [
+        "find_missing_tags"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "START_CHAT_BOT_NOW.py": {
+      "language": "python",
+      "functions": [
+        "signal_handler"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "test_twitch_config.py": {
+      "language": "python",
+      "functions": [
+        "validate_channel",
+        "validate_token",
+        "test_connection",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "ssot_tagging_distributor.py": {
+      "language": "python",
+      "functions": [
+        "distribute_tasks"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "execute_ssot_batch.py": {
+      "language": "python",
+      "functions": [
+        "load_batch_assignments",
+        "file_has_ssot_tag",
+        "add_ssot_tag_to_file",
+        "process_batch",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "fix_ssot_tag_syntax.py": {
+      "language": "python",
+      "functions": [
+        "fix_ssot_tag_in_file",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "multi_site_content_generator.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "validate_inputs",
+        "generate_dadudekc",
+        "generate_freerideinvestor",
+        "generate_tradingrobotplug",
+        "generate_weareswarm_online",
+        "generate_all",
+        "_extract_title",
+        "_extract_hook",
+        "_extract_idea",
+        "_extract_what_built",
+        "_extract_what_learned",
+        "_extract_proof",
+        "_extract_automation_offer",
+        "_extract_skills",
+        "_extract_artifact",
+        "_extract_links",
+        "_extract_trading_title",
+        "_extract_plan",
+        "_extract_signals",
+        "_extract_risk_rules",
+        "_extract_entry",
+        "_extract_management",
+        "_extract_exit",
+        "_extract_pl",
+        "_extract_what_worked",
+        "_extract_what_didnt",
+        "_extract_trading_learnings",
+        "_extract_robot_title",
+        "_extract_thesis",
+        "_extract_backtest_summary",
+        "_extract_change",
+        "_extract_reason",
+        "_extract_result",
+        "_extract_next_test",
+        "_extract_swarm_title",
+        "_extract_how_it_works",
+        "_extract_repo_structure",
+        "_extract_promo_copy",
+        "save_output"
+      ],
+      "classes": {
+        "MultiSiteContentGenerator": [
+          "__init__",
+          "validate_inputs",
+          "generate_dadudekc",
+          "generate_freerideinvestor",
+          "generate_tradingrobotplug",
+          "generate_weareswarm_online",
+          "generate_all",
+          "_extract_title",
+          "_extract_hook",
+          "_extract_idea",
+          "_extract_what_built",
+          "_extract_what_learned",
+          "_extract_proof",
+          "_extract_automation_offer",
+          "_extract_skills",
+          "_extract_artifact",
+          "_extract_links",
+          "_extract_trading_title",
+          "_extract_plan",
+          "_extract_signals",
+          "_extract_risk_rules",
+          "_extract_entry",
+          "_extract_management",
+          "_extract_exit",
+          "_extract_pl",
+          "_extract_what_worked",
+          "_extract_what_didnt",
+          "_extract_trading_learnings",
+          "_extract_robot_title",
+          "_extract_thesis",
+          "_extract_backtest_summary",
+          "_extract_change",
+          "_extract_reason",
+          "_extract_result",
+          "_extract_next_test",
+          "_extract_swarm_title",
+          "_extract_how_it_works",
+          "_extract_repo_structure",
+          "_extract_promo_copy",
+          "save_output"
+        ]
+      },
+      "routes": []
+    },
+    "swarm_to_wordpress_automation.py": {
+      "language": "python",
+      "functions": [
+        "load_state",
+        "save_state",
+        "parse_session_closure",
+        "parse_devlog",
+        "create_wordpress_post",
+        "session_closure_to_experiment",
+        "session_closure_to_project",
+        "devlog_to_blog_post",
+        "process_session_closures",
+        "process_devlogs",
+        "main"
+      ],
+      "classes": {
+        "SessionClosure": [],
+        "Devlog": []
+      },
+      "routes": []
+    },
+    "soft_onboard_cli.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "deploy_tradingrobotplug_font_fix.py": {
+      "language": "python",
+      "functions": [
+        "deploy_font_fix"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "classify_tools_signal_noise.py": {
+      "language": "python",
+      "functions": [
+        "load_tool_registry",
+        "check_file_imports",
+        "classify_tool",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "show_tool_classification.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "identify_agent1_batches.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "validate_integration_batches.py": {
+      "language": "python",
+      "functions": [
+        "validate_tag_format",
+        "validate_domain_registry",
+        "validate_tag_placement",
+        "validate_compilation",
+        "validate_file",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "automated_p0_analytics_validation.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "check_wp_config",
+        "check_live_tracking",
+        "validate_site",
+        "validate_all_sites",
+        "generate_report",
+        "save_report"
+      ],
+      "classes": {
+        "AnalyticsValidation": [],
+        "AutomatedP0AnalyticsValidator": [
+          "__init__",
+          "check_wp_config",
+          "check_live_tracking",
+          "validate_site",
+          "validate_all_sites",
+          "generate_report",
+          "save_report"
+        ]
+      },
+      "routes": []
+    },
+    "validate_all_ssot_files.py": {
+      "language": "python",
+      "functions": [
+        "extract_ssot_domain",
+        "validate_tag_format",
+        "validate_domain_registry",
+        "validate_tag_placement",
+        "validate_compilation",
+        "validate_file",
+        "find_ssot_files",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "review_unknown_tools.py": {
+      "language": "python",
+      "functions": [
+        "load_classification_report",
+        "analyze_unknown_tool",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "manage_env.py": {
+      "language": "python",
+      "functions": [
+        "parse_env_file",
+        "is_sensitive_key",
+        "generate_example",
+        "load_env_vars",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "identify_ssot_batches_needing_work.py": {
+      "language": "python",
+      "functions": [
+        "file_has_ssot_tag",
+        "scan_batch_for_work",
+        "identify_batches_needing_work",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "validate_integration_batches_7-9.py": {
+      "language": "python",
+      "functions": [
+        "validate_ssot_tag_format",
+        "validate_domain_registry",
+        "validate_tag_placement",
+        "validate_compilation",
+        "validate_file",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "validate_final_batches_29-30_35-36.py": {
+      "language": "python",
+      "functions": [
+        "load_batch_files",
+        "validate_ssot_tag_format",
+        "validate_domain_registry",
+        "validate_tag_placement",
+        "validate_compilation",
+        "validate_file",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "check_agent1_ssot_batch_status.py": {
+      "language": "python",
+      "functions": [
+        "check_agent1_batch_status"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_coordination_message.py": {
+      "language": "python",
+      "functions": [
+        "find_message_in_queue",
+        "verify_message_delivery",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "parse_validation_report.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "test_stock_api_endpoint.py": {
+      "language": "python",
+      "functions": [
+        "test_stock_api"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "validate_phase3_components.py": {
+      "language": "python",
+      "functions": [
+        "validate_component",
+        "validate_integration",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "discord_bot_health_check.py": {
+      "language": "python",
+      "functions": [
+        "check_bot_process",
+        "check_env_config",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "coordination_status_summary.py": {
+      "language": "python",
+      "functions": [
+        "get_coordination_summary"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_stock_api_endpoint.py": {
+      "language": "python",
+      "functions": [
+        "verify_stock_api"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_task_completion_status.py": {
+      "language": "python",
+      "functions": [
+        "verify_file_exists",
+        "_count_lines",
+        "verify_refactoring_status",
+        "verify_mcp_server",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "validate_php_syntax_mcp.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "compare_tag_reports.py": {
+      "language": "python",
+      "functions": [
+        "extract_summary_from_report",
+        "compare_reports",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "extract_phase3_file_lists.py": {
+      "language": "python",
+      "functions": [
+        "load_validation_report",
+        "extract_invalid_files_by_domain",
+        "generate_domain_file_lists"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "populate_validation_report.py": {
+      "language": "python",
+      "functions": [
+        "load_json_report",
+        "load_template",
+        "calculate_metrics",
+        "calculate_domain_compliance",
+        "populate_template",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "execute_phase3_final_validation.py": {
+      "language": "python",
+      "functions": [
+        "run_validation",
+        "parse_validation_results",
+        "generate_report",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_final_validation_readiness.py": {
+      "language": "python",
+      "functions": [
+        "check_phase3_completion",
+        "check_validation_tool",
+        "check_report_script",
+        "check_documentation_templates",
+        "check_output_directories",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "phase3_validation_readiness.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "load_phase3_files",
+        "check_file_readiness",
+        "check_readiness",
+        "generate_report"
+      ],
+      "classes": {
+        "ValidationReadiness": [],
+        "Phase3ValidationReadinessChecker": [
+          "__init__",
+          "load_phase3_files",
+          "check_file_readiness",
+          "check_readiness",
+          "generate_report"
+        ]
+      },
+      "routes": []
+    },
+    "validate_a2a_template.py": {
+      "language": "python",
+      "functions": [
+        "validate_template"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "test_tradingrobotplug_integration.py": {
+      "language": "python",
+      "functions": [
+        "test_rest_api_endpoints",
+        "test_websocket_url_config",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "execute_final_validation_workflow.py": {
+      "language": "python",
+      "functions": [
+        "run_command",
+        "verify_readiness",
+        "execute_validation",
+        "populate_report",
+        "generate_milestone_template",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_fastapi_deployment.py": {
+      "language": "python",
+      "functions": [
+        "check_fastapi_health",
+        "check_websocket_endpoint",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_wordpress_rest_routes.py": {
+      "language": "python",
+      "functions": [
+        "check_rest_routes",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "activate_tradingrobotplug_plugin.py": {
+      "language": "python",
+      "functions": [
+        "activate_plugin_via_wp_cli",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "deploy_tradingrobotplug_plugin_phase3.py": {
+      "language": "python",
+      "functions": [
+        "deploy_plugin"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_plugin_activation.py": {
+      "language": "python",
+      "functions": [
+        "check_plugin_via_wp_cli",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "deploy_tradingrobotplug_plugin.py": {
+      "language": "python",
+      "functions": [
+        "deploy_plugin",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "deploy_fastapi_tradingrobotplug.py": {
+      "language": "python",
+      "functions": [
+        "deploy_fastapi_backend"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_tradingrobotplug_endpoints.py": {
+      "language": "python",
+      "functions": [
+        "test_endpoint",
+        "verify_endpoints",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "setup_fastapi_service_tradingrobotplug.py": {
+      "language": "python",
+      "functions": [
+        "run_command",
+        "setup_fastapi_service"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "validation_result_integration_pipeline.py": {
+      "language": "python",
+      "functions": [
+        "load_validation_results",
+        "extract_validation_metrics",
+        "populate_milestone_template",
+        "update_master_task_log",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "monitor_fastapi_deployment.py": {
+      "language": "python",
+      "functions": [
+        "check_fastapi_health",
+        "verify_endpoint",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "validation_completion_signal_handler.py": {
+      "language": "python",
+      "functions": [
+        "verify_validation_complete",
+        "execute_integration_pipeline",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_endpoint_status.py": {
+      "language": "python",
+      "functions": [
+        "verify_endpoint",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "generate_cycle_accomplishments.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "check_validation_integration_status.py": {
+      "language": "python",
+      "functions": [
+        "check_validation_report",
+        "check_milestone_generated",
+        "check_task_log_updated",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "check_agent_onboarding_status.py": {
+      "language": "python",
+      "functions": [
+        "check_onboarding_status"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "check_fastapi_deployment_status.py": {
+      "language": "python",
+      "functions": [
+        "check_deployment_status"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "validation_integration_monitor.py": {
+      "language": "python",
+      "functions": [
+        "check_validation_report",
+        "check_milestone",
+        "check_task_log",
+        "check_integration_tools",
+        "log_event",
+        "monitor_integration",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "validate_discord_bot_status_monitor.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "check_bot_process",
+        "check_bot_logs",
+        "check_status_files",
+        "test_status_update_flow",
+        "measure_performance",
+        "validate_phase",
+        "establish_baseline"
+      ],
+      "classes": {
+        "DiscordBotValidator": [
+          "__init__",
+          "check_bot_process",
+          "check_bot_logs",
+          "check_status_files",
+          "test_status_update_flow",
+          "measure_performance",
+          "validate_phase",
+          "establish_baseline"
+        ]
+      },
+      "routes": []
+    },
+    "capture_agent_coordinates.py": {
+      "language": "python",
+      "functions": [
+        "load_coordinates",
+        "save_coordinates",
+        "capture_mouse_position",
+        "capture_single_agent",
+        "interactive_capture_all",
+        "interactive_capture_onboarding_only",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "execute_fastapi_tests_immediate.py": {
+      "language": "python",
+      "functions": [
+        "check_service_health",
+        "execute_fastapi_tests",
+        "save_results",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "monitor_fastapi_service_ready.py": {
+      "language": "python",
+      "functions": [
+        "check_service_health",
+        "monitor_and_execute",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "execute_fastapi_setup_remote.py": {
+      "language": "python",
+      "functions": [
+        "execute_remote_setup"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "report_fastapi_test_results.py": {
+      "language": "python",
+      "functions": [
+        "load_test_results",
+        "format_results_for_coordination",
+        "save_coordination_report",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_fastapi_service_ready.py": {
+      "language": "python",
+      "functions": [
+        "verify_service",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "execute_fastapi_validation_pipeline.py": {
+      "language": "python",
+      "functions": [
+        "run_command",
+        "execute_pipeline",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "generate_coordination_handoff_message.py": {
+      "language": "python",
+      "functions": [
+        "load_latest_results",
+        "generate_handoff_message",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "check_fastapi_readiness.py": {
+      "language": "python",
+      "functions": [
+        "check_file_exists",
+        "check_readiness"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "test_mcp_server_connectivity.py": {
+      "language": "python",
+      "functions": [
+        "test_server_imports",
+        "test_task_manager_functions",
+        "test_git_operations_functions",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_fastapi_service_remote.py": {
+      "language": "python",
+      "functions": [
+        "verify_service_status"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "check_fastapi_service_logs.py": {
+      "language": "python",
+      "functions": [
+        "check_service_logs"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "monitor_fastapi_health_endpoint.py": {
+      "language": "python",
+      "functions": [
+        "check_health_endpoint",
+        "monitor_and_execute",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "diagnose_fastapi_service.py": {
+      "language": "python",
+      "functions": [
+        "check_endpoint",
+        "diagnose_service",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "verify_fastapi_config.py": {
+      "language": "python",
+      "functions": [
+        "check_env_file",
+        "verify_config",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "project_scanner.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "standalone\\check_remote_posts.py": {
+      "language": "python",
+      "functions": [
+        "check_posts_remotely"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "standalone\\check_site_status.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "standalone\\check_website_status.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "standalone\\deploy_trp_templates.py": {
+      "language": "python",
+      "functions": [
+        "deploy_trp_templates"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "standalone\\setup_trp_pages.py": {
+      "language": "python",
+      "functions": [
+        "execute_wp_cli",
+        "setup_trp_pages"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "tests\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "tests\\test_adapters.py": {
+      "language": "python",
+      "functions": [
+        "test_spec_creation",
+        "test_validate_params_success",
+        "test_validate_params_failure",
+        "test_result_creation",
+        "test_result_to_dict",
+        "test_adapter_implements_interface",
+        "test_adapter_get_spec",
+        "test_adapter_validate",
+        "test_adapter_get_help"
+      ],
+      "classes": {
+        "TestToolSpec": [
+          "test_spec_creation",
+          "test_validate_params_success",
+          "test_validate_params_failure"
+        ],
+        "TestToolResult": [
+          "test_result_creation",
+          "test_result_to_dict"
+        ],
+        "TestIToolAdapter": [
+          "test_adapter_implements_interface",
+          "test_adapter_get_spec",
+          "test_adapter_validate",
+          "test_adapter_get_help"
+        ]
+      },
+      "routes": []
+    },
+    "tests\\test_core.py": {
+      "language": "python",
+      "functions": [
+        "test_core_initialization",
+        "test_list_tools",
+        "test_list_categories",
+        "test_tool_not_found",
+        "test_execution_history_recording",
+        "test_clear_history",
+        "test_get_execution_history"
+      ],
+      "classes": {
+        "TestToolbeltCore": [
+          "test_core_initialization",
+          "test_list_tools",
+          "test_list_categories",
+          "test_tool_not_found",
+          "test_execution_history_recording",
+          "test_clear_history",
+          "test_get_execution_history"
+        ]
+      },
+      "routes": []
+    },
+    "tests\\test_registry.py": {
+      "language": "python",
+      "functions": [
+        "test_registry_initialization",
+        "test_singleton_pattern",
+        "test_list_tools",
+        "test_list_by_category",
+        "test_resolve_valid_tool",
+        "test_resolve_invalid_tool",
+        "test_caching",
+        "test_export_lock"
+      ],
+      "classes": {
+        "TestToolRegistry": [
+          "test_registry_initialization",
+          "test_singleton_pattern",
+          "test_list_tools",
+          "test_list_by_category",
+          "test_resolve_valid_tool",
+          "test_resolve_invalid_tool",
+          "test_caching",
+          "test_export_lock"
+        ]
+      },
+      "routes": []
+    },
+    "tests\\test_smoke_categories.py": {
+      "language": "python",
+      "functions": [
+        "test_import_vector_tools",
+        "test_import_messaging_tools",
+        "test_import_analysis_tools",
+        "test_import_v2_tools",
+        "test_import_agent_ops_tools",
+        "test_import_testing_tools",
+        "test_import_compliance_tools",
+        "test_import_onboarding_tools",
+        "test_import_docs_tools",
+        "test_import_health_tools",
+        "test_adapter_implements_interface"
+      ],
+      "classes": {
+        "TestCategoryImports": [
+          "test_import_vector_tools",
+          "test_import_messaging_tools",
+          "test_import_analysis_tools",
+          "test_import_v2_tools",
+          "test_import_agent_ops_tools",
+          "test_import_testing_tools",
+          "test_import_compliance_tools",
+          "test_import_onboarding_tools",
+          "test_import_docs_tools",
+          "test_import_health_tools"
+        ],
+        "TestAdapterInterface": [
+          "test_adapter_implements_interface"
+        ]
+      },
+      "routes": []
+    },
+    "utils\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "utils\\discord_mermaid_renderer.py": {
+      "language": "python",
+      "functions": [
+        "__init__",
+        "extract_mermaid_diagrams",
+        "render_mermaid_to_image_url",
+        "render_mermaid_to_file",
+        "render_to_file",
+        "replace_mermaid_with_images",
+        "post_to_discord_with_mermaid"
+      ],
+      "classes": {
+        "DiscordMermaidRenderer": [
+          "__init__",
+          "extract_mermaid_diagrams",
+          "render_mermaid_to_image_url",
+          "render_mermaid_to_file",
+          "render_to_file",
+          "replace_mermaid_with_images",
+          "post_to_discord_with_mermaid"
+        ]
+      },
+      "routes": []
+    },
+    "audit\\audit_categories.py": {
+      "language": "python",
+      "functions": [
+        "audit_tool",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "audit\\audit_toolbelt.py": {
+      "language": "python",
+      "functions": [
+        "main",
+        "__init__",
+        "load_registry",
+        "audit_tool",
+        "audit_all_tools",
+        "generate_json_report",
+        "generate_markdown_report",
+        "run_audit"
+      ],
+      "classes": {
+        "ToolbeltHealthAuditor": [
+          "__init__",
+          "load_registry",
+          "audit_tool",
+          "audit_all_tools",
+          "generate_json_report",
+          "generate_markdown_report",
+          "run_audit"
+        ]
+      },
+      "routes": []
+    },
+    "audit\\simple_tool_audit.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_accomplishments\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_accomplishments\\data_collector.py": {
+      "language": "python",
+      "functions": [
+        "load_agent_status",
+        "collect_all_agent_status",
+        "calculate_totals"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_accomplishments\\report_generator.py": {
+      "language": "python",
+      "functions": [
+        "get_block_status",
+        "format_task",
+        "generate_cycle_report",
+        "save_report"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_accomplishments\\blog_generator.py": {
+      "language": "python",
+      "functions": [
+        "load_voice_profile",
+        "apply_victor_voice",
+        "format_task_for_blog",
+        "generate_narrative_blog_content",
+        "save_blog_post"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_accomplishments\\discord_poster.py": {
+      "language": "python",
+      "functions": [
+        "post_summary",
+        "post_agent_details",
+        "post_full_report_file",
+        "post_to_discord"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_accomplishments\\main.py": {
+      "language": "python",
+      "functions": [
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\main.py": {
+      "language": "python",
+      "functions": [
+        "setup_logging",
+        "get_previous_snapshot_info",
+        "calculate_cycle_number",
+        "save_snapshot",
+        "main"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\core\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\core\\snapshot_models.py": {
+      "language": "python",
+      "functions": [
+        "to_dict"
+      ],
+      "classes": {
+        "SnapshotMetadata": [],
+        "AgentAccomplishments": [],
+        "ProjectMetrics": [],
+        "CycleSnapshot": [
+          "to_dict"
+        ]
+      },
+      "routes": []
+    },
+    "cycle_snapshots\\data_collectors\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\data_collectors\\agent_status_collector.py": {
+      "language": "python",
+      "functions": [
+        "validate_status_json",
+        "collect_agent_status",
+        "collect_all_agent_status"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\data_collectors\\task_log_collector.py": {
+      "language": "python",
+      "functions": [
+        "extract_task_metrics",
+        "compare_with_previous_snapshot",
+        "parse_task_log"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\data_collectors\\git_collector.py": {
+      "language": "python",
+      "functions": [
+        "get_commits_since",
+        "calculate_git_metrics",
+        "analyze_git_activity"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\aggregators\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\aggregators\\snapshot_aggregator.py": {
+      "language": "python",
+      "functions": [
+        "generate_snapshot_metadata",
+        "generate_project_state",
+        "aggregate_snapshot"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\processors\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\processors\\report_generator.py": {
+      "language": "python",
+      "functions": [
+        "format_agent_section",
+        "format_metrics_section",
+        "generate_markdown_report"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "cycle_snapshots\\integrations\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "adapters\\base_adapter.py": {
+      "language": "python",
+      "functions": [
+        "validate_params",
+        "to_dict",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_help"
+      ],
+      "classes": {
+        "ToolSpec": [
+          "validate_params"
+        ],
+        "ToolResult": [
+          "to_dict"
+        ],
+        "IToolAdapter": [
+          "get_spec",
+          "validate",
+          "execute",
+          "get_help"
+        ]
+      },
+      "routes": []
+    },
+    "adapters\\error_types.py": {
+      "language": "python",
+      "functions": [
+        "format_toolbelt_error",
+        "__init__",
+        "__init__",
+        "__init__",
+        "__init__"
+      ],
+      "classes": {
+        "ToolbeltError": [
+          "__init__"
+        ],
+        "ToolNotFoundError": [],
+        "ToolValidationError": [
+          "__init__"
+        ],
+        "ToolExecutionError": [
+          "__init__"
+        ],
+        "ToolDependencyError": [
+          "__init__"
+        ],
+        "ToolConfigurationError": []
+      },
+      "routes": []
+    },
+    "adapters\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "categories\\agent_activity_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "_check_agent_activity",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "AgentActivityTrackerTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute",
+          "_check_agent_activity"
+        ],
+        "AgentActivityMonitorTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\agent_ops_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "AgentStatusTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ClaimTaskTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\analysis_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "ProjectScanTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ComplexityTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DuplicationTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\autonomous_workflow_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_tools",
+        "__post_init__",
+        "__post_init__",
+        "__init__",
+        "assign_task",
+        "_calculate_fit_score",
+        "_calculate_skill_match",
+        "_get_available_agents",
+        "_load_agents",
+        "_send_assignment_message",
+        "__init__",
+        "get_dashboard_view",
+        "_load_all_agent_statuses",
+        "_parse_agent_status",
+        "_estimate_gas_level",
+        "_detect_blockers",
+        "_suggest_next_action",
+        "_generate_summary",
+        "_generate_coordination_suggestions",
+        "_identify_bottlenecks",
+        "_analyze_resource_allocation"
+      ],
+      "classes": {
+        "WorkflowAssignmentTask": [
+          "__post_init__"
+        ],
+        "Agent": [
+          "__post_init__"
+        ],
+        "Assignment": [],
+        "AutoAssignmentEngine": [
+          "__init__",
+          "assign_task",
+          "_calculate_fit_score",
+          "_calculate_skill_match",
+          "_get_available_agents",
+          "_load_agents",
+          "_send_assignment_message"
+        ],
+        "AgentStatusData": [],
+        "TeamCoordinationDashboard": [
+          "__init__",
+          "get_dashboard_view",
+          "_load_all_agent_statuses",
+          "_parse_agent_status",
+          "_estimate_gas_level",
+          "_detect_blockers",
+          "_suggest_next_action",
+          "_generate_summary",
+          "_generate_coordination_suggestions",
+          "_identify_bottlenecks",
+          "_analyze_resource_allocation"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\bi_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "QuickMetricsTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "RepoROICalculatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "TaskROICalculatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MarkovROIOptimizerTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\captain_coordination_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "_update_agent_status",
+        "_log_to_swarm_brain",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "_calculate_task_fit",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "CompletionProcessorTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_update_agent_status",
+          "_log_to_swarm_brain"
+        ],
+        "LeaderboardUpdaterTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "NextTaskPickerTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_calculate_task_fit"
+        ],
+        "ROIQuickCalculatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\captain_tools.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "categories\\captain_tools_advanced.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "PointsCalculatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MissionAssignTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MarkovOptimizerTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\captain_tools_architecture.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "ArchitecturalCheckerTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\captain_tools_coordination.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "_generate_markdown_briefing"
+      ],
+      "classes": {
+        "MultiFuelDelivery": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MarkovROIRunner": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SwarmStatusDashboard": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MorningBriefingTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_generate_markdown_briefing"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\captain_tools_core.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "StatusCheckTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "GitVerifyTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "WorkVerifyTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "IntegrityCheckTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\captain_tools_extension.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "categories\\captain_tools_messaging.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "SelfMessageTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MessageAllAgentsTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\captain_tools_monitoring.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "_update_agent_entry",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "GasDeliveryTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "LeaderboardUpdateTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_update_agent_entry"
+        ],
+        "CycleReportTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\captain_tools_utilities.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "FindIdleAgentsTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "GasCheckTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "UpdateLogTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ToolbeltHelpTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\captain_tools_validation.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "FileExistenceValidator": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ProjectScanRunner": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "PhantomTaskDetector": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\compliance_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "ComplianceHistoryTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "PolicyCheckTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\config_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute",
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute",
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "ValidateConfigSSOTAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ],
+        "ListConfigSourcesAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ],
+        "CheckConfigImportsAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\coordination_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute",
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute",
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "FindDomainExpertAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ],
+        "RequestExpertReviewAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ],
+        "CheckCoordinationPatternsAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ],
+        "SwarmOrchestratorAdapter": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SwarmStatusBroadcasterAdapter": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MissionControlAdapter": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "CoordinateValidatorAdapter": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\dashboard_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "DashboardGenerateTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DashboardDataAggregateTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DashboardHTMLTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DashboardChartsTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DashboardStylesTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DiscordStatusDashboardTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\debate_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "DebateStartTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DebateVoteTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DebateStatusTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DebateNotifyTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\discord_profile_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "_load_profile"
+      ],
+      "classes": {
+        "DiscordProfileViewerTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute",
+          "_load_profile"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\discord_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "DiscordBotHealthTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DiscordBotStartTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DiscordTestMessageTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\discord_webhook_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "execute",
+        "_get_creation_instructions",
+        "get_name",
+        "get_description",
+        "execute",
+        "_load_webhooks_from_config",
+        "_extract_webhooks_from_dict",
+        "get_name",
+        "get_description",
+        "execute",
+        "_save_to_env",
+        "_save_to_config",
+        "get_name",
+        "get_description",
+        "execute",
+        "get_name",
+        "get_description",
+        "execute"
+      ],
+      "classes": {
+        "CreateWebhookTool": [
+          "get_name",
+          "get_description",
+          "execute",
+          "_get_creation_instructions"
+        ],
+        "ListWebhooksTool": [
+          "get_name",
+          "get_description",
+          "execute",
+          "_load_webhooks_from_config",
+          "_extract_webhooks_from_dict"
+        ],
+        "SaveWebhookTool": [
+          "get_name",
+          "get_description",
+          "execute",
+          "_save_to_env",
+          "_save_to_config"
+        ],
+        "TestWebhookTool": [
+          "get_name",
+          "get_description",
+          "execute"
+        ],
+        "WebhookManagerTool": [
+          "get_name",
+          "get_description",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\docs_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "DocsSearchTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DocsExportTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\github_consolidation_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "_fetch_user_repos",
+        "_analyze_similarity",
+        "_calculate_similarity",
+        "_string_similarity",
+        "_get_group_similarity",
+        "_recommend_primary",
+        "_generate_recommendations",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "_analyze_repo",
+        "_create_steps",
+        "_estimate_effort",
+        "_identify_risks",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "GitHubRepoSimilarityAnalyzerTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute",
+          "_fetch_user_repos",
+          "_analyze_similarity",
+          "_calculate_similarity",
+          "_string_similarity",
+          "_get_group_similarity",
+          "_recommend_primary",
+          "_generate_recommendations"
+        ],
+        "GitHubRepoConsolidationPlannerTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute",
+          "_analyze_repo",
+          "_create_steps",
+          "_estimate_effort",
+          "_identify_risks"
+        ],
+        "GitHubRepoMergeExecutorTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\health_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "HealthPingTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SnapshotTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\import_fix_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "ImportValidatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ModuleExtractorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "QuickLineCountTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "PublicAPIImportValidatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ImportChainValidatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\infrastructure_audit_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "OrchestratorScanTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "FileLineCounterTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ToolRuntimeAuditTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "BrokenToolsAuditTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ProjectComponentsAuditTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\infrastructure_tools.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "categories\\infrastructure_utility_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "ModuleExtractorPlannerTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "InfrastructureROICalculatorTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "BrowserPoolManagerTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\infrastructure_workspace_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "WorkspaceHealthMonitorTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "WorkspaceAutoCleanerTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "AgentStatusQuickCheckTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "AutoStatusUpdaterTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SessionTransitionAutomatorTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SwarmStatusBroadcasterTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\integration_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute",
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute",
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute",
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute",
+        "get_spec",
+        "get_help",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "FindSSOTViolationsAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ],
+        "FindDuplicateFunctionalityAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ],
+        "FindIntegrationOpportunitiesAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ],
+        "CheckImportDependenciesAdapter": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ],
+        "AuditImportsTool": [
+          "get_spec",
+          "get_help",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\intelligent_mission_advisor.py": {
+      "language": "python",
+      "functions": [
+        "get_mission_advisor",
+        "__init__",
+        "_load_agent_status",
+        "_identify_specialty",
+        "_load_swarm_brain",
+        "_extract_patterns",
+        "_load_other_agents_work",
+        "_load_leaderboard",
+        "get_mission_recommendation",
+        "_scan_real_available_tasks",
+        "_check_conflicts",
+        "_match_specialty",
+        "_calculate_roi",
+        "_verify_task",
+        "_generate_intelligent_briefing",
+        "_explain_specialty_match",
+        "_generate_approach_recommendation",
+        "_identify_risks",
+        "_calculate_success_probability",
+        "_calculate_confidence",
+        "_get_current_rank",
+        "_generate_fallback_suggestions",
+        "validate_captain_order",
+        "_find_relevant_patterns",
+        "_generate_execution_guidance",
+        "get_realtime_guidance",
+        "analyze_swarm_state"
+      ],
+      "classes": {
+        "IntelligentMissionAdvisor": [
+          "__init__",
+          "_load_agent_status",
+          "_identify_specialty",
+          "_load_swarm_brain",
+          "_extract_patterns",
+          "_load_other_agents_work",
+          "_load_leaderboard",
+          "get_mission_recommendation",
+          "_scan_real_available_tasks",
+          "_check_conflicts",
+          "_match_specialty",
+          "_calculate_roi",
+          "_verify_task",
+          "_generate_intelligent_briefing",
+          "_explain_specialty_match",
+          "_generate_approach_recommendation",
+          "_identify_risks",
+          "_calculate_success_probability",
+          "_calculate_confidence",
+          "_get_current_rank",
+          "_generate_fallback_suggestions",
+          "validate_captain_order",
+          "_find_relevant_patterns",
+          "_generate_execution_guidance",
+          "get_realtime_guidance",
+          "analyze_swarm_state"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\intelligent_mission_advisor_adapter.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "_format_summary",
+        "get_spec",
+        "validate",
+        "execute",
+        "_format_validation_summary",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "MissionAdvisorTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_format_summary"
+        ],
+        "OrderValidatorTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_format_validation_summary"
+        ],
+        "SwarmAnalyzerTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "RealtimeGuidanceTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\intelligent_mission_advisor_analysis.py": {
+      "language": "python",
+      "functions": [
+        "__init__",
+        "scan_real_available_tasks",
+        "check_conflicts",
+        "match_specialty",
+        "calculate_roi",
+        "verify_task",
+        "identify_risks",
+        "calculate_success_probability"
+      ],
+      "classes": {
+        "IntelligentMissionAnalysis": [
+          "__init__",
+          "scan_real_available_tasks",
+          "check_conflicts",
+          "match_specialty",
+          "calculate_roi",
+          "verify_task",
+          "identify_risks",
+          "calculate_success_probability"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\intelligent_mission_advisor_guidance.py": {
+      "language": "python",
+      "functions": [
+        "__init__",
+        "generate_intelligent_briefing",
+        "explain_specialty_match",
+        "generate_approach_recommendation",
+        "calculate_confidence",
+        "get_current_rank",
+        "find_relevant_patterns",
+        "generate_execution_guidance",
+        "get_realtime_guidance",
+        "analyze_swarm_state",
+        "generate_fallback_suggestions"
+      ],
+      "classes": {
+        "IntelligentMissionGuidance": [
+          "__init__",
+          "generate_intelligent_briefing",
+          "explain_specialty_match",
+          "generate_approach_recommendation",
+          "calculate_confidence",
+          "get_current_rank",
+          "find_relevant_patterns",
+          "generate_execution_guidance",
+          "get_realtime_guidance",
+          "analyze_swarm_state",
+          "generate_fallback_suggestions"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\memory_safety_adapters.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "MemoryLeakDetectorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "FileVerificationTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "UnboundedScanTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MemorySafetyImportValidatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "FileHandleCheckTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\memory_safety_tools.py": {
+      "language": "python",
+      "functions": [
+        "detect_memory_leaks",
+        "verify_files_exist",
+        "scan_unbounded_structures",
+        "validate_imports",
+        "check_file_handles"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "categories\\message_analytics_tools.py": {
+      "language": "python",
+      "functions": [
+        "_counter_to_dict",
+        "__init__",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_help",
+        "__init__",
+        "get_spec",
+        "validate",
+        "execute",
+        "_is_recent",
+        "get_help",
+        "__init__",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_help"
+      ],
+      "classes": {
+        "MessagePatternAnalyzerTool": [
+          "__init__",
+          "get_spec",
+          "validate",
+          "execute",
+          "get_help"
+        ],
+        "MessageMetricsDashboardTool": [
+          "__init__",
+          "get_spec",
+          "validate",
+          "execute",
+          "_is_recent",
+          "get_help"
+        ],
+        "MessageLearningExtractorTool": [
+          "__init__",
+          "get_spec",
+          "validate",
+          "execute",
+          "get_help"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\message_history_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "MessageHistoryViewerTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MessageHistoryAnalyzerTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MessageCompressionTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\message_task_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "MessageIngestTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "TaskParserTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "TaskFingerprintTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\messaging_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "SendMessageTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "BroadcastTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "InboxCheckTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\mission_calculator.py": {
+      "language": "python",
+      "functions": [
+        "calculate_optimal_task",
+        "build_context_package",
+        "format_mission_brief"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "categories\\observability_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "MetricsSnapshotTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MetricsTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SystemHealthTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SLOCheckTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\onboarding_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "SoftOnboardTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "HardOnboardTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\oss_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "OSSCloneTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "OSSFetchIssuesTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "OSSImportIssuesTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "OSSPortfolioTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "OSSStatusTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\proposal_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "CreateProposalTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ListProposalsTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ViewProposalTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ContributeProposalTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "StartDebateTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\queue_monitor_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "QueueStatusMonitorTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\refactoring_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "_generate_recommendations",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "FileSizeCheckTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "AutoExtractTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "TestPyramidAnalyzerTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_generate_recommendations"
+        ],
+        "LintFixTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\session_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "_create_passdown",
+        "_create_devlog",
+        "_update_swarm_brain",
+        "_update_status",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "SessionCleanupTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_create_passdown",
+          "_create_devlog",
+          "_update_swarm_brain",
+          "_update_status"
+        ],
+        "PassdownTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SessionPointsCalculatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\ssot_validation_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "_detect_violations",
+        "_find_duplicate_classes",
+        "_find_duplicate_functions",
+        "_find_multiple_repositories",
+        "_find_scattered_config",
+        "_find_duplicate_constants",
+        "_generate_summary",
+        "get_spec",
+        "validate",
+        "execute",
+        "_validate_pattern",
+        "_validate_repository_pattern",
+        "_validate_service_pattern",
+        "_validate_config_pattern"
+      ],
+      "classes": {
+        "SSOTViolationDetector": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_detect_violations",
+          "_find_duplicate_classes",
+          "_find_duplicate_functions",
+          "_find_multiple_repositories",
+          "_find_scattered_config",
+          "_find_duplicate_constants",
+          "_generate_summary"
+        ],
+        "SSOTPatternValidator": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_validate_pattern",
+          "_validate_repository_pattern",
+          "_validate_service_pattern",
+          "_validate_config_pattern"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\swarm_brain_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "TakeNoteTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ShareLearningTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SearchKnowledgeTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "LogSessionTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "GetAgentNotesTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\swarm_consciousness.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "_collect_swarm_pulse",
+        "_get_agent_pulse",
+        "_dashboard_view",
+        "_detect_conflicts",
+        "_find_related_work",
+        "_captain_command_center"
+      ],
+      "classes": {
+        "SwarmPulseTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_collect_swarm_pulse",
+          "_get_agent_pulse",
+          "_dashboard_view",
+          "_detect_conflicts",
+          "_find_related_work",
+          "_captain_command_center"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\swarm_mission_control.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "_find_related_files",
+        "_find_similar_work",
+        "_find_current_violations",
+        "_find_dependencies",
+        "_find_coordination_needs",
+        "_find_success_patterns",
+        "_generate_checklist",
+        "_calculate_completeness"
+      ],
+      "classes": {
+        "SwarmMissionControl": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SwarmConflictDetector": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ContextPackageBuilder": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute",
+          "_find_related_files",
+          "_find_similar_work",
+          "_find_current_violations",
+          "_find_dependencies",
+          "_find_coordination_needs",
+          "_find_success_patterns",
+          "_generate_checklist",
+          "_calculate_completeness"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\swarm_state_reader.py": {
+      "language": "python",
+      "functions": [
+        "read_swarm_state",
+        "read_agent_context",
+        "get_agent_specialty",
+        "analyze_available_work"
+      ],
+      "classes": {},
+      "routes": []
+    },
+    "categories\\system_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_name",
+        "get_description",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "SystemDateTimeTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "CheckInSystemTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "CheckInViewerTool": [
+          "get_name",
+          "get_description",
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\test_generation_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "_generate_test_template",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "TestFileGeneratorTool": [
+          "get_spec",
+          "validate",
+          "execute",
+          "_generate_test_template"
+        ],
+        "CoveragePyramidReportTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\testing_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "CoverageReportTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MutationGateTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\v2_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "V2CheckTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "V2ReportTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\validation_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "SmokeTestTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "FeatureFlagTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "RollbackTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ValidationReportTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "IntegrityValidatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "SSOTValidatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\vector_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "TaskContextTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "VectorSearchTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "IndexWorkTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\web_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "DiscordMermaidRendererTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "DiscordWebTestTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\workflow_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute",
+        "get_spec",
+        "validate",
+        "execute"
+      ],
+      "classes": {
+        "InboxCleanupTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "MissionClaimTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ],
+        "ROICalculatorTool": [
+          "get_spec",
+          "validate",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\communication_tools.py": {
+      "language": "python",
+      "functions": [
+        "get_tools",
+        "__init__",
+        "post_update",
+        "__init__",
+        "execute"
+      ],
+      "classes": {
+        "DiscordRouterPoster": [
+          "__init__",
+          "post_update"
+        ],
+        "DiscordPostTool": [
+          "__init__",
+          "execute"
+        ]
+      },
+      "routes": []
+    },
+    "categories\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "core\\__init__.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "core\\tool_facade.py": {
+      "language": "python",
+      "functions": [],
+      "classes": {},
+      "routes": []
+    },
+    "core\\tool_spec.py": {
+      "language": "python",
+      "functions": [
+        "__init__",
+        "validate_params"
+      ],
+      "classes": {
+        "ToolSpec": [
+          "__init__",
+          "validate_params"
+        ]
+      },
+      "routes": []
+    }
+  }
+}

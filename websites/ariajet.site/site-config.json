@@ -1,0 +1,40 @@
+{
+  "site": "ariajet.site",
+  "domain": "ariajet.site",
+  "description": "AriaJet - 2D Gaming Studio and Interactive Entertainment Platform",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "ariajet-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "tradingrobotplug-wordpress-plugin",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "gaming_studio": true,
+    "interactive_entertainment": true,
+    "game_development": true,
+    "community_gaming": true,
+    "analytics": true
+  },
+  "author": "AriaJet Gaming Team",
+  "contact": "https://ariajet.site/contact",
+  "repository": "https://github.com/ariajet/gaming-studio",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

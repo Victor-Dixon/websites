@@ -1,0 +1,52 @@
+{
+  "site": "houstonsipqueen.com",
+  "domain": "houstonsipqueen.com",
+  "description": "Houston Sip Queen - Premium Beverage and Entertainment Experience Platform",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "houston-sip-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "beverage-menu",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "event-booking",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "customer-reviews",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "swarm_intelligence": true,
+    "agent_monitoring": true,
+    "beverage_platform": true,
+    "event_management": true,
+    "customer_engagement": true,
+    "reservation_system": true,
+    "social_media": true
+  },
+  "author": "Swarm Intelligence Team",
+  "contact": "https://houstonsipqueen.com/contact",
+  "repository": "https://github.com/weareswarm/houston-sip-queen",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

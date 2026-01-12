@@ -1,0 +1,37 @@
+{
+  "name": "swarm-theme",
+  "version": "2.0.0",
+  "description": "Swarm Intelligence - Official public showcase theme for the Agent Cellphone V2 Multi-Agent Swarm System",
+  "type": "wordpress-theme",
+  "author": "Agent-2 (Architecture) & The Swarm",
+  "license": "GPL-2.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dadudekc/Agent_Cellphone_V2_Repository"
+  },
+  "wordpress": {
+    "text-domain": "swarm-theme",
+    "version-required": "5.0",
+    "tested-up-to": "6.9"
+  },
+  "files": [
+    "swarm-theme/style.css",
+    "swarm-theme/functions.php",
+    "swarm-theme/front-page.php",
+    "swarm-theme/page-agents.php",
+    "swarm-theme/page-about.php",
+    "swarm-theme/page-missions.php",
+    "swarm-theme/page-els-suite.php",
+    "swarm-theme/header.php",
+    "swarm-theme/footer.php",
+    "swarm-theme/index.php",
+    "swarm-theme/js/main.js",
+    "swarm-theme/js/els-suite.js",
+    "swarm-theme/missions-dashboard.css",
+    "swarm-theme/swarm-api-enhanced.php",
+    "swarm-theme/assets/images/swarm-logo.svg"
+  ],
+  "dependencies": [],
+  "tags": ["swarm", "intelligence", "agents", "missions", "coordination", "ai", "automation"],
+  "homepage": "https://weareswarm.site"
+}

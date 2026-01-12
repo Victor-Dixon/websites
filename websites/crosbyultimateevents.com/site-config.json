@@ -1,0 +1,40 @@
+{
+  "site": "crosbyultimateevents.com",
+  "domain": "crosbyultimateevents.com",
+  "description": "Crosby Ultimate Events - Professional Event Planning and Ultimate Frisbee Community",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "crosby-events-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "tradingrobotplug-wordpress-plugin",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "event_planning": true,
+    "ultimate_frisbee": true,
+    "community_events": true,
+    "tournament_management": true,
+    "analytics": true
+  },
+  "author": "Crosby Ultimate Events Team",
+  "contact": "https://crosbyultimateevents.com/contact",
+  "repository": "https://github.com/crosbyultimate/events",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

@@ -1,0 +1,39 @@
+{
+  "name": "@trading-robot/plugin",
+  "version": "1.0.0",
+  "description": "Trading Robot WordPress Plugin - Core functionality for automated trading",
+  "main": "tradingrobotplug.php",
+  "scripts": {
+    "build": "echo 'Building trading robot plugin...'",
+    "test": "echo 'Running tests...'",
+    "deploy": "powershell ../deployment/package-deploy.ps1 -Package trading-robot-plugin"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "trading",
+    "automation",
+    "financial"
+  ],
+  "author": "Agent-7 (Web Development Specialist)",
+  "license": "GPL-3.0",
+  "wordpress": {
+    "tested_up_to": "6.4",
+    "requires_at_least": "5.0",
+    "requires_php": "7.4"
+  },
+  "files": [
+    "admin/",
+    "includes/",
+    "public/",
+    "tradingrobotplug.php",
+    "README.md",
+    "LICENSE"
+  ],
+  "exclude": [
+    "node_modules/",
+    "tests/",
+    ".git/",
+    "*.log"
+  ]
+}

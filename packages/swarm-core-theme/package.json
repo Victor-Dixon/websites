@@ -1,0 +1,26 @@
+{
+  "name": "swarm-core-theme",
+  "version": "1.0.0",
+  "description": "Swarm Core Theme - Primary theme for Swarm Intelligence Platform with agent coordination and community features",
+  "type": "wordpress-theme",
+  "author": "Swarm Intelligence Core Team",
+  "repository": "https://github.com/weareswarm/core-platform",
+  "wordpress": {
+    "minimum_version": "5.0",
+    "tested_up_to": "6.9"
+  },
+  "files": [
+    "swarm-core-theme/style.css",
+    "swarm-core-theme/functions.php",
+    "swarm-core-theme/index.php",
+    "swarm-core-theme/header.php",
+    "swarm-core-theme/footer.php"
+  ],
+  "features": [
+    "swarm_intelligence",
+    "agent_coordination",
+    "community_platform",
+    "knowledge_sharing",
+    "multi_agent_communication"
+  ]
+}

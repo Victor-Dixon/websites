@@ -1,0 +1,30 @@
+{
+  "name": "event-services-theme",
+  "version": "1.0.0",
+  "description": "Event Services Theme - Professional event planning and catering services platform theme",
+  "type": "wordpress-theme",
+  "author": "Swarm Intelligence Team",
+  "repository": "https://github.com/weareswarm/crosby-ultimate-events",
+  "wordpress": {
+    "minimum_version": "5.0",
+    "tested_up_to": "6.9"
+  },
+  "files": [
+    "event-services-theme/style.css",
+    "event-services-theme/functions.php",
+    "event-services-theme/index.php",
+    "event-services-theme/front-page.php",
+    "event-services-theme/header.php",
+    "event-services-theme/footer.php",
+    "event-services-theme/template-parts/hero-events.php",
+    "event-services-theme/js/script.js",
+    "event-services-theme/README.md"
+  ],
+  "features": [
+    "event_services",
+    "catering_management",
+    "client_inquiries",
+    "portfolio_showcase",
+    "business_services"
+  ]
+}

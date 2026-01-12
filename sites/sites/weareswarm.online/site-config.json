@@ -1,0 +1,45 @@
+{
+  "site": "weareswarm.online",
+  "domain": "weareswarm.online",
+  "description": "We Are Swarm - Swarm intelligence platform & community hub",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "weareswarm-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "swarm-agent-monitor",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "trading-robot-plugin",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "swarm_intelligence": true,
+    "agent_monitoring": true,
+    "trading_robot": true,
+    "community": true,
+    "analytics": true
+  },
+  "author": "Swarm Intelligence Team",
+  "contact": "https://weareswarm.online",
+  "repository": "https://github.com/weareswarm/platform",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

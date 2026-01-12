@@ -8,26 +8,10 @@ Updated: 2025-12-30
 */
 get_header(); ?>
 
-<!-- ===== HERO SECTION - Tier 1 Quick Win WEB-01 Optimized ===== -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1 id="hero-heading" class="gradient-text">Join the Waitlist for AI-Powered Trading Robots</h1>
-            <p class="hero-subheadline">We're building and testing trading robots in real-time. Join the waitlist to get early access when we launch—watch our swarm build live.</p>
+<!-- ===== ANIMATED HERO SECTION ===== -->
+<?php include(get_template_directory() . '/hero-trading.php'); ?>
 
-            <div class="hero-cta-row">
-                <a class="cta-button primary" href="<?php echo esc_url(home_url('/waitlist')); ?>" role="button">Join the Waitlist →</a>
-                <a class="cta-button secondary" href="#swarm-status" role="button">Watch Us Build Live</a>
-            </div>
-            <p class="hero-urgency">Limited early access spots—join now to be first in line</p>
-            
-            <!-- Real-Time Swarm Status -->
-            <div style="margin-top: 48px; background: rgba(255,255,255,0.05); border-radius: 16px; padding: 32px;">
-                <h3 style="text-align: center; margin-bottom: 24px; color: #fff;">Real-Time Swarm Status</h3>
-                <?php echo do_shortcode('[trp_swarm_status mode="summary" refresh="30"]'); ?>
-            </div>
-
-            <!-- Live Market Preview - Dynamic Data from REST API -->
+<!-- ===== SWARM STATUS SECTION ===== -->
             <div class="market-preview" id="live-market-preview">
                 <h4>📈 Live Market Data</h4>
                 <div id="market-items-container">

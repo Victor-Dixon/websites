@@ -1,0 +1,80 @@
+{
+  "name": "dadudekc-theme",
+  "version": "1.0.0",
+  "description": "Professional portfolio and services WordPress theme for DaduDekC - Software Engineering & Business Intelligence",
+  "type": "wordpress-theme",
+  "domain": "dadudekc.com",
+  "author": "Agent-7 (Web Development Specialist)",
+  "created": "2026-01-10",
+  "repository": "packages/dadudekc-theme",
+  "keywords": [
+    "wordpress",
+    "theme",
+    "portfolio",
+    "professional-services",
+    "software-engineering",
+    "business-intelligence",
+    "custom-post-types",
+    "responsive-design"
+  ],
+  "wordpress": {
+    "tested_up_to": "6.9",
+    "requires_php": "7.4",
+    "requires_wp": "5.0"
+  },
+  "features": [
+    "custom-post-types",
+    "portfolio-showcase",
+    "technical-blog",
+    "dynamic-content",
+    "performance-metrics",
+    "responsive-design",
+    "accessibility-compliant"
+  ],
+  "custom_post_types": [
+    "project",
+    "note",
+    "experiment",
+    "resume-item"
+  ],
+  "dependencies": {
+    "plugins": {
+      "advanced-custom-fields": "*",
+      "contact-form-7": "*"
+    }
+  },
+  "files": {
+    "theme_root": "v1.0.0/dadudekc",
+    "includes": [
+      "functions.php",
+      "style.css",
+      "header.php",
+      "footer.php",
+      "index.php",
+      "front-page.php",
+      "page.php",
+      "single.php",
+      "archive.php",
+      "search.php",
+      "page-*.php",
+      "single-*.php",
+      "archive-*.php"
+    ],
+    "directories": [
+      "inc/",
+      "template-parts/"
+    ]
+  },
+  "changelog": {
+    "1.0.0": [
+      "Initial package release",
+      "Custom post types: projects, notes, experiments, resume-item",
+      "Portfolio showcase functionality",
+      "Technical blog system",
+      "Dynamic content system",
+      "Performance metrics integration",
+      "Mobile responsive design",
+      "Accessibility compliance"
+    ]
+  }
+}

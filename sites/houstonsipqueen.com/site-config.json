@@ -1,0 +1,62 @@
+{
+    "site": "houstonsipqueen.com",
+    "domain": "houstonsipqueen.com",
+    "description": "Houston Sip Queen - Luxury Mobile Bartending - Southern glam cocktail experiences for weddings, corporate events, and private parties",
+    "type": "wordpress",
+    "packages": {
+        "themes": [
+            {
+                "name": "houstonsipqueen-theme",
+                "version": "1.0.0",
+                "active": true,
+                "package": "houstonsipqueen-theme.zip",
+                "description": "Complete luxury mobile bartending theme with Southern glam design, custom Events and Cocktails post types, and premium cocktail service features"
+            }
+        ],
+        "plugins": [
+            {
+                "name": "trading-robot-plugin",
+                "version": "1.0.0",
+                "active": true
+            }
+        ]
+    },
+    "hosting": {
+        "provider": "hostinger",
+        "panel": "hpanel",
+        "php_version": "8.3.19",
+        "wordpress_version": "6.9"
+    },
+    "features": {
+        "mobile_bartending": true,
+        "luxury_cocktails": true,
+        "event_services": true,
+        "southern_glam": true,
+        "custom_events": true,
+        "cocktail_menus": true,
+        "quote_forms": true,
+        "trading_robot": true
+    },
+    "author": "Agent-7",
+    "contact": "https://houstonsipqueen.com",
+    "repository": "https://github.com/weareswarm/houston-sip-queen",
+    "environment": {
+        "type": "production",
+        "debug": false,
+        "wp_debug": false
+    },
+    "api": {
+        "fastapi_url": "https://api.houstonsipqueen.com",
+        "ingestion_url": "https://api.houstonsipqueen.com/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89",
+        "websocket_url": "wss://api.houstonsipqueen.com/ws/events"
+    },
+    "database": {
+        "backup_before_deploy": true,
+        "migrate_on_deploy": false
+    },
+    "deployment": {
+        "auto_backup": true,
+        "rollback_enabled": true,
+        "maintenance_mode": true
+    }
+}

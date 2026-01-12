@@ -1,0 +1,25 @@
+{
+  "name": "houston-sip-theme",
+  "version": "1.0.0",
+  "description": "Houston Sip Theme - Premium beverage and entertainment experience platform theme",
+  "type": "wordpress-theme",
+  "author": "Swarm Intelligence Team",
+  "repository": "https://github.com/weareswarm/houston-sip-queen",
+  "wordpress": {
+    "minimum_version": "5.0",
+    "tested_up_to": "6.9"
+  },
+  "files": [
+    "houston-sip-theme/style.css",
+    "houston-sip-theme/functions.php",
+    "houston-sip-theme/header.php",
+    "houston-sip-theme/footer.php",
+    "houston-sip-theme/index.php"
+  ],
+  "features": [
+    "beverage_platform",
+    "event_management",
+    "premium_design",
+    "mobile_optimization"
+  ]
+}

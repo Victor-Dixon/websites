@@ -1,0 +1,62 @@
+{
+  "test_metadata": {
+    "start_time": "2025-11-30T05:01:48.992002",
+    "end_time": "2025-11-30T05:01:48.992002",
+    "duration_seconds": 0.0,
+    "config": {}
+  },
+  "overall_metrics": {
+    "latency_percentiles": {
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0
+    },
+    "avg_latency_ms": 0.0,
+    "throughput_msg_per_sec": 0.0,
+    "total_messages": 0,
+    "failed_messages": 0,
+    "failure_rate_percent": 0.0,
+    "queue_depth": {
+      "max": 0,
+      "avg": 0.0,
+      "current": 0
+    }
+  },
+  "per_agent_metrics": {},
+  "per_message_type_metrics": {},
+  "chaos_mode_metrics": {
+    "total_chaos_events": 0,
+    "crash_recovery": {
+      "count": 0,
+      "avg_recovery_time_ms": 0.0,
+      "max_recovery_time_ms": 0.0
+    },
+    "spike_handling": {
+      "spikes_detected": 0,
+      "spikes_handled": 0,
+      "avg_spike_latency": 0.0
+    },
+    "chaos_events": []
+  },
+  "comparison_metrics": {},
+  "failure_analysis": {
+    "failure_reasons": {},
+    "top_failure_reasons": []
+  },
+  "analysis": {
+    "bottlenecks": [
+      {
+        "type": "low_throughput",
+        "severity": "high",
+        "metric": "throughput",
+        "value": 0.0,
+        "threshold": 10,
+        "recommendation": "Consider batch processing or parallel delivery"
+      }
+    ],
+    "failure_patterns": {
+      "overall_failure_rate": 0.0,
+      "patterns": []
+    }
+  }
+}

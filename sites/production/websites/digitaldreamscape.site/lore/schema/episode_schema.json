@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Digital Dreamscape Episode Schema",
+  "type": "object",
+  "required": ["episode_id", "date", "title", "portals_used", "agents_involved", "canon", "summary", "verification"],
+  "properties": {
+    "episode_id": { "type": "string", "pattern": "^\\d{8}_[a-z0-9_]+$" },
+    "date": { "type": "string", "format": "date" },
+    "title": { "type": "string" },
+    "portals_used": { "type": "array", "items": { "type": "string" } },
+    "agents_involved": { "type": "array", "items": { "type": "string" } },
+    "canon": {
+      "type": "object",
+      "required": ["canon_true", "truthkeeper_passed"],
+      "properties": {
+        "canon_true": { "type": "boolean" },
+        "truthkeeper_passed": { "type": "boolean" },
+        "evidence_path": { "type": "string" }
+      }
+    },
+    "artifacts": { "type": "array", "items": { "type": "string" } },
+    "summary": { "type": "string" },
+    "lore_deltas": {
+      "type": "object",
+      "properties": {
+        "add": { "type": "array", "items": { "type": "string" } },
+        "update": { "type": "array", "items": { "type": "string" } },
+        "deprecate": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "verification": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,9 +1,11 @@
 <?php get_header(); ?>
 
+<!-- Animated Hero Section -->
+<?php include(get_template_directory() . '/hero-swarm.php'); ?>
+
 <main>
     <div class='container'>
-        <h1>Welcome to eareswarm</h1>
-        <p>Your premier destination for quality content and services.</p>
+        <!-- Additional content can go here -->
     </div>
 </main>
 

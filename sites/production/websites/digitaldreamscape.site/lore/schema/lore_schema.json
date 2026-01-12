@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Digital Dreamscape Lore Codex Schema",
+  "type": "object",
+  "required": ["version", "codename", "portals", "voices", "agents"],
+  "properties": {
+    "version": { "type": "string" },
+    "codename": { "type": "string" },
+    "purpose": { "type": "array", "items": { "type": "string" } },
+    "ssot": {
+      "type": "object",
+      "properties": {
+        "owner_repo": { "type": "string" },
+        "canonical_paths": { "type": "object" }
+      }
+    },
+    "namespaces": { "type": "object" },
+    "portals": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["real_world", "title", "epithet", "domains"],
+        "properties": {
+          "real_world": { "type": "string" },
+          "title": { "type": "string" },
+          "epithet": { "type": "string" },
+          "domains": { "type": "array", "items": { "type": "string" } },
+          "capabilities": { "type": "array", "items": { "type": "string" } },
+          "trust_level": { "type": "string" },
+          "voice_profile": { "type": "string" },
+          "canon_authority": { "type": "array", "items": { "type": "string" } },
+          "invocation_rules": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "voices": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["tone", "do", "dont"],
+        "properties": {
+          "tone": { "type": "array", "items": { "type": "string" } },
+          "do": { "type": "array", "items": { "type": "string" } },
+          "dont": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "agents": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "name", "title", "roles"],
+              "properties": {
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "title": { "type": "string" },
+                "roles": { "type": "array", "items": { "type": "string" } },
+                "voice_profile": { "type": "string" },
+                "signature_phrases": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["squad_id", "members"],
+            "properties": {
+              "squad_id": { "type": "string" },
+              "squad_name": { "type": "string" },
+              "squad_title": { "type": "string" },
+              "doctrine": { "type": "string" },
+              "voice_override": { "type": "string" },
+              "members": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "name", "title"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "title": { "type": "string" },
+                    "roles": { "type": "array", "items": { "type": "string" } },
+                    "signature_phrases": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "world_rules": { "type": "object" },
+    "devlog_transmission": { "type": "object" },
+    "episode_tracking": { "type": "object" },
+    "session_cleanup_integration": { "type": "object" },
+    "validation_ritual": { "type": "object" },
+    "definition_of_done": { "type": "object" }
+  }
+}

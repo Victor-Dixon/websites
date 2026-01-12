@@ -30,11 +30,38 @@ function my_custom_theme_setup()
 
 add_action('after_setup_theme', 'my_custom_theme_setup');
 
+// Theme Customizer: Add Google Analytics setting
+function my_custom_theme_customizer($wp_customize) {
+    // Google Analytics Section
+    $wp_customize->add_section('analytics_section', array(
+        'title' => __('Analytics Settings', 'my-custom-theme'),
+        'priority' => 30,
+    ));
+
+    // Google Analytics ID Setting
+    $wp_customize->add_setting('google_analytics_id', array(
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control('google_analytics_id', array(
+        'label' => __('Google Analytics ID', 'my-custom-theme'),
+        'description' => __('Enter your Google Analytics 4 Measurement ID (e.g., G-XXXXXXXXXX)', 'my-custom-theme'),
+        'section' => 'analytics_section',
+        'type' => 'text',
+    ));
+}
+add_action('customize_register', 'my_custom_theme_customizer');
+
 // Enqueue theme styles and scripts
 function my_custom_theme_scripts()
 {
     wp_enqueue_style('my-custom-theme-style', get_stylesheet_uri());
     wp_enqueue_style('my-custom-theme-custom-css', get_template_directory_uri() . '/assets/css/custom.css', array(), '1.0.0');
+
+    // Tailwind CSS for Hero Animations
+    wp_enqueue_style('tailwind-css', 'https://cdn.tailwindcss.com', array(), null);
     wp_enqueue_script('my-custom-theme-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
 }
 
@@ -264,16 +291,21 @@ add_filter('template_include', function ($template) {
  */
 function add_analytics_tracking_codes() {
     // Google Analytics 4 (GA4)
-        echo '<!-- Google Analytics 4 (GA4) -->\n';
-        echo '<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>\n';
-        echo '<script>\n';
-        echo 'window.dataLayer = window.dataLayer || [];\n';
-        echo 'function gtag(){dataLayer.push(arguments);}\n';
-        echo 'gtag(\'js\', new Date());\n';
-        echo 'gtag(\'config\', \'G-XXXXXXXXXX\', {\n';
-        echo '\'page_path\': window.location.pathname,\n';
-        echo '\'page_title\': document.title,\n';
-        echo '});\n';
+        // Get Google Analytics ID from theme options
+        $ga_id = get_theme_mod('google_analytics_id', '');
+        if (!empty($ga_id) && strpos($ga_id, 'G-') === 0) {
+            echo '<!-- Google Analytics 4 (GA4) -->\n';
+            echo '<script async src="https://www.googletagmanager.com/gtag/js?id=' . esc_attr($ga_id) . '"></script>\n';
+            echo '<script>\n';
+            echo 'window.dataLayer = window.dataLayer || [];\n';
+            echo 'function gtag(){dataLayer.push(arguments);}\n';
+            echo 'gtag(\'js\', new Date());\n';
+            echo 'gtag(\'config\', \'' . esc_attr($ga_id) . '\', {\n';
+            echo '\'page_path\': window.location.pathname,\n';
+            echo '\'page_title\': document.title,\n';
+            echo '});\n';
+            echo '</script>\n';
+        }
         echo '// Custom Events Tracking\n';
         echo '// Track waitlist_submit event\n';
         echo 'gtag("event", "waitlist_submit", {\n';

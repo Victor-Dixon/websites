@@ -1,0 +1,210 @@
+/*
+ * TradingRobotPlug Custom Component Styles
+ * Version: 2.0.0
+ * Updated: 2025-11-03
+ * Author: Agent-1 (Integration & Core Systems)
+ *
+ * Purpose: Component-specific styles and customizations
+ * Complements: style.css (main design system)
+ */
+
+/* ===== CUSTOM COMPONENT OVERRIDES ===== */
+
+/* Hero Section Enhancements */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    animation: pulse-glow 8s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.1); opacity: 0.5; }
+}
+
+/* Feature Cards Hover Enhancement */
+.feature-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.25);
+}
+
+/* How It Works Step Animation */
+.step {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+}
+
+/* Pricing Cards Enhancement */
+.pricing-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.pricing-card:hover::after {
+    left: 100%;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* CTA Button Enhancements */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: -1;
+}
+
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Mobile Responsiveness Enhancements */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .feature-card {
+        margin-bottom: 20px;
+    }
+    
+    .pricing-card {
+        margin-bottom: 24px;
+    }
+}
+
+/* Accessibility Enhancements */
+.btn:focus,
+.feature-card:focus,
+.pricing-card:focus {
+    outline: 3px solid rgba(102, 126, 234, 0.5);
+    outline-offset: 2px;
+}
+
+/* Loading Animation for Market Data */
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.market-preview.loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #764ba2 0%, #667eea 100%);
+}
+
+/* Performance Optimization */
+.hero,
+.feature-card,
+.pricing-card,
+.testimonial-card,
+.step {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Print Styles */
+@media print {
+    .btn,
+    .market-preview,
+    .cta-section {
+        display: none;
+    }
+}
+
+/* Dark Mode Support (Future Enhancement) */
+@media (prefers-color-scheme: dark) {
+    /* Dark mode styles would go here */
+    /* Currently using light mode only per Agent-2's design */
+}
+
+/* Component Loading States */
+.component-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Error States */
+.component-error {
+    border: 2px solid #ff5252;
+    background-color: rgba(255, 82, 82, 0.05);
+}
+
+/* Success States */
+.component-success {
+    border: 2px solid #00e676;
+    background-color: rgba(0, 230, 118, 0.05);
+}
+
+/* ===== END CUSTOM STYLES ===== */

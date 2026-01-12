@@ -1,0 +1,58 @@
+{
+  "site": "weareswarm.site",
+  "domain": "weareswarm.site",
+  "description": "We Are Swarm - Core Swarm Intelligence Platform and Community Hub",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "swarm-core-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "swarm-intelligence-core",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "agent-coordination-hub",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "swarm-community-portal",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "swarm-knowledge-base",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "swarm_intelligence": true,
+    "agent_monitoring": true,
+    "agent_coordination": true,
+    "community_platform": true,
+    "knowledge_sharing": true,
+    "swarm_analytics": true,
+    "multi_agent_communication": true,
+    "swarm_ecosystem": true
+  },
+  "author": "Swarm Intelligence Core Team",
+  "contact": "https://weareswarm.site/contact",
+  "repository": "https://github.com/weareswarm/core-platform",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

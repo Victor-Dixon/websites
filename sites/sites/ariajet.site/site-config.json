@@ -1,0 +1,52 @@
+{
+  "site": "ariajet.site",
+  "domain": "ariajet.site",
+  "description": "AriaJet - Gaming and Entertainment Platform with Swarm Intelligence",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "ariajet-theme",
+        "version": "1.0.0",
+        "active": true
+      }
+    ],
+    "plugins": [
+      {
+        "name": "hero-gaming",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "gaming-leaderboards",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "entertainment-content",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.3.19",
+    "wordpress_version": "6.9"
+  },
+  "features": {
+    "swarm_intelligence": true,
+    "agent_monitoring": true,
+    "gaming_platform": true,
+    "entertainment": true,
+    "leaderboards": true,
+    "social_gaming": true,
+    "content_management": true
+  },
+  "author": "Swarm Intelligence Team",
+  "contact": "https://ariajet.site/contact",
+  "repository": "https://github.com/weareswarm/ariajet",
+  "last_updated": "2026-01-10",
+  "status": "active"
+}

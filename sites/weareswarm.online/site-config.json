@@ -1,0 +1,60 @@
+{
+  "site": "weareswarm.online",
+  "domain": "weareswarm.online",
+  "description": "We Are Swarm Online - Dream.OS documentation & case studies platform with trading robot integration",
+  "type": "wordpress",
+  "packages": {
+    "themes": [
+      {
+        "name": "weareswarm-theme",
+        "version": "1.0.0",
+        "active": true,
+        "package": "weareswarm-theme.zip",
+        "description": "Complete WordPress theme with swarm intelligence features, neural network animations, and trading robot integration"
+      }
+    ],
+    "plugins": [
+      {
+        "name": "trading-robot-plugin",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "trp-paper-trading-stats",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "trp-swarm-status",
+        "version": "1.0.0",
+        "active": true
+      },
+      {
+        "name": "hostinger-reach-online-plugin",
+        "version": "1.0.0",
+        "active": true
+      }
+    ]
+  },
+  "hosting": {
+    "provider": "hostinger",
+    "panel": "hpanel",
+    "php_version": "8.2.28",
+    "wordpress_version": "6.8"
+  },
+  "features": {
+    "documentation": true,
+    "case_studies": true,
+    "authority_content": true,
+    "dream_os_focus": true,
+    "build_in_public": true,
+    "trading_robot": true,
+    "paper_trading": true,
+    "swarm_status": true
+  },
+  "author": "Agent-7",
+  "contact": "https://weareswarm.online",
+  "repository": "https://github.com/weareswarm/swarm-online",
+  "last_updated": "2026-01-11",
+  "status": "active"
+}

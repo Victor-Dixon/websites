@@ -1,0 +1,59 @@
+body {
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+}
+
+header {
+    background-color: var(--header-bg-color);
+    padding-right: 20px; /* flipped from left to right */
+    text-align: right; /* flipped from left to right */
+}
+
+footer {
+    background-color: var(--footer-bg-color);
+    padding-right: 40px; /* flipped from left to right */
+    text-align: right; /* flipped from left to right */
+}
+
+/* Additional RTL adjustments */
+
+/* Ensure text direction is set to RTL */
+body, html {
+    direction: rtl;
+}
+
+/* Adjust navigation for RTL */
+header nav ul {
+    flex-direction: row-reverse;
+}
+
+header nav ul li {
+    margin-left: 20px;
+    margin-right: 0; /* reset original margin */
+}
+
+header nav ul li a {
+    text-align: right;
+}
+
+/* Adjust buttons for RTL */
+button, .btn {
+    text-align: right;
+    padding-left: 20px;
+    padding-right: 10px; /* flipped from left to right */
+}
+
+/* Adjust any trading-specific styles for RTL as needed */
+.trading-stats {
+    flex-direction: row-reverse;
+}
+
+/* Adjust pagination for RTL */
+.pagination {
+    flex-direction: row-reverse;
+}
+
+.pagination a {
+    margin-left: 5px;
+    margin-right: 0; /* reset original margin */
+}

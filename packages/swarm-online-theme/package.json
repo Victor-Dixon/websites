@@ -1,0 +1,26 @@
+{
+  "name": "swarm-online-theme",
+  "version": "1.0.0",
+  "description": "Swarm - Custom WordPress theme for We Are Swarm Online - Dream.OS documentation & case studies platform",
+  "type": "wordpress-theme",
+  "author": "Agent-7",
+  "license": "GPL-2.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weareswarm/swarm-online-theme"
+  },
+  "wordpress": {
+    "text-domain": "swarm",
+    "version-required": "5.0",
+    "tested-up-to": "6.8"
+  },
+  "files": [
+    "swarm/style.css",
+    "swarm/functions.php",
+    "swarm/index.php",
+    "swarm/front-page.php"
+  ],
+  "dependencies": [],
+  "tags": ["documentation", "case-studies", "authority", "one-column", "custom-menu", "featured-images", "threaded-comments", "translation-ready"],
+  "homepage": "https://weareswarm.online"
+}

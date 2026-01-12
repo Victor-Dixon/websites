@@ -1,0 +1,30 @@
+{
+  "site": "southwestsecret.com",
+  "domain": "southwestsecret.com",
+  "packages": {
+    "plugins": {
+      "trading-robot-plugin": "v1.0.0"
+    },
+    "themes": {},
+    "utilities": {}
+  },
+  "environment": {
+    "type": "production",
+    "debug": false,
+    "wp_debug": false
+  },
+  "api": {
+    "fastapi_url": "https://api.southwestsecret.com",
+    "ingestion_url": "https://api.southwestsecret.com/ingest/e9bfe30e-6503-4d21-94d5-4e3bf96c6b89",
+    "websocket_url": "wss://api.southwestsecret.com/ws/events"
+  },
+  "database": {
+    "backup_before_deploy": true,
+    "migrate_on_deploy": false
+  },
+  "deployment": {
+    "auto_backup": true,
+    "rollback_enabled": true,
+    "maintenance_mode": true
+  }
+}
