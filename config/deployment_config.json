@@ -64,9 +64,9 @@
   "notifications": {
     "console": true,
     "file": true,
-    "email": false,
-    "slack": false,
-    "discord": false
+    "email": true,
+    "slack": true,
+    "discord": true
   },
 
   "email": {
@@ -103,14 +103,42 @@
     "log_retention_days": 30,
     "performance_tracking": true,
     "error_tracking": true,
-    "health_checks": true
+    "health_checks": true,
+    "response_time_tracking": true,
+    "uptime_monitoring": true,
+    "resource_usage_tracking": true
+  },
+
+  "performance": {
+    "caching": {
+      "enabled": true,
+      "cache_strategy": "aggressive",
+      "cache_expiry_hours": 24,
+      "static_asset_caching": true,
+      "database_query_caching": true
+    },
+    "cdn": {
+      "enabled": true,
+      "provider": "cloudflare",
+      "auto_purge_on_deploy": true,
+      "static_asset_delivery": true,
+      "image_optimization": true
+    },
+    "optimization": {
+      "minify_css_js": true,
+      "compress_images": true,
+      "lazy_load_images": true,
+      "database_optimization": true,
+      "php_opcache_enabled": true
+    }
   },
 
   "rollback": {
-    "enabled": false,
-    "auto_rollback_on_failure": false,
-    "backup_retention_count": 5,
-    "rollback_timeout_seconds": 120
+    "enabled": true,
+    "auto_rollback_on_failure": true,
+    "backup_retention_count": 10,
+    "rollback_timeout_seconds": 180,
+    "rollback_verification": true
   },
 
   "ci_cd": {

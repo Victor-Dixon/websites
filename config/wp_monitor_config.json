@@ -70,9 +70,9 @@
   "notifications": {
     "console": true,
     "file": true,
-    "email": false,
-    "slack": false,
-    "discord": false,
+    "email": true,
+    "slack": true,
+    "discord": true,
 
     "email_config": {
       "smtp_server": "smtp.gmail.com",
@@ -107,7 +107,22 @@
     "performance_tracking": true,
     "error_rate_tracking": true,
     "healing_success_tracking": true,
-    "generate_daily_reports": true
+    "generate_daily_reports": true,
+    "response_time_alerts": true,
+    "resource_usage_alerts": true,
+    "uptime_sla_tracking": true,
+    "performance_baseline_tracking": true
+  },
+
+  "performance_thresholds": {
+    "response_time_warning_ms": 1000,
+    "response_time_critical_ms": 3000,
+    "memory_usage_warning_percent": 80,
+    "memory_usage_critical_percent": 95,
+    "cpu_usage_warning_percent": 70,
+    "cpu_usage_critical_percent": 90,
+    "disk_usage_warning_percent": 85,
+    "disk_usage_critical_percent": 95
   },
 
   "sites": {
