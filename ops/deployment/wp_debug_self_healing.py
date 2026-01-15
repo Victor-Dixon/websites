@@ -1050,8 +1050,8 @@ define('WP_MAX_MEMORY_LIMIT', '512M');
         # Save report
         self._save_healing_report(report)
 
-        print("
-📊 SELF-HEALING CYCLE COMPLETE"        print("=" * 50)
+        print("📊 SELF-HEALING CYCLE COMPLETE")
+        print("=" * 50)
         print(f"📋 Sites Processed: {len(sites)}")
         print(f"🚨 Errors Found: {total_errors_found}")
         print(f"🔧 Fixes Applied: {total_fixes_applied}")
@@ -1124,8 +1124,8 @@ def main():
             print(f"✅ Fixes Successful: {report['total_fixes_successful']}")
 
             if report['healing_actions']:
-                print("
-📋 Recent Healing Actions:"                for action in report['healing_actions'][-5:]:  # Last 5
+                print("📋 Recent Healing Actions:")
+                for action in report['healing_actions'][-5:]:  # Last 5
                     status = "✅" if action['success'] else "❌"
                     print(f"  {status} {action['site']}: {action['fix_description']} ({action['fix_type']})")
         else:
@@ -1156,7 +1156,7 @@ def main():
     success_rate = (report['total_fixes_successful'] / max(report['total_fixes_applied'], 1)) * 100
 
     if report['total_errors_found'] > 0:
-        print(".1f"
+        print(f"Success Rate: {success_rate:.1f}%")
         if success_rate >= 80:
             print("🎉 Excellent healing performance!")
         elif success_rate >= 60:

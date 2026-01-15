@@ -124,7 +124,8 @@ class DeploymentMonitor:
         print(f"\n{status_icon} DEPLOYMENT {notification.status.upper()}: {notification.site}")
         print(f"   Message: {notification.message}")
         print(f"   Files: {notification.files_deployed} deployed, {notification.files_failed} failed")
-        print(".1f"        if notification.errors:
+        print(f"   Duration: {notification.duration:.1f}s")
+        if notification.errors:
             print("   Errors:")
             for error in notification.errors[:3]:  # Show first 3
                 print(f"     - {error}")

@@ -304,11 +304,10 @@ class DeploymentPipeline:
     def _perform_health_checks(self, site: str, site_config: Dict) -> bool:
         """Perform basic health checks on deployed site."""
         try:
-            # Basic connectivity check (simplified)
-            # In real implementation, would make actual HTTP requests
-            health_check_url = site_config.get('health_check_url', f"https://{site}")
-            print(f"   Health check: {health_check_url}")
-            return True  # Assume healthy for demo
+            # Use the deployment monitor's health check method
+            from deployment_monitor import DeploymentMonitor
+            monitor = DeploymentMonitor()
+            return monitor.perform_health_check(site)
         except Exception as e:
             print(f"   ❌ Health check failed: {e}")
             return False
