@@ -283,7 +283,7 @@ add_action('wp_enqueue_scripts', 'freerideinvestor_optimize_assets', 999);
 function freerideinvestor_defer_styles($html, $handle, $href, $media) {
     // Defer Tailwind CSS as it's not critical for initial render
     if ($handle === 'tailwind-css') {
-        return str_replace("rel='stylesheet'", "rel='preload' as='style' onload="this.onload=null;this.rel='stylesheet'"", $html);
+        return str_replace("rel='stylesheet'", "rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"", $html);
     }
     return $html;
 }
