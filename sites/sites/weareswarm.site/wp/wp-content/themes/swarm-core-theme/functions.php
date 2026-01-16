@@ -18,9 +18,21 @@ function swarm_core_theme_setup() {
 add_action('after_setup_theme', 'swarm_core_theme_setup');
 
 function swarm_core_theme_scripts() {
-    wp_enqueue_style('swarm-core-style', get_stylesheet_uri(), array(), '1.0.0');
-    wp_enqueue_style('inter-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    wp_enqueue_script('swarm-core-js', get_template_directory_uri() . '/js/swarm-core.js', array('jquery'), '1.0.0', true);
+    // Enqueue main stylesheet
+    wp_enqueue_style('swarm-core-style', get_stylesheet_uri(), array(), '2.0.0');
+
+    // Enqueue Google Fonts (Inter)
+    wp_enqueue_style('inter-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    // Enqueue main JavaScript
+    wp_enqueue_script('swarm-core-js', get_template_directory_uri() . '/js/swarm-core.js', array('jquery'), '2.0.0', true);
+
+    // Add theme version to prevent caching issues
+    wp_localize_script('swarm-core-js', 'swarmTheme', array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('swarm_theme_nonce'),
+        'theme_url' => get_template_directory_uri()
+    ));
 }
 add_action('wp_enqueue_scripts', 'swarm_core_theme_scripts');
 

@@ -84,6 +84,11 @@ def get_ssot_paths(site_domain: str) -> Dict[str, List[Path]]:
             ],
             'plugins': [],
             'content': []
+        },
+        'weareswarm.site': {
+            'theme': [base_dir / "wp" / "wp-content" / "themes" / "weareswarm"],
+            'plugins': [base_dir / "wp" / "wp-content" / "plugins"],
+            'content': []
         }
     }
 

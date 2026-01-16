@@ -41,9 +41,15 @@ spl_autoload_register(function ($class) {
 // Include main class
 require_once TRADINGROBOTPLUG_PLUGIN_DIR . 'includes/class-trading-robot-plug.php';
 
-// Initialize the plugin
+// Initialize the plugin with error handling
 function run_trading_robot_plug() {
-    $plugin = new TradingRobotPlug\Trading_Robot_Plug();
-    $plugin->run();
+    try {
+        $plugin = new TradingRobotPlug\Trading_Robot_Plug();
+        $plugin->run();
+    } catch (Exception $e) {
+        // Log error but don't crash the site
+        error_log('Trading Robot Plug initialization failed: ' . $e->getMessage());
+        // Continue without the plugin rather than crashing
+    }
 }
 run_trading_robot_plug();

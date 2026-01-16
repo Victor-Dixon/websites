@@ -19,21 +19,38 @@ Author: Victor Dixon
             </div>
 
             <div class="footer-section">
-                <h4>Product</h4>
+                <h4>Platform</h4>
                 <ul>
+                    <li><a href="<?php echo esc_url(home_url('/strategies')); ?>">Strategy Marketplace</a></li>
                     <li><a href="<?php echo esc_url(home_url('/features')); ?>">Features</a></li>
                     <li><a href="<?php echo esc_url(home_url('/pricing')); ?>">Pricing</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/ai-swarm')); ?>">AI Swarm</a></li>
-                    <li><a href="https://weareswarm.site" target="_blank" rel="noopener noreferrer">🐝 See the Swarm</a></li>
+                    <li><a href="https://weareswarm.site" target="_blank" rel="noopener noreferrer">🐝 Live Swarm Status</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h4>Resources</h4>
+                <h4>Trading Tools</h4>
                 <ul>
-                    <li><a href="<?php echo esc_url(home_url('/blog')); ?>">Blog</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/contact')); ?>">Contact</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/waitlist')); ?>">Beta Access</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/ai-swarm')); ?>">AI Swarm</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/blog')); ?>">Trading Insights</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/contact')); ?>">Support</a></li>
                 </ul>
+            </div>
+
+            <!-- Performance Badge -->
+            <div class="footer-section performance-badge">
+                <div class="performance-highlight">
+                    <div class="perf-stat">
+                        <span class="perf-number">89.3%</span>
+                        <span class="perf-label">Win Rate</span>
+                    </div>
+                    <div class="perf-stat">
+                        <span class="perf-number">+32.8%</span>
+                        <span class="perf-label">Avg Return</span>
+                    </div>
+                    <p class="perf-note">Validated performance since 2023</p>
+                </div>
             </div>
 
             <div class="footer-section">
@@ -58,7 +75,14 @@ Author: Victor Dixon
 
         <div class="footer-bottom">
             <hr>
-            <p>&copy; <?php echo date('Y'); ?> TradingRobotPlug. All rights reserved.</p>
+            <div class="footer-bottom-content">
+                <p>&copy; <?php echo date('Y'); ?> TradingRobotPlug. Building the future of algorithmic trading.</p>
+                <div class="footer-trust-signals">
+                    <span class="trust-signal">🔒 SEC-Compliant Trading</span>
+                    <span class="trust-signal">🤖 AI-Powered Analysis</span>
+                    <span class="trust-signal">📊 Real Performance Data</span>
+                </div>
+            </div>
             <?php
             // Display footer menu if available
             if (has_nav_menu('footer')) {

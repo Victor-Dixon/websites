@@ -844,6 +844,95 @@ input[type="submit"]:hover, button[type="submit"]:hover {
     margin-right: 5px;
 }
 
+/* ===== FOOTER PERFORMANCE STYLES ===== */
+
+/* Performance Badge */
+.performance-badge {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.performance-highlight {
+    text-align: center;
+}
+
+.perf-stat {
+    display: inline-block;
+    margin: 0 1rem 0.5rem 0;
+}
+
+.perf-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #22c55e;
+    line-height: 1;
+}
+
+.perf-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+.perf-note {
+    font-size: 0.8rem;
+    color: #22c55e;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+/* Footer Bottom Enhancements */
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-trust-signals {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.trust-signal {
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-weight: 500;
+    background: rgba(255,255,255,0.5);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .performance-badge {
+        margin-top: 2rem;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .footer-trust-signals {
+        justify-content: center;
+    }
+
+    .trust-signal {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+}
+
 .trade-alert {
     background-color: #f8d7da;
     color: #721c24;

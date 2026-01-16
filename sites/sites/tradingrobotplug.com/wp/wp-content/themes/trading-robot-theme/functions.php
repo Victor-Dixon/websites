@@ -33,8 +33,17 @@ add_action('after_setup_theme', 'my_custom_theme_setup');
 // Enqueue theme styles and scripts
 function my_custom_theme_scripts()
 {
+    // Enqueue Tailwind CSS from CDN for modern styling
+    wp_enqueue_style('tailwindcss', 'https://cdn.tailwindcss.com', array(), null);
+
+    // Enqueue Three.js for 3D animations
+    wp_enqueue_script('threejs', 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', array(), '128', true);
+
+    // Enqueue theme styles
     wp_enqueue_style('my-custom-theme-style', get_stylesheet_uri());
     wp_enqueue_style('my-custom-theme-custom-css', get_template_directory_uri() . '/assets/css/custom.css', array(), '1.0.0');
+
+    // Enqueue theme scripts
     wp_enqueue_script('my-custom-theme-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
 }
 

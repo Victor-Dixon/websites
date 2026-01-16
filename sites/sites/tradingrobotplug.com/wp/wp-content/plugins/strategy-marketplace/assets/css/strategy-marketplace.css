@@ -1,0 +1,411 @@
+/* Strategy Marketplace Plugin Styles */
+
+/* Strategy Cards */
+.strategy-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.strategy-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.strategy-header {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.strategy-name {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.strategy-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.badge.category {
+    background: rgba(255,255,255,0.2);
+}
+
+.badge.risk {
+    background: rgba(255,255,255,0.2);
+}
+
+.badge.status.live {
+    background: #28a745;
+}
+
+.badge.status.testing {
+    background: #ffc107;
+    color: #212529;
+}
+
+.badge.status.new {
+    background: #17a2b8;
+}
+
+.strategy-description {
+    padding: 1.5rem;
+}
+
+.strategy-description p {
+    margin: 0;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+.strategy-performance {
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.perf-item {
+    text-align: center;
+    flex: 1;
+}
+
+.perf-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+.perf-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #28a745;
+}
+
+.perf-value.excellent {
+    color: #28a745;
+}
+
+.perf-value.good {
+    color: #20c997;
+}
+
+.perf-value.moderate {
+    color: #ffc107;
+}
+
+.perf-value.poor {
+    color: #dc3545;
+}
+
+.perf-value.high-risk {
+    color: #dc3545;
+}
+
+.perf-value.moderate-risk {
+    color: #fd7e14;
+}
+
+.perf-value.low-risk {
+    color: #28a745;
+}
+
+.strategy-actions {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.strategy-actions .btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.btn-outline:hover {
+    background: #007bff;
+    color: white;
+}
+
+/* Loading and Error States */
+.loading-strategies {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    color: #6c757d;
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: #dc3545;
+    background: #f8d7da;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+/* Load More Button */
+.load-more-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.load-more-btn {
+    padding: 1rem 2rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background: #0056b3;
+}
+
+/* Modal Styles */
+.strategy-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    padding: 2rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.75rem;
+    color: #333;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.strategy-overview h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.strategy-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.strategy-category,
+.strategy-risk,
+.strategy-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.strategy-category {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.strategy-risk {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.strategy-status {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.strategy-description {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: #495057;
+}
+
+.performance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.metric {
+    text-align: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.metric-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #28a745;
+}
+
+.parameters-grid {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.parameter-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.param-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.param-value {
+    color: #6c757d;
+}
+
+.strategy-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .strategy-performance {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .strategy-actions {
+        flex-direction: column;
+    }
+
+    .performance-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        margin: 2% auto;
+        width: 95%;
+    }
+
+    .modal-header,
+    .modal-body {
+        padding: 1rem;
+    }
+}
