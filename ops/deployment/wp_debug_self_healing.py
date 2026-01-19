@@ -980,6 +980,36 @@ define('WP_MAX_MEMORY_LIMIT', '512M');
 
         return False
 
+    def _fix_cache_clear(self, site: str, error: WPError) -> bool:
+        """Clear WordPress caches safely via WP-CLI."""
+        try:
+            deployer = SimpleWordPressDeployer(site, {site: self.site_configs[site]})
+
+            if not deployer.connect():
+                return False
+
+            site_config = self.site_configs.get(site, {})
+            remote_path = site_config.get('sftp', {}).get('remote_path', '').strip()
+            if not remote_path:
+                remote_path = "public_html"
+
+            commands = [
+                f"cd {remote_path} && /usr/local/bin/wp cache flush --allow-root",
+                f"cd {remote_path} && /usr/local/bin/wp transient delete --all --allow-root",
+            ]
+
+            for command in commands:
+                output = deployer.execute_command(command)
+                if "Error" in output or "error" in output:
+                    deployer.disconnect()
+                    return False
+
+            deployer.disconnect()
+            return True
+        except Exception as e:
+            print(f"❌ Cache clear failed: {e}")
+            return False
+
     def _fix_file_permissions(self, site: str, error: WPError) -> bool:
         """Fix file permission errors."""
         # This would typically require server-side changes
