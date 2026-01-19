@@ -24,11 +24,24 @@ add_action('after_setup_theme', 'weareswarm_theme_setup');
 
 // Enqueue scripts and styles
 function weareswarm_enqueue_assets() {
-    // Main stylesheet
-    wp_enqueue_style('weareswarm-style', get_stylesheet_uri(), array(), '3.0.0');
+    wp_enqueue_style(
+        'weareswarm-fonts',
+        'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap',
+        array(),
+        null
+    );
 
-    // Google Fonts
-    wp_enqueue_style('weareswarm-fonts', 'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap', array(), null);
+    $version = wp_get_theme()->get('Version');
+    $base = get_template_directory_uri() . '/assets/css/';
+
+    wp_enqueue_style('weareswarm-00', $base . '00-tokens.css', array('weareswarm-fonts'), $version);
+    wp_enqueue_style('weareswarm-01', $base . '01-base.css', array('weareswarm-00'), $version);
+    wp_enqueue_style('weareswarm-02', $base . '02-shell.css', array('weareswarm-01'), $version);
+    wp_enqueue_style('weareswarm-03', $base . '03-components.css', array('weareswarm-02'), $version);
+    wp_enqueue_style('weareswarm-04', $base . '04-hero.css', array('weareswarm-03'), $version);
+    wp_enqueue_style('weareswarm-05', $base . '05-sections.css', array('weareswarm-04'), $version);
+    wp_enqueue_style('weareswarm-06', $base . '06-responsive.css', array('weareswarm-05'), $version);
+    wp_enqueue_style('weareswarm-07', $base . '07-accessibility.css', array('weareswarm-06'), $version);
 
     // Hero animations script (only on pages with hero)
     if (is_page_template('page-home.php')) {

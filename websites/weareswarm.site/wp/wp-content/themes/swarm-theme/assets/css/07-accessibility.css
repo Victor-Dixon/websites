@@ -1,0 +1,91 @@
+/* Backdrop filter fallback */
+@supports not ((backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px))) {
+  .hero-badge,
+  .cta-button,
+  .stat-item,
+  .contact-card,
+  .nav-button {
+    background: rgba(20, 20, 20, 0.85);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Performance tuning (safe) */
+.hero-bg-layer,
+.stream-line,
+.particle,
+.cta-button,
+.stat-item,
+.contact-card {
+  will-change: transform, opacity;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-layer,
+  .particle,
+  .stream-line,
+  .badge-pulse,
+  .button-glow,
+  .scroll-wheel,
+  .loading-spinner,
+  .title-secondary,
+  .title-word {
+    animation: none !important;
+  }
+
+  .cta-button,
+  .stat-item,
+  .contact-card,
+  .nav-button,
+  .nav-indicator,
+  .missions-link,
+  .footer-links a,
+  .nav-menu a {
+    transition: none !important;
+  }
+}
+
+/* High Contrast */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --text-muted: #cccccc;
+  }
+}
+
+/* Skip links for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-color);
+  color: var(--dark-bg);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  font-weight: bold;
+  transition: top 0.2s;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 6px;
+}
+
+/* Focus indicators (use :focus-visible) */
+.cta-button:focus-visible,
+.nav-button:focus-visible,
+.nav-indicator:focus-visible,
+.skip-link:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.cta-button:focus,
+.nav-button:focus,
+.nav-indicator:focus {
+  outline: none;
+}
