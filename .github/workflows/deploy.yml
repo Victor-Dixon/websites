@@ -10,6 +10,9 @@ on:
       - '!README.md'
       - '!*.md'
 
+  schedule:
+    - cron: '0 3 * * *'
+
   workflow_dispatch:
     inputs:
       deploy_all:
@@ -60,12 +63,12 @@ jobs:
       run: |
         echo "🚀 Starting deployment..."
 
-        if [ "${{ github.event.inputs.deploy_all }}" == "true" ] || [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ -z "${{ github.event.inputs.specific_site }}" ]; then
-          echo "🌐 Deploying to ALL websites..."
-          python ops/deployment/deploy_on_push.py --all
+        if [ "${{ github.event_name }}" == "schedule" ] || [ "${{ github.event.inputs.deploy_all }}" == "true" ]; then
+          echo "🌐 Deploying to ALL websites (SSOT registry)..."
+          python ops/deployment/unified_deployer.py --all
         elif [ -n "${{ github.event.inputs.specific_site }}" ]; then
           echo "🎯 Deploying to specific site: ${{ github.event.inputs.specific_site }}"
-          python ops/deployment/deploy_on_push.py --site "${{ github.event.inputs.specific_site }}"
+          python ops/deployment/unified_deployer.py --site "${{ github.event.inputs.specific_site }}"
         else
           echo "🔄 Auto-detecting changes and deploying..."
           python ops/deployment/deploy_on_push.py --auto
