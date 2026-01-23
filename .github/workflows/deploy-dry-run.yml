@@ -1,0 +1,112 @@
+name: Deploy Dry-Run (Artifacts per Site)
+
+on:
+  workflow_dispatch:
+    inputs:
+      site:
+        description: "Site slug (optional). Example: weareswarm.site"
+        required: false
+        default: ""
+      all:
+        description: "Run for all sites"
+        type: boolean
+        required: true
+        default: true
+
+jobs:
+  build-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.mk.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build matrix
+        id: mk
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ ! -d "websites" ]; then
+            echo "websites/ folder not found. Adjust this workflow to match your repo structure." >&2
+            exit 1
+          fi
+
+          SITE_INPUT="${{ github.event.inputs.site }}"
+          ALL_INPUT="${{ github.event.inputs.all }}"
+
+          if [ -n "${SITE_INPUT}" ] && [ "${ALL_INPUT}" != "true" ]; then
+            SITES_JSON=$(python - <<'PY'
+import json
+import os
+
+site = os.environ.get("SITE", "").strip()
+print(json.dumps([site]))
+PY
+)
+          else
+            SITES_JSON=$(python - <<'PY'
+import json
+import os
+
+root = "websites"
+sites = []
+for name in sorted(os.listdir(root)):
+    path = os.path.join(root, name)
+    if os.path.isdir(path) and not name.startswith("."):
+        sites.append(name)
+print(json.dumps(sites))
+PY
+)
+          fi
+
+          echo "matrix={\"site\": ${SITES_JSON}}" >> "$GITHUB_OUTPUT"
+        env:
+          SITE: ${{ github.event.inputs.site }}
+
+  dry-run:
+    needs: build-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.build-matrix.outputs.matrix) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps (optional)
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
+          elif [ -f "pyproject.toml" ]; then
+            pip install .
+          else
+            echo "No requirements detected. Skipping install."
+          fi
+
+      - name: Dry-run deploy for site
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+
+          SITE="${{ matrix.site }}"
+          echo "== DRY RUN FOR: ${SITE} ==" | tee "artifacts/${SITE}.log"
+
+          python ops/deployment/unified_deployer.py --site "${SITE}" --dry-run 2>&1 | tee -a "artifacts/${SITE}.log"
+
+      - name: Upload artifact (site log)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dry-run-${{ matrix.site }}
+          path: artifacts/${{ matrix.site }}.log
+          if-no-files-found: error
