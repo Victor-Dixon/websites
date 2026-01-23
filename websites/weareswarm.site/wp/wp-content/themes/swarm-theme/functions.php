@@ -24,11 +24,24 @@ add_action('after_setup_theme', 'weareswarm_theme_setup');
 
 // Enqueue scripts and styles
 function weareswarm_enqueue_assets() {
-    // Main stylesheet
-    wp_enqueue_style('weareswarm-style', get_stylesheet_uri(), array(), '3.0.0');
+    wp_enqueue_style(
+        'weareswarm-fonts',
+        'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap',
+        array(),
+        null
+    );
 
-    // Google Fonts
-    wp_enqueue_style('weareswarm-fonts', 'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap', array(), null);
+    $version = wp_get_theme()->get('Version');
+    $base = get_template_directory_uri() . '/assets/css/';
+
+    wp_enqueue_style('weareswarm-00', $base . '00-tokens.css', array('weareswarm-fonts'), $version);
+    wp_enqueue_style('weareswarm-01', $base . '01-base.css', array('weareswarm-00'), $version);
+    wp_enqueue_style('weareswarm-02', $base . '02-shell.css', array('weareswarm-01'), $version);
+    wp_enqueue_style('weareswarm-03', $base . '03-components.css', array('weareswarm-02'), $version);
+    wp_enqueue_style('weareswarm-04', $base . '04-hero.css', array('weareswarm-03'), $version);
+    wp_enqueue_style('weareswarm-05', $base . '05-sections.css', array('weareswarm-04'), $version);
+    wp_enqueue_style('weareswarm-06', $base . '06-responsive.css', array('weareswarm-05'), $version);
+    wp_enqueue_style('weareswarm-07', $base . '07-accessibility.css', array('weareswarm-06'), $version);
 
     // Hero animations script (only on pages with hero)
     if (is_page_template('page-home.php')) {
@@ -326,51 +339,4 @@ function freerideinvestor_disable_emojis() {
     remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
 }
 add_action('init', 'freerideinvestor_disable_emojis');
-
-/**
- * Mission Data Management Functions
- */
-function get_mission_data() {
-    static $mission_data = null;
-
-    if ($mission_data === null) {
-        $mission_data_file = get_template_directory() . '/mission-data.php';
-        if (file_exists($mission_data_file)) {
-            include_once($mission_data_file);
-            // $mission_data variable is set by the included file
-        } else {
-            // Fallback empty data
-            $mission_data = array(
-                'mission_history' => array(),
-                'stats' => array(
-                    'total_missions' => 0,
-                    'completed_missions' => 0,
-                    'pending_missions' => 0,
-                    'completion_rate' => 0,
-                    'agents_involved' => 0,
-                    'total_points' => 0
-                )
-            );
-        }
-    }
-
-    return $mission_data;
-}
-
-/**
- * Update mission data via AJAX (for admin updates)
- */
-function weareswarm_update_missions() {
-    check_ajax_referer('weareswarm_nonce', 'nonce');
-
-    if (!current_user_can('manage_options')) {
-        wp_send_json_error('Insufficient permissions');
-        return;
-    }
-
-    // Mission data would be posted here
-    // For now, just return success
-    wp_send_json_success('Mission data updated');
-}
-add_action('wp_ajax_update_missions', 'weareswarm_update_missions');
 ?>
