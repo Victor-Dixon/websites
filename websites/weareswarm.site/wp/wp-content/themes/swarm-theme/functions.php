@@ -326,4 +326,51 @@ function freerideinvestor_disable_emojis() {
     remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
 }
 add_action('init', 'freerideinvestor_disable_emojis');
+
+/**
+ * Mission Data Management Functions
+ */
+function get_mission_data() {
+    static $mission_data = null;
+
+    if ($mission_data === null) {
+        $mission_data_file = get_template_directory() . '/mission-data.php';
+        if (file_exists($mission_data_file)) {
+            include_once($mission_data_file);
+            // $mission_data variable is set by the included file
+        } else {
+            // Fallback empty data
+            $mission_data = array(
+                'mission_history' => array(),
+                'stats' => array(
+                    'total_missions' => 0,
+                    'completed_missions' => 0,
+                    'pending_missions' => 0,
+                    'completion_rate' => 0,
+                    'agents_involved' => 0,
+                    'total_points' => 0
+                )
+            );
+        }
+    }
+
+    return $mission_data;
+}
+
+/**
+ * Update mission data via AJAX (for admin updates)
+ */
+function weareswarm_update_missions() {
+    check_ajax_referer('weareswarm_nonce', 'nonce');
+
+    if (!current_user_can('manage_options')) {
+        wp_send_json_error('Insufficient permissions');
+        return;
+    }
+
+    // Mission data would be posted here
+    // For now, just return success
+    wp_send_json_success('Mission data updated');
+}
+add_action('wp_ajax_update_missions', 'weareswarm_update_missions');
 ?>

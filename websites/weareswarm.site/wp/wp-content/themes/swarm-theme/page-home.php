@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load mission data dynamically
     fetchMissionData();
 
+    // Load agent data dynamically
+    loadAgentData();
+
     // Initialize hero section
     setTimeout(function() {
         const loadingScreen = document.getElementById('hero-loading');
@@ -83,6 +86,105 @@ function fetchMissionData() {
     if (loadingElement) {
         loadingElement.outerHTML = missionsHTML;
     }
+}
+
+function loadAgentData() {
+    // Load agent information for the home page agents section
+    const agentsGrid = document.querySelector('.agents-grid');
+    if (!agentsGrid) return;
+
+    // Agent data - same as the agents page
+    const agents = [
+        {
+            id: 'agent-1',
+            name: 'Agent-1',
+            role: 'Integration & Core Systems Specialist',
+            icon: '🧠',
+            description: 'Master of system architecture and cross-component integration.',
+            specialties: ['Architecture', 'Integration', 'Core Systems']
+        },
+        {
+            id: 'agent-2',
+            name: 'Agent-2',
+            role: 'Infrastructure & DevOps Architect',
+            icon: '🏗️',
+            description: 'Designs and maintains the technological infrastructure.',
+            specialties: ['DevOps', 'Infrastructure', 'Deployment']
+        },
+        {
+            id: 'agent-3',
+            name: 'Agent-3',
+            role: 'Project Lead & Technical Director',
+            icon: '⚡',
+            description: 'Coordinates major initiatives and ensures technical excellence.',
+            specialties: ['Leadership', 'Coordination', 'Technical']
+        },
+        {
+            id: 'agent-4',
+            name: 'Agent-4',
+            role: 'Tool Development & Automation Specialist',
+            icon: '🔧',
+            description: 'Creates and maintains specialized tools for productivity.',
+            specialties: ['Tools', 'Automation', 'Development']
+        },
+        {
+            id: 'agent-5',
+            name: 'Agent-5',
+            role: 'Analytics & Data Science Expert',
+            icon: '📊',
+            description: 'Analyzes swarm performance data and provides insights.',
+            specialties: ['Analytics', 'Data Science', 'Performance']
+        },
+        {
+            id: 'agent-6',
+            name: 'Agent-6',
+            role: 'Quality Assurance & Standards Enforcement',
+            icon: '🎯',
+            description: 'Maintains code quality standards and ensures compliance.',
+            specialties: ['Quality', 'Standards', 'Compliance']
+        },
+        {
+            id: 'agent-7',
+            name: 'Agent-7',
+            role: 'Web Development & UI/UX Specialist',
+            icon: '🌐',
+            description: 'Creates beautiful, functional interfaces and web experiences.',
+            specialties: ['Web Dev', 'UI/UX', 'Frontend']
+        },
+        {
+            id: 'agent-8',
+            name: 'Agent-8',
+            role: 'Creative Innovation & Gaming Specialist',
+            icon: '🎮',
+            description: 'Explores creative applications and gaming integrations.',
+            specialties: ['Innovation', 'Gaming', 'Creative']
+        }
+    ];
+
+    // Generate HTML for agents
+    let agentsHTML = '';
+    agents.forEach((agent, index) => {
+        const number = String(index + 1).padStart(2, '0');
+        agentsHTML += `
+            <div class="agent-card" style="animation-delay: ${index * 0.1}s">
+                <div class="agent-avatar">
+                    <div class="avatar-icon">${agent.icon}</div>
+                    <div class="agent-number">${number}</div>
+                </div>
+                <div class="agent-info">
+                    <h3>${agent.name}</h3>
+                    <p class="agent-role">${agent.role}</p>
+                    <p class="agent-description">${agent.description}</p>
+                    <div class="agent-specialties">
+                        ${agent.specialties.map(specialty => `<span class="specialty-tag">${specialty}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    // Replace loading message with agent cards
+    agentsGrid.innerHTML = agentsHTML;
 }
 </script>
 

@@ -1,0 +1,65 @@
+name: Deploy Websites (Registry-Driven)
+
+on:
+  workflow_dispatch:  # Manual trigger
+  schedule:
+    # Nightly verification at 2 AM UTC
+    - cron: '0 2 * * *'
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'websites/**'
+      - 'ops/deployment/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout Websites Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install Dependencies
+        run: |
+          pip install pyyaml requests paramiko python-dotenv
+      
+      - name: Test Registry
+        run: |
+          cd ops/deployment
+          python test_registry.py
+      
+      - name: Registry Deploy (All Sites)
+        id: deploy
+        run: |
+          cd ops/deployment
+          python registry_deployer.py --mode all --sha "${{ github.sha }}" --pipeline github-actions
+        continue-on-error: false
+      
+      - name: Verify All Sites
+        id: verify
+        run: |
+          cd ops/deployment
+          python verify_all_sites.py --sha "${{ github.sha }}" --strict
+        continue-on-error: false
+      
+      - name: Deployment Summary
+        if: always()
+        run: |
+          echo "## Deployment Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Registry-driven deployment completed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ steps.verify.outcome }}" >> $GITHUB_STEP_SUMMARY
