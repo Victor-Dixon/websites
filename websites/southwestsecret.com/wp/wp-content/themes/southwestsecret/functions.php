@@ -11,7 +11,7 @@ add_action('wp_enqueue_scripts', 'southwestsecretcom_enqueue_styles');
 /**
  * Add security headers
  */
-function freerideinvestor_security_headers() {
+function southwestsecret_security_headers() {
     if (!is_admin()) {
         // Remove WordPress version from head
         remove_action('wp_head', 'wp_generator');
@@ -26,23 +26,23 @@ function freerideinvestor_security_headers() {
         remove_action('wp_head', 'wp_shortlink_wp_head');
     }
 }
-add_action('init', 'freerideinvestor_security_headers');
+add_action('init', 'southwestsecret_security_headers');
 
 /**
  * Optimize asset loading - defer non-critical CSS
  */
-function freerideinvestor_optimize_assets() {
+function southwestsecret_optimize_assets() {
     // Defer non-critical styles
     if (!is_admin()) {
-        add_filter('style_loader_tag', 'freerideinvestor_defer_styles', 10, 4);
+        add_filter('style_loader_tag', 'southwestsecret_defer_styles', 10, 4);
     }
 }
-add_action('wp_enqueue_scripts', 'freerideinvestor_optimize_assets', 999);
+add_action('wp_enqueue_scripts', 'southwestsecret_optimize_assets', 999);
 
 /**
  * Defer loading of non-critical styles
  */
-function freerideinvestor_defer_styles($html, $handle, $href, $media) {
+function southwestsecret_defer_styles($html, $handle, $href, $media) {
     // Defer Tailwind CSS as it's not critical for initial render
     if ($handle === 'tailwind-css') {
         return str_replace("rel='stylesheet'", "rel='preload' as='style' onload="this.onload=null;this.rel='stylesheet'"", $html);
@@ -53,19 +53,19 @@ function freerideinvestor_defer_styles($html, $handle, $href, $media) {
 /**
  * Optimize database queries
  */
-function freerideinvestor_optimize_queries($query) {
+function southwestsecret_optimize_queries($query) {
     if (!is_admin() && $query->is_main_query() && $query->is_home()) {
         // Limit posts per page for performance
         $query->set('posts_per_page', 12);
     }
     return $query;
 }
-add_action('pre_get_posts', 'freerideinvestor_optimize_queries');
+add_action('pre_get_posts', 'southwestsecret_optimize_queries');
 
 /**
  * Add preconnect for external resources
  */
-function freerideinvestor_resource_hints($hints, $relation_type) {
+function southwestsecret_resource_hints($hints, $relation_type) {
     if ($relation_type === 'preconnect') {
         // Preconnect to Google Fonts
         $hints[] = 'https://fonts.googleapis.com';
@@ -73,12 +73,12 @@ function freerideinvestor_resource_hints($hints, $relation_type) {
     }
     return $hints;
 }
-add_filter('wp_resource_hints', 'freerideinvestor_resource_hints', 10, 2);
+add_filter('wp_resource_hints', 'southwestsecret_resource_hints', 10, 2);
 
 /**
  * Disable emojis for performance
  */
-function freerideinvestor_disable_emojis() {
+function southwestsecret_disable_emojis() {
     remove_action('wp_head', 'print_emoji_detection_script', 7);
     remove_action('wp_print_styles', 'print_emoji_styles');
     remove_action('admin_print_scripts', 'print_emoji_detection_script');
@@ -87,5 +87,5 @@ function freerideinvestor_disable_emojis() {
     remove_filter('comment_text_rss', 'wp_staticize_emoji');
     remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
 }
-add_action('init', 'freerideinvestor_disable_emojis');
+add_action('init', 'southwestsecret_disable_emojis');
 ?>
