@@ -538,7 +538,7 @@ const burstParticleCSS = `
 }
 
 .hero-notification {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Inter', sans-serif;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }

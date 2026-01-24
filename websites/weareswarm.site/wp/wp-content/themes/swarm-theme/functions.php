@@ -26,7 +26,7 @@ add_action('after_setup_theme', 'weareswarm_theme_setup');
 function weareswarm_enqueue_assets() {
     wp_enqueue_style(
         'weareswarm-fonts',
-        'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap',
         array(),
         null
     );
