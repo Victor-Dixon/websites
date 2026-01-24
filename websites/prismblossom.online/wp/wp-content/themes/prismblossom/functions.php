@@ -1,4 +1,20 @@
 <?php
+/**
+ * Theme Setup
+ */
+function prismblossomonline_setup() {
+    // Add theme support
+    add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
+    add_theme_support('html5', array('search-form', 'comment-form', 'comment-list', 'gallery', 'caption'));
+    
+    // Register navigation menus
+    register_nav_menus(array(
+        'primary' => __('Primary Menu', 'prismblossomonline'),
+    ));
+}
+add_action('after_setup_theme', 'prismblossomonline_setup');
+
 function prismblossomonline_enqueue_styles() {
     wp_enqueue_style('prismblossomonline-style', get_stylesheet_uri());
 }
