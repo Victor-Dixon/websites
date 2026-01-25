@@ -45,7 +45,7 @@
                 <?php echo do_shortcode('[dadudekc_portfolio limit="3"]'); ?>
 
                 <div class="text-center mt-12">
-                    <a href="<?php echo esc_url(home_url('/portfolio')); ?>" class="inline-block bg-gradient-to-r from-blue-500 to-green-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-blue-600 hover:to-green-600 transition-all duration-300 transform hover:scale-105">
+                    <a href="<?php echo esc_url(home_url('/projects')); ?>" class="inline-block bg-gradient-to-r from-blue-500 to-green-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-blue-600 hover:to-green-600 transition-all duration-300 transform hover:scale-105">
                         View All Projects →
                     </a>
                 </div>

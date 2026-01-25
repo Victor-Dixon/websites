@@ -31,20 +31,20 @@ class DaduDekCPortfolioPlugin {
 
     public function register_portfolio_post_type() {
         $labels = array(
-            'name'                  => _x('Portfolio', 'Post type general name', 'dadudekc-portfolio'),
-            'singular_name'         => _x('Portfolio Item', 'Post type singular name', 'dadudekc-portfolio'),
-            'menu_name'            => _x('Portfolio', 'Admin Menu text', 'dadudekc-portfolio'),
-            'name_admin_bar'       => _x('Portfolio Item', 'Add New on Toolbar', 'dadudekc-portfolio'),
+            'name'                  => _x('Projects', 'Post type general name', 'dadudekc-portfolio'),
+            'singular_name'         => _x('Project', 'Post type singular name', 'dadudekc-portfolio'),
+            'menu_name'            => _x('Projects', 'Admin Menu text', 'dadudekc-portfolio'),
+            'name_admin_bar'       => _x('Project', 'Add New on Toolbar', 'dadudekc-portfolio'),
             'add_new'              => __('Add New', 'dadudekc-portfolio'),
-            'add_new_item'         => __('Add New Portfolio Item', 'dadudekc-portfolio'),
-            'new_item'             => __('New Portfolio Item', 'dadudekc-portfolio'),
-            'edit_item'            => __('Edit Portfolio Item', 'dadudekc-portfolio'),
-            'view_item'            => __('View Portfolio Item', 'dadudekc-portfolio'),
-            'all_items'            => __('All Portfolio Items', 'dadudekc-portfolio'),
-            'search_items'         => __('Search Portfolio', 'dadudekc-portfolio'),
-            'parent_item_colon'    => __('Parent Portfolio:', 'dadudekc-portfolio'),
-            'not_found'            => __('No portfolio items found.', 'dadudekc-portfolio'),
-            'not_found_in_trash'   => __('No portfolio items found in Trash.', 'dadudekc-portfolio'),
+            'add_new_item'         => __('Add New Project', 'dadudekc-portfolio'),
+            'new_item'             => __('New Project', 'dadudekc-portfolio'),
+            'edit_item'            => __('Edit Project', 'dadudekc-portfolio'),
+            'view_item'            => __('View Project', 'dadudekc-portfolio'),
+            'all_items'            => __('All Projects', 'dadudekc-portfolio'),
+            'search_items'         => __('Search Projects', 'dadudekc-portfolio'),
+            'parent_item_colon'    => __('Parent Project:', 'dadudekc-portfolio'),
+            'not_found'            => __('No projects found.', 'dadudekc-portfolio'),
+            'not_found_in_trash'   => __('No projects found in Trash.', 'dadudekc-portfolio'),
         );
 
         $args = array(
@@ -54,7 +54,7 @@ class DaduDekCPortfolioPlugin {
             'show_ui'            => true,
             'show_in_menu'       => true,
             'query_var'          => true,
-            'rewrite'            => array('slug' => 'portfolio'),
+            'rewrite'            => array('slug' => 'projects'),
             'capability_type'    => 'post',
             'has_archive'        => true,
             'hierarchical'       => false,
@@ -64,7 +64,7 @@ class DaduDekCPortfolioPlugin {
             'show_in_rest'       => true,
         );
 
-        register_post_type('portfolio', $args);
+        register_post_type('project', $args);
     }
 
     public function register_portfolio_taxonomies() {
@@ -93,7 +93,7 @@ class DaduDekCPortfolioPlugin {
             'show_in_rest'      => true,
         );
 
-        register_taxonomy('service_type', array('portfolio'), $service_args);
+        register_taxonomy('service_type', array('project'), $service_args);
 
         // Technology Taxonomy
         $tech_labels = array(
@@ -120,11 +120,11 @@ class DaduDekCPortfolioPlugin {
             'show_in_rest'      => true,
         );
 
-        register_taxonomy('technology', array('portfolio'), $tech_args);
+        register_taxonomy('technology', array('project'), $tech_args);
     }
 
     public function enqueue_scripts() {
-        if (is_singular('portfolio') || is_post_type_archive('portfolio')) {
+        if (is_singular('project') || is_post_type_archive('project')) {
             wp_enqueue_style('dadudekc-portfolio-css', plugin_dir_url(__FILE__) . 'css/portfolio.css', array(), '1.0.0');
             wp_enqueue_script('dadudekc-portfolio-js', plugin_dir_url(__FILE__) . 'js/portfolio.js', array('jquery'), '1.0.0', true);
         }
@@ -133,9 +133,9 @@ class DaduDekCPortfolioPlugin {
     public function add_portfolio_meta_boxes() {
         add_meta_box(
             'portfolio_details',
-            __('Portfolio Details', 'dadudekc-portfolio'),
+            __('Project Details', 'dadudekc-portfolio'),
             array($this, 'portfolio_meta_box_callback'),
-            'portfolio',
+            'project',
             'normal',
             'high'
         );
@@ -144,7 +144,7 @@ class DaduDekCPortfolioPlugin {
             'portfolio_metrics',
             __('Project Metrics', 'dadudekc-portfolio'),
             array($this, 'portfolio_metrics_meta_box_callback'),
-            'portfolio',
+            'project',
             'normal',
             'high'
         );
@@ -153,34 +153,54 @@ class DaduDekCPortfolioPlugin {
     public function portfolio_meta_box_callback($post) {
         wp_nonce_field('portfolio_details_nonce', 'portfolio_details_nonce');
 
-        $client_name = get_post_meta($post->ID, '_portfolio_client_name', true);
-        $project_url = get_post_meta($post->ID, '_portfolio_project_url', true);
-        $completion_date = get_post_meta($post->ID, '_portfolio_completion_date', true);
-        $project_status = get_post_meta($post->ID, '_portfolio_project_status', true);
+        $one_line_summary = get_post_meta($post->ID, '_project_one_line_summary', true);
+        $core_purpose = get_post_meta($post->ID, '_project_core_purpose', true);
+        $value_impact = get_post_meta($post->ID, '_project_value_impact', true);
+        $tech_stack = get_post_meta($post->ID, '_project_tech_stack', true);
+        $project_status = get_post_meta($post->ID, '_project_status', true);
+        $unique_angle = get_post_meta($post->ID, '_project_unique_angle', true);
+        $next_steps = get_post_meta($post->ID, '_project_next_steps', true);
+        $repo_link = get_post_meta($post->ID, '_project_repo_link', true);
 
         ?>
         <table class="form-table">
             <tr>
-                <th><label for="portfolio_client_name"><?php _e('Client Name', 'dadudekc-portfolio'); ?></label></th>
-                <td><input type="text" id="portfolio_client_name" name="portfolio_client_name" value="<?php echo esc_attr($client_name); ?>" class="regular-text"></td>
+                <th><label for="project_one_line_summary"><?php _e('One-line Summary', 'dadudekc-portfolio'); ?></label></th>
+                <td><input type="text" id="project_one_line_summary" name="project_one_line_summary" value="<?php echo esc_attr($one_line_summary); ?>" class="regular-text" placeholder="Brief project description"></td>
             </tr>
             <tr>
-                <th><label for="portfolio_project_url"><?php _e('Project URL', 'dadudekc-portfolio'); ?></label></th>
-                <td><input type="url" id="portfolio_project_url" name="portfolio_project_url" value="<?php echo esc_attr($project_url); ?>" class="regular-text"></td>
+                <th><label for="project_core_purpose"><?php _e('Core Purpose', 'dadudekc-portfolio'); ?></label></th>
+                <td><textarea id="project_core_purpose" name="project_core_purpose" rows="3" class="large-text"><?php echo esc_textarea($core_purpose); ?></textarea></td>
             </tr>
             <tr>
-                <th><label for="portfolio_completion_date"><?php _e('Completion Date', 'dadudekc-portfolio'); ?></label></th>
-                <td><input type="date" id="portfolio_completion_date" name="portfolio_completion_date" value="<?php echo esc_attr($completion_date); ?>"></td>
+                <th><label for="project_value_impact"><?php _e('Value / Impact', 'dadudekc-portfolio'); ?></label></th>
+                <td><textarea id="project_value_impact" name="project_value_impact" rows="3" class="large-text"><?php echo esc_textarea($value_impact); ?></textarea></td>
             </tr>
             <tr>
-                <th><label for="portfolio_project_status"><?php _e('Project Status', 'dadudekc-portfolio'); ?></label></th>
+                <th><label for="project_tech_stack"><?php _e('Tech Stack', 'dadudekc-portfolio'); ?></label></th>
+                <td><input type="text" id="project_tech_stack" name="project_tech_stack" value="<?php echo esc_attr($tech_stack); ?>" class="regular-text" placeholder="Python, PyQt5, AST, Tree-sitter, JSON"></td>
+            </tr>
+            <tr>
+                <th><label for="project_status"><?php _e('Status', 'dadudekc-portfolio'); ?></label></th>
                 <td>
-                    <select id="portfolio_project_status" name="portfolio_project_status">
-                        <option value="completed" <?php selected($project_status, 'completed'); ?>><?php _e('Completed', 'dadudekc-portfolio'); ?></option>
-                        <option value="ongoing" <?php selected($project_status, 'ongoing'); ?>><?php _e('Ongoing', 'dadudekc-portfolio'); ?></option>
-                        <option value="maintenance" <?php selected($project_status, 'maintenance'); ?>><?php _e('Maintenance', 'dadudekc-portfolio'); ?></option>
+                    <select id="project_status" name="project_status">
+                        <option value="mvp" <?php selected($project_status, 'mvp'); ?>><?php _e('MVP', 'dadudekc-portfolio'); ?></option>
+                        <option value="active" <?php selected($project_status, 'active'); ?>><?php _e('Active', 'dadudekc-portfolio'); ?></option>
+                        <option value="archived" <?php selected($project_status, 'archived'); ?>><?php _e('Archived', 'dadudekc-portfolio'); ?></option>
                     </select>
                 </td>
+            </tr>
+            <tr>
+                <th><label for="project_unique_angle"><?php _e('What Makes It Interesting', 'dadudekc-portfolio'); ?></label></th>
+                <td><textarea id="project_unique_angle" name="project_unique_angle" rows="3" class="large-text"><?php echo esc_textarea($unique_angle); ?></textarea></td>
+            </tr>
+            <tr>
+                <th><label for="project_next_steps"><?php _e('Next Steps', 'dadudekc-portfolio'); ?></label></th>
+                <td><textarea id="project_next_steps" name="project_next_steps" rows="3" class="large-text"><?php echo esc_textarea($next_steps); ?></textarea></td>
+            </tr>
+            <tr>
+                <th><label for="project_repo_link"><?php _e('Repository Link', 'dadudekc-portfolio'); ?></label></th>
+                <td><input type="url" id="project_repo_link" name="project_repo_link" value="<?php echo esc_attr($repo_link); ?>" class="regular-text" placeholder="https://github.com/username/repo"></td>
             </tr>
         </table>
         <?php
@@ -220,23 +240,40 @@ class DaduDekCPortfolioPlugin {
             return;
         }
 
-        if (isset($_POST['portfolio_client_name'])) {
-            update_post_meta($post_id, '_portfolio_client_name', sanitize_text_field($_POST['portfolio_client_name']));
+        // Save new project fields
+        if (isset($_POST['project_one_line_summary'])) {
+            update_post_meta($post_id, '_project_one_line_summary', sanitize_text_field($_POST['project_one_line_summary']));
         }
 
-        if (isset($_POST['portfolio_project_url'])) {
-            update_post_meta($post_id, '_portfolio_project_url', esc_url_raw($_POST['portfolio_project_url']));
+        if (isset($_POST['project_core_purpose'])) {
+            update_post_meta($post_id, '_project_core_purpose', sanitize_textarea_field($_POST['project_core_purpose']));
         }
 
-        if (isset($_POST['portfolio_completion_date'])) {
-            update_post_meta($post_id, sanitize_text_field($_POST['portfolio_completion_date']));
+        if (isset($_POST['project_value_impact'])) {
+            update_post_meta($post_id, '_project_value_impact', sanitize_textarea_field($_POST['project_value_impact']));
         }
 
-        if (isset($_POST['portfolio_project_status'])) {
-            update_post_meta($post_id, sanitize_text_field($_POST['portfolio_project_status']));
+        if (isset($_POST['project_tech_stack'])) {
+            update_post_meta($post_id, '_project_tech_stack', sanitize_text_field($_POST['project_tech_stack']));
         }
 
-        // Save metrics
+        if (isset($_POST['project_status'])) {
+            update_post_meta($post_id, '_project_status', sanitize_text_field($_POST['project_status']));
+        }
+
+        if (isset($_POST['project_unique_angle'])) {
+            update_post_meta($post_id, '_project_unique_angle', sanitize_textarea_field($_POST['project_unique_angle']));
+        }
+
+        if (isset($_POST['project_next_steps'])) {
+            update_post_meta($post_id, '_project_next_steps', sanitize_textarea_field($_POST['project_next_steps']));
+        }
+
+        if (isset($_POST['project_repo_link'])) {
+            update_post_meta($post_id, '_project_repo_link', esc_url_raw($_POST['project_repo_link']));
+        }
+
+        // Save metrics (keeping for backward compatibility)
         if (!isset($_POST['portfolio_metrics_nonce']) || !wp_verify_nonce($_POST['portfolio_metrics_nonce'], 'portfolio_metrics_nonce')) {
             return;
         }
@@ -255,7 +292,7 @@ class DaduDekCPortfolioPlugin {
     }
 
     public function add_portfolio_content_filter($content) {
-        if (is_singular('portfolio')) {
+        if (is_singular('project')) {
             global $post;
 
             $client_name = get_post_meta($post->ID, '_portfolio_client_name', true);
@@ -302,7 +339,7 @@ class DaduDekCPortfolioPlugin {
         ), $atts);
 
         $args = array(
-            'post_type' => 'portfolio',
+            'post_type' => 'project',
             'posts_per_page' => intval($atts['limit']),
             'post_status' => 'publish'
         );
@@ -361,41 +398,23 @@ function dadudekc_portfolio_activate() {
     // Flush rewrite rules for custom post type
     flush_rewrite_rules();
 
-    // Create sample portfolio items
-    $sample_projects = array(
-        array(
-            'title' => 'E-commerce Order Processing Automation',
-            'content' => 'Automated order processing, inventory management, and customer notification systems for a growing e-commerce business.',
-            'time_saved' => 40,
-            'efficiency_gain' => 85
-        ),
-        array(
-            'title' => 'Data Pipeline for Marketing Analytics',
-            'content' => 'Built automated data pipelines collecting marketing metrics from multiple sources with real-time dashboard reporting.',
-            'time_saved' => 25,
-            'efficiency_gain' => 70
-        ),
-        array(
-            'title' => 'Customer Support Ticket System',
-            'content' => 'Intelligent ticket routing and automated response system reducing customer support response time by 60%.',
-            'time_saved' => 60,
-            'efficiency_gain' => 90
-        )
-    );
+    // Create Project Scanner as first project
+    $project_scanner_id = wp_insert_post(array(
+        'post_title' => 'Project Scanner',
+        'post_content' => 'A Python tool that scans codebases and transforms repositories into structured JSON data with a PyQt5 GUI interface.',
+        'post_status' => 'publish',
+        'post_type' => 'project',
+        'post_name' => 'project-scanner'
+    ));
 
-    foreach ($sample_projects as $project) {
-        $post_id = wp_insert_post(array(
-            'post_title' => $project['title'],
-            'post_content' => $project['content'],
-            'post_status' => 'publish',
-            'post_type' => 'portfolio'
-        ));
-
-        if ($post_id) {
-            update_post_meta($post_id, '_portfolio_time_saved', $project['time_saved']);
-            update_post_meta($post_id, '_portfolio_efficiency_gain', $project['efficiency_gain']);
-            update_post_meta($post_id, '_portfolio_project_status', 'completed');
-        }
+    if ($project_scanner_id) {
+        update_post_meta($project_scanner_id, '_project_one_line_summary', 'A Python tool that scans codebases and transforms repositories into structured JSON data with a PyQt5 GUI interface.');
+        update_post_meta($project_scanner_id, '_project_core_purpose', 'Transform codebases into structured, queryable JSON representations. Enables rapid codebase analysis, dependency mapping, and architectural understanding without manual inspection.');
+        update_post_meta($project_scanner_id, '_project_value_impact', 'Eliminates hours of manual codebase exploration. Provides instant visibility into project structure, dependencies, and patterns. Essential for onboarding, audits, and technical due diligence.');
+        update_post_meta($project_scanner_id, '_project_tech_stack', 'Python, PyQt5, AST, Tree-sitter, JSON');
+        update_post_meta($project_scanner_id, '_project_status', 'mvp');
+        update_post_meta($project_scanner_id, '_project_unique_angle', 'Repo → structured JSON → GUI. No manual parsing. AST-based analysis with tree-sitter for multi-language support. GUI makes it accessible to non-technical stakeholders.');
+        update_post_meta($project_scanner_id, '_project_next_steps', 'Add support for additional languages, implement diff analysis between versions, export to multiple formats (Markdown, HTML reports).');
     }
 }
 
