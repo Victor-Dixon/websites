@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐝 Swarm Patch Rollout Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+            color: #e0e0e0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .site-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .site-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .site-card.p0 {
+            border-color: #ef4444;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+        }
+
+        .site-card.p1 {
+            border-color: #f59e0b;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+        }
+
+        .site-card.p2 {
+            border-color: #10b981;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+        }
+
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .site-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .status-critical { background: #ef4444; color: white; }
+        .status-high { background: #f59e0b; color: white; }
+        .status-medium { background: #10b981; color: white; }
+
+        .task-list {
+            margin-top: 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+
+        .site-card.expanded .task-list {
+            max-height: 1000px;
+        }
+
+        .task-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            border-left: 3px solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        .task-item.p0 { border-left-color: #ef4444; }
+        .task-item.p1 { border-left-color: #f59e0b; }
+        .task-item.p2 { border-left-color: #10b981; }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+
+        .expand-btn {
+            margin-top: 15px;
+            text-align: center;
+            color: #8b5cf6;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+
+        .blockers {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid #ef4444;
+            border-radius: 8px;
+            font-size: 0.85em;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #8b5cf6;
+            border-color: #8b5cf6;
+        }
+
+        .phase-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #8b5cf6;
+        }
+
+        .phase-header {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .sites-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-p0 { background: #ef4444; }
+        .dot-p1 { background: #f59e0b; }
+        .dot-p2 { background: #10b981; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐝 Swarm Patch Rollout Dashboard</h1>
+            <div class="subtitle">Dream.OS Website Remediation - Real-time Status</div>
+            <div class="subtitle" style="margin-top: 10px; opacity: 0.7;">Last Updated: 2026-01-24 23:55 UTC (CORRECTED)</div>
+            <div class="subtitle" style="margin-top: 5px; opacity: 0.9; color: #10b981; font-weight: 600;">✅ Deployment Infrastructure Verified - Ready for Execution</div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" style="color: #6366f1;">11</div>
+                <div class="stat-label">Total Sites</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #ef4444;">34</div>
+                <div class="stat-label">Total Issues</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #8b5cf6;">57</div>
+                <div class="stat-label">Total Tasks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #f59e0b;">0%</div>
+                <div class="stat-label">Progress</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #10b981;">~0h</div>
+                <div class="stat-label">Est. Work Time</div>
+            </div>
+            <div class="stat-card" style="border: 2px solid #10b981;">
+                <div class="stat-value" style="color: #10b981;">9/11</div>
+                <div class="stat-label">Ready to Deploy</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot dot-p0"></div>
+                <span>P0 Critical (3 sites)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot dot-p1"></div>
+                <span>P1 High (3 sites)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot dot-p2"></div>
+                <span>P2 Medium (5 sites)</span>
+            </div>
+        </div>
+
+        <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+            <strong style="color: #10b981;">✅ Deployment Infrastructure Verified</strong>
+            <div style="margin-top: 8px; font-size: 0.9em; opacity: 0.9;">
+                All sites have deployment access via <code>ops/deployment/unified_deployer.py</code> and WordPress management tools.
+                <br>Only 2 sites blocked by DNS issues (freerideinvestor.com, southwestsecret.com).
+            </div>
+        </div>
+
+        <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+            <strong style="color: #10b981;">✅ Deployment Infrastructure Verified</strong>
+            <div style="margin-top: 8px; font-size: 0.9em; opacity: 0.9;">
+                All sites have deployment access via <code>ops/deployment/unified_deployer.py</code> and WordPress management tools.
+                <br>Only 2 sites blocked by DNS issues (freerideinvestor.com, southwestsecret.com).
+            </div>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterSites('all')">All Sites</button>
+            <button class="filter-btn" onclick="filterSites('p0')">P0 Critical</button>
+            <button class="filter-btn" onclick="filterSites('p1')">P1 High</button>
+            <button class="filter-btn" onclick="filterSites('p2')">P2 Medium</button>
+        </div>
+
+        <div class="sites-grid" id="sitesGrid">
+            <!-- Site cards will be generated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const sitesData = [
+            {
+                        "name": "freerideinvestor.com",
+                        "severity": "p0",
+                        "status": "CRITICAL - Site Down",
+                        "tasks": 4,
+                        "completedTasks": 0,
+                        "estTime": "4h",
+                        "owner": "Agent-3",
+                        "blocker": "DNS/Hosting (site not resolving)",
+                        "description": "Site not resolving \u2013 domain or hosting configuration appears broken",
+                        "taskDetails": [
+                                    {
+                                                "id": "fri-task-001",
+                                                "task": "Verify DNS and hosting setup so the site becomes accessible via HTTPS",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "fri-task-002",
+                                                "task": "Implement proper landing page with branding and investor-related content",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "fri-task-003",
+                                                "task": "Add basic pages (About, Contact, etc.) and ensure navigation links work",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "fri-task-004",
+                                                "task": "Enable SSL and create SEO meta tags appropriate to investment site",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "southwestsecret.com",
+                        "severity": "p0",
+                        "status": "CRITICAL - Site Down",
+                        "tasks": 5,
+                        "completedTasks": 0,
+                        "estTime": "5h",
+                        "owner": "Agent-4",
+                        "blocker": "Purpose clarification + DNS",
+                        "description": "Website is currently unreachable (possible DNS/hosting issue)",
+                        "taskDetails": [
+                                    {
+                                                "id": "sws-task-001",
+                                                "task": "CLARIFY SITE PURPOSE: Confirm Remix dev OR DJ/music site with stakeholders",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "sws-task-002",
+                                                "task": "Fix domain resolution/hosting so site loads over HTTPS",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "sws-task-003",
+                                                "task": "Remove placeholder content and add real content aligned with confirmed theme",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "sws-task-004",
+                                                "task": "Test and repair all menu links once site is live",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "sws-task-005",
+                                                "task": "Add appropriate homepage tagline and CTAs to engage visitors",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "prismblossom.online",
+                        "severity": "p2",
+                        "status": "OPERATIONAL - Minor Issues",
+                        "tasks": 5,
+                        "completedTasks": 0,
+                        "estTime": "5h",
+                        "owner": "Agent-7",
+                        "blocker": "None",
+                        "description": "Verify all internal links (e.g., 'Carmyn' page) load correctly",
+                        "taskDetails": [
+                                    {
+                                                "id": "pbo-task-001",
+                                                "task": "Fix font corruption (Phase 1 global fix)",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "pbo-task-002",
+                                                "task": "Ensure sub-pages like Carmyn, Guestbook load without timeout",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "pbo-task-003",
+                                                "task": "Proofread content and replace filler in 'Latest Updates'",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "pbo-task-004",
+                                                "task": "Implement basic SEO (unique titles, meta descriptions, alt tags)",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "pbo-task-005",
+                                                "task": "Test music playlist feature on multiple devices/browsers",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "ariajet.site",
+                        "severity": "p1",
+                        "status": "HIGH PRIORITY - Major Content Issues",
+                        "tasks": 7,
+                        "completedTasks": 0,
+                        "estTime": "7h",
+                        "owner": "Agent-7",
+                        "blocker": "None",
+                        "description": "About page filled with unrelated placeholder text (Irish pub content)",
+                        "taskDetails": [
+                                    {
+                                                "id": "ajs-task-001",
+                                                "task": "Fix font corruption (Phase 1 global fix)",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "ajs-task-002",
+                                                "task": "Rewrite About page to describe Aria's gaming projects - remove pub content",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "ajs-task-003",
+                                                "task": "Publish Music page with real content OR remove/hide from menu",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "ajs-task-004",
+                                                "task": "Label CTAs as 'Coming Soon' or disable until content ready",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "ajs-task-005",
+                                                "task": "Remove default posts and tags (ensure 'Hello world' is gone)",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "ajs-task-006",
+                                                "task": "Replace placeholder social links with Aria's real links or remove",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "ajs-task-007",
+                                                "task": "Verify theme icons load properly (\u2b50 and \ud83c\udfb5 symbols)",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "dadudekc.com",
+                        "severity": "p2",
+                        "status": "OPERATIONAL - Minor Cleanup Needed",
+                        "tasks": 4,
+                        "completedTasks": 0,
+                        "estTime": "4h",
+                        "owner": "Agent-7",
+                        "blocker": "None",
+                        "description": "Author name displays as email (dadudekc@gmail.com) on posts",
+                        "taskDetails": [
+                                    {
+                                                "id": "dkc-task-001",
+                                                "task": "Fix font corruption (Phase 1 global fix)",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "dkc-task-002",
+                                                "task": "Change WordPress author display name to 'Victor Dixon'",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "dkc-task-003",
+                                                "task": "Implement redirect or removal for /author/* page if not needed",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "dkc-task-004",
+                                                "task": "Test Contact Victor form - ensure submission works",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "crosbyultimateevents.com",
+                        "severity": "p2",
+                        "status": "OPERATIONAL - Navigation Issues",
+                        "tasks": 6,
+                        "completedTasks": 0,
+                        "estTime": "6h",
+                        "owner": "Agent-7",
+                        "blocker": "None",
+                        "description": "Top navigation 'Blog' link goes to 404 (no blog content yet)",
+                        "taskDetails": [
+                                    {
+                                                "id": "cue-task-001",
+                                                "task": "Fix font corruption (Phase 1 global fix)",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "cue-task-002",
+                                                "task": "Remove or hide Blog menu item until ready, or set up basic blog page",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "cue-task-003",
+                                                "task": "Replace dummy phone number with real business contact",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "cue-task-004",
+                                                "task": "Verify icon fonts load correctly (checkmarks, stars)",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "cue-task-005",
+                                                "task": "Test all 'Learn More' links on Services and Portfolio pages",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "cue-task-006",
+                                                "task": "Implement alt text for gallery/portfolio images",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "tradingrobotplug.com",
+                        "severity": "p1",
+                        "status": "OPERATIONAL - Major Feature Issues",
+                        "tasks": 7,
+                        "completedTasks": 0,
+                        "estTime": "7h",
+                        "owner": "Agent-7",
+                        "blocker": "None",
+                        "description": "Free/Premium report links lead to 404 (reports not implemented)",
+                        "taskDetails": [
+                                    {
+                                                "id": "trp-task-001",
+                                                "task": "Fix font corruption (Phase 1 global fix)",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "trp-task-002",
+                                                "task": "Disable report buttons OR link to sign-up form instead of 404",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "trp-task-003",
+                                                "task": "Enhance Pricing page with waitlist form or explain upcoming plans",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "trp-task-004",
+                                                "task": "Fix AI Swarm status widget OR remove broken section",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "trp-task-005",
+                                                "task": "Update strategy blog with real backtest results or label as sample",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "trp-task-006",
+                                                "task": "Review all nav/footer links - remove inactive pages (Careers, etc.)",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "trp-task-007",
+                                                "task": "Test Start Free Trial and View Marketplace buttons",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "weareswarm.online",
+                        "severity": "p2",
+                        "status": "OPERATIONAL - Minor Navigation",
+                        "tasks": 5,
+                        "completedTasks": 0,
+                        "estTime": "5h",
+                        "owner": "Agent-7",
+                        "blocker": "None",
+                        "description": "Navigation items may be confusing (links to .site pages)",
+                        "taskDetails": [
+                                    {
+                                                "id": "wso-task-001",
+                                                "task": "Fix font corruption (Phase 1 global fix)",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wso-task-002",
+                                                "task": "Ensure all menu items link correctly (Capabilities/Agents/About)",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wso-task-003",
+                                                "task": "Consider adding newsletter or RSS link for updates",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wso-task-004",
+                                                "task": "Monitor page load - plan pagination if feed grows too large",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wso-task-005",
+                                                "task": "Add deploy.json for deployment tracking consistency",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "weareswarm.site",
+                        "severity": "p1",
+                        "status": "HIGH PRIORITY - Core Features Broken",
+                        "tasks": 7,
+                        "completedTasks": 0,
+                        "estTime": "7h",
+                        "owner": "Agent-7",
+                        "blocker": "None",
+                        "description": "Live Activity Feed not functioning - showing 'not connected'",
+                        "taskDetails": [
+                                    {
+                                                "id": "wss-task-001",
+                                                "task": "Fix font corruption (Phase 1 global fix)",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wss-task-002",
+                                                "task": "Implement or patch Live Activity Feed on homepage",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wss-task-003",
+                                                "task": "Connect Agents status section to actual data or remove point totals",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wss-task-004",
+                                                "task": "Fix Missions page to display recent missions OR hide page",
+                                                "priority": "p1",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wss-task-005",
+                                                "task": "Rewrite About We Are Swarm page - fix typo and add real description",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wss-task-006",
+                                                "task": "Verify Discord invite link is valid and working",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "wss-task-007",
+                                                "task": "Add deploy.json and verify SHA on each deployment",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "digitaldreamscape.site",
+                        "severity": "p2",
+                        "status": "OPERATIONAL - Minor Checks Needed",
+                        "tasks": 5,
+                        "completedTasks": 0,
+                        "estTime": "5h",
+                        "owner": "Agent-7",
+                        "blocker": "None",
+                        "description": "Font corruption confirmed throughout site",
+                        "taskDetails": [
+                                    {
+                                                "id": "dds-task-001",
+                                                "task": "Fix font corruption (Phase 1 global fix)",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "dds-task-002",
+                                                "task": "Run through site to confirm no broken links",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "dds-task-003",
+                                                "task": "Verify Twitch embed/link is functioning correctly",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "dds-task-004",
+                                                "task": "Check responsiveness - ensure layout holds on mobile",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "dds-task-005",
+                                                "task": "Include in deploy.json monitoring system",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            },
+            {
+                        "name": "houstonsipqueen.com",
+                        "severity": "p2",
+                        "status": "OPERATIONAL - Minor Issues",
+                        "tasks": 2,
+                        "completedTasks": 0,
+                        "estTime": "2h",
+                        "owner": "Agent-7",
+                        "blocker": "None",
+                        "description": "Font corruption confirmed throughout site",
+                        "taskDetails": [
+                                    {
+                                                "id": "hsq-task-001",
+                                                "task": "Fix font corruption (Phase 1 global fix)",
+                                                "priority": "p0",
+                                                "status": "pending"
+                                    },
+                                    {
+                                                "id": "hsq-task-002",
+                                                "task": "Verify social/contact links are active and working",
+                                                "priority": "p2",
+                                                "status": "pending"
+                                    }
+                        ]
+            }
+];
+
+        const sitesData_backup = [
+            {
+                name: "freerideinvestor.com",
+                severity: "p0",
+                status: "🔴 DOWN",
+                tasks: 4,
+                completedTasks: 0,
+                estTime: "6h",
+                owner: "Agent-3/7",
+                blocker: "DNS/Hosting (site not resolving)",
+                description: "Site not resolving - DNS/hosting configuration issue",
+                taskDetails: [
+                    { id: "FRI-01", task: "Fix DNS/hosting configuration", priority: "p0", status: "pending" },
+                    { id: "FRI-02", task: "Implement landing page with branding", priority: "p1", status: "pending" },
+                    { id: "FRI-03", task: "Add basic pages (About, Contact)", priority: "p1", status: "pending" },
+                    { id: "FRI-04", task: "Enable SSL and SEO meta tags", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "southwestsecret.com",
+                severity: "p0",
+                status: "🔴 DOWN + MISMATCH",
+                tasks: 5,
+                completedTasks: 0,
+                estTime: "7h",
+                owner: "Agent-4/3/7",
+                blocker: "Purpose clarification + DNS",
+                description: "Site down + Dashboard says 'Remix dev' but shows DJ content",
+                taskDetails: [
+                    { id: "SWS-01", task: "CLARIFY SITE PURPOSE (BLOCKER)", priority: "p0", status: "pending" },
+                    { id: "SWS-02", task: "Fix DNS/hosting configuration", priority: "p0", status: "pending" },
+                    { id: "SWS-03", task: "Remove placeholder/add real content", priority: "p1", status: "pending" },
+                    { id: "SWS-04", task: "Test and repair all menu links", priority: "p1", status: "pending" },
+                    { id: "SWS-05", task: "Add homepage tagline and CTAs", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "prismblossom.online",
+                severity: "p0",
+                status: "🔴 BLANK",
+                tasks: 4,
+                completedTasks: 0,
+                estTime: "4h",
+                owner: "Agent-7",
+                blocker: "None",
+                description: "Main content area completely empty - ✅ Deployment tools available",
+                taskDetails: [
+                    { id: "PBO-01", task: "Restore invitation homepage", priority: "p0", status: "pending" },
+                    { id: "PBO-02", task: "Enable guestbook/card system", priority: "p0", status: "pending" },
+                    { id: "PBO-03", task: "Reapply birthday visuals", priority: "p1", status: "pending" },
+                    { id: "PBO-04", task: "Implement SEO and test features", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "ariajet.site",
+                severity: "p1",
+                status: "🟡 BROKEN",
+                tasks: 7,
+                completedTasks: 0,
+                estTime: "5h",
+                owner: "Agent-7",
+                blocker: "None",
+                description: "About page has Irish pub placeholder content - ✅ Deployment tools available",
+                taskDetails: [
+                    { id: "AJS-01", task: "Rewrite About page - remove pub content", priority: "p1", status: "pending" },
+                    { id: "AJS-02", task: "Fix broken image references", priority: "p1", status: "pending" },
+                    { id: "AJS-03", task: "Fix or remove Music page (404)", priority: "p1", status: "pending" },
+                    { id: "AJS-04", task: "Label empty CTAs as 'Coming Soon'", priority: "p1", status: "pending" },
+                    { id: "AJS-05", task: "Remove default posts", priority: "p2", status: "pending" },
+                    { id: "AJS-06", task: "Replace placeholder social links", priority: "p2", status: "pending" },
+                    { id: "AJS-07", task: "Verify theme icons load properly", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "tradingrobotplug.com",
+                severity: "p1",
+                status: "🟡 BROKEN",
+                tasks: 7,
+                completedTasks: 0,
+                estTime: "6h",
+                owner: "Agent-7",
+                blocker: "None",
+                description: "Broken report links, incomplete pricing, AI Swarm status error - ✅ Deployment tools available",
+                taskDetails: [
+                    { id: "TRP-01", task: "Fix broken report buttons", priority: "p1", status: "pending" },
+                    { id: "TRP-02", task: "Enhance Pricing page", priority: "p1", status: "pending" },
+                    { id: "TRP-03", task: "Fix AI Swarm status widget", priority: "p1", status: "pending" },
+                    { id: "TRP-04", task: "Update backtest results", priority: "p2", status: "pending" },
+                    { id: "TRP-05", task: "Review nav/footer links", priority: "p2", status: "pending" },
+                    { id: "TRP-06", task: "Test Free Trial button", priority: "p2", status: "pending" },
+                    { id: "TRP-07", task: "Test Marketplace button", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "weareswarm.site",
+                severity: "p1",
+                status: "🟡 BROKEN",
+                tasks: 7,
+                completedTasks: 0,
+                estTime: "6h",
+                owner: "Agent-7",
+                blocker: "None",
+                description: "Live Activity Feed broken, Missions page blank - ✅ Deployment tools available",
+                taskDetails: [
+                    { id: "WSS-01", task: "Implement Live Activity Feed", priority: "p1", status: "pending" },
+                    { id: "WSS-02", task: "Connect Agent status to data", priority: "p1", status: "pending" },
+                    { id: "WSS-03", task: "Fix Missions page", priority: "p1", status: "pending" },
+                    { id: "WSS-04", task: "Rewrite About page", priority: "p2", status: "pending" },
+                    { id: "WSS-05", task: "Verify Discord invite link", priority: "p2", status: "pending" },
+                    { id: "WSS-06", task: "Add deploy.json", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "dadudekc.com",
+                severity: "p2",
+                status: "🟢 MINOR",
+                tasks: 4,
+                completedTasks: 0,
+                estTime: "2h",
+                owner: "Agent-7",
+                blocker: "None",
+                description: "Author name shows as email - ✅ Deployment tools available",
+                taskDetails: [
+                    { id: "DKC-01", task: "Change author display name", priority: "p2", status: "pending" },
+                    { id: "DKC-02", task: "Handle /author/ page", priority: "p2", status: "pending" },
+                    { id: "DKC-03", task: "Test contact form", priority: "p2", status: "pending" },
+                    { id: "DKC-04", task: "Content maintenance", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "crosbyultimateevents.com",
+                severity: "p2",
+                status: "🟢 MINOR",
+                tasks: 6,
+                completedTasks: 0,
+                estTime: "3h",
+                owner: "Agent-7",
+                blocker: "None",
+                description: "Placeholder phone number, broken blog link - ✅ Deployment tools available",
+                taskDetails: [
+                    { id: "CUE-01", task: "Fix Blog link (404)", priority: "p2", status: "pending" },
+                    { id: "CUE-02", task: "Replace dummy phone number", priority: "p2", status: "pending" },
+                    { id: "CUE-03", task: "Verify icon fonts", priority: "p2", status: "pending" },
+                    { id: "CUE-04", task: "Test Learn More links", priority: "p2", status: "pending" },
+                    { id: "CUE-05", task: "Add image alt text", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "weareswarm.online",
+                severity: "p2",
+                status: "🟢 MINOR",
+                tasks: 5,
+                completedTasks: 0,
+                estTime: "2h",
+                owner: "Agent-7",
+                blocker: "None",
+                description: "Navigation tweaks needed",
+                taskDetails: [
+                    { id: "WSO-01", task: "Fix menu links", priority: "p2", status: "pending" },
+                    { id: "WSO-02", task: "Add newsletter/RSS", priority: "p2", status: "pending" },
+                    { id: "WSO-03", task: "Monitor page load", priority: "p2", status: "pending" },
+                    { id: "WSO-04", task: "Add deploy.json", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "digitaldreamscape.site",
+                severity: "p2",
+                status: "🟢 MINOR",
+                tasks: 5,
+                completedTasks: 0,
+                estTime: "2h",
+                owner: "Agent-7",
+                blocker: "None",
+                description: "Minor checks needed",
+                taskDetails: [
+                    { id: "DDS-01", task: "Check broken links", priority: "p2", status: "pending" },
+                    { id: "DDS-02", task: "Verify Twitch embed", priority: "p2", status: "pending" },
+                    { id: "DDS-03", task: "Check mobile responsive", priority: "p2", status: "pending" },
+                    { id: "DDS-04", task: "Add deploy.json", priority: "p2", status: "pending" }
+                ]
+            },
+            {
+                name: "houstonsipqueen.com",
+                severity: "p2",
+                status: "🟢 MINOR",
+                tasks: 2,
+                completedTasks: 0,
+                estTime: "1h",
+                owner: "Agent-7",
+                blocker: "None",
+                description: "Minimal work needed",
+                taskDetails: [
+                    { id: "HSQ-01", task: "Verify social links", priority: "p2", status: "pending" },
+                    { id: "HSQ-02", task: "General site check", priority: "p2", status: "pending" }
+                ]
+            }
+        ];
+
+        function generateSiteCards() {
+            const grid = document.getElementById('sitesGrid');
+            grid.innerHTML = '';
+
+            sitesData.forEach(site => {
+                const progress = (site.completedTasks / site.tasks) * 100;
+                const statusClass = site.severity === 'p0' ? 'status-critical' : 
+                                  site.severity === 'p1' ? 'status-high' : 'status-medium';
+
+                const card = document.createElement('div');
+                card.className = `site-card ${site.severity}`;
+                card.setAttribute('data-severity', site.severity);
+
+                let taskListHTML = site.taskDetails.map(task => `
+                    <div class="task-item ${task.priority}">
+                        <span>${task.task}</span>
+                        <span style="opacity: 0.7; font-size: 0.85em;">${task.id}</span>
+                    </div>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="site-header">
+                        <div>
+                            <div class="site-name">${site.name}</div>
+                            <div style="opacity: 0.7; font-size: 0.85em;">${site.description}</div>
+                        </div>
+                        <span class="${statusClass} status-badge">${site.status}</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.9em;">
+                        <div>
+                            <strong>${site.completedTasks}/${site.tasks}</strong> tasks
+                        </div>
+                        <div style="opacity: 0.7;">
+                            ~${site.estTime}
+                        </div>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress}%"></div>
+                    </div>
+
+                    <div style="margin-top: 12px; font-size: 0.85em; opacity: 0.8;">
+                        <strong>Owner:</strong> ${site.owner}
+                    </div>
+
+                    ${site.blocker !== 'None' ? `
+                        <div class="blockers">
+                            <strong>⚠️ Blocker:</strong> ${site.blocker}
+                        </div>
+                    ` : `
+                        <div style="margin-top: 12px; padding: 12px; background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; border-radius: 8px; font-size: 0.85em;">
+                            <strong>✅ Ready:</strong> Deployment tools available
+                        </div>
+                    `}
+
+                    <div class="task-list">
+                        <div style="margin: 10px 0; font-weight: bold; opacity: 0.9;">Task Breakdown:</div>
+                        ${taskListHTML}
+                    </div>
+
+                    <div class="expand-btn" onclick="toggleExpand(this)">▼ Show Tasks</div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleExpand(btn) {
+            const card = btn.closest('.site-card');
+            const isExpanded = card.classList.contains('expanded');
+
+            if (isExpanded) {
+                card.classList.remove('expanded');
+                btn.textContent = '▼ Show Tasks';
+            } else {
+                card.classList.add('expanded');
+                btn.textContent = '▲ Hide Tasks';
+            }
+        }
+
+        function filterSites(severity) {
+            const cards = document.querySelectorAll('.site-card');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (severity === 'all' || card.getAttribute('data-severity') === severity) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize
+        generateSiteCards();
+    </script>
+</body>
+</html>

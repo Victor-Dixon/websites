@@ -1,0 +1,487 @@
+[
+  {
+    "name": "freerideinvestor.com",
+    "severity": "p0",
+    "status": "CRITICAL - Site Down",
+    "tasks": 4,
+    "completedTasks": 0,
+    "estTime": "4h",
+    "owner": "Agent-3",
+    "blocker": "DNS/Hosting (site not resolving)",
+    "description": "Site not resolving – domain or hosting configuration appears broken",
+    "taskDetails": [
+      {
+        "id": "fri-task-001",
+        "task": "Verify DNS and hosting setup so the site becomes accessible via HTTPS",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "fri-task-002",
+        "task": "Implement proper landing page with branding and investor-related content",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "fri-task-003",
+        "task": "Add basic pages (About, Contact, etc.) and ensure navigation links work",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "fri-task-004",
+        "task": "Enable SSL and create SEO meta tags appropriate to investment site",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "southwestsecret.com",
+    "severity": "p0",
+    "status": "CRITICAL - Site Down",
+    "tasks": 5,
+    "completedTasks": 0,
+    "estTime": "5h",
+    "owner": "Agent-4",
+    "blocker": "Purpose clarification + DNS",
+    "description": "Website is currently unreachable (possible DNS/hosting issue)",
+    "taskDetails": [
+      {
+        "id": "sws-task-001",
+        "task": "CLARIFY SITE PURPOSE: Confirm Remix dev OR DJ/music site with stakeholders",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "sws-task-002",
+        "task": "Fix domain resolution/hosting so site loads over HTTPS",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "sws-task-003",
+        "task": "Remove placeholder content and add real content aligned with confirmed theme",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "sws-task-004",
+        "task": "Test and repair all menu links once site is live",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "sws-task-005",
+        "task": "Add appropriate homepage tagline and CTAs to engage visitors",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "prismblossom.online",
+    "severity": "p2",
+    "status": "OPERATIONAL - Minor Issues",
+    "tasks": 5,
+    "completedTasks": 0,
+    "estTime": "5h",
+    "owner": "Agent-7",
+    "blocker": "None",
+    "description": "Verify all internal links (e.g., 'Carmyn' page) load correctly - ✅ Deployment tools available",
+    "taskDetails": [
+      {
+        "id": "pbo-task-001",
+        "task": "Fix font corruption (Phase 1 global fix)",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "pbo-task-002",
+        "task": "Ensure sub-pages like Carmyn, Guestbook load without timeout",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "pbo-task-003",
+        "task": "Proofread content and replace filler in 'Latest Updates'",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "pbo-task-004",
+        "task": "Implement basic SEO (unique titles, meta descriptions, alt tags)",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "pbo-task-005",
+        "task": "Test music playlist feature on multiple devices/browsers",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "ariajet.site",
+    "severity": "p1",
+    "status": "HIGH PRIORITY - Major Content Issues",
+    "tasks": 7,
+    "completedTasks": 0,
+    "estTime": "7h",
+    "owner": "Agent-7",
+    "blocker": "None",
+    "description": "About page filled with unrelated placeholder text (Irish pub content) - ✅ Deployment tools available",
+    "taskDetails": [
+      {
+        "id": "ajs-task-001",
+        "task": "Fix font corruption (Phase 1 global fix)",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "ajs-task-002",
+        "task": "Rewrite About page to describe Aria's gaming projects - remove pub content",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "ajs-task-003",
+        "task": "Publish Music page with real content OR remove/hide from menu",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "ajs-task-004",
+        "task": "Label CTAs as 'Coming Soon' or disable until content ready",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "ajs-task-005",
+        "task": "Remove default posts and tags (ensure 'Hello world' is gone)",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "ajs-task-006",
+        "task": "Replace placeholder social links with Aria's real links or remove",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "ajs-task-007",
+        "task": "Verify theme icons load properly (⭐ and 🎵 symbols)",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "dadudekc.com",
+    "severity": "p2",
+    "status": "OPERATIONAL - Minor Cleanup Needed",
+    "tasks": 4,
+    "completedTasks": 0,
+    "estTime": "4h",
+    "owner": "Agent-7",
+    "blocker": "None",
+    "description": "Author name displays as email (dadudekc@gmail.com) on posts - ✅ Deployment tools available",
+    "taskDetails": [
+      {
+        "id": "dkc-task-001",
+        "task": "Fix font corruption (Phase 1 global fix)",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "dkc-task-002",
+        "task": "Change WordPress author display name to 'Victor Dixon'",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "dkc-task-003",
+        "task": "Implement redirect or removal for /author/* page if not needed",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "dkc-task-004",
+        "task": "Test Contact Victor form - ensure submission works",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "crosbyultimateevents.com",
+    "severity": "p2",
+    "status": "OPERATIONAL - Navigation Issues",
+    "tasks": 6,
+    "completedTasks": 0,
+    "estTime": "6h",
+    "owner": "Agent-7",
+    "blocker": "None",
+    "description": "Top navigation 'Blog' link goes to 404 (no blog content yet) - ✅ Deployment tools available",
+    "taskDetails": [
+      {
+        "id": "cue-task-001",
+        "task": "Fix font corruption (Phase 1 global fix)",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "cue-task-002",
+        "task": "Remove or hide Blog menu item until ready, or set up basic blog page",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "cue-task-003",
+        "task": "Replace dummy phone number with real business contact",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "cue-task-004",
+        "task": "Verify icon fonts load correctly (checkmarks, stars)",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "cue-task-005",
+        "task": "Test all 'Learn More' links on Services and Portfolio pages",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "cue-task-006",
+        "task": "Implement alt text for gallery/portfolio images",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "tradingrobotplug.com",
+    "severity": "p1",
+    "status": "OPERATIONAL - Major Feature Issues",
+    "tasks": 7,
+    "completedTasks": 0,
+    "estTime": "7h",
+    "owner": "Agent-7",
+    "blocker": "None",
+    "description": "Free/Premium report links lead to 404 (reports not implemented) - ✅ Deployment tools available",
+    "taskDetails": [
+      {
+        "id": "trp-task-001",
+        "task": "Fix font corruption (Phase 1 global fix)",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "trp-task-002",
+        "task": "Disable report buttons OR link to sign-up form instead of 404",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "trp-task-003",
+        "task": "Enhance Pricing page with waitlist form or explain upcoming plans",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "trp-task-004",
+        "task": "Fix AI Swarm status widget OR remove broken section",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "trp-task-005",
+        "task": "Update strategy blog with real backtest results or label as sample",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "trp-task-006",
+        "task": "Review all nav/footer links - remove inactive pages (Careers, etc.)",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "trp-task-007",
+        "task": "Test Start Free Trial and View Marketplace buttons",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "weareswarm.online",
+    "severity": "p2",
+    "status": "OPERATIONAL - Minor Navigation",
+    "tasks": 5,
+    "completedTasks": 0,
+    "estTime": "5h",
+    "owner": "Agent-7",
+    "blocker": "None",
+    "description": "Navigation items may be confusing (links to .site pages) - ✅ Deployment tools available",
+    "taskDetails": [
+      {
+        "id": "wso-task-001",
+        "task": "Fix font corruption (Phase 1 global fix)",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "wso-task-002",
+        "task": "Ensure all menu items link correctly (Capabilities/Agents/About)",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "wso-task-003",
+        "task": "Consider adding newsletter or RSS link for updates",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "wso-task-004",
+        "task": "Monitor page load - plan pagination if feed grows too large",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "wso-task-005",
+        "task": "Add deploy.json for deployment tracking consistency",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "weareswarm.site",
+    "severity": "p1",
+    "status": "HIGH PRIORITY - Core Features Broken",
+    "tasks": 7,
+    "completedTasks": 0,
+    "estTime": "7h",
+    "owner": "Agent-7",
+    "blocker": "None",
+    "description": "Live Activity Feed not functioning - showing 'not connected' - ✅ Deployment tools available",
+    "taskDetails": [
+      {
+        "id": "wss-task-001",
+        "task": "Fix font corruption (Phase 1 global fix)",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "wss-task-002",
+        "task": "Implement or patch Live Activity Feed on homepage",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "wss-task-003",
+        "task": "Connect Agents status section to actual data or remove point totals",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "wss-task-004",
+        "task": "Fix Missions page to display recent missions OR hide page",
+        "priority": "p1",
+        "status": "pending"
+      },
+      {
+        "id": "wss-task-005",
+        "task": "Rewrite About We Are Swarm page - fix typo and add real description",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "wss-task-006",
+        "task": "Verify Discord invite link is valid and working",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "wss-task-007",
+        "task": "Add deploy.json and verify SHA on each deployment",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "digitaldreamscape.site",
+    "severity": "p2",
+    "status": "OPERATIONAL - Minor Checks Needed",
+    "tasks": 5,
+    "completedTasks": 0,
+    "estTime": "5h",
+    "owner": "Agent-7",
+    "blocker": "None",
+    "description": "Font corruption confirmed throughout site - ✅ Deployment tools available",
+    "taskDetails": [
+      {
+        "id": "dds-task-001",
+        "task": "Fix font corruption (Phase 1 global fix)",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "dds-task-002",
+        "task": "Run through site to confirm no broken links",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "dds-task-003",
+        "task": "Verify Twitch embed/link is functioning correctly",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "dds-task-004",
+        "task": "Check responsiveness - ensure layout holds on mobile",
+        "priority": "p2",
+        "status": "pending"
+      },
+      {
+        "id": "dds-task-005",
+        "task": "Include in deploy.json monitoring system",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "name": "houstonsipqueen.com",
+    "severity": "p2",
+    "status": "OPERATIONAL - Minor Issues",
+    "tasks": 2,
+    "completedTasks": 0,
+    "estTime": "2h",
+    "owner": "Agent-7",
+    "blocker": "None",
+    "description": "Font corruption confirmed throughout site - ✅ Deployment tools available",
+    "taskDetails": [
+      {
+        "id": "hsq-task-001",
+        "task": "Fix font corruption (Phase 1 global fix)",
+        "priority": "p0",
+        "status": "pending"
+      },
+      {
+        "id": "hsq-task-002",
+        "task": "Verify social/contact links are active and working",
+        "priority": "p2",
+        "status": "pending"
+      }
+    ]
+  }
+]
