@@ -600,8 +600,8 @@ class RegistryDrivenDeployer:
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(description="Registry-driven deployment system")
-        parser.add_argument("--all", action="store_true", help="Deploy all enabled sites")
-        parser.add_argument("--mode", choices=["all", "auto"], default="all", help="Deployment mode (all=all sites, auto=changed only)")
+    parser.add_argument("--all", action="store_true", help="Deploy all enabled sites")
+    parser.add_argument("--mode", choices=["all", "auto"], default="all", help="Deployment mode (all=all sites, auto=changed only)")
         parser.add_argument("--auto", action="store_true", help="Deploy sites based on changed files (deprecated, use --mode auto)")
         parser.add_argument("--site", help="Deploy specific site")
         parser.add_argument("--commit", "--sha", dest="commit", help="Git commit hash")

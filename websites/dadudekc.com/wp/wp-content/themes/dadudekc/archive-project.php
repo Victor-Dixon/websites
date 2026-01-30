@@ -4,7 +4,25 @@
  * Template for displaying all projects at /projects/
  */
 
-get_header(); ?>
+get_header();
+
+// Fallback: if main query is empty (e.g. cache or page/slug conflict), query published projects directly
+$projects_to_show = null;
+if (!have_posts()) {
+    $fallback = new WP_Query(array(
+        'post_type'      => 'project',
+        'post_status'    => 'publish',
+        'posts_per_page' => 50,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+        'no_found_rows'  => true,
+    ));
+    if ($fallback->have_posts()) {
+        $projects_to_show = $fallback;
+    }
+}
+$use_fallback = $projects_to_show !== null;
+?>
 
 <main class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <div class="container mx-auto px-4 py-16">
@@ -16,9 +34,14 @@ get_header(); ?>
             </div>
 
             <!-- Projects Grid -->
-            <?php if (have_posts()) : ?>
+            <?php if (have_posts() || $use_fallback) : ?>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <?php while (have_posts()) : the_post(); 
+                    <?php
+                    if ($use_fallback) {
+                        while ($projects_to_show->have_posts()) : $projects_to_show->the_post();
+                    } else {
+                        while (have_posts()) : the_post();
+                    }
                         $one_line_summary = get_post_meta(get_the_ID(), '_project_one_line_summary', true);
                         $tech_stack = get_post_meta(get_the_ID(), '_project_tech_stack', true);
                         $project_status = get_post_meta(get_the_ID(), '_project_status', true);
@@ -74,7 +97,10 @@ get_header(); ?>
                     <?php endwhile; ?>
                 </div>
 
-                <!-- Pagination -->
+                <?php if ($use_fallback) { wp_reset_postdata(); } ?>
+
+                <!-- Pagination (main query only) -->
+                <?php if (!$use_fallback) : ?>
                 <div class="mt-12 flex justify-center">
                     <?php
                     the_posts_pagination(array(
@@ -84,6 +110,7 @@ get_header(); ?>
                     ));
                     ?>
                 </div>
+                <?php endif; ?>
             <?php else : ?>
                 <div class="text-center py-16">
                     <p class="text-xl text-gray-300 mb-8">No projects found.</p>

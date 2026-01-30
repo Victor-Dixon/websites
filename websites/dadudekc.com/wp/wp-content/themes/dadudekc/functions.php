@@ -77,9 +77,9 @@ add_action('wp_enqueue_scripts', 'freerideinvestor_optimize_assets', 999);
  * Defer loading of non-critical styles
  */
 function freerideinvestor_defer_styles($html, $handle, $href, $media) {
-    // Defer Tailwind CSS as it's not critical for initial render
+    // Defer Tailwind CSS as it's not critical for initial render (disabled: had escaping issues)
     if ($handle === 'tailwind-css') {
-        return str_replace("rel='stylesheet'", "rel='preload' as='style' onload="this.onload=null;this.rel='stylesheet'"", $html);
+        return $html;
     }
     return $html;
 }
@@ -122,4 +122,19 @@ function freerideinvestor_disable_emojis() {
     remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
 }
 add_action('init', 'freerideinvestor_disable_emojis');
+
+/**
+ * Avoid caching project archive so /projects/ always reflects current projects.
+ */
+function dadudekc_project_archive_no_cache() {
+    if (!is_post_type_archive('project') || headers_sent()) {
+        return;
+    }
+    if (function_exists('nocache_headers')) {
+        nocache_headers();
+    }
+    header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+}
+add_action('template_redirect', 'dadudekc_project_archive_no_cache', 1);
 ?>
