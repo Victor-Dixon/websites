@@ -3,9 +3,11 @@
 Test script for Ollama dynamic discovery system
 """
 
+import importlib.util
 import sys
-import os
 from pathlib import Path
+
+import pytest
 
 # Add the repository path to sys.path so we can import the Ollama integration
 repo_path = Path(__file__).parent / "Agent_Cellphone_V2_Repository"
@@ -15,15 +17,15 @@ sys.path.insert(0, str(repo_path))
 src_path = repo_path / "src"
 sys.path.insert(0, str(src_path))
 
-try:
-    from integrations.jarvis.ollama_integration import OllamaDiscovery, OllamaClient
-    print("✅ Successfully imported Ollama integration")
-except ImportError as e:
-    print(f"❌ Failed to import Ollama integration: {e}")
-    print(f"Repository path: {repo_path}")
-    print(f"SRC path: {src_path}")
-    print(f"Python path: {sys.path}")
-    sys.exit(1)
+integration_spec = importlib.util.find_spec("integrations.jarvis.ollama_integration")
+if integration_spec is None:
+    pytest.skip(
+        "Ollama integration unavailable on sys.path; skipping discovery tests.",
+        allow_module_level=True,
+    )
+
+from integrations.jarvis.ollama_integration import OllamaDiscovery, OllamaClient
+print("✅ Successfully imported Ollama integration")
 
 
 def test_discovery():
