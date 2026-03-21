@@ -4,20 +4,19 @@ Last Updated: 2026-03-21 (UTC)
 SSOT Source: `docs/MASTER_TASK_LOG.md`
 
 ## Current Phase
-**Phase 3 of 4 — Production Deployment + Cache Clear**
+**Phase 3 of 4 — Production Deployment + Cache Clear (in progress, partial complete)**
 
 ## Phase Progress
 - ✅ Phase 1: Triage & root cause capture
 - ✅ Phase 2: Code-level remediation
-- 🔄 Phase 3: Deploy fixes to production + clear caches (**IN PROGRESS / NEXT**)
+- 🔄 Phase 3: Deploy fixes to production + clear caches (**IN PROGRESS: SSOT deploy sync complete, privileged cache purge pending**)
 - ⏳ Phase 4: Visual QA, screenshots, and closeout updates
 
 ## Immediate Next Actions (in order)
-1. Deploy WeAreSwarm theme update; clear WordPress/object/CDN/browser caches.
-2. Deploy FreeRideInvestor `front-page.php` fallback; verify homepage renders content.
-3. Deploy TradingRobotPlug homepage capabilities update.
-4. Capture screenshots and verification notes for all 3 domains.
-5. Update SSOT (`docs/MASTER_TASK_LOG.md`) and mark phase completion.
+1. Run privileged production cache purges (WordPress/plugin/CDN) for weareswarm.online, freerideinvestor.com, and tradingrobotplug.com.
+2. Re-run post-purge smoke checks and confirm expected homepage content on FreeRideInvestor + TradingRobotPlug.
+3. Capture screenshots and verification notes for all 3 domains.
+4. Update SSOT (`docs/MASTER_TASK_LOG.md`) with post-purge evidence and mark Phase 3 complete.
 
 ## Agent Task Prompts (Copy/Paste)
 - "Execute Phase 3 for weareswarm.online and include cache-clear evidence."

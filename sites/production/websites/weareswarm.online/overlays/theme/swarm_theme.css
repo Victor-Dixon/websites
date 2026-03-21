@@ -24,6 +24,28 @@ body * {
     background-color: var(--swarm-dark) !important;
 }
 
+/* Text rendering hardening to prevent glyph/spacing corruption */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li,
+span {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    font-kerning: normal !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    font-variant-ligatures: common-ligatures !important;
+}
+
 /* Headings */
 h1, h2, h3, h4, h5, h6,
 .wp-block-heading,
