@@ -42,7 +42,7 @@ jobs:
         tools: composer
 
     - name: 🐍 Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
 
@@ -106,14 +106,17 @@ jobs:
       if: github.event_name == 'push'
       run: |
         STATUS=$([[ ${{ needs.validate-and-deploy.result }} == 'success' ]] && echo '✅ Success' || echo '❌ Failed')
-        MESSAGE="🚀 Website Deployment $STATUS
+        MESSAGE=$(cat <<EOF
+        🚀 Website Deployment $STATUS
 
-Repository: ${{ github.repository }}
-Branch: ${{ github.ref_name }}
-Commit: ${{ github.sha }}
-Triggered by: ${{ github.actor }}
+        Repository: ${{ github.repository }}
+        Branch: ${{ github.ref_name }}
+        Commit: ${{ github.sha }}
+        Triggered by: ${{ github.actor }}
 
-Status: ${{ needs.validate-and-deploy.result }}"
+        Status: ${{ needs.validate-and-deploy.result }}
+        EOF
+        )
 
         # You can add Slack, Discord, or email notifications here
         echo "$MESSAGE"
