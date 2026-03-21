@@ -1,204 +1,221 @@
 <?php
-/**
- * The front page template file
- */
-
+/*
+TradingRobotPlug Modern Homepage - Optimized Version
+Description: Streamlined 4-section homepage structure (Hero, Swarm Status, Paper Trading, Final CTA)
+Author: Agent-7 (Web Development)
+Version: 2.1.0
+Updated: 2025-12-30
+*/
 get_header(); ?>
 
-<main id="primary" class="site-main">
+<!-- ===== ANIMATED HERO SECTION ===== -->
+<?php include(get_template_directory() . '/hero-trading.php'); ?>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Automated Trading Robots That <span class="highlight">Actually Work</span></h1>
-                <p>Stop guessing. Start validating. Access proven trading strategies, backtest with real data, and automate your execution.</p>
-                <div class="hero-buttons">
-                    <a href="/pricing" class="btn btn-primary btn-large">Start Free Trial</a>
-                    <a href="/marketplace" class="btn btn-outline btn-large">View Marketplace</a>
+<!-- ===== SWARM STATUS SECTION ===== -->
+            <div class="market-preview" id="live-market-preview">
+                <h4>📈 Live Market Data</h4>
+                <div id="market-items-container">
+                    <!-- Stock items loaded dynamically via JavaScript -->
+                    <div class="market-item loading">
+                        <span class="market-symbol">Loading...</span>
+                        <span class="market-price">--</span>
+                        <span class="market-change">--</span>
+                    </div>
                 </div>
-                <div class="hero-trust">
-                    <span>Trusted by 500+ Traders</span>
-                    <span>•</span>
-                    <span>Verified Performance</span>
-                    <span>•</span>
-                    <span>Bank-Grade Security</span>
-                </div>
+                <p id="market-update-time" style="font-size: 12px; margin-top: 8px; opacity: 0.8;">Powered by Yahoo Finance | Updated every 30 seconds</p>
             </div>
-            <div class="hero-image">
-                <!-- Placeholder for dashboard screenshot -->
-                <div class="placeholder-img">
-                    Performance Dashboard Preview
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Value Prop Section -->
-    <section class="features-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Choose TradingRobotPlug?</h2>
-                <p>We provide the tools you need to trade with confidence.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Performance Tracking</h3>
-                    <p>Real-time P&L, win rates, and drawdown analysis for every trade.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>Multiple Strategies</h3>
-                    <p>Choose from Trend Following, Mean Reversion, and Scalping bots.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Risk Management</h3>
-                    <p>Built-in safeguards to protect your capital and manage drawdowns.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Proof Section -->
-    <section class="proof-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Real Results</h2>
-            </div>
-            <!-- Render Public Leaderboard via Plugin Shortcode -->
-            <?php echo do_shortcode('[trading_robot_performance]'); ?>
             
-            <div class="cta-wrapper">
-                <a href="/performance" class="btn btn-outline">See Full Leaderboard</a>
-            </div>
+            <script>
+            (function() {
+                'use strict';
+                
+                const apiEndpoint = '<?php echo esc_url(rest_url('tradingrobotplug/v1/stock-data')); ?>';
+                const refreshInterval = 30000; // 30 seconds
+                let updateTimer = null;
+                
+                function formatPrice(price) {
+                    return '$' + parseFloat(price).toFixed(2);
+                }
+                
+                function formatChange(changePercent) {
+                    const change = parseFloat(changePercent);
+                    const arrow = change >= 0 ? '↑' : '↓';
+                    const sign = change >= 0 ? '+' : '';
+                    return arrow + ' ' + sign + change.toFixed(2) + '%';
+                }
+                
+                function getChangeClass(changePercent) {
+                    return parseFloat(changePercent) >= 0 ? 'positive' : 'negative';
+                }
+                
+                function renderStockItems(stockData) {
+                    const container = document.getElementById('market-items-container');
+                    if (!container) return;
+                    
+                    if (!stockData || stockData.length === 0) {
+                        container.innerHTML = '<div class="market-item"><span>No data available</span></div>';
+                        return;
+                    }
+                    
+                    // Sort by symbol to maintain consistent order: TSLA, QQQ, SPY, NVDA
+                    const symbolOrder = ['TSLA', 'QQQ', 'SPY', 'NVDA'];
+                    stockData.sort((a, b) => symbolOrder.indexOf(a.symbol) - symbolOrder.indexOf(b.symbol));
+                    
+                    const html = stockData.map(stock => {
+                        // Handle both database format and API format
+                        const symbol = stock.symbol || stock.SYMBOL || 'N/A';
+                        // Convert price to number (handle string values from database)
+                        const price = parseFloat(stock.price || stock.PRICE || 0);
+                        // Convert change_percent to number (handle string values from database)
+                        const changePercent = parseFloat(stock.change_percent || stock.CHANGE_PERCENT || stock.changePercent || 0);
+                        
+                        return `
+                        <div class="market-item" data-symbol="${symbol}">
+                            <span class="market-symbol">${symbol}</span>
+                            <span class="market-price">${formatPrice(price)}</span>
+                            <span class="market-change ${getChangeClass(changePercent)}">${formatChange(changePercent)}</span>
+                        </div>
+                    `;
+                    }).join('');
+                    
+                    container.innerHTML = html;
+                }
+                
+                function updateTimestamp(timestamp) {
+                    const el = document.getElementById('market-update-time');
+                    if (el && timestamp) {
+                        const date = new Date(timestamp);
+                        el.textContent = 'Powered by Yahoo Finance | Last updated: ' + date.toLocaleTimeString();
+                    }
+                }
+                
+                function fetchStockData() {
+                    fetch(apiEndpoint)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok: ' + response.status);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Stock data received:', data);
+                            if (data.stock_data && data.stock_data.length > 0) {
+                                renderStockItems(data.stock_data);
+                                updateTimestamp(data.timestamp);
+                            } else {
+                                console.warn('No stock data in response:', data);
+                                // Show error message
+                                const container = document.getElementById('market-items-container');
+                                if (container) {
+                                    container.innerHTML = '<div class="market-item"><span style="color: #ff6b6b;">No data available. API may be temporarily unavailable.</span></div>';
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching stock data:', error);
+                            // Show error message to user
+                            const container = document.getElementById('market-items-container');
+                            if (container) {
+                                container.innerHTML = '<div class="market-item"><span style="color: #ff6b6b;">Error loading market data. Please refresh the page.</span></div>';
+                            }
+                            const timeEl = document.getElementById('market-update-time');
+                            if (timeEl) {
+                                timeEl.textContent = 'Error: ' + error.message;
+                            }
+                        });
+                }
+                
+                // Initial fetch
+                document.addEventListener('DOMContentLoaded', function() {
+                    fetchStockData();
+                    
+                    // Set up auto-refresh
+                    updateTimer = setInterval(fetchStockData, refreshInterval);
+                    
+                    // Cleanup on page unload
+                    window.addEventListener('beforeunload', function() {
+                        if (updateTimer) clearInterval(updateTimer);
+                    });
+                });
+            })();
+            </script>
+            
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Automate Your Trading?</h2>
-            <p>Join today and get access to our top-performing robots.</p>
-            <a href="/pricing" class="btn btn-white btn-large">View Pricing</a>
+<!-- ===== SWARM STATUS SECTION ===== -->
+<section class="section" id="swarm-status">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 48px;">🐝 Watch Our Swarm Work in Real-Time</h2>
+        <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">
+            See what our 8 AI agents are working on right now. We're building trading robots in parallel, testing different approaches, and iterating until we find a winning strategy.
+        </p>
+        <?php echo do_shortcode('[trp_swarm_status mode="full" refresh="30"]'); ?>
+    </div>
+</section>
+
+<!-- ===== PAPER TRADING STATS SECTION ===== -->
+<section class="section section--light" id="paper-trading">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 48px;">📊 Paper Trading Results</h2>
+        <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">
+            We're testing trading strategies in paper trading mode (simulated, no real money). Once we find a winning bot, we'll transition to live trading. Here's our current performance:
+        </p>
+        <?php echo do_shortcode('[trp_trading_stats mode="full" refresh="60"]'); ?>
+    </div>
+</section>
+
+
+<!-- ===== PLATFORM CAPABILITIES SECTION ===== -->
+<section class="section" id="capabilities">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 24px;">⚡ Platform Capabilities</h2>
+        <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: #666; max-width: 820px; margin-left: auto; margin-right: auto;">
+            TradingRobotPlug is more than a placeholder landing page. It is an active build platform where strategy design,
+            telemetry, and performance validation run continuously.
+        </p>
+
+        <div class="blog-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+            <article class="post-card">
+                <h3>📡 Live Swarm Telemetry</h3>
+                <p>Monitor agent activity, task throughput, and build velocity in real time.</p>
+            </article>
+            <article class="post-card">
+                <h3>🧪 Paper Trading Validation</h3>
+                <p>Track strategy experiments in simulated trading before any live deployment.</p>
+            </article>
+            <article class="post-card">
+                <h3>🛡️ Risk-First Design</h3>
+                <p>Every iteration is aligned to risk controls, observability, and post-trade review.</p>
+            </article>
+            <article class="post-card">
+                <h3>🚀 Deployment Pipeline</h3>
+                <p>Changes move through QA, verification, and controlled rollout checkpoints.</p>
+            </article>
         </div>
-    </section>
+    </div>
+</section>
 
-</main>
+<!-- ===== FINAL CTA SECTION ===== -->
+<section class="section section--light">
+    <div class="container" style="text-align: center;">
+        <h2 style="margin-bottom: 24px;">Follow Our Journey</h2>
+        <p style="font-size: 18px; margin-bottom: 48px; color: #666; max-width: 700px; margin-left: auto; margin-right: auto;">
+            Watch us build in real-time. See our swarm status, paper trading results, and progress as we work towards finding a winning trading bot.
+        </p>
+        
+        <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 48px;">
+            <a href="#swarm-status" class="btn btn-primary">🐝 View Swarm Status</a>
+            <a href="#paper-trading" class="btn btn-secondary">📊 See Paper Trading Stats</a>
+            <a href="https://weareswarm.site" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">🌐 WeAreSwarm Site</a>
+        </div>
+        
+        <p style="font-size: 14px; color: #999; margin-top: 32px;">
+            We're in building mode - experimenting with different trading robots to find what works. Once we validate a winning strategy, we'll transition to live trading.
+        </p>
+    </div>
+</section>
 
-<style>
-/* Homepage Specific Styles */
-.hero-section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-}
-.hero-content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 50px;
-}
-.hero-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    line-height: 1.2;
-}
-.highlight {
-    color: #007bff;
-}
-.hero-content p {
-    font-size: 1.25rem;
-    color: #6c757d;
-    margin-bottom: 30px;
-}
-.hero-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-.btn-large {
-    padding: 15px 30px;
-    font-size: 1.1rem;
-}
-.hero-trust {
-    font-size: 0.9rem;
-    color: #888;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-.placeholder-img {
-    background: white;
-    height: 400px;
-    border-radius: 10px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ccc;
-    font-size: 1.5rem;
-    border: 1px dashed #ddd;
-}
-
-.features-section {
-    padding: 80px 0;
-}
-.section-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-.feature-card {
-    padding: 30px;
-    border-radius: 10px;
-    background: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    text-align: center;
-    transition: transform 0.3s;
-}
-.feature-card:hover {
-    transform: translateY(-5px);
-}
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.proof-section {
-    background: #f8f9fa;
-    padding: 80px 0;
-}
-.cta-wrapper {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.cta-section {
-    background: #007bff;
-    color: white;
-    text-align: center;
-    padding: 80px 0;
-}
-.cta-section h2 {
-    margin-bottom: 20px;
-}
-.cta-section p {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-    opacity: 0.9;
-}
-.btn-white {
-    background: white;
-    color: #007bff;
-}
-.btn-white:hover {
-    background: #f8f9fa;
-}
-</style>
 
 <?php get_footer(); ?>

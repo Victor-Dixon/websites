@@ -8,26 +8,10 @@ Updated: 2025-12-30
 */
 get_header(); ?>
 
-<!-- ===== HERO SECTION - Tier 1 Quick Win WEB-01 Optimized ===== -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1 id="hero-heading" class="gradient-text">Join the Waitlist for AI-Powered Trading Robots</h1>
-            <p class="hero-subheadline">We're building and testing trading robots in real-time. Join the waitlist to get early access when we launch—watch our swarm build live.</p>
+<!-- ===== ANIMATED HERO SECTION ===== -->
+<?php include(get_template_directory() . '/hero-trading.php'); ?>
 
-            <div class="hero-cta-row">
-                <a class="cta-button primary" href="<?php echo esc_url(home_url('/waitlist')); ?>" role="button">Join the Waitlist →</a>
-                <a class="cta-button secondary" href="#swarm-status" role="button">Watch Us Build Live</a>
-            </div>
-            <p class="hero-urgency">Limited early access spots—join now to be first in line</p>
-            
-            <!-- Real-Time Swarm Status -->
-            <div style="margin-top: 48px; background: rgba(255,255,255,0.05); border-radius: 16px; padding: 32px;">
-                <h3 style="text-align: center; margin-bottom: 24px; color: #fff;">Real-Time Swarm Status</h3>
-                <?php echo do_shortcode('[trp_swarm_status mode="summary" refresh="30"]'); ?>
-            </div>
-
-            <!-- Live Market Preview - Dynamic Data from REST API -->
+<!-- ===== SWARM STATUS SECTION ===== -->
             <div class="market-preview" id="live-market-preview">
                 <h4>📈 Live Market Data</h4>
                 <div id="market-items-container">
@@ -179,6 +163,37 @@ get_header(); ?>
             We're testing trading strategies in paper trading mode (simulated, no real money). Once we find a winning bot, we'll transition to live trading. Here's our current performance:
         </p>
         <?php echo do_shortcode('[trp_trading_stats mode="full" refresh="60"]'); ?>
+    </div>
+</section>
+
+
+<!-- ===== PLATFORM CAPABILITIES SECTION ===== -->
+<section class="section" id="capabilities">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 24px;">⚡ Platform Capabilities</h2>
+        <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: #666; max-width: 820px; margin-left: auto; margin-right: auto;">
+            TradingRobotPlug is more than a placeholder landing page. It is an active build platform where strategy design,
+            telemetry, and performance validation run continuously.
+        </p>
+
+        <div class="blog-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+            <article class="post-card">
+                <h3>📡 Live Swarm Telemetry</h3>
+                <p>Monitor agent activity, task throughput, and build velocity in real time.</p>
+            </article>
+            <article class="post-card">
+                <h3>🧪 Paper Trading Validation</h3>
+                <p>Track strategy experiments in simulated trading before any live deployment.</p>
+            </article>
+            <article class="post-card">
+                <h3>🛡️ Risk-First Design</h3>
+                <p>Every iteration is aligned to risk controls, observability, and post-trade review.</p>
+            </article>
+            <article class="post-card">
+                <h3>🚀 Deployment Pipeline</h3>
+                <p>Changes move through QA, verification, and controlled rollout checkpoints.</p>
+            </article>
+        </div>
     </div>
 </section>
 
