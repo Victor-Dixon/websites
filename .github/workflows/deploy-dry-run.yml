@@ -38,27 +38,27 @@ jobs:
 
           if [ -n "${SITE_INPUT}" ] && [ "${ALL_INPUT}" != "true" ]; then
             SITES_JSON=$(python - <<'PY'
-import json
-import os
+            import json
+            import os
 
-site = os.environ.get("SITE", "").strip()
-print(json.dumps([site]))
-PY
-)
+            site = os.environ.get("SITE", "").strip()
+            print(json.dumps([site]))
+            PY
+            )
           else
             SITES_JSON=$(python - <<'PY'
-import json
-import os
+            import json
+            import os
 
-root = "websites"
-sites = []
-for name in sorted(os.listdir(root)):
-    path = os.path.join(root, name)
-    if os.path.isdir(path) and not name.startswith("."):
-        sites.append(name)
-print(json.dumps(sites))
-PY
-)
+            root = "websites"
+            sites = []
+            for name in sorted(os.listdir(root)):
+                path = os.path.join(root, name)
+                if os.path.isdir(path) and not name.startswith("."):
+                    sites.append(name)
+            print(json.dumps(sites))
+            PY
+            )
           fi
 
           echo "matrix={\"site\": ${SITES_JSON}}" >> "$GITHUB_OUTPUT"
