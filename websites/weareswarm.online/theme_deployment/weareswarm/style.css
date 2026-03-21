@@ -38,6 +38,29 @@ body {
     line-height: 1.6;
 }
 
+
+/* Text rendering hardening to prevent glyph/spacing corruption */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li,
+span {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-kerning: normal;
+    letter-spacing: normal;
+    word-spacing: normal;
+    font-variant-ligatures: common-ligatures;
+}
+
 /* Swarm Gradient Backgrounds */
 .swarm-bg-primary {
     background: linear-gradient(135deg, var(--swarm-dark) 0%, var(--swarm-darker) 50%, var(--swarm-purple) 100%);
