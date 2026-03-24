@@ -1,6 +1,6 @@
 # NEXT UP (Execution Queue, mirrored from SSOT)
 
-**Last Updated:** 2026-03-24 (UTC)
+**Last Updated:** 2026-03-24 (UTC, mirrored after privileged-attempt refresh)
 **SSOT Source:** `docs/MASTER_TASK_LOG.md`
 
 ## What this project is
@@ -13,19 +13,21 @@ This repo is the operations hub for a multi-site website portfolio. Right now, t
 - We are in **Phase 3 of 4**: Production Deployment + Cache Clear.
 - Code remediation is complete and production sync is logged.
 - 2026-03-24 smoke checks and screenshot evidence were added for all three domains.
+- A 2026-03-24 privileged purge follow-up attempt (with available token material) was executed; purge remains blocked, but smoke + external screenshot URL evidence was refreshed.
 - Remaining blocker is **privileged** cache purge confirmation.
 
 ## Definitive Inventory Snapshot
 | Domain | Code Fix | Production Sync | Privileged Cache Purge | Smoke Check (2026-03-24) | Visual QA Proof | Current State |
 |---|---:|---:|---:|---:|---:|---|
-| weareswarm.online | ✅ | ✅ | ❌ (blocked: auth required) | ✅ | ✅ | Awaiting privileged purge |
-| freerideinvestor.com | ✅ | ✅ | ❌ (blocked: auth required) | ✅ | ✅ | Awaiting privileged purge |
-| tradingrobotplug.com | ✅ | ✅ | ❌ (blocked: auth required) | ✅ | ✅ | Awaiting privileged purge |
+| weareswarm.online | ✅ | ✅ | ❌ (blocked: auth required) | ✅ (refreshed) | ✅ (external URL proof refreshed) | Awaiting privileged purge |
+| freerideinvestor.com | ✅ | ✅ | ❌ (blocked: auth required) | ✅ (refreshed) | ✅ (external URL proof refreshed) | Awaiting privileged purge |
+| tradingrobotplug.com | ✅ | ✅ | ❌ (blocked: auth required) | ✅ (refreshed) | ✅ (external URL proof refreshed) | Awaiting privileged purge |
 
 Evidence references:
 - `docs/deployment/PHASE3_EXECUTION_2026-03-21.md`
 - `docs/evidence/phase3/2026-03-24/PHASE3_CACHE_PURGE_AND_SMOKE_2026-03-24.md`
 - `docs/evidence/phase3/2026-03-24/SCREENSHOT_URLS_2026-03-24.md`
+- `docs/evidence/phase3/2026-03-24/2026-03-24T013347Z_privileged_attempt/PHASE3_PRIVILEGED_PURGE_ATTEMPT_AND_SMOKE.md`
 
 ## Immediate Next Actions (in order)
 1. Obtain privileged operator access (WP admin/CDN/API token) for all three domains.
@@ -35,8 +37,8 @@ Evidence references:
 5. Begin Phase 4 visual QA/sign-off.
 
 ## Block (current)
-- **Reason:** Unauthenticated purge endpoint calls return 400; no privileged session in environment.
-- **Exact unblock action:** Provide WP/CDN privileged credentials or operator-provided purge logs with timestamps for ingestion.
+- **Reason:** No authenticated WP/plugin session is available; LiteSpeed endpoint still returns 400 even with Bearer token injection, and available Hostinger API schema does not expose purge/cache endpoints.
+- **Exact unblock action:** Provide WP admin credentials, a purge-capable CDN/API token with endpoint details, or operator-provided purge logs with timestamps for ingestion.
 
 ## Copy/Paste Prompt You Can Send to Codex Agent (Next Run)
 ```text

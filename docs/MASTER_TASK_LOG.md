@@ -1,6 +1,6 @@
 # MASTER TASK LOG (SSOT)
 
-**Last Updated:** 2026-03-24 (UTC)
+**Last Updated:** 2026-03-24 (UTC, run: privileged-attempt refresh)
 **Scope:** Active operational truth only (obsolete/stale entries cleared from this SSOT view).
 **Legacy Snapshot Preserved:** `docs/archive_MASTER_TASK_LOG_legacy_2026-03-23.md`
 
@@ -22,6 +22,7 @@ This project is a centralized operations and delivery repo for a portfolio of we
 - Public smoke checks returned HTTP 200 for all three targets (2026-03-21).
 - Cache-busting smoke checks re-run on 2026-03-24 with HTTP 200 and expected homepage markers for all three domains.
 - Homepage screenshot evidence captured on 2026-03-24 for all three domains.
+- Additional privileged purge attempt executed on 2026-03-24 using available automation token material; purge remains unconfirmed, but fresh smoke + external screenshot artifact evidence was captured.
 
 Evidence documents:
 - `docs/website_audits/CRITICAL_QUALITY_QA_2026-03-21.md`
@@ -31,24 +32,27 @@ Evidence documents:
 - `docs/evidence/phase3/2026-03-24/tradingrobotplug.com_headers.txt`
 - `docs/evidence/phase3/2026-03-24/SCREENSHOT_URLS_2026-03-24.md`
 - `docs/evidence/phase3/2026-03-24/PHASE3_CACHE_PURGE_AND_SMOKE_2026-03-24.md`
+- `docs/evidence/phase3/2026-03-24/2026-03-24T013347Z_privileged_attempt/PHASE3_PRIVILEGED_PURGE_ATTEMPT_AND_SMOKE.md`
 
 ### Blocked / not yet complete (blocking closeout)
 - Privileged cache purge (WordPress/plugin/CDN) is **not confirmed** for all three domains.
 - Unauthenticated purge attempts to LiteSpeed endpoint returned `400 Bad Request` on all three domains (insufficient privileges).
+- A follow-up attempt using Bearer token injection plus Hostinger API capability scan still did not produce a purge-capable authenticated path in this environment.
 - Phase 4 sign-off cannot begin until privileged purge is executed and logged by an authenticated operator.
 
 ## Inventory Status (proof-oriented)
 
 | Domain | Remediation in Code | Production Sync | Privileged Cache Purge Confirmed | Smoke Check (2026-03-24) | Visual Proof Attached | Status |
 |---|---:|---:|---:|---:|---:|---|
-| weareswarm.online | Yes | Yes | No (Blocked: auth required) | Yes | Yes | In Progress |
-| freerideinvestor.com | Yes | Yes | No (Blocked: auth required) | Yes | Yes | In Progress |
-| tradingrobotplug.com | Yes | Yes | No (Blocked: auth required) | Yes | Yes | In Progress |
+| weareswarm.online | Yes | Yes | No (Blocked: auth required) | Yes (refreshed) | Yes (external URL evidence refreshed) | In Progress |
+| freerideinvestor.com | Yes | Yes | No (Blocked: auth required) | Yes (refreshed) | Yes (external URL evidence refreshed) | In Progress |
+| tradingrobotplug.com | Yes | Yes | No (Blocked: auth required) | Yes (refreshed) | Yes (external URL evidence refreshed) | In Progress |
 
 Proof basis:
 - Code remediation + QA report: `docs/website_audits/CRITICAL_QUALITY_QA_2026-03-21.md`
 - Deployment execution log: `docs/deployment/PHASE3_EXECUTION_2026-03-21.md`
 - Latest purge/smoke/screenshot evidence packet: `docs/evidence/phase3/2026-03-24/PHASE3_CACHE_PURGE_AND_SMOKE_2026-03-24.md`
+- Latest privileged-attempt + refreshed smoke/screenshot packet: `docs/evidence/phase3/2026-03-24/2026-03-24T013347Z_privileged_attempt/PHASE3_PRIVILEGED_PURGE_ATTEMPT_AND_SMOKE.md`
 
 ## Next Focus (strict order)
 1. Obtain privileged WordPress/CDN credentials or runbook-backed operator session for all 3 domains.
@@ -58,8 +62,8 @@ Proof basis:
 5. Start Phase 4 visual QA/sign-off.
 
 ## Block Register (2026-03-24)
-- **Block reason:** No authenticated access token/session is available in this environment for WordPress admin, cache plugin UI, or CDN console/API across all three domains.
-- **Exact unblock action:** Provide one of: (a) temporary WP admin credentials per domain, (b) a privileged automation token/API key for cache purge endpoints, or (c) operator-executed purge logs with timestamps to ingest into SSOT.
+- **Block reason:** No authenticated WordPress/plugin admin session is available for these domains, and Hostinger API capability scan in this run exposed no purge/cache endpoints for direct API-driven purge confirmation.
+- **Exact unblock action:** Provide one of: (a) temporary WP admin credentials per domain, (b) a purge-capable CDN/API token with documented endpoint access for these domains, or (c) operator-executed purge logs with timestamps to ingest into SSOT.
 
 ## Operator Handoff: Next-Agent Prompt Chain (2026-03-24)
 Use this sequence to keep execution deterministic and SSOT-compliant.
