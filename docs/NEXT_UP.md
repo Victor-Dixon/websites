@@ -1,6 +1,6 @@
 # NEXT UP (Execution Queue, mirrored from SSOT)
 
-**Last Updated:** 2026-03-23 (UTC)
+**Last Updated:** 2026-03-24 (UTC)
 **SSOT Source:** `docs/MASTER_TASK_LOG.md`
 
 ## What this project is
@@ -31,6 +31,36 @@ Evidence references:
 3. Capture screenshots and attach notes.
 4. Update SSOT (`docs/MASTER_TASK_LOG.md`) with completion evidence.
 5. Mark Phase 3 complete and move to Phase 4 sign-off.
+
+## Copy/Paste Prompt You Can Send to Codex Agent (Next Run)
+```text
+You are working in /workspace/Websites.
+
+Follow SSOT policy strictly:
+- Read docs/MASTER_TASK_LOG.md first.
+- Update docs/MASTER_TASK_LOG.md first.
+- Mirror to docs/NEXT_UP.md second.
+
+Execute the highest-priority incomplete Phase 3 action for:
+- weareswarm.online
+- freerideinvestor.com
+- tradingrobotplug.com
+
+This run should focus on:
+1) privileged cache purge confirmation,
+2) post-purge smoke checks,
+3) screenshot evidence attachment,
+4) SSOT inventory/status update.
+
+If blocked, record block reason + exact unblock action.
+Then commit and open PR.
+
+End your response with:
+- Current state snapshot
+- Evidence list
+- Single next action
+- "Prompt for next agent" (a ready-to-send prompt that asks the next agent to generate yet another next-agent prompt at the end)
+```
 
 ## Definition of Done for this transmission
 - Accurate statement of where we are.
