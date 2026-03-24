@@ -20,34 +20,46 @@ This project is a centralized operations and delivery repo for a portfolio of we
 - Code-level remediation implemented for the three critical domains (2026-03-21).
 - Production tree sync completed for SSOT-targeted fixes (2026-03-21).
 - Public smoke checks returned HTTP 200 for all three targets (2026-03-21).
+- Cache-busting smoke checks re-run on 2026-03-24 with HTTP 200 and expected homepage markers for all three domains.
+- Homepage screenshot evidence captured on 2026-03-24 for all three domains.
 
 Evidence documents:
 - `docs/website_audits/CRITICAL_QUALITY_QA_2026-03-21.md`
 - `docs/deployment/PHASE3_EXECUTION_2026-03-21.md`
+- `docs/evidence/phase3/2026-03-24/weareswarm.online_headers.txt`
+- `docs/evidence/phase3/2026-03-24/freerideinvestor.com_headers.txt`
+- `docs/evidence/phase3/2026-03-24/tradingrobotplug.com_headers.txt`
+- `docs/evidence/phase3/2026-03-24/SCREENSHOT_URLS_2026-03-24.md`
+- `docs/evidence/phase3/2026-03-24/PHASE3_CACHE_PURGE_AND_SMOKE_2026-03-24.md`
 
-### Not yet complete (blocking closeout)
-- Privileged cache purges (WordPress/plugin/CDN) not yet confirmed in-session.
-- Post-purge screenshots and final visual QA are not yet attached for all three domains.
-- Phase 4 sign-off cannot begin until the above is complete.
+### Blocked / not yet complete (blocking closeout)
+- Privileged cache purge (WordPress/plugin/CDN) is **not confirmed** for all three domains.
+- Unauthenticated purge attempts to LiteSpeed endpoint returned `400 Bad Request` on all three domains (insufficient privileges).
+- Phase 4 sign-off cannot begin until privileged purge is executed and logged by an authenticated operator.
 
 ## Inventory Status (proof-oriented)
 
-| Domain | Remediation in Code | Production Sync | Cache Purge Confirmed | Visual Proof Attached | Status |
-|---|---:|---:|---:|---:|---|
-| weareswarm.online | Yes | Yes | No | No | In Progress |
-| freerideinvestor.com | Yes | Yes | No | No | In Progress |
-| tradingrobotplug.com | Yes | Yes | No | No | In Progress |
+| Domain | Remediation in Code | Production Sync | Privileged Cache Purge Confirmed | Smoke Check (2026-03-24) | Visual Proof Attached | Status |
+|---|---:|---:|---:|---:|---:|---|
+| weareswarm.online | Yes | Yes | No (Blocked: auth required) | Yes | Yes | In Progress |
+| freerideinvestor.com | Yes | Yes | No (Blocked: auth required) | Yes | Yes | In Progress |
+| tradingrobotplug.com | Yes | Yes | No (Blocked: auth required) | Yes | Yes | In Progress |
 
 Proof basis:
 - Code remediation + QA report: `docs/website_audits/CRITICAL_QUALITY_QA_2026-03-21.md`
 - Deployment execution log: `docs/deployment/PHASE3_EXECUTION_2026-03-21.md`
+- Latest purge/smoke/screenshot evidence packet: `docs/evidence/phase3/2026-03-24/PHASE3_CACHE_PURGE_AND_SMOKE_2026-03-24.md`
 
 ## Next Focus (strict order)
-1. Execute privileged cache purge on each of the three domains.
-2. Re-run smoke checks and confirm expected homepage rendering/content.
-3. Capture screenshots and attach verification notes.
-4. Update this SSOT with timestamps + evidence and mark Phase 3 complete.
+1. Obtain privileged WordPress/CDN credentials or runbook-backed operator session for all 3 domains.
+2. Execute authenticated cache purge and record timestamp + operator identity per domain.
+3. Re-run smoke checks once purges are confirmed (same evidence format as 2026-03-24 run).
+4. Update SSOT inventory to set cache purge confirmed = Yes and then mark Phase 3 complete.
 5. Start Phase 4 visual QA/sign-off.
+
+## Block Register (2026-03-24)
+- **Block reason:** No authenticated access token/session is available in this environment for WordPress admin, cache plugin UI, or CDN console/API across all three domains.
+- **Exact unblock action:** Provide one of: (a) temporary WP admin credentials per domain, (b) a privileged automation token/API key for cache purge endpoints, or (c) operator-executed purge logs with timestamps to ingest into SSOT.
 
 ## Operator Handoff: Next-Agent Prompt Chain (2026-03-24)
 Use this sequence to keep execution deterministic and SSOT-compliant.
@@ -102,9 +114,9 @@ At the end, provide:
 
 ## Definition of Done (this transmission)
 Done means we can truthfully say all of the following:
-- Where we are: Phase 3 in progress, blocked only by privileged cache purge + visual evidence.
-- What we have: remediated code + production sync + smoke-check evidence.
-- What is next: cache purge, post-purge verification, screenshots, SSOT closeout update.
+- Where we are: Phase 3 in progress, blocked only by privileged cache purge confirmation.
+- What we have: remediated code + production sync + smoke-check evidence + screenshot URLs (non-binary).
+- What is next: authenticated purge execution, then confirmation update and Phase 3 closeout.
 
 ## Obsolete Entries Cleanup Note
 This SSOT intentionally removed stale backlog material (legacy agent coordination queues, historical broad roadmaps, and outdated batch trackers) from the active operational view to prevent false progress signaling. Historical content is preserved in the legacy snapshot file listed above.
