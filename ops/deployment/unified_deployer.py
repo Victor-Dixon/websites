@@ -33,20 +33,67 @@ except ImportError:
     print("   Install dependencies: pip install paramiko python-dotenv")
 
 
+def repo_root() -> Path:
+    return Path(__file__).parent.parent.parent
+
+
 def load_site_registry() -> Dict:
     """Load site registry from config/sites_registry.json."""
-    registry_path = Path(__file__).parent.parent.parent / "config" / "sites_registry.json"
+    registry_path = repo_root() / "config" / "sites_registry.json"
     if registry_path.exists():
         with open(registry_path, 'r') as f:
             return json.load(f)
     return {}
 
 
+def resolve_site_base_dir(site_domain: str) -> tuple[Path, str]:
+    """
+    Resolve deploy source tree with explicit priority:
+      1. sites/production/websites/{domain}  (governed production-sync SSOT)
+      2. websites/{domain}                   (local/dev content)
+    """
+    root = repo_root()
+    production_base = root / "sites" / "production" / "websites" / site_domain
+    legacy_base = root / "websites" / site_domain
+    if production_base.exists():
+        return production_base, "production_sync"
+    return legacy_base, "legacy_local"
+
+
+def get_ssot_resolution(site_domain: str) -> Dict[str, object]:
+    base_dir, ssot_source = resolve_site_base_dir(site_domain)
+    return {
+        "base_dir": base_dir,
+        "ssot_source": ssot_source,
+        "production_path": repo_root() / "sites" / "production" / "websites" / site_domain,
+        "legacy_path": repo_root() / "websites" / site_domain,
+    }
+
+
+def flag_nested_theme_duplication(site_domain: str, base_dir: Path) -> Optional[str]:
+    """Flag duplicate_theme_nesting_audit_001 — detect only, no cleanup."""
+    root = repo_root()
+    trees_to_scan = [base_dir]
+    legacy_base = root / "websites" / site_domain
+    if legacy_base != base_dir and legacy_base.exists():
+        trees_to_scan.append(legacy_base)
+
+    for tree in trees_to_scan:
+        nested_markers = list(tree.rglob("tradingrobotplug-theme/tradingrobotplug-theme"))
+        if nested_markers:
+            sample = nested_markers[0].relative_to(root)
+            return (
+                f"duplicate_theme_nesting_audit_001: nested theme folder under {sample} "
+                f"(review before live deploy; can break diffs/package hashes)"
+            )
+    return None
+
+
 def get_ssot_paths(site_domain: str) -> Dict[str, List[Path]]:
     """Get canonical paths for a site according to SSOT map."""
-    base_dir = Path(__file__).parent.parent.parent / "websites" / site_domain
+    base_dir, _ = resolve_site_base_dir(site_domain)
 
-    # SSOT canonical paths per domain
+    # SSOT canonical paths per domain (wp/ paths first when production-sync tree is used)
     ssot_paths = {
         'dadudekc.com': {
             'theme': [base_dir / "overlays" / "wp" / "theme" / "dadudekc"],
@@ -54,13 +101,26 @@ def get_ssot_paths(site_domain: str) -> Dict[str, List[Path]]:
             'content': [base_dir / "blog-posts"]
         },
         'freerideinvestor.com': {
-            'theme': [base_dir / "wp" / "wp-content" / "themes" / "freerideinvestor-modern"],
-            'plugins': [base_dir / "wp" / "wp-content" / "plugins"],
+            'theme': [
+                base_dir / "wp" / "wp-content" / "themes" / "freerideinvestor-v2",
+                base_dir / "wp" / "wp-content" / "themes" / "freerideinvestor-modern",
+                base_dir / "overlays" / "wp" / "theme" / "freerideinvestor-v2",
+            ],
+            'plugins': [
+                base_dir / "wp" / "wp-content" / "plugins",
+                base_dir / "overlays" / "wp" / "plugins",
+            ],
             'content': [base_dir / "blog"]
         },
         'tradingrobotplug.com': {
-            'theme': [base_dir / "overlays" / "wp" / "theme" / "tradingrobotplug-theme"],
-            'plugins': [base_dir / "overlays" / "wp" / "plugins"],
+            'theme': [
+                base_dir / "wp" / "wp-content" / "themes" / "tradingrobotplug-theme",
+                base_dir / "overlays" / "wp" / "theme" / "tradingrobotplug-theme",
+            ],
+            'plugins': [
+                base_dir / "wp" / "wp-content" / "plugins",
+                base_dir / "overlays" / "wp" / "plugins",
+            ],
             'content': [base_dir / "blog"]
         },
         'crosbyultimateevents.com': {
@@ -146,7 +206,7 @@ def get_files_to_deploy(site_domain: str, site_config: Dict) -> List[Path]:
     
     # Add specific files from site config if defined
     if 'deploy_files' in site_config:
-        base_path = Path(__file__).parent.parent.parent
+        base_path = repo_root()
         for file_path in site_config['deploy_files']:
             full_path = base_path / file_path
             if full_path.exists():
@@ -163,6 +223,10 @@ def deploy_site(site_domain: str, site_config: Dict, dry_run: bool = False) -> b
     
     if dry_run:
         print("🔍 DRY RUN MODE - No files will be deployed\n")
+
+    resolution = get_ssot_resolution(site_domain)
+    base_dir = resolution["base_dir"]
+    ssot_paths = get_ssot_paths(site_domain)
     
     try:
         # Get files to deploy first (doesn't require connection)
@@ -170,15 +234,38 @@ def deploy_site(site_domain: str, site_config: Dict, dry_run: bool = False) -> b
         
         if not files_to_deploy:
             print("⚠️  No files found to deploy for this site")
-            print("   Check if theme/plugin files exist in websites/ directory")
+            print(f"   SSOT_SOURCE={resolution['ssot_source']}")
+            print(f"   Base: {base_dir.relative_to(repo_root())}")
+            print("   Theme candidates:")
+            for theme_dir in ssot_paths.get("theme", []):
+                status = "exists" if theme_dir.exists() else "missing"
+                print(f"     [{status}] {theme_dir.relative_to(repo_root())}")
+            print("   Plugin candidates:")
+            for plugin_dir in ssot_paths.get("plugins", []):
+                status = "exists" if plugin_dir.exists() else "missing"
+                print(f"     [{status}] {plugin_dir.relative_to(repo_root())}")
             return True  # Not an error, just nothing to deploy
         
         print(f"📋 Found {len(files_to_deploy)} file(s) to deploy")
+        print(f"   SSOT_SOURCE={resolution['ssot_source']}")
+        print(f"   Base: {base_dir.relative_to(repo_root())}")
+
+        nesting_flag = flag_nested_theme_duplication(site_domain, base_dir)
+        if nesting_flag:
+            print(f"   ⚠️  {nesting_flag}")
         
         if dry_run:
+            print("\n📁 Canonical path roots:")
+            for theme_dir in ssot_paths.get("theme", []):
+                if theme_dir.exists():
+                    print(f"   theme: {theme_dir.relative_to(repo_root())}")
+            for plugin_dir in ssot_paths.get("plugins", []):
+                if plugin_dir.exists():
+                    print(f"   plugins: {plugin_dir.relative_to(repo_root())}")
+
             print("\n📁 Files that would be deployed:")
             for file_path in files_to_deploy:
-                rel_path = file_path.relative_to(Path(__file__).parent.parent.parent)
+                rel_path = file_path.relative_to(repo_root())
                 print(f"   - {rel_path}")
             
             # Try to load configs to show deployment method
@@ -218,7 +305,7 @@ def deploy_site(site_domain: str, site_config: Dict, dry_run: bool = False) -> b
         fail_count = 0
         
         for file_path in files_to_deploy:
-            relative_path = file_path.relative_to(Path(__file__).parent.parent.parent)
+            relative_path = file_path.relative_to(repo_root())
             print(f"📤 Deploying: {relative_path}...", end=" ")
             
             # Calculate remote path
@@ -276,7 +363,7 @@ def main():
     print("="*60)
     
     # Load configurations
-    site_configs_path = Path(__file__).parent.parent.parent / "config" / "site_configs.json"
+    site_configs_path = repo_root() / "config" / "site_configs.json"
     if not site_configs_path.exists():
         print(f"\n❌ Site configurations not found at: {site_configs_path}")
         print("   Please create config/site_configs.json with site configurations")

@@ -1,0 +1,26 @@
+﻿task_id: duplicate_theme_nesting_audit_001
+status: pending
+scope: D:\websites
+site: tradingrobotplug.com
+classification: legacy_tree_cleanup
+risk: low
+destructive_actions: forbidden
+
+finding:
+  duplicate_theme_path: websites\tradingrobotplug.com\wp\wp-content\themes\tradingrobotplug-theme\tradingrobotplug-theme
+  affected_tree: legacy_local_tree
+  production_sync_tree: sites\production\websites\tradingrobotplug.com
+  production_impact: none_currently
+
+objective:
+  - compare nested duplicate against parent theme folder
+  - determine whether nested copy is stale, identical, or unique salvage
+  - produce delete_or_salvage_manifest before any cleanup
+
+verification:
+  - file_count_parent
+  - file_count_nested
+  - hash_diff_manifest
+  - production_tree_unaffected_check
+
+next_action: generate_non_destructive_diff_manifest

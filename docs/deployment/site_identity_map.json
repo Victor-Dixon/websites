@@ -1,0 +1,199 @@
+{
+  "generated_from": {
+    "env_path": "D:/websites/config/.env",
+    "site_configs_path": "D:/websites/config/site_configs.json"
+  },
+  "notes": [
+    "SWARMONLINE_* binds to weareswarm.online; SWARMSITE_* binds to weareswarm.site (distinct domains)."
+  ],
+  "sites": {
+    "ariajet.site": {
+      "canonical_domain": "ariajet.site",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "ARIAJET_WP_APP_PASS",
+          "wp_url": "ARIAJET_WP_URL",
+          "wp_user": "ARIAJET_WP_USER"
+        },
+        "env_prefix": "ARIAJET"
+      }
+    },
+    "crosbyultimateevents.com": {
+      "canonical_domain": "crosbyultimateevents.com",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "CROSBY_WP_APP_PASS",
+          "wp_url": "CROSBY_WP_URL",
+          "wp_user": "CROSBY_WP_USER"
+        },
+        "env_prefix": "CROSBY"
+      }
+    },
+    "dadudekc.com": {
+      "canonical_domain": "dadudekc.com",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "DADUDEKC_WP_APP_PASS",
+          "wp_url": "DADUDEKC_WP_URL",
+          "wp_user": "DADUDEKC_WP_USER"
+        },
+        "env_prefix": "DADUDEKC"
+      }
+    },
+    "digitaldreamscape.site": {
+      "canonical_domain": "digitaldreamscape.site",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "DREAM_WP_APP_PASS",
+          "wp_url": "DREAM_WP_URL",
+          "wp_user": "DREAM_WP_USER"
+        },
+        "env_prefix": "DREAM"
+      }
+    },
+    "freerideinvestor.com": {
+      "canonical_domain": "freerideinvestor.com",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "FREERIDE_WP_APP_PASS",
+          "wp_url": "FREERIDE_WP_URL",
+          "wp_user": "FREERIDE_WP_USER"
+        },
+        "env_prefix": "FREERIDE"
+      }
+    },
+    "houstonsipqueen.com": {
+      "canonical_domain": "houstonsipqueen.com",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "HOUSTON_WP_APP_PASS",
+          "wp_url": "HOUSTON_WP_URL",
+          "wp_user": "HOUSTON_WP_USER"
+        },
+        "env_prefix": "HOUSTON"
+      }
+    },
+    "prismblossom.online": {
+      "canonical_domain": "prismblossom.online",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "PRISM_WP_APP_PASS",
+          "wp_url": "PRISM_WP_URL",
+          "wp_user": "PRISM_WP_USER"
+        },
+        "env_prefix": "PRISM"
+      }
+    },
+    "southwestsecret.com": {
+      "canonical_domain": "southwestsecret.com",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "SOUTHWEST_WP_APP_PASS",
+          "wp_url": "SOUTHWEST_WP_URL",
+          "wp_user": "SOUTHWEST_WP_USER"
+        },
+        "env_prefix": "SOUTHWEST"
+      }
+    },
+    "tradingrobotplug.com": {
+      "canonical_domain": "tradingrobotplug.com",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "TRADING_WP_APP_PASS",
+          "wp_url": "TRADING_WP_URL",
+          "wp_user": "TRADING_WP_USER"
+        },
+        "env_prefix": "TRADING"
+      }
+    },
+    "weareswarm.online": {
+      "canonical_domain": "weareswarm.online",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "SWARMONLINE_WP_APP_PASS",
+          "wp_url": "SWARMONLINE_WP_URL",
+          "wp_user": "SWARMONLINE_WP_USER"
+        },
+        "env_prefix": "SWARMONLINE"
+      }
+    },
+    "weareswarm.site": {
+      "canonical_domain": "weareswarm.site",
+      "credential_sources": {
+        "hostinger_env_file": "D:/Agent_Cellphone_V2_Repository/.env",
+        "site_configs_json": "D:/websites/config/site_configs.json",
+        "wordpress_env_file": "D:/websites/config/.env"
+      },
+      "site_configs_present": true,
+      "wordpress_env": {
+        "env_keys": {
+          "wp_app_password": "SWARMSITE_WP_APP_PASS",
+          "wp_url": "SWARMSITE_WP_URL",
+          "wp_user": "SWARMSITE_WP_USER"
+        },
+        "env_prefix": "SWARMSITE"
+      }
+    }
+  },
+  "version": 1
+}
