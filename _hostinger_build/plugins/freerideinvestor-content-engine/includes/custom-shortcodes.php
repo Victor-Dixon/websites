@@ -132,3 +132,60 @@ add_shortcode('tbow_tactics', 'simplifiedtheme_tbow_tactics_shortcode');
 /**
  * Additional Shortcodes can be added below
  */
+
+/**
+ * Dream.OS AI Trading Journal beta CTA.
+ *
+ * Shortcode:
+ * [dreamos_trading_journal_beta]
+ */
+if (!function_exists('freerideinvestor_dreamos_trading_journal_beta_shortcode')) {
+    function freerideinvestor_dreamos_trading_journal_beta_shortcode($atts = array()) {
+        $atts = shortcode_atts(array(
+            'cta_url' => '#beta',
+            'cta_text' => 'Join the Trading Journal Beta',
+        ), $atts, 'dreamos_trading_journal_beta');
+
+        ob_start();
+        ?>
+        <section class="dreamos-trading-journal-beta" style="padding:48px 24px;border-radius:18px;background:#0b1020;color:#fff;margin:24px 0;">
+            <div style="max-width:960px;margin:0 auto;">
+                <p style="letter-spacing:.12em;text-transform:uppercase;opacity:.78;margin:0 0 12px;">Dream.OS.ai Trading Discipline System</p>
+                <h1 style="font-size:clamp(2rem,5vw,4rem);line-height:1.02;margin:0 0 18px;">
+                    Turn every trade into a reviewable system.
+                </h1>
+                <p style="font-size:1.15rem;line-height:1.7;max-width:760px;opacity:.92;margin:0 0 24px;">
+                    The Dream.OS AI Trading Journal helps options traders capture fills, reconstruct decisions,
+                    pair trades, review discipline, and convert repeated mistakes into measurable rules.
+                </p>
+
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:28px 0;">
+                    <div style="padding:18px;border:1px solid rgba(255,255,255,.16);border-radius:14px;">
+                        <strong>Trade Pairing</strong>
+                        <p style="opacity:.82;margin:8px 0 0;">Connect entries, exits, rolls, and partial fills into one readable trade story.</p>
+                    </div>
+                    <div style="padding:18px;border:1px solid rgba(255,255,255,.16);border-radius:14px;">
+                        <strong>Discipline Review</strong>
+                        <p style="opacity:.82;margin:8px 0 0;">Track rule breaks, hesitation, overtrading, revenge trades, and setup quality.</p>
+                    </div>
+                    <div style="padding:18px;border:1px solid rgba(255,255,255,.16);border-radius:14px;">
+                        <strong>AI Structure, Not Autopilot</strong>
+                        <p style="opacity:.82;margin:8px 0 0;">Use AI to organize your review process while you stay responsible for every trade.</p>
+                    </div>
+                </div>
+
+                <a href="<?php echo esc_url($atts['cta_url']); ?>" style="display:inline-block;background:#fff;color:#0b1020;padding:14px 20px;border-radius:999px;font-weight:700;text-decoration:none;">
+                    <?php echo esc_html($atts['cta_text']); ?>
+                </a>
+
+                <p style="font-size:.85rem;line-height:1.5;opacity:.68;margin:18px 0 0;">
+                    Educational tool only. Not financial advice. The journal does not trade for you or guarantee results.
+                </p>
+            </div>
+        </section>
+        <?php
+        return ob_get_clean();
+    }
+
+    add_shortcode('dreamos_trading_journal_beta', 'freerideinvestor_dreamos_trading_journal_beta_shortcode');
+}
