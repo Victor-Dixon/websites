@@ -1,0 +1,110 @@
+version: 1
+name: freerideinvestor_revenue_showcase
+status: active
+domain: freerideinvestor.com
+repo: Victor-Dixon/websites
+hostinger_profile: ~/.config/dreamos/hostinger_freeride_github_secrets.env
+
+north_star:
+  immediate_goal: generate_revenue
+  product_to_showcase: Dream.OS AI Trading Journal
+  audience:
+    - retail options traders
+    - small account traders
+    - traders who need discipline and trade review
+    - traders who use AI as structure, not autopilot
+
+positioning:
+  headline: Turn every trade into a reviewable system.
+  subheadline: >
+    Dream.OS AI Trading Journal helps traders capture fills, reconstruct
+    decisions, pair options trades, review discipline, and turn repeat mistakes
+    into measurable rules.
+  offer_type: early_access / waitlist / paid beta
+  primary_cta: Join the Trading Journal Beta
+  secondary_cta: View the Trade Review System
+
+site_model:
+  type: dreamos_agentic_website
+  active_theme_strategy: new_clean_theme_or_child_theme
+  old_themes: archive_reference_only
+  plugins:
+    preserved:
+      - freerideinvestor-content-engine
+      - dreamos-trading-tools
+      - freerideinvestor-setup
+      - trading-plans-automator
+      - tradingrobotplug-wordpress-plugin
+    revenue_focus_now:
+      - dreamos-trading-tools
+      - freerideinvestor-content-engine
+
+pages:
+  home:
+    purpose: product_pitch
+    required_sections:
+      - hero
+      - pain_points
+      - product_demo
+      - how_it_works
+      - trader_discipline_loop
+      - beta_cta
+      - trust_disclaimer
+  ai_trading_journal:
+    purpose: product_landing_page
+    required_sections:
+      - problem
+      - solution
+      - features
+      - screenshots_or_mockups
+      - workflow
+      - pricing_or_beta
+      - faq
+      - cta
+  trade_review_system:
+    purpose: proof_of_system
+    required_sections:
+      - trade_pairing
+      - rule_tracking
+      - mistake_detection
+      - options_journal
+      - daily_review
+  blog:
+    purpose: marketing_pipeline
+    content_pillars:
+      - trading discipline
+      - options risk
+      - AI-assisted journaling
+      - Dream.OS build logs
+      - small account lessons
+
+marketing_pipeline:
+  capture:
+    primary: beta_waitlist
+    fields:
+      - email
+      - trader_type
+      - biggest_trading_problem
+  followup:
+    channel: email_or_discord_later
+    sequence:
+      - welcome
+      - trading journal philosophy
+      - example trade review
+      - beta invite
+  content_engine:
+    short_form:
+      - trade lesson posts
+      - chart recap posts
+      - mistake-of-the-day posts
+    long_form:
+      - weekly trading journal breakdown
+      - Dream.OS build log
+      - product update
+
+safety:
+  deploy_all_sites: false
+  deploy_old_themes: false
+  overwrite_live_theme: false
+  require_backup_before_theme_change: true
+  require_smoke_test_after_deploy: true

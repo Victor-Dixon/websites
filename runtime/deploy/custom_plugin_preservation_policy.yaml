@@ -1,0 +1,21 @@
+version: 1
+name: custom_plugin_preservation_policy
+status: active
+policy:
+  collected_custom_plugins:
+    role: preserved_source_archive
+    deploy_enabled: false
+    source_root: collected/hostinger/wordpress
+    manifest: runtime/deploy/hostinger_custom_asset_collection_manifest.yaml
+  priority:
+    - preserve_current_custom_plugin_work
+    - identify reusable plugin features
+    - promote useful plugins into clean Dream.OS website architecture
+    - avoid destructive overwrite of live plugins
+  required_before_plugin_replacement:
+    - source_collected
+    - hash_recorded
+    - canonical_candidate_selected
+    - backup_created
+    - staging_deploy_passed
+    - smoke_test_passed

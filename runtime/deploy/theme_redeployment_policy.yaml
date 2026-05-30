@@ -1,0 +1,26 @@
+version: 1
+name: theme_redeployment_policy
+status: active
+policy:
+  old_collected_themes:
+    role: archive_reference_only
+    deploy_enabled: false
+    reason: >
+      Collected Hostinger themes came from earlier website structure experiments.
+      They are preserved for salvage/reference only and must not be redeployed
+      blindly.
+  new_themes:
+    required_model: dreamos_agentic_website_workflow
+    deploy_enabled_default: false
+    required_before_deploy:
+      - domain_model_defined
+      - revenue_goal_defined
+      - page_inventory_defined
+      - component_map_defined
+      - smoke_test_defined
+      - rollback_backup_created
+  theme_reuse:
+    allowed: true
+    condition: >
+      Reuse only clean components, copy, CSS, layouts, or PHP modules after
+      review. Do not promote entire old themes as canonical without audit.

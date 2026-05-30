@@ -1,0 +1,31 @@
+id: freerideinvestor_ai_trading_journal_showcase_047
+title: Build FreeRideInvestor revenue showcase for Dream.OS AI Trading Journal
+status: queued
+priority: high
+target:
+  repo: Victor-Dixon/websites
+  domain: freerideinvestor.com
+  product: Dream.OS AI Trading Journal
+intent:
+  generate_revenue_now: true
+  preserve_custom_plugins: true
+  do_not_deploy_old_themes: true
+actions:
+  - Review preserved custom plugins for reusable product features.
+  - Build a clean landing page model for Dream.OS AI Trading Journal.
+  - Use FreeRideInvestor as the primary product showcase.
+  - Create beta/waitlist CTA.
+  - Add marketing content pipeline for trading discipline and AI journaling.
+  - Keep old themes archived as reference only.
+verification:
+  - custom_plugin_collection_manifest_exists
+  - theme_policy_disables_old_theme_deploy
+  - revenue_showcase_manifest_exists
+  - task_exists
+  - git_commit_created
+closeout:
+  required:
+    - files_created
+    - product_focus
+    - deploy_status
+    - next_build_lane
