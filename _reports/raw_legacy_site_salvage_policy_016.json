@@ -1,0 +1,41 @@
+{
+  "canonical_git_paths": [
+    "_configs/",
+    "_github_deprecation_packets/",
+    "_hostinger_build/",
+    "_hostinger_plan/",
+    "_reports/",
+    "_shared_plugins/",
+    "tools/",
+    "README.md"
+  ],
+  "raw_salvage_dirs": [
+    {
+      "bytes": 386239,
+      "exists": true,
+      "file_count": 116,
+      "name": "TradingRobotPlugWeb",
+      "path": "/data/data/com.termux/files/home/projects/websites/TradingRobotPlugWeb",
+      "policy": "local_raw_salvage_not_git_canonical"
+    },
+    {
+      "bytes": 552840,
+      "exists": true,
+      "file_count": 99,
+      "name": "FreerideinvestorWebsite",
+      "path": "/data/data/com.termux/files/home/projects/websites/FreerideinvestorWebsite",
+      "policy": "local_raw_salvage_not_git_canonical"
+    },
+    {
+      "bytes": 108069,
+      "exists": true,
+      "file_count": 26,
+      "name": "DaDudeKC-Website",
+      "path": "/data/data/com.termux/files/home/projects/websites/DaDudeKC-Website",
+      "policy": "local_raw_salvage_not_git_canonical"
+    }
+  ],
+  "root": "/data/data/com.termux/files/home/projects/websites",
+  "rule": "Do not track raw top-level legacy site folders unless a later promotion manifest explicitly selects files.",
+  "status": "raw_salvage_ignored_from_git"
+}
