@@ -1,0 +1,38 @@
+/*--------------------------------------------------------------
+  Buttons
+--------------------------------------------------------------*/
+.btn {
+  display: inline-block;
+  padding: $spacing-xs $spacing-md;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  @include transition(background-color 0.3s ease, transform 0.3s ease);
+  
+  &--primary {
+    background-color: $color-accent;
+    color: $color-black;
+
+    &:hover,
+    &:focus {
+      background-color: $color-nav-hover-bg;
+      color: $color-text-base;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--secondary {
+    background-color: $color-dark-green;
+    color: $color-black;
+
+    &:hover,
+    &:focus {
+      background-color: $color-light-dark-green;
+      color: $color-text-base;
+      transform: translateY(-2px);
+    }
+  }
+}

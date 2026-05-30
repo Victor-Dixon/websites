@@ -1,0 +1,854 @@
+/*
+Theme Name: Swarm Intelligence
+Theme URI: https://github.com/Agent_Cellphone_V2_Repository
+Description: Official theme for the Agent Cellphone V2 Multi-Agent Swarm System. Dark, modern, tech-forward design showcasing autonomous AI coordination.
+Version: 1.0.0
+Author: Agent-2 (Architecture) & The Swarm
+Author URI: https://swarm-intelligence.com
+Tags: dark, multi-agent, ai, swarm, technology, autonomous
+Text Domain: swarm-theme
+*/
+
+/* ==========================================================================
+   SWARM THEME - COLOR PALETTE
+   ========================================================================== */
+
+:root {
+  /* Primary Swarm Colors */
+  --swarm-dark: #0a0e27;
+  --swarm-darker: #050812;
+  --swarm-blue: #00d4ff;
+  --swarm-purple: #8b5cf6;
+  --swarm-electric: #00ff88;
+  
+  /* Gradients */
+  --swarm-gradient: linear-gradient(135deg, var(--swarm-blue) 0%, var(--swarm-purple) 100%);
+  --swarm-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+  
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #a0aec0;
+  --text-muted: #718096;
+  
+  /* UI Elements */
+  --border-color: #2d3748;
+  --card-bg: #1a1f36;
+  --card-hover: #252b45;
+  
+  /* Unified Spacing System (8px base) */
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  
+  /* Unified Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem;  /* 36px */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.75;
+  --font-size-sm: 0.875rem;   /* 14px */
+}
+
+/* ==========================================================================
+   GLOBAL STYLES
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--swarm-darker);
+  color: var(--text-primary);
+  line-height: var(--line-height-normal);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-4);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+  background: var(--swarm-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+  color: var(--swarm-blue);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+}
+
+p {
+  margin-bottom: var(--spacing-4);
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--swarm-blue);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--swarm-purple);
+  text-shadow: var(--swarm-glow);
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.site-header {
+  background: rgba(10, 14, 39, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: var(--spacing-4) 0;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--swarm-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.8); }
+}
+
+.site-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  background: var(--swarm-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation */
+.main-nav ul {
+  display: flex;
+  gap: var(--spacing-8);
+  list-style: none;
+}
+
+.main-nav a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+  background: var(--card-bg);
+  color: var(--swarm-blue);
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+
+.hero-section {
+  margin-top: var(--spacing-20);
+  padding: var(--spacing-16) var(--spacing-8);
+  text-align: center;
+  background: radial-gradient(circle at center, var(--swarm-dark) 0%, var(--swarm-darker) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-6);
+  animation: fadeInUp 1s ease;
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-2xl);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-8);
+  animation: fadeInUp 1s ease 0.2s backwards;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: var(--spacing-4) var(--spacing-8);
+  background: var(--swarm-gradient);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  box-shadow: var(--swarm-glow);
+  animation: fadeInUp 1s ease 0.4s backwards;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   AGENT CARDS
+   ========================================================================== */
+
+.agents-section {
+  padding: var(--spacing-16) var(--spacing-8);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--spacing-12);
+}
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.agent-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: var(--spacing-8);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--swarm-gradient);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.agent-card:hover {
+  background: var(--card-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.agent-card:hover::before {
+  transform: scaleX(1);
+}
+
+.agent-id {
+  font-size: var(--font-size-sm);
+  color: var(--swarm-electric);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.agent-name {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-2);
+  color: var(--text-primary);
+}
+
+.agent-role {
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-4);
+}
+
+.agent-status {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-3);
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--swarm-electric);
+  border-radius: 1rem;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-4);
+}
+
+.agent-status.active {
+  animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ==========================================================================
+   MISSION LOG
+   ========================================================================== */
+
+.mission-log {
+  padding: var(--spacing-16) var(--spacing-8);
+  background: var(--swarm-dark);
+}
+
+.log-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.log-entry {
+  background: var(--card-bg);
+  border-left: 3px solid var(--swarm-blue);
+  padding: var(--spacing-6);
+  margin-bottom: var(--spacing-4);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.log-entry:hover {
+  border-left-color: var(--swarm-purple);
+  transform: translateX(5px);
+}
+
+.log-time {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.log-agent {
+  color: var(--swarm-electric);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer {
+  background: var(--swarm-darker);
+  border-top: 1px solid var(--border-color);
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-text {
+  color: var(--text-muted);
+}
+
+.swarm-badge {
+  color: var(--swarm-blue);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .agents-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+
+/* ========================================================================== 
+   ELS SUITE TEMPLATE
+   ========================================================================== */
+.els-suite {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.els-hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 3rem;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  background: radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.12), rgba(10, 14, 39, 0.9));
+}
+
+.els-hero__content h1 {
+  margin-bottom: 1rem;
+}
+
+.els-lede {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.els-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.els-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.els-stat-card {
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: rgba(26, 31, 54, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.els-stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.els-stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--swarm-blue);
+}
+
+.els-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--swarm-blue);
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.els-panel {
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 2.5rem;
+  background: rgba(10, 14, 39, 0.6);
+  box-shadow: var(--swarm-glow);
+}
+
+.els-panel__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.els-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.6rem;
+  font-weight: 600;
+  color: #050812;
+  background: var(--swarm-gradient);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.els-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--swarm-glow);
+}
+
+.els-button--ghost {
+  background: transparent;
+  color: var(--swarm-blue);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+}
+
+.els-refresh {
+  background: transparent;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: var(--swarm-blue);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.els-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.els-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 100%;
+}
+
+.els-card--placeholder {
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.els-card__footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.els-score {
+  color: var(--swarm-electric);
+  font-weight: 600;
+}
+
+.els-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.els-form input[type="text"],
+.els-library-filter input[type="search"] {
+  background: rgba(26, 31, 54, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  color: var(--text-primary);
+}
+
+.els-form label {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.els-library-filter {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .els-panel {
+    padding: 1.5rem;
+  }
+
+  .els-hero {
+    padding: 2rem;
+  }
+
+  .els-panel__header {
+    flex-direction: column;
+  }
+}
+
+/* ===== WEARESWARM TEXT RENDERING FIXES ===== */
+/* We Are Swarm Text Rendering Fixes */
+/* Applied: 2026-01-01 */
+/* Based on crosbyultimateevents.com fixes */
+
+/* ===== CRITICAL TEXT RENDERING FIXES ===== */
+
+/* Global fix - ensure proper word spacing */
+* {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* Body-level fixes */
+body {
+    word-spacing: normal;
+    letter-spacing: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography fixes - comprehensive coverage */
+h1, h2, h3, h4, h5, h6,
+p, span, div, a, li, td, th, label,
+input, textarea, select, button,
+.site-title, .main-navigation, .hero-content,
+.value-item, .service-card, .lead-capture-content,
+.content-area, .entry-content, .post-content,
+.widget, .sidebar, .footer-widget {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Specific fixes for known issues */
+.capabilities-text,
+.services-content,
+.about-content,
+.hero-subtitle,
+.feature-description {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    white-space: normal !important;
+}
+
+/* Fix for multi-word elements that might be broken */
+.multi-agent-text,
+.system-architecture-text,
+.swarm-intelligence-text {
+    word-spacing: normal !important;
+    letter-spacing: 0 !important;
+}
+
+/* Navigation fixes */
+.main-navigation a,
+.site-navigation a,
+.nav-menu a {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* Content area fixes */
+.site-main,
+.content-area,
+.main-content {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* Footer fixes */
+.site-footer,
+.footer-content,
+.footer-text {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* ===== MOBILE RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+    body, p, span, div, a, li, h1, h2, h3, h4, h5, h6 {
+        word-spacing: normal !important;
+        letter-spacing: normal !important;
+    }
+}
+
+
+/* ===== WEARESWARM TEXT RENDERING FIXES ===== */
+/* We Are Swarm Text Rendering Fixes */
+/* Applied: 2026-01-01 */
+/* Based on crosbyultimateevents.com fixes */
+
+/* ===== CRITICAL TEXT RENDERING FIXES ===== */
+
+/* Global fix - ensure proper word spacing */
+* {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* Body-level fixes */
+body {
+    word-spacing: normal;
+    letter-spacing: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography fixes - comprehensive coverage */
+h1, h2, h3, h4, h5, h6,
+p, span, div, a, li, td, th, label,
+input, textarea, select, button,
+.site-title, .main-navigation, .hero-content,
+.value-item, .service-card, .lead-capture-content,
+.content-area, .entry-content, .post-content,
+.widget, .sidebar, .footer-widget {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Specific fixes for known issues */
+.capabilities-text,
+.services-content,
+.about-content,
+.hero-subtitle,
+.feature-description {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    white-space: normal !important;
+}
+
+/* Fix for multi-word elements that might be broken */
+.multi-agent-text,
+.system-architecture-text,
+.swarm-intelligence-text {
+    word-spacing: normal !important;
+    letter-spacing: 0 !important;
+}
+
+/* Navigation fixes */
+.main-navigation a,
+.site-navigation a,
+.nav-menu a {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* Content area fixes */
+.site-main,
+.content-area,
+.main-content {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* Footer fixes */
+.site-footer,
+.footer-content,
+.footer-text {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+}
+
+/* ===== MOBILE RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+    body, p, span, div, a, li, h1, h2, h3, h4, h5, h6 {
+        word-spacing: normal !important;
+        letter-spacing: normal !important;
+    }
+}

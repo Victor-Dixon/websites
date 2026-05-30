@@ -1,0 +1,11 @@
+/* Highlight Box */
+.utility--highlight-box {
+  background-color: $color-light-dark-green;
+  color: $color-black;
+  padding: $spacing-md;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  @include box-shadow($box-shadow-light);
+  margin-bottom: $spacing-lg;
+}

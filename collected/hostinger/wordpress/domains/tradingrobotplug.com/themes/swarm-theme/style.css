@@ -1,0 +1,439 @@
+/*
+Theme Name: Swarm Intelligence
+Theme URI: https://github.com/Agent_Cellphone_V2_Repository
+Description: Official theme for the Agent Cellphone V2 Multi-Agent Swarm System. Dark, modern, tech-forward design showcasing autonomous AI coordination.
+Version: 1.0.0
+Author: Agent-2 (Architecture) & The Swarm
+Author URI: https://swarm-intelligence.com
+Tags: dark, multi-agent, ai, swarm, technology, autonomous
+Text Domain: swarm-theme
+*/
+
+/* ==========================================================================
+   SWARM THEME - COLOR PALETTE
+   ========================================================================== */
+
+:root {
+  /* Primary Swarm Colors */
+  --swarm-dark: #0a0e27;
+  --swarm-darker: #050812;
+  --swarm-blue: #00d4ff;
+  --swarm-purple: #8b5cf6;
+  --swarm-electric: #00ff88;
+  
+  /* Gradients */
+  --swarm-gradient: linear-gradient(135deg, var(--swarm-blue) 0%, var(--swarm-purple) 100%);
+  --swarm-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+  
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #a0aec0;
+  --text-muted: #718096;
+  
+  /* UI Elements */
+  --border-color: #2d3748;
+  --card-bg: #1a1f36;
+  --card-hover: #252b45;
+}
+
+/* ==========================================================================
+   GLOBAL STYLES
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--swarm-darker);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 3.5rem;
+  background: var(--swarm-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: var(--swarm-blue);
+}
+
+h3 {
+  font-size: 1.875rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--swarm-blue);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--swarm-purple);
+  text-shadow: var(--swarm-glow);
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.site-header {
+  background: rgba(10, 14, 39, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--swarm-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.8); }
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--swarm-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation */
+.main-nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.main-nav a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+  background: var(--card-bg);
+  color: var(--swarm-blue);
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+
+.hero-section {
+  margin-top: 80px;
+  padding: 6rem 2rem;
+  text-align: center;
+  background: radial-gradient(circle at center, var(--swarm-dark) 0%, var(--swarm-darker) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 1s ease;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s ease 0.2s backwards;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: var(--swarm-gradient);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  box-shadow: var(--swarm-glow);
+  animation: fadeInUp 1s ease 0.4s backwards;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   AGENT CARDS
+   ========================================================================== */
+
+.agents-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.agent-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--swarm-gradient);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.agent-card:hover {
+  background: var(--card-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.agent-card:hover::before {
+  transform: scaleX(1);
+}
+
+.agent-id {
+  font-size: 0.875rem;
+  color: var(--swarm-electric);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.agent-name {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.agent-role {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.agent-status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--swarm-electric);
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.agent-status.active {
+  animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ==========================================================================
+   MISSION LOG
+   ========================================================================== */
+
+.mission-log {
+  padding: 4rem 2rem;
+  background: var(--swarm-dark);
+}
+
+.log-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.log-entry {
+  background: var(--card-bg);
+  border-left: 3px solid var(--swarm-blue);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.log-entry:hover {
+  border-left-color: var(--swarm-purple);
+  transform: translateX(5px);
+}
+
+.log-time {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.log-agent {
+  color: var(--swarm-electric);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer {
+  background: var(--swarm-darker);
+  border-top: 1px solid var(--border-color);
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-text {
+  color: var(--text-muted);
+}
+
+.swarm-badge {
+  color: var(--swarm-blue);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .agents-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+

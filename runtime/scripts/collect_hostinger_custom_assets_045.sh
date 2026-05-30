@@ -88,7 +88,7 @@ while IFS='|' read -r kind domain slug remote_path; do
   rm -rf "$dest"
   mkdir -p "$dest"
 
-  ssh -i "$KEY_FILE" -p "$HOSTINGER_PORT" "$HOSTINGER_USER@$HOSTINGER_HOST" \
+  ssh -n -i "$KEY_FILE" -p "$HOSTINGER_PORT" "$HOSTINGER_USER@$HOSTINGER_HOST" \
     "cd '$remote_path' && tar -czf - ." | tar -xzf - -C "$dest"
 
   test -d "$dest"

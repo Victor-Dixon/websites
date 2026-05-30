@@ -1,0 +1,248 @@
+/* --------------------------------------------------------------
+   Layout Responsive Design - FreeRideInvestor
+   Mobile-First Responsive Breakpoints
+-------------------------------------------------------------- */
+
+/* ==========================================================================
+   MOBILE FIRST - BASE STYLES (Mobile by default)
+   ========================================================================== */
+
+/* ==========================================================================
+   TABLET - 768px and up
+   ========================================================================== */
+@media (min-width: 768px) {
+  /* Container adjustments */
+  .container {
+    max-width: 720px;
+  }
+  
+  /* Grid layouts */
+  .grid-2-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   DESKTOP - 1024px and up
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 960px;
+  }
+  
+  .grid-3-col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid-4-col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ==========================================================================
+   LARGE DESKTOP - 1200px and up
+   ========================================================================== */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE - Max 767px (Phone)
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* Navigation */
+  .site-header nav {
+    flex-direction: column;
+  }
+  
+  .site-header nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .site-header nav li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Containers */
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Typography */
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  /* Force single column */
+  .grid-2-col,
+  .grid-3-col,
+  .grid-4-col {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Footer */
+  .site-footer {
+    text-align: center;
+  }
+  
+  .site-footer .footer-widgets {
+    flex-direction: column;
+  }
+  
+  /* Buttons */
+  .btn,
+  .button {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   SMALL MOBILE - Max 480px (Very Small Phones)
+   ========================================================================== */
+@media (max-width: 480px) {
+  /* Even smaller typography */
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  /* Reduce padding */
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  /* Stack everything */
+  .flex-row {
+    flex-direction: column;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE UTILITIES
+   ========================================================================== */
+
+/* Hide/Show based on screen size */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .mobile-only {
+    display: block;
+  }
+  
+  .desktop-only {
+    display: none;
+  }
+}
+
+/* Text alignment */
+@media (max-width: 767px) {
+  .mobile-center {
+    text-align: center;
+  }
+  
+  .mobile-left {
+    text-align: left;
+  }
+  
+  .mobile-right {
+    text-align: right;
+  }
+}
+
+/* ==========================================================================
+   DEVELOPER TOOLS PAGE - MOBILE FIX
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* Product cards */
+  .product-card,
+  .tool-card {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  /* Gumroad buttons */
+  .gumroad-button-wrapper {
+    width: 100%;
+  }
+  
+  .gumroad-button {
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  /* Product descriptions */
+  .product-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* Features list */
+  .features-list {
+    padding-left: 20px;
+  }
+}
+
+/* ==========================================================================
+   TOUCH-FRIENDLY IMPROVEMENTS
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* Larger tap targets for mobile */
+  a,
+  button,
+  .btn,
+  input[type="submit"] {
+    min-height: 44px; /* iOS recommended minimum */
+    min-width: 44px;
+  }
+  
+  /* Spacing between interactive elements */
+  nav li {
+    margin-bottom: 8px;
+  }
+  
+  /* Form inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    width: 100%;
+  }
+}
+
+
