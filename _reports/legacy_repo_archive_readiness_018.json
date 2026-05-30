@@ -1,0 +1,71 @@
+{
+  "repos": [
+    {
+      "archive_ready": false,
+      "blockers": [
+        "dirty_worktree"
+      ],
+      "branch": "cursor/assess-app-features-and-update-readme-9ac2",
+      "dirty_count": 6,
+      "exists": true,
+      "last_commit": "3ca2e5e Deprecate repo in favor of websites SSOT",
+      "path": "/data/data/com.termux/files/home/projects/TradingRobotPlugWeb",
+      "remote": [
+        "origin\tgit@github.com:Victor-Dixon/TradingRobotPlugWeb.git (fetch)",
+        "origin\tgit@github.com:Victor-Dixon/TradingRobotPlugWeb.git (push)"
+      ],
+      "repo": "TradingRobotPlugWeb",
+      "status_sb": "## cursor/assess-app-features-and-update-readme-9ac2...origin/cursor/assess-app-features-and-update-readme-9ac2 [ahead 1]\n D logs/alpha_vantage_fetcher.log\n D logs/alphavantage_fetcher.log\n D logs/data_fetch_main.log\n D logs/data_fetch_utils.log\n D logs/data_fetcher.log\n D logs/test_data_fetch_utils.log",
+      "status_short": [
+        "D logs/alpha_vantage_fetcher.log",
+        " D logs/alphavantage_fetcher.log",
+        " D logs/data_fetch_main.log",
+        " D logs/data_fetch_utils.log",
+        " D logs/data_fetcher.log",
+        " D logs/test_data_fetch_utils.log"
+      ],
+      "upstream": "origin/cursor/assess-app-features-and-update-readme-9ac2"
+    },
+    {
+      "archive_ready": true,
+      "blockers": [],
+      "branch": "main",
+      "dirty_count": 0,
+      "exists": true,
+      "last_commit": "f97e8d9 Deprecate repo in favor of websites SSOT",
+      "path": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite",
+      "remote": [
+        "origin\tgit@github.com:Victor-Dixon/FreerideinvestorWebsite.git (fetch)",
+        "origin\tgit@github.com:Victor-Dixon/FreerideinvestorWebsite.git (push)"
+      ],
+      "repo": "FreerideinvestorWebsite",
+      "status_sb": "## main...origin/main [ahead 1]",
+      "status_short": [],
+      "upstream": "origin/main"
+    },
+    {
+      "archive_ready": true,
+      "blockers": [],
+      "branch": "main",
+      "dirty_count": 0,
+      "exists": true,
+      "last_commit": "0376087 Deprecate repo in favor of websites SSOT",
+      "path": "/data/data/com.termux/files/home/projects/DaDudeKC-Website",
+      "remote": [
+        "origin\tgit@github.com:Victor-Dixon/DaDudeKC-Website.git (fetch)",
+        "origin\tgit@github.com:Victor-Dixon/DaDudeKC-Website.git (push)"
+      ],
+      "repo": "DaDudeKC-Website",
+      "status_sb": "## main...origin/main [ahead 1]",
+      "status_short": [],
+      "upstream": "origin/main"
+    }
+  ],
+  "rules": [
+    "Do not archive dirty repos.",
+    "Do not archive repos without pushed deprecation commit.",
+    "No destructive delete approved."
+  ],
+  "status": "archive_readiness_audited",
+  "websites_ssot": "/data/data/com.termux/files/home/projects/websites"
+}
