@@ -1,0 +1,204 @@
+version: 1
+name: hostinger_custom_asset_collection_manifest
+purpose: salvage custom Hostinger WordPress plugins/themes before Dream.OS redeploy workflows
+collection_root: collected/hostinger/wordpress
+deploy_enabled: false
+promotion_required: true
+assets:
+  - kind: plugin
+    domain: ariajet.site
+    slug: tradingrobotplug-wordpress-plugin
+    remote_path: /home/u996867598/domains/ariajet.site/public_html/wp-content/plugins/tradingrobotplug-wordpress-plugin
+    local_path: collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: freerideinvestor.com
+    slug: dreamos-trading-tools
+    remote_path: /home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/dreamos-trading-tools
+    local_path: collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/dreamos-trading-tools
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: freerideinvestor.com
+    slug: freerideinvestor-content-engine
+    remote_path: /home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/freerideinvestor-content-engine
+    local_path: collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-content-engine
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: freerideinvestor.com
+    slug: freerideinvestor-setup
+    remote_path: /home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/freerideinvestor-setup
+    local_path: collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-setup
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: freerideinvestor.com
+    slug: trading-plans-automator
+    remote_path: /home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/trading-plans-automator
+    local_path: collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/trading-plans-automator
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: freerideinvestor.com
+    slug: tradingrobotplug-wordpress-plugin
+    remote_path: /home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/tradingrobotplug-wordpress-plugin
+    local_path: collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: southwestsecret.com
+    slug: tradingrobotplug-wordpress-plugin
+    remote_path: /home/u996867598/domains/southwestsecret.com/public_html/wp-content/plugins/tradingrobotplug-wordpress-plugin
+    local_path: collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: tradingrobotplug.com
+    slug: tradingrobotplug-wordpress-plugin
+    remote_path: /home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/plugins/tradingrobotplug-wordpress-plugin
+    local_path: collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: tradingrobotplug.com
+    slug: trp-paper-trading-stats
+    remote_path: /home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/plugins/trp-paper-trading-stats
+    local_path: collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/trp-paper-trading-stats
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: tradingrobotplug.com
+    slug: trp-swarm-status
+    remote_path: /home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/plugins/trp-swarm-status
+    local_path: collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/trp-swarm-status
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: plugin
+    domain: weareswarm.site
+    slug: dreamos-swarm-status
+    remote_path: /home/u996867598/domains/weareswarm.site/public_html/wp-content/plugins/dreamos-swarm-status
+    local_path: collected/hostinger/wordpress/domains/weareswarm.site/plugins/dreamos-swarm-status
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: dadudekc.com
+    slug: dadudekc
+    remote_path: /home/u996867598/domains/dadudekc.com/public_html/wp-content/themes/dadudekc
+    local_path: collected/hostinger/wordpress/domains/dadudekc.com/themes/dadudekc
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: freerideinvestor.com
+    slug: freerideinvestor-modern
+    remote_path: /home/u996867598/domains/freerideinvestor.com/public_html/wp-content/themes/freerideinvestor-modern
+    local_path: collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: freerideinvestor.com
+    slug: freerideinvestor-v2
+    remote_path: /home/u996867598/domains/freerideinvestor.com/public_html/wp-content/themes/freerideinvestor-v2
+    local_path: collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-v2
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: tradingrobotplug.com
+    slug: swarm-theme
+    remote_path: /home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/themes/swarm-theme
+    local_path: collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/swarm-theme
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: tradingrobotplug.com
+    slug: tradingrobot-theme
+    remote_path: /home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/themes/tradingrobot-theme
+    local_path: collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: tradingrobotplug.com
+    slug: tradingrobotplug-theme
+    remote_path: /home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/themes/tradingrobotplug-theme
+    local_path: collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: weareswarm.online
+    slug: swarm
+    remote_path: /home/u996867598/domains/weareswarm.online/public_html/wp-content/themes/swarm
+    local_path: collected/hostinger/wordpress/domains/weareswarm.online/themes/swarm
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: weareswarm.online
+    slug: swarm-theme
+    remote_path: /home/u996867598/domains/weareswarm.online/public_html/wp-content/themes/swarm-theme
+    local_path: collected/hostinger/wordpress/domains/weareswarm.online/themes/swarm-theme
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: weareswarm.online
+    slug: weareswarm
+    remote_path: /home/u996867598/domains/weareswarm.online/public_html/wp-content/themes/weareswarm
+    local_path: collected/hostinger/wordpress/domains/weareswarm.online/themes/weareswarm
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+  - kind: theme
+    domain: weareswarm.site
+    slug: weareswarm-dreamos
+    remote_path: /home/u996867598/domains/weareswarm.site/public_html/wp-content/themes/weareswarm-dreamos
+    local_path: collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos
+    classification: custom_candidate
+    collected: true
+    deploy_enabled: false
+    promotion_status: review_required
+
+hash_file: _reports/hostinger_custom_asset_hashes_045.txt
+proof:
+  - ssh_login
+  - candidate_list
+  - local_copy
+  - sha256_hashes
+  - no_remote_mutation
