@@ -1,0 +1,376 @@
+{
+  "items": [
+    {
+      "actions": [],
+      "bytes": 6215,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/Plugins/order_execution.py",
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".py"
+    },
+    {
+      "actions": [],
+      "bytes": 2623,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets/js/page-smartstock-showcase.php",
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 1711,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "stt_bulk_update_stock_data"
+      ],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cli-commands/stock-data-cli.php",
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [
+        "wp",
+        "switch_theme",
+        "stt_hourly_stock_update"
+      ],
+      "bytes": 1819,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "stt_activate_cron",
+        "stt_deactivate_cron",
+        "stt_cron_update_stock_data"
+      ],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cron-jobs/stock-updates.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [
+        "add_meta_boxes",
+        "save_post"
+      ],
+      "bytes": 1988,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "stt_add_custom_meta_boxes",
+        "stt_render_stock_symbol_meta_box",
+        "stt_save_stock_symbol_meta_box_data"
+      ],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/meta-boxes/stock-symbol-meta-box.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [
+        "init"
+      ],
+      "bytes": 1632,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "simplifiedtheme_register_stock_category"
+      ],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/taxonomies/stock-category.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 7690,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-fintech-engine.php",
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 3244,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-smartstock-showcase.php",
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 745,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-stock-research.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 2767,
+      "classes": [
+        "defines",
+        "TheTradingRobotPlugPlugin_Activator"
+      ],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "activate"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin-activator.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [
+        "admin_menu",
+        "admin_init",
+        "admin_init"
+      ],
+      "bytes": 4082,
+      "classes": [],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "tradingrobotplugin_menu",
+        "tradingrobotplugin_settings_page",
+        "tradingrobotplugin_settings_init",
+        "tradingrobotplugin_options_sanitize",
+        "tradingrobotplugin_settings_section_callback",
+        "tradingrobotplugin_default_algorithm_render",
+        "tradingrobotplugin_data_refresh_interval_render",
+        "tradingrobotplugin_default_options"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin-admin.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 2409,
+      "classes": [
+        "defines",
+        "TheTradingRobotPlugPlugin_Deactivator"
+      ],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "deactivate",
+        "cleanup_temp_data"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin-deactivator.php",
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [
+        "init",
+        "wp_enqueue_scripts"
+      ],
+      "bytes": 4439,
+      "classes": [
+        "that",
+        "that",
+        "TheTradingRobotPlugPlugin",
+        "that",
+        "TheTradingRobotPlugPlugin_Runner"
+      ],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "run",
+        "run",
+        "initialize_trading_algorithms",
+        "enqueue_scripts_and_styles",
+        "register_shortcodes",
+        "display_trading_data",
+        "register_hooks",
+        "initialize_plugin"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin-runner.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [
+        "trading_robot_data"
+      ],
+      "suffix": ".php"
+    },
+    {
+      "actions": [
+        "admin_menu",
+        "wp_enqueue_scripts",
+        "wp_enqueue_scripts"
+      ],
+      "bytes": 2294,
+      "classes": [
+        "TheTradingRobotPlugPlugin"
+      ],
+      "contains_api_terms": false,
+      "filters": [],
+      "functions": [
+        "__construct",
+        "load_dependencies",
+        "define_admin_hooks",
+        "define_public_hooks",
+        "run"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 2880,
+      "classes": [
+        "TheTradingRobotPlugPlugin_Activator_Test"
+      ],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "setUp",
+        "test_activate_creates_table",
+        "test_activate_sets_default_options",
+        "test_activate_fails_on_low_php_version",
+        "test_activate_logs_error_on_table_creation_failure"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-activator-test.php",
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 3361,
+      "classes": [
+        "TheTradingRobotPlugPlugin_Admin_Test"
+      ],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "setUp",
+        "test_menu_page_added",
+        "test_settings_page_content",
+        "tradingrobotplugin_settings_page",
+        "test_options_sanitization",
+        "test_default_options_set_on_activation",
+        "delete_option",
+        "test_settings_initialization"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-admin-test.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 4124,
+      "classes": [
+        "TheTradingRobotPlugPlugin_Deactivator_Test"
+      ],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "setUp",
+        "test_scheduled_tasks_cleared",
+        "test_options_deleted_on_deactivation",
+        "test_temp_data_cleanup",
+        "test_cleanup_errors_logged"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-deactivator-test.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 3724,
+      "classes": [
+        "TheTradingRobotPlugPlugin_Runner_Test"
+      ],
+      "contains_api_terms": true,
+      "filters": [],
+      "functions": [
+        "setUp",
+        "test_plugin_run_initializes_components",
+        "test_initialize_trading_algorithms",
+        "test_enqueue_scripts_and_styles",
+        "test_register_shortcodes",
+        "test_register_hooks"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-runner-test.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    },
+    {
+      "actions": [],
+      "bytes": 4071,
+      "classes": [
+        "TheTradingRobotPlugPlugin_Test",
+        "is"
+      ],
+      "contains_api_terms": false,
+      "filters": [],
+      "functions": [
+        "setUp",
+        "test_plugin_instantiation_and_dependencies",
+        "test_define_admin_hooks",
+        "test_define_public_hooks",
+        "test_run_loader"
+      ],
+      "path": "source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-test.php",
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php"
+    }
+  ],
+  "plugin": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools",
+  "source_review": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review",
+  "total_files": 19
+}

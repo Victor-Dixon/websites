@@ -1,0 +1,11 @@
+# Local/runtime noise
+.DS_Store
+*.tmp
+*.log
+.cache/
+
+# Keep deployable zips tracked for now as release artifacts.
+# If repo size grows, move zips to GitHub Releases and ignore:
+# _hostinger_build/dist/*.zip
+
+# Never deploy or treat source_review as runtime; still tracked as salvage until final cleanup.

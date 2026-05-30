@@ -1,0 +1,154 @@
+{
+  "items": [
+    {
+      "actions": [],
+      "bytes": 11731,
+      "classes": [
+        "BlogGeneratorThread",
+        "AutobloggerApp"
+      ],
+      "filters": [],
+      "functions": [],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/main.py",
+      "php_open_tags": 0,
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".py",
+      "taxonomies": []
+    },
+    {
+      "actions": [],
+      "bytes": 18545,
+      "classes": [],
+      "filters": [],
+      "functions": [],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/ui/generate_blog.py",
+      "php_open_tags": 0,
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".py",
+      "taxonomies": []
+    },
+    {
+      "actions": [],
+      "bytes": 5245,
+      "classes": [
+        "exists",
+        "not",
+        "for"
+      ],
+      "filters": [],
+      "functions": [
+        "simplifiedtheme_cheat_sheet_shortcode",
+        "simplifiedtheme_current_year_shortcode",
+        "simplifiedtheme_custom_message_shortcode",
+        "simplifiedtheme_tbow_tactics_shortcode"
+      ],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/custom-shortcodes.php",
+      "php_open_tags": 1,
+      "post_types": [],
+      "requires_wordpress": true,
+      "shortcodes": [
+        "cheat_sheet",
+        "current_year",
+        "custom_message",
+        "tbow_tactics"
+      ],
+      "suffix": ".php",
+      "taxonomies": []
+    },
+    {
+      "actions": [
+        "init"
+      ],
+      "bytes": 2498,
+      "classes": [],
+      "filters": [],
+      "functions": [
+        "simplifiedtheme_register_cheat_sheet"
+      ],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types/cheat-sheet.php",
+      "php_open_tags": 1,
+      "post_types": [
+        "cheat_sheet"
+      ],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php",
+      "taxonomies": []
+    },
+    {
+      "actions": [
+        "init"
+      ],
+      "bytes": 2537,
+      "classes": [],
+      "filters": [],
+      "functions": [
+        "simplifiedtheme_register_free_investor"
+      ],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types/free-investor.php",
+      "php_open_tags": 1,
+      "post_types": [
+        "free_investor"
+      ],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php",
+      "taxonomies": []
+    },
+    {
+      "actions": [
+        "init"
+      ],
+      "bytes": 2518,
+      "classes": [],
+      "filters": [],
+      "functions": [
+        "simplifiedtheme_register_tbow_tactics"
+      ],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types/tbow-tactics.php",
+      "php_open_tags": 1,
+      "post_types": [
+        "tbow_tactics"
+      ],
+      "requires_wordpress": true,
+      "shortcodes": [],
+      "suffix": ".php",
+      "taxonomies": []
+    },
+    {
+      "actions": [],
+      "bytes": 18554,
+      "classes": [],
+      "filters": [],
+      "functions": [],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-archive-tools.php",
+      "php_open_tags": 58,
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".php",
+      "taxonomies": []
+    },
+    {
+      "actions": [],
+      "bytes": 9487,
+      "classes": [],
+      "filters": [],
+      "functions": [],
+      "path": "source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-education.php",
+      "php_open_tags": 7,
+      "post_types": [],
+      "requires_wordpress": false,
+      "shortcodes": [],
+      "suffix": ".php",
+      "taxonomies": []
+    }
+  ],
+  "plugin": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine",
+  "source_review": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review",
+  "total_files": 8
+}

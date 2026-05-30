@@ -1,0 +1,3106 @@
+{
+  "counts": {
+    "KEEP_PLUGIN": 23,
+    "MERGE_INTO_SHARED_PLUGIN": 61,
+    "REBUILD_AS_THEME_FEATURE": 21,
+    "UNKNOWN_REVIEW": 133
+  },
+  "items": [
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Powershells/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/API_interaction.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 4
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/Tests/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/Tests/test_API_interaction.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/Tests/test_alpha_vantage_fetcher.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/Tests/test_data_fetch_main.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/Tests/test_data_fetcher.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/Tests/test_polygon_fetcher.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/Tests/test_real_time_fetcher.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 4
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/alpha_vantage_fetcher.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 4
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/data_fetch_main.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 6
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/data_fetcher.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/polygon_fetcher.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 5
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/real_time_fetcher.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 5
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/GUI/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/GUI/concepts/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/GUI/concepts/base_gui.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/GUI/concepts/fetcher_gui.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 4
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/GUI/data_fetch_tab.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 5
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/GUI/gui_module.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/GUI/model_training_tab.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Model_Training/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Model_Training/hyper_parameter/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Model_Training/hyper_parameter/feature_engineering.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Model_Training/hyper_parameter/hyper_parameter_main.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Model_Training/hyper_parameter/hyper_parameter_tuning.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Model_Training/model_training_main.py",
+      "scores": {
+        "ai": 1,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Technical_Indicators/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Technical_Indicators/custom_indicators.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Technical_Indicators/momentum_indicators.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Technical_Indicators/trend_indicators.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Technical_Indicators/volatility_indicators.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Technical_Indicators/volume_indicators.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/DataHandler.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/DataLakeHandler.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/DataStore.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 4
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/config_handling.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/data_fetch_utils.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/hyperparameter_utils.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/model_training_utils.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/open_ai_utils.py",
+      "scores": {
+        "ai": 2,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests/test_config_handling.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests/test_data_fetch_utils.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests/test_data_handler.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests/test_data_lake_handler.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests/test_data_store.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests/test_hyperparameter_utils.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests/test_model_training_utils.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests/test_open_ai_utils.py",
+      "scores": {
+        "ai": 1,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/main.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/Scripts/organize_data.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin-activator.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin-admin.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin-deactivator.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 3,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin-runner.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 5,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/class-thetradingrobotplugin.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-activator-test.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-admin-test.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-deactivator-test.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-runner-test.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests/class-thetradingrobotplugin-test.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/config/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/config/config.yaml",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".yaml",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/processed/TSLA/20240817/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/processed/TSLA/20240818/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/processed/TSLA/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/processed/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/raw/AAPL/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/raw/GOOG/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/raw/MSFT/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/raw/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/data/alphavantage/raw/tsla/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/database/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/logs/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/404.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/admin/shortcodes.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/admin/theme-options.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/archive.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/assets/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/assets/js/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/assets/js/customizer.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/assets/js/main.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 4
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/automation/__init__.py",
+      "scores": {
+        "ai": 1,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/automation/automate_data_pipeline.py",
+      "scores": {
+        "ai": 1,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/comments.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/content-none.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/content-page.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/content.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/footer.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/frontpage.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 3,
+        "theme": 3,
+        "trading": 3
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/functions.php",
+      "scores": {
+        "ai": 1,
+        "plugin": 4,
+        "theme": 3,
+        "trading": 5
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/header.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/home.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/inc/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/inc/customizer.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/inc/widgets.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/index.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 2
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/page.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/search.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/sidebar.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/single.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/template-parts/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/template-parts/content.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/template-parts/contentsingle.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/thetradingrobotplugin.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 3,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "TradingRobotPlugWeb/_salvage/my-custom-theme/upload2wp.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "TradingRobotPlugWeb/_salvage/plans.py",
+      "scores": {
+        "ai": 1,
+        "plugin": 3,
+        "theme": 10,
+        "trading": 5
+      },
+      "site": "TradingRobotPlugWeb",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/1.json",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".json",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/Plugins/create_trades_table.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/Plugins/db_connect.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/Plugins/fetch_trades.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/Plugins/order_execution.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/Plugins/process_pdf.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/Plugins/store_trade.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/content/blog_content.json",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".json",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/main.py",
+      "scores": {
+        "ai": 2,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/ui/autoblogger.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/ui/generate_blog.py",
+      "scores": {
+        "ai": 2,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/admin-tools-page.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets/js/main.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets/js/page-smartstock-showcase.php",
+      "scores": {
+        "ai": 1,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/category-tbow-tactic.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/comments.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/footer.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/functions.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 4,
+        "theme": 4,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/header.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/home.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/admin/custom-login.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/admin-customizations.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/assets/enqueue.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/assets.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/class-simplifiedtradingtheme-custom-widget.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cli-commands/stock-data-cli.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cron-jobs/stock-updates.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/custom-shortcodes.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/data-fetch-utils.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/helpers/body-classes.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/helpers/load-files.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/meta-boxes/stock-symbol-meta-box.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/performance.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/plugin-testing.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 4,
+        "theme": 1,
+        "trading": 3
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types/cheat-sheet.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 3,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types/free-investor.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 3,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types/tbow-tactics.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 3,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/taxonomies/stock-category.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/test.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/theme-setup.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/includes/templates/admin-tools-page.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 3,
+        "trading": 3
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/index.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/Script.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/checklist-dashboard.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/custom.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/freeride-productivity.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/pomodoro.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 3
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/signup-validation.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/Index.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-Trading-Journal.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-about.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-archive-tools.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-checklist-dashboard.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-community-support.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-contact.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-courses.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-dashboard.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 3
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-dev-blog.php",
+      "scores": {
+        "ai": 1,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-discord.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-edit-profile.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-education.php",
+      "scores": {
+        "ai": 1,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-enroll.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-exclusive-events.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 3,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-fintech-engine.php",
+      "scores": {
+        "ai": 1,
+        "plugin": 2,
+        "theme": 2,
+        "trading": 4
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-freeride-productivity-advanced.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-front-page.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-frtc-template.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 4,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-interactive-charts.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-login.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-logout.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-pomodoro.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 3
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-real-time-market-insights.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-services.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-signup.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-smartstock-showcase.php",
+      "scores": {
+        "ai": 1,
+        "plugin": 2,
+        "theme": 2,
+        "trading": 3
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-stock-research.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-strategy-showcase.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-tasks.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-test-fintech-plugin.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 3
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-test-template.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 2,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-thank-you.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 2
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-trading-strategies.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/plugin-health-check.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/freeride-journal/app/chain_of_thought_reasoner.py",
+      "scores": {
+        "ai": 2,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/freeride-journal/app/main.py",
+      "scores": {
+        "ai": 1,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/rl_optimizer.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/single.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 3,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/subscribe.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-market-news.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/content-freerideinvestor.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/content-post.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/content-tbow_tactics.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/single-cheat_sheet.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 2,
+        "trading": 3
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/single-course.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 0
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/single-tbow_tactics.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/single-trading_strategy.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-tbow-tactics.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 2,
+        "trading": 1
+      },
+      "site": "FreerideinvestorWebsite",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "DaDudeKC-Website/plugins/community-features",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": "",
+      "type": "dir"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/.github/workflows/tests.yml",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".yml",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/.project/tasks.json",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".json",
+      "type": "file"
+    },
+    {
+      "decision": "MERGE_INTO_SHARED_PLUGIN",
+      "path": "DaDudeKC-Website/_salvage/AI agent/AI/Digital dreamscape/main.py",
+      "scores": {
+        "ai": 4,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/AI agent/main.py",
+      "scores": {
+        "ai": 1,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/config/training_config.yaml",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".yaml",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/ai/ChatbotService.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/ai/ContentRecommender.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/ar-vr/VRContentManager.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/common/js/animations.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/common/js/utils.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/community/forums.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/config/structure.json",
+      "scores": {
+        "ai": 0,
+        "plugin": 1,
+        "theme": 1,
+        "trading": 1
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".json",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/home/home.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/home/interactive-elements.js",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".js",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/project structure setuper/ProjectDirSetup.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "KEEP_PLUGIN",
+      "path": "DaDudeKC-Website/_salvage/dadudekc website/wp-content/plugins/community-features/forums.php",
+      "scores": {
+        "ai": 0,
+        "plugin": 4,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".php",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/main.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/test_q_learning.py",
+      "scores": {
+        "ai": 1,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/tests/__init__.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/tests/test_ai_components.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 1
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/tests/test_basic.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/tests/test_website_functionality.py",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "UNKNOWN_REVIEW",
+      "path": "DaDudeKC-Website/_salvage/train_cartpole.py",
+      "scores": {
+        "ai": 1,
+        "plugin": 0,
+        "theme": 0,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": ".py",
+      "type": "file"
+    },
+    {
+      "decision": "REBUILD_AS_THEME_FEATURE",
+      "path": "DaDudeKC-Website/themes_rebuild_reference/dadudekc",
+      "scores": {
+        "ai": 0,
+        "plugin": 0,
+        "theme": 1,
+        "trading": 0
+      },
+      "site": "DaDudeKC-Website",
+      "suffix": "",
+      "type": "dir"
+    }
+  ],
+  "root": "/data/data/com.termux/files/home/projects/websites",
+  "total_items": 238
+}

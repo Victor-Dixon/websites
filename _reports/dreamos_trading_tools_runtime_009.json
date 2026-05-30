@@ -1,0 +1,55 @@
+{
+  "actions": {
+    "includes/class-thetradingrobotplugin-activator.php": [],
+    "includes/class-thetradingrobotplugin-admin.php": [
+      "admin_menu",
+      "admin_init",
+      "admin_init"
+    ],
+    "includes/class-thetradingrobotplugin-deactivator.php": [],
+    "includes/class-thetradingrobotplugin-runner.php": [
+      "init",
+      "wp_enqueue_scripts"
+    ],
+    "includes/class-thetradingrobotplugin.php": [
+      "admin_menu",
+      "wp_enqueue_scripts",
+      "wp_enqueue_scripts"
+    ],
+    "includes/loader.php": []
+  },
+  "classes": {
+    "includes/class-thetradingrobotplugin-activator.php": [
+      "defines",
+      "TheTradingRobotPlugPlugin_Activator"
+    ],
+    "includes/class-thetradingrobotplugin-admin.php": [],
+    "includes/class-thetradingrobotplugin-deactivator.php": [
+      "defines",
+      "TheTradingRobotPlugPlugin_Deactivator"
+    ],
+    "includes/class-thetradingrobotplugin-runner.php": [
+      "that",
+      "that",
+      "TheTradingRobotPlugPlugin",
+      "that",
+      "TheTradingRobotPlugPlugin_Runner"
+    ],
+    "includes/class-thetradingrobotplugin.php": [
+      "TheTradingRobotPlugPlugin"
+    ],
+    "includes/loader.php": []
+  },
+  "loader_wired": true,
+  "main_file": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/dreamos-trading-tools.php",
+  "plugin": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools",
+  "runtime_files": [
+    "includes/class-thetradingrobotplugin-activator.php",
+    "includes/class-thetradingrobotplugin-admin.php",
+    "includes/class-thetradingrobotplugin-deactivator.php",
+    "includes/class-thetradingrobotplugin-runner.php",
+    "includes/class-thetradingrobotplugin.php",
+    "includes/loader.php"
+  ],
+  "secret_hits": []
+}

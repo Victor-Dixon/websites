@@ -1,0 +1,92 @@
+{
+  "dist_dir": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist",
+  "domains": {
+    "dadudekc": {
+      "backend_rule": "",
+      "checklist": "/data/data/com.termux/files/home/projects/websites/_hostinger_plan/dadudekc/install_checklist.md",
+      "cpts": [],
+      "hold_reason": "No deployable package yet. dadudekc-community-features is staged but not promoted/package-gated.",
+      "model": "Personal/local/community legacy brand.",
+      "pages": [
+        "Home",
+        "Community",
+        "Portfolio",
+        "Contact"
+      ],
+      "plugins": [],
+      "proof_items": [
+        "Decide whether this domain remains active.",
+        "Promote/package dadudekc-community-features only if the site is still worth hosting."
+      ],
+      "shortcodes": [],
+      "status": "hold_until_domain_value_confirmed",
+      "theme_policy": "rebuild_from_scratch"
+    },
+    "freerideinvestor": {
+      "backend_rule": "",
+      "checklist": "/data/data/com.termux/files/home/projects/websites/_hostinger_plan/freerideinvestor/install_checklist.md",
+      "cpts": [
+        "cheat_sheet",
+        "free_investor",
+        "tbow_tactics"
+      ],
+      "hold_reason": "",
+      "model": "Media brand / trading discipline / content engine.",
+      "pages": [
+        "Home",
+        "Trading Journal",
+        "Cheat Sheets",
+        "Tbow Tactics",
+        "Archive Tools",
+        "Education",
+        "About",
+        "Contact / Email Capture"
+      ],
+      "plugins": [
+        "/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/freerideinvestor-content-engine-0.1.0.zip",
+        "/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/dreamos-trading-tools-0.1.0.zip"
+      ],
+      "proof_items": [
+        "Screenshot or note that both plugins activate.",
+        "Screenshot or note that CPTs appear.",
+        "Screenshot or note that shortcode test page renders."
+      ],
+      "shortcodes": [
+        "current_year",
+        "custom_message",
+        "cheat_sheet",
+        "tbow_tactics"
+      ],
+      "status": "ready_for_hostinger_staging_install",
+      "theme_policy": "rebuild_from_scratch"
+    },
+    "tradingrobotplug": {
+      "backend_rule": "Python data fetchers stay outside WordPress runtime. Convert to backend API or static-generated outputs later.",
+      "checklist": "/data/data/com.termux/files/home/projects/websites/_hostinger_plan/tradingrobotplug/install_checklist.md",
+      "cpts": [],
+      "hold_reason": "",
+      "model": "Trading tools / product demo / analytics lead capture.",
+      "pages": [
+        "Home",
+        "Tools Demo",
+        "Trading Data",
+        "Product Roadmap",
+        "Contact / Lead Capture"
+      ],
+      "plugins": [
+        "/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/dreamos-trading-tools-0.1.0.zip"
+      ],
+      "proof_items": [
+        "Plugin activation pass.",
+        "No fatal error.",
+        "Theme shell created."
+      ],
+      "shortcodes": [],
+      "status": "ready_for_hostinger_staging_install",
+      "theme_policy": "rebuild_from_scratch"
+    }
+  },
+  "plan_dir": "/data/data/com.termux/files/home/projects/websites/_hostinger_plan",
+  "plan_id": "013",
+  "root": "/data/data/com.termux/files/home/projects/websites"
+}

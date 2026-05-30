@@ -1,0 +1,56 @@
+{
+  "root": "~/projects/websites",
+  "dist_dir": "_hostinger_build/dist",
+  "plan_dir": "_hostinger_plan",
+  "report_dir": "_reports",
+  "domains": {
+    "freerideinvestor": {
+      "model": "Media brand / trading discipline / content engine.",
+      "plugins": [
+        "freerideinvestor-content-engine-0.1.0.zip",
+        "dreamos-trading-tools-0.1.0.zip"
+      ],
+      "cpts": ["cheat_sheet", "free_investor", "tbow_tactics"],
+      "shortcodes": ["current_year", "custom_message", "cheat_sheet", "tbow_tactics"],
+      "theme_policy": "rebuild_from_scratch",
+      "pages": ["Home", "Trading Journal", "Cheat Sheets", "Tbow Tactics", "Archive Tools", "Education", "About", "Contact / Email Capture"],
+      "status": "ready_for_hostinger_staging_install",
+      "proof_items": [
+        "Screenshot or note that both plugins activate.",
+        "Screenshot or note that CPTs appear.",
+        "Screenshot or note that shortcode test page renders."
+      ]
+    },
+    "tradingrobotplug": {
+      "model": "Trading tools / product demo / analytics lead capture.",
+      "plugins": ["dreamos-trading-tools-0.1.0.zip"],
+      "theme_policy": "rebuild_from_scratch",
+      "pages": ["Home", "Tools Demo", "Trading Data", "Product Roadmap", "Contact / Lead Capture"],
+      "status": "ready_for_hostinger_staging_install",
+      "backend_rule": "Python data fetchers stay outside WordPress runtime. Convert to backend API or static-generated outputs later.",
+      "proof_items": [
+        "Plugin activation pass.",
+        "No fatal error.",
+        "Theme shell created."
+      ]
+    },
+    "dadudekc": {
+      "model": "Personal/local/community legacy brand.",
+      "plugins": [],
+      "theme_policy": "rebuild_from_scratch",
+      "pages": ["Home", "Community", "Portfolio", "Contact"],
+      "status": "hold_until_domain_value_confirmed",
+      "hold_reason": "No deployable package yet. dadudekc-community-features is staged but not promoted/package-gated.",
+      "proof_items": [
+        "Decide whether this domain remains active.",
+        "Promote/package dadudekc-community-features only if the site is still worth hosting."
+      ]
+    }
+  },
+  "global_rules": [
+    "Install on Hostinger staging first.",
+    "Do not archive old GitHub repos until GitHub Architect produces deprecation manifest proof.",
+    "Do not preserve old themes as canonical.",
+    "Keep websites/ as SSOT."
+  ]
+}

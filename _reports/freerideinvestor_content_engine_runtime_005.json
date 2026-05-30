@@ -1,0 +1,37 @@
+{
+  "loader_wired": true,
+  "main_file": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/freerideinvestor-content-engine.php",
+  "plugin": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine",
+  "post_types": {
+    "includes/custom-shortcodes.php": [],
+    "includes/loader.php": [],
+    "includes/post-types/cheat-sheet.php": [
+      "cheat_sheet"
+    ],
+    "includes/post-types/free-investor.php": [
+      "free_investor"
+    ],
+    "includes/post-types/tbow-tactics.php": [
+      "tbow_tactics"
+    ]
+  },
+  "runtime_files": [
+    "includes/custom-shortcodes.php",
+    "includes/loader.php",
+    "includes/post-types/cheat-sheet.php",
+    "includes/post-types/free-investor.php",
+    "includes/post-types/tbow-tactics.php"
+  ],
+  "shortcodes": {
+    "includes/custom-shortcodes.php": [
+      "cheat_sheet",
+      "current_year",
+      "custom_message",
+      "tbow_tactics"
+    ],
+    "includes/loader.php": [],
+    "includes/post-types/cheat-sheet.php": [],
+    "includes/post-types/free-investor.php": [],
+    "includes/post-types/tbow-tactics.php": []
+  }
+}

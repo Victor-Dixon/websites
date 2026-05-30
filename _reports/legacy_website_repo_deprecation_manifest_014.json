@@ -1,0 +1,52 @@
+{
+  "generated": "2026-05-30T15:21:15.514380+00:00",
+  "repos": [
+    {
+      "archive_ready_after_review": true,
+      "delete_approved": false,
+      "deprecation_packet": "/data/data/com.termux/files/home/projects/websites/_github_deprecation_packets/TradingRobotPlugWeb/README.deprecated.md",
+      "domain_model": "tradingrobotplug",
+      "exists": true,
+      "local_path": "/data/data/com.termux/files/home/projects/TradingRobotPlugWeb",
+      "new_ssot": "/data/data/com.termux/files/home/projects/websites",
+      "plugin_artifacts": [
+        "dreamos-trading-tools-0.1.0.zip"
+      ],
+      "repo": "TradingRobotPlugWeb"
+    },
+    {
+      "archive_ready_after_review": true,
+      "delete_approved": false,
+      "deprecation_packet": "/data/data/com.termux/files/home/projects/websites/_github_deprecation_packets/FreerideinvestorWebsite/README.deprecated.md",
+      "domain_model": "freerideinvestor",
+      "exists": true,
+      "local_path": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite",
+      "new_ssot": "/data/data/com.termux/files/home/projects/websites",
+      "plugin_artifacts": [
+        "freerideinvestor-content-engine-0.1.0.zip",
+        "dreamos-trading-tools-0.1.0.zip"
+      ],
+      "repo": "FreerideinvestorWebsite"
+    },
+    {
+      "archive_ready_after_review": true,
+      "delete_approved": false,
+      "deprecation_packet": "/data/data/com.termux/files/home/projects/websites/_github_deprecation_packets/DaDudeKC-Website/README.deprecated.md",
+      "domain_model": "dadudekc",
+      "exists": true,
+      "local_path": "/data/data/com.termux/files/home/projects/DaDudeKC-Website",
+      "new_ssot": "/data/data/com.termux/files/home/projects/websites",
+      "plugin_artifacts": [],
+      "repo": "DaDudeKC-Website"
+    }
+  ],
+  "rules": [
+    "No destructive deletion.",
+    "Archive only after review.",
+    "Keep websites/ as SSOT.",
+    "Themes rebuild from scratch.",
+    "Plugin artifacts under _hostinger_build/dist are canonical upload candidates."
+  ],
+  "status": "prepared_not_archived",
+  "websites_ssot": "/data/data/com.termux/files/home/projects/websites"
+}

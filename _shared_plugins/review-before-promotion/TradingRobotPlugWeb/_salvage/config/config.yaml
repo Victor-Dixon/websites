@@ -1,0 +1,31 @@
+# config.yaml
+
+# Paths
+data_root: "C:/TheTradingRobotPlugWeb/data"
+alpha_vantage_processed_path: "${data_root}/alpha_vantage/processed"
+alpha_vantage_raw_path: "${data_root}/alpha_vantage/raw"
+alphavantage_processed_path: "${data_root}/alphavantage/processed"
+alphavantage_raw_path: "${data_root}/alphavantage/raw"
+csv_path: "${data_root}/csv"
+database_path: "${data_root}/trading-data.db"
+
+# API Settings
+api_key: "your_api_key_here"
+base_url: "https://api.example.com"
+timeout: 30  # Timeout in seconds
+
+# Database Settings
+db_name: "trading_data"
+db_user: "${DB_USER}"
+db_password: "${DB_PASSWORD}"
+db_host: "localhost"
+db_port: 5432
+
+# Logging Settings
+log_level: "DEBUG"
+log_file: "${data_root}/logs/trading_robot.log"
+
+# Model Settings
+model_type: "RandomForest"
+max_depth: 10
+n_estimators: 100
