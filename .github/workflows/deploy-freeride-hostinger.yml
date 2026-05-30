@@ -1,0 +1,67 @@
+name: Deploy FreeRideInvestor to Hostinger
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - production
+
+  # Enable this after staging proof is clean.
+  # push:
+  #   branches:
+  #     - main
+  #     - master
+  #   paths:
+  #     - "_hostinger_build/**"
+  #     - "runtime/scripts/**"
+  #     - ".github/workflows/deploy-freeride-hostinger.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'staging' }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install deploy dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip openssh-client
+
+      - name: Configure SSH key
+        env:
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf '%s\n' "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+          chmod 600 "$HOME/.ssh/id_hostinger"
+
+          ssh-keyscan -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts"
+
+          cat > "$HOME/.ssh/config" << EOF
+          Host *
+            IdentityFile ~/.ssh/id_hostinger
+            IdentitiesOnly yes
+            StrictHostKeyChecking yes
+          EOF
+
+      - name: Deploy plugins to Hostinger
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_WP_PLUGINS_DIR: ${{ secrets.HOSTINGER_WP_PLUGINS_DIR }}
+        run: |
+          bash runtime/scripts/ci_deploy_hostinger_freeride_plugins_028.sh
