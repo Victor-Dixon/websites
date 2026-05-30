@@ -4,28 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Target environment"
+        description: Target environment
         required: true
-        default: "staging"
+        default: staging
         type: choice
         options:
           - staging
           - production
 
-  # Enable this after staging proof is clean.
-  # push:
-  #   branches:
-  #     - main
-  #     - master
-  #   paths:
-  #     - "_hostinger_build/**"
-  #     - "runtime/scripts/**"
-  #     - ".github/workflows/deploy-freeride-hostinger.yml"
-
 jobs:
   deploy:
+    name: Deploy FreeRideInvestor plugins
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment || 'staging' }}
 
     steps:
       - name: Checkout repo
@@ -45,17 +35,15 @@ jobs:
           set -euo pipefail
           mkdir -p "$HOME/.ssh"
           chmod 700 "$HOME/.ssh"
-          printf '%s\n' "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
           chmod 600 "$HOME/.ssh/id_hostinger"
-
           ssh-keyscan -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts"
-
-          cat > "$HOME/.ssh/config" << EOF
+          cat > "$HOME/.ssh/config" << SSHCFG
           Host *
             IdentityFile ~/.ssh/id_hostinger
             IdentitiesOnly yes
             StrictHostKeyChecking yes
-          EOF
+          SSHCFG
 
       - name: Deploy plugins to Hostinger
         env:
