@@ -1,0 +1,226 @@
+version: 1
+name: hostinger_plugin_registry
+purpose: classify plugins before collection or redeploy
+plugins:
+  akismet:
+    classification: vendor
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - crosbyultimateevents.com
+      - dadudekc.com
+      - freerideinvestor.com
+      - houstonsipqueen.com
+      - prismblossom.online
+      - southwestsecret.com
+  all-in-one-seo-pack:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - prismblossom.online
+      - weareswarm.online
+  crosby-business-plan:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - crosbyultimateevents.com
+  dreamos-swarm-status:
+    classification: custom_candidate
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - weareswarm.site
+  dreamos-trading-tools:
+    classification: custom_candidate
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - freerideinvestor.com
+  freerideinvestor-content-engine:
+    classification: custom_candidate
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - freerideinvestor.com
+  freerideinvestor-setup:
+    classification: custom_candidate
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - freerideinvestor.com
+  google-site-kit:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - prismblossom.online
+      - weareswarm.online
+  gwolle-gb:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - prismblossom.online
+  hostinger:
+    classification: vendor
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - crosbyultimateevents.com
+      - dadudekc.com
+      - dadudekc.site
+      - digitaldreamscape.site
+      - freerideinvestor.com
+      - houstonsipqueen.com
+      - prismblossom.online
+      - southwestsecret.com
+      - tradingrobotplug.com
+      - weareswarm.online
+      - weareswarm.site
+      - xthunder.site
+  hostinger-easy-onboarding:
+    classification: vendor
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - crosbyultimateevents.com
+      - dadudekc.com
+      - dadudekc.site
+      - digitaldreamscape.site
+      - freerideinvestor.com
+      - houstonsipqueen.com
+      - prismblossom.online
+      - southwestsecret.com
+      - tradingrobotplug.com
+      - weareswarm.online
+      - weareswarm.site
+      - xthunder.site
+  hostinger-reach:
+    classification: vendor
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - crosbyultimateevents.com
+      - dadudekc.com
+      - dadudekc.site
+      - digitaldreamscape.site
+      - freerideinvestor.com
+      - houstonsipqueen.com
+      - prismblossom.online
+      - southwestsecret.com
+      - tradingrobotplug.com
+      - weareswarm.online
+      - weareswarm.site
+      - xthunder.site
+  includes:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - freerideinvestor.com
+  kadence-starter-templates:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+  litespeed-cache:
+    classification: vendor
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - crosbyultimateevents.com
+      - dadudekc.com
+      - dadudekc.site
+      - freerideinvestor.com
+      - houstonsipqueen.com
+      - prismblossom.online
+      - southwestsecret.com
+      - tradingrobotplug.com
+      - weareswarm.online
+      - xthunder.site
+  litespeed-cache-disabled:
+    classification: vendor
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - digitaldreamscape.site
+  sureforms:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - prismblossom.online
+      - weareswarm.online
+  trading-plans-automator:
+    classification: custom_candidate
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - freerideinvestor.com
+  tradingrobotplug-wordpress-plugin:
+    classification: custom_candidate
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - freerideinvestor.com
+      - southwestsecret.com
+      - tradingrobotplug.com
+  trp-paper-trading-stats:
+    classification: custom_candidate
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - tradingrobotplug.com
+  trp-swarm-status:
+    classification: custom_candidate
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - tradingrobotplug.com
+  trp-tools:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - tradingrobotplug.com
+  ultimate-addons-for-gutenberg:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - prismblossom.online
+      - weareswarm.online
+  woocommerce:
+    classification: vendor
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - xthunder.site
+  wp-super-cache:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - dadudekc.com
+      - prismblossom.online
+  wpforms-lite:
+    classification: unknown_review_required
+    collect_enabled: false
+    deploy_enabled: false
+    observed_on:
+      - ariajet.site
+      - prismblossom.online
+      - weareswarm.online

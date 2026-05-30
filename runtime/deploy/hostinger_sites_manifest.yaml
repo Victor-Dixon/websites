@@ -1,0 +1,1037 @@
+version: 1
+name: hostinger_sites_manifest
+purpose: Dream.OS Hostinger WordPress deployment control surface
+hostinger:
+  host_secret: HOSTINGER_HOST
+  user_secret: HOSTINGER_USER
+  port_secret: HOSTINGER_PORT
+  private_key_secret: HOSTINGER_SSH_PRIVATE_KEY
+defaults:
+  deploy_enabled: false
+  plugin_deploy_enabled: false
+  theme_deploy_enabled: false
+  deploy_mode: manual_review_required
+  proof_profile: hostinger_deploy_proof_profile
+sites:
+  ariajet_site:
+    domain: 'ariajet.site'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/ariajet.site/public_html'
+    plugins_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'akismet'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'all-in-one-seo-pack'
+        classification: unknown_review_required
+        main_file: 'all_in_one_seo_pack.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'google-site-kit'
+        classification: unknown_review_required
+        main_file: 'google-site-kit.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'kadence-starter-templates'
+        classification: unknown_review_required
+        main_file: 'class-kadence-starter-templates.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'sureforms'
+        classification: unknown_review_required
+        main_file: 'sureforms.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'tradingrobotplug-wordpress-plugin'
+        classification: custom_candidate
+        main_file: 'tradingrobotplug.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'ultimate-addons-for-gutenberg'
+        classification: unknown_review_required
+        main_file: 'ultimate-addons-for-gutenberg.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'wpforms-lite'
+        classification: unknown_review_required
+        main_file: 'wpforms.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'ariajet'
+        theme_name: 'riajet'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'ariajet-cosmic'
+        theme_name: 'AriaJet Cosmic'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'ariajet-pink'
+        theme_name: 'AriaJet Pink'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'ariajet-studio'
+        theme_name: 'AriaJet Studio'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'ariajet-theme'
+        theme_name: 'AriaJet Theme'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'ariajet-wp-theme'
+        theme_name: ''
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'astra'
+        theme_name: 'Astra'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'generatepress'
+        theme_name: 'GeneratePress'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'kadence'
+        theme_name: 'Kadence'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+
+  crosbyultimateevents_com:
+    domain: 'crosbyultimateevents.com'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/crosbyultimateevents.com/public_html'
+    plugins_dir: '/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'akismet'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'crosby-business-plan'
+        classification: unknown_review_required
+        main_file: 'debug_plugin.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'crosbyultimateevents'
+        theme_name: 'Crosby Ultimate Events'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+
+  dadudekc_com:
+    domain: 'dadudekc.com'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/dadudekc.com/public_html'
+    plugins_dir: '/home/u996867598/domains/dadudekc.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/dadudekc.com/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'akismet'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'wp-super-cache'
+        classification: unknown_review_required
+        main_file: 'wp-cache-base.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'accounting-grove'
+        theme_name: 'Accounting Grove'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'accounting-grove-dark'
+        theme_name: 'Accounting Grove Dark'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'dadudekc'
+        theme_name: 'DaDudeKC'
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'ethical-hacking'
+        theme_name: 'Ethical Hacking'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+
+  dadudekc_site:
+    domain: 'dadudekc.site'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/dadudekc.site/public_html'
+    plugins_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'hostinger-ai-theme'
+        theme_name: 'Hostinger AI theme'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+
+  digitaldreamscape_site:
+    domain: 'digitaldreamscape.site'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/digitaldreamscape.site/public_html'
+    plugins_dir: '/home/u996867598/domains/digitaldreamscape.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/digitaldreamscape.site/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache-disabled'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'digital-dreamscape-theme'
+        theme_name: ''
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'digitaldreamscape'
+        theme_name: 'Digital Dreamscape'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+
+  freerideinvestor_com:
+    domain: 'freerideinvestor.com'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/freerideinvestor.com/public_html'
+    plugins_dir: '/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'akismet'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'dreamos-trading-tools'
+        classification: custom_candidate
+        main_file: 'dreamos-trading-tools.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'freerideinvestor-content-engine'
+        classification: custom_candidate
+        main_file: 'freerideinvestor-content-engine.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'freerideinvestor-setup'
+        classification: custom_candidate
+        main_file: 'freerideinvestor-setup.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'includes'
+        classification: unknown_review_required
+        main_file: 'class-trading-plans-core.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'trading-plans-automator'
+        classification: custom_candidate
+        main_file: 'trading-plans-automator.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'tradingrobotplug-wordpress-plugin'
+        classification: custom_candidate
+        main_file: 'tradingrobotplug.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'freerideinvestor-modern'
+        theme_name: 'FreeRideInvestor Modern'
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'freerideinvestor-v2'
+        theme_name: ''
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+
+  houstonsipqueen_com:
+    domain: 'houstonsipqueen.com'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/houstonsipqueen.com/public_html'
+    plugins_dir: '/home/u996867598/domains/houstonsipqueen.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/houstonsipqueen.com/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'akismet'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'houstonsipqueen'
+        theme_name: 'Houston Sip Queen'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+
+  prismblossom_online:
+    domain: 'prismblossom.online'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/prismblossom.online/public_html'
+    plugins_dir: '/home/u996867598/domains/prismblossom.online/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/prismblossom.online/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'akismet'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'all-in-one-seo-pack'
+        classification: unknown_review_required
+        main_file: 'all_in_one_seo_pack.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'google-site-kit'
+        classification: unknown_review_required
+        main_file: 'google-site-kit.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'gwolle-gb'
+        classification: unknown_review_required
+        main_file: 'gwolle-gb-hooks.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'sureforms'
+        classification: unknown_review_required
+        main_file: 'sureforms.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'ultimate-addons-for-gutenberg'
+        classification: unknown_review_required
+        main_file: 'ultimate-addons-for-gutenberg.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'wp-super-cache'
+        classification: unknown_review_required
+        main_file: 'wp-cache-base.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'wpforms-lite'
+        classification: unknown_review_required
+        main_file: 'wpforms.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'astra'
+        theme_name: 'Astra'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'bluehost-blueprint'
+        theme_name: 'Bluehost Blueprint'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'prismblossom'
+        theme_name: 'rismblossom'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+
+  southwestsecret_com:
+    domain: 'southwestsecret.com'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/southwestsecret.com/public_html'
+    plugins_dir: '/home/u996867598/domains/southwestsecret.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/southwestsecret.com/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'akismet'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'tradingrobotplug-wordpress-plugin'
+        classification: custom_candidate
+        main_file: 'tradingrobotplug.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'carmyn'
+        theme_name: 'Carmyn'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'southwest-fixed'
+        theme_name: 'Southwest Secret'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'southwest-working'
+        theme_name: 'Southwest Secret'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'southwest-working-v2'
+        theme_name: 'Southwest Secret'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'southwest-working-v3'
+        theme_name: 'Southwest Secret'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'southwestsecret'
+        theme_name: 'Southwest Secret'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'southwestsecret-theme'
+        theme_name: ''
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+
+  tradingrobotplug_com:
+    domain: 'tradingrobotplug.com'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/tradingrobotplug.com/public_html'
+    plugins_dir: '/home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'tradingrobotplug-wordpress-plugin'
+        classification: custom_candidate
+        main_file: 'tradingrobotplug.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'trp-paper-trading-stats'
+        classification: custom_candidate
+        main_file: 'trp-paper-trading-stats.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'trp-swarm-status'
+        classification: custom_candidate
+        main_file: 'trp-swarm-status.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'trp-tools'
+        classification: unknown_review_required
+        main_file: ''
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'my-custom-theme'
+        theme_name: 'TradingRobotPlug Modern V2'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'swarm-theme'
+        theme_name: 'Swarm Intelligence'
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'tradingrobot-theme'
+        theme_name: 'TradingRobotPlug Modern'
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'tradingrobotplug-theme'
+        theme_name: 'TradingRobotPlug'
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+
+  weareswarm_online:
+    domain: 'weareswarm.online'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/weareswarm.online/public_html'
+    plugins_dir: '/home/u996867598/domains/weareswarm.online/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/weareswarm.online/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'all-in-one-seo-pack'
+        classification: unknown_review_required
+        main_file: 'all_in_one_seo_pack.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'google-site-kit'
+        classification: unknown_review_required
+        main_file: 'google-site-kit.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'sureforms'
+        classification: unknown_review_required
+        main_file: 'sureforms.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'ultimate-addons-for-gutenberg'
+        classification: unknown_review_required
+        main_file: 'ultimate-addons-for-gutenberg.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'wpforms-lite'
+        classification: unknown_review_required
+        main_file: 'wpforms.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'astra'
+        theme_name: 'Astra'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'swarm'
+        theme_name: 'Swarm'
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'swarm-theme'
+        theme_name: 'Swarm Intelligence'
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'weareswarm'
+        theme_name: ''
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+
+  weareswarm_site:
+    domain: 'weareswarm.site'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/weareswarm.site/public_html'
+    plugins_dir: '/home/u996867598/domains/weareswarm.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/weareswarm.site/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'dreamos-swarm-status'
+        classification: custom_candidate
+        main_file: 'dreamos-swarm-status.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'weareswarm-dreamos'
+        theme_name: 'WeAreSwarm DreamOS'
+        classification: custom_candidate
+        collect_enabled: false
+        deploy_enabled: false
+
+  xthunder_site:
+    domain: 'xthunder.site'
+    platform: wordpress
+    wordpress_detected: true
+    wp_root: '/home/u996867598/domains/xthunder.site/public_html'
+    plugins_dir: '/home/u996867598/domains/xthunder.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/xthunder.site/public_html/wp-content/themes'
+    deploy_enabled: false
+    plugin_deploy_enabled: false
+    theme_deploy_enabled: false
+    deploy_mode: manual_review_required
+    plugins:
+      - slug: 'hostinger'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-easy-onboarding'
+        classification: vendor
+        main_file: 'index.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'hostinger-reach'
+        classification: vendor
+        main_file: 'hostinger-reach.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'litespeed-cache'
+        classification: vendor
+        main_file: 'guest.vary.php'
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'woocommerce'
+        classification: vendor
+        main_file: 'woocommerce.php'
+        collect_enabled: false
+        deploy_enabled: false
+    themes:
+      - slug: 'hostinger-ai-theme'
+        theme_name: 'Hostinger AI theme'
+        classification: unknown_review_required
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfive'
+        theme_name: 'Twenty Twenty-Five'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentyfour'
+        theme_name: 'Twenty Twenty-Four'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+      - slug: 'twentytwentythree'
+        theme_name: 'Twenty Twenty-Three'
+        classification: wordpress_default
+        collect_enabled: false
+        deploy_enabled: false
+

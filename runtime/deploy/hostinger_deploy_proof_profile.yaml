@@ -1,0 +1,22 @@
+version: 1
+name: hostinger_deploy_proof_profile
+required_proof:
+  pre_deploy:
+    - git_clean_or_declared
+    - target_site_enabled
+    - artifact_exists
+    - remote_path_exists
+  deploy:
+    - upload_pass
+    - remote_copy_pass
+    - permissions_normalized
+  post_deploy:
+    - remote_file_exists
+    - plugin_or_theme_directory_exists
+    - homepage_http_status
+    - wp_admin_manual_check_if_no_wp_cli
+safety:
+  default_deploy_enabled: false
+  no_all_sites_until_each_site_has_review: true
+  no_theme_overwrite_without_backup: true
+  collect_before_replace: true
