@@ -19,9 +19,17 @@
   };
 
   const questionBank = (window.EmergenceCG && window.EmergenceCG.question_bank) || {};
-  const flavorQuestions = questionBank.flavor_questions || [];
+  const flavorQuestions = Array.isArray(questionBank.flavor_questions) ? questionBank.flavor_questions : [];
 
-  if (!form || !result || !window.EmergenceCG) return;
+  if (!form || !result || !flavorMount || !window.EmergenceCG) {
+    console.error('[EmergenceCG] bootstrap failed', {
+      form: !!form,
+      result: !!result,
+      flavorMount: !!flavorMount,
+      config: !!window.EmergenceCG
+    });
+    return;
+  }
 
   function esc(value) {
     return String(value).replace(/[&<>"']/g, function (ch) {
@@ -46,8 +54,13 @@
       headers: {'Content-Type': 'application/json', 'X-WP-Nonce': EmergenceCG.nonce},
       body: JSON.stringify(body)
     });
+
     const payload = await response.json();
-    if (!response.ok) throw new Error(payload.message || 'Generator failed');
+
+    if (!response.ok) {
+      throw new Error(payload.message || 'Generator failed');
+    }
+
     return payload;
   }
 
@@ -67,27 +80,30 @@
 
   function renderDomainResult(payload) {
     result.innerHTML = [
-      '<h2>Your Spark Type Scan</h2>',
-      '<p class="ecg-result-note">Pass 1 is complete. No powers have been selected yet.</p>',
+      '<h2>Pass 1 Complete: Spark Type Scan</h2>',
+      '<p class="ecg-result-note">Your manifested domains are resolved. No powers have been selected yet.</p>',
       '<div class="ecg-card-grid">',
       '<div class="ecg-card"><strong>Lead Domain</strong><br>' + esc(payload.lead_domain || 'Unresolved') + '</div>',
       '<div class="ecg-card"><strong>Profile Shape</strong><br>' + esc(payload.profile_shape || 'Unresolved') + '</div>',
-      '<div class="ecg-card"><strong>Provisional Signature</strong><br>' + esc(payload.provisional_spark_signature) + '</div>',
-      '<div class="ecg-card"><strong>Provisional Combat</strong><br>' + esc(payload.provisional_combat_capability) + '</div>',
-      '<div class="ecg-card"><strong>Power Selection</strong><br>Locked until flavor pass</div>',
+      '<div class="ecg-card"><strong>Power Selection</strong><br>Locked until Pass 2</div>',
       '</div>',
       '<h3>Manifested Domains</h3>',
-      '<p>' + (payload.manifested || []).map(esc).join(', ') + '</p>',
-      '<p><strong>Manifest threshold:</strong> ' + esc(payload.manifest_threshold) + '</p>',
-      '<h3>Domain Scores</h3>',
-      '<div class="ecg-card-grid">' + scoreCards(payload) + '</div>'
+      '<p>' + (payload.manifested || []).map(esc).join(', ') + '</p>'
     ].join('');
   }
 
   function renderFlavorForm(payload) {
     const manifested = payload.manifested || [];
+
+    if (!manifested.length) {
+      flavorMount.dataset.phase = 'error';
+      flavorMount.innerHTML = '<div class="ecg-explainer"><h2>Pass 2 could not unlock</h2><p>No manifested domains were returned by the scan.</p></div>';
+      return;
+    }
+
     const blocks = manifested.map(function (domain) {
       const qs = flavorBlocks[domain] || [];
+
       const fields = qs.map(function (q) {
         const fq = flavorQuestion(q);
         const opts = (fq && fq.options) || {};
@@ -107,29 +123,46 @@
         ].join('');
       }).join('');
 
-      return '<div class="ecg-explainer"><h2>' + esc(domain) + ' Flavor Block</h2>' + fields + '</div>';
+      return '<div class="ecg-explainer ecg-flavor-block"><h2>' + esc(domain) + ' Flavor Block</h2>' + fields + '</div>';
     }).join('');
 
+    flavorMount.dataset.phase = 'unlocked';
     flavorMount.innerHTML = [
-      '<form id="emergence-cg-flavor-form" class="ecg-form">',
-      '<h2>Pass 2: Flavor Power Selection</h2>',
-      '<p>Only manifested domains get their Protocol v8.5 flavor questions.</p>',
+      '<form id="emergence-cg-flavor-form" class="ecg-form ecg-pass-two-form">',
+      '<h2>Pass 2 Unlocked: Flavor Power Selection</h2>',
+      '<p><strong>Only your manifested domains appear here.</strong> Answer these to assign powers from inside those domains.</p>',
+      '<p class="ecg-result-note">Unlocked domains: ' + manifested.map(esc).join(', ') + '</p>',
       blocks,
       '<button type="submit">Generate Character Sheet</button>',
       '</form>'
     ].join('');
 
     const flavorForm = document.getElementById('emergence-cg-flavor-form');
+
+    if (!flavorForm) {
+      console.error('[EmergenceCG] flavor form failed to mount');
+      return;
+    }
+
+    flavorMount.scrollIntoView({behavior: 'smooth', block: 'start'});
+
     flavorForm.addEventListener('submit', async function (event) {
       event.preventDefault();
       result.innerHTML += '<p>Building character sheet...</p>';
 
       const data = new FormData(flavorForm);
       const flavorAnswers = {};
-      for (const [q, value] of data.entries()) flavorAnswers[q] = value;
+
+      for (const [q, value] of data.entries()) {
+        flavorAnswers[q] = value;
+      }
 
       try {
-        const finalPayload = await postGenerate({answers: lastDomainAnswers, flavor_answers: flavorAnswers});
+        const finalPayload = await postGenerate({
+          answers: lastDomainAnswers,
+          flavor_answers: flavorAnswers
+        });
+
         const sheet = finalPayload.character_sheet || {};
         const selectedPowers = sheet.selected_powers || [];
 
@@ -149,12 +182,12 @@
           '<div class="ecg-card-grid">' + powerCards(finalPayload) + '</div>',
           '<h3>Battle Readiness</h3>',
           '<p>' + esc(sheet.battle_ready_note || 'Ready for next layer.') + '</p>',
-          '<h3>Domain Scores</h3>',
-          '<div class="ecg-card-grid">' + scoreCards(finalPayload) + '</div>',
           '</article>'
         ].join('');
 
+        flavorMount.dataset.phase = 'complete';
         flavorMount.innerHTML = '';
+        result.scrollIntoView({behavior: 'smooth', block: 'start'});
       } catch (error) {
         result.innerHTML += '<p>Flavor error: ' + esc(error.message) + '</p>';
       }
@@ -166,18 +199,30 @@
 
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
-    result.innerHTML = '<p>Running domain typing pass...</p>';
-    flavorMount.innerHTML = '';
+
+    result.innerHTML = '<p>Running Spark Type Scan...</p>';
+    flavorMount.dataset.phase = 'loading';
+    flavorMount.innerHTML = '<div class="ecg-explainer"><h2>Preparing Pass 2...</h2><p>Manifested-domain flavor questions will appear here after the scan.</p></div>';
 
     const data = new FormData(form);
     lastDomainAnswers = [];
-    for (const [, value] of data.entries()) lastDomainAnswers.push(value);
+
+    for (const [, value] of data.entries()) {
+      lastDomainAnswers.push(value);
+    }
 
     try {
       const domainPayload = await postGenerate({answers: lastDomainAnswers});
+
+      if (!domainPayload || domainPayload.phase !== 'domain_typing') {
+        throw new Error('Domain scan did not return phase=domain_typing');
+      }
+
       renderDomainResult(domainPayload);
       renderFlavorForm(domainPayload);
     } catch (error) {
+      flavorMount.dataset.phase = 'error';
+      flavorMount.innerHTML = '<div class="ecg-explainer"><h2>Pass 2 failed to unlock</h2><p>' + esc(error.message) + '</p></div>';
       result.innerHTML = '<p>Generator error: ' + esc(error.message) + '</p>';
     }
   });
