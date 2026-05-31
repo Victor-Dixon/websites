@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.4.0
+ * Version: 0.4.1
  * Author: Dream.OS
  */
 
@@ -440,18 +440,22 @@ function emergence_cg_generate($domain_answers, $flavor_answers = null) {
     return emergence_cg_domain_pass($domain_answers);
 }
 
-function emergence_cg_shortcode() {
-    $choices = array(
-        'A' => array('label' => 'Shape the whole field', 'hint' => 'systems, force, adaptation, control'),
-        'B' => array('label' => 'Become the pressure', 'hint' => 'energy, primal instinct, momentum'),
-        'C' => array('label' => 'Move before the world reacts', 'hint' => 'speed, stealth, precision'),
-        'D' => array('label' => 'Endure and overpower', 'hint' => 'strength, impact, direct conflict'),
-        'E' => array('label' => 'Evolve through the impossible', 'hint' => 'growth, survival, transformation'),
-        'F' => array('label' => 'Disappear, redirect, or outlast', 'hint' => 'specter movement, evasion, misdirection'),
-        'G' => array('label' => 'Win through mind and perception', 'hint' => 'psychic force, strategy, influence'),
-        'H' => array('label' => 'Split the rules in two', 'hint' => 'duality, contradiction, light/dark tension'),
-    );
+function emergence_cg_domain_option_label($q, $letter) {
+    $key = emergence_cg_domain_key();
+    $q_key = (string) $q;
 
+    if (!isset($key[$q_key][$letter])) {
+        return $letter;
+    }
+
+    $entry = $key[$q_key][$letter];
+    $domain = $entry[0];
+    $points = intval($entry[1]);
+
+    return $letter . ' — ' . $domain . ' +' . $points;
+}
+
+function emergence_cg_shortcode() {
     $questions = array(
         'When danger arrives first, what instinct takes over?',
         'What kind of power would feel natural in your hands?',
@@ -483,6 +487,8 @@ function emergence_cg_shortcode() {
         'What does your Spark cost?'
     );
 
+    $letters = array('A','B','C','D','E','F','G','H');
+
     ob_start();
     ?>
     <section class="emergence-cg">
@@ -493,6 +499,7 @@ function emergence_cg_shortcode() {
             <div class="ecg-trust-row">
                 <span>Deterministic scoring</span>
                 <span>28-question domain table</span>
+                <span>Each answer shows its domain + points</span>
                 <span>25% manifest gate</span>
                 <span>Flavor pass unlocks powers</span>
             </div>
@@ -500,8 +507,8 @@ function emergence_cg_shortcode() {
 
         <div class="ecg-explainer">
             <h2>Two-pass generation</h2>
-            <p><strong>Pass 1:</strong> Q1-Q28 scores your Spark domains and determines which domains manifest.</p>
-            <p><strong>Pass 2:</strong> Q29-Q68 asks flavor questions only for manifested domains, then selects actual powers from those domains.</p>
+            <p><strong>Pass 1:</strong> Q1-Q28 scores your Spark domains. Every answer maps to one domain. Most answers are +1; highlighted pressure answers are +2.</p>
+            <p><strong>Pass 2:</strong> Q29-Q68 appears only for manifested domains and shows actual power labels before selection.</p>
         </div>
 
         <form id="emergence-cg-form" class="ecg-form">
@@ -515,9 +522,10 @@ function emergence_cg_shortcode() {
                     <legend><?php echo esc_html('Q' . $i . ' — ' . $questions[$i - 1]); ?></legend>
                     <select name="q<?php echo esc_attr($i); ?>" required>
                         <option value="">Choose one...</option>
-                        <?php foreach ($choices as $letter => $choice) : ?>
+                        <?php foreach ($letters as $letter) : ?>
+                            <?php $label = emergence_cg_domain_option_label($i, $letter); ?>
                             <option value="<?php echo esc_attr($letter); ?>">
-                                <?php echo esc_html($letter . ' — ' . $choice['label'] . ' (' . $choice['hint'] . ')'); ?>
+                                <?php echo esc_html($label); ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
@@ -540,8 +548,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.4.0');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.4.0', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.4.1');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.4.1', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),

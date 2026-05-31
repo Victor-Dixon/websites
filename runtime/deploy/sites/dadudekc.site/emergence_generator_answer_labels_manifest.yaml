@@ -1,0 +1,21 @@
+version: 1
+name: emergence_generator_answer_labels
+site: dadudekc.site
+status: deployed
+implemented:
+  - domain_answers_show_domain_and_points
+  - flavor_answers_show_power_labels
+  - generic_answer_labels_removed
+verified:
+  public_domain_labels: pass
+  public_flavor_labels: pass
+  rest_fixtures: pass
+safety:
+  theme_deploy_enabled: false
+  old_theme_deploy_enabled: false
+  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/answer_labels_20260531_083551'
+next_allowed_actions:
+  - improve question-specific prose
+  - add saved character records
+  - add shareable character permalink
+  - build Battle Simulator demo
