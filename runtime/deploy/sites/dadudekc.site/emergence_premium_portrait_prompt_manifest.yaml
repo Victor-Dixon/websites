@@ -1,0 +1,38 @@
+version: 1
+name: emergence_premium_portrait_prompt_compiler
+site: dadudekc.site
+status: deployed
+implemented:
+  - visual_motif_compiler
+  - combat_role_inference
+  - player_body_build_control
+  - player_costume_type_control
+  - player_personality_presentation_control
+  - player_ability_showcase_control
+  - strict_franchise_negative_prompt
+verified:
+  public_player_design_assets: pass
+  rest_still_works: pass
+  player_design_prompt_privacy: pass
+  player_design_prompt_smoke: pass
+player_influence:
+  hidden:
+    - questionnaire_answers_drive_powers_archetype_profile_shape
+  explicit_after_totality:
+    - name_alias
+    - visual_tone
+    - build_type
+    - costume_type
+    - mask_direction
+    - personality_presentation
+    - ability_showcase_intensity
+    - frame_direction
+safety:
+  direct_power_pick: false
+  direct_domain_pick: false
+  external_image_api_called: false
+  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/premium_prompt_092_20260531_113806'
+next_allowed_actions:
+  - wire_premium_image_generation_provider
+  - add_shareable_character_permalink
+  - add_saved_character_records

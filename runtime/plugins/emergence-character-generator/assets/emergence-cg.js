@@ -226,27 +226,162 @@
     ].join('');
   }
 
-  function compilePremiumPortraitPrompt(payload, name) {
-    const sheet = payload.character_sheet || {};
-    const powers = (payload.powers || []).map(function (p) { return p.power; }).filter(Boolean);
-    const powerText = powers.length ? powers.join(', ') : 'latent unknown abilities';
-    const title = name || sheet.title || 'Unnamed Spark';
-    const archetype = sheet.archetype || 'emergent superhero archetype';
-    const role = (payload.powers || []).length > 1 ? 'multi-vector combatant' : 'focused specialist';
-    const signature = sheet.signature_line || 'high-potential Spark signature';
+  function compileVisualMotifs(powers) {
+    const motifMap = {
+      'Laser Light': 'focused radiant beams, prism-cut highlights, bright edge lighting, precise luminous blasts',
+      'Hard Light': 'translucent geometric armor plates, solid-light shields, constructed weapons, angular glowing structures',
+      'Energy Absorption': 'energy sinking into the suit, glowing intake seams, impact halos being absorbed into the body',
+      'Shadow Control': 'controlled shadow tendrils, negative-space cloak shapes, dark environmental distortion',
+      'Toxic Emission': 'hazardous mist aura, corrosive color accents, controlled vapor trails around hands and shoulders',
+      'Void Grasp': 'black-violet pressure fields, gravity-like hand effects, collapsing space distortion',
+
+      'Telekinesis': 'floating debris, invisible force pressure, objects orbiting the body, bent metal suspended midair',
+      'Telepathy': 'subtle psychic halo, glowing eyes, thought-wave distortions around the head',
+      'Psychic Defense': 'crystalline mental shield geometry, calm focused expression, transparent protective aura',
+      'Mind Control': 'hypnotic ring motifs, commanding gaze, subtle psychic thread effects',
+
+      'Super Strength': 'dense heroic stance, reinforced gloves, cracked ground, heavy silhouette, compressed force',
+      'Invulnerability': 'impact sparks breaking around the body, armored posture, unbroken forward stance',
+      'Density Control': 'heavy gravity posture, dense body outline, pressure cracks beneath the feet',
+      'Giant Size': 'towering scale cues, low camera angle, massive shoulders, environmental scale contrast',
+      'Elasticity': 'dynamic stretched limbs, flexible silhouette, motion arcs',
+      'Unstoppable Momentum': 'forward-driving pose, shockwave trail, motion pressure',
+
+      'Flight': 'wind lift, upward body angle, cape-or-coat motion, airborne energy trail',
+      'Danger Sense': 'alert posture, reactive motion lines, precognitive visual echoes',
+      'Super Speed': 'speed trails, blurred afterimages, lightning-like motion streaks',
+      'Phase Shift': 'partially intangible body edges, passing-through distortion',
+      'Invisibility': 'refracted outline, fading edges, partial transparency transition',
+      'Portal Step': 'threshold ring, spatial doorway, stepping through warped light',
+
+      'Pyrokinesis': 'controlled flame halo, ember lighting, heat distortion, fire wrapped around hands',
+      'Concussive Blasts': 'impact shock rings, compressed blast energy, explosive hand projection',
+      'Kinetic Manipulation': 'motion vectors, redirected force trails, impact arcs',
+      'Force Fields': 'transparent barrier planes, protective geometry, glowing shield curvature',
+      'Gravity Control': 'floating rubble, bent light, heavy pressure field, distorted horizon',
+      'Magnetism': 'metal fragments orbiting, magnetic field arcs, armored metal accents',
+
+      'Shapeshifting': 'adaptive costume panels, shifting silhouette edges, organic transformation hints',
+      'Animal Communication': 'subtle animal-spirit silhouettes, instinctive nature aura',
+      'Plant Control': 'living vine motifs, botanical energy, growth wrapping around costume',
+      'Elemental Adaptation': 'mixed natural elements orbiting the body',
+      'Healing Factor': 'regenerative glow, restored fabric/skin effects, life-energy pulse',
+      'Beast Form': 'feral silhouette cues, clawed gauntlets, predatory posture',
+
+      'Technopathy': 'holographic circuitry, machine-light interface, data glyphs without text',
+      'Probability Shift': 'lucky distortion, improbable debris paths, chance-wave visual arcs',
+      'Force Multiplication': 'echoed silhouettes, duplicated strike trails, multiplied impact forms',
+      'Matter Reshape': 'objects reforming around the hands, material transformation effects',
+      'Time Sense': 'clockless time distortion, layered motion ghosts, temporal shimmer',
+      'Spatial Fold': 'folded background geometry, compressed space lines, impossible perspective'
+    };
+
+    const motifs = (powers || []).map(function (p) {
+      return motifMap[p.power] || (p.power + ' expressed visually through original aura, posture, costume details, and environmental effects');
+    });
+
+    return motifs.length ? motifs.join('; ') : 'latent power shown through aura, posture, costume symbolism, and environmental tension';
+  }
+
+  function inferCombatRole(payload) {
+    const powers = payload.powers || [];
+    const names = powers.map(function (p) { return p.power; }).join(' ').toLowerCase();
+
+    if (powers.length > 2) return 'multi-vector combatant';
+    if (/shield|defense|invulnerability|force field|healing|regeneration/.test(names)) return 'defensive anchor';
+    if (/blast|fire|laser|strength|toxic|void|shadow|concussive/.test(names)) return 'frontline striker';
+    if (/telepathy|telekinesis|control|gravity|magnetism|hard light|matter|time|spatial/.test(names)) return 'battlefield controller';
+    if (/speed|flight|danger|invisibility|portal|phase/.test(names)) return 'mobile infiltrator';
+
+    return powers.length > 1 ? 'hybrid specialist' : 'focused specialist';
+  }
+
+  function compilePlayerDesignDirection(name, cosmetics) {
+    cosmetics = cosmetics || {};
+
+    const toneMap = {
+      heroic: 'hopeful heroic presence, upright posture, controlled power, aspirational energy',
+      ominous: 'darker dramatic presence, intimidating stillness, controlled menace, heavy shadows',
+      mythic: 'larger-than-life mythic presence, iconic silhouette, symbolic aura, legendary reveal',
+      street: 'grounded street-level hero presence, practical costume details, urban intensity'
+    };
+
+    const buildMap = {
+      lean: 'lean athletic build, fast silhouette, agile posture',
+      powerful: 'powerful muscular build, strong shoulders, grounded heroic stance',
+      compact: 'compact fighter build, dense posture, coiled energy',
+      tall: 'tall imposing build, long silhouette, commanding presence',
+      elegant: 'elegant refined build, graceful posture, controlled movement',
+      system: 'system-chosen body build that best matches the generated powers and identity'
+    };
+
+    const costumeMap = {
+      sleek: 'sleek fitted suit, clean silhouette, precise seam lines, minimal armor',
+      armored: 'layered armor panels, reinforced gauntlets, protective boots, strong chest structure',
+      mystical: 'ritual-like costume geometry, symbolic fabric layers, luminous trim, mythic silhouette',
+      tactical: 'practical combat suit, utility seams, protective fabric, grounded heroic details',
+      regal: 'regal heroic costume, mantle-like silhouette, ceremonial armor/fabric balance',
+      balanced: 'hybrid superhero costume with fabric, armor accents, gloves, boots, and a unique chest symbol'
+    };
+
+    const personalityMap = {
+      calm: 'calm controlled expression, quiet confidence, restrained power',
+      fierce: 'fierce determined expression, aggressive battle readiness, explosive presence',
+      mysterious: 'mysterious unreadable expression, shadowed eyes, hidden intent',
+      noble: 'noble protective expression, leader-like posture, guardian energy',
+      playful: 'confident playful expression, mischievous energy, stylish swagger',
+      haunted: 'haunted intense expression, emotional weight, survival-driven presence'
+    };
+
+    const showcaseMap = {
+      subtle: 'subtle ability showcase, powers hinted through aura and costume details',
+      active: 'active ability showcase, visible power effects around hands/body/background',
+      dramatic: 'dramatic ability showcase, cinematic energy surge and strong environmental reaction',
+      restrained: 'restrained ability showcase, controlled effects with disciplined intensity'
+    };
 
     return [
-      'Create premium American superhero comic-book character art for a new original hero named ' + title + '.',
-      'Aesthetic: bold inked linework, dramatic cinematic lighting, heroic costume design, premium comic cover composition, mythic energy, modern superhero illustration.',
-      'Character identity: ' + title + ', ' + archetype + ', ' + role + '.',
-      'Abilities to visually imply through costume, pose, aura, and environmental effects: ' + powerText + '.',
-      'Signature note: ' + signature + '.',
-      'Pose direction: powerful three-quarter heroic stance, intense expression, dynamic cape-or-coat-like silhouette only if it fits the character, cinematic energy around the body.',
-      'Costume direction: original superhero costume, no existing franchise logos, no copied characters, layered armor/fabric details, emblem-like chest motif generated from the character identity.',
-      'Background: abstract battle-ready energy field, dramatic rim light, high-contrast atmosphere, cover-art depth.',
-      'Do not include text labels, stat tables, watermarks, raw scores, domain names, hidden routing, manifest thresholds, debug output, or UI elements.'
+      'visual tone: ' + (toneMap[cosmetics.tone] || toneMap.heroic),
+      'body/build type: ' + (buildMap[cosmetics.build] || buildMap.system),
+      'costume type: ' + (costumeMap[cosmetics.costume] || costumeMap.balanced),
+      'mask direction: ' + (cosmetics.mask || 'system-chosen mask treatment'),
+      'personality presentation: ' + (personalityMap[cosmetics.personality] || personalityMap.calm),
+      'ability showcase intensity: ' + (showcaseMap[cosmetics.showcase] || showcaseMap.active),
+      'image framing: ' + (cosmetics.frame || 'three-quarter portrait'),
+      'unique chest symbol inspired by the name "' + name + '", not a franchise logo'
+    ].join('; ');
+  }
+
+  function compilePremiumPortraitPrompt(payload, name, cosmetics) {
+    cosmetics = cosmetics || {};
+
+    const sheet = payload.character_sheet || {};
+    const powers = payload.powers || [];
+    const powerNames = powers.map(function (p) { return p.power; }).filter(Boolean);
+    const visualMotifs = compileVisualMotifs(powers);
+    const title = name || sheet.title || 'Unnamed Spark';
+    const archetype = sheet.archetype || 'emergent superhero archetype';
+    const cast = payload.cast || 'unclassified Spark';
+    const role = inferCombatRole(payload);
+    const profileShape = payload.profile_shape || 'identity-driven power profile';
+    const playerDesign = compilePlayerDesignDirection(title, cosmetics);
+
+    return [
+      'Create a premium original superhero character portrait for a new hero named "' + title + '".',
+      'This character comes from a deterministic psychological power system, not a wish-list creator. The design should feel like the powers emerged from personality, pressure, instinct, and identity.',
+      'STYLE: premium American superhero comic-book aesthetic, bold inked linework, high-end painted comic cover finish, dramatic cinematic lighting, strong rim light, dynamic shadow shapes, heroic costume design, cover-art composition, mythic but grounded.',
+      'CHARACTER IDENTITY: name "' + title + '"; archetype "' + archetype + '"; cast type "' + cast + '"; combat role "' + role + '"; profile shape "' + profileShape + '".',
+      'POWERS TO VISUALLY SHOWCASE: ' + (powerNames.length ? powerNames.join(', ') : 'latent unresolved abilities') + '.',
+      'ABILITY VISUALIZATION: ' + visualMotifs + '.',
+      'PLAYER DESIGN DIRECTION: ' + playerDesign + '.',
+      'POSE: battle-ready reveal pose, intense expression, controlled power, designed like the first official dossier image.',
+      'COSTUME DESIGN: original superhero costume, no existing franchise logos, no copied characters, layered materials, believable seams, gloves, boots, torso structure, one memorable silhouette feature.',
+      'BACKGROUND: abstract battle-ready energy field, dramatic atmosphere, subtle environmental distortion, no copyrighted settings.',
+      'DOSSIER CONSISTENCY: this is the official premium hero image for the generated Spark profile.',
+      'DO NOT INCLUDE: text labels, UI elements, stat tables, watermarks, raw scores, domain names, manifest thresholds, backend terms, debug output, questionnaire references, Marvel, DC, Spider-Man, Batman, Superman, X-Men, Avengers, Justice League, or any existing character likeness.'
     ].join(' ');
   }
+
 
   function renderTotalityObservation(finalPayload) {
     pendingFinalPayload = finalPayload;
@@ -269,6 +404,16 @@
       '<form id="emergence-totality-form" class="ecg-totality-form">',
       '<label for="emergence-spark-name"><strong>Character name / alias</strong></label>',
       '<input id="emergence-spark-name" name="spark_name" type="text" minlength="2" maxlength="64" required placeholder="Example: The Prism Warden">',
+
+      '<div class="ecg-cosmetic-grid">',
+      '<label>Visual Tone<select id="emergence-tone-style"><option value="heroic">Heroic</option><option value="ominous">Ominous</option><option value="mythic">Mythic</option><option value="street">Street-level</option></select></label>',
+      '<label>Build Type<select id="emergence-build-style"><option value="system">System-chosen</option><option value="lean">Lean athletic</option><option value="powerful">Powerful</option><option value="compact">Compact fighter</option><option value="tall">Tall imposing</option><option value="elegant">Elegant refined</option></select></label>',
+      '<label>Costume Type<select id="emergence-costume-style"><option value="balanced">Balanced</option><option value="sleek">Sleek</option><option value="armored">Armored</option><option value="mystical">Mystical</option><option value="tactical">Tactical</option><option value="regal">Regal</option></select></label>',
+      '<label>Mask<select id="emergence-mask-style"><option value="system-chosen mask treatment">System-chosen</option><option value="masked face, original mask shape">Masked</option><option value="unmasked face, clear expression">Unmasked</option><option value="partial mask or visor">Partial mask / visor</option></select></label>',
+      '<label>Personality<select id="emergence-personality-style"><option value="calm">Calm controlled</option><option value="fierce">Fierce</option><option value="mysterious">Mysterious</option><option value="noble">Noble guardian</option><option value="playful">Playful swagger</option><option value="haunted">Haunted survivor</option></select></label>',
+      '<label>Ability Showcase<select id="emergence-showcase-style"><option value="active">Active effects</option><option value="subtle">Subtle hints</option><option value="dramatic">Dramatic surge</option><option value="restrained">Restrained control</option></select></label>',
+      '<label>Frame<select id="emergence-frame-style"><option value="three-quarter portrait">Three-quarter portrait</option><option value="full-body hero reveal">Full-body reveal</option><option value="cover-art bust portrait">Cover-art bust</option></select></label>',
+      '</div>',
       '<button type="submit">Create Final Dossier</button>',
       '</form>',
       '</section>'
@@ -288,12 +433,23 @@
         return;
       }
 
+      const cosmetics = {
+        tone: document.getElementById('emergence-tone-style').value,
+        build: document.getElementById('emergence-build-style').value,
+        costume: document.getElementById('emergence-costume-style').value,
+        mask: document.getElementById('emergence-mask-style').value,
+        personality: document.getElementById('emergence-personality-style').value,
+        showcase: document.getElementById('emergence-showcase-style').value,
+        frame: document.getElementById('emergence-frame-style').value
+      };
+
       const namedPayload = Object.assign({}, pendingFinalPayload, {
         character_sheet: Object.assign({}, pendingFinalPayload.character_sheet || {}, {
           title: sparkName
         }),
         spark_name: sparkName,
-        premium_portrait_prompt: compilePremiumPortraitPrompt(pendingFinalPayload, sparkName)
+        cosmetic_direction: cosmetics,
+        premium_portrait_prompt: compilePremiumPortraitPrompt(pendingFinalPayload, sparkName, cosmetics)
       });
 
       renderCharacterProfile(namedPayload);

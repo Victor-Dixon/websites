@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.5.6
+ * Version: 0.5.7
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.5.6');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.5.6', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.5.7');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.5.7', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
