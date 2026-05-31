@@ -1,0 +1,10 @@
+{
+  "status": "provider_error",
+  "provider": "openai",
+  "prompt_only": true,
+  "image_url_present": false,
+  "message_sanitized": "OpenAI image provider returned HTTP 400. Billing hard limit has been reached.",
+  "classification": "billing_or_quota",
+  "recommended_fix": "Check OpenAI billing, project limits, usage caps, and available credits.",
+  "no_key_leaks": true
+}
