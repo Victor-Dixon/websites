@@ -91,8 +91,8 @@
       '<div class="ecg-card"><strong>Profile Shape</strong><br>' + esc(payload.profile_shape || 'Unresolved') + '</div>',
       '<div class="ecg-card"><strong>Power Selection</strong><br>Locked until Pass 2</div>',
       '</div>',
-      '<h3>Manifested Domains</h3>',
-      '<p>' + (payload.manifested || []).map(esc).join(', ') + '</p>'
+      '<h3>Pass 2 Status</h3>',
+      '<p>Your scan unlocked a private set of follow-up questions.</p>'
     ].join('');
   }
 
@@ -105,7 +105,7 @@
       return;
     }
 
-    const blocks = manifested.map(function (domain) {
+    const blocks = manifested.map(function (domain, index) {
       const qs = flavorBlocks[domain] || [];
 
       const fields = qs.map(function (q) {
@@ -127,15 +127,15 @@
         ].join('');
       }).join('');
 
-      return '<div class="ecg-explainer ecg-flavor-block"><h2>' + esc(domain) + ' Flavor Block</h2>' + fields + '</div>';
+      return '<div class="ecg-explainer ecg-flavor-block"><h2>Unlocked Flavor Block ' + esc(String(index + 1)) + '</h2>' + fields + '</div>';
     }).join('');
 
     flavorMount.dataset.phase = 'unlocked';
     flavorMount.innerHTML = [
       '<form id="emergence-cg-flavor-form" class="ecg-form ecg-pass-two-form">',
       '<h2>Pass 2 Unlocked: Flavor Power Selection</h2>',
-      '<p><strong>Only your manifested domains appear here.</strong> Answer these to assign powers from inside those domains.</p>',
-      '<p class="ecg-result-note">Unlocked domains: ' + manifested.map(esc).join(', ') + '</p>',
+      '<p><strong>Your follow-up questions are unlocked.</strong> Answer them without seeing which domains they came from.</p>',
+      '<p class="ecg-result-note">Unlocked follow-up blocks are based on your scan. The domains stay hidden.</p>',
       blocks,
       '<button type="submit">Generate Character Sheet</button>',
       '</form>'
