@@ -1,13 +1,12 @@
 <h1>Character Generator</h1>
 
 <p>
-This is the first real public pass of The Emergence character generator. Q1-Q28 is the Spark Type Scan:
-it scores your domains, converts those scores into tiers, and applies the 25% manifest gate.
+This generator now runs in two passes. First, Q1-Q28 scans your Spark type and determines manifested domains.
+Then, Q29-Q68 appears only for those manifested domains and selects actual powers from inside them.
 </p>
 
 <p>
-This pass does <strong>not</strong> choose your final powers yet. Powers come from the Q29-Q68 flavor pass,
-which is the next layer being ported.
+That means the type scan cannot spray powers by itself. Powers are constrained by the flavor pass.
 </p>
 
 [emergence_character_generator]

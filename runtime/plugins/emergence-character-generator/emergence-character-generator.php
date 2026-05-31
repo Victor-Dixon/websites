@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Emergence Character Generator
- * Description: Public Spark Protocol v8.5 domain typing pass for The Emergence.
- * Version: 0.2.2
+ * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
+ * Version: 0.3.0
  * Author: Dream.OS
  */
 
@@ -16,10 +16,7 @@ function emergence_cg_protocol_path() {
 
 function emergence_cg_protocol_data() {
     static $data = null;
-
-    if ($data !== null) {
-        return $data;
-    }
+    if ($data !== null) return $data;
 
     $path = emergence_cg_protocol_path();
     if (!file_exists($path)) {
@@ -48,34 +45,58 @@ function emergence_cg_score_to_tier($score) {
     return 5;
 }
 
+function emergence_cg_round_half_up($value) {
+    return intval(floor(floatval($value) + 0.5));
+}
+
+function emergence_cg_spark_signature($highest_tier, $second_highest_tier, $power_count) {
+    return emergence_cg_round_half_up(70 + ($highest_tier * 2.5) + ($second_highest_tier * 1) + $power_count);
+}
+
+function emergence_cg_cast($count) {
+    if ($count <= 1) return 'Solo Spark';
+    if ($count === 2) return 'Dual-Cast';
+    if ($count <= 4) return 'Multi-Cast';
+    return 'Wild-Cast';
+}
+
+function emergence_cg_profile_shape($highest_tier, $second_highest_tier, $manifest_count) {
+    if ($manifest_count <= 1 && $highest_tier >= 4) {
+        return 'Focused high-tier Spark: fewer manifested domains, stronger type identity.';
+    }
+    if ($manifest_count >= 5) {
+        return 'Wide multi-domain Spark: broad manifestation, lower specialization pressure.';
+    }
+    if ($manifest_count >= 2) {
+        return 'Hybrid Spark: multiple manifested domains with a readable lead type.';
+    }
+    return 'Focused Spark: one dominant manifested domain.';
+}
+
+function emergence_cg_domain_key() {
+    $data = emergence_cg_protocol_data();
+    return isset($data['domain_key']) ? $data['domain_key'] : array();
+}
+
 function emergence_cg_score_domains($answers) {
     $domains = emergence_cg_domains();
-    $data = emergence_cg_protocol_data();
-    $key = isset($data['domain_key']) ? $data['domain_key'] : array();
+    $key = emergence_cg_domain_key();
 
     $scores = array();
-    foreach ($domains as $domain) {
-        $scores[$domain] = 0;
-    }
+    foreach ($domains as $domain) $scores[$domain] = 0;
 
     for ($q = 1; $q <= 28; $q++) {
         $letter = isset($answers[$q - 1]) ? strtoupper(sanitize_text_field($answers[$q - 1])) : '';
-        if (!preg_match('/^[A-H]$/', $letter)) {
-            continue;
-        }
+        if (!preg_match('/^[A-H]$/', $letter)) continue;
 
         $q_key = (string) $q;
-        if (!isset($key[$q_key][$letter])) {
-            continue;
-        }
+        if (!isset($key[$q_key][$letter])) continue;
 
         $entry = $key[$q_key][$letter];
         $domain = $entry[0];
         $points = intval($entry[1]);
 
-        if (isset($scores[$domain])) {
-            $scores[$domain] += $points;
-        }
+        if (isset($scores[$domain])) $scores[$domain] += $points;
     }
 
     return $scores;
@@ -92,10 +113,7 @@ function emergence_cg_tiers($scores) {
 function emergence_cg_manifested_domains($scores) {
     $domains = emergence_cg_domains();
     $highest = 0;
-
-    foreach ($scores as $score) {
-        $highest = max($highest, intval($score));
-    }
+    foreach ($scores as $score) $highest = max($highest, intval($score));
 
     $threshold = $highest * 0.25;
     $manifested = array();
@@ -110,56 +128,192 @@ function emergence_cg_manifested_domains($scores) {
     usort($manifested, function ($a, $b) use ($scores, $domains) {
         $sa = isset($scores[$a]) ? intval($scores[$a]) : 0;
         $sb = isset($scores[$b]) ? intval($scores[$b]) : 0;
-
-        if ($sa !== $sb) {
-            return $sb <=> $sa;
-        }
-
+        if ($sa !== $sb) return $sb <=> $sa;
         return array_search($a, $domains, true) <=> array_search($b, $domains, true);
     });
 
     return $manifested;
 }
 
-function emergence_cg_cast($count) {
-    if ($count <= 1) return 'Solo Spark';
-    if ($count === 2) return 'Dual-Cast';
-    if ($count <= 4) return 'Multi-Cast';
-    return 'Wild-Cast';
+function emergence_cg_flavor_key() {
+    return array(
+        29 => array('A'=>'Invulnerability','B'=>'Density Control','C'=>'Giant Size','D'=>'Elasticity','E'=>'Unstoppable Momentum','F'=>'Super Strength'),
+        30 => array('A'=>'Super Strength','B'=>'Giant Size','C'=>'Elasticity','D'=>'Invulnerability','E'=>'Density Control','F'=>'Unstoppable Momentum'),
+        31 => array('A'=>'Super Strength','B'=>'Invulnerability','C'=>'Giant Size','D'=>'Elasticity','E'=>'Unstoppable Momentum','F'=>'Density Control'),
+        32 => array('A'=>'Invulnerability','B'=>'Density Control','C'=>'Elasticity','D'=>'Giant Size','E'=>'Unstoppable Momentum','F'=>'Super Strength'),
+        33 => array('A'=>'Super Strength','B'=>'Giant Size','C'=>'Elasticity','D'=>'Unstoppable Momentum','E'=>'Invulnerability','F'=>'Density Control'),
+
+        34 => array('A'=>'Super Speed','B'=>'Flight','C'=>'Enhanced Reflexes','D'=>'Danger Sense','E'=>'Wall-Crawling','F'=>'Vibration Control'),
+        35 => array('A'=>'Enhanced Reflexes','B'=>'Flight','C'=>'Danger Sense','D'=>'Super Speed','E'=>'Wall-Crawling','F'=>'Vibration Control'),
+        36 => array('A'=>'Super Speed','B'=>'Flight','C'=>'Enhanced Reflexes','D'=>'Danger Sense','E'=>'Wall-Crawling','F'=>'Vibration Control'),
+        37 => array('A'=>'Super Speed','B'=>'Flight','C'=>'Enhanced Reflexes','D'=>'Danger Sense','E'=>'Wall-Crawling','F'=>'Vibration Control'),
+        38 => array('A'=>'Super Speed','B'=>'Flight','C'=>'Enhanced Reflexes','D'=>'Danger Sense','E'=>'Wall-Crawling','F'=>'Vibration Control'),
+
+        39 => array('A'=>'Pyrokinesis','B'=>'Cryokinesis','C'=>'Concussive Blasts','D'=>'Electrokinesis','E'=>'Sonic Scream','F'=>'Hydrokinesis'),
+        40 => array('A'=>'Pyrokinesis','B'=>'Cryokinesis','C'=>'Concussive Blasts','D'=>'Sonic Scream','E'=>'Hydrokinesis','F'=>'Electrokinesis'),
+        41 => array('A'=>'Concussive Blasts','B'=>'Pyrokinesis','C'=>'Cryokinesis','D'=>'Electrokinesis','E'=>'Sonic Scream','F'=>'Hydrokinesis'),
+        42 => array('A'=>'Pyrokinesis','B'=>'Cryokinesis','C'=>'Concussive Blasts','D'=>'Electrokinesis','E'=>'Sonic Scream','F'=>'Hydrokinesis'),
+        43 => array('A'=>'Pyrokinesis','B'=>'Concussive Blasts','C'=>'Cryokinesis','D'=>'Electrokinesis','E'=>'Sonic Scream','F'=>'Hydrokinesis'),
+
+        44 => array('A'=>'Portal Creation','B'=>'Intangibility','C'=>'Invisibility','D'=>'Shrinking','E'=>'Enhanced Senses','F'=>'Teleportation'),
+        45 => array('A'=>'Enhanced Senses','B'=>'Invisibility','C'=>'Teleportation','D'=>'Portal Creation','E'=>'Shrinking','F'=>'Intangibility'),
+        46 => array('A'=>'Intangibility','B'=>'Teleportation','C'=>'Shrinking','D'=>'Invisibility','E'=>'Enhanced Senses','F'=>'Portal Creation'),
+        47 => array('A'=>'Intangibility','B'=>'Shrinking','C'=>'Invisibility','D'=>'Portal Creation','E'=>'Enhanced Senses','F'=>'Teleportation'),
+        48 => array('A'=>'Intangibility','B'=>'Shrinking','C'=>'Portal Creation','D'=>'Enhanced Senses','E'=>'Teleportation','F'=>'Invisibility'),
+
+        49 => array('A'=>'Laser Light','B'=>'Energy Absorption','C'=>'Shadow Control','D'=>'Toxic Emission','E'=>'Void Grasp','F'=>'Hard Light'),
+        50 => array('A'=>'Energy Absorption','B'=>'Toxic Emission','C'=>'Void Grasp','D'=>'Hard Light','E'=>'Laser Light','F'=>'Shadow Control'),
+        51 => array('A'=>'Shadow Control','B'=>'Toxic Emission','C'=>'Void Grasp','D'=>'Hard Light','E'=>'Laser Light','F'=>'Energy Absorption'),
+        52 => array('A'=>'Toxic Emission','B'=>'Void Grasp','C'=>'Hard Light','D'=>'Laser Light','E'=>'Energy Absorption','F'=>'Shadow Control'),
+        53 => array('A'=>'Void Grasp','B'=>'Hard Light','C'=>'Laser Light','D'=>'Energy Absorption','E'=>'Shadow Control','F'=>'Toxic Emission'),
+
+        54 => array('A'=>'Force Fields','B'=>'Healing Factor','C'=>'Gravity Control','D'=>'Magnetism','E'=>'Duplication','F'=>'Kinetic Manipulation'),
+        55 => array('A'=>'Force Fields','B'=>'Healing Factor','C'=>'Gravity Control','D'=>'Kinetic Manipulation','E'=>'Magnetism','F'=>'Duplication'),
+        56 => array('A'=>'Duplication','B'=>'Gravity Control','C'=>'Kinetic Manipulation','D'=>'Force Fields','E'=>'Magnetism','F'=>'Healing Factor'),
+        57 => array('A'=>'Healing Factor','B'=>'Gravity Control','C'=>'Force Fields','D'=>'Magnetism','E'=>'Duplication','F'=>'Kinetic Manipulation'),
+        58 => array('A'=>'Force Fields','B'=>'Duplication','C'=>'Healing Factor','D'=>'Gravity Control','E'=>'Kinetic Manipulation','F'=>'Magnetism'),
+
+        59 => array('A'=>'Animal Form','B'=>'Nature Control','C'=>'Adaptive Biology','D'=>'Weather Control','E'=>'Pheromone Control','F'=>'Shapeshifting'),
+        60 => array('A'=>'Adaptive Biology','B'=>'Weather Control','C'=>'Animal Form','D'=>'Pheromone Control','E'=>'Shapeshifting','F'=>'Nature Control'),
+        61 => array('A'=>'Adaptive Biology','B'=>'Nature Control','C'=>'Animal Form','D'=>'Shapeshifting','E'=>'Pheromone Control','F'=>'Weather Control'),
+        62 => array('A'=>'Nature Control','B'=>'Pheromone Control','C'=>'Animal Form','D'=>'Weather Control','E'=>'Adaptive Biology','F'=>'Shapeshifting'),
+        63 => array('A'=>'Shapeshifting','B'=>'Nature Control','C'=>'Adaptive Biology','D'=>'Pheromone Control','E'=>'Animal Form','F'=>'Weather Control'),
+
+        64 => array('A'=>'Telepathy','B'=>'Illusion','C'=>'Psychic Assault','D'=>'Psychic Defense','E'=>'Telekinesis','F'=>'Mind Control'),
+        65 => array('A'=>'Telepathy','B'=>'Mind Control','C'=>'Psychic Defense','D'=>'Telekinesis','E'=>'Illusion','F'=>'Psychic Assault'),
+        66 => array('A'=>'Psychic Assault','B'=>'Illusion','C'=>'Mind Control','D'=>'Telekinesis','E'=>'Telepathy','F'=>'Psychic Defense'),
+        67 => array('A'=>'Mind Control','B'=>'Illusion','C'=>'Psychic Assault','D'=>'Telepathy','E'=>'Telekinesis','F'=>'Psychic Defense'),
+        68 => array('A'=>'Mind Control','B'=>'Psychic Defense','C'=>'Illusion','D'=>'Telepathy','E'=>'Psychic Assault','F'=>'Telekinesis'),
+    );
 }
 
-function emergence_cg_round_half_up($value) {
-    return intval(floor(floatval($value) + 0.5));
+function emergence_cg_flavor_block_domain() {
+    $map = array();
+    foreach (range(29, 33) as $q) $map[$q] = 'Titan';
+    foreach (range(34, 38) as $q) $map[$q] = 'Velocity';
+    foreach (range(39, 43) as $q) $map[$q] = 'Energy';
+    foreach (range(44, 48) as $q) $map[$q] = 'Specter';
+    foreach (range(49, 53) as $q) $map[$q] = 'Duality';
+    foreach (range(54, 58) as $q) $map[$q] = 'Omni';
+    foreach (range(59, 63) as $q) $map[$q] = 'Primal';
+    foreach (range(64, 68) as $q) $map[$q] = 'Mind';
+    return $map;
 }
 
-function emergence_cg_spark_signature($highest_tier, $second_highest_tier, $power_count) {
-    return emergence_cg_round_half_up(70 + ($highest_tier * 2.5) + ($second_highest_tier * 1) + $power_count);
+function emergence_cg_subaffinities() {
+    return array(
+        'Titan' => array('Super Strength','Invulnerability','Density Control','Giant Size','Elasticity','Unstoppable Momentum'),
+        'Velocity' => array('Super Speed','Flight','Enhanced Reflexes','Danger Sense','Wall-Crawling','Vibration Control'),
+        'Energy' => array('Concussive Blasts','Pyrokinesis','Cryokinesis','Electrokinesis','Sonic Scream','Hydrokinesis'),
+        'Specter' => array('Teleportation','Intangibility','Invisibility','Shrinking','Enhanced Senses','Portal Creation'),
+        'Duality' => array('Hard Light','Laser Light','Energy Absorption','Shadow Control','Toxic Emission','Void Grasp'),
+        'Omni' => array('Kinetic Manipulation','Force Fields','Healing Factor','Gravity Control','Magnetism','Duplication'),
+        'Primal' => array('Shapeshifting','Nature Control','Weather Control','Animal Form','Adaptive Biology','Pheromone Control'),
+        'Mind' => array('Telepathy','Mind Control','Telekinesis','Illusion','Psychic Assault','Psychic Defense'),
+    );
 }
 
-function emergence_cg_profile_shape($highest_tier, $second_highest_tier, $manifest_count) {
-    if ($manifest_count <= 1 && $highest_tier >= 4) {
-        return 'Focused high-tier Spark: fewer manifested domains, stronger type identity.';
+function emergence_cg_score_flavor($flavor_answers, $manifested_domains) {
+    $flavor_key = emergence_cg_flavor_key();
+    $block_domain = emergence_cg_flavor_block_domain();
+    $subaffinities = emergence_cg_subaffinities();
+
+    $vectors = array();
+    foreach ($manifested_domains as $domain) {
+        $vectors[$domain] = array();
+        foreach ($subaffinities[$domain] as $sub) {
+            $vectors[$domain][$sub] = 0;
+        }
     }
 
-    if ($manifest_count >= 5) {
-        return 'Wide multi-domain Spark: broad manifestation, lower specialization pressure.';
+    for ($q = 29; $q <= 68; $q++) {
+        if (!isset($block_domain[$q])) continue;
+        $domain = $block_domain[$q];
+
+        if (!in_array($domain, $manifested_domains, true)) {
+            continue;
+        }
+
+        $letter = isset($flavor_answers[$q]) ? strtoupper(sanitize_text_field($flavor_answers[$q])) : '';
+        if (!preg_match('/^[A-F]$/', $letter)) continue;
+        if (!isset($flavor_key[$q][$letter])) continue;
+
+        $sub = $flavor_key[$q][$letter];
+        if (isset($vectors[$domain][$sub])) {
+            $vectors[$domain][$sub] += 1;
+        }
     }
 
-    if ($manifest_count >= 2) {
-        return 'Hybrid Spark: multiple manifested domains with a readable lead type.';
-    }
-
-    return 'Focused Spark: one dominant manifested domain.';
+    return $vectors;
 }
 
-function emergence_cg_generate($answers) {
+function emergence_cg_select_powers($domain, $vector, $tier) {
+    $subaffinities = emergence_cg_subaffinities();
+    $order = $subaffinities[$domain];
+
+    $qualifying = array();
+    foreach ($vector as $sub => $score) {
+        if (intval($score) >= 2) {
+            $qualifying[$sub] = intval($score);
+        }
+    }
+
+    if (empty($qualifying)) {
+        $best = $order[0];
+        $best_score = -1;
+        foreach ($order as $sub) {
+            $score = isset($vector[$sub]) ? intval($vector[$sub]) : 0;
+            if ($score > $best_score) {
+                $best = $sub;
+                $best_score = $score;
+            }
+        }
+        return array(array('domain' => $domain, 'power' => $best, 'tier' => $tier, 'lead' => true, 'selection' => 'latent_fallback'));
+    }
+
+    arsort($qualifying);
+    $top_score = max($qualifying);
+    $leads = array();
+    foreach ($order as $sub) {
+        if (isset($qualifying[$sub]) && $qualifying[$sub] === $top_score) {
+            $leads[] = $sub;
+        }
+    }
+
+    $powers = array();
+    if (count($leads) >= 2) {
+        foreach (array_slice($leads, 0, 2) as $sub) {
+            $powers[] = array('domain' => $domain, 'power' => $sub, 'tier' => $tier, 'lead' => true, 'selection' => 'co_lead');
+        }
+        return $powers;
+    }
+
+    $lead = $leads[0];
+    $powers[] = array('domain' => $domain, 'power' => $lead, 'tier' => $tier, 'lead' => true, 'selection' => 'lead');
+
+    $others = array();
+    foreach ($order as $sub) {
+        if ($sub !== $lead && isset($qualifying[$sub])) {
+            $others[$sub] = $qualifying[$sub];
+        }
+    }
+
+    if (!empty($others)) {
+        arsort($others);
+        $sub = array_key_first($others);
+        $powers[] = array('domain' => $domain, 'power' => $sub, 'tier' => $tier, 'lead' => false, 'selection' => 'secondary');
+    }
+
+    return $powers;
+}
+
+function emergence_cg_domain_pass($answers) {
     $scores = emergence_cg_score_domains($answers);
     $tiers = emergence_cg_tiers($scores);
     $manifested = emergence_cg_manifested_domains($scores);
 
     $highest_tier = 0;
     $second_tier = 0;
-
     foreach ($manifested as $domain) {
         $tier = isset($tiers[$domain]) ? intval($tiers[$domain]) : 0;
         if ($tier > $highest_tier) {
@@ -173,11 +327,8 @@ function emergence_cg_generate($answers) {
     $max_score = count($scores) ? max($scores) : 0;
     $manifest_threshold = $max_score * 0.25;
 
-    $provisional_signature = emergence_cg_spark_signature($highest_tier, $second_tier, 0);
-    $provisional_cc = min(100, max(10, ($highest_tier * 10) + ($second_tier * 8)));
-
     return array(
-        'protocol_version' => 'Spark Protocol v8.5 domain typing pass',
+        'protocol_version' => 'Spark Protocol v8.5 two-pass generation',
         'answers_expected' => 28,
         'phase' => 'domain_typing',
         'scores' => $scores,
@@ -186,8 +337,8 @@ function emergence_cg_generate($answers) {
         'manifested' => $manifested,
         'lead_domain' => isset($manifested[0]) ? $manifested[0] : null,
         'profile_shape' => emergence_cg_profile_shape($highest_tier, $second_tier, count($manifested)),
-        'provisional_spark_signature' => $provisional_signature,
-        'provisional_combat_capability' => $provisional_cc,
+        'provisional_spark_signature' => emergence_cg_spark_signature($highest_tier, $second_tier, 0),
+        'provisional_combat_capability' => min(100, max(10, ($highest_tier * 10) + ($second_tier * 8))),
         'power_selection_status' => 'locked_until_flavor_pass',
         'powers' => array(),
         'next_phase' => array(
@@ -197,6 +348,55 @@ function emergence_cg_generate($answers) {
         ),
         'cast' => emergence_cg_cast(count($manifested)),
     );
+}
+
+function emergence_cg_final_pass($domain_answers, $flavor_answers) {
+    $base = emergence_cg_domain_pass($domain_answers);
+    $manifested = $base['manifested'];
+    $tiers = $base['tiers'];
+
+    $vectors = emergence_cg_score_flavor($flavor_answers, $manifested);
+    $powers = array();
+
+    foreach ($manifested as $domain) {
+        if (!isset($vectors[$domain])) continue;
+        $domain_powers = emergence_cg_select_powers($domain, $vectors[$domain], $tiers[$domain]);
+        foreach ($domain_powers as $power) {
+            $powers[] = $power;
+        }
+    }
+
+    $highest_tier = 0;
+    $second_tier = 0;
+    foreach ($manifested as $domain) {
+        $tier = isset($tiers[$domain]) ? intval($tiers[$domain]) : 0;
+        if ($tier > $highest_tier) {
+            $second_tier = $highest_tier;
+            $highest_tier = $tier;
+        } elseif ($tier > $second_tier) {
+            $second_tier = $tier;
+        }
+    }
+
+    $base['phase'] = 'flavor_power_selection';
+    $base['flavor_vectors'] = $vectors;
+    $base['powers'] = $powers;
+    $base['power_selection_status'] = 'selected_from_manifested_domains';
+    $base['spark_signature'] = emergence_cg_spark_signature($highest_tier, $second_tier, count($powers));
+    $base['combat_capability'] = min(100, max(10, ($highest_tier * 10) + ($second_tier * 8) + (count($powers) * 3)));
+    $base['next_phase'] = array(
+        'name' => 'battle_simulator',
+        'description' => 'Use selected powers as the input sheet for battle simulation.',
+    );
+
+    return $base;
+}
+
+function emergence_cg_generate($domain_answers, $flavor_answers = null) {
+    if (is_array($flavor_answers) && count($flavor_answers) > 0) {
+        return emergence_cg_final_pass($domain_answers, $flavor_answers);
+    }
+    return emergence_cg_domain_pass($domain_answers);
 }
 
 function emergence_cg_shortcode() {
@@ -253,21 +453,14 @@ function emergence_cg_shortcode() {
                 <span>Deterministic scoring</span>
                 <span>28-question domain table</span>
                 <span>25% manifest gate</span>
-                <span>No random rolls yet</span>
-                <span>Powers locked until flavor pass</span>
+                <span>Flavor pass unlocks powers</span>
             </div>
         </div>
 
         <div class="ecg-explainer">
-            <h2>How this pass works</h2>
-            <p>
-                Each answer maps to one Spark domain using the protocol table. Most answers are worth 1 point;
-                some are worth 2. Each domain has exactly three 2-point answers.
-            </p>
-            <p>
-                Q1-Q28 produces domain scores, tiers, manifested domains, and profile shape.
-                It does not auto-select powers. Powers require Q29-Q68 flavor scoring.
-            </p>
+            <h2>Two-pass generation</h2>
+            <p><strong>Pass 1:</strong> Q1-Q28 scores your Spark domains and determines which domains manifest.</p>
+            <p><strong>Pass 2:</strong> Q29-Q68 asks flavor questions only for manifested domains, then selects actual powers from those domains.</p>
         </div>
 
         <form id="emergence-cg-form" class="ecg-form">
@@ -297,15 +490,7 @@ function emergence_cg_shortcode() {
             <p class="ecg-empty">Your Spark type scan will appear here.</p>
         </div>
 
-        <div class="ecg-proof-note">
-            <h2>What is verified right now?</h2>
-            <ul>
-                <li>Q1-Q28 domain table scoring is active.</li>
-                <li>Domain scores convert into tiers.</li>
-                <li>Manifested domains use the 25% highest-score gate.</li>
-                <li>Actual power selection is locked until the Q29-Q68 flavor pass.</li>
-            </ul>
-        </div>
+        <div id="emergence-cg-flavor" class="ecg-flavor"></div>
     </section>
     <?php
     return ob_get_clean();
@@ -314,20 +499,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style(
-        'emergence-cg-style',
-        plugins_url('assets/emergence-cg.css', __FILE__),
-        array(),
-        '0.2.2'
-    );
-
-    wp_register_script(
-        'emergence-cg-script',
-        plugins_url('assets/emergence-cg.js', __FILE__),
-        array(),
-        '0.2.2',
-        true
-    );
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.3.0');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.3.0', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -338,9 +511,7 @@ function emergence_cg_register_assets() {
 add_action('wp_enqueue_scripts', 'emergence_cg_register_assets');
 
 function emergence_cg_enqueue_when_shortcode($posts) {
-    if (empty($posts)) {
-        return $posts;
-    }
+    if (empty($posts)) return $posts;
 
     foreach ($posts as $post) {
         if (isset($post->post_content) && has_shortcode($post->post_content, 'emergence_character_generator')) {
@@ -365,12 +536,21 @@ function emergence_cg_rest_generate(WP_REST_Request $request) {
         return new WP_Error('bad_answers', 'answers must be an array', array('status' => 400));
     }
 
-    $clean = array();
+    $clean_domain = array();
     foreach ($answers as $value) {
-        $clean[] = strtoupper(sanitize_text_field($value));
+        $clean_domain[] = strtoupper(sanitize_text_field($value));
     }
 
-    return rest_ensure_response(emergence_cg_generate($clean));
+    $flavor_answers = $request->get_param('flavor_answers');
+    $clean_flavor = array();
+
+    if (is_array($flavor_answers)) {
+        foreach ($flavor_answers as $q => $value) {
+            $clean_flavor[intval($q)] = strtoupper(sanitize_text_field($value));
+        }
+    }
+
+    return rest_ensure_response(emergence_cg_generate($clean_domain, $clean_flavor));
 }
 
 add_action('rest_api_init', function () {
