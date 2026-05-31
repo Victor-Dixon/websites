@@ -507,7 +507,7 @@ function emergence_cg_shortcode() {
 
         <div class="ecg-explainer">
             <h2>Two-pass generation</h2>
-            <p><strong>Pass 1:</strong> Q1-Q28 scores your Spark domains. Every answer maps to one domain. Most answers are +1; highlighted pressure answers are +2.</p>
+            <p><strong>Pass 1:</strong> Q1-Q28 scores your Spark domains. Every answer maps to one domain. Most answers are +1; pressure answers are +2.</p>
             <p><strong>Pass 2:</strong> Q29-Q68 appears only for manifested domains and shows actual power labels before selection.</p>
         </div>
 
@@ -523,9 +523,8 @@ function emergence_cg_shortcode() {
                     <select name="q<?php echo esc_attr($i); ?>" required>
                         <option value="">Choose one...</option>
                         <?php foreach ($letters as $letter) : ?>
-                            <?php $label = emergence_cg_domain_option_label($i, $letter); ?>
                             <option value="<?php echo esc_attr($letter); ?>">
-                                <?php echo esc_html($label); ?>
+                                <?php echo esc_html(emergence_cg_domain_option_label($i, $letter)); ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
