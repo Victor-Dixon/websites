@@ -1,0 +1,34 @@
+version: 1
+name: emergence_full_handoff_browser_smoke
+site: dadudekc.site
+status: pass
+implemented:
+  - visible_html_leak_check
+  - script_guard_semantics_check
+verified:
+  character_page_handoff_bridge: pass
+  character_export_semantics: pass
+  simulated_handoff_payload_safe: pass
+  battle_page_handoff_bridge: pass
+  battle_import_semantics: pass
+  custom_battle_rest_resolves: pass
+  custom_battle_winner_visible: pass
+  custom_battle_arena_visible: pass
+  custom_battle_story_visible: pass
+  custom_battle_no_raw_score_leak: pass
+  imported_spark_appears_assert: pass
+  start_battle_with_this_spark_assert: pass
+  winner_arena_story_visible_assert: pass
+safety:
+  raw_scores_visible: false
+  roll_visible: false
+  odds_visible: false
+  backend_math_hidden: true
+  note: "Forbidden words inside inline scripts are allowed only as guard keys; visible HTML is leak-checked separately."
+urls:
+  character_generator: https://dadudekc.site/character-generator/
+  battles: https://dadudekc.site/battles/
+next_allowed_actions:
+  - shareable_spark_handoff_token
+  - saved_character_records
+  - improve_battle_story_cinematics
