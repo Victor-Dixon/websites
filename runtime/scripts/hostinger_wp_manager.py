@@ -137,45 +137,85 @@ def page_id_by_slug(env: dict, slug: str) -> str | None:
     ids = re.findall(r"\b\d+\b", proc.stdout)
     return ids[-1] if ids else None
 
+def remote_wp_content_update(
+    env: dict,
+    page_id: str,
+    title: str,
+    slug: str,
+    status: str,
+    content: str,
+) -> subprocess.CompletedProcess:
+    root = wp_root(env)
+    remote_file = f"/tmp/dreamos_wp_content_{page_id}_{slug}.html"
+    remote = (
+        "cat > "
+        + shlex.quote(remote_file)
+        + " && cd "
+        + shlex.quote(root)
+        + " && wp post update "
+        + shlex.quote(page_id)
+        + " "
+        + shlex.quote(f"--post_title={title}")
+        + " "
+        + shlex.quote(f"--post_name={slug}")
+        + " "
+        + shlex.quote(f"--post_status={status}")
+        + " "
+        + "\"--post_content=$(cat "
+        + shlex.quote(remote_file)
+        + ")\""
+        + " --skip-plugins --skip-themes"
+        + " ; rc=$?; rm -f "
+        + shlex.quote(remote_file)
+        + " ; exit $rc"
+    )
+    return run(ssh_base(env) + [remote], input_text=content)
+
+
+def remote_wp_content_create(
+    env: dict,
+    title: str,
+    slug: str,
+    status: str,
+    content: str,
+) -> subprocess.CompletedProcess:
+    root = wp_root(env)
+    remote_file = f"/tmp/dreamos_wp_content_create_{slug}.html"
+    remote = (
+        "cat > "
+        + shlex.quote(remote_file)
+        + " && cd "
+        + shlex.quote(root)
+        + " && wp post create --post_type=page "
+        + shlex.quote(f"--post_title={title}")
+        + " "
+        + shlex.quote(f"--post_name={slug}")
+        + " "
+        + shlex.quote(f"--post_status={status}")
+        + " "
+        + "\"--post_content=$(cat "
+        + shlex.quote(remote_file)
+        + ")\""
+        + " --porcelain --skip-plugins --skip-themes"
+        + " ; rc=$?; rm -f "
+        + shlex.quote(remote_file)
+        + " ; exit $rc"
+    )
+    return run(ssh_base(env) + [remote], input_text=content)
+
+
 def upsert_page(env: dict, title: str, slug: str, content_file: str, status: str) -> None:
     content = Path(content_file).read_text()
     existing = page_id_by_slug(env, slug)
 
     if existing:
         print(f"PAGE_EXISTS=PASS id={existing}")
-        remote_wp(
-            env,
-            [
-                "post",
-                "update",
-                existing,
-                f"--post_title={title}",
-                f"--post_name={slug}",
-                f"--post_status={status}",
-                "--post_content=-",
-            ],
-            input_text=content,
-            safe_bootstrap=True,
-        )
+        remote_wp_content_update(env, existing, title, slug, status, content)
         print(f"PAGE_UPDATE=PASS id={existing}")
         return
 
     print("PAGE_EXISTS=NO")
-    proc = remote_wp(
-        env,
-        [
-            "post",
-            "create",
-            "--post_type=page",
-            f"--post_title={title}",
-            f"--post_name={slug}",
-            f"--post_status={status}",
-            "--post_content=-",
-            "--porcelain",
-        ],
-        input_text=content,
-        safe_bootstrap=True,
-    )
+    proc = remote_wp_content_create(env, title, slug, status, content)
     ids = re.findall(r"\b\d+\b", proc.stdout)
     page_id = ids[-1] if ids else "UNKNOWN"
     print(f"PAGE_CREATE=PASS id={page_id}")
