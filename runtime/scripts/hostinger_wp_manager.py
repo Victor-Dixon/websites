@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import re
 import shlex
 import subprocess
 from pathlib import Path
@@ -48,6 +49,8 @@ def ssh_base(env: dict) -> list[str]:
     key_file = expand_home(env["HOSTINGER_SSH_PRIVATE_KEY_FILE"])
     return [
         "ssh",
+        "-o",
+        "LogLevel=ERROR",
         "-i",
         key_file,
         "-p",
@@ -130,9 +133,9 @@ def page_id_by_slug(env: dict, slug: str) -> str | None:
         ],
         check=False,
     )
-    out = proc.stdout.strip()
-    return out.split()[0] if out else None
 
+    ids = re.findall(r"\\b\\d+\\b", proc.stdout)
+    return ids[-1] if ids else None
 
 def upsert_page(env: dict, title: str, slug: str, content_file: str, status: str) -> None:
     content = Path(content_file).read_text()
@@ -173,7 +176,8 @@ def upsert_page(env: dict, title: str, slug: str, content_file: str, status: str
         input_text=content,
         safe_bootstrap=True,
     )
-    page_id = proc.stdout.strip().splitlines()[-1]
+    ids = re.findall(r"\\b\\d+\\b", proc.stdout)
+    page_id = ids[-1] if ids else "UNKNOWN"
     print(f"PAGE_CREATE=PASS id={page_id}")
 
 
