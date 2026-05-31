@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Spark Battle Sim
  * Description: Cinematic Spark Protocol battle simulator shortcode.
- * Version: 0.2.6
+ * Version: 0.2.7
  * Author: Dadudekc
  */
 
@@ -469,3 +469,82 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_BATTLE_TOKEN_IMPORT_INLINE_END
+
+// DREAMOS_BATTLE_RECORD_IMPORT_INLINE_BEGIN lane 103
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'spark_battle_sim')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-bs-record-handoff-inline">
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'emergence_spark_battle_handoff_v1';
+      const FORBIDDEN = [
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'debug',
+        'showwork',
+        'roll',
+        'odds',
+        'raw'
+      ];
+
+      function recordFromUrl() {
+        const params = new URLSearchParams(window.location.search || '');
+        return params.get('character_record') || '';
+      }
+
+      function rejectUnsafe(payload) {
+        const serialized = JSON.stringify(payload);
+        FORBIDDEN.forEach(function (key) {
+          if (serialized.indexOf(key) !== -1) {
+            throw new Error('Unsafe character record payload blocked: ' + key);
+          }
+        });
+      }
+
+      async function loadCharacterRecord() {
+        const record = recordFromUrl();
+        if (!record) {
+          return;
+        }
+
+        const response = await fetch('/wp-json/emergence/v1/characters/' + encodeURIComponent(record), {
+          method: 'GET',
+          headers: {'Accept': 'application/json'}
+        });
+
+        const data = await response.json();
+        if (!response.ok || data.status !== 'loaded' || !data.character) {
+          const panel = document.createElement('section');
+          panel.className = 'sbs-handoff-card';
+          panel.innerHTML = '<p class="sbs-handoff-note">Character record rejected or expired.</p>';
+          document.body.insertBefore(panel, document.body.firstChild);
+          return;
+        }
+
+        rejectUnsafe(data.character);
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data.character));
+      }
+
+      loadCharacterRecord().catch(function () {
+        console.warn('[SparkBattleSim] character record handoff rejected');
+      });
+    })();
+    </script>
+    <?php
+});
+// DREAMOS_BATTLE_RECORD_IMPORT_INLINE_END

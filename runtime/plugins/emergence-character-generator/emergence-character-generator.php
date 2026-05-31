@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.6.5
+ * Version: 0.6.6
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.5');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.5', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.6');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.6', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.5');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.5', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.6');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.6', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -971,6 +971,22 @@ add_action('wp_footer', function () {
         return Array.from((root || document).querySelectorAll(sel))
           .map(function (node) { return node.textContent.trim(); })
           .filter(Boolean);
+      }
+
+      async function saveCharacterRecord(payload, visibility) {
+        const copy = Object.assign({}, payload, {visibility: visibility || 'private'});
+        const response = await fetch('/wp-json/emergence/v1/characters', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({character: copy})
+        });
+
+        const data = await response.json();
+        if (!response.ok || data.status !== 'saved') {
+          throw new Error(data.message || 'Character save failed.');
+        }
+
+        return data;
       }
 
       async function createShareableSparkToken(payload) {
@@ -1055,11 +1071,40 @@ add_action('wp_footer', function () {
           '<h3>Use this Spark in Battle Simulator</h3>',
           '<p>Export a player-safe dossier into the battle simulator. Backend scoring stays hidden.</p>',
           '<button type="button" id="ecg-export-to-battle-inline">Use this Spark in Battle Simulator</button>',
+          '<button type="button" id="ecg-save-character-record-inline">Save Character Record</button>',
           '<p id="ecg-battle-handoff-status-inline" aria-live="polite"></p>'
         ].join('');
 
         anchor.insertAdjacentElement('afterend', panel);
       }
+
+      document.addEventListener('click', function (event) {
+        if (!event.target || event.target.id !== 'ecg-save-character-record-inline') {
+          return;
+        }
+
+        const status = document.getElementById('ecg-battle-handoff-status-inline');
+        try {
+          const payload = safePayloadFromDossier();
+          if (status) {
+            status.textContent = 'Saving character record...';
+          }
+
+          saveCharacterRecord(payload, 'private').then(function (recordData) {
+            if (status) {
+              status.innerHTML = 'Saved: <a href="' + recordData.reload_url + '">Reload Character</a> · <a href="' + recordData.battle_url + '">Open in Battle Simulator</a>';
+            }
+          }).catch(function () {
+            if (status) {
+              status.textContent = 'Save failed.';
+            }
+          });
+        } catch (error) {
+          if (status) {
+            status.textContent = 'Save blocked: unsafe payload.';
+          }
+        }
+      });
 
       document.addEventListener('click', function (event) {
         if (!event.target || event.target.id !== 'ecg-export-to-battle-inline') {
@@ -1294,3 +1339,240 @@ function emergence_cg_read_spark_token_rest($request) {
     ), 200);
 }
 // DREAMOS_SHAREABLE_SPARK_TOKEN_REST_END
+
+// DREAMOS_SAVED_CHARACTER_RECORDS_BEGIN lane 103
+add_action('rest_api_init', function () {
+    register_rest_route('emergence/v1', '/characters', array(
+        'methods' => 'POST',
+        'callback' => 'emergence_cg_save_character_record_rest',
+        'permission_callback' => '__return_true',
+    ));
+
+    register_rest_route('emergence/v1', '/characters/(?P<record>[A-Za-z0-9_-]{12,80})', array(
+        'methods' => 'GET',
+        'callback' => 'emergence_cg_load_character_record_rest',
+        'permission_callback' => '__return_true',
+    ));
+
+    register_rest_route('emergence/v1', '/characters/(?P<record>[A-Za-z0-9_-]{12,80})/battle-token', array(
+        'methods' => 'POST',
+        'callback' => 'emergence_cg_character_record_battle_token_rest',
+        'permission_callback' => '__return_true',
+    ));
+});
+
+function emergence_cg_character_record_forbidden_keys() {
+    return array(
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'debug',
+        'showwork',
+        'roll',
+        'odds',
+        'raw'
+    );
+}
+
+function emergence_cg_character_record_secret() {
+    if (defined('AUTH_SALT') && AUTH_SALT) {
+        return AUTH_SALT;
+    }
+
+    if (defined('SECURE_AUTH_SALT') && SECURE_AUTH_SALT) {
+        return SECURE_AUTH_SALT;
+    }
+
+    return wp_salt('auth');
+}
+
+function emergence_cg_character_record_sign($record_id, $payload_json) {
+    return hash_hmac('sha256', $record_id . '|' . $payload_json, emergence_cg_character_record_secret());
+}
+
+function emergence_cg_sanitize_character_record_payload($payload) {
+    if (!is_array($payload)) {
+        return new WP_Error('invalid_payload', 'Character record payload must be an object.');
+    }
+
+    $serialized = wp_json_encode($payload);
+    foreach (emergence_cg_character_record_forbidden_keys() as $key) {
+        if (strpos($serialized, $key) !== false) {
+            return new WP_Error('unsafe_payload', 'Unsafe character record payload blocked.');
+        }
+    }
+
+    $visibility = isset($payload['visibility']) ? sanitize_text_field($payload['visibility']) : 'private';
+    if (!in_array($visibility, array('public', 'private'), true)) {
+        $visibility = 'private';
+    }
+
+    $safe = array(
+        'version' => 1,
+        'source' => 'emergence-character-generator',
+        'visibility' => $visibility,
+        'spark_name' => isset($payload['spark_name']) ? sanitize_text_field($payload['spark_name']) : 'Unnamed Spark',
+        'title' => isset($payload['title']) ? sanitize_text_field($payload['title']) : 'Unnamed Spark',
+        'archetype' => isset($payload['archetype']) ? sanitize_text_field($payload['archetype']) : '',
+        'summary' => isset($payload['summary']) ? sanitize_textarea_field($payload['summary']) : '',
+        'cast' => isset($payload['cast']) ? sanitize_text_field($payload['cast']) : '',
+        'profile_shape' => isset($payload['profile_shape']) ? sanitize_text_field($payload['profile_shape']) : '',
+        'selected_powers' => array(),
+        'battle_ready_note' => isset($payload['battle_ready_note']) ? sanitize_text_field($payload['battle_ready_note']) : 'Player-safe Spark dossier saved for battle simulation.',
+        'created_at' => time(),
+    );
+
+    if (isset($payload['selected_powers']) && is_array($payload['selected_powers'])) {
+        foreach ($payload['selected_powers'] as $power) {
+            if (!is_array($power)) {
+                continue;
+            }
+
+            $label = isset($power['power']) ? sanitize_text_field($power['power']) : '';
+            if (!$label) {
+                continue;
+            }
+
+            $safe['selected_powers'][] = array(
+                'power' => $label,
+                'domain' => '',
+                'lead' => !empty($power['lead']),
+            );
+        }
+    }
+
+    return $safe;
+}
+
+function emergence_cg_create_character_record_id() {
+    return substr(strtr(base64_encode(random_bytes(18)), '+/', '-_'), 0, 24);
+}
+
+function emergence_cg_save_character_record_rest($request) {
+    $params = $request->get_json_params();
+    if (!is_array($params)) {
+        $params = array();
+    }
+
+    $payload = isset($params['character']) ? $params['character'] : $params;
+    $safe = emergence_cg_sanitize_character_record_payload($payload);
+
+    if (is_wp_error($safe)) {
+        return new WP_REST_Response(array(
+            'status' => 'blocked',
+            'message' => $safe->get_error_message(),
+        ), 400);
+    }
+
+    $record_id = emergence_cg_create_character_record_id();
+    $payload_json = wp_json_encode($safe);
+    $signature = emergence_cg_character_record_sign($record_id, $payload_json);
+
+    $record = array(
+        'payload' => $safe,
+        'signature' => $signature,
+        'created_at' => time(),
+        'expires_at' => time() + (30 * DAY_IN_SECONDS),
+    );
+
+    set_transient('emergence_character_record_' . $record_id, $record, 30 * DAY_IN_SECONDS);
+
+    return new WP_REST_Response(array(
+        'status' => 'saved',
+        'record_id' => $record_id,
+        'visibility' => $safe['visibility'],
+        'reload_url' => home_url('/character-generator/?character_record=' . rawurlencode($record_id)),
+        'battle_url' => home_url('/battles/?character_record=' . rawurlencode($record_id)),
+        'expires_in_seconds' => 30 * DAY_IN_SECONDS,
+        'player_safe' => true,
+    ), 200);
+}
+
+function emergence_cg_get_character_record($record_id) {
+    $record_id = sanitize_text_field($record_id);
+
+    if (!$record_id || !preg_match('/^[A-Za-z0-9_-]{12,80}$/', $record_id)) {
+        return new WP_Error('invalid_record', 'Invalid character record.');
+    }
+
+    $record = get_transient('emergence_character_record_' . $record_id);
+    if (!is_array($record) || empty($record['payload']) || empty($record['signature'])) {
+        return new WP_Error('not_found', 'Character record not found or expired.');
+    }
+
+    if (!empty($record['expires_at']) && time() > (int) $record['expires_at']) {
+        delete_transient('emergence_character_record_' . $record_id);
+        return new WP_Error('expired', 'Character record expired.');
+    }
+
+    $payload_json = wp_json_encode($record['payload']);
+    $expected = emergence_cg_character_record_sign($record_id, $payload_json);
+
+    if (!hash_equals($expected, $record['signature'])) {
+        return new WP_Error('signature_rejected', 'Character record signature rejected.');
+    }
+
+    return $record;
+}
+
+function emergence_cg_load_character_record_rest($request) {
+    $record_id = sanitize_text_field($request['record']);
+    $record = emergence_cg_get_character_record($record_id);
+
+    if (is_wp_error($record)) {
+        return new WP_REST_Response(array(
+            'status' => 'invalid',
+            'message' => $record->get_error_message(),
+        ), 404);
+    }
+
+    return new WP_REST_Response(array(
+        'status' => 'loaded',
+        'record_id' => $record_id,
+        'character' => $record['payload'],
+        'player_safe' => true,
+    ), 200);
+}
+
+function emergence_cg_character_record_battle_token_rest($request) {
+    $record_id = sanitize_text_field($request['record']);
+    $record = emergence_cg_get_character_record($record_id);
+
+    if (is_wp_error($record)) {
+        return new WP_REST_Response(array(
+            'status' => 'invalid',
+            'message' => $record->get_error_message(),
+        ), 404);
+    }
+
+    $safe = $record['payload'];
+    $payload_json = wp_json_encode($safe);
+    $token = substr(strtr(base64_encode(random_bytes(24)), '+/', '-_'), 0, 32);
+
+    if (function_exists('emergence_cg_sign_spark_token')) {
+        $signature = emergence_cg_sign_spark_token($token, $payload_json);
+    } else {
+        $signature = hash_hmac('sha256', $token . '|' . $payload_json, emergence_cg_character_record_secret());
+    }
+
+    set_transient('emergence_spark_token_' . $token, array(
+        'payload' => $safe,
+        'signature' => $signature,
+        'created_at' => time(),
+        'expires_at' => time() + (7 * DAY_IN_SECONDS),
+    ), 7 * DAY_IN_SECONDS);
+
+    return new WP_REST_Response(array(
+        'status' => 'created',
+        'token' => $token,
+        'share_url' => home_url('/battles/?spark_token=' . rawurlencode($token)),
+        'record_id' => $record_id,
+        'player_safe' => true,
+    ), 200);
+}
+// DREAMOS_SAVED_CHARACTER_RECORDS_END

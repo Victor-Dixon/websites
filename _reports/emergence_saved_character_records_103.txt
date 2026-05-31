@@ -1,0 +1,32 @@
+INPUTS=PASS
+SAVED_CHARACTER_RECORDS_PATCH=PASS
+STATIC_RECORD_SECURITY=PASS
+STATIC_RECORD_NO_RAW_SCORE_EXPORT=PASS
+PLUGIN_TARBALLS=PASS
+SCP_UPLOAD=PASS
+EXISTING_PLUGIN_BACKUP=PASS
+No syntax errors detected in wp-content/plugins/emergence-character-generator/emergence-character-generator.php
+No syntax errors detected in wp-content/plugins/spark-battle-sim/spark-battle-sim.php
+REMOTE_PHP_LINT=PASS
+        const response = await fetch('/wp-json/emergence/v1/characters', {
+    register_rest_route('emergence/v1', '/characters', array(
+    register_rest_route('emergence/v1', '/characters/(?P<record>[A-Za-z0-9_-]{12,80})', array(
+    register_rest_route('emergence/v1', '/characters/(?P<record>[A-Za-z0-9_-]{12,80})/battle-token', array(
+          '<button type="button" id="ecg-save-character-record-inline">Save Character Record</button>',
+        if (!event.target || event.target.id !== 'ecg-save-character-record-inline') {
+    <script id="dreamos-bs-record-handoff-inline">
+REMOTE_RECORD_SOURCE=PASS
+Success: Plugin already activated.
+Success: Plugin already activated.
+PLUGINS_ACTIVE=PASS
+Success: The cache was flushed.
+Success: Purged All!
+LITESPEED_PURGE=PASS
+REMOTE_DEPLOY=PASS
+RECORD_SAVE=PASS
+RECORD_LOAD=PASS
+RECORD_NO_RAW_SCORE_LEAK=PASS
+RECORD_BATTLE_TOKEN=PASS
+RECORD_INVALID_REJECTED=PASS
+BATTLE_RECORD_BRIDGE=PASS
+SAVED_CHARACTER_RECORDS=PASS
