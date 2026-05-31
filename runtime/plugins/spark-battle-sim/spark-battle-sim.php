@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Spark Battle Sim
  * Description: Cinematic Spark Protocol battle simulator shortcode.
- * Version: 0.2.7
+ * Version: 0.2.8
  * Author: Dadudekc
  */
 
@@ -279,6 +279,134 @@ add_action('wp_footer', function () {
 });
 // DREAMOS_BATTLE_HANDOFF_INLINE_END
 
+// DREAMOS_BATTLE_CINEMATICS_BEGIN lane 106b
+function spark_battle_sim_cinematic_pick($items, $seed) {
+    if (!is_array($items) || !count($items)) {
+        return '';
+    }
+    return $items[abs(crc32((string) $seed)) % count($items)];
+}
+
+function spark_battle_sim_power_phrase($powers) {
+    if (!is_array($powers) || !count($powers)) {
+        return 'latent force gathering below the surface';
+    }
+
+    $clean = array();
+    foreach ($powers as $power) {
+        $label = sanitize_text_field((string) $power);
+        if ($label) {
+            $clean[] = $label;
+        }
+    }
+
+    if (!count($clean)) {
+        return 'latent force gathering below the surface';
+    }
+
+    return implode(', ', array_slice($clean, 0, 3));
+}
+
+function spark_battle_sim_cinematic_role($archetype, $powers) {
+    $text = strtolower((string) $archetype . ' ' . implode(' ', is_array($powers) ? $powers : array()));
+
+    if (strpos($text, 'light') !== false || strpos($text, 'laser') !== false || strpos($text, 'hard light') !== false) {
+        return 'radiant striker';
+    }
+    if (strpos($text, 'shadow') !== false || strpos($text, 'void') !== false || strpos($text, 'specter') !== false) {
+        return 'threshold stalker';
+    }
+    if (strpos($text, 'titan') !== false || strpos($text, 'guardian') !== false || strpos($text, 'armor') !== false) {
+        return 'frontline bulwark';
+    }
+    if (strpos($text, 'velocity') !== false || strpos($text, 'speed') !== false) {
+        return 'rapid-entry duelist';
+    }
+    if (strpos($text, 'mind') !== false || strpos($text, 'psychic') !== false || strpos($text, 'will') !== false) {
+        return 'mental pressure fighter';
+    }
+    if (strpos($text, 'primal') !== false || strpos($text, 'beast') !== false || strpos($text, 'instinct') !== false) {
+        return 'instinct-driven predator';
+    }
+    if (strpos($text, 'energy') !== false || strpos($text, 'burn') !== false || strpos($text, 'plasma') !== false) {
+        return 'high-output blaster';
+    }
+
+    return 'adaptive Spark combatant';
+}
+
+function spark_battle_sim_cinematic_arena($name, $opponent_name, $powers) {
+    $seed = $name . '|' . $opponent_name . '|' . implode(',', is_array($powers) ? $powers : array());
+
+    $arenas = array(
+        array('name' => 'storm-lit rooftop relay', 'detail' => 'rain lashes across antenna towers while every impact throws white sparks into the dark'),
+        array('name' => 'collapsed civic plaza', 'detail' => 'broken marble, emergency lights, and drifting dust turn every movement into a silhouette'),
+        array('name' => 'neon transit platform', 'detail' => 'passing trains split the battlefield into pulses of light, shadow, and timing windows'),
+        array('name' => 'glass-walled command deck', 'detail' => 'fractured reflections make every feint look like a squad of ghosts'),
+        array('name' => 'flooded underpass', 'detail' => 'ankle-deep water carries ripples from every step before the strike arrives'),
+        array('name' => 'burned-out training yard', 'detail' => 'old impact craters and scorched barriers give both fighters cover, lanes, and traps')
+    );
+
+    return spark_battle_sim_cinematic_pick($arenas, $seed);
+}
+
+function spark_battle_sim_cinematic_story($name, $opponent_name, $archetype, $summary, $powers, $winner, $arena) {
+    $power_phrase = spark_battle_sim_power_phrase($powers);
+    $role = spark_battle_sim_cinematic_role($archetype, $powers);
+    $seed = $name . '|' . $opponent_name . '|' . $winner . '|' . $arena['name'];
+
+    $openers = array(
+        "$name steps into the {$arena['name']} as a $role, letting the first beat of the fight reveal nothing but posture.",
+        "$name arrives under the pressure of the {$arena['name']}, quiet until the field itself starts reacting.",
+        "The moment $opponent_name enters the {$arena['name']}, $name shifts from saved dossier to living threat.",
+        "$name does not announce the opening move. The {$arena['name']} does it for them."
+    );
+
+    $clashes = array(
+        "The first exchange tears through {$arena['detail']}. $power_phrase shapes the rhythm, forcing $opponent_name to answer movement with commitment.",
+        "The arena narrows into lanes of consequence. $power_phrase flashes through the conflict, not as spectacle, but as control.",
+        "$opponent_name presses forward, but $name turns the terrain into a weapon: {$arena['detail']}.",
+        "Every feint becomes a test. $power_phrase gives $name a visible combat identity while the backend math stays sealed."
+    );
+
+    $turns = array(
+        "The turning point comes when $name stops reacting and starts dictating range.",
+        "$opponent_name finds an opening, but it is the wrong opening — the kind $name wanted seen.",
+        "The fight pivots when the arena stops being background and becomes part of $name's timing.",
+        "For one breath, both fighters understand the same truth: the next clean action decides it."
+    );
+
+    if ($winner === $name) {
+        $finishers = array(
+            "$name closes the battle with a decisive cinematic beat, leaving $opponent_name beaten but readable in the aftermath.",
+            "$name wins by converting identity into action — power, timing, and presence landing together.",
+            "$name takes the final exchange and stands in the aftermath as the arena settles around the result.",
+            "$name claims the win through the story the battle made visible."
+        );
+    } else {
+        $finishers = array(
+            "$opponent_name survives the pressure, finds the final counter, and takes the win from the edge of collapse.",
+            "$opponent_name wins by forcing $name into one exchange too many.",
+            "$opponent_name claims the last beat, turning the arena's chaos against $name.",
+            "$opponent_name takes the result, but $name leaves a clear combat signature behind."
+        );
+    }
+
+    $summary_line = trim((string) $summary);
+    if ($summary_line) {
+        $summary_line = ' Profile read: ' . sanitize_text_field($summary_line);
+    }
+
+    return implode(' ', array(
+        spark_battle_sim_cinematic_pick($openers, $seed . '|open'),
+        spark_battle_sim_cinematic_pick($clashes, $seed . '|clash'),
+        spark_battle_sim_cinematic_pick($turns, $seed . '|turn'),
+        spark_battle_sim_cinematic_pick($finishers, $seed . '|finish'),
+        $summary_line
+    ));
+}
+// DREAMOS_BATTLE_CINEMATICS_END
+
 // DREAMOS_CUSTOM_SPARK_BATTLE_REST_BEGIN lane 099
 add_action('rest_api_init', function () {
     register_rest_route('spark-battle/v1', '/custom-battle', array(
@@ -359,25 +487,14 @@ function spark_battle_sim_custom_battle_rest($request) {
 
     $winner = $custom_score >= $opponent_score ? $name : $opponent_name;
 
-    $arenas = array(
-        'storm-lit rooftop',
-        'broken training yard',
-        'neon transit platform',
-        'rain-slick alley',
-        'collapsed civic plaza',
-        'glass-walled command deck'
-    );
+    $archetype = isset($spark['archetype']) ? sanitize_text_field($spark['archetype']) : 'Spark Profile';
+    $summary = isset($spark['summary']) ? sanitize_textarea_field($spark['summary']) : '';
 
-    $arena_index = abs(crc32($name . '|' . $opponent_name)) % count($arenas);
-    $arena = $arenas[$arena_index];
-
-    $ability_line = $power_count
-        ? implode(', ', array_slice($powers, 0, 4))
-        : 'latent unresolved abilities';
-
-    $story = $name . ' enters the ' . $arena . ' against ' . $opponent_name . '. ';
-    $story .= 'The imported Spark profile expresses ' . $ability_line . ' without exposing backend scoring. ';
-    $story .= 'After the exchange resolves, ' . $winner . ' takes the advantage and wins the public simulation.';
+    $arena_data = spark_battle_sim_cinematic_arena($name, $opponent_name, $powers);
+    $arena = $arena_data['name'];
+    $story = spark_battle_sim_cinematic_story($name, $opponent_name, $archetype, $summary, $powers, $winner, $arena_data);
+    $cinematic_role = spark_battle_sim_cinematic_role($archetype, $powers);
+    $ability_line = spark_battle_sim_power_phrase($powers);
 
     return new WP_REST_Response(array(
         'status' => 'resolved',
@@ -385,6 +502,8 @@ function spark_battle_sim_custom_battle_rest($request) {
         'winner' => $winner,
         'arena' => $arena,
         'story' => $story,
+        'cinematic_role' => $cinematic_role,
+        'ability_showcase' => $ability_line,
         'player_safe' => true,
         'math_hidden' => true,
     ), 200);
