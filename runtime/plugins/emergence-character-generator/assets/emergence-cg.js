@@ -82,6 +82,82 @@
     }).join('');
   }
 
+  function buildProfileTone(payload) {
+    const powers = payload.powers || [];
+    const leadPower = powers.length ? powers[0].power : 'Latent Spark';
+    const cast = payload.cast || 'Unclassified Spark';
+
+    return {
+      codename: (payload.character_sheet && payload.character_sheet.title) || (leadPower + ' Spark'),
+      cast: cast,
+      leadPower: leadPower,
+      role: powers.length > 1 ? 'multi-vector combatant' : 'focused specialist',
+      hook: 'Your Spark does not reveal itself as a wish list. It emerges from pressure, instinct, and the choices you made when the system stopped showing you the key.',
+      fieldNote: 'This profile is ready for the next layer: arena conditions, matchup logic, and cinematic battle resolution.'
+    };
+  }
+
+  function renderCharacterProfile(finalPayload) {
+    const sheet = finalPayload.character_sheet || {};
+    const powers = finalPayload.powers || [];
+    const tone = buildProfileTone(finalPayload);
+    const selectedPowers = sheet.selected_powers || powers.map(function (p) { return p.power; });
+
+    const powerList = powers.map(function (p, index) {
+      return [
+        '<li>',
+        '<span class="ecg-power-rank">Power ' + esc(index + 1) + '</span>',
+        '<strong>' + esc(p.power) + '</strong>',
+        '<small>Tier ' + esc(p.tier) + ' affinity</small>',
+        '</li>'
+      ].join('');
+    }).join('');
+
+    result.innerHTML = [
+      '<article class="ecg-character-sheet ecg-profile-card">',
+      '<div class="ecg-profile-hero">',
+      '<p class="ecg-kicker">Spark Profile Generated</p>',
+      '<h2>' + esc(tone.codename) + '</h2>',
+      '<p class="ecg-profile-summary">' + esc(sheet.summary || tone.hook) + '</p>',
+      '</div>',
+
+      '<div class="ecg-profile-grid">',
+      '<section class="ecg-profile-panel">',
+      '<h3>Identity</h3>',
+      '<p><strong>Archetype:</strong> ' + esc(sheet.archetype || 'Unresolved Manifest') + '</p>',
+      '<p><strong>Cast:</strong> ' + esc(tone.cast) + '</p>',
+      '<p><strong>Combat Role:</strong> ' + esc(tone.role) + '</p>',
+      '</section>',
+
+      '<section class="ecg-profile-panel">',
+      '<h3>Combat Readiness</h3>',
+      '<p>' + esc(sheet.signature_line || 'Signature unresolved') + '</p>',
+      '<p>' + esc(sheet.battle_ready_note || tone.fieldNote) + '</p>',
+      '</section>',
+      '</div>',
+
+      '<section class="ecg-profile-panel ecg-profile-wide">',
+      '<h3>Manifested Abilities</h3>',
+      powers.length ? '<ul class="ecg-power-list">' + powerList + '</ul>' : '<p>No public powers selected yet.</p>',
+      '</section>',
+
+      '<section class="ecg-profile-panel ecg-profile-wide">',
+      '<h3>Story Hook</h3>',
+      '<p>' + esc(tone.hook) + '</p>',
+      '</section>',
+
+      '<div class="ecg-profile-actions">',
+      '<a href="/battle-simulator/" class="ecg-profile-cta">Use this Spark in Battle Simulator</a>',
+      '<button type="button" class="ecg-secondary-action" onclick="window.location.reload()">Generate Another Spark</button>',
+      '</div>',
+      '</article>'
+    ].join('');
+
+    flavorMount.dataset.phase = 'complete';
+    flavorMount.innerHTML = '';
+    result.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+
   function renderDomainResult(payload) {
     result.innerHTML = [
       '<h2>Pass 1 Complete: Spark Type Scan</h2>',
@@ -168,31 +244,7 @@
         });
 
         console.info('[EmergenceCG] flavor pass debug', debugSummary(finalPayload));
-        const sheet = finalPayload.character_sheet || {};
-        const selectedPowers = sheet.selected_powers || [];
-
-        result.innerHTML = [
-          '<article class="ecg-character-sheet">',
-          '<p class="ecg-kicker">Spark Profile</p>',
-          '<h2>' + esc(sheet.title || 'Unnamed Spark') + '</h2>',
-          '<p class="ecg-result-note">' + esc(sheet.summary || 'Profile summary unavailable.') + '</p>',
-          '<div class="ecg-card-grid">',
-          '<div class="ecg-card"><strong>Archetype</strong><br>' + esc(sheet.archetype || 'Unresolved') + '</div>',
-          '<div class="ecg-card"><strong>Signature Line</strong><br>' + esc(sheet.signature_line || 'Unresolved') + '</div>',
-          '<div class="ecg-card"><strong>Lead Domain</strong><br>' + esc(finalPayload.lead_domain || 'Unresolved') + '</div>',
-          '<div class="ecg-card"><strong>Cast</strong><br>' + esc(finalPayload.cast || 'Unresolved') + '</div>',
-          '</div>',
-          '<h3>Selected Powers</h3>',
-          '<p>' + selectedPowers.map(esc).join(', ') + '</p>',
-          '<div class="ecg-card-grid">' + powerCards(finalPayload) + '</div>',
-          '<h3>Battle Readiness</h3>',
-          '<p>' + esc(sheet.battle_ready_note || 'Ready for next layer.') + '</p>',
-          '</article>'
-        ].join('');
-
-        flavorMount.dataset.phase = 'complete';
-        flavorMount.innerHTML = '';
-        result.scrollIntoView({behavior: 'smooth', block: 'start'});
+        renderCharacterProfile(finalPayload);
       } catch (error) {
         result.innerHTML += '<p>Flavor error: ' + esc(error.message) + '</p>';
       }
