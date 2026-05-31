@@ -6,7 +6,6 @@
   const progressFill = document.getElementById('ecg-progress-fill');
 
   let lastDomainAnswers = [];
-  let lastDomainPayload = null;
 
   const flavorBlocks = {
     Titan: [29, 30, 31, 32, 33],
@@ -113,14 +112,14 @@
       '<h2>Pass 2: Flavor Power Selection</h2>',
       '<p>Only manifested domains get flavor questions. This keeps powers constrained to the type scan.</p>',
       blocks,
-      '<button type="submit">Select Powers</button>',
+      '<button type="submit">Generate Character Sheet</button>',
       '</form>'
     ].join('');
 
     const flavorForm = document.getElementById('emergence-cg-flavor-form');
     flavorForm.addEventListener('submit', async function (event) {
       event.preventDefault();
-      result.innerHTML += '<p>Running flavor pass...</p>';
+      result.innerHTML += '<p>Building character sheet...</p>';
 
       const data = new FormData(flavorForm);
       const flavorAnswers = {};
@@ -132,21 +131,28 @@
           flavor_answers: flavorAnswers
         });
 
+        const sheet = finalPayload.character_sheet || {};
+        const selectedPowers = sheet.selected_powers || [];
+
         result.innerHTML = [
-          '<h2>Your Spark Profile</h2>',
-          '<p class="ecg-result-note">Pass 2 is complete. Powers were selected only from manifested domains.</p>',
+          '<article class="ecg-character-sheet">',
+          '<p class="ecg-kicker">Spark Profile</p>',
+          '<h2>' + esc(sheet.title || 'Unnamed Spark') + '</h2>',
+          '<p class="ecg-result-note">' + esc(sheet.summary || 'Profile summary unavailable.') + '</p>',
           '<div class="ecg-card-grid">',
+          '<div class="ecg-card"><strong>Archetype</strong><br>' + esc(sheet.archetype || 'Unresolved') + '</div>',
+          '<div class="ecg-card"><strong>Signature Line</strong><br>' + esc(sheet.signature_line || 'Unresolved') + '</div>',
           '<div class="ecg-card"><strong>Lead Domain</strong><br>' + esc(finalPayload.lead_domain || 'Unresolved') + '</div>',
-          '<div class="ecg-card"><strong>Spark Signature</strong><br>' + esc(finalPayload.spark_signature) + '</div>',
-          '<div class="ecg-card"><strong>Combat Capability</strong><br>' + esc(finalPayload.combat_capability) + '</div>',
-          '<div class="ecg-card"><strong>Cast</strong><br>' + esc(finalPayload.cast) + '</div>',
+          '<div class="ecg-card"><strong>Cast</strong><br>' + esc(finalPayload.cast || 'Unresolved') + '</div>',
           '</div>',
-          '<h3>Manifested Domains</h3>',
-          '<p>' + (finalPayload.manifested || []).map(esc).join(', ') + '</p>',
           '<h3>Selected Powers</h3>',
+          '<p>' + selectedPowers.map(esc).join(', ') + '</p>',
           '<div class="ecg-card-grid">' + powerCards(finalPayload) + '</div>',
+          '<h3>Battle Readiness</h3>',
+          '<p>' + esc(sheet.battle_ready_note || 'Ready for next layer.') + '</p>',
           '<h3>Domain Scores</h3>',
-          '<div class="ecg-card-grid">' + scoreCards(finalPayload) + '</div>'
+          '<div class="ecg-card-grid">' + scoreCards(finalPayload) + '</div>',
+          '</article>'
         ].join('');
 
         flavorMount.innerHTML = '';
@@ -169,9 +175,9 @@
     for (const [, value] of data.entries()) lastDomainAnswers.push(value);
 
     try {
-      lastDomainPayload = await postGenerate({ answers: lastDomainAnswers });
-      renderDomainResult(lastDomainPayload);
-      renderFlavorForm(lastDomainPayload);
+      const domainPayload = await postGenerate({ answers: lastDomainAnswers });
+      renderDomainResult(domainPayload);
+      renderFlavorForm(domainPayload);
     } catch (error) {
       result.innerHTML = '<p>Generator error: ' + esc(error.message) + '</p>';
     }

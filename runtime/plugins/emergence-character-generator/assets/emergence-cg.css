@@ -88,3 +88,16 @@
 .ecg-flavor .ecg-explainer {
   border: 1px solid rgba(255,255,255,.16);
 }
+
+.ecg-character-sheet {
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+.ecg-character-sheet h2 {
+  margin-top: 0;
+  font-size: clamp(1.8rem, 5vw, 3.4rem);
+}

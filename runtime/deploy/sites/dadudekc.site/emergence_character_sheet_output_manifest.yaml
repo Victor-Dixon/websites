@@ -1,0 +1,23 @@
+version: 1
+name: emergence_character_sheet_output
+site: dadudekc.site
+status: deployed
+implemented:
+  - character_sheet_rest_payload
+  - readable_spark_profile_render
+  - selected_powers_summary
+  - battle_readiness_note
+verified:
+  domain_pass_no_powers: pass
+  flavor_pass_character_sheet: pass
+  duality_powers_only_fixture: pass
+  public_page_render: pass
+  public_js_asset: pass
+safety:
+  theme_deploy_enabled: false
+  old_theme_deploy_enabled: false
+next_allowed_actions:
+  - compute exact Step 9 Combat Capability spine
+  - add saved character records
+  - add shareable character permalink
+  - build Battle Simulator demo

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.3.0
+ * Version: 0.4.0
  * Author: Dream.OS
  */
 
@@ -350,6 +350,46 @@ function emergence_cg_domain_pass($answers) {
     );
 }
 
+
+function emergence_cg_character_sheet($payload) {
+    $lead = isset($payload['lead_domain']) ? $payload['lead_domain'] : 'Unresolved';
+    $powers = isset($payload['powers']) && is_array($payload['powers']) ? $payload['powers'] : array();
+    $manifested = isset($payload['manifested']) && is_array($payload['manifested']) ? $payload['manifested'] : array();
+    $shape = isset($payload['profile_shape']) ? $payload['profile_shape'] : 'Unresolved profile shape.';
+    $signature = isset($payload['spark_signature']) ? intval($payload['spark_signature']) : 0;
+    $combat = isset($payload['combat_capability']) ? intval($payload['combat_capability']) : 0;
+    $cast = isset($payload['cast']) ? $payload['cast'] : 'Unknown Cast';
+
+    $power_names = array();
+    foreach ($powers as $power) {
+        if (isset($power['power'])) {
+            $power_names[] = $power['power'];
+        }
+    }
+
+    $title = $lead . ' Spark';
+    if (count($power_names) > 0) {
+        $title = $lead . ' Spark — ' . $power_names[0];
+    }
+
+    $summary = 'A ' . $cast . ' profile led by ' . $lead . '. ' . $shape;
+    if (count($power_names) > 0) {
+        $summary .= ' The flavor pass selected ' . implode(', ', $power_names) . '.';
+    }
+
+    return array(
+        'title' => $title,
+        'archetype' => $lead . ' Manifest',
+        'summary' => $summary,
+        'manifested_domains' => $manifested,
+        'selected_powers' => $power_names,
+        'signature_line' => 'Spark Signature ' . $signature . ' / Combat Capability ' . $combat,
+        'battle_ready_note' => count($power_names) > 0
+            ? 'This sheet is ready to become battle-simulator input.'
+            : 'Power selection is incomplete until the flavor pass resolves.',
+    );
+}
+
 function emergence_cg_final_pass($domain_answers, $flavor_answers) {
     $base = emergence_cg_domain_pass($domain_answers);
     $manifested = $base['manifested'];
@@ -388,6 +428,7 @@ function emergence_cg_final_pass($domain_answers, $flavor_answers) {
         'name' => 'battle_simulator',
         'description' => 'Use selected powers as the input sheet for battle simulation.',
     );
+    $base['character_sheet'] = emergence_cg_character_sheet($base);
 
     return $base;
 }
@@ -499,8 +540,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.3.0');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.3.0', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.4.0');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.4.0', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
