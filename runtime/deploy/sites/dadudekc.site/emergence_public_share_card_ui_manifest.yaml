@@ -1,0 +1,34 @@
+version: 1
+name: emergence_public_share_card_ui
+site: dadudekc.site
+status: deployed
+implemented:
+  - saved_character_share_card
+  - reload_link_copy_button
+  - share_link_copy_button
+  - battle_link_copy_button
+  - battle_link_cta
+verified:
+  static_share_card_safe: pass
+  static_copy_ui_present: pass
+  remote_php_lint: pass
+  public_share_card_inline: pass
+  public_copy_ui_present: pass
+  public_share_card_no_raw_score_leak: pass
+  save_result_links: pass
+  save_result_reload_link: pass
+  save_result_battle_link: pass
+  save_result_no_raw_score_leak: pass
+safety:
+  raw_scores_visible: false
+  roll_visible: false
+  odds_visible: false
+  backend_math_hidden: true
+  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/public_share_card_ui_105_20260531_131901'
+urls:
+  character_generator: https://dadudekc.site/character-generator/
+  battles: https://dadudekc.site/battles/
+next_allowed_actions:
+  - improve_battle_story_cinematics
+  - saved_character_gallery
+  - premium_image_billing_retry

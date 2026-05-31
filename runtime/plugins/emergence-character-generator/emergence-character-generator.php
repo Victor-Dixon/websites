@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.6.6
+ * Version: 0.6.7
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.6');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.6', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.7');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.7', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.6');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.6', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.7');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.7', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -1576,3 +1576,242 @@ function emergence_cg_character_record_battle_token_rest($request) {
     ), 200);
 }
 // DREAMOS_SAVED_CHARACTER_RECORDS_END
+
+// DREAMOS_PUBLIC_SHARE_CARD_UI_BEGIN lane 105
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'emergence_character_generator')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-public-share-card-ui-inline">
+    (function () {
+      'use strict';
+
+      const STATUS_ID = 'ecg-battle-handoff-status-inline';
+      const CARD_CLASS = 'ecg-share-card';
+      const FORBIDDEN = [
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'debug',
+        'showwork',
+        'roll',
+        'odds',
+        'raw'
+      ];
+
+      function esc(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function noHiddenKeys(value) {
+        const serialized = String(value || '');
+        FORBIDDEN.forEach(function (key) {
+          if (serialized.indexOf(key) !== -1) {
+            throw new Error('Hidden key blocked from share card: ' + key);
+          }
+        });
+      }
+
+      function copyText(value, button) {
+        noHiddenKeys(value);
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(value).then(function () {
+            button.textContent = 'Copied';
+            setTimeout(function () { button.textContent = button.getAttribute('data-copy-label') || 'Copy'; }, 1400);
+          }).catch(function () {
+            fallbackCopy(value, button);
+          });
+          return;
+        }
+
+        fallbackCopy(value, button);
+      }
+
+      function fallbackCopy(value, button) {
+        const area = document.createElement('textarea');
+        area.value = value;
+        area.setAttribute('readonly', 'readonly');
+        area.style.position = 'fixed';
+        area.style.left = '-9999px';
+        document.body.appendChild(area);
+        area.select();
+        try {
+          document.execCommand('copy');
+          button.textContent = 'Copied';
+        } catch (error) {
+          button.textContent = 'Copy failed';
+        }
+        document.body.removeChild(area);
+        setTimeout(function () { button.textContent = button.getAttribute('data-copy-label') || 'Copy'; }, 1400);
+      }
+
+      function linkRow(label, href, copyLabel) {
+        noHiddenKeys(href);
+        return [
+          '<div class="ecg-share-card-row">',
+          '<div>',
+          '<span class="ecg-share-card-label">' + esc(label) + '</span>',
+          '<a href="' + esc(href) + '">' + esc(href) + '</a>',
+          '</div>',
+          '<button type="button" class="ecg-copy-link-button" data-copy-value="' + esc(href) + '" data-copy-label="' + esc(copyLabel) + '">' + esc(copyLabel) + '</button>',
+          '</div>'
+        ].join('');
+      }
+
+      function renderShareCard(links) {
+        return [
+          '<section class="' + CARD_CLASS + '" data-share-card="saved-character">',
+          '<p class="ecg-kicker">Saved Character</p>',
+          '<h3>Share / Reload / Battle Links</h3>',
+          '<p>Your Spark dossier was saved as a player-safe record. Use these links to reload the character or send it into battle.</p>',
+          linkRow('Reload Character', links.reload, 'Copy Reload Link'),
+          linkRow('Share Character', links.share, 'Copy Share Link'),
+          linkRow('Open in Battle Simulator', links.battle, 'Copy Battle Link'),
+          '<div class="ecg-share-card-actions">',
+          '<a class="ecg-share-card-cta" href="' + esc(links.reload) + '">Reload Character</a>',
+          '<a class="ecg-share-card-cta" href="' + esc(links.battle) + '">Open Battle Link</a>',
+          '</div>',
+          '</section>'
+        ].join('');
+      }
+
+      function extractLinks(status) {
+        const links = Array.from(status.querySelectorAll('a[href]')).map(function (a) {
+          return a.href;
+        });
+
+        const reload = links.find(function (href) { return href.indexOf('character_record=') !== -1 && href.indexOf('/character-generator/') !== -1; }) || '';
+        const battle = links.find(function (href) { return href.indexOf('character_record=') !== -1 && href.indexOf('/battles/') !== -1; }) || '';
+
+        if (!reload || !battle) {
+          return null;
+        }
+
+        return {
+          reload: reload,
+          share: reload,
+          battle: battle
+        };
+      }
+
+      function upgradeStatus() {
+        const status = document.getElementById(STATUS_ID);
+        if (!status || status.getAttribute('data-share-card-upgraded') === '1') {
+          return;
+        }
+
+        const links = extractLinks(status);
+        if (!links) {
+          return;
+        }
+
+        const html = renderShareCard(links);
+        noHiddenKeys(html);
+        status.innerHTML = html;
+        status.setAttribute('data-share-card-upgraded', '1');
+      }
+
+      document.addEventListener('click', function (event) {
+        const button = event.target && event.target.closest ? event.target.closest('.ecg-copy-link-button') : null;
+        if (!button) {
+          return;
+        }
+
+        copyText(button.getAttribute('data-copy-value') || '', button);
+      });
+
+      const observer = new MutationObserver(upgradeStatus);
+      document.addEventListener('DOMContentLoaded', function () {
+        const status = document.getElementById(STATUS_ID);
+        if (status) {
+          observer.observe(status, {childList: true, subtree: true, characterData: true});
+        }
+        upgradeStatus();
+      });
+
+      setInterval(upgradeStatus, 1000);
+      upgradeStatus();
+    })();
+    </script>
+    <style id="dreamos-public-share-card-ui-style">
+      .ecg-share-card {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 22px;
+        border: 1px solid rgba(255,255,255,.18);
+        background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+      }
+
+      .ecg-share-card h3 {
+        margin-top: .25rem;
+      }
+
+      .ecg-share-card-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: .75rem;
+        align-items: center;
+        margin: .75rem 0;
+        padding: .75rem;
+        border-radius: 16px;
+        background: rgba(0,0,0,.16);
+      }
+
+      .ecg-share-card-label {
+        display: block;
+        font-size: .78rem;
+        font-weight: 900;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        opacity: .75;
+        margin-bottom: .2rem;
+      }
+
+      .ecg-share-card-row a {
+        word-break: break-word;
+      }
+
+      .ecg-copy-link-button,
+      .ecg-share-card-cta {
+        border: 0;
+        border-radius: 999px;
+        padding: .72rem .95rem;
+        font-weight: 900;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .ecg-share-card-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .6rem;
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 680px) {
+        .ecg-share-card-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <?php
+});
+// DREAMOS_PUBLIC_SHARE_CARD_UI_END
