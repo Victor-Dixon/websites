@@ -49,6 +49,8 @@
         '</div>',
         '<h3>Manifested Domains</h3>',
         '<p>' + payload.manifested.map(esc).join(', ') + '</p>',
+        '<h3>Domain Scores</h3>',
+        '<p>' + Object.entries(payload.scores || {}).map(function (pair) { return esc(pair[0]) + ': ' + esc(pair[1]); }).join(' · ') + '</p>',
         '<h3>Powers</h3>',
         '<div class="ecg-card-grid">' + powers + '</div>'
       ].join('');

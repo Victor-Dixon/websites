@@ -1,0 +1,990 @@
+{
+  "version": "spark_protocol_v8_5_domain_generation",
+  "domains": [
+    "Titan",
+    "Velocity",
+    "Energy",
+    "Specter",
+    "Duality",
+    "Omni",
+    "Primal",
+    "Mind"
+  ],
+  "domain_key": {
+    "1": {
+      "A": [
+        "Omni",
+        1
+      ],
+      "B": [
+        "Energy",
+        1
+      ],
+      "C": [
+        "Velocity",
+        1
+      ],
+      "D": [
+        "Titan",
+        2
+      ],
+      "E": [
+        "Primal",
+        1
+      ],
+      "F": [
+        "Specter",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "2": {
+      "A": [
+        "Titan",
+        1
+      ],
+      "B": [
+        "Energy",
+        1
+      ],
+      "C": [
+        "Omni",
+        1
+      ],
+      "D": [
+        "Velocity",
+        2
+      ],
+      "E": [
+        "Specter",
+        1
+      ],
+      "F": [
+        "Primal",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "3": {
+      "A": [
+        "Specter",
+        1
+      ],
+      "B": [
+        "Energy",
+        2
+      ],
+      "C": [
+        "Titan",
+        1
+      ],
+      "D": [
+        "Primal",
+        1
+      ],
+      "E": [
+        "Omni",
+        1
+      ],
+      "F": [
+        "Velocity",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "4": {
+      "A": [
+        "Primal",
+        1
+      ],
+      "B": [
+        "Energy",
+        1
+      ],
+      "C": [
+        "Titan",
+        1
+      ],
+      "D": [
+        "Omni",
+        1
+      ],
+      "E": [
+        "Velocity",
+        1
+      ],
+      "F": [
+        "Specter",
+        2
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "5": {
+      "A": [
+        "Velocity",
+        1
+      ],
+      "B": [
+        "Titan",
+        1
+      ],
+      "C": [
+        "Omni",
+        2
+      ],
+      "D": [
+        "Energy",
+        1
+      ],
+      "E": [
+        "Primal",
+        1
+      ],
+      "F": [
+        "Specter",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "6": {
+      "A": [
+        "Titan",
+        1
+      ],
+      "B": [
+        "Primal",
+        2
+      ],
+      "C": [
+        "Specter",
+        1
+      ],
+      "D": [
+        "Velocity",
+        1
+      ],
+      "E": [
+        "Energy",
+        1
+      ],
+      "F": [
+        "Omni",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "7": {
+      "A": [
+        "Titan",
+        1
+      ],
+      "B": [
+        "Specter",
+        1
+      ],
+      "C": [
+        "Energy",
+        1
+      ],
+      "D": [
+        "Omni",
+        1
+      ],
+      "E": [
+        "Primal",
+        1
+      ],
+      "F": [
+        "Velocity",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        2
+      ]
+    },
+    "8": {
+      "A": [
+        "Omni",
+        1
+      ],
+      "B": [
+        "Velocity",
+        1
+      ],
+      "C": [
+        "Specter",
+        1
+      ],
+      "D": [
+        "Titan",
+        1
+      ],
+      "E": [
+        "Primal",
+        1
+      ],
+      "F": [
+        "Energy",
+        1
+      ],
+      "G": [
+        "Mind",
+        2
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "9": {
+      "A": [
+        "Energy",
+        1
+      ],
+      "B": [
+        "Titan",
+        1
+      ],
+      "C": [
+        "Omni",
+        1
+      ],
+      "D": [
+        "Velocity",
+        1
+      ],
+      "E": [
+        "Specter",
+        1
+      ],
+      "F": [
+        "Primal",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "10": {
+      "A": [
+        "Energy",
+        1
+      ],
+      "B": [
+        "Primal",
+        1
+      ],
+      "C": [
+        "Velocity",
+        1
+      ],
+      "D": [
+        "Specter",
+        1
+      ],
+      "E": [
+        "Omni",
+        1
+      ],
+      "F": [
+        "Titan",
+        2
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "11": {
+      "A": [
+        "Velocity",
+        2
+      ],
+      "B": [
+        "Omni",
+        1
+      ],
+      "C": [
+        "Titan",
+        1
+      ],
+      "D": [
+        "Specter",
+        1
+      ],
+      "E": [
+        "Primal",
+        1
+      ],
+      "F": [
+        "Energy",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "12": {
+      "A": [
+        "Titan",
+        1
+      ],
+      "B": [
+        "Omni",
+        1
+      ],
+      "C": [
+        "Primal",
+        1
+      ],
+      "D": [
+        "Energy",
+        2
+      ],
+      "E": [
+        "Velocity",
+        1
+      ],
+      "F": [
+        "Specter",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "13": {
+      "A": [
+        "Primal",
+        1
+      ],
+      "B": [
+        "Specter",
+        2
+      ],
+      "C": [
+        "Energy",
+        1
+      ],
+      "D": [
+        "Omni",
+        1
+      ],
+      "E": [
+        "Titan",
+        1
+      ],
+      "F": [
+        "Velocity",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "14": {
+      "A": [
+        "Primal",
+        1
+      ],
+      "B": [
+        "Titan",
+        1
+      ],
+      "C": [
+        "Omni",
+        2
+      ],
+      "D": [
+        "Velocity",
+        1
+      ],
+      "E": [
+        "Energy",
+        1
+      ],
+      "F": [
+        "Specter",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "15": {
+      "A": [
+        "Energy",
+        1
+      ],
+      "B": [
+        "Specter",
+        1
+      ],
+      "C": [
+        "Velocity",
+        1
+      ],
+      "D": [
+        "Titan",
+        1
+      ],
+      "E": [
+        "Omni",
+        1
+      ],
+      "F": [
+        "Primal",
+        2
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "16": {
+      "A": [
+        "Velocity",
+        1
+      ],
+      "B": [
+        "Energy",
+        1
+      ],
+      "C": [
+        "Titan",
+        1
+      ],
+      "D": [
+        "Specter",
+        1
+      ],
+      "E": [
+        "Primal",
+        1
+      ],
+      "F": [
+        "Omni",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        2
+      ]
+    },
+    "17": {
+      "A": [
+        "Primal",
+        1
+      ],
+      "B": [
+        "Velocity",
+        1
+      ],
+      "C": [
+        "Specter",
+        1
+      ],
+      "D": [
+        "Omni",
+        1
+      ],
+      "E": [
+        "Titan",
+        1
+      ],
+      "F": [
+        "Energy",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "18": {
+      "A": [
+        "Primal",
+        1
+      ],
+      "B": [
+        "Energy",
+        1
+      ],
+      "C": [
+        "Velocity",
+        1
+      ],
+      "D": [
+        "Titan",
+        1
+      ],
+      "E": [
+        "Omni",
+        1
+      ],
+      "F": [
+        "Specter",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "19": {
+      "A": [
+        "Titan",
+        1
+      ],
+      "B": [
+        "Specter",
+        1
+      ],
+      "C": [
+        "Velocity",
+        1
+      ],
+      "D": [
+        "Energy",
+        1
+      ],
+      "E": [
+        "Omni",
+        1
+      ],
+      "F": [
+        "Primal",
+        1
+      ],
+      "G": [
+        "Mind",
+        2
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "20": {
+      "A": [
+        "Energy",
+        1
+      ],
+      "B": [
+        "Omni",
+        1
+      ],
+      "C": [
+        "Specter",
+        1
+      ],
+      "D": [
+        "Titan",
+        2
+      ],
+      "E": [
+        "Primal",
+        1
+      ],
+      "F": [
+        "Velocity",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "21": {
+      "A": [
+        "Specter",
+        1
+      ],
+      "B": [
+        "Primal",
+        1
+      ],
+      "C": [
+        "Titan",
+        1
+      ],
+      "D": [
+        "Energy",
+        1
+      ],
+      "E": [
+        "Omni",
+        1
+      ],
+      "F": [
+        "Velocity",
+        2
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "22": {
+      "A": [
+        "Omni",
+        1
+      ],
+      "B": [
+        "Velocity",
+        1
+      ],
+      "C": [
+        "Specter",
+        1
+      ],
+      "D": [
+        "Titan",
+        1
+      ],
+      "E": [
+        "Energy",
+        2
+      ],
+      "F": [
+        "Primal",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "23": {
+      "A": [
+        "Omni",
+        1
+      ],
+      "B": [
+        "Primal",
+        1
+      ],
+      "C": [
+        "Energy",
+        1
+      ],
+      "D": [
+        "Velocity",
+        1
+      ],
+      "E": [
+        "Specter",
+        2
+      ],
+      "F": [
+        "Titan",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "24": {
+      "A": [
+        "Energy",
+        1
+      ],
+      "B": [
+        "Omni",
+        2
+      ],
+      "C": [
+        "Specter",
+        1
+      ],
+      "D": [
+        "Velocity",
+        1
+      ],
+      "E": [
+        "Primal",
+        1
+      ],
+      "F": [
+        "Titan",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "25": {
+      "A": [
+        "Velocity",
+        1
+      ],
+      "B": [
+        "Omni",
+        1
+      ],
+      "C": [
+        "Specter",
+        1
+      ],
+      "D": [
+        "Titan",
+        1
+      ],
+      "E": [
+        "Primal",
+        2
+      ],
+      "F": [
+        "Energy",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "26": {
+      "A": [
+        "Energy",
+        1
+      ],
+      "B": [
+        "Titan",
+        1
+      ],
+      "C": [
+        "Velocity",
+        1
+      ],
+      "D": [
+        "Primal",
+        1
+      ],
+      "E": [
+        "Omni",
+        1
+      ],
+      "F": [
+        "Specter",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        2
+      ]
+    },
+    "27": {
+      "A": [
+        "Omni",
+        1
+      ],
+      "B": [
+        "Primal",
+        1
+      ],
+      "C": [
+        "Titan",
+        1
+      ],
+      "D": [
+        "Energy",
+        1
+      ],
+      "E": [
+        "Velocity",
+        1
+      ],
+      "F": [
+        "Specter",
+        1
+      ],
+      "G": [
+        "Mind",
+        1
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    },
+    "28": {
+      "A": [
+        "Omni",
+        1
+      ],
+      "B": [
+        "Velocity",
+        1
+      ],
+      "C": [
+        "Primal",
+        1
+      ],
+      "D": [
+        "Titan",
+        1
+      ],
+      "E": [
+        "Energy",
+        1
+      ],
+      "F": [
+        "Specter",
+        1
+      ],
+      "G": [
+        "Mind",
+        2
+      ],
+      "H": [
+        "Duality",
+        1
+      ]
+    }
+  },
+  "tier_map": [
+    {
+      "max": 5,
+      "tier": 1
+    },
+    {
+      "max": 12,
+      "tier": 2
+    },
+    {
+      "max": 18,
+      "tier": 3
+    },
+    {
+      "max": 27,
+      "tier": 4
+    },
+    {
+      "max": 31,
+      "tier": 5
+    }
+  ],
+  "manifest_gate": 0.25
+}
