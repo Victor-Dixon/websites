@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.4.2
+ * Version: 0.5.0
  * Author: Dream.OS
  */
 
@@ -27,6 +27,21 @@ function emergence_cg_protocol_data() {
     $decoded = json_decode(file_get_contents($path), true);
     $data = is_array($decoded) ? $decoded : array();
     return $data;
+}
+
+
+function emergence_cg_question_bank() {
+    $path = plugin_dir_path(__FILE__) . 'assets/protocol-v85-question-bank.json';
+    if (!file_exists($path)) {
+        return array('domain_questions' => array(), 'flavor_questions' => array());
+    }
+
+    $decoded = json_decode(file_get_contents($path), true);
+    if (!is_array($decoded)) {
+        return array('domain_questions' => array(), 'flavor_questions' => array());
+    }
+
+    return $decoded;
 }
 
 function emergence_cg_domains() {
@@ -441,100 +456,23 @@ function emergence_cg_generate($domain_answers, $flavor_answers = null) {
 }
 
 function emergence_cg_domain_option_label($q, $letter) {
-    $labels = array(
-        1 => array(
-            'A' => 'Step back and read the whole field.',
-            'B' => 'Strike first before hesitation spreads.',
-            'C' => 'Move before anyone understands the threat.',
-            'D' => 'Hold the line no matter what hits you.',
-            'E' => 'Adapt faster than the danger can evolve.',
-            'F' => 'Vanish from the obvious path.',
-            'G' => 'Find the thought behind the attack.',
-            'H' => 'Split the problem into two opposing truths.',
-        ),
-        2 => array(
-            'A' => 'Pull the situation into order.',
-            'B' => 'Let pressure become your language.',
-            'C' => 'Trust speed over certainty.',
-            'D' => 'Become the thing that cannot be moved.',
-            'E' => 'Change shape around the obstacle.',
-            'F' => 'Slip through the gap nobody watches.',
-            'G' => 'Win by understanding intent.',
-            'H' => 'Use contradiction as leverage.',
-        ),
-        3 => array(
-            'A' => 'Make yourself hard to locate.',
-            'B' => 'Release what you have been holding back.',
-            'C' => 'Meet force with force.',
-            'D' => 'Survive by becoming unfamiliar.',
-            'E' => 'Control the variables around you.',
-            'F' => 'Outpace the consequence.',
-            'G' => 'Turn perception into a weapon.',
-            'H' => 'Let two instincts coexist.',
-        ),
-        4 => array(
-            'A' => 'Follow the oldest instinct in the room.',
-            'B' => 'Burn through the stalemate.',
-            'C' => 'Take the hit and keep moving.',
-            'D' => 'Bend the field around your will.',
-            'E' => 'Exploit the narrow opening.',
-            'F' => 'Become impossible to pin down.',
-            'G' => 'Listen for the hidden pattern.',
-            'H' => 'Hold both answers at once.',
-        ),
-    );
-
-    $fallback = array(
-        'A' => 'Choose the path that controls the field.',
-        'B' => 'Choose the path that releases pressure.',
-        'C' => 'Choose the path that moves first.',
-        'D' => 'Choose the path that refuses to break.',
-        'E' => 'Choose the path that adapts.',
-        'F' => 'Choose the path that disappears.',
-        'G' => 'Choose the path that understands.',
-        'H' => 'Choose the path that divides and mirrors.',
-    );
-
-    $bucket = (($q - 1) % 4) + 1;
-    if (isset($labels[$bucket][$letter])) {
-        return $letter . ' — ' . $labels[$bucket][$letter];
+    $bank = emergence_cg_question_bank();
+    if (!isset($bank['domain_questions']) || !is_array($bank['domain_questions'])) {
+        return $letter;
     }
 
-    return isset($fallback[$letter]) ? $letter . ' — ' . $fallback[$letter] : $letter;
+    foreach ($bank['domain_questions'] as $item) {
+        if (intval($item['q']) === intval($q) && isset($item['options'][$letter])) {
+            return $letter . '. ' . $item['options'][$letter];
+        }
+    }
+
+    return $letter;
 }
 
 function emergence_cg_shortcode() {
-    $questions = array(
-        'When danger arrives first, what instinct takes over?',
-        'What kind of power would feel natural in your hands?',
-        'How do you win when the odds are unfair?',
-        'What would enemies misunderstand about you?',
-        'What part of you refuses to break?',
-        'How do you move through a hostile world?',
-        'What kind of battlefield gives you the advantage?',
-        'What do you become when you stop holding back?',
-        'What kind of ally would trust you most?',
-        'What kind of enemy would fear you most?',
-        'What do you protect first?',
-        'What kind of sacrifice would you accept?',
-        'How do you recover from defeat?',
-        'What kind of legend follows you?',
-        'What would your power look like from a distance?',
-        'What would your power feel like up close?',
-        'How do you handle chaos?',
-        'How do you handle control?',
-        'What kind of secret would your origin hide?',
-        'What kind of weakness keeps you human?',
-        'What makes your victories dangerous?',
-        'What makes your losses meaningful?',
-        'What kind of arena changes everything?',
-        'What do you do when the fight becomes personal?',
-        'What kind of upgrade would tempt you?',
-        'What part of your power should never be pushed too far?',
-        'What does your Spark want?',
-        'What does your Spark cost?'
-    );
-
+    $bank = emergence_cg_question_bank();
+    $questions = isset($bank['domain_questions']) && is_array($bank['domain_questions']) ? $bank['domain_questions'] : array();
     $letters = array('A','B','C','D','E','F','G','H');
 
     ob_start();
@@ -545,18 +483,17 @@ function emergence_cg_shortcode() {
             <h1>Run your Spark Type Scan</h1>
             <p class="ecg-thesis">The Emergence began as a machine for answering “Who would win?” and evolved into a world where the answer could include you.</p>
             <div class="ecg-trust-row">
-                <span>Deterministic scoring</span>
-                <span>28-question domain table</span>
-                <span>Answers are disguised; scoring stays deterministic</span>
-                <span>25% manifest gate</span>
-                <span>Flavor pass unlocks powers</span>
+                <span>Protocol v8.5 questions loaded</span>
+                <span>Deterministic scoring hidden underneath</span>
+                <span>28-question Spark Type Scan</span>
+                <span>Manifested-domain flavor pass</span>
             </div>
         </div>
 
         <div class="ecg-explainer">
             <h2>Two-pass generation</h2>
-            <p><strong>Pass 1:</strong> Q1-Q28 scores your Spark domains. Every answer maps to one hidden domain score. The choice text is narrative; the scoring remains deterministic.</p>
-            <p><strong>Pass 2:</strong> Q29-Q68 appears only for manifested domains and uses disguised flavor choices before selecting powers.</p>
+            <p><strong>Pass 1:</strong> Answer the real Protocol v8.5 domain questions. The labels are psychological choices, not visible trait keys.</p>
+            <p><strong>Pass 2:</strong> Only manifested domains unlock their Protocol v8.5 flavor questions.</p>
         </div>
 
         <form id="emergence-cg-form" class="ecg-form">
@@ -565,19 +502,22 @@ function emergence_cg_shortcode() {
                 <div class="ecg-progress-bar"><span id="ecg-progress-fill"></span></div>
             </div>
 
-            <?php for ($i = 1; $i <= 28; $i++) : ?>
+            <?php foreach ($questions as $item) : ?>
+                <?php $i = intval($item['q']); ?>
                 <fieldset class="ecg-question">
-                    <legend><?php echo esc_html('Q' . $i . ' — ' . $questions[$i - 1]); ?></legend>
+                    <legend><?php echo esc_html('Q' . $i . ' — ' . $item['question']); ?></legend>
                     <select name="q<?php echo esc_attr($i); ?>" required>
                         <option value="">Choose one...</option>
                         <?php foreach ($letters as $letter) : ?>
-                            <option value="<?php echo esc_attr($letter); ?>">
-                                <?php echo esc_html(emergence_cg_domain_option_label($i, $letter)); ?>
-                            </option>
+                            <?php if (isset($item['options'][$letter])) : ?>
+                                <option value="<?php echo esc_attr($letter); ?>">
+                                    <?php echo esc_html($letter . '. ' . $item['options'][$letter]); ?>
+                                </option>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </select>
                 </fieldset>
-            <?php endfor; ?>
+            <?php endforeach; ?>
 
             <button type="submit">Run Spark Type Scan</button>
         </form>
@@ -595,12 +535,13 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.4.2');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.4.2', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.5.0');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.5.0', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
         'nonce' => wp_create_nonce('wp_rest'),
+        'question_bank' => emergence_cg_question_bank(),
     ));
 }
 

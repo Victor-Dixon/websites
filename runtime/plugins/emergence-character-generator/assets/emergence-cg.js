@@ -18,55 +18,8 @@
     Mind: [64, 65, 66, 67, 68]
   };
 
-  const flavorOptions = {
-    29:{A:'Let nothing move you.',B:'Become heavier than the threat.',C:'Take up more space.',D:'Bend without breaking.',E:'Keep advancing.',F:'Answer force with force.'},
-    30:{A:'Break the obstacle.',B:'Rise above it.',C:'Stretch past the limit.',D:'Absorb the impact.',E:'Anchor yourself.',F:'Become unstoppable.'},
-    31:{A:'Overpower the lock.',B:'Ignore the damage.',C:'Tower over the field.',D:'Reach farther.',E:'Crash through.',F:'Condense your will.'},
-    32:{A:'Refuse the wound.',B:'Hold your shape.',C:'Flex around danger.',D:'Grow into the answer.',E:'Never lose momentum.',F:'Push back harder.'},
-    33:{A:'Lift the impossible.',B:'Become enormous.',C:'Slip the bind.',D:'Keep charging.',E:'Take the hit.',F:'Stand immovable.'},
-
-    34:{A:'Arrive before fear does.',B:'Leave the ground behind.',C:'React before thought.',D:'Feel the danger early.',E:'Cling to impossible angles.',F:'Blur through resistance.'},
-    35:{A:'Let instinct fire first.',B:'Rise out of reach.',C:'Sense the wrongness.',D:'Cross the gap instantly.',E:'Use the wall as a road.',F:'Shake through the lock.'},
-    36:{A:'Move like a rumor.',B:'Take the sky route.',C:'Trust your nerves.',D:'Notice the trap.',E:'Hold the vertical path.',F:'Vibrate past the barrier.'},
-    37:{A:'Turn distance into nothing.',B:'Lift away from the fight.',C:'Beat the strike by a breath.',D:'Hear danger before it speaks.',E:'Find purchase anywhere.',F:'Phase through pressure.'},
-    38:{A:'Be gone before impact.',B:'Float above the answer.',C:'Let reflex decide.',D:'Respect the warning.',E:'Stick the landing anywhere.',F:'Shake loose.'},
-
-    39:{A:'Let heat answer.',B:'Make cold precise.',C:'Release a focused hit.',D:'Call the current.',E:'Weaponize sound.',F:'Move with the tide.'},
-    40:{A:'Burn the path open.',B:'Freeze the moment.',C:'Strike from the core.',D:'Shatter with voice.',E:'Flow around the line.',F:'Charge the air.'},
-    41:{A:'Hit clean and direct.',B:'Ignite the pressure.',C:'Lower the temperature.',D:'Arc through the target.',E:'Break rhythm with sound.',F:'Pull water into motion.'},
-    42:{A:'Turn anger into flame.',B:'Make stillness dangerous.',C:'Push energy outward.',D:'Let lightning choose.',E:'Scream the field apart.',F:'Drown the opening.'},
-    43:{A:'Spark the fuse.',B:'Punch the air itself.',C:'Lock everything in frost.',D:'Conduct the storm.',E:'Make sound physical.',F:'Shape the current.'},
-
-    44:{A:'Open a way through.',B:'Let the strike pass.',C:'Disappear from sight.',D:'Become smaller than the problem.',E:'Notice what others miss.',F:'Step elsewhere.'},
-    45:{A:'Hear the hidden movement.',B:'Leave no visible target.',C:'Change location instantly.',D:'Create an exit.',E:'Shrink the risk.',F:'Pass through.'},
-    46:{A:'Become untouchable.',B:'Choose a new position.',C:'Reduce your profile.',D:'Leave the eye behind.',E:'Read the room sharply.',F:'Fold distance.'},
-    47:{A:'Let matter fail to hold you.',B:'Make yourself hard to catch.',C:'Fade from the obvious view.',D:'Cut a doorway.',E:'Track the unseen.',F:'Blink away.'},
-    48:{A:'Slip through the hit.',B:'Become overlooked.',C:'Open the threshold.',D:'Sense the hidden path.',E:'Move without crossing.',F:'Erase your outline.'},
-
-    49:{A:'Choose the bright edge.',B:'Take in what is thrown at you.',C:'Answer with darkness.',D:'Poison the opening.',E:'Reach into the absence.',F:'Shape light into form.'},
-    50:{A:'Feed on the impact.',B:'Let the wound contaminate.',C:'Grip the empty place.',D:'Build the solid illusion.',E:'Cut with brightness.',F:'Hide inside shadow.'},
-    51:{A:'Let darkness obey.',B:'Make danger infectious.',C:'Pull from the void.',D:'Make light solid.',E:'Focus the beam.',F:'Drink the force.'},
-    52:{A:'Make the air unsafe.',B:'Use the gap between things.',C:'Construct from radiance.',D:'Draw the sharp line.',E:'Turn attacks into fuel.',F:'Move the dark.'},
-    53:{A:'Reach where nothing should be.',B:'Hold the light still.',C:'Burn a precise path.',D:'Absorb the answer.',E:'Let shadow take shape.',F:'Leave poison behind.'},
-
-    54:{A:'Raise the barrier.',B:'Repair the damage.',C:'Pull the field downward.',D:'Draw metal and motion.',E:'Become more than one.',F:'Redirect the hit.'},
-    55:{A:'Protect the boundary.',B:'Close the wound.',C:'Change the weight of things.',D:'Steal the motion.',E:'Command attraction.',F:'Split your presence.'},
-    56:{A:'Multiply the problem.',B:'Bend the fall.',C:'Turn force aside.',D:'Wall off the danger.',E:'Pull the weapon away.',F:'Recover faster.'},
-    57:{A:'Heal through the cost.',B:'Make gravity speak.',C:'Hold the line with a shield.',D:'Call the metal home.',E:'Divide your attention into bodies.',F:'Catch the impact.'},
-    58:{A:'Put a wall between worlds.',B:'Become many angles.',C:'Regrow the lost ground.',D:'Shift the center of mass.',E:'Turn movement into control.',F:'Command the field.'},
-
-    59:{A:'Wear the beast.',B:'Ask the wild for help.',C:'Change to survive.',D:'Let the sky answer.',E:'Influence the living room.',F:'Become something else.'},
-    60:{A:'Adapt under pressure.',B:'Call the weather down.',C:'Take the animal path.',D:'Change the mood of the crowd.',E:'Alter your body.',F:'Grow through the earth.'},
-    61:{A:'Evolve on contact.',B:'Let roots decide.',C:'Borrow the predator.',D:'Rewrite your shape.',E:'Sway the instinct.',F:'Move the storm.'},
-    62:{A:'Let nature reclaim the fight.',B:'Command attraction and alarm.',C:'Take a creature form.',D:'Turn climate into leverage.',E:'Survive by changing.',F:'Shift your skin.'},
-    63:{A:'Become the answer.',B:'Let the green world rise.',C:'Mutate past the limit.',D:'Change what others feel.',E:'Run with animal memory.',F:'Summon weather.'},
-
-    64:{A:'Hear the thought.',B:'Make the false image real enough.',C:'Attack the mind directly.',D:'Shield the self.',E:'Move without touching.',F:'Guide another will.'},
-    65:{A:'Listen beneath words.',B:'Take the wheel gently.',C:'Defend the inner gate.',D:'Lift with thought.',E:'Show them what is not there.',F:'Strike behind the eyes.'},
-    66:{A:'Pressure the psyche.',B:'Bend perception.',C:'Command the decision.',D:'Move matter with focus.',E:'Reach mind to mind.',F:'Hold your mind intact.'},
-    67:{A:'Turn choice into suggestion.',B:'Build the illusion.',C:'Hit the unseen self.',D:'Read the signal.',E:'Push the object from afar.',F:'Keep the psychic wall.'},
-    68:{A:'Influence the hand.',B:'Guard the mind.',C:'Rewrite the scene.',D:'Speak without sound.',E:'Strike through thought.',F:'Lift the impossible silently.'}
-  };
+  const questionBank = (window.EmergenceCG && window.EmergenceCG.question_bank) || {};
+  const flavorQuestions = questionBank.flavor_questions || [];
 
   if (!form || !result || !window.EmergenceCG) return;
 
@@ -74,6 +27,10 @@
     return String(value).replace(/[&<>"']/g, function (ch) {
       return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[ch];
     });
+  }
+
+  function flavorQuestion(q) {
+    return flavorQuestions.find((item) => Number(item.q) === Number(q)) || null;
   }
 
   function updateProgress() {
@@ -132,29 +89,31 @@
     const blocks = manifested.map(function (domain) {
       const qs = flavorBlocks[domain] || [];
       const fields = qs.map(function (q) {
-        const opts = flavorOptions[q] || {};
+        const fq = flavorQuestion(q);
+        const opts = (fq && fq.options) || {};
+        const question = fq ? fq.question : (domain + ' flavor choice');
+
         return [
           '<fieldset class="ecg-question">',
-          '<legend>Q' + q + ' — ' + esc(domain) + ' flavor choice</legend>',
+          '<legend>Q' + q + ' — ' + esc(question) + '</legend>',
           '<select name="' + q + '" required>',
           '<option value="">Choose one...</option>',
-          '<option value="A">A — ' + esc(opts.A || 'Option A') + '</option>',
-          '<option value="B">B — ' + esc(opts.B || 'Option B') + '</option>',
-          '<option value="C">C — ' + esc(opts.C || 'Option C') + '</option>',
-          '<option value="D">D — ' + esc(opts.D || 'Option D') + '</option>',
-          '<option value="E">E — ' + esc(opts.E || 'Option E') + '</option>',
-          '<option value="F">F — ' + esc(opts.F || 'Option F') + '</option>',
+          ['A','B','C','D','E','F'].map(function (letter) {
+            if (!opts[letter]) return '';
+            return '<option value="' + letter + '">' + letter + '. ' + esc(opts[letter]) + '</option>';
+          }).join(''),
           '</select>',
           '</fieldset>'
         ].join('');
       }).join('');
+
       return '<div class="ecg-explainer"><h2>' + esc(domain) + ' Flavor Block</h2>' + fields + '</div>';
     }).join('');
 
     flavorMount.innerHTML = [
       '<form id="emergence-cg-flavor-form" class="ecg-form">',
       '<h2>Pass 2: Flavor Power Selection</h2>',
-      '<p>Only manifested domains get flavor questions. The options are disguised, but each one still pushes toward a specific power.</p>',
+      '<p>Only manifested domains get their Protocol v8.5 flavor questions.</p>',
       blocks,
       '<button type="submit">Generate Character Sheet</button>',
       '</form>'
@@ -194,6 +153,7 @@
           '<div class="ecg-card-grid">' + scoreCards(finalPayload) + '</div>',
           '</article>'
         ].join('');
+
         flavorMount.innerHTML = '';
       } catch (error) {
         result.innerHTML += '<p>Flavor error: ' + esc(error.message) + '</p>';
