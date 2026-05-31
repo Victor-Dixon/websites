@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.6.1
+ * Version: 0.6.4
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.1');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.1', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.4');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.4', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -914,3 +914,179 @@ add_action('rest_api_init', function () {
     ));
 });
 // DREAMOS_OPENAI_IMAGE_PROVIDER_V2_END
+
+// dreamos-cg-handoff-public-asset-guard lane 098d
+add_action('wp_enqueue_scripts', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'emergence_character_generator')) {
+        return;
+    }
+
+    $base = plugin_dir_url(__FILE__) . 'assets/';
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.4');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.4', true);
+});
+
+// DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'emergence_character_generator')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-cg-battle-handoff-inline">
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'emergence_spark_battle_handoff_v1';
+      const FORBIDDEN = [
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'debug',
+        'showwork',
+        'roll',
+        'odds'
+      ];
+
+      function text(sel, root) {
+        const node = (root || document).querySelector(sel);
+        return node ? node.textContent.trim() : '';
+      }
+
+      function listText(sel, root) {
+        return Array.from((root || document).querySelectorAll(sel))
+          .map(function (node) { return node.textContent.trim(); })
+          .filter(Boolean);
+      }
+
+      function safePayloadFromDossier() {
+        const resultRoot =
+          document.querySelector('.ecg-profile-card') ||
+          document.querySelector('.ecg-profile-panel') ||
+          document.querySelector('[data-render="deterministic-svg"]') ||
+          document.body;
+
+        const title =
+          text('.ecg-profile-card h1', resultRoot) ||
+          text('.ecg-profile-card h2', resultRoot) ||
+          text('h1', resultRoot) ||
+          'Unnamed Spark';
+
+        const archetype =
+          text('.ecg-profile-card h3', resultRoot) ||
+          text('strong', resultRoot) ||
+          'Spark Profile';
+
+        const abilities = listText('li', resultRoot).slice(0, 12).map(function (ability, index) {
+          return {
+            power: ability,
+            domain: '',
+            lead: index === 0
+          };
+        });
+
+        const payload = {
+          version: 1,
+          source: 'emergence-character-generator',
+          created_at: new Date().toISOString(),
+          spark_name: title,
+          title: title,
+          archetype: archetype,
+          summary: text('p', resultRoot),
+          cast: '',
+          profile_shape: '',
+          selected_powers: abilities,
+          battle_ready_note: 'Player-safe Spark dossier exported for battle simulation.'
+        };
+
+        const serialized = JSON.stringify(payload);
+        FORBIDDEN.forEach(function (key) {
+          if (serialized.indexOf(key) !== -1) {
+            throw new Error('Unsafe handoff payload contains hidden key: ' + key);
+          }
+        });
+
+        return payload;
+      }
+
+      function ensureButton() {
+        const anchor =
+          document.querySelector('.ecg-premium-prompt-panel') ||
+          document.querySelector('.ecg-profile-card') ||
+          document.querySelector('[data-render="deterministic-svg"]');
+
+        if (!anchor || document.getElementById('ecg-export-to-battle-inline')) {
+          return;
+        }
+
+        const panel = document.createElement('section');
+        panel.className = 'ecg-profile-panel ecg-battle-handoff-panel';
+        panel.innerHTML = [
+          '<p class="ecg-kicker">Battle Ready</p>',
+          '<h3>Use this Spark in Battle Simulator</h3>',
+          '<p>Export a player-safe dossier into the battle simulator. Backend scoring stays hidden.</p>',
+          '<button type="button" id="ecg-export-to-battle-inline">Use this Spark in Battle Simulator</button>',
+          '<p id="ecg-battle-handoff-status-inline" aria-live="polite"></p>'
+        ].join('');
+
+        anchor.insertAdjacentElement('afterend', panel);
+      }
+
+      document.addEventListener('click', function (event) {
+        if (!event.target || event.target.id !== 'ecg-export-to-battle-inline') {
+          return;
+        }
+
+        const status = document.getElementById('ecg-battle-handoff-status-inline');
+        try {
+          const payload = safePayloadFromDossier();
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+          if (status) {
+            status.textContent = 'Spark exported. Opening Battle Simulator...';
+          }
+          window.location.href = '/battles/?spark_handoff=1';
+        } catch (error) {
+          if (status) {
+            status.textContent = 'Export blocked: unsafe payload.';
+          }
+        }
+      });
+
+      setInterval(ensureButton, 1000);
+      document.addEventListener('DOMContentLoaded', ensureButton);
+      ensureButton();
+    })();
+    </script>
+    <style id="dreamos-cg-battle-handoff-inline-style">
+      .ecg-battle-handoff-panel {
+        border: 1px solid rgba(255,255,255,.18);
+        border-radius: 20px;
+        padding: 1rem;
+        margin-top: 1rem;
+        background: rgba(255,255,255,.055);
+      }
+      .ecg-battle-handoff-panel button {
+        border: 0;
+        border-radius: 999px;
+        padding: .85rem 1.15rem;
+        font-weight: 900;
+        cursor: pointer;
+      }
+    </style>
+    <?php
+});
+// DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_END

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Spark Battle Sim
  * Description: Cinematic Spark Protocol battle simulator shortcode.
- * Version: 0.1.0
+ * Version: 0.2.4
  * Author: Dadudekc
  */
 
@@ -113,3 +113,168 @@ function spark_battle_sim_shortcode() {
     return ob_get_clean();
 }
 add_shortcode('spark_battle_sim', 'spark_battle_sim_shortcode');
+
+// Dream.OS character-to-battle handoff lane 098.
+add_action('wp_enqueue_scripts', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'spark_battle_sim')) {
+        return;
+    }
+
+    $base = plugin_dir_url(__FILE__) . 'assets/';
+    wp_enqueue_style('spark-battle-sim-handoff', $base . 'battle-handoff.css', array(), '0.2.2');
+    wp_enqueue_script('spark-battle-sim-handoff', $base . 'battle-handoff.js', array(), '0.2.2', true);
+});
+
+// dreamos-bs-handoff-public-asset-guard lane 098d
+add_action('wp_enqueue_scripts', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'spark_battle_sim')) {
+        return;
+    }
+
+    $base = plugin_dir_url(__FILE__) . 'assets/';
+    wp_enqueue_style('spark-battle-sim-handoff-public', $base . 'battle-handoff.css', array(), '0.2.3');
+    wp_enqueue_script('spark-battle-sim-handoff-public', $base . 'battle-handoff.js', array(), '0.2.3', true);
+});
+
+// DREAMOS_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'spark_battle_sim')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-bs-battle-handoff-inline">
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'emergence_spark_battle_handoff_v1';
+      const FORBIDDEN = [
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'debug',
+        'showwork',
+        'roll',
+        'odds'
+      ];
+
+      function esc(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function readPayload() {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          return null;
+        }
+
+        FORBIDDEN.forEach(function (key) {
+          if (raw.indexOf(key) !== -1) {
+            throw new Error('Unsafe handoff payload blocked: ' + key);
+          }
+        });
+
+        const payload = JSON.parse(raw);
+        if (!payload || payload.version !== 1 || payload.source !== 'emergence-character-generator') {
+          return null;
+        }
+
+        return payload;
+      }
+
+      function renderPayload(payload) {
+        const powers = (payload.selected_powers || []).map(function (power) {
+          return '<li>' + esc(power.power || 'Unknown ability') + '</li>';
+        }).join('');
+
+        return [
+          '<section class="sbs-handoff-card" data-spark-handoff="1">',
+          '<p class="sbs-handoff-kicker">Imported Spark</p>',
+          '<h2>' + esc(payload.spark_name || payload.title || 'Unnamed Spark') + '</h2>',
+          payload.archetype ? '<p><strong>' + esc(payload.archetype) + '</strong></p>' : '',
+          payload.summary ? '<p>' + esc(payload.summary) + '</p>' : '',
+          powers ? '<h3>Manifested Abilities</h3><ul>' + powers + '</ul>' : '',
+          '<p class="sbs-handoff-note">Player-safe handoff loaded. Backend scoring remains hidden.</p>',
+          '</section>'
+        ].join('');
+      }
+
+      function mount() {
+        let payload = null;
+        try {
+          payload = readPayload();
+        } catch (error) {
+          console.warn('[SparkBattleSim] unsafe handoff ignored');
+          return;
+        }
+
+        if (!payload || document.querySelector('[data-spark-handoff="1"]')) {
+          return;
+        }
+
+        const root = document.querySelector('main, article, form, body');
+        if (!root) {
+          return;
+        }
+
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = renderPayload(payload);
+
+        if (root === document.body) {
+          document.body.insertBefore(wrapper.firstElementChild, document.body.firstChild);
+        } else {
+          root.insertBefore(wrapper.firstElementChild, root.firstChild);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', mount);
+      mount();
+    })();
+    </script>
+    <style id="dreamos-bs-battle-handoff-inline-style">
+      .sbs-handoff-card {
+        margin: 1.25rem 0;
+        padding: 1.15rem;
+        border-radius: 22px;
+        border: 1px solid rgba(255,255,255,.18);
+        background: rgba(255,255,255,.055);
+      }
+      .sbs-handoff-kicker {
+        text-transform: uppercase;
+        letter-spacing: .12em;
+        font-size: .8rem;
+        opacity: .75;
+        margin: 0 0 .35rem;
+      }
+      .sbs-handoff-note {
+        opacity: .85;
+        font-weight: 700;
+      }
+    </style>
+    <?php
+});
+// DREAMOS_BATTLE_HANDOFF_INLINE_END
