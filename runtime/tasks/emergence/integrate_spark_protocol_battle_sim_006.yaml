@@ -1,0 +1,48 @@
+id: integrate_spark_protocol_battle_sim_006
+title: Integrate Spark Protocol deterministic engine into Battle Sim
+status: ready
+lane: emergence_battle_sim
+priority: high
+
+target:
+  repo: websites
+  plugin: runtime/plugins/spark-battle-sim
+  engine_package: _reports/spark-protocol-patched-005.zip
+
+objective:
+  - Replace hand-rolled Battle Sim math with Spark Protocol deterministic engine calls.
+  - Keep cinematic narration separate from deterministic outcome resolution.
+  - Preserve operator-only SHOWWORK proof.
+  - Do not expose odds internals to players unless debug/operator mode is enabled.
+
+rules:
+  - Spark Protocol is the canonical combat math source.
+  - Battle Sim must not invent winners.
+  - Outcome roll must happen only after odds are committed.
+  - Narration may describe the result but cannot change the result.
+  - Do not commit unrelated repo noise.
+  - Salvage before replacing existing plugin files.
+
+acceptance:
+  - Spark Protocol package exists at _reports/spark-protocol-patched-005.zip.
+  - Existing spark-battle-sim plugin is located and inventoried.
+  - Integration plan identifies exact files to add/change.
+  - At least one deterministic battle smoke test proves:
+      - two fighters load
+      - arena rolls
+      - odds commit
+      - outcome rolls
+      - winner is produced
+      - operator show-work exists
+  - Player-facing output hides raw math by default.
+  - Git status report separates intended changes from unrelated noise.
+
+verification:
+  commands:
+    - php bin/run-tests.php
+    - php bin/demo.php
+    - find runtime/plugins/spark-battle-sim -maxdepth 4 -type f | sort
+    - git status --short
+
+commit:
+  message: Integrate Spark Protocol battle simulation engine

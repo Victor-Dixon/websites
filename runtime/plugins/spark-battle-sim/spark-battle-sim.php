@@ -51,6 +51,9 @@ function spark_battle_sim_shortcode() {
             try {
                 $result = $engine->run($fighter_a, $fighter_b);
             } catch (Throwable $e) {
+                if (defined('SPARK_BATTLE_SIM_TESTING') && SPARK_BATTLE_SIM_TESTING) {
+                    throw $e;
+                }
                 $error = 'Battle could not start.';
             }
         }
