@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.5.8
+ * Version: 0.6.0
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.5.8');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.5.8', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.0');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.0', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -607,7 +607,7 @@ add_action('rest_api_init', function () {
  * This intentionally returns a prompt-only fallback when no provider/key is
  * configured. No API key is ever returned to the browser.
  */
-function emergence_cg_image_provider_config() {
+function emergence_cg_legacy_image_provider_config_disabled() {
     $provider = getenv('EMERGENCE_IMAGE_PROVIDER');
     if (!$provider) {
         $provider = 'disabled';
@@ -624,14 +624,14 @@ function emergence_cg_image_provider_config() {
     );
 }
 
-function emergence_cg_sanitize_image_prompt($prompt) {
+function emergence_cg_legacy_sanitize_image_prompt_disabled($prompt) {
     $prompt = wp_strip_all_tags((string) $prompt);
     $prompt = preg_replace('/\s+/', ' ', $prompt);
     $prompt = trim($prompt);
     return mb_substr($prompt, 0, 3500);
 }
 
-function emergence_cg_premium_portrait_rest($request) {
+function emergence_cg_legacy_premium_portrait_rest_disabled($request) {
     $params = $request->get_json_params();
     if (!is_array($params)) {
         $params = array();
@@ -695,7 +695,218 @@ function emergence_cg_premium_portrait_rest($request) {
 add_action('rest_api_init', function () {
     register_rest_route('emergence/v1', '/portrait', array(
         'methods' => 'POST',
-        'callback' => 'emergence_cg_premium_portrait_rest',
+        'callback' => 'emergence_cg_openai_premium_portrait_rest_v2',
         'permission_callback' => '__return_true',
     ));
 });
+
+// DREAMOS_OPENAI_IMAGE_PROVIDER_V2_BEGIN
+/**
+ * Dream.OS premium hero image provider v2.
+ *
+ * Server-side only. Live generation requires:
+ * - EMERGENCE_IMAGE_PROVIDER=openai
+ * - EMERGENCE_IMAGE_LIVE=1
+ * - EMERGENCE_IMAGE_API_KEY or OPENAI_API_KEY
+ */
+function emergence_cg_v2_env_value($name, $default = '') {
+    $value = getenv($name);
+    if ($value === false || $value === '') {
+        return $default;
+    }
+    return $value;
+}
+
+function emergence_cg_v2_image_provider_config() {
+    $provider = sanitize_text_field(emergence_cg_v2_env_value('EMERGENCE_IMAGE_PROVIDER', 'disabled'));
+    $key = emergence_cg_v2_env_value('EMERGENCE_IMAGE_API_KEY', '');
+    if (!$key) {
+        $key = emergence_cg_v2_env_value('OPENAI_API_KEY', '');
+    }
+
+    $live = emergence_cg_v2_env_value('EMERGENCE_IMAGE_LIVE', '0');
+
+    return array(
+        'provider' => $provider,
+        'configured' => !empty($key),
+        'key' => $key,
+        'live' => in_array(strtolower((string) $live), array('1', 'true', 'yes', 'on'), true),
+        'model' => sanitize_text_field(emergence_cg_v2_env_value('EMERGENCE_IMAGE_MODEL', 'gpt-image-1')),
+        'size' => sanitize_text_field(emergence_cg_v2_env_value('EMERGENCE_IMAGE_SIZE', '1024x1024')),
+        'quality' => sanitize_text_field(emergence_cg_v2_env_value('EMERGENCE_IMAGE_QUALITY', 'medium')),
+    );
+}
+
+function emergence_cg_v2_sanitize_image_prompt($prompt) {
+    $prompt = wp_strip_all_tags((string) $prompt);
+    $prompt = preg_replace('/\s+/', ' ', $prompt);
+    $prompt = trim($prompt);
+    return substr($prompt, 0, 3500);
+}
+
+function emergence_cg_v2_portrait_upload_target($spark_name, $prompt) {
+    $uploads = wp_upload_dir();
+
+    if (!empty($uploads['error'])) {
+        return new WP_Error('upload_dir_error', $uploads['error']);
+    }
+
+    $dir = trailingslashit($uploads['basedir']) . 'emergence-portraits';
+    $url = trailingslashit($uploads['baseurl']) . 'emergence-portraits';
+
+    if (!wp_mkdir_p($dir)) {
+        return new WP_Error('upload_dir_create_failed', 'Could not create portrait upload directory.');
+    }
+
+    $hash = substr(hash('sha256', $spark_name . '|' . $prompt), 0, 24);
+
+    return array(
+        'path' => trailingslashit($dir) . $hash . '.png',
+        'url' => trailingslashit($url) . $hash . '.png',
+        'hash' => $hash,
+    );
+}
+
+function emergence_cg_v2_call_openai_image_provider($config, $spark_name, $prompt) {
+    $target = emergence_cg_v2_portrait_upload_target($spark_name, $prompt);
+
+    if (is_wp_error($target)) {
+        return $target;
+    }
+
+    if (file_exists($target['path']) && filesize($target['path']) > 1000) {
+        return array(
+            'image_url' => $target['url'],
+            'image_hash' => $target['hash'],
+            'cached' => true,
+        );
+    }
+
+    $body = array(
+        'model' => $config['model'],
+        'prompt' => $prompt,
+        'size' => $config['size'],
+        'quality' => $config['quality'],
+        'n' => 1,
+    );
+
+    $response = wp_remote_post('https://api.openai.com/v1/images/generations', array(
+        'timeout' => 120,
+        'headers' => array(
+            'Authorization' => 'Bearer ' . $config['key'],
+            'Content-Type' => 'application/json',
+        ),
+        'body' => wp_json_encode($body),
+    ));
+
+    if (is_wp_error($response)) {
+        return $response;
+    }
+
+    $code = wp_remote_retrieve_response_code($response);
+    $raw = wp_remote_retrieve_body($response);
+    $json = json_decode($raw, true);
+
+    if ($code < 200 || $code >= 300) {
+        $message = 'OpenAI image provider returned HTTP ' . $code . '.';
+        if (is_array($json) && isset($json['error']['message'])) {
+            $message .= ' ' . sanitize_text_field($json['error']['message']);
+        }
+        return new WP_Error('openai_image_error', $message);
+    }
+
+    if (!is_array($json) || empty($json['data'][0]['b64_json'])) {
+        return new WP_Error('openai_image_missing_data', 'OpenAI image provider did not return image data.');
+    }
+
+    $binary = base64_decode($json['data'][0]['b64_json'], true);
+    if (!$binary || strlen($binary) < 1000) {
+        return new WP_Error('openai_image_decode_failed', 'OpenAI image payload could not be decoded.');
+    }
+
+    $written = file_put_contents($target['path'], $binary);
+    if (!$written) {
+        return new WP_Error('openai_image_write_failed', 'Generated portrait could not be written.');
+    }
+
+    return array(
+        'image_url' => $target['url'],
+        'image_hash' => $target['hash'],
+        'cached' => false,
+    );
+}
+
+function emergence_cg_openai_premium_portrait_rest_v2($request) {
+    $params = $request->get_json_params();
+    if (!is_array($params)) {
+        $params = array();
+    }
+
+    $spark_name = isset($params['spark_name']) ? sanitize_text_field($params['spark_name']) : '';
+    $prompt = isset($params['premium_portrait_prompt']) ? emergence_cg_v2_sanitize_image_prompt($params['premium_portrait_prompt']) : '';
+
+    if (strlen($spark_name) < 2) {
+        return new WP_REST_Response(array(
+            'status' => 'error',
+            'code' => 'missing_spark_name',
+            'message' => 'A named Spark is required before premium portrait generation.',
+        ), 400);
+    }
+
+    if (strlen($prompt) < 80) {
+        return new WP_REST_Response(array(
+            'status' => 'error',
+            'code' => 'missing_prompt',
+            'message' => 'A premium portrait prompt is required.',
+        ), 400);
+    }
+
+    $config = emergence_cg_v2_image_provider_config();
+
+    if ($config['provider'] !== 'openai' || !$config['configured'] || !$config['live']) {
+        return new WP_REST_Response(array(
+            'status' => 'disabled',
+            'provider' => $config['provider'],
+            'live_enabled' => $config['live'],
+            'prompt_only' => true,
+            'image_url' => null,
+            'spark_name' => $spark_name,
+            'message' => 'Premium image provider is not live. SVG fallback remains active and the compiled prompt is ready.',
+            'premium_portrait_prompt' => $prompt,
+        ), 200);
+    }
+
+    $result = emergence_cg_v2_call_openai_image_provider($config, $spark_name, $prompt);
+
+    if (is_wp_error($result)) {
+        return new WP_REST_Response(array(
+            'status' => 'provider_error',
+            'provider' => 'openai',
+            'prompt_only' => true,
+            'image_url' => null,
+            'spark_name' => $spark_name,
+            'message' => $result->get_error_message(),
+            'premium_portrait_prompt' => $prompt,
+        ), 200);
+    }
+
+    return new WP_REST_Response(array(
+        'status' => 'generated',
+        'provider' => 'openai',
+        'prompt_only' => false,
+        'image_url' => esc_url_raw($result['image_url']),
+        'image_hash' => sanitize_text_field($result['image_hash']),
+        'cached' => !empty($result['cached']),
+        'spark_name' => $spark_name,
+        'message' => 'Premium hero portrait generated.',
+    ), 200);
+}
+
+add_action('rest_api_init', function () {
+    register_rest_route('emergence/v1', '/portrait', array(
+        'methods' => 'POST',
+        'callback' => 'emergence_cg_openai_premium_portrait_rest_v2',
+        'permission_callback' => '__return_true',
+    ));
+});
+// DREAMOS_OPENAI_IMAGE_PROVIDER_V2_END
