@@ -1,0 +1,148 @@
+version: 1
+id: add_emergence_generated_spark_portrait_card_090
+title: Add Emergence generated Spark portrait card
+owner: operator-1
+repo: websites
+priority: high
+target: Character Generator visual profile card
+action: >
+  Generate a deterministic SVG portrait/card from the final Spark Profile payload
+  with no external API. The image should feel like a character portrait card, not
+  a debug panel. It should render from protocol output already produced by the
+  two-pass generator and remain privacy-safe.
+context:
+  project: dadudekc.site
+  url: https://dadudekc.site/character-generator/
+  plugin: runtime/plugins/emergence-character-generator
+  related_commits:
+    - 8098fba
+    - aecb421
+    - b749a70
+objective:
+  primary: >
+    Add a generated visual profile card to the final character output using
+    deterministic SVG only, derived from the final Spark Profile fields.
+  secondary:
+    - Keep raw score mechanics hidden from the public UI.
+    - Keep unlocked domain names hidden during flavor routing.
+    - Preserve existing REST behavior and current public-path smoke expectations.
+requirements:
+  functional:
+    - >
+      Final profile output must include a rendered SVG portrait/card embedded in
+      the public result view after flavor submit.
+    - >
+      The SVG must be generated locally from deterministic inputs only:
+      lead_domain, manifested_domains count, selected_powers, spark_signature,
+      combat_capability, cast, profile_shape, and character_sheet title/archetype.
+    - >
+      The SVG must not reveal raw domain scores, tier tables, manifest thresholds,
+      or hidden routing/debug internals.
+    - >
+      The visual should read like a collectible character card / portrait panel.
+    - >
+      The card should include readable profile text such as title, archetype,
+      selected powers, signature/combat line, and a themed visual treatment.
+    - >
+      The visual treatment should vary by profile in a deterministic way:
+      silhouette, aura bands, framing, insignia, glyphs, background pattern,
+      accent geometry, and stat bars should differ by payload.
+    - >
+      The same exact final payload should always produce the same SVG.
+    - >
+      Different payloads should produce visibly different SVG outputs.
+    - >
+      The result view should still include the Battle Simulator CTA.
+  technical:
+    - >
+      Prefer generating SVG markup in PHP and/or JS inside the
+      emergence-character-generator plugin. No external image API, no remote fetch.
+    - >
+      Expose the generated SVG or SVG-ready descriptor through the final payload
+      in a stable field such as visual_profile_card or character_sheet.image_svg.
+    - >
+      Sanitize all user-visible text inserted into SVG.
+    - >
+      Keep implementation self-contained in the plugin and assets already used by
+      the character generator.
+design_direction:
+  mood:
+    - cinematic
+    - clean
+    - mythic
+    - comic-book-adjacent
+  structure:
+    - header title
+    - archetype / cast line
+    - hero portrait zone
+    - manifested abilities block
+    - spark signature / combat capability line
+    - battle-ready footer note
+  deterministic_mappings:
+    - lead_domain drives primary visual theme
+    - selected_powers influence icon/glyph selection
+    - manifested domain count influences complexity/layer count
+    - spark_signature influences aura intensity / star field / signal rings
+    - combat_capability influences stance emphasis / frame density / stat bars
+    - cast influences solo/team badge treatment
+implementation_notes:
+  - >
+    Start with a pure-SVG generator helper, e.g. emergence_cg_generate_svg_card($payload).
+  - >
+    Add a small presentational wrapper in JS so the final result mounts the SVG
+    above or beside the readable Spark Profile card.
+  - >
+    Keep SVG generation deterministic by hashing stable payload fields for
+    pattern selection and geometry variants.
+  - >
+    Avoid inline disclosure text like "lead domain" unless already part of the
+    existing readable profile experience.
+verification:
+  automated:
+    - >
+      Extend runtime/scripts/smoke_emergence_character_profile_display.py to assert
+      that the final public profile includes a visible SVG/card container.
+    - >
+      Add or extend a smoke to assert the domain pass still returns no powers.
+    - >
+      Add or extend a smoke to assert the final flavor pass returns a readable
+      Spark Profile plus SVG card.
+    - >
+      Add a deterministic fixture assertion: same input payload => same SVG hash.
+    - >
+      Add a differentiation fixture assertion: at least two different profile
+      payloads => different SVG hashes.
+    - >
+      Add a privacy assertion: public HTML/SVG must not contain raw score labels
+      such as manifest_threshold, scores, tiers, or debug summaries.
+  manual:
+    - Open https://dadudekc.site/character-generator/
+    - Complete pass 1 and confirm pass 2 appears.
+    - Complete pass 2 and confirm final Spark Profile shows a portrait/card.
+    - Confirm card looks character-sheet-like rather than raw mechanics.
+    - Confirm Battle Simulator CTA still appears.
+acceptance_criteria:
+  - final profile includes deterministic SVG portrait/card
+  - no domain leaks in public flavor routing
+  - raw scoring remains hidden in public UI
+  - REST still returns scores for backend/debug usage
+  - profile display smoke passes
+  - public path smoke still passes
+artifacts:
+  expected_reports:
+    - _reports/emergence_generated_spark_portrait_card_090.md
+  expected_scripts:
+    - runtime/scripts/smoke_emergence_character_profile_display.py
+  expected_plugin_paths:
+    - runtime/plugins/emergence-character-generator/emergence-character-generator.php
+    - runtime/plugins/emergence-character-generator/assets/emergence-character-generator.js
+    - runtime/plugins/emergence-character-generator/assets/emergence-character-generator.css
+closeout:
+  report_sections:
+    - Task
+    - Actions
+    - Verification
+    - Commit
+    - Status
+    - Next lane
+commit_message: Add Emergence generated Spark portrait card
