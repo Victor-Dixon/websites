@@ -1,0 +1,46 @@
+# Emergence Portrait Prompt Quality Fixtures 108b
+
+## Task
+Generate fixture prompts across build/costume/personality/showcase combinations.
+
+## Actions
+- Patched negative prompt wording to avoid banned public/debug term.
+- Generated fixture prompt matrix.
+- Verified distinct prompts.
+- Verified full-body reveal standard.
+- Verified custom costume and personality influence.
+- Verified ability showcase rules.
+- Verified no raw score/mechanics leaks.
+
+## Verification
+```text
+INPUTS=PASS
+FIXTURE_NEGATIVE_WORDING_PATCH=PASS
+== BUILD FIXTURE PROMPTS ==
+FIXTURE_lean_armored_haunted_active=PASS
+FIXTURE_powerful_cosmic_noble_dramatic=PASS
+FIXTURE_compact_tactical_cocky_subtle=PASS
+FIXTURE_tall_elegant_stoic_restrained=PASS
+PROMPT_FIXTURE_MATRIX_WRITTEN=PASS
+PROMPT_FIXTURE_MATRIX=/data/data/com.termux/files/home/projects/websites/_reports/emergence_portrait_prompt_quality_fixtures_108.json
+PROMPT_FIXTURE_DISTINCTNESS=PASS
+PROMPT_FIXTURE_FULL_BODY_STANDARD=PASS
+PROMPT_FIXTURE_CUSTOM_COSTUME=PASS
+PROMPT_FIXTURE_CUSTOM_PERSONALITY=PASS
+PROMPT_FIXTURE_ABILITY_SHOWCASE=PASS
+PROMPT_FIXTURE_NO_RAW_SCORE_LEAK=PASS
+EMERGENCE_PORTRAIT_PROMPT_QUALITY_FIXTURES=PASS
+FIXTURE_JSON_SCHEMA=PASS
+FIXTURE_JSON_PRIVACY=PASS
+FIXTURE_JSON_FULL_BODY=PASS
+FIXTURE_JSON_PLAYER_DESIGN_INPUTS=PASS
+```
+
+## Artifacts
+- /data/data/com.termux/files/home/projects/websites/_reports/emergence_portrait_prompt_quality_fixtures_108.json
+
+## Commit
+Add Emergence portrait prompt quality fixtures
+
+## Status
+PASS
