@@ -1,0 +1,173 @@
+version: 1
+name: hostinger_connected_sites
+status: connected_inventory
+sites:
+  ariajet_site:
+    domain: 'ariajet.site'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/ariajet.site.env'
+    wp_root: '/home/u996867598/domains/ariajet.site/public_html'
+    plugins_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  crosbyultimateevents_com:
+    domain: 'crosbyultimateevents.com'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/crosbyultimateevents.com.env'
+    wp_root: '/home/u996867598/domains/crosbyultimateevents.com/public_html'
+    plugins_dir: '/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  dadudekc_com:
+    domain: 'dadudekc.com'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env'
+    wp_root: '/home/u996867598/domains/dadudekc.com/public_html'
+    plugins_dir: '/home/u996867598/domains/dadudekc.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/dadudekc.com/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  dadudekc_site:
+    domain: 'dadudekc.site'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env'
+    wp_root: '/home/u996867598/domains/dadudekc.site/public_html'
+    plugins_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  digitaldreamscape_site:
+    domain: 'digitaldreamscape.site'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/digitaldreamscape.site.env'
+    wp_root: '/home/u996867598/domains/digitaldreamscape.site/public_html'
+    plugins_dir: '/home/u996867598/domains/digitaldreamscape.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/digitaldreamscape.site/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  freerideinvestor_com:
+    domain: 'freerideinvestor.com'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/freerideinvestor.com.env'
+    wp_root: '/home/u996867598/domains/freerideinvestor.com/public_html'
+    plugins_dir: '/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  houstonsipqueen_com:
+    domain: 'houstonsipqueen.com'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/houstonsipqueen.com.env'
+    wp_root: '/home/u996867598/domains/houstonsipqueen.com/public_html'
+    plugins_dir: '/home/u996867598/domains/houstonsipqueen.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/houstonsipqueen.com/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  prismblossom_online:
+    domain: 'prismblossom.online'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/prismblossom.online.env'
+    wp_root: '/home/u996867598/domains/prismblossom.online/public_html'
+    plugins_dir: '/home/u996867598/domains/prismblossom.online/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/prismblossom.online/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  southwestsecret_com:
+    domain: 'southwestsecret.com'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/southwestsecret.com.env'
+    wp_root: '/home/u996867598/domains/southwestsecret.com/public_html'
+    plugins_dir: '/home/u996867598/domains/southwestsecret.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/southwestsecret.com/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  tradingrobotplug_com:
+    domain: 'tradingrobotplug.com'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/tradingrobotplug.com.env'
+    wp_root: '/home/u996867598/domains/tradingrobotplug.com/public_html'
+    plugins_dir: '/home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/tradingrobotplug.com/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  weareswarm_online:
+    domain: 'weareswarm.online'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/weareswarm.online.env'
+    wp_root: '/home/u996867598/domains/weareswarm.online/public_html'
+    plugins_dir: '/home/u996867598/domains/weareswarm.online/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/weareswarm.online/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  weareswarm_site:
+    domain: 'weareswarm.site'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/weareswarm.site.env'
+    wp_root: '/home/u996867598/domains/weareswarm.site/public_html'
+    plugins_dir: '/home/u996867598/domains/weareswarm.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/weareswarm.site/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
+  xthunder_site:
+    domain: 'xthunder.site'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/xthunder.site.env'
+    wp_root: '/home/u996867598/domains/xthunder.site/public_html'
+    plugins_dir: '/home/u996867598/domains/xthunder.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/xthunder.site/public_html/wp-content/themes'
+    public_html: 'PUBLIC_HTML=PASS'
+    wp_config: 'WP_CONFIG=PASS'
+    wp_cli_info: 'WP_CLI_INFO=PASS'
+    manager_enabled: true
+    design_enabled: false
+    repair_enabled: false
+    deploy_enabled: false
