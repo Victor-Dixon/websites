@@ -64,11 +64,15 @@
     return payload;
   }
 
-  function scoreCards(payload) {
-    return Object.entries(payload.scores || {}).map(function (pair) {
-      const tier = payload.tiers && payload.tiers[pair[0]] ? payload.tiers[pair[0]] : '?';
-      return '<div class="ecg-card"><strong>' + esc(pair[0]) + '</strong><br>Score ' + esc(pair[1]) + ' · Tier ' + esc(tier) + '</div>';
-    }).join('');
+  function debugSummary(payload) {
+    const scores = payload.scores || {};
+    const manifested = payload.manifested || [];
+    return {
+      phase: payload.phase || 'unknown',
+      manifested: manifested,
+      lead_domain: payload.lead_domain || null,
+      score_keys: Object.keys(scores)
+    };
   }
 
   function powerCards(payload) {
@@ -163,6 +167,7 @@
           flavor_answers: flavorAnswers
         });
 
+        console.info('[EmergenceCG] flavor pass debug', debugSummary(finalPayload));
         const sheet = finalPayload.character_sheet || {};
         const selectedPowers = sheet.selected_powers || [];
 
@@ -218,6 +223,7 @@
         throw new Error('Domain scan did not return phase=domain_typing');
       }
 
+      console.info('[EmergenceCG] domain pass debug', debugSummary(domainPayload));
       renderDomainResult(domainPayload);
       renderFlavorForm(domainPayload);
     } catch (error) {
