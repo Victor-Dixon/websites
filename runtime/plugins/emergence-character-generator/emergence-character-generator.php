@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.4.1
+ * Version: 0.4.2
  * Author: Dream.OS
  */
 
@@ -441,18 +441,66 @@ function emergence_cg_generate($domain_answers, $flavor_answers = null) {
 }
 
 function emergence_cg_domain_option_label($q, $letter) {
-    $key = emergence_cg_domain_key();
-    $q_key = (string) $q;
+    $labels = array(
+        1 => array(
+            'A' => 'Step back and read the whole field.',
+            'B' => 'Strike first before hesitation spreads.',
+            'C' => 'Move before anyone understands the threat.',
+            'D' => 'Hold the line no matter what hits you.',
+            'E' => 'Adapt faster than the danger can evolve.',
+            'F' => 'Vanish from the obvious path.',
+            'G' => 'Find the thought behind the attack.',
+            'H' => 'Split the problem into two opposing truths.',
+        ),
+        2 => array(
+            'A' => 'Pull the situation into order.',
+            'B' => 'Let pressure become your language.',
+            'C' => 'Trust speed over certainty.',
+            'D' => 'Become the thing that cannot be moved.',
+            'E' => 'Change shape around the obstacle.',
+            'F' => 'Slip through the gap nobody watches.',
+            'G' => 'Win by understanding intent.',
+            'H' => 'Use contradiction as leverage.',
+        ),
+        3 => array(
+            'A' => 'Make yourself hard to locate.',
+            'B' => 'Release what you have been holding back.',
+            'C' => 'Meet force with force.',
+            'D' => 'Survive by becoming unfamiliar.',
+            'E' => 'Control the variables around you.',
+            'F' => 'Outpace the consequence.',
+            'G' => 'Turn perception into a weapon.',
+            'H' => 'Let two instincts coexist.',
+        ),
+        4 => array(
+            'A' => 'Follow the oldest instinct in the room.',
+            'B' => 'Burn through the stalemate.',
+            'C' => 'Take the hit and keep moving.',
+            'D' => 'Bend the field around your will.',
+            'E' => 'Exploit the narrow opening.',
+            'F' => 'Become impossible to pin down.',
+            'G' => 'Listen for the hidden pattern.',
+            'H' => 'Hold both answers at once.',
+        ),
+    );
 
-    if (!isset($key[$q_key][$letter])) {
-        return $letter;
+    $fallback = array(
+        'A' => 'Choose the path that controls the field.',
+        'B' => 'Choose the path that releases pressure.',
+        'C' => 'Choose the path that moves first.',
+        'D' => 'Choose the path that refuses to break.',
+        'E' => 'Choose the path that adapts.',
+        'F' => 'Choose the path that disappears.',
+        'G' => 'Choose the path that understands.',
+        'H' => 'Choose the path that divides and mirrors.',
+    );
+
+    $bucket = (($q - 1) % 4) + 1;
+    if (isset($labels[$bucket][$letter])) {
+        return $letter . ' — ' . $labels[$bucket][$letter];
     }
 
-    $entry = $key[$q_key][$letter];
-    $domain = $entry[0];
-    $points = intval($entry[1]);
-
-    return $letter . ' — ' . $domain . ' +' . $points;
+    return isset($fallback[$letter]) ? $letter . ' — ' . $fallback[$letter] : $letter;
 }
 
 function emergence_cg_shortcode() {
@@ -499,7 +547,7 @@ function emergence_cg_shortcode() {
             <div class="ecg-trust-row">
                 <span>Deterministic scoring</span>
                 <span>28-question domain table</span>
-                <span>Each answer shows its domain + points</span>
+                <span>Answers are disguised; scoring stays deterministic</span>
                 <span>25% manifest gate</span>
                 <span>Flavor pass unlocks powers</span>
             </div>
@@ -507,8 +555,8 @@ function emergence_cg_shortcode() {
 
         <div class="ecg-explainer">
             <h2>Two-pass generation</h2>
-            <p><strong>Pass 1:</strong> Q1-Q28 scores your Spark domains. Every answer maps to one domain. Most answers are +1; pressure answers are +2.</p>
-            <p><strong>Pass 2:</strong> Q29-Q68 appears only for manifested domains and shows actual power labels before selection.</p>
+            <p><strong>Pass 1:</strong> Q1-Q28 scores your Spark domains. Every answer maps to one hidden domain score. The choice text is narrative; the scoring remains deterministic.</p>
+            <p><strong>Pass 2:</strong> Q29-Q68 appears only for manifested domains and uses disguised flavor choices before selecting powers.</p>
         </div>
 
         <form id="emergence-cg-form" class="ecg-form">
@@ -547,8 +595,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.4.1');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.4.1', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.4.2');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.4.2', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
