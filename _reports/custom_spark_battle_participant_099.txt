@@ -1,0 +1,25 @@
+INPUTS=PASS
+CUSTOM_SPARK_PARTICIPANT_PATCH=PASS
+STATIC_CUSTOM_SPARK_SAFE=PASS
+PLUGIN_TARBALL=PASS /data/data/com.termux/files/home/projects/websites/_reports/spark-battle-sim_099.tar.gz
+SCP_UPLOAD=PASS
+EXISTING_PLUGIN_BACKUP=PASS
+No syntax errors detected in wp-content/plugins/spark-battle-sim/spark-battle-sim.php
+REMOTE_PHP_LINT=PASS
+    register_rest_route('spark-battle/v1', '/custom-battle', array(
+      '<button type="button" id="sbs-run-custom-spark-battle">Start Battle With This Spark</button>',
+    const button = document.getElementById('sbs-run-custom-spark-battle');
+      '<p class="sbs-handoff-note">Player-safe handoff loaded. Backend scoring remains hidden.</p>',
+REMOTE_CUSTOM_SPARK_SOURCE=PASS
+Success: Plugin already activated.
+PLUGIN_ACTIVE=PASS
+Success: The cache was flushed.
+Success: Purged All!
+LITESPEED_PURGE=PASS
+REMOTE_DEPLOY=PASS
+CUSTOM_SPARK_REST_BATTLE=PASS
+CUSTOM_SPARK_BATTLE_PLAYER_SAFE=PASS
+CUSTOM_SPARK_BATTLE_NO_RAW_SCORE_LEAK=PASS
+CUSTOM_SPARK_BATTLE_PARTICIPANT=PASS
+HTTP_BATTLES=200
+PUBLIC_BATTLE_PAGE=PASS

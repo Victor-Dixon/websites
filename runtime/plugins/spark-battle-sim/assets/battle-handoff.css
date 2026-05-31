@@ -27,3 +27,30 @@
   opacity: .85;
   font-weight: 700;
 }
+
+
+/* Dream.OS custom Spark participant lane 099 */
+.sbs-custom-battle-controls {
+  display: grid;
+  gap: .75rem;
+  margin: 1rem 0;
+}
+
+.sbs-custom-battle-controls select,
+.sbs-custom-battle-controls button {
+  width: 100%;
+  border-radius: 14px;
+  padding: .75rem;
+}
+
+.sbs-custom-battle-controls button {
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.sbs-custom-spark-battle-result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,.06);
+}

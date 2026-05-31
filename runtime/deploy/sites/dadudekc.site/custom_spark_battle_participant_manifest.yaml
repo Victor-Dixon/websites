@@ -1,0 +1,27 @@
+version: 1
+name: custom_spark_battle_participant
+site: dadudekc.site
+status: deployed
+implemented:
+  - custom_spark_rest_battle_endpoint
+  - imported_spark_battle_controls
+  - player_safe_custom_spark_resolution
+verified:
+  static_custom_spark_safe: pass
+  remote_php_lint: pass
+  custom_spark_rest_battle: pass
+  custom_spark_battle_player_safe: pass
+  custom_spark_battle_no_raw_score_leak: pass
+  public_battle_page: pass
+safety:
+  raw_scores_visible: false
+  roll_visible: false
+  odds_visible: false
+  backend_math_hidden: true
+  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/custom_spark_battle_participant_099_20260531_130155'
+urls:
+  battles: https://dadudekc.site/battles/
+next_allowed_actions:
+  - full_browser_handoff_e2e
+  - shareable_spark_handoff_token
+  - saved_character_records

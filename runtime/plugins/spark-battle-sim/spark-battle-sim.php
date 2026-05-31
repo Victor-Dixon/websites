@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Spark Battle Sim
  * Description: Cinematic Spark Protocol battle simulator shortcode.
- * Version: 0.2.4
+ * Version: 0.2.5
  * Author: Dadudekc
  */
 
@@ -278,3 +278,115 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_BATTLE_HANDOFF_INLINE_END
+
+// DREAMOS_CUSTOM_SPARK_BATTLE_REST_BEGIN lane 099
+add_action('rest_api_init', function () {
+    register_rest_route('spark-battle/v1', '/custom-battle', array(
+        'methods' => 'POST',
+        'callback' => 'spark_battle_sim_custom_battle_rest',
+        'permission_callback' => '__return_true',
+    ));
+});
+
+function spark_battle_sim_custom_battle_rest($request) {
+    $params = $request->get_json_params();
+    if (!is_array($params)) {
+        $params = array();
+    }
+
+    $spark = isset($params['spark']) && is_array($params['spark']) ? $params['spark'] : array();
+    $opponent = isset($params['opponent']) ? sanitize_text_field($params['opponent']) : 'the-victor';
+
+    $forbidden = array(
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'debug',
+        'showwork',
+        'roll',
+        'odds'
+    );
+
+    $serialized = wp_json_encode($spark);
+    foreach ($forbidden as $key) {
+        if (strpos($serialized, $key) !== false) {
+            return new WP_REST_Response(array(
+                'status' => 'blocked',
+                'message' => 'Unsafe custom Spark payload blocked.',
+            ), 400);
+        }
+    }
+
+    $name = isset($spark['spark_name']) ? sanitize_text_field($spark['spark_name']) : '';
+    if (!$name && isset($spark['title'])) {
+        $name = sanitize_text_field($spark['title']);
+    }
+    if (!$name) {
+        $name = 'Imported Spark';
+    }
+
+    $powers = array();
+    if (isset($spark['selected_powers']) && is_array($spark['selected_powers'])) {
+        foreach ($spark['selected_powers'] as $power) {
+            if (!is_array($power)) {
+                continue;
+            }
+            $label = isset($power['power']) ? sanitize_text_field($power['power']) : '';
+            if ($label) {
+                $powers[] = $label;
+            }
+        }
+    }
+
+    $opponent_names = array(
+        'the-victor' => 'The Victor',
+        'captain-cap-wilson' => 'Captain Cap Wilson',
+        'captain-cap' => 'Captain Cap Wilson',
+    );
+
+    $opponent_name = isset($opponent_names[$opponent]) ? $opponent_names[$opponent] : ucwords(str_replace('-', ' ', $opponent));
+
+    $power_count = count($powers);
+    $name_weight = strlen($name) % 9;
+    $opponent_weight = strlen($opponent_name) % 7;
+    $custom_score = 42 + ($power_count * 6) + $name_weight;
+    $opponent_score = 48 + $opponent_weight;
+
+    $winner = $custom_score >= $opponent_score ? $name : $opponent_name;
+
+    $arenas = array(
+        'storm-lit rooftop',
+        'broken training yard',
+        'neon transit platform',
+        'rain-slick alley',
+        'collapsed civic plaza',
+        'glass-walled command deck'
+    );
+
+    $arena_index = abs(crc32($name . '|' . $opponent_name)) % count($arenas);
+    $arena = $arenas[$arena_index];
+
+    $ability_line = $power_count
+        ? implode(', ', array_slice($powers, 0, 4))
+        : 'latent unresolved abilities';
+
+    $story = $name . ' enters the ' . $arena . ' against ' . $opponent_name . '. ';
+    $story .= 'The imported Spark profile expresses ' . $ability_line . ' without exposing backend scoring. ';
+    $story .= 'After the exchange resolves, ' . $winner . ' takes the advantage and wins the public simulation.';
+
+    return new WP_REST_Response(array(
+        'status' => 'resolved',
+        'mode' => 'custom_spark_battle',
+        'winner' => $winner,
+        'arena' => $arena,
+        'story' => $story,
+        'player_safe' => true,
+        'math_hidden' => true,
+    ), 200);
+}
+// DREAMOS_CUSTOM_SPARK_BATTLE_REST_END

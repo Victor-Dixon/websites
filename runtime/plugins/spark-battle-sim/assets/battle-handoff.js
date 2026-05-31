@@ -56,8 +56,47 @@
       payload.archetype ? '<p><strong>' + esc(payload.archetype) + '</strong></p>' : '',
       payload.summary ? '<p>' + esc(payload.summary) + '</p>' : '',
       powers ? '<h3>Manifested Abilities</h3><ul>' + powers + '</ul>' : '',
+      '<div class="sbs-custom-battle-controls">',
+      '<label>Opponent <select id="sbs-custom-opponent">',
+      '<option value="the-victor">The Victor</option>',
+      '<option value="captain-cap-wilson">Captain Cap Wilson</option>',
+      '</select></label>',
+      '<button type="button" id="sbs-run-custom-spark-battle">Start Battle With This Spark</button>',
+      '</div>',
+      '<div id="sbs-custom-spark-battle-result" class="sbs-custom-spark-battle-result" aria-live="polite"></div>',
       '<p class="sbs-handoff-note">Player-safe handoff loaded. Backend scoring remains hidden.</p>',
       '</section>'
+    ].join('');
+  }
+
+  async function runCustomBattle(payload) {
+    const opponent = document.getElementById('sbs-custom-opponent');
+    const result = document.getElementById('sbs-custom-spark-battle-result');
+
+    if (!result) return;
+
+    result.textContent = 'Resolving custom Spark battle...';
+
+    const response = await fetch('/wp-json/spark-battle/v1/custom-battle', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        spark: payload,
+        opponent: opponent ? opponent.value : 'the-victor'
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || data.status !== 'resolved') {
+      result.textContent = data.message || 'Battle could not be resolved.';
+      return;
+    }
+
+    result.innerHTML = [
+      '<h3>Winner: ' + esc(data.winner) + '</h3>',
+      '<p><strong>Arena:</strong> ' + esc(data.arena) + '</p>',
+      '<p>' + esc(data.story) + '</p>'
     ].join('');
   }
 
@@ -70,18 +109,28 @@
       return;
     }
 
-    if (!payload) return;
+    if (!payload || document.querySelector('[data-spark-handoff="1"]')) {
+      return;
+    }
 
-    const root = document.querySelector('.spark-battle-sim, #spark-battle-sim, form, main, article, body');
+    const root = document.querySelector('main, article, form, body');
     if (!root) return;
 
     const wrapper = document.createElement('div');
     wrapper.innerHTML = renderPayload(payload);
 
+    const card = wrapper.firstElementChild;
     if (root === document.body) {
-      document.body.insertBefore(wrapper.firstElementChild, document.body.firstChild);
+      document.body.insertBefore(card, document.body.firstChild);
     } else {
-      root.parentNode.insertBefore(wrapper.firstElementChild, root);
+      root.insertBefore(card, root.firstChild);
+    }
+
+    const button = document.getElementById('sbs-run-custom-spark-battle');
+    if (button) {
+      button.addEventListener('click', function () {
+        runCustomBattle(payload);
+      });
     }
   }
 
