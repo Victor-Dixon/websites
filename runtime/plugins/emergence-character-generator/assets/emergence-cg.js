@@ -6,6 +6,7 @@
   const progressFill = document.getElementById('ecg-progress-fill');
 
   let lastDomainAnswers = [];
+  let pendingFinalPayload = null;
 
   const flavorBlocks = {
     Titan: [29, 30, 31, 32, 33],
@@ -225,6 +226,82 @@
     ].join('');
   }
 
+  function compilePremiumPortraitPrompt(payload, name) {
+    const sheet = payload.character_sheet || {};
+    const powers = (payload.powers || []).map(function (p) { return p.power; }).filter(Boolean);
+    const powerText = powers.length ? powers.join(', ') : 'latent unknown abilities';
+    const title = name || sheet.title || 'Unnamed Spark';
+    const archetype = sheet.archetype || 'emergent superhero archetype';
+    const role = (payload.powers || []).length > 1 ? 'multi-vector combatant' : 'focused specialist';
+    const signature = sheet.signature_line || 'high-potential Spark signature';
+
+    return [
+      'Create premium American superhero comic-book character art for a new original hero named ' + title + '.',
+      'Aesthetic: bold inked linework, dramatic cinematic lighting, heroic costume design, premium comic cover composition, mythic energy, modern superhero illustration.',
+      'Character identity: ' + title + ', ' + archetype + ', ' + role + '.',
+      'Abilities to visually imply through costume, pose, aura, and environmental effects: ' + powerText + '.',
+      'Signature note: ' + signature + '.',
+      'Pose direction: powerful three-quarter heroic stance, intense expression, dynamic cape-or-coat-like silhouette only if it fits the character, cinematic energy around the body.',
+      'Costume direction: original superhero costume, no existing franchise logos, no copied characters, layered armor/fabric details, emblem-like chest motif generated from the character identity.',
+      'Background: abstract battle-ready energy field, dramatic rim light, high-contrast atmosphere, cover-art depth.',
+      'Do not include text labels, stat tables, watermarks, raw scores, domain names, hidden routing, manifest thresholds, debug output, or UI elements.'
+    ].join(' ');
+  }
+
+  function renderTotalityObservation(finalPayload) {
+    pendingFinalPayload = finalPayload;
+
+    const previewPayload = Object.assign({}, finalPayload, {
+      character_sheet: Object.assign({}, finalPayload.character_sheet || {}, {
+        title: 'Awaiting Name',
+        summary: 'The Spark pattern is complete. Totality Observation gives it identity.'
+      })
+    });
+
+    result.innerHTML = [
+      '<div class="ecg-generated-portrait ecg-preview-portrait" data-render="deterministic-svg-preview">',
+      buildSparkPortraitSvg(previewPayload),
+      '</div>',
+      '<section class="ecg-profile-panel ecg-profile-wide ecg-totality-panel">',
+      '<p class="ecg-kicker">Totality Observation</p>',
+      '<h2>Name the Spark</h2>',
+      '<p>The system has enough signal to see the full pattern. Give the Spark a name or alias before the final dossier is born.</p>',
+      '<form id="emergence-totality-form" class="ecg-totality-form">',
+      '<label for="emergence-spark-name"><strong>Character name / alias</strong></label>',
+      '<input id="emergence-spark-name" name="spark_name" type="text" minlength="2" maxlength="64" required placeholder="Example: The Prism Warden">',
+      '<button type="submit">Create Final Dossier</button>',
+      '</form>',
+      '</section>'
+    ].join('');
+
+    flavorMount.dataset.phase = 'totality_observation';
+    flavorMount.innerHTML = '';
+
+    const totalityForm = document.getElementById('emergence-totality-form');
+    totalityForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const nameInput = document.getElementById('emergence-spark-name');
+      const sparkName = String(nameInput.value || '').trim();
+
+      if (sparkName.length < 2) {
+        nameInput.focus();
+        return;
+      }
+
+      const namedPayload = Object.assign({}, pendingFinalPayload, {
+        character_sheet: Object.assign({}, pendingFinalPayload.character_sheet || {}, {
+          title: sparkName
+        }),
+        spark_name: sparkName,
+        premium_portrait_prompt: compilePremiumPortraitPrompt(pendingFinalPayload, sparkName)
+      });
+
+      renderCharacterProfile(namedPayload);
+    });
+
+    result.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+
   function renderCharacterProfile(finalPayload) {
     const sheet = finalPayload.character_sheet || {};
     const powers = finalPayload.powers || [];
@@ -278,6 +355,12 @@
       '<p>' + esc(tone.hook) + '</p>',
       '</section>',
 
+      '<section class="ecg-profile-panel ecg-profile-wide ecg-premium-prompt-panel">',
+      '<h3>Premium Hero Portrait Prompt</h3>',
+      '<p>This prompt is ready for premium image generation after naming. It avoids franchise names, raw scores, and hidden routing.</p>',
+      '<textarea readonly class="ecg-premium-prompt">' + esc(finalPayload.premium_portrait_prompt || compilePremiumPortraitPrompt(finalPayload, tone.codename)) + '</textarea>',
+      '</section>',
+
       '<div class="ecg-profile-actions">',
       '<a href="/battle-simulator/" class="ecg-profile-cta">Use this Spark in Battle Simulator</a>',
       '<button type="button" class="ecg-secondary-action" onclick="window.location.reload()">Generate Another Spark</button>',
@@ -291,18 +374,29 @@
   }
 
   function renderDomainResult(payload) {
+    const previewPayload = Object.assign({}, payload, {
+      character_sheet: {
+        title: 'Unobserved Spark',
+        archetype: 'Pre-Dossier Signal',
+        summary: 'The system has resolved enough of your Spark pattern to generate a visual preview. The full dossier remains locked until Totality Observation.',
+        signature_line: 'Signature forming · Combat profile pending'
+      },
+      powers: [],
+      cast: payload.cast || 'Unclassified Spark'
+    });
+
     result.innerHTML = [
-      '<h2>Pass 1 Complete: Spark Type Scan</h2>',
-      '<p class="ecg-result-note">Your manifested domains are resolved. No powers have been selected yet.</p>',
-      '<div class="ecg-card-grid">',
-      '<div class="ecg-card"><strong>Lead Domain</strong><br>' + esc(payload.lead_domain || 'Unresolved') + '</div>',
-      '<div class="ecg-card"><strong>Profile Shape</strong><br>' + esc(payload.profile_shape || 'Unresolved') + '</div>',
-      '<div class="ecg-card"><strong>Power Selection</strong><br>Locked until Pass 2</div>',
+      '<div class="ecg-generated-portrait ecg-preview-portrait" data-render="deterministic-svg-preview">',
+      buildSparkPortraitSvg(previewPayload),
       '</div>',
-      '<h3>Pass 2 Status</h3>',
-      '<p>Your scan unlocked a private set of follow-up questions.</p>'
+      '<section class="ecg-profile-panel ecg-profile-wide">',
+      '<h2>Pass 1 Complete: Spark Preview Formed</h2>',
+      '<p class="ecg-result-note">The system has unlocked a private set of follow-up questions. The routing stays hidden until your final dossier is born.</p>',
+      '<p>Your free SVG preview is a temporary signal card, not the final superhero image.</p>',
+      '</section>'
     ].join('');
   }
+
 
   function renderFlavorForm(payload) {
     const manifested = payload.manifested || [];
@@ -376,7 +470,7 @@
         });
 
         console.info('[EmergenceCG] flavor pass debug', debugSummary(finalPayload));
-        renderCharacterProfile(finalPayload);
+        renderTotalityObservation(finalPayload);
       } catch (error) {
         result.innerHTML += '<p>Flavor error: ' + esc(error.message) + '</p>';
       }

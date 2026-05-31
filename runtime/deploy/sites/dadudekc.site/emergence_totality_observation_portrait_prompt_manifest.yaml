@@ -1,0 +1,26 @@
+version: 1
+name: emergence_totality_observation_portrait_prompt
+site: dadudekc.site
+status: deployed
+implemented:
+  - svg_preview_before_final_dossier
+  - totality_observation_name_gate
+  - final_dossier_requires_name
+  - premium_portrait_prompt_compiler
+  - no_external_image_api_call
+verified:
+  public_totality_assets: pass
+  rest_final_payload: pass
+  prompt_privacy_static: pass
+  totality_flow_static: pass
+  totality_smoke: pass
+safety:
+  theme_deploy_enabled: false
+  old_theme_deploy_enabled: false
+  external_image_api_called: false
+  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/totality_observation_091_20260531_113235'
+next_allowed_actions:
+  - wire_premium_image_generation_provider
+  - add_shareable_character_permalink
+  - add_saved_character_records
+  - build_battle_simulator_demo

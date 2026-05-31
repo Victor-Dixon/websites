@@ -336,3 +336,52 @@
 .ecg-svg-bar-fill.alt {
   fill: rgba(255,255,255,.62);
 }
+
+/* Dream.OS Totality Observation lane 091 */
+.ecg-preview-portrait {
+  margin-top: 1.25rem;
+}
+
+.ecg-totality-panel {
+  border-color: rgba(255,255,255,.2);
+  background:
+    radial-gradient(circle at top right, rgba(255,255,255,.08), transparent 24rem),
+    rgba(255,255,255,.055);
+}
+
+.ecg-totality-form {
+  display: grid;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+
+.ecg-totality-form input {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 16px;
+  padding: .95rem 1rem;
+  background: rgba(0,0,0,.22);
+  color: inherit;
+  font: inherit;
+}
+
+.ecg-totality-form button {
+  justify-self: start;
+  border: 0;
+  border-radius: 999px;
+  padding: .85rem 1.15rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ecg-premium-prompt {
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 16px;
+  padding: 1rem;
+  background: rgba(0,0,0,.24);
+  color: inherit;
+  font: 0.92rem/1.5 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  resize: vertical;
+}

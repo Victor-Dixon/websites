@@ -1,0 +1,98 @@
+version: 1
+id: add_emergence_totality_observation_portrait_prompt_091
+title: Add Emergence Totality Observation portrait prompt
+owner: operator-1
+repo: websites
+priority: high
+target: Character Generator Totality Observation + premium portrait prompt
+action: >
+  Rework the final generation flow so the deterministic SVG card appears as a
+  free preview before the final dossier, then ask the user for a name/alias
+  during a Totality Observation step. Use the named final Spark Profile to compile
+  a premium superhero image-generation prompt for real illustrated character art.
+context:
+  site: dadudekc.site
+  url: https://dadudekc.site/character-generator/
+  plugin: runtime/plugins/emergence-character-generator
+  current_state:
+    - real_protocol_v85_questions_live
+    - hidden_domain_routing_live
+    - generic_flavor_blocks_live
+    - final_spark_profile_live
+    - deterministic_svg_portrait_live
+objective:
+  primary: >
+    Change product flow from immediate dossier to staged reveal:
+    scan -> SVG preview -> flavor pass -> Totality Observation/name -> premium
+    portrait prompt -> final dossier.
+  product_rule:
+    - SVG is the free preview identity card.
+    - Premium image generation/prompt occurs only after the user names the Spark.
+    - Final dossier uses the named Spark Profile and premium image/prompt.
+requirements:
+  flow:
+    - After Q1-Q28 domain scan, show a generic SVG preview/card but do not reveal domains.
+    - After Q29-Q68 flavor pass, show a Totality Observation step.
+    - Totality Observation asks for character name or alias.
+    - Name must be required before final dossier renders.
+    - Final dossier should include the chosen name, readable Spark Profile, powers, SVG fallback, and premium image prompt.
+    - Premium image prompt must be generated from final profile data and chosen name.
+  premium_prompt:
+    - Output a field such as premium_portrait_prompt or image_prompt.
+    - Prompt should request premium American superhero comic-book character art.
+    - Do not say Marvel or DC in generated prompt.
+    - Use phrases such as:
+      - premium American superhero comic-book aesthetic
+      - bold inked linework
+      - dramatic cinematic lighting
+      - heroic costume design
+      - cover-art composition
+    - Include:
+      - character name
+      - archetype
+      - selected powers
+      - combat role
+      - aura/effects
+      - costume motifs
+      - pose direction
+      - background energy
+    - Exclude raw score mechanics, manifest threshold, tiers table, debug labels, or hidden domain routing.
+  privacy:
+    - Public UI must not reveal unlocked domain names before the final result.
+    - Public UI must not show raw domain scores.
+    - Prompt must not include raw score object, manifest threshold, debug summaries, or hidden key terms.
+  implementation:
+    - Keep SVG renderer as fallback/free preview.
+    - Add JS step for Totality Observation after flavor pass.
+    - Add prompt compiler in JS or PHP.
+    - Keep REST behavior stable unless adding a safe field to final payload.
+    - Prefer no paid API call yet; compile the prompt first.
+verification:
+  automated:
+    - Existing public path smoke still passes.
+    - Profile display smoke still passes after update.
+    - SVG portrait smoke still passes.
+    - New smoke asserts:
+      - SVG preview/card appears before final dossier.
+      - Totality Observation name field appears after flavor pass.
+      - final dossier requires name.
+      - generated premium portrait prompt includes chosen name.
+      - generated premium portrait prompt avoids Marvel/DC and raw scoring leaks.
+      - public UI still hides raw scoring/domain routing.
+acceptance_criteria:
+  - SVG preview is used before dossier.
+  - Totality Observation asks for name/alias.
+  - Final dossier does not render until name is supplied.
+  - Premium image prompt is generated from named Spark Profile.
+  - No external image API is called yet.
+  - No raw scoring/domain leaks.
+expected_artifacts:
+  reports:
+    - _reports/emergence_totality_observation_portrait_prompt_091.md
+  scripts:
+    - runtime/scripts/smoke_emergence_totality_observation_portrait_prompt.py
+  plugin_paths:
+    - runtime/plugins/emergence-character-generator/emergence-character-generator.php
+    - runtime/plugins/emergence-character-generator/assets/emergence-cg.js
+    - runtime/plugins/emergence-character-generator/assets/emergence-cg.css
+commit_message: Add Emergence Totality Observation portrait prompt
