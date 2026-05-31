@@ -368,10 +368,14 @@
 
     return [
       'Create a premium original superhero character portrait for a new hero named "' + title + '".',
+      'FULL BODY REVEAL STANDARD: show the complete character from head to toe, full costume visible, heroic stance, no cropped portrait, no bust-only portrait, no face-only portrait.',
       'This character comes from a deterministic psychological power system, not a wish-list creator. The design should feel like the powers emerged from personality, pressure, instinct, and identity.',
       'STYLE: premium American superhero comic-book aesthetic, bold inked linework, high-end painted comic cover finish, dramatic cinematic lighting, strong rim light, dynamic shadow shapes, heroic costume design, cover-art composition, mythic but grounded.',
       'CHARACTER IDENTITY: name "' + title + '"; archetype "' + archetype + '"; cast type "' + cast + '"; combat role "' + role + '"; profile shape "' + profileShape + '".',
       'POWERS TO VISUALLY SHOWCASE: ' + (powerNames.length ? powerNames.join(', ') : 'latent unresolved abilities') + '.',
+      'CUSTOM COSTUME DIRECTION: ' + (tone.costume || 'system-designed heroic costume') + '.',
+      'CUSTOM PERSONALITY / ATTITUDE: ' + (tone.personality || 'system-interpreted heroic personality') + '.',
+      'COMPOSITION: full-body reveal, complete head-to-toe superhero design, readable silhouette, costume and abilities visible in one image.',
       'ABILITY VISUALIZATION: ' + visualMotifs + '.',
       'PLAYER DESIGN DIRECTION: ' + playerDesign + '.',
       'POSE: battle-ready reveal pose, intense expression, controlled power, designed like the first official dossier image.',
@@ -408,11 +412,10 @@
       '<div class="ecg-cosmetic-grid">',
       '<label>Visual Tone<select id="emergence-tone-style"><option value="heroic">Heroic</option><option value="ominous">Ominous</option><option value="mythic">Mythic</option><option value="street">Street-level</option></select></label>',
       '<label>Build Type<select id="emergence-build-style"><option value="system">System-chosen</option><option value="lean">Lean athletic</option><option value="powerful">Powerful</option><option value="compact">Compact fighter</option><option value="tall">Tall imposing</option><option value="elegant">Elegant refined</option></select></label>',
-      '<label>Costume Type<select id="emergence-costume-style"><option value="balanced">Balanced</option><option value="sleek">Sleek</option><option value="armored">Armored</option><option value="mystical">Mystical</option><option value="tactical">Tactical</option><option value="regal">Regal</option></select></label>',
+      '<label>Costume Concept<input id="emergence-costume-style" type="text" maxlength="160" placeholder="Example: armored hooded suit, sleek tactical jacket, cosmic cape, cracked gold mask"></label>',
       '<label>Mask<select id="emergence-mask-style"><option value="system-chosen mask treatment">System-chosen</option><option value="masked face, original mask shape">Masked</option><option value="unmasked face, clear expression">Unmasked</option><option value="partial mask or visor">Partial mask / visor</option></select></label>',
-      '<label>Personality<select id="emergence-personality-style"><option value="calm">Calm controlled</option><option value="fierce">Fierce</option><option value="mysterious">Mysterious</option><option value="noble">Noble guardian</option><option value="playful">Playful swagger</option><option value="haunted">Haunted survivor</option></select></label>',
+      '<label>Personality / Attitude<input id="emergence-personality-style" type="text" maxlength="120" placeholder="Example: stoic protector, cocky street hero, haunted survivor, noble guardian"></label>',
       '<label>Ability Showcase<select id="emergence-showcase-style"><option value="active">Active effects</option><option value="subtle">Subtle hints</option><option value="dramatic">Dramatic surge</option><option value="restrained">Restrained control</option></select></label>',
-      '<label>Frame<select id="emergence-frame-style"><option value="three-quarter portrait">Three-quarter portrait</option><option value="full-body hero reveal">Full-body reveal</option><option value="cover-art bust portrait">Cover-art bust</option></select></label>',
       '</div>',
       '<button type="submit">Create Final Dossier</button>',
       '</form>',
@@ -436,11 +439,10 @@
       const cosmetics = {
         tone: document.getElementById('emergence-tone-style').value,
         build: document.getElementById('emergence-build-style').value,
-        costume: document.getElementById('emergence-costume-style').value,
+        costume: (document.getElementById('emergence-costume-style').value || 'system-designed heroic costume'),
         mask: document.getElementById('emergence-mask-style').value,
-        personality: document.getElementById('emergence-personality-style').value,
+        personality: (document.getElementById('emergence-personality-style').value || 'system-interpreted heroic personality'),
         showcase: document.getElementById('emergence-showcase-style').value,
-        frame: document.getElementById('emergence-frame-style').value
       };
 
       const namedPayload = Object.assign({}, pendingFinalPayload, {

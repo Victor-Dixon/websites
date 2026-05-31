@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.6.7
+ * Version: 0.6.8
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.7');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.7', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.8');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.8', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.7');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.7', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.8');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.8', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -1815,3 +1815,62 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_PUBLIC_SHARE_CARD_UI_END
+
+// DREAMOS_PREMIUM_PORTRAIT_DESIGN_CONTROLS_BEGIN lane 107c
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'emergence_character_generator')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-premium-portrait-design-controls-inline">
+    (function () {
+      'use strict';
+
+      function ensureDesignControls() {
+        var totality = document.querySelector('.ecg-totality-form, .ecg-premium-prompt-panel, .ecg-cosmetic-grid');
+        if (!totality || document.getElementById('dreamos-design-control-fallback')) {
+          return;
+        }
+
+        var panel = document.createElement('section');
+        panel.id = 'dreamos-design-control-fallback';
+        panel.className = 'ecg-cosmetic-grid ecg-design-control-fallback';
+        panel.innerHTML = [
+          '<label>Costume Concept<input id="emergence-costume-style" type="text" maxlength="160" placeholder="Example: armored hooded suit, sleek tactical jacket, cosmic cape, cracked gold mask"></label>',
+          '<label>Personality / Attitude<input id="emergence-personality-style" type="text" maxlength="120" placeholder="Example: stoic protector, cocky street hero, haunted survivor, noble guardian"></label>',
+          '<p class="ecg-result-note">FULL BODY REVEAL STANDARD: the premium prompt uses a complete head-to-toe superhero reveal as the default.</p>',
+          '<p class="ecg-result-note">CUSTOM COSTUME DIRECTION and CUSTOM PERSONALITY / ATTITUDE are player-written design inputs.</p>'
+        ].join('');
+
+        totality.insertAdjacentElement('beforebegin', panel);
+      }
+
+      document.addEventListener('DOMContentLoaded', ensureDesignControls);
+      setInterval(ensureDesignControls, 1000);
+      ensureDesignControls();
+    })();
+    </script>
+    <style id="dreamos-premium-portrait-design-controls-style">
+      .ecg-design-control-fallback {
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,.16);
+        background: rgba(255,255,255,.055);
+      }
+
+      .ecg-design-control-fallback input {
+        width: 100%;
+        border-radius: 14px;
+        padding: .75rem;
+        margin-top: .35rem;
+      }
+    </style>
+    <?php
+});
+// DREAMOS_PREMIUM_PORTRAIT_DESIGN_CONTROLS_END
