@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.6.8
+ * Version: 0.6.9
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.8');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.8', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.9');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.9', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.8');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.8', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.9');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.9', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -1874,3 +1874,269 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_PREMIUM_PORTRAIT_DESIGN_CONTROLS_END
+
+// DREAMOS_PORTRAIT_PROMPT_PREVIEW_POLISH_BEGIN lane 109
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'emergence_character_generator')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-portrait-prompt-preview-polish-inline">
+    (function () {
+      'use strict';
+
+      const FORBIDDEN = [
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'showwork',
+        'raw_roll',
+        'odds:'
+      ];
+
+      function esc(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function assertSafe(text) {
+        const lower = String(text || '').toLowerCase();
+        FORBIDDEN.forEach(function (key) {
+          if (lower.indexOf(key) !== -1) {
+            throw new Error('Unsafe portrait prompt preview blocked: ' + key);
+          }
+        });
+      }
+
+      function readPromptText() {
+        const textarea = document.querySelector('.ecg-premium-prompt');
+        return textarea ? textarea.value || textarea.textContent || '' : '';
+      }
+
+      function lineAfter(prompt, prefix) {
+        const lines = String(prompt || '').split(/\n+/);
+        const found = lines.find(function (line) {
+          return line.toLowerCase().indexOf(prefix.toLowerCase()) === 0;
+        });
+        return found ? found.replace(new RegExp('^' + prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*', 'i'), '').trim() : '';
+      }
+
+      function includesLine(prompt, phrase) {
+        return String(prompt || '').toLowerCase().indexOf(phrase.toLowerCase()) !== -1;
+      }
+
+      function extractName(prompt) {
+        const match = String(prompt || '').match(/hero named ([^.]+)\./i);
+        return match ? match[1].trim() : 'Your Spark';
+      }
+
+      function copyText(value, button) {
+        assertSafe(value);
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(value).then(function () {
+            button.textContent = 'Copied';
+            setTimeout(function () { button.textContent = button.getAttribute('data-label') || 'Copy Prompt'; }, 1400);
+          }).catch(function () {
+            fallbackCopy(value, button);
+          });
+          return;
+        }
+
+        fallbackCopy(value, button);
+      }
+
+      function fallbackCopy(value, button) {
+        const area = document.createElement('textarea');
+        area.value = value;
+        area.setAttribute('readonly', 'readonly');
+        area.style.position = 'fixed';
+        area.style.left = '-9999px';
+        document.body.appendChild(area);
+        area.select();
+
+        try {
+          document.execCommand('copy');
+          button.textContent = 'Copied';
+        } catch (error) {
+          button.textContent = 'Copy failed';
+        }
+
+        document.body.removeChild(area);
+        setTimeout(function () { button.textContent = button.getAttribute('data-label') || 'Copy Prompt'; }, 1400);
+      }
+
+      function renderSection(label, value) {
+        return [
+          '<div class="ecg-prompt-preview-section">',
+          '<span>' + esc(label) + '</span>',
+          '<p>' + esc(value || 'System-selected from your Spark profile.') + '</p>',
+          '</div>'
+        ].join('');
+      }
+
+      function renderPreview(prompt) {
+        assertSafe(prompt);
+
+        const name = extractName(prompt);
+        const costume = lineAfter(prompt, 'CUSTOM COSTUME DIRECTION:');
+        const personality = lineAfter(prompt, 'CUSTOM PERSONALITY / ATTITUDE:');
+        const powers = lineAfter(prompt, 'POWERS TO VISUALLY SHOWCASE:');
+        const showcase = lineAfter(prompt, 'ABILITY SHOWCASE MODE:');
+        const composition = includesLine(prompt, 'FULL BODY REVEAL STANDARD')
+          ? 'Full-body reveal: complete head-to-toe superhero design, full costume visible, no cropped portrait.'
+          : lineAfter(prompt, 'COMPOSITION:');
+
+        return [
+          '<section class="ecg-prompt-preview-card" data-prompt-preview="polished">',
+          '<div class="ecg-prompt-preview-head">',
+          '<div>',
+          '<p class="ecg-kicker">Premium Portrait Prompt</p>',
+          '<h3>' + esc(name) + '</h3>',
+          '<p>Copy-ready art direction for the premium superhero image generator.</p>',
+          '</div>',
+          '<button type="button" class="ecg-copy-prompt-button" data-label="Copy Prompt">Copy Prompt</button>',
+          '</div>',
+          '<div class="ecg-prompt-preview-grid">',
+          renderSection('Costume', costume),
+          renderSection('Personality', personality),
+          renderSection('Powers to Showcase', powers),
+          renderSection('Ability Showcase', showcase),
+          renderSection('Full-Body Standard', composition),
+          '</div>',
+          '<details class="ecg-prompt-preview-raw">',
+          '<summary>View full copy prompt</summary>',
+          '<pre>' + esc(prompt) + '</pre>',
+          '</details>',
+          '</section>'
+        ].join('');
+      }
+
+      function upgradePromptPreview() {
+        const textarea = document.querySelector('.ecg-premium-prompt');
+        if (!textarea || document.querySelector('[data-prompt-preview="polished"]')) {
+          return;
+        }
+
+        const prompt = readPromptText();
+        if (!prompt || prompt.indexOf('FULL BODY REVEAL STANDARD') === -1) {
+          return;
+        }
+
+        const panel = document.createElement('div');
+        panel.innerHTML = renderPreview(prompt);
+        textarea.insertAdjacentElement('beforebegin', panel.firstElementChild);
+        textarea.setAttribute('data-polished-preview-source', '1');
+      }
+
+      document.addEventListener('click', function (event) {
+        const button = event.target && event.target.closest ? event.target.closest('.ecg-copy-prompt-button') : null;
+        if (!button) {
+          return;
+        }
+
+        copyText(readPromptText(), button);
+      });
+
+      document.addEventListener('DOMContentLoaded', upgradePromptPreview);
+      setInterval(upgradePromptPreview, 1000);
+      upgradePromptPreview();
+    })();
+    </script>
+    <style id="dreamos-portrait-prompt-preview-polish-style">
+      .ecg-prompt-preview-card {
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 24px;
+        border: 1px solid rgba(255,255,255,.18);
+        background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.035));
+      }
+
+      .ecg-prompt-preview-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .ecg-prompt-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .75rem;
+      }
+
+      .ecg-prompt-preview-section {
+        padding: .85rem;
+        border-radius: 18px;
+        background: rgba(0,0,0,.18);
+      }
+
+      .ecg-prompt-preview-section span {
+        display: block;
+        font-size: .76rem;
+        font-weight: 900;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        opacity: .76;
+        margin-bottom: .25rem;
+      }
+
+      .ecg-prompt-preview-section p {
+        margin: 0;
+      }
+
+      .ecg-copy-prompt-button {
+        border: 0;
+        border-radius: 999px;
+        padding: .75rem 1rem;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .ecg-prompt-preview-raw {
+        margin-top: 1rem;
+      }
+
+      .ecg-prompt-preview-raw pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        max-height: 320px;
+        overflow: auto;
+        padding: .85rem;
+        border-radius: 16px;
+        background: rgba(0,0,0,.24);
+      }
+
+      @media (max-width: 760px) {
+        .ecg-prompt-preview-head {
+          display: block;
+        }
+
+        .ecg-copy-prompt-button {
+          margin-top: .75rem;
+          width: 100%;
+        }
+
+        .ecg-prompt-preview-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <?php
+});
+// DREAMOS_PORTRAIT_PROMPT_PREVIEW_POLISH_END
