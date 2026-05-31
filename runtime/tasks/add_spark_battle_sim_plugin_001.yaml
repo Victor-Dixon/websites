@@ -1,0 +1,55 @@
+id: add_spark_battle_sim_plugin_001
+title: Add Spark Protocol Battle Simulator WordPress MVP
+status: ready
+target: dadudekc.site WordPress plugin
+priority: high
+
+objective:
+  Build an installable WordPress plugin that adds a [spark_battle_sim] shortcode
+  for running cinematic Spark Protocol battles between locked character sheets.
+
+scope:
+  include:
+    - WordPress plugin scaffold
+    - shortcode renderer
+    - two starter characters: The Victor and Captain Cap Wilson
+    - arena roller
+    - simple odds/winner resolver
+    - cinematic template renderer
+    - battle result display
+    - basic CSS
+    - install zip artifact
+    - smoke test report
+  exclude:
+    - live AI API integration
+    - user accounts
+    - paid subscriptions
+    - tournament brackets
+    - public protocol/math exposure
+
+files:
+  create:
+    - runtime/plugins/spark-battle-sim/spark-battle-sim.php
+    - runtime/plugins/spark-battle-sim/includes/CharacterRepository.php
+    - runtime/plugins/spark-battle-sim/includes/ArenaRoller.php
+    - runtime/plugins/spark-battle-sim/includes/BattleEngine.php
+    - runtime/plugins/spark-battle-sim/includes/StoryRenderer.php
+    - runtime/plugins/spark-battle-sim/assets/battle.css
+    - runtime/plugins/spark-battle-sim/data/characters/the-victor.json
+    - runtime/plugins/spark-battle-sim/data/characters/captain-cap-wilson.json
+
+verification:
+  - task yaml exists
+  - plugin source tree can be generated
+  - plugin zip exists
+  - shortcode renders without fatal error
+  - fighters load from JSON
+  - battle button returns a result
+  - result includes arena, winner, and cinematic story
+  - backend odds and rolls are not printed publicly
+
+output:
+  - _reports/spark-battle-sim-0.1.0.zip
+  - _reports/spark_battle_sim_plugin_001.md
+
+commit_message: "Add Spark Protocol battle simulator WordPress MVP"

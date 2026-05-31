@@ -1,0 +1,63 @@
+.spark-battle-shell {
+    border: 1px solid #333;
+    padding: 24px;
+    border-radius: 14px;
+    background: #111;
+    color: #f5f5f5;
+    max-width: 920px;
+    margin: 24px auto;
+}
+
+.spark-battle-shell h2,
+.spark-battle-shell h3 {
+    color: #fff;
+}
+
+.spark-battle-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: end;
+    margin: 20px 0;
+}
+
+.spark-battle-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 220px;
+}
+
+.spark-battle-form select,
+.spark-battle-form button {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #555;
+}
+
+.spark-battle-form button {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.spark-vs {
+    font-weight: 800;
+    font-size: 1.2rem;
+    padding-bottom: 10px;
+}
+
+.spark-battle-error {
+    color: #ffb4b4;
+    font-weight: 700;
+}
+
+.spark-battle-result {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+}
+
+.spark-story {
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
