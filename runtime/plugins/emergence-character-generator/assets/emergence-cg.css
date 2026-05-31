@@ -1,0 +1,76 @@
+.emergence-cg {
+  max-width: 980px;
+  margin: 32px auto;
+  padding: 28px;
+  border: 1px solid rgba(20,20,30,.12);
+  border-radius: 22px;
+  background: linear-gradient(135deg, #090b16, #171b31);
+  color: #fff;
+}
+
+.ecg-hero h1 {
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  line-height: 1;
+  margin: 0 0 12px;
+}
+
+.ecg-kicker {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  opacity: .7;
+  margin: 0 0 10px;
+}
+
+.ecg-note {
+  opacity: .82;
+}
+
+.ecg-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.ecg-question {
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.ecg-question legend {
+  font-weight: 700;
+}
+
+.ecg-question select {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.ecg-form button {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ecg-result {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.08);
+}
+
+.ecg-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.ecg-card {
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.1);
+}
