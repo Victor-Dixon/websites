@@ -1,3 +1,16 @@
+# dadudekc.site Emergence Homepage 075
+
+## Result
+
+- Homepage updated.
+- Primary CTA: /character-generator/
+- Secondary CTA: /battle-simulator/
+- Theme unchanged.
+
+## Raw Output
+
+```text
+HOMEPAGE_SET=PASS id=16
 <section class="emergence-home">
   <p><strong>Build in public / first playable demo live</strong></p>
 
@@ -45,3 +58,12 @@
     <a href="/battle-simulator/">Battle Simulator coming next →</a>
   </p>
 </section>
+  The Emergence began as a machine for answering “Who would win?” and evolved into a world where the answer could include you.
+    <a href="/character-generator/"><strong>Generate your first Spark →</strong></a>
+REMOTE_HOME_CONTENT=PASS
+Success: Purged All!
+LITESPEED_PURGE=PASS
+PUBLIC_HOME_RENDER=PASS
+```
+
+STATUS=PASS
