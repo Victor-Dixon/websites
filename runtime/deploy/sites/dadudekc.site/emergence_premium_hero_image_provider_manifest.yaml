@@ -1,0 +1,30 @@
+version: 1
+name: emergence_premium_hero_image_provider
+site: dadudekc.site
+status: scaffold_deployed
+implemented:
+  - premium_portrait_rest_endpoint
+  - provider_config_abstraction
+  - provider_disabled_without_env_key
+  - prompt_only_fallback
+  - svg_fallback_preserved
+  - no_external_api_call_in_scaffold
+verified:
+  public_provider_assets: pass
+  provider_prompt_only_fallback: pass
+  provider_no_key_leaks: pass
+  provider_smoke: pass
+env_contract:
+  provider: EMERGENCE_IMAGE_PROVIDER
+  key: EMERGENCE_IMAGE_API_KEY
+  fallback_key: OPENAI_API_KEY
+safety:
+  external_image_api_called: false
+  no_key_leaks: true
+  svg_fallback_preserved: true
+notes:
+  - Secret check uses token-shaped regex patterns and explicit match handling.
+next_allowed_actions:
+  - wire_openai_image_generation_server_side
+  - store_generated_image_url
+  - add_shareable_character_permalink

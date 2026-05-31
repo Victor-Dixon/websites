@@ -455,7 +455,67 @@
       renderCharacterProfile(namedPayload);
     });
 
+    const premiumButton = document.getElementById('ecg-generate-premium-image');
+    if (premiumButton) {
+      premiumButton.addEventListener('click', async function () {
+        premiumButton.disabled = true;
+        premiumButton.textContent = 'Checking provider…';
+        try {
+          const providerResult = await requestPremiumHeroImage(finalPayload);
+          renderPremiumImageProviderResult(providerResult);
+        } catch (error) {
+          renderPremiumImageProviderResult({status: 'error', message: 'Provider request failed.'});
+        } finally {
+          premiumButton.disabled = false;
+          premiumButton.textContent = 'Generate Premium Hero Image';
+        }
+      });
+    }
+
     result.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+
+  async function requestPremiumHeroImage(payload) {
+    const prompt = payload.premium_portrait_prompt || '';
+    const sparkName = payload.spark_name || (payload.character_sheet && payload.character_sheet.title) || '';
+
+    const response = await fetch('/wp-json/emergence/v1/portrait', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        spark_name: sparkName,
+        premium_portrait_prompt: prompt
+      })
+    });
+
+    return await response.json();
+  }
+
+  function renderPremiumImageProviderResult(data) {
+    const mount = document.getElementById('ecg-premium-image-provider-result');
+    if (!mount) return;
+
+    if (!data || data.status === 'error') {
+      mount.innerHTML = '<p class="ecg-provider-error">Premium portrait request failed. The SVG fallback remains available.</p>';
+      return;
+    }
+
+    if (data.image_url) {
+      mount.innerHTML = [
+        '<figure class="ecg-premium-generated-image">',
+        '<img src="' + esc(data.image_url) + '" alt="' + esc(data.spark_name || 'Generated Spark portrait') + '">',
+        '<figcaption>Premium hero portrait generated.</figcaption>',
+        '</figure>'
+      ].join('');
+      return;
+    }
+
+    mount.innerHTML = [
+      '<div class="ecg-provider-fallback">',
+      '<p><strong>Premium image provider:</strong> ' + esc(data.status || 'prompt-only') + '</p>',
+      '<p>' + esc(data.message || 'Prompt-only fallback is active. SVG card remains available.') + '</p>',
+      '</div>'
+    ].join('');
   }
 
   function renderCharacterProfile(finalPayload) {
@@ -515,6 +575,10 @@
       '<h3>Premium Hero Portrait Prompt</h3>',
       '<p>This prompt is ready for premium image generation after naming. It avoids franchise names, raw scores, and hidden routing.</p>',
       '<textarea readonly class="ecg-premium-prompt">' + esc(finalPayload.premium_portrait_prompt || compilePremiumPortraitPrompt(finalPayload, tone.codename)) + '</textarea>',
+      '<div class="ecg-premium-provider-actions">',
+      '<button type="button" id="ecg-generate-premium-image">Generate Premium Hero Image</button>',
+      '</div>',
+      '<div id="ecg-premium-image-provider-result" class="ecg-premium-image-provider-result" aria-live="polite"></div>',
       '</section>',
 
       '<div class="ecg-profile-actions">',

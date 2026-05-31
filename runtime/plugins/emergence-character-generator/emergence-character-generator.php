@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.5.7
+ * Version: 0.5.8
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.5.7');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.5.7', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.5.8');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.5.8', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -596,6 +596,106 @@ add_action('rest_api_init', function () {
     register_rest_route('emergence/v1', '/generate', array(
         'methods' => 'POST',
         'callback' => 'emergence_cg_rest_generate',
+        'permission_callback' => '__return_true',
+    ));
+});
+
+
+/**
+ * Premium hero image provider scaffold.
+ *
+ * This intentionally returns a prompt-only fallback when no provider/key is
+ * configured. No API key is ever returned to the browser.
+ */
+function emergence_cg_image_provider_config() {
+    $provider = getenv('EMERGENCE_IMAGE_PROVIDER');
+    if (!$provider) {
+        $provider = 'disabled';
+    }
+
+    $key = getenv('EMERGENCE_IMAGE_API_KEY');
+    if (!$key) {
+        $key = getenv('OPENAI_API_KEY');
+    }
+
+    return array(
+        'provider' => sanitize_text_field($provider),
+        'configured' => !empty($key),
+    );
+}
+
+function emergence_cg_sanitize_image_prompt($prompt) {
+    $prompt = wp_strip_all_tags((string) $prompt);
+    $prompt = preg_replace('/\s+/', ' ', $prompt);
+    $prompt = trim($prompt);
+    return mb_substr($prompt, 0, 3500);
+}
+
+function emergence_cg_premium_portrait_rest($request) {
+    $params = $request->get_json_params();
+    if (!is_array($params)) {
+        $params = array();
+    }
+
+    $spark_name = isset($params['spark_name']) ? sanitize_text_field($params['spark_name']) : '';
+    $prompt = isset($params['premium_portrait_prompt']) ? emergence_cg_sanitize_image_prompt($params['premium_portrait_prompt']) : '';
+
+    if (strlen($spark_name) < 2) {
+        return new WP_REST_Response(array(
+            'status' => 'error',
+            'code' => 'missing_spark_name',
+            'message' => 'A named Spark is required before premium portrait generation.',
+        ), 400);
+    }
+
+    if (strlen($prompt) < 80) {
+        return new WP_REST_Response(array(
+            'status' => 'error',
+            'code' => 'missing_prompt',
+            'message' => 'A premium portrait prompt is required.',
+        ), 400);
+    }
+
+    $config = emergence_cg_image_provider_config();
+
+    if (!$config['configured'] || $config['provider'] === 'disabled') {
+        return new WP_REST_Response(array(
+            'status' => 'disabled',
+            'provider' => $config['provider'],
+            'prompt_only' => true,
+            'image_url' => null,
+            'spark_name' => $spark_name,
+            'message' => 'Premium image provider is disabled. SVG fallback remains active and the compiled prompt is ready for manual or future provider use.',
+            'premium_portrait_prompt' => $prompt,
+        ), 200);
+    }
+
+    /*
+     * Provider abstraction point.
+     *
+     * Future lane:
+     * - provider=openai
+     * - call image generation API server-side only
+     * - store returned URL/path
+     * - return public image URL
+     *
+     * Current lane deliberately does NOT call external APIs.
+     */
+    return new WP_REST_Response(array(
+        'status' => 'provider_configured_not_called',
+        'provider' => $config['provider'],
+        'prompt_only' => true,
+        'image_url' => null,
+        'spark_name' => $spark_name,
+        'message' => 'Provider environment is configured, but live image calls are not enabled in this scaffold lane.',
+        'premium_portrait_prompt' => $prompt,
+    ), 200);
+}
+
+add_action('rest_api_init', function () {
+    register_rest_route('emergence/v1', '/portrait', array(
+        'methods' => 'POST',
+        'callback' => 'emergence_cg_premium_portrait_rest',
         'permission_callback' => '__return_true',
     ));
 });

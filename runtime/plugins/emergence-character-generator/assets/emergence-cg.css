@@ -415,3 +415,39 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Dream.OS premium image provider scaffold lane 093 */
+.ecg-premium-provider-actions {
+  margin-top: .85rem;
+}
+
+.ecg-premium-provider-actions button {
+  border: 0;
+  border-radius: 999px;
+  padding: .85rem 1.15rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ecg-premium-provider-actions button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.ecg-premium-image-provider-result {
+  margin-top: .85rem;
+}
+
+.ecg-provider-fallback,
+.ecg-provider-error {
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 16px;
+  padding: .9rem 1rem;
+  background: rgba(255,255,255,.055);
+}
+
+.ecg-premium-generated-image img {
+  max-width: 100%;
+  border-radius: 22px;
+  display: block;
+}
