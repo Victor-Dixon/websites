@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.6.4
+ * Version: 0.6.5
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.4');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.4', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.5');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.5', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.4');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.4', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.5');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.5', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -971,6 +971,21 @@ add_action('wp_footer', function () {
         return Array.from((root || document).querySelectorAll(sel))
           .map(function (node) { return node.textContent.trim(); })
           .filter(Boolean);
+      }
+
+      async function createShareableSparkToken(payload) {
+        const response = await fetch('/wp-json/emergence/v1/spark-token', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({spark: payload})
+        });
+
+        const data = await response.json();
+        if (!response.ok || data.status !== 'created') {
+          throw new Error(data.message || 'Token creation failed.');
+        }
+
+        return data;
       }
 
       function safePayloadFromDossier() {
@@ -1056,9 +1071,20 @@ add_action('wp_footer', function () {
           const payload = safePayloadFromDossier();
           window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
           if (status) {
-            status.textContent = 'Spark exported. Opening Battle Simulator...';
+            status.textContent = 'Creating shareable battle link...';
           }
-          window.location.href = '/battles/?spark_handoff=1';
+
+          createShareableSparkToken(payload).then(function (tokenData) {
+            if (status) {
+              status.innerHTML = 'Share link ready: <a href="' + tokenData.share_url + '">Open Battle Link</a>';
+            }
+            window.location.href = tokenData.share_url;
+          }).catch(function () {
+            if (status) {
+              status.textContent = 'Token unavailable. Opening same-browser Battle Simulator...';
+            }
+            window.location.href = '/battles/?spark_handoff=1';
+          });
         } catch (error) {
           if (status) {
             status.textContent = 'Export blocked: unsafe payload.';
@@ -1090,3 +1116,181 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_END
+
+// DREAMOS_SHAREABLE_SPARK_TOKEN_REST_BEGIN lane 101
+add_action('rest_api_init', function () {
+    register_rest_route('emergence/v1', '/spark-token', array(
+        'methods' => 'POST',
+        'callback' => 'emergence_cg_create_spark_token_rest',
+        'permission_callback' => '__return_true',
+    ));
+
+    register_rest_route('emergence/v1', '/spark-token/(?P<token>[A-Za-z0-9_-]{16,80})', array(
+        'methods' => 'GET',
+        'callback' => 'emergence_cg_read_spark_token_rest',
+        'permission_callback' => '__return_true',
+    ));
+});
+
+function emergence_cg_token_forbidden_keys() {
+    return array(
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'debug',
+        'showwork',
+        'roll',
+        'odds',
+        'raw'
+    );
+}
+
+function emergence_cg_sanitize_spark_token_payload($payload) {
+    if (!is_array($payload)) {
+        return new WP_Error('invalid_payload', 'Spark payload must be an object.');
+    }
+
+    $serialized = wp_json_encode($payload);
+    foreach (emergence_cg_token_forbidden_keys() as $key) {
+        if (strpos($serialized, $key) !== false) {
+            return new WP_Error('unsafe_payload', 'Unsafe Spark payload blocked.');
+        }
+    }
+
+    $safe = array(
+        'version' => 1,
+        'source' => 'emergence-character-generator',
+        'spark_name' => isset($payload['spark_name']) ? sanitize_text_field($payload['spark_name']) : 'Unnamed Spark',
+        'title' => isset($payload['title']) ? sanitize_text_field($payload['title']) : 'Unnamed Spark',
+        'archetype' => isset($payload['archetype']) ? sanitize_text_field($payload['archetype']) : '',
+        'summary' => isset($payload['summary']) ? sanitize_textarea_field($payload['summary']) : '',
+        'cast' => isset($payload['cast']) ? sanitize_text_field($payload['cast']) : '',
+        'profile_shape' => isset($payload['profile_shape']) ? sanitize_text_field($payload['profile_shape']) : '',
+        'selected_powers' => array(),
+        'battle_ready_note' => isset($payload['battle_ready_note']) ? sanitize_text_field($payload['battle_ready_note']) : 'Player-safe Spark dossier exported for battle simulation.',
+    );
+
+    if (isset($payload['selected_powers']) && is_array($payload['selected_powers'])) {
+        foreach ($payload['selected_powers'] as $power) {
+            if (!is_array($power)) {
+                continue;
+            }
+
+            $label = isset($power['power']) ? sanitize_text_field($power['power']) : '';
+            if (!$label) {
+                continue;
+            }
+
+            $safe['selected_powers'][] = array(
+                'power' => $label,
+                'domain' => '',
+                'lead' => !empty($power['lead']),
+            );
+        }
+    }
+
+    return $safe;
+}
+
+function emergence_cg_spark_token_secret() {
+    if (defined('AUTH_SALT') && AUTH_SALT) {
+        return AUTH_SALT;
+    }
+
+    if (defined('SECURE_AUTH_SALT') && SECURE_AUTH_SALT) {
+        return SECURE_AUTH_SALT;
+    }
+
+    return wp_salt('auth');
+}
+
+function emergence_cg_sign_spark_token($token, $payload_json) {
+    return hash_hmac('sha256', $token . '|' . $payload_json, emergence_cg_spark_token_secret());
+}
+
+function emergence_cg_create_spark_token_rest($request) {
+    $params = $request->get_json_params();
+    if (!is_array($params)) {
+        $params = array();
+    }
+
+    $payload = isset($params['spark']) ? $params['spark'] : $params;
+    $safe = emergence_cg_sanitize_spark_token_payload($payload);
+
+    if (is_wp_error($safe)) {
+        return new WP_REST_Response(array(
+            'status' => 'blocked',
+            'message' => $safe->get_error_message(),
+        ), 400);
+    }
+
+    $payload_json = wp_json_encode($safe);
+    $token = substr(strtr(base64_encode(random_bytes(24)), '+/', '-_'), 0, 32);
+    $signature = emergence_cg_sign_spark_token($token, $payload_json);
+
+    $record = array(
+        'payload' => $safe,
+        'signature' => $signature,
+        'created_at' => time(),
+        'expires_at' => time() + (7 * DAY_IN_SECONDS),
+    );
+
+    set_transient('emergence_spark_token_' . $token, $record, 7 * DAY_IN_SECONDS);
+
+    return new WP_REST_Response(array(
+        'status' => 'created',
+        'token' => $token,
+        'share_url' => home_url('/battles/?spark_token=' . rawurlencode($token)),
+        'expires_in_seconds' => 7 * DAY_IN_SECONDS,
+        'player_safe' => true,
+    ), 200);
+}
+
+function emergence_cg_read_spark_token_rest($request) {
+    $token = sanitize_text_field($request['token']);
+
+    if (!$token || !preg_match('/^[A-Za-z0-9_-]{16,80}$/', $token)) {
+        return new WP_REST_Response(array(
+            'status' => 'invalid',
+            'message' => 'Invalid Spark token.',
+        ), 404);
+    }
+
+    $record = get_transient('emergence_spark_token_' . $token);
+    if (!is_array($record) || empty($record['payload']) || empty($record['signature'])) {
+        return new WP_REST_Response(array(
+            'status' => 'invalid',
+            'message' => 'Spark token not found or expired.',
+        ), 404);
+    }
+
+    if (!empty($record['expires_at']) && time() > (int) $record['expires_at']) {
+        delete_transient('emergence_spark_token_' . $token);
+        return new WP_REST_Response(array(
+            'status' => 'expired',
+            'message' => 'Spark token expired.',
+        ), 404);
+    }
+
+    $payload_json = wp_json_encode($record['payload']);
+    $expected = emergence_cg_sign_spark_token($token, $payload_json);
+
+    if (!hash_equals($expected, $record['signature'])) {
+        return new WP_REST_Response(array(
+            'status' => 'invalid',
+            'message' => 'Spark token signature rejected.',
+        ), 403);
+    }
+
+    return new WP_REST_Response(array(
+        'status' => 'loaded',
+        'spark' => $record['payload'],
+        'player_safe' => true,
+    ), 200);
+}
+// DREAMOS_SHAREABLE_SPARK_TOKEN_REST_END

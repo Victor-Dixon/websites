@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Spark Battle Sim
  * Description: Cinematic Spark Protocol battle simulator shortcode.
- * Version: 0.2.5
+ * Version: 0.2.6
  * Author: Dadudekc
  */
 
@@ -390,3 +390,82 @@ function spark_battle_sim_custom_battle_rest($request) {
     ), 200);
 }
 // DREAMOS_CUSTOM_SPARK_BATTLE_REST_END
+
+// DREAMOS_BATTLE_TOKEN_IMPORT_INLINE_BEGIN lane 101
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'spark_battle_sim')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-bs-token-handoff-inline">
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'emergence_spark_battle_handoff_v1';
+      const FORBIDDEN = [
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'debug',
+        'showwork',
+        'roll',
+        'odds',
+        'raw'
+      ];
+
+      function tokenFromUrl() {
+        const params = new URLSearchParams(window.location.search || '');
+        return params.get('spark_token') || '';
+      }
+
+      function rejectUnsafe(payload) {
+        const serialized = JSON.stringify(payload);
+        FORBIDDEN.forEach(function (key) {
+          if (serialized.indexOf(key) !== -1) {
+            throw new Error('Unsafe token payload blocked: ' + key);
+          }
+        });
+      }
+
+      async function loadSparkToken() {
+        const token = tokenFromUrl();
+        if (!token) {
+          return;
+        }
+
+        const response = await fetch('/wp-json/emergence/v1/spark-token/' + encodeURIComponent(token), {
+          method: 'GET',
+          headers: {'Accept': 'application/json'}
+        });
+
+        const data = await response.json();
+        if (!response.ok || data.status !== 'loaded' || !data.spark) {
+          const panel = document.createElement('section');
+          panel.className = 'sbs-handoff-card';
+          panel.innerHTML = '<p class="sbs-handoff-note">Spark token rejected or expired.</p>';
+          document.body.insertBefore(panel, document.body.firstChild);
+          return;
+        }
+
+        rejectUnsafe(data.spark);
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data.spark));
+      }
+
+      loadSparkToken().catch(function () {
+        console.warn('[SparkBattleSim] token handoff rejected');
+      });
+    })();
+    </script>
+    <?php
+});
+// DREAMOS_BATTLE_TOKEN_IMPORT_INLINE_END
