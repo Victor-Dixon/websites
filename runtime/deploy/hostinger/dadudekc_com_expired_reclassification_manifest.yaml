@@ -1,0 +1,21 @@
+version: 1
+name: dadudekc_com_expired_reclassification
+status: pass
+domain: dadudekc.com
+classification: expired_domain_hold
+policy:
+  repair_target: false
+  redeploy_target: false
+  hold_until_reacquired: true
+reason: domain_expired_not_rebuying_until_cheap
+outputs:
+  json: _reports/website_audit/website_inventory_classification_003.json
+  markdown: _reports/website_audit/website_inventory_classification_003.md
+verified:
+  dadudekc_com_found: pass
+  dadudekc_com_expired_hold: pass
+  dadudekc_com_removed_from_repair: pass
+  verify_not_repair_target: pass
+next_allowed_actions:
+  - classify_http_500_website_root_causes
+  - domain_purpose_classification
