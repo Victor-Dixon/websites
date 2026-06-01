@@ -1,0 +1,31 @@
+version: 1
+name: website_inventory_audit
+status: pass
+env_dir: runtime/env/hostinger/sites
+report_dir: _reports/website_audit
+tmp_dir: _reports/website_audit/tmp
+script: runtime/scripts/audit_hostinger_website_inventory.sh
+rollup: _reports/website_audit/website_inventory_audit_rollup.md
+rollup_json: _reports/website_audit/website_inventory_audit_rollup.json
+verified:
+  auditor_temp_path_patch: pass
+  audit_tmp_ready: pass
+  website_inventory_audit: pass
+  per_site_reports_exist: pass
+  rollup_json_schema: pass
+  hostinger_envs_enumerated: pass
+captures:
+  - ssh_access
+  - remote_root
+  - root_writable
+  - app_type
+  - file_count
+  - directory_count
+  - https_status
+  - http_status
+  - homepage_title
+  - public_body_signals
+next_allowed_actions:
+  - classify_website_audit_rollup
+  - site_by_site_repair_lanes
+  - domain_purpose_classification

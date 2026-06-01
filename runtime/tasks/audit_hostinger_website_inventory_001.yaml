@@ -1,0 +1,18 @@
+id: audit_hostinger_website_inventory_001
+target: website_domain_inventory
+action:
+  - enumerate Hostinger site env files
+  - verify SSH access and writable public_html
+  - inspect remote file structure
+  - classify site type static/wordpress/unknown
+  - verify public HTTP and HTTPS
+  - capture page title and key homepage signals
+  - write per-site markdown reports
+  - write rollup json and markdown
+verify:
+  - each configured site has an audit report
+  - rollup lists every domain
+  - public status captured
+  - remote root captured
+  - app type captured
+commit: Add website domain inventory audit reports
