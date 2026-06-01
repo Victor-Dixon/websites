@@ -1,0 +1,13 @@
+id: extract_freeride_custom_plugin_salvage_bundle_001
+lane: marketing
+status: ready
+target: runtime/salvage/freerideinvestor.com/custom-plugin-candidates
+intent: >
+  Extract FreeRideInvestor custom plugin, day trade planner, dashboard, shortcode,
+  and trading utility candidates from the old WordPress theme salvage tree into
+  a clean review bundle without promoting the old theme as canonical.
+verification:
+  - test -d runtime/salvage/freerideinvestor.com/custom-plugin-candidates
+  - test -f data/reports/marketing/freerideinvestor_plugin_salvage_bundle_001.md
+commit:
+  message: Add FreeRideInvestor plugin salvage bundle
