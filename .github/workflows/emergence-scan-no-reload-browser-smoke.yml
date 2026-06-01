@@ -1,0 +1,32 @@
+name: Emergence Scan No-Reload Browser Smoke
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "runtime/scripts/smoke_emergence_scan_no_reload_browser.mjs"
+      - "runtime/scripts/run_emergence_scan_no_reload_browser_smoke.sh"
+      - ".github/workflows/emergence-scan-no-reload-browser-smoke.yml"
+
+jobs:
+  scan-no-reload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium --with-deps
+
+      - name: Run true browser scan no-reload smoke
+        run: |
+          node runtime/scripts/smoke_emergence_scan_no_reload_browser.mjs

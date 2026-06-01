@@ -1,0 +1,35 @@
+# Emergence Scan No-Reload Browser Smoke 112c
+
+## Task
+Add true browser scan no-reload smoke with supported runner path.
+
+## Actions
+- Preserved Playwright smoke script.
+- Added clean Android/Termux environment gate.
+- Added supported-host wrapper.
+- Added GitHub Actions browser runner.
+- Cleaned failed Termux Playwright install artifacts.
+
+## Verification
+```text
+INPUTS=PASS
+FAILED_TERMUX_NPM_FILES_REMOVED=PASS
+SMOKE_ENV_MESSAGE_PATCH=PASS
+WRAPPER_WRITTEN=PASS /data/data/com.termux/files/home/projects/websites/runtime/scripts/run_emergence_scan_no_reload_browser_smoke.sh
+GITHUB_ACTION_WRITTEN=PASS /data/data/com.termux/files/home/projects/websites/.github/workflows/emergence-scan-no-reload-browser-smoke.yml
+STATIC_BROWSER_SMOKE_RUNNER=PASS
+PLAYWRIGHT_PLATFORM=ENV_BLOCKED_ANDROID
+Run this smoke from Linux, WSL, macOS, Windows, or GitHub Actions. Termux/Android cannot launch Playwright Chromium.
+TERMUX_ENV_BLOCKED_CLEANLY=PASS
+```
+
+## External run command
+```bash
+runtime/scripts/run_emergence_scan_no_reload_browser_smoke.sh
+```
+
+## Commit
+Add Emergence scan no-reload browser smoke
+
+## Status
+RUNNER_READY_ENV_BLOCKED_ON_TERMUX
