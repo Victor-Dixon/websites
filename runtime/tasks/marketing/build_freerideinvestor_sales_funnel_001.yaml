@@ -1,0 +1,17 @@
+id: build_freerideinvestor_sales_funnel_001
+lane: marketing
+status: ready
+target: freerideinvestor
+intent: >
+  Turn FreeRideInvestor into a sales funnel for the agent-powered trading journal:
+  a behavior replay and discipline scorecard system powered by Dream.OS.
+artifacts:
+  - runtime/content/freerideinvestor/sales-funnel.html
+  - runtime/content/freerideinvestor/sales-funnel.md
+  - data/reports/marketing/freerideinvestor_sales_funnel_001.md
+verification:
+  - test -f runtime/content/freerideinvestor/sales-funnel.html
+  - grep -F "An agent-powered trading journal" runtime/content/freerideinvestor/sales-funnel.html
+  - grep -F "Join the early access list" runtime/content/freerideinvestor/sales-funnel.html
+commit:
+  message: Add FreeRideInvestor sales funnel landing page
