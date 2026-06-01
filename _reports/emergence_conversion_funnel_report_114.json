@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "status": "pass",
+  "generated_at": "2026-06-01T06:18:07.188124+00:00",
+  "source": "https://dadudekc.site/wp-json/emergence/v1/events/summary?dreamos_smoke=114",
+  "summary": {
+    "total_events": 2,
+    "last_event": "premium_prompt_copied",
+    "last_at": 1780294081,
+    "character_started": 1,
+    "weak_step_count": 3,
+    "top_recommendation": "Focus next on Scan Completed: 0.0% from start, 100.0% dropoff from previous step."
+  },
+  "funnel": [
+    {
+      "key": "character_started",
+      "label": "Character Started",
+      "count": 1,
+      "rate_from_started_pct": 100.0,
+      "rate_from_previous_pct": 100.0,
+      "dropoff_from_previous_pct": 0.0,
+      "status": "entry"
+    },
+    {
+      "key": "scan_completed",
+      "label": "Scan Completed",
+      "count": 0,
+      "rate_from_started_pct": 0.0,
+      "rate_from_previous_pct": 0.0,
+      "dropoff_from_previous_pct": 100.0,
+      "status": "critical_dropoff"
+    },
+    {
+      "key": "premium_prompt_copied",
+      "label": "Prompt Copied",
+      "count": 1,
+      "rate_from_started_pct": 100.0,
+      "rate_from_previous_pct": 0.0,
+      "dropoff_from_previous_pct": 0.0,
+      "status": "healthy"
+    },
+    {
+      "key": "character_saved",
+      "label": "Character Saved",
+      "count": 0,
+      "rate_from_started_pct": 0.0,
+      "rate_from_previous_pct": 0.0,
+      "dropoff_from_previous_pct": 100.0,
+      "status": "critical_dropoff"
+    },
+    {
+      "key": "battle_started",
+      "label": "Battle Started",
+      "count": 0,
+      "rate_from_started_pct": 0.0,
+      "rate_from_previous_pct": 0.0,
+      "dropoff_from_previous_pct": 0.0,
+      "status": "critical_dropoff"
+    }
+  ],
+  "weak_steps": [
+    {
+      "key": "scan_completed",
+      "label": "Scan Completed",
+      "count": 0,
+      "rate_from_started_pct": 0.0,
+      "rate_from_previous_pct": 0.0,
+      "dropoff_from_previous_pct": 100.0,
+      "status": "critical_dropoff"
+    },
+    {
+      "key": "character_saved",
+      "label": "Character Saved",
+      "count": 0,
+      "rate_from_started_pct": 0.0,
+      "rate_from_previous_pct": 0.0,
+      "dropoff_from_previous_pct": 100.0,
+      "status": "critical_dropoff"
+    },
+    {
+      "key": "battle_started",
+      "label": "Battle Started",
+      "count": 0,
+      "rate_from_started_pct": 0.0,
+      "rate_from_previous_pct": 0.0,
+      "dropoff_from_previous_pct": 0.0,
+      "status": "critical_dropoff"
+    }
+  ],
+  "privacy": {
+    "private_mechanics_excluded": true,
+    "user_response_details_excluded": true,
+    "backend_math_hidden": true,
+    "leak_scan_completed": true
+  }
+}
