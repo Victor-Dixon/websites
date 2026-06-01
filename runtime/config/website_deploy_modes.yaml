@@ -1,0 +1,113 @@
+# Website deploy mode registry.
+# Purpose: prevent deploy drift across Hostinger domains.
+# Rule: every deploy lane must validate exact domain + expected mode before upload.
+
+version: 1
+generated_by: add_website_deploy_mode_registry_001
+
+domains:
+  freerideinvestor.com:
+    mode: static
+    deploy_policy: static_only
+    source_hint: runtime/content/freerideinvestor
+    notes: TSLA daytrading command center, funnel, replay proof, static JSON-fed pages.
+
+  dadudekc.site:
+    mode: wordpress
+    deploy_policy: wp_plugin_allowed
+    source_hint: runtime/plugins
+    notes: WordPress/plugin demo host.
+
+  tradingrobotplug.com:
+    mode: wordpress
+    deploy_policy: wp_plugin_allowed
+    source_hint: _hostinger_build/plugins
+    notes: Trading/plugin experiments and legacy trading robot surface.
+
+  weareswarm.online:
+    mode: wordpress
+    deploy_policy: wp_plugin_allowed
+    source_hint: runtime/content/weareswarm
+    notes: Work logging, dashboard, closeout proof surface.
+
+  weareswarm.site:
+    mode: wordpress
+    deploy_policy: wp_plugin_allowed
+    source_hint: runtime/content/weareswarm
+    notes: Review for possible static conversion later.
+
+  xthunder.site:
+    mode: wordpress
+    deploy_policy: wp_plugin_allowed
+    source_hint: runtime/content/xthunder
+    notes: Review for static conversion if no plugin/admin need remains.
+
+  ariajet.site:
+    mode: wordpress
+    deploy_policy: review_before_wp_or_static
+    source_hint: _hostinger_build/dist/parked_domains
+    notes: Candidate static placeholder/funnel.
+
+  crosbyultimateevents.com:
+    mode: wordpress
+    deploy_policy: review_before_wp_or_static
+    source_hint: _hostinger_build/dist/parked_domains
+    notes: Events/forms may justify WordPress; review before conversion.
+
+  houstonsipqueen.com:
+    mode: wordpress
+    deploy_policy: review_before_wp_or_static
+    source_hint: _hostinger_build/dist/parked_domains
+    notes: Candidate static funnel unless forms/store needed.
+
+  southwestsecret.com:
+    mode: wordpress
+    deploy_policy: review_before_wp_or_static
+    source_hint: _hostinger_build/dist/parked_domains
+    notes: Candidate static placeholder/funnel.
+
+  digitaldreamscape.site:
+    mode: wordpress
+    deploy_policy: review_before_wp_or_static
+    source_hint: runtime/content/digitaldreamscape
+    notes: Candidate static/archive after review.
+
+  prismblossom.online:
+    mode: wordpress
+    deploy_policy: repair_before_deploy
+    source_hint: runtime/content/prismblossom
+    notes: WP-CLI output looked contaminated; repair/classify before deploy.
+
+allowed_policies:
+  static_only:
+    allows:
+      - static_file_upload
+      - html_render
+      - json_snapshot_upload
+    blocks:
+      - wp_plugin_install
+      - wp_page_mutation_unless_wordpress
+
+  wp_plugin_allowed:
+    allows:
+      - wp_plugin_install
+      - wp_page_mutation
+      - wp_uploads_snapshot
+    blocks:
+      - blind_static_overwrite
+
+  review_before_wp_or_static:
+    allows:
+      - inspect_only
+      - backup
+      - classify
+    blocks:
+      - deploy_without_mode_decision
+
+  repair_before_deploy:
+    allows:
+      - inspect_only
+      - backup
+      - repair
+    blocks:
+      - deploy_until_repaired

@@ -1,0 +1,15 @@
+id: add_website_deploy_mode_registry_001
+title: Add website deploy mode registry
+status: ready
+target:
+  - runtime/config/website_deploy_modes.yaml
+  - runtime/scripts/validate_website_deploy_modes.py
+intent: >
+  Add a domain-to-deploy-mode registry so Hostinger deploy lanes cannot
+  accidentally deploy WordPress plugins to static sites or drift to a random
+  WordPress install.
+verify:
+  - python -m py_compile runtime/scripts/validate_website_deploy_modes.py
+  - python runtime/scripts/validate_website_deploy_modes.py --domain freerideinvestor.com
+  - python runtime/scripts/validate_website_deploy_modes.py --domain dadudekc.site
+commit_message: Add website deploy mode registry
