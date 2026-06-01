@@ -1,0 +1,1127 @@
+{
+  "theme_root": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme",
+  "files_scanned": 91,
+  "decision_counts": {
+    "archive": 50,
+    "preserve_candidate": 25,
+    "archive_candidate": 14,
+    "rebuild_clean": 1,
+    "replace_with_clean_funnel": 1
+  },
+  "canonical_decision": "clean_rebuild_with_plugin_salvage",
+  "preserve_candidates": [
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/plugin-health-check.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 9059
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-market-news.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 1829
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/class-simplifiedtradingtheme-custom-widget.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1672
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/custom-shortcodes.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 5245
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/plugin-testing.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 14884
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/checklist-dashboard.js",
+      "decision": "preserve_candidate",
+      "reason": [
+        "frontend_asset_review",
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".js",
+      "bytes": 11136
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/pomodoro.js",
+      "decision": "preserve_candidate",
+      "reason": [
+        "frontend_asset_review",
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".js",
+      "bytes": 53193
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-checklist-dashboard.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 18160
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-dashboard.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 7680
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-interactive-charts.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 2868
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-pomodoro.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 9311
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-real-time-market-insights.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 3105
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-smartstock-showcase.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 3244
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-stock-research.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 745
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-strategy-showcase.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 1680
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-test-fintech-plugin.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 5466
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-trading-strategies.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 8927
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/single-trading_strategy.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 3304
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/freeride-journal/app/chain_of_thought_reasoner.py",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".py",
+      "bytes": 13474
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/freeride-journal/app/main.py",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".py",
+      "bytes": 1954
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cli-commands/stock-data-cli.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1711
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cron-jobs/stock-updates.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1819
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/meta-boxes/stock-symbol-meta-box.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1988
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/taxonomies/stock-category.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1632
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets/js/page-smartstock-showcase.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "frontend_asset_review",
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 2623
+    }
+  ],
+  "rebuild_clean_candidates": [
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-Trading-Journal.php",
+      "decision": "rebuild_clean",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "trading_journal_surface"
+      ],
+      "suffix": ".php",
+      "bytes": 4663
+    }
+  ],
+  "replace_candidates": [
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-front-page.php",
+      "decision": "replace_with_clean_funnel",
+      "reason": [
+        "old_homepage_template"
+      ],
+      "suffix": ".php",
+      "bytes": 7338
+    }
+  ],
+  "all_items": [
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/admin-tools-page.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 2962
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/category-tbow-tactic.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 4147
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/comments.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 1898
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/footer.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 2698
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/functions.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 47506
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/header.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 470
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/home.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 8940
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/index.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 8511
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/plugin-health-check.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 9059
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/single.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 674
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/subscribe.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 1412
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-market-news.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 1829
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-tbow-tactics.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 3241
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/__init__.py",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".py",
+      "bytes": 0
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/main.py",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".py",
+      "bytes": 11731
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/admin-customizations.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 163
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/assets.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 866
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/class-simplifiedtradingtheme-custom-widget.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1672
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/custom-shortcodes.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 5245
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/data-fetch-utils.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 0
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/performance.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 670
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/plugin-testing.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 14884
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/test.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 0
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/theme-setup.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 470
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/Script.js",
+      "decision": "archive",
+      "reason": [
+        "frontend_asset_review"
+      ],
+      "suffix": ".js",
+      "bytes": 1801
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/checklist-dashboard.js",
+      "decision": "preserve_candidate",
+      "reason": [
+        "frontend_asset_review",
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".js",
+      "bytes": 11136
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/custom.js",
+      "decision": "archive",
+      "reason": [
+        "frontend_asset_review"
+      ],
+      "suffix": ".js",
+      "bytes": 5606
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/freeride-productivity.js",
+      "decision": "archive",
+      "reason": [
+        "frontend_asset_review"
+      ],
+      "suffix": ".js",
+      "bytes": 13072
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/pomodoro.js",
+      "decision": "preserve_candidate",
+      "reason": [
+        "frontend_asset_review",
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".js",
+      "bytes": 53193
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js/signup-validation.js",
+      "decision": "archive_candidate",
+      "reason": [
+        "frontend_asset_review",
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".js",
+      "bytes": 1321
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/Index.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 4074
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-Trading-Journal.php",
+      "decision": "rebuild_clean",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "trading_journal_surface"
+      ],
+      "suffix": ".php",
+      "bytes": 4663
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-about.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 5229
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-archive-tools.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 18554
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-checklist-dashboard.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 18160
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-community-support.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 6326
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-contact.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 10213
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-courses.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 2273
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-dashboard.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 7680
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-dev-blog.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 4340
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-discord.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 12250
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-edit-profile.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 6133
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-education.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 9487
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-enroll.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 1140
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-exclusive-events.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 4866
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-fintech-engine.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 7690
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-freeride-productivity-advanced.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 34729
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-front-page.php",
+      "decision": "replace_with_clean_funnel",
+      "reason": [
+        "old_homepage_template"
+      ],
+      "suffix": ".php",
+      "bytes": 7338
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-frtc-template.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 895
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-interactive-charts.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 2868
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-login.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 8121
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-logout.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 1083
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-pomodoro.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 9311
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-real-time-market-insights.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 3105
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-services.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 4537
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-signup.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 3359
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-smartstock-showcase.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 3244
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-stock-research.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 745
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-strategy-showcase.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 1680
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-tasks.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 2432
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-test-fintech-plugin.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 5466
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-test-template.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 990
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-thank-you.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term"
+      ],
+      "suffix": ".php",
+      "bytes": 1874
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-trading-strategies.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 8927
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/rl_optimizer.py",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".py",
+      "bytes": 758
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/content-freerideinvestor.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 795
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/content-post.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 1302
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/content-tbow_tactics.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 1325
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/single-cheat_sheet.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 9663
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/single-course.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 1499
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/single-tbow_tactics.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 1905
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts/single-trading_strategy.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 3304
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/freeride-journal/app/chain_of_thought_reasoner.py",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".py",
+      "bytes": 13474
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/freeride-journal/app/main.py",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".py",
+      "bytes": 1954
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/includes/templates/admin-tools-page.php",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".php",
+      "bytes": 9619
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/admin/custom-login.php",
+      "decision": "archive_candidate",
+      "reason": [
+        "matches_generic_site_page_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 919
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/assets/enqueue.php",
+      "decision": "archive",
+      "reason": [
+        "frontend_asset_review",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1360
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cli-commands/stock-data-cli.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1711
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cron-jobs/stock-updates.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1819
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/helpers/body-classes.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 591
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/helpers/load-files.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1203
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/meta-boxes/stock-symbol-meta-box.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1988
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types/cheat-sheet.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 2498
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types/free-investor.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 2537
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types/tbow-tactics.php",
+      "decision": "archive",
+      "reason": [
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 2518
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/taxonomies/stock-category.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "matches_trading_or_plugin_term",
+        "theme_include_or_plugin_logic"
+      ],
+      "suffix": ".php",
+      "bytes": 1632
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets/js/main.js",
+      "decision": "archive",
+      "reason": [
+        "frontend_asset_review"
+      ],
+      "suffix": ".js",
+      "bytes": 0
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets/js/page-smartstock-showcase.php",
+      "decision": "preserve_candidate",
+      "reason": [
+        "frontend_asset_review",
+        "matches_trading_or_plugin_term"
+      ],
+      "suffix": ".php",
+      "bytes": 2623
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/content/blog_content.json",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".json",
+      "bytes": 1029
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/ui/autoblogger.py",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".py",
+      "bytes": 14739
+    },
+    {
+      "path": "FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/ui/generate_blog.py",
+      "decision": "archive",
+      "reason": [
+        "default_archive_review"
+      ],
+      "suffix": ".py",
+      "bytes": 18545
+    }
+  ],
+  "recommended_site_shape": {
+    "homepage": "sales funnel for agent-powered trading journal",
+    "core_offer": "behavior replay + discipline scorecard",
+    "workflow_pages": [
+      "early access",
+      "replay proof",
+      "day trade planner",
+      "behavior scorecard",
+      "operator rules",
+      "contact/intake"
+    ],
+    "plugin_salvage_focus": [
+      "day trade planner",
+      "trading journal",
+      "shortcodes",
+      "market data utilities",
+      "checklist/dashboard tools"
+    ]
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,31 @@
+id: build_freerideinvestor_salvage_manifest_001
+lane: marketing
+status: ready
+target: FreerideinvestorWebsite/_salvage/freerideinvestor-theme
+intent: >
+  Classify the old FreeRideInvestor WordPress site as salvage, preserve useful
+  custom plugins and day trade planner logic, and define a clean Dream.OS-approved
+  rebuild path for freerideinvestor.com.
+policy:
+  canonical_site_direction: clean_rebuild
+  preserve:
+    - custom plugins
+    - day trade planner
+    - trading workflow utilities
+    - reusable shortcodes only if still useful
+  archive:
+    - old theme structure
+    - stale page templates
+    - obsolete UI pages
+  avoid:
+    - blindly continuing old theme
+    - overwriting salvage before manifest
+outputs:
+  - data/reports/marketing/freerideinvestor_salvage_manifest_001.json
+  - data/reports/marketing/freerideinvestor_salvage_manifest_001.md
+verification:
+  - python runtime/scripts/build_freerideinvestor_salvage_manifest_001.py
+  - test -f data/reports/marketing/freerideinvestor_salvage_manifest_001.json
+  - test -f data/reports/marketing/freerideinvestor_salvage_manifest_001.md
+commit:
+  message: Add FreeRideInvestor salvage manifest

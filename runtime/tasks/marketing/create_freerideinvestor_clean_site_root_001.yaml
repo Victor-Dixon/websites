@@ -1,0 +1,24 @@
+id: create_freerideinvestor_clean_site_root_001
+lane: marketing
+status: ready
+target: runtime/content/freerideinvestor.com
+intent: >
+  Create the clean canonical FreeRideInvestor site root for freerideinvestor.com,
+  using the sales funnel as homepage and adding workflow pages for early access,
+  replay proof, and day trade planner rebuild.
+inputs:
+  - runtime/content/freerideinvestor/sales-funnel.html
+  - data/reports/marketing/freerideinvestor_salvage_manifest_001.md
+outputs:
+  - runtime/content/freerideinvestor.com/index.html
+  - runtime/content/freerideinvestor.com/early-access.html
+  - runtime/content/freerideinvestor.com/replay-proof.html
+  - runtime/content/freerideinvestor.com/day-trade-planner.html
+  - runtime/content/freerideinvestor.com/README.md
+  - data/reports/marketing/freerideinvestor_clean_site_root_001.md
+verification:
+  - test -f runtime/content/freerideinvestor.com/index.html
+  - grep -F "FreeRideInvestor" runtime/content/freerideinvestor.com/index.html
+  - grep -F "agent-powered trading journal" runtime/content/freerideinvestor.com/index.html
+commit:
+  message: Create FreeRideInvestor clean site root
