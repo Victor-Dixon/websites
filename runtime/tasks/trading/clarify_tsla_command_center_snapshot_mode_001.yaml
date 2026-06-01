@@ -1,0 +1,13 @@
+id: clarify_tsla_command_center_snapshot_mode_001
+title: Clarify TSLA command center snapshot mode
+status: ready
+target:
+  - runtime/content/freerideinvestor/tsla-command-center.html
+  - _hostinger_plan/freerideinvestor/upload_payload_static_tsla_command_center_001/tsla-command-center.html
+intent: >
+  Add visible copy stating that the TSLA command center currently uses a
+  DreamVault behavior-analysis snapshot and is not yet a live minute-market feed.
+verify:
+  - grep -q "Snapshot mode:" runtime/content/freerideinvestor/tsla-command-center.html
+  - grep -q "not live market feed" runtime/content/freerideinvestor/tsla-command-center.html
+commit_message: Clarify TSLA command center snapshot mode

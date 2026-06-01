@@ -16,6 +16,7 @@
       --good:#22c55e;
       --warn:#f59e0b;
       --bad:#ef4444;
+      --blue:#93c5fd;
     }
     * { box-sizing:border-box; }
     body {
@@ -25,7 +26,7 @@
       color:var(--text);
       line-height:1.5;
     }
-    a { color:#93c5fd; }
+    a { color:var(--blue); }
     .wrap { width:min(1120px,92vw); margin:0 auto; padding:34px 0 58px; }
     .nav { display:flex; justify-content:space-between; gap:16px; align-items:center; margin-bottom:34px; }
     .brand { font-weight:800; letter-spacing:.04em; }
@@ -60,6 +61,15 @@
     .pass { background:rgba(34,197,94,.14); color:#86efac; border:1px solid rgba(34,197,94,.35); }
     .warn { background:rgba(245,158,11,.14); color:#fcd34d; border:1px solid rgba(245,158,11,.35); }
     .fail { background:rgba(239,68,68,.14); color:#fca5a5; border:1px solid rgba(239,68,68,.35); }
+    .mode {
+      margin-top:14px;
+      padding:12px 14px;
+      border:1px solid rgba(147,197,253,.35);
+      border-radius:16px;
+      background:rgba(147,197,253,.08);
+      color:#dbeafe;
+    }
+    .mode strong { color:#bfdbfe; }
     .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin-top:22px; }
     .card {
       border:1px solid var(--line);
@@ -76,7 +86,7 @@
     .insight {
       margin-top:22px;
       padding:18px 20px;
-      border-left:5px solid #93c5fd;
+      border-left:5px solid var(--blue);
       border-radius:16px;
       background:rgba(147,197,253,.09);
     }
@@ -95,6 +105,11 @@
       <h1>TSLA Command Center</h1>
       <p class="subtitle">TSLA command center ready / 47 fills analyzed</p>
       <span class="badge pass">Status: pass / fresh</span>
+
+      <div class="mode">
+        <strong>Snapshot mode:</strong> behavior analysis / not live market feed<br>
+        <span>MVP snapshot generated from DreamVault behavior analysis. Live minute-market feed is not wired yet.</span>
+      </div>
 
       <div class="grid">
         <div class="card"><span class="label">Bias</span><span class="value">neutral until opening range confirms</span></div>
