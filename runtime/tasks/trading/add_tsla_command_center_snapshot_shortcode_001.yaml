@@ -1,0 +1,19 @@
+id: add_tsla_command_center_snapshot_shortcode_001
+title: Add FreeRideInvestor TSLA command center snapshot shortcode
+status: ready
+target:
+  - _hostinger_build/plugins/dreamos-trading-tools/includes/tsla-command-center.php
+  - _hostinger_build/plugins/dreamos-trading-tools/dreamos-trading-tools.php
+  - _hostinger_build/plugins/dreamos-trading-tools/examples/tsla-command-center.sample.json
+intent: >
+  Revive FreeRideInvestor as a TSLA daytrading command center by adding a
+  snapshot-fed WordPress shortcode. The plugin displays derived command-center
+  data from a local JSON snapshot and does not collect raw provider data or store
+  provider API keys.
+shortcode: "[freeride_tsla_command_center]"
+snapshot_path: "wp-content/uploads/freerideinvestor/tsla-command-center.json"
+verify:
+  - php -l _hostinger_build/plugins/dreamos-trading-tools/includes/tsla-command-center.php
+  - php -l _hostinger_build/plugins/dreamos-trading-tools/dreamos-trading-tools.php
+  - grep -R "freeride_tsla_command_center" _hostinger_build/plugins/dreamos-trading-tools
+commit_message: Add TSLA command center snapshot shortcode

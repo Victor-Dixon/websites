@@ -33,3 +33,5 @@ final class DreamosTradingTools {
 }
 
 DreamosTradingTools::init();
+
+require_once __DIR__ . '/includes/tsla-command-center.php';

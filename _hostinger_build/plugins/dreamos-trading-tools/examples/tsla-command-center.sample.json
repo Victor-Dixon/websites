@@ -1,0 +1,22 @@
+{
+  "symbol": "TSLA",
+  "generated_at": "2026-06-01T13:30:00Z",
+  "status": "pass",
+  "freshness": "fresh",
+  "headline": "TSLA command center ready",
+  "bias": "neutral until opening range confirms",
+  "opening_range": "watch first 10 minutes",
+  "vwap_state": "pending",
+  "churn_risk": "medium",
+  "no_trade_windows": [
+    "09:30-09:40 ET",
+    "first failed breakout retest"
+  ],
+  "checklist": [
+    "Opening range marked",
+    "VWAP relation checked",
+    "No revenge re-entry without fresh setup",
+    "Stop after two churn entries"
+  ],
+  "insight": "The edge is not prediction. The edge is refusing bad re-entry cycles."
+}
