@@ -1,0 +1,18 @@
+id: classify_freeride_salvage_promotion_candidates_001
+lane: marketing
+status: ready
+target: runtime/salvage/freerideinvestor.com/custom-plugin-candidates
+intent: >
+  Classify FreeRideInvestor salvage bundle files into promote, rewrite, archive,
+  or discard decisions for the clean Dream.OS-approved freerideinvestor.com rebuild.
+priority_files:
+  - page-templates/page-Trading-Journal.php
+  - scripts/freeride-journal/app/main.py
+  - inc/custom-shortcodes.php
+outputs:
+  - data/reports/marketing/freeride_salvage_promotion_candidates_001.json
+  - data/reports/marketing/freeride_salvage_promotion_candidates_001.md
+verification:
+  - python runtime/scripts/classify_freeride_salvage_promotion_candidates_001.py
+commit:
+  message: Classify FreeRideInvestor salvage promotion candidates

@@ -1,0 +1,381 @@
+{
+  "source": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates",
+  "files_scanned": 26,
+  "decision_counts": {
+    "rewrite": 18,
+    "archive": 5,
+    "promote_review": 3
+  },
+  "priority": [
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/custom-shortcodes.php",
+      "decision": "rewrite",
+      "promote_score": 3,
+      "rewrite_score": 1,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "priority_shortcode_logic_extract_cleanly"
+      ],
+      "bytes": 5245
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-Trading-Journal.php",
+      "decision": "rewrite",
+      "promote_score": 4,
+      "rewrite_score": 5,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild",
+        "priority_trading_journal_surface"
+      ],
+      "bytes": 4663
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/scripts/freeride-journal/app/main.py",
+      "decision": "promote_review",
+      "promote_score": 3,
+      "rewrite_score": 0,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "priority_python_journal_logic"
+      ],
+      "bytes": 1954
+    }
+  ],
+  "items": [
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/assets/js/page-smartstock-showcase.php",
+      "decision": "rewrite",
+      "promote_score": 2,
+      "rewrite_score": 3,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 2623
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/class-simplifiedtradingtheme-custom-widget.php",
+      "decision": "archive",
+      "promote_score": 0,
+      "rewrite_score": 1,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "low_signal_archive_review"
+      ],
+      "bytes": 1672
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/cli-commands/stock-data-cli.php",
+      "decision": "archive",
+      "promote_score": 1,
+      "rewrite_score": 1,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "low_signal_archive_review"
+      ],
+      "bytes": 1711
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/cron-jobs/stock-updates.php",
+      "decision": "archive",
+      "promote_score": 1,
+      "rewrite_score": 1,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "low_signal_archive_review"
+      ],
+      "bytes": 1819
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/custom-shortcodes.php",
+      "decision": "rewrite",
+      "promote_score": 3,
+      "rewrite_score": 1,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "priority_shortcode_logic_extract_cleanly"
+      ],
+      "bytes": 5245
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/meta-boxes/stock-symbol-meta-box.php",
+      "decision": "rewrite",
+      "promote_score": 1,
+      "rewrite_score": 2,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 1988
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/plugin-testing.php",
+      "decision": "rewrite",
+      "promote_score": 2,
+      "rewrite_score": 4,
+      "risk_score": 1,
+      "archive_score": 2,
+      "reason": [
+        "risk_terms_present",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 14884
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/taxonomies/stock-category.php",
+      "decision": "archive",
+      "promote_score": 1,
+      "rewrite_score": 0,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "low_signal_archive_review"
+      ],
+      "bytes": 1632
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/js/checklist-dashboard.js",
+      "decision": "rewrite",
+      "promote_score": 3,
+      "rewrite_score": 2,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 11136
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/js/pomodoro.js",
+      "decision": "promote_review",
+      "promote_score": 2,
+      "rewrite_score": 1,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance"
+      ],
+      "bytes": 53193
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-Trading-Journal.php",
+      "decision": "rewrite",
+      "promote_score": 4,
+      "rewrite_score": 5,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild",
+        "priority_trading_journal_surface"
+      ],
+      "bytes": 4663
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-checklist-dashboard.php",
+      "decision": "rewrite",
+      "promote_score": 3,
+      "rewrite_score": 5,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 18160
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-dashboard.php",
+      "decision": "rewrite",
+      "promote_score": 5,
+      "rewrite_score": 3,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 7680
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-interactive-charts.php",
+      "decision": "rewrite",
+      "promote_score": 1,
+      "rewrite_score": 4,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 2868
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-pomodoro.php",
+      "decision": "rewrite",
+      "promote_score": 2,
+      "rewrite_score": 4,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 9311
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-real-time-market-insights.php",
+      "decision": "rewrite",
+      "promote_score": 2,
+      "rewrite_score": 3,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 3105
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-smartstock-showcase.php",
+      "decision": "rewrite",
+      "promote_score": 3,
+      "rewrite_score": 4,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 3244
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-stock-research.php",
+      "decision": "rewrite",
+      "promote_score": 3,
+      "rewrite_score": 3,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 745
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-strategy-showcase.php",
+      "decision": "rewrite",
+      "promote_score": 1,
+      "rewrite_score": 4,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 1680
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-test-fintech-plugin.php",
+      "decision": "archive",
+      "promote_score": 1,
+      "rewrite_score": 3,
+      "risk_score": 0,
+      "archive_score": 1,
+      "reason": [
+        "wordpress_coupled_needs_clean_rebuild",
+        "test_or_demo_artifact"
+      ],
+      "bytes": 5466
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates/page-trading-strategies.php",
+      "decision": "rewrite",
+      "promote_score": 3,
+      "rewrite_score": 5,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 8927
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/plugin-health-check.php",
+      "decision": "promote_review",
+      "promote_score": 2,
+      "rewrite_score": 1,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance"
+      ],
+      "bytes": 9059
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/scripts/freeride-journal/app/chain_of_thought_reasoner.py",
+      "decision": "rewrite",
+      "promote_score": 1,
+      "rewrite_score": 0,
+      "risk_score": 1,
+      "archive_score": 0,
+      "reason": [
+        "risk_terms_present"
+      ],
+      "bytes": 13474
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/scripts/freeride-journal/app/main.py",
+      "decision": "promote_review",
+      "promote_score": 3,
+      "rewrite_score": 0,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "strong_workflow_relevance",
+        "priority_python_journal_logic"
+      ],
+      "bytes": 1954
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/template-market-news.php",
+      "decision": "rewrite",
+      "promote_score": 1,
+      "rewrite_score": 3,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 1829
+    },
+    {
+      "path": "runtime/salvage/freerideinvestor.com/custom-plugin-candidates/template-parts/single-trading_strategy.php",
+      "decision": "rewrite",
+      "promote_score": 1,
+      "rewrite_score": 4,
+      "risk_score": 0,
+      "archive_score": 0,
+      "reason": [
+        "wordpress_coupled_needs_clean_rebuild"
+      ],
+      "bytes": 3304
+    }
+  ],
+  "status": "PASS"
+}
