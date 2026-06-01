@@ -1,0 +1,27 @@
+version: 1
+name: parked_domain_static_placeholder_pack
+status: packaged_not_deployed
+source: runtime/business/domain_inventory/domain_purpose_decision_matrix_005.json
+outputs:
+  content_root: runtime/content/parked_domains
+  dist_root: _hostinger_build/dist/parked_domains
+  rollup: _reports/website_audit/parked_domain_static_placeholder_pack_006.md
+verified:
+  python_generator_lint: pass
+  placeholder_pack_json_written: pass
+  placeholder_rollup_written: pass
+  active_product_domains_excluded: pass
+  owner_approval_gate_present: pass
+  placeholder_zips_valid: pass
+  no_deploy_performed: pass
+safety:
+  deployed: false
+  owner_approval_required: true
+  active_product_domains_excluded:
+    - dadudekc.site
+    - freerideinvestor.com
+    - dadudekc.com
+next_allowed_actions:
+  - choose_one_placeholder_for_owner_approval
+  - deploy_single_approved_placeholder
+  - build_business_static_rebuild_for_specific_domain

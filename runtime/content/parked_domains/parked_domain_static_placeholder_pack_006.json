@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "status": "packaged_not_deployed",
+  "selected_count": 4,
+  "excluded_count": 9,
+  "selected": [
+    {
+      "site": "ariajet.site",
+      "dir": "/data/data/com.termux/files/home/projects/websites/runtime/content/parked_domains/ariajet.site",
+      "zip": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/parked_domains/ariajet.site-placeholder-0.1.0.zip",
+      "action": "park_or_rebuild_static",
+      "purpose": "travel or brand candidate"
+    },
+    {
+      "site": "crosbyultimateevents.com",
+      "dir": "/data/data/com.termux/files/home/projects/websites/runtime/content/parked_domains/crosbyultimateevents.com",
+      "zip": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/parked_domains/crosbyultimateevents.com-placeholder-0.1.0.zip",
+      "action": "rebuild_static_or_repair_wordpress",
+      "purpose": "events business candidate"
+    },
+    {
+      "site": "houstonsipqueen.com",
+      "dir": "/data/data/com.termux/files/home/projects/websites/runtime/content/parked_domains/houstonsipqueen.com",
+      "zip": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/parked_domains/houstonsipqueen.com-placeholder-0.1.0.zip",
+      "action": "rebuild_static_or_repair_wordpress",
+      "purpose": "food/beverage brand candidate"
+    },
+    {
+      "site": "southwestsecret.com",
+      "dir": "/data/data/com.termux/files/home/projects/websites/runtime/content/parked_domains/southwestsecret.com",
+      "zip": "/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/parked_domains/southwestsecret.com-placeholder-0.1.0.zip",
+      "action": "park_or_archive",
+      "purpose": "content or brand candidate"
+    }
+  ],
+  "excluded": [
+    {
+      "site": "dadudekc.com",
+      "reason": "active_or_hold_exclusion",
+      "action": "hold"
+    },
+    {
+      "site": "dadudekc.site",
+      "reason": "active_or_hold_exclusion",
+      "action": "keep_live"
+    },
+    {
+      "site": "digitaldreamscape.site",
+      "reason": "not_placeholder_candidate",
+      "action": "classify_before_repair"
+    },
+    {
+      "site": "freerideinvestor.com",
+      "reason": "active_or_hold_exclusion",
+      "action": "keep_live"
+    },
+    {
+      "site": "prismblossom.online",
+      "reason": "not_placeholder_candidate",
+      "action": "keep_live_pending_purpose"
+    },
+    {
+      "site": "tradingrobotplug.com",
+      "reason": "not_placeholder_candidate",
+      "action": "classify_before_repair"
+    },
+    {
+      "site": "weareswarm.online",
+      "reason": "not_placeholder_candidate",
+      "action": "classify_before_repair"
+    },
+    {
+      "site": "weareswarm.site",
+      "reason": "not_placeholder_candidate",
+      "action": "classify_before_repair"
+    },
+    {
+      "site": "xthunder.site",
+      "reason": "not_placeholder_candidate",
+      "action": "keep_live_pending_purpose"
+    }
+  ],
+  "approval_required": true,
+  "deployed": false,
+  "active_product_domains_excluded": [
+    "dadudekc.com",
+    "dadudekc.site",
+    "freerideinvestor.com"
+  ]
+}

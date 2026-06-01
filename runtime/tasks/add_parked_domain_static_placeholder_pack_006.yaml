@@ -1,0 +1,15 @@
+id: add_parked_domain_static_placeholder_pack_006
+target: parked_domain_static_placeholder_pack
+action:
+  - read domain purpose decision matrix
+  - select only park/rebuild candidates
+  - exclude active product domains
+  - generate safe branded static placeholder pages
+  - package zip artifacts only
+  - require owner approval before deployment
+verify:
+  - active product domains excluded
+  - dadudekc.com excluded from deploy targets
+  - placeholder packages created
+  - no remote deploy performed
+commit: Add parked domain static placeholder pack
