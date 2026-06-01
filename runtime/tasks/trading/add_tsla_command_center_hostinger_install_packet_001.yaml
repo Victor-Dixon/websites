@@ -1,0 +1,13 @@
+id: add_tsla_command_center_hostinger_install_packet_001
+title: Add TSLA command center Hostinger install packet
+status: ready
+target:
+  - _hostinger_plan/freerideinvestor/tsla_command_center_hostinger_install_packet_001.md
+  - _hostinger_plan/freerideinvestor/upload_payload_tsla_command_center_001/
+intent: >
+  Package the DreamOS trading tools plugin and TSLA command-center snapshot
+  for Hostinger installation on FreeRideInvestor.
+verify:
+  - test -f _hostinger_build/dist/dreamos-trading-tools-0.1.1.zip
+  - test -f _hostinger_plan/freerideinvestor/upload_payload_tsla_command_center_001/wp-content/uploads/freerideinvestor/tsla-command-center.json
+commit_message: Add TSLA command center Hostinger install packet
