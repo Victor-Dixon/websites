@@ -1,0 +1,26 @@
+version: 1
+name: website_inventory_classification
+status: pass
+source: _reports/website_audit/website_inventory_audit_rollup.json
+outputs:
+  markdown: _reports/website_audit/website_inventory_classification_002.md
+  json: _reports/website_audit/website_inventory_classification_002.json
+verified:
+  classified_site_count: 13
+  classification_json_schema: pass
+  classification_md_exists: pass
+  tracked_tmp_removed: pass
+  audit_tmp_ignored: pass
+buckets:
+  - healthy_live
+  - needs_repair
+  - parked_or_unknown
+  - wordpress
+  - static
+  - review
+policy:
+  audit_tmp_files_ignored: true
+next_allowed_actions:
+  - repair_sites_by_priority
+  - classify_domain_purpose
+  - build_deploy_registry_dashboard

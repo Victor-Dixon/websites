@@ -1,0 +1,348 @@
+{
+  "version": 1,
+  "source": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/website_inventory_audit_rollup.json",
+  "total_sites": 13,
+  "buckets": {
+    "healthy_live": [
+      "dadudekc.site",
+      "freerideinvestor.com",
+      "prismblossom.online",
+      "xthunder.site"
+    ],
+    "needs_repair": [
+      "dadudekc.com"
+    ],
+    "parked_or_unknown": [
+      "ariajet.site",
+      "crosbyultimateevents.com",
+      "dadudekc.com",
+      "dadudekc.site",
+      "digitaldreamscape.site",
+      "freerideinvestor.com",
+      "houstonsipqueen.com",
+      "prismblossom.online",
+      "southwestsecret.com",
+      "tradingrobotplug.com",
+      "weareswarm.online",
+      "weareswarm.site",
+      "xthunder.site"
+    ],
+    "wordpress": [],
+    "static": [],
+    "review": []
+  },
+  "sites": [
+    {
+      "site": "ariajet.site",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "500",
+      "http_status": "500",
+      "remote_root": "/home/u996867598/domains/ariajet.site/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "",
+      "signals": [
+        "static_or_unknown"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/ariajet.site__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "crosbyultimateevents.com",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "500",
+      "http_status": "500",
+      "remote_root": "/home/u996867598/domains/crosbyultimateevents.com/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "",
+      "signals": [
+        "static_or_unknown"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/crosbyultimateevents.com__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "dadudekc.com",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "000",
+      "http_status": "000",
+      "remote_root": "/home/u996867598/domains/dadudekc.com/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "",
+      "signals": [
+        "static_or_unknown"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/dadudekc.com__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "offline_or_dns_ssl",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ],
+      "priority": "repair_next"
+    },
+    {
+      "site": "dadudekc.site",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "200",
+      "http_status": "200",
+      "remote_root": "/home/u996867598/domains/dadudekc.site/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "dadudekc.site",
+      "signals": [
+        "wordpress",
+        "form"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/dadudekc.site__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "healthy_live",
+        "thin_or_parked"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "digitaldreamscape.site",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "500",
+      "http_status": "500",
+      "remote_root": "/home/u996867598/domains/digitaldreamscape.site/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "",
+      "signals": [
+        "static_or_unknown"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/digitaldreamscape.site__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "freerideinvestor.com",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "200",
+      "http_status": "200",
+      "remote_root": "/home/u996867598/domains/freerideinvestor.com/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "FreeRideInvestor | Agent-Powered Trading Journal",
+      "signals": [
+        "form"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/freerideinvestor.com__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "healthy_live",
+        "thin_or_parked"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "houstonsipqueen.com",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "500",
+      "http_status": "500",
+      "remote_root": "/home/u996867598/domains/houstonsipqueen.com/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "",
+      "signals": [
+        "static_or_unknown"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/houstonsipqueen.com__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "prismblossom.online",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "200",
+      "http_status": "200",
+      "remote_root": "/home/u996867598/domains/prismblossom.online/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "Home - prismblossom.online",
+      "signals": [
+        "wordpress",
+        "analytics_or_search_signal"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/prismblossom.online__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "healthy_live",
+        "thin_or_parked"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "southwestsecret.com",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "500",
+      "http_status": "500",
+      "remote_root": "/home/u996867598/domains/southwestsecret.com/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "",
+      "signals": [
+        "static_or_unknown"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/southwestsecret.com__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "tradingrobotplug.com",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "500",
+      "http_status": "500",
+      "remote_root": "/home/u996867598/domains/tradingrobotplug.com/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "",
+      "signals": [
+        "static_or_unknown"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/tradingrobotplug.com__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "weareswarm.online",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "500",
+      "http_status": "500",
+      "remote_root": "/home/u996867598/domains/weareswarm.online/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "",
+      "signals": [
+        "static_or_unknown"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/weareswarm.online__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "weareswarm.site",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "500",
+      "http_status": "500",
+      "remote_root": "/home/u996867598/domains/weareswarm.site/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "",
+      "signals": [
+        "static_or_unknown"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/weareswarm.site__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ],
+      "priority": "classify_purpose"
+    },
+    {
+      "site": "xthunder.site",
+      "ssh": "PASS",
+      "type": "unknown",
+      "https_status": "200",
+      "http_status": "200",
+      "remote_root": "/home/u996867598/domains/xthunder.site/public_html",
+      "root_writable": "",
+      "file_count": 0,
+      "dir_count": 0,
+      "title": "xthunder",
+      "signals": [
+        "wordpress",
+        "form",
+        "commerce_signal"
+      ],
+      "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/xthunder.site__audit.md",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "healthy_live",
+        "thin_or_parked"
+      ],
+      "priority": "classify_purpose"
+    }
+  ]
+}
