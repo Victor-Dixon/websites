@@ -1,0 +1,108 @@
+# Hostinger Access Preflight 002b
+
+## Task
+
+Verify Hostinger SSH/root access for all configured site env files before deploy lanes.
+
+## Output
+
+```text
+== HOSTINGER ACCESS PREFLIGHT ==
+
+== SITE ariajet.site ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=ariajet.site
+
+== SITE crosbyultimateevents.com ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=crosbyultimateevents.com
+
+== SITE dadudekc.com ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=dadudekc.com
+
+== SITE dadudekc.site ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=dadudekc.site
+
+== SITE digitaldreamscape.site ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=digitaldreamscape.site
+
+== SITE freerideinvestor.com ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=freerideinvestor.com
+
+== SITE houstonsipqueen.com ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/houstonsipqueen.com/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=houstonsipqueen.com
+
+== SITE prismblossom.online ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/prismblossom.online/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=prismblossom.online
+
+== SITE southwestsecret.com ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/southwestsecret.com/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=southwestsecret.com
+
+== SITE tradingrobotplug.com ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/tradingrobotplug.com/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=tradingrobotplug.com
+
+== SITE weareswarm.online ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/weareswarm.online/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=weareswarm.online
+
+== SITE weareswarm.site ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/weareswarm.site/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=weareswarm.site
+
+== SITE xthunder.site ==
+ENV_FIELDS=PASS
+KEY_FILE=PASS
+REMOTE_ROOT=/home/u996867598/domains/xthunder.site/public_html
+SSH_ROOT_WRITABLE=PASS
+SITE_ACCESS=PASS site=xthunder.site
+
+HOSTINGER_ACCESS_PREFLIGHT=PASS
+```
+
+## Status
+
+Recorded.

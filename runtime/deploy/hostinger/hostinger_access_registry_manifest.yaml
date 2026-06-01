@@ -1,0 +1,26 @@
+version: 1
+name: hostinger_access_registry
+status: pass
+env_dir: runtime/env/hostinger/sites
+preflight_script: runtime/scripts/hostinger_access_preflight.sh
+latest_report_txt: _reports/hostinger_access_preflight_002b.txt
+latest_report_md: _reports/hostinger_access_preflight_002b.md
+verified_all_configured_sites: true
+sites_verified:
+  - ariajet.site
+  - crosbyultimateevents.com
+  - dadudekc.com
+  - dadudekc.site
+  - digitaldreamscape.site
+  - freerideinvestor.com
+  - houstonsipqueen.com
+  - prismblossom.online
+  - southwestsecret.com
+  - tradingrobotplug.com
+  - weareswarm.online
+  - weareswarm.site
+  - xthunder.site
+policy:
+  - run_hostinger_access_preflight_before_multisite_deploys
+  - use_remote_script_mode_for_nontrivial_ssh_work
+  - avoid_direct_execution_from_tmp_when_host_uses_noexec

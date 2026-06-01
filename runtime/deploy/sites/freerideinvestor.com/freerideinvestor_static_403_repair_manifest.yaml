@@ -1,0 +1,34 @@
+version: 1
+name: freerideinvestor_static_403_repair
+site: freerideinvestor.com
+status: pass
+remote_root: "/home/u996867598/domains/freerideinvestor.com/public_html"
+remote_backup: "/home/u996867598/domains/freerideinvestor.com/dreamos_backups/static_403_repair_002c_20260601_052322"
+actions:
+  - confirmed_all_site_access_preflight_passed
+  - remote_script_mode_used
+  - bash_invocation_used_to_avoid_tmp_noexec
+  - inspected_public_html
+  - normalized_index_if_needed
+  - repaired_htaccess
+  - repaired_file_permissions
+  - verified_required_pages
+verified:
+  inputs: pass
+  all_site_access_preflight: pass
+  remote_script_upload: pass
+  remote_backup: pass
+  index_exists: pass
+  htaccess_written: pass
+  permissions_repaired: pass
+  remote_403_repair: pass
+  live_static_verify: pass
+urls:
+  homepage: https://freerideinvestor.com/
+  trading_journal: https://freerideinvestor.com/trading-journal.html
+  replay_proof: https://freerideinvestor.com/replay-proof.html
+  early_access: https://freerideinvestor.com/early-access.html
+  day_trade_planner: https://freerideinvestor.com/day-trade-planner.html
+next_policy:
+  - run runtime/scripts/hostinger_access_preflight.sh before deploys
+  - use bash remote_script.sh instead of executing from /tmp directly

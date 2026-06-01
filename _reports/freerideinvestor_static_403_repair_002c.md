@@ -1,0 +1,81 @@
+# FreeRideInvestor Static 403 Repair 002c
+
+## Task
+Repair FreeRideInvestor 403 and preserve Hostinger access preflight.
+
+## Actions
+- Confirmed all configured Hostinger site roots are SSH-writable.
+- Used remote-script mode.
+- Used bash invocation to avoid /tmp noexec permission failure.
+- Backed up remote public_html.
+- Repaired .htaccess and permissions.
+- Verified live pages.
+
+## Verification
+```text
+INPUTS=PASS
+REMOTE_REPAIR_SCRIPT_WRITTEN=PASS
+REMOTE_SCRIPT_UPLOAD=PASS
+REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html
+REMOTE_BACKUP=PASS
+== BEFORE TREE ==
+/home/u996867598/domains/freerideinvestor.com/public_html
+total 96
+drwxr-xr-x 3 u996867598 o1008028115 20480 Jun  1 10:19 .
+drwxr-xr-x 4 u996867598 o1008028115  4096 Jun  1 10:19 ..
+drwx------ 2 u996867598 o1008028115  4096 Jun  1 06:52 assets
+-rw------- 1 u996867598 o1008028115   785 Jun  1 06:52 day-trade-planner.html
+-rw------- 1 u996867598 o1008028115   951 Jun  1 06:52 early-access.html
+-rw-r--r-- 1 u996867598 o1008028115  1620 Jan 24 02:37 .htaccess
+-rw------- 1 u996867598 o1008028115  8909 Jun  1 10:16 index.html
+-rw------- 1 u996867598 o1008028115   803 Jun  1 06:52 README.md
+-rw------- 1 u996867598 o1008028115   842 Jun  1 06:52 replay-proof.html
+-rw------- 1 u996867598 o1008028115  4833 Jun  1 10:16 trading-journal.html
+FILE=day-trade-planner.html
+FILE=early-access.html
+FILE=.htaccess
+FILE=index.html
+FILE=README.md
+FILE=replay-proof.html
+FILE=trading-journal.html
+== INDEX NORMALIZE ==
+INDEX_EXISTS=PASS
+== WRITE SAFE HTACCESS ==
+HTACCESS_WRITTEN=PASS
+== FIX PERMISSIONS ==
+PERMISSIONS_REPAIRED=PASS
+== REQUIRED FILES ==
+FILE_OK=index.html
+FILE_OK=trading-journal.html
+FILE_OK=replay-proof.html
+FILE_OK=early-access.html
+FILE_OK=day-trade-planner.html
+== AFTER TREE ==
+total 96
+drwxr-xr-x 3 u996867598 o1008028115 20480 Jun  1 10:19 .
+drwxr-xr-x 4 u996867598 o1008028115  4096 Jun  1 10:19 ..
+drwxr-xr-x 2 u996867598 o1008028115  4096 Jun  1 06:52 assets
+-rw-r--r-- 1 u996867598 o1008028115   785 Jun  1 06:52 day-trade-planner.html
+-rw-r--r-- 1 u996867598 o1008028115   951 Jun  1 06:52 early-access.html
+-rw-r--r-- 1 u996867598 o1008028115   532 Jun  1 10:23 .htaccess
+-rw-r--r-- 1 u996867598 o1008028115  8909 Jun  1 10:16 index.html
+-rw-r--r-- 1 u996867598 o1008028115   803 Jun  1 06:52 README.md
+-rw-r--r-- 1 u996867598 o1008028115   842 Jun  1 06:52 replay-proof.html
+-rw-r--r-- 1 u996867598 o1008028115  4833 Jun  1 10:16 trading-journal.html
+REMOTE_403_REPAIR=PASS
+HTTP_STATUS=200 PATH=/
+HTTP_STATUS=200 PATH=/trading-journal.html
+HTTP_STATUS=200 PATH=/replay-proof.html
+HTTP_STATUS=200 PATH=/early-access.html
+HTTP_STATUS=200 PATH=/day-trade-planner.html
+LIVE_STATIC_VERIFY=PASS
+FREERIDEINVESTOR_STATIC_403_REPAIR=PASS
+ACCESS_MANIFEST_UPDATED=PASS
+MANIFEST_WRITTEN=PASS
+```
+
+## Commit
+Repair FreeRideInvestor static serving and add Hostinger access preflight
+
+## Status
+PASS
