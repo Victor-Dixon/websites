@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Spark Battle Sim
  * Description: Cinematic Spark Protocol battle simulator shortcode.
- * Version: 0.2.8
+ * Version: 0.2.9
  * Author: Dadudekc
  */
 
@@ -667,3 +667,73 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_BATTLE_RECORD_IMPORT_INLINE_END
+
+// DREAMOS_BATTLE_EVENT_TRACKING_INLINE_BEGIN lane 111
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'spark_battle_sim')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-battle-event-tracking-inline">
+    (function () {
+      'use strict';
+
+      const ENDPOINT = '/wp-json/emergence/v1/events';
+
+      function track(eventName, context) {
+        const payload = {
+          event: eventName,
+          context: Object.assign({
+            source: 'battle-simulator',
+            page: window.location.pathname,
+            version: '111'
+          }, context || {})
+        };
+
+        const serialized = JSON.stringify(payload).toLowerCase();
+        ['scores','tiers','manifest_threshold','flavor_vectors','spark_signature','combat_capability','answers','debug','showwork','raw','roll','odds','api_key'].forEach(function (key) {
+          if (serialized.indexOf(key) !== -1) {
+            throw new Error('Unsafe analytics payload blocked');
+          }
+        });
+
+        try {
+          fetch(ENDPOINT, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload),
+            keepalive: true
+          }).catch(function () {});
+        } catch (error) {}
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        track('battle_opened', {
+          has_token: new URLSearchParams(window.location.search).has('spark_token'),
+          has_record: new URLSearchParams(window.location.search).has('character_record')
+        });
+      });
+
+      document.addEventListener('click', function (event) {
+        const button = event.target && event.target.closest ? event.target.closest('button') : null;
+        if (!button) {
+          return;
+        }
+
+        const text = String(button.textContent || button.value || '').toLowerCase();
+        if (text.indexOf('battle') !== -1 || text.indexOf('start') !== -1) {
+          track('battle_started', {button: 'start_battle'});
+        }
+      }, true);
+
+      window.DreamOSBattleTrackEvent = track;
+    })();
+    </script>
+    <?php
+});
+// DREAMOS_BATTLE_EVENT_TRACKING_INLINE_END

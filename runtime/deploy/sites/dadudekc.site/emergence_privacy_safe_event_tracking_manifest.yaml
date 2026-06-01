@@ -1,0 +1,55 @@
+version: 1
+name: emergence_privacy_safe_event_tracking
+site: dadudekc.site
+status: deployed
+implemented:
+  - first_party_event_rest
+  - event_summary_rest
+  - character_generator_tracking_hooks
+  - battle_simulator_tracking_hooks
+  - raw_score_payload_rejection
+events:
+  - character_started
+  - scan_completed
+  - flavor_completed
+  - totality_completed
+  - premium_prompt_viewed
+  - premium_prompt_copied
+  - premium_image_requested
+  - premium_image_fallback
+  - character_saved
+  - character_reloaded
+  - share_link_clicked
+  - battle_opened
+  - battle_started
+  - battle_completed
+  - battle_token_created
+  - battle_record_loaded
+verified:
+  static_tracking_events: pass
+  static_tracking_privacy_guards: pass
+  remote_php_lint: pass
+  track_event_accepted: pass
+  track_prompt_copy_accepted: pass
+  track_raw_score_rejected: pass
+  track_unknown_event_rejected: pass
+  track_summary: pass
+  tracking_no_secret_leak: pass
+  public_character_tracking_hook: pass
+  public_battle_tracking_hook: pass
+  public_tracking_no_raw_score_leak: pass
+safety:
+  no_answers_tracked: true
+  no_raw_scores_tracked: true
+  no_api_keys_tracked: true
+  raw_scores_visible: false
+  backend_math_hidden: true
+  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/privacy_safe_event_tracking_111_20260601_010749'
+urls:
+  character_generator: https://dadudekc.site/character-generator/
+  battles: https://dadudekc.site/battles/
+  event_summary: https://dadudekc.site/wp-json/emergence/v1/events/summary
+next_allowed_actions:
+  - admin_event_dashboard
+  - conversion_funnel_report
+  - public_demo_hardening

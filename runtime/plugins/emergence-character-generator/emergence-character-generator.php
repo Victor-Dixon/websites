@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.7.0
+ * Version: 0.7.1
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.0');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.0', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.1');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.1', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.0');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.0', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.1');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.1', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -2356,3 +2356,292 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_SCAN_SUBMIT_STATE_RESET_GUARD_END
+
+// DREAMOS_PRIVACY_SAFE_EVENT_TRACKING_BEGIN lane 111
+add_action('rest_api_init', function () {
+    register_rest_route('emergence/v1', '/events', array(
+        'methods' => 'POST',
+        'callback' => 'emergence_cg_track_event_rest',
+        'permission_callback' => '__return_true',
+    ));
+
+    register_rest_route('emergence/v1', '/events/summary', array(
+        'methods' => 'GET',
+        'callback' => 'emergence_cg_event_summary_rest',
+        'permission_callback' => '__return_true',
+    ));
+});
+
+function emergence_cg_tracking_allowed_events() {
+    return array(
+        'character_started',
+        'scan_completed',
+        'flavor_completed',
+        'totality_completed',
+        'premium_prompt_viewed',
+        'premium_prompt_copied',
+        'premium_image_requested',
+        'premium_image_fallback',
+        'character_saved',
+        'character_reloaded',
+        'share_link_clicked',
+        'battle_opened',
+        'battle_started',
+        'battle_completed',
+        'battle_token_created',
+        'battle_record_loaded'
+    );
+}
+
+function emergence_cg_tracking_forbidden_keys() {
+    return array(
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'provisional_spark_signature',
+        'provisional_combat_capability',
+        'answers',
+        'domain_key',
+        'debug',
+        'showwork',
+        'raw',
+        'roll',
+        'odds',
+        'api_key',
+        'token_secret'
+    );
+}
+
+function emergence_cg_tracking_storage_key() {
+    return 'emergence_event_counts_v1';
+}
+
+function emergence_cg_tracking_is_safe_payload($payload) {
+    $serialized = strtolower(wp_json_encode($payload));
+    foreach (emergence_cg_tracking_forbidden_keys() as $key) {
+        if (strpos($serialized, strtolower($key)) !== false) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function emergence_cg_tracking_sanitize_context($context) {
+    if (!is_array($context)) {
+        return array();
+    }
+
+    $safe = array();
+    $allowed = array(
+        'source',
+        'page',
+        'phase',
+        'visibility',
+        'result',
+        'provider_status',
+        'has_record',
+        'has_token',
+        'opponent',
+        'button',
+        'version'
+    );
+
+    foreach ($allowed as $key) {
+        if (isset($context[$key])) {
+            $value = $context[$key];
+
+            if (is_bool($value)) {
+                $safe[$key] = $value;
+            } elseif (is_numeric($value)) {
+                $safe[$key] = (int) $value;
+            } else {
+                $safe[$key] = sanitize_text_field((string) $value);
+            }
+        }
+    }
+
+    return $safe;
+}
+
+function emergence_cg_track_event_rest($request) {
+    $params = $request->get_json_params();
+    if (!is_array($params)) {
+        $params = array();
+    }
+
+    if (!emergence_cg_tracking_is_safe_payload($params)) {
+        return new WP_REST_Response(array(
+            'status' => 'blocked',
+            'message' => 'Unsafe analytics payload blocked.',
+        ), 400);
+    }
+
+    $event = isset($params['event']) ? sanitize_text_field($params['event']) : '';
+    if (!in_array($event, emergence_cg_tracking_allowed_events(), true)) {
+        return new WP_REST_Response(array(
+            'status' => 'blocked',
+            'message' => 'Unknown analytics event.',
+        ), 400);
+    }
+
+    $context = emergence_cg_tracking_sanitize_context(isset($params['context']) ? $params['context'] : array());
+    if (!emergence_cg_tracking_is_safe_payload($context)) {
+        return new WP_REST_Response(array(
+            'status' => 'blocked',
+            'message' => 'Unsafe analytics context blocked.',
+        ), 400);
+    }
+
+    $key = emergence_cg_tracking_storage_key();
+    $counts = get_option($key, array());
+    if (!is_array($counts)) {
+        $counts = array();
+    }
+
+    if (!isset($counts[$event])) {
+        $counts[$event] = 0;
+    }
+
+    $counts[$event] += 1;
+    $counts['_total'] = isset($counts['_total']) ? ((int) $counts['_total'] + 1) : 1;
+    $counts['_last_event'] = $event;
+    $counts['_last_at'] = time();
+
+    update_option($key, $counts, false);
+
+    return new WP_REST_Response(array(
+        'status' => 'tracked',
+        'event' => $event,
+        'player_safe' => true,
+    ), 200);
+}
+
+function emergence_cg_event_summary_rest($request) {
+    $counts = get_option(emergence_cg_tracking_storage_key(), array());
+    if (!is_array($counts)) {
+        $counts = array();
+    }
+
+    return new WP_REST_Response(array(
+        'status' => 'ok',
+        'summary' => $counts,
+        'player_safe' => true,
+    ), 200);
+}
+// DREAMOS_PRIVACY_SAFE_EVENT_TRACKING_END
+
+// DREAMOS_PRIVACY_SAFE_EVENT_TRACKING_INLINE_BEGIN lane 111
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'emergence_character_generator')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-privacy-safe-event-tracking-inline">
+    (function () {
+      'use strict';
+
+      const ENDPOINT = '/wp-json/emergence/v1/events';
+      const FORBIDDEN = [
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'answers',
+        'debug',
+        'showwork',
+        'raw',
+        'roll',
+        'odds',
+        'api_key'
+      ];
+
+      function safePayload(payload) {
+        const serialized = JSON.stringify(payload || {}).toLowerCase();
+        FORBIDDEN.forEach(function (key) {
+          if (serialized.indexOf(key) !== -1) {
+            throw new Error('Unsafe analytics payload blocked: ' + key);
+          }
+        });
+      }
+
+      function track(eventName, context) {
+        const payload = {
+          event: eventName,
+          context: Object.assign({
+            source: 'character-generator',
+            page: window.location.pathname,
+            version: '111'
+          }, context || {})
+        };
+
+        try {
+          safePayload(payload);
+        } catch (error) {
+          console.warn('[EmergenceCG] tracking blocked');
+          return;
+        }
+
+        try {
+          fetch(ENDPOINT, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload),
+            keepalive: true
+          }).catch(function () {});
+        } catch (error) {}
+      }
+
+      function textOf(target) {
+        return String((target && (target.textContent || target.value)) || '').toLowerCase();
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        track('character_started', {phase: 'page_loaded'});
+      });
+
+      document.addEventListener('click', function (event) {
+        const button = event.target && event.target.closest ? event.target.closest('button, a') : null;
+        if (!button) {
+          return;
+        }
+
+        const text = textOf(button);
+        const href = button.href || '';
+
+        if (text.indexOf('copy prompt') !== -1) {
+          track('premium_prompt_copied', {button: 'copy_prompt'});
+          return;
+        }
+
+        if (text.indexOf('save character') !== -1) {
+          track('character_saved', {button: 'save_character'});
+          return;
+        }
+
+        if (text.indexOf('battle') !== -1 || href.indexOf('/battles/') !== -1) {
+          track('battle_opened', {button: 'battle_link'});
+          return;
+        }
+
+        if (text.indexOf('share') !== -1 || href.indexOf('character_record=') !== -1 || href.indexOf('spark_token=') !== -1) {
+          track('share_link_clicked', {button: 'share_link'});
+        }
+      }, true);
+
+      window.DreamOSEmergenceTrackEvent = track;
+    })();
+    </script>
+    <?php
+});
+// DREAMOS_PRIVACY_SAFE_EVENT_TRACKING_INLINE_END
