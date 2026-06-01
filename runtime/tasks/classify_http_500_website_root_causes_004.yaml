@@ -1,0 +1,18 @@
+id: classify_http_500_website_root_causes_004
+target: http_500_website_root_cause_audit
+action:
+  - select domains currently returning HTTPS 500
+  - inspect public_html contents
+  - inspect .htaccess
+  - inspect index files
+  - inspect WordPress/PHP markers
+  - inspect permissions
+  - inspect nearby PHP/error logs when accessible
+  - classify root cause
+  - recommend repair/rebuild/park/archive
+verify:
+  - each 500 domain has a root cause report
+  - rollup markdown exists
+  - rollup json exists
+  - no destructive changes performed
+commit: Classify HTTP 500 website root causes

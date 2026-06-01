@@ -1,0 +1,44 @@
+INPUTS=PASS
+TASK_WRITTEN=PASS /data/data/com.termux/files/home/projects/websites/runtime/tasks/classify_http_500_website_root_causes_004.yaml
+AUDITOR_WRITTEN=PASS /data/data/com.termux/files/home/projects/websites/runtime/scripts/classify_http_500_website_root_causes.sh
+
+== AUDIT HTTP 500 SITE ariajet.site ==
+{"site": "ariajet.site", "root_cause": "wordpress_install_returning_500", "recommendation": "run_wp_cli_health_check_or_restore_wordpress", "priority": "classify_purpose_before_repair", "intended_purpose_guess": "travel_or_brand_candidate", "remote_capture": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/ariajet.site__remote_500_audit.txt", "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/ariajet.site__500_root_cause.md"}
+SITE_ROOT_CAUSE=ariajet.site:wordpress_install_returning_500:run_wp_cli_health_check_or_restore_wordpress:classify_purpose_before_repair
+
+== AUDIT HTTP 500 SITE crosbyultimateevents.com ==
+{"site": "crosbyultimateevents.com", "root_cause": "wordpress_install_returning_500", "recommendation": "run_wp_cli_health_check_or_restore_wordpress", "priority": "classify_purpose_before_repair", "intended_purpose_guess": "events_business_candidate", "remote_capture": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/crosbyultimateevents.com__remote_500_audit.txt", "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/crosbyultimateevents.com__500_root_cause.md"}
+SITE_ROOT_CAUSE=crosbyultimateevents.com:wordpress_install_returning_500:run_wp_cli_health_check_or_restore_wordpress:classify_purpose_before_repair
+
+== AUDIT HTTP 500 SITE digitaldreamscape.site ==
+{"site": "digitaldreamscape.site", "root_cause": "wordpress_install_returning_500", "recommendation": "run_wp_cli_health_check_or_restore_wordpress", "priority": "classify_purpose_before_repair", "intended_purpose_guess": "dreamos_brand_candidate", "remote_capture": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/digitaldreamscape.site__remote_500_audit.txt", "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/digitaldreamscape.site__500_root_cause.md"}
+SITE_ROOT_CAUSE=digitaldreamscape.site:wordpress_install_returning_500:run_wp_cli_health_check_or_restore_wordpress:classify_purpose_before_repair
+
+== AUDIT HTTP 500 SITE houstonsipqueen.com ==
+{"site": "houstonsipqueen.com", "root_cause": "wordpress_install_returning_500", "recommendation": "run_wp_cli_health_check_or_restore_wordpress", "priority": "classify_purpose_before_repair", "intended_purpose_guess": "food_beverage_brand_candidate", "remote_capture": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/houstonsipqueen.com__remote_500_audit.txt", "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/houstonsipqueen.com__500_root_cause.md"}
+SITE_ROOT_CAUSE=houstonsipqueen.com:wordpress_install_returning_500:run_wp_cli_health_check_or_restore_wordpress:classify_purpose_before_repair
+
+== AUDIT HTTP 500 SITE southwestsecret.com ==
+{"site": "southwestsecret.com", "root_cause": "wordpress_install_returning_500", "recommendation": "run_wp_cli_health_check_or_restore_wordpress", "priority": "classify_purpose_before_repair", "intended_purpose_guess": "content_or_brand_candidate", "remote_capture": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/southwestsecret.com__remote_500_audit.txt", "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/southwestsecret.com__500_root_cause.md"}
+SITE_ROOT_CAUSE=southwestsecret.com:wordpress_install_returning_500:run_wp_cli_health_check_or_restore_wordpress:classify_purpose_before_repair
+
+== AUDIT HTTP 500 SITE tradingrobotplug.com ==
+{"site": "tradingrobotplug.com", "root_cause": "wordpress_install_returning_500", "recommendation": "run_wp_cli_health_check_or_restore_wordpress", "priority": "classify_purpose_before_repair", "intended_purpose_guess": "trading_project_candidate", "remote_capture": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/tradingrobotplug.com__remote_500_audit.txt", "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/tradingrobotplug.com__500_root_cause.md"}
+SITE_ROOT_CAUSE=tradingrobotplug.com:wordpress_install_returning_500:run_wp_cli_health_check_or_restore_wordpress:classify_purpose_before_repair
+
+== AUDIT HTTP 500 SITE weareswarm.online ==
+{"site": "weareswarm.online", "root_cause": "wordpress_install_returning_500", "recommendation": "run_wp_cli_health_check_or_restore_wordpress", "priority": "classify_purpose_before_repair", "intended_purpose_guess": "dreamos_swarm_brand_candidate", "remote_capture": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/weareswarm.online__remote_500_audit.txt", "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/weareswarm.online__500_root_cause.md"}
+SITE_ROOT_CAUSE=weareswarm.online:wordpress_install_returning_500:run_wp_cli_health_check_or_restore_wordpress:classify_purpose_before_repair
+
+== AUDIT HTTP 500 SITE weareswarm.site ==
+{"site": "weareswarm.site", "root_cause": "wordpress_install_returning_500", "recommendation": "run_wp_cli_health_check_or_restore_wordpress", "priority": "classify_purpose_before_repair", "intended_purpose_guess": "dreamos_swarm_brand_candidate", "remote_capture": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/weareswarm.site__remote_500_audit.txt", "report": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/weareswarm.site__500_root_cause.md"}
+SITE_ROOT_CAUSE=weareswarm.site:wordpress_install_returning_500:run_wp_cli_health_check_or_restore_wordpress:classify_purpose_before_repair
+
+HTTP_500_SITE_COUNT=8
+HTTP_500_ROOT_CAUSE_ROLLUP=/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/http_500_root_cause_rollup_004.md
+HTTP_500_ROOT_CAUSE_JSON=/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/http_500_root_cause_rollup_004.json
+HTTP_500_ROOT_CAUSE_AUDIT=PASS
+HTTP_500_CLASSIFIED_COUNT=8
+HTTP_500_REPORTS_EXIST=PASS
+HTTP_500_JSON_SCHEMA=PASS
+MANIFEST_WRITTEN=PASS

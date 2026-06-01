@@ -1,0 +1,365 @@
+DOMAIN=tradingrobotplug.com
+REMOTE_ROOT=/home/u996867598/domains/tradingrobotplug.com/public_html
+ROOT_EXISTS=YES
+== ROOT_STAT ==
+/home/u996867598/domains/tradingrobotplug.com/public_html
+total 656
+drwxr-xr-x 10 u996867598 o1008028115  4096 Mar 12 23:55 .
+drwxr-xr-x  3 u996867598 o1008028115  4096 Oct 16  2025 ..
+-rw-r--r--  1 u996867598 o1008028115   254 Jan  3 11:40 admin.css
+-rw-r--r--  1 u996867598 o1008028115  1024 Jan  3 11:40 admin-display.php
+-rw-r--r--  1 u996867598 o1008028115    72 Jan  3 11:40 admin.js
+drwxr-xr-x  4 u996867598 o1008028115  4096 Nov 22  2025 Agent_Cellphone_V2_Repository
+-rw-r--r--  1 u996867598 o1008028115  2217 Jan  3 11:40 class-admin.php
+-rw-r--r--  1 u996867598 o1008028115  3072 Jan  3 11:40 class-api-client.php
+-rw-r--r--  1 u996867598 o1008028115  1124 Jan  3 11:40 class-performance-tracker.php
+-rw-r--r--  1 u996867598 o1008028115  3127 Jan  3 11:40 class-public.php
+-rw-r--r--  1 u996867598 o1008028115  9634 Jan  3 11:40 class-rest-api-controller.php
+-rw-r--r--  1 u996867598 o1008028115  1329 Jan  3 11:40 class-subscription-manager.php
+-rw-r--r--  1 u996867598 o1008028115  5076 Jan  3 11:40 class-trading-robot-plug.php
+-rw-r--r--  1 u996867598 o1008028115  1588 Jan  3 11:40 class-user-manager.php
+-rw-r--r--  1 u996867598 o1008028115 16369 Oct 16  2025 default.php
+-rw-r--r--  1 u996867598 o1008028115  7430 Nov  8  2025 developer-tools.html
+drwxr-xr-x  3 u996867598 o1008028115  4096 Jan 30 22:38 domains
+drwxr-xr-x  2 u996867598 o1008028115  4096 Jan 30 22:37 domains\tradingrobotplug.com\public_html\wp-content\themes\tradingrobotplug-theme
+drwxr-xr-x  2 u996867598 o1008028115  4096 Jan 30 22:37 domains\tradingrobotplug.com\public_html\wp-content\themes\tradingrobotplug-theme\assets\js
+-rw-r--r--  1 u996867598 o1008028115  2921 Jan  3 11:40 footer.php
+-rw-r--r--  1 u996867598 o1008028115  5421 Jan  3 11:40 front-page.php
+-rw-r--r--  1 u996867598 o1008028115   814 Jan  3 11:40 functions.php
+-rw-r--r--  1 u996867598 o1008028115  3603 Jan  3 11:40 header.php
+-rw-r--r--  1 u996867598 o1008028115  1429 Oct 25  2025 .htaccess
+-rw-r--r--  1 u996867598 o1008028115   714 Oct 16  2025 .htaccess.bk
+-rw-r--r--  1 u996867598 o1008028115   405 Oct 16  2025 index.php
+-rw-r--r--  1 u996867598 o1008028115 19903 Oct 16  2025 license.txt
+-rw-r--r--  1 u996867598 o1008028115  5209 Jan 15 23:36 llms.txt
+-rw-r--r--  1 u996867598 o1008028115   930 Jan  3 11:40 marketplace-grid.php
+-rw-r--r--  1 u996867598 o1008028115   429 Jan  3 11:40 page-dashboard.php
+-rw-r--r--  1 u996867598 o1008028115  2618 Jan  3 11:40 page-how-it-works.php
+-rw-r--r--  1 u996867598 o1008028115   534 Jan  3 11:40 page-marketplace.php
+-rw-r--r--  1 u996867598 o1008028115  2785 Jan  3 11:40 page-performance.php
+-rw-r--r--  1 u996867598 o1008028115  1803 Jan  3 11:40 page-pricing.php
+-rw-r--r--  1 u996867598 o1008028115  1309 Jan  3 11:40 performance-dashboard.php
+-rw-r--r--  1 u996867598 o1008028115  1012 Jan  3 11:40 pricing-table.php
+drwxr-xr-x  2 u996867598 o1008028115  4096 Oct 16  2025 .private
+-rw-r--r--  1 u996867598 o1008028115  2620 Jan  3 11:40 public.css
+-rw-r--r--  1 u996867598 o1008028115 14158 Jan  3 11:40 public.js
+-rw-r--r--  1 u996867598 o1008028115  3749 Jan  3 11:40 quality_fixes.php
+-rw-r--r--  1 u996867598 o1008028115  7425 Mar 12 23:55 readme.html
+-rw-r--r--  1 u996867598 o1008028115   310 Jan  3 11:40 style.css
+-rw-r--r--  1 u996867598 o1008028115  1510 Jan  3 11:40 tradingrobotplug.php
+-rw-r--r--  1 u996867598 o1008028115  3534 Jan  3 11:40 user-dashboard.php
+-rw-r--r--  1 u996867598 o1008028115  7387 Oct 16  2025 wp-activate.php
+drwxr-xr-x  9 u996867598 o1008028115  4096 Oct 16  2025 wp-admin
+-rw-r--r--  1 u996867598 o1008028115   351 Oct 16  2025 wp-blog-header.php
+-rw-r--r--  1 u996867598 o1008028115  2323 Oct 16  2025 wp-comments-post.php
+-rw-r--r--  1 u996867598 o1008028115  3799 May 28 10:57 wp-config.php
+-rw-r--r--  1 u996867598 o1008028115  3336 Oct 16  2025 wp-config-sample.php
+drwxr-xr-x  9 u996867598 o1008028115  4096 Jan 15 23:27 wp-content
+-rw-r--r--  1 u996867598 o1008028115  5617 Oct 16  2025 wp-cron.php
+drwxr-xr-x 30 u996867598 o1008028115 16384 Oct 16  2025 wp-includes
+-rw-r--r--  1 u996867598 o1008028115  2502 Oct 16  2025 wp-links-opml.php
+-rw-r--r--  1 u996867598 o1008028115  3937 Oct 16  2025 wp-load.php
+-rw-r--r--  1 u996867598 o1008028115 51414 Oct 16  2025 wp-login.php
+-rw-r--r--  1 u996867598 o1008028115  8727 Oct 16  2025 wp-mail.php
+-rw-r--r--  1 u996867598 o1008028115 30081 Oct 16  2025 wp-settings.php
+-rw-r--r--  1 u996867598 o1008028115 34516 Oct 16  2025 wp-signup.php
+-rw-r--r--  1 u996867598 o1008028115  5102 Oct 16  2025 wp-trackback.php
+-rw-r--r--  1 u996867598 o1008028115  3205 Oct 16  2025 xmlrpc.php
+== COUNTS ==
+FILE_COUNT=5600
+DIR_COUNT=731
+== PERMISSIONS ==
+ROOT_MODE=755 ROOT_OWNER=u996867598 ROOT_GROUP=o1008028115
+drwxr-xr-x u996867598 o1008028115 .
+drwxr-xr-x u996867598 o1008028115 ./Agent_Cellphone_V2_Repository
+drwxr-xr-x u996867598 o1008028115 ./domains
+drwxr-xr-x u996867598 o1008028115 ./domains\tradingrobotplug.com\public_html\wp-content\themes\tradingrobotplug-theme
+drwxr-xr-x u996867598 o1008028115 ./domains\tradingrobotplug.com\public_html\wp-content\themes\tradingrobotplug-theme\assets\js
+drwxr-xr-x u996867598 o1008028115 ./.private
+drwxr-xr-x u996867598 o1008028115 ./wp-admin
+drwxr-xr-x u996867598 o1008028115 ./wp-content
+drwxr-xr-x u996867598 o1008028115 ./wp-includes
+-rw-r--r-- u996867598 o1008028115 ./admin.css
+-rw-r--r-- u996867598 o1008028115 ./admin-display.php
+-rw-r--r-- u996867598 o1008028115 ./admin.js
+-rw-r--r-- u996867598 o1008028115 ./class-admin.php
+-rw-r--r-- u996867598 o1008028115 ./class-api-client.php
+-rw-r--r-- u996867598 o1008028115 ./class-performance-tracker.php
+-rw-r--r-- u996867598 o1008028115 ./class-public.php
+-rw-r--r-- u996867598 o1008028115 ./class-rest-api-controller.php
+-rw-r--r-- u996867598 o1008028115 ./class-subscription-manager.php
+-rw-r--r-- u996867598 o1008028115 ./class-trading-robot-plug.php
+-rw-r--r-- u996867598 o1008028115 ./class-user-manager.php
+-rw-r--r-- u996867598 o1008028115 ./default.php
+-rw-r--r-- u996867598 o1008028115 ./developer-tools.html
+-rw-r--r-- u996867598 o1008028115 ./footer.php
+-rw-r--r-- u996867598 o1008028115 ./front-page.php
+-rw-r--r-- u996867598 o1008028115 ./functions.php
+-rw-r--r-- u996867598 o1008028115 ./header.php
+-rw-r--r-- u996867598 o1008028115 ./.htaccess
+-rw-r--r-- u996867598 o1008028115 ./.htaccess.bk
+-rw-r--r-- u996867598 o1008028115 ./index.php
+-rw-r--r-- u996867598 o1008028115 ./license.txt
+-rw-r--r-- u996867598 o1008028115 ./llms.txt
+-rw-r--r-- u996867598 o1008028115 ./marketplace-grid.php
+-rw-r--r-- u996867598 o1008028115 ./page-dashboard.php
+-rw-r--r-- u996867598 o1008028115 ./page-how-it-works.php
+-rw-r--r-- u996867598 o1008028115 ./page-marketplace.php
+-rw-r--r-- u996867598 o1008028115 ./page-performance.php
+-rw-r--r-- u996867598 o1008028115 ./page-pricing.php
+-rw-r--r-- u996867598 o1008028115 ./performance-dashboard.php
+-rw-r--r-- u996867598 o1008028115 ./pricing-table.php
+-rw-r--r-- u996867598 o1008028115 ./public.css
+-rw-r--r-- u996867598 o1008028115 ./public.js
+-rw-r--r-- u996867598 o1008028115 ./quality_fixes.php
+-rw-r--r-- u996867598 o1008028115 ./readme.html
+-rw-r--r-- u996867598 o1008028115 ./style.css
+-rw-r--r-- u996867598 o1008028115 ./tradingrobotplug.php
+-rw-r--r-- u996867598 o1008028115 ./user-dashboard.php
+-rw-r--r-- u996867598 o1008028115 ./wp-activate.php
+-rw-r--r-- u996867598 o1008028115 ./wp-blog-header.php
+-rw-r--r-- u996867598 o1008028115 ./wp-comments-post.php
+-rw-r--r-- u996867598 o1008028115 ./wp-config.php
+-rw-r--r-- u996867598 o1008028115 ./wp-config-sample.php
+-rw-r--r-- u996867598 o1008028115 ./wp-cron.php
+-rw-r--r-- u996867598 o1008028115 ./wp-links-opml.php
+-rw-r--r-- u996867598 o1008028115 ./wp-load.php
+-rw-r--r-- u996867598 o1008028115 ./wp-login.php
+-rw-r--r-- u996867598 o1008028115 ./wp-mail.php
+-rw-r--r-- u996867598 o1008028115 ./wp-settings.php
+-rw-r--r-- u996867598 o1008028115 ./wp-signup.php
+-rw-r--r-- u996867598 o1008028115 ./wp-trackback.php
+-rw-r--r-- u996867598 o1008028115 ./xmlrpc.php
+== INDEX_FILES ==
+INDEX_PRESENT=index.php
+INDEX_MODE=644
+INDEX_HEAD_BEGIN=index.php
+<?php
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
+
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define( 'WP_USE_THEMES', true );
+
+/** Loads the WordPress Environment and Template */
+require __DIR__ . '/wp-blog-header.php';
+INDEX_HEAD_END=index.php
+INDEX_PRESENT=default.php
+INDEX_MODE=644
+INDEX_HEAD_BEGIN=default.php
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Default page</title>
+        <link rel="icon" type="image/x-icon" href="https://hpanel.hostinger.com/favicons/hostinger.png">
+        <meta charset="utf-8">
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <meta content="Default page" name="description">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100vw;
+                height: 100vh;
+                min-height: 675px;
+                background-color: #F4F5FF;
+            }
+            p {
+                width: 100%;
+                left: 0px;
+                font-size: 16px;
+                font-family: 'DM Sans', sans-serif;
+                font-weight: 400;
+                letter-spacing: 0px;
+                text-align: center;
+                vertical-align: top;
+                max-width: 550px;
+                color: #727586;
+                margin: 0px;
+            }
+            a:hover {
+                cursor: pointer;
+                color: #673DE6;
+INDEX_HEAD_END=default.php
+== HTACCESS ==
+HTACCESS_PRESENT=YES
+HTACCESS_MODE=644
+HTACCESS_BEGIN
+# BEGIN LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+<IfModule LiteSpeed>
+RewriteEngine on
+CacheLookup on
+RewriteRule .* - [E=Cache-Control:no-autoflush]
+RewriteRule litespeed/debug/.*\.log$ - [F,L]
+RewriteRule \.litespeed_conf\.dat - [F,L]
+
+### marker ASYNC start ###
+RewriteCond %{REQUEST_URI} /wp-admin/admin-ajax\.php
+RewriteCond %{QUERY_STRING} action=async_litespeed
+RewriteRule .* - [E=noabort:1]
+### marker ASYNC end ###
+
+### marker DROPQS start ###
+CacheKeyModify -qs:fbclid
+CacheKeyModify -qs:gclid
+CacheKeyModify -qs:utm*
+CacheKeyModify -qs:_ga
+### marker DROPQS end ###
+
+</IfModule>
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END LSCACHE
+# BEGIN NON_LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END NON_LSCACHE
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+HTACCESS_END
+== WORDPRESS_MARKERS ==
+WP_CONFIG=YES
+WP_CONTENT=YES
+WP_ADMIN=YES
+WP_LOAD=YES
+WP_CONFIG_HEAD_BEGIN
+ * * ABSPATH
+define( 'DB_NAME', 'u996867598_rZy2f' );
+define( 'DB_USER', 'u996867598_Z9bKl' );
+$table_prefix = 'wp_';
+if ( ! defined('WP_DEBUG') ) define('WP_DEBUG', false);
+if ( ! defined('WP_DEBUG_LOG') ) define('WP_DEBUG_LOG', false);
+if ( ! defined('WP_DEBUG_DISPLAY') ) define('WP_DEBUG_DISPLAY', false);
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', __DIR__ . '/' );
+require_once ABSPATH . 'wp-settings.php';
+WP_CONFIG_HEAD_END
+== PHP_MARKERS ==
+./admin-display.php
+./class-admin.php
+./class-api-client.php
+./class-performance-tracker.php
+./class-public.php
+./class-rest-api-controller.php
+./class-subscription-manager.php
+./class-trading-robot-plug.php
+./class-user-manager.php
+./default.php
+./footer.php
+./front-page.php
+./functions.php
+./header.php
+./index.php
+./marketplace-grid.php
+./page-dashboard.php
+./page-how-it-works.php
+./page-marketplace.php
+./page-performance.php
+./page-pricing.php
+./performance-dashboard.php
+./pricing-table.php
+./quality_fixes.php
+./tradingrobotplug.php
+./user-dashboard.php
+./wp-activate.php
+./wp-admin/about.php
+./wp-admin/admin-ajax.php
+./wp-admin/admin-footer.php
+./wp-admin/admin-functions.php
+./wp-admin/admin-header.php
+./wp-admin/admin.php
+./wp-admin/admin-post.php
+./wp-admin/async-upload.php
+./wp-admin/authorize-application.php
+./wp-admin/comment.php
+./wp-admin/contribute.php
+./wp-admin/credits.php
+./wp-admin/custom-background.php
+./wp-admin/custom-header.php
+./wp-admin/customize.php
+./wp-admin/edit-comments.php
+./wp-admin/edit-form-advanced.php
+./wp-admin/edit-form-blocks.php
+./wp-admin/edit-form-comment.php
+./wp-admin/edit-link-form.php
+./wp-admin/edit.php
+./wp-admin/edit-tag-form.php
+./wp-admin/edit-tags.php
+./wp-admin/erase-personal-data.php
+./wp-admin/export-personal-data.php
+./wp-admin/export.php
+./wp-admin/freedoms.php
+./wp-admin/import.php
+./wp-admin/index.php
+./wp-admin/install-helper.php
+./wp-admin/install.php
+./wp-admin/link-add.php
+./wp-admin/link-manager.php
+./wp-admin/link-parse-opml.php
+./wp-admin/link.php
+./wp-admin/load-scripts.php
+./wp-admin/load-styles.php
+./wp-admin/media-new.php
+./wp-admin/media.php
+./wp-admin/media-upload.php
+./wp-admin/menu-header.php
+./wp-admin/menu.php
+./wp-admin/moderation.php
+./wp-admin/ms-admin.php
+./wp-admin/ms-delete-site.php
+./wp-admin/ms-edit.php
+./wp-admin/ms-options.php
+./wp-admin/ms-sites.php
+./wp-admin/ms-themes.php
+./wp-admin/ms-upgrade-network.php
+./wp-admin/ms-users.php
+./wp-admin/my-sites.php
+./wp-admin/nav-menus.php
+./wp-admin/network.php
+./wp-admin/options-discussion.php
+./wp-admin/options-general.php
+./wp-admin/options-head.php
+./wp-admin/options-media.php
+./wp-admin/options-permalink.php
+./wp-admin/options.php
+./wp-admin/options-privacy.php
+./wp-admin/options-reading.php
+./wp-admin/options-writing.php
+./wp-admin/plugin-editor.php
+./wp-admin/plugin-install.php
+./wp-admin/plugins.php
+./wp-admin/post-new.php
+./wp-admin/post.php
+./wp-admin/press-this.php
+./wp-admin/privacy.php
+./wp-admin/privacy-policy-guide.php
+./wp-admin/profile.php
+./wp-admin/revision.php

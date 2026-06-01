@@ -1,0 +1,25 @@
+version: 1
+name: http_500_website_root_cause_audit
+status: pass
+source: _reports/website_audit/website_inventory_classification_003.json
+report_dir: _reports/website_audit/http_500_root_causes
+rollup: _reports/website_audit/http_500_root_causes/http_500_root_cause_rollup_004.md
+rollup_json: _reports/website_audit/http_500_root_causes/http_500_root_cause_rollup_004.json
+script: runtime/scripts/classify_http_500_website_root_causes.sh
+verified:
+  auditor_written: pass
+  http_500_root_cause_audit: pass
+  http_500_reports_exist: pass
+  http_500_json_schema: pass
+safety:
+  destructive_changes: false
+  backup_required_before_future_repairs: true
+classification_outputs:
+  - root_cause
+  - recommendation
+  - priority
+  - intended_purpose_guess
+next_allowed_actions:
+  - choose_repair_rebuild_park_archive_per_domain
+  - static_placeholder_pack_for_parked_domains
+  - site_specific_repair_lanes

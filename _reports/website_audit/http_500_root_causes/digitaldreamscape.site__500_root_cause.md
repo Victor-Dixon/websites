@@ -1,0 +1,321 @@
+# HTTP 500 Root Cause: digitaldreamscape.site
+
+## Classification
+
+- Root cause: `wordpress_install_returning_500`
+- Recommendation: `run_wp_cli_health_check_or_restore_wordpress`
+- Priority: `classify_purpose_before_repair`
+- Intended purpose guess: `dreamos_brand_candidate`
+
+## Decision
+
+- Safe next step: confirm intended purpose before changing files.
+
+## Remote Evidence
+
+```text
+DOMAIN=digitaldreamscape.site
+REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html
+ROOT_EXISTS=YES
+== ROOT_STAT ==
+/home/u996867598/domains/digitaldreamscape.site/public_html
+total 392
+drwxr-xr-x  7 u996867598 o1008028115  4096 May 10 15:00 .
+drwxr-xr-x  4 u996867598 o1008028115  4096 Dec 23 08:32 ..
+-rw-r--r--  1 u996867598 o1008028115  6573 Jan  4 20:47 canon_declaration_system.php
+-rw-r--r--  1 u996867598 o1008028115 16369 Dec 17 04:57 default.php
+-rw-r--r--  1 u996867598 o1008028115  1429 Jan  3 21:43 .htaccess
+-rw-r--r--  1 u996867598 o1008028115   714 Dec 17 04:58 .htaccess.bk
+-rw-r--r--  1 u996867598 o1008028115   405 Dec 17 04:57 index.php
+-rw-r--r--  1 u996867598 o1008028115 19903 Dec 17 04:57 license.txt
+-rw-r--r--  1 u996867598 o1008028115  3350 Jan  3 23:54 llms.txt
+drwxr-xr-x  2 u996867598 o1008028115  4096 Dec 17 04:57 .private
+drwxr-xr-x  2 u996867598 o1008028115  4096 May 10 15:08 public_html
+-rw-r--r--  1 u996867598 o1008028115  7425 Mar 12 23:54 readme.html
+-rw-r--r--  1 u996867598 o1008028115  7626 Jan  4 20:47 system_status.php
+-rw-r--r--  1 u996867598 o1008028115  7349 Dec 17 04:57 wp-activate.php
+drwxr-xr-x  9 u996867598 o1008028115  4096 Dec 17 04:57 wp-admin
+-rw-r--r--  1 u996867598 o1008028115   351 Dec 17 04:57 wp-blog-header.php
+-rw-r--r--  1 u996867598 o1008028115  2323 Dec 17 04:57 wp-comments-post.php
+-rw-r--r--  1 u996867598 o1008028115  3786 May 28 11:08 wp-config.php
+-rw-r--r--  1 u996867598 o1008028115  3339 Dec 17 04:57 wp-config-sample.php
+drwxr-xr-x  8 u996867598 o1008028115  4096 Jan  3 21:50 wp-content
+-rw-r--r--  1 u996867598 o1008028115  5617 Dec 17 04:57 wp-cron.php
+drwxr-xr-x 31 u996867598 o1008028115 16384 Dec 17 04:57 wp-includes
+-rw-r--r--  1 u996867598 o1008028115  2493 Dec 17 04:57 wp-links-opml.php
+-rw-r--r--  1 u996867598 o1008028115  3937 Dec 17 04:57 wp-load.php
+-rw-r--r--  1 u996867598 o1008028115 51437 Dec 17 04:57 wp-login.php
+-rw-r--r--  1 u996867598 o1008028115  8727 Dec 17 04:57 wp-mail.php
+-rw-r--r--  1 u996867598 o1008028115 31055 Dec 17 04:57 wp-settings.php
+-rw-r--r--  1 u996867598 o1008028115 34516 Dec 17 04:57 wp-signup.php
+-rw-r--r--  1 u996867598 o1008028115  5214 Dec 17 04:57 wp-trackback.php
+-rw-r--r--  1 u996867598 o1008028115  3205 Dec 17 04:57 xmlrpc.php
+== COUNTS ==
+FILE_COUNT=5165
+DIR_COUNT=643
+== PERMISSIONS ==
+ROOT_MODE=755 ROOT_OWNER=u996867598 ROOT_GROUP=o1008028115
+drwxr-xr-x u996867598 o1008028115 .
+drwxr-xr-x u996867598 o1008028115 ./.private
+drwxr-xr-x u996867598 o1008028115 ./public_html
+drwxr-xr-x u996867598 o1008028115 ./wp-admin
+drwxr-xr-x u996867598 o1008028115 ./wp-content
+drwxr-xr-x u996867598 o1008028115 ./wp-includes
+-rw-r--r-- u996867598 o1008028115 ./canon_declaration_system.php
+-rw-r--r-- u996867598 o1008028115 ./default.php
+-rw-r--r-- u996867598 o1008028115 ./.htaccess
+-rw-r--r-- u996867598 o1008028115 ./.htaccess.bk
+-rw-r--r-- u996867598 o1008028115 ./index.php
+-rw-r--r-- u996867598 o1008028115 ./license.txt
+-rw-r--r-- u996867598 o1008028115 ./llms.txt
+-rw-r--r-- u996867598 o1008028115 ./readme.html
+-rw-r--r-- u996867598 o1008028115 ./system_status.php
+-rw-r--r-- u996867598 o1008028115 ./wp-activate.php
+-rw-r--r-- u996867598 o1008028115 ./wp-blog-header.php
+-rw-r--r-- u996867598 o1008028115 ./wp-comments-post.php
+-rw-r--r-- u996867598 o1008028115 ./wp-config.php
+-rw-r--r-- u996867598 o1008028115 ./wp-config-sample.php
+-rw-r--r-- u996867598 o1008028115 ./wp-cron.php
+-rw-r--r-- u996867598 o1008028115 ./wp-links-opml.php
+-rw-r--r-- u996867598 o1008028115 ./wp-load.php
+-rw-r--r-- u996867598 o1008028115 ./wp-login.php
+-rw-r--r-- u996867598 o1008028115 ./wp-mail.php
+-rw-r--r-- u996867598 o1008028115 ./wp-settings.php
+-rw-r--r-- u996867598 o1008028115 ./wp-signup.php
+-rw-r--r-- u996867598 o1008028115 ./wp-trackback.php
+-rw-r--r-- u996867598 o1008028115 ./xmlrpc.php
+== INDEX_FILES ==
+INDEX_PRESENT=index.php
+INDEX_MODE=644
+INDEX_HEAD_BEGIN=index.php
+<?php
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
+
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define( 'WP_USE_THEMES', true );
+
+/** Loads the WordPress Environment and Template */
+require __DIR__ . '/wp-blog-header.php';
+INDEX_HEAD_END=index.php
+INDEX_PRESENT=default.php
+INDEX_MODE=644
+INDEX_HEAD_BEGIN=default.php
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Default page</title>
+        <link rel="icon" type="image/x-icon" href="https://hpanel.hostinger.com/favicons/hostinger.png">
+        <meta charset="utf-8">
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <meta content="Default page" name="description">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100vw;
+                height: 100vh;
+                min-height: 675px;
+                background-color: #F4F5FF;
+            }
+            p {
+                width: 100%;
+                left: 0px;
+                font-size: 16px;
+                font-family: 'DM Sans', sans-serif;
+                font-weight: 400;
+                letter-spacing: 0px;
+                text-align: center;
+                vertical-align: top;
+                max-width: 550px;
+                color: #727586;
+                margin: 0px;
+            }
+            a:hover {
+                cursor: pointer;
+                color: #673DE6;
+INDEX_HEAD_END=default.php
+== HTACCESS ==
+HTACCESS_PRESENT=YES
+HTACCESS_MODE=644
+HTACCESS_BEGIN
+# BEGIN LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+<IfModule LiteSpeed>
+RewriteEngine on
+CacheLookup on
+RewriteRule .* - [E=Cache-Control:no-autoflush]
+RewriteRule litespeed/debug/.*\.log$ - [F,L]
+RewriteRule \.litespeed_conf\.dat - [F,L]
+
+### marker ASYNC start ###
+RewriteCond %{REQUEST_URI} /wp-admin/admin-ajax\.php
+RewriteCond %{QUERY_STRING} action=async_litespeed
+RewriteRule .* - [E=noabort:1]
+### marker ASYNC end ###
+
+### marker DROPQS start ###
+CacheKeyModify -qs:fbclid
+CacheKeyModify -qs:gclid
+CacheKeyModify -qs:utm*
+CacheKeyModify -qs:_ga
+### marker DROPQS end ###
+
+</IfModule>
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END LSCACHE
+# BEGIN NON_LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END NON_LSCACHE
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+HTACCESS_END
+== WORDPRESS_MARKERS ==
+WP_CONFIG=YES
+WP_CONTENT=YES
+WP_ADMIN=YES
+WP_LOAD=YES
+WP_CONFIG_HEAD_BEGIN
+ * * ABSPATH
+define( 'DB_NAME', 'u996867598_mxpZa' );
+define( 'DB_USER', 'u996867598_FOoaW' );
+$table_prefix = 'wp_';
+if ( ! defined('WP_DEBUG') ) define('WP_DEBUG', false);
+if ( ! defined('WP_DEBUG_LOG') ) define('WP_DEBUG_LOG', false);
+if ( ! defined('WP_DEBUG_DISPLAY') ) define('WP_DEBUG_DISPLAY', false);
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', __DIR__ . '/' );
+require_once ABSPATH . 'wp-settings.php';
+WP_CONFIG_HEAD_END
+== PHP_MARKERS ==
+./canon_declaration_system.php
+./default.php
+./index.php
+./system_status.php
+./wp-activate.php
+./wp-admin/about.php
+./wp-admin/admin-ajax.php
+./wp-admin/admin-footer.php
+./wp-admin/admin-functions.php
+./wp-admin/admin-header.php
+./wp-admin/admin.php
+./wp-admin/admin-post.php
+./wp-admin/async-upload.php
+./wp-admin/authorize-application.php
+./wp-admin/comment.php
+./wp-admin/contribute.php
+./wp-admin/credits.php
+./wp-admin/custom-background.php
+./wp-admin/custom-header.php
+./wp-admin/customize.php
+./wp-admin/edit-comments.php
+./wp-admin/edit-form-advanced.php
+./wp-admin/edit-form-blocks.php
+./wp-admin/edit-form-comment.php
+./wp-admin/edit-link-form.php
+./wp-admin/edit.php
+./wp-admin/edit-tag-form.php
+./wp-admin/edit-tags.php
+./wp-admin/erase-personal-data.php
+./wp-admin/export-personal-data.php
+./wp-admin/export.php
+./wp-admin/freedoms.php
+./wp-admin/import.php
+./wp-admin/index.php
+./wp-admin/install-helper.php
+./wp-admin/install.php
+./wp-admin/link-add.php
+./wp-admin/link-manager.php
+./wp-admin/link-parse-opml.php
+./wp-admin/link.php
+./wp-admin/load-scripts.php
+./wp-admin/load-styles.php
+./wp-admin/media-new.php
+./wp-admin/media.php
+./wp-admin/media-upload.php
+./wp-admin/menu-header.php
+./wp-admin/menu.php
+./wp-admin/moderation.php
+./wp-admin/ms-admin.php
+./wp-admin/ms-delete-site.php
+./wp-admin/ms-edit.php
+./wp-admin/ms-options.php
+./wp-admin/ms-sites.php
+./wp-admin/ms-themes.php
+./wp-admin/ms-upgrade-network.php
+./wp-admin/ms-users.php
+./wp-admin/my-sites.php
+./wp-admin/nav-menus.php
+./wp-admin/network.php
+./wp-admin/options-discussion.php
+./wp-admin/options-general.php
+./wp-admin/options-head.php
+./wp-admin/options-media.php
+./wp-admin/options-permalink.php
+./wp-admin/options.php
+./wp-admin/options-privacy.php
+./wp-admin/options-reading.php
+./wp-admin/options-writing.php
+./wp-admin/plugin-editor.php
+./wp-admin/plugin-install.php
+./wp-admin/plugins.php
+./wp-admin/post-new.php
+./wp-admin/post.php
+./wp-admin/press-this.php
+./wp-admin/privacy.php
+./wp-admin/privacy-policy-guide.php
+./wp-admin/profile.php
+./wp-admin/revision.php
+./wp-admin/setup-config.php
+./wp-admin/site-editor.php
+./wp-admin/site-health-info.php
+./wp-admin/site-health.php
+./wp-admin/term.php
+./wp-admin/theme-editor.php
+./wp-admin/theme-install.php
+./wp-admin/themes.php
+./wp-admin/tools.php
+./wp-admin/update-core.php
+./wp-admin/update.php
+./wp-admin/upgrade-functions.php
+./wp-admin/upgrade.php
+./wp-admin/upload.php
+./wp-admin/user-edit.php
+./wp-admin/user-new.php
+./wp-admin/users.php
+./wp-admin/widgets-form-blocks.php
+./wp-admin/widgets-form.php
+./wp-admin/widgets.php
+./wp-blog-header.php
+./wp-comments-post.php
+
+```
