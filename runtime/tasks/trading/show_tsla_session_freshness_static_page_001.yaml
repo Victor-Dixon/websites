@@ -1,0 +1,15 @@
+id: show_tsla_session_freshness_static_page_001
+title: Show TSLA session freshness on static command center page
+status: ready
+target:
+  - runtime/content/freerideinvestor/tsla-command-center.html
+  - runtime/content/freerideinvestor/data/tsla-command-center.json
+intent: >
+  Display TSLA command-center data age, freshness level, market-session status,
+  and collector status on the FreeRideInvestor static command center page.
+verify:
+  - grep -q "Data Age" runtime/content/freerideinvestor/tsla-command-center.html
+  - grep -q "Freshness Level" runtime/content/freerideinvestor/tsla-command-center.html
+  - grep -q "Market Session" runtime/content/freerideinvestor/tsla-command-center.html
+  - grep -q "Collector Status" runtime/content/freerideinvestor/tsla-command-center.html
+commit_message: Show TSLA session freshness on command center page
