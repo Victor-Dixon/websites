@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.6.9
+ * Version: 0.7.0
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.6.9');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.6.9', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.0');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.0', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.6.9');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.6.9', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.0');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.0', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -2140,3 +2140,219 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_PORTRAIT_PROMPT_PREVIEW_POLISH_END
+
+// DREAMOS_SCAN_SUBMIT_STATE_RESET_GUARD_BEGIN lane 110b
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'emergence_character_generator')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-scan-submit-state-reset-guard-inline">
+    (function () {
+      'use strict';
+
+      const DRAFT_KEY = 'emergence_cg_answer_draft_v1';
+      const ROOT_SELECTORS = [
+        '#emergence-character-generator',
+        '.emergence-character-generator',
+        '.ecg-shell',
+        '.ecg-app',
+        '.ecg-wrap',
+        '[data-emergence-character-generator]'
+      ];
+
+      const FORBIDDEN = [
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'showwork',
+        'raw_roll',
+        'odds:'
+      ];
+
+      function root() {
+        for (let i = 0; i < ROOT_SELECTORS.length; i += 1) {
+          const found = document.querySelector(ROOT_SELECTORS[i]);
+          if (found) {
+            return found;
+          }
+        }
+
+        const shortcode = document.querySelector('[id*="emergence"], [class*="emergence"], [class*="ecg-"]');
+        return shortcode || document.body;
+      }
+
+      function safeText(value) {
+        const lower = String(value || '').toLowerCase();
+        FORBIDDEN.forEach(function (key) {
+          if (lower.indexOf(key) !== -1) {
+            throw new Error('Unsafe draft payload blocked: ' + key);
+          }
+        });
+      }
+
+      function collectAnswers() {
+        const scope = root();
+        const answers = {};
+
+        scope.querySelectorAll('input, select, textarea').forEach(function (field, index) {
+          const key = field.name || field.id || field.getAttribute('data-question-id') || ('field_' + index);
+
+          if (field.type === 'radio') {
+            if (field.checked) {
+              answers[key] = field.value;
+            }
+            return;
+          }
+
+          if (field.type === 'checkbox') {
+            answers[key] = !!field.checked;
+            return;
+          }
+
+          answers[key] = field.value;
+        });
+
+        return answers;
+      }
+
+      function saveDraft() {
+        try {
+          const payload = {
+            saved_at: Date.now(),
+            path: window.location.pathname,
+            answers: collectAnswers()
+          };
+
+          const serialized = JSON.stringify(payload);
+          safeText(serialized);
+          window.sessionStorage.setItem(DRAFT_KEY, serialized);
+        } catch (error) {
+          console.warn('[EmergenceCG] draft save skipped');
+        }
+      }
+
+      function restoreDraft() {
+        try {
+          const raw = window.sessionStorage.getItem(DRAFT_KEY);
+          if (!raw) {
+            return;
+          }
+
+          safeText(raw);
+          const payload = JSON.parse(raw);
+          const answers = payload && payload.answers ? payload.answers : {};
+          const scope = root();
+
+          Object.keys(answers).forEach(function (key) {
+            const escaped = window.CSS && CSS.escape ? CSS.escape(key) : key.replace(/"/g, '\"');
+            const fields = Array.from(scope.querySelectorAll('[name="' + escaped + '"], #' + escaped));
+
+            fields.forEach(function (field) {
+              const value = answers[key];
+
+              if (field.type === 'radio') {
+                field.checked = String(field.value) === String(value);
+                return;
+              }
+
+              if (field.type === 'checkbox') {
+                field.checked = !!value;
+                return;
+              }
+
+              if (!field.value) {
+                field.value = value;
+              }
+            });
+          });
+        } catch (error) {
+          console.warn('[EmergenceCG] draft restore skipped');
+        }
+      }
+
+      function isInsideGenerator(target) {
+        const scope = root();
+        return !!(target && scope && (target === scope || scope.contains(target)));
+      }
+
+      function hardenButtons() {
+        const scope = root();
+
+        scope.querySelectorAll('button[type="submit"], input[type="submit"]').forEach(function (button) {
+          button.setAttribute('type', 'button');
+          button.setAttribute('data-dreamos-submit-safe', '1');
+        });
+      }
+
+      function hardenForms() {
+        const scope = root();
+
+        scope.querySelectorAll('form').forEach(function (form) {
+          if (form.getAttribute('data-dreamos-submit-guard') === '1') {
+            return;
+          }
+
+          form.setAttribute('data-dreamos-submit-guard', '1');
+          form.addEventListener('submit', function (event) {
+            if (!isInsideGenerator(event.target)) {
+              return;
+            }
+
+            saveDraft();
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+          }, true);
+        });
+      }
+
+      document.addEventListener('input', function (event) {
+        if (isInsideGenerator(event.target)) {
+          saveDraft();
+        }
+      }, true);
+
+      document.addEventListener('change', function (event) {
+        if (isInsideGenerator(event.target)) {
+          saveDraft();
+        }
+      }, true);
+
+      document.addEventListener('click', function (event) {
+        if (isInsideGenerator(event.target)) {
+          saveDraft();
+        }
+      }, true);
+
+      function boot() {
+        restoreDraft();
+        hardenButtons();
+        hardenForms();
+      }
+
+      document.addEventListener('DOMContentLoaded', boot);
+      setInterval(boot, 750);
+      boot();
+
+      window.DreamOSEmergenceScanStateGuard = {
+        key: DRAFT_KEY,
+        saveDraft: saveDraft,
+        restoreDraft: restoreDraft,
+        collectAnswers: collectAnswers,
+        hardenButtons: hardenButtons,
+        hardenForms: hardenForms
+      };
+    })();
+    </script>
+    <?php
+});
+// DREAMOS_SCAN_SUBMIT_STATE_RESET_GUARD_END

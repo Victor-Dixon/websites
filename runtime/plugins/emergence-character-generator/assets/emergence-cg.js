@@ -417,7 +417,7 @@
       '<label>Personality / Attitude<input id="emergence-personality-style" type="text" maxlength="120" placeholder="Example: stoic protector, cocky street hero, haunted survivor, noble guardian"></label>',
       '<label>Ability Showcase<select id="emergence-showcase-style"><option value="active">Active effects</option><option value="subtle">Subtle hints</option><option value="dramatic">Dramatic surge</option><option value="restrained">Restrained control</option></select></label>',
       '</div>',
-      '<button type="submit">Create Final Dossier</button>',
+      '<button type="button" data-ecg-action="create-final-dossier">Create Final Dossier</button>',
       '</form>',
       '</section>'
     ].join('');
@@ -427,6 +427,7 @@
 
     const totalityForm = document.getElementById('emergence-totality-form');
     totalityForm.addEventListener('submit', function (event) {
+    if (event && event.preventDefault) { event.preventDefault(); }
       event.preventDefault();
       const nameInput = document.getElementById('emergence-spark-name');
       const sparkName = String(nameInput.value || '').trim();
