@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Spark Battle Sim
  * Description: Cinematic Spark Protocol battle simulator shortcode.
- * Version: 0.2.9
+ * Version: 0.3.0
  * Author: Dadudekc
  */
 
@@ -737,3 +737,84 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_BATTLE_EVENT_TRACKING_INLINE_END
+
+// DREAMOS_BATTLE_DEMO_HARDENING_BEGIN lane 115
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'spark_battle_sim')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-battle-demo-hardening-inline">
+    (function () {
+      'use strict';
+
+      function track(eventName, context) {
+        if (typeof window.DreamOSBattleTrackEvent === 'function') {
+          window.DreamOSBattleTrackEvent(eventName, context || {});
+        }
+      }
+
+      function ensureBattleGuide() {
+        if (document.getElementById('dreamos-battle-demo-guide')) {
+          return;
+        }
+
+        const anchor = document.querySelector('.spark-battle-sim, .sbs-wrap, [class*="battle"]') || document.body;
+        const guide = document.createElement('section');
+        guide.id = 'dreamos-battle-demo-guide';
+        guide.className = 'sbs-demo-guide';
+        guide.innerHTML = [
+          '<p class="sbs-kicker">Battle Simulator</p>',
+          '<h2>Run the Matchup</h2>',
+          '<p>Select a built-in fighter or use the imported Spark, then start the battle. The result shows arena, winner, and cinematic story without exposing backend math.</p>'
+        ].join('');
+        anchor.insertAdjacentElement('beforebegin', guide);
+      }
+
+      function hardenBattleStart() {
+        document.querySelectorAll('button').forEach(function (button) {
+          const text = String(button.textContent || '').toLowerCase();
+          if ((text.indexOf('battle') === -1 && text.indexOf('start') === -1) || button.getAttribute('data-battle-demo-guard') === '1') {
+            return;
+          }
+
+          button.setAttribute('data-battle-demo-guard', '1');
+          button.addEventListener('click', function () {
+            track('battle_started', {button: 'demo_start_battle'});
+          }, true);
+        });
+      }
+
+      function boot() {
+        ensureBattleGuide();
+        hardenBattleStart();
+      }
+
+      document.addEventListener('DOMContentLoaded', boot);
+      setInterval(boot, 1200);
+      boot();
+
+      window.DreamOSBattleDemoHardening = {boot: boot};
+    })();
+    </script>
+    <style id="dreamos-battle-demo-hardening-style">
+      .sbs-demo-guide {
+        margin: 1rem 0 1.25rem;
+        padding: 1.1rem;
+        border-radius: 24px;
+        border: 1px solid rgba(255,255,255,.18);
+        background: linear-gradient(135deg, rgba(255,255,255,.11), rgba(255,255,255,.04));
+      }
+
+      .sbs-demo-guide h2 {
+        margin: .2rem 0 .5rem;
+      }
+    </style>
+    <?php
+});
+// DREAMOS_BATTLE_DEMO_HARDENING_END

@@ -1,0 +1,37 @@
+version: 1
+name: emergence_public_demo_hardening
+site: dadudekc.site
+status: deployed
+implemented:
+  - character_demo_flow_guide
+  - character_progress_strip
+  - copy_prompt_guidance
+  - save_character_guidance
+  - battle_link_guidance
+  - battle_demo_guide
+  - tracking_hooks_preserved
+  - scan_reset_guard_presence_verified
+verified:
+  static_demo_hardening: pass
+  static_demo_privacy_guards: pass
+  static_demo_cta_guidance: pass
+  remote_php_lint: pass
+  public_character_demo_guide: pass
+  public_character_scan_guard_present: pass
+  public_character_save_copy_battle_guidance: pass
+  public_battle_demo_guide: pass
+  public_demo_no_raw_score_leak: pass
+  tracking_sanity: pass
+safety:
+  raw_scores_visible: false
+  roll_visible: false
+  odds_visible: false
+  backend_math_hidden: true
+  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/public_demo_hardening_115_20260601_012001'
+urls:
+  character_generator: https://dadudekc.site/character-generator/
+  battles: https://dadudekc.site/battles/
+next_allowed_actions:
+  - partnership_operating_packet
+  - monetization_gate_scaffold
+  - run_browser_smoke_from_supported_host

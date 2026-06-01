@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.7.2
+ * Version: 0.7.3
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.2');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.2', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.3');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.3', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.2');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.2', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.3');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.3', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -2889,3 +2889,315 @@ function emergence_cg_render_admin_event_dashboard() {
     <?php
 }
 // DREAMOS_ADMIN_EVENT_DASHBOARD_END
+
+// DREAMOS_PUBLIC_DEMO_HARDENING_BEGIN lane 115
+add_action('wp_footer', function () {
+    if (!is_singular()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !isset($post->post_content) || !has_shortcode($post->post_content, 'emergence_character_generator')) {
+        return;
+    }
+    ?>
+    <script id="dreamos-public-demo-hardening-inline">
+    (function () {
+      'use strict';
+
+      const FORBIDDEN = [
+        'scores',
+        'tiers',
+        'manifest_threshold',
+        'flavor_vectors',
+        'spark_signature',
+        'combat_capability',
+        'answers',
+        'showwork',
+        'raw_roll',
+        'odds:',
+        'api_key'
+      ];
+
+      function esc(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function safe(text) {
+        const lower = String(text || '').toLowerCase();
+        FORBIDDEN.forEach(function (key) {
+          if (lower.indexOf(key) !== -1) {
+            throw new Error('Unsafe public demo hardening payload blocked: ' + key);
+          }
+        });
+      }
+
+      function root() {
+        return document.querySelector('#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]') ||
+          document.querySelector('[class*="ecg-"], [class*="emergence"]') ||
+          document.body;
+      }
+
+      function bodyText() {
+        return String(document.body ? document.body.innerText || '' : '');
+      }
+
+      function hasText(needle) {
+        return bodyText().toLowerCase().indexOf(String(needle).toLowerCase()) !== -1;
+      }
+
+      function track(eventName, context) {
+        if (typeof window.DreamOSEmergenceTrackEvent === 'function') {
+          window.DreamOSEmergenceTrackEvent(eventName, context || {});
+        }
+      }
+
+      function ensureDemoGuide() {
+        const scope = root();
+        if (!scope || document.getElementById('dreamos-demo-flow-guide')) {
+          return;
+        }
+
+        const guide = document.createElement('section');
+        guide.id = 'dreamos-demo-flow-guide';
+        guide.className = 'ecg-demo-flow-guide';
+        guide.innerHTML = [
+          '<p class="ecg-kicker">Playable Prototype</p>',
+          '<h2>Create, Save, Share, and Battle Your Spark</h2>',
+          '<ol>',
+          '<li><strong>Scan your Spark.</strong> Answer the first questions, then continue without losing progress.</li>',
+          '<li><strong>Name and style the hero.</strong> Add a costume concept, personality, and ability showcase.</li>',
+          '<li><strong>Copy the portrait prompt.</strong> Use the polished prompt for premium comic-style art.</li>',
+          '<li><strong>Save and share.</strong> Reload links and battle links are generated after save.</li>',
+          '<li><strong>Battle the character.</strong> Send the saved Spark into the simulator.</li>',
+          '</ol>',
+          '<p class="ecg-demo-note">Progress is protected in this browser session. If the page refreshes, your visible draft answers are restored.</p>'
+        ].join('');
+
+        safe(guide.textContent);
+        scope.insertAdjacentElement('beforebegin', guide);
+      }
+
+      function ensureProgressStrip() {
+        if (document.getElementById('dreamos-demo-progress-strip')) {
+          return;
+        }
+
+        const guide = document.getElementById('dreamos-demo-flow-guide');
+        if (!guide) {
+          return;
+        }
+
+        const strip = document.createElement('div');
+        strip.id = 'dreamos-demo-progress-strip';
+        strip.className = 'ecg-demo-progress-strip';
+        strip.innerHTML = [
+          '<span data-step="scan">1 Scan</span>',
+          '<span data-step="style">2 Style</span>',
+          '<span data-step="prompt">3 Prompt</span>',
+          '<span data-step="save">4 Save</span>',
+          '<span data-step="battle">5 Battle</span>'
+        ].join('');
+        guide.insertAdjacentElement('afterend', strip);
+      }
+
+      function markStep(step) {
+        document.querySelectorAll('.ecg-demo-progress-strip span').forEach(function (node) {
+          if (node.getAttribute('data-step') === step) {
+            node.setAttribute('data-active', '1');
+          }
+        });
+      }
+
+      function detectCurrentStep() {
+        const text = bodyText().toLowerCase();
+
+        if (text.indexOf('save character') !== -1 || text.indexOf('reload character') !== -1 || text.indexOf('share character') !== -1) {
+          markStep('save');
+        }
+
+        if (text.indexOf('copy prompt') !== -1 || text.indexOf('premium portrait prompt') !== -1) {
+          markStep('prompt');
+        }
+
+        if (text.indexOf('costume concept') !== -1 || text.indexOf('personality / attitude') !== -1) {
+          markStep('style');
+        }
+
+        if (text.indexOf('battle simulator') !== -1 || text.indexOf('open in battle simulator') !== -1) {
+          markStep('battle');
+        }
+
+        markStep('scan');
+      }
+
+      function ensureFrictionHelp() {
+        const scope = root();
+        if (!scope || document.getElementById('dreamos-demo-friction-help')) {
+          return;
+        }
+
+        const help = document.createElement('aside');
+        help.id = 'dreamos-demo-friction-help';
+        help.className = 'ecg-demo-friction-help';
+        help.innerHTML = [
+          '<strong>Demo tip:</strong> Finish each visible section from top to bottom. ',
+          'After your final dossier appears, use <em>Copy Prompt</em>, then <em>Save Character Record</em>, then <em>Open in Battle Simulator</em>.'
+        ].join('');
+
+        safe(help.textContent);
+        scope.insertAdjacentElement('afterend', help);
+      }
+
+      function hardenCopyButtons() {
+        document.querySelectorAll('button').forEach(function (button) {
+          const text = String(button.textContent || '').toLowerCase();
+          if (text.indexOf('copy') === -1 || button.getAttribute('data-demo-copy-guard') === '1') {
+            return;
+          }
+
+          button.setAttribute('data-demo-copy-guard', '1');
+          button.addEventListener('click', function () {
+            track('premium_prompt_copied', {button: 'demo_copy_guard'});
+            button.setAttribute('aria-live', 'polite');
+          }, true);
+        });
+      }
+
+      function hardenSaveButtons() {
+        document.querySelectorAll('button').forEach(function (button) {
+          const text = String(button.textContent || '').toLowerCase();
+          if (text.indexOf('save character') === -1 || button.getAttribute('data-demo-save-guard') === '1') {
+            return;
+          }
+
+          button.setAttribute('data-demo-save-guard', '1');
+          button.addEventListener('click', function () {
+            track('character_saved', {button: 'demo_save_guard'});
+          }, true);
+        });
+      }
+
+      function hardenBattleLinks() {
+        document.querySelectorAll('a, button').forEach(function (node) {
+          const text = String(node.textContent || '').toLowerCase();
+          const href = String(node.getAttribute('href') || '').toLowerCase();
+
+          if ((text.indexOf('battle') === -1 && href.indexOf('/battles') === -1) || node.getAttribute('data-demo-battle-guard') === '1') {
+            return;
+          }
+
+          node.setAttribute('data-demo-battle-guard', '1');
+          node.addEventListener('click', function () {
+            track('battle_opened', {button: 'demo_battle_guard'});
+          }, true);
+        });
+      }
+
+      function ensureSaveFallbackNote() {
+        const text = bodyText().toLowerCase();
+        if (document.getElementById('dreamos-save-fallback-note')) {
+          return;
+        }
+
+        if (text.indexOf('save character') === -1 && text.indexOf('copy prompt') === -1) {
+          return;
+        }
+
+        const anchor = document.querySelector('.ecg-prompt-preview-card, .ecg-premium-prompt-panel, .ecg-profile-card') || root();
+        if (!anchor) {
+          return;
+        }
+
+        const note = document.createElement('p');
+        note.id = 'dreamos-save-fallback-note';
+        note.className = 'ecg-demo-note';
+        note.textContent = 'When your character is ready, save it first. The saved card gives you reload, share, and battle links.';
+        safe(note.textContent);
+        anchor.insertAdjacentElement('afterend', note);
+      }
+
+      function boot() {
+        ensureDemoGuide();
+        ensureProgressStrip();
+        ensureFrictionHelp();
+        detectCurrentStep();
+        hardenCopyButtons();
+        hardenSaveButtons();
+        hardenBattleLinks();
+        ensureSaveFallbackNote();
+
+        if (hasText('scan') || hasText('spark')) {
+          track('character_started', {phase: 'demo_hardening_seen'});
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', boot);
+      setInterval(boot, 1200);
+      boot();
+
+      window.DreamOSEmergenceDemoHardening = {
+        boot: boot,
+        markStep: markStep
+      };
+    })();
+    </script>
+    <style id="dreamos-public-demo-hardening-style">
+      .ecg-demo-flow-guide {
+        margin: 1rem 0 1.25rem;
+        padding: 1.1rem;
+        border-radius: 24px;
+        border: 1px solid rgba(255,255,255,.18);
+        background: linear-gradient(135deg, rgba(255,255,255,.11), rgba(255,255,255,.04));
+      }
+
+      .ecg-demo-flow-guide h2 {
+        margin: .2rem 0 .8rem;
+      }
+
+      .ecg-demo-flow-guide ol {
+        margin: .5rem 0 0;
+        padding-left: 1.2rem;
+      }
+
+      .ecg-demo-flow-guide li {
+        margin: .45rem 0;
+      }
+
+      .ecg-demo-note,
+      .ecg-demo-friction-help {
+        margin: .8rem 0;
+        padding: .8rem;
+        border-radius: 16px;
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.14);
+      }
+
+      .ecg-demo-progress-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .45rem;
+        margin: .75rem 0 1rem;
+      }
+
+      .ecg-demo-progress-strip span {
+        border-radius: 999px;
+        padding: .45rem .7rem;
+        border: 1px solid rgba(255,255,255,.16);
+        background: rgba(255,255,255,.055);
+        font-weight: 800;
+        font-size: .85rem;
+      }
+
+      .ecg-demo-progress-strip span[data-active="1"] {
+        background: rgba(255,255,255,.18);
+      }
+    </style>
+    <?php
+});
+// DREAMOS_PUBLIC_DEMO_HARDENING_END
