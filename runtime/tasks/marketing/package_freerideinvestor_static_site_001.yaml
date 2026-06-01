@@ -1,0 +1,15 @@
+id: package_freerideinvestor_static_site_001
+lane: marketing
+status: ready
+target: runtime/content/freerideinvestor.com
+intent: >
+  Package the clean FreeRideInvestor static site root for Hostinger upload.
+outputs:
+  - _hostinger_build/dist/freerideinvestor-static-site-0.1.0.zip
+  - _hostinger_build/dist/freerideinvestor-static-site-0.1.0.tar.gz
+  - _reports/freerideinvestor_static_site_package_001.txt
+verification:
+  - test -f _hostinger_build/dist/freerideinvestor-static-site-0.1.0.zip
+  - test -f _hostinger_build/dist/freerideinvestor-static-site-0.1.0.tar.gz
+commit:
+  message: Add FreeRideInvestor static deploy package
