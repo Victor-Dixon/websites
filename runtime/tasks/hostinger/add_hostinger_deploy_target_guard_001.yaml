@@ -1,0 +1,13 @@
+id: add_hostinger_deploy_target_guard_001
+title: Add Hostinger deploy target guard
+status: ready
+target:
+  - runtime/scripts/hostinger_deploy_target_guard.py
+intent: >
+  Prevent deploy drift across Hostinger websites by requiring every remote deploy
+  lane to validate the exact domain and expected install type before uploading,
+  installing WordPress plugins, or modifying static site files.
+verify:
+  - python -m py_compile runtime/scripts/hostinger_deploy_target_guard.py
+  - python runtime/scripts/hostinger_deploy_target_guard.py --domain freerideinvestor.com --expect static
+commit_message: Add Hostinger deploy target guard
