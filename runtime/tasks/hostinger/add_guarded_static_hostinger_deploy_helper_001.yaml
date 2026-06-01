@@ -1,0 +1,13 @@
+id: add_guarded_static_hostinger_deploy_helper_001
+title: Add guarded static Hostinger deploy helper
+status: ready
+target:
+  - runtime/scripts/hostinger_static_deploy_guarded.py
+intent: >
+  Add a reusable static deploy helper that enforces exact-domain static mode,
+  prevents WordPress deploy drift, normalizes public permissions, and verifies
+  HTTP 200 after upload.
+verify:
+  - python -m py_compile runtime/scripts/hostinger_static_deploy_guarded.py
+  - python runtime/scripts/hostinger_static_deploy_guarded.py --domain freerideinvestor.com --local-root _hostinger_plan/freerideinvestor/upload_payload_static_tsla_command_center_001 --file _hostinger_plan/freerideinvestor/upload_payload_static_tsla_command_center_001/tsla-command-center.html --verify-url https://freerideinvestor.com/tsla-command-center.html --dry-run
+commit_message: Add guarded static Hostinger deploy helper
