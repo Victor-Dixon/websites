@@ -7,88 +7,54 @@
   <meta name="description" content="FreeRideInvestor TSLA daytrading command center powered by DreamVault behavior analysis.">
   <style>
     :root {
-      --bg:#08111f;
-      --panel:#0f1b2d;
-      --card:#14243a;
-      --text:#f8fafc;
-      --muted:#94a3b8;
-      --line:#25364d;
-      --good:#22c55e;
-      --warn:#f59e0b;
-      --bad:#ef4444;
-      --blue:#93c5fd;
+      --bg:#08111f; --panel:#0f1b2d; --card:#14243a; --text:#f8fafc;
+      --muted:#94a3b8; --line:#25364d; --blue:#93c5fd;
     }
     * { box-sizing:border-box; }
     body {
-      margin:0;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:radial-gradient(circle at top,#172554 0,#08111f 42%,#020617 100%);
-      color:var(--text);
-      line-height:1.5;
+      color:var(--text); line-height:1.5;
     }
     a { color:var(--blue); }
     .wrap { width:min(1120px,92vw); margin:0 auto; padding:34px 0 58px; }
     .nav { display:flex; justify-content:space-between; gap:16px; align-items:center; margin-bottom:34px; }
     .brand { font-weight:800; letter-spacing:.04em; }
     .pill {
-      display:inline-flex;
-      align-items:center;
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:7px 12px;
-      color:var(--muted);
-      background:rgba(15,23,42,.72);
-      font-size:.9rem;
+      display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:999px;
+      padding:7px 12px; color:var(--muted); background:rgba(15,23,42,.72); font-size:.9rem;
     }
     .hero {
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:32px;
-      background:rgba(15,27,45,.88);
-      box-shadow:0 24px 70px rgba(0,0,0,.32);
+      border:1px solid var(--line); border-radius:28px; padding:32px;
+      background:rgba(15,27,45,.88); box-shadow:0 24px 70px rgba(0,0,0,.32);
     }
     h1 { margin:0 0 10px; font-size:clamp(2rem,6vw,4.5rem); line-height:1; }
     .subtitle { color:var(--muted); font-size:1.12rem; max-width:760px; }
     .badge {
-      display:inline-block;
-      margin-top:18px;
-      padding:8px 12px;
-      border-radius:999px;
-      font-weight:800;
-      text-transform:uppercase;
-      font-size:.82rem;
+      display:inline-block; margin-top:18px; padding:8px 12px; border-radius:999px;
+      font-weight:800; text-transform:uppercase; font-size:.82rem;
     }
     .pass { background:rgba(34,197,94,.14); color:#86efac; border:1px solid rgba(34,197,94,.35); }
     .warn { background:rgba(245,158,11,.14); color:#fcd34d; border:1px solid rgba(245,158,11,.35); }
     .fail { background:rgba(239,68,68,.14); color:#fca5a5; border:1px solid rgba(239,68,68,.35); }
     .mode {
-      margin-top:14px;
-      padding:12px 14px;
-      border:1px solid rgba(147,197,253,.35);
-      border-radius:16px;
-      background:rgba(147,197,253,.08);
-      color:#dbeafe;
+      margin-top:14px; padding:12px 14px; border:1px solid rgba(147,197,253,.35);
+      border-radius:16px; background:rgba(147,197,253,.08); color:#dbeafe;
     }
     .mode strong { color:#bfdbfe; }
     .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin-top:22px; }
-    .card {
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:18px;
-      background:rgba(20,36,58,.82);
-    }
+    .card { border:1px solid var(--line); border-radius:20px; padding:18px; background:rgba(20,36,58,.82); }
+    .wide { grid-column:1 / -1; }
     .label { display:block; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-size:.74rem; margin-bottom:8px; }
-    .value { font-size:1.2rem; font-weight:800; }
+    .value { font-size:1.2rem; font-weight:800; overflow-wrap:anywhere; }
+    .small { font-size:.92rem; color:#cbd5e1; overflow-wrap:anywhere; }
     .section { margin-top:22px; }
     ul { margin:8px 0 0 20px; padding:0; }
     li { margin:7px 0; }
     .muted { color:var(--muted); }
     .insight {
-      margin-top:22px;
-      padding:18px 20px;
-      border-left:5px solid var(--blue);
-      border-radius:16px;
-      background:rgba(147,197,253,.09);
+      margin-top:22px; padding:18px 20px; border-left:5px solid var(--blue);
+      border-radius:16px; background:rgba(147,197,253,.09);
     }
     .footer { margin-top:30px; color:var(--muted); font-size:.9rem; }
   </style>
@@ -101,7 +67,7 @@
     </nav>
 
     <section class="hero">
-      <span class="pill">DreamVault snapshot · 2026-06-01T12:00:29Z</span>
+      <span class="pill">DreamVault snapshot · 2026-06-01T12:31:48Z</span>
       <h1>TSLA Command Center</h1>
       <p class="subtitle">TSLA command center ready / 47 fills analyzed</p>
       <span class="badge pass">Status: pass / fresh</span>
@@ -116,6 +82,20 @@
         <div class="card"><span class="label">Opening Range</span><span class="value">watch first 10 minutes</span></div>
         <div class="card"><span class="label">VWAP State</span><span class="value">pending</span></div>
         <div class="card"><span class="label">Churn Risk</span><span class="value">high</span></div>
+      </div>
+
+      <div class="grid section">
+        <div class="card"><span class="label">Minute Data Available</span><span class="value">yes</span></div>
+        <div class="card"><span class="label">Minute Data Status</span><span class="value">artifact-present</span></div>
+        <div class="card"><span class="label">Last Candle Artifact</span><span class="value">2026-06-01T06:32:24Z</span></div>
+        <div class="card"><span class="label">Minute Data Bytes</span><span class="value">30255</span></div>
+        <div class="card wide">
+          <span class="label">Data Freshness Note</span>
+          <div class="small">Local TSLA minute-data artifact found. Live intraday auto-refresh is not wired yet.</div>
+          <br>
+          <span class="label">Minute Data Source</span>
+          <div class="small">/data/data/com.termux/files/home/projects/DreamVault/runtime/trading_journal/data/tsla_fill_level_behavior_replay_001.json</div>
+        </div>
       </div>
 
       <div class="grid section">

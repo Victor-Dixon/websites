@@ -1,0 +1,13 @@
+id: show_tsla_data_freshness_on_static_page_001
+title: Show TSLA data freshness on static command center page
+status: ready
+target:
+  - runtime/content/freerideinvestor/tsla-command-center.html
+  - runtime/content/freerideinvestor/data/tsla-command-center.json
+intent: >
+  Display minute-data availability, status, source, byte count, and last artifact
+  timestamp on the FreeRideInvestor static TSLA command center page.
+verify:
+  - grep -q "Minute Data Available" runtime/content/freerideinvestor/tsla-command-center.html
+  - grep -q "Last Candle Artifact" runtime/content/freerideinvestor/tsla-command-center.html
+commit_message: Show TSLA data freshness on command center page
