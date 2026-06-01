@@ -1,0 +1,26 @@
+version: 1
+name: domain_purpose_decision_matrix
+status: pass
+sources:
+  inventory: _reports/website_audit/website_inventory_classification_003.json
+  http_500_root_causes: _reports/website_audit/http_500_root_causes/http_500_root_cause_rollup_004.json
+outputs:
+  markdown: runtime/business/domain_inventory/domain_purpose_decision_matrix_005.md
+  json: runtime/business/domain_inventory/domain_purpose_decision_matrix_005.json
+  rollup: _reports/website_audit/domain_purpose_decision_matrix_005.md
+verified:
+  domain_decision_count: 13
+  every_domain_has_decision: pass
+  dadudekc_com_hold_policy: pass
+  no_blind_500_repair_policy: pass
+  domain_purpose_matrix_schema: pass
+policy:
+  dadudekc_com_repair_target: false
+  do_not_repair_500_sites_blindly: true
+  confirm_owner_intent_before_repair: true
+  backup_before_remote_change: true
+next_allowed_actions:
+  - canonical_swarm_domain_decision
+  - static_placeholder_pack_for_park_candidates
+  - business_site_static_rebuild_lanes
+  - wordpress_repair_only_after_purpose_confirmed

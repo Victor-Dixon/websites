@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "source_inventory": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/website_inventory_classification_003.json",
+  "source_http500": "/data/data/com.termux/files/home/projects/websites/_reports/website_audit/http_500_root_causes/http_500_root_cause_rollup_004.json",
+  "total_domains": 13,
+  "buckets": {
+    "keep_live": [
+      "dadudekc.site",
+      "freerideinvestor.com"
+    ],
+    "keep_live_pending_purpose": [
+      "prismblossom.online",
+      "xthunder.site"
+    ],
+    "repair_wordpress_candidates": [
+      "crosbyultimateevents.com",
+      "houstonsipqueen.com"
+    ],
+    "rebuild_static_candidates": [
+      "ariajet.site"
+    ],
+    "park_candidates": [
+      "southwestsecret.com"
+    ],
+    "archive_candidates": [],
+    "hold": [
+      "dadudekc.com"
+    ],
+    "classify_before_repair": [
+      "digitaldreamscape.site",
+      "tradingrobotplug.com",
+      "weareswarm.online",
+      "weareswarm.site"
+    ]
+  },
+  "domains": [
+    {
+      "site": "ariajet.site",
+      "https_status": "500",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "brand_candidate",
+      "business_purpose": "travel or brand candidate",
+      "recommended_action": "park_or_rebuild_static",
+      "root_cause": "wordpress_install_returning_500",
+      "root_recommendation": "run_wp_cli_health_check_or_restore_wordpress",
+      "next_lane": "confirm purpose; if no active plan, deploy parked static placeholder",
+      "remote_root": "/home/u996867598/domains/ariajet.site/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ]
+    },
+    {
+      "site": "crosbyultimateevents.com",
+      "https_status": "500",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "business_site_candidate",
+      "business_purpose": "events business candidate",
+      "recommended_action": "rebuild_static_or_repair_wordpress",
+      "root_cause": "wordpress_install_returning_500",
+      "root_recommendation": "run_wp_cli_health_check_or_restore_wordpress",
+      "next_lane": "confirm business owner/use; then rebuild static landing page or repair WordPress",
+      "remote_root": "/home/u996867598/domains/crosbyultimateevents.com/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ]
+    },
+    {
+      "site": "dadudekc.com",
+      "https_status": "000",
+      "site_type": "unknown",
+      "current_priority": "expired_domain_hold",
+      "owner_intent": "expired_domain_hold",
+      "business_purpose": "expired legacy domain; do not repair until reacquired cheaply",
+      "recommended_action": "hold",
+      "root_cause": "",
+      "root_recommendation": "",
+      "next_lane": "ignore for deploy/repair until domain is reacquired",
+      "remote_root": "/home/u996867598/domains/dadudekc.com/public_html",
+      "tags": [
+        "access_ok",
+        "do_not_repair",
+        "expired_domain",
+        "hold_until_reacquired",
+        "parked_or_placeholder",
+        "thin_or_parked",
+        "unknown_type"
+      ]
+    },
+    {
+      "site": "dadudekc.site",
+      "https_status": "200",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "active_product_host",
+      "business_purpose": "Emergence / Spark Battle Simulator live prototype host",
+      "recommended_action": "keep_live",
+      "root_cause": "",
+      "root_recommendation": "",
+      "next_lane": "continue Emergence launch hardening and browser E2E from supported host",
+      "remote_root": "/home/u996867598/domains/dadudekc.site/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "healthy_live",
+        "thin_or_parked"
+      ]
+    },
+    {
+      "site": "digitaldreamscape.site",
+      "https_status": "500",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "dreamos_brand_candidate",
+      "business_purpose": "Dream/DreamOS brand candidate",
+      "recommended_action": "classify_before_repair",
+      "root_cause": "wordpress_install_returning_500",
+      "root_recommendation": "run_wp_cli_health_check_or_restore_wordpress",
+      "next_lane": "decide if this becomes Dream.OS portfolio/agency landing page or parked",
+      "remote_root": "/home/u996867598/domains/digitaldreamscape.site/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ]
+    },
+    {
+      "site": "freerideinvestor.com",
+      "https_status": "200",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "active_marketing_site",
+      "business_purpose": "FreeRideInvestor sales funnel, trading journal workflow, replay proof, early access",
+      "recommended_action": "keep_live",
+      "root_cause": "",
+      "root_recommendation": "",
+      "next_lane": "run periodic live static verify and improve funnel copy",
+      "remote_root": "/home/u996867598/domains/freerideinvestor.com/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "healthy_live",
+        "thin_or_parked"
+      ]
+    },
+    {
+      "site": "houstonsipqueen.com",
+      "https_status": "500",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "business_site_candidate",
+      "business_purpose": "food/beverage brand candidate",
+      "recommended_action": "rebuild_static_or_repair_wordpress",
+      "root_cause": "wordpress_install_returning_500",
+      "root_recommendation": "run_wp_cli_health_check_or_restore_wordpress",
+      "next_lane": "confirm brand status; rebuild static landing page if active",
+      "remote_root": "/home/u996867598/domains/houstonsipqueen.com/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ]
+    },
+    {
+      "site": "prismblossom.online",
+      "https_status": "200",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "live_static_or_placeholder_candidate",
+      "business_purpose": "live brand/project placeholder candidate",
+      "recommended_action": "keep_live_pending_purpose",
+      "root_cause": "",
+      "root_recommendation": "",
+      "next_lane": "inspect live copy and decide business use",
+      "remote_root": "/home/u996867598/domains/prismblossom.online/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "healthy_live",
+        "thin_or_parked"
+      ]
+    },
+    {
+      "site": "southwestsecret.com",
+      "https_status": "500",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "content_brand_candidate",
+      "business_purpose": "content or brand candidate",
+      "recommended_action": "park_or_archive",
+      "root_cause": "wordpress_install_returning_500",
+      "root_recommendation": "run_wp_cli_health_check_or_restore_wordpress",
+      "next_lane": "confirm purpose; park if no current campaign",
+      "remote_root": "/home/u996867598/domains/southwestsecret.com/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ]
+    },
+    {
+      "site": "tradingrobotplug.com",
+      "https_status": "500",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "legacy_project_candidate",
+      "business_purpose": "Trading Robot Plug / fintech legacy project candidate",
+      "recommended_action": "classify_before_repair",
+      "root_cause": "wordpress_install_returning_500",
+      "root_recommendation": "run_wp_cli_health_check_or_restore_wordpress",
+      "next_lane": "decide whether to rebuild as static legacy landing page or archive",
+      "remote_root": "/home/u996867598/domains/tradingrobotplug.com/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ]
+    },
+    {
+      "site": "weareswarm.online",
+      "https_status": "500",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "dreamos_brand_candidate",
+      "business_purpose": "Dream.OS swarm brand candidate",
+      "recommended_action": "classify_before_repair",
+      "root_cause": "wordpress_install_returning_500",
+      "root_recommendation": "run_wp_cli_health_check_or_restore_wordpress",
+      "next_lane": "choose primary swarm domain and park/archive duplicate",
+      "remote_root": "/home/u996867598/domains/weareswarm.online/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ]
+    },
+    {
+      "site": "weareswarm.site",
+      "https_status": "500",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "dreamos_brand_candidate_duplicate",
+      "business_purpose": "Dream.OS swarm brand duplicate candidate",
+      "recommended_action": "classify_before_repair",
+      "root_cause": "wordpress_install_returning_500",
+      "root_recommendation": "run_wp_cli_health_check_or_restore_wordpress",
+      "next_lane": "compare against weareswarm.online and choose canonical",
+      "remote_root": "/home/u996867598/domains/weareswarm.site/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "http_review",
+        "thin_or_parked",
+        "parked_or_placeholder"
+      ]
+    },
+    {
+      "site": "xthunder.site",
+      "https_status": "200",
+      "site_type": "unknown",
+      "current_priority": "classify_purpose",
+      "owner_intent": "live_static_or_placeholder_candidate",
+      "business_purpose": "live brand/project placeholder candidate",
+      "recommended_action": "keep_live_pending_purpose",
+      "root_cause": "",
+      "root_recommendation": "",
+      "next_lane": "inspect live copy and decide business use",
+      "remote_root": "/home/u996867598/domains/xthunder.site/public_html",
+      "tags": [
+        "access_ok",
+        "unknown_type",
+        "healthy_live",
+        "thin_or_parked"
+      ]
+    }
+  ],
+  "policy": {
+    "dadudekc_com_repair_target": false,
+    "do_not_repair_500_sites_blindly": true,
+    "confirm_owner_intent_before_repair": true,
+    "backup_before_any_remote_change": true
+  }
+}

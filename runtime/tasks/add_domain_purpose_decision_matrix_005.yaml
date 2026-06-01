@@ -1,0 +1,15 @@
+id: add_domain_purpose_decision_matrix_005
+target: domain_purpose_decision_matrix
+action:
+  - merge website inventory classification
+  - merge HTTP 500 root cause audit
+  - assign owner intent per domain
+  - assign business purpose per domain
+  - assign recommended action
+  - assign next lane
+verify:
+  - every audited domain has a row
+  - dadudekc.com remains expired hold
+  - all HTTP 500 sites are classified before repair
+  - live sites are not accidentally queued for rebuild
+commit: Add domain purpose decision matrix
