@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trading Journal Workflow | FreeRideInvestor</title>
+  <meta name="description" content="A clean Dream.OS-approved trading journal workflow for fill import, replay, behavior scorecard, and next-rule generation.">
+  <style>
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, sans-serif; background: #080b12; color: #f8fafc; line-height: 1.6; }
+    main { width: min(1040px, calc(100% - 32px)); margin: 0 auto; padding: 64px 0; }
+    a { color: #70e1ff; }
+    h1 { font-size: clamp(38px, 7vw, 72px); line-height: .95; letter-spacing: -.05em; margin: 0 0 18px; }
+    h2 { font-size: clamp(26px, 4vw, 42px); letter-spacing: -.03em; margin-top: 48px; }
+    .sub { color: #b6c2d1; font-size: 20px; max-width: 760px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
+    .card { border: 1px solid rgba(255,255,255,.12); background: rgba(17,24,39,.78); border-radius: 18px; padding: 20px; }
+    .card p, li { color: #b6c2d1; }
+    .pill { display: inline-block; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: 7px 11px; color: #b6c2d1; background: rgba(255,255,255,.04); }
+    .warning { color: #fb7185; font-weight: 800; }
+    .good { color: #86efac; font-weight: 800; }
+    .flow { counter-reset: step; display: grid; gap: 12px; }
+    .step { counter-increment: step; border-left: 3px solid #70e1ff; padding: 12px 16px; background: rgba(255,255,255,.04); border-radius: 12px; }
+    .step:before { content: counter(step) ". "; color: #70e1ff; font-weight: 900; }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <p class="pill">FreeRideInvestor · powered by Dream.OS</p>
+  <h1>Trading Journal Workflow</h1>
+  <p class="sub">This is not a diary. This is the operator workflow: intake → import → replay → behavior scorecard → next rule.</p>
+
+  <section>
+    <h2>Core Promise</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Import</h3>
+        <p>Bring broker fills, activity exports, or supported trading records into the journal pipeline.</p>
+      </div>
+      <div class="card">
+        <h3>Replay</h3>
+        <p>Match each fill to market context so the system can reconstruct what was happening when you acted.</p>
+      </div>
+      <div class="card">
+        <h3>Score</h3>
+        <p>Generate behavior tags, discipline components, and a next-rule candidate for the next session.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Workflow</h2>
+    <div class="flow">
+      <div class="step"><strong>Define thesis.</strong> What trade idea were you acting on?</div>
+      <div class="step"><strong>Set invalidation.</strong> What would prove the trade wrong?</div>
+      <div class="step"><strong>Import fills.</strong> Broker records become the evidence source.</div>
+      <div class="step"><strong>Match market context.</strong> Each fill receives candle context.</div>
+      <div class="step"><strong>Tag behavior.</strong> Rapid repeats, fast flips, chase entries, and weak exits are detected.</div>
+      <div class="step"><strong>Generate scorecard.</strong> Patience, flip control, chase control, exit quality, and balance are scored.</div>
+      <div class="step"><strong>Create next rule.</strong> The system outputs one behavior rule to test next.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Current Proof</h2>
+    <ul>
+      <li><span class="good">47/47</span> TSLA option fills matched to market candles.</li>
+      <li><span class="good">5,760</span> one-minute TSLA candles used.</li>
+      <li><span class="good">8</span> behavior tags generated.</li>
+      <li><span class="good">62/100</span> calibrated discipline baseline.</li>
+      <li>Top leak: <strong>rapid repeat fills / clustering</strong>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Policy</h2>
+    <p class="warning">Exact option P/L remains blocked until broker contract identity is imported.</p>
+    <p>Valid now: behavior replay, timing analysis, market context, clustering detection, and rule generation.</p>
+    <p>Blocked for now: exact option contract pairing, exact contract-level P/L, and definitive winner/loser accounting.</p>
+  </section>
+
+  <section>
+    <h2>Next Rule Candidate</h2>
+    <div class="card">
+      <p><strong>After any debit fill, wait at least one full 1-minute candle close before adding or flipping, unless the original thesis invalidation level is hit.</strong></p>
+    </div>
+  </section>
+
+  <p><a href="index.html">Back to homepage</a> · <a href="replay-proof.html">View replay proof</a> · <a href="day-trade-planner.html">Open day trade planner</a></p>
+</main>
+</body>
+</html>

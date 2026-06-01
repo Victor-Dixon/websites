@@ -1,0 +1,20 @@
+id: add_freeride_trading_journal_workflow_page_001
+lane: marketing
+status: ready
+target: runtime/content/freerideinvestor.com/trading-journal.html
+intent: >
+  Add a clean FreeRideInvestor Trading Journal workflow page for intake,
+  import, replay, behavior scorecard, and next-rule generation. Use old
+  Trading Journal salvage only as reference, not as direct port.
+policy:
+  exact_option_pnl: blocked_without_contract_identity
+  old_theme: salvage_only
+outputs:
+  - runtime/content/freerideinvestor.com/trading-journal.html
+  - data/reports/marketing/freeride_trading_journal_workflow_page_001.md
+verification:
+  - test -f runtime/content/freerideinvestor.com/trading-journal.html
+  - grep -F "Trading Journal Workflow" runtime/content/freerideinvestor.com/trading-journal.html
+  - grep -F "Exact option P/L remains blocked" runtime/content/freerideinvestor.com/trading-journal.html
+commit:
+  message: Add FreeRideInvestor trading journal workflow page
