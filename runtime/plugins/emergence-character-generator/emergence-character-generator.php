@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.7.1
+ * Version: 0.7.2
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.1');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.1', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.2');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.2', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.1');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.1', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.2');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.2', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -2645,3 +2645,247 @@ add_action('wp_footer', function () {
     <?php
 });
 // DREAMOS_PRIVACY_SAFE_EVENT_TRACKING_INLINE_END
+
+// DREAMOS_ADMIN_EVENT_DASHBOARD_BEGIN lane 113
+add_action('admin_menu', function () {
+    add_menu_page(
+        'Emergence Events',
+        'Emergence Events',
+        'manage_options',
+        'emergence-events',
+        'emergence_cg_render_admin_event_dashboard',
+        'dashicons-chart-bar',
+        56
+    );
+});
+
+add_action('rest_api_init', function () {
+    register_rest_route('emergence/v1', '/events/admin-summary', array(
+        'methods' => 'GET',
+        'callback' => 'emergence_cg_admin_event_summary_rest',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        },
+    ));
+});
+
+function emergence_cg_admin_dashboard_safe_counts() {
+    $counts = get_option(emergence_cg_tracking_storage_key(), array());
+    if (!is_array($counts)) {
+        $counts = array();
+    }
+
+    $allowed = array(
+        'character_started',
+        'scan_completed',
+        'flavor_completed',
+        'totality_completed',
+        'premium_prompt_viewed',
+        'premium_prompt_copied',
+        'premium_image_requested',
+        'premium_image_fallback',
+        'character_saved',
+        'character_reloaded',
+        'share_link_clicked',
+        'battle_opened',
+        'battle_started',
+        'battle_completed',
+        'battle_token_created',
+        'battle_record_loaded',
+        '_total',
+        '_last_event',
+        '_last_at'
+    );
+
+    $safe = array();
+    foreach ($allowed as $key) {
+        if (isset($counts[$key])) {
+            if ($key === '_last_event') {
+                $safe[$key] = sanitize_text_field((string) $counts[$key]);
+            } else {
+                $safe[$key] = (int) $counts[$key];
+            }
+        } else {
+            $safe[$key] = ($key === '_last_event') ? '' : 0;
+        }
+    }
+
+    return $safe;
+}
+
+function emergence_cg_admin_event_summary_rest($request) {
+    if (!current_user_can('manage_options')) {
+        return new WP_REST_Response(array(
+            'status' => 'forbidden',
+            'message' => 'Admin access required.',
+        ), 403);
+    }
+
+    return new WP_REST_Response(array(
+        'status' => 'ok',
+        'summary' => emergence_cg_admin_dashboard_safe_counts(),
+        'player_safe' => true,
+    ), 200);
+}
+
+function emergence_cg_admin_metric_card($label, $value, $note = '') {
+    ?>
+    <div class="emergence-admin-metric-card">
+        <span><?php echo esc_html($label); ?></span>
+        <strong><?php echo esc_html((string) $value); ?></strong>
+        <?php if ($note !== '') : ?>
+            <p><?php echo esc_html($note); ?></p>
+        <?php endif; ?>
+    </div>
+    <?php
+}
+
+function emergence_cg_admin_event_rate($numerator, $denominator) {
+    $numerator = max(0, (int) $numerator);
+    $denominator = max(0, (int) $denominator);
+
+    if ($denominator <= 0) {
+        return '0%';
+    }
+
+    return round(($numerator / $denominator) * 100, 1) . '%';
+}
+
+function emergence_cg_render_admin_event_dashboard() {
+    if (!current_user_can('manage_options')) {
+        wp_die(esc_html__('Admin access required.', 'emergence-character-generator'));
+    }
+
+    $counts = emergence_cg_admin_dashboard_safe_counts();
+
+    $started = (int) $counts['character_started'];
+    $scanned = (int) $counts['scan_completed'];
+    $saved = (int) $counts['character_saved'];
+    $copied = (int) $counts['premium_prompt_copied'];
+    $battle_opened = (int) $counts['battle_opened'];
+    $battle_started = (int) $counts['battle_started'];
+    $battle_completed = (int) $counts['battle_completed'];
+    ?>
+    <div class="wrap emergence-admin-dashboard">
+        <h1>Emergence Event Dashboard</h1>
+        <p class="description">
+            Privacy-safe first-party event counts. This dashboard stores counts only. It does not expose answers, raw scores, tiers, hidden routing, or backend math.
+        </p>
+
+        <div class="emergence-admin-grid">
+            <?php emergence_cg_admin_metric_card('Character Started', $started, 'Visitors who loaded the generator.'); ?>
+            <?php emergence_cg_admin_metric_card('Scan Completed', $scanned, 'Users who completed the first Spark scan.'); ?>
+            <?php emergence_cg_admin_metric_card('Prompt Copied', $copied, 'Premium portrait prompt copy actions.'); ?>
+            <?php emergence_cg_admin_metric_card('Character Saved', $saved, 'Saved character record actions.'); ?>
+            <?php emergence_cg_admin_metric_card('Battle Opened', $battle_opened, 'Battle page opens from links or visits.'); ?>
+            <?php emergence_cg_admin_metric_card('Battle Started', $battle_started, 'Users who started a battle.'); ?>
+            <?php emergence_cg_admin_metric_card('Battle Completed', $battle_completed, 'Battle completion events, when available.'); ?>
+            <?php emergence_cg_admin_metric_card('Total Events', $counts['_total'], 'All accepted safe events.'); ?>
+        </div>
+
+        <h2>Funnel Snapshot</h2>
+        <table class="widefat striped emergence-admin-table">
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Count</th>
+                    <th>Rate from Character Started</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Scan Completed</td>
+                    <td><?php echo esc_html((string) $scanned); ?></td>
+                    <td><?php echo esc_html(emergence_cg_admin_event_rate($scanned, $started)); ?></td>
+                </tr>
+                <tr>
+                    <td>Prompt Copied</td>
+                    <td><?php echo esc_html((string) $copied); ?></td>
+                    <td><?php echo esc_html(emergence_cg_admin_event_rate($copied, $started)); ?></td>
+                </tr>
+                <tr>
+                    <td>Character Saved</td>
+                    <td><?php echo esc_html((string) $saved); ?></td>
+                    <td><?php echo esc_html(emergence_cg_admin_event_rate($saved, $started)); ?></td>
+                </tr>
+                <tr>
+                    <td>Battle Started</td>
+                    <td><?php echo esc_html((string) $battle_started); ?></td>
+                    <td><?php echo esc_html(emergence_cg_admin_event_rate($battle_started, $started)); ?></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Last Event</h2>
+        <p>
+            <strong><?php echo esc_html($counts['_last_event'] ?: 'none'); ?></strong>
+            <?php if (!empty($counts['_last_at'])) : ?>
+                at <?php echo esc_html(date_i18n('Y-m-d H:i:s', (int) $counts['_last_at'])); ?>
+            <?php endif; ?>
+        </p>
+
+        <h2>Privacy Boundary</h2>
+        <ul>
+            <li>Answers are not stored in analytics.</li>
+            <li>Raw scores are rejected.</li>
+            <li>Tier tables and hidden routing are rejected.</li>
+            <li>API keys and token secrets are rejected.</li>
+            <li>This admin page requires <code>manage_options</code>.</li>
+        </ul>
+    </div>
+
+    <style>
+        .emergence-admin-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin: 18px 0 24px;
+        }
+
+        .emergence-admin-metric-card {
+            background: #fff;
+            border: 1px solid #dcdcde;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,.04);
+        }
+
+        .emergence-admin-metric-card span {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #646970;
+            margin-bottom: 8px;
+        }
+
+        .emergence-admin-metric-card strong {
+            display: block;
+            font-size: 32px;
+            line-height: 1.1;
+        }
+
+        .emergence-admin-metric-card p {
+            margin: 8px 0 0;
+            color: #646970;
+        }
+
+        .emergence-admin-table {
+            max-width: 900px;
+        }
+
+        @media (max-width: 1100px) {
+            .emergence-admin-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .emergence-admin-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <?php
+}
+// DREAMOS_ADMIN_EVENT_DASHBOARD_END
