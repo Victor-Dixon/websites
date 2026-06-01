@@ -1,0 +1,15 @@
+id: add_static_tsla_command_center_page_001
+title: Add static TSLA command center page
+status: ready
+target:
+  - runtime/content/freerideinvestor/tsla-command-center.html
+  - runtime/content/freerideinvestor/data/tsla-command-center.json
+intent: >
+  Render the DreamVault TSLA command-center snapshot as a static FreeRideInvestor
+  page because freerideinvestor.com is registered as static_only in the website
+  deploy mode registry.
+verify:
+  - python runtime/scripts/validate_website_deploy_modes.py --domain freerideinvestor.com
+  - test -f runtime/content/freerideinvestor/tsla-command-center.html
+  - grep -q "TSLA Command Center" runtime/content/freerideinvestor/tsla-command-center.html
+commit_message: Add static TSLA command center page

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TSLA Command Center | FreeRideInvestor</title>
+  <meta name="description" content="FreeRideInvestor TSLA daytrading command center powered by DreamVault behavior analysis.">
+  <style>
+    :root {
+      --bg:#08111f;
+      --panel:#0f1b2d;
+      --card:#14243a;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --line:#25364d;
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at top,#172554 0,#08111f 42%,#020617 100%);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a { color:#93c5fd; }
+    .wrap { width:min(1120px,92vw); margin:0 auto; padding:34px 0 58px; }
+    .nav { display:flex; justify-content:space-between; gap:16px; align-items:center; margin-bottom:34px; }
+    .brand { font-weight:800; letter-spacing:.04em; }
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:7px 12px;
+      color:var(--muted);
+      background:rgba(15,23,42,.72);
+      font-size:.9rem;
+    }
+    .hero {
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:32px;
+      background:rgba(15,27,45,.88);
+      box-shadow:0 24px 70px rgba(0,0,0,.32);
+    }
+    h1 { margin:0 0 10px; font-size:clamp(2rem,6vw,4.5rem); line-height:1; }
+    .subtitle { color:var(--muted); font-size:1.12rem; max-width:760px; }
+    .badge {
+      display:inline-block;
+      margin-top:18px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      text-transform:uppercase;
+      font-size:.82rem;
+    }
+    .pass { background:rgba(34,197,94,.14); color:#86efac; border:1px solid rgba(34,197,94,.35); }
+    .warn { background:rgba(245,158,11,.14); color:#fcd34d; border:1px solid rgba(245,158,11,.35); }
+    .fail { background:rgba(239,68,68,.14); color:#fca5a5; border:1px solid rgba(239,68,68,.35); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin-top:22px; }
+    .card {
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      background:rgba(20,36,58,.82);
+    }
+    .label { display:block; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-size:.74rem; margin-bottom:8px; }
+    .value { font-size:1.2rem; font-weight:800; }
+    .section { margin-top:22px; }
+    ul { margin:8px 0 0 20px; padding:0; }
+    li { margin:7px 0; }
+    .muted { color:var(--muted); }
+    .insight {
+      margin-top:22px;
+      padding:18px 20px;
+      border-left:5px solid #93c5fd;
+      border-radius:16px;
+      background:rgba(147,197,253,.09);
+    }
+    .footer { margin-top:30px; color:var(--muted); font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav">
+      <div class="brand">FreeRideInvestor</div>
+      <a class="pill" href="./index.html">Home</a>
+    </nav>
+
+    <section class="hero">
+      <span class="pill">DreamVault snapshot · 2026-06-01T12:00:29Z</span>
+      <h1>TSLA Command Center</h1>
+      <p class="subtitle">TSLA command center ready / 47 fills analyzed</p>
+      <span class="badge pass">Status: pass / fresh</span>
+
+      <div class="grid">
+        <div class="card"><span class="label">Bias</span><span class="value">neutral until opening range confirms</span></div>
+        <div class="card"><span class="label">Opening Range</span><span class="value">watch first 10 minutes</span></div>
+        <div class="card"><span class="label">VWAP State</span><span class="value">pending</span></div>
+        <div class="card"><span class="label">Churn Risk</span><span class="value">high</span></div>
+      </div>
+
+      <div class="grid section">
+        <div class="card">
+          <span class="label">No-Trade Windows</span>
+          <ul><li>09:30-09:40 ET</li><li>first failed breakout retest</li></ul>
+        </div>
+        <div class="card">
+          <span class="label">Discipline Checklist</span>
+          <ul><li>Opening range marked</li><li>VWAP relation checked</li><li>No revenge re-entry without fresh setup</li><li>Stop after two churn entries</li></ul>
+        </div>
+      </div>
+
+      <div class="insight">
+        <strong>DreamOS Insight:</strong> High activity month: enough fills for behavior clustering. Debit-heavy flow: frequent position initiation/adds exceeded exits.
+      </div>
+
+      <p class="footer">
+        Raw market-data collection stays private in DreamVault/DreamTradeData. This page displays derived command-center guidance only.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
