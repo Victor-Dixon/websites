@@ -1,0 +1,15 @@
+id: inspect_runtime_spark_battle_sim_candidate_001
+title: Inspect runtime Spark Battle Sim source candidate
+target: runtime/spark-battle-sim untracked candidate
+action:
+  - capture git status before
+  - inventory candidate files
+  - inventory committed plugin files
+  - compare names and checksums when possible
+  - classify promote/archive/ignore without moving files
+verify:
+  - manifest exists
+  - file counts reported
+  - no files moved or deleted
+  - status after captured
+commit_message: Add Spark Battle Sim runtime source inspection
