@@ -1,0 +1,14 @@
+id: classify_spark_emergence_artifacts_001
+title: Classify Spark/Emergence untracked artifacts
+target: websites repo untracked Spark/Emergence reports and build artifacts
+action:
+  - capture git status before
+  - classify untracked artifacts into keep/archive/ignore candidates
+  - write manifest only
+  - do not delete or move files
+verify:
+  - manifest exists
+  - counts reported
+  - no files removed
+  - status after captured
+commit_message: Add Spark Battle Sim artifact hygiene manifest
