@@ -1,0 +1,24 @@
+id: harden_spark_battle_sim_proxy_001
+project: emergence
+target: Spark Battle Sim prototype
+status: ready
+owner: Victor
+partner_context:
+  partner: Scott
+  summary: >
+    Scott produced a strong React prototype for fighter selection and cinematic battle narration.
+    The next move is to harden it so the LLM narrates only after a sealed backend resolver
+    decides arena, modifiers, winner, and upset conditions.
+objective:
+  - Keep Scott's UI/prototype direction.
+  - Move API calls server-side.
+  - Prevent client-side API key exposure.
+  - Move battle outcome resolution out of prompt-only logic.
+  - Return story-only text to the frontend.
+acceptance:
+  - No browser component calls api.anthropic.com directly.
+  - No API key appears in frontend files.
+  - Resolver emits a private result packet.
+  - Narrator receives sealed outcome context.
+  - Public UI receives story only.
+commit_message: Add Spark battle sim hardening scaffold
