@@ -1,0 +1,16 @@
+id: add_streamlined_emergence_site_deployer_001
+project: websites
+target: streamlined Dream.OS website deployer
+status: ready
+objective:
+  - Stop hand-rolling deploy lanes per site.
+  - Add one deployer that can publish a local HTML page to Hostinger.
+  - Auto-detect WordPress vs static target.
+  - Use existing Hostinger SSH env without printing secrets.
+acceptance:
+  - Deployer supports auto mode.
+  - Deployer supports static mode.
+  - Deployer supports wp-page mode.
+  - Deployer can override domain/root safely.
+  - Emergence preview deploy verifies HTTP content.
+commit_message: Add streamlined website deployer
