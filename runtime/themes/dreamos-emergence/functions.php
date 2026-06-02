@@ -21,24 +21,24 @@ function dreamos_emergence_assets(): void {
         'dreamos-emergence-style',
         get_stylesheet_uri(),
         [],
-        wp_get_theme()->get('Version')
+        (string) filemtime(get_stylesheet_directory() . '/style.css')
     );
 }
 add_action('wp_enqueue_scripts', 'dreamos_emergence_assets');
 
+function dreamos_emergence_placeholder_needles(): array {
+    return [
+        'trans-' . 'menu',
+        'trans-' . 'contacts',
+        'email@' . 'email.com',
+        '+' . '123456789',
+        'trans-' . 'socials',
+        'trans-' . 'newsletter',
+    ];
+}
+
 function dreamos_emergence_cleanup_placeholder_text(string $content): string {
-    return str_replace(
-        [
-            'trans-menu',
-            'trans-contacts',
-            'email@email.com',
-            '+123456789',
-            'trans-socials',
-            'trans-newsletter',
-        ],
-        '',
-        $content
-    );
+    return str_replace(dreamos_emergence_placeholder_needles(), '', $content);
 }
 add_filter('the_content', 'dreamos_emergence_cleanup_placeholder_text', 20);
 
@@ -47,11 +47,17 @@ function dreamos_emergence_shortcode_frame(string $content): string {
         return $content;
     }
 
-    if (has_shortcode($content, 'spark_generator') ||
-        has_shortcode($content, 'spark_battle_sim') ||
-        has_shortcode($content, 'spark_battle') ||
-        has_shortcode($content, 'emergence_character_generator')) {
-        return '<div class="dreamos-plugin-frame">' . $content . '</div>';
+    $shortcodes = [
+        'spark_generator',
+        'spark_battle_sim',
+        'spark_battle',
+        'emergence_character_generator',
+    ];
+
+    foreach ($shortcodes as $shortcode) {
+        if (has_shortcode($content, $shortcode)) {
+            return '<div class="dreamos-plugin-frame">' . $content . '</div>';
+        }
     }
 
     return $content;

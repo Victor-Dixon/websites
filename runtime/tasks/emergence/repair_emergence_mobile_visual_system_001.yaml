@@ -1,0 +1,15 @@
+id: repair_emergence_mobile_visual_system_001
+project: emergence
+target: dadudekc.site mobile visual system
+status: ready
+objective:
+  - Fix mobile rendering where Spark OS page appears like raw/default HTML.
+  - Move critical Spark OS visual styling into the active theme.
+  - Style both theme shell and page-level injected markup.
+  - Preserve generator and battle sim functionality.
+acceptance:
+  - Header/nav no longer render as raw underlined stacked links on mobile.
+  - Hero receives spacing, width, typography, button, and panel styling.
+  - Spark status card/readouts are separated and readable.
+  - Root, spark generator, and battle sim routes return HTTP 200.
+commit_message: Repair Emergence mobile visual system
