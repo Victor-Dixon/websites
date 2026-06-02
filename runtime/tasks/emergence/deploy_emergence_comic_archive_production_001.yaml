@@ -1,0 +1,14 @@
+id: deploy_emergence_comic_archive_production_001
+project: emergence
+target: dadudekc.site/the-emergence
+status: ready
+objective:
+  - Deploy the comic archive Emergence page to the production WordPress slug.
+  - Keep battle sim positioned as What-If Arena / downtime mode.
+  - Use canonical website deployer.
+acceptance:
+  - Canonical deployer is used.
+  - Production page returns HTTP 200.
+  - Page contains Spark CTA, What-If Arena, Protocol, and Issue Archive copy.
+  - Raw React battle sim is not deployed client-side.
+commit_message: Add Emergence production deploy report
