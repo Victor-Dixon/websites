@@ -1,0 +1,14 @@
+id: remove_duplicate_emergence_page_shell_001
+project: emergence
+target: dadudekc.site duplicate page shell
+status: ready
+objective:
+  - Remove page-level nav/footer from The Emergence content.
+  - Let dreamos-emergence theme own the header/footer.
+  - Preserve Spark OS page content, CTAs, device panel, protocol, arena, and build log.
+acceptance:
+  - Page source no longer includes <nav class="nav">.
+  - Page source no longer includes <footer class="footer">.
+  - Root, page, spark-generator, and spark-battle-sim routes return HTTP 200.
+  - Screenshot should show one Spark OS header and one footer.
+commit_message: Remove duplicate Emergence page shell
