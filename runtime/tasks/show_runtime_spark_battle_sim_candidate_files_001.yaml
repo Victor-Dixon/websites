@@ -1,0 +1,12 @@
+id: show_runtime_spark_battle_sim_candidate_files_001
+title: Review runtime Spark Battle Sim candidate files
+target: runtime/spark-battle-sim
+action:
+  - list the 5 candidate files
+  - print file sizes and headers
+  - capture first 120 lines of each text file
+  - classify promote/archive/ignore after human review
+verify:
+  - report exists
+  - source files unchanged
+commit_message: Add runtime Spark Battle Sim candidate file review
