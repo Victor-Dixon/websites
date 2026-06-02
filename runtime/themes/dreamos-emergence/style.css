@@ -1,0 +1,205 @@
+/*
+Theme Name: DreamOS Emergence
+Theme URI: https://dadudekc.site/
+Author: DreamOS
+Description: Custom Spark OS theme for The Emergence. Preserves WordPress content and plugin functionality under a premium custom design.
+Version: 0.1.0
+Requires at least: 6.0
+Requires PHP: 8.0
+Text Domain: dreamos-emergence
+*/
+
+:root {
+  --dream-bg: #030712;
+  --dream-bg2: #07111f;
+  --dream-text: #f8fbff;
+  --dream-muted: #aab7c8;
+  --dream-dim: #718096;
+  --dream-cyan: #7df9ff;
+  --dream-blue: #5d7cff;
+  --dream-violet: #b76cff;
+  --dream-pink: #ff4fd8;
+  --dream-green: #38f8b1;
+  --dream-line: rgba(255,255,255,.14);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--dream-bg);
+}
+
+body {
+  margin: 0;
+  color: var(--dream-text);
+  background:
+    radial-gradient(circle at 16% 12%, rgba(125,249,255,.18), transparent 31rem),
+    radial-gradient(circle at 82% 4%, rgba(183,108,255,.19), transparent 29rem),
+    radial-gradient(circle at 72% 78%, rgba(255,79,216,.10), transparent 36rem),
+    linear-gradient(180deg, #02050d 0%, #07111f 45%, #030712 100%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255,255,255,.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.032) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at 50% 15%, black, transparent 75%);
+  z-index: -1;
+}
+
+a {
+  color: inherit;
+}
+
+.wp-site-blocks {
+  min-height: 100vh;
+}
+
+.dreamos-shell {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+}
+
+.dreamos-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 18px 0;
+  backdrop-filter: blur(18px);
+}
+
+.dreamos-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 18px;
+  border: 1px solid var(--dream-line);
+  border-radius: 999px;
+  background: rgba(3,7,18,.72);
+  box-shadow: 0 20px 70px rgba(0,0,0,.24);
+}
+
+.dreamos-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-weight: 900;
+  letter-spacing: -.03em;
+  text-decoration: none;
+}
+
+.dreamos-brand-mark {
+  width: 35px;
+  height: 35px;
+  border-radius: 13px;
+  background:
+    radial-gradient(circle at 30% 25%, white, transparent 18%),
+    linear-gradient(135deg, var(--dream-cyan), var(--dream-blue) 45%, var(--dream-pink));
+  box-shadow: 0 0 30px rgba(125,249,255,.28), inset 0 0 18px rgba(255,255,255,.34);
+}
+
+.dreamos-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dreamos-nav a {
+  color: var(--dream-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 999px;
+}
+
+.dreamos-nav a:hover {
+  color: var(--dream-text);
+  background: rgba(255,255,255,.08);
+}
+
+.dreamos-main {
+  min-height: 62vh;
+}
+
+.dreamos-content {
+  width: 100%;
+}
+
+.dreamos-content :where(.wp-block-post-content) {
+  margin-block-start: 0;
+}
+
+.dreamos-content :where(.wp-block-post-content > *) {
+  max-width: none;
+}
+
+.dreamos-footer {
+  color: var(--dream-dim);
+  padding: 32px 0 46px;
+}
+
+.dreamos-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid var(--dream-line);
+  font-size: 13px;
+}
+
+.dreamos-plugin-frame {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 48px auto 80px;
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid var(--dream-line);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+  box-shadow: 0 26px 80px rgba(0,0,0,.22);
+}
+
+.dreamos-plugin-frame h1,
+.dreamos-plugin-frame h2,
+.dreamos-plugin-frame h3 {
+  letter-spacing: -.04em;
+}
+
+.dreamos-plugin-frame input,
+.dreamos-plugin-frame select,
+.dreamos-plugin-frame textarea,
+.dreamos-plugin-frame button {
+  font: inherit;
+}
+
+/* Permanent guard against old Hostinger placeholder strings/classes. */
+.trans-menu,
+.trans-contacts,
+.trans-socials,
+.trans-newsletter {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .dreamos-nav {
+    display: none;
+  }
+
+  .dreamos-shell {
+    width: min(100vw - 24px, 1180px);
+  }
+
+  .dreamos-header-inner {
+    border-radius: 24px;
+  }
+}

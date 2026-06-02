@@ -1,0 +1,16 @@
+id: add_dreamos_emergence_theme_restore_routes_001
+project: emergence
+target: dadudekc.site custom theme and restored functionality
+status: ready
+objective:
+  - Replace dependency on Hostinger AI theme with custom DreamOS Emergence theme.
+  - Preserve existing WordPress page/plugin/shortcode functionality.
+  - Restore known functional routes under the custom design.
+  - Inventory quiz/generator/battle pages, plugins, files, and shortcodes before making assumptions.
+acceptance:
+  - Custom theme is packaged, installed, and activated.
+  - Homepage still renders Spark OS page content.
+  - Footer placeholder junk remains absent.
+  - Existing quiz/generator/battle functionality is inventoried.
+  - Missing obvious route pages are recreated only when a matching shortcode/plugin is detected.
+commit_message: Add DreamOS Emergence theme and restore functional routes
