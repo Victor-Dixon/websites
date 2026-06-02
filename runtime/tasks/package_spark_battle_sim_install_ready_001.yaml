@@ -1,0 +1,15 @@
+id: package_spark_battle_sim_install_ready_001
+title: Package Spark Battle Sim install readiness packet
+target: Spark Battle Sim hardened plugin/demo package
+action:
+  - verify hardened battle resolver artifacts exist
+  - verify frontend client/proxy boundary examples exist
+  - scan for likely client-side secret leaks
+  - package install-ready zip
+  - write Hostinger upload checklist
+verify:
+  - zip exists
+  - required files present
+  - secret leak scan passes
+  - report written
+commit_message: Add Spark Battle Sim install readiness packet
