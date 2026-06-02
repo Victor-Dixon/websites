@@ -1,0 +1,15 @@
+id: quarantine_spark_emergence_generated_artifacts_001
+title: Quarantine Spark/Emergence generated artifacts
+target: websites repo generated Spark/Emergence archive/build/tmp artifacts
+action:
+  - capture git status before
+  - move only generated archive/build/tmp candidates into quarantine
+  - write moved-file manifest
+  - write restore script
+  - do not touch source/plugin/runtime task files
+verify:
+  - moved manifest exists
+  - restore script exists
+  - status after captured
+  - source/plugin files remain untouched
+commit_message: Quarantine Spark Battle Sim generated artifacts

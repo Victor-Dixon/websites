@@ -1,0 +1,46 @@
+runtime/plugins/spark-battle-sim/includes/CharacterRepository.php:6:class Spark_Battle_CharacterRepository {
+runtime/plugins/spark-battle-sim/includes/CharacterRepository.php:9:    public function __construct() {
+runtime/plugins/spark-battle-sim/includes/CharacterRepository.php:13:    public function all(): array {
+runtime/plugins/spark-battle-sim/includes/CharacterRepository.php:24:        uasort($characters, function ($a, $b) {
+runtime/plugins/spark-battle-sim/includes/CharacterRepository.php:31:    public function get(string $slug): array {
+runtime/plugins/spark-battle-sim/includes/ArenaRoller.php:6:class Spark_Battle_ArenaRoller {
+runtime/plugins/spark-battle-sim/includes/ArenaRoller.php:50:    public function roll(): array {
+runtime/plugins/spark-battle-sim/includes/ArenaRoller.php:51:        $location = $this->locations[random_int(0, count($this->locations) - 1)];
+runtime/plugins/spark-battle-sim/includes/ArenaRoller.php:52:        $time = $this->times[random_int(0, count($this->times) - 1)];
+runtime/plugins/spark-battle-sim/includes/ArenaRoller.php:53:        $weather = $this->weather[random_int(0, count($this->weather) - 1)];
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:6:class Spark_Battle_BattleEngine {
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:7:    private Spark_Battle_CharacterRepository $repo;
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:9:    public function __construct(Spark_Battle_CharacterRepository $repo) {
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:13:    public function run(string $fighter_a_slug, string $fighter_b_slug): array {
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:17:        $arena_roller = new Spark_Battle_ArenaRoller();
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:18:        $arena = $arena_roller->roll();
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:20:        $winner = $this->resolve_winner($fighter_a, $fighter_b);
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:21:        $loser = $winner['slug'] === $fighter_a['slug'] ? $fighter_b : $fighter_a;
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:23:        $renderer = new Spark_Battle_StoryRenderer();
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:30:            'winner' => $winner,
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:32:            'story' => $renderer->render($fighter_a, $fighter_b, $winner, $loser, $arena)
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:36:    private function resolve_winner(array $fighter_a, array $fighter_b): array {
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:42:        $roll = random_int(1, 100);
+runtime/plugins/spark-battle-sim/includes/BattleEngine.php:44:        return $roll <= $a_threshold ? $fighter_a : $fighter_b;
+runtime/plugins/spark-battle-sim/includes/StoryRenderer.php:6:class Spark_Battle_StoryRenderer {
+runtime/plugins/spark-battle-sim/includes/StoryRenderer.php:7:    public function render(array $a, array $b, array $winner, array $loser, array $arena): string {
+runtime/plugins/spark-battle-sim/includes/StoryRenderer.php:10:        $winner_name = $winner['name'];
+runtime/plugins/spark-battle-sim/includes/StoryRenderer.php:13:        $winner_power = $this->power_line($winner);
+runtime/plugins/spark-battle-sim/includes/StoryRenderer.php:22:But {$winner_name} survives the worst of it.
+runtime/plugins/spark-battle-sim/includes/StoryRenderer.php:24:The final exchange is not clean. It is not easy. {$winner_name} leans into {$winner_power}, absorbs the danger, and catches the last mistake before {$loser_name} can reset with {$loser_power}.
+runtime/plugins/spark-battle-sim/includes/StoryRenderer.php:26:When the dust settles, {$winner_name} is the one left standing.";
+runtime/plugins/spark-battle-sim/includes/StoryRenderer.php:29:    private function power_line(array $fighter): string {
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:3: * Plugin Name: Spark Battle Sim
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:4: * Description: Cinematic Spark Protocol battle simulator shortcode.
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:17:require_once SPARK_BATTLE_SIM_DIR . 'includes/ArenaRoller.php';
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:18:require_once SPARK_BATTLE_SIM_DIR . 'includes/BattleEngine.php';
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:21:function spark_battle_sim_enqueue_assets() {
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:31:function spark_battle_sim_shortcode() {
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:32:    $repo = new Spark_Battle_CharacterRepository();
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:33:    $engine = new Spark_Battle_BattleEngine($repo);
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:54:                $error = 'Battle could not start.';
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:62:        <h2>Spark Protocol Battle Arena</h2>
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:91:            <button type="submit">Start Battle</button>
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:101:                <p><strong>Arena:</strong> <?php echo esc_html($result['arena']['summary']); ?></p>
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:102:                <p><strong>Result:</strong> <?php echo esc_html($result['winner']['name']); ?> is left standing.</p>
+runtime/plugins/spark-battle-sim/spark-battle-sim.php:112:add_shortcode('spark_battle_sim', 'spark_battle_sim_shortcode');

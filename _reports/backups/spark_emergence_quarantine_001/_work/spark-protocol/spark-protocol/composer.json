@@ -1,0 +1,27 @@
+{
+    "name": "spark/protocol",
+    "description": "Deterministic engines for the Spark Protocol universe: sheet generation, Combat Capability, the Exchange, and the battle odds/lottery simulator.",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spark\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spark\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:bundled": "php bin/run-tests.php",
+        "demo": "php bin/demo.php"
+    }
+}
