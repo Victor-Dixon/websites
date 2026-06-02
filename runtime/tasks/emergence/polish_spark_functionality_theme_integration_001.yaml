@@ -1,0 +1,14 @@
+id: polish_spark_functionality_theme_integration_001
+project: emergence
+target: Spark generator and battle sim under DreamOS theme
+status: ready
+objective:
+  - Bring restored functionality into the custom DreamOS visual system.
+  - Add theme-level styling for shortcode/plugin output.
+  - Preserve plugin functionality without editing plugin internals.
+acceptance:
+  - /spark-generator/ returns HTTP 200.
+  - /spark-battle-sim/ returns HTTP 200.
+  - Theme CSS includes plugin frame polish.
+  - No Hostinger placeholder text appears on root.
+commit_message: Polish Spark functionality under DreamOS theme

@@ -182,14 +182,6 @@ a {
   font: inherit;
 }
 
-/* Permanent guard against old Hostinger placeholder strings/classes. */
-.trans-menu,
-.trans-contacts,
-.trans-socials,
-.trans-newsletter {
-  display: none !important;
-}
-
 @media (max-width: 760px) {
   .dreamos-nav {
     display: none;
@@ -201,5 +193,77 @@ a {
 
   .dreamos-header-inner {
     border-radius: 24px;
+  }
+}
+
+/* DreamOS Emergence: restored functionality polish */
+.dreamos-plugin-frame,
+.entry-content:has(.emergence-cg),
+.entry-content:has(#emergence-character-generator),
+.entry-content:has(.spark-battle-sim),
+.entry-content:has(#spark-battle-sim) {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 48px auto 88px;
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid rgba(125,249,255,.18);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(125,249,255,.12), transparent 24rem),
+    radial-gradient(circle at 10% 100%, rgba(183,108,255,.10), transparent 24rem),
+    linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+  box-shadow: 0 26px 80px rgba(0,0,0,.24);
+  backdrop-filter: blur(14px);
+}
+
+.dreamos-plugin-frame input,
+.dreamos-plugin-frame select,
+.dreamos-plugin-frame textarea,
+.dreamos-plugin-frame button,
+.entry-content:has(.emergence-cg) input,
+.entry-content:has(.emergence-cg) select,
+.entry-content:has(.emergence-cg) textarea,
+.entry-content:has(.emergence-cg) button,
+.entry-content:has(.spark-battle-sim) input,
+.entry-content:has(.spark-battle-sim) select,
+.entry-content:has(.spark-battle-sim) textarea,
+.entry-content:has(.spark-battle-sim) button {
+  font-family: inherit;
+}
+
+.dreamos-plugin-frame button,
+.entry-content:has(.emergence-cg) button,
+.entry-content:has(.spark-battle-sim) button {
+  border-radius: 999px;
+}
+
+.dreamos-plugin-frame a,
+.entry-content:has(.emergence-cg) a,
+.entry-content:has(.spark-battle-sim) a {
+  color: var(--dream-cyan);
+}
+
+.dreamos-plugin-frame h1,
+.dreamos-plugin-frame h2,
+.dreamos-plugin-frame h3,
+.entry-content:has(.emergence-cg) h1,
+.entry-content:has(.emergence-cg) h2,
+.entry-content:has(.emergence-cg) h3,
+.entry-content:has(.spark-battle-sim) h1,
+.entry-content:has(.spark-battle-sim) h2,
+.entry-content:has(.spark-battle-sim) h3 {
+  color: var(--dream-text);
+  letter-spacing: -.04em;
+}
+
+@media (max-width: 760px) {
+  .dreamos-plugin-frame,
+  .entry-content:has(.emergence-cg),
+  .entry-content:has(#emergence-character-generator),
+  .entry-content:has(.spark-battle-sim),
+  .entry-content:has(#spark-battle-sim) {
+    width: min(100vw - 20px, 1180px);
+    margin-top: 28px;
+    padding: 18px;
+    border-radius: 22px;
   }
 }
