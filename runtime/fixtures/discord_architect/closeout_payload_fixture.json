@@ -1,0 +1,12 @@
+{
+  "task": "fixture_closeout_001",
+  "status": "PASS",
+  "lane": "repo_fleet_self_healing_001",
+  "actions_taken": "fixture action rendered for Discord Architect dry run",
+  "verification": "fixture verification PASS",
+  "commit_message": "Fixture commit message",
+  "report": "data/reports/cpc/example.txt",
+  "json": "data/reports/cpc/json/example.json",
+  "next_lane": "repo_fleet_self_healing_001",
+  "next_task": "runtime/tasks/repo_fleet_self_healing_002.yaml"
+}

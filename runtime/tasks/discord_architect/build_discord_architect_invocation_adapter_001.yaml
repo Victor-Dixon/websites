@@ -1,0 +1,25 @@
+id: build_discord_architect_invocation_adapter_001
+lane: repo_fleet_self_healing_001
+target: discord_architect_invocation_adapter
+status: pending
+selected_sender: /data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_paper_trade_payload.py
+intent:
+  - wrap selected sender without changing canonical sender
+  - normalize CPC closeout payload for Discord Architect
+  - force dry-run unless caller explicitly provides webhook env externally
+constraints:
+  - no webhook dispatch during verification
+  - no secrets in repo or reports
+  - adapter must be testable without network
+  - selected sender remains external canonical implementation
+verification:
+  - python syntax check
+  - pytest adapter tests
+  - dry-run selected sender invocation
+  - secret scan pass
+outputs:
+  - discord_architect/invocation_adapter.py
+  - tests/test_discord_architect_invocation_adapter.py
+  - runtime/fixtures/discord_architect/closeout_payload_fixture.json
+  - data/reports/discord_architect/build_discord_architect_invocation_adapter_001.md
+  - data/reports/discord_architect/build_discord_architect_invocation_adapter_001.json
