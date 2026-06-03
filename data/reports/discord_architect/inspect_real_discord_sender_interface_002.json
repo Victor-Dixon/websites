@@ -1,0 +1,78 @@
+{
+  "task": "inspect_real_discord_sender_interface_002",
+  "status": "PASS",
+  "selected_sender": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_paper_trade_payload.py",
+  "interface": {
+    "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_paper_trade_payload.py",
+    "functions": [
+      {
+        "name": "main",
+        "args": [],
+        "lineno": 10
+      }
+    ],
+    "classes": [],
+    "imports": [
+      "json",
+      "os",
+      "pathlib.*",
+      "sys",
+      "urllib.request"
+    ],
+    "argparse_seen": false,
+    "main_guard": true,
+    "requests_or_http_seen": false,
+    "possible_env_or_discord_literals": [
+      "DISCORD_SEND=DRY_RUN",
+      "DISCORD_WEBHOOK_URL",
+      "Reason: DISCORD_WEBHOOK_URL not set",
+      "runtime/trading/discord/latest_paper_trade_payload.json"
+    ],
+    "discord_related_line_samples": [
+      "PAYLOAD = Path(\"runtime/trading/discord/latest_paper_trade_payload.json\")",
+      "webhook = os.environ.get(\"DISCORD_WEBHOOK_URL\", \"\").strip()",
+      "if not webhook:",
+      "print(\"DISCORD_SEND=DRY_RUN\")",
+      "print(\"Reason: DISCORD_WEBHOOK_URL not set\")",
+      "webhook,",
+      "print(f\"DISCORD_SEND=PASS status={resp.status}\")"
+    ]
+  },
+  "likely_entrypoints": [
+    {
+      "name": "main",
+      "args": [],
+      "lineno": 10
+    }
+  ],
+  "untracked": {
+    "count": 4,
+    "items": [
+      {
+        "status": "??",
+        "path": "data/reports/discord_architect/",
+        "kind": "directory",
+        "decision": "REPORT_ARTIFACT_REVIEW"
+      },
+      {
+        "status": "??",
+        "path": "data/reports/planner_discord_bridge/",
+        "kind": "directory",
+        "decision": "REPORT_ARTIFACT_REVIEW"
+      },
+      {
+        "status": "??",
+        "path": "discord_architect/",
+        "kind": "directory",
+        "decision": "POSSIBLE_SOURCE_TREE_REVIEW"
+      },
+      {
+        "status": "??",
+        "path": "runtime/tasks/discord/",
+        "kind": "directory",
+        "decision": "TASK_ARTIFACT_REVIEW"
+      }
+    ]
+  },
+  "next_action": "Build a no-dispatch invocation adapter around the selected sender after confirming entrypoint/env contract."
+}

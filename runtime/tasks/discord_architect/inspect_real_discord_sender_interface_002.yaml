@@ -1,0 +1,22 @@
+id: inspect_real_discord_sender_interface_002
+lane: repo_fleet_self_healing_001
+target: discord_architect_invocation_adapter
+status: pending
+selected_sender: /data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_paper_trade_payload.py
+intent:
+  - inspect real Discord sender interface without dispatch
+  - classify untracked Discord Architect artifacts
+  - prepare safe adapter implementation lane
+constraints:
+  - no webhook dispatch
+  - no secret output
+  - report before code changes
+  - preserve selected sender as external canonical candidate
+verification:
+  - python syntax check on selected sender
+  - static interface summary generated
+  - untracked scope classified
+  - secret scan pass
+outputs:
+  - data/reports/discord_architect/inspect_real_discord_sender_interface_002.md
+  - data/reports/discord_architect/inspect_real_discord_sender_interface_002.json
