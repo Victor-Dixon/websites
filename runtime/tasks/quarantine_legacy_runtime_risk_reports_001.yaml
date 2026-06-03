@@ -1,0 +1,28 @@
+id: quarantine_legacy_runtime_risk_reports_001
+title: Quarantine legacy runtime risk reports
+status: ready
+lane: websites_cleanup
+priority: high
+
+objective: >
+  Move legacy _reports artifacts classified as QUARANTINE_CANDIDATE into
+  runtime/quarantine so error/script/sensitive-surface report artifacts do not
+  block DaDudeKC service funnel promotion.
+
+context:
+  source_review: data/reports/website_promotions/legacy_runtime_reports_review_001.json
+  expected_count: 9
+
+requirements:
+  - load QUARANTINE_CANDIDATE paths from legacy runtime reports review
+  - move only those 9 _reports artifacts
+  - preserve original path mapping
+  - write manifest/report
+  - verify originals cleared
+  - do not touch other dirty buckets
+
+acceptance:
+  - exactly 9 paths moved
+  - original paths no longer exist
+  - quarantine paths exist
+  - manifest references all moved paths

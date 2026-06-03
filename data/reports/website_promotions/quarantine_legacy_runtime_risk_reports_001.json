@@ -1,0 +1,102 @@
+{
+  "id": "quarantine_legacy_runtime_risk_reports_001",
+  "generated_at": "2026-06-03T16:56:53",
+  "status": "QUARANTINED",
+  "source_review": "data/reports/website_promotions/legacy_runtime_reports_review_001.json",
+  "moved_count": 9,
+  "moved_file_count": 9,
+  "moved": [
+    {
+      "original_path": "_reports/emergence_character_sheet_output_081.md.html",
+      "quarantine_path": "runtime/quarantine/legacy_runtime_risk_reports_001/_reports__emergence_character_sheet_output_081.md.html",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "possible_sensitive_surface"
+      ],
+      "size": 132065
+    },
+    {
+      "original_path": "_reports/remote_configure_image_env_095d.sh",
+      "quarantine_path": "runtime/quarantine/legacy_runtime_risk_reports_001/_reports__remote_configure_image_env_095d.sh",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "possible_sensitive_surface",
+        "shell_script_in_reports"
+      ],
+      "size": 3087
+    },
+    {
+      "original_path": "_reports/spark_battle_engine_smoke_failure_014.err",
+      "quarantine_path": "runtime/quarantine/legacy_runtime_risk_reports_001/_reports__spark_battle_engine_smoke_failure_014.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "size": 0
+    },
+    {
+      "original_path": "_reports/spark_battle_shortcode_render_015.err",
+      "quarantine_path": "runtime/quarantine/legacy_runtime_risk_reports_001/_reports__spark_battle_shortcode_render_015.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "size": 30
+    },
+    {
+      "original_path": "_reports/spark_shortcode_engine_direct_016.err",
+      "quarantine_path": "runtime/quarantine/legacy_runtime_risk_reports_001/_reports__spark_shortcode_engine_direct_016.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "size": 0
+    },
+    {
+      "original_path": "_reports/spark_shortcode_exception_verify_017.err",
+      "quarantine_path": "runtime/quarantine/legacy_runtime_risk_reports_001/_reports__spark_shortcode_exception_verify_017.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "size": 0
+    },
+    {
+      "original_path": "_reports/spark_shortcode_render_stub_fix_018.err",
+      "quarantine_path": "runtime/quarantine/legacy_runtime_risk_reports_001/_reports__spark_shortcode_render_stub_fix_018.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "size": 0
+    },
+    {
+      "original_path": "_reports/spark_shortcode_result_shape_019.err",
+      "quarantine_path": "runtime/quarantine/legacy_runtime_risk_reports_001/_reports__spark_shortcode_result_shape_019.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "size": 0
+    },
+    {
+      "original_path": "_reports/spark_shortcode_template_compat_020.err",
+      "quarantine_path": "runtime/quarantine/legacy_runtime_risk_reports_001/_reports__spark_shortcode_template_compat_020.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "size": 0
+    }
+  ],
+  "guardrail": "Quarantined _reports risk artifacts are preserved as evidence and must not be treated as active source or public deployment content unless explicitly promoted later."
+}
