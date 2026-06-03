@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-06-03T17:00:10",
+  "status": "REVIEWED",
+  "source": "data/reports/website_promotions/emergence_task_bucket_review_001.json",
+  "item_count": 1,
+  "decision_counts": {
+    "KEEP_CANDIDATE": 1
+  },
+  "items": [
+    {
+      "path": "runtime/tasks/emergence/promote_emergence_comic_archive_homepage_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "task is durable Emergence homepage promotion lane metadata; keep as planning/execution history",
+      "risk_flags": [
+        "homepage_promotion_lane",
+        "deployment_surface"
+      ],
+      "size": 655
+    }
+  ],
+  "next_lane": {
+    "target": "emergence deeper task final action",
+    "action": "commit if KEEP_CANDIDATE, quarantine if QUARANTINE_CANDIDATE",
+    "verify": "cached scope only target task plus review metadata",
+    "commit": "Close Emergence deeper task review"
+  }
+}

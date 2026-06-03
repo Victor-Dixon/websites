@@ -1,0 +1,14 @@
+id: promote_emergence_comic_archive_homepage_001
+project: emergence
+target: dadudekc.site homepage
+status: ready
+objective:
+  - Promote The Emergence comic archive page to the WordPress homepage.
+  - Remove or neutralize obvious placeholder footer/widget text.
+  - Verify root URL shows the new comic archive.
+acceptance:
+  - /the-emergence/ exists and returns HTTP 200.
+  - WordPress front page points to The Emergence page.
+  - / returns HTTP 200 and contains The Emergence, Spark CTA, What-If Arena, and Issue Archive.
+  - Footer placeholder junk is absent or explicitly reported for follow-up.
+commit_message: Promote Emergence comic archive homepage
