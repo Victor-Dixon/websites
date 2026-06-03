@@ -1,0 +1,27 @@
+id: quarantine_tmp_runtime_artifacts_001
+title: Quarantine temporary runtime artifacts
+status: ready
+lane: websites_cleanup
+priority: high
+
+objective: >
+  Move _tmp artifacts into runtime/quarantine so temporary output does not block
+  DaDudeKC service funnel promotion.
+
+context:
+  source_review: data/reports/website_promotions/misc_runtime_deeper_artifacts_review_001.json
+  expected_path: _tmp
+  expected_count: 1
+
+requirements:
+  - verify _tmp is classified as QUARANTINE_CANDIDATE
+  - move _tmp into runtime/quarantine/tmp_runtime_artifacts_001
+  - preserve original path mapping
+  - write manifest/report
+  - verify original _tmp cleared
+  - do not touch DaDudeKC promotion content
+
+acceptance:
+  - _tmp no longer exists at repo root
+  - quarantine path exists
+  - manifest references moved path

@@ -1,0 +1,11 @@
+usage: hostinger_wp_manager.py [-h] [--env ENV]
+                               {check,plugin-status,upsert-page,set-homepage} ...
+
+Dream.OS Hostinger WordPress manager
+
+positional arguments:
+  {check,plugin-status,upsert-page,set-homepage}
+
+options:
+  -h, --help            show this help message and exit
+  --env ENV

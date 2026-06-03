@@ -1,0 +1,10 @@
+usage: hostinger_wp_manager.py upsert-page [-h] --title TITLE --slug SLUG
+                                           --content-file CONTENT_FILE
+                                           [--status STATUS]
+
+options:
+  -h, --help            show this help message and exit
+  --title TITLE
+  --slug SLUG
+  --content-file CONTENT_FILE
+  --status STATUS

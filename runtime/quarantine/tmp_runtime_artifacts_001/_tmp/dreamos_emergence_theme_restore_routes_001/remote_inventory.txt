@@ -1,0 +1,92 @@
+== BEFORE THEME ==
+ACTIVE_BEFORE=hostinger-ai-theme
+== INSTALL THEME ==
+Unpacking the package...
+Installing the theme...
+Removing the old version of the theme...
+Theme updated successfully.
+Success: Installed 1 of 1 themes.
+== ACTIVATE THEME ==
+Success: Switched to 'DreamOS Emergence' theme.
+ACTIVE_AFTER=dreamos-emergence
+== SET HOMEPAGE ==
+Success: Value passed for 'show_on_front' option is unchanged.
+Success: Value passed for 'page_on_front' option is unchanged.
+HOMEPAGE_SET=PASS id=16
+== PAGE INVENTORY ==
+ID	post_title	post_name	post_status
+40	The Emergence	emergence-preview	publish
+39	Battles	battles	publish
+17	Build Log	build-log	publish
+8	Battle Simulator	battle-simulator	publish
+7	Character Generator	character-generator	publish
+6	The Protocol	protocol	publish
+16	The Emergence	the-emergence	publish
+5	Spark Protocol	spark-protocol	draft
+9	The Emergence Client Preview	client-preview	publish
+3	Privacy Policy	privacy-policy	draft
+== RELEVANT PAGE INVENTORY ==
+40	The Emergence	emergence-preview	publish
+39	Battles	battles	publish
+8	Battle Simulator	battle-simulator	publish
+7	Character Generator	character-generator	publish
+16	The Emergence	the-emergence	publish
+5	Spark Protocol	spark-protocol	draft
+9	The Emergence Client Preview	client-preview	publish
+== PLUGIN INVENTORY ==
+name	status	version
+emergence-character-generator	active	0.7.3
+hostinger-easy-onboarding	active	2.1.23
+hostinger-reach	active	1.5.0
+hostinger	active	3.0.66
+litespeed-cache	active	7.8.1
+spark-battle-sim	active	0.3.0
+hostinger-preview-domain	must-use	1.4.0
+hostinger-auto-updates	must-use	1.0.7
+== RELEVANT PLUGIN INVENTORY ==
+emergence-character-generator	active	0.7.3
+hostinger-easy-onboarding	active	2.1.23
+hostinger-reach	active	1.5.0
+hostinger	active	3.0.66
+spark-battle-sim	active	0.3.0
+hostinger-preview-domain	must-use	1.4.0
+hostinger-auto-updates	must-use	1.0.7
+== SHORTCODE INVENTORY ==
+== FILE INVENTORY ==
+wp-content/plugins/emergence-character-generator/assets/emergence-cg.css
+wp-content/plugins/emergence-character-generator/assets/emergence-cg.js
+wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css
+wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js
+wp-content/plugins/emergence-character-generator/assets/spark-protocol-v85-domain-key.json
+wp-content/plugins/emergence-character-generator/emergence-character-generator.php
+wp-content/plugins/hostinger/includes/LlmsTxtGenerator/LlmsTxtGenerator.php
+wp-content/plugins/spark-battle-sim/assets/battle.css
+wp-content/plugins/spark-battle-sim/assets/battle-handoff.css
+wp-content/plugins/spark-battle-sim/assets/battle-handoff.js
+wp-content/plugins/spark-battle-sim/bin/spark-battle-engine-smoke.php
+wp-content/plugins/spark-battle-sim/bin/spark-battle-shortcode-render-smoke.php
+wp-content/plugins/spark-battle-sim/bin/spark-protocol-adapter-smoke.php
+wp-content/plugins/spark-battle-sim/includes/BattleEngine.php
+wp-content/plugins/spark-battle-sim/includes/Spark/Battle/BattleReport.php
+wp-content/plugins/spark-battle-sim/includes/Spark/Battle/BattleSimulator.php
+wp-content/plugins/spark-battle-sim/includes/Spark/Engine/SheetGenerator.php
+wp-content/plugins/spark-battle-sim/includes/SparkProtocolAdapter.php
+wp-content/plugins/spark-battle-sim/includes/spark-protocol-autoload.php
+wp-content/plugins/spark-battle-sim/spark-battle-sim.php
+wp-content/themes/hostinger-ai-theme/assets/images/loader-sparkle.svg
+== DETECT SHORTCODES FROM PLUGIN PHP ==
+wp-content/plugins/emergence-character-generator/emergence-character-generator.php:537:add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
+wp-content/plugins/spark-battle-sim/bin/spark-battle-shortcode-render-smoke.php:14:function add_shortcode($tag, $callback) { $GLOBALS['spark_shortcodes'][$tag] = $callback; }
+wp-content/plugins/spark-battle-sim/spark-battle-sim.php:115:add_shortcode('spark_battle_sim', 'spark_battle_sim_shortcode');
+== ROUTE RESTORE FROM DETECTED SHORTCODES ==
+DETECTED_SHORTCODE=emergence_cg_shortcode
+DETECTED_SHORTCODE=emergence_character_generator
+DETECTED_SHORTCODE=spark_battle_sim
+DETECTED_SHORTCODE=spark_battle_sim_shortcode
+RESTORE_PAGE_CREATE slug=spark-generator shortcode=emergence_character_generator
+43
+RESTORE_PAGE_CREATE slug=spark-battle-sim shortcode=spark_battle_sim
+44
+== FLUSH CACHE ==
+Success: The cache was flushed.
+REMOTE_THEME_RESTORE=PASS

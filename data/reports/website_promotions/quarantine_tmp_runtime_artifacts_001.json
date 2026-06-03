@@ -1,0 +1,18 @@
+{
+  "id": "quarantine_tmp_runtime_artifacts_001",
+  "generated_at": "2026-06-03T17:07:42",
+  "status": "QUARANTINED",
+  "source_review": "data/reports/website_promotions/misc_runtime_deeper_artifacts_review_001.json",
+  "moved_count": 1,
+  "moved_file_count": 67,
+  "moved": [
+    {
+      "original_path": "_tmp",
+      "quarantine_path": "runtime/quarantine/tmp_runtime_artifacts_001/_tmp",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "temporary artifacts should be preserved outside active source",
+      "file_count": 67
+    }
+  ],
+  "guardrail": "Quarantined _tmp artifacts are temporary output and must not be treated as active website source unless explicitly promoted later."
+}

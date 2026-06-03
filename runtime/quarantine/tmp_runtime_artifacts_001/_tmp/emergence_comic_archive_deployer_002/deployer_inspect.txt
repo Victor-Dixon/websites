@@ -1,0 +1,231 @@
+FILE= runtime/scripts/hostinger_wp_manager.py
+HAS_ARGPARSE= True
+HAS_SUBPARSERS= True
+HAS_UPLOAD= False
+HAS_DEPLOY= False
+HAS_SSH= True
+HAS_SCP= False
+HAS_DOMAIN= True
+HAS_PUBLIC_HTML= True
+HAS_COMMAND= False
+---- first 220 lines ----
+0001: #!/usr/bin/env python3
+0002: import argparse
+0003: import re
+0004: import shlex
+0005: import subprocess
+0006: from pathlib import Path
+0007: 
+0008: 
+0009: def load_env(path: Path) -> dict:
+0010:     env = {}
+0011:     if not path.exists():
+0012:         raise SystemExit(f"SECRET_ENV_MISSING={path}")
+0013: 
+0014:     for raw in path.read_text().splitlines():
+0015:         line = raw.strip()
+0016:         if not line or line.startswith("#") or "=" not in line:
+0017:             continue
+0018:         key, value = line.split("=", 1)
+0019:         env[key.strip()] = value.strip().strip("'").strip('"')
+0020: 
+0021:     return env
+0022: 
+0023: 
+0024: def expand_home(value: str) -> str:
+0025:     return value.replace("$HOME", str(Path.home()))
+0026: 
+0027: 
+0028: def run(cmd: list[str], input_text: str | None = None, check: bool = True) -> subprocess.CompletedProcess:
+0029:     proc = subprocess.run(
+0030:         cmd,
+0031:         input=input_text,
+0032:         text=True,
+0033:         stdout=subprocess.PIPE,
+0034:         stderr=subprocess.STDOUT,
+0035:     )
+0036:     print(proc.stdout, end="")
+0037:     if check and proc.returncode != 0:
+0038:         raise SystemExit(proc.returncode)
+0039:     return proc
+0040: 
+0041: 
+0042: def require_env(env: dict, keys: list[str]) -> None:
+0043:     for key in keys:
+0044:         if not env.get(key):
+0045:             raise SystemExit(f"MISSING_ENV={key}")
+0046: 
+0047: 
+0048: def ssh_base(env: dict) -> list[str]:
+0049:     key_file = expand_home(env["HOSTINGER_SSH_PRIVATE_KEY_FILE"])
+0050:     return [
+0051:         "ssh",
+0052:         "-o",
+0053:         "LogLevel=ERROR",
+0054:         "-i",
+0055:         key_file,
+0056:         "-p",
+0057:         env["HOSTINGER_PORT"],
+0058:         f'{env["HOSTINGER_USER"]}@{env["HOSTINGER_HOST"]}',
+0059:     ]
+0060: 
+0061: 
+0062: def wp_root(env: dict) -> str:
+0063:     if env.get("HOSTINGER_WP_ROOT"):
+0064:         return env["HOSTINGER_WP_ROOT"]
+0065: 
+0066:     return f"/home/{env['HOSTINGER_USER']}/domains/{env['DOMAIN']}/public_html"
+0067: 
+0068: 
+0069: def remote_shell(env: dict, shell: str, check: bool = True) -> subprocess.CompletedProcess:
+0070:     return run(ssh_base(env) + [shell], check=check)
+0071: 
+0072: 
+0073: def remote_wp(
+0074:     env: dict,
+0075:     wp_args: list[str],
+0076:     input_text: str | None = None,
+0077:     check: bool = True,
+0078:     safe_bootstrap: bool = True,
+0079: ) -> subprocess.CompletedProcess:
+0080:     args = list(wp_args)
+0081: 
+0082:     if safe_bootstrap:
+0083:         if "--skip-plugins" not in args:
+0084:             args.append("--skip-plugins")
+0085:         if "--skip-themes" not in args:
+0086:             args.append("--skip-themes")
+0087: 
+0088:     remote = (
+0089:         "cd "
+0090:         + shlex.quote(wp_root(env))
+0091:         + " && wp "
+0092:         + " ".join(shlex.quote(a) for a in args)
+0093:     )
+0094:     return run(ssh_base(env) + [remote], input_text=input_text, check=check)
+0095: 
+0096: 
+0097: def check(env: dict) -> None:
+0098:     root = wp_root(env)
+0099: 
+0100:     print("== SSH CHECK ==")
+0101:     remote_shell(env, "echo HOSTINGER_SSH_LOGIN=PASS && pwd")
+0102: 
+0103:     print("\n== WP ROOT CHECK ==")
+0104:     remote_shell(env, f"test -f {shlex.quote(root)}/wp-config.php && echo WP_ROOT=PASS")
+0105: 
+0106:     print("\n== WP CLI CHECK ==")
+0107:     remote_wp(env, ["--info"], safe_bootstrap=False)
+0108:     print("WP_CLI=PASS")
+0109: 
+0110:     print("\n== WP CORE CHECK SAFE ==")
+0111:     remote_wp(env, ["core", "is-installed"])
+0112:     print("WP_CORE_INSTALLED=PASS")
+0113: 
+0114:     print("\n== SITE CHECK SAFE ==")
+0115:     remote_wp(env, ["option", "get", "siteurl"])
+0116:     print("WP_SITEURL=PASS")
+0117: 
+0118:     print("\n== HOME CHECK SAFE ==")
+0119:     remote_wp(env, ["option", "get", "home"])
+0120:     print("WP_HOME=PASS")
+0121: 
+0122: 
+0123: def page_id_by_slug(env: dict, slug: str) -> str | None:
+0124:     proc = remote_wp(
+0125:         env,
+0126:         [
+0127:             "post",
+0128:             "list",
+0129:             "--post_type=page",
+0130:             f"--name={slug}",
+0131:             "--field=ID",
+0132:             "--format=ids",
+0133:         ],
+0134:         check=False,
+0135:     )
+0136: 
+0137:     ids = re.findall(r"\b\d+\b", proc.stdout)
+0138:     return ids[-1] if ids else None
+0139: 
+0140: def remote_wp_content_update(
+0141:     env: dict,
+0142:     page_id: str,
+0143:     title: str,
+0144:     slug: str,
+0145:     status: str,
+0146:     content: str,
+0147: ) -> subprocess.CompletedProcess:
+0148:     root = wp_root(env)
+0149:     remote_file = f"/tmp/dreamos_wp_content_{page_id}_{slug}.html"
+0150:     remote = (
+0151:         "cat > "
+0152:         + shlex.quote(remote_file)
+0153:         + " && cd "
+0154:         + shlex.quote(root)
+0155:         + " && wp post update "
+0156:         + shlex.quote(page_id)
+0157:         + " "
+0158:         + shlex.quote(f"--post_title={title}")
+0159:         + " "
+0160:         + shlex.quote(f"--post_name={slug}")
+0161:         + " "
+0162:         + shlex.quote(f"--post_status={status}")
+0163:         + " "
+0164:         + "\"--post_content=$(cat "
+0165:         + shlex.quote(remote_file)
+0166:         + ")\""
+0167:         + " --skip-plugins --skip-themes"
+0168:         + " ; rc=$?; rm -f "
+0169:         + shlex.quote(remote_file)
+0170:         + " ; exit $rc"
+0171:     )
+0172:     return run(ssh_base(env) + [remote], input_text=content)
+0173: 
+0174: 
+0175: def remote_wp_content_create(
+0176:     env: dict,
+0177:     title: str,
+0178:     slug: str,
+0179:     status: str,
+0180:     content: str,
+0181: ) -> subprocess.CompletedProcess:
+0182:     root = wp_root(env)
+0183:     remote_file = f"/tmp/dreamos_wp_content_create_{slug}.html"
+0184:     remote = (
+0185:         "cat > "
+0186:         + shlex.quote(remote_file)
+0187:         + " && cd "
+0188:         + shlex.quote(root)
+0189:         + " && wp post create --post_type=page "
+0190:         + shlex.quote(f"--post_title={title}")
+0191:         + " "
+0192:         + shlex.quote(f"--post_name={slug}")
+0193:         + " "
+0194:         + shlex.quote(f"--post_status={status}")
+0195:         + " "
+0196:         + "\"--post_content=$(cat "
+0197:         + shlex.quote(remote_file)
+0198:         + ")\""
+0199:         + " --porcelain --skip-plugins --skip-themes"
+0200:         + " ; rc=$?; rm -f "
+0201:         + shlex.quote(remote_file)
+0202:         + " ; exit $rc"
+0203:     )
+0204:     return run(ssh_base(env) + [remote], input_text=content)
+0205: 
+0206: 
+0207: def upsert_page(env: dict, title: str, slug: str, content_file: str, status: str) -> None:
+0208:     content = Path(content_file).read_text()
+0209:     existing = page_id_by_slug(env, slug)
+0210: 
+0211:     if existing:
+0212:         print(f"PAGE_EXISTS=PASS id={existing}")
+0213:         remote_wp_content_update(env, existing, title, slug, status, content)
+0214:         print(f"PAGE_UPDATE=PASS id={existing}")
+0215:         return
+0216: 
+0217:     print("PAGE_EXISTS=NO")
+0218:     proc = remote_wp_content_create(env, title, slug, status, content)
+0219:     ids = re.findall(r"\b\d+\b", proc.stdout)
+0220:     page_id = ids[-1] if ids else "UNKNOWN"
