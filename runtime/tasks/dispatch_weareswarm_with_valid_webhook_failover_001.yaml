@@ -1,0 +1,10 @@
+id: dispatch_weareswarm_with_valid_webhook_failover_001
+title: Dispatch WeAreSwarm with valid webhook failover
+status: done
+lane: closeout_feed
+priority: high
+
+failover_status: BLOCKED_ALL_VALID_WEBHOOKS_FORBIDDEN
+
+guardrail: >
+  Webhook URLs were not printed or committed. Failover tried candidates in score order.
