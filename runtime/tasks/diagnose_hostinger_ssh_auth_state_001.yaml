@@ -1,0 +1,11 @@
+id: diagnose_hostinger_ssh_auth_state_001
+title: Diagnose Hostinger SSH auth state
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Inspect local SSH auth/session state for Hostinger route-only deploy without printing secrets.
+
+guardrail: >
+  No upload. Do not print private keys, passwords, tokens, or webhook values.
