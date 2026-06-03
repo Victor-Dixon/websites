@@ -1,0 +1,12 @@
+id: inspect_closeout_feed_dispatcher_targets_001
+title: Inspect closeout feed dispatcher targets
+status: done
+lane: closeout_feed
+priority: high
+
+objective: >
+  Inspect existing Discord/GitHub Architect/closeout dispatcher scripts and select
+  the safest integration point for runtime/feeds/closeouts/*.json.
+
+guardrail: >
+  Inventory only. No Discord/GitHub dispatch.

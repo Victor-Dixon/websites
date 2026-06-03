@@ -1,0 +1,531 @@
+{
+  "generated_at": "2026-06-03T18:17:01",
+  "status": "DISPATCH_TARGET_CANDIDATES_FOUND",
+  "feed": "runtime/feeds/closeouts/weareswarm_live_proof_001.json",
+  "match_count": 83,
+  "selected_candidate": {
+    "path": "runtime/tasks/add_weareswarm_live_proof_feed_card_001.yaml",
+    "score": 14,
+    "hits": [
+      "discord",
+      "closeout",
+      "github architect",
+      "feed",
+      "weareswarm"
+    ],
+    "sample": [
+      {
+        "line": 1,
+        "text": "id: add_weareswarm_live_proof_feed_card_001"
+      },
+      {
+        "line": 2,
+        "text": "title: Add WeAreSwarm live proof feed card"
+      },
+      {
+        "line": 4,
+        "text": "lane: closeout_feed"
+      },
+      {
+        "line": 8,
+        "text": "  Convert committed WeAreSwarm deploy proof artifacts into a durable feed card for"
+      },
+      {
+        "line": 9,
+        "text": "  Discord/GitHub Architect ingestion."
+      },
+      {
+        "line": 12,
+        "text": "  Feed card must only state claims backed by committed proof artifacts."
+      }
+    ]
+  },
+  "top_candidates": [
+    {
+      "path": "runtime/tasks/add_weareswarm_live_proof_feed_card_001.yaml",
+      "score": 14,
+      "hits": [
+        "discord",
+        "closeout",
+        "github architect",
+        "feed",
+        "weareswarm"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "id: add_weareswarm_live_proof_feed_card_001"
+        },
+        {
+          "line": 2,
+          "text": "title: Add WeAreSwarm live proof feed card"
+        },
+        {
+          "line": 4,
+          "text": "lane: closeout_feed"
+        },
+        {
+          "line": 8,
+          "text": "  Convert committed WeAreSwarm deploy proof artifacts into a durable feed card for"
+        },
+        {
+          "line": 9,
+          "text": "  Discord/GitHub Architect ingestion."
+        },
+        {
+          "line": 12,
+          "text": "  Feed card must only state claims backed by committed proof artifacts."
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/weareswarm_live_proof_feed_card_001.json",
+      "score": 13,
+      "hits": [
+        "discord",
+        "github architect",
+        "dispatch",
+        "feed",
+        "weareswarm"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "  \"id\": \"weareswarm_live_proof_001\","
+        },
+        {
+          "line": 5,
+          "text": "  \"project\": \"WeAreSwarm DreamOS Services Funnel\","
+        },
+        {
+          "line": 8,
+          "text": "  \"live_root\": \"https://weareswarm.site/\","
+        },
+        {
+          "line": 9,
+          "text": "  \"live_route\": \"https://weareswarm.site/dreamos-services/\","
+        },
+        {
+          "line": 12,
+          "text": "    \"WeAreSwarm root routes to Dream.OS services funnel\","
+        },
+        {
+          "line": 14,
+          "text": "    \"Hostinger passwordless SSH alias ready: hostinger-weareswarm\","
+        },
+        {
+          "line": 28,
+          "text": "    \"data/reports/website_promotions/final_weareswarm_live_proof_and_close_001.md\","
+        },
+        {
+          "line": 30,
+          "text": "    \"data/reports/website_promotions/repair_weareswarm_root_htaccess_redirect_001.md\","
+        },
+        {
+          "line": 31,
+          "text": "    \"data/reports/website_promotions/repair_weareswarm_dreamos_services_403_001.md\","
+        },
+        {
+          "line": 32,
+          "text": "    \"data/reports/website_promotions/upload_weareswarm_dreamos_services_route_001.md\""
+        },
+        {
+          "line": 34,
+          "text": "  \"discord_card\": {"
+        },
+        {
+          "line": 35,
+          "text": "    \"title\": \"WeAreSwarm DreamOS Services Funnel Live\","
+        }
+      ]
+    },
+    {
+      "path": "runtime/feeds/closeouts/weareswarm_live_proof_001.json",
+      "score": 13,
+      "hits": [
+        "discord",
+        "github architect",
+        "dispatch",
+        "feed",
+        "weareswarm"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "  \"id\": \"weareswarm_live_proof_001\","
+        },
+        {
+          "line": 5,
+          "text": "  \"project\": \"WeAreSwarm DreamOS Services Funnel\","
+        },
+        {
+          "line": 8,
+          "text": "  \"live_root\": \"https://weareswarm.site/\","
+        },
+        {
+          "line": 9,
+          "text": "  \"live_route\": \"https://weareswarm.site/dreamos-services/\","
+        },
+        {
+          "line": 12,
+          "text": "    \"WeAreSwarm root routes to Dream.OS services funnel\","
+        },
+        {
+          "line": 14,
+          "text": "    \"Hostinger passwordless SSH alias ready: hostinger-weareswarm\","
+        },
+        {
+          "line": 28,
+          "text": "    \"data/reports/website_promotions/final_weareswarm_live_proof_and_close_001.md\","
+        },
+        {
+          "line": 30,
+          "text": "    \"data/reports/website_promotions/repair_weareswarm_root_htaccess_redirect_001.md\","
+        },
+        {
+          "line": 31,
+          "text": "    \"data/reports/website_promotions/repair_weareswarm_dreamos_services_403_001.md\","
+        },
+        {
+          "line": 32,
+          "text": "    \"data/reports/website_promotions/upload_weareswarm_dreamos_services_route_001.md\""
+        },
+        {
+          "line": 34,
+          "text": "  \"discord_card\": {"
+        },
+        {
+          "line": 35,
+          "text": "    \"title\": \"WeAreSwarm DreamOS Services Funnel Live\","
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/weareswarm_live_proof_feed_card_001.md",
+      "score": 9,
+      "hits": [
+        "discord",
+        "github architect",
+        "feed",
+        "weareswarm"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# WeAreSwarm Live Proof Feed Card 001"
+        },
+        {
+          "line": 6,
+          "text": "- Root: `https://weareswarm.site/`"
+        },
+        {
+          "line": 7,
+          "text": "- Route: `https://weareswarm.site/dreamos-services/`"
+        },
+        {
+          "line": 8,
+          "text": "- SSH alias: `hostinger-weareswarm`"
+        },
+        {
+          "line": 13,
+          "text": "- WeAreSwarm root routes to Dream.OS services funnel"
+        },
+        {
+          "line": 15,
+          "text": "- Hostinger passwordless SSH alias ready: hostinger-weareswarm"
+        },
+        {
+          "line": 31,
+          "text": "- `data/reports/website_promotions/final_weareswarm_live_proof_and_close_001.md`"
+        },
+        {
+          "line": 33,
+          "text": "- `data/reports/website_promotions/repair_weareswarm_root_htaccess_redirect_001.md`"
+        },
+        {
+          "line": 34,
+          "text": "- `data/reports/website_promotions/repair_weareswarm_dreamos_services_403_001.md`"
+        },
+        {
+          "line": 35,
+          "text": "- `data/reports/website_promotions/upload_weareswarm_dreamos_services_route_001.md`"
+        },
+        {
+          "line": 37,
+          "text": "## Discord Card"
+        },
+        {
+          "line": 39,
+          "text": "- Title: `WeAreSwarm DreamOS Services Funnel Live`"
+        }
+      ]
+    },
+    {
+      "path": "runtime/scripts/build_freerideinvestor_salvage_manifest_001.py",
+      "score": 8,
+      "hits": [
+        "discord"
+      ],
+      "sample": [
+        {
+          "line": 155,
+          "text": "        \"- Workflow core: intake \u2192 replay \u2192 scorecard \u2192 rule candidate \u2192 Discord/operator card.\","
+        }
+      ]
+    },
+    {
+      "path": "runtime/scripts/ci_deploy_hostinger_freeride_plugins_028.sh",
+      "score": 7,
+      "hits": [
+        "closeout"
+      ],
+      "sample": [
+        {
+          "line": 65,
+          "text": "echo \"== CLOSEOUT ==\""
+        }
+      ]
+    },
+    {
+      "path": "runtime/scripts/collect_hostinger_custom_assets_045.sh",
+      "score": 7,
+      "hits": [
+        "closeout"
+      ],
+      "sample": [
+        {
+          "line": 203,
+          "text": "echo \"== CLOSEOUT ==\""
+        }
+      ]
+    },
+    {
+      "path": "data/reports/marketing/freerideinvestor_salvage_manifest_001.json",
+      "score": 6,
+      "hits": [
+        "discord"
+      ],
+      "sample": [
+        {
+          "line": 641,
+          "text": "      \"path\": \"FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates/page-discord.php\","
+        }
+      ]
+    },
+    {
+      "path": "data/reports/marketing/freerideinvestor_salvage_manifest_001.md",
+      "score": 6,
+      "hits": [
+        "discord"
+      ],
+      "sample": [
+        {
+          "line": 51,
+          "text": "- Workflow core: intake \u2192 replay \u2192 scorecard \u2192 rule candidate \u2192 Discord/operator card."
+        }
+      ]
+    },
+    {
+      "path": "runtime/scripts/classify_freeride_salvage_promotion_candidates_001.py",
+      "score": 6,
+      "hits": [
+        "webhook"
+      ],
+      "sample": [
+        {
+          "line": 21,
+          "text": "    \"password\", \"token\", \"secret\", \"api_key\", \"webhook\""
+        }
+      ]
+    },
+    {
+      "path": "runtime/tasks/add_emergence_generated_spark_portrait_card_090.yaml",
+      "score": 5,
+      "hits": [
+        "closeout"
+      ],
+      "sample": [
+        {
+          "line": 140,
+          "text": "closeout:"
+        }
+      ]
+    },
+    {
+      "path": "runtime/tasks/marketing/freerideinvestor_ai_trading_journal_showcase_047.yaml",
+      "score": 5,
+      "hits": [
+        "closeout"
+      ],
+      "sample": [
+        {
+          "line": 26,
+          "text": "closeout:"
+        }
+      ]
+    },
+    {
+      "path": ".github/workflows/deploy-freeride-hostinger.yml",
+      "score": 4,
+      "hits": [
+        "dispatch"
+      ],
+      "sample": [
+        {
+          "line": 4,
+          "text": "  workflow_dispatch:"
+        }
+      ]
+    },
+    {
+      "path": ".github/workflows/emergence-scan-no-reload-browser-smoke.yml",
+      "score": 4,
+      "hits": [
+        "dispatch"
+      ],
+      "sample": [
+        {
+          "line": 4,
+          "text": "  workflow_dispatch:"
+        }
+      ]
+    },
+    {
+      "path": "runtime/tasks/diagnose_hostinger_ssh_auth_state_001.yaml",
+      "score": 4,
+      "hits": [
+        "webhook"
+      ],
+      "sample": [
+        {
+          "line": 11,
+          "text": "  No upload. Do not print private keys, passwords, tokens, or webhook values."
+        }
+      ]
+    },
+    {
+      "path": "runtime/scripts/smoke_emergence_full_handoff_browser.py",
+      "score": 3,
+      "hits": [
+        "feed"
+      ],
+      "sample": [
+        {
+          "line": 136,
+          "text": "    parser.feed(html)"
+        }
+      ]
+    },
+    {
+      "path": "runtime/scripts/smoke_emergence_saved_character_browser.py",
+      "score": 3,
+      "hits": [
+        "feed"
+      ],
+      "sample": [
+        {
+          "line": 130,
+          "text": "    parser.feed(html)"
+        }
+      ]
+    },
+    {
+      "path": "runtime/scripts/smoke_emergence_token_handoff_browser.py",
+      "score": 3,
+      "hits": [
+        "feed"
+      ],
+      "sample": [
+        {
+          "line": 136,
+          "text": "    parser.feed(html)"
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/resolve_weareswarm_sftp_target_001.json",
+      "score": 2,
+      "hits": [
+        "github architect",
+        "weareswarm"
+      ],
+      "sample": [
+        {
+          "line": 4,
+          "text": "  \"artifact\": \"_deploy/weareswarm/dreamos-services/index.html\","
+        },
+        {
+          "line": 42,
+          "text": "        \"weareswarm\","
+        },
+        {
+          "line": 68,
+          "text": "          \"text\": \"  - weareswarm.online\""
+        },
+        {
+          "line": 72,
+          "text": "          \"text\": \"  - weareswarm.site\""
+        },
+        {
+          "line": 140,
+          "text": "        \"weareswarm\","
+        },
+        {
+          "line": 231,
+          "text": "        \"weareswarm\","
+        },
+        {
+          "line": 334,
+          "text": "        \"weareswarm\","
+        },
+        {
+          "line": 384,
+          "text": "          \"text\": \"  weareswarm_online:\""
+        },
+        {
+          "line": 388,
+          "text": "          \"text\": \"    domain: 'weareswarm.online'\""
+        },
+        {
+          "line": 392,
+          "text": "          \"text\": \"    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/weareswarm.online.env'\""
+        },
+        {
+          "line": 396,
+          "text": "          \"text\": \"  weareswarm_site:\""
+        },
+        {
+          "line": 400,
+          "text": "          \"text\": \"    domain: 'weareswarm.site'\""
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/build_weareswarm_dreamos_services_funnel_001.md",
+      "score": 1,
+      "hits": [
+        "weareswarm"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Build WeAreSwarm DreamOS Services Funnel 001"
+        },
+        {
+          "line": 5,
+          "text": "The promoted DaDudeKC service funnel now has a concrete WeAreSwarm route page."
+        },
+        {
+          "line": 9,
+          "text": "- Host: `weareswarm`"
+        },
+        {
+          "line": 11,
+          "text": "- File: `routes/weareswarm/dreamos-services/index.html`"
+        }
+      ]
+    }
+  ],
+  "guardrail": "No dispatch performed. Inventory only. Do not send Discord/GitHub messages yet.",
+  "next_action": "Review top target and wire runtime/feeds/closeouts/*.json into dispatcher dry-run."
+}
