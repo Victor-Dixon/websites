@@ -1,0 +1,28 @@
+id: run_provision_closeout_webhook_for_weareswarm_001
+title: Run provision closeout webhook for WeAreSwarm
+status: ready
+agent: DiscordArchitect
+lane: closeout_feed
+priority: high
+
+input_task: runtime/tasks/discord_architect/provision_closeout_webhook_for_weareswarm_001.yaml
+runbook: data/reports/website_promotions/discord_architect_webhook_runbook_001.md
+secure_env: .cache/secure_runtime/discord_closeout_webhook.env
+
+objective: >
+  Create or select the intended Discord closeout/proof channel, provision a fresh webhook,
+  store it outside git, and dispatch the WeAreSwarm live proof card through the guarded dispatcher.
+
+success_criteria:
+  - CHANNEL_INVENTORY=PASS
+  - INTENDED_CHANNEL_SELECTED=PASS
+  - WEBHOOK_CREATED=PASS
+  - WEBHOOK_STORED_OUTSIDE_GIT=PASS
+  - DISPATCH_EVENT_STATUS=SENT
+  - SECRET_SCAN=PASS
+
+guardrails:
+  - Do not print webhook URL.
+  - Do not commit webhook URL.
+  - Do not send to random discovered webhook candidates.
+  - Commit only redacted manifests/reports.
