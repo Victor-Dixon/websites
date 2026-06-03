@@ -1,0 +1,14 @@
+id: preflight_weareswarm_site_sftp_route_upload_001
+title: Preflight WeAreSwarm site SFTP route upload
+status: blocked
+lane: website_deploy
+priority: high
+
+selected_domain: weareswarm.site
+remote_root: /home/u996867598/domains/weareswarm.site/public_html
+remote_file: /home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html
+
+blocker: HOSTINGER_SSH_HOST is not set.
+
+guardrail: >
+  No upload. Upload only to /dreamos-services/index.html. Do not overwrite public root or homepage.

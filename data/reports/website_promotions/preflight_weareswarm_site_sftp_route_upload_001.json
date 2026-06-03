@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-03T17:39:50",
+  "status": "BLOCKED_MISSING_SSH_HOST",
+  "selected_domain": "weareswarm.site",
+  "ssh_host_present": false,
+  "ssh_host": "",
+  "ssh_user": "u996867598",
+  "ssh_port": "65002",
+  "remote_root": "/home/u996867598/domains/weareswarm.site/public_html",
+  "remote_dir": "/home/u996867598/domains/weareswarm.site/public_html/dreamos-services",
+  "remote_file": "/home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html",
+  "artifact": "_deploy/weareswarm/dreamos-services/index.html",
+  "remote_status": "SKIPPED",
+  "remote_root_access": "UNKNOWN",
+  "remote_home_index": "UNKNOWN",
+  "remote_route_dir": "UNKNOWN",
+  "guardrail": "No upload performed. Upload only to /dreamos-services/index.html. Do not overwrite public root or homepage.",
+  "next_action": "Set HOSTINGER_SSH_HOST, HOSTINGER_SSH_USER, and HOSTINGER_SSH_PORT, then rerun preflight.",
+  "repair_note": "Repaired markdown report generation after shell interpolation noise from prior preflight lane."
+}
