@@ -1,0 +1,11 @@
+id: dispatch_weareswarm_live_proof_to_discord_001
+title: Dispatch WeAreSwarm live proof to Discord
+status: done
+lane: closeout_feed
+priority: high
+
+dispatch_status: BLOCKED_MISSING_DISCORD_CLOSEOUT_WEBHOOK_URL
+
+guardrail: >
+  Live Discord dispatch requires DISCORD_CLOSEOUT_WEBHOOK_URL.
+  Missing webhook must block send mode.
