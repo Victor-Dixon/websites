@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-03T17:27:58",
+  "status": "BLOCKED_MULTIPLE_REMOTE_ROOTS",
+  "reason": "Multiple possible remote roots found; choose manually before upload.",
+  "source": "data/reports/website_promotions/weareswarm_sftp_target_candidates_001.json",
+  "artifact": "_deploy/weareswarm/dreamos-services/index.html",
+  "desired_route": "/dreamos-services/index.html",
+  "selected": null,
+  "root_candidates": [
+    {
+      "root": "/home/u996867598/domains/weareswarm.online/public_html",
+      "source": "_reports/website_audit/http_500_root_causes/weareswarm.online__500_root_cause.md",
+      "score": 25
+    },
+    {
+      "root": "/home/u996867598/domains/weareswarm.online/public_html/public_html",
+      "source": "_reports/website_audit/http_500_root_causes/weareswarm.online__500_root_cause.md",
+      "score": 25
+    },
+    {
+      "root": "/home/u996867598/domains/weareswarm.site/public_html",
+      "source": "_reports/website_audit/http_500_root_causes/weareswarm.site__500_root_cause.md",
+      "score": 25
+    },
+    {
+      "root": "/home/u996867598/domains/weareswarm.site/public_html/public_html",
+      "source": "_reports/website_audit/http_500_root_causes/weareswarm.site__500_root_cause.md",
+      "score": 25
+    }
+  ],
+  "strong_candidate_count": 6,
+  "guardrail": "No upload performed. Upload only to /dreamos-services/index.html after remote root is confirmed."
+}

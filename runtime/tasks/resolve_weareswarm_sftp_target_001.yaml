@@ -1,0 +1,12 @@
+id: resolve_weareswarm_sftp_target_001
+title: Resolve WeAreSwarm SFTP target
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Resolve the exact Hostinger/SFTP remote path for weareswarm:/dreamos-services
+  without uploading anything.
+
+guardrail: >
+  Do not overwrite public root or homepage. Upload only to /dreamos-services/index.html after target is confirmed.

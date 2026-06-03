@@ -1,0 +1,11 @@
+id: select_weareswarm_remote_root_candidate_001
+title: Select WeAreSwarm remote root candidate
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Select or block on the exact WeAreSwarm remote root for route-only SFTP upload.
+
+guardrail: >
+  No upload. Upload only to /dreamos-services/index.html after remote root is confirmed.

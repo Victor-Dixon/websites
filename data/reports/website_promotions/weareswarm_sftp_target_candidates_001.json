@@ -1,0 +1,616 @@
+{
+  "generated_at": "2026-06-03T17:27:15",
+  "status": "TARGET_CANDIDATES_EXTRACTED",
+  "source": "data/reports/website_promotions/resolve_weareswarm_sftp_target_001.json",
+  "candidate_count": 45,
+  "top_count": 12,
+  "artifact": "_deploy/weareswarm/dreamos-services/index.html",
+  "desired_remote_file": "/dreamos-services/index.html",
+  "guardrail": "No upload performed. Do not overwrite public root or homepage.",
+  "top_candidates": [
+    {
+      "path": "_reports/hostinger_access_preflight_002b.md",
+      "score": 31,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger",
+        "deploy",
+        "ssh"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "# Hostinger Access Preflight 002b"
+        },
+        {
+          "line": 5,
+          "text": "Verify Hostinger SSH/root access for all configured site env files before deploy lanes."
+        },
+        {
+          "line": 10,
+          "text": "== HOSTINGER ACCESS PREFLIGHT =="
+        },
+        {
+          "line": 15,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 22,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 29,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 36,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html"
+        },
+        {
+          "line": 43,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html"
+        },
+        {
+          "line": 50,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html"
+        },
+        {
+          "line": 57,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/houstonsipqueen.com/public_html"
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html"
+      ]
+    },
+    {
+      "path": "_reports/guarded_static_hostinger_deploy_helper_001.txt",
+      "score": 28,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger",
+        "deploy"
+      ],
+      "sample_lines": [
+        {
+          "line": 2,
+          "text": "ariajet.site\twordpress\t/home/u996867598/domains/ariajet.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 3,
+          "text": "crosbyultimateevents.com\twordpress\t/home/u996867598/domains/crosbyultimateevents.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 4,
+          "text": "dadudekc.com\twordpress\t/home/u996867598/domains/dadudekc.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 5,
+          "text": "dadudekc.site\twordpress\t/home/u996867598/domains/dadudekc.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 6,
+          "text": "digitaldreamscape.site\twordpress\t/home/u996867598/domains/digitaldreamscape.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 7,
+          "text": "freerideinvestor.com\tstatic\t/home/u996867598/domains/freerideinvestor.com/public_html\t0\t0\t0\t0\t1\t1"
+        },
+        {
+          "line": 8,
+          "text": "houstonsipqueen.com\twordpress\t/home/u996867598/domains/houstonsipqueen.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 9,
+          "text": "prismblossom.online\twordpress\t/home/u996867598/domains/prismblossom.online/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 10,
+          "text": "southwestsecret.com\twordpress\t/home/u996867598/domains/southwestsecret.com/public_html\t1\t1\t1\t1\t1\t1"
+        },
+        {
+          "line": 11,
+          "text": "tradingrobotplug.com\twordpress\t/home/u996867598/domains/tradingrobotplug.com/public_html\t1\t1\t1\t1\t0\t1"
+        }
+      ],
+      "possible_paths": [
+        "/home/project",
+        "/home/u996867598/domain",
+        "public_html",
+        "public_html\t0\t0\t0\t0\t1\t1",
+        "public_html\t1\t1\t1\t1\t0\t1",
+        "public_html\t1\t1\t1\t1\t1\t1",
+        "public_html/data/t",
+        "public_html/t"
+      ]
+    },
+    {
+      "path": "_reports/hostinger_deploy_target_guard_001.txt",
+      "score": 28,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger",
+        "deploy"
+      ],
+      "sample_lines": [
+        {
+          "line": 2,
+          "text": "ariajet.site\twordpress\t/home/u996867598/domains/ariajet.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 3,
+          "text": "crosbyultimateevents.com\twordpress\t/home/u996867598/domains/crosbyultimateevents.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 4,
+          "text": "dadudekc.com\twordpress\t/home/u996867598/domains/dadudekc.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 5,
+          "text": "dadudekc.site\twordpress\t/home/u996867598/domains/dadudekc.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 6,
+          "text": "digitaldreamscape.site\twordpress\t/home/u996867598/domains/digitaldreamscape.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 7,
+          "text": "freerideinvestor.com\tstatic\t/home/u996867598/domains/freerideinvestor.com/public_html\t0\t0\t0\t0\t1\t1"
+        },
+        {
+          "line": 8,
+          "text": "houstonsipqueen.com\twordpress\t/home/u996867598/domains/houstonsipqueen.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 9,
+          "text": "prismblossom.online\twordpress\t/home/u996867598/domains/prismblossom.online/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 10,
+          "text": "southwestsecret.com\twordpress\t/home/u996867598/domains/southwestsecret.com/public_html\t1\t1\t1\t1\t1\t1"
+        },
+        {
+          "line": 11,
+          "text": "tradingrobotplug.com\twordpress\t/home/u996867598/domains/tradingrobotplug.com/public_html\t1\t1\t1\t1\t0\t1"
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html\t0\t0\t0\t0\t1\t1",
+        "public_html\t1\t1\t1\t1\t0\t1",
+        "public_html\t1\t1\t1\t1\t1\t1"
+      ]
+    },
+    {
+      "path": "_reports/hostinger_access_preflight_002b.txt",
+      "score": 25,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "== HOSTINGER ACCESS PREFLIGHT =="
+        },
+        {
+          "line": 6,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 13,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 20,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 27,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html"
+        },
+        {
+          "line": 34,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html"
+        },
+        {
+          "line": 41,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html"
+        },
+        {
+          "line": 48,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/houstonsipqueen.com/public_html"
+        },
+        {
+          "line": 55,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/prismblossom.online/public_html"
+        },
+        {
+          "line": 62,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/southwestsecret.com/public_html"
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html"
+      ]
+    },
+    {
+      "path": "_reports/hostinger_custom_asset_candidates_045.txt",
+      "score": 25,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "plugin|ariajet.site|tradingrobotplug-wordpress-plugin|/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins/tradingrobotplug-wordpress-plugin"
+        },
+        {
+          "line": 2,
+          "text": "theme|dadudekc.com|dadudekc|/home/u996867598/domains/dadudekc.com/public_html/wp-content/themes/dadudekc"
+        },
+        {
+          "line": 3,
+          "text": "plugin|freerideinvestor.com|dreamos-trading-tools|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/dreamos-trading-tools"
+        },
+        {
+          "line": 4,
+          "text": "plugin|freerideinvestor.com|freerideinvestor-content-engine|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/freerideinvestor-content-engine"
+        },
+        {
+          "line": 5,
+          "text": "plugin|freerideinvestor.com|freerideinvestor-setup|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/freerideinvestor-setup"
+        },
+        {
+          "line": 6,
+          "text": "plugin|freerideinvestor.com|trading-plans-automator|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/trading-plans-automator"
+        },
+        {
+          "line": 7,
+          "text": "plugin|freerideinvestor.com|tradingrobotplug-wordpress-plugin|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/tradingrobotplug-wordpress-plugin"
+        },
+        {
+          "line": 8,
+          "text": "theme|freerideinvestor.com|freerideinvestor-modern|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/themes/freerideinvestor-modern"
+        },
+        {
+          "line": 9,
+          "text": "theme|freerideinvestor.com|freerideinvestor-v2|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/themes/freerideinvestor-v2"
+        },
+        {
+          "line": 10,
+          "text": "plugin|southwestsecret.com|tradingrobotplug-wordpress-plugin|/home/u996867598/domains/southwestsecret.com/public_html/wp-content/plugins/tradingrobotplug-wordpress-plugin"
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html/wp-content/plugin",
+        "public_html/wp-content/theme"
+      ]
+    },
+    {
+      "path": "_reports/hostinger_custom_asset_collection_045.md",
+      "score": 25,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "# Hostinger Custom Asset Collection 045"
+        },
+        {
+          "line": 16,
+          "text": "plugin|ariajet.site|tradingrobotplug-wordpress-plugin|/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins/tradingrobotplug-wordpress-plugin"
+        },
+        {
+          "line": 17,
+          "text": "theme|dadudekc.com|dadudekc|/home/u996867598/domains/dadudekc.com/public_html/wp-content/themes/dadudekc"
+        },
+        {
+          "line": 18,
+          "text": "plugin|freerideinvestor.com|dreamos-trading-tools|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/dreamos-trading-tools"
+        },
+        {
+          "line": 19,
+          "text": "plugin|freerideinvestor.com|freerideinvestor-content-engine|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/freerideinvestor-content-engine"
+        },
+        {
+          "line": 20,
+          "text": "plugin|freerideinvestor.com|freerideinvestor-setup|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/freerideinvestor-setup"
+        },
+        {
+          "line": 21,
+          "text": "plugin|freerideinvestor.com|trading-plans-automator|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/trading-plans-automator"
+        },
+        {
+          "line": 22,
+          "text": "plugin|freerideinvestor.com|tradingrobotplug-wordpress-plugin|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/plugins/tradingrobotplug-wordpress-plugin"
+        },
+        {
+          "line": 23,
+          "text": "theme|freerideinvestor.com|freerideinvestor-modern|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/themes/freerideinvestor-modern"
+        },
+        {
+          "line": 24,
+          "text": "theme|freerideinvestor.com|freerideinvestor-v2|/home/u996867598/domains/freerideinvestor.com/public_html/wp-content/themes/freerideinvestor-v2"
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html/wp-content/plugin",
+        "public_html/wp-content/theme"
+      ]
+    },
+    {
+      "path": "_reports/website_audit/http_500_root_causes/weareswarm.online__500_root_cause.md",
+      "score": 25,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "# HTTP 500 Root Cause: weareswarm.online"
+        },
+        {
+          "line": 17,
+          "text": "DOMAIN=weareswarm.online"
+        },
+        {
+          "line": 18,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/weareswarm.online/public_html"
+        },
+        {
+          "line": 21,
+          "text": "/home/u996867598/domains/weareswarm.online/public_html"
+        },
+        {
+          "line": 35,
+          "text": "-rw-r--r--  1 u996867598 o1008028115   1950 Dec 22 19:06 WHAT_IS_WEARESWARM_SITE.md"
+        },
+        {
+          "line": 72,
+          "text": "-rw-r--r-- u996867598 o1008028115 ./WHAT_IS_WEARESWARM_SITE.md"
+        },
+        {
+          "line": 116,
+          "text": "        <link rel=\"icon\" type=\"image/x-icon\" href=\"https://hpanel.hostinger.com/favicons/hostinger.png\">"
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html"
+      ]
+    },
+    {
+      "path": "_reports/website_audit/http_500_root_causes/weareswarm.online__remote_500_audit.txt",
+      "score": 25,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "DOMAIN=weareswarm.online"
+        },
+        {
+          "line": 2,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/weareswarm.online/public_html"
+        },
+        {
+          "line": 5,
+          "text": "/home/u996867598/domains/weareswarm.online/public_html"
+        },
+        {
+          "line": 19,
+          "text": "-rw-r--r--  1 u996867598 o1008028115   1950 Dec 22 19:06 WHAT_IS_WEARESWARM_SITE.md"
+        },
+        {
+          "line": 56,
+          "text": "-rw-r--r-- u996867598 o1008028115 ./WHAT_IS_WEARESWARM_SITE.md"
+        },
+        {
+          "line": 100,
+          "text": "        <link rel=\"icon\" type=\"image/x-icon\" href=\"https://hpanel.hostinger.com/favicons/hostinger.png\">"
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html"
+      ]
+    },
+    {
+      "path": "_reports/website_audit/http_500_root_causes/weareswarm.site__500_root_cause.md",
+      "score": 25,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "# HTTP 500 Root Cause: weareswarm.site"
+        },
+        {
+          "line": 17,
+          "text": "DOMAIN=weareswarm.site"
+        },
+        {
+          "line": 18,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/weareswarm.site/public_html"
+        },
+        {
+          "line": 21,
+          "text": "/home/u996867598/domains/weareswarm.site/public_html"
+        },
+        {
+          "line": 40,
+          "text": "drwxr-xr-x  3 u996867598 o1008028115  4096 May 10 16:00 public_html"
+        },
+        {
+          "line": 68,
+          "text": "drwxr-xr-x u996867598 o1008028115 ./public_html"
+        },
+        {
+          "line": 132,
+          "text": "        <link rel=\"icon\" type=\"image/x-icon\" href=\"https://hpanel.hostinger.com/favicons/hostinger.png\">"
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html"
+      ]
+    },
+    {
+      "path": "_reports/website_audit/http_500_root_causes/weareswarm.site__remote_500_audit.txt",
+      "score": 25,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "DOMAIN=weareswarm.site"
+        },
+        {
+          "line": 2,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/weareswarm.site/public_html"
+        },
+        {
+          "line": 5,
+          "text": "/home/u996867598/domains/weareswarm.site/public_html"
+        },
+        {
+          "line": 24,
+          "text": "drwxr-xr-x  3 u996867598 o1008028115  4096 May 10 16:00 public_html"
+        },
+        {
+          "line": 52,
+          "text": "drwxr-xr-x u996867598 o1008028115 ./public_html"
+        },
+        {
+          "line": 116,
+          "text": "        <link rel=\"icon\" type=\"image/x-icon\" href=\"https://hpanel.hostinger.com/favicons/hostinger.png\">"
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html"
+      ]
+    },
+    {
+      "path": "_reports/website_audit/weareswarm.online__audit.md",
+      "score": 25,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "# Website Audit: weareswarm.online"
+        },
+        {
+          "line": 9,
+          "text": "| Domain | weareswarm.online |"
+        },
+        {
+          "line": 11,
+          "text": "| Remote Root | `/home/u996867598/domains/weareswarm.online/public_html` |"
+        },
+        {
+          "line": 29,
+          "text": "- HTTPS: https://weareswarm.online/ => 500"
+        },
+        {
+          "line": 30,
+          "text": "- HTTP: http://weareswarm.online/ => 500"
+        },
+        {
+          "line": 34,
+          "text": "- Homepage HTTPS is not clean 200. Investigate DNS, SSL, permissions, app routing, or Hostinger config."
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html"
+      ]
+    },
+    {
+      "path": "_reports/website_audit/weareswarm.site__audit.md",
+      "score": 25,
+      "reasons": [
+        "weareswarm",
+        "public_html",
+        "domains",
+        "hostinger"
+      ],
+      "sample_lines": [
+        {
+          "line": 1,
+          "text": "# Website Audit: weareswarm.site"
+        },
+        {
+          "line": 9,
+          "text": "| Domain | weareswarm.site |"
+        },
+        {
+          "line": 11,
+          "text": "| Remote Root | `/home/u996867598/domains/weareswarm.site/public_html` |"
+        },
+        {
+          "line": 29,
+          "text": "- HTTPS: https://weareswarm.site/ => 500"
+        },
+        {
+          "line": 30,
+          "text": "- HTTP: http://weareswarm.site/ => 500"
+        },
+        {
+          "line": 34,
+          "text": "- Homepage HTTPS is not clean 200. Investigate DNS, SSL, permissions, app routing, or Hostinger config."
+        }
+      ],
+      "possible_paths": [
+        "/home/u996867598/domain",
+        "public_html"
+      ]
+    }
+  ],
+  "next_lane": {
+    "target": "confirm exact WeAreSwarm remote root",
+    "action": "inspect top candidate config/manifest lines and confirm remote domain root before upload",
+    "verify": "one selected remote root plus route-only target path",
+    "commit": "Document WeAreSwarm SFTP target"
+  }
+}

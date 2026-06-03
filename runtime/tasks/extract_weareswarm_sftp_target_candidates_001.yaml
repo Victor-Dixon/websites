@@ -1,0 +1,12 @@
+id: extract_weareswarm_sftp_target_candidates_001
+title: Extract WeAreSwarm SFTP target candidates
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Extract and rank likely WeAreSwarm Hostinger/SFTP remote target candidates
+  from the target-resolution report without uploading.
+
+guardrail: >
+  No upload. Do not overwrite public root or homepage.
