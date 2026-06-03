@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-03T18:21:03",
-  "mode": "DRY_RUN",
-  "status": "DRY_RUN_PASS",
+  "generated_at": "2026-06-03T18:34:47",
+  "mode": "SEND",
+  "status": "DISPATCH_ATTEMPTED",
   "dispatch_count": 0,
   "blocked_count": 0,
   "discord_cards": [
@@ -14,10 +14,11 @@
     {
       "target": "discord",
       "card": "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.discord.md",
-      "send_requested": false,
+      "send_requested": true,
       "sent": false,
-      "status": "DRY_RUN",
-      "preview": "data/reports/closeout_feed_dispatch/weareswarm_live_proof_001.discord.dispatch_preview.md"
+      "status": "HTTP_403",
+      "http_status": 403,
+      "response_preview": "error code: 1010"
     },
     {
       "target": "github_architect",

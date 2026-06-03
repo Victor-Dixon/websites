@@ -1,0 +1,11 @@
+id: repair_discord_dispatch_http_error_handling_001
+title: Repair Discord dispatch HTTP error handling
+status: done
+lane: closeout_feed
+priority: high
+
+dispatch_status: DISPATCH_ATTEMPTED
+event_status: HTTP_403
+
+guardrail: >
+  Webhook URL was not printed or committed. HTTP errors are captured in manifest instead of crashing.

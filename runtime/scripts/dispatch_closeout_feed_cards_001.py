@@ -7,7 +7,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 from typing import Any
-from urllib import request
+from urllib import request, error
 
 
 def read_text(path: Path) -> str:
@@ -22,8 +22,14 @@ def post_discord(webhook_url: str, content: str) -> tuple[int, str]:
         headers={"Content-Type": "application/json"},
         method="POST",
     )
-    with request.urlopen(req, timeout=20) as resp:
-        return resp.status, resp.read().decode("utf-8", errors="replace")
+    try:
+        with request.urlopen(req, timeout=20) as resp:
+            return resp.status, resp.read().decode("utf-8", errors="replace")
+    except error.HTTPError as exc:
+        body = exc.read().decode("utf-8", errors="replace") if exc.fp else ""
+        return exc.code, body[:300]
+    except error.URLError as exc:
+        return 0, str(exc.reason)[:300]
 
 
 def build_manifest(render_dir: Path, out_dir: Path, send: bool) -> dict[str, Any]:
