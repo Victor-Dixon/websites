@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-06-03T17:33:50",
+  "status": "BLOCKED_NO_CLEAN_200_DOMAIN",
+  "reason": "Neither candidate returned a clean 200 response; confirm target manually before upload.",
+  "results": [
+    {
+      "domain": "weareswarm.site",
+      "scheme": "https",
+      "url": "https://weareswarm.site/",
+      "http_code": "500",
+      "effective_url": "https://weareswarm.site/",
+      "content_type": "text/html; charset=UTF-8",
+      "stderr": ""
+    },
+    {
+      "domain": "weareswarm.site",
+      "scheme": "http",
+      "url": "http://weareswarm.site/",
+      "http_code": "500",
+      "effective_url": "https://weareswarm.site/",
+      "content_type": "text/html; charset=UTF-8",
+      "stderr": ""
+    },
+    {
+      "domain": "weareswarm.online",
+      "scheme": "https",
+      "url": "https://weareswarm.online/",
+      "http_code": "500",
+      "effective_url": "https://weareswarm.online/",
+      "content_type": "text/html; charset=UTF-8",
+      "stderr": ""
+    },
+    {
+      "domain": "weareswarm.online",
+      "scheme": "http",
+      "url": "http://weareswarm.online/",
+      "http_code": "500",
+      "effective_url": "https://weareswarm.online/",
+      "content_type": "text/html; charset=UTF-8",
+      "stderr": ""
+    }
+  ],
+  "selected": null,
+  "artifact": "_deploy/weareswarm/dreamos-services/index.html",
+  "guardrail": "No upload performed. Upload only to /dreamos-services/index.html after domain/root is confirmed."
+}

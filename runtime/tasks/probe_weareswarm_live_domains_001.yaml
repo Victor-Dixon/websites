@@ -1,0 +1,11 @@
+id: probe_weareswarm_live_domains_001
+title: Probe WeAreSwarm live domains
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Probe weareswarm.site and weareswarm.online before selecting the exact route-only deploy target.
+
+guardrail: >
+  Probe only. No upload. Do not overwrite public root or homepage.
