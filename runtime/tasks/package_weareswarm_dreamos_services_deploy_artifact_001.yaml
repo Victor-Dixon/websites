@@ -1,0 +1,18 @@
+id: package_weareswarm_dreamos_services_deploy_artifact_001
+title: Package WeAreSwarm DreamOS services deploy artifact
+status: done
+lane: website_deploy
+priority: high
+
+source:
+  route: routes/weareswarm/dreamos-services/index.html
+
+deploy_artifact:
+  package_dir: _deploy/weareswarm/dreamos-services
+  index: _deploy/weareswarm/dreamos-services/index.html
+  manifest: _deploy/weareswarm/dreamos-services/deploy-manifest.json
+  host: weareswarm
+  path: /dreamos-services
+
+guardrail: >
+  Deploy as /dreamos-services route only. Do not overwrite live homepage.

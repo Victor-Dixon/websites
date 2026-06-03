@@ -1,0 +1,11 @@
+{
+  "id": "weareswarm_dreamos_services_deploy_artifact_001",
+  "status": "READY_TO_DEPLOY",
+  "host": "weareswarm",
+  "route": "/dreamos-services",
+  "source": "routes/weareswarm/dreamos-services/index.html",
+  "artifact": "_deploy/weareswarm/dreamos-services/index.html",
+  "sha256": "ea99fee378ee29b9f304759171fad84fd70b9804880e79ec472e54e4c13edfc6",
+  "bytes": 4590,
+  "guardrail": "Deploy as /dreamos-services route only. Do not overwrite homepage."
+}
