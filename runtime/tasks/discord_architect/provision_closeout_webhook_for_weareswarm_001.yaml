@@ -1,0 +1,32 @@
+id: provision_closeout_webhook_for_weareswarm_001
+title: Provision closeout webhook for WeAreSwarm
+status: ready
+agent: DiscordArchitect
+lane: closeout_feed
+priority: high
+
+inputs:
+  feed: runtime/feeds/closeouts/weareswarm_live_proof_001.json
+  rendered_card: data/reports/closeout_feed_rendered/weareswarm_live_proof_001.discord.md
+  dispatcher: runtime/scripts/dispatch_closeout_feed_cards_001.py
+
+objective: >
+  Inventory Discord channel targets, select/create the intended Dream.OS closeout proof
+  channel, create a fresh webhook, export DISCORD_CLOSEOUT_WEBHOOK_URL in process only,
+  and run one guarded dispatch.
+
+blocked_reason: >
+  Existing discovered webhook candidates validate but reject POST with HTTP_403.
+
+success_criteria:
+  - intended channel selected
+  - webhook created or confirmed
+  - webhook stored outside git
+  - dispatch returns SENT
+  - redacted dispatch result committed
+
+guardrails:
+  - Do not print webhook URL.
+  - Do not commit webhook URL.
+  - Do not send to random discovered webhook candidates.
+  - Commit only redacted reports/manifests.

@@ -1,0 +1,12 @@
+id: discord_closeout_webhook_provisioning_packet_001
+title: Add Discord closeout webhook provisioning packet
+status: done
+lane: closeout_feed
+priority: high
+
+objective: >
+  Document the Discord closeout webhook blocker and produce a proof-backed provisioning
+  packet for Discord Architect.
+
+guardrail: >
+  Do not print or commit webhook URLs.

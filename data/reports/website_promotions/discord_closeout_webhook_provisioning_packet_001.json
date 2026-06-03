@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-03T18:41:04",
+  "status": "DISCORD_ARCHITECT_WEBHOOK_PROVISIONING_REQUIRED",
+  "blocker": "Existing discovered webhook candidates validate but reject posting with HTTP_403.",
+  "target_feed": "runtime/feeds/closeouts/weareswarm_live_proof_001.json",
+  "target_render": "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.discord.md",
+  "dispatcher": "runtime/scripts/dispatch_closeout_feed_cards_001.py",
+  "required_env_var": "DISCORD_CLOSEOUT_WEBHOOK_URL",
+  "intended_channel_purpose": "Dream.OS closeout/proof feed for WeAreSwarm + GitHub Architect lane summaries",
+  "discord_architect_actions": [
+    "Inventory available Discord guilds/channels without posting.",
+    "Select or create an intended closeout/proof channel.",
+    "Create a fresh webhook for that channel.",
+    "Store webhook URL in local secret env file or secure runtime env, not in git.",
+    "Export DISCORD_CLOSEOUT_WEBHOOK_URL only in process for dispatch.",
+    "Run one guarded dispatch of WeAreSwarm proof card.",
+    "Commit only redacted manifest/report."
+  ],
+  "replay_command": "DISCORD_CLOSEOUT_WEBHOOK_URL=<secret> python runtime/scripts/dispatch_closeout_feed_cards_001.py --render-dir data/reports/closeout_feed_rendered --out-dir data/reports/closeout_feed_dispatch --send",
+  "guardrails": [
+    "Do not print webhook URL.",
+    "Do not commit webhook URL.",
+    "Do not send to random discovered webhook candidates.",
+    "Only send after Discord Architect confirms intended target channel.",
+    "Commit redacted validation/dispatch result only."
+  ],
+  "source_artifacts": [
+    "data/reports/closeout_feed_dispatch/discord_webhook_failover_dispatch_001.json",
+    "data/reports/closeout_feed_dispatch/discord_webhook_validation_001.json",
+    "data/reports/website_promotions/dispatch_weareswarm_with_valid_webhook_failover_001.md",
+    "data/reports/website_promotions/repair_discord_dispatch_http_error_handling_001.md"
+  ]
+}
