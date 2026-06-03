@@ -1,0 +1,18 @@
+id: resolve_real_hostinger_ssh_host_and_preflight_001
+title: Resolve real Hostinger SSH host and preflight
+status: blocked
+lane: website_deploy
+priority: high
+
+selected_domain: weareswarm.site
+ssh_user: u996867598
+ssh_port: "65002"
+remote_root: /home/u996867598/domains/weareswarm.site/public_html
+remote_file: /home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html
+
+blocker: >
+  Real SSH host resolves, but current shell cannot authenticate:
+  Permission denied (publickey,password).
+
+guardrail: >
+  No upload. Upload only to /dreamos-services/index.html. Do not overwrite public root or homepage.
