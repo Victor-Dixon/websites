@@ -1,0 +1,12 @@
+id: probe_weareswarm_live_deploy_capability_001
+title: Probe WeAreSwarm live deploy capability
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Probe available local deploy tools and possible Hostinger/deploy scripts before
+  uploading the WeAreSwarm DreamOS services route.
+
+guardrail: >
+  Probe only. Do not deploy. Do not overwrite homepage.
