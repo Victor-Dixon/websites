@@ -1,0 +1,12 @@
+id: validate_discord_webhooks_and_dispatch_001
+title: Validate Discord webhooks and dispatch WeAreSwarm proof
+status: done
+lane: closeout_feed
+priority: high
+
+validation_status: WEBHOOK_VALID_SELECTED
+dispatch_status: DISPATCH_ATTEMPTED
+event_status: HTTP_403
+
+guardrail: >
+  Webhook URLs were not printed or committed. Selected webhook stayed under .cache/secure_runtime.
