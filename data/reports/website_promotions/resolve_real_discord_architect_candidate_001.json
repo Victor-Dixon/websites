@@ -1,0 +1,1259 @@
+{
+  "generated_at": "2026-06-03T18:52:02",
+  "status": "REAL_CANDIDATE_SELECTED",
+  "candidate_count": 664,
+  "selected": {
+    "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_paper_trade_payload.py",
+    "score": 98,
+    "name_hits": [
+      "send_discord"
+    ],
+    "content_hits": [
+      "discord",
+      "webhook",
+      "send",
+      "payload",
+      "DISCORD"
+    ],
+    "executable": true,
+    "sample": [
+      {
+        "line": 8,
+        "text": "PAYLOAD = Path(\"runtime/trading/discord/latest_paper_trade_payload.json\")"
+      },
+      {
+        "line": 11,
+        "text": "    if not PAYLOAD.exists():"
+      },
+      {
+        "line": 12,
+        "text": "        print(f\"CHECK_FAILED: missing payload {PAYLOAD}\")"
+      },
+      {
+        "line": 15,
+        "text": "    payload = json.loads(PAYLOAD.read_text())"
+      },
+      {
+        "line": 16,
+        "text": "    webhook=REDACTED\"DISCORD_WEBHOOK_URL\", \"\").strip()"
+      },
+      {
+        "line": 18,
+        "text": "    print(f\"PAYLOAD={PAYLOAD}\")"
+      },
+      {
+        "line": 19,
+        "text": "    print(f\"CONTENT={payload.get('content', '')}\")"
+      },
+      {
+        "line": 21,
+        "text": "    if not webhook:"
+      },
+      {
+        "line": 22,
+        "text": "        print(\"DISCORD_SEND=DRY_RUN\")"
+      },
+      {
+        "line": 23,
+        "text": "        print(\"Reason: DISCORD_WEBHOOK_URL not set\")"
+      },
+      {
+        "line": 26,
+        "text": "    data = json.dumps(payload).encode(\"utf-8\")"
+      },
+      {
+        "line": 28,
+        "text": "        webhook,"
+      }
+    ]
+  },
+  "top_candidates": [
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_paper_trade_payload.py",
+      "score": 98,
+      "name_hits": [
+        "send_discord"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "send",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 8,
+          "text": "PAYLOAD = Path(\"runtime/trading/discord/latest_paper_trade_payload.json\")"
+        },
+        {
+          "line": 11,
+          "text": "    if not PAYLOAD.exists():"
+        },
+        {
+          "line": 12,
+          "text": "        print(f\"CHECK_FAILED: missing payload {PAYLOAD}\")"
+        },
+        {
+          "line": 15,
+          "text": "    payload = json.loads(PAYLOAD.read_text())"
+        },
+        {
+          "line": 16,
+          "text": "    webhook=REDACTED\"DISCORD_WEBHOOK_URL\", \"\").strip()"
+        },
+        {
+          "line": 18,
+          "text": "    print(f\"PAYLOAD={PAYLOAD}\")"
+        },
+        {
+          "line": 19,
+          "text": "    print(f\"CONTENT={payload.get('content', '')}\")"
+        },
+        {
+          "line": 21,
+          "text": "    if not webhook:"
+        },
+        {
+          "line": 22,
+          "text": "        print(\"DISCORD_SEND=DRY_RUN\")"
+        },
+        {
+          "line": 23,
+          "text": "        print(\"Reason: DISCORD_WEBHOOK_URL not set\")"
+        },
+        {
+          "line": 26,
+          "text": "    data = json.dumps(payload).encode(\"utf-8\")"
+        },
+        {
+          "line": 28,
+          "text": "        webhook,"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_journal_payload.py",
+      "score": 90,
+      "name_hits": [
+        "send_discord"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "send",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 16,
+          "text": "from dreamvault.discord_delivery_retry_queue import append_retry_record"
+        },
+        {
+          "line": 17,
+          "text": "from dreamvault.discord_journal_cards import build_discord_webhook_payload"
+        },
+        {
+          "line": 18,
+          "text": "from dreamvault.discord_webhook_sender import send_discord_webhook"
+        },
+        {
+          "line": 22,
+          "text": "    parser = argparse.ArgumentParser(description=\"Send Dream.OS journal cards to Discord webhook.\")"
+        },
+        {
+          "line": 25,
+          "text": "    parser.add_argument(\"--webhook-url\", default=os.environ.get(\"DREAMOS_DISCORD_WEBHOOK_URL\", \"\"))"
+        },
+        {
+          "line": 26,
+          "text": "    parser.add_argument(\"--live\", action=\"store_true\", help=\"Actually post to Discord.\")"
+        },
+        {
+          "line": 27,
+          "text": "    parser.add_argument(\"--dry-run\", action=\"store_true\", help=\"Validate payload without posting.\")"
+        },
+        {
+          "line": 31,
+          "text": "        default=str(REPO_ROOT / \"runtime/queues/discord_delivery_retry.jsonl\"),"
+        },
+        {
+          "line": 32,
+          "text": "        help=\"Path to Discord delivery retry queue JSONL.\","
+        },
+        {
+          "line": 37,
+          "text": "        help=\"Append Discord delivery attempt result to execution journal.\","
+        },
+        {
+          "line": 45,
+          "text": "    payload = build_discord_webhook_payload(args.journal, limit=max(0, args.limit))"
+        },
+        {
+          "line": 46,
+          "text": "    result = send_discord_webhook("
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/configure_discord_architect_001.py",
+      "score": 82,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 20,
+          "text": "def create_webhook(bot_token=REDACTED channel_id: str, webhook_name: str) -> str:"
+        },
+        {
+          "line": 21,
+          "text": "    url = f\"https://discord.com/api/v10/channels/{channel_id}/webhooks\""
+        },
+        {
+          "line": 24,
+          "text": "        data=json.dumps({\"name\": webhook_name}).encode(\"utf-8\"),"
+        },
+        {
+          "line": 28,
+          "text": "            \"User-Agent\": \"DreamOS-DiscordArchitect/001\","
+        },
+        {
+          "line": 34,
+          "text": "    return f\"DISCORD_WEBHOOK_REDACTED'id']}/{data['token']}\""
+        },
+        {
+          "line": 37,
+          "text": "def post_test_card(webhook_url: str) -> bool:"
+        },
+        {
+          "line": 38,
+          "text": "    payload = {"
+        },
+        {
+          "line": 39,
+          "text": "        \"username\": \"Dream.OS Discord Architect\","
+        },
+        {
+          "line": 41,
+          "text": "            \"title\": \"Dream.OS Discord Architect configured\","
+        },
+        {
+          "line": 42,
+          "text": "            \"description\": \"Secret broker + webhook route verified.\","
+        },
+        {
+          "line": 51,
+          "text": "        webhook_url,"
+        },
+        {
+          "line": 52,
+          "text": "        data=json.dumps(payload).encode(\"utf-8\"),"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/emit_latest_closeout_discord_architect_001.py",
+      "score": 79,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "channel",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 17,
+          "text": "        raise SystemExit(\"DREAMCLOSE_DISCORD_EVENT=FAIL missing data/closeouts/latest.json and CPC latest\")"
+        },
+        {
+          "line": 85,
+          "text": "target_channel = \"master-task-log\" if event_type == \"master_task_closed\" else \"lane-closeouts\""
+        },
+        {
+          "line": 92,
+          "text": "    \"target_channel\": target_channel,"
+        },
+        {
+          "line": 98,
+          "text": "    \"payload\": packet,"
+        },
+        {
+          "line": 101,
+          "text": "event_dir = root / \"discord_architect/data/runtime/events\""
+        },
+        {
+          "line": 110,
+          "text": "const {{ dispatchCapabilityEvent }} = require(\"./discord_architect/src/runtime/liveCapabilityEventDispatcher.js\");"
+        },
+        {
+          "line": 113,
+          "text": "  const event = JSON.parse(fs.readFileSync(\"discord_architect/data/runtime/events/latest_dreamclose_event.json\", \"utf8\"));"
+        },
+        {
+          "line": 114,
+          "text": "  const receipt = await dispatchCapabilityEvent({{ event, mode: process.env.DISCORD_DISPATCH_MODE || \"dry-run\" }});"
+        },
+        {
+          "line": 115,
+          "text": "  console.log(\"DREAMCLOSE_DISCORD_EVENT=PASS\");"
+        },
+        {
+          "line": 120,
+          "text": "  console.error(\"DREAMCLOSE_DISCORD_EVENT=FAIL\");"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/emit_planner_discord_architect_event_001.py",
+      "score": 79,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "channel",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 27,
+          "text": "latest_task = read_text(root / \"runtime/tasks/discord/planner_discord_architect_bridge_001.yaml\", \"\")"
+        },
+        {
+          "line": 33,
+          "text": "    \"target_channel\": \"master-task-log\","
+        },
+        {
+          "line": 49,
+          "text": "        \"Source task: `planner_discord_architect_bridge_001`\","
+        },
+        {
+          "line": 51,
+          "text": "    \"payload\": {"
+        },
+        {
+          "line": 58,
+          "text": "event_dir = root / \"discord_architect/data/runtime/events\""
+        },
+        {
+          "line": 70,
+          "text": "const { dispatchCapabilityEvent } = require(\"./discord_architect/src/runtime/liveCapabilityEventDispatcher.js\");"
+        },
+        {
+          "line": 73,
+          "text": "  const event = JSON.parse(fs.readFileSync(\"discord_architect/data/runtime/events/latest_planner_event.json\", \"utf8\"));"
+        },
+        {
+          "line": 74,
+          "text": "  const receipt = await dispatchCapabilityEvent({ event, mode: process.env.DISCORD_DISPATCH_MODE || \"dry-run\" });"
+        },
+        {
+          "line": 94,
+          "text": "    \"mode\": os.environ.get(\"DISCORD_DISPATCH_MODE\", \"dry-run\"),"
+        },
+        {
+          "line": 100,
+          "text": "out = root / \"data/reports/planner_discord_bridge/latest_receipt.json\""
+        },
+        {
+          "line": 104,
+          "text": "print(\"PLANNER_DISCORD_ARCHITECT_EVENT=PASS\" if receipt[\"ok\"] else \"PLANNER_DISCORD_ARCHITECT_EVENT=FAIL\")"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_trading_test_message.sh",
+      "score": 72,
+      "name_hits": [
+        "send_discord"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 6,
+          "text": "if [ -z \"${DISCORD_TRADING_WEBHOOK_URL:-}\" ]; then"
+        },
+        {
+          "line": 7,
+          "text": "  echo \"DISCORD_TEST=SKIPPED missing_DISCORD_TRADING_WEBHOOK_URL\""
+        },
+        {
+          "line": 11,
+          "text": "PAYLOAD=\"data/reports/trading/discord_trading_test_payload.json\""
+        },
+        {
+          "line": 12,
+          "text": "mkdir -p \"$(dirname \"$PAYLOAD\")\""
+        },
+        {
+          "line": 14,
+          "text": "cat > \"$PAYLOAD\" << JSON"
+        },
+        {
+          "line": 20,
+          "text": "      \"description\": \"Discord webhook connected. Read-only trading intelligence pipeline is online.\","
+        },
+        {
+          "line": 33,
+          "text": "  -d @\"$PAYLOAD\" \\"
+        },
+        {
+          "line": 34,
+          "text": "  \"$DISCORD_TRADING_WEBHOOK_URL\" >/dev/null"
+        },
+        {
+          "line": 36,
+          "text": "echo \"DISCORD_TEST=PASS\""
+        },
+        {
+          "line": 37,
+          "text": "echo \"PAYLOAD=$PAYLOAD\""
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/bootstrap_discord_architect_channel_webhook_manager_001.sh",
+      "score": 70,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "guild",
+        "send",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 4,
+          "text": "TASK=\"runtime/tasks/discord/discord_architect_channel_webhook_manager_001.yaml\""
+        },
+        {
+          "line": 5,
+          "text": "MANAGER=\"discord_architect/src/runtime/channelWebhookManager.js\""
+        },
+        {
+          "line": 6,
+          "text": "TEST=\"discord_architect/tests/channelWebhookManager.test.js\""
+        },
+        {
+          "line": 7,
+          "text": "REPORT=\"data/reports/discord_architect/channel_webhook_manager_verification.md\""
+        },
+        {
+          "line": 12,
+          "text": "id: discord_architect_channel_webhook_manager_001"
+        },
+        {
+          "line": 13,
+          "text": "title: Add Discord Architect channel and webhook manager"
+        },
+        {
+          "line": 18,
+          "text": "  Give Discord Architect governed channel management and webhook creation"
+        },
+        {
+          "line": 21,
+          "text": "  - discord_channel_management"
+        },
+        {
+          "line": 22,
+          "text": "  - discord_webhook_management"
+        },
+        {
+          "line": 23,
+          "text": "  - governed_discord_mutations"
+        },
+        {
+          "line": 31,
+          "text": "  Discord Architect must be able to create/manage channels and webhooks"
+        },
+        {
+          "line": 34,
+          "text": "  - live_discord_webhook_sender_001"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/verify_discord_architect_integrity_001.sh",
+      "score": 70,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "guild",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 4,
+          "text": "echo \"== VERIFY DISCORD ARCHITECT INTEGRITY ==\""
+        },
+        {
+          "line": 6,
+          "text": "REPORT_DIR=\"data/reports/discord_architect\""
+        },
+        {
+          "line": 10,
+          "text": "if git ls-files | grep -q '^discord_architect/node_modules/'; then"
+        },
+        {
+          "line": 17,
+          "text": "test -f discord_architect/package-lock.json"
+        },
+        {
+          "line": 22,
+          "text": "  cd discord_architect"
+        },
+        {
+          "line": 29,
+          "text": "const { ChannelType } = require(\"./discord_architect/node_modules/discord.js\");"
+        },
+        {
+          "line": 30,
+          "text": "const adapter = require(\"./discord_architect/src/adapters/createChannel\");"
+        },
+        {
+          "line": 32,
+          "text": "assert.strictEqual(typeof adapter.normalizeChannelType, \"function\");"
+        },
+        {
+          "line": 34,
+          "text": "assert.strictEqual(typeof adapter.findExistingChannel, \"function\");"
+        },
+        {
+          "line": 35,
+          "text": "assert.strictEqual(typeof adapter.createChannelFromOperation, \"function\");"
+        },
+        {
+          "line": 45,
+          "text": "const guild = {"
+        },
+        {
+          "line": 46,
+          "text": "  channels: {"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/connect_capability_feed_to_discord_architect_001.sh",
+      "score": 67,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "channel",
+        "send",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 4,
+          "text": "TASK=\"runtime/tasks/discord/connect_capability_feed_to_discord_architect_001.yaml\""
+        },
+        {
+          "line": 5,
+          "text": "ADAPTER=\"discord_architect/src/runtime/capabilityEvolutionFeedAdapter.js\""
+        },
+        {
+          "line": 6,
+          "text": "TEST=\"discord_architect/tests/capabilityEvolutionFeedAdapter.test.js\""
+        },
+        {
+          "line": 7,
+          "text": "REPORT=\"data/reports/discord/capability_evolution_feed/discord_architect_adapter_verification.md\""
+        },
+        {
+          "line": 12,
+          "text": "id: connect_capability_feed_to_discord_architect_001"
+        },
+        {
+          "line": 13,
+          "text": "title: Connect capability evolution feed to Discord Architect"
+        },
+        {
+          "line": 18,
+          "text": "  Add a Discord Architect adapter that reads capability evolution closeout"
+        },
+        {
+          "line": 19,
+          "text": "  payloads and renders master-task-log send-ready messages."
+        },
+        {
+          "line": 21,
+          "text": "  - live_discord_capability_routing"
+        },
+        {
+          "line": 23,
+          "text": "  - closeout_to_discord_architect_bridge"
+        },
+        {
+          "line": 30,
+          "text": "  This bridges the capability closeout system into Discord Architect so"
+        },
+        {
+          "line": 33,
+          "text": "  - discord_architect/src/runtime/capabilityEvolutionFeedAdapter.js"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/discord_architect_create_channel_adapter_001.sh",
+      "score": 67,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "channel",
+        "guild",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 6,
+          "text": "mkdir -p discord_architect/src/adapters discord_architect/tests runtime/tasks runtime/scripts data/reports/discord_architect"
+        },
+        {
+          "line": 8,
+          "text": "cat > runtime/tasks/discord_architect_create_channel_adapter_001.yaml << 'YAML'"
+        },
+        {
+          "line": 9,
+          "text": "task_id: discord_architect_create_channel_adapter_001"
+        },
+        {
+          "line": 10,
+          "text": "title: Add Discord Architect create-channel adapter"
+        },
+        {
+          "line": 13,
+          "text": "domain: discord_governance"
+        },
+        {
+          "line": 19,
+          "text": "canonical_parent: discord_architect_apply_engine_001"
+        },
+        {
+          "line": 20,
+          "text": "lane: discord_infrastructure"
+        },
+        {
+          "line": 23,
+          "text": "  Add the first Discord API mutation adapter for Discord Architect. Only non-destructive"
+        },
+        {
+          "line": 24,
+          "text": "  create_channel operations are supported. Archive/delete/update/permission mutations remain blocked."
+        },
+        {
+          "line": 28,
+          "text": "  discord_mutation: gated"
+        },
+        {
+          "line": 30,
+          "text": "    - create_channel"
+        },
+        {
+          "line": 32,
+          "text": "    - archive_channel"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/inspect_discord_architect_channel_registry_001.sh",
+      "score": 67,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "guild",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 4,
+          "text": "echo \"== CHANNEL REGISTRY DISCOVERY ==\""
+        },
+        {
+          "line": 6,
+          "text": "find discord_architect data runtime -type f 2>/dev/null \\"
+        },
+        {
+          "line": 7,
+          "text": "  | grep -Ei 'channel|registry|manifest|webhook|runtime' \\"
+        },
+        {
+          "line": 11,
+          "text": "env | grep -E 'DISCORD_(BOT|GUILD|CHANNEL|WEBHOOK)' | sed 's/=.*/=<set>/'"
+        },
+        {
+          "line": 13,
+          "text": "echo \"CHANNEL_REGISTRY_DISCOVERY=PASS\""
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/inspect_discord_architect_registry_safe_001.sh",
+      "score": 67,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "guild",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 5,
+          "text": "cat discord_architect/config/server_registry.json 2>/dev/null || true"
+        },
+        {
+          "line": 9,
+          "text": "  discord_architect/src/runtime/liveDiscordMutationRuntime.js \\"
+        },
+        {
+          "line": 10,
+          "text": "  discord_architect/src/runtime/channelWebhookManager.js \\"
+        },
+        {
+          "line": 11,
+          "text": "  discord_architect/src/runtime/ensureRuntimeChannels.js \\"
+        },
+        {
+          "line": 12,
+          "text": "  discord_architect/config/server_registry.json"
+        },
+        {
+          "line": 19,
+          "text": "env | grep -E 'DISCORD_(BOT|GUILD|CHANNEL|WEBHOOK)' | sed 's/=.*/=<set>/' || true"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/discord_architect_registry_summary_001.py",
+      "score": 66,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "guild",
+        "DISCORD"
+      ],
+      "executable": false,
+      "sample": [
+        {
+          "line": 6,
+          "text": "registry = Path(\"discord_architect/config/server_registry.json\")"
+        },
+        {
+          "line": 7,
+          "text": "report = Path(\"data/reports/discord_architect/server_registry_summary.md\")"
+        },
+        {
+          "line": 14,
+          "text": "    \"# Discord Architect Server Registry\","
+        },
+        {
+          "line": 18,
+          "text": "    \"| Key | Guild ID | Environment | Managed | Protected |\","
+        },
+        {
+          "line": 25,
+          "text": "        f\"`{s.get('guild_id')}` | \""
+        },
+        {
+          "line": 34,
+          "text": "print(\"REPORT=data/reports/discord_architect/server_registry_summary.md\")"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/start_discord_webhook_sender_050.sh",
+      "score": 65,
+      "name_hits": [
+        "discord_webhook",
+        "webhook_sender"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "send",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 7,
+          "text": "cat runtime/tasks/add_discord_webhook_sender_050.yaml"
+        },
+        {
+          "line": 10,
+          "text": "echo \"== EXISTING DISCORD SURFACE ==\""
+        },
+        {
+          "line": 12,
+          "text": "  | grep -Ei 'discord|journal|webhook|payload' \\"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/bootstrap_discord_architect_command_deck_test_suite_001.sh",
+      "score": 64,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "channel",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 7,
+          "text": "  \"$ROOT/discord_architect/tests\" \\"
+        },
+        {
+          "line": 9,
+          "text": "  \"$ROOT/runtime/tasks/discord\" \\"
+        },
+        {
+          "line": 10,
+          "text": "  \"$ROOT/data/reports/discord_architect/test_suite\""
+        },
+        {
+          "line": 12,
+          "text": "cat > \"$ROOT/discord_architect/tests/commandDeckRuntime.test.js\" << 'JS'"
+        },
+        {
+          "line": 55,
+          "text": "    channel: \"market-live\","
+        },
+        {
+          "line": 111,
+          "text": "cat > \"$ROOT/tests/trading/test_discord_architect_command_deck_acceptance.py\" << 'PY'"
+        },
+        {
+          "line": 113,
+          "text": "@file Discord Architect command deck acceptance tests."
+        },
+        {
+          "line": 115,
+          "text": "@registry docs/recovery/recovery_registry.yaml#discord-architect-command-deck"
+        },
+        {
+          "line": 131,
+          "text": "        cwd=ROOT / \"discord_architect\","
+        },
+        {
+          "line": 143,
+          "text": "def test_live_card_payload_exists() -> None:"
+        },
+        {
+          "line": 144,
+          "text": "    payload = ROOT / \"data/reports/trading/live_cards/latest_live_market_card_payload.json\""
+        },
+        {
+          "line": 145,
+          "text": "    assert payload.exists()"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/bootstrap_planner_discord_architect_bridge_001.sh",
+      "score": 64,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "channel",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 4,
+          "text": "echo \"== PLANNER DISCORD ARCHITECT BRIDGE ==\""
+        },
+        {
+          "line": 6,
+          "text": "mkdir -p runtime/tasks/discord data/reports/planner_discord_bridge discord_architect/data/runtime/events"
+        },
+        {
+          "line": 8,
+          "text": "cat > runtime/tasks/discord/planner_discord_architect_bridge_001.yaml << 'YAML'"
+        },
+        {
+          "line": 9,
+          "text": "task_id: planner_discord_architect_bridge_001"
+        },
+        {
+          "line": 10,
+          "text": "title: Planner Discord Architect Bridge"
+        },
+        {
+          "line": 14,
+          "text": "  Emit planner next-lane and strategic queue updates as Discord Architect events."
+        },
+        {
+          "line": 16,
+          "text": "  - discord_architect/data/runtime/events/latest_planner_event.json"
+        },
+        {
+          "line": 17,
+          "text": "  - discord_architect/data/runtime/events/planner_events.jsonl"
+        },
+        {
+          "line": 18,
+          "text": "  - data/reports/planner_discord_bridge/latest_receipt.json"
+        },
+        {
+          "line": 20,
+          "text": "  - python runtime/scripts/emit_planner_discord_architect_event_001.py"
+        },
+        {
+          "line": 21,
+          "text": "  - DISCORD_DISPATCH_MODE=live python runtime/scripts/emit_planner_discord_architect_event_001.py"
+        },
+        {
+          "line": 24,
+          "text": "cat > runtime/scripts/emit_planner_discord_architect_event_001.py << 'PY'"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/create_master_task_log_webhook_with_discord_architect_001.sh",
+      "score": 64,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 4,
+          "text": "OUT=\"data/reports/discord_architect/master_task_log_webhook_create_receipt.json\""
+        },
+        {
+          "line": 7,
+          "text": "DISCORD_DISPATCH_MODE=\"${DISCORD_DISPATCH_MODE:-dry-run}\" node - << 'JS'"
+        },
+        {
+          "line": 9,
+          "text": "  ensureWebhook"
+        },
+        {
+          "line": 10,
+          "text": "} = require('./discord_architect/src/runtime/channelWebhookManager');"
+        },
+        {
+          "line": 12,
+          "text": "const receipt = ensureWebhook("
+        },
+        {
+          "line": 14,
+          "text": "    channelKey: 'master-task-log',"
+        },
+        {
+          "line": 15,
+          "text": "    webhookName: 'Dream.OS Capability Feed',"
+        },
+        {
+          "line": 16,
+          "text": "    mode: process.env.DISCORD_DISPATCH_MODE || 'dry-run',"
+        },
+        {
+          "line": 19,
+          "text": "    receiptPath: 'data/reports/discord_architect/master_task_log_webhook_create_receipt.json'"
+        },
+        {
+          "line": 27,
+          "text": "grep -q '\"mutationType\": \"webhook.ensure\"' \"$OUT\""
+        },
+        {
+          "line": 29,
+          "text": "echo \"DISCORD_ARCHITECT_WEBHOOK_ENSURE=PASS\""
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/discord_architect_backup_cli_001.sh",
+      "score": 64,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "channel",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 7,
+          "text": "  discord_architect/src/cli \\"
+        },
+        {
+          "line": 8,
+          "text": "  discord_architect/tests \\"
+        },
+        {
+          "line": 9,
+          "text": "  discord_architect/schemas/backups \\"
+        },
+        {
+          "line": 10,
+          "text": "  data/reports/discord_architect \\"
+        },
+        {
+          "line": 14,
+          "text": "cat > runtime/tasks/discord_architect_backup_cli_001.yaml << 'YAML'"
+        },
+        {
+          "line": 15,
+          "text": "task_id: discord_architect_backup_cli_001"
+        },
+        {
+          "line": 16,
+          "text": "title: Add Discord Architect backup CLI"
+        },
+        {
+          "line": 19,
+          "text": "domain: discord_governance"
+        },
+        {
+          "line": 25,
+          "text": "canonical_parent: discord_manager_architect_upgrade_001"
+        },
+        {
+          "line": 26,
+          "text": "lane: discord_infrastructure"
+        },
+        {
+          "line": 29,
+          "text": "  Add governed backup generation for Discord Architect schemas before any future"
+        },
+        {
+          "line": 34,
+          "text": "  discord_mutation: false"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/emit_trading_thesis_discord_architect_001.sh",
+      "score": 64,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "channel",
+        "payload",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 5,
+          "text": "EVENT_DIR=\"$ROOT/discord_architect/data/runtime/events\""
+        },
+        {
+          "line": 6,
+          "text": "PAYLOAD=\"$ROOT/runtime/events/trading/latest_tsla_discord_payload.json\""
+        },
+        {
+          "line": 16,
+          "text": "payload = json.loads((root / \"runtime/events/trading/latest_tsla_discord_payload.json\").read_text(encoding=\"utf-8\"))"
+        },
+        {
+          "line": 22,
+          "text": "    \"target_channel\": \"trading-thesis\","
+        },
+        {
+          "line": 25,
+          "text": "    \"title\": payload.get(\"title\", \"TSLA Thesis Update\"),"
+        },
+        {
+          "line": 26,
+          "text": "    \"summary\": payload.get(\"body\", \"\"),"
+        },
+        {
+          "line": 27,
+          "text": "    \"payload\": payload,"
+        },
+        {
+          "line": 30,
+          "text": "        \"renderer\": \"discord_architect\","
+        },
+        {
+          "line": 35,
+          "text": "out = root / \"discord_architect/data/runtime/events/latest_trading_thesis_event.json\""
+        },
+        {
+          "line": 38,
+          "text": "journal = root / \"discord_architect/data/runtime/events/trading_thesis_events.jsonl\""
+        },
+        {
+          "line": 42,
+          "text": "print(\"DISCORD_ARCHITECT_EVENT=PASS\")"
+        },
+        {
+          "line": 47,
+          "text": "if [ -f discord_architect/tests/supervisorDaemon.test.js ]; then"
+        }
+      ]
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/persist_discord_architect_ids_001.sh",
+      "score": 64,
+      "name_hits": [
+        "discord_architect"
+      ],
+      "content_hits": [
+        "discord",
+        "channel",
+        "guild",
+        "DISCORD"
+      ],
+      "executable": true,
+      "sample": [
+        {
+          "line": 4,
+          "text": "ENV_FILE=\"$HOME/.dreamos_discord.env\""
+        },
+        {
+          "line": 5,
+          "text": "GUILD_ID=\"1375298054357254257\""
+        },
+        {
+          "line": 6,
+          "text": "CHANNEL_ID=\"1507178843495071756\""
+        },
+        {
+          "line": 10,
+          "text": "grep -v '^export DISCORD_GUILD_ID=' \"$ENV_FILE\" | \\"
+        },
+        {
+          "line": 11,
+          "text": "grep -v '^export DISCORD_MASTER_TASK_LOG_CHANNEL_ID=' > \"${ENV_FILE}.tmp\" || true"
+        },
+        {
+          "line": 16,
+          "text": "export DISCORD_GUILD_ID='$GUILD_ID'"
+        },
+        {
+          "line": 17,
+          "text": "export DISCORD_MASTER_TASK_LOG_CHANNEL_ID='$CHANNEL_ID'"
+        },
+        {
+          "line": 20,
+          "text": "echo \"DISCORD_ARCHITECT_IDS_PERSISTED=PASS\""
+        },
+        {
+          "line": 25,
+          "text": "runtime/scripts/probe_discord_master_task_log_env_001.sh"
+        }
+      ]
+    }
+  ],
+  "help_results_redacted": [
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_paper_trade_payload.py",
+      "code": 2,
+      "tail": "CHECK_FAILED: missing payload runtime/trading/discord/latest_paper_trade_payload.json\n\n"
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_journal_payload.py",
+      "code": 0,
+      "tail": "usage: send_discord_journal_payload.py [-h] [--journal JOURNAL]\n                                       [--limit LIMIT]\n                                       [--webhook-url WEBHOOK_URL] [--live]\n                                       [--dry-run] [--timeout TIMEOUT]\n                                       [--retry-queue RETRY_QUEUE]\n                                       [--journal-attempt]\n\nSend Dream.OS journal cards to Discord webhook.\n\noptions:\n  -h, --help            show this help message and exit\n  --journal JOURNAL\n  --limit LIMIT\n  --webhook-url WEBHOOK_URL\n  --live                Actually post to Discord.\n  --dry-run             Validate payload without posting.\n  --timeout TIMEOUT\n  --retry-queue RETRY_QUEUE\n                        Path to Discord delivery retry queue JSONL.\n  --journal-attempt     Append Discord delivery attempt result to execution\n                        journal.\n\n"
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/configure_discord_architect_001.py",
+      "code": 0,
+      "tail": "usage: configure_discord_architect_001.py [-h] [--bot BOT] [--channel CHANNEL]\n                                          [--create-webhook] [--test]\n                                          [--dry-run]\n\nConfigure Discord Architect through Dream.OS Secret Broker\n\noptions:\n  -h, --help         show this help message and exit\n  --bot BOT\n  --channel CHANNEL\n  --create-webhook\n  --test\n  --dry-run\n\n"
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/emit_latest_closeout_discord_architect_001.py",
+      "code": 1,
+      "tail": "\nDREAMCLOSE_DISCORD_EVENT=FAIL missing data/closeouts/latest.json and CPC latest\n"
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/emit_planner_discord_architect_event_001.py",
+      "code": 1,
+      "tail": "PLANNER_DISCORD_ARCHITECT_EVENT=FAIL\n\nnode:internal/modules/cjs/loader:1478\n  throw err;\n  ^\n\nError: Cannot find module './discord_architect/src/runtime/liveCapabilityEventDispatcher.js'\nRequire stack:\n- /data/data/com.termux/files/home/projects/websites/[eval]\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)\n    at Module._load (node:internal/modules/cjs/loader:1261:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.require (node:internal/modules/cjs/loader:1575:12)\n    at require (node:internal/modules/helpers:191:16)\n    at [eval]:3:37\n    at runScriptInThisContext (node:internal/vm:219:10) {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: [ '/data/data/com.termux/files/home/projects/websites/[eval]' ]\n}\n\nNode.js v25.8.2\n\n\n"
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_trading_test_message.sh",
+      "code": 2,
+      "tail": "DISCORD_TEST=SKIPPED missing_DISCORD_TRADING_WEBHOOK_URL\n\n"
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/bootstrap_discord_architect_channel_webhook_manager_001.sh",
+      "code": 0,
+      "tail": "channelWebhookManager.test.js PASS\nDISCORD_ARCHITECT_CHANNEL_WEBHOOK_MANAGER=PASS\nREPORT=data/reports/discord_architect/channel_webhook_manager_verification.md\n\n"
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/verify_discord_architect_integrity_001.sh",
+      "code": 1,
+      "tail": "== VERIFY DISCORD ARCHITECT INTEGRITY ==\n== GUARD: node_modules must not be tracked ==\nNODE_MODULES_TRACKED=PASS\n== GUARD: dependency lock exists ==\n\n"
+    }
+  ],
+  "guardrail": "Resolution only. No dispatch. Webhook URLs redacted."
+}

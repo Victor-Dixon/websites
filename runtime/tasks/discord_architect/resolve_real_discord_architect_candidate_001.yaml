@@ -1,0 +1,15 @@
+id: resolve_real_discord_architect_candidate_001
+title: Resolve real Discord Architect candidate
+status: done
+agent: DiscordArchitect
+lane: closeout_feed
+priority: high
+
+objective: >
+  Resolve the real local Discord Architect CLI/sender candidate without selecting cache auditors
+  or generated reports.
+
+guardrails:
+  - Do not dispatch.
+  - Do not print webhook URLs.
+  - Do not commit secrets.
