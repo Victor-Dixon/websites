@@ -1,0 +1,31 @@
+id: rerank_robinhood_contract_identity_raw_sources_001
+lane: trading_data
+status: ready
+target: DreamVault trading artifacts
+intent: >
+  Re-rank Robinhood option contract identity sources while excluding generated
+  replay reports, yfinance rebuild reports, CPC reports, and derived trade-pair
+  artifacts. Find only raw or near-raw Robinhood/order/activity sources that
+  can attach option contract identity to fills.
+exclude_derived:
+  - data/reports/trading/tsla_option_trade_pairs_001.json
+  - data/reports/trading/robinhood_tsla_matches_yfinance_001.json
+  - data/reports/trading/tsla_yfinance_full_rebuild_001.json
+  - data/reports/trading/robinhood_contract_identity_source_rank_001.json
+  - data/reports/cpc
+required_fields:
+  - order_id
+  - timestamp
+  - side
+  - quantity
+  - price
+  - option_symbol OR contract_id OR instrument OR strike+expiration+call_put
+outputs:
+  - data/reports/trading/robinhood_contract_identity_raw_source_rank_001.json
+  - data/reports/trading/robinhood_contract_identity_raw_source_rank_001.md
+verification:
+  - python runtime/scripts/rerank_robinhood_contract_identity_raw_sources_001.py
+  - test -f data/reports/trading/robinhood_contract_identity_raw_source_rank_001.json
+  - test -f data/reports/trading/robinhood_contract_identity_raw_source_rank_001.md
+commit:
+  message: Re-rank raw Robinhood contract identity sources

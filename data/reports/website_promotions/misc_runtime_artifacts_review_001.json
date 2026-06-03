@@ -1,0 +1,101 @@
+{
+  "generated_at": "2026-06-03T17:02:00",
+  "status": "REVIEWED",
+  "source": "data/reports/website_promotions/websites_dirty_bucket_split_001.json",
+  "item_count": 7,
+  "decision_counts": {
+    "REVIEW_DEEPER": 4,
+    "QUARANTINE_CANDIDATE": 2,
+    "KEEP_CANDIDATE": 1
+  },
+  "items": [
+    {
+      "path": "_tmp",
+      "decision": "REVIEW_DEEPER",
+      "reason": "misc runtime artifact needs deeper inspection",
+      "risk_flags": [
+        "possible_sensitive_surface"
+      ],
+      "file_count": 67,
+      "size": 0
+    },
+    {
+      "path": "data/reports/website_promotions",
+      "decision": "REVIEW_DEEPER",
+      "reason": "misc runtime artifact needs deeper inspection",
+      "risk_flags": [],
+      "file_count": 21,
+      "size": 0
+    },
+    {
+      "path": "runtime/docs",
+      "decision": "REVIEW_DEEPER",
+      "reason": "misc runtime artifact needs deeper inspection",
+      "risk_flags": [
+        "runtime_docs"
+      ],
+      "file_count": 1,
+      "size": 0
+    },
+    {
+      "path": "runtime/scripts/hostinger_wp_manager.py.bak_052",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "backup script should be preserved outside active source",
+      "risk_flags": [
+        "possible_sensitive_surface",
+        "backup_file",
+        "runtime_script"
+      ],
+      "file_count": 1,
+      "size": 5356
+    },
+    {
+      "path": "runtime/scripts/rerank_robinhood_contract_identity_raw_sources_001.py",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "runtime script has risk/operational signals; quarantine before reuse",
+      "risk_flags": [
+        "possible_sensitive_surface",
+        "runtime_script"
+      ],
+      "file_count": 1,
+      "size": 8925
+    },
+    {
+      "path": "runtime/spark-battle-sim",
+      "decision": "REVIEW_DEEPER",
+      "reason": "misc runtime artifact needs deeper inspection",
+      "risk_flags": [
+        "possible_sensitive_surface",
+        "runtime_plugin_or_package"
+      ],
+      "file_count": 5,
+      "size": 0
+    },
+    {
+      "path": "runtime/tasks/trading/rerank_robinhood_contract_identity_raw_sources_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "trading task is durable lane metadata",
+      "risk_flags": [
+        "trading_task"
+      ],
+      "file_count": 1,
+      "size": 1364
+    }
+  ],
+  "next_lanes": [
+    {
+      "id": "commit_misc_runtime_keep_artifacts_001",
+      "target": "KEEP_CANDIDATE misc runtime artifacts",
+      "action": "stage only keep candidates plus review metadata",
+      "verify": "cached scope excludes quarantine candidates and DaDudeKC promotion content",
+      "commit": "Commit misc runtime artifacts"
+    },
+    {
+      "id": "quarantine_misc_runtime_risk_artifacts_001",
+      "target": "QUARANTINE_CANDIDATE misc runtime artifacts",
+      "action": "move backup/risk runtime artifacts into quarantine with manifest",
+      "verify": "originals cleared, manifest references moved files",
+      "commit": "Quarantine misc runtime risk artifacts"
+    }
+  ]
+}
