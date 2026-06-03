@@ -1,0 +1,15 @@
+id: repair_dadudekc_live_theme_content_cache_001
+project: emergence
+target: dadudekc.site live render repair
+status: ready
+objective:
+  - Repair mismatch where public root still shows old comic/archive page and Hostinger footer junk.
+  - Verify active theme, front page ID, post content, theme footer parts, and cache state.
+  - Redeploy premium Spark OS page content.
+  - Flush WordPress/LiteSpeed/object caches.
+acceptance:
+  - Active theme is dreamos-emergence.
+  - Front page points to the-emergence.
+  - Root HTML contains Spark OS premium copy.
+  - Root HTML does not contain old archive header or Hostinger placeholder footer strings.
+commit_message: Repair dadudekc live theme/content/cache mismatch

@@ -1,0 +1,15 @@
+id: repair_dadudekc_block_template_overrides_001
+project: emergence
+target: dadudekc.site stale WordPress block template overrides
+status: ready
+objective:
+  - Remove stale Hostinger footer/template overrides that survive theme file replacement.
+  - Ensure public root renders premium Spark OS page, not old comic archive.
+  - Ensure rendered HTML no longer contains Hostinger placeholder footer strings.
+acceptance:
+  - Active theme is dreamos-emergence.
+  - Front page is The Emergence page.
+  - Stale wp_template/wp_template_part overrides are inspected and deleted only when tied to Hostinger placeholder content.
+  - Public root does not contain Spark Protocol Archive.
+  - Public root does not contain trans-menu/trans-contacts/email@email.com/+123456789/trans-socials/trans-newsletter.
+commit_message: Repair dadudekc block template overrides

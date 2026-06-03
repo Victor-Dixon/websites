@@ -1,0 +1,146 @@
+{
+  "generated_at": "2026-06-03T16:58:23",
+  "status": "REVIEWED",
+  "source": "data/reports/website_promotions/websites_dirty_bucket_split_001.json",
+  "item_count": 14,
+  "decision_counts": {
+    "KEEP_CANDIDATE": 13,
+    "REVIEW_DEEPER": 1
+  },
+  "items": [
+    {
+      "path": "runtime/tasks/emergence/add_emergence_page_design_registry_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "Emergence task is durable planning/execution metadata",
+      "risk_flags": [],
+      "size": 660
+    },
+    {
+      "path": "runtime/tasks/emergence/clean_dadudekc_theme_placeholders_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "Emergence task is durable planning/execution metadata",
+      "risk_flags": [],
+      "size": 639
+    },
+    {
+      "path": "runtime/tasks/emergence/clean_dadudekc_theme_placeholders_002.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface"
+      ],
+      "size": 630
+    },
+    {
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_with_deployer_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface"
+      ],
+      "size": 582
+    },
+    {
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_with_deployer_002.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface"
+      ],
+      "size": 510
+    },
+    {
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_wp_page_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface"
+      ],
+      "size": 544
+    },
+    {
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_wp_page_002.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface"
+      ],
+      "size": 574
+    },
+    {
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_wp_page_003.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "possible_sensitive_surface",
+        "deployment_surface"
+      ],
+      "size": 574
+    },
+    {
+      "path": "runtime/tasks/emergence/force_dadudekc_public_root_spark_os_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface",
+        "repair_lane"
+      ],
+      "size": 691
+    },
+    {
+      "path": "runtime/tasks/emergence/promote_emergence_comic_archive_homepage_001.yaml",
+      "decision": "REVIEW_DEEPER",
+      "reason": "Emergence task needs manual inspection before final action",
+      "risk_flags": [],
+      "size": 655
+    },
+    {
+      "path": "runtime/tasks/emergence/redesign_emergence_premium_spark_os_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface"
+      ],
+      "size": 826
+    },
+    {
+      "path": "runtime/tasks/emergence/repair_dadudekc_block_template_overrides_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface",
+        "repair_lane"
+      ],
+      "size": 850
+    },
+    {
+      "path": "runtime/tasks/emergence/repair_dadudekc_live_theme_content_cache_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface",
+        "repair_lane"
+      ],
+      "size": 708
+    },
+    {
+      "path": "runtime/tasks/emergence/repair_dreamos_theme_placeholder_guard_001.yaml",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "deployment task artifact is durable lane evidence; keep as task history, not active deployment output",
+      "risk_flags": [
+        "deployment_surface",
+        "repair_lane"
+      ],
+      "size": 684
+    }
+  ],
+  "next_lanes": [
+    {
+      "id": "commit_emergence_task_bucket_keep_001",
+      "target": "KEEP_CANDIDATE Emergence tasks",
+      "action": "stage only reviewed Emergence task artifacts plus review metadata",
+      "verify": "cached scope excludes runtime/content, runtime/spark-battle-sim, misc runtime artifacts",
+      "commit": "Commit Emergence task artifacts"
+    }
+  ]
+}

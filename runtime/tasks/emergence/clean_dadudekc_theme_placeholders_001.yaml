@@ -1,0 +1,13 @@
+id: clean_dadudekc_theme_placeholders_001
+project: emergence
+target: dadudekc.site WordPress theme/footer placeholders
+status: ready
+objective:
+  - Locate and remove theme/footer placeholder junk from dadudekc.site.
+  - Avoid destructive serialized option edits unless safe.
+  - Prefer hiding/removing placeholders through CSS override or safe WP options first.
+acceptance:
+  - Root page no longer displays trans-menu/trans-contacts/email@email.com/+123456789/trans-socials/trans-newsletter.
+  - Cleanup report identifies where placeholders were found.
+  - No theme PHP files are deleted.
+commit_message: Clean dadudekc theme placeholders

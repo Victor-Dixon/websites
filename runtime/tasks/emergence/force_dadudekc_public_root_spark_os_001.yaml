@@ -1,0 +1,15 @@
+id: force_dadudekc_public_root_spark_os_001
+project: emergence
+target: dadudekc.site public root
+status: ready
+objective:
+  - Repair public root still serving stale comic/archive page.
+  - Purge WordPress/LiteSpeed/cache layers harder.
+  - If plain root remains stale, install reversible static index.html override from premium Spark OS source.
+acceptance:
+  - Plain https://dadudekc.site/ returns HTTP 200.
+  - Plain root contains Spark OS.
+  - Plain root does not contain Spark Protocol Archive.
+  - Plain root does not contain Hostinger footer placeholders.
+  - Static override, if used, backs up existing index.html first.
+commit_message: Force dadudekc public root to Spark OS homepage

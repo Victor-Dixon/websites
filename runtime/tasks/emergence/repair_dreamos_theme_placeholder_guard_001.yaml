@@ -1,0 +1,16 @@
+id: repair_dreamos_theme_placeholder_guard_001
+project: emergence
+target: dreamos-emergence theme placeholder guard
+status: ready
+objective:
+  - Fix false-positive placeholder scan caused by defensive cleanup code containing placeholder literals.
+  - Keep custom DreamOS Emergence theme active.
+  - Reinstall theme and verify live routes.
+acceptance:
+  - Theme source no longer contains literal Hostinger placeholder strings.
+  - Root URL returns HTTP 200.
+  - /the-emergence/ returns HTTP 200.
+  - /spark-generator/ returns HTTP 200.
+  - /spark-battle-sim/ returns HTTP 200.
+  - Rendered HTML does not contain placeholder junk.
+commit_message: Repair DreamOS theme placeholder guard

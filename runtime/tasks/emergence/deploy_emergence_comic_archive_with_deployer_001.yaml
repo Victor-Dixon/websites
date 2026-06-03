@@ -1,0 +1,14 @@
+id: deploy_emergence_comic_archive_with_deployer_001
+project: emergence
+target: dadudekc.site emergence preview
+status: ready
+objective:
+  - Use the existing website deployer/Hostinger manager instead of manual upload.
+  - Deploy the comic archive homepage to a preview URL first.
+  - Verify remote file and HTTP response.
+acceptance:
+  - Source page exists locally.
+  - Existing deployer is detected.
+  - Preview target is emergence-preview/index.html.
+  - Deployment report records command path and verification result.
+commit_message: Add Emergence comic archive deployer report

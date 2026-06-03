@@ -1,0 +1,13 @@
+id: deploy_emergence_comic_archive_wp_page_002
+project: emergence
+target: dadudekc.site WordPress preview page
+status: ready
+objective:
+  - Retry WordPress deploy with stricter fragment extraction.
+  - Strip standalone HTML wrappers before upsert-page.
+  - Publish preview at /emergence-preview/.
+acceptance:
+  - WordPress fragment has no doctype/html/head/body wrapper tags.
+  - Existing Hostinger WordPress manager performs the deploy.
+  - HTTP probe confirms The Emergence and What-If Arena copy.
+commit_message: Add Emergence comic archive WordPress deploy retry report

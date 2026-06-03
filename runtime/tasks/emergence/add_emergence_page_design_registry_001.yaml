@@ -1,0 +1,13 @@
+id: add_emergence_page_design_registry_001
+project: emergence
+target: Emergence page design registry
+status: ready
+objective:
+  - Define every live Emergence page by route, purpose, CTA, visual template, and functionality status.
+  - Stop random page-by-page drift.
+  - Establish patch order for bringing the whole site to life.
+acceptance:
+  - Registry covers homepage, Spark generator, Spark battle sim, Protocol, Battles, Character Generator, Build Log, Client Preview.
+  - Each page has role, user intent, CTA, design direction, and next patch.
+  - Registry identifies canonical routes and legacy routes.
+commit_message: Add Emergence page design registry

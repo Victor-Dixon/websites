@@ -1,0 +1,13 @@
+id: deploy_emergence_comic_archive_wp_page_001
+project: emergence
+target: dadudekc.site WordPress preview page
+status: ready
+objective:
+  - Use existing Hostinger WordPress manager.
+  - Convert standalone comic archive HTML into a WordPress-safe content fragment.
+  - Upsert preview page at /emergence-preview/.
+acceptance:
+  - hostinger_wp_manager.py is used.
+  - upsert-page command succeeds.
+  - Preview URL returns page content containing The Emergence and What-If Arena.
+commit_message: Add Emergence comic archive WordPress deploy report

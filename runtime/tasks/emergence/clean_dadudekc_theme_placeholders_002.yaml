@@ -1,0 +1,15 @@
+id: clean_dadudekc_theme_placeholders_002
+project: emergence
+target: dadudekc.site active WordPress theme footer parts
+status: ready
+objective:
+  - Remove visible Hostinger AI theme placeholder footer junk.
+  - Backup remote theme footer parts before patching.
+  - Replace placeholder footer parts with branded Spark OS footer.
+acceptance:
+  - footer.html and footer-landing.html are backed up remotely before edit.
+  - Root URL returns HTTP 200.
+  - /the-emergence/ returns HTTP 200.
+  - Placeholder strings are absent from root/page HTML.
+  - No theme/plugin files are deleted.
+commit_message: Clean dadudekc theme placeholders
