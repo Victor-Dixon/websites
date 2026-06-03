@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FreeRideInvestor | Agent-Powered Trading Journal</title>
+  <meta name="description" content="An agent-powered trading journal that reconstructs trades, scores behavior, and reveals the trader behind the trades.">
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #b6c2d1;
+      --line: rgba(255,255,255,.12);
+      --accent: #70e1ff;
+      --accent2: #a78bfa;
+      --danger: #fb7185;
+      --good: #86efac;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #16213a 0, var(--bg) 45%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .hero { padding: 86px 0 64px; }
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      font-size: 14px;
+    }
+    h1 {
+      max-width: 880px;
+      margin: 24px 0 16px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: .95;
+      letter-spacing: -0.06em;
+    }
+    .sub {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 23px);
+    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid var(--line);
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #020617;
+      border: 0;
+    }
+    .btn.secondary { background: rgba(255,255,255,.06); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 40px 0;
+    }
+    .card {
+      background: rgba(17,24,39,.78);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.22);
+    }
+    .card h3 { margin-top: 0; font-size: 18px; }
+    .card p, .card li { color: var(--muted); }
+    .section { padding: 54px 0; }
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(30px, 4vw, 48px);
+      letter-spacing: -0.04em;
+    }
+    .two {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .proof {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .metric {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+    }
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .metric span { color: var(--muted); font-size: 14px; }
+    .quote {
+      font-size: 26px;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .warning { color: var(--danger); font-weight: 800; }
+    .good { color: var(--good); font-weight: 800; }
+    .form {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 14px;
+      font: inherit;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 12px;
+      min-height: 52px;
+      padding: 0 22px;
+      font: inherit;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #020617;
+    }
+    .fine { color: var(--muted); font-size: 13px; }
+    footer { padding: 40px 0; color: var(--muted); border-top: 1px solid var(--line); }
+    @media (max-width: 860px) {
+      .grid, .two, .proof { grid-template-columns: 1fr; }
+      .hero { padding-top: 56px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">FreeRideInvestor · powered by Dream.OS</div>
+        <h1>Stop wondering why your trades keep breaking discipline.</h1>
+        <p class="sub">An agent-powered trading journal that reconstructs your trades, scores your behavior, and reveals the patterns costing you execution quality.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#early-access">Join the early access list</a>
+          <a class="btn secondary" href="#proof">See the replay proof</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap two">
+        <div>
+          <h2>A normal journal records what happened.</h2>
+          <p class="sub">FreeRideInvestor shows what your behavior repeated.</p>
+        </div>
+        <div class="card">
+          <h3>The real problem</h3>
+          <p>Your trading story is scattered across broker fills, chart movement, screenshots, thesis notes, emotions, exits, missed continuations, and repeated mistakes.</p>
+          <p class="warning">More candles do not fix behavior. Better reconstruction does.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proof">
+      <div class="wrap">
+        <h2>Replay proof already works.</h2>
+        <p class="sub">Dream.OS reconstructed a TSLA options trading month into a fill-level behavior scorecard.</p>
+        <div class="proof">
+          <div class="metric"><strong>47/47</strong><span>fills matched</span></div>
+          <div class="metric"><strong>5,760</strong><span>1-minute candles</span></div>
+          <div class="metric"><strong>62/100</strong><span>discipline baseline</span></div>
+          <div class="metric"><strong>8</strong><span>behavior tags</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap grid">
+        <div class="card">
+          <h3>Behavior Tags</h3>
+          <ul>
+            <li>Rapid repeat fills</li>
+            <li>Fast debit/credit flips</li>
+            <li>Chase-risk buys</li>
+            <li>Possible panic exits</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Scorecard</h3>
+          <ul>
+            <li>Patience score</li>
+            <li>Flip control</li>
+            <li>Chase control</li>
+            <li>Exit quality</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Next Rule</h3>
+          <p>After any debit fill, wait at least one full 1-minute candle close before adding or flipping, unless thesis invalidation is hit.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap two">
+        <div class="card">
+          <h3>What it answers</h3>
+          <ul>
+            <li>Was I chasing?</li>
+            <li>Was I adding too quickly?</li>
+            <li>Was I flipping sides too fast?</li>
+            <li>What hour did I overtrade?</li>
+            <li>What behavior repeated?</li>
+          </ul>
+        </div>
+        <div>
+          <p class="quote">The edge is not AI predicting TSLA. The edge is AI proving where the trader breaks discipline before the account breaks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="early-access">
+      <div class="wrap two">
+        <div>
+          <h2>Join the early access list.</h2>
+          <p class="sub">Bring your trades. Leave with your pattern.</p>
+          <p class="fine">Early access is for traders who want behavior replay, not trade signals. Exact option P/L requires broker contract identity support.</p>
+        </div>
+        <form class="card form" name="freerideinvestor-early-access" method="post" action="#">
+          <input name="name" placeholder="Name" autocomplete="name">
+          <input name="email" placeholder="Email" autocomplete="email">
+          <textarea name="message" placeholder="What do you want the journal to reveal about your trading?"></textarea>
+          <button type="submit">Request early access</button>
+          <p class="fine">Form action is placeholder until connected to CRM/email capture.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      FreeRideInvestor · Agent-powered trading journal · Powered by Dream.OS
+    </div>
+  </footer>
+</body>
+</html>

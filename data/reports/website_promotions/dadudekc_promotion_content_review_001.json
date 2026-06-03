@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-06-03T17:14:12",
+  "status": "REVIEWED",
+  "item_count": 1,
+  "decision_counts": {
+    "ATTACH_TO_DADUDEKC_PROMOTION": 1
+  },
+  "item": {
+    "path": "runtime/content/dadudekc.site/client-preview.freeride-funnel-candidate.html",
+    "decision": "ATTACH_TO_DADUDEKC_PROMOTION",
+    "reason": "HTML preview is likely useful source material for the DaDudeKC service funnel promotion, but should be repositioned away from FreeRide-only branding if needed",
+    "risk_flags": [
+      "trading_brand_content",
+      "preview_artifact"
+    ],
+    "signals": {
+      "mentions_dadudekc": false,
+      "mentions_freeride": true,
+      "mentions_dream": true,
+      "mentions_service": false,
+      "mentions_client": false,
+      "mentions_funnel": false,
+      "has_html": true
+    },
+    "title": "FreeRideInvestor | Agent-Powered Trading Journal",
+    "size": 8824
+  },
+  "next_lane": {
+    "target": "DaDudeKC website promotion into websites SSOT",
+    "action": "promote DaDudeKC source repo package and attach reviewed preview content as source/proof material",
+    "verify": "websites worktree contains only DaDudeKC promotion scope before commit/delete",
+    "commit": "Promote DaDudeKC website service funnel"
+  }
+}

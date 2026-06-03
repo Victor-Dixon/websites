@@ -1,0 +1,67 @@
+DaDudeKC-Platform/
+│
+├── home/                                  # Home section with carousel
+│   ├── index.html                         # Entry point to the website
+│   ├── home.js                            # Interactive scripts for the homepage
+│   └── home.scss                          # Styles for the homepage
+│
+├── technology/                            # Technology blog section
+│   ├── index.html
+│   ├── tech.js
+│   └── tech.scss
+│
+├── finance-learning/                      # Finance learning series section
+│   ├── index.html
+│   ├── finance.js
+│   └── finance.scss
+│
+├── algorithmic-trading/                   # Algorithmic trading blog section
+│   ├── index.html
+│   ├── trading.js
+│   └── trading.scss
+│
+├── gaming/                                # Gaming showcase section
+│   ├── index.html
+│   ├── gaming.js
+│   └── gaming.scss
+│
+├── assets/                                # Static files like images, fonts, etc.
+│   ├── images/
+│   ├── fonts/
+│   └── videos/
+│
+├── common/                                # Common assets and scripts
+│   ├── js/
+│   │   ├── utils.js                       # Utility functions
+│   │   └── animations.js                  # Animations across the site
+│   ├── css/
+│   │   ├── common.scss                    # Common styles
+│   │   └── variables.scss                 # SCSS variables
+│   └── lib/
+│       ├── jquery.js                      # jQuery library
+│       └── bootstrap.js                   # Bootstrap library
+│
+├── hidden-features/                       # Hidden menus and easter eggs
+│   └── secrets.js
+│
+├── api/                                   # API for dynamic content
+│   ├── blog-api.js
+│   ├── finance-api.js
+│   └── gaming-api.js
+│
+├── db/                                    # Database related files
+│   ├── models.js                          # Database models
+│   └── db-connection.js                   # Database connection utilities
+│
+├── server/                                # Server-side scripts
+│   ├── server.js                          # Main server script
+│   └── routes.js                          # API and route definitions
+│
+├── footer/                                # Footer section
+│   ├── footer.html
+│   ├── footer.js
+│   └── footer.scss
+│
+├── node_modules/                          # Node.js modules (not tracked)
+├── package.json                           # Project metadata and dependencies
+└── README.md                              # Project README file

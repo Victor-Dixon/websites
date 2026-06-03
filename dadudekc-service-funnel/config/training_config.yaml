@@ -1,0 +1,36 @@
+# CartPole Training Configuration
+# ==============================
+
+# Training Parameters
+training:
+  episodes: 1000
+  max_timesteps: 500
+  save_interval: 100
+  
+# Q-Learning Parameters
+q_learning:
+  gamma: 0.99              # Discount factor
+  epsilon_start: 1.0        # Starting exploration rate
+  epsilon_min: 0.01         # Minimum exploration rate
+  epsilon_decay: 0.995      # Exploration rate decay
+  
+# Neural Network Parameters
+network:
+  hidden_size: 64           # Hidden layer size
+  learning_rate: 0.001      # Learning rate
+  
+# Training Batch Parameters
+batch:
+  batch_size: 20            # Batch size for training
+  memory_size: 2000         # Maximum replay memory size
+  
+# Model Saving
+model:
+  save_dir: "models"        # Directory to save models
+  filename_prefix: "q_network"
+  
+# Evaluation
+evaluation:
+  episodes: 10              # Number of evaluation episodes
+  no_exploration: true      # No exploration during evaluation
+

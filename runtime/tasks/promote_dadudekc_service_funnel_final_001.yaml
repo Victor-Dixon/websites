@@ -1,0 +1,35 @@
+id: promote_dadudekc_service_funnel_final_001
+title: Promote DaDudeKC website service funnel
+status: done
+lane: website_promotion
+priority: high
+
+source_repo:
+  path: /data/data/com.termux/files/home/projects/DaDudeKC-Website
+  branch: main
+  head: 0376087
+  restored_dirty_count_before_copy: 0
+
+destination:
+  repo: websites
+  package_path: dadudekc-service-funnel
+
+host_decision:
+  canonical_host: weareswarm
+  canonical_path: /dreamos-services
+  package_path: dadudekc-service-funnel
+
+attached_content:
+  source: runtime/content/dadudekc.site/client-preview.freeride-funnel-candidate.html
+  destination: dadudekc-service-funnel/funnel-previews/client-preview.freeride-funnel-candidate.html
+  decision: ATTACH_TO_DADUDEKC_PROMOTION
+
+purpose: >
+  Promote the original DaDudeKC website theme into the websites SSOT as a
+  Dream.OS development and web development services sales funnel.
+
+verification:
+  - non-DaDudeKC blockers cleared before promotion
+  - source assets restored before copy
+  - reviewed preview content attached
+  - old standalone repo archived before deletion

@@ -1,0 +1,24 @@
+{
+  "id": "weareswarm_dreamos_services_route_001",
+  "status": "ROUTE_DECISION_READY",
+  "canonical_host": "weareswarm",
+  "canonical_path": "/dreamos-services",
+  "package_path": "dadudekc-service-funnel",
+  "source_repo": "/data/data/com.termux/files/home/projects/DaDudeKC-Website",
+  "source_head": "0376087",
+  "purpose": "Dream.OS development and web development services sales funnel",
+  "redirects": [
+    {
+      "from": "dadudekc.site",
+      "to": "weareswarm:/dreamos-services"
+    },
+    {
+      "from": "dreamos.ai:/services",
+      "to": "weareswarm:/dreamos-services",
+      "mode": "optional_mirror"
+    }
+  ],
+  "excluded_primary_hosts": [
+    "freerideinvestor.com"
+  ]
+}

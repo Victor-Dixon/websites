@@ -1,0 +1,62 @@
+import pandas as pd
+import plotly.express as px
+from flask import Flask, request, render_template, jsonify
+
+app = Flask(__name__)
+
+class DataVisualizer:
+    def __init__(self, data_source, data_type='csv'):
+        self.data = self.load_data(data_source, data_type)
+
+    def load_data(self, source, data_type):
+        # This method can be extended to connect to APIs, databases, etc.
+        if data_type == 'csv':
+            return pd.read_csv(source)
+        elif data_type == 'json':
+            return pd.read_json(source)
+        # Add more data types as required
+        else:
+            raise ValueError("Unsupported data type")
+
+    def filter_data(self, filters):
+        if filters:
+            for key, value in filters.items():
+                self.data = self.data.query(f"{key}=={value}")
+        return self
+
+    def create_chart(self, chart_type, x_axis, y_axis, title):
+        try:
+            if chart_type not in ['bar', 'line', 'scatter', 'pie']:
+                raise ValueError("Unsupported chart type")
+            fig = getattr(px, chart_type)(self.data, x=x_axis, y=y_axis, title=title)
+            return fig
+        except Exception as e:
+            print(f"Error creating chart: {e}")
+            return None
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    if request.method == 'POST':
+        data_source = request.form.get('data_source')
+        data_type = request.form.get('data_type', 'csv')
+        chart_type = request.form.get('chart_type')
+        x_axis = request.form.get('x_axis')
+        y_axis = request.form.get('y_axis')
+        title = request.form.get('title')
+        filters = {}
+        for key in request.form:
+            if key.startswith('filter_'):
+                _, filter_key = key.split('_', 1)
+                filters[filter_key] = request.form[key]
+
+        visualizer = DataVisualizer(data_source, data_type)
+        visualizer.filter_data(filters)
+        fig = visualizer.create_chart(chart_type, x_axis, y_axis, title)
+        if fig:
+            return fig.to_html()
+        else:
+            return "Failed to create visualization", 400
+    return render_template('index.html')  # Assume an HTML form for input
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
