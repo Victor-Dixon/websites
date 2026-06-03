@@ -1,0 +1,20 @@
+id: upload_weareswarm_dreamos_services_route_001
+title: Upload WeAreSwarm DreamOS services route
+status: done
+lane: website_deploy
+priority: high
+
+local_artifact: _deploy/weareswarm/dreamos-services/index.html
+remote_file: /home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html
+live_url: https://weareswarm.site/dreamos-services/
+
+verification:
+  local_sha: ea99fee378ee29b9f304759171fad84fd70b9804880e79ec472e54e4c13edfc6
+  remote_sha: ea99fee378ee29b9f304759171fad84fd70b9804880e79ec472e54e4c13edfc6
+  local_bytes: 4590
+  remote_bytes: 4590
+  http_code: "403"
+  live_content: "FAIL"
+
+guardrail: >
+  Uploaded only /dreamos-services/index.html. Did not overwrite public root or homepage.
