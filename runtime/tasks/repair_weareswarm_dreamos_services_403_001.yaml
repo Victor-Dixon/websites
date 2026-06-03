@@ -1,0 +1,16 @@
+id: repair_weareswarm_dreamos_services_403_001
+title: Repair WeAreSwarm DreamOS services 403
+status: done
+lane: website_deploy
+priority: high
+
+remote_file: /home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html
+live_url: https://weareswarm.site/dreamos-services/
+
+verification:
+  curl_code: "0"
+  http_code: "200"
+  live_content: "PASS"
+
+guardrail: >
+  Route-only permission repair. Did not create or overwrite public root index.html.
