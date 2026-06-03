@@ -15,3 +15,19 @@
 TradingRobotPlugWeb/
 FreerideinvestorWebsite/
 DaDudeKC-Website/
+
+# Dream.OS websites generated report governance
+# Runtime reports and backup dumps are ignored by default; release manifests are committed intentionally.
+_reports/*.tmp
+_reports/**/*.tmp
+_reports/**/*.log
+_reports/**/*.json
+_reports/backups/
+_reports/**/backups/
+!_reports/*manifest*.json
+!_reports/*package*.json
+!_reports/*release*.json
+_hostinger_build/**/*.tmp
+_hostinger_build/**/*.log
+runtime/logs/
+runtime/reports/**/*.json
