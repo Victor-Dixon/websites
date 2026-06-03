@@ -1,0 +1,15 @@
+id: repair_weareswarm_root_to_services_001
+title: Repair WeAreSwarm root to services route
+status: done
+lane: website_deploy
+priority: high
+
+root_url: https://weareswarm.site/
+route_url: https://weareswarm.site/dreamos-services/
+
+verification:
+  root_code_before: "500"
+  root_code_after: "500"
+  route_code_before: "200"
+  route_code_after: "200"
+  route_content_after: PASS
