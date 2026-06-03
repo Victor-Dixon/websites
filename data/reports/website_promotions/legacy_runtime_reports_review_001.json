@@ -1,0 +1,247 @@
+{
+  "generated_at": "2026-06-03T16:55:42",
+  "status": "REVIEWED",
+  "source": "data/reports/website_promotions/websites_dirty_bucket_split_001.json",
+  "item_count": 25,
+  "decision_counts": {
+    "KEEP_CANDIDATE": 16,
+    "QUARANTINE_CANDIDATE": 9
+  },
+  "items": [
+    {
+      "path": "_reports/dadudekc_block_template_override_repair_001.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable website repair/promotion report evidence",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 868
+    },
+    {
+      "path": "_reports/dadudekc_theme_placeholder_cleanup_002.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable website repair/promotion report evidence",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 675
+    },
+    {
+      "path": "_reports/dreamos_theme_placeholder_guard_repair_001.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable website repair/promotion report evidence",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 918
+    },
+    {
+      "path": "_reports/emergence_character_generator_render_072.md.html",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 73106
+    },
+    {
+      "path": "_reports/emergence_character_sheet_output_081.md.html",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "possible_sensitive_surface"
+      ],
+      "file_count": 1,
+      "size": 132065
+    },
+    {
+      "path": "_reports/emergence_page_design_registry_001.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 660
+    },
+    {
+      "path": "_reports/emergence_premium_spark_os_redesign_001.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 911
+    },
+    {
+      "path": "_reports/force_dadudekc_public_root_spark_os_001.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 754
+    },
+    {
+      "path": "_reports/freeride_wp_config_repair_056.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable website repair/promotion report evidence",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 5771
+    },
+    {
+      "path": "_reports/remote_configure_image_env_095d.sh",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "possible_sensitive_surface",
+        "shell_script_in_reports"
+      ],
+      "file_count": 1,
+      "size": 3087
+    },
+    {
+      "path": "_reports/spark_battle_engine_smoke_failure_014.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "file_count": 1,
+      "size": 0
+    },
+    {
+      "path": "_reports/spark_battle_engine_smoke_failure_014.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 633
+    },
+    {
+      "path": "_reports/spark_battle_shortcode_inspection_011.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 758
+    },
+    {
+      "path": "_reports/spark_battle_shortcode_render_015.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "file_count": 1,
+      "size": 30
+    },
+    {
+      "path": "_reports/spark_battle_sim_protocol_inventory_007.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 3291
+    },
+    {
+      "path": "_reports/spark_battle_sim_protocol_inventory_008.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 31524
+    },
+    {
+      "path": "_reports/spark_protocol_battle_sim_integration_006.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 723
+    },
+    {
+      "path": "_reports/spark_protocol_exchange_ceiling_005.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 797
+    },
+    {
+      "path": "_reports/spark_shortcode_battle_start_failure_016.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 590
+    },
+    {
+      "path": "_reports/spark_shortcode_engine_direct_016.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "file_count": 1,
+      "size": 0
+    },
+    {
+      "path": "_reports/spark_shortcode_exception_verify_017.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "file_count": 1,
+      "size": 0
+    },
+    {
+      "path": "_reports/spark_shortcode_exception_verify_017.md",
+      "decision": "KEEP_CANDIDATE",
+      "reason": "durable Emergence/Spark report evidence useful for site/plugin reconstruction",
+      "risk_flags": [],
+      "file_count": 1,
+      "size": 811
+    },
+    {
+      "path": "_reports/spark_shortcode_render_stub_fix_018.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "file_count": 1,
+      "size": 0
+    },
+    {
+      "path": "_reports/spark_shortcode_result_shape_019.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "file_count": 1,
+      "size": 0
+    },
+    {
+      "path": "_reports/spark_shortcode_template_compat_020.err",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "report contains error/script/sensitive-surface signals; preserve outside active source",
+      "risk_flags": [
+        "error_log"
+      ],
+      "file_count": 1,
+      "size": 0
+    }
+  ],
+  "next_lanes": [
+    {
+      "id": "commit_legacy_runtime_keep_reports_001",
+      "target": "KEEP_CANDIDATE _reports artifacts",
+      "action": "stage only keep reports plus review metadata",
+      "verify": "cached scope excludes quarantine and deeper-review reports",
+      "commit": "Commit legacy runtime reports"
+    },
+    {
+      "id": "quarantine_legacy_runtime_risk_reports_001",
+      "target": "QUARANTINE_CANDIDATE _reports artifacts",
+      "action": "move risk/error/script reports into runtime/quarantine with manifest",
+      "verify": "originals cleared, manifest references all moved files",
+      "commit": "Quarantine legacy runtime risk reports"
+    }
+  ]
+}
