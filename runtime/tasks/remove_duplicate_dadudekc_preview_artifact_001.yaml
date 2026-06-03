@@ -1,0 +1,14 @@
+id: remove_duplicate_dadudekc_preview_artifact_001
+title: Remove duplicate DaDudeKC preview artifact
+status: done
+lane: website_promotion
+priority: high
+
+objective: >
+  Remove the untracked runtime/content DaDudeKC preview after verifying the
+  promoted copy is tracked under dadudekc-service-funnel/funnel-previews.
+
+verification:
+  - promoted copy exists in HEAD
+  - duplicate content matches promoted copy before removal
+  - runtime/content duplicate is removed
