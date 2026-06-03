@@ -1,0 +1,24 @@
+id: inspect_xthunder_webhook_precedent_001
+title: Inspect xthunder webhook precedent
+status: done
+agent: DiscordArchitect
+lane: closeout_feed
+priority: high
+
+objective: >
+  Use prior xthunder planner Discord/channel/webhook precedent to provision the
+  intended closeout proof webhook for WeAreSwarm.
+
+current_blocker: >
+  Existing discovered webhook candidates validate but reject POST with HTTP_403.
+
+next_required_action: >
+  Inventory Discord channels, select or create the intended Dream.OS closeout proof
+  channel, generate a fresh webhook, store it outside git, export
+  DISCORD_CLOSEOUT_WEBHOOK_URL in-process only, and rerun guarded dispatch.
+
+guardrails:
+  - Do not print webhook URL.
+  - Do not commit webhook URL.
+  - Do not send to random discovered webhook candidates.
+  - Commit only redacted reports/manifests.

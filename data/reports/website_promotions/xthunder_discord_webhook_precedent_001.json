@@ -1,0 +1,1393 @@
+{
+  "generated_at": "2026-06-03T18:43:04",
+  "status": "PRECEDENT_FOUND",
+  "match_count": 2121,
+  "top_matches": [
+    {
+      "path": "../DreamVault/data/reports/repo_fleet/generated_report_governance_audit_001.json",
+      "score": 32,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 19,
+          "text": "    \"discord\": 1403,"
+        },
+        {
+          "line": 26,
+          "text": "    \"xthunder\": 28"
+        },
+        {
+          "line": 52,
+          "text": "        \"discord\": 6,"
+        },
+        {
+          "line": 76,
+          "text": "          \"data/reports/discord/created_trading_webhook_redacted.json\","
+        },
+        {
+          "line": 77,
+          "text": "          \"data/reports/discord/discord_channel_inventory.json\","
+        },
+        {
+          "line": 78,
+          "text": "          \"data/reports/discord/discord_channel_inventory.md\""
+        },
+        {
+          "line": 81,
+          "text": "          \"data/reports/toolbelt_absorption/mobile_discord_architect_candidates.txt\","
+        },
+        {
+          "line": 82,
+          "text": "          \"data/reports/toolbelt_absorption/mobile_discord_architect_collision_report.md\","
+        },
+        {
+          "line": 83,
+          "text": "          \"data/reports/toolbelt_absorption/mobile_discord_architect_promotion_manifest.json\","
+        },
+        {
+          "line": 84,
+          "text": "          \"data/reports/toolbelt_absorption/mobile_discord_architect_source_inventory.md\""
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/repo_fleet/generated_report_governance_audit_001.md",
+      "score": 32,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 19,
+          "text": "- discord: `1403`"
+        },
+        {
+          "line": 28,
+          "text": "- xthunder: `28`"
+        },
+        {
+          "line": 43,
+          "text": "- branch: `feature/discord-runtime-cockpit-001`"
+        },
+        {
+          "line": 71,
+          "text": "- `data/reports/ops/closeout_discord_spine_20260602_063559.md`"
+        },
+        {
+          "line": 72,
+          "text": "- `data/reports/ops/closeout_discord_spine_20260602_063753.md`"
+        },
+        {
+          "line": 75,
+          "text": "- `archive/dirty_cleanup/20260522_discord_planner/archive/runtime_ephemeral/20260522_discord_planner/discord_architect/data/reports/discord_architect/discord_visibility_probe.json`"
+        },
+        {
+          "line": 76,
+          "text": "- `archive/dirty_cleanup/20260522_discord_planner/archive/runtime_ephemeral/20260522_discord_planner/discord_architect/data/reports/discord_architect/discord_visibility_probe.md`"
+        },
+        {
+          "line": 77,
+          "text": "- `data/reports/discord/capability_evolution_feed/discord_architect_adapter_verification.md`"
+        },
+        {
+          "line": 78,
+          "text": "- `data/reports/discord_architect/apply_manifest.json`"
+        },
+        {
+          "line": 79,
+          "text": "- `data/reports/discord_architect/apply_manifest.md`"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/trading/discord_architect_cleanup_manifest_001.md",
+      "score": 32,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Discord Architect Cleanup Manifest"
+        },
+        {
+          "line": 4,
+          "text": "Source: `data/reports/trading/discord_architect_full_candidate_audit_001.json`"
+        },
+        {
+          "line": 23,
+          "text": "- score=151 path=`runtime/scripts/send_discord_paper_trade_payload.py` reasons=current_best_primary_provider"
+        },
+        {
+          "line": 24,
+          "text": "- score=85 path=`runtime/scripts/ops/stabilize_closeout_discord_spine_001.sh` reasons=existing_closeout_sender"
+        },
+        {
+          "line": 25,
+          "text": "- score=61 path=`runtime/scripts/audit_discord_architect_candidate_duplicates_001.py` reasons=existing_closeout_sender"
+        },
+        {
+          "line": 26,
+          "text": "- score=36 path=`runtime/scripts/audit_discord_architect_full_candidate_set_001.py` reasons=existing_closeout_sender"
+        },
+        {
+          "line": 29,
+          "text": "- path=`data/reports/runtime_governance/active_discord_event_runtime_classification_001.md` reasons=generated_report_or_bundle"
+        },
+        {
+          "line": 32,
+          "text": "- path=`data/reports/runtime_governance/active_discord_event_runtime_classification_001.json` reasons=generated_report_or_bundle"
+        },
+        {
+          "line": 33,
+          "text": "- path=`data/reports/ops/discord_env_sender_contract_20260602_064109.md` reasons=generated_report_or_bundle"
+        },
+        {
+          "line": 40,
+          "text": "- path=`data/reports/ops/closeout_discord_spine_20260602_064007.json` reasons=generated_report_or_bundle"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/trading/discord_architect_full_candidate_audit_001.md",
+      "score": 32,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Full Discord Architect Candidate Audit"
+        },
+        {
+          "line": 15,
+          "text": "- score=151 dup=1 path=`runtime/scripts/send_discord_paper_trade_payload.py` reasons=current_best_primary_provider"
+        },
+        {
+          "line": 16,
+          "text": "- score=85 dup=1 path=`runtime/scripts/ops/stabilize_closeout_discord_spine_001.sh` reasons=existing_closeout_sender"
+        },
+        {
+          "line": 17,
+          "text": "- score=61 dup=1 path=`runtime/scripts/audit_discord_architect_candidate_duplicates_001.py` reasons=existing_closeout_sender"
+        },
+        {
+          "line": 18,
+          "text": "- score=36 dup=1 path=`runtime/scripts/audit_discord_architect_full_candidate_set_001.py` reasons=existing_closeout_sender"
+        },
+        {
+          "line": 21,
+          "text": "- score=89 dup=1 path=`runtime/scripts/send_latest_closeout_to_discord_001.sh` reasons=test_reference"
+        },
+        {
+          "line": 22,
+          "text": "- score=83 dup=1 path=`tests/test_discord_delivery_journal.py` reasons=test_reference"
+        },
+        {
+          "line": 27,
+          "text": "- score=65 dup=1 path=`tests/test_trading_discord_architect_webhook_001.py` reasons=test_reference"
+        },
+        {
+          "line": 28,
+          "text": "- score=59 dup=1 path=`tests/test_xthunder_discord_cli_route_008.py` reasons=test_reference"
+        },
+        {
+          "line": 29,
+          "text": "- score=53 dup=1 path=`runtime/tasks/add_discord_paper_trade_webhook_sender_006.yaml` reasons=task_record_reference"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/trading/generated_discord_report_quarantine_plan_001.json",
+      "score": 32,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 4,
+          "text": "  \"source_manifest\": \"data/reports/trading/discord_architect_cleanup_manifest_001.json\","
+        },
+        {
+          "line": 5,
+          "text": "  \"quarantine_root\": \"runtime/quarantine/generated_discord_reports_001\","
+        },
+        {
+          "line": 11,
+          "text": "      \"source\": \"data/reports/runtime_governance/active_discord_event_runtime_classification_001.md\","
+        },
+        {
+          "line": 12,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_001/data/reports/runtime_governance/active_discord_event_runtime_classification_001.md\","
+        },
+        {
+          "line": 21,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_001/data/reports/cpc/cpc_20260518_171352_27718.txt\","
+        },
+        {
+          "line": 31,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_001/data/reports/cpc/cpc_20260522_102007_26603.txt\","
+        },
+        {
+          "line": 40,
+          "text": "      \"source\": \"data/reports/runtime_governance/active_discord_event_runtime_classification_001.json\","
+        },
+        {
+          "line": 41,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_001/data/reports/runtime_governance/active_discord_event_runtime_classification_001.json\","
+        },
+        {
+          "line": 49,
+          "text": "      \"source\": \"data/reports/ops/discord_env_sender_contract_20260602_064109.md\","
+        },
+        {
+          "line": 50,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_001/data/reports/ops/discord_env_sender_contract_20260602_064109.md\","
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/trading/generated_discord_report_quarantine_plan_002.json",
+      "score": 32,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 4,
+          "text": "  \"source_manifest\": \"data/reports/trading/discord_architect_cleanup_manifest_001.json\","
+        },
+        {
+          "line": 5,
+          "text": "  \"quarantine_root\": \"runtime/quarantine/generated_discord_reports_002\","
+        },
+        {
+          "line": 12,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_002/data/reports/cpc/cpc_20260518_171352_27718.txt\","
+        },
+        {
+          "line": 22,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_002/data/reports/cpc/cpc_20260522_102007_26603.txt\","
+        },
+        {
+          "line": 32,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_002/data/reports/cpc/cpc_20260522_074724_11473.txt\","
+        },
+        {
+          "line": 42,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_002/data/reports/cpc/cpc_20260528_091846_4777.txt\","
+        },
+        {
+          "line": 52,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_002/data/reports/cpc/cpc_20260522_065149_29765.txt\","
+        },
+        {
+          "line": 62,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_002/data/reports/cpc/cpc_20260522_065308_30233.txt\","
+        },
+        {
+          "line": 72,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_002/data/reports/cpc/json/cpc_20260522_065149_29765.json\","
+        },
+        {
+          "line": 82,
+          "text": "      \"target\": \"runtime/quarantine/generated_discord_reports_002/data/reports/cpc/runtime_packets/preflight_20260522_065148_29765.json\","
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/xthunder/xthunder_discord_source_spine_002.json",
+      "score": 32,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 7,
+          "text": "      \"path\": \"runtime/archive/temp_run_scripts_20260510_044539/runtime/scripts/run_add_discord_webhook_sender_050.sh\","
+        },
+        {
+          "line": 11,
+          "text": "          \"pattern\": \"discord\","
+        },
+        {
+          "line": 15,
+          "text": "          \"pattern\": \"webhook\","
+        },
+        {
+          "line": 33,
+          "text": "      \"path\": \"runtime/scripts/build_dreamos_secret_broker_discord_001.sh\","
+        },
+        {
+          "line": 37,
+          "text": "          \"pattern\": \"discord\","
+        },
+        {
+          "line": 41,
+          "text": "          \"pattern\": \"webhook\","
+        },
+        {
+          "line": 71,
+          "text": "      \"path\": \"runtime/scripts/add_send_trading_discord_card_001.sh\","
+        },
+        {
+          "line": 75,
+          "text": "          \"pattern\": \"discord\","
+        },
+        {
+          "line": 79,
+          "text": "          \"pattern\": \"webhook\","
+        },
+        {
+          "line": 101,
+          "text": "      \"path\": \"archive/imports/agent_cellphone_protocol_fsm_salvage_20260512_172352/CORE/unified_discord_integration.py\","
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/.pytest_cache/v/cache/nodeids",
+      "score": 30,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "  \"tests/closeout/test_closeout_discord_dispatch.py::test_dispatch_script_exists\","
+        },
+        {
+          "line": 3,
+          "text": "  \"tests/closeout/test_closeout_discord_dispatch.py::test_dream_cli_closeout_invokes_dispatcher\","
+        },
+        {
+          "line": 4,
+          "text": "  \"tests/closeout/test_closeout_discord_dispatch.py::test_dry_run_builds_valid_closeout_payload\","
+        },
+        {
+          "line": 5,
+          "text": "  \"tests/closeout/test_closeout_discord_dispatch.py::test_missing_closeout_can_fail_in_strict_mode\","
+        },
+        {
+          "line": 6,
+          "text": "  \"tests/closeout/test_closeout_discord_dispatch.py::test_payload_contains_closeout_reference\","
+        },
+        {
+          "line": 27,
+          "text": "  \"tests/test_capability_unlock_intelligence_001.py::test_classify_planner\","
+        },
+        {
+          "line": 55,
+          "text": "  \"tests/test_discord_closeout_autopost_wire_001.py::test_autopost_wrapper_dry_runs_without_webhook\","
+        },
+        {
+          "line": 56,
+          "text": "  \"tests/test_discord_daily_command_hub_live_send_smoke.py::test_check_env_accepts_valid_values\","
+        },
+        {
+          "line": 57,
+          "text": "  \"tests/test_discord_daily_command_hub_live_send_smoke.py::test_check_env_rejects_non_integer_channel\","
+        },
+        {
+          "line": 58,
+          "text": "  \"tests/test_discord_daily_command_hub_live_send_smoke.py::test_check_env_reports_missing_values\","
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/cpc/cpc_20260602_190309_24712.txt",
+      "score": 30,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 7,
+          "text": "command=/data/data/com.termux/files/home/.cache/refine_xthunder_discord_source_spine_002.sh"
+        },
+        {
+          "line": 24,
+          "text": "== SCORE DISCORD SOURCE FILES =="
+        },
+        {
+          "line": 26,
+          "text": "# XThunder Discord Source Spine Discovery 002"
+        },
+        {
+          "line": 29,
+          "text": "Refine Discord Architect discovery to tracked source files only."
+        },
+        {
+          "line": 32,
+          "text": "- XThunder task exists: `True`"
+        },
+        {
+          "line": 36,
+          "text": "- `runtime/archive/temp_run_scripts_20260510_044539/runtime/scripts/run_add_discord_webhook_sender_050.sh` score=772 hits: discord=37, webhook=REDACTED embed=18, card=2, requests=6"
+        },
+        {
+          "line": 37,
+          "text": "- `runtime/scripts/build_dreamos_secret_broker_discord_001.sh` score=671 hits: discord=56, webhook=REDACTED embed=1, card=1, dispatch=1, render=3, task_yaml=7, requests=5"
+        },
+        {
+          "line": 38,
+          "text": "- `runtime/scripts/add_send_trading_discord_card_001.sh` score=659 hits: discord=26, webhook=REDACTED embed=6, card=17, task_yaml=5, requests=3"
+        },
+        {
+          "line": 39,
+          "text": "- `archive/imports/agent_cellphone_protocol_fsm_salvage_20260512_172352/CORE/unified_discord_integration.py` score=653 hits: discord=129, webhook=REDACTED embed=24, render=7"
+        },
+        {
+          "line": 40,
+          "text": "- `runtime/archive/temp_run_scripts_20260510_044539/runtime/scripts/run_add_discord_journal_card_payloads_046.sh` score=643 hits: discord=22, webhook=REDACTED embed=22, card=26, closeout=2"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/cpc/cpc_20260603_065926_19815.txt",
+      "score": 30,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 7,
+          "text": "command=/data/data/com.termux/files/home/.cache/summarize_discord_full_candidate_audit_001.sh"
+        },
+        {
+          "line": 21,
+          "text": "- path=`data/reports/discord/event_routing/discord_event_routing_audit_001.json` reasons=duplicate_hash_group=2, generated_report_or_bundle"
+        },
+        {
+          "line": 22,
+          "text": "- path=`data/reports/discord/event_routing/discord_event_routing_audit_001.md` reasons=duplicate_hash_group=2, generated_report_or_bundle"
+        },
+        {
+          "line": 27,
+          "text": "- path=`data/reports/trading/discord_manager_webhook_discovery_036c.md` reasons=generated_report_or_bundle"
+        },
+        {
+          "line": 30,
+          "text": "- path=`data/reports/xthunder/dispatch_discord_cli_inspect_008.txt` reasons=generated_report_or_bundle"
+        },
+        {
+          "line": 31,
+          "text": "- path=`data/reports/trading/discord_architect_webhook_discovery_001.json` reasons=generated_report_or_bundle"
+        },
+        {
+          "line": 32,
+          "text": "- path=`data/reports/trading/discord_architect_webhook_discovery_001.md` reasons=generated_report_or_bundle"
+        },
+        {
+          "line": 62,
+          "text": "- path=`data/reports/xthunder/dispatch_discord_event_001.before_006.py` reasons=generated_report_or_bundle"
+        },
+        {
+          "line": 63,
+          "text": "- path=`data/reports/xthunder/dispatch_discord_event_001.before_008.py` reasons=generated_report_or_bundle"
+        },
+        {
+          "line": 64,
+          "text": "- path=`data/reports/xthunder/dispatch_discord_event_001.before_012.py` reasons=generated_report_or_bundle"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/xthunder/discord_candidate_files_001.txt",
+      "score": 30,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "./archive/dirty_cleanup/20260522_discord_planner/archive/runtime_ephemeral/20260522_discord_planner/data/reports/discord_bot_bundle/discord_bot_logic_bundle.zip"
+        },
+        {
+          "line": 3,
+          "text": "./archive/dirty_cleanup/20260522_discord_planner/archive/runtime_ephemeral/20260522_discord_planner/data/reports/runtime_governance/discord_event_runtime_classification_001.md"
+        },
+        {
+          "line": 4,
+          "text": "./archive/dirty_cleanup/20260522_discord_planner/archive/runtime_ephemeral/20260522_discord_planner/discord_architect/data/reports/discord_architect/discord_visibility_probe.json"
+        },
+        {
+          "line": 5,
+          "text": "./archive/dirty_cleanup/20260522_discord_planner/archive/runtime_ephemeral/20260522_discord_planner/discord_architect/data/reports/discord_architect/discord_visibility_probe.md"
+        },
+        {
+          "line": 6,
+          "text": "./archive/dirty_cleanup/20260522_discord_planner/data/reports/dirty_scope/untracked_after_discord_planner_lane_001.json"
+        },
+        {
+          "line": 7,
+          "text": "./archive/dirty_cleanup/20260522_discord_planner/data/reports/dirty_scope/untracked_after_discord_planner_lane_001.md"
+        },
+        {
+          "line": 8,
+          "text": "./archive/imports/agent_cellphone_protocol_fsm_salvage_20260512_172352/CORE/discord_integration_system.py"
+        },
+        {
+          "line": 9,
+          "text": "./archive/imports/agent_cellphone_protocol_fsm_salvage_20260512_172352/CORE/setup_discord_integration.py"
+        },
+        {
+          "line": 10,
+          "text": "./archive/imports/agent_cellphone_protocol_fsm_salvage_20260512_172352/CORE/unified_discord_integration.py"
+        },
+        {
+          "line": 11,
+          "text": "./archive/imports/agent_cellphone_protocol_fsm_salvage_20260512_172352/DEMOS/discord_agent_updates_demo.py"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/reports/xthunder/xthunder_refs_001.txt",
+      "score": 30,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:1:id: add_xthunder_discord_planning_cockpit_001"
+        },
+        {
+          "line": 2,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:2:title: Add XThunder Discord planning cockpit"
+        },
+        {
+          "line": 3,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:5:project: XThunder"
+        },
+        {
+          "line": 4,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:9:  Add a Discord Architect planning cockpit for XThunder that keeps the"
+        },
+        {
+          "line": 5,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:19:  xthunder:"
+        },
+        {
+          "line": 6,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:26:      - xthunder-command"
+        },
+        {
+          "line": 7,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:27:      - xthunder-aria-lab"
+        },
+        {
+          "line": 8,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:28:      - xthunder-charlie-vault"
+        },
+        {
+          "line": 9,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:29:      - xthunder-playtests"
+        },
+        {
+          "line": 10,
+          "text": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml:30:      - xthunder-content-queue"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/.gitignore",
+      "score": 25,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 96,
+          "text": "runtime/trading/discord/outbox/"
+        },
+        {
+          "line": 112,
+          "text": "# Discord Architect secret-bearing webhook receipts."
+        },
+        {
+          "line": 113,
+          "text": "data/reports/discord_architect/webhooks/*_webhook_receipt.json"
+        },
+        {
+          "line": 123,
+          "text": "runtime/secrets.discord_trading_webhook"
+        },
+        {
+          "line": 124,
+          "text": "runtime/secrets.discord_trading_webhook.local"
+        },
+        {
+          "line": 125,
+          "text": "runtime/secrets.discord_trading_webhook.local.env"
+        },
+        {
+          "line": 129,
+          "text": "data/reports/planner/next_lane.json"
+        },
+        {
+          "line": 130,
+          "text": "data/reports/planner/next_lane.md"
+        },
+        {
+          "line": 140,
+          "text": "# Discord rolling generated pointers"
+        },
+        {
+          "line": 141,
+          "text": "data/reports/discord/trading/latest_trading_momentum_card.json"
+        }
+      ]
+    },
+    {
+      "path": ".git/index",
+      "score": 25,
+      "hits": [
+        "xthunder",
+        "discord",
+        "webhook",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 1307,
+          "text": "72Q\u0007bz\u0013K(_\u0000=_reports/github_architect_hostinger_site_consolidation_012.md\u0000\u0000\u0000\u0000\u0000j"
+        },
+        {
+          "line": 1783,
+          "text": "`L+\u0005\u0000\u0000G\u0000\u0006\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u00037\u0001\u0012K\u0339xM`m\u0000._reports/website_audit/xthunder.site__audit.md\u0000\u0000\u0000\u0000j\u001ax7\u0016[j\u001ax7\u0016[\u0000\u0000:\u0000\u0005v\u0005\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u0005y\u0019\u0000e!\u0019AU\u02620\u0001\u0007f{\t\u00000_reports/website_consolidation_checkpoint_007.md\u0000\u0000j\u001b\u0001;-\u0012 j\u001b\u0001;-\u0012 \u0000\u0000:\u0000\u0004\\\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u0005\u0363\u0014>2\u0747\u0004Fk(\uf1e1\u000e\u0012\u00002_reports/website_"
+        },
+        {
+          "line": 1987,
+          "text": "\u0007A\u0012L\u0000collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/components/_call-to-action.css\u0000\u0000\u0000\u0000\u0000\u0000\u0000j\u001bAe6\u0007i\u007f\u0000\u0000\u0000\u0000\u0000\u0000:\u0000\u0005\u0001\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u0005(Ge.+8\u0019j.o(ox6B\u0000zcollected/hostinger/wordpress/domains/freerideinves"
+        },
+        {
+          "line": 2055,
+          "text": "oY\u018a,;$\u001bb\u0001!' h\u0000ycollected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/page-templates/page-discord.php\u0000j\u001bAe67i\u0000\u0000\u0000\u0000\u0000\u0000:\u0000\u0005\u0007\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u0018D\u00104a`\u001a\u00d5_i{\u0000~collected/hostinger/wordpress/domains/freerideinvestor.com/them"
+        },
+        {
+          "line": 2392,
+          "text": "\u007f\u0000Kdata/reports/closeout_feed_dispatch/discord_webhook_env_resolution_001.json\u0000\u0000\u0000\u0000\u0000\u0000\u0000j \u001bx\u0018j \u001bx\u0018\u0000\u0000;\u0000\u0007\u0004S\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u0019"
+        },
+        {
+          "line": 2394,
+          "text": "bgh&5\u038c\u0000Ndata/reports/closeout_feed_dispatch/discord_webhook_failover_dispatch_001.json\u0000\u0000\u0000\u0000j i\u0012\u0019\u0010j i\u0012\u0019\u0010\u0000\u0000;\u0000\u0007\u0005\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u0017.\t\u0015m\u029cwm+\u0001sh\u0000Gdata/reports/closeout_feed_dispatch/discord_webhook_validation_001.json\u0000\u0000\u0000j \u0003@j \u0003@\u0000\u0000;\u0000\u0007\u0011\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u00036c\u001b\u0001\u000fDc6\u0000"
+        },
+        {
+          "line": 2395,
+          "text": "\u0560#\u0686q\u0000bdata/reports/closeout_feed_dispatch/weareswarm_live_proof_001.github_architect.dispatch_preview.md\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000j &*Zj &*Z\u0000\u0000;\u0000\u0006z.\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u0002\u0017\u0011\u0016TBL\b\u0017a\u001f6\t/\u0000Jdata/reports/closeout_feed_rendered/closeout_feed_render_manifest_001.json\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000j &"
+        },
+        {
+          "line": 2396,
+          "text": "\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u00036c\u001b\u0001\u000fDc6\u0000Hdata/reports/closeout_feed_rendered/weareswarm_live_proof_001.discord.md\u0000\u0000j &*Zj &*Z\u0000\u0000;\u0000\u0006z0\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u0003%H\\\u0014\u001b\u0104\u0004n\""
+        },
+        {
+          "line": 2397,
+          "text": "\u0560#\u0686q\u0000Qdata/reports/closeout_feed_rendered/weareswarm_live_proof_001.github_architect.md\u0000j"
+        },
+        {
+          "line": 2441,
+          "text": "A!\u0000\u0000;\u0000\u0005x\\\u0000\u0000\u0000\u0000(\u0000\u0000(\u0000\u0000\u0007$\b\u03f1+bE:U.\bR0%=\u0000Udata/reports/website_promotions/discord_closeout_webhook_provisioning_packet_001.json\u0000\u0000\u0000\u0000\u0000j "
+        }
+      ]
+    },
+    {
+      "path": "../AgentTools/data/reports/toolbelt_absorption/mobile_discord_architect_promotion_manifest.json",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "  \"id\": \"mobile_discord_architect_promotion_002\","
+        },
+        {
+          "line": 4,
+          "text": "  \"source\": \"/data/data/com.termux/files/home/projects/DreamVault/discord_architect\","
+        },
+        {
+          "line": 5,
+          "text": "  \"target\": \"/data/data/com.termux/files/home/projects/AgentTools/tools/discord-architect\","
+        },
+        {
+          "line": 34,
+          "text": "    \"tests/createChannel.test.js\","
+        },
+        {
+          "line": 38,
+          "text": "    \"tests/ensureRuntimeChannels.test.js\","
+        },
+        {
+          "line": 41,
+          "text": "    \"tests/channelWebhookManager.test.js\","
+        },
+        {
+          "line": 42,
+          "text": "    \"tests/liveDiscordMutationRuntime.test.js\","
+        },
+        {
+          "line": 43,
+          "text": "    \"tests/liveDiscordRestSender.test.js\","
+        },
+        {
+          "line": 48,
+          "text": "    \"data/runtime/discord_mutation_registry.json\","
+        },
+        {
+          "line": 55,
+          "text": "    \"data/runtime/events/latest_planner_event.json\","
+        }
+      ]
+    },
+    {
+      "path": "../AgentTools/data/reports/toolbelt_absorption/mobile_discord_architect_source_inventory.md",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Mobile Discord Architect Source Inventory"
+        },
+        {
+          "line": 4,
+          "text": "- Source: /data/data/com.termux/files/home/projects/DreamVault/discord_architect"
+        },
+        {
+          "line": 5,
+          "text": "- Target: /data/data/com.termux/files/home/projects/AgentTools/tools/discord-architect"
+        },
+        {
+          "line": 11,
+          "text": "data/runtime/discord_mutation_registry.json"
+        },
+        {
+          "line": 14,
+          "text": "data/runtime/events/latest_planner_event.json"
+        },
+        {
+          "line": 16,
+          "text": "data/runtime/events/planner_events.jsonl"
+        },
+        {
+          "line": 22,
+          "text": "schemas/backups/discord_schema_backup_2026-05-21T12-05-17-668Z.json"
+        },
+        {
+          "line": 23,
+          "text": "schemas/backups/discord_schema_backup_2026-05-21T12-06-14-365Z.json"
+        },
+        {
+          "line": 26,
+          "text": "src/adapters/createChannel.js"
+        },
+        {
+          "line": 40,
+          "text": "src/runtime/channelWebhookManager.js"
+        }
+      ]
+    },
+    {
+      "path": "../AgentTools/docs/TOOLBELT_SURFACE_AUDIT.json",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 149,
+          "text": "    \"path\": \"tools/analysis/github_architecture_audit.py\","
+        },
+        {
+          "line": 152,
+          "text": "      \"ArchitectureCriteria\""
+        },
+        {
+          "line": 155,
+          "text": "      \"scan_repo_architecture\","
+        },
+        {
+          "line": 669,
+          "text": "      \"post_to_discord\","
+        },
+        {
+          "line": 1056,
+          "text": "      \"validate_discord_message\","
+        },
+        {
+          "line": 1057,
+          "text": "      \"validate_discord_embed\","
+        },
+        {
+          "line": 1410,
+          "text": "    \"path\": \"tools/coordination/discord_commands_test_helper.py\","
+        },
+        {
+          "line": 1422,
+          "text": "      \"src.discord_commander.unified_discord_bot\""
+        },
+        {
+          "line": 1428,
+          "text": "    \"path\": \"tools/coordination/discord_commands_tester.py\","
+        },
+        {
+          "line": 1432,
+          "text": "      \"find_discord_command_files\","
+        }
+      ]
+    },
+    {
+      "path": "../AgentTools/docs/TOOLBELT_SURFACE_AUDIT.md",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 61,
+          "text": "### `tools/analysis/github_architecture_audit.py`"
+        },
+        {
+          "line": 65,
+          "text": "- classes: `ArchitectureCriteria`"
+        },
+        {
+          "line": 66,
+          "text": "- functions: `scan_repo_architecture, get_user_repos, main`"
+        },
+        {
+          "line": 220,
+          "text": "- functions: `main, __init__, create_passdown, create_devlog, post_to_discord, update_swarm_brain, run_cleanup`"
+        },
+        {
+          "line": 346,
+          "text": "- functions: `main, __init__, validate_discord_message, validate_discord_embed, _validate_field, validate_protocol, validate_message_structure, validate_file, get_summary, print_report`"
+        },
+        {
+          "line": 439,
+          "text": "### `tools/coordination/discord_commands_test_helper.py`"
+        },
+        {
+          "line": 446,
+          "text": "### `tools/coordination/discord_commands_tester.py`"
+        },
+        {
+          "line": 451,
+          "text": "- functions: `find_discord_command_files, analyze_command_file, generate_test_report, print_report, test_commands_in_discord, main`"
+        },
+        {
+          "line": 453,
+          "text": "### `tools/coordination/discord_simple_test.py`"
+        },
+        {
+          "line": 458,
+          "text": "- functions: `send_discord_command, test_commands_interactive`"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/archive/dirty_cleanup/20260522_discord_planner/archive/runtime_ephemeral/20260522_discord_planner/data/reports/runtime_governance/discord_event_runtime_classification_001.md",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Discord Event Runtime Classification"
+        },
+        {
+          "line": 5,
+          "text": "runtime/scripts/__pycache__/emit_latest_closeout_discord_architect_001.cpython-313.pyc"
+        },
+        {
+          "line": 6,
+          "text": "runtime/scripts/export_discord_journal_payload.py"
+        },
+        {
+          "line": 7,
+          "text": "runtime/scripts/start_discord_webhook_sender_050.sh"
+        },
+        {
+          "line": 8,
+          "text": "runtime/scripts/send_discord_journal_payload.py"
+        },
+        {
+          "line": 9,
+          "text": "runtime/scripts/start_discord_delivery_retry_queue_052.sh"
+        },
+        {
+          "line": 10,
+          "text": "runtime/scripts/start_failed_discord_delivery_retry_053.sh"
+        },
+        {
+          "line": 11,
+          "text": "runtime/scripts/start_discord_retry_worker_cli_054.sh"
+        },
+        {
+          "line": 12,
+          "text": "runtime/scripts/start_live_discord_retry_worker_056.sh"
+        },
+        {
+          "line": 13,
+          "text": "runtime/scripts/start_discord_retry_state_compaction_060.sh"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/archive/dirty_cleanup/20260522_discord_planner/data/reports/dirty_scope/untracked_after_discord_planner_lane_001.json",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 29,
+          "text": "      \"path\": \"data/reports/discord_bot_bundle/discord_bot_logic_bundle.zip\","
+        },
+        {
+          "line": 34,
+          "text": "      \"path\": \"data/reports/runtime_governance/discord_event_runtime_classification_001.md\","
+        },
+        {
+          "line": 99,
+          "text": "      \"path\": \"discord_architect/data/reports/discord_architect/discord_visibility_probe.json\","
+        },
+        {
+          "line": 100,
+          "text": "      \"kind\": \"discord_runtime_data\","
+        },
+        {
+          "line": 104,
+          "text": "      \"path\": \"discord_architect/data/reports/discord_architect/discord_visibility_probe.md\","
+        },
+        {
+          "line": 105,
+          "text": "      \"kind\": \"discord_runtime_data\","
+        },
+        {
+          "line": 109,
+          "text": "      \"path\": \"discord_architect/data/runtime/test_plugin_loader_registry.json\","
+        },
+        {
+          "line": 110,
+          "text": "      \"kind\": \"discord_runtime_data\","
+        },
+        {
+          "line": 114,
+          "text": "      \"path\": \"discord_architect/node_modules/.package-lock.json\","
+        },
+        {
+          "line": 119,
+          "text": "      \"path\": \"discord_architect/node_modules/@discordjs/builders/LICENSE\","
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/archive/dirty_cleanup/20260522_discord_planner/data/reports/dirty_scope/untracked_after_discord_planner_lane_001.md",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Untracked Classification After Discord Planner Lane"
+        },
+        {
+          "line": 11,
+          "text": "- `discord_architect/node_modules/.package-lock.json` :: delete_or_ignore"
+        },
+        {
+          "line": 12,
+          "text": "- `discord_architect/node_modules/@discordjs/builders/LICENSE` :: delete_or_ignore"
+        },
+        {
+          "line": 13,
+          "text": "- `discord_architect/node_modules/@discordjs/builders/README.md` :: delete_or_ignore"
+        },
+        {
+          "line": 14,
+          "text": "- `discord_architect/node_modules/@discordjs/builders/dist/index.d.mts` :: delete_or_ignore"
+        },
+        {
+          "line": 15,
+          "text": "- `discord_architect/node_modules/@discordjs/builders/dist/index.d.ts` :: delete_or_ignore"
+        },
+        {
+          "line": 16,
+          "text": "- `discord_architect/node_modules/@discordjs/builders/dist/index.js` :: delete_or_ignore"
+        },
+        {
+          "line": 17,
+          "text": "- `discord_architect/node_modules/@discordjs/builders/dist/index.js.map` :: delete_or_ignore"
+        },
+        {
+          "line": 18,
+          "text": "- `discord_architect/node_modules/@discordjs/builders/dist/index.mjs` :: delete_or_ignore"
+        },
+        {
+          "line": 19,
+          "text": "- `discord_architect/node_modules/@discordjs/builders/dist/index.mjs.map` :: delete_or_ignore"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/archive/runtime_scripts/20260522_discord_planner_cleanup/runtime/scripts/discard_ephemeral_runtime_reports_001.sh",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 9,
+          "text": "  data/reports/discord/capability_evolution_feed/latest_dispatch_receipt.json \\"
+        },
+        {
+          "line": 10,
+          "text": "  data/reports/discord_architect/channel_webhook_manager/test_channel_receipt.json \\"
+        },
+        {
+          "line": 11,
+          "text": "  data/reports/discord_architect/channel_webhook_manager/test_live_blocked_receipt.json \\"
+        },
+        {
+          "line": 12,
+          "text": "  data/reports/discord_architect/channel_webhook_manager/test_webhook_receipt.json \\"
+        },
+        {
+          "line": 13,
+          "text": "  data/reports/discord_architect/latest_webhook_dispatch_receipt.json \\"
+        },
+        {
+          "line": 14,
+          "text": "  data/reports/discord_architect/plugin_loader_runtime/test_plugin_boot_report.json \\"
+        },
+        {
+          "line": 15,
+          "text": "  data/reports/planner_unlock_priority/planner_unlock_priority_scores.json \\"
+        },
+        {
+          "line": 16,
+          "text": "  data/reports/planner_unlock_priority/planner_unlock_priority_scores.md \\"
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/registry/operator_task_planner.json",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 216,
+          "text": "      \"path\": \"/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/planner_compression_phase_001.yaml\","
+        },
+        {
+          "line": 217,
+          "text": "      \"id\": \"planner_compression_phase_001\","
+        },
+        {
+          "line": 218,
+          "text": "      \"title\": \"planner_compression_phase_001\","
+        },
+        {
+          "line": 224,
+          "text": "      \"path\": \"/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/planner_standards_contract_001.yaml\","
+        },
+        {
+          "line": 225,
+          "text": "      \"id\": \"planner_standards_contract_001\","
+        },
+        {
+          "line": 226,
+          "text": "      \"title\": \"Codify next-level Dream.OS planner standards\","
+        },
+        {
+          "line": 288,
+          "text": "      \"path\": \"/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/wire_planner_into_cliprun_001.yaml\","
+        },
+        {
+          "line": 289,
+          "text": "      \"id\": \"wire_planner_into_cliprun_001\","
+        },
+        {
+          "line": 290,
+          "text": "      \"title\": \"wire_planner_into_cliprun_001\","
+        },
+        {
+          "line": 296,
+          "text": "      \"path\": \"/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/discord_architect_apply_engine_001.yaml\","
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/registry/operator_tooling_inventory.json",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 65,
+          "text": "      \"path\": \"/data/data/com.termux/files/home/bin/ai_dm_discord_platform_permissions_010\","
+        },
+        {
+          "line": 66,
+          "text": "      \"name\": \"ai_dm_discord_platform_permissions_010\","
+        },
+        {
+          "line": 165,
+          "text": "      \"path\": \"/data/data/com.termux/files/home/bin/character_persistence_discord_lock_002\","
+        },
+        {
+          "line": 166,
+          "text": "      \"name\": \"character_persistence_discord_lock_002\","
+        },
+        {
+          "line": 315,
+          "text": "      \"path\": \"/data/data/com.termux/files/home/bin/commit_discord_runtime_branch_001\","
+        },
+        {
+          "line": 316,
+          "text": "      \"name\": \"commit_discord_runtime_branch_001\","
+        },
+        {
+          "line": 325,
+          "text": "      \"path\": \"/data/data/com.termux/files/home/bin/commit_discord_runtime_event_bus_002\","
+        },
+        {
+          "line": 326,
+          "text": "      \"name\": \"commit_discord_runtime_event_bus_002\","
+        },
+        {
+          "line": 605,
+          "text": "      \"path\": \"/data/data/com.termux/files/home/bin/discord_initial_layout_showcase_011\","
+        },
+        {
+          "line": 606,
+          "text": "      \"name\": \"discord_initial_layout_showcase_011\","
+        }
+      ]
+    },
+    {
+      "path": "../DreamVault/data/registry/weighted_master_task_rankings.json",
+      "score": 21,
+      "hits": [
+        "discord",
+        "webhook",
+        "channel",
+        "planner",
+        "architect"
+      ],
+      "sample": [
+        {
+          "line": 498,
+          "text": "      \"id\": \"discord_architect_plugin_loader_runtime_001\","
+        },
+        {
+          "line": 503,
+          "text": "      \"task_file\": \"runtime/tasks/discord/discord_architect_plugin_loader_runtime_001.yaml\","
+        },
+        {
+          "line": 743,
+          "text": "      \"id\": \"planner_standards_contract_001\","
+        },
+        {
+          "line": 747,
+          "text": "      \"lane\": \"planner_governance\","
+        },
+        {
+          "line": 748,
+          "text": "      \"task_file\": \"runtime/tasks/planner_standards_contract_001.yaml\","
+        },
+        {
+          "line": 1073,
+          "text": "      \"id\": \"planner_compression_phase_001\","
+        },
+        {
+          "line": 1078,
+          "text": "      \"task_file\": \"runtime/tasks/planner_compression_phase_001.yaml\","
+        },
+        {
+          "line": 1118,
+          "text": "      \"id\": \"tsla_volume_profile_discord_export_001\","
+        },
+        {
+          "line": 1123,
+          "text": "      \"task_file\": \"runtime/tasks/trading/tsla_volume_profile_discord_export_001.yaml\","
+        },
+        {
+          "line": 1133,
+          "text": "      \"id\": \"wire_planner_into_cliprun_001\","
+        }
+      ]
+    }
+  ],
+  "selected_precedent": {
+    "path": "../DreamVault/data/reports/repo_fleet/generated_report_governance_audit_001.json",
+    "score": 32,
+    "hits": [
+      "xthunder",
+      "discord",
+      "webhook",
+      "channel",
+      "planner",
+      "architect"
+    ],
+    "sample": [
+      {
+        "line": 19,
+        "text": "    \"discord\": 1403,"
+      },
+      {
+        "line": 26,
+        "text": "    \"xthunder\": 28"
+      },
+      {
+        "line": 52,
+        "text": "        \"discord\": 6,"
+      },
+      {
+        "line": 76,
+        "text": "          \"data/reports/discord/created_trading_webhook_redacted.json\","
+      },
+      {
+        "line": 77,
+        "text": "          \"data/reports/discord/discord_channel_inventory.json\","
+      },
+      {
+        "line": 78,
+        "text": "          \"data/reports/discord/discord_channel_inventory.md\""
+      },
+      {
+        "line": 81,
+        "text": "          \"data/reports/toolbelt_absorption/mobile_discord_architect_candidates.txt\","
+      },
+      {
+        "line": 82,
+        "text": "          \"data/reports/toolbelt_absorption/mobile_discord_architect_collision_report.md\","
+      },
+      {
+        "line": 83,
+        "text": "          \"data/reports/toolbelt_absorption/mobile_discord_architect_promotion_manifest.json\","
+      },
+      {
+        "line": 84,
+        "text": "          \"data/reports/toolbelt_absorption/mobile_discord_architect_source_inventory.md\""
+      }
+    ]
+  },
+  "current_blocker": "Existing discovered Discord webhook candidates validate but reject POST with HTTP_403.",
+  "next_action": "Use Discord Architect to inventory channels and provision a fresh intended closeout webhook.",
+  "guardrail": "No webhook URLs printed or committed."
+}
