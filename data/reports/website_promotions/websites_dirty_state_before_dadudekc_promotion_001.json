@@ -1,0 +1,471 @@
+{
+  "generated_at": "2026-06-03T16:44:07",
+  "status": "CLASSIFIED",
+  "repo": "websites",
+  "item_count": 53,
+  "group_counts": {
+    "hostinger_build_artifacts": 6,
+    "legacy_runtime_reports": 25,
+    "other": 4,
+    "dadudekc_content": 1,
+    "runtime_scripts": 2,
+    "emergence_tasks": 14,
+    "trading_tasks": 1
+  },
+  "decision_counts": {
+    "QUARANTINE_OR_IGNORE_CANDIDATE": 6,
+    "SEPARATE_BUCKET_REVIEW": 42,
+    "REVIEW_MANUAL": 4,
+    "REVIEW_WITH_DADUDEKC_PROMOTION": 1
+  },
+  "items": [
+    {
+      "status": "??",
+      "path": "_hostinger_build/dreamos_site_deployer",
+      "group": "hostinger_build_artifacts",
+      "decision": "QUARANTINE_OR_IGNORE_CANDIDATE",
+      "reason": "build/tmp output should not be mixed into source promotion",
+      "file_count": 2
+    },
+    {
+      "status": "??",
+      "path": "_hostinger_build/emergence_comic_archive_preview_001",
+      "group": "hostinger_build_artifacts",
+      "decision": "QUARANTINE_OR_IGNORE_CANDIDATE",
+      "reason": "build/tmp output should not be mixed into source promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_hostinger_build/emergence_comic_archive_wp_page_001",
+      "group": "hostinger_build_artifacts",
+      "decision": "QUARANTINE_OR_IGNORE_CANDIDATE",
+      "reason": "build/tmp output should not be mixed into source promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_hostinger_build/emergence_comic_archive_wp_page_002",
+      "group": "hostinger_build_artifacts",
+      "decision": "QUARANTINE_OR_IGNORE_CANDIDATE",
+      "reason": "build/tmp output should not be mixed into source promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_hostinger_build/emergence_comic_archive_wp_page_003",
+      "group": "hostinger_build_artifacts",
+      "decision": "QUARANTINE_OR_IGNORE_CANDIDATE",
+      "reason": "build/tmp output should not be mixed into source promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_hostinger_build/themes",
+      "group": "hostinger_build_artifacts",
+      "decision": "QUARANTINE_OR_IGNORE_CANDIDATE",
+      "reason": "build/tmp output should not be mixed into source promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/dadudekc_block_template_override_repair_001.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/dadudekc_theme_placeholder_cleanup_002.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/dreamos_theme_placeholder_guard_repair_001.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/emergence_character_generator_render_072.md.html",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/emergence_character_sheet_output_081.md.html",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/emergence_page_design_registry_001.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/emergence_premium_spark_os_redesign_001.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/force_dadudekc_public_root_spark_os_001.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/freeride_wp_config_repair_056.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/remote_configure_image_env_095d.sh",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_battle_engine_smoke_failure_014.err",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_battle_engine_smoke_failure_014.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_battle_shortcode_inspection_011.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_battle_shortcode_render_015.err",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_battle_sim_protocol_inventory_007.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_battle_sim_protocol_inventory_008.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_protocol_battle_sim_integration_006.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_protocol_exchange_ceiling_005.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_shortcode_battle_start_failure_016.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_shortcode_engine_direct_016.err",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_shortcode_exception_verify_017.err",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_shortcode_exception_verify_017.md",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_shortcode_render_stub_fix_018.err",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_shortcode_result_shape_019.err",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_reports/spark_shortcode_template_compat_020.err",
+      "group": "legacy_runtime_reports",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "_tmp",
+      "group": "other",
+      "decision": "REVIEW_MANUAL",
+      "reason": "unclassified dirty artifact",
+      "file_count": 67
+    },
+    {
+      "status": "??",
+      "path": "data/reports/website_promotions",
+      "group": "other",
+      "decision": "REVIEW_MANUAL",
+      "reason": "unclassified dirty artifact",
+      "file_count": 2
+    },
+    {
+      "status": "??",
+      "path": "runtime/content/dadudekc.site/client-preview.freeride-funnel-candidate.html",
+      "group": "dadudekc_content",
+      "decision": "REVIEW_WITH_DADUDEKC_PROMOTION",
+      "reason": "may be related to DaDudeKC funnel/content and should be reviewed with promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/docs",
+      "group": "other",
+      "decision": "REVIEW_MANUAL",
+      "reason": "unclassified dirty artifact",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/scripts/hostinger_wp_manager.py.bak_052",
+      "group": "runtime_scripts",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "script/task artifact requires separate review before commit",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/scripts/rerank_robinhood_contract_identity_raw_sources_001.py",
+      "group": "runtime_scripts",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "script/task artifact requires separate review before commit",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/spark-battle-sim",
+      "group": "other",
+      "decision": "REVIEW_MANUAL",
+      "reason": "unclassified dirty artifact",
+      "file_count": 5
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/add_emergence_page_design_registry_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/clean_dadudekc_theme_placeholders_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/clean_dadudekc_theme_placeholders_002.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_with_deployer_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_with_deployer_002.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_wp_page_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_wp_page_002.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/deploy_emergence_comic_archive_wp_page_003.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/force_dadudekc_public_root_spark_os_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/promote_emergence_comic_archive_homepage_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/redesign_emergence_premium_spark_os_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/repair_dadudekc_block_template_overrides_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/repair_dadudekc_live_theme_content_cache_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/emergence/repair_dreamos_theme_placeholder_guard_001.yaml",
+      "group": "emergence_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "belongs to Emergence/Spark/website runtime lane, not DaDudeKC promotion",
+      "file_count": 1
+    },
+    {
+      "status": "??",
+      "path": "runtime/tasks/trading/rerank_robinhood_contract_identity_raw_sources_001.yaml",
+      "group": "trading_tasks",
+      "decision": "SEPARATE_BUCKET_REVIEW",
+      "reason": "script/task artifact requires separate review before commit",
+      "file_count": 1
+    }
+  ],
+  "promotion_blocker": true,
+  "next_lanes": [
+    {
+      "id": "commit_dadudekc_host_decision_reports_001",
+      "target": "dadudekc_promotion_reports",
+      "action": "commit only host decision reports generated by the current promotion lane",
+      "verify": "cached scope only data/reports/website_promotions/dadudekc_service_funnel_host_decision_001.*",
+      "commit": "Document DaDudeKC service funnel host decision"
+    },
+    {
+      "id": "review_websites_emergence_runtime_bucket_001",
+      "target": "emergence/runtime dirty buckets",
+      "action": "classify _hostinger_build, _reports, runtime/tasks/emergence, runtime/spark-battle-sim separately",
+      "verify": "no staging",
+      "commit": "none until reviewed"
+    },
+    {
+      "id": "promote_dadudekc_service_funnel_after_websites_clean_001",
+      "target": "DaDudeKC promotion",
+      "action": "rerun promotion after websites dirty buckets are committed/quarantined/ignored",
+      "verify": "websites clean except promotion scope",
+      "commit": "Promote DaDudeKC website service funnel"
+    }
+  ]
+}
