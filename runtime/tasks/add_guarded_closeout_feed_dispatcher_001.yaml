@@ -1,0 +1,12 @@
+id: add_guarded_closeout_feed_dispatcher_001
+title: Add guarded closeout feed dispatcher
+status: done
+lane: closeout_feed
+priority: high
+
+objective: >
+  Add a guarded dispatcher for rendered closeout feed cards. Dry-run is default.
+  Live Discord dispatch requires --send and DISCORD_CLOSEOUT_WEBHOOK_URL.
+
+guardrail: >
+  No live dispatch by default. Missing webhook must block send mode.
