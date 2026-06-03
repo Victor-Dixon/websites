@@ -1,0 +1,12 @@
+id: add_closeout_feed_dry_run_renderer_001
+title: Add closeout feed dry-run renderer
+status: done
+lane: closeout_feed
+priority: high
+
+objective: >
+  Render runtime/feeds/closeouts/*.json into Discord and GitHub Architect markdown
+  payloads without sending network dispatches.
+
+guardrail: >
+  Dry-run only. No Discord or GitHub dispatch.
