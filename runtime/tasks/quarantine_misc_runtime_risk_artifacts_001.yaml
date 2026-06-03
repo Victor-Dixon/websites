@@ -1,0 +1,27 @@
+id: quarantine_misc_runtime_risk_artifacts_001
+title: Quarantine misc runtime risk artifacts
+status: ready
+lane: websites_cleanup
+priority: high
+
+objective: >
+  Move misc runtime artifacts classified as QUARANTINE_CANDIDATE into
+  runtime/quarantine so backup/script artifacts do not block DaDudeKC promotion.
+
+context:
+  source_review: data/reports/website_promotions/misc_runtime_artifacts_review_001.json
+  expected_count: 2
+
+requirements:
+  - load QUARANTINE_CANDIDATE paths from misc runtime review
+  - move only those 2 paths
+  - preserve original path mapping
+  - write manifest/report
+  - verify originals cleared
+  - do not touch deeper-review or DaDudeKC promotion content
+
+acceptance:
+  - exactly 2 paths moved
+  - original paths no longer exist
+  - quarantine paths exist
+  - manifest references both moved paths

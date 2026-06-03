@@ -1,0 +1,36 @@
+{
+  "id": "quarantine_misc_runtime_risk_artifacts_001",
+  "generated_at": "2026-06-03T17:03:12",
+  "status": "QUARANTINED",
+  "source_review": "data/reports/website_promotions/misc_runtime_artifacts_review_001.json",
+  "moved_count": 2,
+  "moved_file_count": 2,
+  "moved": [
+    {
+      "original_path": "runtime/scripts/hostinger_wp_manager.py.bak_052",
+      "quarantine_path": "runtime/quarantine/misc_runtime_risk_artifacts_001/runtime__scripts__hostinger_wp_manager.py.bak_052",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "backup script should be preserved outside active source",
+      "risk_flags": [
+        "possible_sensitive_surface",
+        "backup_file",
+        "runtime_script"
+      ],
+      "file_count": 1,
+      "size": 5356
+    },
+    {
+      "original_path": "runtime/scripts/rerank_robinhood_contract_identity_raw_sources_001.py",
+      "quarantine_path": "runtime/quarantine/misc_runtime_risk_artifacts_001/runtime__scripts__rerank_robinhood_contract_identity_raw_sources_001.py",
+      "decision": "QUARANTINE_CANDIDATE",
+      "reason": "runtime script has risk/operational signals; quarantine before reuse",
+      "risk_flags": [
+        "possible_sensitive_surface",
+        "runtime_script"
+      ],
+      "file_count": 1,
+      "size": 8925
+    }
+  ],
+  "guardrail": "Quarantined misc runtime script/backup artifacts are preserved as evidence and must not be treated as active website source unless explicitly promoted later."
+}
