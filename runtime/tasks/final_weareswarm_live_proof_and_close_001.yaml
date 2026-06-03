@@ -1,0 +1,20 @@
+id: final_weareswarm_live_proof_and_close_001
+title: Final WeAreSwarm live proof and close
+status: done
+lane: website_deploy
+priority: high
+
+root_url: https://weareswarm.site/
+route_url: https://weareswarm.site/dreamos-services/
+
+verification:
+  root_code: "200"
+  root_content: PASS
+  route_code: "200"
+  route_content: PASS
+  ssh_alias: PASS
+
+unlocks:
+  - weareswarm_root_live
+  - weareswarm_dreamos_services_route_live
+  - hostinger_passwordless_ssh_ready
