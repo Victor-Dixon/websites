@@ -1,0 +1,17 @@
+id: polish_emergence_mobile_finish_pass_001
+project: emergence
+target: dadudekc.site mobile finish pass
+status: ready
+objective:
+  - Tighten first-screen mobile spacing.
+  - Reduce bulky cards and section padding.
+  - Make the homepage feel like a premium app shell, not a long landing page.
+  - Improve Spark generator and battle sim route presentation under the custom theme.
+acceptance:
+  - Root URL returns HTTP 200.
+  - /spark-generator/ returns HTTP 200.
+  - /spark-battle-sim/ returns HTTP 200.
+  - Theme CSS contains mobile finish pass marker.
+  - Header remains single-source from the theme.
+  - Visual screenshot should show one header, cleaner hero, less card bloat, and usable function routes.
+commit_message: Polish Emergence mobile finish pass
