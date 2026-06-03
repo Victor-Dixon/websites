@@ -1,0 +1,19 @@
+id: build_weareswarm_dreamos_services_funnel_001
+title: Build WeAreSwarm DreamOS services funnel
+status: done
+lane: website_promotion
+priority: high
+
+target_route:
+  host: weareswarm
+  path: /dreamos-services
+  source_package: dadudekc-service-funnel
+
+objective: >
+  Build the first live service-funnel route from the promoted DaDudeKC package.
+
+verification:
+  - route page exists
+  - route page contains Dream.OS service offer
+  - route page contains proof from cleanup/promotion lane
+  - no unrelated buckets staged
