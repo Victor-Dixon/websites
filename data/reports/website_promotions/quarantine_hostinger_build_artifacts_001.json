@@ -1,0 +1,47 @@
+{
+  "id": "quarantine_hostinger_build_artifacts_001",
+  "generated_at": "2026-06-03T16:52:14",
+  "status": "QUARANTINED",
+  "source_split": "data/reports/website_promotions/websites_dirty_bucket_split_001.json",
+  "moved_count": 6,
+  "moved_file_count": 7,
+  "moved": [
+    {
+      "original_path": "_hostinger_build/dreamos_site_deployer",
+      "quarantine_path": "runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__dreamos_site_deployer",
+      "file_count": 2,
+      "reason": "Hostinger build outputs should not be committed into active source without review"
+    },
+    {
+      "original_path": "_hostinger_build/emergence_comic_archive_preview_001",
+      "quarantine_path": "runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__emergence_comic_archive_preview_001",
+      "file_count": 1,
+      "reason": "Hostinger build outputs should not be committed into active source without review"
+    },
+    {
+      "original_path": "_hostinger_build/emergence_comic_archive_wp_page_001",
+      "quarantine_path": "runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__emergence_comic_archive_wp_page_001",
+      "file_count": 1,
+      "reason": "Hostinger build outputs should not be committed into active source without review"
+    },
+    {
+      "original_path": "_hostinger_build/emergence_comic_archive_wp_page_002",
+      "quarantine_path": "runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__emergence_comic_archive_wp_page_002",
+      "file_count": 1,
+      "reason": "Hostinger build outputs should not be committed into active source without review"
+    },
+    {
+      "original_path": "_hostinger_build/emergence_comic_archive_wp_page_003",
+      "quarantine_path": "runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__emergence_comic_archive_wp_page_003",
+      "file_count": 1,
+      "reason": "Hostinger build outputs should not be committed into active source without review"
+    },
+    {
+      "original_path": "_hostinger_build/themes",
+      "quarantine_path": "runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__themes",
+      "file_count": 1,
+      "reason": "Hostinger build outputs should not be committed into active source without review"
+    }
+  ],
+  "guardrail": "Quarantined Hostinger build outputs are preserved as generated deployment evidence and must not be treated as active website source unless explicitly promoted later."
+}

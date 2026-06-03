@@ -1,0 +1,28 @@
+id: quarantine_hostinger_build_artifacts_001
+title: Quarantine Hostinger build artifacts
+status: ready
+lane: websites_cleanup
+priority: high
+
+objective: >
+  Move untracked _hostinger_build artifacts into runtime/quarantine so build
+  output does not block the DaDudeKC service funnel promotion.
+
+context:
+  source_split: data/reports/website_promotions/websites_dirty_bucket_split_001.json
+  expected_lane: quarantine_hostinger_build_artifacts
+  expected_count: 6
+
+requirements:
+  - load paths from websites dirty bucket split report
+  - move only lane quarantine_hostinger_build_artifacts
+  - preserve original path mapping
+  - write manifest/report
+  - do not touch other dirty buckets
+  - verify originals cleared
+
+acceptance:
+  - exactly 6 paths moved
+  - original paths no longer exist
+  - quarantine paths exist
+  - manifest references all moved paths

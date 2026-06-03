@@ -1,0 +1,719 @@
+<style>
+:root {
+      --bg: #08090d;
+      --panel: #11131b;
+      --panel-2: #171a24;
+      --ink: #f4efe5;
+      --muted: #a7a093;
+      --dim: #6f6a60;
+      --red: #d6222a;
+      --red-dark: #721116;
+      --gold: #f6bc3f;
+      --blue: #5ba8ff;
+      --line: rgba(244,239,229,.16);
+      --shadow: rgba(0,0,0,.55);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(214,34,42,.23), transparent 30rem),
+        radial-gradient(circle at 85% 15%, rgba(91,168,255,.16), transparent 26rem),
+        radial-gradient(circle at 60% 90%, rgba(246,188,63,.12), transparent 32rem),
+        linear-gradient(180deg, #07080c 0%, #10121a 48%, #07080c 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .17;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.35) 1px, transparent 1px);
+      background-size: 6px 6px;
+      mix-blend-mode: screen;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, transparent 0 96%, rgba(255,255,255,.04) 96% 100%),
+        linear-gradient(180deg, transparent 0 96%, rgba(255,255,255,.035) 96% 100%);
+      background-size: 44px 44px;
+      opacity: .35;
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .85rem clamp(1rem, 3vw, 2rem);
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,9,13,.82);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .95rem;
+    }
+
+    .spark-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: #08090d;
+      background: var(--gold);
+      clip-path: polygon(50% 0%, 63% 35%, 100% 35%, 70% 56%, 82% 100%, 50% 73%, 18% 100%, 30% 56%, 0 35%, 37% 35%);
+      box-shadow: 0 0 28px rgba(246,188,63,.35);
+    }
+
+    .nav {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      font-size: .72rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: .55rem .7rem;
+      border: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+      border-color: var(--line);
+      background: rgba(255,255,255,.04);
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      align-items: center;
+      padding: clamp(3rem, 8vw, 7rem) clamp(1rem, 4vw, 4rem);
+    }
+
+    .hero-grid {
+      max-width: 1220px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--gold);
+      border: 1px solid rgba(246,188,63,.45);
+      background: rgba(246,188,63,.07);
+      padding: .45rem .7rem;
+      transform: rotate(-1deg);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      font-size: clamp(4rem, 11vw, 10rem);
+      line-height: .78;
+      letter-spacing: .015em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      text-shadow:
+        5px 5px 0 var(--red-dark),
+        10px 10px 0 rgba(0,0,0,.45),
+        0 0 42px rgba(214,34,42,.3);
+    }
+
+    h1 span {
+      display: block;
+      color: var(--gold);
+      text-shadow:
+        5px 5px 0 #8b5414,
+        10px 10px 0 rgba(0,0,0,.45),
+        0 0 52px rgba(246,188,63,.25);
+    }
+
+    .subtitle {
+      max-width: 760px;
+      font-family: Arial, sans-serif;
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      line-height: 1.55;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: .95rem 1.2rem;
+      border: 2px solid var(--ink);
+      background: var(--ink);
+      color: #08090d;
+      text-transform: uppercase;
+      letter-spacing: .11em;
+      font-size: .83rem;
+      box-shadow: 6px 6px 0 var(--red-dark);
+      transform: skew(-7deg);
+    }
+
+    .btn span { transform: skew(7deg); }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+      box-shadow: 6px 6px 0 rgba(246,188,63,.22);
+    }
+
+    .hero-card {
+      border: 2px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(214,34,42,.18), transparent 42%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+        var(--panel);
+      box-shadow: 18px 18px 0 rgba(0,0,0,.34);
+      transform: rotate(1.5deg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "AEGIS CASE FILE";
+      position: absolute;
+      top: 1rem;
+      right: -3rem;
+      transform: rotate(35deg);
+      color: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.18);
+      padding: .35rem 4rem;
+      letter-spacing: .16em;
+      font-size: .75rem;
+    }
+
+    .case-inner {
+      padding: clamp(1.4rem, 4vw, 2.3rem);
+    }
+
+    .case-id {
+      color: var(--blue);
+      font-family: Arial, sans-serif;
+      font-weight: 900;
+      font-size: .76rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .case-title {
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: .9;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .case-copy {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 1.2rem;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.22);
+      padding: .85rem;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--gold);
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--dim);
+      font-family: Arial, sans-serif;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-top: .35rem;
+    }
+
+    section {
+      padding: clamp(3.5rem, 7vw, 6rem) clamp(1rem, 4vw, 4rem);
+    }
+
+    .section-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+    }
+
+    .section-kicker {
+      color: var(--red);
+      font-family: Arial, sans-serif;
+      font-weight: 900;
+      font-size: .76rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+
+    h2 {
+      font-size: clamp(2.4rem, 6vw, 5.4rem);
+      line-height: .85;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      text-shadow: 4px 4px 0 rgba(0,0,0,.4);
+    }
+
+    .lead {
+      max-width: 850px;
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .comic-panel {
+      min-height: 250px;
+      border: 2px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.015)),
+        var(--panel);
+      box-shadow: 10px 10px 0 var(--shadow);
+      padding: 1.3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .comic-panel::after {
+      content: "";
+      position: absolute;
+      inset: auto -30% -40% auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(246,188,63,.18), transparent 65%);
+      border-radius: 999px;
+    }
+
+    .panel-num {
+      color: var(--gold);
+      font-size: 3rem;
+      line-height: .8;
+      margin-bottom: .9rem;
+      opacity: .9;
+    }
+
+    .comic-panel h3 {
+      font-size: 1.6rem;
+      line-height: .95;
+      text-transform: uppercase;
+      margin-bottom: .7rem;
+    }
+
+    .comic-panel p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+
+    .protocol {
+      background:
+        linear-gradient(90deg, rgba(114,17,22,.42), transparent 40%, rgba(246,188,63,.08)),
+        rgba(0,0,0,.25);
+      border-block: 1px solid var(--line);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .dossier {
+      border: 2px solid var(--line);
+      background: rgba(0,0,0,.28);
+      padding: 1.25rem;
+      box-shadow: 12px 12px 0 rgba(0,0,0,.3);
+    }
+
+    .dossier h3 {
+      color: var(--gold);
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin-bottom: .7rem;
+    }
+
+    .dossier p,
+    .dossier li {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .dossier ul {
+      padding-left: 1.15rem;
+      margin: 0;
+    }
+
+    .arena-card {
+      border: 2px solid rgba(91,168,255,.38);
+      background:
+        radial-gradient(circle at 80% 20%, rgba(91,168,255,.18), transparent 20rem),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02)),
+        var(--panel-2);
+      padding: clamp(1.4rem, 4vw, 2rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .arena-card::before {
+      content: "OPTIONAL MODE";
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: rgba(91,168,255,.8);
+      font-family: Arial, sans-serif;
+      font-weight: 900;
+      font-size: .68rem;
+      letter-spacing: .18em;
+    }
+
+    .arena-title {
+      font-size: clamp(2.2rem, 5vw, 4.6rem);
+      line-height: .85;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .arena-title span { color: var(--blue); }
+
+    .issue-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .85rem;
+    }
+
+    .issue {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      padding: 1rem;
+      min-height: 150px;
+    }
+
+    .issue small {
+      display: block;
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: .7rem;
+    }
+
+    .issue h3 {
+      font-size: 1.35rem;
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: .6rem;
+    }
+
+    .issue p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: .92rem;
+      margin: 0;
+    }
+
+    .footer {
+      padding: 2rem clamp(1rem, 4vw, 4rem);
+      border-top: 1px solid var(--line);
+      color: var(--dim);
+      font-family: Arial, sans-serif;
+      font-size: .82rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-grid,
+      .issue-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .hero-card {
+        transform: none;
+      }
+    }
+</style>
+<div class="page">
+    <nav class="topbar">
+      <a class="brand" href="#top" aria-label="The Emergence home">
+        <span class="spark-mark" aria-hidden="true"></span>
+        <span>Spark Protocol Archive</span>
+      </a>
+      <div class="nav" aria-label="Primary navigation">
+        <a href="#loop">Core Loop</a>
+        <a href="#protocol">Protocol</a>
+        <a href="#arena">What-If Arena</a>
+        <a href="#log">Issue Log</a>
+      </div>
+    </nav>
+
+    <main id="top">
+      <header class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="stamp">Classified Awakening File</div>
+            <h1>The <span>Emergence</span></h1>
+            <p class="subtitle">
+              Build your Spark. Survive the awakening. Step into a superhero universe where powers are cinematic on the surface and resolved by a fair protocol underneath.
+            </p>
+            <div class="cta-row">
+              <a class="btn" href="/spark-generator.html"><span>Generate Your Spark</span></a>
+              <a class="btn secondary" href="#protocol"><span>Read The Protocol</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="AEGIS case file">
+            <div class="case-inner">
+              <div class="case-id">AEGIS // CASE 0001</div>
+              <div class="case-title">The first spark is never quiet.</div>
+              <p class="case-copy">
+                Across the city, ordinary people wake up dangerous. Some run. Some hide. Some become symbols. The archive records the moment before control.
+              </p>
+              <div class="stat-grid">
+                <div class="stat"><strong>01</strong><span>Awakening</span></div>
+                <div class="stat"><strong>05</strong><span>Power Paths</span></div>
+                <div class="stat"><strong>∞</strong><span>What-Ifs</span></div>
+                <div class="stat"><strong>Real</strong><span>Build Log</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </header>
+
+      <section id="loop">
+        <div class="section-inner">
+          <div class="section-kicker">Main Game Spine</div>
+          <h2>Your story is the combat system.</h2>
+          <p class="lead">
+            The core game is not NPCs fighting NPCs. It is the player becoming a Spark, learning what they can do, surviving consequences, and growing through missions.
+          </p>
+
+          <div class="panel-grid">
+            <article class="comic-panel">
+              <div class="panel-num">01</div>
+              <h3>Awaken</h3>
+              <p>You begin ordinary. Then something impossible happens. Your first power is not clean. It is dangerous, emotional, and hard to control.</p>
+            </article>
+
+            <article class="comic-panel">
+              <div class="panel-num">02</div>
+              <h3>Control</h3>
+              <p>Training turns chaos into intent. The system tracks growth, limits, weaknesses, and the situations that push your Spark too far.</p>
+            </article>
+
+            <article class="comic-panel">
+              <div class="panel-num">03</div>
+              <h3>Become Legend</h3>
+              <p>Missions, choices, failures, rescues, rivalries, and public consequences shape the hero people think you are.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="protocol" class="protocol">
+        <div class="section-inner split">
+          <div>
+            <div class="section-kicker">The Promise</div>
+            <h2>Fair underneath. Cinematic on top.</h2>
+            <p class="lead">
+              Spark Protocol exists to answer power questions without hand-waving. The player sees story. The system keeps the receipts.
+            </p>
+          </div>
+
+          <div class="dossier">
+            <h3>Protocol Rules</h3>
+            <ul>
+              <li>Abilities have limits, costs, counters, and environments where they shine.</li>
+              <li>Arena conditions matter: weather, distance, terrain, visibility, and civilians can flip outcomes.</li>
+              <li>The result is resolved before narration. The story never gets to cheat the engine.</li>
+              <li>Close fights feel messy. Stomps stay honest. Upsets require traceable reasons.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="arena">
+        <div class="section-inner">
+          <div class="arena-card">
+            <div class="section-kicker">Downtime Feature</div>
+            <div class="arena-title">What-If <span>Arena</span></div>
+            <p class="lead">
+              This is where Scott's battle simulator belongs: not the main game loop, but a fun side mode for downtime, fan matchups, combat projections, and shareable cinematic stories.
+            </p>
+            <div class="cta-row">
+              <a class="btn secondary" href="/spark-battle-sim.html"><span>Run Combat Projection</span></a>
+              <a class="btn secondary" href="#log"><span>View Build Issues</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="dossiers">
+        <div class="section-inner">
+          <div class="section-kicker">Archive Design</div>
+          <h2>Dossiers, not dropdowns.</h2>
+          <p class="lead">
+            The site should feel like recovered superhero intelligence: character cards, mission files, classified notes, incident reports, and issue-style updates.
+          </p>
+
+          <div class="panel-grid">
+            <article class="comic-panel">
+              <div class="panel-num">A</div>
+              <h3>Spark Files</h3>
+              <p>Character and player sheets become case files with powers, tells, weaknesses, and known incidents.</p>
+            </article>
+
+            <article class="comic-panel">
+              <div class="panel-num">B</div>
+              <h3>Mission Boards</h3>
+              <p>Campaign content gets framed as emergency calls, agency assignments, public crises, and dangerous rumors.</p>
+            </article>
+
+            <article class="comic-panel">
+              <div class="panel-num">C</div>
+              <h3>Issue Archive</h3>
+              <p>Dream.OS closeouts become proof-of-work updates: real build history presented like comic issue releases.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="log">
+        <div class="section-inner">
+          <div class="section-kicker">Build Log</div>
+          <h2>Issue Archive</h2>
+          <p class="lead">
+            The build log should pull from real closeouts so the site can show momentum without making anything up.
+          </p>
+
+          <div class="issue-grid">
+            <article class="issue">
+              <small>Issue 001</small>
+              <h3>Spark Generator</h3>
+              <p>Create the first public path into the world: identity, awakening, and power seed.</p>
+            </article>
+
+            <article class="issue">
+              <small>Issue 002</small>
+              <h3>Protocol Tables</h3>
+              <p>Move combat logic from loose idea into structured rules and repeatable outcomes.</p>
+            </article>
+
+            <article class="issue">
+              <small>Issue 003</small>
+              <h3>What-If Arena</h3>
+              <p>Reclassify NPC-vs-NPC battles as optional combat projections, not core gameplay.</p>
+            </article>
+
+            <article class="issue">
+              <small>Issue 004</small>
+              <h3>Dream.OS Spine</h3>
+              <p>Connect closeouts, Discord cards, GitHub proof, and public updates into one honest pipeline.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>The Emergence // Spark Protocol Archive</span>
+      <span>Dream.OS build spine: real work, real closeouts, no fake hype.</span>
+    </footer>
+  </div>
