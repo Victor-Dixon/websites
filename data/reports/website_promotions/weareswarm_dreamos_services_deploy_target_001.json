@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-06-03T17:21:15",
+  "status": "DEPLOY_TARGET_REVIEW_READY",
+  "route": "routes/weareswarm/dreamos-services/index.html",
+  "canonical_host": "weareswarm",
+  "canonical_path": "/dreamos-services",
+  "source_package": "dadudekc-service-funnel",
+  "deployment_recommendation": {
+    "mode": "static_page_upload_or_mirror",
+    "source_file": "routes/weareswarm/dreamos-services/index.html",
+    "target_path": "weareswarm:/dreamos-services/index.html",
+    "guardrail": "Do not overwrite live homepage; deploy as route/page only."
+  },
+  "candidates": [
+    {
+      "path": "runtime/deploy",
+      "exists": true,
+      "file_count": 63
+    },
+    {
+      "path": "runtime/scripts",
+      "exists": true,
+      "file_count": 32
+    },
+    {
+      "path": "data/reports/website_promotions",
+      "exists": true,
+      "file_count": 39
+    },
+    {
+      "path": "_hostinger_build",
+      "exists": true,
+      "file_count": 69
+    }
+  ],
+  "next_lane": {
+    "target": "package deploy artifact",
+    "action": "copy route page into deploy package for live WeAreSwarm upload",
+    "verify": "deploy package contains index.html and manifest",
+    "commit": "Package WeAreSwarm DreamOS services deploy artifact"
+  }
+}
