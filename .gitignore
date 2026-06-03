@@ -31,3 +31,7 @@ _hostinger_build/**/*.tmp
 _hostinger_build/**/*.log
 runtime/logs/
 runtime/reports/**/*.json
+
+# Remaining generated runtime artifact coverage
+_reports/*.txt
+_reports/**/*.txt
