@@ -1,0 +1,11 @@
+id: diagnose_weareswarm_domain_health_001
+title: Diagnose WeAreSwarm domain health
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Diagnose weareswarm.site vs weareswarm.online before any route-only upload.
+
+guardrail: >
+  No upload. Do not overwrite public root or homepage.

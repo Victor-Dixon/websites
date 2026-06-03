@@ -1,0 +1,377 @@
+{
+  "generated_at": "2026-06-03T17:35:28",
+  "status": "REPAIR_TARGET_SELECTED",
+  "reason": "No clean domain exists; selected best repair target using repo lane fit and root evidence.",
+  "selected_domain": "weareswarm.site",
+  "selected_remote_root": "/home/u996867598/domains/weareswarm.site/public_html",
+  "selected_route_file": "/home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html",
+  "selected_route_url": "https://weareswarm.site/dreamos-services/",
+  "guardrail": "No upload performed. Repair or upload only to /dreamos-services/index.html after route target is confirmed.",
+  "diagnostics": [
+    {
+      "domain": "weareswarm.site",
+      "score": 5,
+      "reasons": [
+        "site_domain_matches_current_site_lane",
+        "remote_root_evidence_present",
+        "current_http_error_present"
+      ],
+      "current_results": [
+        {
+          "domain": "weareswarm.site",
+          "scheme": "https",
+          "url": "https://weareswarm.site/",
+          "http_code": "500",
+          "effective_url": "https://weareswarm.site/",
+          "content_type": "text/html; charset=UTF-8",
+          "stderr": ""
+        },
+        {
+          "domain": "weareswarm.site",
+          "scheme": "http",
+          "url": "http://weareswarm.site/",
+          "http_code": "500",
+          "effective_url": "https://weareswarm.site/",
+          "content_type": "text/html; charset=UTF-8",
+          "stderr": ""
+        }
+      ],
+      "prior_reports": [
+        {
+          "path": "_reports/website_audit/http_500_root_causes/weareswarm.site__500_root_cause.md",
+          "exists": true,
+          "signals": [
+            {
+              "line": 1,
+              "text": "# HTTP 500 Root Cause: weareswarm.site"
+            },
+            {
+              "line": 5,
+              "text": "- Root cause: `wordpress_install_returning_500`"
+            },
+            {
+              "line": 6,
+              "text": "- Recommendation: `run_wp_cli_health_check_or_restore_wordpress`"
+            },
+            {
+              "line": 17,
+              "text": "DOMAIN=weareswarm.site"
+            },
+            {
+              "line": 18,
+              "text": "REMOTE_ROOT=/home/u996867598/domains/weareswarm.site/public_html"
+            },
+            {
+              "line": 21,
+              "text": "/home/u996867598/domains/weareswarm.site/public_html"
+            },
+            {
+              "line": 40,
+              "text": "drwxr-xr-x  3 u996867598 o1008028115  4096 May 10 16:00 public_html"
+            },
+            {
+              "line": 68,
+              "text": "drwxr-xr-x u996867598 o1008028115 ./public_html"
+            },
+            {
+              "line": 109,
+              "text": " * Front to the WordPress application. This file doesn't do anything, but loads"
+            },
+            {
+              "line": 110,
+              "text": " * wp-blog-header.php which does and tells WordPress to load the theme."
+            },
+            {
+              "line": 112,
+              "text": " * @package WordPress"
+            },
+            {
+              "line": 116,
+              "text": " * Tells WordPress to load the WordPress theme and output it."
+            },
+            {
+              "line": 122,
+              "text": "/** Loads the WordPress Environment and Template */"
+            },
+            {
+              "line": 173,
+              "text": "# BEGIN WordPress"
+            }
+          ]
+        },
+        {
+          "path": "_reports/website_audit/http_500_root_causes/weareswarm.site__remote_500_audit.txt",
+          "exists": true,
+          "signals": [
+            {
+              "line": 1,
+              "text": "DOMAIN=weareswarm.site"
+            },
+            {
+              "line": 2,
+              "text": "REMOTE_ROOT=/home/u996867598/domains/weareswarm.site/public_html"
+            },
+            {
+              "line": 5,
+              "text": "/home/u996867598/domains/weareswarm.site/public_html"
+            },
+            {
+              "line": 24,
+              "text": "drwxr-xr-x  3 u996867598 o1008028115  4096 May 10 16:00 public_html"
+            },
+            {
+              "line": 52,
+              "text": "drwxr-xr-x u996867598 o1008028115 ./public_html"
+            },
+            {
+              "line": 93,
+              "text": " * Front to the WordPress application. This file doesn't do anything, but loads"
+            },
+            {
+              "line": 94,
+              "text": " * wp-blog-header.php which does and tells WordPress to load the theme."
+            },
+            {
+              "line": 96,
+              "text": " * @package WordPress"
+            },
+            {
+              "line": 100,
+              "text": " * Tells WordPress to load the WordPress theme and output it."
+            },
+            {
+              "line": 106,
+              "text": "/** Loads the WordPress Environment and Template */"
+            },
+            {
+              "line": 157,
+              "text": "# BEGIN WordPress"
+            },
+            {
+              "line": 179,
+              "text": "# END WordPress"
+            },
+            {
+              "line": 181,
+              "text": "== WORDPRESS_MARKERS =="
+            }
+          ]
+        },
+        {
+          "path": "_reports/website_audit/weareswarm.site__audit.md",
+          "exists": true,
+          "signals": [
+            {
+              "line": 9,
+              "text": "| Domain | weareswarm.site |"
+            },
+            {
+              "line": 11,
+              "text": "| Remote Root | `/home/u996867598/domains/weareswarm.site/public_html` |"
+            },
+            {
+              "line": 14,
+              "text": "| HTTPS Status | 500 |"
+            },
+            {
+              "line": 15,
+              "text": "| HTTP Status | 500 |"
+            },
+            {
+              "line": 29,
+              "text": "- HTTPS: https://weareswarm.site/ => 500"
+            },
+            {
+              "line": 30,
+              "text": "- HTTP: http://weareswarm.site/ => 500"
+            }
+          ]
+        }
+      ],
+      "remote_root": "/home/u996867598/domains/weareswarm.site/public_html",
+      "route_file": "/home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html",
+      "route_url": "https://weareswarm.site/dreamos-services/"
+    },
+    {
+      "domain": "weareswarm.online",
+      "score": 2,
+      "reasons": [
+        "remote_root_evidence_present",
+        "current_http_error_present"
+      ],
+      "current_results": [
+        {
+          "domain": "weareswarm.online",
+          "scheme": "https",
+          "url": "https://weareswarm.online/",
+          "http_code": "500",
+          "effective_url": "https://weareswarm.online/",
+          "content_type": "text/html; charset=UTF-8",
+          "stderr": ""
+        },
+        {
+          "domain": "weareswarm.online",
+          "scheme": "http",
+          "url": "http://weareswarm.online/",
+          "http_code": "500",
+          "effective_url": "https://weareswarm.online/",
+          "content_type": "text/html; charset=UTF-8",
+          "stderr": ""
+        }
+      ],
+      "prior_reports": [
+        {
+          "path": "_reports/website_audit/http_500_root_causes/weareswarm.online__500_root_cause.md",
+          "exists": true,
+          "signals": [
+            {
+              "line": 1,
+              "text": "# HTTP 500 Root Cause: weareswarm.online"
+            },
+            {
+              "line": 5,
+              "text": "- Root cause: `wordpress_install_returning_500`"
+            },
+            {
+              "line": 6,
+              "text": "- Recommendation: `run_wp_cli_health_check_or_restore_wordpress`"
+            },
+            {
+              "line": 17,
+              "text": "DOMAIN=weareswarm.online"
+            },
+            {
+              "line": 18,
+              "text": "REMOTE_ROOT=/home/u996867598/domains/weareswarm.online/public_html"
+            },
+            {
+              "line": 21,
+              "text": "/home/u996867598/domains/weareswarm.online/public_html"
+            },
+            {
+              "line": 93,
+              "text": " * Front to the WordPress application. This file doesn't do anything, but loads"
+            },
+            {
+              "line": 94,
+              "text": " * wp-blog-header.php which does and tells WordPress to load the theme."
+            },
+            {
+              "line": 96,
+              "text": " * @package WordPress"
+            },
+            {
+              "line": 100,
+              "text": " * Tells WordPress to load the WordPress theme and output it."
+            },
+            {
+              "line": 106,
+              "text": "/** Loads the WordPress Environment and Template */"
+            },
+            {
+              "line": 186,
+              "text": "# BEGIN WordPress"
+            },
+            {
+              "line": 208,
+              "text": "# END WordPress"
+            },
+            {
+              "line": 210,
+              "text": "== WORDPRESS_MARKERS =="
+            }
+          ]
+        },
+        {
+          "path": "_reports/website_audit/http_500_root_causes/weareswarm.online__remote_500_audit.txt",
+          "exists": true,
+          "signals": [
+            {
+              "line": 1,
+              "text": "DOMAIN=weareswarm.online"
+            },
+            {
+              "line": 2,
+              "text": "REMOTE_ROOT=/home/u996867598/domains/weareswarm.online/public_html"
+            },
+            {
+              "line": 5,
+              "text": "/home/u996867598/domains/weareswarm.online/public_html"
+            },
+            {
+              "line": 77,
+              "text": " * Front to the WordPress application. This file doesn't do anything, but loads"
+            },
+            {
+              "line": 78,
+              "text": " * wp-blog-header.php which does and tells WordPress to load the theme."
+            },
+            {
+              "line": 80,
+              "text": " * @package WordPress"
+            },
+            {
+              "line": 84,
+              "text": " * Tells WordPress to load the WordPress theme and output it."
+            },
+            {
+              "line": 90,
+              "text": "/** Loads the WordPress Environment and Template */"
+            },
+            {
+              "line": 170,
+              "text": "# BEGIN WordPress"
+            },
+            {
+              "line": 192,
+              "text": "# END WordPress"
+            },
+            {
+              "line": 194,
+              "text": "== WORDPRESS_MARKERS =="
+            }
+          ]
+        },
+        {
+          "path": "_reports/website_audit/weareswarm.online__audit.md",
+          "exists": true,
+          "signals": [
+            {
+              "line": 9,
+              "text": "| Domain | weareswarm.online |"
+            },
+            {
+              "line": 11,
+              "text": "| Remote Root | `/home/u996867598/domains/weareswarm.online/public_html` |"
+            },
+            {
+              "line": 14,
+              "text": "| HTTPS Status | 500 |"
+            },
+            {
+              "line": 15,
+              "text": "| HTTP Status | 500 |"
+            },
+            {
+              "line": 29,
+              "text": "- HTTPS: https://weareswarm.online/ => 500"
+            },
+            {
+              "line": 30,
+              "text": "- HTTP: http://weareswarm.online/ => 500"
+            }
+          ]
+        }
+      ],
+      "remote_root": "/home/u996867598/domains/weareswarm.online/public_html",
+      "route_file": "/home/u996867598/domains/weareswarm.online/public_html/dreamos-services/index.html",
+      "route_url": "https://weareswarm.online/dreamos-services/"
+    }
+  ],
+  "next_lane": {
+    "target": "prepare guarded upload for selected domain",
+    "action": "create remote dreamos-services directory and upload index.html only, or block if SSH target is unavailable",
+    "verify": "homepage untouched; route URL checked",
+    "commit": "Document WeAreSwarm route deploy"
+  }
+}
