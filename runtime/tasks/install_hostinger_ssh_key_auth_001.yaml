@@ -1,0 +1,16 @@
+id: install_hostinger_ssh_key_auth_001
+title: Install Hostinger SSH key auth
+status: done
+lane: website_deploy
+priority: high
+
+ssh_alias: hostinger-weareswarm
+ssh_user: u996867598
+ssh_port: "65002"
+
+verification:
+  key_auth: PASS
+  alias_auth: PASS
+
+guardrail: >
+  Private key was not committed. Only public key was installed remotely.
