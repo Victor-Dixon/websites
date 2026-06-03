@@ -1,0 +1,1040 @@
+{
+  "generated_at": "2026-06-03T17:42:12",
+  "status": "BLOCKED_SSH_PREFLIGHT_NOT_READY",
+  "candidate_count": 518,
+  "top_candidates": [
+    {
+      "path": "data/reports/website_promotions/preflight_weareswarm_site_sftp_route_upload_001.json",
+      "score": 8,
+      "hits": [
+        "HOSTINGER_SSH_HOST",
+        "HOSTINGER_SSH_USER",
+        "HOSTINGER_SSH_PORT",
+        "SSH_HOST",
+        "SSH_USER",
+        "SSH_PORT",
+        "u996867598",
+        "65002"
+      ],
+      "sample": [
+        {
+          "line": 3,
+          "text": "  \"status\": \"BLOCKED_MISSING_SSH_HOST\","
+        },
+        {
+          "line": 5,
+          "text": "  \"ssh_host_present\": false,"
+        },
+        {
+          "line": 6,
+          "text": "  \"ssh_host\": \"\","
+        },
+        {
+          "line": 7,
+          "text": "  \"ssh_user\": \"u996867598\","
+        },
+        {
+          "line": 8,
+          "text": "  \"ssh_port\": \"65002\","
+        },
+        {
+          "line": 9,
+          "text": "  \"remote_root\": \"/home/u996867598/domains/weareswarm.site/public_html\","
+        },
+        {
+          "line": 10,
+          "text": "  \"remote_dir\": \"/home/u996867598/domains/weareswarm.site/public_html/dreamos-services\","
+        },
+        {
+          "line": 11,
+          "text": "  \"remote_file\": \"/home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html\","
+        },
+        {
+          "line": 18,
+          "text": "  \"next_action\": \"Set HOSTINGER_SSH_HOST, HOSTINGER_SSH_USER, and HOSTINGER_SSH_PORT, then rerun preflight.\","
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/preflight_weareswarm_site_sftp_route_upload_001.md",
+      "score": 8,
+      "hits": [
+        "HOSTINGER_SSH_HOST",
+        "HOSTINGER_SSH_USER",
+        "HOSTINGER_SSH_PORT",
+        "SSH_HOST",
+        "SSH_USER",
+        "SSH_PORT",
+        "u996867598",
+        "65002"
+      ],
+      "sample": [
+        {
+          "line": 4,
+          "text": "- Status: BLOCKED_MISSING_SSH_HOST"
+        },
+        {
+          "line": 7,
+          "text": "- SSH user: u996867598"
+        },
+        {
+          "line": 8,
+          "text": "- SSH port: 65002"
+        },
+        {
+          "line": 9,
+          "text": "- Remote root: /home/u996867598/domains/weareswarm.site/public_html"
+        },
+        {
+          "line": 10,
+          "text": "- Remote dir: /home/u996867598/domains/weareswarm.site/public_html/dreamos-services"
+        },
+        {
+          "line": 11,
+          "text": "- Remote file: /home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html"
+        },
+        {
+          "line": 27,
+          "text": "Set HOSTINGER_SSH_HOST, HOSTINGER_SSH_USER, and HOSTINGER_SSH_PORT, then rerun preflight."
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_wordpress_inventory_044.md",
+      "score": 4,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "65002"
+      ],
+      "sample": [
+        {
+          "line": 19,
+          "text": "HOSTINGER_USER=u996867598"
+        },
+        {
+          "line": 21,
+          "text": "HOSTINGER_PORT=65002"
+        },
+        {
+          "line": 25,
+          "text": "WP_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 27,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins"
+        },
+        {
+          "line": 52,
+          "text": "THEMES_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/themes"
+        },
+        {
+          "line": 80,
+          "text": "WP_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 82,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/plugins"
+        },
+        {
+          "line": 95,
+          "text": "THEMES_DIR=/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/themes"
+        },
+        {
+          "line": 106,
+          "text": "DOMAIN=dadudekc.com"
+        },
+        {
+          "line": 107,
+          "text": "WP_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_wordpress_inventory_044.md",
+      "score": 4,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "65002"
+      ],
+      "sample": [
+        {
+          "line": 19,
+          "text": "HOSTINGER_USER=u996867598"
+        },
+        {
+          "line": 21,
+          "text": "HOSTINGER_PORT=65002"
+        },
+        {
+          "line": 25,
+          "text": "WP_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 27,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins"
+        },
+        {
+          "line": 52,
+          "text": "THEMES_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/themes"
+        },
+        {
+          "line": 80,
+          "text": "WP_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 82,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/plugins"
+        },
+        {
+          "line": 95,
+          "text": "THEMES_DIR=/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/themes"
+        },
+        {
+          "line": 106,
+          "text": "DOMAIN=dadudekc.com"
+        },
+        {
+          "line": 107,
+          "text": "WP_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_wordpress_raw_inventory_044.txt",
+      "score": 4,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "65002"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "HOSTINGER_USER=u996867598"
+        },
+        {
+          "line": 4,
+          "text": "HOSTINGER_PORT=65002"
+        },
+        {
+          "line": 8,
+          "text": "WP_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 10,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins"
+        },
+        {
+          "line": 35,
+          "text": "THEMES_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/themes"
+        },
+        {
+          "line": 63,
+          "text": "WP_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 65,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/plugins"
+        },
+        {
+          "line": 78,
+          "text": "THEMES_DIR=/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/themes"
+        },
+        {
+          "line": 89,
+          "text": "DOMAIN=dadudekc.com"
+        },
+        {
+          "line": 90,
+          "text": "WP_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_wordpress_raw_inventory_044.txt",
+      "score": 4,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "65002"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "HOSTINGER_USER=u996867598"
+        },
+        {
+          "line": 4,
+          "text": "HOSTINGER_PORT=65002"
+        },
+        {
+          "line": 8,
+          "text": "WP_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 10,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins"
+        },
+        {
+          "line": 35,
+          "text": "THEMES_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/themes"
+        },
+        {
+          "line": 63,
+          "text": "WP_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 65,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/plugins"
+        },
+        {
+          "line": 78,
+          "text": "THEMES_DIR=/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/themes"
+        },
+        {
+          "line": 89,
+          "text": "DOMAIN=dadudekc.com"
+        },
+        {
+          "line": 90,
+          "text": "WP_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/resolve_weareswarm_sftp_target_001.json",
+      "score": 4,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "65002"
+      ],
+      "sample": [
+        {
+          "line": 156,
+          "text": "          \"text\": \"    wp_root: '/home/u996867598/domains/ariajet.site/public_html'\""
+        },
+        {
+          "line": 160,
+          "text": "          \"text\": \"    plugins_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins'\""
+        },
+        {
+          "line": 164,
+          "text": "          \"text\": \"    themes_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/themes'\""
+        },
+        {
+          "line": 176,
+          "text": "          \"text\": \"    wp_root: '/home/u996867598/domains/crosbyultimateevents.com/public_html'\""
+        },
+        {
+          "line": 180,
+          "text": "          \"text\": \"    plugins_dir: '/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/plugins'\""
+        },
+        {
+          "line": 184,
+          "text": "          \"text\": \"    themes_dir: '/home/u996867598/domains/crosbyultimateevents.com/public_html/wp-content/themes'\""
+        },
+        {
+          "line": 192,
+          "text": "          \"text\": \"    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env'\""
+        },
+        {
+          "line": 196,
+          "text": "          \"text\": \"    wp_root: '/home/u996867598/domains/dadudekc.com/public_html'\""
+        },
+        {
+          "line": 200,
+          "text": "          \"text\": \"    plugins_dir: '/home/u996867598/domains/dadudekc.com/public_html/wp-content/plugins'\""
+        },
+        {
+          "line": 204,
+          "text": "          \"text\": \"    themes_dir: '/home/u996867598/domains/dadudekc.com/public_html/wp-content/themes'\""
+        }
+      ]
+    },
+    {
+      "path": "_reports/guarded_static_hostinger_deploy_helper_001.txt",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "ariajet.site\twordpress\t/home/u996867598/domains/ariajet.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 3,
+          "text": "crosbyultimateevents.com\twordpress\t/home/u996867598/domains/crosbyultimateevents.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 4,
+          "text": "dadudekc.com\twordpress\t/home/u996867598/domains/dadudekc.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 5,
+          "text": "dadudekc.site\twordpress\t/home/u996867598/domains/dadudekc.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 6,
+          "text": "digitaldreamscape.site\twordpress\t/home/u996867598/domains/digitaldreamscape.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 7,
+          "text": "freerideinvestor.com\tstatic\t/home/u996867598/domains/freerideinvestor.com/public_html\t0\t0\t0\t0\t1\t1"
+        },
+        {
+          "line": 8,
+          "text": "houstonsipqueen.com\twordpress\t/home/u996867598/domains/houstonsipqueen.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 9,
+          "text": "prismblossom.online\twordpress\t/home/u996867598/domains/prismblossom.online/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 10,
+          "text": "southwestsecret.com\twordpress\t/home/u996867598/domains/southwestsecret.com/public_html\t1\t1\t1\t1\t1\t1"
+        },
+        {
+          "line": 11,
+          "text": "tradingrobotplug.com\twordpress\t/home/u996867598/domains/tradingrobotplug.com/public_html\t1\t1\t1\t1\t0\t1"
+        }
+      ]
+    },
+    {
+      "path": "_reports/guarded_static_hostinger_deploy_helper_001.txt",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "ariajet.site\twordpress\t/home/u996867598/domains/ariajet.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 3,
+          "text": "crosbyultimateevents.com\twordpress\t/home/u996867598/domains/crosbyultimateevents.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 4,
+          "text": "dadudekc.com\twordpress\t/home/u996867598/domains/dadudekc.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 5,
+          "text": "dadudekc.site\twordpress\t/home/u996867598/domains/dadudekc.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 6,
+          "text": "digitaldreamscape.site\twordpress\t/home/u996867598/domains/digitaldreamscape.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 7,
+          "text": "freerideinvestor.com\tstatic\t/home/u996867598/domains/freerideinvestor.com/public_html\t0\t0\t0\t0\t1\t1"
+        },
+        {
+          "line": 8,
+          "text": "houstonsipqueen.com\twordpress\t/home/u996867598/domains/houstonsipqueen.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 9,
+          "text": "prismblossom.online\twordpress\t/home/u996867598/domains/prismblossom.online/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 10,
+          "text": "southwestsecret.com\twordpress\t/home/u996867598/domains/southwestsecret.com/public_html\t1\t1\t1\t1\t1\t1"
+        },
+        {
+          "line": 11,
+          "text": "tradingrobotplug.com\twordpress\t/home/u996867598/domains/tradingrobotplug.com/public_html\t1\t1\t1\t1\t0\t1"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_access_preflight_002b.md",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 15,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 22,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 26,
+          "text": "== SITE dadudekc.com =="
+        },
+        {
+          "line": 29,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 31,
+          "text": "SITE_ACCESS=PASS site=dadudekc.com"
+        },
+        {
+          "line": 33,
+          "text": "== SITE dadudekc.site =="
+        },
+        {
+          "line": 36,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html"
+        },
+        {
+          "line": 38,
+          "text": "SITE_ACCESS=PASS site=dadudekc.site"
+        },
+        {
+          "line": 43,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html"
+        },
+        {
+          "line": 50,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_access_preflight_002b.md",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 15,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 22,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 26,
+          "text": "== SITE dadudekc.com =="
+        },
+        {
+          "line": 29,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 31,
+          "text": "SITE_ACCESS=PASS site=dadudekc.com"
+        },
+        {
+          "line": 33,
+          "text": "== SITE dadudekc.site =="
+        },
+        {
+          "line": 36,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html"
+        },
+        {
+          "line": 38,
+          "text": "SITE_ACCESS=PASS site=dadudekc.site"
+        },
+        {
+          "line": 43,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html"
+        },
+        {
+          "line": 50,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_access_preflight_002b.txt",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 6,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 13,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 17,
+          "text": "== SITE dadudekc.com =="
+        },
+        {
+          "line": 20,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 22,
+          "text": "SITE_ACCESS=PASS site=dadudekc.com"
+        },
+        {
+          "line": 24,
+          "text": "== SITE dadudekc.site =="
+        },
+        {
+          "line": 27,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html"
+        },
+        {
+          "line": 29,
+          "text": "SITE_ACCESS=PASS site=dadudekc.site"
+        },
+        {
+          "line": 34,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html"
+        },
+        {
+          "line": 41,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_access_preflight_002b.txt",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 6,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 13,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 17,
+          "text": "== SITE dadudekc.com =="
+        },
+        {
+          "line": 20,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 22,
+          "text": "SITE_ACCESS=PASS site=dadudekc.com"
+        },
+        {
+          "line": 24,
+          "text": "== SITE dadudekc.site =="
+        },
+        {
+          "line": 27,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html"
+        },
+        {
+          "line": 29,
+          "text": "SITE_ACCESS=PASS site=dadudekc.site"
+        },
+        {
+          "line": 34,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html"
+        },
+        {
+          "line": 41,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_deploy_target_guard_001.txt",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "ariajet.site\twordpress\t/home/u996867598/domains/ariajet.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 3,
+          "text": "crosbyultimateevents.com\twordpress\t/home/u996867598/domains/crosbyultimateevents.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 4,
+          "text": "dadudekc.com\twordpress\t/home/u996867598/domains/dadudekc.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 5,
+          "text": "dadudekc.site\twordpress\t/home/u996867598/domains/dadudekc.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 6,
+          "text": "digitaldreamscape.site\twordpress\t/home/u996867598/domains/digitaldreamscape.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 7,
+          "text": "freerideinvestor.com\tstatic\t/home/u996867598/domains/freerideinvestor.com/public_html\t0\t0\t0\t0\t1\t1"
+        },
+        {
+          "line": 8,
+          "text": "houstonsipqueen.com\twordpress\t/home/u996867598/domains/houstonsipqueen.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 9,
+          "text": "prismblossom.online\twordpress\t/home/u996867598/domains/prismblossom.online/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 10,
+          "text": "southwestsecret.com\twordpress\t/home/u996867598/domains/southwestsecret.com/public_html\t1\t1\t1\t1\t1\t1"
+        },
+        {
+          "line": 11,
+          "text": "tradingrobotplug.com\twordpress\t/home/u996867598/domains/tradingrobotplug.com/public_html\t1\t1\t1\t1\t0\t1"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_deploy_target_guard_001.txt",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "ariajet.site\twordpress\t/home/u996867598/domains/ariajet.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 3,
+          "text": "crosbyultimateevents.com\twordpress\t/home/u996867598/domains/crosbyultimateevents.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 4,
+          "text": "dadudekc.com\twordpress\t/home/u996867598/domains/dadudekc.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 5,
+          "text": "dadudekc.site\twordpress\t/home/u996867598/domains/dadudekc.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 6,
+          "text": "digitaldreamscape.site\twordpress\t/home/u996867598/domains/digitaldreamscape.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 7,
+          "text": "freerideinvestor.com\tstatic\t/home/u996867598/domains/freerideinvestor.com/public_html\t0\t0\t0\t0\t1\t1"
+        },
+        {
+          "line": 8,
+          "text": "houstonsipqueen.com\twordpress\t/home/u996867598/domains/houstonsipqueen.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 9,
+          "text": "prismblossom.online\twordpress\t/home/u996867598/domains/prismblossom.online/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 10,
+          "text": "southwestsecret.com\twordpress\t/home/u996867598/domains/southwestsecret.com/public_html\t1\t1\t1\t1\t1\t1"
+        },
+        {
+          "line": 11,
+          "text": "tradingrobotplug.com\twordpress\t/home/u996867598/domains/tradingrobotplug.com/public_html\t1\t1\t1\t1\t0\t1"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_manager_smoke_matrix_062.txt",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 5,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 23,
+          "text": "WP-CLI cache dir:\t/home/u996867598/.wp-cli/cache"
+        },
+        {
+          "line": 36,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 54,
+          "text": "WP-CLI cache dir:\t/home/u996867598/.wp-cli/cache"
+        },
+        {
+          "line": 63,
+          "text": "===== SITE dadudekc.com ====="
+        },
+        {
+          "line": 64,
+          "text": "ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env"
+        },
+        {
+          "line": 67,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 85,
+          "text": "WP-CLI cache dir:\t/home/u996867598/.wp-cli/cache"
+        },
+        {
+          "line": 94,
+          "text": "===== SITE dadudekc.site ====="
+        },
+        {
+          "line": 95,
+          "text": "ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_manager_smoke_matrix_062.txt",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 5,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 23,
+          "text": "WP-CLI cache dir:\t/home/u996867598/.wp-cli/cache"
+        },
+        {
+          "line": 36,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 54,
+          "text": "WP-CLI cache dir:\t/home/u996867598/.wp-cli/cache"
+        },
+        {
+          "line": 63,
+          "text": "===== SITE dadudekc.com ====="
+        },
+        {
+          "line": 64,
+          "text": "ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env"
+        },
+        {
+          "line": 67,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 85,
+          "text": "WP-CLI cache dir:\t/home/u996867598/.wp-cli/cache"
+        },
+        {
+          "line": 94,
+          "text": "===== SITE dadudekc.site ====="
+        },
+        {
+          "line": 95,
+          "text": "ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_website_fleet_connection_061.md",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 12,
+          "text": "WP_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 19,
+          "text": "WP_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 24,
+          "text": "SITE=dadudekc.com"
+        },
+        {
+          "line": 25,
+          "text": "ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env"
+        },
+        {
+          "line": 26,
+          "text": "WP_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 31,
+          "text": "SITE=dadudekc.site"
+        },
+        {
+          "line": 32,
+          "text": "ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env"
+        },
+        {
+          "line": 33,
+          "text": "WP_ROOT=/home/u996867598/domains/dadudekc.site/public_html"
+        },
+        {
+          "line": 40,
+          "text": "WP_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html"
+        },
+        {
+          "line": 47,
+          "text": "WP_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_website_fleet_connection_061.md",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 12,
+          "text": "WP_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 19,
+          "text": "WP_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 24,
+          "text": "SITE=dadudekc.com"
+        },
+        {
+          "line": 25,
+          "text": "ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env"
+        },
+        {
+          "line": 26,
+          "text": "WP_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 31,
+          "text": "SITE=dadudekc.site"
+        },
+        {
+          "line": 32,
+          "text": "ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env"
+        },
+        {
+          "line": 33,
+          "text": "WP_ROOT=/home/u996867598/domains/dadudekc.site/public_html"
+        },
+        {
+          "line": 40,
+          "text": "WP_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html"
+        },
+        {
+          "line": 47,
+          "text": "WP_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/tsla_command_center_hostinger_deploy_diagnosis_001.txt",
+      "score": 3,
+      "hits": [
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 9,
+          "text": "u996867598"
+        },
+        {
+          "line": 10,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 15,
+          "text": "/home/u996867598/domains"
+        },
+        {
+          "line": 16,
+          "text": "/home/u996867598/domains/ariajet.site"
+        },
+        {
+          "line": 17,
+          "text": "/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 18,
+          "text": "/home/u996867598/domains/crosbyultimateevents.com"
+        },
+        {
+          "line": 19,
+          "text": "/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 20,
+          "text": "/home/u996867598/domains/dadudekc.com"
+        },
+        {
+          "line": 21,
+          "text": "/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 22,
+          "text": "/home/u996867598/domains/dadudekc.site"
+        }
+      ]
+    }
+  ],
+  "guardrail": "Secrets are not printed. Use existing Hostinger credentials only for SSH preflight; no upload.",
+  "ssh_preflight": {
+    "status": "SKIPPED",
+    "ssh_host_present": false,
+    "ssh_user": "u996867598",
+    "ssh_port": "65002",
+    "remote_root": "/home/u996867598/domains/weareswarm.site/public_html",
+    "remote_dir": "/home/u996867598/domains/weareswarm.site/public_html/dreamos-services",
+    "remote_file": "/home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html",
+    "remote_root_access": "UNKNOWN",
+    "remote_home_index": "UNKNOWN",
+    "remote_route_dir": "UNKNOWN",
+    "guardrail": "No upload performed. Route-only target checked."
+  }
+}

@@ -1,0 +1,12 @@
+id: run_weareswarm_sftp_preflight_with_extracted_host_001
+title: Run WeAreSwarm SFTP preflight with extracted host
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Use extracted Hostinger SSH connection metadata to preflight the selected
+  weareswarm.site route target without uploading.
+
+guardrail: >
+  No upload. Upload only to /dreamos-services/index.html. Do not overwrite public root or homepage.

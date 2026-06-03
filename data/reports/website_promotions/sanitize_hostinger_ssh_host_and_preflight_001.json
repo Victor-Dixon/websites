@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-06-03T17:44:56",
+  "status": "BLOCKED_REMOTE_PREFLIGHT_FAILED",
+  "sanitize_status": "VALID_HOST_SELECTED",
+  "clean_host_count": "1",
+  "ssh_code": "255",
+  "ssh_host_loaded": true,
+  "ssh_user": "u996867598",
+  "ssh_port": "65002",
+  "remote_root": "/home/u996867598/domains/weareswarm.site/public_html",
+  "remote_dir": "/home/u996867598/domains/weareswarm.site/public_html/dreamos-services",
+  "remote_file": "/home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html",
+  "artifact": "_deploy/weareswarm/dreamos-services/index.html",
+  "remote_status": "SSH_FAILED_255",
+  "remote_root_access": "UNKNOWN",
+  "remote_home_index": "UNKNOWN",
+  "remote_route_dir": "UNKNOWN",
+  "remote_route_file": "UNKNOWN",
+  "guardrail": "No upload performed. Upload only to /dreamos-services/index.html. Do not overwrite public root or homepage.",
+  "next_action": "Fix SSH auth/host or confirm the selected Hostinger host."
+}

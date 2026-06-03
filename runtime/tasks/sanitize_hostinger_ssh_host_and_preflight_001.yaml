@@ -1,0 +1,11 @@
+id: sanitize_hostinger_ssh_host_and_preflight_001
+title: Sanitize Hostinger SSH host and preflight
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Sanitize extracted Hostinger SSH host candidates and rerun guarded remote preflight.
+
+guardrail: >
+  No upload. Upload only to /dreamos-services/index.html. Do not overwrite public root or homepage.

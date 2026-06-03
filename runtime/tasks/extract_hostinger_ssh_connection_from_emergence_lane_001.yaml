@@ -1,0 +1,11 @@
+id: extract_hostinger_ssh_connection_from_emergence_lane_001
+title: Extract Hostinger SSH connection from Emergence lane
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Extract SSH/SFTP connection metadata from existing Emergence/dadudekc Hostinger lane without printing secrets.
+
+guardrail: >
+  No upload. Do not print secrets. Do not overwrite public root or homepage.

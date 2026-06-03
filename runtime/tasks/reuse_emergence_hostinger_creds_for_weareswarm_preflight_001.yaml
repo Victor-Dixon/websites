@@ -1,0 +1,12 @@
+id: reuse_emergence_hostinger_creds_for_weareswarm_preflight_001
+title: Reuse Emergence Hostinger credentials for WeAreSwarm preflight
+status: done
+lane: website_deploy
+priority: high
+
+objective: >
+  Reuse the same Hostinger SSH credential lane used for Emergence/dadudekc.com
+  to preflight weareswarm.site route deployment.
+
+guardrail: >
+  No upload. Do not print secrets. Do not overwrite public root or homepage.

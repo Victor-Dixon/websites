@@ -1,0 +1,1680 @@
+{
+  "generated_at": "2026-06-03T17:43:20",
+  "status": "SSH_CONNECTION_CANDIDATE_SELECTED",
+  "candidate_count": 183,
+  "selected": {
+    "host": "`weareswarm`",
+    "user": "u996867598",
+    "port": "65002"
+  },
+  "host_ranked": [
+    {
+      "host": "`weareswarm`",
+      "score": 164
+    },
+    {
+      "host": "`weareswarm``",
+      "score": 68
+    },
+    {
+      "host": "=",
+      "score": 14
+    },
+    {
+      "host": "dadudekc.com",
+      "score": 12
+    }
+  ],
+  "port_ranked": [],
+  "user_ranked": [
+    {
+      "user": "u996867598",
+      "score": 38003
+    },
+    {
+      "user": "u201311",
+      "score": 72
+    }
+  ],
+  "top_candidates": [
+    {
+      "path": "data/reports/website_promotions/resolve_weareswarm_sftp_target_001.json",
+      "score": 18,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "sftp",
+        "dadudekc.com",
+        "dadudekc.site",
+        "emergence",
+        "u996867598",
+        "65002",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [
+        "`weareswarm`"
+      ],
+      "ports": [],
+      "users": [
+        "u201311",
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 14,
+          "text": "        \"hostinger\""
+        },
+        {
+          "line": 19,
+          "text": "          \"text\": \"    source_root: collected/hostinger/wordpress\""
+        },
+        {
+          "line": 23,
+          "text": "          \"text\": \"    manifest: runtime/deploy/hostinger_custom_asset_collection_manifest.yaml\""
+        },
+        {
+          "line": 30,
+          "text": "        \"hostinger\""
+        },
+        {
+          "line": 35,
+          "text": "          \"text\": \"hostinger_profile: ~/.config/dreamos/hostinger_freeride_github_secrets.env\""
+        },
+        {
+          "line": 40,
+          "text": "      \"path\": \"runtime/deploy/hostinger/hostinger_access_registry_manifest.yaml\","
+        },
+        {
+          "line": 43,
+          "text": "        \"hostinger\""
+        },
+        {
+          "line": 48,
+          "text": "          \"text\": \"name: hostinger_access_registry\""
+        },
+        {
+          "line": 52,
+          "text": "          \"text\": \"env_dir: runtime/env/hostinger/sites\""
+        },
+        {
+          "line": 56,
+          "text": "          \"text\": \"preflight_script: runtime/scripts/hostinger_access_preflight.sh\""
+        },
+        {
+          "line": 60,
+          "text": "          \"text\": \"latest_report_txt: _reports/hostinger_access_preflight_002b.txt\""
+        },
+        {
+          "line": 64,
+          "text": "          \"text\": \"latest_report_md: _reports/hostinger_access_preflight_002b.md\""
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/resolve_weareswarm_sftp_target_001.md",
+      "score": 17,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "sftp",
+        "dadudekc.com",
+        "dadudekc.site",
+        "emergence",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [
+        "`weareswarm``"
+      ],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Resolve WeAreSwarm SFTP Target 001"
+        },
+        {
+          "line": 20,
+          "text": "### `runtime/deploy/hostinger/hostinger_access_registry_manifest.yaml`"
+        },
+        {
+          "line": 21,
+          "text": "- Hit terms: `weareswarm, hostinger`"
+        },
+        {
+          "line": 22,
+          "text": "- L2: `name: hostinger_access_registry`"
+        },
+        {
+          "line": 23,
+          "text": "- L4: `env_dir: runtime/env/hostinger/sites`"
+        },
+        {
+          "line": 24,
+          "text": "- L5: `preflight_script: runtime/scripts/hostinger_access_preflight.sh`"
+        },
+        {
+          "line": 25,
+          "text": "- L6: `latest_report_txt: _reports/hostinger_access_preflight_002b.txt`"
+        },
+        {
+          "line": 26,
+          "text": "- L7: `latest_report_md: _reports/hostinger_access_preflight_002b.md`"
+        },
+        {
+          "line": 29,
+          "text": "- L24: `  - run_hostinger_access_preflight_before_multisite_deploys`"
+        },
+        {
+          "line": 31,
+          "text": "### `runtime/deploy/hostinger_manager_smoke_matrix.yaml`"
+        },
+        {
+          "line": 32,
+          "text": "- Hit terms: `weareswarm, hostinger`"
+        },
+        {
+          "line": 33,
+          "text": "- L2: `name: hostinger_manager_smoke_matrix`"
+        }
+      ]
+    },
+    {
+      "path": "_reports/tsla_command_center_hostinger_deploy_diagnosis_001.txt",
+      "score": 14,
+      "hits": [
+        "hostinger",
+        "dadudekc.com",
+        "dadudekc.site",
+        "emergence",
+        "u996867598",
+        "public_html"
+      ],
+      "hosts": [
+        "="
+      ],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "== TSLA COMMAND CENTER HOSTINGER DEPLOY DIAGNOSIS 001 =="
+        },
+        {
+          "line": 9,
+          "text": "u996867598"
+        },
+        {
+          "line": 10,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 15,
+          "text": "/home/u996867598/domains"
+        },
+        {
+          "line": 16,
+          "text": "/home/u996867598/domains/ariajet.site"
+        },
+        {
+          "line": 17,
+          "text": "/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 18,
+          "text": "/home/u996867598/domains/crosbyultimateevents.com"
+        },
+        {
+          "line": 19,
+          "text": "/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 20,
+          "text": "/home/u996867598/domains/dadudekc.com"
+        },
+        {
+          "line": 21,
+          "text": "/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 22,
+          "text": "/home/u996867598/domains/dadudekc.site"
+        },
+        {
+          "line": 23,
+          "text": "/home/u996867598/domains/dadudekc.site/public_html"
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/reuse_emergence_hostinger_creds_for_weareswarm_preflight_001.md",
+      "score": 13,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "sftp",
+        "dadudekc.com",
+        "dadudekc.site",
+        "emergence",
+        "u996867598",
+        "65002",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Reuse Emergence Hostinger Credentials For WeAreSwarm Preflight 001"
+        },
+        {
+          "line": 9,
+          "text": "Secrets are not printed. Use existing Hostinger credentials only for SSH preflight; no upload."
+        },
+        {
+          "line": 13,
+          "text": "### `data/reports/website_promotions/preflight_weareswarm_site_sftp_route_upload_001.json`"
+        },
+        {
+          "line": 15,
+          "text": "- Hits: `HOSTINGER_SSH_HOST, HOSTINGER_SSH_USER, HOSTINGER_SSH_PORT, SSH_HOST, SSH_USER, SSH_PORT, u996867598, 65002`"
+        },
+        {
+          "line": 16,
+          "text": "- L3: `  \"status\": \"BLOCKED_MISSING_SSH_HOST\",`"
+        },
+        {
+          "line": 17,
+          "text": "- L5: `  \"ssh_host_present\": false,`"
+        },
+        {
+          "line": 18,
+          "text": "- L6: `  \"ssh_host\": \"\",`"
+        },
+        {
+          "line": 19,
+          "text": "- L7: `  \"ssh_user\": \"u996867598\",`"
+        },
+        {
+          "line": 20,
+          "text": "- L8: `  \"ssh_port\": \"65002\",`"
+        },
+        {
+          "line": 21,
+          "text": "- L9: `  \"remote_root\": \"/home/u996867598/domains/weareswarm.site/public_html\",`"
+        },
+        {
+          "line": 22,
+          "text": "- L10: `  \"remote_dir\": \"/home/u996867598/domains/weareswarm.site/public_html/dreamos-services\",`"
+        },
+        {
+          "line": 23,
+          "text": "- L11: `  \"remote_file\": \"/home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html\",`"
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/reuse_emergence_hostinger_creds_for_weareswarm_preflight_001.json",
+      "score": 12,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "sftp",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "65002",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 3,
+          "text": "  \"status\": \"BLOCKED_SSH_PREFLIGHT_NOT_READY\","
+        },
+        {
+          "line": 7,
+          "text": "      \"path\": \"data/reports/website_promotions/preflight_weareswarm_site_sftp_route_upload_001.json\","
+        },
+        {
+          "line": 10,
+          "text": "        \"HOSTINGER_SSH_HOST\","
+        },
+        {
+          "line": 11,
+          "text": "        \"HOSTINGER_SSH_USER\","
+        },
+        {
+          "line": 12,
+          "text": "        \"HOSTINGER_SSH_PORT\","
+        },
+        {
+          "line": 13,
+          "text": "        \"SSH_HOST\","
+        },
+        {
+          "line": 14,
+          "text": "        \"SSH_USER\","
+        },
+        {
+          "line": 15,
+          "text": "        \"SSH_PORT\","
+        },
+        {
+          "line": 16,
+          "text": "        \"u996867598\","
+        },
+        {
+          "line": 17,
+          "text": "        \"65002\""
+        },
+        {
+          "line": 22,
+          "text": "          \"text\": \"  \\\"status\\\": \\\"BLOCKED_MISSING_SSH_HOST\\\",\""
+        },
+        {
+          "line": 26,
+          "text": "          \"text\": \"  \\\"ssh_host_present\\\": false,\""
+        }
+      ]
+    },
+    {
+      "path": "_reports/websites_hostinger_access_inspection_001.txt",
+      "score": 11,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "emergence",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "== WEBSITES HOSTINGER ACCESS INSPECTION 001 =="
+        },
+        {
+          "line": 5,
+          "text": "== HOSTINGER FILES =="
+        },
+        {
+          "line": 6,
+          "text": "./.github/workflows/deploy-freeride-hostinger.yml"
+        },
+        {
+          "line": 8,
+          "text": "./_configs/hostinger_plan_config_013.json"
+        },
+        {
+          "line": 9,
+          "text": "./_hostinger_plan/freerideinvestor/hostinger_freeride_install_packet_026.md"
+        },
+        {
+          "line": 10,
+          "text": "./_hostinger_plan/freerideinvestor/hostinger_freeride_install_proof_026.md"
+        },
+        {
+          "line": 11,
+          "text": "./_hostinger_plan/freerideinvestor/tsla_command_center_hostinger_install_packet_001.md"
+        },
+        {
+          "line": 12,
+          "text": "./_reports/emergence_hostinger_image_env_095.txt"
+        },
+        {
+          "line": 13,
+          "text": "./_reports/emergence_hostinger_image_env_095c.txt"
+        },
+        {
+          "line": 14,
+          "text": "./_reports/emergence_hostinger_image_env_095d.txt"
+        },
+        {
+          "line": 15,
+          "text": "./_reports/emergence_hostinger_image_env_095e.md"
+        },
+        {
+          "line": 16,
+          "text": "./_reports/emergence_hostinger_image_env_095e.txt"
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/weareswarm_sftp_target_candidates_001.json",
+      "score": 11,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "sftp",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 4,
+          "text": "  \"source\": \"data/reports/website_promotions/resolve_weareswarm_sftp_target_001.json\","
+        },
+        {
+          "line": 12,
+          "text": "      \"path\": \"_reports/hostinger_access_preflight_002b.md\","
+        },
+        {
+          "line": 16,
+          "text": "        \"public_html\","
+        },
+        {
+          "line": 18,
+          "text": "        \"hostinger\","
+        },
+        {
+          "line": 20,
+          "text": "        \"ssh\""
+        },
+        {
+          "line": 25,
+          "text": "          \"text\": \"# Hostinger Access Preflight 002b\""
+        },
+        {
+          "line": 29,
+          "text": "          \"text\": \"Verify Hostinger SSH/root access for all configured site env files before deploy lanes.\""
+        },
+        {
+          "line": 33,
+          "text": "          \"text\": \"== HOSTINGER ACCESS PREFLIGHT ==\""
+        },
+        {
+          "line": 37,
+          "text": "          \"text\": \"REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html\""
+        },
+        {
+          "line": 41,
+          "text": "          \"text\": \"REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html\""
+        },
+        {
+          "line": 45,
+          "text": "          \"text\": \"REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html\""
+        },
+        {
+          "line": 49,
+          "text": "          \"text\": \"REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html\""
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/weareswarm_sftp_target_candidates_001.md",
+      "score": 11,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "sftp",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# WeAreSwarm SFTP Target Candidates 001"
+        },
+        {
+          "line": 16,
+          "text": "### 1. `_reports/hostinger_access_preflight_002b.md`"
+        },
+        {
+          "line": 18,
+          "text": "- Reasons: `weareswarm, public_html, domains, hostinger, deploy, ssh`"
+        },
+        {
+          "line": 20,
+          "text": "  - `/home/u996867598/domain`"
+        },
+        {
+          "line": 21,
+          "text": "  - `public_html`"
+        },
+        {
+          "line": 23,
+          "text": "  - L1: `# Hostinger Access Preflight 002b`"
+        },
+        {
+          "line": 24,
+          "text": "  - L5: `Verify Hostinger SSH/root access for all configured site env files before deploy lanes.`"
+        },
+        {
+          "line": 25,
+          "text": "  - L10: `== HOSTINGER ACCESS PREFLIGHT ==`"
+        },
+        {
+          "line": 26,
+          "text": "  - L15: `REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html`"
+        },
+        {
+          "line": 27,
+          "text": "  - L22: `REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`"
+        },
+        {
+          "line": 28,
+          "text": "  - L29: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html`"
+        },
+        {
+          "line": 29,
+          "text": "  - L36: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html`"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_access_preflight_002b.md",
+      "score": 10,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Hostinger Access Preflight 002b"
+        },
+        {
+          "line": 5,
+          "text": "Verify Hostinger SSH/root access for all configured site env files before deploy lanes."
+        },
+        {
+          "line": 10,
+          "text": "== HOSTINGER ACCESS PREFLIGHT =="
+        },
+        {
+          "line": 15,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 16,
+          "text": "SSH_ROOT_WRITABLE=PASS"
+        },
+        {
+          "line": 22,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 23,
+          "text": "SSH_ROOT_WRITABLE=PASS"
+        },
+        {
+          "line": 26,
+          "text": "== SITE dadudekc.com =="
+        },
+        {
+          "line": 29,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 30,
+          "text": "SSH_ROOT_WRITABLE=PASS"
+        },
+        {
+          "line": 31,
+          "text": "SITE_ACCESS=PASS site=dadudekc.com"
+        },
+        {
+          "line": 33,
+          "text": "== SITE dadudekc.site =="
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_access_preflight_002b.txt",
+      "score": 10,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "== HOSTINGER ACCESS PREFLIGHT =="
+        },
+        {
+          "line": 6,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 7,
+          "text": "SSH_ROOT_WRITABLE=PASS"
+        },
+        {
+          "line": 13,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 14,
+          "text": "SSH_ROOT_WRITABLE=PASS"
+        },
+        {
+          "line": 17,
+          "text": "== SITE dadudekc.com =="
+        },
+        {
+          "line": 20,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 21,
+          "text": "SSH_ROOT_WRITABLE=PASS"
+        },
+        {
+          "line": 22,
+          "text": "SITE_ACCESS=PASS site=dadudekc.com"
+        },
+        {
+          "line": 24,
+          "text": "== SITE dadudekc.site =="
+        },
+        {
+          "line": 27,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html"
+        },
+        {
+          "line": 28,
+          "text": "SSH_ROOT_WRITABLE=PASS"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_wordpress_inventory_044.md",
+      "score": 10,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "65002",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Hostinger WordPress Inventory 044"
+        },
+        {
+          "line": 9,
+          "text": "- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/hostinger_sites_manifest.yaml`"
+        },
+        {
+          "line": 10,
+          "text": "- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/hostinger_plugin_registry.yaml`"
+        },
+        {
+          "line": 11,
+          "text": "- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/hostinger_theme_registry.yaml`"
+        },
+        {
+          "line": 12,
+          "text": "- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/hostinger_deploy_proof_profile.yaml`"
+        },
+        {
+          "line": 13,
+          "text": "- `/data/data/com.termux/files/home/projects/websites/_reports/hostinger_wordpress_raw_inventory_044.txt`"
+        },
+        {
+          "line": 18,
+          "text": "HOSTINGER_SSH_LOGIN=PASS"
+        },
+        {
+          "line": 19,
+          "text": "HOSTINGER_USER=u996867598"
+        },
+        {
+          "line": 20,
+          "text": "HOSTINGER_HOST=157.173.214.121"
+        },
+        {
+          "line": 21,
+          "text": "HOSTINGER_PORT=65002"
+        },
+        {
+          "line": 25,
+          "text": "WP_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 27,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_wordpress_raw_inventory_044.txt",
+      "score": 10,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "65002",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "HOSTINGER_SSH_LOGIN=PASS"
+        },
+        {
+          "line": 2,
+          "text": "HOSTINGER_USER=u996867598"
+        },
+        {
+          "line": 3,
+          "text": "HOSTINGER_HOST=157.173.214.121"
+        },
+        {
+          "line": 4,
+          "text": "HOSTINGER_PORT=65002"
+        },
+        {
+          "line": 8,
+          "text": "WP_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 10,
+          "text": "PLUGINS_DIR=/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins"
+        },
+        {
+          "line": 17,
+          "text": "PLUGIN=hostinger"
+        },
+        {
+          "line": 18,
+          "text": "PLUGIN_MAIN=hostinger|index.php"
+        },
+        {
+          "line": 19,
+          "text": "PLUGIN=hostinger-easy-onboarding"
+        },
+        {
+          "line": 20,
+          "text": "PLUGIN_MAIN=hostinger-easy-onboarding|index.php"
+        },
+        {
+          "line": 21,
+          "text": "PLUGIN=hostinger-reach"
+        },
+        {
+          "line": 22,
+          "text": "PLUGIN_MAIN=hostinger-reach|hostinger-reach.php"
+        }
+      ]
+    },
+    {
+      "path": "_reports/guarded_static_hostinger_deploy_helper_001.txt",
+      "score": 9,
+      "hits": [
+        "hostinger",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "ariajet.site\twordpress\t/home/u996867598/domains/ariajet.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 3,
+          "text": "crosbyultimateevents.com\twordpress\t/home/u996867598/domains/crosbyultimateevents.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 4,
+          "text": "dadudekc.com\twordpress\t/home/u996867598/domains/dadudekc.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 5,
+          "text": "dadudekc.site\twordpress\t/home/u996867598/domains/dadudekc.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 6,
+          "text": "digitaldreamscape.site\twordpress\t/home/u996867598/domains/digitaldreamscape.site/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 7,
+          "text": "freerideinvestor.com\tstatic\t/home/u996867598/domains/freerideinvestor.com/public_html\t0\t0\t0\t0\t1\t1"
+        },
+        {
+          "line": 8,
+          "text": "houstonsipqueen.com\twordpress\t/home/u996867598/domains/houstonsipqueen.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 9,
+          "text": "prismblossom.online\twordpress\t/home/u996867598/domains/prismblossom.online/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 10,
+          "text": "southwestsecret.com\twordpress\t/home/u996867598/domains/southwestsecret.com/public_html\t1\t1\t1\t1\t1\t1"
+        },
+        {
+          "line": 11,
+          "text": "tradingrobotplug.com\twordpress\t/home/u996867598/domains/tradingrobotplug.com/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 12,
+          "text": "weareswarm.online\twordpress\t/home/u996867598/domains/weareswarm.online/public_html\t1\t1\t1\t1\t0\t1"
+        },
+        {
+          "line": 13,
+          "text": "weareswarm.site\twordpress\t/home/u996867598/domains/weareswarm.site/public_html\t1\t1\t1\t1\t0\t1"
+        }
+      ]
+    },
+    {
+      "path": "_reports/website_audit/website_inventory_audit_rollup.json",
+      "score": 9,
+      "hits": [
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 6,
+          "text": "  \"ssh\": \"PASS\","
+        },
+        {
+          "line": 10,
+          "text": "  \"remote_root\": \"/home/u996867598/domains/ariajet.site/public_html\","
+        },
+        {
+          "line": 22,
+          "text": "  \"ssh\": \"PASS\","
+        },
+        {
+          "line": 26,
+          "text": "  \"remote_root\": \"/home/u996867598/domains/crosbyultimateevents.com/public_html\","
+        },
+        {
+          "line": 37,
+          "text": "  \"site\": \"dadudekc.com\","
+        },
+        {
+          "line": 38,
+          "text": "  \"ssh\": \"PASS\","
+        },
+        {
+          "line": 42,
+          "text": "  \"remote_root\": \"/home/u996867598/domains/dadudekc.com/public_html\","
+        },
+        {
+          "line": 50,
+          "text": "  \"report\": \"/data/data/com.termux/files/home/projects/websites/_reports/website_audit/dadudekc.com__audit.md\""
+        },
+        {
+          "line": 53,
+          "text": "  \"site\": \"dadudekc.site\","
+        },
+        {
+          "line": 54,
+          "text": "  \"ssh\": \"PASS\","
+        },
+        {
+          "line": 58,
+          "text": "  \"remote_root\": \"/home/u996867598/domains/dadudekc.site/public_html\","
+        },
+        {
+          "line": 62,
+          "text": "  \"title\": \"dadudekc.site\","
+        }
+      ]
+    },
+    {
+      "path": "_reports/website_audit/website_inventory_classification_002.json",
+      "score": 9,
+      "hits": [
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 7,
+          "text": "      \"dadudekc.site\","
+        },
+        {
+          "line": 13,
+          "text": "      \"dadudekc.com\""
+        },
+        {
+          "line": 18,
+          "text": "      \"dadudekc.com\","
+        },
+        {
+          "line": 19,
+          "text": "      \"dadudekc.site\","
+        },
+        {
+          "line": 37,
+          "text": "      \"ssh\": \"PASS\","
+        },
+        {
+          "line": 41,
+          "text": "      \"remote_root\": \"/home/u996867598/domains/ariajet.site/public_html\","
+        },
+        {
+          "line": 61,
+          "text": "      \"ssh\": \"PASS\","
+        },
+        {
+          "line": 65,
+          "text": "      \"remote_root\": \"/home/u996867598/domains/crosbyultimateevents.com/public_html\","
+        },
+        {
+          "line": 84,
+          "text": "      \"site\": \"dadudekc.com\","
+        },
+        {
+          "line": 85,
+          "text": "      \"ssh\": \"PASS\","
+        },
+        {
+          "line": 89,
+          "text": "      \"remote_root\": \"/home/u996867598/domains/dadudekc.com/public_html\","
+        },
+        {
+          "line": 97,
+          "text": "      \"report\": \"/data/data/com.termux/files/home/projects/websites/_reports/website_audit/dadudekc.com__audit.md\","
+        }
+      ]
+    },
+    {
+      "path": "_reports/website_audit/website_inventory_classification_003.json",
+      "score": 9,
+      "hits": [
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 7,
+          "text": "      \"dadudekc.site\","
+        },
+        {
+          "line": 16,
+          "text": "      \"dadudekc.site\","
+        },
+        {
+          "line": 31,
+          "text": "      \"dadudekc.com\""
+        },
+        {
+          "line": 37,
+          "text": "      \"ssh\": \"PASS\","
+        },
+        {
+          "line": 41,
+          "text": "      \"remote_root\": \"/home/u996867598/domains/ariajet.site/public_html\","
+        },
+        {
+          "line": 61,
+          "text": "      \"ssh\": \"PASS\","
+        },
+        {
+          "line": 65,
+          "text": "      \"remote_root\": \"/home/u996867598/domains/crosbyultimateevents.com/public_html\","
+        },
+        {
+          "line": 84,
+          "text": "      \"site\": \"dadudekc.com\","
+        },
+        {
+          "line": 85,
+          "text": "      \"ssh\": \"PASS\","
+        },
+        {
+          "line": 89,
+          "text": "      \"remote_root\": \"/home/u996867598/domains/dadudekc.com/public_html\","
+        },
+        {
+          "line": 97,
+          "text": "      \"report\": \"/data/data/com.termux/files/home/projects/websites/_reports/website_audit/dadudekc.com__audit.md\","
+        },
+        {
+          "line": 111,
+          "text": "      \"site\": \"dadudekc.site\","
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/preflight_weareswarm_site_sftp_route_upload_001.json",
+      "score": 9,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "u996867598",
+        "65002",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 3,
+          "text": "  \"status\": \"BLOCKED_MISSING_SSH_HOST\","
+        },
+        {
+          "line": 5,
+          "text": "  \"ssh_host_present\": false,"
+        },
+        {
+          "line": 6,
+          "text": "  \"ssh_host\": \"\","
+        },
+        {
+          "line": 7,
+          "text": "  \"ssh_user\": \"u996867598\","
+        },
+        {
+          "line": 8,
+          "text": "  \"ssh_port\": \"65002\","
+        },
+        {
+          "line": 9,
+          "text": "  \"remote_root\": \"/home/u996867598/domains/weareswarm.site/public_html\","
+        },
+        {
+          "line": 10,
+          "text": "  \"remote_dir\": \"/home/u996867598/domains/weareswarm.site/public_html/dreamos-services\","
+        },
+        {
+          "line": 11,
+          "text": "  \"remote_file\": \"/home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html\","
+        },
+        {
+          "line": 14,
+          "text": "  \"remote_root_access\": \"UNKNOWN\","
+        },
+        {
+          "line": 18,
+          "text": "  \"next_action\": \"Set HOSTINGER_SSH_HOST, HOSTINGER_SSH_USER, and HOSTINGER_SSH_PORT, then rerun preflight.\","
+        }
+      ]
+    },
+    {
+      "path": "data/reports/website_promotions/preflight_weareswarm_site_sftp_route_upload_001.md",
+      "score": 9,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "sftp",
+        "u996867598",
+        "65002",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Preflight WeAreSwarm Site SFTP Route Upload 001"
+        },
+        {
+          "line": 4,
+          "text": "- Status: BLOCKED_MISSING_SSH_HOST"
+        },
+        {
+          "line": 6,
+          "text": "- SSH host present: False"
+        },
+        {
+          "line": 7,
+          "text": "- SSH user: u996867598"
+        },
+        {
+          "line": 8,
+          "text": "- SSH port: 65002"
+        },
+        {
+          "line": 9,
+          "text": "- Remote root: /home/u996867598/domains/weareswarm.site/public_html"
+        },
+        {
+          "line": 10,
+          "text": "- Remote dir: /home/u996867598/domains/weareswarm.site/public_html/dreamos-services"
+        },
+        {
+          "line": 11,
+          "text": "- Remote file: /home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html"
+        },
+        {
+          "line": 27,
+          "text": "Set HOSTINGER_SSH_HOST, HOSTINGER_SSH_USER, and HOSTINGER_SSH_PORT, then rerun preflight."
+        }
+      ]
+    },
+    {
+      "path": "runtime/deploy/hostinger_sites_manifest.yaml",
+      "score": 9,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "name: hostinger_sites_manifest"
+        },
+        {
+          "line": 3,
+          "text": "purpose: Dream.OS Hostinger WordPress deployment control surface"
+        },
+        {
+          "line": 4,
+          "text": "hostinger:"
+        },
+        {
+          "line": 5,
+          "text": "  host_secret=REDACTED"
+        },
+        {
+          "line": 6,
+          "text": "  user_secret=REDACTED"
+        },
+        {
+          "line": 7,
+          "text": "  port_secret=REDACTED"
+        },
+        {
+          "line": 8,
+          "text": "  private_key_secret=REDACTED"
+        },
+        {
+          "line": 14,
+          "text": "  proof_profile: hostinger_deploy_proof_profile"
+        },
+        {
+          "line": 20,
+          "text": "    wp_root: '/home/u996867598/domains/ariajet.site/public_html'"
+        },
+        {
+          "line": 21,
+          "text": "    plugins_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins'"
+        },
+        {
+          "line": 22,
+          "text": "    themes_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/themes'"
+        },
+        {
+          "line": 43,
+          "text": "      - slug: 'hostinger'"
+        }
+      ]
+    },
+    {
+      "path": "runtime/tasks/preflight_weareswarm_site_sftp_route_upload_001.yaml",
+      "score": 9,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "sftp",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "id: preflight_weareswarm_site_sftp_route_upload_001"
+        },
+        {
+          "line": 2,
+          "text": "title: Preflight WeAreSwarm site SFTP route upload"
+        },
+        {
+          "line": 8,
+          "text": "remote_root: /home/u996867598/domains/weareswarm.site/public_html"
+        },
+        {
+          "line": 9,
+          "text": "remote_file: /home/u996867598/domains/weareswarm.site/public_html/dreamos-services/index.html"
+        },
+        {
+          "line": 11,
+          "text": "blocker: HOSTINGER_SSH_HOST is not set."
+        }
+      ]
+    },
+    {
+      "path": "_reports/dadudekc_wp_public_routing_070.md",
+      "score": 8,
+      "hits": [
+        "hostinger",
+        "dadudekc.site",
+        "emergence",
+        "u996867598",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# dadudekc.site WordPress Public Routing 070"
+        },
+        {
+          "line": 12,
+          "text": "- `/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/routing_fix_20260531_071847`"
+        },
+        {
+          "line": 17,
+          "text": "BACKUP_DIR=/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/routing_fix_20260531_071847"
+        },
+        {
+          "line": 23,
+          "text": "-rw-r--r-- 1 u996867598 o1008028115  296 May 31 12:18 .htaccess"
+        },
+        {
+          "line": 24,
+          "text": "-rw-r--r-- 1 u996867598 o1008028115 3619 May 28 10:27 index.html.dreamos_disabled_20260531_071847"
+        },
+        {
+          "line": 25,
+          "text": "-rw-r--r-- 1 u996867598 o1008028115  405 May 28 02:01 index.php"
+        },
+        {
+          "line": 35,
+          "text": "16\tThe Emergence\tthe-emergence\tpublish"
+        },
+        {
+          "line": 37,
+          "text": "9\tThe Emergence Client Preview\tclient-preview\tpublish"
+        },
+        {
+          "line": 43,
+          "text": "link: <https://dadudekc.site/wp-json/>; rel=\"https://api.w.org/\""
+        },
+        {
+          "line": 44,
+          "text": "link: <https://dadudekc.site/wp-json/wp/v2/pages/16>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\""
+        },
+        {
+          "line": 45,
+          "text": "link: <https://dadudekc.site/>; rel=shortlink"
+        },
+        {
+          "line": 50,
+          "text": "platform: hostinger"
+        }
+      ]
+    },
+    {
+      "path": "_reports/freerideinvestor_static_403_repair_002c.md",
+      "score": 8,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "u996867598",
+        "remote_root",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 4,
+          "text": "Repair FreeRideInvestor 403 and preserve Hostinger access preflight."
+        },
+        {
+          "line": 7,
+          "text": "- Confirmed all configured Hostinger site roots are SSH-writable."
+        },
+        {
+          "line": 10,
+          "text": "- Backed up remote public_html."
+        },
+        {
+          "line": 19,
+          "text": "REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html"
+        },
+        {
+          "line": 22,
+          "text": "/home/u996867598/domains/freerideinvestor.com/public_html"
+        },
+        {
+          "line": 24,
+          "text": "drwxr-xr-x 3 u996867598 o1008028115 20480 Jun  1 10:19 ."
+        },
+        {
+          "line": 25,
+          "text": "drwxr-xr-x 4 u996867598 o1008028115  4096 Jun  1 10:19 .."
+        },
+        {
+          "line": 26,
+          "text": "drwx------ 2 u996867598 o1008028115  4096 Jun  1 06:52 assets"
+        },
+        {
+          "line": 27,
+          "text": "-rw------- 1 u996867598 o1008028115   785 Jun  1 06:52 day-trade-planner.html"
+        },
+        {
+          "line": 28,
+          "text": "-rw------- 1 u996867598 o1008028115   951 Jun  1 06:52 early-access.html"
+        },
+        {
+          "line": 29,
+          "text": "-rw-r--r-- 1 u996867598 o1008028115  1620 Jan 24 02:37 .htaccess"
+        },
+        {
+          "line": 30,
+          "text": "-rw------- 1 u996867598 o1008028115  8909 Jun  1 10:16 index.html"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_manager_smoke_matrix_062.txt",
+      "score": 8,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 2,
+          "text": "ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/ariajet.site.env"
+        },
+        {
+          "line": 3,
+          "text": "== SSH CHECK =="
+        },
+        {
+          "line": 4,
+          "text": "HOSTINGER_SSH_LOGIN=PASS"
+        },
+        {
+          "line": 5,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 23,
+          "text": "WP-CLI cache dir:\t/home/u996867598/.wp-cli/cache"
+        },
+        {
+          "line": 33,
+          "text": "ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/crosbyultimateevents.com.env"
+        },
+        {
+          "line": 34,
+          "text": "== SSH CHECK =="
+        },
+        {
+          "line": 35,
+          "text": "HOSTINGER_SSH_LOGIN=PASS"
+        },
+        {
+          "line": 36,
+          "text": "/home/u996867598"
+        },
+        {
+          "line": 54,
+          "text": "WP-CLI cache dir:\t/home/u996867598/.wp-cli/cache"
+        },
+        {
+          "line": 63,
+          "text": "===== SITE dadudekc.com ====="
+        },
+        {
+          "line": 64,
+          "text": "ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env"
+        }
+      ]
+    },
+    {
+      "path": "_reports/hostinger_website_fleet_connection_061.md",
+      "score": 8,
+      "hits": [
+        "hostinger",
+        "dadudekc.com",
+        "dadudekc.site",
+        "u996867598",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Hostinger Website Fleet Connection 061"
+        },
+        {
+          "line": 5,
+          "text": "Connect all Hostinger websites to local Dream.OS manager profiles. No design, repair, theme deploy, or content changes."
+        },
+        {
+          "line": 11,
+          "text": "ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/ariajet.site.env"
+        },
+        {
+          "line": 12,
+          "text": "WP_ROOT=/home/u996867598/domains/ariajet.site/public_html"
+        },
+        {
+          "line": 13,
+          "text": "PUBLIC_HTML=PASS"
+        },
+        {
+          "line": 18,
+          "text": "ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/crosbyultimateevents.com.env"
+        },
+        {
+          "line": 19,
+          "text": "WP_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html"
+        },
+        {
+          "line": 20,
+          "text": "PUBLIC_HTML=PASS"
+        },
+        {
+          "line": 24,
+          "text": "SITE=dadudekc.com"
+        },
+        {
+          "line": 25,
+          "text": "ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env"
+        },
+        {
+          "line": 26,
+          "text": "WP_ROOT=/home/u996867598/domains/dadudekc.com/public_html"
+        },
+        {
+          "line": 27,
+          "text": "PUBLIC_HTML=PASS"
+        }
+      ]
+    },
+    {
+      "path": "_reports/website_audit/dadudekc.com__audit.md",
+      "score": 8,
+      "hits": [
+        "hostinger",
+        "ssh",
+        "dadudekc.com",
+        "u996867598",
+        "public_html"
+      ],
+      "hosts": [],
+      "ports": [],
+      "users": [
+        "u996867598"
+      ],
+      "sample": [
+        {
+          "line": 1,
+          "text": "# Website Audit: dadudekc.com"
+        },
+        {
+          "line": 9,
+          "text": "| Domain | dadudekc.com |"
+        },
+        {
+          "line": 10,
+          "text": "| SSH Access | PASS |"
+        },
+        {
+          "line": 11,
+          "text": "| Remote Root | `/home/u996867598/domains/dadudekc.com/public_html` |"
+        },
+        {
+          "line": 29,
+          "text": "- HTTPS: https://dadudekc.com/ => 000"
+        },
+        {
+          "line": 30,
+          "text": "- HTTP: http://dadudekc.com/ => 000"
+        },
+        {
+          "line": 34,
+          "text": "- Homepage HTTPS is not clean 200. Investigate DNS, SSL, permissions, app routing, or Hostinger config."
+        },
+        {
+          "line": 35,
+          "text": "- SSH/root write access needs attention before deploy."
+        }
+      ]
+    }
+  ],
+  "guardrail": "No secrets printed. No upload performed. Route-only preflight only.",
+  "next_action": "Export selected host/user/port and run guarded remote preflight. No upload."
+}
