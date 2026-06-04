@@ -1,0 +1,12 @@
+version: 1
+title: Promote current production sites to Hostinger manifest
+target: websites/runtime/deploy/hostinger_sites_manifest.yaml
+status: ready
+actions:
+  - read sites/production/*/site-config.json
+  - generate canonical Hostinger static sites manifest
+  - add static site verifier
+  - verify live domains return HTTP 200 and required markers
+verify:
+  - python runtime/scripts/verify_hostinger_static_sites.py
+commit_message: Promote current production sites to Hostinger manifest
