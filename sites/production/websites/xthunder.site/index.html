@@ -3,80 +3,101 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>xThunder.site | Websites That Work</title>
-  <meta name="description" content="xThunder builds fast websites, automation lanes, deploy systems, and AI-assisted workflows for small businesses and operators.">
+  <title>xThunder | Game Idea Lab</title>
+  <meta name="description" content="Spin up hooks, mechanics, twists, and vibes for your next game. xThunder is a lightweight idea lab for solo devs and small teams.">
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="/">xThunder</a>
     <nav class="nav" aria-label="Primary">
-      <a href="#services">Services</a>
-      <a href="#system">System</a>
-      <a href="#contact">Contact</a>
+      <a href="#lab">Idea Lab</a>
+      <a href="#prompts">Prompt Deck</a>
+      <a href="#saved">Saved</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <p class="eyebrow">AI automation · web systems · deploy lanes</p>
-      <h1>Websites that don’t just sit there. They work.</h1>
+      <p class="eyebrow">Game design · ideation · solo dev</p>
+      <h1>Stuck on your game? Spin the storm.</h1>
       <p class="hero-copy">
-        xThunder turns placeholder websites into fast, useful digital systems:
-        pages, workflows, automations, reports, and deployment lanes that can be
-        updated without chaos.
+        xThunder helps you break creative blocks with random hooks, mechanics, settings,
+        and twists you can mix into one pitch. Save what clicks and build from there.
       </p>
       <div class="hero-actions">
-        <a class="button primary" href="#contact">Start a build</a>
-        <a class="button secondary" href="#system">See the workflow</a>
+        <button type="button" class="button primary" id="spin-all">Spin full idea</button>
+        <button type="button" class="button secondary" id="clear-saved">Clear saved</button>
       </div>
     </section>
 
-    <section id="services" class="section">
-      <p class="eyebrow">Services</p>
-      <h2>Built for operators, small businesses, and fast-moving projects.</h2>
+    <section id="lab" class="section lab-panel" aria-live="polite">
+      <p class="eyebrow">Your mix</p>
+      <h2>Current game pitch</h2>
+      <div class="pitch-grid">
+        <article class="pitch-card" data-slot="hook">
+          <h3>Hook</h3>
+          <p class="pitch-value" id="pitch-hook">Tap “Spin full idea” to start.</p>
+          <button type="button" class="mini" data-spin="hook">Respin</button>
+        </article>
+        <article class="pitch-card" data-slot="mechanic">
+          <h3>Core mechanic</h3>
+          <p class="pitch-value" id="pitch-mechanic">—</p>
+          <button type="button" class="mini" data-spin="mechanic">Respin</button>
+        </article>
+        <article class="pitch-card" data-slot="setting">
+          <h3>Setting</h3>
+          <p class="pitch-value" id="pitch-setting">—</p>
+          <button type="button" class="mini" data-spin="setting">Respin</button>
+        </article>
+        <article class="pitch-card" data-slot="twist">
+          <h3>Twist</h3>
+          <p class="pitch-value" id="pitch-twist">—</p>
+          <button type="button" class="mini" data-spin="twist">Respin</button>
+        </article>
+      </div>
+      <div class="lab-actions">
+        <button type="button" class="button primary" id="save-pitch">Save this pitch</button>
+        <button type="button" class="button secondary" id="copy-pitch">Copy pitch</button>
+      </div>
+      <p class="hint" id="copy-status" hidden>Copied to clipboard.</p>
+    </section>
 
+    <section id="prompts" class="section">
+      <p class="eyebrow">Prompt deck</p>
+      <h2>Categories you can riff on</h2>
       <div class="grid">
         <article class="card">
-          <h3>Static Sites</h3>
-          <p>Landing pages, service pages, personal brands, local business sites, and fast portfolio builds.</p>
+          <h3>Genre vibes</h3>
+          <p>Roguelite, cozy sim, arena fighter, narrative horror, deckbuilder, rhythm action.</p>
         </article>
         <article class="card">
-          <h3>Automation Lanes</h3>
-          <p>Repeatable workflows for content updates, file sync, reports, client ops, and deployment checks.</p>
+          <h3>Player fantasy</h3>
+          <p>Outsmart the storm, rebuild a fallen crew, speedrun your own mistakes, charm hostile NPCs.</p>
         </article>
         <article class="card">
-          <h3>AI Workflow Support</h3>
-          <p>Practical AI assistants wired into real tasks instead of disconnected chatbot demos.</p>
+          <h3>Session shape</h3>
+          <p>5-minute runs, one-room puzzles, weekly league, persistent base + sorties.</p>
         </article>
         <article class="card">
-          <h3>Deploy Systems</h3>
-          <p>Git-backed updates, dry-runs, manifests, and controlled pushes to hosting.</p>
+          <h3>Constraints</h3>
+          <p>One button, no text UI, mobile portrait, AI rivals, permadeath items only.</p>
         </article>
       </div>
     </section>
 
-    <section id="system" class="section system-panel">
-      <div>
-        <p class="eyebrow">Operating model</p>
-        <h2>Build. Verify. Deploy.</h2>
-      </div>
-      <div class="steps">
-        <p><strong>01 · Build</strong><br>Create the site, page, or workflow in a controlled repo lane.</p>
-        <p><strong>02 · Verify</strong><br>Check files, routes, links, metadata, and deployment targets before upload.</p>
-        <p><strong>03 · Deploy</strong><br>Push only the approved output to Hostinger or GitHub-backed hosting.</p>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact">
-      <p class="eyebrow">Ready to replace the placeholder?</p>
-      <h2>Bring the site online with a real system behind it.</h2>
-      <p>Email <a href="mailto:dadudekc@gmail.com">dadudekc@gmail.com</a></p>
+    <section id="saved" class="section saved-panel">
+      <p class="eyebrow">Idea journal</p>
+      <h2>Saved pitches</h2>
+      <p class="muted">Stored in your browser on this device only.</p>
+      <ul class="saved-list" id="saved-list">
+        <li class="empty">No saved ideas yet.</li>
+      </ul>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> xThunder.site · Built by Victor Dixon / Dream.OS</p>
+    <p>© <span id="year"></span> xThunder.site · Game idea lab · Victor Dixon / Dream.OS</p>
   </footer>
 
   <script src="./assets/js/main.js"></script>
