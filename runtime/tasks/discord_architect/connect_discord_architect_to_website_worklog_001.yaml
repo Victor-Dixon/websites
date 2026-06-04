@@ -1,0 +1,25 @@
+id: connect_discord_architect_to_website_worklog_001
+lane: repo_fleet_self_healing_001
+target: website_worklog_discord_architect_bridge
+status: pending
+intent:
+  - build factual website worklog feed from committed Discord Architect reports
+  - expose completed work without inventing progress
+  - prepare feed for weareswarm/site rendering
+constraints:
+  - no fabricated entries
+  - only read existing committed reports
+  - no live Discord dispatch
+  - no secrets in reports/feed
+verification:
+  - script syntax check
+  - unit tests pass
+  - generated feed has real report-backed entries
+  - git scope exact
+outputs:
+  - runtime/scripts/build_website_worklog_from_discord_architect_001.py
+  - tests/test_website_worklog_from_discord_architect.py
+  - data/worklog/discord_architect_worklog.json
+  - data/worklog/discord_architect_worklog.md
+  - data/reports/discord_architect/connect_discord_architect_to_website_worklog_001.md
+  - data/reports/discord_architect/connect_discord_architect_to_website_worklog_001.json

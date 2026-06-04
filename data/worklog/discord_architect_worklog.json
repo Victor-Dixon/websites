@@ -1,0 +1,96 @@
+{
+  "worklog": "discord_architect",
+  "status": "PASS",
+  "entry_count": 9,
+  "entries": [
+    {
+      "task": "inspect_real_discord_sender_interface_002",
+      "status": "PASS",
+      "report": "data/reports/discord_architect/inspect_real_discord_sender_interface_002.json",
+      "summary": "Inspected the selected sender interface and confirmed dry-run behavior when webhook env is absent.",
+      "verification": "",
+      "next_lane": "",
+      "parse_warning": ""
+    },
+    {
+      "task": "build_discord_architect_invocation_adapter_001",
+      "status": "PASS",
+      "report": "data/reports/discord_architect/build_discord_architect_invocation_adapter_001.json",
+      "summary": "Added the Python invocation adapter, fixture, and tests.",
+      "verification": "py_compile=PASS, pytest_targeted_no_plugin_autoload=PASS, dry_run=PASS, secret_scan=PASS",
+      "next_lane": "wire_discord_architect_closeout_payload_source_001",
+      "parse_warning": ""
+    },
+    {
+      "task": "wire_discord_architect_closeout_payload_source_001",
+      "status": "PASS",
+      "report": "data/reports/discord_architect/wire_discord_architect_closeout_payload_source_001.json",
+      "summary": "Wired latest DreamVault CPC JSON closeouts into the adapter payload path.",
+      "verification": "py_compile=PASS, targeted_pytest=PASS, latest_cpc_resolved=PASS, dry_run=PASS, secret_scan=PASS",
+      "next_lane": "add_discord_architect_live_dispatch_gate_001",
+      "parse_warning": "JSONDecodeError recovered with raw_decode: Extra data: line 18 column 2 (char 863); trailing_bytes=2"
+    },
+    {
+      "task": "add_discord_architect_live_dispatch_gate_001",
+      "status": "PASS",
+      "report": "data/reports/discord_architect/add_discord_architect_live_dispatch_gate_001.json",
+      "summary": "Added explicit live dispatch gate requiring --invoke --live and DISCORD_WEBHOOK_URL.",
+      "verification": "py_compile=PASS, targeted_pytest=PASS, dry_run_without_env=PASS, live_refusal_without_env=PASS, secret_scan=PASS",
+      "next_lane": "classify_untracked_discord_architect_artifacts_001",
+      "parse_warning": ""
+    },
+    {
+      "task": "classify_untracked_discord_architect_artifacts_001",
+      "status": "PASS",
+      "report": "data/reports/discord_architect/classify_untracked_discord_architect_artifacts_001.json",
+      "summary": "Classified remaining Discord Architect artifact drift before promotion or quarantine.",
+      "verification": "",
+      "next_lane": "salvage_or_quarantine_discord_architect_artifacts_001",
+      "parse_warning": ""
+    },
+    {
+      "task": "repair_discord_architect_salvage_zero_quarantine_001",
+      "status": "PASS",
+      "report": "data/reports/discord_architect/repair_discord_architect_salvage_zero_quarantine_001.json",
+      "summary": "Accepted zero-quarantine state and preserved source candidates for explicit review.",
+      "verification": "",
+      "next_lane": "inspect_discord_architect_source_candidates_001",
+      "parse_warning": ""
+    },
+    {
+      "task": "inspect_discord_architect_source_candidates_001",
+      "status": "PASS",
+      "report": "data/reports/discord_architect/inspect_discord_architect_source_candidates_001.json",
+      "summary": "Inspected JS webhook manager candidates and classified them as separate/obsolete drift.",
+      "verification": "",
+      "next_lane": "quarantine_discord_architect_source_candidates_001",
+      "parse_warning": ""
+    },
+    {
+      "task": "quarantine_discord_architect_source_candidates_001",
+      "status": "PASS",
+      "report": "data/reports/discord_architect/quarantine_discord_architect_source_candidates_001.json",
+      "summary": "Quarantined obsolete JS source and test candidates with hashes.",
+      "verification": "",
+      "next_lane": "verify_discord_architect_clean_worktree_001",
+      "parse_warning": ""
+    },
+    {
+      "task": "verify_discord_architect_clean_worktree_001",
+      "status": "PASS",
+      "report": "data/reports/discord_architect/verify_discord_architect_clean_worktree_001.json",
+      "summary": "Verified the Discord Architect spine, dry-run bridge, live refusal gate, and generated-output ignore guard.",
+      "verification": "targeted_tests=PASS, dry_run_bridge=PASS, live_gate_refusal_without_env=PASS, old_js_roots_removed=PASS, runtime_output_not_staged=PASS, secret_scan=PASS",
+      "next_lane": "connect_discord_architect_to_website_worklog_001",
+      "parse_warning": ""
+    }
+  ],
+  "missing_expected_reports": [
+    "resolve_real_discord_architect_candidate_001"
+  ],
+  "source": "data/reports/discord_architect",
+  "integrity": {
+    "fabricated_entries": false,
+    "source_required": "existing JSON reports only"
+  }
+}

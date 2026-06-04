@@ -1,0 +1,24 @@
+id: repair_website_worklog_json_loader_001
+lane: repo_fleet_self_healing_001
+target: website_worklog_json_loader_repair
+status: pending
+intent:
+  - repair worklog builder for JSON reports with trailing extra data
+  - replace /tmp log path with repo-local runtime log
+  - preserve report-backed integrity
+constraints:
+  - no fabricated entries
+  - no live dispatch
+  - no secrets in reports/feed
+verification:
+  - syntax check
+  - targeted tests pass
+  - worklog builds from existing reports
+  - parse warnings captured
+outputs:
+  - runtime/scripts/build_website_worklog_from_discord_architect_001.py
+  - tests/test_website_worklog_from_discord_architect.py
+  - data/worklog/discord_architect_worklog.json
+  - data/worklog/discord_architect_worklog.md
+  - data/reports/discord_architect/repair_website_worklog_json_loader_001.md
+  - data/reports/discord_architect/repair_website_worklog_json_loader_001.json

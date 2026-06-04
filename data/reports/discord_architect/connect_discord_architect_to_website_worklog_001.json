@@ -1,0 +1,19 @@
+{
+  "task": "connect_discord_architect_to_website_worklog_001",
+  "status": "PASS",
+  "repair": "robust JSON loader accepts first JSON object when report file has trailing extra data",
+  "script": "runtime/scripts/build_website_worklog_from_discord_architect_001.py",
+  "tests": "tests/test_website_worklog_from_discord_architect.py",
+  "worklog_json": "data/worklog/discord_architect_worklog.json",
+  "worklog_md": "data/worklog/discord_architect_worklog.md",
+  "build_log": "runtime/logs/discord_architect/connect_discord_architect_to_website_worklog_001.log",
+  "entry_count": 9,
+  "parse_warning_count": 1,
+  "verification": {
+    "py_compile": "PASS",
+    "targeted_pytest": "PASS",
+    "worklog_verify": "PASS",
+    "secret_scan": "PASS"
+  },
+  "next_lane": "wire_website_worklog_render_surface_001"
+}
