@@ -7,10 +7,15 @@ on:
     paths:
       - .github/workflows/deploy-weareswarm-repair.yml
 
+concurrency:
+  group: weareswarm-repair-deploy
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Upload repaired WordPress theme files
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Checkout repo
@@ -45,8 +50,8 @@ jobs:
           test -n "$HOSTINGER_PORT"
 
           remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
-          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new "$remote")
-          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new)
+          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
+          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
 
           "${ssh_base[@]}" "set -e
             test -d '$REMOTE_ROOT/wp-content/themes/weareswarm'
