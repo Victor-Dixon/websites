@@ -124,7 +124,9 @@ sites:
     deploy_method: sftp
     deploy_files:
       - sites/production/websites/xthunder.site/index.html
-    notes: "Static bakery landing; production-sync SSOT; deploy gated until dry-run"
+      - sites/production/websites/xthunder.site/assets/css/style.css
+      - sites/production/websites/xthunder.site/assets/js/main.js
+    notes: "Game idea lab (pitch spinner); deploy gated until dry-run"
 
 # Deployment configuration
 deployment:

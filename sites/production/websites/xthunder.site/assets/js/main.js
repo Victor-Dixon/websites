@@ -142,6 +142,10 @@ if (year) {
 }
 
 document.getElementById("spin-all")?.addEventListener("click", spinAll);
+document.getElementById("spin-all-hero")?.addEventListener("click", () => {
+  spinAll();
+  document.getElementById("lab")?.scrollIntoView({ behavior: "smooth" });
+});
 document.getElementById("save-pitch")?.addEventListener("click", savePitch);
 document.getElementById("copy-pitch")?.addEventListener("click", copyPitch);
 document.getElementById("clear-saved")?.addEventListener("click", clearSaved);
