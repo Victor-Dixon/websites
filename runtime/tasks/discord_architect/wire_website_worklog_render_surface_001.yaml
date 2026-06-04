@@ -1,0 +1,24 @@
+id: wire_website_worklog_render_surface_001
+lane: repo_fleet_self_healing_001
+target: website_worklog_render_surface
+status: pending
+intent:
+  - render Discord Architect worklog into a static website-ready HTML surface
+  - use report-backed entries only
+  - expose proof without inventing activity
+constraints:
+  - no fabricated entries
+  - no live dispatch
+  - no secrets
+  - generated HTML must identify source JSON
+verification:
+  - syntax check
+  - targeted renderer tests
+  - rendered HTML contains expected entry count
+  - secret scan pass
+outputs:
+  - runtime/scripts/render_discord_architect_worklog_surface_001.py
+  - tests/test_render_discord_architect_worklog_surface.py
+  - public/worklog/discord-architect.html
+  - data/reports/discord_architect/wire_website_worklog_render_surface_001.md
+  - data/reports/discord_architect/wire_website_worklog_render_surface_001.json
