@@ -72,6 +72,52 @@ jobs:
             '$REMOTE_ROOT/wp-content/themes/weareswarm/functions.php' \
             '$REMOTE_ROOT/wp-content/themes/swarm-theme/functions.php'"
 
+      - name: Diagnose remaining 500
+        env:
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_USER: u996867598
+          HOSTINGER_PORT: "65002"
+          REMOTE_ROOT: /home/u996867598/domains/weareswarm.online/public_html
+        run: |
+          set -euo pipefail
+          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
+
+          "${ssh_base[@]}" "set +e
+            cd '$REMOTE_ROOT'
+            echo '== PHP VERSION =='
+            php -v | sed -n '1,2p'
+            echo '== THEME PHP LINT =='
+            for f in \
+              wp-content/themes/weareswarm/functions.php \
+              wp-content/themes/swarm-theme/functions.php \
+              wp-content/themes/swarm/functions.php \
+              wp-content/themes/swarm/front-page.php \
+              wp-content/themes/swarm-theme/front-page.php
+            do
+              if [ -f \"\$f\" ]; then
+                php -l \"\$f\"
+              else
+                echo \"MISSING \$f\"
+              fi
+            done
+            echo '== WORDPRESS CLI THEME CHECK =='
+            if command -v wp >/dev/null 2>&1; then
+              wp --path='$REMOTE_ROOT' option get stylesheet 2>&1
+              wp --path='$REMOTE_ROOT' option get template 2>&1
+            else
+              echo 'WP_CLI_MISSING'
+            fi
+            echo '== DIRECT PHP BOOTSTRAP =='
+            timeout 20 php -d display_errors=1 -d log_errors=0 -d error_reporting=E_ALL index.php 2>&1 | sed -n '1,120p'
+            echo '== DEBUG LOG TAIL =='
+            if [ -f wp-content/debug.log ]; then
+              tail -n 80 wp-content/debug.log
+            else
+              echo 'DEBUG_LOG_MISSING'
+            fi
+          "
+
       - name: Verify live site
         run: |
           set -euo pipefail
