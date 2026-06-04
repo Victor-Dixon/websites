@@ -3,96 +3,458 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Aria Jet</title>
-  <meta name="description" content="Aria Jet is coming back online.">
+  <title>Aria Jet | Cases + Phone Glow-Ups</title>
+  <meta name="description" content="Aria Jet sells phone cases, shows phone glow-ups, and accepts limited simple repair requests.">
   <style>
     :root {
       color-scheme: dark;
       --bg: #080816;
       --panel: #111127;
+      --panel2: #171734;
       --text: #f4f4ff;
       --muted: #b7b7d9;
       --accent: #8f7cff;
       --accent2: #64e3ff;
+      --good: #79ffb2;
+      --warn: #ffd36a;
+      --line: rgba(255,255,255,.12);
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       background:
         radial-gradient(circle at top left, rgba(143,124,255,.35), transparent 30rem),
         radial-gradient(circle at bottom right, rgba(100,227,255,.22), transparent 28rem),
         var(--bg);
       color: var(--text);
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,8,22,.76);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(14px);
+      z-index: 10;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .hero {
+      min-height: 78vh;
       display: grid;
       place-items: center;
-      padding: 2rem;
+      padding: 5rem 0;
     }
-    main {
-      width: min(920px, 100%);
+
+    .hero-card {
+      width: 100%;
       background: rgba(17,17,39,.84);
-      border: 1px solid rgba(255,255,255,.12);
+      border: 1px solid var(--line);
       border-radius: 28px;
-      padding: clamp(2rem, 5vw, 4rem);
+      padding: clamp(2rem, 5vw, 4.5rem);
       box-shadow: 0 30px 90px rgba(0,0,0,.35);
     }
+
     .eyebrow {
       color: var(--accent2);
       letter-spacing: .18em;
       text-transform: uppercase;
       font-size: .8rem;
-      font-weight: 700;
+      font-weight: 800;
     }
+
     h1 {
-      font-size: clamp(3rem, 10vw, 7rem);
+      font-size: clamp(2.9rem, 9vw, 7rem);
       line-height: .9;
       margin: 1rem 0;
+      max-width: 11ch;
     }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin: 0 0 1rem;
+    }
+
+    h3 {
+      margin: 0 0 .5rem;
+    }
+
     p {
       color: var(--muted);
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
-      line-height: 1.6;
-      max-width: 62ch;
+      font-size: 1.08rem;
+      line-height: 1.65;
     }
-    .card-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
+
+    .hero p {
+      max-width: 62ch;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
       margin-top: 2rem;
     }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .9rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      font-weight: 800;
+      background: rgba(255,255,255,.06);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #080816;
+      border: 0;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
     .card {
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.2rem;
       background: rgba(255,255,255,.045);
     }
-    .card strong { display: block; margin-bottom: .35rem; }
-    .card span { color: var(--muted); font-size: .95rem; }
+
+    .tag {
+      display: inline-flex;
+      margin: .25rem .25rem .25rem 0;
+      padding: .45rem .7rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(255,255,255,.055);
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    .product-card {
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(135deg, rgba(143,124,255,.16), rgba(100,227,255,.08)),
+        var(--panel2);
+    }
+
+    .price {
+      color: var(--good);
+      font-weight: 900;
+      font-size: 1.15rem;
+    }
+
+    .repair-card strong {
+      color: var(--text);
+    }
+
+    .status {
+      color: var(--good);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .8rem;
+    }
+
+    .limits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    ul {
+      margin: .5rem 0 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .yes {
+      border-color: rgba(121,255,178,.25);
+    }
+
+    .no {
+      border-color: rgba(255,211,106,.25);
+    }
+
+    .request {
+      background: rgba(17,17,39,.84);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .request-box {
+      display: grid;
+      gap: .8rem;
+      margin-top: 1rem;
+    }
+
+    .field {
+      padding: 1rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .95rem;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <nav class="wrap">
+      <div class="brand">Aria Jet</div>
+      <div class="nav-links">
+        <a href="#cases">Cases</a>
+        <a href="#repairs">Repairs</a>
+        <a href="#request">Request</a>
+      </div>
+    </nav>
+  </header>
+
   <main>
-    <div class="eyebrow">Aria Jet</div>
-    <h1>Back online.</h1>
-    <p>
-      The launchpad is being restored. This page confirms the domain is alive,
-      reachable, and ready for the next content pass.
-    </p>
-    <section class="card-row" aria-label="Site sections">
-      <div class="card">
-        <strong>Games</strong>
-        <span>Creative projects and kid-powered worlds.</span>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="eyebrow">Cases · Glow-Ups · Simple Repairs</div>
+          <h1>Pick your phone vibe.</h1>
+          <p>
+            Aria Jet is a creative phone accessory and simple repair project.
+            Browse phone case styles, check out repair proof, and ask about a limited phone fix.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#cases">Shop Case Vibes</a>
+            <a class="btn" href="#repairs">See Phones Fixed</a>
+            <a class="btn" href="#request">Ask About a Fix</a>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <strong>Music</strong>
-        <span>Sound, rhythm, and experiments.</span>
+    </section>
+
+    <section id="cases">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Phone Cases</div>
+          <h2>Click the vibe. Match the case.</h2>
+          <p>
+            Start simple: these are case categories. Add real photos and prices as inventory comes in.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card product-card">
+            <div>
+              <h3>Glitter / Sparkle</h3>
+              <p>Bright cases with shine, color, and personality.</p>
+              <span class="tag">Cute</span>
+              <span class="tag">Sparkle</span>
+              <span class="tag">Giftable</span>
+            </div>
+            <div class="price">Manual order</div>
+          </article>
+
+          <article class="card product-card">
+            <div>
+              <h3>Custom Name</h3>
+              <p>Cases with names, initials, words, or simple custom themes.</p>
+              <span class="tag">Custom</span>
+              <span class="tag">Name</span>
+              <span class="tag">Personal</span>
+            </div>
+            <div class="price">Request quote</div>
+          </article>
+
+          <article class="card product-card">
+            <div>
+              <h3>Anime / Character Style</h3>
+              <p>Fun character-inspired case looks and themed accessories.</p>
+              <span class="tag">Anime</span>
+              <span class="tag">Cartoon</span>
+              <span class="tag">Creative</span>
+            </div>
+            <div class="price">Coming soon</div>
+          </article>
+
+          <article class="card product-card">
+            <div>
+              <h3>Protective Everyday</h3>
+              <p>Simple sturdy cases for daily phone protection.</p>
+              <span class="tag">iPhone</span>
+              <span class="tag">Samsung</span>
+              <span class="tag">Protective</span>
+            </div>
+            <div class="price">Manual order</div>
+          </article>
+        </div>
       </div>
-      <div class="card">
-        <strong>Stories</strong>
-        <span>Imagination logs and future updates.</span>
+    </section>
+
+    <section id="repairs">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Repair Proof</div>
+          <h2>Phones we fixed.</h2>
+          <p>
+            This section is for before-and-after proof. Add real photos after each finished repair.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card repair-card">
+            <div class="status">Completed</div>
+            <h3>Screen Replacement</h3>
+            <p><strong>Device:</strong> Add model here</p>
+            <p><strong>Fix:</strong> Cracked screen replaced and tested.</p>
+          </article>
+
+          <article class="card repair-card">
+            <div class="status">Completed</div>
+            <h3>Screen Protector Install</h3>
+            <p><strong>Device:</strong> Add model here</p>
+            <p><strong>Fix:</strong> Clean install with bubble check.</p>
+          </article>
+
+          <article class="card repair-card">
+            <div class="status">Completed</div>
+            <h3>Charging Port Cleaning</h3>
+            <p><strong>Device:</strong> Add model here</p>
+            <p><strong>Fix:</strong> Basic port clean and charge test.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Repair Limits</div>
+          <h2>Clear work. No guessing.</h2>
+          <p>
+            Every request is reviewed first. If the job is outside our current skill level,
+            we say no instead of risking the device.
+          </p>
+        </div>
+
+        <div class="limits">
+          <article class="card yes">
+            <h3>Currently taking</h3>
+            <ul>
+              <li>Screen protector installs</li>
+              <li>Phone case installs</li>
+              <li>Basic phone cleaning</li>
+              <li>Charging-port cleaning</li>
+              <li>Simple screen replacement requests</li>
+              <li>Basic diagnostics</li>
+            </ul>
+          </article>
+
+          <article class="card no">
+            <h3>Not currently taking</h3>
+            <ul>
+              <li>Water damage</li>
+              <li>Motherboard repair</li>
+              <li>Locked or iCloud-locked phones</li>
+              <li>Severe frame damage</li>
+              <li>Data recovery</li>
+              <li>Repairs without review first</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="request">
+      <div class="wrap">
+        <div class="request">
+          <div class="eyebrow">Request</div>
+          <h2>Ask about a case or simple fix.</h2>
+          <p>
+            Send the phone model, what happened, and what style or repair you want.
+            Photos help us decide if the request is safe to accept.
+          </p>
+
+          <div class="request-box">
+            <div class="field">Name</div>
+            <div class="field">Phone model: iPhone / Samsung / other</div>
+            <div class="field">Request: case, screen protector, cleaning, screen repair, or other</div>
+            <div class="field">Photo upload / message link coming soon</div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="mailto:dadudekc@gmail.com?subject=Aria%20Jet%20Request">Email a Request</a>
+            <a class="btn" href="#cases">Browse Case Vibes</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
+
+  <footer>
+    <div class="wrap">
+      Aria Jet · Phone cases, glow-ups, and limited simple repair requests.
+    </div>
+  </footer>
 </body>
 </html>

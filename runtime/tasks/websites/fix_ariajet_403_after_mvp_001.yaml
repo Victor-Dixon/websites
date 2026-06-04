@@ -1,0 +1,15 @@
+version: 1
+title: Fix ariajet.site 403 after MVP deploy
+target: ariajet.site
+status: ready
+root_cause_hypothesis:
+  - remote permissions or restrictive htaccess after rsync
+actions:
+  - reset remote directory permissions
+  - reset remote file permissions
+  - replace htaccess with static-safe LiteSpeed config
+  - verify live MVP body
+verify:
+  - curl -IL https://ariajet.site/
+  - curl body contains Phone Cases
+commit_message: Fix Aria Jet static MVP serving permissions

@@ -1,0 +1,14 @@
+version: 1
+title: Add Aria Jet phone cases and repair MVP
+target: ariajet.site
+status: ready
+actions:
+  - replace emergency homepage with phone case and repair MVP
+  - add case vibe cards
+  - add repair proof cards
+  - add limited service boundaries
+  - deploy static index to Hostinger
+verify:
+  - curl -IL https://ariajet.site/
+  - grep page title and section text from live HTML
+commit_message: Add Aria Jet phone case and repair MVP
