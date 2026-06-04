@@ -1,0 +1,17 @@
+version: 1
+title: Move TradingRobotPlug Alpaca daily proof runner to Hostinger
+target: tradingrobotplug.com
+status: ready
+actions:
+  - copy Alpaca proof generator to Hostinger private tools dir
+  - copy finance env to Hostinger private secrets dir
+  - create Hostinger Python venv when available
+  - install pandas and requests
+  - create server-side daily runner
+  - install Hostinger crontab entry
+  - run manual verification
+verify:
+  - Hostinger runner creates latest Alpaca proof markdown/json
+  - public proof URLs return HTTP 200
+  - crontab contains runner
+commit_message: Move TradingRobotPlug Alpaca proof runner to Hostinger

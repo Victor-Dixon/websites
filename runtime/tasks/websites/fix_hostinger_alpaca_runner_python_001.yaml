@@ -1,0 +1,17 @@
+version: 1
+title: Fix Hostinger Alpaca runner Python selection
+target: tradingrobotplug.com
+status: ready
+root_cause:
+  - Hostinger venv creation partially failed
+  - runner selected broken venv python
+  - pandas installed to user site for python3, not broken venv
+actions:
+  - patch remote runner to select venv only if imports pass
+  - fallback to python3 with user site packages
+  - rerun proof generator on Hostinger
+  - verify public Alpaca proof artifacts
+verify:
+  - remote runner reports TRADINGROBOTPLUG_HOSTINGER_ALPACA_RUN=PASS
+  - latest Alpaca markdown and json return HTTP 200
+commit_message: Fix Hostinger Alpaca runner Python selection
