@@ -1,0 +1,21 @@
+id: repair_discord_architect_salvage_zero_quarantine_001
+lane: repo_fleet_self_healing_001
+target: discord_architect_salvage_zero_quarantine_repair
+status: pending
+intent:
+  - repair salvage lane when all quarantine roots are already missing
+  - preserve retained source/test candidates for explicit inspection
+  - avoid destructive action
+constraints:
+  - no deletion
+  - no blind promotion
+  - zero quarantined roots is acceptable when roots were previously moved or absent
+verification:
+  - manifest exists
+  - retained source candidates exist
+  - secret scan pass
+  - cached scope exact
+outputs:
+  - data/reports/discord_architect/repair_discord_architect_salvage_zero_quarantine_001.md
+  - data/reports/discord_architect/repair_discord_architect_salvage_zero_quarantine_001.json
+  - runtime/tasks/discord_architect/repair_discord_architect_salvage_zero_quarantine_001.yaml
