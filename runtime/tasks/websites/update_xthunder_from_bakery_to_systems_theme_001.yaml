@@ -1,0 +1,14 @@
+id: update_xthunder_from_bakery_to_systems_theme_001
+title: Update xthunder.site from placeholder to systems theme
+target: sites/production/websites/xthunder.site
+status: ready_for_review
+intent:
+  - Replace bakery placeholder messaging with xThunder systems/automation positioning.
+  - Keep deploy disabled until dry-run passes.
+  - Preserve static deploy compatibility.
+verification:
+  - index.html contains xThunder systems copy
+  - CSS exists
+  - JS exists
+  - no live deploy executed
+commit_message: Update xthunder.site systems theme

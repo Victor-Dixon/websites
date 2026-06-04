@@ -1,78 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="xthunder — warm bakes and cozy moments. Handcrafted breads and pastries, baked daily with care." />
-  <title>xthunder</title>
-  <style>
-    :root {
-      --bg: #2c1810;
-      --surface: #3d2418;
-      --text: #fff8f0;
-      --muted: #d4b896;
-      --accent: #e8a54b;
-      --warm: #c45c26;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      background: linear-gradient(160deg, var(--bg) 0%, #1a0f0a 100%);
-      color: var(--text);
-      line-height: 1.65;
-      min-height: 100vh;
-    }
-    .wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 4rem;
-      text-align: center;
-    }
-    .brand {
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    h1 {
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      font-weight: 400;
-      margin: 0 0 1rem;
-      color: var(--text);
-    }
-    .lede {
-      color: var(--muted);
-      font-size: 1.1rem;
-      margin: 0 0 2.5rem;
-      font-style: italic;
-    }
-    section {
-      background: var(--surface);
-      border: 1px solid rgba(232, 165, 75, 0.25);
-      border-radius: 12px;
-      padding: 1.75rem 1.5rem;
-      text-align: left;
-    }
-    h2 {
-      font-size: 1.25rem;
-      margin: 0 0 0.75rem;
-      color: var(--accent);
-      font-weight: 600;
-    }
-    p { margin: 0; color: var(--muted); }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>xThunder.site | Websites That Work</title>
+  <meta name="description" content="xThunder builds fast websites, automation lanes, deploy systems, and AI-assisted workflows for small businesses and operators.">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-  <div class="wrap">
-    <p class="brand">xthunder</p>
-    <h1>Warm Bakes, Cozy Moments</h1>
-    <p class="lede">Handcrafted breads and pastries, baked daily with care.</p>
-    <section>
-      <h2>Fresh Bakes</h2>
-      <p>Handcrafted daily with love, from crusty breads to sweet treats.</p>
+  <header class="site-header">
+    <a class="brand" href="/">xThunder</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#system">System</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">AI automation · web systems · deploy lanes</p>
+      <h1>Websites that don’t just sit there. They work.</h1>
+      <p class="hero-copy">
+        xThunder turns placeholder websites into fast, useful digital systems:
+        pages, workflows, automations, reports, and deployment lanes that can be
+        updated without chaos.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#contact">Start a build</a>
+        <a class="button secondary" href="#system">See the workflow</a>
+      </div>
     </section>
-  </div>
+
+    <section id="services" class="section">
+      <p class="eyebrow">Services</p>
+      <h2>Built for operators, small businesses, and fast-moving projects.</h2>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Static Sites</h3>
+          <p>Landing pages, service pages, personal brands, local business sites, and fast portfolio builds.</p>
+        </article>
+        <article class="card">
+          <h3>Automation Lanes</h3>
+          <p>Repeatable workflows for content updates, file sync, reports, client ops, and deployment checks.</p>
+        </article>
+        <article class="card">
+          <h3>AI Workflow Support</h3>
+          <p>Practical AI assistants wired into real tasks instead of disconnected chatbot demos.</p>
+        </article>
+        <article class="card">
+          <h3>Deploy Systems</h3>
+          <p>Git-backed updates, dry-runs, manifests, and controlled pushes to hosting.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="system" class="section system-panel">
+      <div>
+        <p class="eyebrow">Operating model</p>
+        <h2>Build. Verify. Deploy.</h2>
+      </div>
+      <div class="steps">
+        <p><strong>01 · Build</strong><br>Create the site, page, or workflow in a controlled repo lane.</p>
+        <p><strong>02 · Verify</strong><br>Check files, routes, links, metadata, and deployment targets before upload.</p>
+        <p><strong>03 · Deploy</strong><br>Push only the approved output to Hostinger or GitHub-backed hosting.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <p class="eyebrow">Ready to replace the placeholder?</p>
+      <h2>Bring the site online with a real system behind it.</h2>
+      <p>Email <a href="mailto:dadudekc@gmail.com">dadudekc@gmail.com</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> xThunder.site · Built by Victor Dixon / Dream.OS</p>
+  </footer>
+
+  <script src="./assets/js/main.js"></script>
 </body>
 </html>
