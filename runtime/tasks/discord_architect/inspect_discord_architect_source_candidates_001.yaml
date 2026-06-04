@@ -1,0 +1,21 @@
+id: inspect_discord_architect_source_candidates_001
+lane: repo_fleet_self_healing_001
+target: discord_architect_source_candidate_inspection
+status: pending
+intent:
+  - inspect retained JS Discord Architect source/test candidates
+  - compare against committed Python adapter/bridge implementation
+  - decide whether JS candidates should be salvaged or quarantined
+constraints:
+  - no deletion
+  - no blind source promotion
+  - no live Discord dispatch
+  - no secrets in reports
+verification:
+  - source/test inventory captured
+  - overlap analysis captured
+  - disposition assigned
+  - secret scan pass
+outputs:
+  - data/reports/discord_architect/inspect_discord_architect_source_candidates_001.md
+  - data/reports/discord_architect/inspect_discord_architect_source_candidates_001.json
