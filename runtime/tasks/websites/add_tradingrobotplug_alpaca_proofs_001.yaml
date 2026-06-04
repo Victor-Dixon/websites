@@ -1,0 +1,16 @@
+version: 1
+title: Add TradingRobotPlug Alpaca daily proof generator
+target: tradingrobotplug.com
+status: ready
+actions:
+  - add Alpaca-powered daily proof generator
+  - calculate VWAP, EMA, RSI, MACD from Alpaca bars
+  - generate markdown and json proof artifacts
+  - publish latest proof under proof/alpaca
+  - link Alpaca proof packets from homepage
+verify:
+  - Alpaca API credentials are present
+  - generator creates latest markdown/json proof artifacts
+  - live proof index is reachable
+  - live proof artifact contains ticker, indicators, setup_score, and risk disclaimer
+commit_message: Add TradingRobotPlug Alpaca proof generator
