@@ -1,0 +1,18 @@
+id: recover_github_push_transport_001
+lane: repo_fleet_self_healing_001
+target: github_push_transport_recovery
+status: completed
+intent:
+  - recover GitHub push blocked by port 22 timeout
+  - avoid duplicate render-surface commit
+  - verify remote receives local HEAD
+constraints:
+  - no duplicate commit
+  - restore original remote after push
+verification:
+  - local head matched 81b7194
+  - push method: ssh_443
+  - remote head matched local head
+outputs:
+  - data/reports/discord_architect/recover_github_push_transport_001.md
+  - data/reports/discord_architect/recover_github_push_transport_001.json
