@@ -1,0 +1,23 @@
+id: add_discord_architect_live_dispatch_gate_001
+lane: repo_fleet_self_healing_001
+target: discord_architect_live_dispatch_gate
+status: pending
+intent:
+  - preserve dry-run default
+  - add explicit live dispatch gate
+  - refuse live mode when DISCORD_WEBHOOK_URL is absent
+constraints:
+  - no live dispatch during verification
+  - no secrets in repo, reports, logs, or tests
+  - do not stage runtime payload/log output
+verification:
+  - syntax check
+  - targeted pytest with plugin autoload disabled
+  - dry-run bridge still passes without env
+  - live mode refuses without webhook env
+  - secret scan pass
+outputs:
+  - discord_architect/closeout_source_bridge.py
+  - tests/test_discord_architect_closeout_source_bridge.py
+  - data/reports/discord_architect/add_discord_architect_live_dispatch_gate_001.md
+  - data/reports/discord_architect/add_discord_architect_live_dispatch_gate_001.json

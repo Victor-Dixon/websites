@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -110,12 +111,28 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--sender", type=Path, default=DEFAULT_SELECTED_SENDER)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PAYLOAD)
     parser.add_argument("--bridge-payload", type=Path, default=Path("runtime/trading/discord/latest_cpc_closeout_bridge_payload.json"))
-    parser.add_argument("--invoke", action="store_true")
+    parser.add_argument("--invoke", action="store_true", help="Invoke selected sender after writing payload")
+    parser.add_argument(
+        "--live",
+        action="store_true",
+        help="Allow live dispatch. Requires --invoke and DISCORD_WEBHOOK_URL.",
+    )
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+
+    if args.live:
+        if not args.invoke:
+            print("LIVE_GATE=FAIL reason=--live requires --invoke", file=sys.stderr)
+            return 3
+        if not os.environ.get("DISCORD_WEBHOOK_URL", "").strip():
+            print("LIVE_GATE=FAIL reason=DISCORD_WEBHOOK_URL not set", file=sys.stderr)
+            return 4
+        print("LIVE_GATE=PASS")
+    else:
+        print("LIVE_GATE=DRY_RUN")
 
     source = args.cpc_json or find_latest_cpc_json(args.cpc_json_dir)
     raw = load_json(source)

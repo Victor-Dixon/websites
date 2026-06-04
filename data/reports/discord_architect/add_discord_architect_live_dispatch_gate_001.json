@@ -1,0 +1,17 @@
+{
+  "task": "add_discord_architect_live_dispatch_gate_001",
+  "status": "PASS",
+  "bridge": "discord_architect/closeout_source_bridge.py",
+  "tests": "tests/test_discord_architect_closeout_source_bridge.py",
+  "cpc_source": "/data/data/com.termux/files/home/projects/DreamVault/data/reports/cpc/json/cpc_20260603_190454_28493.json",
+  "dryrun_log": "runtime/logs/discord_architect/add_discord_architect_live_dispatch_gate_001_dryrun.log",
+  "live_refusal_log": "runtime/logs/discord_architect/add_discord_architect_live_dispatch_gate_001_live_refusal.log",
+  "verification": {
+    "py_compile": "PASS",
+    "targeted_pytest": "PASS",
+    "dry_run_without_env": "PASS",
+    "live_refusal_without_env": "PASS",
+    "secret_scan": "PASS"
+  },
+  "next_lane": "classify_untracked_discord_architect_artifacts_001"
+}

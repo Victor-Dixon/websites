@@ -90,3 +90,93 @@ def test_bridge_cli_with_explicit_cpc_json(tmp_path):
 
     payload = json.loads(output_payload.read_text(encoding="utf-8"))
     assert payload["content"] == "PASS: bridge_cli_task_001"
+
+def test_bridge_live_mode_refuses_without_webhook(tmp_path, monkeypatch):
+    cpc = tmp_path / "cpc.json"
+    bridge_payload = tmp_path / "bridge_payload.json"
+    output_payload = tmp_path / "latest_paper_trade_payload.json"
+
+    cpc.write_text(
+        json.dumps(
+            {
+                "lane": "repo_fleet_self_healing_001",
+                "closeout": {
+                    "Task": "live_refusal_task_001",
+                    "Status": "PASS",
+                    "Actions Taken": "should not dispatch",
+                    "Verification": "live gate refusal",
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.delenv("DISCORD_WEBHOOK_URL", raising=False)
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "discord_architect/closeout_source_bridge.py",
+            "--cpc-json",
+            str(cpc),
+            "--bridge-payload",
+            str(bridge_payload),
+            "--output",
+            str(output_payload),
+            "--invoke",
+            "--live",
+        ],
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+
+    assert result.returncode == 4
+    assert "LIVE_GATE=FAIL reason=DISCORD_WEBHOOK_URL not set" in result.stderr
+    assert not bridge_payload.exists()
+    assert not output_payload.exists()
+
+
+def test_bridge_dry_run_mode_announces_gate(tmp_path):
+    cpc = tmp_path / "cpc.json"
+    bridge_payload = tmp_path / "bridge_payload.json"
+    output_payload = tmp_path / "latest_paper_trade_payload.json"
+
+    cpc.write_text(
+        json.dumps(
+            {
+                "lane": "repo_fleet_self_healing_001",
+                "closeout": {
+                    "Task": "dry_gate_task_001",
+                    "Status": "PASS",
+                    "Actions Taken": "dry gate ok",
+                    "Verification": "payload written",
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "discord_architect/closeout_source_bridge.py",
+            "--cpc-json",
+            str(cpc),
+            "--bridge-payload",
+            str(bridge_payload),
+            "--output",
+            str(output_payload),
+        ],
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert "LIVE_GATE=DRY_RUN" in result.stdout
+    assert "BRIDGE_ADAPTER=PASS" in result.stdout
+    assert bridge_payload.exists()
+    assert output_payload.exists()
