@@ -1,0 +1,17 @@
+version: 1
+title: Install TradingRobotPlug daily Alpaca proof cron
+target: tradingrobotplug.com
+status: ready
+actions:
+  - create daily runner script
+  - load Alpaca secrets from DreamOS finance env
+  - generate Alpaca daily proof artifacts
+  - deploy latest proof files to Hostinger
+  - verify live Markdown and JSON proof artifacts
+  - install cron schedule
+verify:
+  - runner script exists
+  - manual runner pass
+  - crontab contains daily proof job
+  - live Alpaca proof URL returns HTTP 200
+commit_message: Install TradingRobotPlug daily Alpaca proof cron
