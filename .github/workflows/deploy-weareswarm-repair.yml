@@ -125,7 +125,44 @@ jobs:
           require_once ABSPATH . 'wp-settings.php';
           BOOTSTRAP;
 
-          if (file_put_contents($path, $prefix . "\n\n" . $bootstrap . "\n") === false) {
+          $newText = $prefix . "\n\n" . $bootstrap . "\n";
+
+          $tokens = token_get_all($newText);
+          $depth = 0;
+          $line = 1;
+          $unmatchedCloseLines = array();
+          foreach ($tokens as $token) {
+              if (is_array($token)) {
+                  $line = $token[2] + substr_count($token[1], "\n");
+                  continue;
+              }
+
+              if ($token === "{") {
+                  $depth++;
+              } elseif ($token === "}") {
+                  if ($depth === 0) {
+                      $unmatchedCloseLines[$line] = true;
+                  } else {
+                      $depth--;
+                  }
+              } elseif ($token === "\n") {
+                  $line++;
+              }
+          }
+
+          if ($unmatchedCloseLines) {
+              $lines = explode("\n", $newText);
+              foreach (array_reverse(array_keys($unmatchedCloseLines)) as $badLine) {
+                  $index = $badLine - 1;
+                  if (isset($lines[$index]) && trim($lines[$index]) === "}") {
+                      unset($lines[$index]);
+                      echo "REMOVED_UNMATCHED_CLOSE_BRACE_LINE=$badLine\n";
+                  }
+              }
+              $newText = implode("\n", $lines);
+          }
+
+          if (file_put_contents($path, $newText) === false) {
               fwrite(STDERR, "WP_CONFIG_WRITE_FAILED\n");
               exit(1);
           }
@@ -135,7 +172,7 @@ jobs:
           PHP
 
           "${scp_base[@]}" "$repair_script" "$remote:$repair_script"
-          "${ssh_base[@]}" "php '$repair_script' '$REMOTE_ROOT' '${GITHUB_RUN_ID}' && php -l '$REMOTE_ROOT/wp-config.php' && rm -f '$repair_script'"
+          "${ssh_base[@]}" "php '$repair_script' '$REMOTE_ROOT' '${GITHUB_RUN_ID}' && php -d display_errors=1 -d error_reporting=E_ALL -l '$REMOTE_ROOT/wp-config.php' 2>&1 && rm -f '$repair_script'"
 
       - name: Diagnose remaining 500
         env:
