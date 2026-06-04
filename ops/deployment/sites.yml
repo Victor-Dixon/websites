@@ -106,6 +106,26 @@ sites:
     deploy_method: sftp
     notes: "Build-in-public site (addon domain)"
 
+  dadudekc.site:
+    path: websites/dadudekc.site
+    deployer: unified
+    verify_url: https://dadudekc.site/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Spark Protocol static demo — npm run site:publish from Victor-Dixon__The-emergence-"
+
+  xthunder.site:
+    path: sites/production/websites/xthunder.site
+    deployer: unified
+    verify_url: https://xthunder.site/
+    remote_root: public_html
+    enabled: false
+    deploy_method: sftp
+    deploy_files:
+      - sites/production/websites/xthunder.site/index.html
+    notes: "Static bakery landing; production-sync SSOT; deploy gated until dry-run"
+
 # Deployment configuration
 deployment:
   default_deployer: unified

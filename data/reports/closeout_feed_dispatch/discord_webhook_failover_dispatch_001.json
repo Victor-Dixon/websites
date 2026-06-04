@@ -1,0 +1,206 @@
+{
+  "generated_at": "2026-06-03T18:38:22",
+  "status": "BLOCKED_ALL_VALID_WEBHOOKS_FORBIDDEN",
+  "candidate_count": 21,
+  "attempted_count": 21,
+  "selected_source": "",
+  "events_redacted": [
+    {
+      "source": ".cache/secure_runtime/discord_closeout_webhook_export_001.sh",
+      "name": "DISCORD_CLOSEOUT_WEBHOOK_URL",
+      "score": 85,
+      "url": "REDACTED",
+      "validation_status": 400,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": ".cache/secure_runtime/discord_closeout_webhook_validated_001.sh",
+      "name": "DISCORD_CLOSEOUT_WEBHOOK_URL",
+      "score": 85,
+      "url": "REDACTED",
+      "validation_status": 200,
+      "post_status": 403,
+      "post_body_hint": "REDACTED",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/data/reports/cpc/cpc_20260522_103501_32024.txt",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 65,
+      "url": "REDACTED",
+      "validation_status": 200,
+      "post_status": 403,
+      "post_body_hint": "REDACTED",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/data/reports/cpc/cpc_20260528_164519_25150.txt",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 65,
+      "url": "REDACTED",
+      "validation_status": 404,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/data/reports/cpc/cpc_20260528_164519_25150.txt",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 65,
+      "url": "REDACTED",
+      "validation_status": 401,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/data/reports/cpc/cpc_20260528_164519_25150.txt",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 65,
+      "url": "REDACTED",
+      "validation_status": 400,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/data/reports/cpc/cpc_20260528_214246_4245.txt",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 65,
+      "url": "REDACTED",
+      "validation_status": 400,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/data/reports/cpc/cpc_20260528_214246_4245.txt",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 65,
+      "url": "REDACTED",
+      "validation_status": 400,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/archive/runtime_scripts/20260522_discord_planner_cleanup/runtime/scripts/redact_and_commit_dreamclose_discord_auto_ping_001.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED",
+      "validation_status": 400,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/data/reports/discord_architect/trading_journal_webhook_receipt.json",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED",
+      "validation_status": 200,
+      "post_status": 403,
+      "post_body_hint": "REDACTED",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/data/reports/trading/discord_manager_deep_inspect_036i.md",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED",
+      "validation_status": 401,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/runtime/generated_scripts/discord_secret_uploader_039.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED",
+      "validation_status": 404,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "/data/data/com.termux/files/home/.config/dreamos/secrets.env",
+      "name": "DISCORD_TRADING_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED",
+      "validation_status": 200,
+      "post_status": 403,
+      "post_body_hint": "REDACTED",
+      "sent": false
+    },
+    {
+      "source": "/data/data/com.termux/files/home/.config/dreamos/secrets.env",
+      "name": "DISCORD_TRADING_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED",
+      "validation_status": 200,
+      "post_status": 403,
+      "post_body_hint": "REDACTED",
+      "sent": false
+    },
+    {
+      "source": "/data/data/com.termux/files/home/.config/dreamos/secrets.env",
+      "name": "DISCORD_TRADING_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED",
+      "validation_status": 200,
+      "post_status": 403,
+      "post_body_hint": "REDACTED",
+      "sent": false
+    },
+    {
+      "source": "/data/data/com.termux/files/home/.config/dreamos/secrets.env",
+      "name": "DISCORD_TRADING_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED",
+      "validation_status": 200,
+      "post_status": 403,
+      "post_body_hint": "REDACTED",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/archive/imports/agent_cellphone_protocol_fsm_salvage_20260512_172352/docs/README.md",
+      "name": "DISCORD_WEBHOOK_URL",
+      "score": 50,
+      "url": "REDACTED",
+      "validation_status": 401,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/archive/imports/agent_cellphone_protocol_fsm_salvage_20260512_172352/overnight_runner/README.md",
+      "name": "DISCORD_WEBHOOK_URL",
+      "score": 50,
+      "url": "REDACTED",
+      "validation_status": 400,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/archive/imports/agent_cellphone_protocol_fsm_salvage_20260512_172352/overnight_runner/onboarding/03_MESSAGING_CHANNELS.md",
+      "name": "DISCORD_WEBHOOK_URL",
+      "score": 50,
+      "url": "REDACTED",
+      "validation_status": 400,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "../DreamVault/data/reports/website_domain_surface.md",
+      "name": "DISCORD_WEBHOOK_URL",
+      "score": 50,
+      "url": "REDACTED",
+      "validation_status": 401,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    },
+    {
+      "source": "/data/data/com.termux/files/home/.cache/dreamos_close_final_residue_001.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 50,
+      "url": "REDACTED",
+      "validation_status": 404,
+      "post_status": "SKIPPED_NOT_VALID",
+      "sent": false
+    }
+  ],
+  "guardrail": "Webhook URLs were not printed or committed."
+}

@@ -1,0 +1,15 @@
+{
+  "status": "DRY_RUN_RENDERED",
+  "feed_count": 1,
+  "rendered_count": 1,
+  "rendered": [
+    {
+      "feed": "runtime/feeds/closeouts/weareswarm_live_proof_001.json",
+      "feed_id": "weareswarm_live_proof_001",
+      "discord": "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.discord.md",
+      "github_architect": "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.github_architect.md",
+      "status": "LIVE_PROOF_PASS"
+    }
+  ],
+  "guardrail": "Dry-run only. No Discord/GitHub dispatch performed."
+}

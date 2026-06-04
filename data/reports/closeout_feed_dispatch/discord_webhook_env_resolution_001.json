@@ -1,0 +1,83 @@
+{
+  "generated_at": "2026-06-03T18:33:36",
+  "status": "WEBHOOK_SELECTED",
+  "candidate_count": 21,
+  "selected_source": "../DreamVault/archive/runtime_scripts/20260522_discord_planner_cleanup/runtime/scripts/create_master_task_log_webhook_live_002.sh",
+  "selected_name": "RAW_DISCORD_WEBHOOK_URL",
+  "selected_present": true,
+  "candidates_redacted": [
+    {
+      "source": "../DreamVault/archive/runtime_scripts/20260522_discord_planner_cleanup/runtime/scripts/create_master_task_log_webhook_live_002.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/archive/runtime_scripts/20260522_discord_planner_cleanup/runtime/scripts/locate_master_task_log_webhook_001.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/archive/runtime_scripts/20260522_discord_planner_cleanup/runtime/scripts/patch_cliprun_redact_webhooks_and_fix_dispatch_001.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/archive/runtime_scripts/20260522_discord_planner_cleanup/runtime/scripts/redact_and_commit_dreamclose_discord_auto_ping_001.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/data/reports/discord_architect/live_master_task_log_webhook.json",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/data/reports/discord_architect/trading_journal_webhook_receipt.json",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/data/reports/discord_architect/webhooks/trading_thesis_webhook_receipt.json",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/data/reports/trading/discord_manager_deep_inspect_036i.md",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/discord_architect/tests/liveDiscordRestSender.test.js",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/runtime/generated_scripts/discord_secret_uploader_039.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/runtime/scripts/build_dreamos_secret_broker_discord_001.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    },
+    {
+      "source": "../DreamVault/runtime/scripts/create_discord_trading_webhook_001.sh",
+      "name": "RAW_DISCORD_WEBHOOK_URL",
+      "score": 60,
+      "url": "REDACTED"
+    }
+  ],
+  "guardrail": "Webhook URL is not printed. Transient export is written under repo-local .cache/secure_runtime and must not be committed."
+}

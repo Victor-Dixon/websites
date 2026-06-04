@@ -1,0 +1,27 @@
+task_id: add_xthunder_theme_lane_001
+status: completed
+scope: D:/websites
+site: xthunder.site
+classification: static_theme_scaffold
+risk: low
+destructive_actions: forbidden
+
+objective:
+  - add production-sync SSOT at sites/production/websites/xthunder.site
+  - register xthunder.site in ops/deployment/sites.yml (deploy disabled)
+  - align static index.html with live Hostinger placeholder copy
+  - link salvaged audit report under _reports/website_audit/
+
+artifacts:
+  - sites/production/websites/xthunder.site/index.html
+  - sites/production/websites/xthunder.site/site-config.json
+  - ops/deployment/sites.yml
+  - data/reports/websites/xthunder.site/theme_scaffold_001.md
+  - _reports/website_audit/xthunder.site__audit.md
+
+verification:
+  - git status scoped to xthunder + salvaged worklog paths
+  - unified_deployer dry-run after commit (not in this task)
+  - no live deploy until operator enables site in sites.yml
+
+next_action: python ops/deployment/unified_deployer.py --site xthunder.site --dry-run

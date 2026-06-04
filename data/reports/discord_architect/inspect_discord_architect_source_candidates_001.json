@@ -1,0 +1,188 @@
+{
+  "task": "inspect_discord_architect_source_candidates_001",
+  "status": "PASS",
+  "source_candidate": {
+    "path": "discord_architect/src/runtime/channelWebhookManager.js",
+    "bytes": 2939,
+    "sha256": "0aa28c964ebfec18ade4f372205159bf96aa2837daa464855b396aa8c39f4f48",
+    "line_count": 110,
+    "functions": [
+      "buildChannelMutationPlan",
+      "buildWebhookMutationPlan",
+      "channelId",
+      "channelKey",
+      "channelName",
+      "dispatchMutationPlan",
+      "ensureChannel",
+      "ensureDir",
+      "ensureWebhook",
+      "fs",
+      "normalizeChannelName",
+      "nowIso",
+      "path",
+      "plan",
+      "receipt",
+      "receiptPath",
+      "webhookName",
+      "writeJson"
+    ],
+    "exports": [
+      ""
+    ],
+    "requires": [
+      "fs",
+      "path"
+    ],
+    "env_refs": [
+      "DISCORD_CHANNEL_ID",
+      "DISCORD_GUILD_ID"
+    ],
+    "keywords": [
+      "channel",
+      "discord",
+      "dry",
+      "manager",
+      "send",
+      "webhook"
+    ],
+    "first_lines": [
+      "const fs = require('fs');",
+      "const path = require('path');",
+      "",
+      "function nowIso() {",
+      "  return new Date().toISOString();",
+      "}",
+      "",
+      "function ensureDir(filePath) {",
+      "  fs.mkdirSync(path.dirname(filePath), { recursive: true });",
+      "}",
+      "",
+      "function writeJson(filePath, data) {",
+      "  ensureDir(filePath);",
+      "  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));",
+      "}",
+      "",
+      "function normalizeChannelName(name) {",
+      "  return String(name || '')",
+      "    .trim()",
+      "    .toLowerCase()"
+    ]
+  },
+  "test_candidate": {
+    "path": "discord_architect/tests/channelWebhookManager.test.js",
+    "bytes": 2548,
+    "sha256": "4ca092b41cc8722a1edbb8a039e2e9c8bcf9f01a412eff4a506d1c070b5aa2b4",
+    "line_count": 77,
+    "functions": [
+      "assert",
+      "channelPlan",
+      "channelReceipt",
+      "channelReceiptPath",
+      "fs",
+      "liveReceipt",
+      "webhookPlan",
+      "webhookReceipt",
+      "webhookReceiptPath"
+    ],
+    "exports": [],
+    "requires": [
+      "../src/runtime/channelWebhookManager",
+      "assert",
+      "fs"
+    ],
+    "env_refs": [],
+    "keywords": [
+      "channel",
+      "closeout",
+      "discord",
+      "dry",
+      "manager",
+      "webhook"
+    ],
+    "first_lines": [
+      "const assert = require('assert');",
+      "const fs = require('fs');",
+      "",
+      "const {",
+      "  normalizeChannelName,",
+      "  buildChannelMutationPlan,",
+      "  buildWebhookMutationPlan,",
+      "  ensureChannel,",
+      "  ensureWebhook,",
+      "} = require('../src/runtime/channelWebhookManager');",
+      "",
+      "assert.strictEqual(normalizeChannelName('#Master Task Log!!'), 'master-task-log');",
+      "",
+      "const channelPlan = buildChannelMutationPlan({",
+      "  name: '#Master Task Log',",
+      "  channelKey: 'master-task-log',",
+      "  topic: 'Dream.OS governed closeouts and capability unlocks',",
+      "});",
+      "",
+      "assert.strictEqual(channelPlan.mutationType, 'channel.ensure');"
+    ]
+  },
+  "committed_reference": [
+    {
+      "path": "discord_architect/invocation_adapter.py",
+      "bytes": 5542,
+      "sha256": "8f2339c4917493b725b94cae83a19b9629701236ccb6094d2b664c788eb50505",
+      "line_count": 147,
+      "functions": [
+        "build_arg_parser",
+        "invoke_selected_sender",
+        "load_json",
+        "main",
+        "normalize_closeout_payload",
+        "write_payload"
+      ],
+      "imports": [
+        "__future__.*",
+        "argparse",
+        "json",
+        "os",
+        "pathlib.*",
+        "subprocess",
+        "sys",
+        "typing.*"
+      ]
+    },
+    {
+      "path": "discord_architect/closeout_source_bridge.py",
+      "bytes": 5716,
+      "sha256": "108f5f67ef7c5579078841bdea71df4d9aad29cad9dcde99f2d9401a5376264c",
+      "line_count": 159,
+      "functions": [
+        "build_parser",
+        "canonicalize_cpc_payload",
+        "find_latest_cpc_json",
+        "load_json",
+        "main",
+        "run_adapter",
+        "write_bridge_payload"
+      ],
+      "imports": [
+        "__future__.*",
+        "argparse",
+        "json",
+        "os",
+        "pathlib.*",
+        "subprocess",
+        "sys",
+        "typing.*"
+      ]
+    }
+  ],
+  "signals": {
+    "js_has_webhook_manager": true,
+    "js_has_dry_run": true,
+    "js_has_closeout_bridge": false,
+    "js_has_runtime_payload_path": false,
+    "py_has_current_adapter": true,
+    "test_mentions_webhook": true,
+    "test_mentions_channel": true
+  },
+  "disposition": "QUARANTINE_OBSOLETE_OR_SEPARATE_JS_MANAGER",
+  "rationale": "Retained JS candidate appears to manage channel/webhook concerns, while committed architecture now uses Python adapter/bridge/live gate. No direct integration point proven.",
+  "next_lane": "quarantine_discord_architect_source_candidates_001"
+}

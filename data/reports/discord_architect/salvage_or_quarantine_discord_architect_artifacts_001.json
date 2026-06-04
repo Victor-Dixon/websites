@@ -1,0 +1,75 @@
+{
+  "task": "salvage_or_quarantine_discord_architect_artifacts_001",
+  "status": "PASS",
+  "source_candidates_retained": [
+    {
+      "path": "discord_architect/src/runtime/channelWebhookManager.js",
+      "bytes": 2939,
+      "sha256": "0aa28c964ebfec18ade4f372205159bf96aa2837daa464855b396aa8c39f4f48",
+      "suffix": ".js"
+    },
+    {
+      "path": "discord_architect/tests/channelWebhookManager.test.js",
+      "bytes": 2548,
+      "sha256": "4ca092b41cc8722a1edbb8a039e2e9c8bcf9f01a412eff4a506d1c070b5aa2b4",
+      "suffix": ".js"
+    }
+  ],
+  "quarantined": [],
+  "retained": [
+    {
+      "root": "discord_architect/src",
+      "decision": "RETAIN_FOR_SOURCE_REVIEW",
+      "reason": "source/test candidate; do not move until diff inspected",
+      "file_count": 1
+    },
+    {
+      "root": "discord_architect/tests",
+      "decision": "RETAIN_FOR_SOURCE_REVIEW",
+      "reason": "source/test candidate; do not move until diff inspected",
+      "file_count": 1
+    }
+  ],
+  "missing": [
+    "data/reports/discord_architect/channel_webhook_manager",
+    "data/reports/discord_architect/channel_webhook_manager_verification.md",
+    "data/reports/planner_discord_bridge",
+    "discord_architect/data",
+    "runtime/tasks/discord",
+    "runtime/trading"
+  ],
+  "committed_reference": [
+    {
+      "path": "discord_architect/invocation_adapter.py",
+      "bytes": 5542,
+      "sha256": "8f2339c4917493b725b94cae83a19b9629701236ccb6094d2b664c788eb50505",
+      "suffix": ".py"
+    },
+    {
+      "path": "discord_architect/closeout_source_bridge.py",
+      "bytes": 5716,
+      "sha256": "108f5f67ef7c5579078841bdea71df4d9aad29cad9dcde99f2d9401a5376264c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/test_discord_architect_invocation_adapter.py",
+      "bytes": 3577,
+      "sha256": "5de7404c9f702a9c6604332bc839fb86fa7413d7b6e741dfc891a1fc73ed4a60",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/test_discord_architect_closeout_source_bridge.py",
+      "bytes": 5558,
+      "sha256": "b2fe1e1e946dbe334e61785379f69097d08d504fa3b34fe8436fae57e15ed484",
+      "suffix": ".py"
+    }
+  ],
+  "summary": {
+    "source_candidate_files_retained": 2,
+    "quarantined_roots": 0,
+    "quarantined_files": 0,
+    "retained_roots": 2,
+    "missing_roots": 6
+  },
+  "next_lane": "inspect_discord_architect_source_candidates_001"
+}

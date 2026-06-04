@@ -1,0 +1,30 @@
+{
+  "task": "verify_discord_architect_clean_worktree_001",
+  "status": "PASS",
+  "spine": {
+    "sender": "/data/data/com.termux/files/home/projects/DreamVault/runtime/scripts/send_discord_paper_trade_payload.py",
+    "adapter": "discord_architect/invocation_adapter.py",
+    "bridge": "discord_architect/closeout_source_bridge.py",
+    "tests": [
+      "tests/test_discord_architect_invocation_adapter.py",
+      "tests/test_discord_architect_closeout_source_bridge.py"
+    ],
+    "live_gate": "requires --invoke --live and external DISCORD_WEBHOOK_URL",
+    "default_mode": "dry-run"
+  },
+  "verification": {
+    "targeted_tests": "PASS",
+    "dry_run_bridge": "PASS",
+    "live_gate_refusal_without_env": "PASS",
+    "old_js_roots_removed": "PASS",
+    "runtime_output_not_staged": "PASS",
+    "secret_scan": "PASS"
+  },
+  "cpc_source": "/data/data/com.termux/files/home/projects/DreamVault/data/reports/cpc/json/cpc_20260604_061503_4251.json",
+  "dryrun_log": "runtime/logs/discord_architect/verify_discord_architect_clean_worktree_001_dryrun.log",
+  "git_status_short": [
+    " M .gitignore",
+    "?? runtime/tasks/discord_architect/verify_discord_architect_clean_worktree_001.yaml"
+  ],
+  "next_lane": "connect_discord_architect_to_website_worklog_001"
+}

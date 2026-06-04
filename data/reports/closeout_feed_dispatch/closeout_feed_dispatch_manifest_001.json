@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-03T18:36:09",
+  "mode": "SEND",
+  "status": "DISPATCH_ATTEMPTED",
+  "dispatch_count": 0,
+  "blocked_count": 0,
+  "discord_cards": [
+    "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.discord.md"
+  ],
+  "github_architect_cards": [
+    "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.github_architect.md"
+  ],
+  "events": [
+    {
+      "target": "discord",
+      "card": "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.discord.md",
+      "send_requested": true,
+      "sent": false,
+      "status": "HTTP_403",
+      "http_status": 403,
+      "response_preview": "error code: 1010"
+    },
+    {
+      "target": "github_architect",
+      "card": "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.github_architect.md",
+      "send_requested": false,
+      "sent": false,
+      "status": "PREVIEW_ONLY",
+      "preview": "data/reports/closeout_feed_dispatch/weareswarm_live_proof_001.github_architect.dispatch_preview.md"
+    }
+  ],
+  "guardrail": "Dry-run by default. Live Discord dispatch requires --send and DISCORD_CLOSEOUT_WEBHOOK_URL."
+}

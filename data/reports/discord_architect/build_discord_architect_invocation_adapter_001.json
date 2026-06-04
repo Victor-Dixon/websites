@@ -1,0 +1,17 @@
+{
+  "task": "build_discord_architect_invocation_adapter_001",
+  "status": "PASS",
+  "repair": "repo-local runtime log path used instead of /tmp",
+  "adapter": "discord_architect/invocation_adapter.py",
+  "tests": "tests/test_discord_architect_invocation_adapter.py",
+  "fixture": "runtime/fixtures/discord_architect/closeout_payload_fixture.json",
+  "payload": "runtime/trading/discord/latest_paper_trade_payload.json",
+  "dryrun_log": "runtime/logs/discord_architect/build_discord_architect_invocation_adapter_001_dryrun_repair.log",
+  "verification": {
+    "py_compile": "PASS",
+    "pytest_targeted_no_plugin_autoload": "PASS",
+    "dry_run": "PASS",
+    "secret_scan": "PASS"
+  },
+  "next_lane": "wire_discord_architect_closeout_payload_source_001"
+}

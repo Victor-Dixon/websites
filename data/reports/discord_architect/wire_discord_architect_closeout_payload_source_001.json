@@ -1,0 +1,18 @@
+{
+  "task": "wire_discord_architect_closeout_payload_source_001",
+  "status": "PASS",
+  "repair": "latest CPC JSON selection now sorts by mtime_ns and filename for deterministic tie handling",
+  "bridge": "discord_architect/closeout_source_bridge.py",
+  "tests": "tests/test_discord_architect_closeout_source_bridge.py",
+  "cpc_source": "/data/data/com.termux/files/home/projects/DreamVault/data/reports/cpc/json/cpc_20260603_190228_27947.json",
+  "payload_out": "runtime/trading/discord/latest_paper_trade_payload.json",
+  "dryrun_log": "runtime/logs/discord_architect/wire_discord_architect_closeout_payload_source_001_dryrun.log",
+  "verification": {
+    "py_compile": "PASS",
+    "targeted_pytest": "PASS",
+    "latest_cpc_resolved": "PASS",
+    "dry_run": "PASS",
+    "secret_scan": "PASS"
+  },
+  "next_lane": "add_discord_architect_live_dispatch_gate_001"
+}\n
