@@ -1,0 +1,83 @@
+{
+  "domain": "tradingrobotplug.com",
+  "generated_utc": "2026-06-04T23:10:50.214491+00:00",
+  "data_source": "yfinance via Yahoo Finance public market data access",
+  "source_limit": "research/educational proof artifact; not production execution feed",
+  "period": "5d",
+  "interval": "15m",
+  "tickers": [
+    "TSLA",
+    "QQQ",
+    "SPY"
+  ],
+  "results": [
+    {
+      "ticker": "TSLA",
+      "close": 418.46,
+      "volume": 2062601,
+      "indicators": {
+        "ema8": 419.4755,
+        "ema21": 419.9614,
+        "rsi14": 42.2269,
+        "macd": -0.602725,
+        "macd_signal": -0.694666,
+        "macd_hist": 0.091941,
+        "vwap_proxy": 424.8243
+      },
+      "conditions": {
+        "above_vwap_proxy": false,
+        "ema8_above_ema21": false,
+        "macd_bullish": true,
+        "rsi_in_review_zone": true
+      },
+      "setup_score": 50,
+      "setup_label": "NO_TRADE_REVIEW"
+    },
+    {
+      "ticker": "QQQ",
+      "close": 740.5,
+      "volume": 4715845,
+      "indicators": {
+        "ema8": 741.9727,
+        "ema21": 741.6196,
+        "rsi14": 44.7437,
+        "macd": 0.248113,
+        "macd_signal": 0.141582,
+        "macd_hist": 0.106531,
+        "vwap_proxy": 741.2935
+      },
+      "conditions": {
+        "above_vwap_proxy": false,
+        "ema8_above_ema21": true,
+        "macd_bullish": true,
+        "rsi_in_review_zone": true
+      },
+      "setup_score": 75,
+      "setup_label": "WATCHLIST_SETUP"
+    },
+    {
+      "ticker": "SPY",
+      "close": 757.05,
+      "volume": 6839943,
+      "indicators": {
+        "ema8": 757.5482,
+        "ema21": 756.9236,
+        "rsi14": 53.179,
+        "macd": 0.606495,
+        "macd_signal": 0.572878,
+        "macd_hist": 0.033617,
+        "vwap_proxy": 756.6794
+      },
+      "conditions": {
+        "above_vwap_proxy": true,
+        "ema8_above_ema21": true,
+        "macd_bullish": true,
+        "rsi_in_review_zone": true
+      },
+      "setup_score": 100,
+      "setup_label": "A_SETUP_CANDIDATE"
+    }
+  ],
+  "errors": [],
+  "risk_disclaimer": "Not financial advice. Not a profit claim. Not live trade approval."
+}

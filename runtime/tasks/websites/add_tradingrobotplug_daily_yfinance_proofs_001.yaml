@@ -1,0 +1,16 @@
+version: 1
+title: Add TradingRobotPlug daily yfinance proof generator
+target: tradingrobotplug.com
+status: ready
+actions:
+  - add yfinance-powered daily market proof generator
+  - calculate EMA, RSI, MACD, VWAP proxy
+  - generate dated markdown and json proof packets
+  - publish latest proof index under proof/daily
+  - deploy proof artifacts to Hostinger
+verify:
+  - python generator runs
+  - daily markdown/json artifacts exist
+  - live proof index is reachable
+  - live proof artifact contains ticker, indicators, and no-profit disclaimer
+commit_message: Add TradingRobotPlug daily yfinance proof generator
