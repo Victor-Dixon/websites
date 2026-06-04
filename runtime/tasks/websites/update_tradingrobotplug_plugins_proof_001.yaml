@@ -1,0 +1,14 @@
+version: 1
+title: Add TradingRobotPlug plugin proof page
+target: tradingrobotplug.com
+status: ready
+actions:
+  - add trading robot plugin showcase
+  - add proof log table
+  - add safer no-profit-guarantee positioning
+  - keep anchor navigation but use clean visible labels
+  - deploy static page to Hostinger
+verify:
+  - curl -IL https://tradingrobotplug.com/
+  - curl body contains Trading Robot Plugins and Proof Logs
+commit_message: Add TradingRobotPlug robot plugin proof page
