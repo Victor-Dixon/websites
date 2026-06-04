@@ -1,0 +1,40 @@
+{
+  "plugin": "Risk Gate Plugin",
+  "slug": "risk-gate-plugin",
+  "generated_utc": "2026-06-04T23:03:06.412614+00:00",
+  "status": "sample_proof_linked",
+  "strategy": "Blocks weak or unsafe trading actions based on loss caps, no-trade rules, and validation gates.",
+  "risk_positioning": "paper-first; no profit guarantee; live execution requires separate operator approval",
+  "source_artifacts": [
+    {
+      "path": "data/reports/trading/tsla_command_center_snapshot_export_001.md",
+      "filename": "tsla_command_center_snapshot_export_001.md",
+      "bytes": 1852,
+      "suffix": ".md"
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/closeout_trading_discord_payload.json",
+      "filename": "closeout_trading_discord_payload.json",
+      "bytes": 815,
+      "suffix": ".json"
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/midday_trading_discord_payload.json",
+      "filename": "midday_trading_discord_payload.json",
+      "bytes": 815,
+      "suffix": ".json"
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/open_trading_discord_payload.json",
+      "filename": "open_trading_discord_payload.json",
+      "bytes": 815,
+      "suffix": ".json"
+    }
+  ],
+  "verification_standard": [
+    "Strategy logic must be visible.",
+    "Paper or simulated logs must exist before trust claims.",
+    "Risk gates must be documented.",
+    "Live execution is not approved by this artifact."
+  ]
+}

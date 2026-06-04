@@ -1,0 +1,383 @@
+{
+  "domain": "tradingrobotplug.com",
+  "generated_utc": "2026-06-04T23:03:06.412614+00:00",
+  "source_repo": "/data/data/com.termux/files/home/projects/DreamVault",
+  "status": "sample_proof_artifacts_generated",
+  "note": "These proof artifacts expose strategy logic, report inventory, and validation posture. They are not profit claims.",
+  "plugins": [
+    {
+      "plugin": "TSLA VWAP Reclaim Plugin",
+      "slug": "tsla-vwap-reclaim-plugin",
+      "generated_utc": "2026-06-04T23:03:06.412614+00:00",
+      "status": "sample_proof_linked",
+      "strategy": "TSLA intraday reclaim/continuation logic around VWAP and key levels.",
+      "risk_positioning": "paper-first; no profit guarantee; live execution requires separate operator approval",
+      "source_artifacts": [
+        {
+          "path": "data/reports/trading/tsla_command_center_snapshot_export_001.md",
+          "filename": "tsla_command_center_snapshot_export_001.md",
+          "bytes": 1852,
+          "suffix": ".md"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/closeout_trading_discord_payload.json",
+          "filename": "closeout_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/midday_trading_discord_payload.json",
+          "filename": "midday_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/open_trading_discord_payload.json",
+          "filename": "open_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/power_hour_trading_discord_payload.json",
+          "filename": "power_hour_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/premarket_trading_discord_payload.json",
+          "filename": "premarket_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        }
+      ],
+      "verification_standard": [
+        "Strategy logic must be visible.",
+        "Paper or simulated logs must exist before trust claims.",
+        "Risk gates must be documented.",
+        "Live execution is not approved by this artifact."
+      ],
+      "public_markdown": "/proof/tsla-vwap-reclaim-plugin.md",
+      "public_json": "/proof/tsla-vwap-reclaim-plugin.json"
+    },
+    {
+      "plugin": "MACD Curl Setup Plugin",
+      "slug": "macd-curl-setup-plugin",
+      "generated_utc": "2026-06-04T23:03:06.412614+00:00",
+      "status": "sample_proof_linked",
+      "strategy": "Momentum curl setup filtered by price context, volume, and invalidation rules.",
+      "risk_positioning": "paper-first; no profit guarantee; live execution requires separate operator approval",
+      "source_artifacts": [
+        {
+          "path": "data/reports/trading/tsla_command_center_snapshot_export_001.md",
+          "filename": "tsla_command_center_snapshot_export_001.md",
+          "bytes": 1852,
+          "suffix": ".md"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/closeout_trading_discord_payload.json",
+          "filename": "closeout_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/midday_trading_discord_payload.json",
+          "filename": "midday_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/open_trading_discord_payload.json",
+          "filename": "open_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/power_hour_trading_discord_payload.json",
+          "filename": "power_hour_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/premarket_trading_discord_payload.json",
+          "filename": "premarket_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        }
+      ],
+      "verification_standard": [
+        "Strategy logic must be visible.",
+        "Paper or simulated logs must exist before trust claims.",
+        "Risk gates must be documented.",
+        "Live execution is not approved by this artifact."
+      ],
+      "public_markdown": "/proof/macd-curl-setup-plugin.md",
+      "public_json": "/proof/macd-curl-setup-plugin.json"
+    },
+    {
+      "plugin": "Risk Gate Plugin",
+      "slug": "risk-gate-plugin",
+      "generated_utc": "2026-06-04T23:03:06.412614+00:00",
+      "status": "sample_proof_linked",
+      "strategy": "Blocks weak or unsafe trading actions based on loss caps, no-trade rules, and validation gates.",
+      "risk_positioning": "paper-first; no profit guarantee; live execution requires separate operator approval",
+      "source_artifacts": [
+        {
+          "path": "data/reports/trading/tsla_command_center_snapshot_export_001.md",
+          "filename": "tsla_command_center_snapshot_export_001.md",
+          "bytes": 1852,
+          "suffix": ".md"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/closeout_trading_discord_payload.json",
+          "filename": "closeout_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/midday_trading_discord_payload.json",
+          "filename": "midday_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/open_trading_discord_payload.json",
+          "filename": "open_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        }
+      ],
+      "verification_standard": [
+        "Strategy logic must be visible.",
+        "Paper or simulated logs must exist before trust claims.",
+        "Risk gates must be documented.",
+        "Live execution is not approved by this artifact."
+      ],
+      "public_markdown": "/proof/risk-gate-plugin.md",
+      "public_json": "/proof/risk-gate-plugin.json"
+    },
+    {
+      "plugin": "Paper Trade Logger",
+      "slug": "paper-trade-logger",
+      "generated_utc": "2026-06-04T23:03:06.412614+00:00",
+      "status": "sample_proof_linked",
+      "strategy": "Records paper-first setup decisions, snapshots, payloads, and reviewable output artifacts.",
+      "risk_positioning": "paper-first; no profit guarantee; live execution requires separate operator approval",
+      "source_artifacts": [
+        {
+          "path": "data/reports/trading/tsla_command_center_snapshot_export_001.md",
+          "filename": "tsla_command_center_snapshot_export_001.md",
+          "bytes": 1852,
+          "suffix": ".md"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/closeout_trading_discord_payload.json",
+          "filename": "closeout_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/midday_trading_discord_payload.json",
+          "filename": "midday_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/open_trading_discord_payload.json",
+          "filename": "open_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/power_hour_trading_discord_payload.json",
+          "filename": "power_hour_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/trading/scheduled_snapshots/premarket_trading_discord_payload.json",
+          "filename": "premarket_trading_discord_payload.json",
+          "bytes": 815,
+          "suffix": ".json"
+        }
+      ],
+      "verification_standard": [
+        "Strategy logic must be visible.",
+        "Paper or simulated logs must exist before trust claims.",
+        "Risk gates must be documented.",
+        "Live execution is not approved by this artifact."
+      ],
+      "public_markdown": "/proof/paper-trade-logger.md",
+      "public_json": "/proof/paper-trade-logger.json"
+    }
+  ],
+  "source_artifacts": [
+    {
+      "path": "data/reports/trading/tsla_command_center_snapshot_export_001.md",
+      "filename": "tsla_command_center_snapshot_export_001.md",
+      "suffix": ".md",
+      "bytes": 1852,
+      "score": 185
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/closeout_trading_discord_payload.json",
+      "filename": "closeout_trading_discord_payload.json",
+      "suffix": ".json",
+      "bytes": 815,
+      "score": 180
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/midday_trading_discord_payload.json",
+      "filename": "midday_trading_discord_payload.json",
+      "suffix": ".json",
+      "bytes": 815,
+      "score": 180
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/open_trading_discord_payload.json",
+      "filename": "open_trading_discord_payload.json",
+      "suffix": ".json",
+      "bytes": 815,
+      "score": 180
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/power_hour_trading_discord_payload.json",
+      "filename": "power_hour_trading_discord_payload.json",
+      "suffix": ".json",
+      "bytes": 815,
+      "score": 180
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/premarket_trading_discord_payload.json",
+      "filename": "premarket_trading_discord_payload.json",
+      "suffix": ".json",
+      "bytes": 815,
+      "score": 180
+    },
+    {
+      "path": "data/reports/trading/tsla_character_snapshot.json",
+      "filename": "tsla_character_snapshot.json",
+      "suffix": ".json",
+      "bytes": 761,
+      "score": 175
+    },
+    {
+      "path": "data/reports/trading/tsla_lane_dirty_tree_snapshot.txt",
+      "filename": "tsla_lane_dirty_tree_snapshot.txt",
+      "suffix": ".txt",
+      "bytes": 1193,
+      "score": 175
+    },
+    {
+      "path": "data/reports/discord/trading_volume_profile/tsla_volume_profile_discord.md",
+      "filename": "tsla_volume_profile_discord.md",
+      "suffix": ".md",
+      "bytes": 729,
+      "score": 165
+    },
+    {
+      "path": "data/reports/discord/trading/daily_tsla_trade_packet_discord_demo.json",
+      "filename": "daily_tsla_trade_packet_discord_demo.json",
+      "suffix": ".json",
+      "bytes": 1156,
+      "score": 155
+    },
+    {
+      "path": "data/reports/discord/trading_volume_profile/tsla_volume_profile_dispatch_packet.json",
+      "filename": "tsla_volume_profile_dispatch_packet.json",
+      "suffix": ".json",
+      "bytes": 1141,
+      "score": 155
+    },
+    {
+      "path": "data/reports/discord/trading_volume_profile/tsla_volume_profile_dispatch_receipt.json",
+      "filename": "tsla_volume_profile_dispatch_receipt.json",
+      "suffix": ".json",
+      "bytes": 328,
+      "score": 155
+    },
+    {
+      "path": "data/reports/discord/trading_volume_profile/tsla_volume_profile_payload.json",
+      "filename": "tsla_volume_profile_payload.json",
+      "suffix": ".json",
+      "bytes": 1509,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/closeout_trading_daily_snapshot.md",
+      "filename": "closeout_trading_daily_snapshot.md",
+      "suffix": ".md",
+      "bytes": 855,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/closeout_trading_snapshot_discovery.md",
+      "filename": "closeout_trading_snapshot_discovery.md",
+      "suffix": ".md",
+      "bytes": 4743,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/midday_trading_daily_snapshot.md",
+      "filename": "midday_trading_daily_snapshot.md",
+      "suffix": ".md",
+      "bytes": 855,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/midday_trading_snapshot_discovery.md",
+      "filename": "midday_trading_snapshot_discovery.md",
+      "suffix": ".md",
+      "bytes": 4731,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/open_trading_daily_snapshot.md",
+      "filename": "open_trading_daily_snapshot.md",
+      "suffix": ".md",
+      "bytes": 855,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/open_trading_snapshot_discovery.md",
+      "filename": "open_trading_snapshot_discovery.md",
+      "suffix": ".md",
+      "bytes": 4741,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/power_hour_trading_daily_snapshot.md",
+      "filename": "power_hour_trading_daily_snapshot.md",
+      "suffix": ".md",
+      "bytes": 855,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/power_hour_trading_snapshot_discovery.md",
+      "filename": "power_hour_trading_snapshot_discovery.md",
+      "suffix": ".md",
+      "bytes": 4735,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/premarket_trading_daily_snapshot.md",
+      "filename": "premarket_trading_daily_snapshot.md",
+      "suffix": ".md",
+      "bytes": 855,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/premarket_trading_snapshot_discovery.md",
+      "filename": "premarket_trading_snapshot_discovery.md",
+      "suffix": ".md",
+      "bytes": 4741,
+      "score": 155
+    },
+    {
+      "path": "data/reports/trading/scheduled_snapshots/trading_snapshot_termux_cron_install_report_001.md",
+      "filename": "trading_snapshot_termux_cron_install_report_001.md",
+      "suffix": ".md",
+      "bytes": 431,
+      "score": 155
+    }
+  ]
+}

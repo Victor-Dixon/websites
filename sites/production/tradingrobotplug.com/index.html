@@ -266,6 +266,32 @@
       background: rgba(255,209,102,.07);
     }
 
+    .proof-links {
+      display: grid;
+      gap: .75rem;
+      margin-top: 1.25rem;
+    }
+
+    .proof-link {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      padding: .9rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.045);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .proof-link span {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .92rem;
+    }
+
     .note {
       border-left: 4px solid var(--accent2);
       padding: 1rem;
@@ -487,34 +513,45 @@
             <tr>
               <td>TSLA VWAP Reclaim Plugin</td>
               <td>Strategy snapshot + paper alert log</td>
-              <td>Needs public artifact link after next paper session export.</td>
+              <td><a href="/proof/tsla-vwap-reclaim-plugin.md">View Markdown proof</a> · <a href="/proof/tsla-vwap-reclaim-plugin.json">View JSON proof</a></td>
               <td>Paper testing</td>
             </tr>
             <tr>
               <td>MACD Curl Setup Plugin</td>
               <td>Fixture tests + paper setup review</td>
-              <td>Needs dated report showing signal, filter, and blocked trades.</td>
+              <td><a href="/proof/macd-curl-setup-plugin.md">View Markdown proof</a> · <a href="/proof/macd-curl-setup-plugin.json">View JSON proof</a></td>
               <td>Paper testing</td>
             </tr>
             <tr>
               <td>Risk Gate Plugin</td>
               <td>Unit tests + no-trade logs</td>
-              <td>Should show blocked-trade examples and daily loss cap behavior.</td>
+              <td><a href="/proof/risk-gate-plugin.md">View Markdown proof</a> · <a href="/proof/risk-gate-plugin.json">View JSON proof</a></td>
               <td>Core proof required</td>
             </tr>
             <tr>
               <td>Paper Trade Logger</td>
               <td>Daily paper log export</td>
-              <td>Should publish sample JSON/Markdown summary from a paper session.</td>
+              <td><a href="/proof/paper-trade-logger.md">View Markdown proof</a> · <a href="/proof/paper-trade-logger.json">View JSON proof</a></td>
               <td>Core proof required</td>
             </tr>
           </tbody>
         </table>
 
         <div class="note">
-          Next upgrade: connect this table to generated Dream.OS trading reports so the site can show
-          real artifacts instead of manual claims.
+          This proof table is now linked to generated DreamVault trading artifacts. The public files below provide
+          Markdown and JSON evidence trails for the robot plugin workflow.
         </div>
+
+        <div class="proof-links" aria-label="Public proof artifact links">
+          <a class="proof-link" href="/proof/tradingrobotplug-proof-index.md">Proof Index <span>Markdown</span></a>
+          <a class="proof-link" href="/proof/tradingrobotplug-proof-manifest.json">Proof Manifest <span>JSON</span></a>
+          <a class="proof-link" href="/proof/tsla-vwap-reclaim-plugin.md">TSLA VWAP Reclaim Plugin <span>Markdown</span></a>
+          <a class="proof-link" href="/proof/tsla-vwap-reclaim-plugin.json">TSLA VWAP Reclaim Plugin <span>JSON</span></a>
+          <a class="proof-link" href="/proof/macd-curl-setup-plugin.md">MACD Curl Setup Plugin <span>Markdown</span></a>
+          <a class="proof-link" href="/proof/risk-gate-plugin.md">Risk Gate Plugin <span>Markdown</span></a>
+          <a class="proof-link" href="/proof/paper-trade-logger.md">Paper Trade Logger <span>Markdown</span></a>
+        </div>
+
       </div>
     </section>
 

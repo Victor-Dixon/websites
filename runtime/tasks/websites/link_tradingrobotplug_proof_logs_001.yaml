@@ -1,0 +1,16 @@
+version: 1
+title: Link TradingRobotPlug proof logs to DreamVault artifacts
+target: tradingrobotplug.com
+status: ready
+actions:
+  - inspect DreamVault trading reports
+  - generate public sample markdown proof artifacts
+  - generate public sample json proof manifest
+  - update TradingRobotPlug proof table with live artifact links
+  - deploy proof folder and homepage
+verify:
+  - curl -IL https://tradingrobotplug.com/
+  - curl -IL https://tradingrobotplug.com/proof/tradingrobotplug-proof-index.md
+  - curl -IL https://tradingrobotplug.com/proof/tradingrobotplug-proof-manifest.json
+  - curl body contains proof artifact links
+commit_message: Link TradingRobotPlug proof logs to DreamVault artifacts
