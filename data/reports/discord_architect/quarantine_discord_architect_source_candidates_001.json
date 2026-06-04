@@ -1,0 +1,50 @@
+{
+  "task": "quarantine_discord_architect_source_candidates_001",
+  "status": "PASS",
+  "decision": "QUARANTINE_OBSOLETE_OR_SEPARATE_JS_MANAGER",
+  "reason": "JS channel webhook manager is separate from committed Python adapter/bridge/live-gate architecture.",
+  "moves": [
+    {
+      "source": "discord_architect/src",
+      "destination": "runtime/quarantine/discord_architect_source_candidates_001/discord_architect/src"
+    },
+    {
+      "source": "discord_architect/tests",
+      "destination": "runtime/quarantine/discord_architect_source_candidates_001/discord_architect/tests"
+    }
+  ],
+  "before": {
+    "src": [
+      {
+        "path": "discord_architect/src/runtime/channelWebhookManager.js",
+        "bytes": 2939,
+        "sha256": "0aa28c964ebfec18ade4f372205159bf96aa2837daa464855b396aa8c39f4f48"
+      }
+    ],
+    "tests": [
+      {
+        "path": "discord_architect/tests/channelWebhookManager.test.js",
+        "bytes": 2548,
+        "sha256": "4ca092b41cc8722a1edbb8a039e2e9c8bcf9f01a412eff4a506d1c070b5aa2b4"
+      }
+    ]
+  },
+  "quarantined_files": [
+    {
+      "path": "runtime/quarantine/discord_architect_source_candidates_001/discord_architect/src/runtime/channelWebhookManager.js",
+      "bytes": 2939,
+      "sha256": "0aa28c964ebfec18ade4f372205159bf96aa2837daa464855b396aa8c39f4f48"
+    },
+    {
+      "path": "runtime/quarantine/discord_architect_source_candidates_001/discord_architect/tests/channelWebhookManager.test.js",
+      "bytes": 2548,
+      "sha256": "4ca092b41cc8722a1edbb8a039e2e9c8bcf9f01a412eff4a506d1c070b5aa2b4"
+    }
+  ],
+  "summary": {
+    "moves": 2,
+    "files_quarantined": 2,
+    "bytes_quarantined": 5487
+  },
+  "next_lane": "verify_discord_architect_clean_worktree_001"
+}

@@ -1,0 +1,24 @@
+id: quarantine_discord_architect_source_candidates_001
+lane: repo_fleet_self_healing_001
+target: discord_architect_source_candidate_quarantine
+status: pending
+intent:
+  - quarantine obsolete/separate JS Discord Architect manager candidates
+  - preserve hashes and file manifest
+  - leave committed Python adapter and bridge intact
+constraints:
+  - no deletion
+  - no live dispatch
+  - no source promotion
+  - no secrets in reports
+verification:
+  - inspection disposition confirms quarantine
+  - source/test roots moved to quarantine
+  - manifest records hashes
+  - working tree no longer shows discord_architect/src or discord_architect/tests untracked
+  - secret scan pass
+outputs:
+  - data/reports/discord_architect/quarantine_discord_architect_source_candidates_001.md
+  - data/reports/discord_architect/quarantine_discord_architect_source_candidates_001.json
+  - runtime/quarantine/discord_architect_source_candidates_001/manifest.md
+  - runtime/quarantine/discord_architect_source_candidates_001/manifest.json
