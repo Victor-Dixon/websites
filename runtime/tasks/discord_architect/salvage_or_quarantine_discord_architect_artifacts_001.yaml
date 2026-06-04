@@ -1,0 +1,23 @@
+id: salvage_or_quarantine_discord_architect_artifacts_001
+lane: repo_fleet_self_healing_001
+target: discord_architect_artifact_salvage_quarantine
+status: pending
+intent:
+  - salvage useful Discord Architect artifacts
+  - quarantine generated/runtime/local drift
+  - preserve evidence before cleanup
+constraints:
+  - no deletion
+  - no blind promotion
+  - runtime outputs are not product source
+  - source candidates must be compared to committed adapter/bridge
+verification:
+  - source candidate inventory captured
+  - duplicate/generated artifacts moved to quarantine
+  - secret scan pass
+  - cached scope exact
+outputs:
+  - data/reports/discord_architect/salvage_or_quarantine_discord_architect_artifacts_001.md
+  - data/reports/discord_architect/salvage_or_quarantine_discord_architect_artifacts_001.json
+  - runtime/quarantine/discord_architect_artifacts_001/manifest.md
+  - runtime/quarantine/discord_architect_artifacts_001/manifest.json

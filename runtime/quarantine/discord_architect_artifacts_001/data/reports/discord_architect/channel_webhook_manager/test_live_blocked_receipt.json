@@ -1,0 +1,19 @@
+{
+  "ok": false,
+  "mode": "live",
+  "mutationType": "webhook.ensure",
+  "liveMutationAttempted": true,
+  "liveMutationSupported": false,
+  "plan": {
+    "mutationType": "webhook.ensure",
+    "mode": "live",
+    "guildId": null,
+    "channelId": null,
+    "channelKey": "master-task-log",
+    "webhookName": "Dream.OS Capability Feed",
+    "reason": "Dream.OS governed webhook ensure",
+    "createdAt": "2026-06-03T23:52:02.725Z"
+  },
+  "dispatchedAt": "2026-06-03T23:52:02.725Z",
+  "error": "live Discord mutation sender not configured in this lane"
+}

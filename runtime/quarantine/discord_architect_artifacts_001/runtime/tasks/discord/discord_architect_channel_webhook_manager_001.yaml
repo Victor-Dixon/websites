@@ -1,0 +1,35 @@
+id: discord_architect_channel_webhook_manager_001
+title: Add Discord Architect channel and webhook manager
+status: active
+priority: critical
+repo: DreamVault
+objective: >
+  Give Discord Architect governed channel management and webhook creation
+  primitives with dry-run safety, manifests, and delivery receipts.
+capability_unlocks:
+  - discord_channel_management
+  - discord_webhook_management
+  - governed_discord_mutations
+  - live_capability_event_delivery_path
+strategic_value:
+  operator_leverage: critical
+  autonomy_gain: high
+  ecosystem_impact: critical
+  revenue_impact: medium
+why_this_matters: >
+  Discord Architect must be able to create/manage channels and webhooks
+  before capability evolution events can be posted live with governed receipts.
+unlocks_following_tasks:
+  - live_discord_webhook_sender_001
+  - discord_delivery_retry_queue_001
+  - runtime_cognition_channel_topology_001
+blocks:
+  - manual_discord_setup
+  - unverified_live_dispatch
+deliverables:
+  - discord_architect/src/runtime/channelWebhookManager.js
+  - discord_architect/tests/channelWebhookManager.test.js
+  - data/reports/discord_architect/channel_webhook_manager_verification.md
+verification:
+  - node discord_architect/tests/channelWebhookManager.test.js
+  - test -s data/reports/discord_architect/channel_webhook_manager_verification.md

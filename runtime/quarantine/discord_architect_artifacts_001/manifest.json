@@ -1,0 +1,183 @@
+{
+  "task": "salvage_or_quarantine_discord_architect_artifacts_001",
+  "status": "PASS",
+  "source_candidates_retained": [
+    {
+      "path": "discord_architect/src/runtime/channelWebhookManager.js",
+      "bytes": 2939,
+      "sha256": "0aa28c964ebfec18ade4f372205159bf96aa2837daa464855b396aa8c39f4f48",
+      "suffix": ".js"
+    },
+    {
+      "path": "discord_architect/tests/channelWebhookManager.test.js",
+      "bytes": 2548,
+      "sha256": "4ca092b41cc8722a1edbb8a039e2e9c8bcf9f01a412eff4a506d1c070b5aa2b4",
+      "suffix": ".js"
+    }
+  ],
+  "quarantined": [
+    {
+      "source_root": "data/reports/discord_architect/channel_webhook_manager",
+      "quarantine_root": "runtime/quarantine/discord_architect_artifacts_001/data/reports/discord_architect/channel_webhook_manager",
+      "decision": "QUARANTINE_REPORT_DRIFT",
+      "reason": "channel webhook manager artifacts not part of current adapter/bridge promotion",
+      "file_count": 3,
+      "files": [
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/data/reports/discord_architect/channel_webhook_manager/test_channel_receipt.json",
+          "bytes": 528,
+          "sha256": "d37ba9ffb967d8804912e18c5e4c5046f4add3890807d9aaf86182a99df8de0a",
+          "suffix": ".json"
+        },
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/data/reports/discord_architect/channel_webhook_manager/test_webhook_receipt.json",
+          "bytes": 487,
+          "sha256": "f6307ac0cdaae5dfdd953bd16076c2f94dc6b2464d38ec0448d44909b7c53870",
+          "suffix": ".json"
+        },
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/data/reports/discord_architect/channel_webhook_manager/test_live_blocked_receipt.json",
+          "bytes": 552,
+          "sha256": "7be19a150bd4e5b89a58614b222e59352e76ee642077a7eb40b757a95f5e8342",
+          "suffix": ".json"
+        }
+      ]
+    },
+    {
+      "source_root": "data/reports/discord_architect/channel_webhook_manager_verification.md",
+      "quarantine_root": "runtime/quarantine/discord_architect_artifacts_001/data/reports/discord_architect/channel_webhook_manager_verification.md",
+      "decision": "QUARANTINE_REPORT_DRIFT",
+      "reason": "channel webhook manager artifacts not part of current adapter/bridge promotion",
+      "file_count": 1,
+      "files": [
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/data/reports/discord_architect/channel_webhook_manager_verification.md",
+          "bytes": 379,
+          "sha256": "c00eea586e647e8804f959c58d0b0d4cb1129318a005de8fe804e86829971bc0",
+          "suffix": ".md"
+        }
+      ]
+    },
+    {
+      "source_root": "data/reports/planner_discord_bridge",
+      "quarantine_root": "runtime/quarantine/discord_architect_artifacts_001/data/reports/planner_discord_bridge",
+      "decision": "QUARANTINE_REPORT_DRIFT",
+      "reason": "planner bridge report tree; review separately before promotion",
+      "file_count": 1,
+      "files": [
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/data/reports/planner_discord_bridge/latest_receipt.json",
+          "bytes": 1194,
+          "sha256": "0fc3e19f5c20b3418ede7390fccd0084ad23112fc0a5aca3da6dcd3123478d11",
+          "suffix": ".json"
+        }
+      ]
+    },
+    {
+      "source_root": "discord_architect/data",
+      "quarantine_root": "runtime/quarantine/discord_architect_artifacts_001/discord_architect/data",
+      "decision": "QUARANTINE_LOCAL_DATA",
+      "reason": "local/generated data; not tracked source unless converted into fixture",
+      "file_count": 2,
+      "files": [
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/discord_architect/data/runtime/events/latest_planner_event.json",
+          "bytes": 675,
+          "sha256": "d3a1eb13b5219845f06f31b7011821ab090cae8a3eccf052ab7f68df99c6a3db",
+          "suffix": ".json"
+        },
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/discord_architect/data/runtime/events/planner_events.jsonl",
+          "bytes": 630,
+          "sha256": "3f5f668345406862a34a42c4445cdaf9bf71b5ec63afca344865b7b2f3ef2e26",
+          "suffix": ".jsonl"
+        }
+      ]
+    },
+    {
+      "source_root": "runtime/tasks/discord",
+      "quarantine_root": "runtime/quarantine/discord_architect_artifacts_001/runtime/tasks/discord",
+      "decision": "QUARANTINE_TASK_DRIFT",
+      "reason": "discord task namespace drift; canonical target is runtime/tasks/discord_architect",
+      "file_count": 1,
+      "files": [
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/runtime/tasks/discord/discord_architect_channel_webhook_manager_001.yaml",
+          "bytes": 1330,
+          "sha256": "7a69577c5df044f200177b5987dd042ffca4ccba85460caf66b70cdfc81ff978",
+          "suffix": ".yaml"
+        }
+      ]
+    },
+    {
+      "source_root": "runtime/trading",
+      "quarantine_root": "runtime/quarantine/discord_architect_artifacts_001/runtime/trading",
+      "decision": "QUARANTINE_RUNTIME_OUTPUT",
+      "reason": "runtime payload/log output; not tracked source",
+      "file_count": 2,
+      "files": [
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/runtime/trading/discord/latest_paper_trade_payload.json",
+          "bytes": 1173,
+          "sha256": "200506eaba456f3802b2648e82a0505fbadb2b8bf1c818b3175f85cabb04d2b6",
+          "suffix": ".json"
+        },
+        {
+          "path": "runtime/quarantine/discord_architect_artifacts_001/runtime/trading/discord/latest_cpc_closeout_bridge_payload.json",
+          "bytes": 427,
+          "sha256": "dd78bf21f7bda73e6f1e568682865493f56dcdb4180576c09c30f5e611655da3",
+          "suffix": ".json"
+        }
+      ]
+    }
+  ],
+  "retained": [
+    {
+      "root": "discord_architect/src",
+      "decision": "RETAIN_FOR_SOURCE_REVIEW",
+      "reason": "source/test candidate; do not move until diff inspected",
+      "file_count": 1
+    },
+    {
+      "root": "discord_architect/tests",
+      "decision": "RETAIN_FOR_SOURCE_REVIEW",
+      "reason": "source/test candidate; do not move until diff inspected",
+      "file_count": 1
+    }
+  ],
+  "missing": [],
+  "committed_reference": [
+    {
+      "path": "discord_architect/invocation_adapter.py",
+      "bytes": 5542,
+      "sha256": "8f2339c4917493b725b94cae83a19b9629701236ccb6094d2b664c788eb50505",
+      "suffix": ".py"
+    },
+    {
+      "path": "discord_architect/closeout_source_bridge.py",
+      "bytes": 5716,
+      "sha256": "108f5f67ef7c5579078841bdea71df4d9aad29cad9dcde99f2d9401a5376264c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/test_discord_architect_invocation_adapter.py",
+      "bytes": 3577,
+      "sha256": "5de7404c9f702a9c6604332bc839fb86fa7413d7b6e741dfc891a1fc73ed4a60",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/test_discord_architect_closeout_source_bridge.py",
+      "bytes": 5558,
+      "sha256": "b2fe1e1e946dbe334e61785379f69097d08d504fa3b34fe8436fae57e15ed484",
+      "suffix": ".py"
+    }
+  ],
+  "summary": {
+    "source_candidate_files_retained": 2,
+    "quarantined_roots": 6,
+    "quarantined_files": 10,
+    "retained_roots": 2,
+    "missing_roots": 0
+  },
+  "next_lane": "inspect_discord_architect_source_candidates_001"
+}

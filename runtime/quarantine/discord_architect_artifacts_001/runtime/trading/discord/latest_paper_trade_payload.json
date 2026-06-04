@@ -1,0 +1,43 @@
+{
+  "content": "PASS: cpc_20260603_190454_28493",
+  "embeds": [
+    {
+      "title": "DreamOS Closeout: cpc_20260603_190454_28493 [PASS]",
+      "description": "CPC closeout normalized by Discord Architect invocation adapter.",
+      "fields": [
+        {
+          "name": "Task",
+          "value": "cpc_20260603_190454_28493",
+          "inline": false
+        },
+        {
+          "name": "Status",
+          "value": "PASS",
+          "inline": true
+        },
+        {
+          "name": "Lane",
+          "value": "operator-1",
+          "inline": true
+        },
+        {
+          "name": "Report",
+          "value": "/data/data/com.termux/files/home/projects/DreamVault/data/reports/cpc/cpc_20260603_190454_28493.txt",
+          "inline": false
+        },
+        {
+          "name": "JSON",
+          "value": "/data/data/com.termux/files/home/projects/DreamVault/data/reports/cpc/json/cpc_20260603_190454_28493.json",
+          "inline": false
+        }
+      ]
+    }
+  ],
+  "dreamos_meta": {
+    "source": "discord_architect.invocation_adapter",
+    "task": "cpc_20260603_190454_28493",
+    "status": "PASS",
+    "next_lane": "",
+    "next_task": ""
+  }
+}

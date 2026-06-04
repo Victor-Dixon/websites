@@ -1,0 +1,16 @@
+{
+  "event_id": "planner_update_20260603_235201",
+  "event_type": "planner_transition",
+  "source": "dreamvault.planner",
+  "target_channel": "master-task-log",
+  "created_at": "2026-06-03T23:52:01.507063+00:00",
+  "severity": "info",
+  "title": "Planner Transition",
+  "summary": "Planner emitted current next-lane state.",
+  "content": "\ud83e\udded **Planner Transition**\n\n**Next Lane**\n```text\nunknown\n```\n\n**Governance**\n- risk: `unknown`\n- next_lane: `unknown`\n\nRoute: `master-task-log`\nSource task: `planner_discord_architect_bridge_001`",
+  "payload": {
+    "next_lane": "unknown",
+    "runtime_governance_summary": {},
+    "latest_task_preview": ""
+  }
+}
