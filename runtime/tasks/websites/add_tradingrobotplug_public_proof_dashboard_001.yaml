@@ -1,0 +1,15 @@
+version: 1
+title: Add TradingRobotPlug public proof dashboard
+target: tradingrobotplug.com/proof
+status: ready
+actions:
+  - create human-facing proof dashboard at /proof/index.html
+  - link Alpaca daily proof artifacts
+  - link yfinance daily proof artifacts
+  - link DreamVault plugin proof artifacts
+  - update homepage proof links to point to /proof/
+verify:
+  - curl -IL https://tradingrobotplug.com/proof/
+  - proof page contains Alpaca Daily Proof, yfinance Daily Proof, DreamVault Plugin Proof
+  - homepage links to /proof/
+commit_message: Add TradingRobotPlug public proof dashboard

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TradingRobotPlug Proof Dashboard</title>
+  <meta name="description" content="TradingRobotPlug proof dashboard linking Alpaca, yfinance, and DreamVault trading robot evidence artifacts.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070b10;
+      --panel: #101820;
+      --panel2: #14202a;
+      --text: #f3fff7;
+      --muted: #a8b8ad;
+      --accent: #28a745;
+      --accent2: #7dffb2;
+      --warn: #ffd166;
+      --line: rgba(255,255,255,.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(40,167,69,.30), transparent 30rem),
+        radial-gradient(circle at bottom right, rgba(125,255,178,.14), transparent 26rem),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(7,11,16,.86);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(14px);
+      z-index: 10;
+    }
+
+    nav {
+      min-height: 68px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: .8rem;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 5rem 0 3rem;
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(16,24,32,.84);
+      padding: clamp(2rem, 5vw, 4rem);
+      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+    }
+
+    .eyebrow {
+      color: var(--accent2);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      font-weight: 900;
+    }
+
+    h1 {
+      margin: 1rem 0;
+      font-size: clamp(2.6rem, 7vw, 5.8rem);
+      line-height: .95;
+      max-width: 12ch;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin: 0 0 1rem;
+    }
+
+    h3 { margin: 0 0 .5rem; }
+
+    p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 1.06rem;
+    }
+
+    section {
+      padding: 3.5rem 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.2rem;
+      background: rgba(255,255,255,.045);
+    }
+
+    .card.primary {
+      background:
+        linear-gradient(135deg, rgba(40,167,69,.13), rgba(125,255,178,.05)),
+        var(--panel2);
+    }
+
+    .status {
+      display: inline-flex;
+      width: fit-content;
+      color: #07100a;
+      background: var(--accent2);
+      border-radius: 999px;
+      padding: .35rem .6rem;
+      font-size: .75rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: .8rem;
+    }
+
+    .status.warn {
+      background: var(--warn);
+    }
+
+    .links {
+      display: grid;
+      gap: .65rem;
+      margin-top: 1rem;
+    }
+
+    .proof-link {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      padding: .85rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.055);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .proof-link span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .disclaimer {
+      border: 1px solid rgba(255,209,102,.35);
+      background: rgba(255,209,102,.07);
+      border-radius: 24px;
+      padding: 1.4rem;
+    }
+
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 0;
+      }
+
+      .nav a {
+        margin: 0 .8rem .4rem 0;
+        display: inline-flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <div class="brand">TradingRobotPlug Proof</div>
+      <div class="nav">
+        <a href="/">Home</a>
+        <a href="#alpaca">Alpaca</a>
+        <a href="#daily">Daily</a>
+        <a href="#plugins">Plugins</a>
+        <a href="#risk">Risk</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="eyebrow">Evidence Dashboard</div>
+          <h1>Proof before trust.</h1>
+          <p>
+            This page links the public evidence trail for TradingRobotPlug: Alpaca broker-data proof,
+            yfinance research proof, and DreamVault robot-plugin artifacts. These files show data pulls,
+            indicator calculations, setup scores, and risk disclaimers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="alpaca">
+      <div class="wrap">
+        <div class="eyebrow">Alpaca Daily Proof</div>
+        <h2>Broker/data API proof packets.</h2>
+        <div class="grid">
+          <article class="card primary">
+            <span class="status">Best Proof</span>
+            <h3>Latest Alpaca Market Proof</h3>
+            <p>
+              Generated from Alpaca Market Data API bars. Calculates VWAP, EMA 8/21, RSI, MACD,
+              setup score, and no-trade review labels.
+            </p>
+            <div class="links">
+              <a class="proof-link" href="/proof/alpaca/latest-alpaca-daily-proof.md">Latest Alpaca Proof <span>Markdown</span></a>
+              <a class="proof-link" href="/proof/alpaca/latest-alpaca-daily-proof.json">Latest Alpaca Proof <span>JSON</span></a>
+              <a class="proof-link" href="/proof/alpaca/index.md">Alpaca Proof Index <span>Markdown</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="daily">
+      <div class="wrap">
+        <div class="eyebrow">yfinance Daily Proof</div>
+        <h2>Research fallback proof packets.</h2>
+        <div class="grid">
+          <article class="card">
+            <span class="status warn">Fallback</span>
+            <h3>Latest yfinance Market Proof</h3>
+            <p>
+              Generated from yfinance OHLCV data. Useful as a research backup, not the preferred broker-data source.
+            </p>
+            <div class="links">
+              <a class="proof-link" href="/proof/daily/latest-daily-market-proof.md">Latest yfinance Proof <span>Markdown</span></a>
+              <a class="proof-link" href="/proof/daily/latest-daily-market-proof.json">Latest yfinance Proof <span>JSON</span></a>
+              <a class="proof-link" href="/proof/daily/index.md">yfinance Proof Index <span>Markdown</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="plugins">
+      <div class="wrap">
+        <div class="eyebrow">DreamVault Plugin Proof</div>
+        <h2>Robot-plugin strategy artifacts.</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>TSLA VWAP Reclaim Plugin</h3>
+            <p>Strategy proof artifact for TSLA intraday VWAP reclaim logic.</p>
+            <div class="links">
+              <a class="proof-link" href="/proof/tsla-vwap-reclaim-plugin.md">View Proof <span>Markdown</span></a>
+              <a class="proof-link" href="/proof/tsla-vwap-reclaim-plugin.json">View Proof <span>JSON</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>MACD Curl Setup Plugin</h3>
+            <p>Strategy proof artifact for MACD curl and confirmation logic.</p>
+            <div class="links">
+              <a class="proof-link" href="/proof/macd-curl-setup-plugin.md">View Proof <span>Markdown</span></a>
+              <a class="proof-link" href="/proof/macd-curl-setup-plugin.json">View Proof <span>JSON</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Risk Gate Plugin</h3>
+            <p>Proof artifact for no-trade gates, loss caps, and execution safety posture.</p>
+            <div class="links">
+              <a class="proof-link" href="/proof/risk-gate-plugin.md">View Proof <span>Markdown</span></a>
+              <a class="proof-link" href="/proof/risk-gate-plugin.json">View Proof <span>JSON</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Paper Trade Logger</h3>
+            <p>Proof artifact for paper-first logging and reviewable trading records.</p>
+            <div class="links">
+              <a class="proof-link" href="/proof/paper-trade-logger.md">View Proof <span>Markdown</span></a>
+              <a class="proof-link" href="/proof/paper-trade-logger.json">View Proof <span>JSON</span></a>
+            </div>
+          </article>
+
+          <article class="card primary">
+            <h3>Proof Manifest</h3>
+            <p>Machine-readable index of plugin artifacts and linked DreamVault source reports.</p>
+            <div class="links">
+              <a class="proof-link" href="/proof/tradingrobotplug-proof-index.md">Proof Index <span>Markdown</span></a>
+              <a class="proof-link" href="/proof/tradingrobotplug-proof-manifest.json">Proof Manifest <span>JSON</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="risk">
+      <div class="wrap">
+        <div class="disclaimer">
+          <div class="eyebrow">Risk Disclosure</div>
+          <h2>Proof is not a profit claim.</h2>
+          <p>
+            These artifacts prove that TradingRobotPlug can pull data, calculate indicators, score setup conditions,
+            publish logs, and expose robot-plugin evidence. They do not guarantee profits, provide financial advice,
+            or approve live trading. Paper-first review and operator risk controls remain mandatory.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      TradingRobotPlug Proof Dashboard · Alpaca data, yfinance fallback, DreamVault robot-plugin artifacts.
+    </div>
+  </footer>
+</body>
+</html>
