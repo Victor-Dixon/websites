@@ -1,0 +1,22 @@
+id: verify_discord_architect_clean_worktree_001
+lane: repo_fleet_self_healing_001
+target: discord_architect_clean_worktree_verification
+status: pending
+intent:
+  - verify Discord Architect spine is clean
+  - preserve runtime/trading as generated output, not source
+  - add ignore guard for generated runtime Discord payloads if missing
+constraints:
+  - no live dispatch
+  - no runtime payload staging
+  - no destructive cleanup
+  - no secrets in reports
+verification:
+  - targeted tests pass
+  - dry-run bridge works
+  - live gate refuses without webhook
+  - no untracked discord_architect/src or discord_architect/tests roots
+  - runtime/trading is ignored or explicitly classified generated output
+outputs:
+  - data/reports/discord_architect/verify_discord_architect_clean_worktree_001.md
+  - data/reports/discord_architect/verify_discord_architect_clean_worktree_001.json

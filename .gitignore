@@ -35,3 +35,8 @@ runtime/reports/**/*.json
 # Remaining generated runtime artifact coverage
 _reports/*.txt
 _reports/**/*.txt
+
+# Discord Architect generated runtime payloads
+runtime/trading/discord/latest_paper_trade_payload.json
+runtime/trading/discord/latest_cpc_closeout_bridge_payload.json
+runtime/logs/discord_architect/
