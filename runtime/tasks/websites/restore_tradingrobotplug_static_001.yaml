@@ -1,0 +1,17 @@
+version: 1
+title: Restore TradingRobotPlug static landing page
+target: tradingrobotplug.com
+status: ready
+root_cause:
+  - public site returned PHP 500
+  - WordPress/PHP stack should be bypassed for immediate recovery
+actions:
+  - create static recovery landing page
+  - back up remote PHP entry files
+  - disable PHP index serving
+  - deploy static index.html
+  - set static-safe htaccess
+verify:
+  - curl -IL https://tradingrobotplug.com/
+  - curl body contains TradingRobotPlug and Risk Disclosure
+commit_message: Restore TradingRobotPlug static landing page
