@@ -1,0 +1,12 @@
+version: 1
+title: Deploy ariajet.site static emergency homepage
+target: ariajet.site
+status: ready
+remote_root: /home/u996867598/domains/ariajet.site/public_html
+actions:
+  - create static emergency homepage
+  - deploy index.html to Hostinger webroot
+  - verify HTTPS root status
+verify:
+  - curl -IL https://ariajet.site/
+commit_message: Add ariajet static emergency homepage

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aria Jet</title>
+  <meta name="description" content="Aria Jet is coming back online.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080816;
+      --panel: #111127;
+      --text: #f4f4ff;
+      --muted: #b7b7d9;
+      --accent: #8f7cff;
+      --accent2: #64e3ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(143,124,255,.35), transparent 30rem),
+        radial-gradient(circle at bottom right, rgba(100,227,255,.22), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+    }
+    main {
+      width: min(920px, 100%);
+      background: rgba(17,17,39,.84);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 28px;
+      padding: clamp(2rem, 5vw, 4rem);
+      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+    }
+    .eyebrow {
+      color: var(--accent2);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: .9;
+      margin: 1rem 0;
+    }
+    p {
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.6;
+      max-width: 62ch;
+    }
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .card {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 1rem;
+      background: rgba(255,255,255,.045);
+    }
+    .card strong { display: block; margin-bottom: .35rem; }
+    .card span { color: var(--muted); font-size: .95rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Aria Jet</div>
+    <h1>Back online.</h1>
+    <p>
+      The launchpad is being restored. This page confirms the domain is alive,
+      reachable, and ready for the next content pass.
+    </p>
+    <section class="card-row" aria-label="Site sections">
+      <div class="card">
+        <strong>Games</strong>
+        <span>Creative projects and kid-powered worlds.</span>
+      </div>
+      <div class="card">
+        <strong>Music</strong>
+        <span>Sound, rhythm, and experiments.</span>
+      </div>
+      <div class="card">
+        <strong>Stories</strong>
+        <span>Imagination logs and future updates.</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
