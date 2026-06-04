@@ -72,6 +72,71 @@ jobs:
             '$REMOTE_ROOT/wp-content/themes/weareswarm/functions.php' \
             '$REMOTE_ROOT/wp-content/themes/swarm-theme/functions.php'"
 
+      - name: Repair wp-config bootstrap block
+        env:
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_USER: u996867598
+          HOSTINGER_PORT: "65002"
+          REMOTE_ROOT: /home/u996867598/domains/weareswarm.online/public_html
+        run: |
+          set -euo pipefail
+          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
+          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
+
+          repair_script="/tmp/repair-weareswarm-wp-config-${GITHUB_RUN_ID}.php"
+          cat > "$repair_script" <<'PHP'
+          <?php
+          $root = rtrim($argv[1] ?? '', '/');
+          $runId = preg_replace('/[^0-9A-Za-z_.-]/', '', $argv[2] ?? date('YmdHis'));
+          $path = $root . '/wp-config.php';
+
+          if (!is_file($path) || !is_readable($path) || !is_writable($path)) {
+              fwrite(STDERR, "WP_CONFIG_NOT_EDITABLE\n");
+              exit(1);
+          }
+
+          $text = file_get_contents($path);
+          if ($text === false) {
+              fwrite(STDERR, "WP_CONFIG_READ_FAILED\n");
+              exit(1);
+          }
+
+          $pattern = "/\n\s*if\s*\(\s*!\s*defined\s*\(\s*['\"]ABSPATH['\"]\s*\)\s*\).*$/s";
+          if (!preg_match($pattern, $text, $match, PREG_OFFSET_CAPTURE)) {
+              fwrite(STDERR, "ABSPATH_BOOTSTRAP_MARKER_MISSING\n");
+              exit(1);
+          }
+
+          $backup = $path . '.bak.' . $runId;
+          if (!copy($path, $backup)) {
+              fwrite(STDERR, "WP_CONFIG_BACKUP_FAILED\n");
+              exit(1);
+          }
+
+          $prefix = rtrim(substr($text, 0, $match[0][1]));
+          $bootstrap = <<<'BOOTSTRAP'
+          /** Absolute path to the WordPress directory. */
+          if ( ! defined( 'ABSPATH' ) ) {
+              define( 'ABSPATH', __DIR__ . '/' );
+          }
+
+          /** Sets up WordPress vars and included files. */
+          require_once ABSPATH . 'wp-settings.php';
+          BOOTSTRAP;
+
+          if (file_put_contents($path, $prefix . "\n\n" . $bootstrap . "\n") === false) {
+              fwrite(STDERR, "WP_CONFIG_WRITE_FAILED\n");
+              exit(1);
+          }
+
+          echo "WP_CONFIG_BOOTSTRAP_REPAIRED\n";
+          echo "WP_CONFIG_BACKUP=$backup\n";
+          PHP
+
+          "${scp_base[@]}" "$repair_script" "$remote:$repair_script"
+          "${ssh_base[@]}" "php '$repair_script' '$REMOTE_ROOT' '${GITHUB_RUN_ID}' && php -l '$REMOTE_ROOT/wp-config.php' && rm -f '$repair_script'"
+
       - name: Diagnose remaining 500
         env:
           HOSTINGER_HOST: 157.173.214.121
