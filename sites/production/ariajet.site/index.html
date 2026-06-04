@@ -267,9 +267,9 @@
     <nav class="wrap">
       <div class="brand">Aria Jet</div>
       <div class="nav-links">
-        <a href="#cases">Cases</a>
-        <a href="#repairs">Repairs</a>
-        <a href="#request">Request</a>
+        <a href="/" data-scroll-target="cases">Cases</a>
+        <a href="/" data-scroll-target="repairs">Repairs</a>
+        <a href="/" data-scroll-target="request">Request</a>
       </div>
     </nav>
   </header>
@@ -285,9 +285,9 @@
             Browse phone case styles, check out repair proof, and ask about a limited phone fix.
           </p>
           <div class="actions">
-            <a class="btn primary" href="#cases">Shop Case Vibes</a>
-            <a class="btn" href="#repairs">See Phones Fixed</a>
-            <a class="btn" href="#request">Ask About a Fix</a>
+            <a class="btn primary" href="/" data-scroll-target="cases">Shop Case Vibes</a>
+            <a class="btn" href="/" data-scroll-target="repairs">See Phones Fixed</a>
+            <a class="btn" href="/" data-scroll-target="request">Ask About a Fix</a>
           </div>
         </div>
       </div>
@@ -444,7 +444,7 @@
 
           <div class="actions">
             <a class="btn primary" href="mailto:dadudekc@gmail.com?subject=Aria%20Jet%20Request">Email a Request</a>
-            <a class="btn" href="#cases">Browse Case Vibes</a>
+            <a class="btn" href="/" data-scroll-target="cases">Browse Case Vibes</a>
           </div>
         </div>
       </div>
@@ -456,5 +456,30 @@
       Aria Jet · Phone cases, glow-ups, and limited simple repair requests.
     </div>
   </footer>
+  <script>
+(function () {
+  function findScrollTarget(el) {
+    while (el && el !== document) {
+      if (el.getAttribute && el.getAttribute("data-scroll-target")) {
+        return el;
+      }
+      el = el.parentNode;
+    }
+    return null;
+  }
+
+  document.addEventListener("click", function (event) {
+    var trigger = findScrollTarget(event.target);
+    if (!trigger) return;
+
+    var targetId = trigger.getAttribute("data-scroll-target");
+    var target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
 </body>
 </html>

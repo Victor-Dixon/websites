@@ -297,11 +297,11 @@
         <span>Mobile Bartending</span>
       </div>
       <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#packages">Packages</a>
-        <a href="#events">Events</a>
-        <a href="#compliance">Alcohol Policy</a>
-        <a href="#book">Book</a>
+        <a href="/" data-scroll-target="services">Services</a>
+        <a href="/" data-scroll-target="packages">Packages</a>
+        <a href="/" data-scroll-target="events">Events</a>
+        <a href="/" data-scroll-target="compliance">Alcohol Policy</a>
+        <a href="/" data-scroll-target="book">Book</a>
       </div>
     </nav>
   </header>
@@ -318,9 +318,9 @@
               birthdays, weddings, showers, corporate mixers, and backyard celebrations across the Houston area.
             </p>
             <div class="actions">
-              <a class="btn primary" href="#book">Request Booking</a>
-              <a class="btn" href="#packages">View Packages</a>
-              <a class="btn" href="#compliance">Read Alcohol Policy</a>
+              <a class="btn primary" href="/" data-scroll-target="book">Request Booking</a>
+              <a class="btn" href="/" data-scroll-target="packages">View Packages</a>
+              <a class="btn" href="/" data-scroll-target="compliance">Read Alcohol Policy</a>
             </div>
           </div>
         </div>
@@ -474,7 +474,7 @@
 
           <div class="actions">
             <a class="btn primary" href="mailto:dadudekc@gmail.com?subject=Houston%20Sip%20Queen%20Booking%20Request">Email Booking Request</a>
-            <a class="btn" href="#packages">Review Packages</a>
+            <a class="btn" href="/" data-scroll-target="packages">Review Packages</a>
           </div>
         </div>
       </div>
@@ -486,5 +486,30 @@
       Houston Sip Queen · Mobile bartending for Houston-area private events.
     </div>
   </footer>
+  <script>
+(function () {
+  function findScrollTarget(el) {
+    while (el && el !== document) {
+      if (el.getAttribute && el.getAttribute("data-scroll-target")) {
+        return el;
+      }
+      el = el.parentNode;
+    }
+    return null;
+  }
+
+  document.addEventListener("click", function (event) {
+    var trigger = findScrollTarget(event.target);
+    if (!trigger) return;
+
+    var targetId = trigger.getAttribute("data-scroll-target");
+    var target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
 </body>
 </html>

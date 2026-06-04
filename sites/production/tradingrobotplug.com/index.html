@@ -328,11 +328,11 @@
     <nav class="wrap">
       <div class="brand">TradingRobotPlug</div>
       <div class="nav-links" aria-label="Main navigation">
-        <a href="#platform" title="Jump to platform section">Platform</a>
-        <a href="#plugins" title="Jump to robot plugins section">Robot Plugins</a>
-        <a href="#proof" title="Jump to proof logs section">Proof Logs</a>
-        <a href="#risk" title="Jump to risk rules section">Risk Rules</a>
-        <a href="#contact" title="Jump to contact section">Contact</a>
+        <a href="/" data-scroll-target="platform" title="Jump to platform section">Platform</a>
+        <a href="/" data-scroll-target="plugins" title="Jump to robot plugins section">Robot Plugins</a>
+        <a href="/" data-scroll-target="proof" title="Jump to proof logs section">Proof Logs</a>
+        <a href="/" data-scroll-target="risk" title="Jump to risk rules section">Risk Rules</a>
+        <a href="/" data-scroll-target="contact" title="Jump to contact section">Contact</a>
       </div>
     </nav>
   </header>
@@ -349,9 +349,9 @@
             its logic before it earns trust.
           </p>
           <div class="actions">
-            <a class="btn primary" href="#plugins">View Robot Plugins</a>
+            <a class="btn primary" href="/" data-scroll-target="plugins">View Robot Plugins</a>
             <a class="btn" href="/proof/">See Proof Dashboard</a>
-            <a class="btn" href="#risk">Read Risk Rules</a>
+            <a class="btn" href="/" data-scroll-target="risk">Read Risk Rules</a>
           </div>
         </div>
       </div>
@@ -621,5 +621,30 @@
       TradingRobotPlug · Trading robot plugins, proof logs, and paper-first risk control.
     </div>
   </footer>
+  <script>
+(function () {
+  function findScrollTarget(el) {
+    while (el && el !== document) {
+      if (el.getAttribute && el.getAttribute("data-scroll-target")) {
+        return el;
+      }
+      el = el.parentNode;
+    }
+    return null;
+  }
+
+  document.addEventListener("click", function (event) {
+    var trigger = findScrollTarget(event.target);
+    if (!trigger) return;
+
+    var targetId = trigger.getAttribute("data-scroll-target");
+    var target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
 </body>
 </html>

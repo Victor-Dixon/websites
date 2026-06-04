@@ -206,10 +206,10 @@
       <div class="brand">TradingRobotPlug Proof</div>
       <div class="nav">
         <a href="/">Home</a>
-        <a href="#alpaca">Alpaca</a>
-        <a href="#daily">Daily</a>
-        <a href="#plugins">Plugins</a>
-        <a href="#risk">Risk</a>
+        <a href="/" data-scroll-target="alpaca">Alpaca</a>
+        <a href="/" data-scroll-target="daily">Daily</a>
+        <a href="/" data-scroll-target="plugins">Plugins</a>
+        <a href="/" data-scroll-target="risk">Risk</a>
       </div>
     </nav>
   </header>
@@ -345,5 +345,30 @@
       TradingRobotPlug Proof Dashboard · Alpaca data, yfinance fallback, DreamVault robot-plugin artifacts.
     </div>
   </footer>
+  <script>
+(function () {
+  function findScrollTarget(el) {
+    while (el && el !== document) {
+      if (el.getAttribute && el.getAttribute("data-scroll-target")) {
+        return el;
+      }
+      el = el.parentNode;
+    }
+    return null;
+  }
+
+  document.addEventListener("click", function (event) {
+    var trigger = findScrollTarget(event.target);
+    if (!trigger) return;
+
+    var targetId = trigger.getAttribute("data-scroll-target");
+    var target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
 </body>
 </html>

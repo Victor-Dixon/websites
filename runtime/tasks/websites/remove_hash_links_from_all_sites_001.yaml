@@ -1,0 +1,14 @@
+version: 1
+title: Remove hash links from all static sites
+target: websites/sites/production
+status: ready
+actions:
+  - scan production html for href hash anchors
+  - replace same-page hash hrefs with clean data-scroll-target links
+  - inject small scroll handler
+  - deploy changed site files to Hostinger remote roots
+  - verify no href hash anchors remain locally
+verify:
+  - local HTML contains no href="#"
+  - changed live sites return HTTP 200
+commit_message: Remove hash navigation links from static sites
