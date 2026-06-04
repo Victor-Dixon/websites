@@ -1,0 +1,24 @@
+id: wire_discord_architect_closeout_payload_source_001
+lane: repo_fleet_self_healing_001
+target: discord_architect_closeout_source_wiring
+status: pending
+intent:
+  - locate latest CPC JSON closeout from DreamVault
+  - feed closeout into Discord Architect invocation adapter
+  - preserve dry-run default when webhook env is absent
+constraints:
+  - no live Discord dispatch during verification
+  - do not stage runtime payload output
+  - do not stage runtime logs
+  - no secrets in repo or reports
+verification:
+  - python syntax check
+  - targeted pytest with plugin autoload disabled
+  - latest CPC JSON resolved
+  - dry-run sender output observed
+  - secret scan pass
+outputs:
+  - discord_architect/closeout_source_bridge.py
+  - tests/test_discord_architect_closeout_source_bridge.py
+  - data/reports/discord_architect/wire_discord_architect_closeout_payload_source_001.md
+  - data/reports/discord_architect/wire_discord_architect_closeout_payload_source_001.json
