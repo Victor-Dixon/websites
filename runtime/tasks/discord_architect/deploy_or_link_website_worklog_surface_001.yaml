@@ -1,0 +1,21 @@
+id: deploy_or_link_website_worklog_surface_001
+lane: repo_fleet_self_healing_001
+target: deploy_or_link_website_worklog_surface
+status: pending
+intent:
+  - expose Discord Architect worklog surface through website repo navigation
+  - avoid fabricating work activity
+  - preserve static public page as render target
+constraints:
+  - no secrets
+  - no live dispatch
+  - no generated runtime payload staging
+  - link only existing report-backed worklog surface
+verification:
+  - locate candidate site entrypoints
+  - link target exists
+  - rendered page has report-backed integrity text
+  - secret scan pass
+outputs:
+  - data/reports/discord_architect/deploy_or_link_website_worklog_surface_001.md
+  - data/reports/discord_architect/deploy_or_link_website_worklog_surface_001.json
