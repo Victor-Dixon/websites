@@ -1,0 +1,14 @@
+version: 1
+title: Update Houston Sip Queen Astros mobile bartending site
+target: houstonsipqueen.com
+status: ready
+actions:
+  - discover Hostinger domain root
+  - create Astros-color mobile bartending landing page
+  - deploy static homepage
+  - set static-safe htaccess
+  - verify live site
+verify:
+  - curl -IL https://houstonsipqueen.com/
+  - body contains Houston Sip Queen, Mobile Bartending, Host Provides Alcohol
+commit_message: Update Houston Sip Queen mobile bartending landing page
