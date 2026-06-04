@@ -1,0 +1,79 @@
+name: Deploy WeAreSwarm repair
+
+on:
+  push:
+    branches:
+      - cursor/repair-weareswarm-white-screen-0b91
+    paths:
+      - .github/workflows/deploy-weareswarm-repair.yml
+
+jobs:
+  deploy:
+    name: Upload repaired WordPress theme files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure SSH key
+        env:
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+        run: |
+          set -euo pipefail
+          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+          test -n "$HOSTINGER_HOST"
+          test -n "$HOSTINGER_PORT"
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+          chmod 600 "$HOME/.ssh/id_hostinger"
+          ssh-keyscan -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts"
+
+      - name: Upload repaired theme files
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          REMOTE_ROOT: /home/u996867598/domains/weareswarm.online/public_html
+        run: |
+          set -euo pipefail
+          test -n "$HOSTINGER_HOST"
+          test -n "$HOSTINGER_USER"
+          test -n "$HOSTINGER_PORT"
+
+          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes "$remote")
+          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes)
+
+          "${ssh_base[@]}" "set -e
+            test -d '$REMOTE_ROOT/wp-content/themes/weareswarm'
+            test -d '$REMOTE_ROOT/wp-content/themes/swarm-theme'
+            cp '$REMOTE_ROOT/wp-content/themes/weareswarm/functions.php' '$REMOTE_ROOT/wp-content/themes/weareswarm/functions.php.bak.${GITHUB_RUN_ID}'
+            cp '$REMOTE_ROOT/wp-content/themes/swarm-theme/functions.php' '$REMOTE_ROOT/wp-content/themes/swarm-theme/functions.php.bak.${GITHUB_RUN_ID}'
+          "
+
+          "${scp_base[@]}" \
+            "collected/hostinger/wordpress/domains/weareswarm.online/themes/weareswarm/functions.php" \
+            "$remote:$REMOTE_ROOT/wp-content/themes/weareswarm/functions.php"
+
+          "${scp_base[@]}" \
+            "collected/hostinger/wordpress/domains/weareswarm.online/themes/swarm-theme/functions.php" \
+            "$remote:$REMOTE_ROOT/wp-content/themes/swarm-theme/functions.php"
+
+          "${ssh_base[@]}" "chmod 644 \
+            '$REMOTE_ROOT/wp-content/themes/weareswarm/functions.php' \
+            '$REMOTE_ROOT/wp-content/themes/swarm-theme/functions.php'"
+
+      - name: Verify live site
+        run: |
+          set -euo pipefail
+          status="$(curl -L -s -o /tmp/weareswarm-online.html -w '%{http_code}' --max-time 30 https://weareswarm.online/)"
+          echo "HTTP_STATUS=$status"
+          if [ "$status" != "200" ]; then
+            sed -n '1,80p' /tmp/weareswarm-online.html
+            exit 1
+          fi
+          sed -n '1,40p' /tmp/weareswarm-online.html
