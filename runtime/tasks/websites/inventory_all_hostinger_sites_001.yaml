@@ -1,0 +1,14 @@
+version: 1
+title: Inventory all Hostinger domains
+target: /home/u996867598/domains
+status: ready
+actions:
+  - list every Hostinger domain root
+  - inspect public_html files
+  - curl public HTTPS root
+  - classify live static, live WordPress, broken 500, forbidden 403, missing, unknown
+  - compare against current Hostinger manifest
+verify:
+  - inventory json exists
+  - report lists tracked and untracked domains
+commit_message: Add Hostinger domain inventory
