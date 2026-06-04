@@ -19,8 +19,8 @@ jobs:
       - name: Configure SSH key
         env:
           HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
-          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
-          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_PORT: "65002"
         run: |
           set -euo pipefail
           test -n "$HOSTINGER_SSH_PRIVATE_KEY"
@@ -30,13 +30,13 @@ jobs:
           chmod 700 "$HOME/.ssh"
           printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
           chmod 600 "$HOME/.ssh/id_hostinger"
-          ssh-keyscan -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts"
+          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
 
       - name: Upload repaired theme files
         env:
-          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
-          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
-          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_USER: u996867598
+          HOSTINGER_PORT: "65002"
           REMOTE_ROOT: /home/u996867598/domains/weareswarm.online/public_html
         run: |
           set -euo pipefail
@@ -45,8 +45,8 @@ jobs:
           test -n "$HOSTINGER_PORT"
 
           remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
-          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes "$remote")
-          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes)
+          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new "$remote")
+          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new)
 
           "${ssh_base[@]}" "set -e
             test -d '$REMOTE_ROOT/wp-content/themes/weareswarm'
