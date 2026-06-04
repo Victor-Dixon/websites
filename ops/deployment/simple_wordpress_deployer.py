@@ -248,6 +248,24 @@ class SimpleWordPressDeployer:
             traceback.print_exc()
             return False
     
+    def _ensure_remote_dir(self, remote_dir: str) -> None:
+        """Create remote directory tree one level at a time."""
+        remote_dir = remote_dir.rstrip('/')
+        if not remote_dir:
+            return
+        if not remote_dir.startswith('/'):
+            username = self.site_config.get('username') or self.site_config.get('sftp', {}).get('username', '')
+            if username and remote_dir.startswith('domains/'):
+                remote_dir = f"/home/{username}/{remote_dir}"
+        parts = [p for p in remote_dir.split('/') if p]
+        current = ''
+        for part in parts:
+            current = f"{current}/{part}" if current else f"/{part}"
+            try:
+                self.sftp.stat(current)
+            except OSError:
+                self.sftp.mkdir(current)
+
     def deploy_file(self, local_path: Path, remote_path: str = None) -> bool:
         """Deploy a single file to the server."""
         if not self.sftp:
@@ -285,23 +303,9 @@ class SimpleWordPressDeployer:
                         if base_path:
                             full_remote_path = f"/home/{username}/{base_path}/{full_remote_path}"
             
-            # Ensure remote directory exists
-            remote_dir = str(Path(full_remote_path).parent)
-            
-            # Create directory recursively using absolute paths
-            parts = remote_dir.strip('/').split('/')
-            current = ''
-            for part in parts:
-                if part:
-                    current = f"{current}/{part}" if current else f"/{part}"
-                    try:
-                        self.sftp.stat(current)
-                    except FileNotFoundError:
-                        try:
-                            self.sftp.mkdir(current)
-                        except Exception as e:
-                            # Directory might already exist or permission issue
-                            pass
+            # Ensure remote directory exists (recursive mkdir)
+            remote_dir = str(Path(full_remote_path).parent).replace('\\', '/')
+            self._ensure_remote_dir(remote_dir)
             
             # Upload file (use absolute path)
             self.sftp.put(str(local_path), full_remote_path)

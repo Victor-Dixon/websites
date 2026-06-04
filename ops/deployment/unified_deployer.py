@@ -57,7 +57,7 @@ def resolve_site_base_dir(site_domain: str) -> tuple[Path, str]:
     legacy_base = root / "websites" / site_domain
     if production_base.exists():
         return production_base, "production_sync"
-    return legacy_base, "legacy_local"
+    return legacy_base, "legacy_warning"
 
 
 def get_ssot_resolution(site_domain: str) -> Dict[str, object]:
@@ -309,16 +309,27 @@ def deploy_site(site_domain: str, site_config: Dict, dry_run: bool = False) -> b
             print(f"📤 Deploying: {relative_path}...", end=" ")
             
             # Calculate remote path
-            # Try to determine remote path from local structure
             remote_path = None
+            sftp_base = site_config.get('sftp', {}).get('remote_path', '') or getattr(
+                deployer, 'remote_path', ''
+            )
             if 'wp/wp-content' in str(file_path):
-                # Extract path after wp/wp-content
                 parts = str(file_path).split('wp/wp-content/')
-                if len(parts) > 1:
-                    remote_base = site_config.get('sftp', {}).get('remote_path', '')
-                    if remote_base:
-                        remote_path = f"{remote_base}/wp-content/{parts[1]}"
-            
+                if len(parts) > 1 and sftp_base:
+                    remote_path = f"{sftp_base}/wp-content/{parts[1]}"
+            elif sftp_base:
+                site_local = site_config.get('path') or f"sites/production/websites/{site_domain}"
+                local_root = (repo_root() / site_local).resolve()
+                try:
+                    rel = file_path.resolve().relative_to(local_root)
+                    remote_path = f"{sftp_base}/{rel.as_posix()}"
+                except ValueError:
+                    for listed in site_config.get('deploy_files', []):
+                        if file_path.resolve() == (repo_root() / listed).resolve():
+                            tail = listed.split(f"{site_domain}/", 1)[-1]
+                            remote_path = f"{sftp_base}/{tail}"
+                            break
+
             if deployer.deploy_file(file_path, remote_path):
                 print("✅")
                 success_count += 1
