@@ -1,0 +1,21 @@
+id: classify_untracked_discord_architect_artifacts_001
+lane: repo_fleet_self_healing_001
+target: untracked_discord_architect_artifact_classification
+status: pending
+intent:
+  - classify remaining untracked Discord Architect artifacts
+  - separate source candidates from generated reports/runtime payloads
+  - avoid destructive cleanup before manifest review
+constraints:
+  - no deletion
+  - no blind staging
+  - no secret output
+  - classify before promotion/quarantine
+verification:
+  - git status captured
+  - file inventory captured
+  - disposition assigned for each untracked root
+  - secret scan pass
+outputs:
+  - data/reports/discord_architect/classify_untracked_discord_architect_artifacts_001.md
+  - data/reports/discord_architect/classify_untracked_discord_architect_artifacts_001.json

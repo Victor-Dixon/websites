@@ -1,0 +1,217 @@
+{
+  "task": "classify_untracked_discord_architect_artifacts_001",
+  "status": "PASS",
+  "roots": [
+    {
+      "root": "data/reports/discord_architect/channel_webhook_manager/",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 3,
+      "total_bytes": 1567,
+      "suffix_counts": {
+        ".json": 3
+      },
+      "git_status": [
+        "?? data/reports/discord_architect/channel_webhook_manager/"
+      ],
+      "sample_files": [
+        {
+          "path": "data/reports/discord_architect/channel_webhook_manager/test_channel_receipt.json",
+          "bytes": 528,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/discord_architect/channel_webhook_manager/test_live_blocked_receipt.json",
+          "bytes": 552,
+          "suffix": ".json"
+        },
+        {
+          "path": "data/reports/discord_architect/channel_webhook_manager/test_webhook_receipt.json",
+          "bytes": 487,
+          "suffix": ".json"
+        }
+      ],
+      "disposition": "REPORT_ARTIFACT_REVIEW",
+      "next_action": "Review report content; stage only if it documents durable architecture state."
+    },
+    {
+      "root": "data/reports/discord_architect/channel_webhook_manager_verification.md",
+      "exists": true,
+      "kind": "file",
+      "file_count": 1,
+      "total_bytes": 379,
+      "suffix_counts": {
+        ".md": 1
+      },
+      "git_status": [
+        "?? data/reports/discord_architect/channel_webhook_manager_verification.md"
+      ],
+      "sample_files": [
+        {
+          "path": "data/reports/discord_architect/channel_webhook_manager_verification.md",
+          "bytes": 379,
+          "suffix": ".md"
+        }
+      ],
+      "disposition": "REPORT_ARTIFACT_REVIEW",
+      "next_action": "Review report content; stage only if it documents durable architecture state."
+    },
+    {
+      "root": "data/reports/planner_discord_bridge/",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 1,
+      "total_bytes": 1194,
+      "suffix_counts": {
+        ".json": 1
+      },
+      "git_status": [
+        "?? data/reports/planner_discord_bridge/"
+      ],
+      "sample_files": [
+        {
+          "path": "data/reports/planner_discord_bridge/latest_receipt.json",
+          "bytes": 1194,
+          "suffix": ".json"
+        }
+      ],
+      "disposition": "REPORT_ARTIFACT_REVIEW",
+      "next_action": "Review report content; stage only if it documents durable architecture state."
+    },
+    {
+      "root": "discord_architect/data/",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 2,
+      "total_bytes": 1305,
+      "suffix_counts": {
+        ".json": 1,
+        ".jsonl": 1
+      },
+      "git_status": [
+        "?? discord_architect/data/"
+      ],
+      "sample_files": [
+        {
+          "path": "discord_architect/data/runtime/events/latest_planner_event.json",
+          "bytes": 675,
+          "suffix": ".json"
+        },
+        {
+          "path": "discord_architect/data/runtime/events/planner_events.jsonl",
+          "bytes": 630,
+          "suffix": ".jsonl"
+        }
+      ],
+      "disposition": "LOCAL_DATA_REVIEW",
+      "next_action": "Treat as generated/local data unless proven to be fixture-worthy."
+    },
+    {
+      "root": "discord_architect/src/",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 1,
+      "total_bytes": 2939,
+      "suffix_counts": {
+        ".js": 1
+      },
+      "git_status": [
+        "?? discord_architect/src/"
+      ],
+      "sample_files": [
+        {
+          "path": "discord_architect/src/runtime/channelWebhookManager.js",
+          "bytes": 2939,
+          "suffix": ".js"
+        }
+      ],
+      "disposition": "SOURCE_CANDIDATE_REVIEW",
+      "next_action": "Diff against committed adapter/bridge; salvage unique source/tests only after inspection."
+    },
+    {
+      "root": "discord_architect/tests/",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 1,
+      "total_bytes": 2548,
+      "suffix_counts": {
+        ".js": 1
+      },
+      "git_status": [
+        "?? discord_architect/tests/"
+      ],
+      "sample_files": [
+        {
+          "path": "discord_architect/tests/channelWebhookManager.test.js",
+          "bytes": 2548,
+          "suffix": ".js"
+        }
+      ],
+      "disposition": "SOURCE_CANDIDATE_REVIEW",
+      "next_action": "Diff against committed adapter/bridge; salvage unique source/tests only after inspection."
+    },
+    {
+      "root": "runtime/tasks/discord/",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 1,
+      "total_bytes": 1330,
+      "suffix_counts": {
+        ".yaml": 1
+      },
+      "git_status": [
+        "?? runtime/tasks/discord/"
+      ],
+      "sample_files": [
+        {
+          "path": "runtime/tasks/discord/discord_architect_channel_webhook_manager_001.yaml",
+          "bytes": 1330,
+          "suffix": ".yaml"
+        }
+      ],
+      "disposition": "TASK_ARTIFACT_REVIEW",
+      "next_action": "Promote useful task YAMLs into runtime/tasks/discord_architect or quarantine duplicates."
+    },
+    {
+      "root": "runtime/trading/",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 2,
+      "total_bytes": 1600,
+      "suffix_counts": {
+        ".json": 2
+      },
+      "git_status": [
+        "?? runtime/trading/"
+      ],
+      "sample_files": [
+        {
+          "path": "runtime/trading/discord/latest_cpc_closeout_bridge_payload.json",
+          "bytes": 427,
+          "suffix": ".json"
+        },
+        {
+          "path": "runtime/trading/discord/latest_paper_trade_payload.json",
+          "bytes": 1173,
+          "suffix": ".json"
+        }
+      ],
+      "disposition": "RUNTIME_OUTPUT_DO_NOT_STAGE",
+      "next_action": "Keep ignored/untracked unless payload needs a tracked fixture; do not stage live output."
+    }
+  ],
+  "summary": {
+    "root_count": 8,
+    "existing_roots": 8,
+    "total_files": 12,
+    "total_bytes": 12862,
+    "disposition_counts": {
+      "REPORT_ARTIFACT_REVIEW": 3,
+      "LOCAL_DATA_REVIEW": 1,
+      "SOURCE_CANDIDATE_REVIEW": 2,
+      "TASK_ARTIFACT_REVIEW": 1,
+      "RUNTIME_OUTPUT_DO_NOT_STAGE": 1
+    }
+  },
+  "next_lane": "salvage_or_quarantine_discord_architect_artifacts_001"
+}
