@@ -1,0 +1,25 @@
+id: finalize_discord_architect_worklog_spine_001
+lane: repo_fleet_self_healing_001
+target: discord_architect_worklog_spine_finalization
+status: pending
+intent:
+  - finalize Discord Architect to website worklog spine
+  - prove every durable component exists
+  - document closure without inventing activity
+constraints:
+  - no live Discord dispatch
+  - no runtime payload staging
+  - no fabricated worklog entries
+  - no secrets in reports
+verification:
+  - sender candidate documented
+  - adapter exists and tests pass
+  - bridge exists and tests pass
+  - live gate exists
+  - worklog feed exists
+  - rendered HTML exists
+  - public index links rendered HTML
+  - push recovery path documented
+outputs:
+  - data/reports/discord_architect/finalize_discord_architect_worklog_spine_001.md
+  - data/reports/discord_architect/finalize_discord_architect_worklog_spine_001.json
