@@ -1,0 +1,17 @@
+id: smoke_spark_generator_after_asset_fix_001
+title: Smoke Spark generator after asset permission fix
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/
+actions:
+  - fetch live page
+  - verify patched asset references
+  - verify backend generation
+  - classify remaining blank risk
+verify:
+  - page references patched assets
+  - backend generate endpoint returns 200
+  - report whether browser-only JS issue remains
+commit_message: Smoke Spark generator after asset permission fix
