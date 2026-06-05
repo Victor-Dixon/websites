@@ -161,6 +161,11 @@ button {
   animation: pulse 1s ease infinite;
 }
 
+.phase-label.boss-prep {
+  color: #ff8899;
+  animation: pulse 1.4s ease infinite;
+}
+
 @keyframes pulse {
   50% { opacity: .65; }
 }

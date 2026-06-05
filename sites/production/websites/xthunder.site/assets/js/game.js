@@ -21,6 +21,16 @@ const ENEMY_TYPES = {
   wraith: { hp: 22,  speed: 88,  dmg: 5,  reward: 10, color: "#5ce0ff", r: 10 },
 };
 
+const BOSS_TYPES = {
+  storm_titan: {
+    hp: 420, speed: 26, dmg: 22, reward: 100, color: "#ff4466", r: 28, name: "Storm Titan",
+  },
+  thunder_lich: {
+    hp: 720, speed: 20, dmg: 38, reward: 180, color: "#ff1133", r: 34, name: "Thunder Lich",
+  },
+};
+
+const BOSS_INTERVAL = 5;
 const MAX_WAVES = 10;
 const START_GOLD = 150;
 
@@ -42,7 +52,20 @@ const state = {
   fightActive: false,
   hover: null,
   coreHp: CORE.maxHp,
+  bossPrep: false,
 };
+
+function isBossWave(wave) {
+  return wave > 0 && wave % BOSS_INTERVAL === 0;
+}
+
+function nextWaveNumber() {
+  return state.wave + 1;
+}
+
+function getBossKey(wave) {
+  return wave >= 10 ? "thunder_lich" : "storm_titan";
+}
 
 function initGrid() {
   state.grid = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
@@ -130,15 +153,46 @@ function bfsPath(sx, sy) {
   return null;
 }
 
-function spawnEnemy(type, row) {
+function spawnEnemy(type, row, opts = {}) {
   const def = ENEMY_TYPES[type];
+  const scale = 1 + state.wave * 0.12;
   const path = bfsPath(COLS - 1, row) || [];
   state.enemies.push({
     type,
+    boss: false,
+    name: null,
     x: (COLS - 1) * TILE + TILE / 2,
     y: row * TILE + TILE / 2 + OFFSET_Y,
-    hp: def.hp * (1 + state.wave * 0.12),
-    maxHp: def.hp * (1 + state.wave * 0.12),
+    hp: def.hp * scale,
+    maxHp: def.hp * scale,
+    speed: def.speed,
+    dmg: def.dmg,
+    reward: def.reward,
+    color: def.color,
+    r: def.r,
+    path,
+    pathIdx: 0,
+    attackCd: 0,
+    tx: COLS - 1,
+    ty: row,
+    ...opts,
+  });
+}
+
+function spawnBoss(wave) {
+  const key = getBossKey(wave);
+  const def = BOSS_TYPES[key];
+  const row = Math.floor(ROWS / 2);
+  const scale = 1 + (wave / BOSS_INTERVAL) * 0.35;
+  const path = bfsPath(COLS - 1, row) || [];
+  state.enemies.push({
+    type: key,
+    boss: true,
+    name: def.name,
+    x: (COLS - 1) * TILE + TILE / 2,
+    y: row * TILE + TILE / 2 + OFFSET_Y,
+    hp: def.hp * scale,
+    maxHp: def.hp * scale,
     speed: def.speed,
     dmg: def.dmg,
     reward: def.reward,
@@ -150,13 +204,30 @@ function spawnEnemy(type, row) {
     tx: COLS - 1,
     ty: row,
   });
+  addFeed("combat", `☠ BOSS: ${def.name} has entered the storm!`);
+  state.effects.push({
+    kind: "burst",
+    x: (COLS - 1) * TILE + TILE / 2,
+    y: row * TILE + TILE / 2 + OFFSET_Y,
+    life: 800,
+    color: def.color,
+  });
 }
 
-function spawnWave() {
-  state.wave += 1;
-  state.phase = "fight";
-  state.fightActive = true;
+function buildSpawnQueue() {
   state.spawnQueue = [];
+  const bossWave = isBossWave(state.wave);
+
+  if (bossWave) {
+    state.spawnQueue.push({ kind: "boss", delay: 1200 });
+    const adds = 2 + Math.floor(state.wave / BOSS_INTERVAL);
+    for (let i = 0; i < adds; i++) {
+      const type = i % 2 === 0 ? "brute" : "wraith";
+      state.spawnQueue.push({ kind: "enemy", type, row: 1 + (i % (ROWS - 2)), delay: 1800 + i * 600 });
+    }
+    return;
+  }
+
   const count = 4 + state.wave * 2;
   for (let i = 0; i < count; i++) {
     let type = "shade";
@@ -164,8 +235,16 @@ function spawnWave() {
     if (state.wave > 4 && i % 5 === 0) type = "wraith";
     if (state.wave > 7 && i % 3 === 0) type = "brute";
     const row = 1 + (i % (ROWS - 2));
-    state.spawnQueue.push({ type, row, delay: i * 420 });
+    state.spawnQueue.push({ kind: "enemy", type, row, delay: i * 420 });
   }
+}
+
+function spawnWave() {
+  state.wave += 1;
+  state.phase = "fight";
+  state.fightActive = true;
+  state.bossPrep = false;
+  buildSpawnQueue();
   state.spawnTimer = 0;
 
   for (let y = 0; y < ROWS; y++) {
@@ -177,7 +256,12 @@ function spawnWave() {
     }
   }
 
-  addFeed("combat", `⚡ WAVE ${state.wave} — shadows incoming!`);
+  if (isBossWave(state.wave)) {
+    const bossName = BOSS_TYPES[getBossKey(state.wave)].name;
+    addFeed("combat", `⚡ BOSS WAVE ${state.wave} — ${bossName} approaches!`);
+  } else {
+    addFeed("combat", `⚡ WAVE ${state.wave} — shadows incoming!`);
+  }
   updateHUD();
 }
 
@@ -206,6 +290,13 @@ function startFight() {
   spawnWave();
 }
 
+function enterBossPrep(nextWave) {
+  state.bossPrep = true;
+  const bossName = BOSS_TYPES[getBossKey(nextWave)].name;
+  addFeed("system", `— PAUSE — Boss wave ${nextWave} next: ${bossName}.`);
+  addFeed("system", "Organize your defenses, then hit Face the Boss when ready.");
+}
+
 function endWave() {
   state.fightActive = false;
   state.phase = "build";
@@ -216,7 +307,14 @@ function endWave() {
 
   if (state.wave >= MAX_WAVES) {
     state.phase = "won";
-    showOverlay("Victory!", `You survived ${MAX_WAVES} waves. The storm is yours!`, restart);
+    showOverlay("Victory!", `You survived ${MAX_WAVES} waves. The storm is yours!`, restart, "Play Again");
+    return;
+  }
+
+  const upcoming = nextWaveNumber();
+  if (isBossWave(upcoming)) {
+    enterBossPrep(upcoming);
+    updateHUD();
   }
 }
 
@@ -258,7 +356,11 @@ function damageEnemy(enemy, amount) {
   state.effects.push({ kind: "hit", x: enemy.x, y: enemy.y, life: 200 });
   if (enemy.hp <= 0) {
     state.gold += enemy.reward;
-    addFeed("combat", `Shadow fell! +⚡${enemy.reward}`);
+    if (enemy.boss) {
+      addFeed("combat", `☠ ${enemy.name} defeated! +⚡${enemy.reward}`);
+    } else {
+      addFeed("combat", `Shadow fell! +⚡${enemy.reward}`);
+    }
     state.enemies = state.enemies.filter((e) => e !== enemy);
     state.effects.push({ kind: "burst", x: enemy.x, y: enemy.y, life: 350, color: enemy.color });
     updateHUD();
@@ -278,7 +380,13 @@ function damageCore(amount) {
   updateHUD();
   if (state.coreHp <= 0) {
     state.phase = "lost";
-    showOverlay("Defeat", "The core has fallen. The storm consumes all.", restart);
+    state.fightActive = false;
+    showOverlay(
+      "Defeat",
+      `The core has fallen on wave ${state.wave}. Rebuild and try again.`,
+      restart,
+      "Restart Game"
+    );
   }
 }
 
@@ -419,7 +527,8 @@ function updateSpawns(dt) {
   state.spawnTimer += dt;
   state.spawnQueue = state.spawnQueue.filter((s) => {
     if (state.spawnTimer >= s.delay) {
-      spawnEnemy(s.type, s.row);
+      if (s.kind === "boss") spawnBoss(state.wave);
+      else spawnEnemy(s.type, s.row);
       return false;
     }
     return true;
@@ -518,20 +627,39 @@ function drawStructure(cell) {
 }
 
 function drawEntity(ent, isEnemy) {
+  const radius = ent.r || 12;
+
+  if (ent.boss) {
+    const pulse = 0.6 + Math.sin(Date.now() / 200) * 0.2;
+    ctx.strokeStyle = `rgba(255,68,102,${pulse})`;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(ent.x, ent.y, radius + 6, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
   ctx.fillStyle = ent.color || (isEnemy ? "#8b6cc1" : "#7c5cff");
   ctx.beginPath();
-  ctx.arc(ent.x, ent.y, ent.r || 12, 0, Math.PI * 2);
+  ctx.arc(ent.x, ent.y, radius, 0, Math.PI * 2);
   ctx.fill();
-  ctx.strokeStyle = "rgba(255,255,255,.35)";
-  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = ent.boss ? "#ffb3c4" : "rgba(255,255,255,.35)";
+  ctx.lineWidth = ent.boss ? 2.5 : 1.5;
   ctx.stroke();
 
+  if (ent.boss && ent.name) {
+    ctx.font = "bold 11px Inter, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#ff8899";
+    ctx.fillText(ent.name, ent.x, ent.y - radius - 14);
+  }
+
   if (ent.maxHp) {
+    const barW = ent.boss ? 48 : 28;
     const pct = ent.hp / ent.maxHp;
     ctx.fillStyle = "rgba(0,0,0,.5)";
-    ctx.fillRect(ent.x - 14, ent.y - ent.r - 10, 28, 4);
+    ctx.fillRect(ent.x - barW / 2, ent.y - radius - 10, barW, 5);
     ctx.fillStyle = isEnemy ? "#ff5c7a" : "#5cff9a";
-    ctx.fillRect(ent.x - 14, ent.y - ent.r - 10, 28 * pct, 4);
+    ctx.fillRect(ent.x - barW / 2, ent.y - radius - 10, barW * pct, 5);
   }
 }
 
@@ -578,6 +706,21 @@ function drawEffects() {
   }
 }
 
+function drawBossPrepBanner() {
+  if (!state.bossPrep || state.phase !== "build") return;
+  const next = nextWaveNumber();
+  const bossName = BOSS_TYPES[getBossKey(next)].name;
+  ctx.fillStyle = "rgba(255,17,51,.18)";
+  ctx.fillRect(OFFSET_X, OFFSET_Y, COLS * TILE, ROWS * TILE);
+  ctx.font = "bold 22px Inter, sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#ff8899";
+  ctx.fillText(`BOSS PREP — Wave ${next}`, canvas.width / 2, OFFSET_Y + 36);
+  ctx.font = "14px Inter, sans-serif";
+  ctx.fillStyle = "#ffd34d";
+  ctx.fillText(`${bossName} incoming. Organize, then Face the Boss!`, canvas.width / 2, OFFSET_Y + 58);
+}
+
 function drawHover() {
   if (!state.hover || state.phase !== "build") return;
   const { x, y } = state.hover;
@@ -620,6 +763,7 @@ function render() {
   for (const e of state.enemies) drawEntity(e, true);
   drawProjectiles();
   drawEffects();
+  drawBossPrepBanner();
   drawHover();
 }
 
@@ -641,24 +785,42 @@ function loop(now) {
 
 function updateHUD() {
   document.getElementById("stat-gold").textContent = `⚡ ${state.gold}`;
-  document.getElementById("stat-wave").textContent = `Wave ${state.wave}${state.fightActive ? " — FIGHT" : ""}`;
+  const waveLabel = state.bossPrep
+    ? `Wave ${state.wave} → BOSS ${nextWaveNumber()}`
+    : `Wave ${state.wave}${state.fightActive ? " — FIGHT" : ""}`;
+  document.getElementById("stat-wave").textContent = waveLabel;
   document.getElementById("stat-hp").textContent = `Core ${Math.ceil(state.coreHp)}%`;
 
   const phaseEl = document.getElementById("phase-label");
   const fightBtn = document.getElementById("btn-fight");
   if (state.phase === "fight" && state.fightActive) {
-    phaseEl.textContent = "FIGHT!";
+    phaseEl.textContent = isBossWave(state.wave) ? "BOSS FIGHT!" : "FIGHT!";
+    phaseEl.classList.remove("boss-prep");
     phaseEl.classList.add("fighting");
     fightBtn.disabled = true;
     fightBtn.textContent = "Fighting…";
-  } else if (state.phase === "won" || state.phase === "lost") {
-    phaseEl.textContent = state.phase.toUpperCase();
+  } else if (state.phase === "lost") {
+    phaseEl.textContent = "DEFEAT";
+    phaseEl.classList.remove("fighting");
     fightBtn.disabled = true;
-  } else {
-    phaseEl.textContent = "BUILD PHASE";
+    fightBtn.textContent = "Restart to continue";
+  } else if (state.phase === "won") {
+    phaseEl.textContent = "VICTORY";
+    fightBtn.disabled = true;
+  } else if (state.bossPrep) {
+    phaseEl.textContent = "BOSS PREP";
+    phaseEl.classList.add("boss-prep");
     phaseEl.classList.remove("fighting");
     fightBtn.disabled = false;
-    fightBtn.textContent = state.wave >= MAX_WAVES ? "Complete" : "Strike — Fight!";
+    fightBtn.textContent = `Face the Boss! (Wave ${nextWaveNumber()})`;
+  } else {
+    phaseEl.textContent = "BUILD PHASE";
+    phaseEl.classList.remove("boss-prep");
+    phaseEl.classList.remove("fighting");
+    fightBtn.disabled = false;
+    fightBtn.textContent = isBossWave(nextWaveNumber())
+      ? `Face the Boss! (Wave ${nextWaveNumber()})`
+      : "Strike — Fight!";
   }
 
   document.querySelectorAll(".tool[data-tool]").forEach((btn) => {
@@ -698,12 +860,14 @@ function escapeHtml(t) {
     .replace(/"/g, "&quot;");
 }
 
-function showOverlay(title, text, action) {
+function showOverlay(title, text, action, btnLabel = "Play Again") {
   const overlay = document.getElementById("overlay");
   document.getElementById("overlay-title").textContent = title;
   document.getElementById("overlay-text").textContent = text;
+  const btn = document.getElementById("overlay-btn");
+  btn.textContent = btnLabel;
   overlay.hidden = false;
-  document.getElementById("overlay-btn").onclick = () => {
+  btn.onclick = () => {
     overlay.hidden = true;
     action();
   };
@@ -720,9 +884,12 @@ function restart() {
   state.effects = [];
   state.spawnQueue = [];
   state.fightActive = false;
+  state.bossPrep = false;
   state.coreHp = CORE.maxHp;
   document.getElementById("overlay").hidden = true;
+  feedMessages.length = 0;
   addFeed("system", "New storm siege. Build your defenses!");
+  addFeed("system", "Boss waves arrive every 5 rounds — prep time before each boss.");
   updateHUD();
 }
 
@@ -754,7 +921,8 @@ function onPointerMove(evt) {
 }
 
 function onPointerDown(evt) {
-  if (state.phase === "won" || state.phase === "lost") return;
+  if (state.phase === "won") return;
+  if (state.phase === "lost") return;
   if (state.phase === "fight" && state.fightActive) return;
   const pos = getCanvasPos(evt);
   const tile = tileAt(pos.x, pos.y);
@@ -812,5 +980,6 @@ if (year) year.textContent = new Date().getFullYear();
 initGrid();
 addFeed("system", "Welcome to Storm Siege. Build walls & towers, then hit Strike!");
 addFeed("system", "Protect the Thunder Core on the left. Survive 10 waves.");
+addFeed("system", "Boss fights at waves 5 & 10 — you get prep time to organize first.");
 updateHUD();
 requestAnimationFrame(loop);
