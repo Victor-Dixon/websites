@@ -1153,3 +1153,41 @@ button[data-ecg-fail-open-generate="1"] {
     grid-template-columns: 1fr;
   }
 }
+
+/* DreamOS Final Dossier End-Only Gate */
+[data-dreamos-retired-dossier-control="1"],
+[data-dreamos-floating-dossier-fab],
+.dreamos-floating-dossier-fab,
+[data-dreamos-guaranteed-final-dossier],
+[data-dreamos-guaranteed-final-dossier-button],
+.dreamos-guaranteed-dossier-button {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.dreamos-end-only-dossier-action {
+  margin: 2rem auto;
+  width: min(100%, 680px);
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+  position: static !important;
+}
+
+.dreamos-end-only-dossier-button {
+  width: min(100%, 560px);
+  min-height: 56px;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: clamp(1rem, 4vw, 1.15rem);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.dreamos-end-only-dossier-panel {
+  width: min(100%, 680px);
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
