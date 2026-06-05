@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.7.8-public-generate-payload-001
+ * Version: 0.7.9-client-hardening-answers-001
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.8-public-generate-payload-001');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.8-public-generate-payload-001', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.9-client-hardening-answers-001');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.9-client-hardening-answers-001', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -927,8 +927,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.8-public-generate-payload-001');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.8-public-generate-payload-001', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.9-client-hardening-answers-001');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.9-client-hardening-answers-001', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -2933,7 +2933,10 @@ add_action('wp_footer', function () {
         FORBIDDEN.forEach(function (key) {
           if (lower.indexOf(key) !== -1) {
             if (['answers','flavor','flavor_answers','source','character_name','alias','costume','attitude','visual_tone','build_type','mask','ability_showcase'].indexOf(String(key)) === -1) {
+            /* DreamOS client hardening allowlist: public Spark payload keys */
+          if (['answers','flavor','flavor_answers','source','character_name','alias','costume','attitude','visual_tone','build_type','mask','ability_showcase'].indexOf(String(key)) === -1) {
             throw new Error('Unsafe public demo hardening payload blocked: ' + key);
+          }
           }
           }
         });

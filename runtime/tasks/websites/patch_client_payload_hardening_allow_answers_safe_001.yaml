@@ -1,0 +1,20 @@
+id: patch_client_payload_hardening_allow_answers_safe_001
+title: Patch client payload hardening to allow answers safely
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/
+  asset_version: 0.7.9-client-hardening-answers-001
+actions:
+  - patch JS hardening line without shell-expanded regex
+  - allow public Spark payload keys
+  - bump plugin asset version
+  - syntax-check PHP
+  - deploy plugin PHP and assets
+  - verify live page version and JS marker
+verify:
+  - PHP syntax passes
+  - live page loads 0.7.9-client-hardening-answers-001
+  - live JS contains client hardening allowlist marker
+commit_message: Patch client payload hardening to allow answers safely
