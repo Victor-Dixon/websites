@@ -1,0 +1,12 @@
+version: 1
+title: Promote untracked live static sites to Hostinger manifest
+target: runtime/deploy/hostinger_sites_manifest.yaml
+status: ready
+actions:
+  - read Hostinger inventory
+  - select untracked LIVE_STATIC_OR_STATIC_FRONT domains
+  - add manifest entries for freerideinvestor.com, weareswarm.site, xthunder.site
+  - verify all manifest sites live with markers and no hash links
+verify:
+  - python runtime/scripts/verify_hostinger_static_sites.py
+commit_message: Promote untracked static sites to Hostinger manifest

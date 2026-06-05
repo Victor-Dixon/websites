@@ -33,3 +33,27 @@ sites:
       - "TradingRobotPlug"
       - "Trading Robot Plugins"
       - "Proof Dashboard"
+  - domain: freerideinvestor.com
+    source_dir: sites/production/freerideinvestor.com
+    remote_root: /home/u996867598/domains/freerideinvestor.com/public_html
+    url: https://freerideinvestor.com/
+    type: static_or_static_front_inventory
+    status: live
+    verify_markers:
+      - "FreeRideInvestor"
+  - domain: weareswarm.site
+    source_dir: sites/production/weareswarm.site
+    remote_root: /home/u996867598/domains/weareswarm.site/public_html
+    url: https://weareswarm.site/
+    type: static_or_static_front_inventory
+    status: live
+    verify_markers:
+      - "WeAreSwarm"
+  - domain: xthunder.site
+    source_dir: sites/production/xthunder.site
+    remote_root: /home/u996867598/domains/xthunder.site/public_html
+    url: https://xthunder.site/
+    type: static_or_static_front_inventory
+    status: live
+    verify_markers:
+      - "xThunder"

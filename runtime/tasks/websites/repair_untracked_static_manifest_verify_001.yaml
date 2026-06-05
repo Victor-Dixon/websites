@@ -1,0 +1,15 @@
+version: 1
+title: Repair untracked static site manifest verification
+target: runtime/deploy/hostinger_sites_manifest.yaml
+status: ready
+root_cause:
+  - untracked static domains were added to manifest
+  - verifier failed before closeout output was captured
+actions:
+  - probe each newly promoted domain directly
+  - patch verify markers to match live body
+  - rerun canonical verifier
+verify:
+  - SITE_COUNT=6
+  - VERIFY=PASS
+commit_message: Promote untracked static sites to Hostinger manifest
