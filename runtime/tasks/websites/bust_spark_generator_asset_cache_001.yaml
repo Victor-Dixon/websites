@@ -1,0 +1,15 @@
+id: bust_spark_generator_asset_cache_001
+title: Bust Spark generator asset cache
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  plugin: runtime/plugins/emergence-character-generator/emergence-character-generator.php
+actions:
+  - bump plugin asset version
+  - verify enqueue version changed
+  - deploy plugin PHP and assets
+  - verify live page asset refs no longer use stale 0.7.3
+verify:
+  - live page contains dossier hotfix asset version
+commit_message: Bust Spark generator asset cache
