@@ -1,0 +1,17 @@
+id: deploy_canonical_select_options_with_env_001
+title: Deploy canonical Spark select option patch with Hostinger env
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  url: https://dadudekc.site/spark-generator/
+  version: 0.8.8-canonical-select-options-001
+actions:
+  - load dadudekc Hostinger env
+  - deploy plugin PHP and assets
+  - flush WordPress and LiteSpeed cache
+  - verify canonical route serves 0.8.8-canonical-select-options-001
+verify:
+  - live page references 0.8.8-canonical-select-options-001
+  - live JS has select option hardener marker
+  - live CSS has select clickability marker
+commit_message: Deploy canonical Spark select options with env
