@@ -3261,3 +3261,265 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
   else boot();
 })();
+
+/* DreamOS Canonical Spark Quiz Renderer
+ * Replaces the unstable legacy visible quiz with a deterministic Q1-Q28 renderer from EmergenceCG.question_bank.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSCanonicalSparkQuizRenderer) return;
+  window.__DreamOSCanonicalSparkQuizRenderer = true;
+
+  var REQUIRED = 28;
+  var LETTERS = ["A","B","C","D","E","F","G","H"];
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function questionBank() {
+    var cg = window.EmergenceCG || {};
+    var qb = cg.question_bank || {};
+    var list = qb.domain_questions || qb.questions || [];
+    if (!Array.isArray(list)) return [];
+
+    return list.slice(0, REQUIRED).map(function (q, idx) {
+      var num = parseInt(q.q || q.id || q.number || (idx + 1), 10);
+      var text = q.question || q.prompt || q.text || "";
+      var options = q.options || q.answers || {};
+      return { num: num, text: text, options: options };
+    }).filter(function (q) {
+      return q.num >= 1 && q.num <= REQUIRED && q.text && q.options;
+    }).sort(function (a, b) {
+      return a.num - b.num;
+    });
+  }
+
+  function optionEntries(options) {
+    if (Array.isArray(options)) {
+      return options.map(function (v, i) {
+        return [LETTERS[i] || String(i + 1), String(v || "")];
+      }).filter(function (pair) { return pair[1]; });
+    }
+
+    return LETTERS.map(function (k) {
+      return [k, String(options[k] || options[k.toLowerCase()] || "")];
+    }).filter(function (pair) { return pair[1]; });
+  }
+
+  function mountPoint() {
+    return document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") || document.body;
+  }
+
+  function suppressLegacy(root) {
+    root = root || mountPoint();
+
+    Array.prototype.forEach.call(root.children, function (child) {
+      if (!child.hasAttribute("data-dreamos-canonical-spark-renderer")) {
+        child.setAttribute("data-dreamos-legacy-spark-ui-hidden", "1");
+      }
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll(
+      "[data-dreamos-floating-dossier-fab], .dreamos-floating-dossier-fab, [data-dreamos-guaranteed-final-dossier], [data-dreamos-canonical-final-dossier], [data-dreamos-end-only-final-dossier], [data-dreamos-two-pass-final-dossier], [data-ecg-action='create-final-dossier']"
+    ), function (el) {
+      el.setAttribute("data-dreamos-legacy-spark-ui-hidden", "1");
+    });
+  }
+
+  function savedAnswers() {
+    try {
+      return JSON.parse(sessionStorage.getItem("dreamos.spark.answers.v1") || "{}") || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveAnswers(answers) {
+    try {
+      sessionStorage.setItem("dreamos.spark.answers.v1", JSON.stringify(answers || {}));
+    } catch (e) {}
+  }
+
+  function collectAnswers(root) {
+    var answers = {};
+    Array.prototype.forEach.call(root.querySelectorAll("select[data-dreamos-question]"), function (select) {
+      var q = select.getAttribute("data-dreamos-question");
+      var val = String(select.value || "").trim().toUpperCase();
+      if (q && LETTERS.indexOf(val) !== -1) answers[q] = val;
+    });
+    return answers;
+  }
+
+  function answerCount(answers) {
+    var count = 0;
+    for (var i = 1; i <= REQUIRED; i++) {
+      if (answers[String(i)]) count++;
+    }
+    return count;
+  }
+
+  function renderResult(root, payload) {
+    var old = root.querySelector("[data-dreamos-canonical-result]");
+    if (old) old.remove();
+
+    var manifested = Array.isArray(payload.manifested) ? payload.manifested.join(", ") : "Unclassified";
+    var next = payload.next_phase && payload.next_phase.description ? payload.next_phase.description : "Continue to the next Spark refinement phase.";
+
+    var section = document.createElement("section");
+    section.className = "dreamos-canonical-spark-result";
+    section.setAttribute("data-dreamos-canonical-result", "1");
+    section.innerHTML =
+      '<p class="dreamos-kicker">Spark Protocol Pass 1</p>' +
+      '<h2>' + (payload.lead_domain || "Generated") + ' Spark</h2>' +
+      '<div class="dreamos-canonical-result-grid">' +
+      '<div><strong>Lead Domain</strong><span>' + (payload.lead_domain || "Pending") + '</span></div>' +
+      '<div><strong>Cast</strong><span>' + (payload.cast || "Pending") + '</span></div>' +
+      '<div><strong>Signature</strong><span>' + (payload.provisional_spark_signature || payload.spark_signature || "Pending") + '</span></div>' +
+      '<div><strong>Combat</strong><span>' + (payload.provisional_combat_capability || payload.combat_capability || "Pending") + '</span></div>' +
+      '</div>' +
+      '<p><strong>Manifested Domains:</strong> ' + manifested + '</p>' +
+      '<p><strong>Next:</strong> ' + next + '</p>' +
+      '<div class="dreamos-canonical-actions">' +
+      '<button type="button" data-dreamos-build-dossier>Build Final Dossier</button>' +
+      '<a href="/battles/">Enter Battles</a>' +
+      '</div>' +
+      '<details><summary>Raw Spark Data</summary><pre>' + JSON.stringify(payload, null, 2) + '</pre></details>';
+
+    root.appendChild(section);
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function renderError(root, message) {
+    var old = root.querySelector("[data-dreamos-canonical-error]");
+    if (old) old.remove();
+
+    var box = document.createElement("div");
+    box.className = "dreamos-canonical-error";
+    box.setAttribute("data-dreamos-canonical-error", "1");
+    box.innerHTML = '<strong>Spark generation failed.</strong><p>' + String(message || "Unknown error") + '</p>';
+    root.appendChild(box);
+  }
+
+  async function submit(root) {
+    var answers = collectAnswers(root);
+    saveAnswers(answers);
+
+    var count = answerCount(answers);
+    if (count < REQUIRED) {
+      renderError(root, "Complete all 28 Spark questions first. Current progress: " + count + "/28.");
+      return;
+    }
+
+    var submit = root.querySelector("[data-dreamos-submit-spark]");
+    if (submit) {
+      submit.disabled = true;
+      submit.textContent = "Generating...";
+    }
+
+    try {
+      var res = await fetch(endpoint(), {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          answers: answers,
+          source: "dreamos-canonical-spark-renderer"
+        })
+      });
+
+      var payload = await res.json();
+      if (!res.ok) throw new Error(payload && payload.message ? payload.message : "Endpoint returned " + res.status);
+      renderResult(root, payload);
+    } catch (err) {
+      renderError(root, err && err.message ? err.message : err);
+    } finally {
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = "Generate Spark";
+      }
+    }
+  }
+
+  function updateProgress(root) {
+    var answers = collectAnswers(root);
+    saveAnswers(answers);
+    var count = answerCount(answers);
+    var meter = root.querySelector("[data-dreamos-progress]");
+    var submit = root.querySelector("[data-dreamos-submit-spark]");
+    if (meter) meter.textContent = count + "/" + REQUIRED + " complete";
+    if (submit) submit.disabled = count < REQUIRED;
+  }
+
+  function render() {
+    var root = mountPoint();
+    if (!root || root.querySelector("[data-dreamos-canonical-spark-renderer='1']")) {
+      suppressLegacy(root);
+      return;
+    }
+
+    var questions = questionBank();
+    if (questions.length < REQUIRED) return;
+
+    suppressLegacy(root);
+
+    var answers = savedAnswers();
+
+    var shell = document.createElement("section");
+    shell.className = "dreamos-canonical-spark-renderer";
+    shell.setAttribute("data-dreamos-canonical-spark-renderer", "1");
+
+    var html = '';
+    html += '<p class="dreamos-kicker">Spark Protocol</p>';
+    html += '<h2>Generate Your Spark</h2>';
+    html += '<p class="dreamos-canonical-note">Answer all 28 core questions. The next phase unlocks based on your manifested domains.</p>';
+    html += '<p class="dreamos-canonical-progress" data-dreamos-progress>0/28 complete</p>';
+    html += '<div class="dreamos-canonical-question-list">';
+
+    questions.forEach(function (q) {
+      html += '<article class="dreamos-canonical-question" data-dreamos-q="' + q.num + '">';
+      html += '<label for="dreamos-q-' + q.num + '">Q' + q.num + ' — ' + q.text + '</label>';
+      html += '<select id="dreamos-q-' + q.num + '" data-dreamos-question="' + q.num + '" name="dreamos_question_' + q.num + '">';
+      html += '<option value="">Choose one...</option>';
+      optionEntries(q.options).forEach(function (pair) {
+        var selected = answers[String(q.num)] === pair[0] ? ' selected' : '';
+        html += '<option value="' + pair[0] + '"' + selected + '>' + pair[0] + '. ' + pair[1] + '</option>';
+      });
+      html += '</select>';
+      html += '</article>';
+    });
+
+    html += '</div>';
+    html += '<button type="button" class="dreamos-canonical-submit" data-dreamos-submit-spark disabled>Generate Spark</button>';
+
+    shell.innerHTML = html;
+    root.appendChild(shell);
+
+    shell.addEventListener("change", function (ev) {
+      if (ev.target && ev.target.matches("select[data-dreamos-question]")) updateProgress(shell);
+    });
+
+    shell.querySelector("[data-dreamos-submit-spark]").addEventListener("click", function () {
+      submit(shell);
+    });
+
+    shell.addEventListener("click", function (ev) {
+      var btn = ev.target && ev.target.closest ? ev.target.closest("[data-dreamos-build-dossier]") : null;
+      if (!btn) return;
+      ev.preventDefault();
+      submit(shell);
+    });
+
+    updateProgress(shell);
+  }
+
+  function boot() {
+    render();
+    setTimeout(render, 250);
+    setTimeout(render, 1000);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+})();

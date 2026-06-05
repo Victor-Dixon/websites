@@ -740,3 +740,124 @@ select {
   background: #f4f4f6 !important;
   border: 1px solid rgba(255,255,255,.18) !important;
 }
+
+/* DreamOS Canonical Spark Quiz Renderer */
+[data-dreamos-legacy-spark-ui-hidden="1"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.dreamos-canonical-spark-renderer,
+.dreamos-canonical-spark-result,
+.dreamos-canonical-error {
+  width: min(100%, 760px);
+  margin: 1.5rem auto;
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 24px;
+  background: rgba(8, 11, 24, .84);
+  color: #f4f4f8;
+}
+
+.dreamos-canonical-note,
+.dreamos-canonical-progress {
+  color: rgba(244,244,248,.84);
+}
+
+.dreamos-canonical-question-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.dreamos-canonical-question {
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  background: rgba(255,255,255,.035);
+}
+
+.dreamos-canonical-question label {
+  display: block;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: .75rem;
+}
+
+.dreamos-canonical-question select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 54px;
+  border-radius: 16px;
+  padding: .8rem 1rem;
+  color: #10131f;
+  background: #f4f4f6;
+  font-size: 1rem;
+}
+
+.dreamos-canonical-submit,
+.dreamos-canonical-actions button,
+.dreamos-canonical-actions a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 54px;
+  margin-top: 1.25rem;
+  padding: .85rem 1.25rem;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dreamos-canonical-submit:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.dreamos-canonical-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+  margin: 1rem 0;
+}
+
+.dreamos-canonical-result-grid div {
+  padding: .9rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,.06);
+}
+
+.dreamos-canonical-result-grid strong,
+.dreamos-canonical-result-grid span {
+  display: block;
+}
+
+.dreamos-canonical-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+@media (max-width: 760px) {
+  .dreamos-canonical-spark-renderer,
+  .dreamos-canonical-spark-result,
+  .dreamos-canonical-error {
+    width: calc(100% - 1rem);
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .dreamos-canonical-result-grid {
+    grid-template-columns: 1fr;
+  }
+}

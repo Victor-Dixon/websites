@@ -1,0 +1,20 @@
+id: replace_spark_quiz_with_canonical_renderer_001
+title: Replace Spark quiz with canonical question-bank renderer
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  canonical_url: https://dadudekc.site/spark-generator/
+  asset_version: 0.8.7-canonical-quiz-renderer-001
+actions:
+  - bump plugin asset version
+  - suppress legacy unstable quiz UI after canonical renderer mounts
+  - render Q1-Q28 directly from EmergenceCG.question_bank
+  - post clean answers to /wp-json/emergence/v1/generate
+  - show pass 1 result and continue affordance
+  - prevent old overlay/floating dossier controls from interfering
+verify:
+  - canonical route loads 0.8.7-canonical-quiz-renderer-001
+  - live JS contains canonical renderer marker
+  - live CSS contains canonical renderer marker
+  - live source still exposes question_bank
+commit_message: Replace Spark quiz with canonical renderer
