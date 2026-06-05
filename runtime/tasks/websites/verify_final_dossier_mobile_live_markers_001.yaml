@@ -1,0 +1,20 @@
+id: verify_final_dossier_mobile_live_markers_001
+title: Verify final dossier and mobile polish live markers
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  assets:
+    - emergence-cg.js
+    - emergence-character-generator.js
+    - emergence-cg.css
+    - emergence-character-generator.css
+actions:
+  - verify final dossier touch guard is live
+  - verify mobile field polish is live
+  - verify clickability CSS guard is live
+verify:
+  - DreamOS Final Dossier Touch Guard present
+  - DreamOS Final Dossier Clickability Guard present
+  - DreamOS Mobile Form Field Polish present
+commit_message: Verify final dossier mobile live markers
