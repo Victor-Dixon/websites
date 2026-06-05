@@ -1,0 +1,18 @@
+id: diagnose_spark_generator_blank_001
+title: Diagnose blank Spark generator live page
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/
+actions:
+  - snapshot live generator DOM
+  - download plugin JS/CSS assets
+  - probe Emergence REST endpoints
+  - classify blank-page failure mode
+verify:
+  - generator DOM captured
+  - plugin assets captured
+  - REST endpoint responses captured
+  - failure class reported
+commit_message: Diagnose Spark generator blank page
