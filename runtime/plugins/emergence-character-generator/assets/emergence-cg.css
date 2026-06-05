@@ -1191,3 +1191,64 @@ button[data-ecg-fail-open-generate="1"] {
   margin: 1.5rem auto;
   padding: 0 1rem;
 }
+
+/* DreamOS Spark Two-Pass Dossier Gate */
+[data-dreamos-retired-dossier-control="1"],
+[data-dreamos-floating-dossier-fab],
+.dreamos-floating-dossier-fab,
+[data-dreamos-guaranteed-final-dossier],
+[data-dreamos-guaranteed-final-dossier-button],
+[data-dreamos-canonical-final-dossier],
+[data-dreamos-end-only-final-dossier],
+.dreamos-guaranteed-dossier-button {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Collapse locked/hidden two-pass sections so mobile does not show huge blank space. */
+[data-phase="locked"],
+[data-locked="1"],
+.ecg-flavor[data-phase="locked"],
+.ecg-question[hidden],
+.ecg-question.is-hidden,
+.ecg-step[hidden],
+.ecg-step.is-hidden {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.dreamos-two-pass-dossier-action {
+  margin: 2rem auto;
+  width: min(100%, 680px);
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+  position: static !important;
+}
+
+.dreamos-two-pass-dossier-button {
+  width: min(100%, 560px);
+  min-height: 56px;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: clamp(1rem, 4vw, 1.15rem);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.dreamos-two-pass-dossier-panel {
+  width: min(100%, 680px);
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
