@@ -1,0 +1,23 @@
+id: connect_emergence_spark_loop_explicit_001
+title: Connect Emergence pages to Spark Protocol loop
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  files:
+    - runtime/content/dadudekc.site/home.html
+    - runtime/content/dadudekc.site/character-generator.html
+    - runtime/content/dadudekc.site/battles.html
+    - runtime/content/dadudekc.site/the-emergence.html
+actions:
+  - patch homepage Spark Protocol CTAs
+  - patch generator bridge copy
+  - patch battles bridge copy
+  - patch emergence story bridge copy
+verify:
+  - Spark Protocol copy present
+  - /spark-generator/ CTA present
+  - /battles/ CTA present
+  - deterministic backend copy present
+  - cinematic outcome copy present
+commit_message: Connect Emergence pages to Spark Protocol loop
