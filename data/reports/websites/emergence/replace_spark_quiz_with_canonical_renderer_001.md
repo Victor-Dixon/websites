@@ -47,3 +47,72 @@ No syntax errors detected in runtime/plugins/emergence-character-generator/emerg
 ## Result
 
 The unstable legacy quiz UI is hidden after the canonical renderer mounts. Q1-Q28 now render directly from EmergenceCG.question_bank using one deterministic select-based form.
+
+## Deploy
+
+```text
+== VERIFY ENV ==
+== WRITE TASK ==
+== DISCOVER REMOTE PLUGIN DIR ==
+/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_PLUGIN_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_ASSET_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets
+== UPLOAD PHP AND ASSETS ==
+UPLOAD=PASS
+== REMOTE CHMOD / CACHE FLUSH ==
+Success: The cache was flushed.
+Plugin 'emergence-character-generator' deactivated.
+Success: Deactivated 1 of 1 plugins.
+Plugin 'emergence-character-generator' activated.
+Success: Activated 1 of 1 plugins.
+Success: The cache was flushed.
+5: * Version: 0.8.7-canonical-quiz-renderer-001
+REMOTE_PLUGIN_DEPLOY=PASS
+== VERIFY LIVE PAGE ASSET VERSION ==
+emergence-cg.css?ver=0.8.7-canonical-quiz-renderer-001
+emergence-character-generator.css?ver=0.8.7-canonical-quiz-renderer-001
+emergence-cg.js?ver=0.8.7-canonical-quiz-renderer-001
+emergence-character-generator.js?ver=0.8.7-canonical-quiz-renderer-001
+== VERIFY LIVE JS MARKER ==
+1279:/* DreamOS Guaranteed Final Dossier Injector
+== REQUIRE ==
+== COMPLETE TASK ==
+== WRITE REPORT ==
+[master 05b9b3e2] Deploy Emergence plugin PHP and cache-busted assets
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+== CLOSEOUT ==
+STATUS=PASS
+REPORT=/data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/deploy_emergence_plugin_php_and_assets_001.md
+TASK=/data/data/com.termux/files/home/projects/websites/runtime/tasks/websites/deploy_emergence_plugin_php_and_assets_001.yaml
+```
+
+## Live verification
+
+```text
+--- page ---
+emergence-cg.css?ver=0.8.7-canonical-quiz-renderer-001
+emergence-character-generator.css?ver=0.8.7-canonical-quiz-renderer-001
+EmergenceCG
+EmergenceCG
+EmergenceCG
+EmergenceCG
+question_bank
+emergence-cg.js?ver=0.8.7-canonical-quiz-renderer-001
+emergence-character-generator.js?ver=0.8.7-canonical-quiz-renderer-001
+--- js ---
+3265:/* DreamOS Canonical Spark Quiz Renderer
+3319:      if (!child.hasAttribute("data-dreamos-canonical-spark-renderer")) {
+3440:        submit.textContent = "Generate Spark";
+3457:    if (!root || root.querySelector("[data-dreamos-canonical-spark-renderer='1']")) {
+3471:    shell.setAttribute("data-dreamos-canonical-spark-renderer", "1");
+3494:    html += '<button type="button" class="dreamos-canonical-submit" data-dreamos-submit-spark disabled>Generate Spark</button>';
+--- css ---
+1320:/* DreamOS Canonical Spark Quiz Renderer */
+1321:[data-dreamos-legacy-spark-ui-hidden="1"] {
+1349:.dreamos-canonical-question-list {
+1355:.dreamos-canonical-question {
+1362:.dreamos-canonical-question label {
+1369:.dreamos-canonical-question select {
+1381:.dreamos-canonical-submit,
+1397:.dreamos-canonical-submit:disabled {
+```
