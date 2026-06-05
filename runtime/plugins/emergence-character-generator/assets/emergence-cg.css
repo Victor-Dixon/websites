@@ -1292,3 +1292,27 @@ select {
   width: 100%;
   max-width: 100%;
 }
+
+/* DreamOS Spark Q11 Renderer Fix */
+[data-dreamos-q11-renderer-repaired="1"] {
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.dreamos-q11-repair-control {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.dreamos-q11-repair-select {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 56px !important;
+  border-radius: 18px !important;
+  padding: 0.85rem 1rem !important;
+  font-size: 1rem !important;
+  color: #10131f !important;
+  background: #f4f4f6 !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+}

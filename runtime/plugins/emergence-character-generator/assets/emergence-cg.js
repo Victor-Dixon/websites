@@ -3119,3 +3119,145 @@
   else boot();
 })();
 
+
+/* DreamOS Spark Q11 Renderer Fix
+ * Repairs visible question cards that have title text but no mounted select/options.
+ * Keeps the quiz moving without fabricating answers.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSSparkQ11RendererFix) return;
+  window.__DreamOSSparkQ11RendererFix = true;
+
+  var LETTERS = ["A","B","C","D","E","F","G","H"];
+
+  function getQuestionBank() {
+    var cg = window.EmergenceCG || {};
+    var qb = cg.question_bank || {};
+    return qb.domain_questions || qb.questions || [];
+  }
+
+  function normalizeQuestionList() {
+    var list = getQuestionBank();
+    if (!Array.isArray(list)) return [];
+
+    return list.map(function (q, idx) {
+      var num = parseInt(q.q || q.id || q.number || (idx + 1), 10);
+      var text = q.question || q.prompt || q.text || "";
+      var opts = q.options || q.answers || {};
+      return { num: num, text: text, options: opts };
+    }).filter(function (q) {
+      return q.num && q.text && q.options;
+    });
+  }
+
+  function optionEntries(options) {
+    if (Array.isArray(options)) {
+      return options.map(function (v, i) {
+        return [LETTERS[i] || String(i + 1), String(v || "")];
+      }).filter(function (pair) { return pair[1]; });
+    }
+
+    return LETTERS.map(function (k) {
+      return [k, String(options[k] || options[k.toLowerCase()] || "")];
+    }).filter(function (pair) { return pair[1]; });
+  }
+
+  function findQuestionNumFromText(text) {
+    var m = String(text || "").match(/\bQ\s*(\d{1,2})\b/i);
+    return m ? parseInt(m[1], 10) : 0;
+  }
+
+  function isVisible(el) {
+    if (!el) return false;
+    var cs = window.getComputedStyle(el);
+    if (cs.display === "none" || cs.visibility === "hidden") return false;
+    var r = el.getBoundingClientRect();
+    return r.width > 0 && r.height > 0;
+  }
+
+  function hasAnswerControl(card) {
+    return !!card.querySelector("select option[value]:not([value='']), input[type='radio'], button[data-answer], [role='radio']");
+  }
+
+  function buildSelect(question) {
+    var select = document.createElement("select");
+    select.className = "dreamos-q11-repair-select";
+    select.setAttribute("name", "question_" + question.num);
+    select.setAttribute("data-question", String(question.num));
+    select.setAttribute("aria-label", "Q" + question.num + " answer");
+
+    var ph = document.createElement("option");
+    ph.value = "";
+    ph.textContent = "Choose one...";
+    select.appendChild(ph);
+
+    optionEntries(question.options).forEach(function (pair) {
+      var opt = document.createElement("option");
+      opt.value = pair[0];
+      opt.textContent = pair[0] + ". " + pair[1];
+      select.appendChild(opt);
+    });
+
+    return select;
+  }
+
+  function repairBlankCards() {
+    var questions = normalizeQuestionList();
+    if (!questions.length) return;
+
+    var byNum = {};
+    questions.forEach(function (q) {
+      byNum[q.num] = q;
+    });
+
+    var candidates = Array.prototype.slice.call(document.querySelectorAll(
+      ".ecg-question, .question, [data-question], [data-q], .ecg-card, .ecg-step, section, fieldset, div"
+    ));
+
+    candidates.forEach(function (card) {
+      if (!isVisible(card)) return;
+      if (card.getAttribute("data-dreamos-q11-renderer-repaired") === "1") return;
+      if (hasAnswerControl(card)) return;
+
+      var text = (card.textContent || "").replace(/\s+/g, " ").trim();
+      if (!text) return;
+
+      var qnum = findQuestionNumFromText(text);
+      if (!qnum || !byNum[qnum]) return;
+
+      // Target blank question cards only. Q11 is known failure, but this also fixes same renderer failure for Q12+.
+      if (qnum < 1 || qnum > 28) return;
+
+      var q = byNum[qnum];
+      var entries = optionEntries(q.options);
+      if (!entries.length) return;
+
+      var controlWrap = document.createElement("div");
+      controlWrap.className = "dreamos-q11-repair-control";
+      controlWrap.appendChild(buildSelect(q));
+
+      card.appendChild(controlWrap);
+      card.setAttribute("data-dreamos-q11-renderer-repaired", "1");
+      card.setAttribute("data-question", String(qnum));
+    });
+  }
+
+  function boot() {
+    repairBlankCards();
+    setTimeout(repairBlankCards, 250);
+    setTimeout(repairBlankCards, 750);
+    setTimeout(repairBlankCards, 1500);
+
+    var timer = null;
+    var observer = new MutationObserver(function () {
+      clearTimeout(timer);
+      timer = setTimeout(repairBlankCards, 150);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+})();
