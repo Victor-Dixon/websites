@@ -1,0 +1,19 @@
+id: rebuild_spark_generator_clean_page_090_001
+title: Rebuild Spark generator as clean button-card page
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  url: https://dadudekc.site/spark-generator/
+  version: 0.9.0-clean-spark-page-001
+actions:
+  - hide unstable legacy Spark UI on canonical page
+  - mount clean first-party Spark page app
+  - render Q1-Q28 as button-card answers
+  - render flavor pass after pass 1
+  - render final dossier after final backend response
+  - deploy plugin PHP and assets
+verify:
+  - live page references 0.9.0-clean-spark-page-001
+  - live JS contains clean page marker
+  - live CSS contains clean page marker
+commit_message: Rebuild Spark generator clean page

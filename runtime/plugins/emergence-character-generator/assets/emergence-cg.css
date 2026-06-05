@@ -1318,3 +1318,184 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
   color: #10131f !important;
   background: #fff !important;
 }
+
+/* DreamOS Clean Spark Page Rebuild */
+[data-dreamos-clean-spark-hidden="1"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+.dreamos-clean-spark {
+  width: min(100% - 1rem, 880px);
+  margin: 1rem auto 3rem;
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 28px;
+  background: radial-gradient(circle at top, rgba(85,95,255,.18), rgba(8,11,24,.94) 42%);
+  color: #f5f5f7;
+}
+
+.dreamos-clean-kicker {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,.68);
+  font-weight: 800;
+}
+
+.dreamos-clean-note,
+.dreamos-clean-progress span {
+  color: rgba(245,245,247,.78);
+}
+
+.dreamos-clean-progress {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,.06);
+}
+
+.dreamos-clean-question-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.dreamos-clean-question {
+  padding: 1rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.045);
+}
+
+.dreamos-clean-question h3 {
+  margin: 0 0 .35rem;
+}
+
+.dreamos-clean-options {
+  display: grid;
+  gap: .65rem;
+  margin-top: .9rem;
+}
+
+.dreamos-clean-options button {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  min-height: 58px;
+  padding: .85rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color: #f5f5f7;
+  text-align: left;
+  cursor: pointer;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+
+.dreamos-clean-options button strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.16);
+}
+
+.dreamos-clean-options button[data-selected="1"] {
+  outline: 3px solid rgba(125,255,190,.75);
+  background: rgba(125,255,190,.14);
+}
+
+.dreamos-clean-submit,
+.dreamos-clean-reset,
+.dreamos-clean-battle-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 54px;
+  margin-top: 1rem;
+  padding: .85rem 1.25rem;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 900;
+  cursor: pointer;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.dreamos-clean-submit {
+  background: #f5f5f7;
+  color: #10131f;
+}
+
+.dreamos-clean-submit:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.dreamos-clean-reset {
+  margin-left: .5rem;
+  background: rgba(255,255,255,.10);
+  color: #f5f5f7;
+}
+
+.dreamos-clean-result-brief,
+.dreamos-clean-final,
+.dreamos-clean-error {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,.06);
+}
+
+.dreamos-clean-error {
+  border: 1px solid rgba(255,120,120,.45);
+}
+
+.dreamos-clean-final-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: .8rem;
+  margin: 1rem 0;
+}
+
+.dreamos-clean-final-grid div {
+  padding: .85rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,.06);
+}
+
+.dreamos-clean-final-grid strong,
+.dreamos-clean-final-grid span {
+  display: block;
+}
+
+.dreamos-clean-final pre {
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+@media (max-width: 760px) {
+  .dreamos-clean-spark {
+    width: calc(100% - .75rem);
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .dreamos-clean-progress {
+    display: block;
+  }
+
+  .dreamos-clean-final-grid {
+    grid-template-columns: 1fr;
+  }
+}

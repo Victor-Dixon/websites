@@ -3309,3 +3309,390 @@
   else boot();
 })();
 
+
+/* DreamOS Clean Spark Page Rebuild
+ * Full replacement page app for /spark-generator/.
+ * Uses button cards instead of selects.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSCleanSparkPageRebuild) return;
+  window.__DreamOSCleanSparkPageRebuild = true;
+
+  var LETTERS = ["A","B","C","D","E","F","G","H"];
+  var DOMAIN_REQUIRED = 28;
+
+  function isSparkPage() {
+    return String(window.location.pathname || "").replace(/\/+$/, "") === "/spark-generator";
+  }
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function cg() {
+    return window.EmergenceCG || {};
+  }
+
+  function qb() {
+    return (cg().question_bank || {});
+  }
+
+  function clean(v) {
+    if (v === null || v === undefined) return "";
+    if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") return String(v).trim();
+    if (typeof v === "object") return String(v.text || v.label || v.answer || v.value || v.title || v.name || "").trim();
+    return "";
+  }
+
+  function optionEntries(options) {
+    var out = [];
+
+    if (Array.isArray(options)) {
+      options.forEach(function (item, i) {
+        var letter = LETTERS[i] || String(i + 1);
+        var text = clean(item);
+        if (item && typeof item === "object") {
+          letter = clean(item.letter || item.key || item.id || item.value || letter).substring(0, 1).toUpperCase();
+          text = clean(item.text || item.label || item.answer || item.title || item.name || item.value);
+        }
+        if (LETTERS.indexOf(letter) === -1) letter = LETTERS[i] || String(i + 1);
+        if (!text || text === letter) text = "Option " + letter;
+        out.push([letter, text]);
+      });
+    } else if (options && typeof options === "object") {
+      LETTERS.forEach(function (letter) {
+        var text = clean(options[letter] || options[letter.toLowerCase()]);
+        if (text) out.push([letter, text]);
+      });
+
+      if (!out.length) {
+        Object.keys(options).forEach(function (key, i) {
+          var letter = clean(key).substring(0, 1).toUpperCase();
+          if (LETTERS.indexOf(letter) === -1) letter = LETTERS[i] || String(i + 1);
+          var text = clean(options[key]);
+          if (!text || text === letter) text = "Option " + letter;
+          out.push([letter, text]);
+        });
+      }
+    }
+
+    if (!out.length) {
+      out = LETTERS.map(function (letter) {
+        return [letter, "Option " + letter];
+      });
+    }
+
+    return out.slice(0, 8);
+  }
+
+  function normalizeQuestions(raw, fallbackStart) {
+    if (!Array.isArray(raw)) return [];
+    return raw.map(function (q, idx) {
+      q = q || {};
+      var num = parseInt(q.q || q.id || q.number || q.index || (fallbackStart + idx), 10);
+      return {
+        q: num,
+        question: clean(q.question || q.prompt || q.text || q.title || ("Question " + num)),
+        domain: clean(q.domain || q.affinity || q.group || q.category || ""),
+        options: q.options || q.answers || q.choices || q.values || q.responses || {}
+      };
+    }).filter(function (q) {
+      return q.q && q.question;
+    }).sort(function (a, b) {
+      return a.q - b.q;
+    });
+  }
+
+  function domainQuestions() {
+    return normalizeQuestions(qb().domain_questions || qb().questions || [], 1).slice(0, DOMAIN_REQUIRED);
+  }
+
+  function flavorQuestions(manifested) {
+    var raw = qb().flavor_questions || [];
+    var list = normalizeQuestions(raw, 29);
+
+    if (!list.length) return [];
+
+    var manifest = {};
+    (manifested || []).forEach(function (d) {
+      manifest[String(d || "").toLowerCase()] = true;
+    });
+
+    var filtered = list.filter(function (q) {
+      if (!q.domain) return true;
+      return !!manifest[q.domain.toLowerCase()];
+    });
+
+    return filtered.length ? filtered : list;
+  }
+
+  function mount() {
+    return document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") || document.querySelector("main") || document.body;
+  }
+
+  function hideLegacy(root) {
+    Array.prototype.forEach.call(root.children, function (child) {
+      if (!child.hasAttribute("data-dreamos-clean-spark-page")) {
+        child.setAttribute("data-dreamos-clean-spark-hidden", "1");
+      }
+    });
+  }
+
+  function state() {
+    try {
+      return JSON.parse(sessionStorage.getItem("dreamos.cleanSpark.state.v1") || "{}") || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function setState(next) {
+    try {
+      sessionStorage.setItem("dreamos.cleanSpark.state.v1", JSON.stringify(next || {}));
+    } catch (e) {}
+  }
+
+  function countAnswers(answers, questions) {
+    var total = 0;
+    (questions || []).forEach(function (q) {
+      if (answers && answers[String(q.q)]) total++;
+    });
+    return total;
+  }
+
+  function esc(s) {
+    return String(s || "").replace(/[&<>"']/g, function (c) {
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  function renderQuestion(q, answers) {
+    var selected = answers[String(q.q)] || "";
+    var html = "";
+    html += '<article class="dreamos-clean-question" data-clean-q="' + q.q + '">';
+    html += '<h3>Q' + q.q + '</h3>';
+    html += '<p>' + esc(q.question) + '</p>';
+    html += '<div class="dreamos-clean-options">';
+    optionEntries(q.options).forEach(function (pair) {
+      var active = selected === pair[0] ? ' data-selected="1"' : "";
+      html += '<button type="button" data-clean-answer="' + pair[0] + '" data-clean-question="' + q.q + '"' + active + '>';
+      html += '<strong>' + pair[0] + '</strong><span>' + esc(pair[1]) + '</span>';
+      html += '</button>';
+    });
+    html += '</div>';
+    html += '</article>';
+    return html;
+  }
+
+  function renderProgress(label, count, total) {
+    return '<div class="dreamos-clean-progress"><strong>' + esc(label) + '</strong><span>' + count + '/' + total + ' complete</span></div>';
+  }
+
+  function renderShell(root) {
+    var s = state();
+    var domain = domainQuestions();
+
+    if (!domain.length) {
+      root.innerHTML = '<section data-dreamos-clean-spark-page="1" class="dreamos-clean-spark"><h2>Spark Generator</h2><p>Question bank did not load. Refresh once.</p></section>';
+      return;
+    }
+
+    var domainAnswers = s.domain_answers || {};
+    var domainCount = countAnswers(domainAnswers, domain);
+    var phase = s.phase || "domain";
+
+    var html = "";
+    html += '<section data-dreamos-clean-spark-page="1" class="dreamos-clean-spark">';
+    html += '<p class="dreamos-clean-kicker">Spark Protocol</p>';
+    html += '<h1>Generate Your Spark</h1>';
+    html += '<p class="dreamos-clean-note">Answer the core questions. Your second pass unlocks from your manifested domains.</p>';
+
+    if (phase === "domain") {
+      html += renderProgress("Pass 1: Domain Typing", domainCount, domain.length);
+      html += '<div class="dreamos-clean-question-list">';
+      domain.forEach(function (q) { html += renderQuestion(q, domainAnswers); });
+      html += '</div>';
+      html += '<button type="button" class="dreamos-clean-submit" data-clean-submit-domain ' + (domainCount < domain.length ? "disabled" : "") + '>Generate Spark Pass 1</button>';
+    }
+
+    if (phase === "flavor") {
+      var manifest = (s.domain_result && s.domain_result.manifested) || [];
+      var flavor = flavorQuestions(manifest);
+      var flavorAnswers = s.flavor_answers || {};
+      var flavorCount = countAnswers(flavorAnswers, flavor);
+
+      html += '<section class="dreamos-clean-result-brief">';
+      html += '<h2>' + esc((s.domain_result && s.domain_result.lead_domain) || "Spark") + ' Spark</h2>';
+      html += '<p><strong>Manifested:</strong> ' + esc(manifest.join(", ") || "Pending") + '</p>';
+      html += '<p><strong>Next:</strong> Complete the flavor pass.</p>';
+      html += '</section>';
+
+      html += renderProgress("Pass 2: Flavor Selection", flavorCount, flavor.length || 0);
+
+      if (!flavor.length) {
+        html += '<p>No flavor questions were available. You can build the dossier from Pass 1.</p>';
+        html += '<button type="button" class="dreamos-clean-submit" data-clean-build-final>Build Final Dossier</button>';
+      } else {
+        html += '<div class="dreamos-clean-question-list">';
+        flavor.forEach(function (q) { html += renderQuestion(q, flavorAnswers); });
+        html += '</div>';
+        html += '<button type="button" class="dreamos-clean-submit" data-clean-submit-flavor ' + (flavorCount < flavor.length ? "disabled" : "") + '>Build Final Dossier</button>';
+      }
+    }
+
+    if (phase === "final") {
+      html += renderFinal(s.final_result || s.domain_result || {});
+    }
+
+    html += '<button type="button" class="dreamos-clean-reset" data-clean-reset>Reset Spark Quiz</button>';
+    html += '</section>';
+
+    root.innerHTML = html;
+  }
+
+  function renderFinal(payload) {
+    var manifested = Array.isArray(payload.manifested) ? payload.manifested.join(", ") : "Pending";
+    var powers = Array.isArray(payload.powers) ? payload.powers.map(function (p) {
+      return clean(p.name || p.title || p.power || p);
+    }).filter(Boolean).join(", ") : "";
+
+    var html = "";
+    html += '<section class="dreamos-clean-final">';
+    html += '<p class="dreamos-clean-kicker">Final Dossier</p>';
+    html += '<h2>' + esc(payload.lead_domain || "Generated") + ' Spark</h2>';
+    html += '<div class="dreamos-clean-final-grid">';
+    html += '<div><strong>Cast</strong><span>' + esc(payload.cast || "Pending") + '</span></div>';
+    html += '<div><strong>Signature</strong><span>' + esc(payload.spark_signature || payload.provisional_spark_signature || "Pending") + '</span></div>';
+    html += '<div><strong>Combat</strong><span>' + esc(payload.combat_capability || payload.provisional_combat_capability || "Pending") + '</span></div>';
+    html += '<div><strong>Domains</strong><span>' + esc(manifested) + '</span></div>';
+    html += '</div>';
+    if (powers) html += '<p><strong>Powers:</strong> ' + esc(powers) + '</p>';
+    html += '<p>' + esc(payload.profile_shape || "Spark profile generated.") + '</p>';
+    html += '<a class="dreamos-clean-battle-link" href="/battles/">Enter the What-If Arena</a>';
+    html += '<details><summary>Raw protocol output</summary><pre>' + esc(JSON.stringify(payload, null, 2)) + '</pre></details>';
+    html += '</section>';
+    return html;
+  }
+
+  async function postGenerate(body) {
+    var res = await fetch(endpoint(), {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(body)
+    });
+    var payload = await res.json();
+    if (!res.ok) throw new Error((payload && payload.message) || ("HTTP " + res.status));
+    return payload;
+  }
+
+  function setAnswer(root, question, answer) {
+    var s = state();
+    var phase = s.phase || "domain";
+    if (phase === "domain") {
+      s.domain_answers = s.domain_answers || {};
+      s.domain_answers[String(question)] = answer;
+    } else if (phase === "flavor") {
+      s.flavor_answers = s.flavor_answers || {};
+      s.flavor_answers[String(question)] = answer;
+    }
+    setState(s);
+    renderShell(root);
+  }
+
+  function showError(root, message) {
+    var box = document.createElement("div");
+    box.className = "dreamos-clean-error";
+    box.textContent = String(message || "Something went wrong.");
+    var shell = root.querySelector("[data-dreamos-clean-spark-page='1']");
+    if (shell) shell.prepend(box);
+  }
+
+  function bind(root) {
+    root.addEventListener("click", async function (ev) {
+      var answer = ev.target.closest && ev.target.closest("[data-clean-answer]");
+      if (answer) {
+        ev.preventDefault();
+        setAnswer(root, answer.getAttribute("data-clean-question"), answer.getAttribute("data-clean-answer"));
+        return;
+      }
+
+      var reset = ev.target.closest && ev.target.closest("[data-clean-reset]");
+      if (reset) {
+        ev.preventDefault();
+        sessionStorage.removeItem("dreamos.cleanSpark.state.v1");
+        renderShell(root);
+        return;
+      }
+
+      var domainSubmit = ev.target.closest && ev.target.closest("[data-clean-submit-domain]");
+      if (domainSubmit) {
+        ev.preventDefault();
+        if (domainSubmit.disabled) return;
+        domainSubmit.disabled = true;
+        domainSubmit.textContent = "Generating...";
+        try {
+          var s1 = state();
+          var result1 = await postGenerate({
+            answers: s1.domain_answers || {},
+            source: "dreamos-clean-spark-page"
+          });
+          s1.phase = "flavor";
+          s1.domain_result = result1;
+          s1.flavor_answers = s1.flavor_answers || {};
+          setState(s1);
+          renderShell(root);
+          window.scrollTo({top: 0, behavior: "smooth"});
+        } catch (err) {
+          domainSubmit.disabled = false;
+          domainSubmit.textContent = "Generate Spark Pass 1";
+          showError(root, err.message || err);
+        }
+        return;
+      }
+
+      var flavorSubmit = ev.target.closest && ev.target.closest("[data-clean-submit-flavor], [data-clean-build-final]");
+      if (flavorSubmit) {
+        ev.preventDefault();
+        if (flavorSubmit.disabled) return;
+        flavorSubmit.disabled = true;
+        flavorSubmit.textContent = "Building...";
+        try {
+          var s2 = state();
+          var result2 = await postGenerate({
+            answers: s2.domain_answers || {},
+            flavor_answers: s2.flavor_answers || {},
+            source: "dreamos-clean-spark-page"
+          });
+          s2.phase = "final";
+          s2.final_result = result2;
+          setState(s2);
+          renderShell(root);
+          window.scrollTo({top: 0, behavior: "smooth"});
+        } catch (err2) {
+          flavorSubmit.disabled = false;
+          flavorSubmit.textContent = "Build Final Dossier";
+          showError(root, err2.message || err2);
+        }
+      }
+    });
+  }
+
+  function boot() {
+    if (!isSparkPage()) return;
+    var root = mount();
+    hideLegacy(root);
+
+    var app = document.createElement("div");
+    app.setAttribute("data-dreamos-clean-spark-page", "1");
+    root.appendChild(app);
+
+    bind(app);
+    renderShell(app);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+})();
