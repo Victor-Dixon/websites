@@ -1778,3 +1778,226 @@
   });
 })();
 
+
+
+
+/* DreamOS Canonical Final Dossier Force Button
+ * Purpose: canonical /spark-generator/ must always have a visible, direct-bound dossier button.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSCanonicalFinalDossierForceButton) return;
+  window.__DreamOSCanonicalFinalDossierForceButton = true;
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function root() {
+    return document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") ||
+      document.querySelector("main") ||
+      document.body;
+  }
+
+  function esc(v) {
+    return String(v == null ? "" : v)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function answers(scope) {
+    var out = {};
+    Array.prototype.forEach.call((scope || document).querySelectorAll("input, select, textarea, [data-answer], [data-value]"), function (el) {
+      var hay = [
+        el.name || "",
+        el.id || "",
+        el.getAttribute("data-question") || "",
+        el.getAttribute("data-q") || "",
+        el.closest("[data-question]") ? el.closest("[data-question]").getAttribute("data-question") : "",
+        el.closest("[data-q]") ? el.closest("[data-q]").getAttribute("data-q") : ""
+      ].join(" ");
+      var m = hay.match(/(?:q|question|answer)?[_-]?(\d+)/i);
+      if (!m) return;
+      if ((el.type === "radio" || el.type === "checkbox") && !el.checked) return;
+      var val = (el.value || el.getAttribute("data-answer") || el.getAttribute("data-value") || el.textContent || "").trim();
+      if (!val) return;
+      out[String(parseInt(m[1], 10))] = val.substring(0, 1).toUpperCase();
+    });
+
+    for (var i = 1; i <= 28; i += 1) {
+      if (!out[String(i)]) out[String(i)] = ["A","B","C","D","E","F","G","H"][(i - 1) % 8];
+    }
+    return out;
+  }
+
+  function flavor(scope) {
+    var out = { alias: "", costume: "", attitude: "" };
+    Array.prototype.forEach.call((scope || document).querySelectorAll("input, textarea, select"), function (el) {
+      var hay = [
+        el.name || "",
+        el.id || "",
+        el.placeholder || "",
+        el.getAttribute("aria-label") || "",
+        el.closest("label") ? el.closest("label").textContent : "",
+        el.parentElement ? el.parentElement.textContent : ""
+      ].join(" ").toLowerCase();
+
+      var value = (el.value || "").trim();
+      if (!value) return;
+
+      if (!out.alias && (hay.indexOf("alias") !== -1 || hay.indexOf("character name") !== -1 || hay.indexOf("name") !== -1)) out.alias = value;
+      if (!out.costume && (hay.indexOf("costume") !== -1 || hay.indexOf("suit") !== -1 || hay.indexOf("visual") !== -1)) out.costume = value;
+      if (!out.attitude && (hay.indexOf("personality") !== -1 || hay.indexOf("attitude") !== -1 || hay.indexOf("vibe") !== -1)) out.attitude = value;
+    });
+    return out;
+  }
+
+  function panel() {
+    var r = root();
+    var p = r.querySelector(".dreamos-canonical-dossier-panel");
+    if (!p) {
+      p = document.createElement("section");
+      p.className = "dreamos-canonical-dossier-panel";
+      p.setAttribute("aria-live", "polite");
+      var cta = r.querySelector(".dreamos-canonical-dossier-cta");
+      if (cta) cta.insertAdjacentElement("afterend", p);
+      else r.appendChild(p);
+    }
+    return p;
+  }
+
+  function show(html) {
+    var p = panel();
+    p.innerHTML = html;
+    p.style.display = "block";
+    p.style.visibility = "visible";
+    p.style.opacity = "1";
+    try { p.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { p.scrollIntoView(); }
+  }
+
+  function render(data, f) {
+    show([
+      '<p class="ecg-kicker">Final Spark Dossier</p>',
+      '<h2>' + esc(f.alias || "Generated Spark") + '</h2>',
+      '<div class="dreamos-dossier-grid">',
+      '<article><strong>Lead Domain</strong><span>' + esc(data.lead_domain || "Unknown") + '</span></article>',
+      '<article><strong>Cast</strong><span>' + esc(data.cast || "Unknown") + '</span></article>',
+      '<article><strong>Spark Signature</strong><span>' + esc(data.provisional_spark_signature || "") + '</span></article>',
+      '<article><strong>Combat Capability</strong><span>' + esc(data.provisional_combat_capability || "") + '</span></article>',
+      '</div>',
+      '<p><strong>Manifested Domains:</strong> ' + esc(Array.isArray(data.manifested) ? data.manifested.join(", ") : "") + '</p>',
+      '<p><strong>Profile Shape:</strong> ' + esc(data.profile_shape || "") + '</p>',
+      '<p><strong>Costume Concept:</strong> ' + esc(f.costume || "Not specified") + '</p>',
+      '<p><strong>Personality / Attitude:</strong> ' + esc(f.attitude || "Not specified") + '</p>',
+      '<div class="spark-loop-actions">',
+      '<a href="/battles/?spark_handoff=1">Enter Battles</a>',
+      '<a href="/spark-generator/">Generate Again</a>',
+      '</div>',
+      '<details><summary>Raw Spark Data</summary><pre>' + esc(JSON.stringify(data, null, 2)) + '</pre></details>'
+    ].join(""));
+  }
+
+  function run(btn) {
+    var r = root();
+    var f = flavor(r);
+
+    btn.disabled = true;
+    btn.textContent = "Building Final Dossier...";
+
+    show([
+      '<p class="ecg-kicker">Final Dossier</p>',
+      '<h2>Building Final Spark Dossier...</h2>',
+      '<p>The click registered on canonical /spark-generator/. Generating now.</p>',
+      '<div class="dreamos-dossier-loading-bar"><span></span></div>'
+    ].join(""));
+
+    fetch(endpoint(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({
+        answers: answers(r),
+        flavor: f,
+        source: "dreamos-canonical-final-dossier-force-button"
+      })
+    })
+    .then(function (res) {
+      return res.text().then(function (txt) {
+        var data;
+        try { data = JSON.parse(txt); } catch (e) { data = { raw: txt }; }
+        if (!res.ok) throw data;
+        return data;
+      });
+    })
+    .then(function (data) {
+      render(data, f);
+      btn.textContent = "Rebuild Final Dossier";
+    })
+    .catch(function (err) {
+      show([
+        '<p class="ecg-kicker">Final Dossier Error</p>',
+        '<h2>The click worked, but generation returned an error.</h2>',
+        '<pre>' + esc(JSON.stringify(err, null, 2)) + '</pre>'
+      ].join(""));
+      btn.textContent = "Retry Final Dossier";
+    })
+    .finally(function () {
+      btn.disabled = false;
+    });
+  }
+
+  function inject() {
+    var r = root();
+    if (!r || r.querySelector("[data-dreamos-canonical-dossier-force]")) return;
+
+    var wrap = document.createElement("section");
+    wrap.className = "dreamos-canonical-dossier-cta";
+    wrap.setAttribute("data-dreamos-canonical-dossier-force", "1");
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "dreamos-canonical-dossier-button";
+    btn.textContent = "Create Final Dossier";
+    btn.setAttribute("data-dreamos-canonical-dossier-button", "1");
+
+    wrap.appendChild(btn);
+
+    var native = Array.prototype.slice.call(r.querySelectorAll("button, a, [role='button']")).reverse().find(function (el) {
+      return ((el.textContent || el.value || "").toLowerCase().indexOf("final dossier") !== -1);
+    });
+
+    if (native && native.parentElement) {
+      native.parentElement.insertBefore(wrap, native.nextSibling);
+      native.style.display = "none";
+    } else {
+      r.appendChild(wrap);
+    }
+
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      run(btn);
+    }, true);
+
+    btn.addEventListener("touchend", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      run(btn);
+    }, { capture: true, passive: false });
+  }
+
+  function boot() {
+    inject();
+    window.setTimeout(inject, 400);
+    window.setTimeout(inject, 1200);
+    window.setTimeout(inject, 2500);
+    new MutationObserver(inject).observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+

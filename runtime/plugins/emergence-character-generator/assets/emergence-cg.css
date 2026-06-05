@@ -915,3 +915,67 @@
   }
 }
 
+
+
+
+/* DreamOS Canonical Final Dossier Force Button Styles */
+.dreamos-canonical-dossier-cta {
+  margin: 1.5rem auto;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 200;
+}
+
+.dreamos-canonical-dossier-button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  min-width: 240px;
+  padding: 14px 24px !important;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  position: relative;
+  z-index: 201;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.dreamos-canonical-dossier-panel {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  max-width: 960px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 20px;
+  background: rgba(12, 14, 28, .97);
+  color: #f7f5ff;
+  position: relative;
+  z-index: 200;
+}
+
+.dreamos-canonical-dossier-panel pre {
+  white-space: pre-wrap;
+  overflow: auto;
+}
+
+@media (max-width: 760px) {
+  .dreamos-canonical-dossier-button {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .dreamos-canonical-dossier-panel {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+

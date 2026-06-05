@@ -1,0 +1,21 @@
+id: recover_canonical_route_and_force_dossier_button_001
+title: Recover canonical Spark route and force dossier button
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  canonical_route: /spark-generator/
+  asset_version: 0.7.6-canonical-dossier-001
+actions:
+  - revert repo content from versioned Spark route to canonical route
+  - revert live WordPress DB/files from versioned route to canonical route
+  - patch JS to always inject a guaranteed final dossier button
+  - bump plugin asset version
+  - deploy plugin PHP and assets
+  - verify canonical page loads new asset version
+verify:
+  - live homepage points to /spark-generator/
+  - live homepage does not point to /spark-generator/?spark=v075
+  - canonical /spark-generator/ loads 0.7.6-canonical-dossier-001 assets
+  - live JS contains canonical dossier force marker
+commit_message: Recover canonical Spark route and force dossier button
