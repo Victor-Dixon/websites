@@ -676,3 +676,43 @@ button[data-ecg-fail-open-generate="1"] {
   margin: 1.5rem auto;
   padding: 0 1rem;
 }
+
+/* DreamOS Passive Dossier Duplicate Suppression */
+[data-dreamos-floating-dossier-fab],
+.dreamos-floating-dossier-fab,
+[data-dreamos-guaranteed-final-dossier],
+[data-dreamos-guaranteed-final-dossier-button],
+[data-dreamos-canonical-final-dossier],
+[data-dreamos-end-only-final-dossier],
+.dreamos-guaranteed-dossier-button {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Do not collapse normal question cards. Only collapse explicitly locked flavor panels. */
+.ecg-flavor[data-phase="locked"],
+[data-phase="locked"][data-flavor-panel],
+[data-locked="1"][data-flavor-panel] {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Mobile question cards should not reserve giant empty space. */
+.ecg-question,
+.question,
+[class*="question"] {
+  min-height: auto;
+}
+
+.ecg-question select,
+.question select,
+select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}

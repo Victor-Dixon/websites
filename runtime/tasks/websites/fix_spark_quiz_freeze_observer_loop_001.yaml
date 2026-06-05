@@ -1,0 +1,20 @@
+id: fix_spark_quiz_freeze_observer_loop_001
+title: Fix Spark quiz freeze from dossier observer loop
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  canonical_url: https://dadudekc.site/spark-generator/
+  asset_version: 0.8.5-quiz-freeze-observer-fix-001
+actions:
+  - bump plugin asset version
+  - disable aggressive dossier observer loops
+  - stop attribute-write feedback loops
+  - replace active mutation hiding with CSS suppression
+  - preserve end-only dossier behavior
+  - deploy plugin PHP and assets
+  - verify canonical route and live markers
+verify:
+  - canonical route loads 0.8.5-quiz-freeze-observer-fix-001
+  - live JS contains observer loop fix marker
+  - live CSS contains passive duplicate suppression marker
+commit_message: Fix Spark quiz freeze observer loop

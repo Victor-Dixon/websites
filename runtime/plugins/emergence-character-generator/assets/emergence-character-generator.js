@@ -1410,7 +1410,7 @@
     setTimeout(ensureEndOnlyButton, 250);
     setTimeout(ensureEndOnlyButton, 1000);
     setTimeout(ensureEndOnlyButton, 2500);
-    new MutationObserver(ensureEndOnlyButton).observe(document.body, {childList: true, subtree: true, attributes: true});
+    new MutationObserver(ensureEndOnlyButton).observe(document.body, {childList: true, subtree: true});
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
@@ -1675,9 +1675,43 @@
     setTimeout(ensureButton, 250);
     setTimeout(ensureButton, 1000);
     setTimeout(ensureButton, 2500);
-    new MutationObserver(ensureButton).observe(document.body, {childList: true, subtree: true, attributes: true});
+    new MutationObserver(function(){ window.clearTimeout(window.__dreamosDossierObserverTimer); window.__dreamosDossierObserverTimer = window.setTimeout(ensureButton, 150); }).observe(document.body, {childList: true, subtree: true});
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();
+
+
+/* DreamOS Spark Quiz Freeze Observer Fix
+ * Passive safety shim: prevent dossier helper loops from stalling mobile quiz rendering.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSSparkQuizFreezeObserverFix) return;
+  window.__DreamOSSparkQuizFreezeObserverFix = true;
+
+  var lastRun = 0;
+
+  function safeSweep() {
+    var now = Date.now();
+    if (now - lastRun < 250) return;
+    lastRun = now;
+
+    // CSS handles hiding. JS only removes impossible floating controls once.
+    Array.prototype.forEach.call(document.querySelectorAll("[data-dreamos-floating-dossier-fab], .dreamos-floating-dossier-fab"), function (el) {
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+    });
+  }
+
+  function boot() {
+    safeSweep();
+    setTimeout(safeSweep, 500);
+    setTimeout(safeSweep, 1500);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+})();
+
