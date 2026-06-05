@@ -316,3 +316,67 @@ No syntax errors detected in runtime/plugins/emergence-character-generator/emerg
 ## Result
 
 Added a targeted renderer repair for visible question cards that show Q text but have no answer control mounted. This specifically addresses Q11 and same-class blank question failures without fabricating answers.
+
+## Deploy
+
+```text
+== VERIFY ENV ==
+== WRITE TASK ==
+== DISCOVER REMOTE PLUGIN DIR ==
+/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_PLUGIN_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_ASSET_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets
+== UPLOAD PHP AND ASSETS ==
+UPLOAD=PASS
+== REMOTE CHMOD / CACHE FLUSH ==
+Success: The cache was flushed.
+Plugin 'emergence-character-generator' deactivated.
+Success: Deactivated 1 of 1 plugins.
+Plugin 'emergence-character-generator' activated.
+Success: Activated 1 of 1 plugins.
+Success: The cache was flushed.
+5: * Version: 0.8.6-q11-renderer-fix-001
+REMOTE_PLUGIN_DEPLOY=PASS
+== VERIFY LIVE PAGE ASSET VERSION ==
+emergence-cg.css?ver=0.8.6-q11-renderer-fix-001
+emergence-character-generator.css?ver=0.8.6-q11-renderer-fix-001
+emergence-cg.js?ver=0.8.6-q11-renderer-fix-001
+emergence-character-generator.js?ver=0.8.6-q11-renderer-fix-001
+== VERIFY LIVE JS MARKER ==
+1279:/* DreamOS Guaranteed Final Dossier Injector
+== REQUIRE ==
+== COMPLETE TASK ==
+== WRITE REPORT ==
+[master d25253ab] Deploy Emergence plugin PHP and cache-busted assets
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+== CLOSEOUT ==
+STATUS=PASS
+REPORT=/data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/deploy_emergence_plugin_php_and_assets_001.md
+TASK=/data/data/com.termux/files/home/projects/websites/runtime/tasks/websites/deploy_emergence_plugin_php_and_assets_001.yaml
+```
+
+## Live verification
+
+```text
+--- page ---
+emergence-cg.css?ver=0.8.6-q11-renderer-fix-001
+emergence-character-generator.css?ver=0.8.6-q11-renderer-fix-001
+What kind of resilience
+EmergenceCG
+EmergenceCG
+EmergenceCG
+EmergenceCG
+question_bank
+What kind of resilience
+emergence-cg.js?ver=0.8.6-q11-renderer-fix-001
+emergence-character-generator.js?ver=0.8.6-q11-renderer-fix-001
+--- js ---
+3123:/* DreamOS Spark Q11 Renderer Fix
+3186:    select.className = "dreamos-q11-repair-select";
+3221:      if (card.getAttribute("data-dreamos-q11-renderer-repaired") === "1") return;
+3242:      card.setAttribute("data-dreamos-q11-renderer-repaired", "1");
+--- css ---
+1296:/* DreamOS Spark Q11 Renderer Fix */
+1297:[data-dreamos-q11-renderer-repaired="1"] {
+1307:.dreamos-q11-repair-select {
+```
