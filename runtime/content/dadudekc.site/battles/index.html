@@ -137,11 +137,10 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
     <div class="hero">
       <div>
         <div class="kicker">What-If Arena</div>
-        <h1>Pick your card. Fight the AI.</h1>
+        <h1>Your card vs AI.</h1>
         <p>
-          Switch between saved Spark cards before battle, then throw your chosen
-          character into a cinematic AI matchup with live damage drops and power
-          themed attacks.
+          Load your one saved Spark card, then throw that character into a
+          cinematic AI matchup with live damage drops and power themed attacks.
         </p>
         <div class="toolbar">
           <a class="btn primary" href="/spark-generator/">Create Another Card</a>
@@ -356,7 +355,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
   function render(){
     const chars=state.chars;
     if(!chars.length){
-      app.innerHTML='<div class="empty"><h2>No saved cards yet</h2><p>Generate and save a Spark first, then return to pick your fighter card before battling the AI.</p><a class="btn primary" href="/spark-generator/">Generate Your Spark</a></div>';
+      app.innerHTML='<div class="empty"><h2>No saved character yet</h2><p>Generate and save one Spark first, then return to fight the AI with that card.</p><a class="btn primary" href="/spark-generator/">Generate Your Spark</a></div>';
       return;
     }
     const player=active();
@@ -367,9 +366,9 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
         <div class="deck-head">
           <div>
             <div class="kicker">Your bench</div>
-            <h2>Switch cards before battle</h2>
+            <h2>Your saved battle card</h2>
           </div>
-          <small>${chars.length} saved card${chars.length===1?"":"s"}</small>
+          <small>single character slot</small>
         </div>
         <div class="deck">${chars.map(c=>makeCard(c,c.id===state.selectedId)).join("")}</div>
       </section>
@@ -513,8 +512,9 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
     }
   };
   function boot(){
-    state.chars=load();
-    const selected=selectedFromStorage(state.chars)||state.chars[0];
+    const loaded=load();
+    const selected=selectedFromStorage(loaded)||loaded[0];
+    state.chars=selected?[selected]:[];
     state.selectedId=selected&&selected.id?selected.id:(state.chars[0]&&state.chars[0].id)||"";
     state.aiIndex=Math.floor(Math.random()*aiRoster.length);
     resetBattle(arenas[Math.floor(Math.random()*arenas.length)]);
