@@ -3119,3 +3119,193 @@
   else boot();
 })();
 
+
+
+/* DreamOS Original Domain Question Renderer Branch Fix
+ * Repairs the legacy Q1-Q28 renderer without replacing it.
+ * Cause class: visible question row/card exists, but select/options are empty or detached after Q10/Q11.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSOriginalRendererQ11Fix) return;
+  window.__DreamOSOriginalRendererQ11Fix = true;
+
+  var REQUIRED = 28;
+  var LETTERS = ["A","B","C","D","E","F","G","H"];
+
+  function clean(v) {
+    if (v === null || v === undefined) return "";
+    if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") return String(v).trim();
+    if (typeof v === "object") return String(v.text || v.label || v.answer || v.value || v.title || v.name || "").trim();
+    return "";
+  }
+
+  function bank() {
+    var cg = window.EmergenceCG || {};
+    var qb = cg.question_bank || {};
+    var list = qb.domain_questions || qb.questions || [];
+    if (!Array.isArray(list)) return [];
+    return list.slice(0, REQUIRED).map(function (q, idx) {
+      q = q || {};
+      return {
+        q: parseInt(q.q || q.id || q.number || (idx + 1), 10),
+        question: clean(q.question || q.prompt || q.text || q.title || ("Question " + (idx + 1))),
+        options: q.options || q.answers || q.choices || {}
+      };
+    }).filter(function (q) {
+      return q.q >= 1 && q.q <= REQUIRED;
+    });
+  }
+
+  function entries(options) {
+    var out = [];
+
+    if (Array.isArray(options)) {
+      options.forEach(function (item, i) {
+        var letter = LETTERS[i] || String(i + 1);
+        var text = clean(item);
+        if (typeof item === "object" && item) {
+          letter = clean(item.letter || item.key || item.id || item.value || letter).substring(0,1).toUpperCase();
+          text = clean(item.text || item.label || item.answer || item.title || item.name || item.value);
+        }
+        if (LETTERS.indexOf(letter) === -1) letter = LETTERS[i] || String(i + 1);
+        if (!text || text === letter) text = "Option " + letter;
+        out.push([letter, text]);
+      });
+    } else if (options && typeof options === "object") {
+      LETTERS.forEach(function (letter) {
+        var text = clean(options[letter] || options[letter.toLowerCase()]);
+        if (text) out.push([letter, text]);
+      });
+    }
+
+    if (!out.length) {
+      out = LETTERS.map(function (letter) { return [letter, "Option " + letter]; });
+    }
+
+    return out.slice(0, 8);
+  }
+
+  function questionByNumber() {
+    var out = {};
+    bank().forEach(function (q) { out[String(q.q)] = q; });
+    return out;
+  }
+
+  function questionNumberFromElement(el) {
+    if (!el) return 0;
+
+    var attrs = [
+      "data-question", "data-q", "data-question-id", "data-index",
+      "name", "id", "for"
+    ];
+
+    var node = el;
+    for (var depth = 0; node && depth < 4; depth++, node = node.parentElement) {
+      for (var i = 0; i < attrs.length; i++) {
+        var val = node.getAttribute && node.getAttribute(attrs[i]);
+        if (!val) continue;
+        var m = String(val).match(/(?:q|question|domain|answer|spark)[^\d]*(\d{1,2})/i) || String(val).match(/^(\d{1,2})$/);
+        if (m) {
+          var n = parseInt(m[1], 10);
+          if (n >= 1 && n <= REQUIRED) return n;
+        }
+      }
+
+      var text = (node.textContent || "").replace(/\s+/g, " ").trim();
+      var tm = text.match(/\bQ\s*(\d{1,2})\b/i);
+      if (tm) {
+        var tn = parseInt(tm[1], 10);
+        if (tn >= 1 && tn <= REQUIRED) return tn;
+      }
+    }
+
+    return 0;
+  }
+
+  function optionCount(select) {
+    if (!select) return 0;
+    return Array.prototype.filter.call(select.options || [], function (o) {
+      return String(o.value || "").trim() !== "";
+    }).length;
+  }
+
+  function rebuildSelect(select, qdata) {
+    var oldValue = String(select.value || "").trim().toUpperCase();
+
+    while (select.firstChild) select.removeChild(select.firstChild);
+
+    var ph = document.createElement("option");
+    ph.value = "";
+    ph.textContent = "Choose one...";
+    select.appendChild(ph);
+
+    entries(qdata.options).forEach(function (pair) {
+      var opt = document.createElement("option");
+      opt.value = pair[0];
+      opt.textContent = pair[0] + ". " + pair[1];
+      if (oldValue === pair[0]) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.setAttribute("data-dreamos-original-renderer-q11-fixed", "1");
+    select.setAttribute("data-question", String(qdata.q));
+
+    if (!select.name || !/\d/.test(select.name)) {
+      select.name = "answers[" + qdata.q + "]";
+    }
+  }
+
+  function createSelect(qdata) {
+    var select = document.createElement("select");
+    select.name = "answers[" + qdata.q + "]";
+    select.setAttribute("data-question", String(qdata.q));
+    select.setAttribute("data-dreamos-original-renderer-q11-fixed", "1");
+    rebuildSelect(select, qdata);
+    return select;
+  }
+
+  function findQuestionContainers() {
+    return Array.prototype.slice.call(document.querySelectorAll(
+      ".ecg-question, .question, .ecg-card, .ecg-step, fieldset, [data-question], [data-q]"
+    ));
+  }
+
+  function patchOriginalRenderer() {
+    var byQ = questionByNumber();
+    if (!Object.keys(byQ).length) return;
+
+    // Repair existing selects with missing/empty option lists.
+    Array.prototype.forEach.call(document.querySelectorAll("select"), function (select) {
+      var qn = questionNumberFromElement(select);
+      if (!qn || !byQ[String(qn)]) return;
+      if (optionCount(select) < 2) rebuildSelect(select, byQ[String(qn)]);
+    });
+
+    // Repair visible Q containers that have no control.
+    findQuestionContainers().forEach(function (box) {
+      var qn = questionNumberFromElement(box);
+      if (!qn || !byQ[String(qn)]) return;
+      if (box.querySelector("select, input[type='radio'], button[data-answer], [role='radio']")) return;
+
+      var wrap = document.createElement("div");
+      wrap.className = "dreamos-original-renderer-control-repair";
+      wrap.appendChild(createSelect(byQ[String(qn)]));
+      box.appendChild(wrap);
+      box.setAttribute("data-dreamos-original-renderer-container-fixed", "1");
+    });
+  }
+
+  function boot() {
+    patchOriginalRenderer();
+    setTimeout(patchOriginalRenderer, 250);
+    setTimeout(patchOriginalRenderer, 750);
+    setTimeout(patchOriginalRenderer, 1500);
+    setTimeout(patchOriginalRenderer, 3000);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+})();
+

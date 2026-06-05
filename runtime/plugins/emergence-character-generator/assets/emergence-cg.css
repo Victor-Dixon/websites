@@ -1292,3 +1292,29 @@ select {
   width: 100%;
   max-width: 100%;
 }
+
+/* DreamOS Original Domain Question Renderer Branch Fix */
+select[data-dreamos-original-renderer-q11-fixed="1"],
+.dreamos-original-renderer-control-repair select {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 54px !important;
+  margin-top: .75rem !important;
+  padding: .8rem 1rem !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  position: relative !important;
+  z-index: 10 !important;
+  color: #10131f !important;
+  background: #f4f4f6 !important;
+  border-radius: 16px !important;
+  appearance: auto !important;
+  -webkit-appearance: menulist !important;
+}
+
+select[data-dreamos-original-renderer-q11-fixed="1"] option,
+.dreamos-original-renderer-control-repair option {
+  color: #10131f !important;
+  background: #fff !important;
+}
