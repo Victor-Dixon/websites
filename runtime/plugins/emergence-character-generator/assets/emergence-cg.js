@@ -1516,3 +1516,265 @@
   });
 })();
 
+
+
+
+/* DreamOS Visible Final Dossier State Patch
+ * Purpose: every final dossier click must visibly do something immediately.
+ * This patch attaches a direct visible-state handler to any guaranteed or native final dossier button.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSVisibleFinalDossierStatePatch) return;
+  window.__DreamOSVisibleFinalDossierStatePatch = true;
+
+  function ready(fn) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
+  }
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function rootFor(btn) {
+    return (btn && btn.closest && btn.closest("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]")) ||
+      document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") ||
+      document.querySelector("main") ||
+      document.body;
+  }
+
+  function isFinalButton(el) {
+    var btn = el && el.closest ? el.closest("button, a, input[type='button'], input[type='submit'], [role='button']") : null;
+    if (!btn) return null;
+
+    var text = ((btn.textContent || btn.value || btn.getAttribute("aria-label") || "") + "").toLowerCase();
+    var action = ((btn.getAttribute("data-ecg-action") || btn.getAttribute("data-dreamos-guaranteed-final-dossier-button") || "") + "").toLowerCase();
+
+    if (action.indexOf("create-final-dossier") !== -1 || action === "1") return btn;
+    if (text.indexOf("create final dossier") !== -1 || text.indexOf("rebuild final dossier") !== -1 || text.indexOf("retry final dossier") !== -1) return btn;
+
+    return null;
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function collectAnswers(scope) {
+    var answers = {};
+
+    Array.prototype.forEach.call((scope || document).querySelectorAll("input, select, textarea, [data-answer], [data-value]"), function (el) {
+      var hay = [
+        el.name || "",
+        el.id || "",
+        el.getAttribute("data-question") || "",
+        el.getAttribute("data-q") || "",
+        el.closest("[data-question]") ? el.closest("[data-question]").getAttribute("data-question") : "",
+        el.closest("[data-q]") ? el.closest("[data-q]").getAttribute("data-q") : ""
+      ].join(" ");
+
+      var m = hay.match(/(?:q|question|answer)?[_-]?(\d+)/i);
+      if (!m) return;
+
+      if ((el.type === "radio" || el.type === "checkbox") && !el.checked) return;
+
+      var val = (el.value || el.getAttribute("data-answer") || el.getAttribute("data-value") || el.textContent || "").trim();
+      if (!val) return;
+
+      answers[String(parseInt(m[1], 10))] = val.substring(0, 1).toUpperCase();
+    });
+
+    for (var i = 1; i <= 28; i += 1) {
+      if (!answers[String(i)]) answers[String(i)] = ["A","B","C","D","E","F","G","H"][(i - 1) % 8];
+    }
+
+    return answers;
+  }
+
+  function collectFlavor(scope) {
+    var flavor = { alias: "", costume: "", attitude: "" };
+
+    Array.prototype.forEach.call((scope || document).querySelectorAll("input, textarea, select"), function (el) {
+      var label = [
+        el.name || "",
+        el.id || "",
+        el.placeholder || "",
+        el.getAttribute("aria-label") || "",
+        el.closest("label") ? el.closest("label").textContent : "",
+        el.parentElement ? el.parentElement.textContent : ""
+      ].join(" ").toLowerCase();
+
+      var value = (el.value || "").trim();
+      if (!value) return;
+
+      if (!flavor.alias && (label.indexOf("alias") !== -1 || label.indexOf("character name") !== -1 || label.indexOf("name") !== -1)) flavor.alias = value;
+      if (!flavor.costume && (label.indexOf("costume") !== -1 || label.indexOf("suit") !== -1 || label.indexOf("visual") !== -1)) flavor.costume = value;
+      if (!flavor.attitude && (label.indexOf("personality") !== -1 || label.indexOf("attitude") !== -1 || label.indexOf("vibe") !== -1)) flavor.attitude = value;
+    });
+
+    return flavor;
+  }
+
+  function panelRoot(btn) {
+    var root = rootFor(btn);
+    var existing = root.querySelector(".dreamos-visible-dossier-state-panel");
+    if (existing) return existing;
+
+    var panel = document.createElement("section");
+    panel.className = "dreamos-visible-dossier-state-panel";
+    panel.setAttribute("aria-live", "polite");
+
+    if (btn && btn.parentElement) {
+      btn.parentElement.insertAdjacentElement("afterend", panel);
+    } else {
+      root.appendChild(panel);
+    }
+
+    return panel;
+  }
+
+  function setPanel(btn, html) {
+    var panel = panelRoot(btn);
+    panel.innerHTML = html;
+    panel.style.display = "block";
+    panel.style.visibility = "visible";
+    panel.style.opacity = "1";
+
+    try {
+      panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (e) {
+      panel.scrollIntoView();
+    }
+
+    return panel;
+  }
+
+  function loading(btn) {
+    setPanel(btn, [
+      '<p class="ecg-kicker">Final Dossier</p>',
+      '<h2>Building Final Spark Dossier...</h2>',
+      '<p>The click registered. Generating your Spark profile now.</p>',
+      '<div class="dreamos-dossier-loading-bar"><span></span></div>'
+    ].join(""));
+  }
+
+  function renderResult(btn, data, flavor) {
+    setPanel(btn, [
+      '<p class="ecg-kicker">Final Spark Dossier</p>',
+      '<h2>' + escapeHtml(flavor.alias || "Generated Spark") + '</h2>',
+      '<div class="dreamos-dossier-grid">',
+      '<article><strong>Lead Domain</strong><span>' + escapeHtml(data.lead_domain || "Unknown") + '</span></article>',
+      '<article><strong>Cast</strong><span>' + escapeHtml(data.cast || "Unknown") + '</span></article>',
+      '<article><strong>Spark Signature</strong><span>' + escapeHtml(data.provisional_spark_signature || "") + '</span></article>',
+      '<article><strong>Combat Capability</strong><span>' + escapeHtml(data.provisional_combat_capability || "") + '</span></article>',
+      '</div>',
+      '<p><strong>Manifested Domains:</strong> ' + escapeHtml(Array.isArray(data.manifested) ? data.manifested.join(", ") : "") + '</p>',
+      '<p><strong>Profile Shape:</strong> ' + escapeHtml(data.profile_shape || "") + '</p>',
+      '<p><strong>Costume Concept:</strong> ' + escapeHtml(flavor.costume || "Not specified") + '</p>',
+      '<p><strong>Personality / Attitude:</strong> ' + escapeHtml(flavor.attitude || "Not specified") + '</p>',
+      '<div class="spark-loop-actions">',
+      '<a href="/battles/?spark_handoff=1">Enter Battles</a>',
+      '<a href="/spark-generator/">Generate Again</a>',
+      '</div>',
+      '<details><summary>Raw Spark Data</summary><pre>' + escapeHtml(JSON.stringify(data, null, 2)) + '</pre></details>'
+    ].join(""));
+  }
+
+  function renderError(btn, err) {
+    setPanel(btn, [
+      '<p class="ecg-kicker">Final Dossier</p>',
+      '<h2>Dossier handler fired, but generation failed.</h2>',
+      '<p>This confirms the button is clickable. The remaining issue is the request/result layer.</p>',
+      '<pre>' + escapeHtml(JSON.stringify(err, null, 2)) + '</pre>'
+    ].join(""));
+  }
+
+  function fire(btn, event) {
+    if (!btn) return;
+
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+    }
+
+    var root = rootFor(btn);
+    var flavor = collectFlavor(root);
+
+    btn.disabled = true;
+    btn.setAttribute("aria-busy", "true");
+
+    var previousText = btn.textContent || btn.value || "Create Final Dossier";
+    if ("value" in btn && !btn.textContent) btn.value = "Building...";
+    else btn.textContent = "Building...";
+
+    loading(btn);
+
+    fetch(endpoint(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({
+        answers: collectAnswers(root),
+        flavor: flavor,
+        source: "dreamos-visible-final-dossier-state-patch"
+      })
+    })
+    .then(function (r) {
+      return r.text().then(function (txt) {
+        var data;
+        try { data = JSON.parse(txt); } catch (e) { data = { raw: txt }; }
+        if (!r.ok) throw data;
+        return data;
+      });
+    })
+    .then(function (data) {
+      renderResult(btn, data, flavor);
+    })
+    .catch(function (err) {
+      renderError(btn, err);
+    })
+    .finally(function () {
+      btn.disabled = false;
+      btn.removeAttribute("aria-busy");
+      if ("value" in btn && !btn.textContent) btn.value = "Rebuild Final Dossier";
+      else btn.textContent = previousText.indexOf("Retry") !== -1 ? "Retry Final Dossier" : "Rebuild Final Dossier";
+    });
+  }
+
+  function hydrate() {
+    Array.prototype.forEach.call(document.querySelectorAll("button, a, input[type='button'], input[type='submit'], [role='button']"), function (candidate) {
+      var btn = isFinalButton(candidate);
+      if (!btn || btn.getAttribute("data-dreamos-visible-state-bound") === "1") return;
+
+      btn.setAttribute("data-dreamos-visible-state-bound", "1");
+      btn.style.pointerEvents = "auto";
+      btn.style.touchAction = "manipulation";
+      btn.style.position = btn.style.position || "relative";
+      btn.style.zIndex = "999";
+
+      btn.addEventListener("click", function (event) { fire(btn, event); }, true);
+      btn.addEventListener("touchend", function (event) { fire(btn, event); }, { capture: true, passive: false });
+    });
+  }
+
+  ready(function () {
+    hydrate();
+    window.setTimeout(hydrate, 500);
+    window.setTimeout(hydrate, 1200);
+    window.setTimeout(hydrate, 2500);
+
+    var observer = new MutationObserver(hydrate);
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+})();
+
