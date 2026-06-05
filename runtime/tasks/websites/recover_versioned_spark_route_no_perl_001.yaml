@@ -1,0 +1,16 @@
+id: recover_versioned_spark_route_no_perl_001
+title: Recover versioned Spark route patch without perl
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/?spark=v075
+actions:
+  - recover failed route patch caused by missing remote perl
+  - patch live theme/plugin files using python3
+  - verify homepage Generate CTAs point to versioned route
+  - commit repo-side route patch and report
+verify:
+  - live homepage contains /spark-generator/?spark=v075
+  - live homepage does not contain Generate CTA href="/spark-generator/"
+commit_message: Recover versioned Spark route patch without perl
