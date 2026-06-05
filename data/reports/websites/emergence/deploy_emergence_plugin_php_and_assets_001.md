@@ -1,6 +1,6 @@
 # Deploy Emergence plugin PHP and cache-busted assets
 
-Generated: 2026-06-05T07:51:35-05:00
+Generated: 2026-06-05T07:54:07-05:00
 
 ## Upload
 
@@ -17,17 +17,17 @@ Success: Deactivated 1 of 1 plugins.
 Plugin 'emergence-character-generator' activated.
 Success: Activated 1 of 1 plugins.
 Success: The cache was flushed.
-5: * Version: 0.8.5-quiz-freeze-observer-fix-001
+5: * Version: 0.8.9-original-renderer-q11-fix-001
 REMOTE_PLUGIN_DEPLOY=PASS
 ```
 
 ## Live asset refs
 
 ```text
-emergence-cg.css?ver=0.8.5-quiz-freeze-observer-fix-001
-emergence-character-generator.css?ver=0.8.5-quiz-freeze-observer-fix-001
-emergence-cg.js?ver=0.8.5-quiz-freeze-observer-fix-001
-emergence-character-generator.js?ver=0.8.5-quiz-freeze-observer-fix-001
+emergence-cg.css?ver=0.8.9-original-renderer-q11-fix-001
+emergence-character-generator.css?ver=0.8.9-original-renderer-q11-fix-001
+emergence-cg.js?ver=0.8.9-original-renderer-q11-fix-001
+emergence-character-generator.js?ver=0.8.9-original-renderer-q11-fix-001
 ```
 
 ## Live JS marker
