@@ -1,13 +1,13 @@
 # Deploy Spark generator assets to all aliases
 
-Generated: 2026-06-05T02:08:06-05:00
+Generated: 2026-06-05T02:09:04-05:00
 
 ## Local sizes
 
 ```text
-53052 /data/data/com.termux/files/home/projects/websites/runtime/plugins/emergence-character-generator/assets/emergence-cg.js
-14491 /data/data/com.termux/files/home/projects/websites/runtime/plugins/emergence-character-generator/assets/emergence-cg.css
-67543 total
+55697 /data/data/com.termux/files/home/projects/websites/runtime/plugins/emergence-character-generator/assets/emergence-cg.js
+16417 /data/data/com.termux/files/home/projects/websites/runtime/plugins/emergence-character-generator/assets/emergence-cg.css
+72114 total
 ```
 
 ## Remote asset dirs
@@ -27,11 +27,11 @@ UPLOADED_ALIAS_SET=/home/u996867598/domains/dadudekc.site/public_html/wp-content
 
 ```text
 == /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets ==
- 53052 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js
- 53052 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js
- 14491 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css
- 14491 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css
-135086 total
+ 55697 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js
+ 55697 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js
+ 16417 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css
+ 16417 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css
+144228 total
 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js:827:/* DreamOS Spark Generator Fail-Open Guard
 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js:827:/* DreamOS Spark Generator Fail-Open Guard
 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js:918:      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
@@ -52,17 +52,17 @@ CACHE_PURGE_ATTEMPTED=/home/u996867598/public_html
 ## Live asset verify
 
 ```text
---- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js?cb=1780643283500913554 ---
+--- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js?cb=1780643341710987019 ---
 HEADERS:
 HTTP/2 200 
 cache-control: public, max-age=604800
-expires: Fri, 12 Jun 2026 07:08:05 GMT
+expires: Fri, 12 Jun 2026 07:09:03 GMT
 content-type: application/x-javascript
-last-modified: Fri, 05 Jun 2026 07:07:57 GMT
-etag: "cf3c-6a2275cd-6db6938775880076;;;"
+last-modified: Fri, 05 Jun 2026 07:08:56 GMT
+etag: "d991-6a227608-6db6938775880076;;;"
 accept-ranges: bytes
-content-length: 53052
-date: Fri, 05 Jun 2026 07:08:05 GMT
+content-length: 55697
+date: Fri, 05 Jun 2026 07:09:03 GMT
 server: LiteSpeed
 platform: hostinger
 panel: hpanel
@@ -70,22 +70,22 @@ content-security-policy: upgrade-insecure-requests
 alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000, h3-Q050=":443"; ma=2592000, h3-Q046=":443"; ma=2592000, h3-Q043=":443"; ma=2592000, quic=":443"; ma=2592000; v="43,46"
 
 SIZE:
-53052 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_spark_assets_all_aliases_and_verify_001/live-emergence-cg.js
+55697 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_spark_assets_all_aliases_and_verify_001/live-emergence-cg.js
 SIGNALS:
 827:/* DreamOS Spark Generator Fail-Open Guard
 918:      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
 
---- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js?cb=1780643284020072323 ---
+--- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js?cb=1780643342278014173 ---
 HEADERS:
 HTTP/2 200 
 cache-control: public, max-age=604800
-expires: Fri, 12 Jun 2026 07:08:05 GMT
+expires: Fri, 12 Jun 2026 07:09:03 GMT
 content-type: application/x-javascript
-last-modified: Fri, 05 Jun 2026 07:07:58 GMT
-etag: "cf3c-6a2275ce-5d795a42b3d3c94f;;;"
+last-modified: Fri, 05 Jun 2026 07:08:57 GMT
+etag: "d991-6a227609-5d795a42b3d3c94f;;;"
 accept-ranges: bytes
-content-length: 53052
-date: Fri, 05 Jun 2026 07:08:05 GMT
+content-length: 55697
+date: Fri, 05 Jun 2026 07:09:03 GMT
 server: LiteSpeed
 platform: hostinger
 panel: hpanel
@@ -93,22 +93,22 @@ content-security-policy: upgrade-insecure-requests
 alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000, h3-Q050=":443"; ma=2592000, h3-Q046=":443"; ma=2592000, h3-Q043=":443"; ma=2592000, quic=":443"; ma=2592000; v="43,46"
 
 SIZE:
-53052 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_spark_assets_all_aliases_and_verify_001/live-emergence-character-generator.js
+55697 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_spark_assets_all_aliases_and_verify_001/live-emergence-character-generator.js
 SIGNALS:
 827:/* DreamOS Spark Generator Fail-Open Guard
 918:      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
 
---- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css?cb=1780643284524850785 ---
+--- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css?cb=1780643342860184942 ---
 HEADERS:
 HTTP/2 200 
 cache-control: public, max-age=604800
-expires: Fri, 12 Jun 2026 07:08:06 GMT
+expires: Fri, 12 Jun 2026 07:09:04 GMT
 content-type: text/css
-last-modified: Fri, 05 Jun 2026 07:07:59 GMT
-etag: "389b-6a2275cf-3cfa46704ac3f90d;;;"
+last-modified: Fri, 05 Jun 2026 07:08:58 GMT
+etag: "4021-6a22760a-3cfa46704ac3f90d;;;"
 accept-ranges: bytes
-content-length: 14491
-date: Fri, 05 Jun 2026 07:08:06 GMT
+content-length: 16417
+date: Fri, 05 Jun 2026 07:09:04 GMT
 server: LiteSpeed
 platform: hostinger
 panel: hpanel
@@ -116,21 +116,21 @@ content-security-policy: upgrade-insecure-requests
 alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000, h3-Q050=":443"; ma=2592000, h3-Q046=":443"; ma=2592000, h3-Q043=":443"; ma=2592000, quic=":443"; ma=2592000; v="43,46"
 
 SIZE:
-14491 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_spark_assets_all_aliases_and_verify_001/live-emergence-cg.css
+16417 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_spark_assets_all_aliases_and_verify_001/live-emergence-cg.css
 SIGNALS:
 477:/* DreamOS Spark Generator Fail-Open Visibility Guard */
 
---- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css?cb=1780643284884379015 ---
+--- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css?cb=1780643343355695711 ---
 HEADERS:
 HTTP/2 200 
 cache-control: public, max-age=604800
-expires: Fri, 12 Jun 2026 07:08:06 GMT
+expires: Fri, 12 Jun 2026 07:09:04 GMT
 content-type: text/css
-last-modified: Fri, 05 Jun 2026 07:08:01 GMT
-etag: "389b-6a2275d1-2e5bd6bb4e00ebbf;;;"
+last-modified: Fri, 05 Jun 2026 07:09:00 GMT
+etag: "4021-6a22760c-2e5bd6bb4e00ebbf;;;"
 accept-ranges: bytes
-content-length: 14491
-date: Fri, 05 Jun 2026 07:08:06 GMT
+content-length: 16417
+date: Fri, 05 Jun 2026 07:09:04 GMT
 server: LiteSpeed
 platform: hostinger
 panel: hpanel
@@ -138,7 +138,7 @@ content-security-policy: upgrade-insecure-requests
 alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000, h3-Q050=":443"; ma=2592000, h3-Q046=":443"; ma=2592000, h3-Q043=":443"; ma=2592000, quic=":443"; ma=2592000; v="43,46"
 
 SIZE:
-14491 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_spark_assets_all_aliases_and_verify_001/live-emergence-character-generator.css
+16417 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_spark_assets_all_aliases_and_verify_001/live-emergence-character-generator.css
 SIGNALS:
 477:/* DreamOS Spark Generator Fail-Open Visibility Guard */
 ```
