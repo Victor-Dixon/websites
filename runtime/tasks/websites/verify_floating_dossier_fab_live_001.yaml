@@ -1,0 +1,11 @@
+id: verify_floating_dossier_fab_live_001
+title: Verify floating dossier FAB live
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/
+verify:
+  - live JS contains DreamOS Floating Final Dossier FAB
+  - live CSS contains DreamOS Floating Final Dossier FAB Styles
+commit_message: Verify floating dossier FAB live
