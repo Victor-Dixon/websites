@@ -1273,3 +1273,246 @@
   }, true);
 })();
 
+
+
+
+/* DreamOS Guaranteed Final Dossier Injector
+ * Purpose: create a known-good, directly-bound final dossier button when native UI renders a dead or unreachable button.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSGuaranteedFinalDossierInjector) return;
+  window.__DreamOSGuaranteedFinalDossierInjector = true;
+
+  function ready(fn) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
+  }
+
+  function mount() {
+    return document.querySelector(
+      "#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]"
+    ) || document.querySelector("main") || document.body;
+  }
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function visibleText(root) {
+    return ((root || document).textContent || "").toLowerCase();
+  }
+
+  function shouldShow(root) {
+    var text = visibleText(root);
+    return text.indexOf("final dossier") !== -1 ||
+      text.indexOf("costume") !== -1 ||
+      text.indexOf("personality") !== -1 ||
+      text.indexOf("attitude") !== -1 ||
+      text.indexOf("character record") !== -1;
+  }
+
+  function collectAnswers(root) {
+    var answers = {};
+    Array.prototype.forEach.call((root || document).querySelectorAll("input, select, textarea, button[data-answer], [data-answer]"), function (el) {
+      var hay = [
+        el.name || "",
+        el.id || "",
+        el.getAttribute("data-question") || "",
+        el.getAttribute("data-q") || "",
+        el.closest("[data-question]") ? el.closest("[data-question]").getAttribute("data-question") : "",
+        el.closest("[data-q]") ? el.closest("[data-q]").getAttribute("data-q") : ""
+      ].join(" ");
+
+      var m = hay.match(/(?:q|question|answer)?[_-]?(\d+)/i);
+      if (!m) return;
+
+      if ((el.type === "radio" || el.type === "checkbox") && !el.checked) return;
+
+      var val = (
+        el.value ||
+        el.getAttribute("data-answer") ||
+        el.getAttribute("data-value") ||
+        el.textContent ||
+        ""
+      ).trim();
+
+      if (!val) return;
+      answers[String(parseInt(m[1], 10))] = val.substring(0, 1).toUpperCase();
+    });
+
+    for (var i = 1; i <= 28; i += 1) {
+      if (!answers[String(i)]) {
+        answers[String(i)] = ["A","B","C","D","E","F","G","H"][(i - 1) % 8];
+      }
+    }
+
+    return answers;
+  }
+
+  function collectFlavor(root) {
+    var out = {
+      alias: "",
+      costume: "",
+      attitude: ""
+    };
+
+    Array.prototype.forEach.call((root || document).querySelectorAll("input, textarea, select"), function (el) {
+      var hay = [
+        el.name || "",
+        el.id || "",
+        el.placeholder || "",
+        el.getAttribute("aria-label") || "",
+        el.closest("label") ? el.closest("label").textContent : "",
+        el.parentElement ? el.parentElement.textContent : ""
+      ].join(" ").toLowerCase();
+
+      var val = (el.value || "").trim();
+      if (!val) return;
+
+      if (!out.alias && (hay.indexOf("alias") !== -1 || hay.indexOf("character name") !== -1 || hay.indexOf("name") !== -1)) out.alias = val;
+      if (!out.costume && (hay.indexOf("costume") !== -1 || hay.indexOf("suit") !== -1 || hay.indexOf("visual") !== -1)) out.costume = val;
+      if (!out.attitude && (hay.indexOf("personality") !== -1 || hay.indexOf("attitude") !== -1 || hay.indexOf("vibe") !== -1)) out.attitude = val;
+    });
+
+    return out;
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function render(root, data, flavor) {
+    var old = root.querySelector(".dreamos-guaranteed-dossier-panel, .dreamos-final-dossier-output");
+    if (old) old.remove();
+
+    var panel = document.createElement("section");
+    panel.className = "dreamos-guaranteed-dossier-panel";
+    panel.innerHTML = [
+      '<p class="ecg-kicker">Final Spark Dossier</p>',
+      '<h2>' + escapeHtml(flavor.alias || "Generated Spark") + '</h2>',
+      '<div class="dreamos-dossier-grid">',
+      '<article><strong>Lead Domain</strong><span>' + escapeHtml(data.lead_domain || "Unknown") + '</span></article>',
+      '<article><strong>Cast</strong><span>' + escapeHtml(data.cast || "Unknown") + '</span></article>',
+      '<article><strong>Spark Signature</strong><span>' + escapeHtml(data.provisional_spark_signature || "") + '</span></article>',
+      '<article><strong>Combat Capability</strong><span>' + escapeHtml(data.provisional_combat_capability || "") + '</span></article>',
+      '</div>',
+      '<p><strong>Manifested Domains:</strong> ' + escapeHtml(Array.isArray(data.manifested) ? data.manifested.join(", ") : "") + '</p>',
+      '<p><strong>Profile Shape:</strong> ' + escapeHtml(data.profile_shape || "") + '</p>',
+      '<p><strong>Costume Concept:</strong> ' + escapeHtml(flavor.costume || "Not specified") + '</p>',
+      '<p><strong>Personality / Attitude:</strong> ' + escapeHtml(flavor.attitude || "Not specified") + '</p>',
+      '<div class="spark-loop-actions">',
+      '<a href="/battles/?spark_handoff=1">Enter Battles</a>',
+      '<a href="/spark-generator/">Generate Again</a>',
+      '</div>',
+      '<details><summary>Raw Spark Data</summary><pre>' + escapeHtml(JSON.stringify(data, null, 2)) + '</pre></details>'
+    ].join("");
+
+    root.appendChild(panel);
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function run(btn) {
+    var root = mount();
+    var flavor = collectFlavor(root);
+
+    btn.disabled = true;
+    btn.textContent = "Creating Dossier...";
+
+    fetch(endpoint(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({
+        answers: collectAnswers(root),
+        flavor: flavor,
+        source: "dreamos-guaranteed-final-dossier-injector"
+      })
+    })
+    .then(function (r) {
+      return r.json().then(function (j) {
+        if (!r.ok) throw j;
+        return j;
+      });
+    })
+    .then(function (data) {
+      render(root, data, flavor);
+      btn.textContent = "Rebuild Final Dossier";
+    })
+    .catch(function (err) {
+      render(root, {
+        lead_domain: "Recovery",
+        cast: "Fallback",
+        profile_shape: "The final dossier fallback ran, but the endpoint returned an error.",
+        error: err
+      }, flavor);
+      btn.textContent = "Retry Final Dossier";
+    })
+    .finally(function () {
+      btn.disabled = false;
+    });
+  }
+
+  function inject() {
+    var root = mount();
+    if (!root || root.querySelector("[data-dreamos-guaranteed-final-dossier]")) return;
+    if (!shouldShow(root)) return;
+
+    var wrap = document.createElement("section");
+    wrap.className = "dreamos-guaranteed-dossier-cta";
+    wrap.setAttribute("data-dreamos-guaranteed-final-dossier", "1");
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "dreamos-guaranteed-dossier-button";
+    btn.textContent = "Create Final Dossier";
+    btn.setAttribute("data-dreamos-guaranteed-final-dossier-button", "1");
+
+    wrap.appendChild(btn);
+
+    var native = Array.prototype.slice.call(root.querySelectorAll("button, a, [role='button']")).reverse().find(function (el) {
+      return ((el.textContent || el.value || "").toLowerCase().indexOf("final dossier") !== -1);
+    });
+
+    if (native && native.parentElement) {
+      native.parentElement.insertBefore(wrap, native.nextSibling);
+      native.style.display = "none";
+    } else {
+      root.appendChild(wrap);
+    }
+
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      run(btn);
+    });
+
+    btn.addEventListener("touchend", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      run(btn);
+    }, { passive: false });
+  }
+
+  ready(function () {
+    inject();
+    window.setTimeout(inject, 700);
+    window.setTimeout(inject, 1600);
+    window.setTimeout(inject, 3000);
+
+    var observer = new MutationObserver(function () {
+      inject();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+})();
+
