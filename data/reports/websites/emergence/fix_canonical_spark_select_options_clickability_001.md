@@ -1,11 +1,12 @@
 # Fix canonical Spark select options and clickability
 
-Generated: 2026-06-05T07:15:49-05:00
+Generated: 2026-06-05T07:43:09-05:00
 
 ## Discovery
 
 ```text
 --- plugin question bank lines ---
+5: * Version: 0.8.8-canonical-select-options-001
 14:    return plugin_dir_path(__FILE__) . 'assets/spark-protocol-v85-domain-key.json';
 33:function emergence_cg_question_bank() {
 34:    $path = plugin_dir_path(__FILE__) . 'assets/protocol-v85-question-bank.json';
@@ -34,6 +35,8 @@ Generated: 2026-06-05T07:15:49-05:00
 475:    $questions = isset($bank['domain_questions']) && is_array($bank['domain_questions']) ? $bank['domain_questions'] : array();
 512:                            <?php if (isset($item['options'][$letter])) : ?>
 514:                                    <?php echo esc_html($letter . '. ' . $item['options'][$letter]); ?>
+540:    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.8.8-canonical-select-options-001');
+541:    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.8.8-canonical-select-options-001', true);
 546:        'question_bank' => emergence_cg_question_bank(),
 573:    $answers = $request->get_param('answers');
 574:    if (!is_array($answers)) {
@@ -42,6 +45,8 @@ Generated: 2026-06-05T07:15:49-05:00
 583:    $flavor_answers = $request->get_param('flavor_answers');
 586:    if (is_array($flavor_answers)) {
 587:        foreach ($flavor_answers as $q => $value) {
+958:    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.8.8-canonical-select-options-001');
+959:    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.8.8-canonical-select-options-001', true);
 2232:        const answers = {};
 2239:              answers[key] = field.value;
 2245:            answers[key] = !!field.checked;
