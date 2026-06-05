@@ -1,0 +1,15 @@
+id: verify_guaranteed_dossier_injector_live_001
+title: Verify guaranteed final dossier injector live
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/
+actions:
+  - verify guaranteed final dossier JS marker
+  - verify guaranteed final dossier CSS marker
+  - verify generator page references patched assets
+verify:
+  - DreamOS Guaranteed Final Dossier Injector present in live JS
+  - DreamOS Guaranteed Final Dossier Injector Styles present in live CSS
+commit_message: Verify guaranteed final dossier injector live
