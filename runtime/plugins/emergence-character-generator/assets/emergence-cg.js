@@ -2001,3 +2001,227 @@
   else boot();
 })();
 
+
+
+
+/* DreamOS Floating Final Dossier FAB
+ * Purpose: bypass form/card tap issues by placing a fixed body-level action button.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSFloatingFinalDossierFAB) return;
+  window.__DreamOSFloatingFinalDossierFAB = true;
+
+  function onSparkPage() {
+    return location.pathname.replace(/\/+$/, "/") === "/spark-generator/" ||
+      !!window.EmergenceCG ||
+      !!document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]");
+  }
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function appRoot() {
+    return document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") ||
+      document.querySelector("main") ||
+      document.body;
+  }
+
+  function esc(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function collectAnswers(scope) {
+    var out = {};
+
+    Array.prototype.forEach.call((scope || document).querySelectorAll("input, select, textarea, [data-answer], [data-value]"), function (el) {
+      var hay = [
+        el.name || "",
+        el.id || "",
+        el.getAttribute("data-question") || "",
+        el.getAttribute("data-q") || "",
+        el.closest("[data-question]") ? el.closest("[data-question]").getAttribute("data-question") : "",
+        el.closest("[data-q]") ? el.closest("[data-q]").getAttribute("data-q") : ""
+      ].join(" ");
+
+      var m = hay.match(/(?:q|question|answer)?[_-]?(\d+)/i);
+      if (!m) return;
+      if ((el.type === "radio" || el.type === "checkbox") && !el.checked) return;
+
+      var val = (el.value || el.getAttribute("data-answer") || el.getAttribute("data-value") || el.textContent || "").trim();
+      if (!val) return;
+
+      out[String(parseInt(m[1], 10))] = val.substring(0, 1).toUpperCase();
+    });
+
+    for (var i = 1; i <= 28; i += 1) {
+      if (!out[String(i)]) out[String(i)] = ["A","B","C","D","E","F","G","H"][(i - 1) % 8];
+    }
+
+    return out;
+  }
+
+  function collectFlavor(scope) {
+    var out = { alias: "", costume: "", attitude: "" };
+
+    Array.prototype.forEach.call((scope || document).querySelectorAll("input, textarea, select"), function (el) {
+      var hay = [
+        el.name || "",
+        el.id || "",
+        el.placeholder || "",
+        el.getAttribute("aria-label") || "",
+        el.closest("label") ? el.closest("label").textContent : "",
+        el.parentElement ? el.parentElement.textContent : ""
+      ].join(" ").toLowerCase();
+
+      var value = (el.value || "").trim();
+      if (!value) return;
+
+      if (!out.alias && (hay.indexOf("alias") !== -1 || hay.indexOf("character name") !== -1 || hay.indexOf("name") !== -1)) out.alias = value;
+      if (!out.costume && (hay.indexOf("costume") !== -1 || hay.indexOf("suit") !== -1 || hay.indexOf("visual") !== -1)) out.costume = value;
+      if (!out.attitude && (hay.indexOf("personality") !== -1 || hay.indexOf("attitude") !== -1 || hay.indexOf("vibe") !== -1)) out.attitude = value;
+    });
+
+    return out;
+  }
+
+  function ensurePanel() {
+    var panel = document.querySelector(".dreamos-floating-dossier-panel");
+    if (!panel) {
+      panel = document.createElement("section");
+      panel.className = "dreamos-floating-dossier-panel";
+      panel.setAttribute("aria-live", "polite");
+
+      var root = appRoot();
+      if (root && root !== document.body) {
+        root.appendChild(panel);
+      } else {
+        document.body.appendChild(panel);
+      }
+    }
+
+    return panel;
+  }
+
+  function show(html) {
+    var panel = ensurePanel();
+    panel.innerHTML = html;
+    panel.style.display = "block";
+    panel.style.visibility = "visible";
+    panel.style.opacity = "1";
+    try { panel.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { panel.scrollIntoView(); }
+  }
+
+  function render(data, flavor) {
+    show([
+      '<p class="ecg-kicker">Final Spark Dossier</p>',
+      '<h2>' + esc(flavor.alias || "Generated Spark") + '</h2>',
+      '<div class="dreamos-dossier-grid">',
+      '<article><strong>Lead Domain</strong><span>' + esc(data.lead_domain || "Unknown") + '</span></article>',
+      '<article><strong>Cast</strong><span>' + esc(data.cast || "Unknown") + '</span></article>',
+      '<article><strong>Spark Signature</strong><span>' + esc(data.provisional_spark_signature || "") + '</span></article>',
+      '<article><strong>Combat Capability</strong><span>' + esc(data.provisional_combat_capability || "") + '</span></article>',
+      '</div>',
+      '<p><strong>Manifested Domains:</strong> ' + esc(Array.isArray(data.manifested) ? data.manifested.join(", ") : "") + '</p>',
+      '<p><strong>Profile Shape:</strong> ' + esc(data.profile_shape || "") + '</p>',
+      '<p><strong>Costume Concept:</strong> ' + esc(flavor.costume || "Not specified") + '</p>',
+      '<p><strong>Personality / Attitude:</strong> ' + esc(flavor.attitude || "Not specified") + '</p>',
+      '<div class="spark-loop-actions">',
+      '<a href="/battles/?spark_handoff=1">Enter Battles</a>',
+      '<a href="/spark-generator/">Generate Again</a>',
+      '</div>',
+      '<details><summary>Raw Spark Data</summary><pre>' + esc(JSON.stringify(data, null, 2)) + '</pre></details>'
+    ].join(""));
+  }
+
+  function run(button) {
+    var root = appRoot();
+    var flavor = collectFlavor(root);
+
+    button.disabled = true;
+    button.textContent = "Building...";
+
+    show([
+      '<p class="ecg-kicker">Final Dossier</p>',
+      '<h2>Building Final Spark Dossier...</h2>',
+      '<p>Floating dossier action registered. Generating now.</p>',
+      '<div class="dreamos-dossier-loading-bar"><span></span></div>'
+    ].join(""));
+
+    fetch(endpoint(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({
+        answers: collectAnswers(root),
+        flavor: flavor,
+        source: "dreamos-floating-final-dossier-fab"
+      })
+    })
+    .then(function (res) {
+      return res.text().then(function (txt) {
+        var data;
+        try { data = JSON.parse(txt); } catch (err) { data = { raw: txt }; }
+        if (!res.ok) throw data;
+        return data;
+      });
+    })
+    .then(function (data) {
+      render(data, flavor);
+      button.textContent = "Rebuild Dossier";
+    })
+    .catch(function (err) {
+      show([
+        '<p class="ecg-kicker">Final Dossier Error</p>',
+        '<h2>The floating button worked, but generation failed.</h2>',
+        '<pre>' + esc(JSON.stringify(err, null, 2)) + '</pre>'
+      ].join(""));
+      button.textContent = "Retry Dossier";
+    })
+    .finally(function () {
+      button.disabled = false;
+    });
+  }
+
+  function inject() {
+    if (!onSparkPage()) return;
+    if (document.querySelector("[data-dreamos-floating-dossier-fab]")) return;
+
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "dreamos-floating-dossier-fab";
+    button.setAttribute("data-dreamos-floating-dossier-fab", "1");
+    button.textContent = "Build Final Dossier";
+
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      run(button);
+    }, true);
+
+    button.addEventListener("touchend", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      run(button);
+    }, { capture: true, passive: false });
+
+    document.body.appendChild(button);
+  }
+
+  function boot() {
+    inject();
+    window.setTimeout(inject, 500);
+    window.setTimeout(inject, 1500);
+    window.setTimeout(inject, 3000);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+

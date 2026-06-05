@@ -1,0 +1,19 @@
+id: add_floating_final_dossier_fab_001
+title: Add floating final dossier action button
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/
+  asset_version: 0.7.7-floating-dossier-fab-001
+actions:
+  - inject body-level fixed dossier button
+  - bind direct click/touch handlers independent of form/card
+  - render visible loading panel immediately
+  - call Spark generate endpoint
+  - bump asset version
+verify:
+  - JS contains DreamOS Floating Final Dossier FAB
+  - CSS contains DreamOS Floating Final Dossier FAB Styles
+  - plugin version bumped
+commit_message: Add floating final dossier action button
