@@ -1183,3 +1183,93 @@
   }, true);
 })();
 
+
+
+
+/* DreamOS Final Dossier Touch Guard
+ * Purpose: mobile taps should activate the final dossier flow even if click is swallowed by layout/overlay quirks.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSFinalDossierTouchGuard) return;
+  window.__DreamOSFinalDossierTouchGuard = true;
+
+  function isButtonTarget(el) {
+    var node = el && el.closest ? el.closest("button, a, input[type='button'], input[type='submit'], [role='button']") : null;
+    if (!node) return null;
+
+    var text = ((node.textContent || node.value || node.getAttribute("aria-label") || "") + "").toLowerCase();
+    var action = (node.getAttribute("data-ecg-action") || "").toLowerCase();
+
+    if (action === "create-final-dossier" || text.indexOf("create final dossier") !== -1 || text.indexOf("final dossier") !== -1) {
+      return node;
+    }
+
+    return null;
+  }
+
+  function makeClickable(btn) {
+    if (!btn) return;
+
+    btn.disabled = false;
+    btn.removeAttribute("disabled");
+    btn.removeAttribute("aria-disabled");
+
+    btn.style.pointerEvents = "auto";
+    btn.style.position = btn.style.position || "relative";
+    btn.style.zIndex = "999";
+    btn.style.touchAction = "manipulation";
+
+    if (!btn.getAttribute("tabindex")) btn.setAttribute("tabindex", "0");
+  }
+
+  function activate(btn, originalEvent) {
+    makeClickable(btn);
+
+    if (btn.getAttribute("data-dreamos-touch-fired") === "1") return;
+    btn.setAttribute("data-dreamos-touch-fired", "1");
+
+    window.setTimeout(function () {
+      btn.removeAttribute("data-dreamos-touch-fired");
+    }, 1200);
+
+    try {
+      var click = new MouseEvent("click", {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      });
+      btn.dispatchEvent(click);
+    } catch (err) {
+      if (typeof btn.click === "function") btn.click();
+    }
+
+    if (originalEvent && originalEvent.cancelable) {
+      originalEvent.preventDefault();
+    }
+  }
+
+  function hydrate() {
+    Array.prototype.forEach.call(document.querySelectorAll("button, a, input[type='button'], input[type='submit'], [role='button']"), function (btn) {
+      if (isButtonTarget(btn)) makeClickable(btn);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", hydrate);
+  window.setTimeout(hydrate, 800);
+  window.setTimeout(hydrate, 1800);
+
+  document.addEventListener("touchend", function (event) {
+    var btn = isButtonTarget(event.target);
+    if (!btn) return;
+    activate(btn, event);
+  }, { capture: true, passive: false });
+
+  document.addEventListener("pointerup", function (event) {
+    var btn = isButtonTarget(event.target);
+    if (!btn) return;
+    makeClickable(btn);
+  }, true);
+})();
+

@@ -739,3 +739,58 @@
   }
 }
 
+
+
+
+/* DreamOS Final Dossier Clickability Guard */
+#emergence-character-generator button[data-ecg-action="create-final-dossier"],
+#emergence-character-generator button,
+.emergence-character-generator button[data-ecg-action="create-final-dossier"],
+.ecg-shell button[data-ecg-action="create-final-dossier"],
+.ecg-app button[data-ecg-action="create-final-dossier"],
+.ecg-wrap button[data-ecg-action="create-final-dossier"],
+[data-emergence-character-generator] button[data-ecg-action="create-final-dossier"] {
+  position: relative;
+  z-index: 50;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+#emergence-character-generator [data-ecg-action="create-final-dossier"],
+.emergence-character-generator [data-ecg-action="create-final-dossier"],
+.ecg-shell [data-ecg-action="create-final-dossier"],
+.ecg-app [data-ecg-action="create-final-dossier"],
+.ecg-wrap [data-ecg-action="create-final-dossier"],
+[data-emergence-character-generator] [data-ecg-action="create-final-dossier"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+@media (max-width: 760px) {
+  #emergence-character-generator button[data-ecg-action="create-final-dossier"],
+  .emergence-character-generator button[data-ecg-action="create-final-dossier"],
+  .ecg-shell button[data-ecg-action="create-final-dossier"],
+  .ecg-app button[data-ecg-action="create-final-dossier"],
+  .ecg-wrap button[data-ecg-action="create-final-dossier"],
+  [data-emergence-character-generator] button[data-ecg-action="create-final-dossier"] {
+    width: auto !important;
+    min-width: 220px;
+    min-height: 56px;
+    padding: 14px 24px !important;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+
+  #emergence-character-generator,
+  .emergence-character-generator,
+  .ecg-shell,
+  .ecg-app,
+  .ecg-wrap,
+  [data-emergence-character-generator] {
+    isolation: isolate;
+  }
+}
+
