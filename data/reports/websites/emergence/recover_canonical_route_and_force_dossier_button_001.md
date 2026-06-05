@@ -1,6 +1,6 @@
 # Recover canonical Spark route and force dossier button
 
-Generated: 2026-06-05T02:50:50-05:00
+Generated: 2026-06-05T06:17:38-05:00
 
 ## Local patch verification
 
@@ -65,7 +65,7 @@ wp_options	option_value	0	PHP
 wp_options	autoload	0	PHP
 wp_postmeta	meta_key	0	PHP
 wp_postmeta	meta_value	0	PHP
-wp_posts	post_content	5	PHP
+wp_posts	post_content	0	PHP
 wp_posts	post_title	0	PHP
 wp_posts	post_excerpt	0	PHP
 wp_posts	post_status	0	PHP
@@ -76,7 +76,7 @@ wp_posts	post_name	0	PHP
 wp_posts	to_ping	0	PHP
 wp_posts	pinged	0	PHP
 wp_posts	post_content_filtered	0	PHP
-wp_posts	guid	1	PHP
+wp_posts	guid	0	PHP
 wp_posts	post_type	0	PHP
 wp_posts	post_mime_type	0	PHP
 wp_term_taxonomy	taxonomy	0	PHP
@@ -93,7 +93,7 @@ wp_users	user_email	0	PHP
 wp_users	user_url	0	PHP
 wp_users	user_activation_key	0	PHP
 wp_users	display_name	0	PHP
-Success: Made 6 replacements.
+Success: Made 0 replacements.
 Table	Column	Replacements	Type
 wp_actionscheduler_actions	hook	0	PHP
 wp_actionscheduler_actions	status	0	PHP
@@ -170,9 +170,6 @@ wp_users	user_activation_key	0	PHP
 wp_users	display_name	0	PHP
 Success: Made 0 replacements.
 Success: The cache was flushed.
-LIVE_FILE_REVERTED=wp-content/themes/dreamos-emergence/parts/header.html
-LIVE_FILE_REVERTED=wp-content/plugins/emergence-character-generator/assets/emergence-cg.js
-LIVE_FILE_REVERTED=wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js
 LIVE_CANONICAL_ROUTE_RESTORE=PASS
 ```
 
@@ -206,8 +203,8 @@ emergence-character-generator.js?ver=0.7.6-canonical-dossier-001
 == REQUIRE ==
 == COMPLETE TASK ==
 == WRITE REPORT ==
-[master cf9a9ce0] Deploy Emergence plugin PHP and cache-busted assets
- 1 file changed, 6 insertions(+), 6 deletions(-)
+[master 7130f77f] Deploy Emergence plugin PHP and cache-busted assets
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 == CLOSEOUT ==
 STATUS=PASS
 REPORT=/data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/deploy_emergence_plugin_php_and_assets_001.md
