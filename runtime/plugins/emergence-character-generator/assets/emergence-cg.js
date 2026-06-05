@@ -3523,3 +3523,168 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
   else boot();
 })();
+
+/* DreamOS Canonical Spark Select Option Hardener
+ * Rebuilds canonical Spark selects with robust options from any known question-bank shape.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSCanonicalSparkSelectOptionHardener) return;
+  window.__DreamOSCanonicalSparkSelectOptionHardener = true;
+
+  var REQUIRED = 28;
+  var LETTERS = ["A","B","C","D","E","F","G","H"];
+
+  function cleanText(v) {
+    if (v === null || v === undefined) return "";
+    if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") return String(v).trim();
+    if (typeof v === "object") {
+      return String(
+        v.text || v.label || v.answer || v.value || v.title || v.name || v.description || ""
+      ).trim();
+    }
+    return "";
+  }
+
+  function optionEntries(options) {
+    var out = [];
+
+    if (Array.isArray(options)) {
+      options.forEach(function (item, i) {
+        var letter = "";
+        var text = "";
+
+        if (typeof item === "object" && item) {
+          letter = String(item.key || item.letter || item.id || item.value || LETTERS[i] || "").trim().toUpperCase().substring(0, 1);
+          text = cleanText(item.text || item.label || item.answer || item.title || item.name || item.prompt || item.value);
+        } else {
+          letter = LETTERS[i] || String(i + 1);
+          text = cleanText(item);
+        }
+
+        if (LETTERS.indexOf(letter) === -1) letter = LETTERS[i] || String(i + 1);
+        if (!text || text === letter) text = "Option " + letter;
+        out.push([letter, text]);
+      });
+    } else if (options && typeof options === "object") {
+      LETTERS.forEach(function (letter) {
+        var item = options[letter] || options[letter.toLowerCase()];
+        var text = cleanText(item);
+        if (text) out.push([letter, text]);
+      });
+
+      if (!out.length) {
+        Object.keys(options).forEach(function (key, i) {
+          var letter = String(key || LETTERS[i] || "").trim().toUpperCase().substring(0, 1);
+          if (LETTERS.indexOf(letter) === -1) letter = LETTERS[i] || String(i + 1);
+          var text = cleanText(options[key]);
+          if (!text || text === letter) text = "Option " + letter;
+          out.push([letter, text]);
+        });
+      }
+    }
+
+    var seen = {};
+    out = out.filter(function (pair) {
+      if (!pair[0] || seen[pair[0]]) return false;
+      seen[pair[0]] = true;
+      return true;
+    });
+
+    // Backend only needs A-H. If copy is unavailable, keep the form usable.
+    if (!out.length) {
+      out = LETTERS.map(function (letter) {
+        return [letter, "Option " + letter];
+      });
+    }
+
+    return out.slice(0, 8);
+  }
+
+  function questionBank() {
+    var cg = window.EmergenceCG || {};
+    var qb = cg.question_bank || {};
+    var list = qb.domain_questions || qb.questions || qb.items || [];
+    if (!Array.isArray(list)) return [];
+
+    return list.slice(0, REQUIRED).map(function (q, idx) {
+      q = q || {};
+      return {
+        num: parseInt(q.q || q.id || q.number || q.index || (idx + 1), 10),
+        text: cleanText(q.question || q.prompt || q.text || q.title || ("Question " + (idx + 1))),
+        options: q.options || q.answers || q.choices || q.values || q.responses || {}
+      };
+    }).filter(function (q) {
+      return q.num >= 1 && q.num <= REQUIRED;
+    }).sort(function (a, b) {
+      return a.num - b.num;
+    });
+  }
+
+  function buildSelect(q, previous) {
+    var select = document.createElement("select");
+    select.id = "dreamos-q-" + q.num;
+    select.name = "dreamos_question_" + q.num;
+    select.setAttribute("data-dreamos-question", String(q.num));
+    select.setAttribute("data-dreamos-select-hardened", "1");
+    select.setAttribute("aria-label", "Q" + q.num + " answer");
+
+    var ph = document.createElement("option");
+    ph.value = "";
+    ph.textContent = "Choose one...";
+    select.appendChild(ph);
+
+    optionEntries(q.options).forEach(function (pair) {
+      var opt = document.createElement("option");
+      opt.value = pair[0];
+      opt.textContent = pair[0] + ". " + pair[1];
+      if (previous === pair[0]) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    return select;
+  }
+
+  function hardenExistingCanonicalRenderer() {
+    var root = document.querySelector("[data-dreamos-canonical-spark-renderer='1']");
+    if (!root) return false;
+
+    var questions = questionBank();
+    if (questions.length < REQUIRED) return false;
+
+    questions.forEach(function (q) {
+      var card = root.querySelector("[data-dreamos-q='" + q.num + "']");
+      if (!card) return;
+
+      var old = card.querySelector("select[data-dreamos-question]");
+      var previous = old ? String(old.value || "").toUpperCase() : "";
+
+      var label = card.querySelector("label");
+      if (label) {
+        label.textContent = "Q" + q.num + " — " + q.text;
+        label.setAttribute("for", "dreamos-q-" + q.num);
+      }
+
+      var fresh = buildSelect(q, previous);
+      if (old) old.replaceWith(fresh);
+      else card.appendChild(fresh);
+
+      card.setAttribute("data-dreamos-select-options-fixed", "1");
+    });
+
+    var event = new Event("change", { bubbles: true });
+    root.dispatchEvent(event);
+    return true;
+  }
+
+  function boot() {
+    hardenExistingCanonicalRenderer();
+    setTimeout(hardenExistingCanonicalRenderer, 250);
+    setTimeout(hardenExistingCanonicalRenderer, 1000);
+    setTimeout(hardenExistingCanonicalRenderer, 2000);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+})();

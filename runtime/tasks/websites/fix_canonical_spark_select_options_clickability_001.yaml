@@ -1,0 +1,18 @@
+id: fix_canonical_spark_select_options_clickability_001
+title: Fix canonical Spark select options and mobile clickability
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  canonical_url: https://dadudekc.site/spark-generator/
+  asset_version: 0.8.8-canonical-select-options-001
+actions:
+  - inspect question bank option shape
+  - harden canonical renderer option parser
+  - guarantee every Q1-Q28 select has valid A-H values
+  - force native mobile select clickability
+  - deploy plugin PHP and assets
+verify:
+  - canonical route loads 0.8.8-canonical-select-options-001
+  - live JS contains canonical option parser marker
+  - live CSS contains select clickability marker
+commit_message: Fix canonical Spark select options
