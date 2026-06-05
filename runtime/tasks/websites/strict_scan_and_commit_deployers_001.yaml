@@ -1,0 +1,13 @@
+id: strict_scan_and_commit_deployers_001
+title: Strict scan and commit website deployer tooling
+lane: repo_fleet_self_healing_001
+status: completed
+target: ops/deployment
+actions:
+  - python_syntax_check
+  - ast_secret_literal_scan
+  - commit_deployer_tooling
+verify:
+  - python -m py_compile ops/deployment/simple_wordpress_deployer.py ops/deployment/unified_deployer.py
+  - STRICT_SECRET_SCAN=PASS
+commit_message: Add website deployment tooling
