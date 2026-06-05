@@ -1,0 +1,18 @@
+id: add_explicit_save_and_ai_image_prompt_001
+title: Add explicit Spark character save and AI image prompt
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  spark_url: https://dadudekc.site/spark-generator/
+  battle_url: https://dadudekc.site/battles/
+actions:
+  - stop autosaving final dossier on render
+  - add explicit Save Character button
+  - generate AI image prompt from final Spark result
+  - add copy prompt button
+  - keep battle simulator loading saved characters only
+verify:
+  - Spark page contains explicit save marker
+  - Spark page contains AI image prompt marker
+  - Battle page still reads saved characters
+commit_message: Add explicit Spark character save and image prompt
