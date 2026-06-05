@@ -41,3 +41,70 @@ No syntax errors detected in runtime/plugins/emergence-character-generator/emerg
 ## Result
 
 Removed attribute-watching MutationObserver behavior from dossier helper patches and converted duplicate control handling to passive CSS suppression. This should prevent mobile render stalls around Q11.
+
+## Deploy
+
+```text
+== VERIFY ENV ==
+== WRITE TASK ==
+== DISCOVER REMOTE PLUGIN DIR ==
+/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_PLUGIN_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_ASSET_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets
+== UPLOAD PHP AND ASSETS ==
+UPLOAD=PASS
+== REMOTE CHMOD / CACHE FLUSH ==
+Success: The cache was flushed.
+Plugin 'emergence-character-generator' deactivated.
+Success: Deactivated 1 of 1 plugins.
+Plugin 'emergence-character-generator' activated.
+Success: Activated 1 of 1 plugins.
+Success: The cache was flushed.
+5: * Version: 0.8.5-quiz-freeze-observer-fix-001
+REMOTE_PLUGIN_DEPLOY=PASS
+== VERIFY LIVE PAGE ASSET VERSION ==
+emergence-cg.css?ver=0.8.5-quiz-freeze-observer-fix-001
+emergence-character-generator.css?ver=0.8.5-quiz-freeze-observer-fix-001
+emergence-cg.js?ver=0.8.5-quiz-freeze-observer-fix-001
+emergence-character-generator.js?ver=0.8.5-quiz-freeze-observer-fix-001
+== VERIFY LIVE JS MARKER ==
+1279:/* DreamOS Guaranteed Final Dossier Injector
+== REQUIRE ==
+== COMPLETE TASK ==
+== WRITE REPORT ==
+[master 3e25e1d0] Deploy Emergence plugin PHP and cache-busted assets
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+== CLOSEOUT ==
+STATUS=PASS
+REPORT=/data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/deploy_emergence_plugin_php_and_assets_001.md
+TASK=/data/data/com.termux/files/home/projects/websites/runtime/tasks/websites/deploy_emergence_plugin_php_and_assets_001.yaml
+```
+
+## Live verification
+
+```text
+--- page ---
+emergence-cg.css?ver=0.8.5-quiz-freeze-observer-fix-001
+emergence-character-generator.css?ver=0.8.5-quiz-freeze-observer-fix-001
+EmergenceCG
+EmergenceCG
+EmergenceCG
+EmergenceCG
+question_bank
+emergence-cg.js?ver=0.8.5-quiz-freeze-observer-fix-001
+emergence-character-generator.js?ver=0.8.5-quiz-freeze-observer-fix-001
+--- js markers ---
+1511:    var observer = new MutationObserver(function () {
+1776:    var observer = new MutationObserver(hydrate);
+1997:    new MutationObserver(inject).observe(document.body, { childList: true, subtree: true });
+2291:    new MutationObserver(function (mutations) {
+2561:    new MutationObserver(function () {
+2817:    new MutationObserver(ensureEndOnlyButton).observe(document.body, {childList: true, subtree: true});
+3082:    new MutationObserver(function(){ window.clearTimeout(window.__dreamosDossierObserverTimer); window.__dreamosDossierObserverTimer = window.setTimeout(ensureButton, 150); }).observe(document.body, {childList: true, subtree: true});
+3090:/* DreamOS Spark Quiz Freeze Observer Fix
+--- css markers ---
+1217:.ecg-flavor[data-phase="locked"],
+1256:/* DreamOS Passive Dossier Duplicate Suppression */
+1270:.ecg-flavor[data-phase="locked"],
+1281:/* Mobile question cards should not reserve giant empty space. */
+```
