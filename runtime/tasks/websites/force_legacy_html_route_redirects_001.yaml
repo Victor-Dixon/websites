@@ -1,0 +1,19 @@
+id: force_legacy_html_route_redirects_001
+title: Force legacy Emergence HTML route redirects
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  redirects:
+    - /spark-generator.html -> /spark-generator/
+    - /spark-battle-sim.html -> /battles/
+    - /battles.html -> /battles/
+actions:
+  - patch .htaccess before WordPress rules
+  - flush WordPress/cache
+  - verify legacy URLs redirect or resolve to canonical routes
+verify:
+  - /spark-generator.html does not land as stale page
+  - /spark-generator.html reaches /spark-generator/
+  - /spark-battle-sim.html reaches /battles/
+commit_message: Force legacy Emergence HTML route redirects
