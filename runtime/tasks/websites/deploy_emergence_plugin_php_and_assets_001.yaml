@@ -1,0 +1,17 @@
+id: deploy_emergence_plugin_php_and_assets_001
+title: Deploy Emergence plugin PHP and assets
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  plugin: emergence-character-generator
+actions:
+  - upload plugin PHP
+  - upload JS/CSS aliases
+  - chmod plugin readable
+  - flush cache
+  - verify live page asset version
+verify:
+  - live page does not use ver=0.7.3
+  - live JS contains Guaranteed Final Dossier Injector
+commit_message: Deploy Emergence plugin PHP and cache-busted assets
