@@ -1,0 +1,18 @@
+id: verify_client_hardening_inline_live_001
+title: Verify client hardening inline live
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/
+  asset_version: 0.7.9-client-hardening-answers-001
+actions:
+  - verify canonical page loads 0.7.9 assets
+  - verify inline/page payload hardening allowlist is live
+  - verify REST POST accepts answers payload
+  - commit report
+verify:
+  - page contains 0.7.9-client-hardening-answers-001
+  - page or asset contains DreamOS client hardening allowlist
+  - POST returns Spark result
+commit_message: Verify client hardening inline live
