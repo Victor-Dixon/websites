@@ -53,3 +53,77 @@ No syntax errors detected in runtime/plugins/emergence-character-generator/emerg
 ## Result
 
 Rebuilt the Spark generator UI as a clean button-card app. It avoids select dropdowns and avoids legacy renderer dependency.
+
+## Deploy
+
+```text
+== VERIFY ENV ==
+== WRITE TASK ==
+== DISCOVER REMOTE PLUGIN DIR ==
+/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_PLUGIN_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_ASSET_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets
+== UPLOAD PHP AND ASSETS ==
+UPLOAD=PASS
+== REMOTE CHMOD / CACHE FLUSH ==
+Success: The cache was flushed.
+Plugin 'emergence-character-generator' deactivated.
+Success: Deactivated 1 of 1 plugins.
+Plugin 'emergence-character-generator' activated.
+Success: Activated 1 of 1 plugins.
+Success: The cache was flushed.
+5: * Version: 0.9.0-clean-spark-page-001
+REMOTE_PLUGIN_DEPLOY=PASS
+== VERIFY LIVE PAGE ASSET VERSION ==
+emergence-cg.css?ver=0.9.0-clean-spark-page-001
+emergence-character-generator.css?ver=0.9.0-clean-spark-page-001
+emergence-cg.js?ver=0.9.0-clean-spark-page-001
+emergence-character-generator.js?ver=0.9.0-clean-spark-page-001
+== VERIFY LIVE JS MARKER ==
+1279:/* DreamOS Guaranteed Final Dossier Injector
+== REQUIRE ==
+== COMPLETE TASK ==
+== WRITE REPORT ==
+[master 33f67035] Deploy Emergence plugin PHP and cache-busted assets
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+== CLOSEOUT ==
+STATUS=PASS
+REPORT=/data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/deploy_emergence_plugin_php_and_assets_001.md
+TASK=/data/data/com.termux/files/home/projects/websites/runtime/tasks/websites/deploy_emergence_plugin_php_and_assets_001.yaml
+```
+
+## Live verification
+
+```text
+--- page ---
+emergence-cg.css?ver=0.9.0-clean-spark-page-001
+emergence-character-generator.css?ver=0.9.0-clean-spark-page-001
+EmergenceCG
+EmergenceCG
+EmergenceCG
+EmergenceCG
+question_bank
+emergence-cg.js?ver=0.9.0-clean-spark-page-001
+emergence-character-generator.js?ver=0.9.0-clean-spark-page-001
+--- js ---
+3313:/* DreamOS Clean Spark Page Rebuild
+3437:      if (!child.hasAttribute("data-dreamos-clean-spark-page")) {
+3498:      root.innerHTML = '<section data-dreamos-clean-spark-page="1" class="dreamos-clean-spark"><h2>Spark Generator</h2><p>Question bank did not load. Refresh once.</p></section>';
+3507:    html += '<section data-dreamos-clean-spark-page="1" class="dreamos-clean-spark">';
+3517:      html += '<button type="button" class="dreamos-clean-submit" data-clean-submit-domain ' + (domainCount < domain.length ? "disabled" : "") + '>Generate Spark Pass 1</button>';
+3541:        html += '<button type="button" class="dreamos-clean-submit" data-clean-submit-flavor ' + (flavorCount < flavor.length ? "disabled" : "") + '>Build Final Dossier</button>';
+3609:    var shell = root.querySelector("[data-dreamos-clean-spark-page='1']");
+3630:      var domainSubmit = ev.target.closest && ev.target.closest("[data-clean-submit-domain]");
+3656:      var flavorSubmit = ev.target.closest && ev.target.closest("[data-clean-submit-flavor], [data-clean-build-final]");
+3689:    app.setAttribute("data-dreamos-clean-spark-page", "1");
+--- css ---
+1322:/* DreamOS Clean Spark Page Rebuild */
+1323:[data-dreamos-clean-spark-hidden="1"] {
+1379:.dreamos-clean-options {
+1385:.dreamos-clean-options button {
+1403:.dreamos-clean-options button strong {
+1413:.dreamos-clean-options button[data-selected="1"] {
+1418:.dreamos-clean-submit,
+1435:.dreamos-clean-submit {
+1440:.dreamos-clean-submit:disabled {
+```
