@@ -1,6 +1,6 @@
 # Deploy Emergence plugin PHP and cache-busted assets
 
-Generated: 2026-06-05T06:46:09-05:00
+Generated: 2026-06-05T06:51:10-05:00
 
 ## Upload
 
@@ -17,17 +17,17 @@ Success: Deactivated 1 of 1 plugins.
 Plugin 'emergence-character-generator' activated.
 Success: Activated 1 of 1 plugins.
 Success: The cache was flushed.
-5: * Version: 0.8.0-hide-public-recovery-blockers-001
+5: * Version: 0.8.1-canonical-route-nostore-001
 REMOTE_PLUGIN_DEPLOY=PASS
 ```
 
 ## Live asset refs
 
 ```text
-emergence-cg.css?ver=0.8.0-hide-public-recovery-blockers-001
-emergence-character-generator.css?ver=0.8.0-hide-public-recovery-blockers-001
-emergence-cg.js?ver=0.8.0-hide-public-recovery-blockers-001
-emergence-character-generator.js?ver=0.8.0-hide-public-recovery-blockers-001
+emergence-cg.css?ver=0.8.1-canonical-route-nostore-001
+emergence-character-generator.css?ver=0.8.1-canonical-route-nostore-001
+emergence-cg.js?ver=0.8.1-canonical-route-nostore-001
+emergence-character-generator.js?ver=0.8.1-canonical-route-nostore-001
 ```
 
 ## Live JS marker
