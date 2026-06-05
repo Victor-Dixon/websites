@@ -1068,3 +1068,88 @@ button[data-ecg-fail-open-generate="1"] {
   justify-content: center;
 }
 
+
+/* DreamOS Canonical Quiz-Gated Final Dossier */
+[data-dreamos-duplicate-dossier-hidden="1"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.dreamos-canonical-dossier-action {
+  margin: 2rem auto;
+  width: min(100%, 680px);
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.dreamos-canonical-dossier-button {
+  width: min(100%, 560px);
+  min-height: 56px;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: clamp(1rem, 4vw, 1.15rem);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.dreamos-canonical-dossier-panel {
+  width: min(100%, 680px);
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.dreamos-final-dossier-card,
+.dreamos-dossier-warning,
+.dreamos-dossier-loading {
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 24px;
+  padding: clamp(1.25rem, 5vw, 2.25rem);
+  background: rgba(10, 12, 26, .78);
+  color: #f7f7fb;
+}
+
+.dreamos-kicker {
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  opacity: .72;
+}
+
+.dreamos-dossier-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+  margin: 1rem 0;
+}
+
+.dreamos-dossier-grid > div {
+  border-radius: 18px;
+  padding: 1rem;
+  background: rgba(255,255,255,.06);
+  text-align: center;
+}
+
+.dreamos-dossier-grid strong,
+.dreamos-dossier-grid span {
+  display: block;
+}
+
+.dreamos-dossier-actions a {
+  color: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.dreamos-final-dossier-card pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+
+@media (max-width: 760px) {
+  .dreamos-dossier-grid {
+    grid-template-columns: 1fr;
+  }
+}
