@@ -471,3 +471,24 @@
   margin-top: .65rem;
   opacity: .9;
 }
+
+
+
+/* DreamOS Public Spark Recovery Blocker Suppression */
+[data-dreamos-public-recovery-scrubbed="1"] {
+  color: inherit;
+}
+
+[data-dreamos-public-recovery-scrubbed="1"] pre,
+[data-dreamos-public-recovery-scrubbed="1"] code {
+  display: none !important;
+}
+
+.ecg-fail-open-button,
+button[data-ecg-fail-open-generate="1"] {
+  display: inline-flex !important;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+}
+

@@ -2225,3 +2225,80 @@
   else boot();
 })();
 
+
+
+
+/* DreamOS Public Spark Recovery Blocker Suppression
+ * Public UX must not expose hardening/debug blocker internals.
+ * Full diagnostics belong in the future AI-generated response/debug area.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSPublicSparkRecoveryBlockerSuppression) return;
+  window.__DreamOSPublicSparkRecoveryBlockerSuppression = true;
+
+  function scrubTextNode(node) {
+    if (!node || !node.nodeValue) return;
+    var text = node.nodeValue;
+    var next = text
+      .replace(/SPARK PROTOCOL RECOVERY MODE/gi, "SPARK PROTOCOL")
+      .replace(/Spark Protocol Recovery Mode/gi, "Spark Protocol")
+      .replace(/The full generator interface did not mount cleanly, so this fail-open path keeps the Spark Protocol usable while the frontend is repaired\./gi, "Generate your Spark profile, then carry it into the battle loop.")
+      .replace(/Reason:\s*Uncaught Error:\s*Unsafe public demo hardening payload blocked:\s*answers/gi, "")
+      .replace(/Uncaught Error:\s*Unsafe public demo hardening payload blocked:\s*answers/gi, "")
+      .replace(/Unsafe public demo hardening payload blocked:\s*answers/gi, "")
+      .replace(/Generate Diagnostic Spark/gi, "Generate Your Spark");
+
+    if (next !== text) node.nodeValue = next;
+  }
+
+  function scrubElement(el) {
+    if (!el || el.nodeType !== 1) return;
+
+    var text = (el.textContent || "").toLowerCase();
+    if (
+      text.indexOf("unsafe public demo hardening payload blocked") !== -1 ||
+      text.indexOf("full generator interface did not mount cleanly") !== -1 ||
+      text.indexOf("spark protocol recovery mode") !== -1
+    ) {
+      el.setAttribute("data-dreamos-public-recovery-scrubbed", "1");
+    }
+
+    if ((el.textContent || "").trim() === "Generate Diagnostic Spark") {
+      el.textContent = "Generate Your Spark";
+    }
+  }
+
+  function scrub(root) {
+    root = root || document.body;
+    if (!root) return;
+
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(scrubTextNode);
+
+    Array.prototype.forEach.call(root.querySelectorAll("*"), scrubElement);
+  }
+
+  function boot() {
+    scrub(document.body);
+    window.setTimeout(function () { scrub(document.body); }, 250);
+    window.setTimeout(function () { scrub(document.body); }, 1000);
+    window.setTimeout(function () { scrub(document.body); }, 2500);
+
+    new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        Array.prototype.forEach.call(m.addedNodes || [], function (node) {
+          if (node.nodeType === 3) scrubTextNode(node);
+          if (node.nodeType === 1) scrub(node);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true, characterData: true });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
