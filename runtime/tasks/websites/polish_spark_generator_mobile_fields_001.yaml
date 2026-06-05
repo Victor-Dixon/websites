@@ -1,0 +1,16 @@
+id: polish_spark_generator_mobile_fields_001
+title: Polish Spark generator mobile form fields
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  css: runtime/plugins/emergence-character-generator/assets/emergence-cg.css
+actions:
+  - fix mobile input/select/textarea overflow
+  - improve form field width and spacing
+  - reduce placeholder clipping
+  - keep dark visual system intact
+verify:
+  - CSS contains DreamOS Mobile Form Field Polish
+  - CSS contains mobile media query
+commit_message: Polish Spark generator mobile form fields
