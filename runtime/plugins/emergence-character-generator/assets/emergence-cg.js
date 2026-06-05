@@ -821,3 +821,156 @@
     }
   });
 })();
+
+
+
+/* DreamOS Spark Generator Fail-Open Guard
+ * Purpose: prevent blank generator pages when the primary UI mount fails.
+ * The backend generator endpoint is already healthy; this keeps the user path alive.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSSparkFailOpenGuard) return;
+  window.__DreamOSSparkFailOpenGuard = true;
+
+  function ready(fn) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
+  }
+
+  function findMount() {
+    return document.querySelector(
+      "#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]"
+    );
+  }
+
+  function hasVisibleGenerator(mount) {
+    if (!mount) return false;
+    var text = (mount.textContent || "").trim();
+    var controls = mount.querySelectorAll("button, input, select, textarea, [role='button'], .ecg-option, .option").length;
+    var rect = mount.getBoundingClientRect ? mount.getBoundingClientRect() : { width: 0, height: 0 };
+    var style = window.getComputedStyle ? window.getComputedStyle(mount) : null;
+
+    if (style && (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) === 0)) {
+      return false;
+    }
+
+    return text.length > 80 || controls > 0 || rect.height > 120;
+  }
+
+  function getEndpoint() {
+    if (window.EmergenceCG && window.EmergenceCG.endpoint) return window.EmergenceCG.endpoint;
+    return "/wp-json/emergence/v1/generate";
+  }
+
+  function getQuestionBank() {
+    if (window.EmergenceCG && window.EmergenceCG.question_bank) return window.EmergenceCG.question_bank;
+    return null;
+  }
+
+  function fallbackAnswers() {
+    var answers = {};
+    for (var i = 1; i <= 28; i += 1) {
+      answers[String(i)] = ["A","B","C","D","E","F","G","H"][(i - 1) % 8];
+    }
+    return answers;
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderFallback(mount, reason) {
+    if (!mount) {
+      mount = document.createElement("section");
+      mount.id = "emergence-character-generator";
+      mount.className = "emergence-character-generator ecg-fail-open";
+      var main = document.querySelector("main") || document.body;
+      main.appendChild(mount);
+    }
+
+    mount.style.display = "block";
+    mount.style.visibility = "visible";
+    mount.style.opacity = "1";
+    mount.hidden = false;
+
+    if (mount.getAttribute("data-dreamos-fail-open-rendered") === "1") return;
+    mount.setAttribute("data-dreamos-fail-open-rendered", "1");
+
+    var qb = getQuestionBank();
+    var source = qb && qb.source ? qb.source : "Spark Protocol v8.5";
+
+    mount.innerHTML = [
+      '<div class="ecg-fail-open-panel">',
+      '<p class="ecg-kicker">Spark Protocol Recovery Mode</p>',
+      '<h2>Generate Your Spark</h2>',
+      '<p>The full generator interface did not mount cleanly, so this fail-open path keeps the Spark Protocol usable while the frontend is repaired.</p>',
+      '<p><strong>Question bank:</strong> ' + escapeHtml(source) + '</p>',
+      '<p><strong>Status:</strong> backend endpoint detected at <code>' + escapeHtml(getEndpoint()) + '</code></p>',
+      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
+      '<pre class="ecg-fail-open-output" aria-live="polite"></pre>',
+      '<p class="ecg-fail-open-note">Reason: ' + escapeHtml(reason || "primary UI blank") + '</p>',
+      '</div>'
+    ].join("");
+
+    var btn = mount.querySelector("[data-ecg-fail-open-generate]");
+    var out = mount.querySelector(".ecg-fail-open-output");
+
+    btn.addEventListener("click", function () {
+      out.textContent = "Generating Spark...";
+      fetch(getEndpoint(), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({
+          answers: fallbackAnswers(),
+          source: "dreamos-fail-open-guard"
+        })
+      })
+      .then(function (r) {
+        return r.json().then(function (j) {
+          return { ok: r.ok, json: j };
+        });
+      })
+      .then(function (res) {
+        out.textContent = JSON.stringify(res.json, null, 2);
+      })
+      .catch(function (err) {
+        out.textContent = "Spark generation request failed: " + (err && err.message ? err.message : String(err));
+      });
+    });
+  }
+
+  ready(function () {
+    window.setTimeout(function () {
+      var mount = findMount();
+      if (!hasVisibleGenerator(mount)) {
+        renderFallback(mount, "primary generator mount missing, hidden, or empty after load");
+      }
+    }, 1800);
+  });
+
+  window.addEventListener("error", function (event) {
+    var mount = findMount();
+    if (!hasVisibleGenerator(mount)) {
+      renderFallback(mount, event && event.message ? event.message : "frontend script error");
+    }
+  });
+
+  window.addEventListener("unhandledrejection", function (event) {
+    var mount = findMount();
+    if (!hasVisibleGenerator(mount)) {
+      var reason = event && event.reason && event.reason.message ? event.reason.message : "unhandled promise rejection";
+      renderFallback(mount, reason);
+    }
+  });
+})();
+

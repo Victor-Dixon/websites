@@ -471,3 +471,49 @@
   margin-top: .65rem;
   opacity: .9;
 }
+
+
+
+/* DreamOS Spark Generator Fail-Open Visibility Guard */
+#emergence-character-generator,
+.emergence-character-generator,
+.ecg-shell,
+.ecg-app,
+.ecg-wrap,
+[data-emergence-character-generator] {
+  min-height: 160px;
+}
+
+.ecg-fail-open,
+.ecg-fail-open-panel {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.ecg-fail-open-panel {
+  margin: 2rem auto;
+  padding: 1.5rem;
+  max-width: 920px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 18px;
+  background: rgba(18,18,28,.94);
+  color: #f7f5ff;
+}
+
+.ecg-fail-open-button {
+  display: inline-block;
+  padding: .85rem 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.ecg-fail-open-output {
+  margin-top: 1rem;
+  padding: 1rem;
+  max-height: 420px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+

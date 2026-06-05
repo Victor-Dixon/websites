@@ -1,0 +1,18 @@
+id: move_spark_fail_open_to_runtime_plugin_001
+title: Move Spark generator fail-open guard to runtime plugin assets
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  plugin: runtime/plugins/emergence-character-generator
+  js: runtime/plugins/emergence-character-generator/assets/emergence-cg.js
+  css: runtime/plugins/emergence-character-generator/assets/emergence-cg.css
+actions:
+  - remove diagnostic tmp assets from git tracking
+  - patch real runtime plugin JS
+  - patch real runtime plugin CSS
+  - verify fail-open guard exists in runtime plugin
+verify:
+  - runtime JS contains DreamOS Spark Generator Fail-Open Guard
+  - runtime CSS contains DreamOS Spark Generator Fail-Open Visibility Guard
+  - diagnostic tmp assets not tracked after commit
+commit_message: Move Spark generator fail-open guard to plugin assets
