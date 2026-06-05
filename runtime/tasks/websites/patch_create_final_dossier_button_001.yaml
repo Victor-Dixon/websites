@@ -1,0 +1,15 @@
+id: patch_create_final_dossier_button_001
+title: Patch Create Final Dossier button fail-open handler
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  plugin_js: runtime/plugins/emergence-character-generator/assets/emergence-cg.js
+actions:
+  - add delegated click handler for Create Final Dossier
+  - call healthy Spark Protocol generate endpoint if native handler fails
+  - render visible dossier panel
+verify:
+  - JS contains DreamOS Final Dossier Button Guard
+  - CSS contains final dossier fallback styles
+commit_message: Patch Create Final Dossier button fallback

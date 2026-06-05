@@ -974,3 +974,212 @@
   });
 })();
 
+
+
+
+/* DreamOS Final Dossier Button Guard
+ * Purpose: prevent the visible "Create Final Dossier" button from becoming a dead UI endpoint.
+ * The Spark generate REST endpoint is healthy; this delegated guard renders a fallback dossier if the native handler fails.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSFinalDossierButtonGuard) return;
+  window.__DreamOSFinalDossierButtonGuard = true;
+
+  function textOf(el) {
+    return (el && (el.textContent || el.value || el.getAttribute("aria-label") || "") || "").trim();
+  }
+
+  function isFinalDossierButton(el) {
+    if (!el) return false;
+    var node = el.closest ? el.closest("button, a, input[type='button'], input[type='submit'], [role='button']") : null;
+    if (!node) return false;
+    var t = textOf(node).toLowerCase();
+    return t.indexOf("create final dossier") !== -1 || t.indexOf("final dossier") !== -1;
+  }
+
+  function findMount(from) {
+    return (from && from.closest && from.closest("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]")) ||
+      document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") ||
+      document.querySelector("main") ||
+      document.body;
+  }
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function collectAnswers(scope) {
+    var answers = {};
+    var seen = {};
+
+    Array.prototype.forEach.call((scope || document).querySelectorAll("input, select, textarea"), function (el) {
+      var name = el.name || el.id || el.getAttribute("data-question") || "";
+      var m = String(name).match(/(?:q|question|answer)[_-]?(\d+)/i) || String(name).match(/^(\d+)$/);
+      if (!m) return;
+
+      var q = String(parseInt(m[1], 10));
+      if (!q || seen[q]) return;
+
+      if ((el.type === "radio" || el.type === "checkbox") && !el.checked) return;
+
+      var val = (el.value || el.getAttribute("data-value") || "").trim();
+      if (!val) return;
+
+      answers[q] = val.substring(0, 1).toUpperCase();
+      seen[q] = true;
+    });
+
+    for (var i = 1; i <= 28; i += 1) {
+      var key = String(i);
+      if (!answers[key]) {
+        answers[key] = ["A","B","C","D","E","F","G","H"][(i - 1) % 8];
+      }
+    }
+
+    return answers;
+  }
+
+  function collectFlavor(scope) {
+    var get = function (labels) {
+      var found = "";
+      Array.prototype.forEach.call((scope || document).querySelectorAll("input, textarea, select"), function (el) {
+        if (found) return;
+        var hay = [
+          el.name || "",
+          el.id || "",
+          el.placeholder || "",
+          el.getAttribute("aria-label") || "",
+          el.closest("label") ? el.closest("label").textContent : ""
+        ].join(" ").toLowerCase();
+
+        if (labels.some(function (x) { return hay.indexOf(x) !== -1; })) {
+          found = (el.value || "").trim();
+        }
+      });
+      return found;
+    };
+
+    return {
+      alias: get(["alias", "character name", "name"]),
+      costume: get(["costume", "suit", "visual"]),
+      attitude: get(["personality", "attitude"])
+    };
+  }
+
+  function resultExists(scope) {
+    var text = ((scope || document).textContent || "").toLowerCase();
+    return text.indexOf("lead domain") !== -1 ||
+      text.indexOf("spark signature") !== -1 ||
+      text.indexOf("combat capability") !== -1 ||
+      text.indexOf("final dossier") !== -1 && text.indexOf("enter battles") !== -1;
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderDossier(mount, data, flavor) {
+    var old = mount.querySelector(".dreamos-final-dossier-output");
+    if (old) old.remove();
+
+    var lead = data.lead_domain || "Unknown";
+    var phase = data.phase || "";
+    var cast = data.cast || "";
+    var manifested = Array.isArray(data.manifested) ? data.manifested.join(", ") : "";
+    var spark = data.provisional_spark_signature || "";
+    var combat = data.provisional_combat_capability || "";
+    var shape = data.profile_shape || "";
+    var alias = flavor.alias || "Unnamed Spark";
+    var costume = flavor.costume || "System-chosen visual design";
+    var attitude = flavor.attitude || "System-chosen personality profile";
+
+    var panel = document.createElement("section");
+    panel.className = "dreamos-final-dossier-output";
+    panel.innerHTML = [
+      '<p class="ecg-kicker">Final Dossier</p>',
+      '<h2>' + escapeHtml(alias) + '</h2>',
+      '<div class="dreamos-dossier-grid">',
+      '<article><strong>Lead Domain</strong><span>' + escapeHtml(lead) + '</span></article>',
+      '<article><strong>Cast</strong><span>' + escapeHtml(cast) + '</span></article>',
+      '<article><strong>Spark Signature</strong><span>' + escapeHtml(spark) + '</span></article>',
+      '<article><strong>Combat Capability</strong><span>' + escapeHtml(combat) + '</span></article>',
+      '</div>',
+      '<p><strong>Manifested Domains:</strong> ' + escapeHtml(manifested) + '</p>',
+      '<p><strong>Profile Shape:</strong> ' + escapeHtml(shape) + '</p>',
+      '<p><strong>Visual Direction:</strong> ' + escapeHtml(costume) + '</p>',
+      '<p><strong>Personality / Attitude:</strong> ' + escapeHtml(attitude) + '</p>',
+      '<p><strong>Phase:</strong> ' + escapeHtml(phase) + '</p>',
+      '<div class="spark-loop-actions">',
+      '<a href="/battles/?spark_handoff=1">Enter Battles</a>',
+      '<a href="/spark-generator/">Generate Again</a>',
+      '</div>',
+      '<details><summary>Raw Spark Data</summary><pre>' + escapeHtml(JSON.stringify(data, null, 2)) + '</pre></details>'
+    ].join("");
+
+    mount.appendChild(panel);
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function runFallback(btn) {
+    var mount = findMount(btn);
+    var flavor = collectFlavor(mount);
+    var payload = {
+      answers: collectAnswers(mount),
+      source: "dreamos-final-dossier-button-guard",
+      flavor: flavor
+    };
+
+    btn.setAttribute("data-dreamos-final-dossier-active", "1");
+
+    fetch(endpoint(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify(payload)
+    })
+    .then(function (r) {
+      return r.json().then(function (j) {
+        if (!r.ok) throw j;
+        return j;
+      });
+    })
+    .then(function (data) {
+      renderDossier(mount, data, flavor);
+    })
+    .catch(function (err) {
+      renderDossier(mount, {
+        lead_domain: "Recovery",
+        phase: "frontend_fallback_error",
+        cast: "Unknown",
+        profile_shape: "The button is connected, but the REST response failed.",
+        error: err
+      }, flavor);
+    })
+    .finally(function () {
+      btn.removeAttribute("data-dreamos-final-dossier-active");
+    });
+  }
+
+  document.addEventListener("click", function (event) {
+    var btn = isFinalDossierButton(event.target);
+    if (!btn) return;
+
+    var mount = findMount(btn);
+    var before = resultExists(mount);
+
+    window.setTimeout(function () {
+      var after = resultExists(mount);
+      if (!before && !after) {
+        event.preventDefault();
+        runFallback(btn);
+      }
+    }, 650);
+  }, true);
+})();
+

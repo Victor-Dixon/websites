@@ -517,3 +517,44 @@
   white-space: pre-wrap;
 }
 
+
+
+
+/* DreamOS Final Dossier Button Guard Styles */
+.dreamos-final-dossier-output {
+  margin: 2rem auto;
+  padding: 1.5rem;
+  max-width: 960px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 20px;
+  background: rgba(12, 14, 28, .96);
+  color: #f7f5ff;
+}
+
+.dreamos-dossier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: .85rem;
+  margin: 1rem 0;
+}
+
+.dreamos-dossier-grid article {
+  padding: 1rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,.07);
+}
+
+.dreamos-dossier-grid strong,
+.dreamos-dossier-grid span {
+  display: block;
+}
+
+.dreamos-final-dossier-output details {
+  margin-top: 1rem;
+}
+
+.dreamos-final-dossier-output pre {
+  white-space: pre-wrap;
+  overflow: auto;
+}
+
