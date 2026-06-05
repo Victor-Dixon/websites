@@ -1,0 +1,18 @@
+id: patch_spark_generator_fail_open_001
+title: Add Spark generator frontend fail-open guard
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  js: ./data/reports/websites/emergence/tmp/diagnose_spark_generator_blank_001/assets/emergence-cg.js
+  css: ./data/reports/websites/emergence/tmp/diagnose_spark_generator_blank_001/assets/emergence-cg.css
+actions:
+  - locate generator frontend asset
+  - add fail-open blank-page guard
+  - add fallback Generate Spark button using REST endpoint
+  - neutralize hidden root display failure
+verify:
+  - fail-open guard present
+  - fallback references /wp-json/emergence/v1/generate
+  - CSS no-hide override present when css target exists
+commit_message: Add Spark generator frontend fail-open guard
