@@ -1,0 +1,26 @@
+id: verify_spark_protocol_live_spine_001
+title: Verify Spark Protocol live spine
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  routes:
+    - /
+    - /spark-generator/
+    - /character-generator/
+    - /battles/
+    - /wp-json/emergence/v1/generate
+    - /wp-json/emergence/v1/characters
+    - /wp-json/emergence/v1/spark-token
+    - /wp-json/emergence/v1/events
+actions:
+  - probe_live_routes
+  - snapshot_generator_page
+  - snapshot_battle_page
+  - verify_plugin_assets_and_handoff
+verify:
+  - generator page reachable
+  - battle page reachable
+  - emergence plugin assets present
+  - battle handoff code present
+commit_message: Verify Spark Protocol live spine
