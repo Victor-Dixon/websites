@@ -1,0 +1,41 @@
+{
+  "id": "crosby_weareswarm_proof_20260606_162518",
+  "status": "PASS",
+  "project": "Crosby Ultimate Events + WeAreSwarm Proof",
+  "owner": "Jacori Crosby",
+  "generated": "2026-06-06T16:25:19-05:00",
+  "live_root": "https://crosbyultimateevents.com/",
+  "live_route": "https://weareswarm.online/crosbyultimateevents/",
+  "proof_feed": "https://weareswarm.online/feed/",
+  "summary": "Crosby Ultimate Events recovered from WordPress HTTP 500, repositioned for private chef and event services, wired event inquiry capture, verified CSV storage/export, and published public proof routes on WeAreSwarm.",
+  "proof": [
+    "Crosby site HTTP/2 200",
+    "Private chef and event services landing deployed",
+    "Event inquiry form deployed",
+    "PHP handler syntax verified",
+    "CSV capture verified",
+    "Private storage access protected",
+    "Test leads cleaned",
+    "Export workflow added",
+    "WeAreSwarm /projects/ route live",
+    "WeAreSwarm /crosbyultimateevents/ route live",
+    "WeAreSwarm /feed/ route live"
+  ],
+  "reports": [
+    "data/reports/websites/upgrade_crosbyultimateevents.com_private_chef_landing_20260606_153722.md",
+    "data/reports/websites/add_crosbyultimateevents.com_event_inquiry_system_20260606_154114.md",
+    "data/reports/websites/verify_crosbyultimateevents.com_inquiry_capture_20260606_154250.md",
+    "data/reports/websites/fix_crosbyultimateevents.com_csv_clean_verify_20260606_155422.md",
+    "data/reports/websites/repair_weareswarm_static_routing_20260606_155954.md"
+  ],
+  "discord": {
+    "title": "PASS — Crosby Ultimate Events Lead System + WeAreSwarm Proof",
+    "target": "discord",
+    "links": [
+      "https://crosbyultimateevents.com/",
+      "https://weareswarm.online/crosbyultimateevents/",
+      "https://weareswarm.online/feed/"
+    ],
+    "next_lane": "Replace temporary notify email with Jacori-owned email or CRM routing."
+  }
+}

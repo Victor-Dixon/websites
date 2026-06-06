@@ -1,13 +1,27 @@
 {
   "status": "DRY_RUN_RENDERED",
-  "feed_count": 1,
-  "rendered_count": 1,
+  "feed_count": 3,
+  "rendered_count": 3,
   "rendered": [
     {
-      "feed": "runtime/feeds/closeouts/weareswarm_live_proof_001.json",
+      "feed": "/data/data/com.termux/files/home/projects/websites/runtime/feeds/closeouts/crosby_weareswarm_proof_20260606_162518.json",
+      "feed_id": "crosby_weareswarm_proof_20260606_162518",
+      "discord": "/data/data/com.termux/files/home/projects/websites/data/reports/closeout_feed_rendered/crosby_weareswarm_proof_20260606_162518.discord.md",
+      "github_architect": "/data/data/com.termux/files/home/projects/websites/data/reports/closeout_feed_rendered/crosby_weareswarm_proof_20260606_162518.github_architect.md",
+      "status": "PASS"
+    },
+    {
+      "feed": "/data/data/com.termux/files/home/projects/websites/runtime/feeds/closeouts/crosby_weareswarm_proof_20260606_163136.json",
+      "feed_id": "crosby_weareswarm_proof_20260606_163136",
+      "discord": "/data/data/com.termux/files/home/projects/websites/data/reports/closeout_feed_rendered/crosby_weareswarm_proof_20260606_163136.discord.md",
+      "github_architect": "/data/data/com.termux/files/home/projects/websites/data/reports/closeout_feed_rendered/crosby_weareswarm_proof_20260606_163136.github_architect.md",
+      "status": "PASS"
+    },
+    {
+      "feed": "/data/data/com.termux/files/home/projects/websites/runtime/feeds/closeouts/weareswarm_live_proof_001.json",
       "feed_id": "weareswarm_live_proof_001",
-      "discord": "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.discord.md",
-      "github_architect": "data/reports/closeout_feed_rendered/weareswarm_live_proof_001.github_architect.md",
+      "discord": "/data/data/com.termux/files/home/projects/websites/data/reports/closeout_feed_rendered/weareswarm_live_proof_001.discord.md",
+      "github_architect": "/data/data/com.termux/files/home/projects/websites/data/reports/closeout_feed_rendered/weareswarm_live_proof_001.github_architect.md",
       "status": "LIVE_PROOF_PASS"
     }
   ],
