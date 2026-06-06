@@ -43,6 +43,11 @@ const DECKS = {
 
 const STORAGE_KEY = "xthunder_saved_pitches_v1";
 const CHAT_KEY = "xthunder_demo_chat_v1";
+const MAX_TRAPS_PER_ROUND = 10;
+const trapRoundState = {
+  round: 1,
+  traps: [],
+};
 
 function pick(deck) {
   return deck[Math.floor(Math.random() * deck.length)];
@@ -215,6 +220,64 @@ function clearChat() {
   renderChat();
 }
 
+function renderTrapLimit() {
+  const round = document.getElementById("trap-round");
+  const count = document.getElementById("trap-count");
+  const meter = document.getElementById("trap-meter-fill");
+  const status = document.getElementById("trap-status");
+  const log = document.getElementById("trap-log");
+  const placeButton = document.getElementById("place-trap");
+  const trapCount = trapRoundState.traps.length;
+  const trapsRemaining = MAX_TRAPS_PER_ROUND - trapCount;
+
+  if (round) round.textContent = `Round ${trapRoundState.round}`;
+  if (count) count.textContent = `${trapCount} / ${MAX_TRAPS_PER_ROUND}`;
+  if (meter) meter.style.width = `${(trapCount / MAX_TRAPS_PER_ROUND) * 100}%`;
+  if (placeButton) placeButton.disabled = trapCount >= MAX_TRAPS_PER_ROUND;
+
+  if (status) {
+    status.textContent = trapCount >= MAX_TRAPS_PER_ROUND
+      ? `Trap limit reached: ${MAX_TRAPS_PER_ROUND} traps placed this round. Start next round to place more.`
+      : `${trapsRemaining} trap${trapsRemaining === 1 ? "" : "s"} available this round.`;
+  }
+
+  if (!log) return;
+  log.innerHTML = "";
+
+  if (!trapCount) {
+    const empty = document.createElement("li");
+    empty.className = "empty";
+    empty.textContent = "No traps placed this round.";
+    log.appendChild(empty);
+    return;
+  }
+
+  trapRoundState.traps.forEach((trap) => {
+    const item = document.createElement("li");
+    item.textContent = `Trap ${trap.id} armed at ${trap.at}`;
+    log.appendChild(item);
+  });
+}
+
+function placeTrap() {
+  if (trapRoundState.traps.length >= MAX_TRAPS_PER_ROUND) {
+    renderTrapLimit();
+    return;
+  }
+
+  trapRoundState.traps.push({
+    id: trapRoundState.traps.length + 1,
+    at: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+  });
+  renderTrapLimit();
+}
+
+function resetTrapRound() {
+  trapRoundState.round += 1;
+  trapRoundState.traps = [];
+  renderTrapLimit();
+}
+
 const year = document.querySelector("#year");
 if (year) {
   year.textContent = new Date().getFullYear();
@@ -248,6 +311,9 @@ document.getElementById("chat-form")?.addEventListener("submit", (e) => {
 
 document.getElementById("seed-demo")?.addEventListener("click", seedDemoChat);
 document.getElementById("clear-chat")?.addEventListener("click", clearChat);
+document.getElementById("place-trap")?.addEventListener("click", placeTrap);
+document.getElementById("reset-traps")?.addEventListener("click", resetTrapRound);
 
 renderSaved();
 renderChat();
+renderTrapLimit();

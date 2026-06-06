@@ -12,6 +12,7 @@
     <a class="brand" href="/">xThunder</a>
     <nav class="nav" aria-label="Primary">
       <a href="#demo">Chat demo</a>
+      <a href="#trap-limit">Trap limit</a>
       <a href="#lab">Idea sparks</a>
       <a href="#pillars">The game</a>
     </nav>
@@ -61,6 +62,38 @@
       <div class="lab-actions">
         <button type="button" class="button secondary" id="seed-demo">Load sample lobby</button>
         <button type="button" class="button secondary" id="clear-chat">Clear feed</button>
+      </div>
+    </section>
+
+    <section id="trap-limit" class="section trap-panel">
+      <p class="eyebrow">Round performance rule</p>
+      <h2>Trap spam stops at 10 per round</h2>
+      <p class="muted">
+        To keep matches from lagging, xThunder now hard-caps trap placement at
+        <strong>10 traps per round</strong>. Once the counter is full, new traps are blocked
+        until the next round starts.
+      </p>
+
+      <div class="trap-limit-card">
+        <div>
+          <span class="label-text">Current round</span>
+          <strong id="trap-round">Round 1</strong>
+        </div>
+        <div>
+          <span class="label-text">Traps placed</span>
+          <strong id="trap-count">0 / 10</strong>
+        </div>
+        <div class="trap-meter" aria-hidden="true">
+          <span id="trap-meter-fill"></span>
+        </div>
+      </div>
+
+      <p class="hint" id="trap-status" aria-live="polite">Ready: 10 traps available this round.</p>
+      <ol class="trap-log" id="trap-log" aria-live="polite"></ol>
+
+      <div class="lab-actions">
+        <button type="button" class="button primary" id="place-trap">Place trap</button>
+        <button type="button" class="button secondary" id="reset-traps">Start next round</button>
       </div>
     </section>
 

@@ -31,6 +31,11 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -345,6 +350,70 @@ h2 {
   white-space: nowrap;
 }
 
+.trap-panel {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(77,212,255,.08), rgba(255,211,77,.04));
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+
+.trap-limit-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(0,0,0,.32);
+}
+
+.trap-limit-card strong {
+  display: block;
+  margin-top: .25rem;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  line-height: 1;
+}
+
+.trap-meter {
+  grid-column: 1 / -1;
+  height: .75rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,.1);
+}
+
+.trap-meter span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--storm), var(--accent));
+  transition: width .18s ease;
+}
+
+.trap-log {
+  display: grid;
+  gap: .5rem;
+  max-height: 12rem;
+  margin: 1rem 0 0;
+  padding-left: 1.4rem;
+  overflow-y: auto;
+  color: var(--muted);
+}
+
+.trap-log li {
+  padding: .35rem .5rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,.045);
+}
+
+.trap-log .empty {
+  list-style: none;
+  margin-left: -1.4rem;
+  font-style: italic;
+}
+
 .site-footer {
   padding: 2rem clamp(1rem, 4vw, 4rem);
   color: var(--muted);
@@ -368,6 +437,10 @@ h2 {
   .nav { flex-wrap: wrap; }
 
   .chat-compose {
+    grid-template-columns: 1fr;
+  }
+
+  .trap-limit-card {
     grid-template-columns: 1fr;
   }
 }
