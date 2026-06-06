@@ -1,0 +1,16 @@
+{
+  "schema": "dreamos.sensitive_archive_purge.v1",
+  "generated": "2026-06-06T17:46:37-05:00",
+  "source_archive_removed": "runtime/quarantine/spark_emergence_failed_drift_20260606_173639",
+  "status": "purged_from_commit_scope",
+  "reason": "Failed-run archive contained credential material. Full archive was removed from commit scope.",
+  "preserved_decision": {
+    "failed_reports": "discarded from commit scope",
+    "revert_task": "not promoted",
+    "emergence_tmp": "not committed"
+  },
+  "required_human_action": [
+    "Rotate exposed credentials with account owner",
+    "Do not publish failed run logs containing secrets"
+  ]
+}
