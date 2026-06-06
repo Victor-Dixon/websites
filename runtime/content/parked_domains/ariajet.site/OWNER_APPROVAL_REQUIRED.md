@@ -8,11 +8,22 @@ ariajet.site
 
 ## Current Matrix Action
 
-park_or_rebuild_static
+rebuild_static
 
 ## Business Purpose
 
-travel or brand candidate
+phone repair and tech help landing page
+
+## Requested Homepage Content
+
+- Explain what Ariajet is before anything else.
+- Explain why visitors should choose Ariajet.
+- Feature the iPhone 12 repair story:
+  - screen was cracked
+  - screen replacement completed
+  - repair took 3 hours
+  - this was the first phone ever fixed
+  - both provided photos are after photos because no before photo was taken
 
 ## Approval Gate
 

@@ -3,24 +3,122 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AriaJet</title>
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="A clean travel and brand landing page is being prepared.">
+  <title>Ariajet | Phone Repair & Tech Help</title>
+  <meta name="description" content="Ariajet is a careful, honest phone repair and tech help service. See the first iPhone 12 screen replacement repair story.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <main>
-    <span class="badge">Travel / Brand</span>
-    <h1>AriaJet is preparing for takeoff.</h1>
-    <p>A clean travel and brand landing page is being prepared.</p>
-    <section class="panel" aria-label="Domain status">
-      <div><strong>Status:</strong> packaged placeholder only</div>
-      <div><strong>Deployment:</strong> requires owner approval</div>
-      <div><strong>Current decision:</strong> park_or_rebuild_static</div>
-      <div><strong>Business purpose:</strong> travel or brand candidate</div>
+  <header class="site-header" aria-label="Ariajet site header">
+    <a class="brand" href="#top" aria-label="Ariajet home">Ariajet</a>
+    <nav aria-label="Main navigation">
+      <a href="#why">Why choose me</a>
+      <a href="#repair-story">Repair story</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="eyebrow">Phone repair & tech help</span>
+        <h1 id="hero-title">Careful repairs, honest service, and real progress you can see.</h1>
+        <p class="lead">
+          Ariajet helps with phone screen repair and everyday tech problems with patience,
+          clear communication, and respect for your device.
+        </p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="button" href="#repair-story">See my first repair</a>
+          <a class="button button-secondary" href="#why">Why choose Ariajet</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Featured repair summary">
+        <span class="card-label">Featured repair</span>
+        <h2>iPhone 12 screen replacement</h2>
+        <dl>
+          <div>
+            <dt>Problem</dt>
+            <dd>Cracked screen</dd>
+          </div>
+          <div>
+            <dt>Fix</dt>
+            <dd>Screen replacement</dd>
+          </div>
+          <div>
+            <dt>Time</dt>
+            <dd>3 hours</dd>
+          </div>
+          <div>
+            <dt>Milestone</dt>
+            <dd>My first phone repair</dd>
+          </div>
+        </dl>
+      </aside>
     </section>
-    <p>Check back soon.</p>
-    <div class="footer">This temporary page is a safe placeholder package. It has not been deployed by this artifact.</div>
+
+    <section class="section" id="why" aria-labelledby="why-title">
+      <div class="section-heading">
+        <span class="eyebrow">Why choose me</span>
+        <h2 id="why-title">Ariajet is built on being careful, honest, and focused.</h2>
+      </div>
+      <div class="reason-grid">
+        <article class="reason-card">
+          <span class="reason-number">01</span>
+          <h3>Care with every device</h3>
+          <p>I take my time so the repair is handled carefully instead of rushed.</p>
+        </article>
+        <article class="reason-card">
+          <span class="reason-number">02</span>
+          <h3>Clear, honest updates</h3>
+          <p>You get the real story about the repair, what was done, and how long it took.</p>
+        </article>
+        <article class="reason-card">
+          <span class="reason-number">03</span>
+          <h3>Real work, real growth</h3>
+          <p>Ariajet is starting with hands-on repair experience and a commitment to keep improving.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section repair-story" id="repair-story" aria-labelledby="repair-title">
+      <div class="section-heading">
+        <span class="eyebrow">Repair story</span>
+        <h2 id="repair-title">The first phone I ever fixed: an iPhone 12.</h2>
+        <p>
+          This iPhone 12 came in with a cracked screen. I replaced the screen, and the repair
+          took me 3 hours from start to finish.
+        </p>
+      </div>
+
+      <div class="photo-grid" aria-label="After photos of the iPhone 12 repair">
+        <figure class="photo-card photo-card-dark">
+          <div class="photo-frame" role="img" aria-label="After photo of the repaired iPhone 12 with the screen off"></div>
+          <figcaption>After photo: repaired iPhone 12 with the screen off.</figcaption>
+        </figure>
+        <figure class="photo-card photo-card-light">
+          <div class="photo-frame" role="img" aria-label="After photo of the repaired iPhone 12 powered on at the lock screen"></div>
+          <figcaption>After photo: repaired iPhone 12 powered on after the screen replacement.</figcaption>
+        </figure>
+      </div>
+
+      <div class="note">
+        <strong>Photo note:</strong> These are both after photos. I forgot to take a before photo
+        of the cracked screen before I started the repair.
+      </div>
+    </section>
+
+    <section class="section contact-panel" id="contact" aria-labelledby="contact-title">
+      <div>
+        <span class="eyebrow">Ready to ask?</span>
+        <h2 id="contact-title">Need help with a screen or phone issue?</h2>
+        <p>Contact Ariajet to talk about what happened to your device and what kind of repair may help.</p>
+      </div>
+      <span class="button button-static">Contact details coming soon</span>
+    </section>
   </main>
+
+  <footer>
+    <p>Ariajet &copy; 2026. Phone repair and tech help with honest updates.</p>
+  </footer>
 </body>
 </html>
