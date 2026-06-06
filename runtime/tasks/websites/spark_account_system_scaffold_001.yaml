@@ -1,0 +1,38 @@
+id: spark_account_system_scaffold_001
+status: scaffolded
+lane: websites
+target: Spark/Emergence account system
+intent: >
+  Define the account-bound character save workflow before implementing live OAuth,
+  WordPress user integration, or Discord registry mutation.
+scope:
+  includes:
+    - account identity contract
+    - account-bound character ownership contract
+    - Discord identity handoff payload
+    - tests for account save, ownership, and Discord payload
+  excludes:
+    - live OAuth provider setup
+    - database migration
+    - production Discord mutation
+    - secret storage
+routes:
+  eventual_public_proof:
+    - https://weareswarm.online/skill-tree/
+    - https://weareswarm.online/tasks/
+  eventual_product_surface:
+    - https://dadudekc.site/spark-generator/
+    - https://dadudekc.site/spark-os/
+verification:
+  commands:
+    - python -m pytest tests/test_spark_account_contract.py
+guardrails:
+  - no secrets in repo
+  - account IDs must be stable and non-sensitive
+  - character ownership must reject cross-account access
+  - Discord handoff payload must be public-safe
+next_lanes:
+  - wire WordPress/Google/GitHub login provider adapter
+  - persist saved characters to server storage
+  - connect Discord registry handoff
+  - expose account save proof on WeAreSwarm skill tree
