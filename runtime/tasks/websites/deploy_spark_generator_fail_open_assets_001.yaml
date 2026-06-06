@@ -1,0 +1,19 @@
+id: deploy_spark_generator_fail_open_assets_001
+title: Deploy Spark generator fail-open assets
+lane: repo_fleet_self_healing_001
+status: in_progress
+target:
+  live_domain: dadudekc.site
+  plugin: emergence-character-generator
+  remote_assets:
+    - wp-content/plugins/emergence-character-generator/assets/emergence-cg.js
+    - wp-content/plugins/emergence-character-generator/assets/emergence-cg.css
+actions:
+  - upload patched plugin JS/CSS over SFTP
+  - verify live JS contains fail-open guard
+  - verify live CSS contains visibility guard
+  - verify generator page can reference updated assets
+verify:
+  - live JS contains DreamOS Spark Generator Fail-Open Guard
+  - live CSS contains DreamOS Spark Generator Fail-Open Visibility Guard
+commit_message: Deploy Spark generator fail-open asset verification

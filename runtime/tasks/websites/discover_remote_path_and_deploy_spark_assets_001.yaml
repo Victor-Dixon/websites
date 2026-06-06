@@ -1,0 +1,16 @@
+id: discover_remote_path_and_deploy_spark_assets_001
+title: Discover Hostinger remote path and deploy Spark assets
+lane: repo_fleet_self_healing_001
+status: in_progress
+target:
+  live_domain: dadudekc.site
+  plugin: emergence-character-generator
+actions:
+  - discover Hostinger home path
+  - find dadudekc.site public_html
+  - upload patched emergence-cg.js and emergence-cg.css
+  - verify live assets
+verify:
+  - live JS contains DreamOS Spark Generator Fail-Open Guard
+  - live CSS contains DreamOS Spark Generator Fail-Open Visibility Guard
+commit_message: Deploy Spark generator assets after remote path discovery

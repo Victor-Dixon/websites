@@ -1,0 +1,14 @@
+id: deploy_spark_assets_native_sftp_001
+title: Deploy Spark generator assets with native SFTP
+lane: repo_fleet_self_healing_001
+status: in_progress
+target:
+  live_domain: dadudekc.site
+  plugin: emergence-character-generator
+actions:
+  - deploy patched JS/CSS with native sftp/scp
+  - verify live asset guard strings
+verify:
+  - live JS contains DreamOS Spark Generator Fail-Open Guard
+  - live CSS contains DreamOS Spark Generator Fail-Open Visibility Guard
+commit_message: Deploy Spark generator assets with native SFTP
