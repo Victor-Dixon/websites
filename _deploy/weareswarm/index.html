@@ -2,46 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>WeAreSwarm | Dream.OS Proof Surface</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WeAreSwarm | Proof-Driven Automation</title>
+  <meta name="description" content="WeAreSwarm ships websites, automations, lead systems, and operational proof for small businesses.">
   <style>
-    :root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;--line:rgba(255,255,255,.16);--muted:rgba(255,255,255,.74);--gold:#f4c76d}
-    body{margin:0;background:radial-gradient(circle at 15% 0%,rgba(244,199,109,.22),transparent 28%),linear-gradient(135deg,#070a12,#101a30 60%,#05070d);color:white}
-    main{width:min(1100px,calc(100% - 32px));margin:0 auto;padding:64px 0}
-    h1{font-size:clamp(3rem,9vw,7rem);line-height:.88;letter-spacing:-.075em;margin:0 0 22px}
-    p{color:var(--muted);font-size:1.2rem;line-height:1.6;max-width:780px}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:34px}
-    .card{border:1px solid var(--line);border-radius:28px;background:rgba(255,255,255,.08);padding:24px}
-    .tag{color:var(--gold);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.76rem}
-    a{color:inherit;text-decoration:none}.btn{display:inline-flex;margin-top:18px;padding:12px 16px;border-radius:999px;background:white;color:#07101f;font-weight:900}
-    @media(max-width:840px){.grid{grid-template-columns:1fr}}
+    :root{--bg:#080b12;--card:#111827;--line:#263244;--text:#eef4ff;--muted:#a9b7cc;--accent:#78f0c3;--gold:#ffd166}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#162033,#080b12 60%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.55}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    .wrap{max-width:1120px;margin:0 auto;padding:32px 20px}
+    .nav{display:flex;gap:18px;align-items:center;justify-content:space-between;margin-bottom:58px}
+    .brand{font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .links{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted)}
+    .hero{padding:52px 0 38px}
+    .eyebrow{color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.82rem}
+    h1{font-size:clamp(2.3rem,7vw,5.4rem);line-height:.95;margin:14px 0 20px;letter-spacing:-.06em}
+    h2{font-size:clamp(1.6rem,4vw,2.5rem);margin:0 0 16px}
+    h3{margin:0 0 8px}
+    p{color:var(--muted);max-width:760px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .btn{display:inline-block;padding:12px 16px;border:1px solid var(--line);border-radius:999px;background:#121a29;color:var(--text);font-weight:800}
+    .btn.primary{background:var(--accent);color:#06110d;border-color:var(--accent)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 18px 50px rgba(0,0,0,.28)}
+    .proof{border-color:rgba(120,240,195,.55)}
+    .tag{display:inline-flex;padding:5px 9px;border-radius:999px;background:#182338;color:var(--accent);font-size:.78rem;font-weight:800;margin-bottom:12px}
+    .metric{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#d7e3f7;font-size:.9rem}
+    section{padding:34px 0;border-top:1px solid rgba(255,255,255,.08)}
+    footer{padding:36px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
   </style>
 </head>
 <body>
-<main>
-  <div class="tag">Dream.OS • Verified Work • Client Systems</div>
-  <h1>We ship proof, not promises.</h1>
-  <p>WeAreSwarm is the public proof surface for repaired websites, client automation, lead systems, and Dream.OS capability closeouts.</p>
-  <section class="grid">
-    <article class="card">
-      <div class="tag">Latest Client Proof</div>
-      <h2>Crosby Ultimate Events</h2>
-      <p>Private chef and event services landing page with working inquiry capture.</p>
-      <a class="btn" href="/crosbyultimateevents/">View Proof</a>
-    </article>
-    <article class="card">
-      <div class="tag">Portfolio</div>
-      <h2>Projects</h2>
-      <p>Public cards for shipped systems and verified client work.</p>
-      <a class="btn" href="/projects/">Open Projects</a>
-    </article>
-    <article class="card">
-      <div class="tag">Closeouts</div>
-      <h2>Proof Feed</h2>
-      <p>Recent passes, repairs, and deployment results.</p>
-      <a class="btn" href="/feed/">Open Feed</a>
-    </article>
-  </section>
-</main>
+  <main class="wrap">
+    <nav class="nav">
+      <div class="brand">WeAreSwarm</div>
+      <div class="links">
+        <a href="/projects/">Projects</a>
+        <a href="/feed/">Proof Feed</a>
+        <a href="/dreamos-services/">Services</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow">Proof-driven systems</div>
+      <h1>We ship useful systems, not vague promises.</h1>
+      <p>WeAreSwarm builds and repairs websites, automation workflows, lead capture systems, and operational proof loops for small businesses.</p>
+      <div class="cta">
+        <a class="btn primary" href="/projects/">View shipped work</a>
+        <a class="btn" href="/feed/">Open proof feed</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Recent proof</h2>
+      <div class="grid">
+        <article class="card proof">
+          <span class="tag">Client system shipped</span>
+          <h3>Crosby Ultimate Events</h3>
+          <p>Recovered a broken WordPress site, repositioned it for Jacori Crosby’s private chef and event services, added event inquiry capture, verified CSV storage/export, and published public proof.</p>
+          <p class="metric">HTTP 500 → live landing<br>Inquiry form → CSV capture<br>Proof card → Discord closeout</p>
+          <div class="cta">
+            <a class="btn primary" href="/projects/crosbyultimateevents/">View proof card</a>
+            <a class="btn" href="https://crosbyultimateevents.com/">Live site</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="tag">Proof feed</span>
+          <h3>Build receipts</h3>
+          <p>Closeouts, deployment receipts, verification notes, and project cards are published as evidence of shipped work.</p>
+          <div class="cta">
+            <a class="btn" href="/feed/">Open feed</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="tag">Service lane</span>
+          <h3>Websites + automation</h3>
+          <p>Repair broken sites, add lead capture, route inquiries, publish proof, and convert scattered work into client-facing systems.</p>
+          <div class="cta">
+            <a class="btn" href="/dreamos-services/">See services</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      WeAreSwarm is the public proof layer for Dream.OS website repairs, client automation, and operational closeouts.
+    </footer>
+  </main>
 </body>
 </html>
