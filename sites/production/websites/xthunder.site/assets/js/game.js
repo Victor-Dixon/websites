@@ -57,6 +57,25 @@ const state = {
   trapsPlacedThisRound: 0,
 };
 
+function normalizeGold() {
+  state.gold = Math.max(0, Math.floor(Number(state.gold) || 0));
+  return state.gold;
+}
+
+function canAfford(cost) {
+  return normalizeGold() >= cost;
+}
+
+function spendGold(cost) {
+  if (!canAfford(cost)) return false;
+  state.gold = Math.max(0, state.gold - cost);
+  return true;
+}
+
+function addGold(amount) {
+  state.gold = Math.max(0, normalizeGold() + amount);
+}
+
 function isBossWave(wave) {
   return wave > 0 && wave % BOSS_INTERVAL === 0;
 }
@@ -115,7 +134,7 @@ function canPlace(type, x, y) {
   const def = BUILD[type];
   if (!def || isCoreTile(x, y)) return false;
   if (state.grid[y][x]) return false;
-  if (state.gold < def.cost) return false;
+  if (!canAfford(def.cost)) return false;
   if (type === "trap" && isTrapLimitReached()) return false;
   return true;
 }
@@ -123,7 +142,7 @@ function canPlace(type, x, y) {
 function placeStructure(type, x, y) {
   if (!canPlace(type, x, y)) return false;
   const def = BUILD[type];
-  state.gold -= def.cost;
+  if (!spendGold(def.cost)) return false;
   state.grid[y][x] = {
     type,
     x,
@@ -148,7 +167,7 @@ function removeStructure(x, y) {
   const cell = state.grid[y][x];
   if (!cell) return false;
   const refund = Math.floor((cell.spent || BUILD[cell.type]?.cost || 0) * 0.5);
-  state.gold += refund;
+  addGold(refund);
   state.grid[y][x] = null;
   addFeed("system", `Demolished ${BUILD[cell.type].label}. Refund ⚡${refund}.`);
   updateHUD();
@@ -331,7 +350,7 @@ function endWave() {
   state.fightActive = false;
   state.phase = "build";
   const bonus = 20 + state.wave * 15;
-  state.gold += bonus;
+  addGold(bonus);
   addFeed("system", `Wave ${state.wave} cleared! Bonus ⚡${bonus}.`);
   updateHUD();
 
@@ -385,7 +404,7 @@ function damageEnemy(enemy, amount) {
   enemy.hp -= amount;
   state.effects.push({ kind: "hit", x: enemy.x, y: enemy.y, life: 200 });
   if (enemy.hp <= 0) {
-    state.gold += enemy.reward;
+    addGold(enemy.reward);
     if (enemy.boss) {
       addFeed("combat", `☠ ${enemy.name} defeated! +⚡${enemy.reward}`);
     } else {
@@ -815,7 +834,7 @@ function loop(now) {
 }
 
 function updateHUD() {
-  document.getElementById("stat-gold").textContent = `⚡ ${state.gold}`;
+  document.getElementById("stat-gold").textContent = `⚡ ${normalizeGold()}`;
   const trapStat = document.getElementById("stat-traps");
   if (trapStat) {
     trapStat.textContent = `Traps ${trapLimitHudCount()} / ${MAX_TRAPS_PER_ROUND}`;
@@ -866,7 +885,7 @@ function updateHUD() {
     btn.disabled = (state.phase === "fight" && state.fightActive) || trapCapped;
     btn.querySelector(".tool-cost").textContent = trapCapped
       ? `${MAX_TRAPS_PER_ROUND}/${MAX_TRAPS_PER_ROUND}`
-      : state.gold < cost ? `${cost} ✗` : `${cost}`;
+      : !canAfford(cost) ? `${cost} ✗` : `${cost}`;
   });
 }
 
@@ -915,7 +934,7 @@ function restart() {
   initGrid();
   state.phase = "build";
   state.wave = 0;
-  state.gold = START_GOLD;
+  state.gold = Math.max(0, START_GOLD);
   state.enemies = [];
   state.allies = [];
   state.projectiles = [];
