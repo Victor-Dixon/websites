@@ -6,7 +6,7 @@ Status: `PACKAGED_NOT_DEPLOYED`
 
 | Domain | Action | Purpose | Zip |
 |---|---|---|---|
-| ariajet.site | park_or_rebuild_static | travel or brand candidate | `/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/parked_domains/ariajet.site-placeholder-0.1.0.zip` |
+| ariajet.site | rebuild_static | phone repair and tech help landing page | `/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/parked_domains/ariajet.site-placeholder-0.1.0.zip` |
 | crosbyultimateevents.com | rebuild_static_or_repair_wordpress | events business candidate | `/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/parked_domains/crosbyultimateevents.com-placeholder-0.1.0.zip` |
 | houstonsipqueen.com | rebuild_static_or_repair_wordpress | food/beverage brand candidate | `/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/parked_domains/houstonsipqueen.com-placeholder-0.1.0.zip` |
 | southwestsecret.com | park_or_archive | content or brand candidate | `/data/data/com.termux/files/home/projects/websites/_hostinger_build/dist/parked_domains/southwestsecret.com-placeholder-0.1.0.zip` |

@@ -52,7 +52,7 @@
 
 | Domain | HTTPS | Intent | Business Purpose | Recommended Action | Root Cause | Next Lane |
 |---|---:|---|---|---|---|---|
-| ariajet.site | 500 | brand_candidate | travel or brand candidate | park_or_rebuild_static | wordpress_install_returning_500 | confirm purpose; if no active plan, deploy parked static placeholder |
+| ariajet.site | 500 | business_site_candidate | phone repair and tech help landing page | rebuild_static | wordpress_install_returning_500 | deploy approved phone repair static landing page or repair WordPress |
 | crosbyultimateevents.com | 500 | business_site_candidate | events business candidate | rebuild_static_or_repair_wordpress | wordpress_install_returning_500 | confirm business owner/use; then rebuild static landing page or repair WordPress |
 | dadudekc.com | 000 | expired_domain_hold | expired legacy domain; do not repair until reacquired cheaply | hold | - | ignore for deploy/repair until domain is reacquired |
 | dadudekc.site | 200 | active_product_host | Emergence / Spark Battle Simulator live prototype host | keep_live | - | continue Emergence launch hardening and browser E2E from supported host |
