@@ -50,9 +50,9 @@ domains:
 
   crosbyultimateevents.com:
     mode: wordpress
-    deploy_policy: review_before_wp_or_static
+    deploy_policy: emergency_static_fallback_allowed
     source_hint: _hostinger_build/dist/parked_domains
-    notes: Events/forms may justify WordPress; review before conversion.
+    notes: Emergency public fallback is approved to recover HTTP 500 while preserving WordPress for repair.
 
   houstonsipqueen.com:
     mode: wordpress
@@ -111,3 +111,16 @@ allowed_policies:
       - repair
     blocks:
       - deploy_until_repaired
+
+  emergency_static_fallback_allowed:
+    allows:
+      - inspect_only
+      - backup
+      - static_file_upload
+      - htaccess_public_fallback
+      - public_http_200_recovery
+    blocks:
+      - wp_core_delete
+      - database_mutation
+      - plugin_delete
+      - blind_static_overwrite

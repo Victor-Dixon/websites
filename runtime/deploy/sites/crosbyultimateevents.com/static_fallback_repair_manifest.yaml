@@ -1,0 +1,42 @@
+version: 1
+name: crosbyultimateevents_static_fallback_repair
+site: crosbyultimateevents.com
+status: ready_for_credentialed_deploy
+priority: high
+problem:
+  observed_live_status: 500
+  observed_at_utc: "2026-06-06T20:11:06Z"
+  live_probe:
+    - https://crosbyultimateevents.com/
+    - https://www.crosbyultimateevents.com/
+  likely_runtime: Hostinger WordPress/PHP
+repair:
+  script: runtime/scripts/repair_crosbyultimateevents_static_fallback.py
+  local_root: runtime/content/parked_domains/crosbyultimateevents.com
+  public_fallback_files:
+    - index.html
+    - assets/style.css
+  remote_root: /home/u996867598/domains/crosbyultimateevents.com/public_html
+  strategy:
+    - create_remote_backup_before_mutation
+    - upload_static_fallback
+    - prepend_htaccess_public_fallback
+    - preserve_wordpress_admin_login_and_files
+verification:
+  expected_status: 200
+  expected_body_text: Crosby Ultimate Events is online.
+  command: >
+    python3 runtime/scripts/repair_crosbyultimateevents_static_fallback.py
+    --env "$HOME/.config/dreamos/hostinger_freeride_github_secrets.env"
+safety:
+  deletes_wordpress_core: false
+  deletes_plugins: false
+  deletes_themes: false
+  mutates_database: false
+  backup_required: true
+  rollback:
+    - restore backed up .htaccess
+    - remove emergency index.html and assets only if they were not present before backup
+notes:
+  - This repository branch cannot directly deploy without Hostinger SSH credentials.
+  - The misspelled crossbyultimateevents.com does not resolve in DNS; canonical repo/domain spelling is crosbyultimateevents.com.
