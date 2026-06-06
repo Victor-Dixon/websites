@@ -14,9 +14,75 @@
     body{margin:0;background:radial-gradient(circle at top left,#17243a,#05070c 55%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.55}
     a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
     .wrap{max-width:1180px;margin:0 auto;padding:30px 20px}
-    .nav{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:42px}
-    .brand{font-weight:950;text-transform:uppercase;letter-spacing:.1em}
-    .links{display:flex;gap:15px;flex-wrap:wrap;font-size:.95rem}
+
+    /* Dream.OS command nav */
+    .nav{
+      position:sticky;
+      top:14px;
+      z-index:20;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:center;
+      margin-bottom:42px;
+      padding:12px 14px;
+      border:1px solid rgba(120,240,195,.22);
+      border-radius:999px;
+      background:rgba(5,7,12,.78);
+      backdrop-filter:blur(16px);
+      box-shadow:0 18px 60px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      white-space:nowrap;
+    }
+    .brand::before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 5px rgba(120,240,195,.12),0 0 24px rgba(120,240,195,.68);
+    }
+    .links{
+      display:flex;
+      gap:7px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      font-size:.9rem;
+    }
+    .links a{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:7px 11px;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:999px;
+      color:var(--muted);
+      background:rgba(255,255,255,.035);
+      font-weight:850;
+      text-decoration:none;
+      transition:transform .16s ease,border-color .16s ease,background .16s ease,color .16s ease;
+    }
+    .links a:hover{
+      transform:translateY(-1px);
+      color:var(--text);
+      border-color:rgba(120,240,195,.45);
+      background:rgba(120,240,195,.09);
+      text-decoration:none;
+    }
+    .links a[aria-current="page"]{
+      color:#04100c;
+      background:var(--accent);
+      border-color:var(--accent);
+      box-shadow:0 0 24px rgba(120,240,195,.24);
+    }
+
     .eyebrow{color:var(--gold);font-weight:900;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem}
     h1{font-size:clamp(2.35rem,6vw,5rem);line-height:.95;margin:14px 0 18px;letter-spacing:-.06em}
     h2{font-size:clamp(1.45rem,3.2vw,2.25rem);margin:0 0 14px}
@@ -55,7 +121,7 @@
       <div class="links">
         <a href="/">Command Center</a>
         <a href="/feed/">Feed</a>
-        <a href="/projects/">Projects</a>
+        <a href="/projects/" aria-current="page">Projects</a>
         <a href="/tasks/">Tasks</a>
         <a href="/projects/crosbyultimateevents/">Crosby Proof</a>
         <a href="/dreamos-services/">Services</a>

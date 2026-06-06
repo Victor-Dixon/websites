@@ -10,17 +10,34 @@
     code{display:block;white-space:pre-wrap;background:#05070c;border:1px solid #263244;border-radius:14px;padding:14px;color:#d7e3f7}
     p,li{color:#a9b7cc}.pass{color:#78f0c3;font-weight:900}
   </style>
+
+  <style>
+    :root{--accent:#78f0c3;--text:#eef4ff;--muted:#a8b4c7;--line:#243248}
+    .command-nav{
+      display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+      margin:20px 0 26px;padding:12px 14px;border:1px solid rgba(120,240,195,.22);
+      border-radius:24px;background:rgba(5,7,12,.78);box-shadow:0 18px 60px rgba(0,0,0,.24);
+    }
+    .command-nav a{
+      display:inline-flex;align-items:center;min-height:34px;padding:7px 11px;
+      border:1px solid rgba(255,255,255,.09);border-radius:999px;background:rgba(255,255,255,.035);
+      color:var(--muted);font-weight:850;text-decoration:none;
+    }
+    .command-nav a:hover{color:var(--text);border-color:rgba(120,240,195,.45);background:rgba(120,240,195,.09);text-decoration:none}
+    .command-nav a[aria-current="page"]{color:#04100c;background:var(--accent);border-color:var(--accent)}
+  </style>
+
 </head>
 <body>
   <main class="wrap">
-    <p>
-      <a href="/">Command Center</a> ·
-      <a href="/feed/">Feed</a> ·
-      <a href="/projects/">Projects</a> ·
-      <a href="/tasks/">Tasks</a> ·
-      <a href="/projects/crosbyultimateevents/">Crosby Proof</a> ·
+    <nav class="command-nav" aria-label="WeAreSwarm command navigation">
+      <a href="/">Command Center</a>
+      <a href="/feed/">Feed</a>
+      <a href="/projects/">Projects</a>
+      <a href="/tasks/">Tasks</a>
+      <a href="/projects/crosbyultimateevents/" aria-current="page">Crosby Proof</a>
       <a href="/dreamos-services/">Services</a>
-    </p>
+    </nav>
     <h1>Crosby Ultimate Events moved from broken WordPress to live lead capture.</h1>
     <p>OWNER=Jacori Crosby</p>
 
