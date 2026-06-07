@@ -86,7 +86,18 @@ jobs:
             php -l '$THEME_DIR/nav.php'
             php -l '$THEME_DIR/page-profile.php'
             php -l '$THEME_DIR/index.php'
-            php '$render_script' > '$REMOTE_ROOT/skill-tree'
+            set +e
+            php -d display_errors=1 -d error_reporting=E_ALL '$render_script' > /tmp/weareswarm-skill-tree-rendered-${GITHUB_RUN_ID}.html 2> /tmp/weareswarm-skill-tree-render-${GITHUB_RUN_ID}.err
+            render_code=\$?
+            set -e
+            if [ \$render_code -ne 0 ]; then
+              echo 'SKILL_TREE_RENDER_FAILED'
+              sed -n '1,120p' /tmp/weareswarm-skill-tree-render-${GITHUB_RUN_ID}.err
+              sed -n '1,80p' /tmp/weareswarm-skill-tree-rendered-${GITHUB_RUN_ID}.html
+              exit \$render_code
+            fi
+            mv /tmp/weareswarm-skill-tree-rendered-${GITHUB_RUN_ID}.html '$REMOTE_ROOT/skill-tree'
+            rm -f /tmp/weareswarm-skill-tree-render-${GITHUB_RUN_ID}.err
             rm -f '$render_script'
             chmod 644 '$REMOTE_ROOT/skill-tree' '$THEME_DIR/page-skills.php' '$THEME_DIR/nav.php' '$THEME_DIR/page-profile.php' '$THEME_DIR/index.php'
           "
