@@ -58,11 +58,10 @@ jobs:
 
           "${scp_base[@]}" "routes/weareswarm/index.html" "$remote:$REMOTE_ROOT/index.html"
           "${scp_base[@]}" "routes/weareswarm/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
-          "${scp_base[@]}" "routes/weareswarm/skill-tree/index.html" "$remote:$REMOTE_ROOT/skill-tree"
           "${scp_base[@]}" "routes/weareswarm/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-htaccess-snippet.txt"
 
           "${ssh_base[@]}" "set -e
-            chmod 644 '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/skill-tree'
+            chmod 644 '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html'
             ht='$REMOTE_ROOT/.htaccess'
             touch \"\$ht\"
             # Remove old root -> dreamos-services redirect if present

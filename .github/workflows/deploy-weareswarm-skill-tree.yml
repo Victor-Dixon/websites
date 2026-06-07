@@ -37,7 +37,7 @@ jobs:
           chmod 600 "$HOME/.ssh/id_hostinger"
           ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
 
-      - name: Upload static route and theme template
+      - name: Upload theme template and render static route
         env:
           HOSTINGER_HOST: 157.173.214.121
           HOSTINGER_USER: u996867598
@@ -56,14 +56,24 @@ jobs:
           "
 
           "${scp_base[@]}" \
-            "routes/weareswarm/skill-tree/index.html" \
-            "$remote:$REMOTE_ROOT/skill-tree"
-          "${scp_base[@]}" \
             "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/page-skills.php" \
             "$remote:$THEME_DIR/page-skills.php"
 
+          render_script="/tmp/render-weareswarm-skill-tree-${GITHUB_RUN_ID}.php"
+          cat > "$render_script" <<'PHP'
+          <?php
+          $root = '/home/u996867598/domains/weareswarm.site/public_html';
+          chdir($root);
+          define('WP_USE_THEMES', false);
+          require $root . '/wp-load.php';
+          include $root . '/wp-content/themes/weareswarm-dreamos/page-skills.php';
+          PHP
+          "${scp_base[@]}" "$render_script" "$remote:$render_script"
+
           "${ssh_base[@]}" "set -e
             php -l '$THEME_DIR/page-skills.php'
+            php '$render_script' > '$REMOTE_ROOT/skill-tree'
+            rm -f '$render_script'
             chmod 644 '$REMOTE_ROOT/skill-tree' '$THEME_DIR/page-skills.php'
           "
 
@@ -76,8 +86,9 @@ jobs:
             sed -n '1,80p' /tmp/weareswarm-skill-tree.html
             exit 1
           fi
-          grep -q "WeAreSwarm × Dream.OS" /tmp/weareswarm-skill-tree.html
-          grep -q "Swarm Skill Tree" /tmp/weareswarm-skill-tree.html
-          grep -q "Command Core" /tmp/weareswarm-skill-tree.html
+          grep -q "Capability Graph" /tmp/weareswarm-skill-tree.html
+          grep -q "Neural Progression" /tmp/weareswarm-skill-tree.html
+          grep -q "Distributed Swarm Mesh" /tmp/weareswarm-skill-tree.html
+          grep -q "class=\"shell\"" /tmp/weareswarm-skill-tree.html
           ! grep -q "wp-block-library" /tmp/weareswarm-skill-tree.html
           sed -n '1,40p' /tmp/weareswarm-skill-tree.html
