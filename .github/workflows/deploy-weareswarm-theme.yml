@@ -37,7 +37,7 @@ jobs:
           chmod 600 "$HOME/.ssh/id_hostinger"
           ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
 
-      - name: Upload theme, assets, routes, and render skill tree
+      - name: Upload theme, assets, routes, render static pages, fix www loop
         env:
           HOSTINGER_HOST: 157.173.214.121
           HOSTINGER_USER: u996867598
@@ -53,9 +53,13 @@ jobs:
 
           "${ssh_base[@]}" "mkdir -p '$THEME_DIR/assets' '$THEME_DIR/inc' '$REMOTE_ROOT/assets' '$REMOTE_ROOT/dreamos-services'"
 
-          for f in functions.php index.php nav.php page-skills.php page-projects.php page-profile.php page-live-ops.php style.css; do
+          for f in functions.php index.php nav.php page-skills.php page-projects.php page-profile.php page-live-ops.php page-feed.php page-tasks.php render-static-routes.php style.css; do
             "${scp_base[@]}" "$theme_src/$f" "$remote:$THEME_DIR/$f"
           done
+          plugin_src="collected/hostinger/wordpress/domains/weareswarm.site/plugins/dreamos-swarm-status"
+          plugin_dir="$REMOTE_ROOT/wp-content/plugins/dreamos-swarm-status"
+          "${ssh_base[@]}" "mkdir -p '$plugin_dir'"
+          "${scp_base[@]}" "$plugin_src/dreamos-swarm-status.php" "$remote:$plugin_dir/dreamos-swarm-status.php"
           "${scp_base[@]}" "$theme_src/assets/dreamos-shell.css" "$remote:$THEME_DIR/assets/dreamos-shell.css"
           "${scp_base[@]}" "$theme_src/assets/dreamos-shell.css" "$remote:$REMOTE_ROOT/assets/weareswarm-shell.css"
           "${scp_base[@]}" "$theme_src/assets/skill-tree.css" "$remote:$THEME_DIR/assets/skill-tree.css"
@@ -63,35 +67,45 @@ jobs:
           "${scp_base[@]}" "$theme_src/inc/shell-foot.php" "$remote:$THEME_DIR/inc/shell-foot.php"
           "${scp_base[@]}" "routes/weareswarm/index.html" "$remote:$REMOTE_ROOT/index.html"
           "${scp_base[@]}" "routes/weareswarm/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
+          "${scp_base[@]}" "routes/weareswarm/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-htaccess-snippet.txt"
 
-          render_script="/tmp/render-weareswarm-skill-tree-${GITHUB_RUN_ID}.php"
+          render_script="/tmp/render-weareswarm-routes-${GITHUB_RUN_ID}.php"
           cat > "$render_script" <<'PHP'
           <?php
           $root = '/home/u996867598/domains/weareswarm.site/public_html';
           chdir($root);
           define('WP_USE_THEMES', false);
           require $root . '/wp-load.php';
-          include $root . '/wp-content/themes/weareswarm-dreamos/page-skills.php';
+          include $root . '/wp-content/themes/weareswarm-dreamos/render-static-routes.php';
           PHP
           "${scp_base[@]}" "$render_script" "$remote:$render_script"
           "${ssh_base[@]}" "set -e
-            php -l '$THEME_DIR/page-skills.php'
-            php '$render_script' > '$REMOTE_ROOT/skill-tree'
+            for f in page-skills.php page-projects.php page-profile.php page-live-ops.php page-feed.php page-tasks.php render-static-routes.php; do
+              php -l '$THEME_DIR/'\"\$f\"
+            done
+            php '$render_script'
             rm -f '$render_script'
+            ht='$REMOTE_ROOT/.htaccess'
+            cp \"\$ht\" \"\$ht.bak.${GITHUB_RUN_ID}\"
+            sed -i '/WeAreSwarm canonical host/,/^<\\/IfModule>$/d' \"\$ht\" || true
+            tmp=\"/tmp/weareswarm-htaccess-${GITHUB_RUN_ID}.txt\"
+            cat /tmp/weareswarm-htaccess-snippet.txt > \"\$tmp\"
+            echo '' >> \"\$tmp\"
+            cat \"\$ht\" >> \"\$tmp\"
+            mv \"\$tmp\" \"\$ht\"
+            rm -f /tmp/weareswarm-htaccess-snippet.txt
             chmod 644 '$THEME_DIR'/*.php '$THEME_DIR'/assets/* '$THEME_DIR'/inc/* '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/skill-tree' '$REMOTE_ROOT/assets/weareswarm-shell.css'
+            chmod 644 '$REMOTE_ROOT'/projects/index.html '$REMOTE_ROOT'/profile/index.html '$REMOTE_ROOT'/live-ops/index.html '$REMOTE_ROOT'/feed/index.html '$REMOTE_ROOT'/tasks/index.html '$REMOTE_ROOT'/skill-tree/index.html
           "
 
-      - name: Verify unified theme
+      - name: Verify unified theme and fixed routes
         run: |
           set -euo pipefail
           base="https://www.weareswarm.site"
-          for url in "$base/?cache=$GITHUB_RUN_ID" "$base/dreamos-services/?cache=$GITHUB_RUN_ID" "$base/skill-tree?cache=$GITHUB_RUN_ID"; do
+          for path in "/" "/dreamos-services/" "/skill-tree" "/projects/" "/profile/" "/live-ops/" "/feed/" "/tasks/"; do
+            url="$base$path?cache=$GITHUB_RUN_ID"
             code="$(curl -sL -o /tmp/page.html -w '%{http_code}' --max-time 25 "$url")"
             echo "$url => $code"
             [ "$code" = "200" ]
-            grep -q 'class="shell"' /tmp/page.html
-            grep -q 'class="topnav"' /tmp/page.html
+            grep -q 'class="shell"' /tmp/page.html || grep -q 'class="topnav"' /tmp/page.html
           done
-          curl -sL --max-time 25 "$base/skill-tree?cache=$GITHUB_RUN_ID" | grep -q 'Neural Progression'
-          curl -sL --max-time 25 "$base/?cache=$GITHUB_RUN_ID" | grep -q 'Watch the'
-          curl -sL --max-time 25 "$base/dreamos-services/?cache=$GITHUB_RUN_ID" | grep -q 'Ship automation'

@@ -16,4 +16,12 @@ RewriteRule ^ https://www.weareswarm.site%{REQUEST_URI} [R=301,L]
 RewriteCond %{REQUEST_URI} ^/$
 RewriteCond %{DOCUMENT_ROOT}/index.html -f
 RewriteRule ^$ /index.html [L]
+
+# Static Dream.OS routes — serve rendered index.html before WordPress
+RewriteRule ^projects/?$ /projects/index.html [L]
+RewriteRule ^profile/?$ /profile/index.html [L]
+RewriteRule ^live-ops/?$ /live-ops/index.html [L]
+RewriteRule ^feed/?$ /feed/index.html [L]
+RewriteRule ^tasks/?$ /tasks/index.html [L]
+RewriteRule ^skill-tree/?$ /skill-tree/index.html [L]
 </IfModule>
