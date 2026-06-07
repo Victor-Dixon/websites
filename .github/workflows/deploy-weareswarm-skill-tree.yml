@@ -57,18 +57,82 @@ jobs:
             if [ -f '$REMOTE_ROOT/skill-tree' ]; then cp '$REMOTE_ROOT/skill-tree' '$REMOTE_ROOT/skill-tree.bak.${GITHUB_RUN_ID}'; fi
           "
 
-          "${scp_base[@]}" \
-            "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/page-skills.php" \
-            "$remote:$THEME_DIR/page-skills.php"
-          "${scp_base[@]}" \
-            "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/nav.php" \
-            "$remote:$THEME_DIR/nav.php"
-          "${scp_base[@]}" \
-            "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/page-profile.php" \
-            "$remote:$THEME_DIR/page-profile.php"
-          "${scp_base[@]}" \
-            "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/index.php" \
-            "$remote:$THEME_DIR/index.php"
+          "${scp_base[@]}" "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/page-skills.php" "$remote:$THEME_DIR/page-skills.php"
+          "${scp_base[@]}" "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/nav.php" "$remote:$THEME_DIR/nav.php"
+          "${scp_base[@]}" "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/page-profile.php" "$remote:$THEME_DIR/page-profile.php"
+          "${scp_base[@]}" "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/index.php" "$remote:$THEME_DIR/index.php"
+
+          repair_script="/tmp/repair-weareswarm-site-wp-config-${GITHUB_RUN_ID}.php"
+          cat > "$repair_script" <<'PHP'
+          <?php
+          $root = '/home/u996867598/domains/weareswarm.site/public_html';
+          $runId = preg_replace('/[^0-9A-Za-z_.-]/', '', getenv('GITHUB_RUN_ID') ?: date('YmdHis'));
+          $path = $root . '/wp-config.php';
+          $text = file_get_contents($path);
+          if ($text === false) {
+              fwrite(STDERR, "WP_CONFIG_READ_FAILED\n");
+              exit(1);
+          }
+          $pattern = "/\n\s*if\s*\(\s*!\s*defined\s*\(\s*['\"]ABSPATH['\"]\s*\)\s*\).*$/s";
+          if (!preg_match($pattern, $text, $match, PREG_OFFSET_CAPTURE)) {
+              fwrite(STDERR, "ABSPATH_BOOTSTRAP_MARKER_MISSING\n");
+              exit(1);
+          }
+          $backup = $path . '.bak.' . $runId;
+          if (!copy($path, $backup)) {
+              fwrite(STDERR, "WP_CONFIG_BACKUP_FAILED\n");
+              exit(1);
+          }
+          $prefix = rtrim(substr($text, 0, $match[0][1]));
+          $bootstrap = <<<'BOOTSTRAP'
+          /** Absolute path to the WordPress directory. */
+          if ( ! defined( 'ABSPATH' ) ) {
+              define( 'ABSPATH', __DIR__ . '/' );
+          }
+
+          /** Sets up WordPress vars and included files. */
+          require_once ABSPATH . 'wp-settings.php';
+          BOOTSTRAP;
+          $newText = $prefix . "\n\n" . $bootstrap . "\n";
+          $tokens = token_get_all($newText);
+          $depth = 0;
+          $line = 1;
+          $unmatchedCloseLines = array();
+          foreach ($tokens as $token) {
+              if (is_array($token)) {
+                  $line = $token[2] + substr_count($token[1], "\n");
+                  continue;
+              }
+              if ($token === '{') {
+                  $depth++;
+              } elseif ($token === '}') {
+                  if ($depth === 0) {
+                      $unmatchedCloseLines[$line] = true;
+                  } else {
+                      $depth--;
+                  }
+              } elseif ($token === "\n") {
+                  $line++;
+              }
+          }
+          if ($unmatchedCloseLines) {
+              $lines = explode("\n", $newText);
+              foreach (array_reverse(array_keys($unmatchedCloseLines)) as $badLine) {
+                  $index = $badLine - 1;
+                  if (isset($lines[$index]) && trim($lines[$index]) === '}') {
+                      unset($lines[$index]);
+                      echo "REMOVED_UNMATCHED_CLOSE_BRACE_LINE=$badLine\n";
+                  }
+              }
+              $newText = implode("\n", $lines);
+          }
+          if (file_put_contents($path, $newText) === false) {
+              fwrite(STDERR, "WP_CONFIG_WRITE_FAILED\n");
+              exit(1);
+          }
+          echo "WP_CONFIG_BOOTSTRAP_REPAIRED\n";
+          echo "WP_CONFIG_BACKUP=$backup\n";
+          PHP
 
           render_script="/tmp/render-weareswarm-skill-tree-${GITHUB_RUN_ID}.php"
           cat > "$render_script" <<'PHP'
@@ -79,9 +143,14 @@ jobs:
           require $root . '/wp-load.php';
           include $root . '/wp-content/themes/weareswarm-dreamos/page-skills.php';
           PHP
+
+          "${scp_base[@]}" "$repair_script" "$remote:$repair_script"
           "${scp_base[@]}" "$render_script" "$remote:$render_script"
 
           "${ssh_base[@]}" "set -e
+            GITHUB_RUN_ID='${GITHUB_RUN_ID}' php '$repair_script'
+            php -l '$REMOTE_ROOT/wp-config.php'
+            rm -f '$repair_script'
             php -l '$THEME_DIR/page-skills.php'
             php -l '$THEME_DIR/nav.php'
             php -l '$THEME_DIR/page-profile.php'
@@ -97,8 +166,7 @@ jobs:
               exit \$render_code
             fi
             mv /tmp/weareswarm-skill-tree-rendered-${GITHUB_RUN_ID}.html '$REMOTE_ROOT/skill-tree'
-            rm -f /tmp/weareswarm-skill-tree-render-${GITHUB_RUN_ID}.err
-            rm -f '$render_script'
+            rm -f /tmp/weareswarm-skill-tree-render-${GITHUB_RUN_ID}.err '$render_script'
             chmod 644 '$REMOTE_ROOT/skill-tree' '$THEME_DIR/page-skills.php' '$THEME_DIR/nav.php' '$THEME_DIR/page-profile.php' '$THEME_DIR/index.php'
           "
 
