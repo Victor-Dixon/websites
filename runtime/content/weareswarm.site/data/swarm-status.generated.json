@@ -1,0 +1,55 @@
+{
+  "feed": [
+    {
+      "generated_at": "2026-06-07T20:34:27.216468+00:00",
+      "summary": "Next lane is `operator_queue`.",
+      "title": "Planner status synchronized",
+      "type": "planner_transition"
+    }
+  ],
+  "generated_at": "2026-06-07T20:34:27.216468+00:00",
+  "next_lane": "operator_queue",
+  "planner_artifact": "/workspace/runtime/quarantine/discord_architect_artifacts_001/discord_architect/data/runtime/events/latest_planner_event.json",
+  "projects": [
+    {
+      "name": "Planner Bridge",
+      "proof": "WeAreSwarm status is generated from planner governance artifacts. Source: dreamvault.planner.",
+      "state": "active"
+    },
+    {
+      "name": "Active Lane: Operator Queue",
+      "proof": "Planner selected next lane `operator_queue` for operator execution.",
+      "state": "queued"
+    },
+    {
+      "name": "WeAreSwarm Operations Board",
+      "proof": "Projects and tasks refresh from generated JSON before static route rendering.",
+      "state": "operational"
+    }
+  ],
+  "source": "dreamvault.planner",
+  "unfinished_tasks": [
+    {
+      "name": "Execute Operator Queue",
+      "next": "Run the task artifact assigned to `operator_queue` and publish closeout proof.",
+      "progress": "NEXT",
+      "state": "next",
+      "task": "Execute Operator Queue"
+    },
+    {
+      "name": "Publish planner closeouts",
+      "next": "Map completed task reports into public /projects/ proof cards.",
+      "progress": "QUEUED",
+      "state": "queued",
+      "task": "Publish planner closeouts"
+    },
+    {
+      "name": "Render static WeAreSwarm routes",
+      "next": "Run the static renderer after generated status changes.",
+      "progress": "QUEUED",
+      "state": "queued",
+      "task": "Render static WeAreSwarm routes"
+    }
+  ],
+  "updated_at": "2026-06-07T20:34:27.216468+00:00"
+}

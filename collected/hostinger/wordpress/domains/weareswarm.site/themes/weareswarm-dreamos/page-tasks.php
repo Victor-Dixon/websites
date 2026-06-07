@@ -35,8 +35,8 @@ include get_template_directory() . '/inc/shell-head.php';
       <div class="grid-2">
         <?php foreach ($tasks as $task): ?>
         <article class="card">
-          <span class="badge building"><?php echo esc_html($task['progress'] ?? 'OPEN'); ?></span>
-          <h3><?php echo esc_html($task['task'] ?? 'Task'); ?></h3>
+          <span class="badge building"><?php echo esc_html($task['progress'] ?? strtoupper($task['state'] ?? 'OPEN')); ?></span>
+          <h3><?php echo esc_html($task['task'] ?? ($task['name'] ?? 'Task')); ?></h3>
           <p><strong style="color:var(--text)">Next:</strong> <?php echo esc_html($task['next'] ?? 'Define verification gate.'); ?></p>
         </article>
         <?php endforeach; ?>

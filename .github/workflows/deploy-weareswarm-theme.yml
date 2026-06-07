@@ -6,8 +6,11 @@ on:
       - cursor/repair-weareswarm-white-screen-0b91
     paths:
       - .github/workflows/deploy-weareswarm-theme.yml
-      - collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/**
+      - collected/hostinger/wordpress/domains/weareswarm.site/**
       - routes/weareswarm/**
+      - runtime/scripts/sync_weareswarm_planner_status_001.py
+      - runtime/content/weareswarm.site/**
+      - runtime/tasks/weareswarm_planner_bridge_001.yaml
   workflow_dispatch:
 
 concurrency:
@@ -23,6 +26,23 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: Generate planner-driven swarm status JSON
+        run: |
+          set -euo pipefail
+          export DREAMVAULT_ROOT="$GITHUB_WORKSPACE"
+          python3 runtime/scripts/sync_weareswarm_planner_status_001.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("runtime/content/weareswarm.site/data/swarm-status.generated.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          assert isinstance(data.get("projects"), list), "projects missing"
+          assert isinstance(data.get("unfinished_tasks"), list), "unfinished_tasks missing"
+          assert data.get("next_lane"), "next_lane missing"
+          print("JSON_VERIFY=PASS")
+          print("NEXT_LANE=" + data["next_lane"])
+          PY
 
       - name: Configure SSH key
         env:
@@ -71,7 +91,7 @@ jobs:
 
           theme_src="collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos"
 
-          retry "${ssh_base[@]}" "mkdir -p '$THEME_DIR/assets' '$THEME_DIR/inc' '$REMOTE_ROOT/assets' '$REMOTE_ROOT/dreamos-services'"
+          retry "${ssh_base[@]}" "mkdir -p '$THEME_DIR/assets' '$THEME_DIR/inc' '$REMOTE_ROOT/assets' '$REMOTE_ROOT/dreamos-services' '$REMOTE_ROOT/data'"
 
           for f in functions.php index.php nav.php page-skills.php page-projects.php page-profile.php page-live-ops.php page-feed.php page-tasks.php render-static-routes.php style.css; do
             retry "${scp_base[@]}" "$theme_src/$f" "$remote:$THEME_DIR/$f"
@@ -80,6 +100,7 @@ jobs:
           plugin_dir="$REMOTE_ROOT/wp-content/plugins/dreamos-swarm-status"
           "${ssh_base[@]}" "mkdir -p '$plugin_dir'"
           "${scp_base[@]}" "$plugin_src/dreamos-swarm-status.php" "$remote:$plugin_dir/dreamos-swarm-status.php"
+          "${scp_base[@]}" "runtime/content/weareswarm.site/data/swarm-status.generated.json" "$remote:$REMOTE_ROOT/data/swarm-status.generated.json"
           "${scp_base[@]}" "$theme_src/assets/dreamos-shell.css" "$remote:$THEME_DIR/assets/dreamos-shell.css"
           "${scp_base[@]}" "$theme_src/assets/dreamos-shell.css" "$remote:$REMOTE_ROOT/assets/weareswarm-shell.css"
           "${scp_base[@]}" "$theme_src/assets/skill-tree.css" "$remote:$THEME_DIR/assets/skill-tree.css"
@@ -118,7 +139,7 @@ jobs:
             cat \"\$ht\" >> \"\$tmp\"
             mv \"\$tmp\" \"\$ht\"
             rm -f /tmp/weareswarm-htaccess-snippet.txt
-            chmod 644 '$THEME_DIR'/*.php '$THEME_DIR'/assets/* '$THEME_DIR'/inc/* '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/assets/weareswarm-shell.css'
+            chmod 644 '$THEME_DIR'/*.php '$THEME_DIR'/assets/* '$THEME_DIR'/inc/* '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/assets/weareswarm-shell.css' '$REMOTE_ROOT/data/swarm-status.generated.json'
             for route in projects profile live-ops feed tasks skill-tree; do
               [ -f '$REMOTE_ROOT/'\"\$route\" ] && chmod 644 '$REMOTE_ROOT/'\"\$route\"
             done
@@ -141,3 +162,5 @@ jobs:
           [ "$apex_code" = "200" ]
           grep -q 'Projects' /tmp/projects-apex.html
           grep -q 'href="/projects/" class="active"' /tmp/projects-apex.html
+          curl -sL -o /tmp/tasks.html "https://www.weareswarm.site/tasks/?cache=$GITHUB_RUN_ID"
+          grep -q 'Planner Bridge\|Execute Operator Queue\|Execute ' /tmp/tasks.html

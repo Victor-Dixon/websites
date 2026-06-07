@@ -10,8 +10,23 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function dreamos_swarm_status_data() {
-    $data = array(
+function dreamos_swarm_status_generated_path() {
+    $candidates = array(
+        dirname(__DIR__, 3) . '/data/swarm-status.generated.json',
+        dirname(__DIR__, 4) . '/runtime/content/weareswarm.site/data/swarm-status.generated.json',
+    );
+
+    foreach ($candidates as $path) {
+        if (is_readable($path)) {
+            return $path;
+        }
+    }
+
+    return null;
+}
+
+function dreamos_swarm_status_fallback() {
+    return array(
         'updated_at' => gmdate('c'),
         'headline' => 'The swarm is online.',
         'recent_unlocks' => array(
@@ -70,6 +85,22 @@ function dreamos_swarm_status_data() {
             array('skill' => 'Automation Ops', 'level' => 'Advanced', 'capabilities' => array('terminal lanes', 'CPC reports', 'verification gates', 'closeout packets')),
         ),
     );
+}
+
+function dreamos_swarm_status_data() {
+    $data = dreamos_swarm_status_fallback();
+    $generated_path = dreamos_swarm_status_generated_path();
+
+    if ($generated_path) {
+        $raw = file_get_contents($generated_path);
+        $decoded = json_decode($raw, true);
+        if (is_array($decoded)) {
+            $data = array_merge($data, $decoded);
+            if (!empty($decoded['generated_at'])) {
+                $data['updated_at'] = $decoded['generated_at'];
+            }
+        }
+    }
 
     return apply_filters('dreamos_swarm_status_data', $data);
 }
@@ -121,8 +152,8 @@ function dreamos_swarm_status_shortcode() {
       <div class="dreamos-ops-table">
         <?php foreach ($data['unfinished_tasks'] as $task): ?>
           <div class="dreamos-op-row">
-            <strong><?php echo esc_html($task['task']); ?></strong>
-            <span><?php echo esc_html($task['progress']); ?></span>
+            <strong><?php echo esc_html($task['task'] ?? ($task['name'] ?? 'Task')); ?></strong>
+            <span><?php echo esc_html($task['progress'] ?? strtoupper($task['state'] ?? 'OPEN')); ?></span>
             <p><?php echo esc_html($task['next']); ?></p>
           </div>
         <?php endforeach; ?>
