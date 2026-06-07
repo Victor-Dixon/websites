@@ -102,6 +102,7 @@ function dreamos_skill_node_class($level) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Swarm Skill Tree | WeAreSwarm</title>
   <meta name="description" content="Public capability map for Dream.OS — skills unlocked through live recoveries, deploys, and verification gates.">
+  <link rel="canonical" href="https://www.weareswarm.site/skill-tree">
   <style>
     :root {
       --bg: #0f1115;
@@ -120,7 +121,31 @@ function dreamos_skill_node_class($level) {
       color: var(--text);
       line-height: 1.55;
     }
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 56px 20px; }
+    a { color: inherit; }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(15,17,21,.92);
+    }
+    .logo { font-weight: 800; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; font-size: .95rem; }
+    .logo span { color: var(--accent); }
+    .site-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+    .site-nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .site-nav a:hover { color: var(--text); border-color: var(--line); }
+    .site-nav a.active { color: var(--accent); border-color: rgba(124,247,201,.35); background: rgba(124,247,201,.12); }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 40px 20px 56px; }
     .hero {
       padding: 48px;
       border: 1px solid var(--line);
@@ -208,10 +233,21 @@ function dreamos_skill_node_class($level) {
     @media (max-width: 800px) {
       .hero { padding: 28px; }
       .stats, .grid, .split { grid-template-columns: 1fr; }
+      .site-header { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <a class="logo" href="https://www.weareswarm.site/"><span>We</span>AreSwarm</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/dreamos-services/">Services</a>
+      <a href="/skill-tree" class="active">Skill Tree</a>
+      <a href="/">Hub</a>
+      <a href="/index.php">Command Center</a>
+      <a href="/wp-json/dreamos/v1/status">API</a>
+    </nav>
+  </header>
   <main class="wrap">
     <section class="hero">
       <div class="eyebrow">WeAreSwarm × Dream.OS</div>
@@ -297,9 +333,7 @@ function dreamos_skill_node_class($level) {
     </section>
   </main>
   <footer>
-    Dream.OS capability map by WeAreSwarm.
-    <a href="/dreamos-services/">Services</a> ·
-    <a href="/">Command Center</a>
+    Dream.OS capability map by <a href="https://www.weareswarm.site/">WeAreSwarm</a>.
   </footer>
 </body>
 </html>

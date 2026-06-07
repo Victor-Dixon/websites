@@ -1,0 +1,19 @@
+# WeAreSwarm canonical host + HTTPS (managed snippet)
+# Prepended ahead of existing WordPress rules. Back up .htaccess before applying.
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Canonical host: apex -> www
+RewriteCond %{HTTP_HOST} ^weareswarm\.site$ [NC]
+RewriteRule ^ https://www.weareswarm.site%{REQUEST_URI} [R=301,L]
+
+# Serve static hub at site root (do not send / to dreamos-services)
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{DOCUMENT_ROOT}/index.html -f
+RewriteRule ^$ /index.html [L]
+</IfModule>

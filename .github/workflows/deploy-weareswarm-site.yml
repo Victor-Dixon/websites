@@ -1,0 +1,96 @@
+name: Deploy WeAreSwarm Site
+
+on:
+  push:
+    branches:
+      - cursor/repair-weareswarm-white-screen-0b91
+    paths:
+      - .github/workflows/deploy-weareswarm-site.yml
+      - routes/weareswarm/**
+      - _deploy/weareswarm/**
+
+concurrency:
+  group: weareswarm-site-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Upload hub, services, and www canonical rules
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure SSH key
+        env:
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_PORT: "65002"
+        run: |
+          set -euo pipefail
+          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+          chmod 600 "$HOME/.ssh/id_hostinger"
+          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+
+      - name: Upload routes and patch canonical host rules
+        env:
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_USER: u996867598
+          HOSTINGER_PORT: "65002"
+          REMOTE_ROOT: /home/u996867598/domains/weareswarm.site/public_html
+        run: |
+          set -euo pipefail
+          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
+          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
+
+          "${ssh_base[@]}" "set -e
+            mkdir -p '$REMOTE_ROOT/dreamos-services'
+            if [ -f '$REMOTE_ROOT/index.html' ]; then cp '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/index.html.bak.${GITHUB_RUN_ID}'; fi
+            if [ -f '$REMOTE_ROOT/dreamos-services/index.html' ]; then cp '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/dreamos-services/index.html.bak.${GITHUB_RUN_ID}'; fi
+            if [ -f '$REMOTE_ROOT/.htaccess' ]; then cp '$REMOTE_ROOT/.htaccess' '$REMOTE_ROOT/.htaccess.bak.${GITHUB_RUN_ID}'; fi
+          "
+
+          "${scp_base[@]}" "routes/weareswarm/index.html" "$remote:$REMOTE_ROOT/index.html"
+          "${scp_base[@]}" "routes/weareswarm/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
+          "${scp_base[@]}" "routes/weareswarm/skill-tree/index.html" "$remote:$REMOTE_ROOT/skill-tree"
+          "${scp_base[@]}" "routes/weareswarm/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-htaccess-snippet.txt"
+
+          "${ssh_base[@]}" "set -e
+            chmod 644 '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/skill-tree'
+            ht='$REMOTE_ROOT/.htaccess'
+            touch \"\$ht\"
+            # Remove old root -> dreamos-services redirect if present
+            sed -i '/dreamos-services/d' \"\$ht\" || true
+            if ! grep -q 'WeAreSwarm canonical host' \"\$ht\"; then
+              tmp=\"/tmp/weareswarm-htaccess-${GITHUB_RUN_ID}.txt\"
+              cat /tmp/weareswarm-htaccess-snippet.txt > \"\$tmp\"
+              echo '' >> \"\$tmp\"
+              cat \"\$ht\" >> \"\$tmp\"
+              mv \"\$tmp\" \"\$ht\"
+            fi
+            rm -f /tmp/weareswarm-htaccess-snippet.txt
+          "
+
+      - name: Verify www hub and services redesign
+        run: |
+          set -euo pipefail
+          apex="$(curl -sI --max-time 20 'https://weareswarm.site/' | awk 'toupper($1) ~ /^HTTP/ {code=$2} /^location:/ {loc=$2} END {print code "|" loc}')"
+          echo "APEX_ROOT=$apex"
+          echo "$apex" | grep -q '^301|https://www.weareswarm.site/'
+
+          www_code="$(curl -s -o /tmp/weareswarm-hub.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.site/?cache='"${GITHUB_RUN_ID}")"
+          echo "WWW_HUB=$www_code"
+          [ "$www_code" = "200" ]
+          grep -q 'Operator hub for live swarm execution' /tmp/weareswarm-hub.html
+
+          svc_code="$(curl -s -o /tmp/weareswarm-services.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.site/dreamos-services/?cache='"${GITHUB_RUN_ID}")"
+          echo "WWW_SERVICES=$svc_code"
+          [ "$svc_code" = "200" ]
+          grep -q 'Ship automation that survives real mess' /tmp/weareswarm-services.html
+          grep -q 'site-header' /tmp/weareswarm-services.html
