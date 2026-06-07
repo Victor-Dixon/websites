@@ -47,14 +47,33 @@ jobs:
         run: |
           set -euo pipefail
           remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
-          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
-          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
+          ssh_common=(-i "$HOME/.ssh/id_hostinger" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30 -o ConnectionAttempts=3 -o ServerAliveInterval=15 -o ServerAliveCountMax=3)
+          ssh_base=(ssh "${ssh_common[@]}" -p "$HOSTINGER_PORT" "$remote")
+          scp_base=(scp "${ssh_common[@]}" -P "$HOSTINGER_PORT")
+
+          retry() {
+            local attempt=1
+            local delay=4
+            while true; do
+              if "$@"; then
+                return 0
+              fi
+              if [ "$attempt" -ge 4 ]; then
+                return 1
+              fi
+              echo "Retry $attempt failed; waiting ${delay}s..."
+              sleep "$delay"
+              attempt=$((attempt + 1))
+              delay=$((delay * 2))
+            done
+          }
+
           theme_src="collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos"
 
-          "${ssh_base[@]}" "mkdir -p '$THEME_DIR/assets' '$THEME_DIR/inc' '$REMOTE_ROOT/assets' '$REMOTE_ROOT/dreamos-services'"
+          retry "${ssh_base[@]}" "mkdir -p '$THEME_DIR/assets' '$THEME_DIR/inc' '$REMOTE_ROOT/assets' '$REMOTE_ROOT/dreamos-services'"
 
           for f in functions.php index.php nav.php page-skills.php page-projects.php page-profile.php page-live-ops.php page-feed.php page-tasks.php render-static-routes.php style.css; do
-            "${scp_base[@]}" "$theme_src/$f" "$remote:$THEME_DIR/$f"
+            retry "${scp_base[@]}" "$theme_src/$f" "$remote:$THEME_DIR/$f"
           done
           plugin_src="collected/hostinger/wordpress/domains/weareswarm.site/plugins/dreamos-swarm-status"
           plugin_dir="$REMOTE_ROOT/wp-content/plugins/dreamos-swarm-status"
@@ -79,12 +98,16 @@ jobs:
           include $root . '/wp-content/themes/weareswarm-dreamos/render-static-routes.php';
           PHP
           "${scp_base[@]}" "$render_script" "$remote:$render_script"
-          "${ssh_base[@]}" "set -e
+          retry "${ssh_base[@]}" "set -e
             for f in page-skills.php page-projects.php page-profile.php page-live-ops.php page-feed.php page-tasks.php render-static-routes.php; do
               php -l '$THEME_DIR/'\"\$f\"
             done
             php '$render_script'
             rm -f '$render_script'
+            if command -v wp >/dev/null 2>&1; then
+              wp --path='$REMOTE_ROOT' option update siteurl 'https://www.weareswarm.site' || true
+              wp --path='$REMOTE_ROOT' option update home 'https://www.weareswarm.site' || true
+            fi
             ht='$REMOTE_ROOT/.htaccess'
             cp \"\$ht\" \"\$ht.bak.${GITHUB_RUN_ID}\"
             sed -i '/WeAreSwarm canonical host/,/^<\\/IfModule>$/d' \"\$ht\" || true
@@ -94,17 +117,20 @@ jobs:
             cat \"\$ht\" >> \"\$tmp\"
             mv \"\$tmp\" \"\$ht\"
             rm -f /tmp/weareswarm-htaccess-snippet.txt
-            chmod 644 '$THEME_DIR'/*.php '$THEME_DIR'/assets/* '$THEME_DIR'/inc/* '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/skill-tree' '$REMOTE_ROOT/assets/weareswarm-shell.css'
-            chmod 644 '$REMOTE_ROOT'/projects/index.html '$REMOTE_ROOT'/profile/index.html '$REMOTE_ROOT'/live-ops/index.html '$REMOTE_ROOT'/feed/index.html '$REMOTE_ROOT'/tasks/index.html '$REMOTE_ROOT'/skill-tree/index.html
+            chmod 644 '$THEME_DIR'/*.php '$THEME_DIR'/assets/* '$THEME_DIR'/inc/* '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/assets/weareswarm-shell.css'
+            for route in projects profile live-ops feed tasks skill-tree; do
+              [ -f '$REMOTE_ROOT/'\"\$route\" ] && chmod 644 '$REMOTE_ROOT/'\"\$route\"
+            done
+            ls -la '$REMOTE_ROOT'/projects '$REMOTE_ROOT'/profile '$REMOTE_ROOT'/live-ops '$REMOTE_ROOT'/feed '$REMOTE_ROOT'/tasks '$REMOTE_ROOT'/skill-tree
           "
 
       - name: Verify unified theme and fixed routes
         run: |
           set -euo pipefail
           base="https://www.weareswarm.site"
-          for path in "/" "/dreamos-services/" "/skill-tree" "/projects/" "/profile/" "/live-ops/" "/feed/" "/tasks/"; do
+          for path in "/" "/dreamos-services/" "/skill-tree" "/skill-tree/" "/projects/" "/profile/" "/live-ops/" "/feed/" "/tasks/"; do
             url="$base$path?cache=$GITHUB_RUN_ID"
-            code="$(curl -sL -o /tmp/page.html -w '%{http_code}' --max-time 25 "$url")"
+            code="$(curl -sL -o /tmp/page.html -w '%{http_code}' --max-redirs 8 --max-time 25 "$url")"
             echo "$url => $code"
             [ "$code" = "200" ]
             grep -q 'class="shell"' /tmp/page.html || grep -q 'class="topnav"' /tmp/page.html

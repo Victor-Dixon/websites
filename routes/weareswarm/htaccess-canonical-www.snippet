@@ -17,11 +17,17 @@ RewriteCond %{REQUEST_URI} ^/$
 RewriteCond %{DOCUMENT_ROOT}/index.html -f
 RewriteRule ^$ /index.html [L]
 
-# Static Dream.OS routes — serve rendered index.html before WordPress
-RewriteRule ^projects/?$ /projects/index.html [L]
-RewriteRule ^profile/?$ /profile/index.html [L]
-RewriteRule ^live-ops/?$ /live-ops/index.html [L]
-RewriteRule ^feed/?$ /feed/index.html [L]
-RewriteRule ^tasks/?$ /tasks/index.html [L]
-RewriteRule ^skill-tree/?$ /skill-tree/index.html [L]
+# Flat Dream.OS routes — serve extensionless static files before WordPress
+RewriteCond %{DOCUMENT_ROOT}/projects -f
+RewriteRule ^projects/?$ /projects [L]
+RewriteCond %{DOCUMENT_ROOT}/profile -f
+RewriteRule ^profile/?$ /profile [L]
+RewriteCond %{DOCUMENT_ROOT}/live-ops -f
+RewriteRule ^live-ops/?$ /live-ops [L]
+RewriteCond %{DOCUMENT_ROOT}/feed -f
+RewriteRule ^feed/?$ /feed [L]
+RewriteCond %{DOCUMENT_ROOT}/tasks -f
+RewriteRule ^tasks/?$ /tasks [L]
+RewriteCond %{DOCUMENT_ROOT}/skill-tree -f
+RewriteRule ^skill-tree/?$ /skill-tree [L]
 </IfModule>

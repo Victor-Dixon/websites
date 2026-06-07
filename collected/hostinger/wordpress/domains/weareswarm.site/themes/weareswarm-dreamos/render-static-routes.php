@@ -1,13 +1,13 @@
 <?php
 /**
- * Render Dream.OS theme templates to static route index.html files.
+ * Render Dream.OS theme templates to flat static route files.
  * Run with WordPress bootstrapped.
  */
 if (!defined('ABSPATH')) {
     exit(1);
 }
 
-$root = ABSPATH;
+$root = rtrim(ABSPATH, '/');
 $theme = get_template_directory();
 $routes = array(
     'projects' => 'page-projects.php',
@@ -18,7 +18,7 @@ $routes = array(
     'skill-tree' => 'page-skills.php',
 );
 
-foreach ($routes as $dir => $file) {
+foreach ($routes as $slug => $file) {
     $template = $theme . '/' . $file;
     if (!is_readable($template)) {
         fwrite(STDERR, "Missing template: $template\n");
@@ -27,19 +27,10 @@ foreach ($routes as $dir => $file) {
     ob_start();
     include $template;
     $html = ob_get_clean();
-    $target_dir = rtrim($root, '/') . '/' . $dir;
-    if (!is_dir($target_dir) && !mkdir($target_dir, 0755, true)) {
-        fwrite(STDERR, "Failed to create directory: $target_dir\n");
-        exit(1);
-    }
-    $target = $target_dir . '/index.html';
+    $target = $root . '/' . $slug;
     if (file_put_contents($target, $html) === false) {
         fwrite(STDERR, "Failed to write: $target\n");
         exit(1);
-    }
-    // Flat alias for skill-tree (legacy URL without trailing slash directory)
-    if ($dir === 'skill-tree') {
-        file_put_contents(rtrim($root, '/') . '/skill-tree', $html);
     }
     echo "Rendered $target\n";
 }
