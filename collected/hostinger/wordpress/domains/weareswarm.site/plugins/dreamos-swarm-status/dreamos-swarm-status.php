@@ -53,6 +53,16 @@ function dreamos_swarm_status_data() {
             'summary' => 'Victor builds self-healing automation systems for repo recovery, website deployment, homeschool tooling, trading workflows, and personal productivity infrastructure.',
             'operating_style' => array('execution-first', 'trust-but-verify', 'salvage before deletion', 'small safe lanes', 'TDD where it matters'),
         ),
+        'projects' => array(
+            array('name' => 'WeAreSwarm Theme Unification', 'state' => 'active', 'proof' => 'Command center, feed, projects, tasks, profile, live ops, and skill tree share the Dream.OS wow shell and unified nav.'),
+            array('name' => 'Route Recovery', 'state' => 'operational', 'proof' => 'Flat static deploys fixed www/apex redirect loops on /projects/, /feed/, /tasks/, /profile/, and /live-ops/.'),
+            array('name' => 'Website Admin', 'state' => 'active', 'proof' => 'SSH deploy, WP-CLI activation, canonical website source, live verification.'),
+            array('name' => 'DigitalDreamscape Restored', 'state' => 'restored', 'proof' => 'Static deploy verified through portfolio website admin lane.'),
+            array('name' => 'WeAreSwarm Live Ops', 'state' => 'active', 'proof' => 'Custom theme, REST status plugin, Skill Tree, Operator Profile, Live Ops page.'),
+            array('name' => 'Portfolio Registry', 'state' => 'building', 'proof' => 'Controlled domains classified and recovery matrix generated.'),
+            array('name' => 'Repo Rescue', 'state' => 'advanced', 'proof' => 'Scan, classify, salvage, promote, verify, and commit workflow.'),
+            array('name' => 'Verification Gates', 'state' => 'operational', 'proof' => 'Every lane ends with live markers, reports, and closeout packets.'),
+        ),
         'skill_tree' => array(
             array('skill' => 'Website Admin', 'level' => 'Unlocked', 'capabilities' => array('SSH deploy', 'FTP deploy', 'WordPress theme activation', 'REST status plugin', 'live marker verification')),
             array('skill' => 'Repo Rescue', 'level' => 'Advanced', 'capabilities' => array('scan', 'classify', 'salvage', 'promote', 'verify', 'commit')),

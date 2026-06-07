@@ -24,10 +24,27 @@ foreach ($routes as $slug => $file) {
         fwrite(STDERR, "Missing template: $template\n");
         exit(1);
     }
+
+    $target = $root . '/' . $slug;
+    $legacy_dir = $target . '/index.html';
+    if (is_dir($target)) {
+        $iterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($target, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::CHILD_FIRST
+        );
+        foreach ($iterator as $path) {
+            $path->isDir() ? rmdir($path->getPathname()) : unlink($path->getPathname());
+        }
+        rmdir($target);
+        echo "Removed legacy directory: $target\n";
+    } elseif (is_file($legacy_dir)) {
+        unlink($legacy_dir);
+        echo "Removed legacy file: $legacy_dir\n";
+    }
+
     ob_start();
     include $template;
     $html = ob_get_clean();
-    $target = $root . '/' . $slug;
     if (file_put_contents($target, $html) === false) {
         fwrite(STDERR, "Failed to write: $target\n");
         exit(1);

@@ -27,6 +27,6 @@ $shell_css = is_readable($shell_css_path) ? file_get_contents($shell_css_path) :
   <div class="shell">
     <header class="shell-header">
       <a class="brand" href="https://www.weareswarm.site/">We Are Swarm</a>
-      <?php get_template_part('nav'); ?>
+      <?php get_template_part('nav', null, array('dreamos_active' => $dreamos_active)); ?>
     </header>
     <div class="shell-main">

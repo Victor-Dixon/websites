@@ -4,6 +4,8 @@ Template Name: Projects and Proof
 */
 $status = function_exists('dreamos_swarm_status_data') ? dreamos_swarm_status_data() : array();
 $projects = $status['projects'] ?? array(
+  array('name'=>'WeAreSwarm Theme Unification','state'=>'active','proof'=>'Command center, feed, projects, tasks, profile, live ops, and skill tree now share the Dream.OS wow shell and unified nav.'),
+  array('name'=>'Route Recovery','state'=>'operational','proof'=>'Flat static deploys fixed www/apex redirect loops on /projects/, /feed/, /tasks/, /profile/, and /live-ops/.'),
   array('name'=>'Website Admin','state'=>'active','proof'=>'SSH deploy, WP-CLI activation, canonical website source, live verification.'),
   array('name'=>'DigitalDreamscape Restored','state'=>'restored','proof'=>'Static deploy verified through portfolio website admin lane.'),
   array('name'=>'WeAreSwarm Live Ops','state'=>'active','proof'=>'Custom theme, REST status plugin, Skill Tree, Operator Profile, Live Ops page.'),
@@ -25,6 +27,10 @@ include get_template_directory() . '/inc/shell-head.php';
         <span class="eyebrow">Recovered Systems / Public Receipts</span>
         <h1><span>Projects</span><span class="grad">and Proof</span></h1>
         <p>Not claims. Proof lanes. Each project exists because Dream.OS recovered, deployed, verified, or operationalized a real system.</p>
+        <div class="hero-actions">
+          <a class="btn" href="/feed/">View closeout feed</a>
+          <a class="btn ghost" href="/tasks/">Open task board</a>
+        </div>
       </div>
       <aside class="hud">
         <div class="hud-card"><strong><?php echo count($projects); ?></strong><span>proof cards tracked</span></div>
@@ -53,6 +59,8 @@ include get_template_directory() . '/inc/shell-head.php';
       <h2>What changed publicly</h2>
       <div class="mission-card">
         <ul>
+          <li><strong>Theme Unification:</strong> all public WeAreSwarm routes now share the cinematic Dream.OS shell, unified nav, and static deploy lane.</li>
+          <li><strong>Route Recovery:</strong> /projects/, /feed/, /tasks/, /profile/, and /live-ops/ publish as flat static files to stop www/apex redirect loops.</li>
           <li><strong>Website Admin:</strong> unlocked SSH deploys, WordPress theme activation, REST status plugin, and canonical source deploy.</li>
           <li><strong>WeAreSwarm:</strong> converted from broken WordPress state into a live command center, skill tree, profile, live ops, and proof surface.</li>
           <li><strong>DigitalDreamscape:</strong> static deploy verified through the portfolio website admin workflow.</li>

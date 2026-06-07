@@ -135,3 +135,8 @@ jobs:
             [ "$code" = "200" ]
             grep -q 'class="shell"' /tmp/page.html || grep -q 'class="topnav"' /tmp/page.html
           done
+          apex_code="$(curl -sL -o /tmp/projects-apex.html -w '%{http_code}' --max-redirs 8 --max-time 25 "https://weareswarm.site/projects/?cache=$GITHUB_RUN_ID")"
+          echo "https://weareswarm.site/projects/?cache=$GITHUB_RUN_ID => $apex_code"
+          [ "$apex_code" = "200" ]
+          grep -q 'Projects' /tmp/projects-apex.html
+          grep -q 'href="/projects/" class="active"' /tmp/projects-apex.html
