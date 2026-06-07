@@ -1,0 +1,86 @@
+{
+  "schema": "spark.meridian.map_grid.v1",
+  "city": "Meridian City",
+  "grid_size": { "rows": 3, "cols": 3 },
+  "player_start": { "district": "spindle", "cell": "spindle_hub" },
+  "districts": [
+    {
+      "id": "spindle",
+      "name": "Spindle",
+      "visible_on_map": true,
+      "position": { "row": 1, "col": 0 },
+      "cells": [
+        { "id": "spindle_hub", "label": "Relay Hub", "state": "unlocked" },
+        { "id": "spindle_transit", "label": "Transit Spine", "state": "unlocked" },
+        { "id": "spindle_antenna", "label": "Antenna Row", "state": "locked" }
+      ],
+      "mission_nodes": [
+        { "id": "map_node_spindle_001", "mission_id": "mission_spindle_signal_theft_001", "cell": "spindle_antenna", "state": "available" }
+      ]
+    },
+    {
+      "id": "halcyon_heights",
+      "name": "Halcyon Heights",
+      "visible_on_map": true,
+      "position": { "row": 0, "col": 1 },
+      "cells": [
+        { "id": "halcyon_plaza", "label": "Glass Plaza", "state": "unlocked" },
+        { "id": "halcyon_skybridge", "label": "Skybridge", "state": "locked" }
+      ],
+      "mission_nodes": [
+        { "id": "map_node_halcyon_001", "mission_id": "mission_halcyon_skyline_patrol_001", "cell": "halcyon_skybridge", "state": "available" }
+      ]
+    },
+    {
+      "id": "drowned_quarter",
+      "name": "Drowned Quarter",
+      "visible_on_map": true,
+      "position": { "row": 2, "col": 1 },
+      "cells": [
+        { "id": "drowned_dock", "label": "Salvage Dock", "state": "unlocked" },
+        { "id": "drowned_floodgate", "label": "Floodgate", "state": "locked" }
+      ],
+      "mission_nodes": [
+        { "id": "map_node_drowned_001", "mission_id": "mission_drowned_quarter_floodgate_001", "cell": "drowned_floodgate", "state": "locked" }
+      ]
+    },
+    {
+      "id": "ladderways",
+      "name": "Ladderways",
+      "visible_on_map": true,
+      "position": { "row": 1, "col": 2 },
+      "cells": [
+        { "id": "ladderways_fire_escape", "label": "Fire Escape Ladder", "state": "unlocked" },
+        { "id": "ladderways_rooftop", "label": "Rooftop Run", "state": "unlocked" }
+      ],
+      "mission_nodes": [
+        { "id": "map_node_ladderways_001", "mission_id": "mission_ladderways_vertical_sprint_001", "cell": "ladderways_rooftop", "state": "available" }
+      ]
+    },
+    {
+      "id": "irongate",
+      "name": "Irongate",
+      "visible_on_map": true,
+      "position": { "row": 1, "col": 1 },
+      "cells": [
+        { "id": "irongate_checkpoint", "label": "Checkpoint Alpha", "state": "unlocked" },
+        { "id": "irongate_yard", "label": "Convoy Yard", "state": "locked" }
+      ],
+      "mission_nodes": [
+        { "id": "map_node_irongate_001", "mission_id": "mission_irongate_convoy_escort_001", "cell": "irongate_yard", "state": "locked" }
+      ]
+    }
+  ],
+  "hidden_layers": [
+    {
+      "id": "undercity",
+      "name": "Undercity",
+      "visible_on_map": false,
+      "unlock_requires_notoriety": 50,
+      "mission_nodes": [
+        { "id": "undercity_gear_exchange", "mission_id": "mission_undercity_gear_exchange_001", "state": "hidden" }
+      ]
+    }
+  ],
+  "faction_overlays": ["AEGIS", "Sterling", "Gods Armor", "Undercity"]
+}

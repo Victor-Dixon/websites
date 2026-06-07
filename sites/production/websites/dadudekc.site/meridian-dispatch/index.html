@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meridian Dispatch | Spark Protocol</title>
+  <meta name="description" content="Meridian City mission board — district grid, notoriety economy, faction reputation, and Undercity gear layer.">
+  <link rel="stylesheet" href="meridian-dispatch.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <div class="brand">Meridian Dispatch</div>
+      <div>
+        <a href="/the-emergence/">Emergence</a> ·
+        <a href="/spark-generator/">Spark Generator</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="eyebrow">Spark Protocol · World Layer</div>
+      <h1>Meridian City Mission Board</h1>
+      <p class="lede">
+        District grid, mission nodes, notoriety currency, and faction reputation.
+        Undercity stays off the public map until enough notoriety unlocks the gear exchange layer.
+      </p>
+    </header>
+
+    <div class="hud">
+      <div class="hud-card"><strong id="notorietyValue">0</strong><span>notoriety</span></div>
+      <div class="hud-card"><strong id="sparkValue">Not linked</strong><span>spark / account</span></div>
+      <div class="hud-card"><strong>5+1</strong><span>districts (5 map · 1 hidden)</span></div>
+      <div class="hud-card"><button id="resetState" type="button">Reset local state</button></div>
+    </div>
+
+    <div id="factionBar" class="faction-bar"></div>
+
+    <div class="board">
+      <section class="panel">
+        <h2>City Map Grid</h2>
+        <p class="meta">Clickable mission nodes bind to district cells. Locked nodes require notoriety or prior unlocks.</p>
+        <div id="cityGrid" class="city-grid" aria-label="Meridian City district grid"></div>
+        <p class="warn">No fake completions — mission accept/complete requires saved Spark/account state in localStorage.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Mission Queue</h2>
+        <div id="missionList"></div>
+      </section>
+    </div>
+
+    <section id="undercityPanel" class="panel undercity" style="margin-top:18px"></section>
+
+    <pre id="statusLog" class="status-log">BOOTING MERIDIAN DISPATCH…</pre>
+  </div>
+
+  <script src="meridian-dispatch.js" defer></script>
+</body>
+</html>
