@@ -1,0 +1,17 @@
+id: inject_guaranteed_final_dossier_button_001
+title: Inject guaranteed final dossier button
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  js: runtime/plugins/emergence-character-generator/assets/emergence-cg.js
+  css: runtime/plugins/emergence-character-generator/assets/emergence-cg.css
+actions:
+  - inject guaranteed final dossier button into generator mount
+  - bind direct click and touch handlers to injected button
+  - call healthy Spark generate endpoint
+  - render final dossier panel
+verify:
+  - JS contains DreamOS Guaranteed Final Dossier Injector
+  - CSS contains DreamOS Guaranteed Final Dossier Injector Styles
+commit_message: Inject guaranteed final dossier button

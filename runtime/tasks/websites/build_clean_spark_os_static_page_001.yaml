@@ -1,0 +1,19 @@
+id: build_clean_spark_os_static_page_001
+title: Build clean standalone Spark OS page
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  source_question_bank: runtime/plugins/emergence-character-generator/assets/protocol-v85-question-bank.json
+  isolated_route: /spark-os/
+actions:
+  - build standalone static Spark OS page
+  - avoid WordPress plugin UI and inherited broken handlers
+  - use button-card answers only
+  - post directly to /wp-json/emergence/v1/generate
+  - render pass 1 result, pass 2, and final dossier
+verify:
+  - static index exists
+  - page contains clean Spark OS marker
+  - page contains button-card handler
+  - JSON question bank embedded
+commit_message: Add clean Spark OS standalone page

@@ -1,0 +1,65 @@
+{
+  "schema": "dreamos.website_repo_retirement.v2",
+  "generated": "2026-06-07T06:22:28.141332+00:00",
+  "batch": "/data/data/com.termux/files/home/projects/_retired_repos/website_consolidation_20260607_012226",
+  "items": [
+    {
+      "name": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor",
+      "destination": "/data/data/com.termux/files/home/projects/_retired_repos/website_consolidation_20260607_012226/FreeRideInvestor",
+      "status": "moved_to_retired_repos",
+      "git": {
+        "is_git": true,
+        "head": "ddccc8d chore: remove tracked Python cache artifacts",
+        "dirty": ""
+      },
+      "source_exists_after": false,
+      "destination_exists_after": true
+    },
+    {
+      "name": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite",
+      "destination": "/data/data/com.termux/files/home/projects/_retired_repos/website_consolidation_20260607_012226/FreerideinvestorWebsite",
+      "status": "moved_to_retired_repos",
+      "git": {
+        "is_git": true,
+        "head": "f97e8d9 Deprecate repo in favor of websites SSOT",
+        "dirty": ""
+      },
+      "source_exists_after": false,
+      "destination_exists_after": true
+    },
+    {
+      "name": "bible-application",
+      "source": "/data/data/com.termux/files/home/projects/bible-application",
+      "destination": "/data/data/com.termux/files/home/projects/_retired_repos/website_consolidation_20260607_012226/bible-application",
+      "status": "moved_to_retired_repos",
+      "git": {
+        "is_git": true,
+        "head": "4c00ae1 Remove upload_to_github.py",
+        "dirty": ""
+      },
+      "source_exists_after": false,
+      "destination_exists_after": true
+    },
+    {
+      "name": "TradingRobotPlugWeb",
+      "source": "/data/data/com.termux/files/home/projects/TradingRobotPlugWeb",
+      "destination": "/data/data/com.termux/files/home/projects/_retired_repos/website_consolidation_20260607_012226/TradingRobotPlugWeb",
+      "status": "moved_to_retired_repos",
+      "git": {
+        "is_git": true,
+        "head": "3ca2e5e Deprecate repo in favor of websites SSOT",
+        "dirty": ""
+      },
+      "source_exists_after": false,
+      "destination_exists_after": true
+    }
+  ],
+  "guardrails": [
+    "no permanent delete",
+    "local move only",
+    "handles partial previous move",
+    "websites clean before manifest commit"
+  ]
+}

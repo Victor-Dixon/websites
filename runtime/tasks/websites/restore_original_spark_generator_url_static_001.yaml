@@ -1,0 +1,18 @@
+id: restore_original_spark_generator_url_static_001
+title: Restore original Spark generator URL as clean static page
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  url: https://dadudekc.site/spark-generator/
+  physical_path: public_html/spark-generator/index.html
+actions:
+  - stop using spark-os workaround
+  - build clean static page at original /spark-generator/ URL
+  - use inline direct onclick handlers
+  - use button-card answers only
+  - post directly to /wp-json/emergence/v1/generate
+verify:
+  - exact /spark-generator/ serves clean static marker
+  - page contains direct click handlers
+  - page contains embedded 28 domain questions
+commit_message: Restore original Spark generator URL as static page

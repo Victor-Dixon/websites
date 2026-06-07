@@ -1,0 +1,110 @@
+{
+  "schema": "dreamos.spark_emergence_drift_classification.v2",
+  "generated": "2026-06-06T22:24:19.675921+00:00",
+  "root": "/data/data/com.termux/files/home/projects/websites",
+  "guardrails": [
+    "classification only",
+    "no deletes",
+    "no blind merge",
+    "no account-system changes in this lane",
+    "promote task artifacts only after manifest review"
+  ],
+  "summary": {
+    "archive": 1,
+    "promote": 9,
+    "hold": 1
+  },
+  "items": [
+    {
+      "path": "data/reports/websites/emergence/tmp/",
+      "git_status": "??",
+      "decision": "archive",
+      "reason": "temporary generated report directory; preserve for review, do not promote directly",
+      "size_bytes": null
+    },
+    {
+      "path": "runtime/tasks/websites/deploy_spark_assets_native_sftp_001.yaml",
+      "git_status": "??",
+      "decision": "promote",
+      "reason": "concrete Spark/Emergence repair or deployment task artifact",
+      "size_bytes": 522
+    },
+    {
+      "path": "runtime/tasks/websites/deploy_spark_generator_fail_open_assets_001.yaml",
+      "git_status": "??",
+      "decision": "promote",
+      "reason": "concrete Spark/Emergence repair or deployment task artifact",
+      "size_bytes": 807
+    },
+    {
+      "path": "runtime/tasks/websites/discover_remote_path_and_deploy_spark_assets_001.yaml",
+      "git_status": "??",
+      "decision": "promote",
+      "reason": "concrete Spark/Emergence repair or deployment task artifact",
+      "size_bytes": 618
+    },
+    {
+      "path": "runtime/tasks/websites/fix_exact_spark_generator_route_cache_001.yaml",
+      "git_status": "??",
+      "decision": "promote",
+      "reason": "concrete Spark/Emergence repair or deployment task artifact",
+      "size_bytes": 780
+    },
+    {
+      "path": "runtime/tasks/websites/fix_spark_generate_payload_hardening_001.yaml",
+      "git_status": "??",
+      "decision": "promote",
+      "reason": "concrete Spark/Emergence repair or deployment task artifact",
+      "size_bytes": 798
+    },
+    {
+      "path": "runtime/tasks/websites/fix_spark_os_static_button_handlers_001.yaml",
+      "git_status": "??",
+      "decision": "promote",
+      "reason": "concrete Spark/Emergence repair or deployment task artifact",
+      "size_bytes": 611
+    },
+    {
+      "path": "runtime/tasks/websites/patch_client_payload_hardening_allow_answers_001.yaml",
+      "git_status": "??",
+      "decision": "promote",
+      "reason": "concrete Spark/Emergence repair or deployment task artifact",
+      "size_bytes": 687
+    },
+    {
+      "path": "runtime/tasks/websites/point_generate_ctas_to_versioned_spark_route_001.yaml",
+      "git_status": "??",
+      "decision": "promote",
+      "reason": "concrete Spark/Emergence repair or deployment task artifact",
+      "size_bytes": 630
+    },
+    {
+      "path": "runtime/tasks/websites/revert_versioned_spark_route_drift_001.yaml",
+      "git_status": "??",
+      "decision": "hold",
+      "reason": "rollback/revert task; review before promotion",
+      "size_bytes": 503
+    },
+    {
+      "path": "runtime/tasks/websites/verify_exact_canonical_spark_generator_route_001.yaml",
+      "git_status": "??",
+      "decision": "promote",
+      "reason": "verification task artifact; useful governed task record",
+      "size_bytes": 569
+    }
+  ],
+  "recommended_next_lanes": [
+    {
+      "target": "promote safe Spark/Emergence task artifacts",
+      "action": "stage runtime/tasks/websites items classified as promote",
+      "verify": "scope guard + sensitive-value scan",
+      "commit_message": "Promote Spark Emergence task artifacts"
+    },
+    {
+      "target": "Spark/Emergence account system",
+      "action": "design account-bound character save workflow",
+      "verify": "local storage/database/auth route tests",
+      "commit_message": "Add Spark account workflow scaffold"
+    }
+  ]
+}

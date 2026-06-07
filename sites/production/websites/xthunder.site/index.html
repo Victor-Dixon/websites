@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>xThunder | See Everyone’s Chat</title>
+  <meta name="description" content="xThunder — a game built around one shared storm chat where every player’s messages are visible. Spin ideas for your build or try the chat demo.">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">xThunder</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#demo">Chat demo</a>
+      <a href="#lab">Idea sparks</a>
+      <a href="#pillars">The game</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Multiplayer · global chat · thunder strike</p>
+      <h1>One storm. Everyone’s chat in view.</h1>
+      <p class="hero-copy">
+        <strong>xThunder</strong> is the game you’re building: players share a world where
+        <em>every message is visible to everyone</em> — whispers, callouts, trash talk, and
+        teamwork all hit the same feed. No hidden DMs in the heat of the moment.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#demo">Try the chat storm</a>
+        <button type="button" class="button secondary" id="spin-all-hero">Spark a feature idea</button>
+      </div>
+    </section>
+
+    <section id="demo" class="section chat-demo-panel">
+      <p class="eyebrow">Prototype feel</p>
+      <h2>Chat storm — everyone sees everything</h2>
+      <p class="muted">
+        Post as different players below. Every line lands in the <strong>same public feed</strong>,
+        the way your game should feel.
+      </p>
+
+      <div class="chat-layout">
+        <form class="chat-compose" id="chat-form">
+          <label>
+            <span class="label-text">Player</span>
+            <input type="text" id="player-name" name="player" maxlength="24" placeholder="StormRunner" required>
+          </label>
+          <label class="grow">
+            <span class="label-text">Message</span>
+            <input type="text" id="chat-message" name="message" maxlength="280" placeholder="Say something the whole lobby will see…" required>
+          </label>
+          <button type="submit" class="button primary">Send to storm</button>
+        </form>
+
+        <div class="chat-feed" id="chat-feed" aria-live="polite">
+          <p class="chat-empty">No messages yet — be the first crack of thunder.</p>
+        </div>
+      </div>
+
+      <div class="lab-actions">
+        <button type="button" class="button secondary" id="seed-demo">Load sample lobby</button>
+        <button type="button" class="button secondary" id="clear-chat">Clear feed</button>
+      </div>
+    </section>
+
+    <section id="pillars" class="section">
+      <p class="eyebrow">Design pillars</p>
+      <h2>What makes xThunder different</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Global feed</h3>
+          <p>All player chat flows into one readable stream — you always know what the room is saying.</p>
+        </article>
+        <article class="card">
+          <h3>Social pressure</h3>
+          <p>Strategy shifts when everyone can see your panic, your bluff, or your callout.</p>
+        </article>
+        <article class="card">
+          <h3>Thunder events</h3>
+          <p>Storms or strikes can highlight, pin, or scramble messages when the match heats up.</p>
+        </article>
+        <article class="card">
+          <h3>Your build</h3>
+          <p>Use the idea lab to riff on modes, maps, and rules — then ship it in your engine.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="lab" class="section lab-panel">
+      <p class="eyebrow">Idea sparks for your game</p>
+      <h2>Spin features for xThunder</h2>
+      <p class="muted">Each roll is tuned for <strong>visible chat</strong> games — not random genres.</p>
+
+      <div class="pitch-grid">
+        <article class="pitch-card">
+          <h3>Core loop</h3>
+          <p class="pitch-value" id="pitch-hook">Hit “Spin all” to brainstorm.</p>
+          <button type="button" class="mini" data-spin="hook">Reroll</button>
+        </article>
+        <article class="pitch-card">
+          <h3>Chat rule</h3>
+          <p class="pitch-value" id="pitch-mechanic">—</p>
+          <button type="button" class="mini" data-spin="mechanic">Reroll</button>
+        </article>
+        <article class="pitch-card">
+          <h3>World</h3>
+          <p class="pitch-value" id="pitch-setting">—</p>
+          <button type="button" class="mini" data-spin="setting">Reroll</button>
+        </article>
+        <article class="pitch-card">
+          <h3>Twist</h3>
+          <p class="pitch-value" id="pitch-twist">—</p>
+          <button type="button" class="mini" data-spin="twist">Reroll</button>
+        </article>
+      </div>
+
+      <div class="lab-actions">
+        <button type="button" class="button primary" id="spin-all">Spin all</button>
+        <button type="button" class="button secondary" id="save-pitch">Save idea</button>
+        <button type="button" class="button secondary" id="copy-pitch">Copy</button>
+      </div>
+      <p class="hint" id="copy-status" hidden>Copied.</p>
+    </section>
+
+    <section id="saved" class="section saved-panel">
+      <p class="eyebrow">Your vault</p>
+      <h2>Saved xThunder ideas</h2>
+      <ul class="saved-list" id="saved-list" aria-live="polite"></ul>
+      <div class="lab-actions">
+        <button type="button" class="button secondary" id="clear-saved">Clear saved</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> xThunder · Game in progress · Victor Dixon / Dream.OS</p>
+  </footer>
+
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>

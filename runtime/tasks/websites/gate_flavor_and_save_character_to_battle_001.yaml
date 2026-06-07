@@ -1,0 +1,17 @@
+id: gate_flavor_and_save_character_to_battle_001
+title: Gate flavor questions and save Spark characters to battle simulator
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  spark_url: https://dadudekc.site/spark-generator/
+  battle_url: https://dadudekc.site/battles/
+actions:
+  - filter flavor questions by manifested domains only
+  - save completed final dossier as local character record
+  - add saved character handoff link to battles
+  - create simple battle page reader if missing
+verify:
+  - Spark static page contains gated flavor marker
+  - Spark static page contains character save marker
+  - battle page can read dreamos.savedSparkCharacters.v1
+commit_message: Gate flavor questions and save Spark characters to battle simulator

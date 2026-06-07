@@ -1,0 +1,17 @@
+id: make_final_dossier_click_visibly_stateful_001
+title: Make final dossier click visibly stateful
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  js: runtime/plugins/emergence-character-generator/assets/emergence-cg.js
+  css: runtime/plugins/emergence-character-generator/assets/emergence-cg.css
+actions:
+  - add immediate visible loading panel on dossier click
+  - add explicit error panel if fetch/render fails
+  - force panel insertion near clicked button
+  - keep API result rendering
+verify:
+  - JS contains DreamOS Visible Final Dossier State Patch
+  - CSS contains DreamOS Visible Final Dossier State Styles
+commit_message: Make final dossier click visibly stateful

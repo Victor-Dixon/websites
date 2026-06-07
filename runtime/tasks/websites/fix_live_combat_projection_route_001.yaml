@@ -1,0 +1,19 @@
+id: fix_live_combat_projection_route_001
+title: Fix live combat projection route
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  stale_routes:
+    - /spark-battle-sim.html
+    - spark-battle-sim.html
+  correct_route: /battles/
+actions:
+  - patch repo content route drift
+  - patch live WordPress DB/files route drift
+  - flush cache
+  - verify homepage contains /battles/ and not spark-battle-sim.html
+verify:
+  - live homepage has no spark-battle-sim.html
+  - live homepage has /battles/
+commit_message: Fix live combat projection route

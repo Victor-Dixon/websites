@@ -1,0 +1,16 @@
+id: fix_spark_os_static_button_handlers_001
+title: Fix Spark OS static button handlers
+lane: repo_fleet_self_healing_001
+status: in_progress
+target:
+  url: https://dadudekc.site/spark-os/
+actions:
+  - replace app-scoped click handler with document capture handler
+  - add visible click telemetry
+  - ensure Start, answer cards, reset, pass submit, final submit all mutate state
+  - deploy isolated static route
+verify:
+  - live page contains static handler v2 marker
+  - live page contains telemetry marker
+  - route remains isolated from WordPress plugin UI
+commit_message: Fix Spark OS static button handlers

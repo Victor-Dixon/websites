@@ -1,0 +1,24 @@
+{
+  "schema": "dreamos.real_website_asset_delta_salvage.v1",
+  "generated": "2026-06-07T06:01:32.795151+00:00",
+  "source_manifest": "/data/data/com.termux/files/home/projects/websites/data/reports/repo_consolidation/cross_repo_website_asset_inspection_20260607_005200.json",
+  "summary": {
+    "salvaged_repos": 0,
+    "held_repos": 3
+  },
+  "salvaged": [],
+  "held": [
+    {
+      "repo": "/data/data/com.termux/files/home/projects/FocusForge",
+      "reason": "no real web asset delta after filtering configs/workflows"
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/contract-leads",
+      "reason": "no real web asset delta after filtering configs/workflows"
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/gpt_automation",
+      "reason": "no real web asset delta after filtering configs/workflows"
+    }
+  ]
+}

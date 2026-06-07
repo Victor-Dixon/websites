@@ -1,0 +1,19 @@
+id: fix_live_generate_button_route_all_sources_001
+title: Fix live homepage Generate Your Spark route from all sources
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  stale_route: /spark-generator.html
+  correct_route: /spark-generator/
+actions:
+  - inspect live homepage anchors
+  - search WordPress database posts/options/postmeta for stale route
+  - search theme/plugin files for stale route
+  - replace stale route with WordPress slug route
+  - flush cache
+  - verify homepage route
+verify:
+  - live homepage has no spark-generator.html
+  - live homepage has /spark-generator/
+commit_message: Fix live Generate Your Spark route from all sources

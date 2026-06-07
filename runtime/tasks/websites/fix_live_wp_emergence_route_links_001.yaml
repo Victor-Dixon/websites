@@ -1,0 +1,16 @@
+id: fix_live_wp_emergence_route_links_001
+title: Fix live WordPress Emergence route links
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+actions:
+  - scan live pages for .html route drift
+  - run wp-cli search-replace for Emergence routes
+  - flush WordPress and LiteSpeed caches when available
+  - verify live DOM no longer contains stale .html CTAs
+verify:
+  - /spark-generator.html absent from live pages
+  - /spark-generator/ present in live pages
+  - /battles/ present in live pages
+commit_message: Fix live WordPress Emergence route links

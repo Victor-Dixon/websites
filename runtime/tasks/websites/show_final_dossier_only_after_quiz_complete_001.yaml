@@ -1,0 +1,19 @@
+id: show_final_dossier_only_after_quiz_complete_001
+title: Show final dossier only after Spark quiz completion
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  canonical_url: https://dadudekc.site/spark-generator/
+  asset_version: 0.8.3-dossier-end-only-001
+actions:
+  - hard-disable floating dossier affordance
+  - hide all legacy dossier buttons before quiz completion
+  - show one Build Final Dossier button only after 28 answers
+  - bump plugin version
+  - deploy plugin PHP and assets
+  - verify canonical route
+verify:
+  - canonical route loads 0.8.3-dossier-end-only-001
+  - live JS has end-only gate marker
+  - live CSS has floating/duplicate suppression marker
+commit_message: Show final dossier only after Spark quiz completion

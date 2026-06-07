@@ -1,0 +1,16 @@
+id: verify_exact_canonical_spark_generator_route_001
+title: Verify exact canonical Spark generator route
+lane: repo_fleet_self_healing_001
+status: in_progress
+target:
+  url: https://dadudekc.site/spark-generator
+actions:
+  - fetch exact no-query canonical route
+  - verify loaded asset version
+  - verify public blocker text is absent from raw response
+  - verify no recovery-mode copy is exposed
+verify:
+  - no query-string cache-bust URL used
+  - canonical route loads 0.8.0 assets
+  - blocker text absent
+commit_message: Verify exact canonical Spark generator route

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Emergence Character Generator
  * Description: Public Spark Protocol v8.5 two-pass character generator for The Emergence.
- * Version: 0.7.3
+ * Version: 0.9.0-clean-spark-page-001
  * Author: Dream.OS
  */
 
@@ -537,8 +537,8 @@ function emergence_cg_shortcode() {
 add_shortcode('emergence_character_generator', 'emergence_cg_shortcode');
 
 function emergence_cg_register_assets() {
-    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.7.3');
-    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.7.3', true);
+    wp_register_style('emergence-cg-style', plugins_url('assets/emergence-cg.css', __FILE__), array(), '0.9.0-clean-spark-page-001');
+    wp_register_script('emergence-cg-script', plugins_url('assets/emergence-cg.js', __FILE__), array(), '0.9.0-clean-spark-page-001', true);
 
     wp_localize_script('emergence-cg-script', 'EmergenceCG', array(
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
@@ -590,6 +590,34 @@ function emergence_cg_rest_generate(WP_REST_Request $request) {
     }
 
     return rest_ensure_response(emergence_cg_generate($clean_domain, $clean_flavor));
+}
+
+
+
+/**
+ * DreamOS canonical Spark route no-store guard.
+ * Prevent stale cached HTML on /spark-generator from serving old generator assets.
+ */
+if (!function_exists('dreamos_emergence_spark_generator_no_store_guard')) {
+    function dreamos_emergence_spark_generator_no_store_guard() {
+        $uri = isset($_SERVER['REQUEST_URI']) ? strtok((string) $_SERVER['REQUEST_URI'], '?') : '';
+        $uri = rtrim($uri, '/');
+
+        if ($uri === '/spark-generator') {
+            if (!defined('DONOTCACHEPAGE')) {
+                define('DONOTCACHEPAGE', true);
+            }
+            if (!headers_sent()) {
+                nocache_headers();
+                header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0, private');
+                header('Pragma: no-cache');
+                header('Expires: Wed, 11 Jan 1984 05:00:00 GMT');
+                header('X-DreamOS-Spark-Route: no-store-0.8.1');
+            }
+        }
+    }
+    add_action('send_headers', 'dreamos_emergence_spark_generator_no_store_guard', 0);
+    add_action('template_redirect', 'dreamos_emergence_spark_generator_no_store_guard', 0);
 }
 
 add_action('rest_api_init', function () {
@@ -927,8 +955,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.7.3');
-    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.7.3', true);
+    wp_enqueue_style('emergence-cg-public', $base . 'emergence-character-generator.css', array(), '0.9.0-clean-spark-page-001');
+    wp_enqueue_script('emergence-cg-public', $base . 'emergence-character-generator.js', array(), '0.9.0-clean-spark-page-001', true);
 });
 
 // DREAMOS_CHARACTER_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -2932,7 +2960,12 @@ add_action('wp_footer', function () {
         const lower = String(text || '').toLowerCase();
         FORBIDDEN.forEach(function (key) {
           if (lower.indexOf(key) !== -1) {
+            if (['answers','flavor','flavor_answers','source','character_name','alias','costume','attitude','visual_tone','build_type','mask','ability_showcase'].indexOf(String(key)) === -1) {
+            /* DreamOS client hardening allowlist: public Spark payload keys */
+          if (['answers','flavor','flavor_answers','source','character_name','alias','costume','attitude','visual_tone','build_type','mask','ability_showcase'].indexOf(String(key)) === -1) {
             throw new Error('Unsafe public demo hardening payload blocked: ' + key);
+          }
+          }
           }
         });
       }

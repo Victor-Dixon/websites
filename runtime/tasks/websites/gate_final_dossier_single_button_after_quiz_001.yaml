@@ -1,0 +1,20 @@
+id: gate_final_dossier_single_button_after_quiz_001
+title: Gate final dossier behind completed Spark quiz
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  canonical_url: https://dadudekc.site/spark-generator/
+  asset_version: 0.8.2-quiz-gated-single-dossier-001
+actions:
+  - hide duplicate dossier buttons
+  - inject one canonical dossier button
+  - require real quiz completion before POST
+  - render incomplete quiz warning instead of fallback dossier
+  - bump plugin asset version
+  - deploy plugin PHP and assets
+  - verify exact canonical route
+verify:
+  - exact canonical route loads 0.8.2-quiz-gated-single-dossier-001
+  - live JS contains canonical dossier gate marker
+  - live CSS contains duplicate button suppression marker
+commit_message: Gate final dossier behind completed Spark quiz

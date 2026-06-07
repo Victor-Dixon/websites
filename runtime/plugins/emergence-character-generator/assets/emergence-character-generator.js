@@ -821,3 +821,1474 @@
     }
   });
 })();
+
+
+
+/* DreamOS Public Spark Recovery Blocker Suppression
+ * Public UX must not expose hardening/debug blocker internals.
+ * Full diagnostics belong in the future AI-generated response/debug area.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSPublicSparkRecoveryBlockerSuppression) return;
+  window.__DreamOSPublicSparkRecoveryBlockerSuppression = true;
+
+  function scrubTextNode(node) {
+    if (!node || !node.nodeValue) return;
+    var text = node.nodeValue;
+    var next = text
+      .replace(/SPARK PROTOCOL RECOVERY MODE/gi, "SPARK PROTOCOL")
+      .replace(/Spark Protocol Recovery Mode/gi, "Spark Protocol")
+      .replace(/The full generator interface did not mount cleanly, so this fail-open path keeps the Spark Protocol usable while the frontend is repaired\./gi, "Generate your Spark profile, then carry it into the battle loop.")
+      .replace(/Reason:\s*Uncaught Error:\s*Unsafe public demo hardening payload blocked:\s*answers/gi, "")
+      .replace(/Uncaught Error:\s*Unsafe public demo hardening payload blocked:\s*answers/gi, "")
+      .replace(/Unsafe public demo hardening payload blocked:\s*answers/gi, "")
+      .replace(/Generate Diagnostic Spark/gi, "Generate Your Spark");
+
+    if (next !== text) node.nodeValue = next;
+  }
+
+  function scrubElement(el) {
+    if (!el || el.nodeType !== 1) return;
+
+    var text = (el.textContent || "").toLowerCase();
+    if (
+      text.indexOf("unsafe public demo hardening payload blocked") !== -1 ||
+      text.indexOf("full generator interface did not mount cleanly") !== -1 ||
+      text.indexOf("spark protocol recovery mode") !== -1
+    ) {
+      el.setAttribute("data-dreamos-public-recovery-scrubbed", "1");
+    }
+
+    if ((el.textContent || "").trim() === "Generate Diagnostic Spark") {
+      el.textContent = "Generate Your Spark";
+    }
+  }
+
+  function scrub(root) {
+    root = root || document.body;
+    if (!root) return;
+
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(scrubTextNode);
+
+    Array.prototype.forEach.call(root.querySelectorAll("*"), scrubElement);
+  }
+
+  function boot() {
+    scrub(document.body);
+    window.setTimeout(function () { scrub(document.body); }, 250);
+    window.setTimeout(function () { scrub(document.body); }, 1000);
+    window.setTimeout(function () { scrub(document.body); }, 2500);
+
+    new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        Array.prototype.forEach.call(m.addedNodes || [], function (node) {
+          if (node.nodeType === 3) scrubTextNode(node);
+          if (node.nodeType === 1) scrub(node);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true, characterData: true });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* DreamOS Canonical Quiz-Gated Final Dossier
+ * One public dossier button only.
+ * It must not build from fallback/default answers before the Spark quiz is completed.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSCanonicalQuizGatedFinalDossier) return;
+  window.__DreamOSCanonicalQuizGatedFinalDossier = true;
+
+  var REQUIRED = 28;
+  var ANSWERS = ["A","B","C","D","E","F","G","H"];
+
+  function root() {
+    return document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") || document.body;
+  }
+
+  function endpoint() {
+    if (window.EmergenceCG && window.EmergenceCG.endpoint) return window.EmergenceCG.endpoint;
+    return "/wp-json/emergence/v1/generate";
+  }
+
+  function hideDuplicates(scope) {
+    scope = scope || document;
+    var selectors = [
+      "[data-dreamos-floating-dossier-fab]",
+      "[data-dreamos-guaranteed-final-dossier-button]",
+      "[data-dreamos-guaranteed-final-dossier]",
+      "[data-ecg-action='create-final-dossier']",
+      ".dreamos-guaranteed-dossier-button",
+      ".dreamos-floating-dossier-fab"
+    ];
+
+    selectors.forEach(function (sel) {
+      Array.prototype.forEach.call(scope.querySelectorAll(sel), function (el) {
+        if (el && !el.hasAttribute("data-dreamos-canonical-final-dossier")) {
+          el.setAttribute("data-dreamos-duplicate-dossier-hidden", "1");
+          el.setAttribute("aria-hidden", "true");
+          el.tabIndex = -1;
+        }
+      });
+    });
+
+    Array.prototype.forEach.call(scope.querySelectorAll("button, a"), function (el) {
+      if (!el || el.hasAttribute("data-dreamos-canonical-final-dossier")) return;
+      var text = (el.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+      if (
+        text === "create final dossier" ||
+        text === "build final dossier" ||
+        text === "rebuild final dossier" ||
+        text.indexOf("final dossier") !== -1
+      ) {
+        el.setAttribute("data-dreamos-duplicate-dossier-hidden", "1");
+        el.setAttribute("aria-hidden", "true");
+        el.tabIndex = -1;
+      }
+    });
+  }
+
+  function findQuestionKey(el) {
+    var attrs = ["name", "id", "data-question", "data-q", "aria-label"];
+    for (var i = 0; i < attrs.length; i++) {
+      var val = el.getAttribute(attrs[i]) || "";
+      var m = val.match(/(?:question|answer|q)[-_ ]?(\d{1,2})/i) || val.match(/^(\d{1,2})$/);
+      if (m) {
+        var n = parseInt(m[1], 10);
+        if (n >= 1 && n <= REQUIRED) return String(n);
+      }
+    }
+
+    var wrap = el.closest("[data-question], [data-q], .question, .ecg-question, [id*='question'], [class*='question']");
+    if (wrap) {
+      var val2 = wrap.getAttribute("data-question") || wrap.getAttribute("data-q") || wrap.id || wrap.className || "";
+      var m2 = String(val2).match(/(\d{1,2})/);
+      if (m2) {
+        var n2 = parseInt(m2[1], 10);
+        if (n2 >= 1 && n2 <= REQUIRED) return String(n2);
+      }
+    }
+    return "";
+  }
+
+  function normalizeAnswer(v) {
+    v = String(v || "").trim().toUpperCase();
+    if (!v) return "";
+    v = v.substring(0, 1);
+    return ANSWERS.indexOf(v) !== -1 ? v : "";
+  }
+
+  function collectRealAnswers(scope) {
+    scope = scope || root();
+    var answers = {};
+
+    Array.prototype.forEach.call(scope.querySelectorAll("input, select, textarea, button[aria-pressed='true'], [role='radio'][aria-checked='true']"), function (el) {
+      if (!el || el.disabled) return;
+
+      var tag = (el.tagName || "").toLowerCase();
+      var type = (el.getAttribute("type") || "").toLowerCase();
+
+      if ((type === "radio" || type === "checkbox") && !el.checked) return;
+
+      var q = findQuestionKey(el);
+      if (!q) return;
+
+      var raw = "";
+      if (tag === "select" || tag === "textarea" || tag === "input") raw = el.value;
+      else raw = el.getAttribute("data-answer") || el.getAttribute("value") || el.textContent;
+
+      var val = normalizeAnswer(raw);
+      if (val) answers[q] = val;
+    });
+
+    return answers;
+  }
+
+  function countAnswers(answers) {
+    var count = 0;
+    for (var i = 1; i <= REQUIRED; i++) {
+      if (answers[String(i)]) count++;
+    }
+    return count;
+  }
+
+  function panel(scope) {
+    scope = scope || root();
+    var p = scope.querySelector(".dreamos-canonical-dossier-panel");
+    if (!p) {
+      p = document.createElement("section");
+      p.className = "dreamos-canonical-dossier-panel";
+      p.setAttribute("aria-live", "polite");
+      scope.appendChild(p);
+    }
+    return p;
+  }
+
+  function renderIncomplete(scope, count) {
+    panel(scope).innerHTML =
+      '<div class="dreamos-dossier-warning">' +
+      '<strong>Complete the Spark quiz first.</strong>' +
+      '<p>You have answered ' + count + ' of ' + REQUIRED + ' required questions. The final dossier will unlock after the quiz is complete.</p>' +
+      '</div>';
+  }
+
+  function renderLoading(scope) {
+    panel(scope).innerHTML =
+      '<div class="dreamos-dossier-loading">' +
+      '<strong>Building Final Spark Dossier...</strong>' +
+      '<p>Your completed quiz answers are being resolved through the Spark Protocol.</p>' +
+      '</div>';
+  }
+
+  function renderDossier(scope, payload) {
+    var manifested = Array.isArray(payload.manifested) ? payload.manifested.join(", ") : "Unclassified";
+    var lead = payload.lead_domain || "Unclassified";
+    var cast = payload.cast || "Unclassified Spark";
+    var sig = payload.spark_signature || payload.provisional_spark_signature || "Pending";
+    var combat = payload.combat_capability || payload.provisional_combat_capability || "Pending";
+    var shape = payload.profile_shape || "Spark profile generated.";
+
+    panel(scope).innerHTML =
+      '<section class="dreamos-final-dossier-card">' +
+      '<p class="dreamos-kicker">Final Spark Dossier</p>' +
+      '<h2>Generated Spark</h2>' +
+      '<div class="dreamos-dossier-grid">' +
+      '<div><strong>Lead Domain</strong><span>' + lead + '</span></div>' +
+      '<div><strong>Cast</strong><span>' + cast + '</span></div>' +
+      '<div><strong>Spark Signature</strong><span>' + sig + '</span></div>' +
+      '<div><strong>Combat Capability</strong><span>' + combat + '</span></div>' +
+      '</div>' +
+      '<p><strong>Manifested Domains:</strong> ' + manifested + '</p>' +
+      '<p><strong>Profile Shape:</strong> ' + shape + '</p>' +
+      '<p class="dreamos-dossier-actions"><a href="/battles/">Enter Battles</a></p>' +
+      '<details><summary>Raw Spark Data</summary><pre>' + JSON.stringify(payload, null, 2) + '</pre></details>' +
+      '</section>';
+  }
+
+  async function build(scope) {
+    scope = scope || root();
+    var answers = collectRealAnswers(scope);
+    var count = countAnswers(answers);
+
+    if (count < REQUIRED) {
+      renderIncomplete(scope, count);
+      return;
+    }
+
+    renderLoading(scope);
+
+    var res = await fetch(endpoint(), {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        answers: answers,
+        source: "dreamos-canonical-quiz-gated-dossier"
+      })
+    });
+
+    var payload = await res.json();
+    if (!res.ok) throw new Error(payload && payload.message ? payload.message : "Spark generation failed");
+    renderDossier(scope, payload);
+  }
+
+  function ensureButton() {
+    var r = root();
+    if (!r) return;
+
+    hideDuplicates(document);
+
+    var existing = document.querySelector("[data-dreamos-canonical-final-dossier='1']");
+    if (!existing) {
+      var wrap = document.createElement("div");
+      wrap.className = "dreamos-canonical-dossier-action";
+
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "dreamos-canonical-dossier-button";
+      btn.setAttribute("data-dreamos-canonical-final-dossier", "1");
+      btn.textContent = "Build Final Dossier";
+
+      wrap.appendChild(btn);
+      r.appendChild(wrap);
+      existing = btn;
+    }
+
+    var answers = collectRealAnswers(r);
+    var count = countAnswers(answers);
+
+    existing.setAttribute("data-answer-count", String(count));
+    existing.setAttribute("data-required-count", String(REQUIRED));
+    existing.textContent = count >= REQUIRED ? "Build Final Dossier" : "Complete Quiz First (" + count + "/" + REQUIRED + ")";
+  }
+
+  document.addEventListener("click", function (ev) {
+    var btn = ev.target && ev.target.closest ? ev.target.closest("[data-dreamos-canonical-final-dossier='1']") : null;
+    if (!btn) return;
+    ev.preventDefault();
+    ev.stopPropagation();
+    build(root()).catch(function (err) {
+      panel(root()).innerHTML =
+        '<div class="dreamos-dossier-warning"><strong>Dossier build failed.</strong><p>' +
+        String(err && err.message ? err.message : err) +
+        '</p></div>';
+    });
+  }, true);
+
+  document.addEventListener("change", ensureButton, true);
+  document.addEventListener("input", ensureButton, true);
+
+  function boot() {
+    ensureButton();
+    setTimeout(ensureButton, 250);
+    setTimeout(ensureButton, 1000);
+    setTimeout(ensureButton, 2500);
+
+    new MutationObserver(function () {
+      ensureButton();
+    }).observe(document.body, {childList: true, subtree: true});
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+/* DreamOS Final Dossier End-Only Gate
+ * The final dossier button should not float and should not appear before quiz completion.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSFinalDossierEndOnlyGate) return;
+  window.__DreamOSFinalDossierEndOnlyGate = true;
+
+  var REQUIRED = 28;
+  var ANSWERS = ["A","B","C","D","E","F","G","H"];
+
+  function appRoot() {
+    return document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") || document.body;
+  }
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function killFloatingAndLegacy() {
+    var selectors = [
+      "[data-dreamos-floating-dossier-fab]",
+      ".dreamos-floating-dossier-fab",
+      "[data-dreamos-guaranteed-final-dossier]",
+      "[data-dreamos-guaranteed-final-dossier-button]",
+      ".dreamos-guaranteed-dossier-button",
+      "[data-ecg-action='create-final-dossier']"
+    ];
+
+    selectors.forEach(function (sel) {
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function (el) {
+        if (!el.hasAttribute("data-dreamos-end-only-final-dossier")) {
+          el.setAttribute("data-dreamos-retired-dossier-control", "1");
+          el.setAttribute("aria-hidden", "true");
+          el.tabIndex = -1;
+        }
+      });
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll("button, a"), function (el) {
+      if (!el || el.hasAttribute("data-dreamos-end-only-final-dossier")) return;
+      var text = (el.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+      if (
+        text === "create final dossier" ||
+        text === "build final dossier" ||
+        text === "rebuild final dossier" ||
+        text.indexOf("complete quiz first") !== -1 ||
+        text.indexOf("final dossier") !== -1
+      ) {
+        el.setAttribute("data-dreamos-retired-dossier-control", "1");
+        el.setAttribute("aria-hidden", "true");
+        el.tabIndex = -1;
+      }
+    });
+  }
+
+  function findQuestionKey(el) {
+    var attrs = ["name", "id", "data-question", "data-q", "aria-label"];
+    for (var i = 0; i < attrs.length; i++) {
+      var val = el.getAttribute(attrs[i]) || "";
+      var m = val.match(/(?:question|answer|q)[-_ ]?(\d{1,2})/i) || val.match(/^(\d{1,2})$/);
+      if (m) {
+        var n = parseInt(m[1], 10);
+        if (n >= 1 && n <= REQUIRED) return String(n);
+      }
+    }
+
+    var wrap = el.closest("[data-question], [data-q], .question, .ecg-question, [id*='question'], [class*='question']");
+    if (wrap) {
+      var val2 = wrap.getAttribute("data-question") || wrap.getAttribute("data-q") || wrap.id || wrap.className || "";
+      var m2 = String(val2).match(/(\d{1,2})/);
+      if (m2) {
+        var n2 = parseInt(m2[1], 10);
+        if (n2 >= 1 && n2 <= REQUIRED) return String(n2);
+      }
+    }
+    return "";
+  }
+
+  function normalizeAnswer(v) {
+    v = String(v || "").trim().toUpperCase();
+    if (!v) return "";
+    v = v.substring(0, 1);
+    return ANSWERS.indexOf(v) !== -1 ? v : "";
+  }
+
+  function collectAnswers(scope) {
+    scope = scope || appRoot();
+    var answers = {};
+
+    Array.prototype.forEach.call(scope.querySelectorAll("input, select, textarea, button[aria-pressed='true'], [role='radio'][aria-checked='true']"), function (el) {
+      if (!el || el.disabled) return;
+      var tag = (el.tagName || "").toLowerCase();
+      var type = (el.getAttribute("type") || "").toLowerCase();
+
+      if ((type === "radio" || type === "checkbox") && !el.checked) return;
+
+      var q = findQuestionKey(el);
+      if (!q) return;
+
+      var raw = "";
+      if (tag === "select" || tag === "textarea" || tag === "input") raw = el.value;
+      else raw = el.getAttribute("data-answer") || el.getAttribute("value") || el.textContent;
+
+      var val = normalizeAnswer(raw);
+      if (val) answers[q] = val;
+    });
+
+    return answers;
+  }
+
+  function answerCount(answers) {
+    var count = 0;
+    for (var i = 1; i <= REQUIRED; i++) {
+      if (answers[String(i)]) count++;
+    }
+    return count;
+  }
+
+  function removeEndButton() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-dreamos-end-only-final-dossier-wrap]"), function (el) {
+      el.remove();
+    });
+  }
+
+  function panel(scope) {
+    scope = scope || appRoot();
+    var p = scope.querySelector(".dreamos-end-only-dossier-panel");
+    if (!p) {
+      p = document.createElement("section");
+      p.className = "dreamos-end-only-dossier-panel";
+      p.setAttribute("aria-live", "polite");
+      scope.appendChild(p);
+    }
+    return p;
+  }
+
+  function renderLoading(scope) {
+    panel(scope).innerHTML =
+      '<div class="dreamos-dossier-loading"><strong>Building Final Spark Dossier...</strong><p>Your completed quiz answers are being resolved through the Spark Protocol.</p></div>';
+  }
+
+  function renderDossier(scope, payload) {
+    var manifested = Array.isArray(payload.manifested) ? payload.manifested.join(", ") : "Unclassified";
+    var lead = payload.lead_domain || "Unclassified";
+    var cast = payload.cast || "Unclassified Spark";
+    var sig = payload.spark_signature || payload.provisional_spark_signature || "Pending";
+    var combat = payload.combat_capability || payload.provisional_combat_capability || "Pending";
+    var shape = payload.profile_shape || "Spark profile generated.";
+
+    panel(scope).innerHTML =
+      '<section class="dreamos-final-dossier-card">' +
+      '<p class="dreamos-kicker">Final Spark Dossier</p>' +
+      '<h2>Generated Spark</h2>' +
+      '<div class="dreamos-dossier-grid">' +
+      '<div><strong>Lead Domain</strong><span>' + lead + '</span></div>' +
+      '<div><strong>Cast</strong><span>' + cast + '</span></div>' +
+      '<div><strong>Spark Signature</strong><span>' + sig + '</span></div>' +
+      '<div><strong>Combat Capability</strong><span>' + combat + '</span></div>' +
+      '</div>' +
+      '<p><strong>Manifested Domains:</strong> ' + manifested + '</p>' +
+      '<p><strong>Profile Shape:</strong> ' + shape + '</p>' +
+      '<p class="dreamos-dossier-actions"><a href="/battles/">Enter Battles</a></p>' +
+      '<details><summary>Raw Spark Data</summary><pre>' + JSON.stringify(payload, null, 2) + '</pre></details>' +
+      '</section>';
+  }
+
+  async function build(scope) {
+    scope = scope || appRoot();
+    var answers = collectAnswers(scope);
+    var count = answerCount(answers);
+
+    if (count < REQUIRED) {
+      removeEndButton();
+      return;
+    }
+
+    renderLoading(scope);
+
+    var res = await fetch(endpoint(), {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        answers: answers,
+        source: "dreamos-end-only-final-dossier"
+      })
+    });
+
+    var payload = await res.json();
+    if (!res.ok) throw new Error(payload && payload.message ? payload.message : "Spark generation failed");
+    renderDossier(scope, payload);
+  }
+
+  function ensureEndOnlyButton() {
+    var r = appRoot();
+    if (!r) return;
+
+    killFloatingAndLegacy();
+
+    var answers = collectAnswers(r);
+    var count = answerCount(answers);
+
+    if (count < REQUIRED) {
+      removeEndButton();
+      return;
+    }
+
+    if (document.querySelector("[data-dreamos-end-only-final-dossier='1']")) return;
+
+    var wrap = document.createElement("div");
+    wrap.className = "dreamos-end-only-dossier-action";
+    wrap.setAttribute("data-dreamos-end-only-final-dossier-wrap", "1");
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "dreamos-end-only-dossier-button";
+    btn.setAttribute("data-dreamos-end-only-final-dossier", "1");
+    btn.textContent = "Build Final Dossier";
+
+    wrap.appendChild(btn);
+    r.appendChild(wrap);
+  }
+
+  document.addEventListener("click", function (ev) {
+    var btn = ev.target && ev.target.closest ? ev.target.closest("[data-dreamos-end-only-final-dossier='1']") : null;
+    if (!btn) return;
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    build(appRoot()).catch(function (err) {
+      panel(appRoot()).innerHTML =
+        '<div class="dreamos-dossier-warning"><strong>Dossier build failed.</strong><p>' +
+        String(err && err.message ? err.message : err) +
+        '</p></div>';
+    });
+  }, true);
+
+  document.addEventListener("input", ensureEndOnlyButton, true);
+  document.addEventListener("change", ensureEndOnlyButton, true);
+
+  function boot() {
+    ensureEndOnlyButton();
+    setTimeout(ensureEndOnlyButton, 250);
+    setTimeout(ensureEndOnlyButton, 1000);
+    setTimeout(ensureEndOnlyButton, 2500);
+    new MutationObserver(ensureEndOnlyButton).observe(document.body, {childList: true, subtree: true});
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+/* DreamOS Spark Two-Pass Dossier Gate
+ * Final dossier appears only after the currently visible required quiz phase is complete.
+ * Hidden/locked flavor sections do not count and should not create fake blank space.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSSparkTwoPassDossierGate) return;
+  window.__DreamOSSparkTwoPassDossierGate = true;
+
+  var ANSWERS = ["A","B","C","D","E","F","G","H"];
+
+  function appRoot() {
+    return document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") || document.body;
+  }
+
+  function isVisible(el) {
+    if (!el) return false;
+    if (el.closest("[hidden], [aria-hidden='true'], [data-phase='locked'], [data-locked='1'], .is-hidden, .hidden")) return false;
+    var cs = window.getComputedStyle(el);
+    if (cs.display === "none" || cs.visibility === "hidden" || cs.opacity === "0") return false;
+    var rect = el.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0;
+  }
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function retireOldDossierControls() {
+    var selectors = [
+      "[data-dreamos-floating-dossier-fab]",
+      ".dreamos-floating-dossier-fab",
+      "[data-dreamos-guaranteed-final-dossier]",
+      "[data-dreamos-guaranteed-final-dossier-button]",
+      ".dreamos-guaranteed-dossier-button",
+      "[data-dreamos-canonical-final-dossier]",
+      "[data-dreamos-end-only-final-dossier]",
+      "[data-ecg-action='create-final-dossier']"
+    ];
+
+    selectors.forEach(function (sel) {
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function (el) {
+        if (!el.hasAttribute("data-dreamos-two-pass-final-dossier")) {
+          el.setAttribute("data-dreamos-retired-dossier-control", "1");
+          el.setAttribute("aria-hidden", "true");
+          el.tabIndex = -1;
+        }
+      });
+    });
+  }
+
+  function normalizeAnswer(v) {
+    v = String(v || "").trim().toUpperCase();
+    if (!v) return "";
+    v = v.substring(0, 1);
+    return ANSWERS.indexOf(v) !== -1 ? v : "";
+  }
+
+  function questionNumberFrom(el) {
+    var attrs = ["name", "id", "data-question", "data-q", "aria-label"];
+    for (var i = 0; i < attrs.length; i++) {
+      var val = el.getAttribute(attrs[i]) || "";
+      var m = val.match(/(?:question|answer|flavor|q)[-_ ]?(\d{1,2})/i) || val.match(/^(\d{1,2})$/);
+      if (m) return String(parseInt(m[1], 10));
+    }
+
+    var wrap = el.closest("[data-question], [data-q], .question, .ecg-question, [id*='question'], [class*='question'], [id*='flavor'], [class*='flavor']");
+    if (wrap) {
+      var val2 = wrap.getAttribute("data-question") || wrap.getAttribute("data-q") || wrap.id || wrap.className || "";
+      var m2 = String(val2).match(/(\d{1,2})/);
+      if (m2) return String(parseInt(m2[1], 10));
+    }
+
+    return "";
+  }
+
+  function visibleQuestionGroups(scope) {
+    scope = scope || appRoot();
+    var groups = {};
+
+    Array.prototype.forEach.call(scope.querySelectorAll("input, select, textarea, button[aria-pressed], [role='radio']"), function (el) {
+      if (!isVisible(el) || el.disabled) return;
+
+      var q = questionNumberFrom(el);
+      if (!q) return;
+
+      if (!groups[q]) groups[q] = [];
+      groups[q].push(el);
+    });
+
+    return groups;
+  }
+
+  function collectVisibleAnswers(scope) {
+    scope = scope || appRoot();
+    var answers = {};
+    var groups = visibleQuestionGroups(scope);
+
+    Object.keys(groups).forEach(function (q) {
+      groups[q].forEach(function (el) {
+        var tag = (el.tagName || "").toLowerCase();
+        var type = (el.getAttribute("type") || "").toLowerCase();
+
+        if ((type === "radio" || type === "checkbox") && !el.checked) return;
+
+        var raw = "";
+        if (tag === "select" || tag === "textarea" || tag === "input") raw = el.value;
+        else if (el.getAttribute("aria-pressed") === "true" || el.getAttribute("aria-checked") === "true") raw = el.getAttribute("data-answer") || el.getAttribute("value") || el.textContent;
+
+        var val = normalizeAnswer(raw);
+        if (val) answers[q] = val;
+      });
+    });
+
+    return answers;
+  }
+
+  function phaseState(scope) {
+    var groups = visibleQuestionGroups(scope);
+    var answers = collectVisibleAnswers(scope);
+    var required = Object.keys(groups).length;
+    var answered = Object.keys(answers).filter(function (q) { return !!answers[q]; }).length;
+
+    return {
+      required: required,
+      answered: answered,
+      complete: required > 0 && answered >= required,
+      answers: answers
+    };
+  }
+
+  function removeTwoPassButton() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-dreamos-two-pass-final-dossier-wrap]"), function (el) {
+      el.remove();
+    });
+  }
+
+  function panel(scope) {
+    scope = scope || appRoot();
+    var p = scope.querySelector(".dreamos-two-pass-dossier-panel");
+    if (!p) {
+      p = document.createElement("section");
+      p.className = "dreamos-two-pass-dossier-panel";
+      p.setAttribute("aria-live", "polite");
+      scope.appendChild(p);
+    }
+    return p;
+  }
+
+  function renderLoading(scope) {
+    panel(scope).innerHTML =
+      '<div class="dreamos-dossier-loading"><strong>Building Final Spark Dossier...</strong><p>Your completed Spark phase is being resolved.</p></div>';
+  }
+
+  function renderDossier(scope, payload) {
+    var manifested = Array.isArray(payload.manifested) ? payload.manifested.join(", ") : "Unclassified";
+    var powers = Array.isArray(payload.powers) && payload.powers.length
+      ? payload.powers.map(function (p) { return p.name || p.id || String(p); }).join(", ")
+      : "Pending final flavor pass";
+
+    panel(scope).innerHTML =
+      '<section class="dreamos-final-dossier-card">' +
+      '<p class="dreamos-kicker">Final Spark Dossier</p>' +
+      '<h2>Generated Spark</h2>' +
+      '<div class="dreamos-dossier-grid">' +
+      '<div><strong>Lead Domain</strong><span>' + (payload.lead_domain || "Unclassified") + '</span></div>' +
+      '<div><strong>Cast</strong><span>' + (payload.cast || "Unclassified Spark") + '</span></div>' +
+      '<div><strong>Spark Signature</strong><span>' + (payload.spark_signature || payload.provisional_spark_signature || "Pending") + '</span></div>' +
+      '<div><strong>Combat Capability</strong><span>' + (payload.combat_capability || payload.provisional_combat_capability || "Pending") + '</span></div>' +
+      '</div>' +
+      '<p><strong>Manifested Domains:</strong> ' + manifested + '</p>' +
+      '<p><strong>Powers:</strong> ' + powers + '</p>' +
+      '<p><strong>Profile Shape:</strong> ' + (payload.profile_shape || "Spark profile generated.") + '</p>' +
+      '<p class="dreamos-dossier-actions"><a href="/battles/">Enter Battles</a></p>' +
+      '<details><summary>Raw Spark Data</summary><pre>' + JSON.stringify(payload, null, 2) + '</pre></details>' +
+      '</section>';
+  }
+
+  async function build(scope) {
+    scope = scope || appRoot();
+    var state = phaseState(scope);
+
+    if (!state.complete) {
+      removeTwoPassButton();
+      return;
+    }
+
+    renderLoading(scope);
+
+    var res = await fetch(endpoint(), {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        answers: state.answers,
+        source: "dreamos-two-pass-final-dossier"
+      })
+    });
+
+    var payload = await res.json();
+    if (!res.ok) throw new Error(payload && payload.message ? payload.message : "Spark generation failed");
+    renderDossier(scope, payload);
+  }
+
+  function ensureButton() {
+    var r = appRoot();
+    if (!r) return;
+
+    retireOldDossierControls();
+
+    var state = phaseState(r);
+
+    if (!state.complete) {
+      removeTwoPassButton();
+      return;
+    }
+
+    if (document.querySelector("[data-dreamos-two-pass-final-dossier='1']")) return;
+
+    var wrap = document.createElement("div");
+    wrap.className = "dreamos-two-pass-dossier-action";
+    wrap.setAttribute("data-dreamos-two-pass-final-dossier-wrap", "1");
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "dreamos-two-pass-dossier-button";
+    btn.setAttribute("data-dreamos-two-pass-final-dossier", "1");
+    btn.textContent = "Build Final Dossier";
+
+    wrap.appendChild(btn);
+    r.appendChild(wrap);
+  }
+
+  document.addEventListener("click", function (ev) {
+    var btn = ev.target && ev.target.closest ? ev.target.closest("[data-dreamos-two-pass-final-dossier='1']") : null;
+    if (!btn) return;
+
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    build(appRoot()).catch(function (err) {
+      panel(appRoot()).innerHTML =
+        '<div class="dreamos-dossier-warning"><strong>Dossier build failed.</strong><p>' +
+        String(err && err.message ? err.message : err) +
+        '</p></div>';
+    });
+  }, true);
+
+  document.addEventListener("input", ensureButton, true);
+  document.addEventListener("change", ensureButton, true);
+  document.addEventListener("click", function () { setTimeout(ensureButton, 50); }, true);
+
+  function boot() {
+    ensureButton();
+    setTimeout(ensureButton, 250);
+    setTimeout(ensureButton, 1000);
+    setTimeout(ensureButton, 2500);
+    new MutationObserver(function(){ window.clearTimeout(window.__dreamosDossierObserverTimer); window.__dreamosDossierObserverTimer = window.setTimeout(ensureButton, 150); }).observe(document.body, {childList: true, subtree: true});
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* DreamOS Spark Quiz Freeze Observer Fix
+ * Passive safety shim: prevent dossier helper loops from stalling mobile quiz rendering.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSSparkQuizFreezeObserverFix) return;
+  window.__DreamOSSparkQuizFreezeObserverFix = true;
+
+  var lastRun = 0;
+
+  function safeSweep() {
+    var now = Date.now();
+    if (now - lastRun < 250) return;
+    lastRun = now;
+
+    // CSS handles hiding. JS only removes impossible floating controls once.
+    Array.prototype.forEach.call(document.querySelectorAll("[data-dreamos-floating-dossier-fab], .dreamos-floating-dossier-fab"), function (el) {
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+    });
+  }
+
+  function boot() {
+    safeSweep();
+    setTimeout(safeSweep, 500);
+    setTimeout(safeSweep, 1500);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+})();
+
+
+
+/* DreamOS Original Domain Question Renderer Branch Fix
+ * Repairs the legacy Q1-Q28 renderer without replacing it.
+ * Cause class: visible question row/card exists, but select/options are empty or detached after Q10/Q11.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSOriginalRendererQ11Fix) return;
+  window.__DreamOSOriginalRendererQ11Fix = true;
+
+  var REQUIRED = 28;
+  var LETTERS = ["A","B","C","D","E","F","G","H"];
+
+  function clean(v) {
+    if (v === null || v === undefined) return "";
+    if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") return String(v).trim();
+    if (typeof v === "object") return String(v.text || v.label || v.answer || v.value || v.title || v.name || "").trim();
+    return "";
+  }
+
+  function bank() {
+    var cg = window.EmergenceCG || {};
+    var qb = cg.question_bank || {};
+    var list = qb.domain_questions || qb.questions || [];
+    if (!Array.isArray(list)) return [];
+    return list.slice(0, REQUIRED).map(function (q, idx) {
+      q = q || {};
+      return {
+        q: parseInt(q.q || q.id || q.number || (idx + 1), 10),
+        question: clean(q.question || q.prompt || q.text || q.title || ("Question " + (idx + 1))),
+        options: q.options || q.answers || q.choices || {}
+      };
+    }).filter(function (q) {
+      return q.q >= 1 && q.q <= REQUIRED;
+    });
+  }
+
+  function entries(options) {
+    var out = [];
+
+    if (Array.isArray(options)) {
+      options.forEach(function (item, i) {
+        var letter = LETTERS[i] || String(i + 1);
+        var text = clean(item);
+        if (typeof item === "object" && item) {
+          letter = clean(item.letter || item.key || item.id || item.value || letter).substring(0,1).toUpperCase();
+          text = clean(item.text || item.label || item.answer || item.title || item.name || item.value);
+        }
+        if (LETTERS.indexOf(letter) === -1) letter = LETTERS[i] || String(i + 1);
+        if (!text || text === letter) text = "Option " + letter;
+        out.push([letter, text]);
+      });
+    } else if (options && typeof options === "object") {
+      LETTERS.forEach(function (letter) {
+        var text = clean(options[letter] || options[letter.toLowerCase()]);
+        if (text) out.push([letter, text]);
+      });
+    }
+
+    if (!out.length) {
+      out = LETTERS.map(function (letter) { return [letter, "Option " + letter]; });
+    }
+
+    return out.slice(0, 8);
+  }
+
+  function questionByNumber() {
+    var out = {};
+    bank().forEach(function (q) { out[String(q.q)] = q; });
+    return out;
+  }
+
+  function questionNumberFromElement(el) {
+    if (!el) return 0;
+
+    var attrs = [
+      "data-question", "data-q", "data-question-id", "data-index",
+      "name", "id", "for"
+    ];
+
+    var node = el;
+    for (var depth = 0; node && depth < 4; depth++, node = node.parentElement) {
+      for (var i = 0; i < attrs.length; i++) {
+        var val = node.getAttribute && node.getAttribute(attrs[i]);
+        if (!val) continue;
+        var m = String(val).match(/(?:q|question|domain|answer|spark)[^\d]*(\d{1,2})/i) || String(val).match(/^(\d{1,2})$/);
+        if (m) {
+          var n = parseInt(m[1], 10);
+          if (n >= 1 && n <= REQUIRED) return n;
+        }
+      }
+
+      var text = (node.textContent || "").replace(/\s+/g, " ").trim();
+      var tm = text.match(/\bQ\s*(\d{1,2})\b/i);
+      if (tm) {
+        var tn = parseInt(tm[1], 10);
+        if (tn >= 1 && tn <= REQUIRED) return tn;
+      }
+    }
+
+    return 0;
+  }
+
+  function optionCount(select) {
+    if (!select) return 0;
+    return Array.prototype.filter.call(select.options || [], function (o) {
+      return String(o.value || "").trim() !== "";
+    }).length;
+  }
+
+  function rebuildSelect(select, qdata) {
+    var oldValue = String(select.value || "").trim().toUpperCase();
+
+    while (select.firstChild) select.removeChild(select.firstChild);
+
+    var ph = document.createElement("option");
+    ph.value = "";
+    ph.textContent = "Choose one...";
+    select.appendChild(ph);
+
+    entries(qdata.options).forEach(function (pair) {
+      var opt = document.createElement("option");
+      opt.value = pair[0];
+      opt.textContent = pair[0] + ". " + pair[1];
+      if (oldValue === pair[0]) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.setAttribute("data-dreamos-original-renderer-q11-fixed", "1");
+    select.setAttribute("data-question", String(qdata.q));
+
+    if (!select.name || !/\d/.test(select.name)) {
+      select.name = "answers[" + qdata.q + "]";
+    }
+  }
+
+  function createSelect(qdata) {
+    var select = document.createElement("select");
+    select.name = "answers[" + qdata.q + "]";
+    select.setAttribute("data-question", String(qdata.q));
+    select.setAttribute("data-dreamos-original-renderer-q11-fixed", "1");
+    rebuildSelect(select, qdata);
+    return select;
+  }
+
+  function findQuestionContainers() {
+    return Array.prototype.slice.call(document.querySelectorAll(
+      ".ecg-question, .question, .ecg-card, .ecg-step, fieldset, [data-question], [data-q]"
+    ));
+  }
+
+  function patchOriginalRenderer() {
+    var byQ = questionByNumber();
+    if (!Object.keys(byQ).length) return;
+
+    // Repair existing selects with missing/empty option lists.
+    Array.prototype.forEach.call(document.querySelectorAll("select"), function (select) {
+      var qn = questionNumberFromElement(select);
+      if (!qn || !byQ[String(qn)]) return;
+      if (optionCount(select) < 2) rebuildSelect(select, byQ[String(qn)]);
+    });
+
+    // Repair visible Q containers that have no control.
+    findQuestionContainers().forEach(function (box) {
+      var qn = questionNumberFromElement(box);
+      if (!qn || !byQ[String(qn)]) return;
+      if (box.querySelector("select, input[type='radio'], button[data-answer], [role='radio']")) return;
+
+      var wrap = document.createElement("div");
+      wrap.className = "dreamos-original-renderer-control-repair";
+      wrap.appendChild(createSelect(byQ[String(qn)]));
+      box.appendChild(wrap);
+      box.setAttribute("data-dreamos-original-renderer-container-fixed", "1");
+    });
+  }
+
+  function boot() {
+    patchOriginalRenderer();
+    setTimeout(patchOriginalRenderer, 250);
+    setTimeout(patchOriginalRenderer, 750);
+    setTimeout(patchOriginalRenderer, 1500);
+    setTimeout(patchOriginalRenderer, 3000);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+})();
+
+
+/* DreamOS Clean Spark Page Rebuild
+ * Full replacement page app for /spark-generator/.
+ * Uses button cards instead of selects.
+ */
+(function () {
+  "use strict";
+
+  if (window.__DreamOSCleanSparkPageRebuild) return;
+  window.__DreamOSCleanSparkPageRebuild = true;
+
+  var LETTERS = ["A","B","C","D","E","F","G","H"];
+  var DOMAIN_REQUIRED = 28;
+
+  function isSparkPage() {
+    return String(window.location.pathname || "").replace(/\/+$/, "") === "/spark-generator";
+  }
+
+  function endpoint() {
+    return (window.EmergenceCG && window.EmergenceCG.endpoint) || "/wp-json/emergence/v1/generate";
+  }
+
+  function cg() {
+    return window.EmergenceCG || {};
+  }
+
+  function qb() {
+    return (cg().question_bank || {});
+  }
+
+  function clean(v) {
+    if (v === null || v === undefined) return "";
+    if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") return String(v).trim();
+    if (typeof v === "object") return String(v.text || v.label || v.answer || v.value || v.title || v.name || "").trim();
+    return "";
+  }
+
+  function optionEntries(options) {
+    var out = [];
+
+    if (Array.isArray(options)) {
+      options.forEach(function (item, i) {
+        var letter = LETTERS[i] || String(i + 1);
+        var text = clean(item);
+        if (item && typeof item === "object") {
+          letter = clean(item.letter || item.key || item.id || item.value || letter).substring(0, 1).toUpperCase();
+          text = clean(item.text || item.label || item.answer || item.title || item.name || item.value);
+        }
+        if (LETTERS.indexOf(letter) === -1) letter = LETTERS[i] || String(i + 1);
+        if (!text || text === letter) text = "Option " + letter;
+        out.push([letter, text]);
+      });
+    } else if (options && typeof options === "object") {
+      LETTERS.forEach(function (letter) {
+        var text = clean(options[letter] || options[letter.toLowerCase()]);
+        if (text) out.push([letter, text]);
+      });
+
+      if (!out.length) {
+        Object.keys(options).forEach(function (key, i) {
+          var letter = clean(key).substring(0, 1).toUpperCase();
+          if (LETTERS.indexOf(letter) === -1) letter = LETTERS[i] || String(i + 1);
+          var text = clean(options[key]);
+          if (!text || text === letter) text = "Option " + letter;
+          out.push([letter, text]);
+        });
+      }
+    }
+
+    if (!out.length) {
+      out = LETTERS.map(function (letter) {
+        return [letter, "Option " + letter];
+      });
+    }
+
+    return out.slice(0, 8);
+  }
+
+  function normalizeQuestions(raw, fallbackStart) {
+    if (!Array.isArray(raw)) return [];
+    return raw.map(function (q, idx) {
+      q = q || {};
+      var num = parseInt(q.q || q.id || q.number || q.index || (fallbackStart + idx), 10);
+      return {
+        q: num,
+        question: clean(q.question || q.prompt || q.text || q.title || ("Question " + num)),
+        domain: clean(q.domain || q.affinity || q.group || q.category || ""),
+        options: q.options || q.answers || q.choices || q.values || q.responses || {}
+      };
+    }).filter(function (q) {
+      return q.q && q.question;
+    }).sort(function (a, b) {
+      return a.q - b.q;
+    });
+  }
+
+  function domainQuestions() {
+    return normalizeQuestions(qb().domain_questions || qb().questions || [], 1).slice(0, DOMAIN_REQUIRED);
+  }
+
+  function flavorQuestions(manifested) {
+    var raw = qb().flavor_questions || [];
+    var list = normalizeQuestions(raw, 29);
+
+    if (!list.length) return [];
+
+    var manifest = {};
+    (manifested || []).forEach(function (d) {
+      manifest[String(d || "").toLowerCase()] = true;
+    });
+
+    var filtered = list.filter(function (q) {
+      if (!q.domain) return true;
+      return !!manifest[q.domain.toLowerCase()];
+    });
+
+    return filtered.length ? filtered : list;
+  }
+
+  function mount() {
+    return document.querySelector("#emergence-character-generator, .emergence-character-generator, .ecg-shell, .ecg-app, .ecg-wrap, [data-emergence-character-generator]") || document.querySelector("main") || document.body;
+  }
+
+  function hideLegacy(root) {
+    Array.prototype.forEach.call(root.children, function (child) {
+      if (!child.hasAttribute("data-dreamos-clean-spark-page")) {
+        child.setAttribute("data-dreamos-clean-spark-hidden", "1");
+      }
+    });
+  }
+
+  function state() {
+    try {
+      return JSON.parse(sessionStorage.getItem("dreamos.cleanSpark.state.v1") || "{}") || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function setState(next) {
+    try {
+      sessionStorage.setItem("dreamos.cleanSpark.state.v1", JSON.stringify(next || {}));
+    } catch (e) {}
+  }
+
+  function countAnswers(answers, questions) {
+    var total = 0;
+    (questions || []).forEach(function (q) {
+      if (answers && answers[String(q.q)]) total++;
+    });
+    return total;
+  }
+
+  function esc(s) {
+    return String(s || "").replace(/[&<>"']/g, function (c) {
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  function renderQuestion(q, answers) {
+    var selected = answers[String(q.q)] || "";
+    var html = "";
+    html += '<article class="dreamos-clean-question" data-clean-q="' + q.q + '">';
+    html += '<h3>Q' + q.q + '</h3>';
+    html += '<p>' + esc(q.question) + '</p>';
+    html += '<div class="dreamos-clean-options">';
+    optionEntries(q.options).forEach(function (pair) {
+      var active = selected === pair[0] ? ' data-selected="1"' : "";
+      html += '<button type="button" data-clean-answer="' + pair[0] + '" data-clean-question="' + q.q + '"' + active + '>';
+      html += '<strong>' + pair[0] + '</strong><span>' + esc(pair[1]) + '</span>';
+      html += '</button>';
+    });
+    html += '</div>';
+    html += '</article>';
+    return html;
+  }
+
+  function renderProgress(label, count, total) {
+    return '<div class="dreamos-clean-progress"><strong>' + esc(label) + '</strong><span>' + count + '/' + total + ' complete</span></div>';
+  }
+
+  function renderShell(root) {
+    var s = state();
+    var domain = domainQuestions();
+
+    if (!domain.length) {
+      root.innerHTML = '<section data-dreamos-clean-spark-page="1" class="dreamos-clean-spark"><h2>Spark Generator</h2><p>Question bank did not load. Refresh once.</p></section>';
+      return;
+    }
+
+    var domainAnswers = s.domain_answers || {};
+    var domainCount = countAnswers(domainAnswers, domain);
+    var phase = s.phase || "domain";
+
+    var html = "";
+    html += '<section data-dreamos-clean-spark-page="1" class="dreamos-clean-spark">';
+    html += '<p class="dreamos-clean-kicker">Spark Protocol</p>';
+    html += '<h1>Generate Your Spark</h1>';
+    html += '<p class="dreamos-clean-note">Answer the core questions. Your second pass unlocks from your manifested domains.</p>';
+
+    if (phase === "domain") {
+      html += renderProgress("Pass 1: Domain Typing", domainCount, domain.length);
+      html += '<div class="dreamos-clean-question-list">';
+      domain.forEach(function (q) { html += renderQuestion(q, domainAnswers); });
+      html += '</div>';
+      html += '<button type="button" class="dreamos-clean-submit" data-clean-submit-domain ' + (domainCount < domain.length ? "disabled" : "") + '>Generate Spark Pass 1</button>';
+    }
+
+    if (phase === "flavor") {
+      var manifest = (s.domain_result && s.domain_result.manifested) || [];
+      var flavor = flavorQuestions(manifest);
+      var flavorAnswers = s.flavor_answers || {};
+      var flavorCount = countAnswers(flavorAnswers, flavor);
+
+      html += '<section class="dreamos-clean-result-brief">';
+      html += '<h2>' + esc((s.domain_result && s.domain_result.lead_domain) || "Spark") + ' Spark</h2>';
+      html += '<p><strong>Manifested:</strong> ' + esc(manifest.join(", ") || "Pending") + '</p>';
+      html += '<p><strong>Next:</strong> Complete the flavor pass.</p>';
+      html += '</section>';
+
+      html += renderProgress("Pass 2: Flavor Selection", flavorCount, flavor.length || 0);
+
+      if (!flavor.length) {
+        html += '<p>No flavor questions were available. You can build the dossier from Pass 1.</p>';
+        html += '<button type="button" class="dreamos-clean-submit" data-clean-build-final>Build Final Dossier</button>';
+      } else {
+        html += '<div class="dreamos-clean-question-list">';
+        flavor.forEach(function (q) { html += renderQuestion(q, flavorAnswers); });
+        html += '</div>';
+        html += '<button type="button" class="dreamos-clean-submit" data-clean-submit-flavor ' + (flavorCount < flavor.length ? "disabled" : "") + '>Build Final Dossier</button>';
+      }
+    }
+
+    if (phase === "final") {
+      html += renderFinal(s.final_result || s.domain_result || {});
+    }
+
+    html += '<button type="button" class="dreamos-clean-reset" data-clean-reset>Reset Spark Quiz</button>';
+    html += '</section>';
+
+    root.innerHTML = html;
+  }
+
+  function renderFinal(payload) {
+    var manifested = Array.isArray(payload.manifested) ? payload.manifested.join(", ") : "Pending";
+    var powers = Array.isArray(payload.powers) ? payload.powers.map(function (p) {
+      return clean(p.name || p.title || p.power || p);
+    }).filter(Boolean).join(", ") : "";
+
+    var html = "";
+    html += '<section class="dreamos-clean-final">';
+    html += '<p class="dreamos-clean-kicker">Final Dossier</p>';
+    html += '<h2>' + esc(payload.lead_domain || "Generated") + ' Spark</h2>';
+    html += '<div class="dreamos-clean-final-grid">';
+    html += '<div><strong>Cast</strong><span>' + esc(payload.cast || "Pending") + '</span></div>';
+    html += '<div><strong>Signature</strong><span>' + esc(payload.spark_signature || payload.provisional_spark_signature || "Pending") + '</span></div>';
+    html += '<div><strong>Combat</strong><span>' + esc(payload.combat_capability || payload.provisional_combat_capability || "Pending") + '</span></div>';
+    html += '<div><strong>Domains</strong><span>' + esc(manifested) + '</span></div>';
+    html += '</div>';
+    if (powers) html += '<p><strong>Powers:</strong> ' + esc(powers) + '</p>';
+    html += '<p>' + esc(payload.profile_shape || "Spark profile generated.") + '</p>';
+    html += '<a class="dreamos-clean-battle-link" href="/battles/">Enter the What-If Arena</a>';
+    html += '<details><summary>Raw protocol output</summary><pre>' + esc(JSON.stringify(payload, null, 2)) + '</pre></details>';
+    html += '</section>';
+    return html;
+  }
+
+  async function postGenerate(body) {
+    var res = await fetch(endpoint(), {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(body)
+    });
+    var payload = await res.json();
+    if (!res.ok) throw new Error((payload && payload.message) || ("HTTP " + res.status));
+    return payload;
+  }
+
+  function setAnswer(root, question, answer) {
+    var s = state();
+    var phase = s.phase || "domain";
+    if (phase === "domain") {
+      s.domain_answers = s.domain_answers || {};
+      s.domain_answers[String(question)] = answer;
+    } else if (phase === "flavor") {
+      s.flavor_answers = s.flavor_answers || {};
+      s.flavor_answers[String(question)] = answer;
+    }
+    setState(s);
+    renderShell(root);
+  }
+
+  function showError(root, message) {
+    var box = document.createElement("div");
+    box.className = "dreamos-clean-error";
+    box.textContent = String(message || "Something went wrong.");
+    var shell = root.querySelector("[data-dreamos-clean-spark-page='1']");
+    if (shell) shell.prepend(box);
+  }
+
+  function bind(root) {
+    root.addEventListener("click", async function (ev) {
+      var answer = ev.target.closest && ev.target.closest("[data-clean-answer]");
+      if (answer) {
+        ev.preventDefault();
+        setAnswer(root, answer.getAttribute("data-clean-question"), answer.getAttribute("data-clean-answer"));
+        return;
+      }
+
+      var reset = ev.target.closest && ev.target.closest("[data-clean-reset]");
+      if (reset) {
+        ev.preventDefault();
+        sessionStorage.removeItem("dreamos.cleanSpark.state.v1");
+        renderShell(root);
+        return;
+      }
+
+      var domainSubmit = ev.target.closest && ev.target.closest("[data-clean-submit-domain]");
+      if (domainSubmit) {
+        ev.preventDefault();
+        if (domainSubmit.disabled) return;
+        domainSubmit.disabled = true;
+        domainSubmit.textContent = "Generating...";
+        try {
+          var s1 = state();
+          var result1 = await postGenerate({
+            answers: s1.domain_answers || {},
+            source: "dreamos-clean-spark-page"
+          });
+          s1.phase = "flavor";
+          s1.domain_result = result1;
+          s1.flavor_answers = s1.flavor_answers || {};
+          setState(s1);
+          renderShell(root);
+          window.scrollTo({top: 0, behavior: "smooth"});
+        } catch (err) {
+          domainSubmit.disabled = false;
+          domainSubmit.textContent = "Generate Spark Pass 1";
+          showError(root, err.message || err);
+        }
+        return;
+      }
+
+      var flavorSubmit = ev.target.closest && ev.target.closest("[data-clean-submit-flavor], [data-clean-build-final]");
+      if (flavorSubmit) {
+        ev.preventDefault();
+        if (flavorSubmit.disabled) return;
+        flavorSubmit.disabled = true;
+        flavorSubmit.textContent = "Building...";
+        try {
+          var s2 = state();
+          var result2 = await postGenerate({
+            answers: s2.domain_answers || {},
+            flavor_answers: s2.flavor_answers || {},
+            source: "dreamos-clean-spark-page"
+          });
+          s2.phase = "final";
+          s2.final_result = result2;
+          setState(s2);
+          renderShell(root);
+          window.scrollTo({top: 0, behavior: "smooth"});
+        } catch (err2) {
+          flavorSubmit.disabled = false;
+          flavorSubmit.textContent = "Build Final Dossier";
+          showError(root, err2.message || err2);
+        }
+      }
+    });
+  }
+
+  function boot() {
+    if (!isSparkPage()) return;
+    var root = mount();
+    hideLegacy(root);
+
+    var app = document.createElement("div");
+    app.setAttribute("data-dreamos-clean-spark-page", "1");
+    root.appendChild(app);
+
+    bind(app);
+    renderShell(app);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+})();

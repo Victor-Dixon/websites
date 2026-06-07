@@ -1,0 +1,16 @@
+id: fix_emergence_plugin_asset_permissions_001
+title: Fix Emergence plugin asset permissions
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  plugin: emergence-character-generator
+actions:
+  - chmod plugin directories to 755
+  - chmod plugin asset files to 644
+  - verify live asset URLs return JS/CSS not WordPress 404 HTML
+verify:
+  - live JS contains DreamOS Spark Generator Fail-Open Guard
+  - live CSS contains DreamOS Spark Generator Fail-Open Visibility Guard
+  - live asset responses are not error404 HTML
+commit_message: Fix Emergence plugin asset permission verification

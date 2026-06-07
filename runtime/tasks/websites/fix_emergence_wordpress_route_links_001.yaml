@@ -1,0 +1,18 @@
+id: fix_emergence_wordpress_route_links_001
+title: Fix Emergence WordPress route links
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  content_dir: runtime/content/dadudekc.site
+actions:
+  - replace static .html route links with WordPress slug routes
+  - verify no stale spark-generator.html CTAs remain
+  - verify live route targets are slash routes
+verify:
+  - no /spark-generator.html links
+  - no /battles.html links
+  - no /the-emergence.html links
+  - /spark-generator/ links present
+  - /battles/ links present
+commit_message: Fix Emergence WordPress route links

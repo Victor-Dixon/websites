@@ -1,0 +1,14 @@
+id: add_spark_os_browser_truth_harness_001
+title: Add Spark OS browser truth harness
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  page: runtime/content/dadudekc.site/spark-os/index.html
+actions:
+  - add browser-level DOM click verification
+  - prove Start Spark Quiz mutates page
+  - prove answer click records selected state
+  - prove progress increments
+verify:
+  - python browser harness passes
+commit_message: Add Spark OS browser proof harness

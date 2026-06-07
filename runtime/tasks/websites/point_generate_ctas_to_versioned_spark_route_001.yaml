@@ -1,0 +1,17 @@
+id: point_generate_ctas_to_versioned_spark_route_001
+title: Point Generate CTAs to versioned Spark route
+lane: repo_fleet_self_healing_001
+status: in_progress
+target:
+  live_domain: dadudekc.site
+  from: "/spark-generator/"
+  to: "/spark-generator/?spark=v075"
+actions:
+  - patch repo Emergence content CTAs
+  - patch live WP DB/content/files
+  - flush cache
+  - verify homepage Generate CTA points to versioned Spark route
+verify:
+  - live homepage contains /spark-generator/?spark=v075
+  - live homepage Generate Your Spark no longer points only to /spark-generator/
+commit_message: Point Generate CTAs to versioned Spark route

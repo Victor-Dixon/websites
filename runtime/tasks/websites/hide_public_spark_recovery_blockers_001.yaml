@@ -1,0 +1,20 @@
+id: hide_public_spark_recovery_blockers_001
+title: Hide public Spark recovery blockers
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/
+  asset_version: 0.8.0-hide-public-recovery-blockers-001
+actions:
+  - hide recovery mode/error copy from public Spark generator page
+  - preserve diagnostic controls as internal hidden debug affordance
+  - keep floating dossier path available
+  - bump plugin asset version
+  - deploy plugin PHP and assets
+  - verify public page no longer exposes blocker text
+verify:
+  - live page loads 0.8.0-hide-public-recovery-blockers-001
+  - live page does not visibly expose recovery blocker text
+  - live CSS contains public blocker suppression marker
+commit_message: Hide Spark recovery blockers from public generator UX

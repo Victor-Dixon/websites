@@ -1,0 +1,20 @@
+id: fix_original_spark_renderer_q11_branch_001
+title: Fix original Spark question renderer after Q11
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  url: https://dadudekc.site/spark-generator/
+  version: 0.8.9-original-renderer-q11-fix-001
+  baseline: 0.8.5-quiz-freeze-observer-fix-001
+actions:
+  - inspect original legacy Q1-Q28 renderer branch
+  - patch original renderDomainQuestions/renderQuestion path only
+  - hydrate blank selects from protocol-v85-question-bank.json
+  - avoid canonical replacement renderer overlays
+  - deploy plugin PHP and assets
+verify:
+  - PHP syntax passes
+  - live page references 0.8.9-original-renderer-q11-fix-001
+  - live JS contains original renderer branch fix marker
+  - live JS does not contain canonical renderer/select hardener markers
+commit_message: Fix original Spark question renderer after Q11

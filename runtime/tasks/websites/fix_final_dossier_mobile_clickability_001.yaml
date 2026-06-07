@@ -1,0 +1,17 @@
+id: fix_final_dossier_mobile_clickability_001
+title: Fix Create Final Dossier mobile clickability
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  js: runtime/plugins/emergence-character-generator/assets/emergence-cg.js
+  css: runtime/plugins/emergence-character-generator/assets/emergence-cg.css
+actions:
+  - force final dossier button pointer events
+  - raise button z-index above overlapping panels
+  - add touchend fallback handler
+  - prevent disabled inert state from trapping button
+verify:
+  - JS contains DreamOS Final Dossier Touch Guard
+  - CSS contains DreamOS Final Dossier Clickability Guard
+commit_message: Fix Create Final Dossier mobile clickability

@@ -1,0 +1,20 @@
+id: fix_spark_generate_payload_hardening_001
+title: Fix Spark generate public payload hardening
+lane: repo_fleet_self_healing_001
+status: in_progress
+target:
+  live_domain: dadudekc.site
+  route: /spark-generator/
+  endpoint: /wp-json/emergence/v1/generate
+  plugin: runtime/plugins/emergence-character-generator/emergence-character-generator.php
+actions:
+  - inspect hardening block rejecting answers payload
+  - allow public generator payload keys required by Spark Protocol
+  - bump plugin asset/version marker
+  - syntax-check plugin
+  - deploy plugin PHP and assets
+  - smoke POST generate endpoint
+verify:
+  - endpoint no longer returns unsafe payload blocked for answers
+  - live page uses 0.7.8-public-generate-payload-001 assets
+commit_message: Fix Spark generate public payload hardening

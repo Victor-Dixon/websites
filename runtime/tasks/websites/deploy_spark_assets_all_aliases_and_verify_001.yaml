@@ -1,0 +1,18 @@
+id: deploy_spark_assets_all_aliases_and_verify_001
+title: Deploy Spark generator assets to all active aliases and verify
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  plugin: emergence-character-generator
+actions:
+  - discover all remote emergence-character-generator asset directories
+  - upload JS/CSS to emergence-cg and emergence-character-generator aliases
+  - verify remote files contain guards over SSH
+  - purge common cache directories when present
+  - verify live asset URLs
+verify:
+  - remote JS aliases contain DreamOS Spark Generator Fail-Open Guard
+  - remote CSS aliases contain DreamOS Spark Generator Fail-Open Visibility Guard
+  - live assets contain guard or cache mismatch is reported
+commit_message: Deploy Spark generator assets to all aliases

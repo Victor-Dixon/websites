@@ -1,0 +1,141 @@
+# Site Registry - Single Source of Truth for Deployment
+# 
+# This file defines all deployable sites and their configuration.
+# Every site MUST be in this registry to be deployed.
+#
+# Author: Agent-2 (Architecture & Design Specialist)
+# Date: 2026-01-22
+
+sites:
+  freerideinvestor.com:
+    path: websites/freerideinvestor.com
+    deployer: unified
+    verify_url: https://freerideinvestor.com/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Build-in-public site"
+
+  southwestsecret.com:
+    path: websites/southwestsecret.com
+    deployer: unified
+    verify_url: https://southwestsecret.com/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Build-in-public site"
+
+  prismblossom.online:
+    path: websites/prismblossom.online
+    deployer: prismblossom
+    verify_url: https://prismblossom.online/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Build-in-public site"
+
+  ariajet.site:
+    path: websites/ariajet.site
+    deployer: unified
+    verify_url: https://ariajet.site/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Build-in-public site"
+
+  dadudekc.com:
+    path: websites/dadudekc.com
+    deployer: unified
+    verify_url: https://dadudekc.com/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Build-in-public site"
+
+  crosbyultimateevents.com:
+    path: websites/crosbyultimateevents.com
+    deployer: unified
+    verify_url: https://crosbyultimateevents.com/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Build-in-public site"
+
+  tradingrobotplug.com:
+    path: websites/tradingrobotplug.com
+    deployer: unified
+    verify_url: https://tradingrobotplug.com/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Trading platform site"
+
+  weareswarm.online:
+    path: websites/weareswarm.online
+    deployer: unified
+    verify_url: https://weareswarm.online/.well-known/deploy.json
+    remote_root: public_html/weareswarm.online  # Addon domain
+    enabled: true
+    deploy_method: sftp
+    notes: "Swarm website (addon domain)"
+
+  weareswarm.site:
+    path: websites/weareswarm.site
+    deployer: unified
+    verify_url: https://weareswarm.site/.well-known/deploy.json
+    remote_root: public_html/weareswarm.site  # Addon domain
+    enabled: true
+    deploy_method: sftp
+    notes: "Swarm website (addon domain)"
+
+  houstonsipqueen.com:
+    path: websites/houstonsipqueen.com
+    deployer: unified
+    verify_url: https://houstonsipqueen.com/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Build-in-public site"
+
+  digitaldreamscape.site:
+    path: websites/digitaldreamscape.site
+    deployer: unified
+    verify_url: https://digitaldreamscape.site/.well-known/deploy.json
+    remote_root: public_html/digitaldreamscape.site  # Addon domain
+    enabled: true
+    deploy_method: sftp
+    notes: "Build-in-public site (addon domain)"
+
+  dadudekc.site:
+    path: websites/dadudekc.site
+    deployer: unified
+    verify_url: https://dadudekc.site/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    notes: "Spark Protocol static demo — npm run site:publish from Victor-Dixon__The-emergence-"
+
+  xthunder.site:
+    path: sites/production/websites/xthunder.site
+    deployer: unified
+    verify_url: https://xthunder.site/
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    deploy_files:
+      - sites/production/websites/xthunder.site/index.html
+      - sites/production/websites/xthunder.site/assets/css/style.css
+      - sites/production/websites/xthunder.site/assets/js/main.js
+    notes: "Static global-chat game landing; SFTP via unified_deployer"
+
+# Deployment configuration
+deployment:
+  default_deployer: unified
+  stamp_path: .well-known/deploy.json
+  stamp_fallback_path: deploy.json  # Fallback if .well-known blocked
+  verification_timeout: 30
+  verification_delay: 5  # Seconds to wait after deploy (for caching/CDN)
+  retry_attempts: 3
+  retry_backoff: 2  # Exponential backoff multiplier
+  require_stamp: true  # Deployment fails if stamp not updated
+  require_commit_match: true  # Verification must match commit SHA

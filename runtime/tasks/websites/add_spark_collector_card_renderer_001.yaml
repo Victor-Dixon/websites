@@ -1,0 +1,16 @@
+id: add_spark_collector_card_renderer_001
+title: Add Spark collector card renderer
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  url: https://dadudekc.site/spark-generator/
+actions:
+  - add image upload input on final dossier
+  - render Spark collector card to canvas
+  - allow downloading PNG card
+  - store card image data on saved character
+verify:
+  - live page contains collector card marker
+  - live page contains canvas renderer
+  - live page contains card download action
+commit_message: Add Spark collector card renderer

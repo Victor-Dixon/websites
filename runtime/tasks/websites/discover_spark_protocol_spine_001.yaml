@@ -1,0 +1,18 @@
+id: discover_spark_protocol_spine_001
+title: Discover Spark Protocol spine for Emergence
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  live_domain: dadudekc.site
+  project: Emergence
+actions:
+  - find Spark Protocol generator logic
+  - find battle simulator logic
+  - find dadudekc.site content routes
+  - classify integration points
+verify:
+  - Spark-related paths listed
+  - generator routes listed
+  - battle routes listed
+  - no mutation except task/report
+commit_message: Document Spark Protocol integration spine

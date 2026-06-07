@@ -1,0 +1,19 @@
+id: baseline_emergence_live_site_001
+title: Baseline Emergence live site
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  repo: websites
+  live_candidates:
+    - dadudekc.site
+    - dadudekc.aite
+actions:
+  - locate_emergence_site_package
+  - probe_live_domain_candidates
+  - snapshot_current_dom
+  - report_next_patch_lane
+verify:
+  - live HTTP status captured
+  - repo candidate paths captured
+  - no production mutation in baseline lane
+commit_message: Baseline Emergence live site

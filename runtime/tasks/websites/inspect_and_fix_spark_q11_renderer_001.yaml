@@ -1,0 +1,19 @@
+id: inspect_and_fix_spark_q11_renderer_001
+title: Inspect and fix Spark Q11 renderer
+lane: repo_fleet_self_healing_001
+status: completed
+target:
+  canonical_url: https://dadudekc.site/spark-generator/
+  asset_version: 0.8.6-q11-renderer-fix-001
+actions:
+  - inspect plugin question bank around Q10-Q12
+  - inspect frontend render functions
+  - inspect CSS rules that may hide select/options after Q10
+  - patch renderer fallback for blank visible question cards
+  - preserve two-pass final dossier gate
+  - deploy plugin PHP and assets
+verify:
+  - canonical route loads 0.8.6-q11-renderer-fix-001
+  - live JS contains Q11 renderer fix marker
+  - live page source contains Q11 question text
+commit_message: Fix Spark Q11 renderer
