@@ -36,7 +36,7 @@ jobs:
           chmod 600 "$HOME/.ssh/id_hostinger"
           ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
 
-      - name: Upload dreamos-services and patch www canonical rules
+      - name: Upload dreamos-services, skill-tree, and patch www canonical rules
         env:
           HOSTINGER_HOST: 157.173.214.121
           HOSTINGER_USER: u996867598
@@ -49,16 +49,18 @@ jobs:
           scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
 
           "${ssh_base[@]}" "set -e
-            mkdir -p '$REMOTE_ROOT/dreamos-services'
+            mkdir -p '$REMOTE_ROOT/dreamos-services' '$REMOTE_ROOT/skill-tree'
             if [ -f '$REMOTE_ROOT/dreamos-services/index.html' ]; then cp '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/dreamos-services/index.html.bak.${GITHUB_RUN_ID}'; fi
+            if [ -f '$REMOTE_ROOT/skill-tree/index.html' ]; then cp '$REMOTE_ROOT/skill-tree/index.html' '$REMOTE_ROOT/skill-tree/index.html.bak.${GITHUB_RUN_ID}'; fi
             if [ -f '$REMOTE_ROOT/.htaccess' ]; then cp '$REMOTE_ROOT/.htaccess' '$REMOTE_ROOT/.htaccess.bak.${GITHUB_RUN_ID}'; fi
           "
 
           "${scp_base[@]}" "routes/weareswarm.online/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
+          "${scp_base[@]}" "routes/weareswarm.online/skill-tree/index.html" "$remote:$REMOTE_ROOT/skill-tree/index.html"
           "${scp_base[@]}" "routes/weareswarm.online/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-online-htaccess-snippet.txt"
 
           "${ssh_base[@]}" "set -e
-            chmod 644 '$REMOTE_ROOT/dreamos-services/index.html'
+            chmod 644 '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/skill-tree/index.html'
             ht='$REMOTE_ROOT/.htaccess'
             touch \"\$ht\"
             if ! grep -q 'WeAreSwarm.online canonical host' \"\$ht\"; then
@@ -89,3 +91,10 @@ jobs:
           echo "WWW_ROOT=$hub_code"
           [ "$hub_code" = "200" ]
           grep -q 'Dream.OS Command Center' /tmp/weareswarm-online-root.html
+
+          tree_code="$(curl -s -o /tmp/weareswarm-online-skill-tree.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.online/skill-tree/?cache='"${GITHUB_RUN_ID}")"
+          echo "WWW_SKILL_TREE=$tree_code"
+          [ "$tree_code" = "200" ]
+          grep -q 'Swarm Skill Tree' /tmp/weareswarm-online-skill-tree.html
+          grep -q 'Command Core' /tmp/weareswarm-online-skill-tree.html
+          grep -q 'site-header' /tmp/weareswarm-online-skill-tree.html
