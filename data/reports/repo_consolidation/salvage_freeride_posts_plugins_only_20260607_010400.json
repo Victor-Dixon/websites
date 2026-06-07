@@ -1,0 +1,987 @@
+{
+  "schema": "dreamos.freeride_posts_plugins_salvage.v1",
+  "generated": "2026-06-07T06:04:01.367362+00:00",
+  "destination": "experiments/freeride-legacy-review",
+  "sources": [
+    "/data/data/com.termux/files/home/projects/FreeRideInvestor",
+    "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite"
+  ],
+  "summary": {
+    "copied_count": 120,
+    "held_count": 1,
+    "source_repos": 2
+  },
+  "copied": [
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/freeride-investor.php",
+      "rel": "Plugins/freeride investor/freeride-investor.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/freeride-investor.php",
+      "size": 3624,
+      "sha256": "55d433dcc499085f4b30a8cb75150328375526471aa21d53ef8bf915c28e5ecb"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/uninstall.php",
+      "rel": "Plugins/freeride investor/uninstall.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/uninstall.php",
+      "size": 582,
+      "sha256": "f2b1ddb8d80ae3b50865f63173c5b43998e1b0ef4b4ddd1483ad5f26ec0529aa"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freerideinvestor/freeride-investor.php",
+      "rel": "Plugins/freerideinvestor/freeride-investor.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freerideinvestor/freeride-investor.php",
+      "size": 5558,
+      "sha256": "6885e10d0ce7e659edc9b045f6bf5b8bd74f8e05edbbc0a7879a735c65645ad4"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freerideinvestor/tests/test-plugin.php",
+      "rel": "Plugins/freerideinvestor/tests/test-plugin.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freerideinvestor/tests/test-plugin.php",
+      "size": 900,
+      "sha256": "d06b1ec4e2d2784842e4948ab8ad8f81861b801babfbf37465f40476e5db649c"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/templates/shortcode-alert-setup.php",
+      "rel": "Plugins/freeride investor/templates/shortcode-alert-setup.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/templates/shortcode-alert-setup.php",
+      "size": 2323,
+      "sha256": "fa26ab7e8861f2eb391de009ba18e1f3ead3ddc40089727239366a923aca28b7"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/templates/shortcode-stock-research.php",
+      "rel": "Plugins/freeride investor/templates/shortcode-stock-research.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/templates/shortcode-stock-research.php",
+      "size": 888,
+      "sha256": "b95d1ce0610fb207505e2e31a32c059da678ee088a4f3050642b47e7445695e6"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/tests/test-alerts-handler.php",
+      "rel": "Plugins/freeride investor/tests/test-alerts-handler.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/tests/test-alerts-handler.php",
+      "size": 585,
+      "sha256": "66e784619e65b4f31e8bf0269f0b09f2de81ea514ad01ae16fdbb91144730e2b"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/tests/test-api-requests.php",
+      "rel": "Plugins/freeride investor/tests/test-api-requests.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/tests/test-api-requests.php",
+      "size": 396,
+      "sha256": "a5ae6633fa1e8e55c7854a416a30981007249bb8e69b3a99e4095abb0d14704b"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/admin/class-clear-cache.php",
+      "rel": "Plugins/freeride investor/includes/admin/class-clear-cache.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/admin/class-clear-cache.php",
+      "size": 1952,
+      "sha256": "a857d7acd76d87fdc36651d8079bc3345d318c0c530b81cf379a4457fde934ce"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/admin/class-log-viewer.php",
+      "rel": "Plugins/freeride investor/includes/admin/class-log-viewer.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/admin/class-log-viewer.php",
+      "size": 3129,
+      "sha256": "c81378e436c370620f13fd1647e8f5fb38f0f3891abb33594ab9a9ed6fbaac4e"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/admin/class-settings.php",
+      "rel": "Plugins/freeride investor/includes/admin/class-settings.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/admin/class-settings.php",
+      "size": 4468,
+      "sha256": "81a3ebb5a707796a9b7c32239d838a389ca429a748a39f3dc0c7940f2992cece"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/alerts/class-alerts-cron.php",
+      "rel": "Plugins/freeride investor/includes/alerts/class-alerts-cron.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/alerts/class-alerts-cron.php",
+      "size": 2573,
+      "sha256": "5a24dee1cfd17049ae9af44c51961321410c14e03fdf976ef50ed783f3291ec9"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/alerts/class-alerts-handler.php",
+      "rel": "Plugins/freeride investor/includes/alerts/class-alerts-handler.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/alerts/class-alerts-handler.php",
+      "size": 3347,
+      "sha256": "209b624ad95cb3e08efb3813f0ee210cb2fafa7fffca329e3eaf4fbf0fa8e62b"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/api/class-alpha-vantage.php",
+      "rel": "Plugins/freeride investor/includes/api/class-alpha-vantage.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/api/class-alpha-vantage.php",
+      "size": 1198,
+      "sha256": "2b1ee87a7b0f38ee3ceb0da2a97e2a3328ef3a60a1023b5c5be79bb12e417307"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/api/class-api-requests.php",
+      "rel": "Plugins/freeride investor/includes/api/class-api-requests.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/api/class-api-requests.php",
+      "size": 2448,
+      "sha256": "a50b244cece20106178286a0415ee3578339e7745cc140eed592da628a32b8c7"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/api/class-finnhub.php",
+      "rel": "Plugins/freeride investor/includes/api/class-finnhub.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/api/class-finnhub.php",
+      "size": 818,
+      "sha256": "4e09ada41fa52ca8133d5e8158101ade950b90c7eb62cea7442e23321d0957ea"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/api/class-openai.php",
+      "rel": "Plugins/freeride investor/includes/api/class-openai.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/api/class-openai.php",
+      "size": 2833,
+      "sha256": "a940dd5421c29e9cfb83ad08b4bf667c488af0a869356ba362610a457bdeee41"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/includes/cache/class-cache-manager.php",
+      "rel": "Plugins/freeride investor/includes/cache/class-cache-manager.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/cache/class-cache-manager.php",
+      "size": 3474,
+      "sha256": "3d85690c138fb5482d8e03c04efb09b000e013dbebf28f1e1f6728cce5e992c3"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/assets/css/dashboard.css",
+      "rel": "Plugins/freeride investor/assets/css/dashboard.css",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/assets/css/dashboard.css",
+      "size": 5174,
+      "sha256": "d011979a52460e36ce52ddfab0181cb5a09a415a87343b6d5daf9cb16744e777"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/Plugins/freeride investor/assets/js/dashboard.js",
+      "rel": "Plugins/freeride investor/assets/js/dashboard.js",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/assets/js/dashboard.js",
+      "size": 5149,
+      "sha256": "534b17e74328dfa6f0d19ab3824f5ea0d19d172b83da1018fa9c48fab3f4a846"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/POSTS/TBOWTactics/tbowtactic-jan1.html",
+      "rel": "POSTS/TBOWTactics/tbowtactic-jan1.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/POSTS/TBOWTactics/tbowtactic-jan1.html",
+      "size": 2781,
+      "sha256": "c2237eae80a4ea6bfac9984eeba46a3ef5c90cc69e13939983d3d110a12ee660"
+    },
+    {
+      "source_repo": "FreeRideInvestor",
+      "source": "generated",
+      "rel": "README.md",
+      "dest": "experiments/freeride-legacy-review/freerideinvestor/README.md",
+      "size": 369,
+      "sha256": "437b05d164ef744dd5219d54695b2e630c3db71c2478eca72b77ff29113edff5"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/Plugins/db_connect.php",
+      "rel": "Plugins/db_connect.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/Plugins/db_connect.php",
+      "size": 449,
+      "sha256": "88f61f912eb4add32f107a03314dc43da6fd9a64128379709a9cd2feeaf17eae"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/Plugins/fetch_trades.php",
+      "rel": "Plugins/fetch_trades.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/Plugins/fetch_trades.php",
+      "size": 247,
+      "sha256": "98500c1d64c4ce97e4b6cb5f2fa443a56d25103ab26ed14b4e87dbc925a1ad2f"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/Plugins/store_trade.php",
+      "rel": "Plugins/store_trade.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/Plugins/store_trade.php",
+      "size": 1174,
+      "sha256": "ae87381be2747e4f3e5091dc12de468efc9ec73386e6c4156f985e97d8e1129e"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/freerideinvestor-theme/PLUGIN_TESTING_SUMMARY.md",
+      "rel": "freerideinvestor-theme/PLUGIN_TESTING_SUMMARY.md",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/PLUGIN_TESTING_SUMMARY.md",
+      "size": 6965,
+      "sha256": "a8c8bdb8ffabb71bbcce875dcc07a79086045919a311a9fc61f8b73386e19370"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/freerideinvestor-theme/plugin-health-check.php",
+      "rel": "freerideinvestor-theme/plugin-health-check.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/plugin-health-check.php",
+      "size": 9059,
+      "sha256": "2b2fcefbc12a411d2cae845bd62845b24330526fb84e379c5e0d6f906d4a2aff"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/1st_Freeride_Investor_Sample_Cheatsheet.html",
+      "rel": "website_posts/1st_Freeride_Investor_Sample_Cheatsheet.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/1st_Freeride_Investor_Sample_Cheatsheet.html",
+      "size": 505,
+      "sha256": "89a16cc8a72fe3213ee64f9a81120d99b27caf7ecd51f2c423723dea3df9d64d"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/50_Script_Ideas_for_FreeRideInvestor.html",
+      "rel": "website_posts/50_Script_Ideas_for_FreeRideInvestor.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/50_Script_Ideas_for_FreeRideInvestor.html",
+      "size": 2699,
+      "sha256": "1cf6745132f5ec7984127b880cba3ceeed8ad22ab843954e0d2c6944f2061f32"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Analyzing_a_Tesla_Options_Trade_in_Real-Time.html",
+      "rel": "website_posts/Analyzing_a_Tesla_Options_Trade_in_Real-Time.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Analyzing_a_Tesla_Options_Trade_in_Real-Time.html",
+      "size": 5348,
+      "sha256": "86b0c9836add65427dfe794ece07389b0006abfb2df7ea354715e0548fe9510e"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Analyzing_a_Tesla_Options_Trade_in_Real_Time.html",
+      "rel": "website_posts/Analyzing_a_Tesla_Options_Trade_in_Real_Time.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Analyzing_a_Tesla_Options_Trade_in_Real_Time.html",
+      "size": 5348,
+      "sha256": "86b0c9836add65427dfe794ece07389b0006abfb2df7ea354715e0548fe9510e"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Backtest_Similar_Setups.html",
+      "rel": "website_posts/Backtest_Similar_Setups.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Backtest_Similar_Setups.html",
+      "size": 5468,
+      "sha256": "e79de5e41424345c9f8bb71d7ef7594a4689d6082d39ca77578020b85678de17"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Behind_the_Scenes_Building_a_Better_FreeRideInvestor.html",
+      "rel": "website_posts/Behind_the_Scenes_Building_a_Better_FreeRideInvestor.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Behind_the_Scenes_Building_a_Better_FreeRideInvestor.html",
+      "size": 1672,
+      "sha256": "3014a4651df547cc7b416adcef8f708b5b668a0551eb3b100d4138f95b540319"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Behind_the_Screens_Building_FreeRideInvestor_Together_A_12_Year_Olds_Perspective.html",
+      "rel": "website_posts/Behind_the_Screens_Building_FreeRideInvestor_Together_A_12_Year_Olds_Perspective.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Behind_the_Screens_Building_FreeRideInvestor_Together_A_12_Year_Olds_Perspective.html",
+      "size": 5984,
+      "sha256": "9ef1b342186ad87f0fa2021705a7225557b9dc8b58ba6316111d9637c0579f61"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Breaking_Down_the_Tbow_Tactics_Best_Practices_for_Small_Account_Traders.html",
+      "rel": "website_posts/Breaking_Down_the_Tbow_Tactics_Best_Practices_for_Small_Account_Traders.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Breaking_Down_the_Tbow_Tactics_Best_Practices_for_Small_Account_Traders.html",
+      "size": 4809,
+      "sha256": "c24c118db07ed4bb4f47ab62955c954af95492321b2f24c1f8baf1cf18396951"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Building_the_Future_of_Trading_Tools_Progress_and_What8217s_Next.html",
+      "rel": "website_posts/Building_the_Future_of_Trading_Tools_Progress_and_What8217s_Next.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Building_the_Future_of_Trading_Tools_Progress_and_What8217s_Next.html",
+      "size": 4742,
+      "sha256": "f428dfb414064fb882c46d749cfa10b26c20e1c94ebbf7281cbf056bccf4e97f"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Customizing_Our_Blog_Page_Adding_Tactics_Latest_Posts_and_Dev_Logs_to_FreeRideInvestor.html",
+      "rel": "website_posts/Customizing_Our_Blog_Page_Adding_Tactics_Latest_Posts_and_Dev_Logs_to_FreeRideInvestor.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Customizing_Our_Blog_Page_Adding_Tactics_Latest_Posts_and_Dev_Logs_to_FreeRideInvestor.html",
+      "size": 4225,
+      "sha256": "94aca9d63251e682af1300eeeffdb3524e963614b4e87c98a5ff1e4cc793473d"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/December_7_2024_8211_FreeRideInvestor_Development_Blog.html",
+      "rel": "website_posts/December_7_2024_8211_FreeRideInvestor_Development_Blog.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/December_7_2024_8211_FreeRideInvestor_Development_Blog.html",
+      "size": 6175,
+      "sha256": "b66c2bec57ffbf18a4a0ab1de89d274f5ba5c89e713aa0390355308c142ed100"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Dev_Blog_12062024_1058pm.html",
+      "rel": "website_posts/Dev_Blog_12062024_1058pm.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Dev_Blog_12062024_1058pm.html",
+      "size": 5490,
+      "sha256": "13b24981f1984f0e97834c1f413e5a9c78011b6953a5ee0b547049486c659f62"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Dev_Blog_Exploring_Assembly_for_Market_Data_Replay.html",
+      "rel": "website_posts/Dev_Blog_Exploring_Assembly_for_Market_Data_Replay.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Dev_Blog_Exploring_Assembly_for_Market_Data_Replay.html",
+      "size": 4906,
+      "sha256": "575e0f11e4c249c6e94accbbc95b766bdb0a51614e4f1fbcc34d92b33e94182e"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Dev_Blog_Refining_the_TSLA_MACD_RSI_Trading_Strategy.html",
+      "rel": "website_posts/Dev_Blog_Refining_the_TSLA_MACD_RSI_Trading_Strategy.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Dev_Blog_Refining_the_TSLA_MACD_RSI_Trading_Strategy.html",
+      "size": 3659,
+      "sha256": "c07ec96851b800fcabdc6f695ef81c897ae74a65fd6f705fe079b05598e5547f"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Dev_Log_Advanced_Fintech_Engine_Build.html",
+      "rel": "website_posts/Dev_Log_Advanced_Fintech_Engine_Build.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Dev_Log_Advanced_Fintech_Engine_Build.html",
+      "size": 4964,
+      "sha256": "49232514b3636a4a2caf6428beee7b655ae7de0119eba5e60bd7b0a0488db310"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Developer_Log_TradingRobotPlug_Progress_Update.html",
+      "rel": "website_posts/Developer_Log_TradingRobotPlug_Progress_Update.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Developer_Log_TradingRobotPlug_Progress_Update.html",
+      "size": 2241,
+      "sha256": "ee48d99b83e9e92e28bb95c7e65785f35a30d3f9deebd90fffc28fd149e76cbd"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Discord_Page_Updates.html",
+      "rel": "website_posts/Discord_Page_Updates.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Discord_Page_Updates.html",
+      "size": 4505,
+      "sha256": "1b69062f8127ba4e9271e7c1241cea2e584579c6c5f9684d83ea0295438878c4"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Enhancing_FreerideInvestor_and_TradingRobotPlug_A_Day_of_Strategic_Development.html",
+      "rel": "website_posts/Enhancing_FreerideInvestor_and_TradingRobotPlug_A_Day_of_Strategic_Development.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Enhancing_FreerideInvestor_and_TradingRobotPlug_A_Day_of_Strategic_Development.html",
+      "size": 6925,
+      "sha256": "c1f7814260ed24c372ecbcab0be1894a39b91456deb973a227f80619d53fd761"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Enhancing_Tools_Management_and_Display_for_FreeRideInvestor.html",
+      "rel": "website_posts/Enhancing_Tools_Management_and_Display_for_FreeRideInvestor.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Enhancing_Tools_Management_and_Display_for_FreeRideInvestor.html",
+      "size": 3797,
+      "sha256": "5896ca32266dc7fd11d1e40f55d159f35d9df6ffe5d385db8d5fcbcaa71d880f"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Explore_Scaling_Strategies.html",
+      "rel": "website_posts/Explore_Scaling_Strategies.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Explore_Scaling_Strategies.html",
+      "size": 5304,
+      "sha256": "7223b13debb8b97d01bb01b58694a6b34df2cef9b27cb55a8da74d9c0d7801e6"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/FreeRideInvestor_Building_the_Future_of_AI_Driven_Trading.html",
+      "rel": "website_posts/FreeRideInvestor_Building_the_Future_of_AI_Driven_Trading.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/FreeRideInvestor_Building_the_Future_of_AI_Driven_Trading.html",
+      "size": 4808,
+      "sha256": "46c02ce9c03399a44fcaaf696bab73ede8383812aa455a4e630fe21f3a2c734e"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/FreeRideInvestor_Dev_Log_Annotating_Charts_Like_a_Sniper.html",
+      "rel": "website_posts/FreeRideInvestor_Dev_Log_Annotating_Charts_Like_a_Sniper.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/FreeRideInvestor_Dev_Log_Annotating_Charts_Like_a_Sniper.html",
+      "size": 2449,
+      "sha256": "9308209315028d85783850916f3be5358e150f6e6731de9c65ffbb09fce6c330"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/FreeRideInvestor_Development_Blog_Building_a_Million_Dollar_Venture_by_2026.html",
+      "rel": "website_posts/FreeRideInvestor_Development_Blog_Building_a_Million_Dollar_Venture_by_2026.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/FreeRideInvestor_Development_Blog_Building_a_Million_Dollar_Venture_by_2026.html",
+      "size": 17266,
+      "sha256": "6a2ebe7cd17cdd71133091e6c76afa33081633146b8e0e3ca3f4119d500d27c4"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/FreeRide_Investor_Dev_Blog_Comprehensive_Update_and_Reflections.html",
+      "rel": "website_posts/FreeRide_Investor_Dev_Blog_Comprehensive_Update_and_Reflections.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/FreeRide_Investor_Dev_Blog_Comprehensive_Update_and_Reflections.html",
+      "size": 2607,
+      "sha256": "d63ef457f0dbc86831bcb76a6ed5e8cb0257758ffeff1c597a828d50d700b6ed"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/From_Profitable_to_Non_Profitable_My_Journey_Lessons_and_Plan.html",
+      "rel": "website_posts/From_Profitable_to_Non_Profitable_My_Journey_Lessons_and_Plan.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/From_Profitable_to_Non_Profitable_My_Journey_Lessons_and_Plan.html",
+      "size": 17954,
+      "sha256": "91d197742c97948a4754e8f40eb8b1e21f71bdb62d2ae5d05204e0dc17ba61c8"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Fueling_Progress_at_128_AM_A_Reflection_on_Passion_and_Motivation.html",
+      "rel": "website_posts/Fueling_Progress_at_128_AM_A_Reflection_on_Passion_and_Motivation.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Fueling_Progress_at_128_AM_A_Reflection_on_Passion_and_Motivation.html",
+      "size": 4920,
+      "sha256": "3ced0370ab170bdc4fd4d5003f86fe5231d3a93e28173393fa9ef39fc0e826af"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Habit_Tracker.html",
+      "rel": "website_posts/Habit_Tracker.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Habit_Tracker.html",
+      "size": 34,
+      "sha256": "cf47803a0950977346699353650a35bf9868a862d3c760b81958fc74562b3871"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Holding_onto_our_mistakes.html",
+      "rel": "website_posts/Holding_onto_our_mistakes.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Holding_onto_our_mistakes.html",
+      "size": 1758,
+      "sha256": "0a58a63b730e4ff0f9a538e4e62a844573457b75d997cd83eb649774d7fa654e"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/How_to_Build_Confidence_as_a_Trader.html",
+      "rel": "website_posts/How_to_Build_Confidence_as_a_Trader.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/How_to_Build_Confidence_as_a_Trader.html",
+      "size": 911,
+      "sha256": "ba30113fa8280bae533dcc87072c477b65ef80c4f1aa5509b7d263f0493e290a"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/How_to_Trade_Like_a_Sniper_Not_a_Machine_Gun.html",
+      "rel": "website_posts/How_to_Trade_Like_a_Sniper_Not_a_Machine_Gun.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/How_to_Trade_Like_a_Sniper_Not_a_Machine_Gun.html",
+      "size": 6268,
+      "sha256": "8f457f26f613f3c70ca648a6936cefe5cfb420b03e200e4b7a4258d74ef0e205"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/How_to_Turn_FOMO_into_Your_Trading_Edge.html",
+      "rel": "website_posts/How_to_Turn_FOMO_into_Your_Trading_Edge.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/How_to_Turn_FOMO_into_Your_Trading_Edge.html",
+      "size": 6768,
+      "sha256": "d612bc90fe9792fd31af1928a55ce0e7b82ddbbe0884c1a127bf575bf6caa169"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/How_to_start_daytrading_with_500.html",
+      "rel": "website_posts/How_to_start_daytrading_with_500.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/How_to_start_daytrading_with_500.html",
+      "size": 11584,
+      "sha256": "8750961180de3930ff37e70052eabddaef984c07d34645fcd0aed83504dec733"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/I_apologize_for_not_going_hard_enough8230time_to_go_harder.html",
+      "rel": "website_posts/I_apologize_for_not_going_hard_enough8230time_to_go_harder.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/I_apologize_for_not_going_hard_enough8230time_to_go_harder.html",
+      "size": 2792,
+      "sha256": "f0ee21b0cd70ee2ff9488d75e560649744f502da2b735b5bcdfa15fcce7bd12d"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Join_the_500_Small_Account_Challenge.html",
+      "rel": "website_posts/Join_the_500_Small_Account_Challenge.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Join_the_500_Small_Account_Challenge.html",
+      "size": 10998,
+      "sha256": "3b1b7d8abff34acf20dae31dbd2bc8a993af7ee7415526c01c571977867e1ce1"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Mastering_the_Art_of_the_Trade_Lessons_from_a_Tesla_TSLA_Play.html",
+      "rel": "website_posts/Mastering_the_Art_of_the_Trade_Lessons_from_a_Tesla_TSLA_Play.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Mastering_the_Art_of_the_Trade_Lessons_from_a_Tesla_TSLA_Play.html",
+      "size": 5193,
+      "sha256": "636aca51b5f6601879e378381b6ceb53d9b7105e2e1f73934257c6ec4b96fb1e"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/My_Trading_Journal_Tesla_Calls.html",
+      "rel": "website_posts/My_Trading_Journal_Tesla_Calls.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/My_Trading_Journal_Tesla_Calls.html",
+      "size": 4215,
+      "sha256": "54158cf39215552e4aeace49765d1560039bfd45a3df220dd695eb554448e6c4"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Premarket_Update_TBOW_Tactic_December_24_2024.html",
+      "rel": "website_posts/Premarket_Update_TBOW_Tactic_December_24_2024.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Premarket_Update_TBOW_Tactic_December_24_2024.html",
+      "size": 1911,
+      "sha256": "fd8e10245551086b37456433a9bdacd5a757c0c900b9f436e254ff34bbf50156"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Real_Time_Data_The_Key_to_Powering_Our_Research_App.html",
+      "rel": "website_posts/Real_Time_Data_The_Key_to_Powering_Our_Research_App.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Real_Time_Data_The_Key_to_Powering_Our_Research_App.html",
+      "size": 1591,
+      "sha256": "6415b72ea400263c8367b367f7b58c55289273e84c5ed4c3498d235ba9e880e6"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Refining_My_Trading_Edge_Lessons_From_Todays_TSLA_Trades.html",
+      "rel": "website_posts/Refining_My_Trading_Edge_Lessons_From_Todays_TSLA_Trades.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Refining_My_Trading_Edge_Lessons_From_Todays_TSLA_Trades.html",
+      "size": 4657,
+      "sha256": "f0951b0568a9c633fd5fadad3d8e8a4bb82b9a14df10bfaf18cea3ec74a7d110"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Refining_a_Winning_Trading_Plan_Lessons_from_Todays_Trade.html",
+      "rel": "website_posts/Refining_a_Winning_Trading_Plan_Lessons_from_Todays_Trade.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Refining_a_Winning_Trading_Plan_Lessons_from_Todays_Trade.html",
+      "size": 5662,
+      "sha256": "7f5a74100e6eb7ff41720f2e70813f5fbf0bcbd7a56a64b85dfa9933ffccff84"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Refining_data_fetch_utilspy_Achieving_83_Test_Coverage.html",
+      "rel": "website_posts/Refining_data_fetch_utilspy_Achieving_83_Test_Coverage.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Refining_data_fetch_utilspy_Achieving_83_Test_Coverage.html",
+      "size": 5522,
+      "sha256": "4617dc376bc7402a55d77cb094de0fcfec55af5e5033f2b6fa9b991a6dfbfc61"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Review_Trade_Metrics.html",
+      "rel": "website_posts/Review_Trade_Metrics.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Review_Trade_Metrics.html",
+      "size": 6764,
+      "sha256": "5b4cbccc48862d05ec9224a489a2f8e118a23dfbd05efdae66f2d7c231ec9f56"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Small_Account_Challenge_Flipping_500_with_MACD_Crossover_Plays.html",
+      "rel": "website_posts/Small_Account_Challenge_Flipping_500_with_MACD_Crossover_Plays.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Small_Account_Challenge_Flipping_500_with_MACD_Crossover_Plays.html",
+      "size": 5602,
+      "sha256": "dab978f035a4b4d0c2b3805a3faddbdfe8a9e01732ae509a060ae46d10bef1b5"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TBOW_Tactic_8220Reversal_Momentum_Plus8221_for_TSLA.html",
+      "rel": "website_posts/TBOW_Tactic_8220Reversal_Momentum_Plus8221_for_TSLA.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TBOW_Tactic_8220Reversal_Momentum_Plus8221_for_TSLA.html",
+      "size": 3876,
+      "sha256": "9c6d997cb2fb9c3ad2ce8afe2af8e87f5a1a5249efa1bb7d677acf92c874bcb4"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TBOW_Tactic_Tesla_TSLA_January_16_2025.html",
+      "rel": "website_posts/TBOW_Tactic_Tesla_TSLA_January_16_2025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TBOW_Tactic_Tesla_TSLA_January_16_2025.html",
+      "size": 4221,
+      "sha256": "110b62b61d0e37c262e9471c83f9303b8de115bfaa74e864d5ac664b9e2ed5d7"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TBOW_Tactic_for_172025.html",
+      "rel": "website_posts/TBOW_Tactic_for_172025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TBOW_Tactic_for_172025.html",
+      "size": 4075,
+      "sha256": "739fdf65dd8b69ae971ecb7f7d39036aae730ffc9686fe688b316cd2b5bc6793"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TBOW_Tactic_for_December_13.html",
+      "rel": "website_posts/TBOW_Tactic_for_December_13.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TBOW_Tactic_for_December_13.html",
+      "size": 3044,
+      "sha256": "a7fd1292350aba01922a00caa44c67860a0ba115986a894354d3b6396459d3a4"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TBOW_Tactic_for_December_23_2024.html",
+      "rel": "website_posts/TBOW_Tactic_for_December_23_2024.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TBOW_Tactic_for_December_23_2024.html",
+      "size": 2877,
+      "sha256": "586f5c3a86a2f4367ff3db3575cbc6e5af5ef0ee72008964bc917bbb8a1029ef"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TBOW_Tactic_for_December_24_2024.html",
+      "rel": "website_posts/TBOW_Tactic_for_December_24_2024.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TBOW_Tactic_for_December_24_2024.html",
+      "size": 3801,
+      "sha256": "cfc3d5e97d499addbee6eb53c07f3c6580c2b1974b97950c7e6284a2a071d522"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TBOW_Tactic_for_January_2_2025.html",
+      "rel": "website_posts/TBOW_Tactic_for_January_2_2025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TBOW_Tactic_for_January_2_2025.html",
+      "size": 3196,
+      "sha256": "b8696f78550a2d938728f417c7bab8e469d72d27141619d68c48924943473766"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TBOW_Tactic_for_today_12172024.html",
+      "rel": "website_posts/TBOW_Tactic_for_today_12172024.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TBOW_Tactic_for_today_12172024.html",
+      "size": 4004,
+      "sha256": "cd1906ee97c307647d4b86102c356b982bc0f1b6f8bd5ad3f05c954980713aa8"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TBoW_Tactic_for_TSLA_Another_Shot_at_the_Purple.html",
+      "rel": "website_posts/TBoW_Tactic_for_TSLA_Another_Shot_at_the_Purple.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TBoW_Tactic_for_TSLA_Another_Shot_at_the_Purple.html",
+      "size": 4596,
+      "sha256": "f6490a64e2d52e924a0ba2ecfe20dff577ec92bdc94cd96b522185c4cad9f225"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TSLA_TBoW_Tactic_The_Post_Rate_Cut_Dead_Cat_Bounce.html",
+      "rel": "website_posts/TSLA_TBoW_Tactic_The_Post_Rate_Cut_Dead_Cat_Bounce.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TSLA_TBoW_Tactic_The_Post_Rate_Cut_Dead_Cat_Bounce.html",
+      "size": 4550,
+      "sha256": "fa49bb9c0c72d043769eaf9e1ebe327efc14b78ab1e9a5829021fdc560f2ee9d"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TSLA_Tactic_for_Today_1062025.html",
+      "rel": "website_posts/TSLA_Tactic_for_Today_1062025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TSLA_Tactic_for_Today_1062025.html",
+      "size": 4056,
+      "sha256": "06d8298a031f13b0a6b6925ca018bb109730e1c48770f75029fe156243b7796d"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TSLA_Tactic_for_Today_January_17th.html",
+      "rel": "website_posts/TSLA_Tactic_for_Today_January_17th.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TSLA_Tactic_for_Today_January_17th.html",
+      "size": 7585,
+      "sha256": "7592704fe31368b8d757b4e6d83451458aef088d63017bdbe0e6d9f4a1b21654"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TSLA_Tbow_Tactic_for_1212025.html",
+      "rel": "website_posts/TSLA_Tbow_Tactic_for_1212025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TSLA_Tbow_Tactic_for_1212025.html",
+      "size": 8285,
+      "sha256": "f89fdd37d22e01ae55531f02d50d7c085a196863aee2640eed8a26480bd35cb8"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TSLA_Trading_Journal_Insight_8211_February_3_2025.html",
+      "rel": "website_posts/TSLA_Trading_Journal_Insight_8211_February_3_2025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TSLA_Trading_Journal_Insight_8211_February_3_2025.html",
+      "size": 3812,
+      "sha256": "6d4380db3fb60169679c9bf024f2db15373d5bace6864dbfc842c06d7511c5d8"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/TSLA_Trading_Strategy_for_Today_1292025.html",
+      "rel": "website_posts/TSLA_Trading_Strategy_for_Today_1292025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/TSLA_Trading_Strategy_for_Today_1292025.html",
+      "size": 3250,
+      "sha256": "97a3f36ccbb0d4719d282159a1542d7976804b59465f0bd249ce93ed6bdf1faa"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Tbow_Tactic_for_TSLA_232025.html",
+      "rel": "website_posts/Tbow_Tactic_for_TSLA_232025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Tbow_Tactic_for_TSLA_232025.html",
+      "size": 2961,
+      "sha256": "2ced7ddb6d7c956552cd5592512c6702715a7b6a0bf11cf2b2aee6dc3ab6ebce"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Tbow_Tactic_for_Today_Tesla_TSLA_8211_January_15_2025.html",
+      "rel": "website_posts/Tbow_Tactic_for_Today_Tesla_TSLA_8211_January_15_2025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Tbow_Tactic_for_Today_Tesla_TSLA_8211_January_15_2025.html",
+      "size": 4982,
+      "sha256": "d5600dc3926896313ecc46825478d4876626db1c700debc62c122195f0c38bf6"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/The_3_Traits_Every_Successful_Trader_Must_Have.html",
+      "rel": "website_posts/The_3_Traits_Every_Successful_Trader_Must_Have.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/The_3_Traits_Every_Successful_Trader_Must_Have.html",
+      "size": 888,
+      "sha256": "af581b4469daf2e65ed2f177227239c43f281decc64625dcdd5e717197b3381f"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/The_Best_of_the_Winners.html",
+      "rel": "website_posts/The_Best_of_the_Winners.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/The_Best_of_the_Winners.html",
+      "size": 7027,
+      "sha256": "f00be34a878a503fe769c50c21a65bb4e12517230578e62305b5427c689e6e52"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Todays_Trading_Plan.html",
+      "rel": "website_posts/Todays_Trading_Plan.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Todays_Trading_Plan.html",
+      "size": 4223,
+      "sha256": "a77d26733302b0f988c8f1d77e782a1c3875f1d98f5d1ec4ff4cdb36f6135d0c"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Trading_Journal_Entry_162025.html",
+      "rel": "website_posts/Trading_Journal_Entry_162025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Trading_Journal_Entry_162025.html",
+      "size": 4850,
+      "sha256": "febccdef0062c410f64e95c37d51b2596e7d6b4a972d4b2686b48b40fe49581c"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Trading_Journal_Insights_8211_A_Greedy_Moment_with_TSLA.html",
+      "rel": "website_posts/Trading_Journal_Insights_8211_A_Greedy_Moment_with_TSLA.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Trading_Journal_Insights_8211_A_Greedy_Moment_with_TSLA.html",
+      "size": 5674,
+      "sha256": "259f5d3ba29597b064549b83744260cff1e7319555f0f3c4820c8279150afde7"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Trading_Journal_Insights_Tesla_TSLA_Recap_amp_Plan_for_Tomorrow.html",
+      "rel": "website_posts/Trading_Journal_Insights_Tesla_TSLA_Recap_amp_Plan_for_Tomorrow.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Trading_Journal_Insights_Tesla_TSLA_Recap_amp_Plan_for_Tomorrow.html",
+      "size": 2071,
+      "sha256": "758eb0608870cb2512525618719e37148f8b8e1ca100a9b681400457594147c1"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Unlocking_Your_Trading_Potential_The_Power_of_a_Mindset_Journal.html",
+      "rel": "website_posts/Unlocking_Your_Trading_Potential_The_Power_of_a_Mindset_Journal.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Unlocking_Your_Trading_Potential_The_Power_of_a_Mindset_Journal.html",
+      "size": 4875,
+      "sha256": "2597eb46ac06a370f8d970c74927d00ab0233681da4799cd9440d747c03f54cc"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Why_Innovation_is_the_Key_to_Staying_Ahead.html",
+      "rel": "website_posts/Why_Innovation_is_the_Key_to_Staying_Ahead.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Why_Innovation_is_the_Key_to_Staying_Ahead.html",
+      "size": 771,
+      "sha256": "ea4fddac7035c4746d59f9563631cc85e9bbc9d4479e1a89f18836d7d8e1d2cd"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Why_Most_Traders_Blow_Small_Accounts_And_How_to_Stop_Screwing_It_Up.html",
+      "rel": "website_posts/Why_Most_Traders_Blow_Small_Accounts_And_How_to_Stop_Screwing_It_Up.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Why_Most_Traders_Blow_Small_Accounts_And_How_to_Stop_Screwing_It_Up.html",
+      "size": 5485,
+      "sha256": "4cca7c703112f424bcb61449ce91119d7fcb0ff26d6450cef757aed6224d10ce"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/test_post_for_stock_research_plugin_test_it_out.html",
+      "rel": "website_posts/test_post_for_stock_research_plugin_test_it_out.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/test_post_for_stock_research_plugin_test_it_out.html",
+      "size": 1850,
+      "sha256": "a08c5bfc99e326eadf1126afdb958a00f4eff04fb750c20b9fbb769dc2381b1c"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Tbow_Tactic_Report_Tesla_TSLA_8211_January_10_2025.html",
+      "rel": "website_posts/Tbow_Tactic_Report_Tesla_TSLA_8211_January_10_2025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Tbow_Tactic_Report_Tesla_TSLA_8211_January_10_2025.html",
+      "size": 3805,
+      "sha256": "ae58110b7cd5bd0370a238348bccc5da85b94bdb62fbaa6a959ec158cd963d58"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Tbow_Tactic_for_Tesla_TSLA_Date_January_14_2025.html",
+      "rel": "website_posts/Tbow_Tactic_for_Tesla_TSLA_Date_January_14_2025.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Tbow_Tactic_for_Tesla_TSLA_Date_January_14_2025.html",
+      "size": 4256,
+      "sha256": "db3204a341828a3ff0af4fe4e77f9a2b6a75d87aad906e5f884a6e0612b52d85"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Tbow_Tactics_Field_Setup_amp_Dynamic_Templates.html",
+      "rel": "website_posts/Tbow_Tactics_Field_Setup_amp_Dynamic_Templates.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Tbow_Tactics_Field_Setup_amp_Dynamic_Templates.html",
+      "size": 2596,
+      "sha256": "c7e3905625c041f08d27abcfcb89a8451e0360e2a8f84cdaf1777c01d3f72f97"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/The_Best_of_the_worst.html",
+      "rel": "website_posts/The_Best_of_the_worst.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/The_Best_of_the_worst.html",
+      "size": 4120,
+      "sha256": "f8e7086420a5be587e8fe4317504a3015b5e4906bc38a0ac59cc16212a28094d"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/The_Mirror_That_Never_Lies.html",
+      "rel": "website_posts/The_Mirror_That_Never_Lies.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/The_Mirror_That_Never_Lies.html",
+      "size": 5422,
+      "sha256": "3c18a9d8049ca24a013a9759d4f40b880e639373a6de69696a6b685ea7161209"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/The_Role_of_Community_in_Trading_Success.html",
+      "rel": "website_posts/The_Role_of_Community_in_Trading_Success.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/The_Role_of_Community_in_Trading_Success.html",
+      "size": 785,
+      "sha256": "e33761812dc2e53a563296abe9feb81c3dd01a5f08802f2900dd87d8caf91fa3"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Today\u2019s_Trading_Plan.html",
+      "rel": "website_posts/Today\u2019s_Trading_Plan.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Today\u2019s_Trading_Plan.html",
+      "size": 4223,
+      "sha256": "a77d26733302b0f988c8f1d77e782a1c3875f1d98f5d1ec4ff4cdb36f6135d0c"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Trading_Journal_Insight_8211_Risk_Management_in_Action.html",
+      "rel": "website_posts/Trading_Journal_Insight_8211_Risk_Management_in_Action.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Trading_Journal_Insight_8211_Risk_Management_in_Action.html",
+      "size": 2820,
+      "sha256": "6da1868138f44fde4c3415179619f39a92e408648a4f4989f34d26abc4c19df6"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Trading_Journal_Overconfidence_Discipline_and_Lessons_December_13.html",
+      "rel": "website_posts/Trading_Journal_Overconfidence_Discipline_and_Lessons_December_13.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Trading_Journal_Overconfidence_Discipline_and_Lessons_December_13.html",
+      "size": 4856,
+      "sha256": "b833e863f1da1c5abd146bf839cebb474dacb8e62f6fef38c4c479ccf3885a59"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Uncovering_the_Builder_Within.html",
+      "rel": "website_posts/Uncovering_the_Builder_Within.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Uncovering_the_Builder_Within.html",
+      "size": 2712,
+      "sha256": "430b06580245e5b618d1db6e2230eb1d214a20db9be1329d7dac278e79e07eeb"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Updated_TBOw_Tactic_for_December_13_TSLA.html",
+      "rel": "website_posts/Updated_TBOw_Tactic_for_December_13_TSLA.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Updated_TBOw_Tactic_for_December_13_TSLA.html",
+      "size": 2926,
+      "sha256": "d9a286b2879218ec273e5b318700d491733887c80bb60d6030ee076a4f1a67e0"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Welcome_to_My_Dev_Blog_Lessons_from_the_Chaos_of_Rebuilding.html",
+      "rel": "website_posts/Welcome_to_My_Dev_Blog_Lessons_from_the_Chaos_of_Rebuilding.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Welcome_to_My_Dev_Blog_Lessons_from_the_Chaos_of_Rebuilding.html",
+      "size": 5558,
+      "sha256": "8b38714e624e0a831924eb4fbdf32ecb32982b467061f81e5ea586b4cd82ff7a"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/Why_Trading_Isnt_About_Winning_Every_Time.html",
+      "rel": "website_posts/Why_Trading_Isnt_About_Winning_Every_Time.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/Why_Trading_Isnt_About_Winning_Every_Time.html",
+      "size": 806,
+      "sha256": "9f7ce73886840e906719c6346286bf1f427e1b523168f3fae6e02d462a19de00"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/website_posts/trading_strategy_checklist.html",
+      "rel": "website_posts/trading_strategy_checklist.html",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts/trading_strategy_checklist.html",
+      "size": 36417,
+      "sha256": "2967f1c91980cbf6a0ca7540b454de2dd0a9ec58080f459c3c936498b0867d79"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/freerideinvestor-theme/inc/plugin-testing.php",
+      "rel": "freerideinvestor-theme/inc/plugin-testing.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/inc/plugin-testing.php",
+      "size": 14884,
+      "sha256": "1b3deb5dce101ce398219e5e2b1ad73dc2df4d846b279ece1fc40c324ee5e972"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/freerideinvestor-theme/page-templates/page-test-fintech-plugin.php",
+      "rel": "freerideinvestor-theme/page-templates/page-test-fintech-plugin.php",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/page-templates/page-test-fintech-plugin.php",
+      "size": 5466,
+      "sha256": "bde44837913c029e180c7142c98b55c6aecec05478d275e2a4ef48bc3651f5a7"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/freerideinvestor-theme/css/styles/posts/_my-trading-journey.css",
+      "rel": "freerideinvestor-theme/css/styles/posts/_my-trading-journey.css",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/css/styles/posts/_my-trading-journey.css",
+      "size": 13034,
+      "sha256": "496c085daaf7a7e841eab9f7b63d928aae5d6882df90b23dfaea2c0cde25bfff"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/freerideinvestor-theme/css/styles/posts/_trading-journal-insights.css",
+      "rel": "freerideinvestor-theme/css/styles/posts/_trading-journal-insights.css",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/css/styles/posts/_trading-journal-insights.css",
+      "size": 13019,
+      "sha256": "5ba51261c2cc93f697669f9a68dcd8dfac0916436226536ff5034ed320bfebe0"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/freerideinvestor-theme/css/styles/posts/blog.css",
+      "rel": "freerideinvestor-theme/css/styles/posts/blog.css",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/css/styles/posts/blog.css",
+      "size": 3657,
+      "sha256": "cffde3a1ef1bd019d746d55f7078d075b01d3dd0913866f38b0c888e121653b7"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/freerideinvestor-theme/css/styles/posts/devlog.css",
+      "rel": "freerideinvestor-theme/css/styles/posts/devlog.css",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/css/styles/posts/devlog.css",
+      "size": 2674,
+      "sha256": "06c2bca029abc20865e010219a086ffba2084762e138396e8408ea99edd87d6f"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite/freerideinvestor-theme/css/styles/posts/freeride-style.css",
+      "rel": "freerideinvestor-theme/css/styles/posts/freeride-style.css",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/css/styles/posts/freeride-style.css",
+      "size": 17177,
+      "sha256": "f532514eae8b2af0cf62268144a6c0dec4ff70c4276be905700923562919b736"
+    },
+    {
+      "source_repo": "FreerideinvestorWebsite",
+      "source": "generated",
+      "rel": "README.md",
+      "dest": "experiments/freeride-legacy-review/freerideinvestorwebsite/README.md",
+      "size": 383,
+      "sha256": "14d1f9a6967442c660d7123863217020553272cbc8d64aced122f69167b8d923"
+    },
+    {
+      "source_repo": "generated",
+      "source": "generated",
+      "rel": "README.md",
+      "dest": "experiments/freeride-legacy-review/README.md",
+      "size": 224,
+      "sha256": "1a5393deddbd4dc912c0698206f5c72ca7925c1a8705fd3c1146d81bce722421"
+    }
+  ],
+  "held": [
+    {
+      "source": "/data/data/com.termux/files/home/projects/FreeRideInvestor/simplifiedtradingtheme2 (1).zip",
+      "reason": "file too large for salvage lane"
+    }
+  ],
+  "delete_ready_after_final_review": [
+    "/data/data/com.termux/files/home/projects/FreeRideInvestor",
+    "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite"
+  ],
+  "scrap_rule": "Only blog posts and plugins were salvaged. Generic themes/configs/workflows are scrap."
+}
