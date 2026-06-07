@@ -1,101 +1,4 @@
-<?php
-/*
-Template Name: Swarm Skill Tree
-*/
-$status = function_exists('dreamos_swarm_status_data') ? dreamos_swarm_status_data() : array();
-$skills = $status['skill_tree'] ?? array(
-  array('skill'=>'Website Admin','level'=>'Unlocked','capabilities'=>array('SSH deploy','FTP deploy','WP-CLI activation','REST status plugin','live verification')),
-  array('skill'=>'Repo Rescue','level'=>'Advanced','capabilities'=>array('scan','classify','salvage','promote','verify','commit')),
-  array('skill'=>'Swarm Runtime','level'=>'Building','capabilities'=>array('task artifacts','runtime scripts','operator reports','portfolio registry')),
-  array('skill'=>'Automation Ops','level'=>'Advanced','capabilities'=>array('terminal lanes','CPC reports','verification gates','closeout packets')),
-);
-$tiers = array(
-  'Command Core' => array(
-    'num' => '01',
-    'title' => 'Access, deploy, observe, recover',
-    'summary' => 'Production access, deploy hygiene, and live-site triage lanes.',
-    'nodes' => array('Website Admin','Portfolio Recovery','Verification Gates'),
-  ),
-  'Runtime Engine' => array(
-    'num' => '02',
-    'title' => 'Repeatable agent lanes',
-    'summary' => 'Turn chaotic work into repeatable agent lanes and artifacts.',
-    'nodes' => array('Swarm Runtime','Automation Ops','DreamOS Runtime'),
-  ),
-  'Recovery Loop' => array(
-    'num' => '03',
-    'title' => 'Rescue repos, ship proof',
-    'summary' => 'Find buried value, rescue repos, and ship proof safely.',
-    'nodes' => array('Repo Rescue','Operator Intelligence Layer','Swarm Memory'),
-  ),
-  'Revenue Frontier' => array(
-    'num' => '04',
-    'title' => 'Proof into leverage',
-    'summary' => 'Convert proof into outreach, offers, and operating leverage.',
-    'nodes' => array('Distributed Swarm Mesh','Outreach Engine','Revenue Automation'),
-  ),
-);
-
-$fallback_levels = array(
-  'Distributed Swarm Mesh' => 'Building',
-  'Outreach Engine' => 'Building',
-  'Operator Intelligence Layer' => 'Building',
-  'Swarm Memory' => 'Building',
-  'Revenue Automation' => 'Building',
-  'DreamOS Runtime' => 'Building',
-);
-
-$node_copy = array(
-  'Website Admin' => 'Production access, deploy hygiene, and live-site triage.',
-  'Portfolio Recovery' => 'Turn broken domains into usable proof surfaces.',
-  'Verification Gates' => 'Every lane closes with evidence, status, and rollback context.',
-  'Swarm Runtime' => 'Task artifacts, runtime scripts, and operator reports.',
-  'Automation Ops' => 'Terminal lanes, CPC reports, closeouts, and repeatable checks.',
-  'DreamOS Runtime' => 'A durable command layer for multi-agent execution.',
-  'Repo Rescue' => 'Scan, classify, salvage, promote, verify, commit.',
-  'Operator Intelligence Layer' => 'Dashboards that expose risk, momentum, and next actions.',
-  'Swarm Memory' => 'Persistent work history that makes the next agent smarter.',
-  'Distributed Swarm Mesh' => 'Coordinated agent lanes across sites and systems.',
-  'Outreach Engine' => 'Proof-backed services, lead lists, and follow-up loops.',
-  'Revenue Automation' => 'Offer pipelines tied directly to shipped operational proof.',
-);
-
-$skill_lookup = array();
-foreach ($skills as $skill) {
-  if (!empty($skill['skill'])) {
-    $skill_lookup[$skill['skill']] = $skill;
-  }
-}
-
-$all_nodes = array();
-foreach ($tiers as $tier) {
-  foreach ($tier['nodes'] as $node) {
-    $all_nodes[] = $node;
-  }
-}
-
-$unlocked_count = 0;
-foreach ($all_nodes as $label) {
-  $level = strtolower($skill_lookup[$label]['level'] ?? ($fallback_levels[$label] ?? 'Unlocked'));
-  if (strpos($level, 'unlock') !== false || strpos($level, 'advanced') !== false) {
-    $unlocked_count++;
-  }
-}
-
-$total_count = count($all_nodes);
-$unlock_percent = $total_count > 0 ? round(($unlocked_count / $total_count) * 100) : 0;
-
-function dreamos_skill_node_class($level) {
-  $level = strtolower($level ?? 'building');
-  if (strpos($level, 'unlock') !== false || strpos($level, 'advanced') !== false) {
-    return strpos($level, 'advanced') !== false ? 'advanced' : 'unlocked';
-  }
-  if (strpos($level, 'lock') !== false) {
-    return 'locked';
-  }
-  return 'building';
-}
-?><!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -188,9 +91,9 @@ function dreamos_skill_node_class($level) {
       padding: 5px 10px;
       margin-bottom: 8px;
     }
-    .unlocked .badge, .advanced .badge { color: var(--accent); background: rgba(124,247,201,.12); }
+    .unlocked .badge { color: var(--accent); background: rgba(124,247,201,.12); }
+    .advanced .badge { color: var(--accent); background: rgba(124,247,201,.12); }
     .building .badge { color: var(--accent2); background: rgba(138,180,255,.12); }
-    .locked .badge { color: var(--muted); background: rgba(170,180,192,.12); }
     .caps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .caps span {
       font-size: .78rem;
@@ -225,11 +128,11 @@ function dreamos_skill_node_class($level) {
 
     <section class="stats" aria-label="Skill tree summary">
       <article class="stat">
-        <strong><?php echo (int) $unlock_percent; ?>%</strong>
+        <strong>58%</strong>
         <span>nodes unlocked or advanced</span>
       </article>
       <article class="stat">
-        <strong><?php echo (int) $unlocked_count; ?>/<?php echo (int) $total_count; ?></strong>
+        <strong>7/12</strong>
         <span>verified capabilities</span>
       </article>
       <article class="stat">
@@ -243,38 +146,101 @@ function dreamos_skill_node_class($level) {
     </section>
 
     <section class="grid" aria-label="Skill branches">
-      <?php foreach ($tiers as $tier => $tier_data): ?>
       <article class="card">
-        <div class="tier-num"><?php echo esc_html($tier_data['num']); ?> — <?php echo esc_html($tier); ?></div>
-        <h2><?php echo esc_html($tier_data['title']); ?></h2>
-        <p><?php echo esc_html($tier_data['summary']); ?></p>
+        <div class="tier-num">01 — Command Core</div>
+        <h2>Access, deploy, observe, recover</h2>
+        <p>Production access, deploy hygiene, and live-site triage lanes.</p>
         <ul class="nodes">
-          <?php foreach ($tier_data['nodes'] as $label):
-            $match = $skill_lookup[$label] ?? array(
-              'skill' => $label,
-              'level' => $fallback_levels[$label] ?? 'Unlocked',
-              'capabilities' => array(),
-            );
-            $level = $match['level'] ?? 'Building';
-            $class = dreamos_skill_node_class($level);
-            $capabilities = $match['capabilities'] ?? array();
-          ?>
-          <li class="node <?php echo esc_attr($class); ?>">
-            <span class="badge"><?php echo esc_html($level); ?></span>
-            <h3><?php echo esc_html($match['skill']); ?></h3>
-            <p><?php echo esc_html($node_copy[$label] ?? implode(' • ', $capabilities)); ?></p>
-            <?php if (!empty($capabilities)): ?>
-            <div class="caps">
-              <?php foreach (array_slice($capabilities, 0, 4) as $capability): ?>
-              <span><?php echo esc_html($capability); ?></span>
-              <?php endforeach; ?>
-            </div>
-            <?php endif; ?>
+          <li class="node unlocked">
+            <span class="badge">Unlocked</span>
+            <h3>Website Admin</h3>
+            <p>Production access, deploy hygiene, and live-site triage.</p>
+            <div class="caps"><span>SSH deploy</span><span>FTP deploy</span><span>WP-CLI activation</span><span>REST status plugin</span></div>
           </li>
-          <?php endforeach; ?>
+          <li class="node unlocked">
+            <span class="badge">Unlocked</span>
+            <h3>Portfolio Recovery</h3>
+            <p>Turn broken domains into usable proof surfaces.</p>
+          </li>
+          <li class="node unlocked">
+            <span class="badge">Unlocked</span>
+            <h3>Verification Gates</h3>
+            <p>Every lane closes with evidence, status, and rollback context.</p>
+          </li>
         </ul>
       </article>
-      <?php endforeach; ?>
+
+      <article class="card">
+        <div class="tier-num">02 — Runtime Engine</div>
+        <h2>Repeatable agent lanes</h2>
+        <p>Turn chaotic work into repeatable agent lanes and artifacts.</p>
+        <ul class="nodes">
+          <li class="node building">
+            <span class="badge">Building</span>
+            <h3>Swarm Runtime</h3>
+            <p>Task artifacts, runtime scripts, and operator reports.</p>
+            <div class="caps"><span>task artifacts</span><span>runtime scripts</span><span>operator reports</span></div>
+          </li>
+          <li class="node advanced">
+            <span class="badge">Advanced</span>
+            <h3>Automation Ops</h3>
+            <p>Terminal lanes, CPC reports, closeouts, and repeatable checks.</p>
+            <div class="caps"><span>terminal lanes</span><span>CPC reports</span><span>verification gates</span></div>
+          </li>
+          <li class="node building">
+            <span class="badge">Building</span>
+            <h3>DreamOS Runtime</h3>
+            <p>A durable command layer for multi-agent execution.</p>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="tier-num">03 — Recovery Loop</div>
+        <h2>Rescue repos, ship proof</h2>
+        <p>Find buried value, rescue repos, and ship proof safely.</p>
+        <ul class="nodes">
+          <li class="node advanced">
+            <span class="badge">Advanced</span>
+            <h3>Repo Rescue</h3>
+            <p>Scan, classify, salvage, promote, verify, commit.</p>
+            <div class="caps"><span>scan</span><span>classify</span><span>salvage</span><span>promote</span></div>
+          </li>
+          <li class="node building">
+            <span class="badge">Building</span>
+            <h3>Operator Intelligence Layer</h3>
+            <p>Dashboards that expose risk, momentum, and next actions.</p>
+          </li>
+          <li class="node building">
+            <span class="badge">Building</span>
+            <h3>Swarm Memory</h3>
+            <p>Persistent work history that makes the next agent smarter.</p>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="tier-num">04 — Revenue Frontier</div>
+        <h2>Proof into leverage</h2>
+        <p>Convert proof into outreach, offers, and operating leverage.</p>
+        <ul class="nodes">
+          <li class="node building">
+            <span class="badge">Building</span>
+            <h3>Distributed Swarm Mesh</h3>
+            <p>Coordinated agent lanes across sites and systems.</p>
+          </li>
+          <li class="node building">
+            <span class="badge">Building</span>
+            <h3>Outreach Engine</h3>
+            <p>Proof-backed services, lead lists, and follow-up loops.</p>
+          </li>
+          <li class="node building">
+            <span class="badge">Building</span>
+            <h3>Revenue Automation</h3>
+            <p>Offer pipelines tied directly to shipped operational proof.</p>
+          </li>
+        </ul>
+      </article>
     </section>
 
     <section class="split">

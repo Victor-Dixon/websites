@@ -1,0 +1,11 @@
+{
+  "id": "weareswarm_skill_tree_deploy_artifact_001",
+  "status": "READY_TO_DEPLOY",
+  "host": "weareswarm",
+  "route": "/skill-tree",
+  "source": "routes/weareswarm/skill-tree/index.html",
+  "artifact": "_deploy/weareswarm/skill-tree/index.html",
+  "sha256": "2a16c78b1616ab2afb8a43ef59b465c2770f17ff80d15b2376bc883ac4ba9164",
+  "bytes": 10205,
+  "guardrail": "Deploy as /skill-tree route only. Do not overwrite homepage."
+}
