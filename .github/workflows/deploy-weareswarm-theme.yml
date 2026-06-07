@@ -8,6 +8,7 @@ on:
       - .github/workflows/deploy-weareswarm-theme.yml
       - collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/**
       - routes/weareswarm/**
+  workflow_dispatch:
 
 concurrency:
   group: weareswarm-theme-deploy
