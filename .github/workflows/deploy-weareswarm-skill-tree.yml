@@ -6,6 +6,7 @@ on:
       - cursor/repair-weareswarm-white-screen-0b91
     paths:
       - .github/workflows/deploy-weareswarm-skill-tree.yml
+      - collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/**
 
 concurrency:
   group: weareswarm-skill-tree-deploy

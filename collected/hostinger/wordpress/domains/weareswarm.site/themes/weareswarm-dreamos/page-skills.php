@@ -88,7 +88,6 @@ $unlock_percent = $total_count > 0 ? round(($unlocked_count / $total_count) * 10
 <head>
 <meta charset="<?php bloginfo('charset'); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Swarm Skill Tree | WeAreSwarm</title>
 <?php wp_head(); ?>
 <style>
 :root{--bg:#02040b;--bg2:#06101f;--panel:#08111f;--panel2:#0d1728;--line:#234165;--line2:#315f86;--text:#f5fbff;--muted:#9cb2d6;--cyan:#00f5ff;--green:#38ff9c;--purple:#a855f7;--pink:#ff3df2;--amber:#ffb020;--red:#ff4d6d}
