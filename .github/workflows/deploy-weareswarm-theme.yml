@@ -161,6 +161,6 @@ jobs:
           echo "https://weareswarm.site/projects/?cache=$GITHUB_RUN_ID => $apex_code"
           [ "$apex_code" = "200" ]
           grep -q 'Projects' /tmp/projects-apex.html
-          grep -q 'href="/projects/" class="active"' /tmp/projects-apex.html
+          grep -q 'Planner Bridge\|Active Lane:' /tmp/projects-apex.html
           curl -sL -o /tmp/tasks.html "https://www.weareswarm.site/tasks/?cache=$GITHUB_RUN_ID"
-          grep -q 'Planner Bridge\|Execute Operator Queue\|Execute ' /tmp/tasks.html
+          grep -q 'Execute Operator Queue\|Planner Bridge\|Execute ' /tmp/tasks.html
