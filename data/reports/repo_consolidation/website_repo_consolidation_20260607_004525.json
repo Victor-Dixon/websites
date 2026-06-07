@@ -1,0 +1,100 @@
+{
+  "schema": "dreamos.website_repo_consolidation.v1",
+  "generated": "2026-06-07T05:45:31.144973+00:00",
+  "projects": "/data/data/com.termux/files/home/projects",
+  "websites": "/data/data/com.termux/files/home/projects/websites",
+  "summary": {
+    "delete_ready_after_salvage_verify": 7,
+    "keep_canonical": 1
+  },
+  "bible_candidates": [],
+  "items": [
+    {
+      "repo": "/data/data/com.termux/files/home/projects/AgentTools",
+      "name": "AgentTools",
+      "dirty_count": 0,
+      "remote": "origin\tgit@github.com:Victor-Dixon/AgentTools.git (fetch)\norigin\tgit@github.com:Victor-Dixon/AgentTools.git (push)",
+      "website_like": true,
+      "bible_like": false,
+      "decision": "delete_ready_after_salvage_verify",
+      "reason": "website-like repo; only delete after proof equivalent content exists in websites"
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/DreamVault",
+      "name": "DreamVault",
+      "dirty_count": 0,
+      "remote": "origin\tgit@github.com:Victor-Dixon/DreamVault.git (fetch)\norigin\tgit@github.com:Victor-Dixon/DreamVault.git (push)",
+      "website_like": true,
+      "bible_like": false,
+      "decision": "delete_ready_after_salvage_verify",
+      "reason": "website-like repo; only delete after proof equivalent content exists in websites"
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/FocusForge",
+      "name": "FocusForge",
+      "dirty_count": 0,
+      "remote": "origin\tgit@github.com:Victor-Dixon/FocusForge.git (fetch)\norigin\tgit@github.com:Victor-Dixon/FocusForge.git (push)",
+      "website_like": true,
+      "bible_like": false,
+      "decision": "delete_ready_after_salvage_verify",
+      "reason": "website-like repo; only delete after proof equivalent content exists in websites"
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/FreeRideInvestor",
+      "name": "FreeRideInvestor",
+      "dirty_count": 0,
+      "remote": "origin\tgit@github.com:Victor-Dixon/FreeRideInvestor.git (fetch)\norigin\tgit@github.com:Victor-Dixon/FreeRideInvestor.git (push)",
+      "website_like": true,
+      "bible_like": false,
+      "decision": "delete_ready_after_salvage_verify",
+      "reason": "website-like repo; only delete after proof equivalent content exists in websites"
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite",
+      "name": "FreerideinvestorWebsite",
+      "dirty_count": 0,
+      "remote": "origin\tgit@github.com:Victor-Dixon/FreerideinvestorWebsite.git (fetch)\norigin\tgit@github.com:Victor-Dixon/FreerideinvestorWebsite.git (push)",
+      "website_like": true,
+      "bible_like": false,
+      "decision": "delete_ready_after_salvage_verify",
+      "reason": "website-like repo; only delete after proof equivalent content exists in websites"
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/Thea",
+      "name": "Thea",
+      "dirty_count": 2,
+      "remote": "origin\tgit@github.com:Victor-Dixon/Thea.git (fetch)\norigin\tgit@github.com:Victor-Dixon/Thea.git (push)",
+      "website_like": true,
+      "bible_like": false,
+      "decision": "delete_ready_after_salvage_verify",
+      "reason": "website-like repo; only delete after proof equivalent content exists in websites"
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/TradingRobotPlugWeb",
+      "name": "TradingRobotPlugWeb",
+      "dirty_count": 0,
+      "remote": "origin\tgit@github.com:Victor-Dixon/TradingRobotPlugWeb.git (fetch)\norigin\tgit@github.com:Victor-Dixon/TradingRobotPlugWeb.git (push)",
+      "website_like": true,
+      "bible_like": false,
+      "decision": "delete_ready_after_salvage_verify",
+      "reason": "website-like repo; only delete after proof equivalent content exists in websites"
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/websites",
+      "name": "websites",
+      "dirty_count": 3,
+      "remote": "origin\tgit@github.com:Victor-Dixon/websites.git (fetch)\norigin\tgit@github.com:Victor-Dixon/websites.git (push)",
+      "website_like": true,
+      "bible_like": false,
+      "decision": "keep_canonical",
+      "reason": "canonical websites repo"
+    }
+  ],
+  "guardrails": [
+    "no deletes in this lane",
+    "salvage before deletion",
+    "websites remains canonical",
+    "autoblogger remains separate",
+    "Bible app moves to websites/experiments"
+  ]
+}

@@ -1,0 +1,3828 @@
+{
+  "schema": "dreamos.cross_repo_website_asset_inspection.v1",
+  "generated": "2026-06-07T05:52:18.707947+00:00",
+  "projects": "/data/data/com.termux/files/home/projects",
+  "canonical_websites": "/data/data/com.termux/files/home/projects/websites",
+  "canonical_asset_count": 1500,
+  "summary": {
+    "preserve_reference_only_or_ignore": 5,
+    "salvage_required_or_convert_to_reference": 12,
+    "salvage_small_delta_then_delete_review": 3,
+    "delete_ready_after_final_review": 2,
+    "canonical_owner": 1
+  },
+  "items": [
+    {
+      "repo": "/data/data/com.termux/files/home/projects/AgentTools",
+      "name": "AgentTools",
+      "dirty_count": 0,
+      "asset_count": 145,
+      "duplicate_hash_count": 2,
+      "same_name_count": 1,
+      "missing_count": 142,
+      "decision": "preserve_reference_only_or_ignore",
+      "reason": "toolbelt",
+      "top_assets": [
+        {
+          "rel": "dependencies.json",
+          "name": "dependencies.json",
+          "suffix": ".json",
+          "size": 131445,
+          "sha256": "2436f4df93f6b68a317e05c284e0014fb42f221bc6f00b182d5a77b84cba8095"
+        },
+        {
+          "rel": "docker-compose.yml",
+          "name": "docker-compose.yml",
+          "suffix": ".yml",
+          "size": 492,
+          "sha256": "17888b18780eb1e25b246cd58fcc41db223766fd750a716ab455e582f9f2ee12"
+        },
+        {
+          "rel": "package-lock.json",
+          "name": "package-lock.json",
+          "suffix": ".json",
+          "size": 161350,
+          "sha256": "9a9dd7ce53141f130217e87d6e5661e494b54f2fd381be2b3a310118ecbba829"
+        },
+        {
+          "rel": "package.json",
+          "name": "package.json",
+          "suffix": ".json",
+          "size": 340,
+          "sha256": "a798adcd95fe9efa505bc8369cb140231b6d9db7868ceb2751e73c9825bcc7bc"
+        },
+        {
+          "rel": "passdown.json",
+          "name": "passdown.json",
+          "suffix": ".json",
+          "size": 2741,
+          "sha256": "e52018f01f7580833b61d31097c21bdb2a7acb767a0f810793acf802c938a3f5"
+        },
+        {
+          "rel": "tools_inventory.json",
+          "name": "tools_inventory.json",
+          "suffix": ".json",
+          "size": 180300,
+          "sha256": "1f7f60e49a490c926998a52bd4115255e523620567462c9dbf68317c018df14e"
+        },
+        {
+          "rel": "tsconfig.base.json",
+          "name": "tsconfig.base.json",
+          "suffix": ".json",
+          "size": 359,
+          "sha256": "0fb6cf70d1d49c1019e78b73d4ad29a0438f44c43ba5074d34e8f84d5c0abea7"
+        },
+        {
+          "rel": ".cursor/mcp.json",
+          "name": "mcp.json",
+          "suffix": ".json",
+          "size": 369,
+          "sha256": "3dfcc1787b76ed87b1167e48d4f5ee9025fb7e89d5e8abeb91f393dd23dce9bc"
+        },
+        {
+          "rel": "docs/TOOLBELT_SURFACE_AUDIT.json",
+          "name": "TOOLBELT_SURFACE_AUDIT.json",
+          "suffix": ".json",
+          "size": 153697,
+          "sha256": "0a0852f0c21b2bc3faead406999af13167a74b4eecd2f671c8b7be3f0a9b5fb0"
+        },
+        {
+          "rel": "docs/LEGACY_TOOL_MIGRATION_MATRIX.json",
+          "name": "LEGACY_TOOL_MIGRATION_MATRIX.json",
+          "suffix": ".json",
+          "size": 51298,
+          "sha256": "818b8c9032a166f17e3f12db9fe87750efb014e31bb5b41550a83bc7243edd7a"
+        },
+        {
+          "rel": "integration/claude_desktop_config.json",
+          "name": "claude_desktop_config.json",
+          "suffix": ".json",
+          "size": 247,
+          "sha256": "345769bfe02db1ccd72534caeacc1c8e019adac373bf4ea2d2f248af5ef65c72"
+        },
+        {
+          "rel": "integration/cursor_config.json",
+          "name": "cursor_config.json",
+          "suffix": ".json",
+          "size": 247,
+          "sha256": "345769bfe02db1ccd72534caeacc1c8e019adac373bf4ea2d2f248af5ef65c72"
+        },
+        {
+          "rel": "mcp_servers/all_mcp_servers.json",
+          "name": "all_mcp_servers.json",
+          "suffix": ".json",
+          "size": 4289,
+          "sha256": "67fab9194ac98f3ff16442c9f6284a16d0a2640ad39484d8102ef45bc2ad7e0c"
+        },
+        {
+          "rel": "swarm_brain/knowledge_base.json",
+          "name": "knowledge_base.json",
+          "suffix": ".json",
+          "size": 2673,
+          "sha256": "892478a9e5ee285b469962c533bf87f854cb3c364750f9ce122dab630a2e6412"
+        },
+        {
+          "rel": "tools/audit_config.json",
+          "name": "audit_config.json",
+          "suffix": ".json",
+          "size": 255,
+          "sha256": "b639dcba7a62d197f3a32a7d79de69024f93e9a5654f089a8a29dde00f7096dd"
+        },
+        {
+          "rel": "tools/dadudekc_font_fix_css.php",
+          "name": "dadudekc_font_fix_css.php",
+          "suffix": ".php",
+          "size": 2386,
+          "sha256": "7d4a02877c299a0b11ff6202936f320c669c40a468590fcb0f3d8c6dfe31db17"
+        },
+        {
+          "rel": "tools/oauth_token_checker.ts",
+          "name": "oauth_token_checker.ts",
+          "suffix": ".ts",
+          "size": 1742,
+          "sha256": "5281e5939d4b404599cf1bdcc4780b4f9e86bd93ad3e8447dea881b8cc0d2cc3"
+        },
+        {
+          "rel": "tools/agent_cycle_v2_status_schema.json",
+          "name": "agent_cycle_v2_status_schema.json",
+          "suffix": ".json",
+          "size": 8399,
+          "sha256": "5de3c38fc7cee892a0243102aaeb56c87ece9a474dbeae4d7271da12033704e4"
+        },
+        {
+          "rel": "tools/passdown.json",
+          "name": "passdown.json",
+          "suffix": ".json",
+          "size": 1653,
+          "sha256": "3a03b76ae4551ad6ab5317040db937663cc3364d5c7384fbef7d0aaaaf083fb2"
+        },
+        {
+          "rel": "tools/session_transition_passdown_template.json",
+          "name": "session_transition_passdown_template.json",
+          "suffix": ".json",
+          "size": 2637,
+          "sha256": "aba5494882992bb91482faa9e3816aeb4c7f924d005ff27471db3a82768dc10f"
+        },
+        {
+          "rel": "tools_v2/tool_registry.lock.json",
+          "name": "tool_registry.lock.json",
+          "suffix": ".json",
+          "size": 13599,
+          "sha256": "655a38089d5755ef19389d0d56f6c07947bfcf9ce2c0a7c40e87872f9e2aa414"
+        },
+        {
+          "rel": "tools/discord-architect/package.json",
+          "name": "package.json",
+          "suffix": ".json",
+          "size": 550,
+          "sha256": "6a12d3e55845a6d435b3fd18554bfcd905c6a5675a6dbaf8f46082b82c08c2d4"
+        },
+        {
+          "rel": "tools/discord-architect/package-lock.json",
+          "name": "package-lock.json",
+          "suffix": ".json",
+          "size": 12601,
+          "sha256": "d0cd2b8b42c6f2794b3af46b20efcbd306abf15fad23a3d8feeaa9ef647328c8"
+        },
+        {
+          "rel": "tools/examples/birthday_website_updates.json",
+          "name": "birthday_website_updates.json",
+          "suffix": ".json",
+          "size": 4860,
+          "sha256": "7835a26ed15d2b8056a7100d2495bfae6001792e528ad7323a1bc6c809d7e06d"
+        },
+        {
+          "rel": "tools/examples/prismblossom_birthday_workflow.json",
+          "name": "prismblossom_birthday_workflow.json",
+          "suffix": ".json",
+          "size": 5692,
+          "sha256": "7e93fb6344c9386c12f657c4dc0a113725b7f2b264c0cc02a1bf46f0439639b0"
+        },
+        {
+          "rel": "tools/templates/strategy_blog_post_template.html",
+          "name": "strategy_blog_post_template.html",
+          "suffix": ".html",
+          "size": 5829,
+          "sha256": "54b714f257995aff18b8b1745daeebb01289ebd1eefb7494dfdc0126f770bfd5"
+        },
+        {
+          "rel": "tools/swarm/tests/import_healer_coverage_baseline.json",
+          "name": "import_healer_coverage_baseline.json",
+          "suffix": ".json",
+          "size": 271,
+          "sha256": "745dd06d2699c701a06bb0935904f3cd29a12707d84836b5af1c8b4899d67fea"
+        },
+        {
+          "rel": "tools/swarm/tests/fixtures/rewrite_map.json",
+          "name": "rewrite_map.json",
+          "suffix": ".json",
+          "size": 44,
+          "sha256": "d9cc2a9695949762f4e0e40f0a881e469ccac6115c7fc29308bff0132ed68b43"
+        },
+        {
+          "rel": "tools/discord-architect/schemas/desired.example.json",
+          "name": "desired.example.json",
+          "suffix": ".json",
+          "size": 290,
+          "sha256": "6fb0dfe2413e04534f0143692f40d4d129a376e812d0bb04d2b6e633e49bc501"
+        },
+        {
+          "rel": "tools/discord-architect/schemas/current.example.json",
+          "name": "current.example.json",
+          "suffix": ".json",
+          "size": 334,
+          "sha256": "91c43db3413044eebd32659ada3d7be8c0d08a4bdb385cd061847e1568813845"
+        },
+        {
+          "rel": "tools/discord-architect/src/mapper.js",
+          "name": "mapper.js",
+          "suffix": ".js",
+          "size": 1330,
+          "sha256": "2715110e5571f557da51f3e20336563ca4f2e53ae73e45a7c1d5fcc6ecdc15f8"
+        },
+        {
+          "rel": "tools/discord-architect/src/diff.js",
+          "name": "diff.js",
+          "suffix": ".js",
+          "size": 2073,
+          "sha256": "3c028733f752b8f83772a1f85487378fdb01bae6edee6784e4c3d6513cb6ba5d"
+        },
+        {
+          "rel": "tools/discord-architect/tests/mapper.test.js",
+          "name": "mapper.test.js",
+          "suffix": ".js",
+          "size": 903,
+          "sha256": "3f91dcce5f10dcc50433dddfdaf96a12766703be088219c9b6b8a3d906e38db6"
+        },
+        {
+          "rel": "tools/discord-architect/tests/diff.test.js",
+          "name": "diff.test.js",
+          "suffix": ".js",
+          "size": 942,
+          "sha256": "0dc81f09cd2c5fe48eae2b89d06d28ae4e14dc40122f1c2273b2acb466d501cd"
+        },
+        {
+          "rel": "tools/discord-architect/tests/plan.test.js",
+          "name": "plan.test.js",
+          "suffix": ".js",
+          "size": 1119,
+          "sha256": "fe75a1efeb5f7d89555399b030b397068c0b9962314421238d2a45c70110c01f"
+        },
+        {
+          "rel": "tools/discord-architect/tests/backup.test.js",
+          "name": "backup.test.js",
+          "suffix": ".js",
+          "size": 882,
+          "sha256": "cbea8429f62f840be35675958bff76fc28339a1328261bb3816b3fd34066d83e"
+        },
+        {
+          "rel": "tools/discord-architect/tests/manifest.test.js",
+          "name": "manifest.test.js",
+          "suffix": ".js",
+          "size": 1127,
+          "sha256": "6243f9a2f9001302eb8d0351b3a93e7b2fe1ea03792f68f212e778e3537c79cd"
+        },
+        {
+          "rel": "tools/discord-architect/tests/apply.test.js",
+          "name": "apply.test.js",
+          "suffix": ".js",
+          "size": 761,
+          "sha256": "2abfba57dfb3508039e067074b7d8c18548e0e86a25e75b08102acf365d611df"
+        },
+        {
+          "rel": "tools/discord-architect/tests/createChannel.test.js",
+          "name": "createChannel.test.js",
+          "suffix": ".js",
+          "size": 1806,
+          "sha256": "e2330e8ff12099ea3174e5c7d6c534451686787e310b5dbd04038ce820281b69"
+        },
+        {
+          "rel": "tools/discord-architect/tests/commandDeckRuntime.test.js",
+          "name": "commandDeckRuntime.test.js",
+          "suffix": ".js",
+          "size": 2354,
+          "sha256": "276115ad2b6d8251657abe69f4de72c9b9ad79e4bc7c187d6a856ccf1e0a5446"
+        },
+        {
+          "rel": "tools/discord-architect/tests/persistentSessionRegistry.test.js",
+          "name": "persistentSessionRegistry.test.js",
+          "suffix": ".js",
+          "size": 1181,
+          "sha256": "a4cee56fc095440550d5b1f2af0440a0ea544589b22ff134d1c05b270a380428"
+        },
+        {
+          "rel": "tools/discord-architect/tests/persistentLiveInteractionBridge.test.js",
+          "name": "persistentLiveInteractionBridge.test.js",
+          "suffix": ".js",
+          "size": 1197,
+          "sha256": "1969b232394dd8936dd711f6703e27f54c2d216b2481cc28a16f7fd3d093212a"
+        },
+        {
+          "rel": "tools/discord-architect/tests/ensureRuntimeChannels.test.js",
+          "name": "ensureRuntimeChannels.test.js",
+          "suffix": ".js",
+          "size": 441,
+          "sha256": "fff20d19b5f016e7ca6f19bf6c5be86236d6431bde3e354dd26958e0e3aeaacd"
+        },
+        {
+          "rel": "tools/discord-architect/tests/capabilityEvolutionFeedAdapter.test.js",
+          "name": "capabilityEvolutionFeedAdapter.test.js",
+          "suffix": ".js",
+          "size": 1216,
+          "sha256": "f6e97883f8e03ba60f26b9439bbaae7b3fc08f3fe2866e89fe1a7982e8a806ba"
+        },
+        {
+          "rel": "tools/discord-architect/tests/liveCapabilityEventDispatcher.test.js",
+          "name": "liveCapabilityEventDispatcher.test.js",
+          "suffix": ".js",
+          "size": 1233,
+          "sha256": "106f47bbf0a87e9290fbcf24667c142d43b39e25a7c8d91c65330717e655ba7e"
+        },
+        {
+          "rel": "tools/discord-architect/tests/channelWebhookManager.test.js",
+          "name": "channelWebhookManager.test.js",
+          "suffix": ".js",
+          "size": 2548,
+          "sha256": "4ca092b41cc8722a1edbb8a039e2e9c8bcf9f01a412eff4a506d1c070b5aa2b4"
+        },
+        {
+          "rel": "tools/discord-architect/tests/liveDiscordMutationRuntime.test.js",
+          "name": "liveDiscordMutationRuntime.test.js",
+          "suffix": ".js",
+          "size": 1169,
+          "sha256": "2bec816d66a69c82b66b9cfaf863996afc830d3b444fba237ab44b45f3158e47"
+        },
+        {
+          "rel": "tools/discord-architect/tests/liveDiscordRestSender.test.js",
+          "name": "liveDiscordRestSender.test.js",
+          "suffix": ".js",
+          "size": 942,
+          "sha256": "7d7e1553fb1b2d0f306aa6390adb644bb17efc55b1ad4655c6bee2b6b239ba5b"
+        },
+        {
+          "rel": "tools/discord-architect/tests/unifiedBotSupervisor.test.js",
+          "name": "unifiedBotSupervisor.test.js",
+          "suffix": ".js",
+          "size": 1276,
+          "sha256": "ad9c315e181a17912b0dfc6155e7a8b66ce455f4f0b4209338012d10ec671a44"
+        },
+        {
+          "rel": "tools/discord-architect/tests/pluginLoaderRuntime.test.js",
+          "name": "pluginLoaderRuntime.test.js",
+          "suffix": ".js",
+          "size": 1747,
+          "sha256": "5ec355236315eab64ab666f2e35ea27dd35a193683874d4ea517daec47041014"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/Dream.os-Core",
+      "name": "Dream.os-Core",
+      "dirty_count": 36,
+      "asset_count": 12,
+      "duplicate_hash_count": 0,
+      "same_name_count": 1,
+      "missing_count": 11,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "manifest.json",
+          "name": "manifest.json",
+          "suffix": ".json",
+          "size": 4282,
+          "sha256": "ddd1bfc9535e67f7eaf7f98d003e9a5ce25c828cb605025d10fa68c84e99ffc4"
+        },
+        {
+          "rel": ".workspace_state.json",
+          "name": ".workspace_state.json",
+          "suffix": ".json",
+          "size": 83,
+          "sha256": "00f96b3b3e83ad6fbe07e4536bc28226126bdee60fadcda5364770a177e3a22b"
+        },
+        {
+          "rel": "03_execution/changes_2025-08-10_phase2-contract.json",
+          "name": "changes_2025-08-10_phase2-contract.json",
+          "suffix": ".json",
+          "size": 1601,
+          "sha256": "08fc2f22c53bab73094ddc05f8d45b3fca3f8d56869dc4d614c3fcf81cbff714"
+        },
+        {
+          "rel": "99_manifest/selection_manifest.json",
+          "name": "selection_manifest.json",
+          "suffix": ".json",
+          "size": 3801,
+          "sha256": "63be0163ca2e5378f0c725436228e43e44199395faa96d1a58b4800b4f138ec3"
+        },
+        {
+          "rel": "contracts/message_schema.json",
+          "name": "message_schema.json",
+          "suffix": ".json",
+          "size": 1581,
+          "sha256": "5a644ef999ae556706c2b5a07ee02333b7e41ab7488cbebe0ebc5fc813976894"
+        },
+        {
+          "rel": "_ops/reports/tree_noise_prune_20260504_014306.json",
+          "name": "tree_noise_prune_20260504_014306.json",
+          "suffix": ".json",
+          "size": 99884,
+          "sha256": "d828a3e604ea650455ae506515ed73eca879818f8c86d0f8124a0b07d2cfc1a3"
+        },
+        {
+          "rel": "_ops/reports/tree_noise_prune_20260504_014333.json",
+          "name": "tree_noise_prune_20260504_014333.json",
+          "suffix": ".json",
+          "size": 99940,
+          "sha256": "9f8884fad293c2ff5c0e60a5d201596555ceffb43829263f0ce795844acb31c9"
+        },
+        {
+          "rel": "_ops/reports/finalize_tree_cleanup_20260504_014544.json",
+          "name": "finalize_tree_cleanup_20260504_014544.json",
+          "suffix": ".json",
+          "size": 3932,
+          "sha256": "77750f9980599c64a7f7c08b534fe6dc7627de9240c4ef677cc545e458233214"
+        },
+        {
+          "rel": "src/core/schemas/bus_message.schema.json",
+          "name": "bus_message.schema.json",
+          "suffix": ".json",
+          "size": 1751,
+          "sha256": "906cb334a83a73c422fc121306662939bcae3faa18e7ad61be37f422a4985437"
+        },
+        {
+          "rel": "contracts/cursor_bridge/cursor_feedback_schema.json",
+          "name": "cursor_feedback_schema.json",
+          "suffix": ".json",
+          "size": 1397,
+          "sha256": "16e22fa48babf64ec53623e6a445ea85ccfffec878c978bca905f5b790f9d380"
+        },
+        {
+          "rel": "contracts/cursor_bridge/gpt_command_schema.json",
+          "name": "gpt_command_schema.json",
+          "suffix": ".json",
+          "size": 1865,
+          "sha256": "a35cb9f65ab38b8e5c6712da03ba4b8fed28666a7cc2dd6fcb4b3fd5c6dedf7b"
+        },
+        {
+          "rel": ".github/workflows/ci.yml",
+          "name": "ci.yml",
+          "suffix": ".yml",
+          "size": 4827,
+          "sha256": "1391fb66a8d1e77288c134d1a26d942c88e72378c0aa6f058ca354fedec338b2"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/DreamOS",
+      "name": "DreamOS",
+      "dirty_count": 36,
+      "asset_count": 12,
+      "duplicate_hash_count": 0,
+      "same_name_count": 1,
+      "missing_count": 11,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "manifest.json",
+          "name": "manifest.json",
+          "suffix": ".json",
+          "size": 4282,
+          "sha256": "ddd1bfc9535e67f7eaf7f98d003e9a5ce25c828cb605025d10fa68c84e99ffc4"
+        },
+        {
+          "rel": ".workspace_state.json",
+          "name": ".workspace_state.json",
+          "suffix": ".json",
+          "size": 83,
+          "sha256": "00f96b3b3e83ad6fbe07e4536bc28226126bdee60fadcda5364770a177e3a22b"
+        },
+        {
+          "rel": "03_execution/changes_2025-08-10_phase2-contract.json",
+          "name": "changes_2025-08-10_phase2-contract.json",
+          "suffix": ".json",
+          "size": 1601,
+          "sha256": "08fc2f22c53bab73094ddc05f8d45b3fca3f8d56869dc4d614c3fcf81cbff714"
+        },
+        {
+          "rel": "99_manifest/selection_manifest.json",
+          "name": "selection_manifest.json",
+          "suffix": ".json",
+          "size": 3801,
+          "sha256": "63be0163ca2e5378f0c725436228e43e44199395faa96d1a58b4800b4f138ec3"
+        },
+        {
+          "rel": "contracts/message_schema.json",
+          "name": "message_schema.json",
+          "suffix": ".json",
+          "size": 1581,
+          "sha256": "5a644ef999ae556706c2b5a07ee02333b7e41ab7488cbebe0ebc5fc813976894"
+        },
+        {
+          "rel": "_ops/reports/tree_noise_prune_20260504_014306.json",
+          "name": "tree_noise_prune_20260504_014306.json",
+          "suffix": ".json",
+          "size": 99884,
+          "sha256": "d828a3e604ea650455ae506515ed73eca879818f8c86d0f8124a0b07d2cfc1a3"
+        },
+        {
+          "rel": "_ops/reports/tree_noise_prune_20260504_014333.json",
+          "name": "tree_noise_prune_20260504_014333.json",
+          "suffix": ".json",
+          "size": 99940,
+          "sha256": "9f8884fad293c2ff5c0e60a5d201596555ceffb43829263f0ce795844acb31c9"
+        },
+        {
+          "rel": "_ops/reports/finalize_tree_cleanup_20260504_014544.json",
+          "name": "finalize_tree_cleanup_20260504_014544.json",
+          "suffix": ".json",
+          "size": 3932,
+          "sha256": "77750f9980599c64a7f7c08b534fe6dc7627de9240c4ef677cc545e458233214"
+        },
+        {
+          "rel": "src/core/schemas/bus_message.schema.json",
+          "name": "bus_message.schema.json",
+          "suffix": ".json",
+          "size": 1751,
+          "sha256": "906cb334a83a73c422fc121306662939bcae3faa18e7ad61be37f422a4985437"
+        },
+        {
+          "rel": "contracts/cursor_bridge/cursor_feedback_schema.json",
+          "name": "cursor_feedback_schema.json",
+          "suffix": ".json",
+          "size": 1397,
+          "sha256": "16e22fa48babf64ec53623e6a445ea85ccfffec878c978bca905f5b790f9d380"
+        },
+        {
+          "rel": "contracts/cursor_bridge/gpt_command_schema.json",
+          "name": "gpt_command_schema.json",
+          "suffix": ".json",
+          "size": 1865,
+          "sha256": "a35cb9f65ab38b8e5c6712da03ba4b8fed28666a7cc2dd6fcb4b3fd5c6dedf7b"
+        },
+        {
+          "rel": ".github/workflows/ci.yml",
+          "name": "ci.yml",
+          "suffix": ".yml",
+          "size": 4827,
+          "sha256": "1391fb66a8d1e77288c134d1a26d942c88e72378c0aa6f058ca354fedec338b2"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/DreamTradeData",
+      "name": "DreamTradeData",
+      "dirty_count": 1918,
+      "asset_count": 8,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 8,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "manifests/2026-05-15.json",
+          "name": "2026-05-15.json",
+          "suffix": ".json",
+          "size": 119560,
+          "sha256": "d19b815d2ca1b813c7cdf8dbe7e9ae2493941020b2d861081510e8439cef86b6"
+        },
+        {
+          "rel": "manifests/2026-05-16.json",
+          "name": "2026-05-16.json",
+          "suffix": ".json",
+          "size": 126273,
+          "sha256": "f8a2f86d2765c250da998d70abc46f013dd7272cdbffe1c5c46340a5cb4b7837"
+        },
+        {
+          "rel": "manifests/2026-05-18.json",
+          "name": "2026-05-18.json",
+          "suffix": ".json",
+          "size": 190526,
+          "sha256": "756fc7a7d8f4105742cb0a38041a970230a04c398156958c32607a204d846f70"
+        },
+        {
+          "rel": "manifests/2026-05-19.json",
+          "name": "2026-05-19.json",
+          "suffix": ".json",
+          "size": 52429,
+          "sha256": "2418eedb5ebf678a8001a60c787f8852f713233e8d6cad700dff58c3fca9699c"
+        },
+        {
+          "rel": "manifests/2026-05-22.json",
+          "name": "2026-05-22.json",
+          "suffix": ".json",
+          "size": 366023,
+          "sha256": "a9c4fc5df94fc26ef9c46c9200a03c131a9f26607b7837f123cc56dca7c94b47"
+        },
+        {
+          "rel": "manifests/2026-06-04.json",
+          "name": "2026-06-04.json",
+          "suffix": ".json",
+          "size": 438907,
+          "sha256": "bf5dd201c9b5332fa7c3ed593e7a48600950ef32bc12f67a8fb8a126e7e090f0"
+        },
+        {
+          "rel": "manifests/2026-06-05.json",
+          "name": "2026-06-05.json",
+          "suffix": ".json",
+          "size": 540562,
+          "sha256": "50324d20b46a0776639fdff133eecd37ab68bddccdc7e78874eb4603fc2854a6"
+        },
+        {
+          "rel": "manifests/2026-06-06.json",
+          "name": "2026-06-06.json",
+          "suffix": ".json",
+          "size": 860868,
+          "sha256": "2d3d616246aecf705e06aa2db1bd3e7b01588e975b6e36b22cca77ac44186b34"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/DreamVault",
+      "name": "DreamVault",
+      "dirty_count": 1,
+      "asset_count": 1500,
+      "duplicate_hash_count": 15,
+      "same_name_count": 13,
+      "missing_count": 1472,
+      "decision": "preserve_reference_only_or_ignore",
+      "reason": "operator vault",
+      "top_assets": [
+        {
+          "rel": "training_config.json",
+          "name": "training_config.json",
+          "suffix": ".json",
+          "size": 696,
+          "sha256": "a29ad42795ece6f9c60132dee445b2c0ce4be13a4366b5078667f39835b4ba85"
+        },
+        {
+          "rel": "configs/ingest.yaml",
+          "name": "ingest.yaml",
+          "suffix": ".yaml",
+          "size": 2026,
+          "sha256": "48771a93860f84598402653c5469fb3f4bc9a1b17b7fa8ea3e613eb649e1ae01"
+        },
+        {
+          "rel": "models/demo_tokenized_data.json",
+          "name": "demo_tokenized_data.json",
+          "suffix": ".json",
+          "size": 1221,
+          "sha256": "708fdaac221fd14cf555749feb3bc4e6ab8d08d9b7a164eecf2c2928c028bbcd"
+        },
+        {
+          "rel": "models/model_metadata.json",
+          "name": "model_metadata.json",
+          "suffix": ".json",
+          "size": 700,
+          "sha256": "9406d8ebe4369cdf69986f90a7ebb4a8c71d4d8a4ce251b382e0ad024f3c0c97"
+        },
+        {
+          "rel": "models/training_report.json",
+          "name": "training_report.json",
+          "suffix": ".json",
+          "size": 623,
+          "sha256": "539793271d1791548c2852c56fad9cdc5cb8276ecabbe3678c9ac926bc6c2354"
+        },
+        {
+          "rel": "events/20260506_194316_cleanup_complete.json",
+          "name": "20260506_194316_cleanup_complete.json",
+          "suffix": ".json",
+          "size": 691,
+          "sha256": "6d03d16fe06838d382d191771039eb3234bcf51a7fa49b1851e402a4d179e1a3"
+        },
+        {
+          "rel": "events/latest.json",
+          "name": "latest.json",
+          "suffix": ".json",
+          "size": 691,
+          "sha256": "942e3f2436f5456f517e1e9dec263443ff0b3e65505c222b679f77468344ce39"
+        },
+        {
+          "rel": "events/20260506_194317_cleanup_complete.json",
+          "name": "20260506_194317_cleanup_complete.json",
+          "suffix": ".json",
+          "size": 691,
+          "sha256": "9fe913628c09c25bc22b89c09cc1729cd91060de04b318c1343fc6078b5c99c4"
+        },
+        {
+          "rel": "events/20260506_195921_cleanup_complete.json",
+          "name": "20260506_195921_cleanup_complete.json",
+          "suffix": ".json",
+          "size": 691,
+          "sha256": "032167f3ca9f15caca556757718781334724dbbb04eeb0d02653042ad8f309dd"
+        },
+        {
+          "rel": "events/20260506_195921_unit_test_event.json",
+          "name": "20260506_195921_unit_test_event.json",
+          "suffix": ".json",
+          "size": 263,
+          "sha256": "441f4d7422647a65201d5fa77bd1c83f73238367d530b685f272e6f6ae3e9cb3"
+        },
+        {
+          "rel": "events/20260506_195944_cleanup_complete.json",
+          "name": "20260506_195944_cleanup_complete.json",
+          "suffix": ".json",
+          "size": 691,
+          "sha256": "bd410e7f5fe7dfcd8d638284b2e236d1c7f5cacd7d5a12f08de113a5d6da3b68"
+        },
+        {
+          "rel": "events/20260506_195945_unit_test_event.json",
+          "name": "20260506_195945_unit_test_event.json",
+          "suffix": ".json",
+          "size": 263,
+          "sha256": "441f4d7422647a65201d5fa77bd1c83f73238367d530b685f272e6f6ae3e9cb3"
+        },
+        {
+          "rel": "events/20260506_200044_cleanup_complete.json",
+          "name": "20260506_200044_cleanup_complete.json",
+          "suffix": ".json",
+          "size": 691,
+          "sha256": "15b09b84dbee956ccab5b0a8db94db1d25eaa778630b42d2227a4372482147db"
+        },
+        {
+          "rel": "events/20260506_200044_unit_test_event.json",
+          "name": "20260506_200044_unit_test_event.json",
+          "suffix": ".json",
+          "size": 263,
+          "sha256": "441f4d7422647a65201d5fa77bd1c83f73238367d530b685f272e6f6ae3e9cb3"
+        },
+        {
+          "rel": "events/20260509_194937_unit_test_event.json",
+          "name": "20260509_194937_unit_test_event.json",
+          "suffix": ".json",
+          "size": 263,
+          "sha256": "441f4d7422647a65201d5fa77bd1c83f73238367d530b685f272e6f6ae3e9cb3"
+        },
+        {
+          "rel": "events/20260509_195005_cleanup_complete.json",
+          "name": "20260509_195005_cleanup_complete.json",
+          "suffix": ".json",
+          "size": 691,
+          "sha256": "e5655637f840e6b994d1ca5d58ed42ff0025d22e126e1a591c15e2f10a38d51f"
+        },
+        {
+          "rel": "events/20260509_204941_unit_test_event.json",
+          "name": "20260509_204941_unit_test_event.json",
+          "suffix": ".json",
+          "size": 263,
+          "sha256": "441f4d7422647a65201d5fa77bd1c83f73238367d530b685f272e6f6ae3e9cb3"
+        },
+        {
+          "rel": "events/20260509_205002_cleanup_complete.json",
+          "name": "20260509_205002_cleanup_complete.json",
+          "suffix": ".json",
+          "size": 691,
+          "sha256": "942e3f2436f5456f517e1e9dec263443ff0b3e65505c222b679f77468344ce39"
+        },
+        {
+          "rel": "schemas/event_schema.json",
+          "name": "event_schema.json",
+          "suffix": ".json",
+          "size": 833,
+          "sha256": "a55ea206cf46a802865d885a77ef1e2891d03df4cab511d6172e9ecc4f9de283"
+        },
+        {
+          "rel": "schemas/cpc_runtime_packet.schema.json",
+          "name": "cpc_runtime_packet.schema.json",
+          "suffix": ".json",
+          "size": 448,
+          "sha256": "0450452f750ef3e4b8e6e3de6b83e85b144f219056e2161575405ca2e4d459f6"
+        },
+        {
+          "rel": "governance/canonical_authority_registry.yaml",
+          "name": "canonical_authority_registry.yaml",
+          "suffix": ".yaml",
+          "size": 1309,
+          "sha256": "12470c8c41e82e4e988e1635a87ba40b26d5e2e6d2fa153876a6994ae14fe232"
+        },
+        {
+          "rel": "governance/task_capability_unlock.schema.json",
+          "name": "task_capability_unlock.schema.json",
+          "suffix": ".json",
+          "size": 818,
+          "sha256": "7c61d7e45df5a41ee2c54c8b56d6d6644c337477267eb9fc2abd39e8c0c43a07"
+        },
+        {
+          "rel": "discord_architect/package.json",
+          "name": "package.json",
+          "suffix": ".json",
+          "size": 550,
+          "sha256": "6a12d3e55845a6d435b3fd18554bfcd905c6a5675a6dbaf8f46082b82c08c2d4"
+        },
+        {
+          "rel": "discord_architect/package-lock.json",
+          "name": "package-lock.json",
+          "suffix": ".json",
+          "size": 12601,
+          "sha256": "d0cd2b8b42c6f2794b3af46b20efcbd306abf15fad23a3d8feeaa9ef647328c8"
+        },
+        {
+          "rel": "sites/production/websites/weareswarm.online/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 8964,
+          "sha256": "b79b31d46af97a8916de2251dbc27c1167acdb0c0c6b72a64031c6cb41015226"
+        },
+        {
+          "rel": "sites/production/websites/weareswarm.online/assets/site.css",
+          "name": "site.css",
+          "suffix": ".css",
+          "size": 5002,
+          "sha256": "a2cb096ea07d950111a20fdd8e68531760527996551d3840dd89bb577c750bed"
+        },
+        {
+          "rel": "sites/production/websites/weareswarm.online/assets/site.js",
+          "name": "site.js",
+          "suffix": ".js",
+          "size": 1152,
+          "sha256": "f5e961b14d19b16f074c09090ef9d382b29a58faeb819e19815dc8206ecdde8d"
+        },
+        {
+          "rel": "sites/production/websites/weareswarm.online/data/live-build-feed.json",
+          "name": "live-build-feed.json",
+          "suffix": ".json",
+          "size": 9658,
+          "sha256": "8c62e7018e7900f6aca91e9c5fc84597b8f56f6733eed5fe18045189d02fa33a"
+        },
+        {
+          "rel": "sites/production/websites/weareswarm.online/projects/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 3503,
+          "sha256": "f31c9671e70ed09ee17fed758fcf9ee72c8a0bb48d08f7ca3ca9a1c65d3abc5a"
+        },
+        {
+          "rel": "sites/production/websites/dadudekc.site/meridian-city/missions.json",
+          "name": "missions.json",
+          "suffix": ".json",
+          "size": 1195,
+          "sha256": "e334cfe30d4f0495bb7bcf902b14e8afff7c6caa54f1922c70f8aaaac2dba255"
+        },
+        {
+          "rel": "sites/production/websites/dadudekc.site/meridian-city/map.js",
+          "name": "map.js",
+          "suffix": ".js",
+          "size": 5367,
+          "sha256": "aa7ab7f4a59213f818987c83f1ac5fdcb31c7a02b4b63e5ca27b0f1bc914d21a"
+        },
+        {
+          "rel": "sites/production/websites/dadudekc.site/meridian-city/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 6153,
+          "sha256": "92e701168484697b6b9b7427ae525c0e6852cd5914e9b0dd7353c2cf0e98d358"
+        },
+        {
+          "rel": "sites/production/websites/dadudekc.site/spark-generator/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 59848,
+          "sha256": "b6b57a01ed4e89d120e8bfea7232828a9a3583d1079e6fc9ffcb27f3ac0e6696"
+        },
+        {
+          "rel": "sites/production/websites/dadudekc.site/spark-generator/combat_capability.js",
+          "name": "combat_capability.js",
+          "suffix": ".js",
+          "size": 6011,
+          "sha256": "e86f119694f7cc4696f0d4c955d7af9fe89a10a224dafa706792b00f176a296f"
+        },
+        {
+          "rel": "sites/production/websites/dadudekc.site/meridian-city/news/newsfeed.json",
+          "name": "newsfeed.json",
+          "suffix": ".json",
+          "size": 1460,
+          "sha256": "1fbf9901586c919488c86334308226116e4e49602866a8e4cab9320d85b15228"
+        },
+        {
+          "rel": "sites/production/websites/dadudekc.site/meridian-city/news/news.js",
+          "name": "news.js",
+          "suffix": ".js",
+          "size": 2003,
+          "sha256": "429357c65cc03d42746fd92a3e89e73be4860d052d95a8e3dd8f056b38bbe58c"
+        },
+        {
+          "rel": "sites/production/websites/dadudekc.site/meridian-city/news/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 6043,
+          "sha256": "beb13e37da9666069ccf5d77e7b0ba47a5c61d9cd7fcd75f5401b77598137b92"
+        },
+        {
+          "rel": "discord_architect/schemas/desired.example.json",
+          "name": "desired.example.json",
+          "suffix": ".json",
+          "size": 290,
+          "sha256": "6fb0dfe2413e04534f0143692f40d4d129a376e812d0bb04d2b6e633e49bc501"
+        },
+        {
+          "rel": "discord_architect/schemas/current.example.json",
+          "name": "current.example.json",
+          "suffix": ".json",
+          "size": 334,
+          "sha256": "91c43db3413044eebd32659ada3d7be8c0d08a4bdb385cd061847e1568813845"
+        },
+        {
+          "rel": "discord_architect/src/mapper.js",
+          "name": "mapper.js",
+          "suffix": ".js",
+          "size": 1330,
+          "sha256": "2715110e5571f557da51f3e20336563ca4f2e53ae73e45a7c1d5fcc6ecdc15f8"
+        },
+        {
+          "rel": "discord_architect/src/diff.js",
+          "name": "diff.js",
+          "suffix": ".js",
+          "size": 2073,
+          "sha256": "3c028733f752b8f83772a1f85487378fdb01bae6edee6784e4c3d6513cb6ba5d"
+        },
+        {
+          "rel": "discord_architect/tests/mapper.test.js",
+          "name": "mapper.test.js",
+          "suffix": ".js",
+          "size": 903,
+          "sha256": "3f91dcce5f10dcc50433dddfdaf96a12766703be088219c9b6b8a3d906e38db6"
+        },
+        {
+          "rel": "discord_architect/tests/diff.test.js",
+          "name": "diff.test.js",
+          "suffix": ".js",
+          "size": 942,
+          "sha256": "0dc81f09cd2c5fe48eae2b89d06d28ae4e14dc40122f1c2273b2acb466d501cd"
+        },
+        {
+          "rel": "discord_architect/tests/plan.test.js",
+          "name": "plan.test.js",
+          "suffix": ".js",
+          "size": 1119,
+          "sha256": "fe75a1efeb5f7d89555399b030b397068c0b9962314421238d2a45c70110c01f"
+        },
+        {
+          "rel": "discord_architect/tests/backup.test.js",
+          "name": "backup.test.js",
+          "suffix": ".js",
+          "size": 882,
+          "sha256": "cbea8429f62f840be35675958bff76fc28339a1328261bb3816b3fd34066d83e"
+        },
+        {
+          "rel": "discord_architect/tests/manifest.test.js",
+          "name": "manifest.test.js",
+          "suffix": ".js",
+          "size": 1127,
+          "sha256": "6243f9a2f9001302eb8d0351b3a93e7b2fe1ea03792f68f212e778e3537c79cd"
+        },
+        {
+          "rel": "discord_architect/tests/apply.test.js",
+          "name": "apply.test.js",
+          "suffix": ".js",
+          "size": 761,
+          "sha256": "2abfba57dfb3508039e067074b7d8c18548e0e86a25e75b08102acf365d611df"
+        },
+        {
+          "rel": "discord_architect/tests/createChannel.test.js",
+          "name": "createChannel.test.js",
+          "suffix": ".js",
+          "size": 1806,
+          "sha256": "e2330e8ff12099ea3174e5c7d6c534451686787e310b5dbd04038ce820281b69"
+        },
+        {
+          "rel": "discord_architect/tests/commandDeckRuntime.test.js",
+          "name": "commandDeckRuntime.test.js",
+          "suffix": ".js",
+          "size": 2354,
+          "sha256": "276115ad2b6d8251657abe69f4de72c9b9ad79e4bc7c187d6a856ccf1e0a5446"
+        },
+        {
+          "rel": "discord_architect/tests/persistentSessionRegistry.test.js",
+          "name": "persistentSessionRegistry.test.js",
+          "suffix": ".js",
+          "size": 1181,
+          "sha256": "a4cee56fc095440550d5b1f2af0440a0ea544589b22ff134d1c05b270a380428"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/FocusForge",
+      "name": "FocusForge",
+      "dirty_count": 0,
+      "asset_count": 2,
+      "duplicate_hash_count": 0,
+      "same_name_count": 1,
+      "missing_count": 1,
+      "decision": "salvage_small_delta_then_delete_review",
+      "reason": "mostly represented in websites; small unmatched site delta needs review",
+      "top_assets": [
+        {
+          "rel": "config/project_config.yaml",
+          "name": "project_config.yaml",
+          "suffix": ".yaml",
+          "size": 1348,
+          "sha256": "0fbe801d22666684b23d911b25278f7ba0f8c6c0f1b4b4cfcb05cfa6c619ab71"
+        },
+        {
+          "rel": "gui/themes/__init__.py",
+          "name": "__init__.py",
+          "suffix": ".py",
+          "size": 28,
+          "sha256": "d4355ce3e46ce696ec5ad0f23b75e79124b8acf8effdaa4401d1d1d42c9e9053"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/FreeRideInvestor",
+      "name": "FreeRideInvestor",
+      "dirty_count": 0,
+      "asset_count": 73,
+      "duplicate_hash_count": 5,
+      "same_name_count": 33,
+      "missing_count": 35,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "Mastering TSLA Order Flow-Beyond Big Size \u2013 The 5 Advanced Signals You\u2019re Ignoring.html",
+          "name": "Mastering TSLA Order Flow-Beyond Big Size \u2013 The 5 Advanced Signals You\u2019re Ignoring.html",
+          "suffix": ".html",
+          "size": 2688,
+          "sha256": "84312631b5dd2065be6cf0f5e4eced219a1a633b4e405c2af6eb9bd2f1f55b87"
+        },
+        {
+          "rel": "TSLA Order Book 101-Spotting Big Size Like a Pro.html",
+          "name": "TSLA Order Book 101-Spotting Big Size Like a Pro.html",
+          "suffix": ".html",
+          "size": 3676,
+          "sha256": "7d8774d76c4bec65a9c87361a2471a69cf1b52e2f27abe706e6c747c45fa0c36"
+        },
+        {
+          "rel": "TSLA Trading Cheat Sheet-Reading Big Size and Making Moves.html",
+          "name": "TSLA Trading Cheat Sheet-Reading Big Size and Making Moves.html",
+          "suffix": ".html",
+          "size": 3069,
+          "sha256": "456c6415e27a04bc914b039fcf5c1b894882d8cd6f19c9d4e852409334a75d86"
+        },
+        {
+          "rel": "Why I Let the Order Book Do the Talking on TSLA.html",
+          "name": "Why I Let the Order Book Do the Talking on TSLA.html",
+          "suffix": ".html",
+          "size": 3012,
+          "sha256": "96ea0f18ba2b2fa170f209db404848f3831fda638ec26b5f386010f8b5e6b639"
+        },
+        {
+          "rel": "admin-tools-page.php",
+          "name": "admin-tools-page.php",
+          "suffix": ".php",
+          "size": 3019,
+          "sha256": "9b1c4933bfa957f488ffa6cf04437407e69bdf76603cfbe679adc09cc3b13a74"
+        },
+        {
+          "rel": "category-tbow-tactic.php",
+          "name": "category-tbow-tactic.php",
+          "suffix": ".php",
+          "size": 4242,
+          "sha256": "f80947f22fe04297b2445bb8e282bda61aef346b3c7ad634054a9f4fcb98572e"
+        },
+        {
+          "rel": "comments.php",
+          "name": "comments.php",
+          "suffix": ".php",
+          "size": 1968,
+          "sha256": "892aee4b5aa210a72870794423de6ea09bd0fbd66ac7eff0766b4f5797f1f6a1"
+        },
+        {
+          "rel": "custom.css",
+          "name": "custom.css",
+          "suffix": ".css",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "rel": "footer.php",
+          "name": "footer.php",
+          "suffix": ".php",
+          "size": 2698,
+          "sha256": "bf643c342ed085c6268872f706ab41054a1449e95cf6ebeb765eba96b7097841"
+        },
+        {
+          "rel": "functions.php",
+          "name": "functions.php",
+          "suffix": ".php",
+          "size": 31737,
+          "sha256": "8ec0170e385ea021bda2822c66efe4578a68300d1a5131f1d864b84e506cc704"
+        },
+        {
+          "rel": "header.php",
+          "name": "header.php",
+          "suffix": ".php",
+          "size": 490,
+          "sha256": "9f3b29a554c1480d06b5719bb7999313c5702e268365ec08369a636d91b89828"
+        },
+        {
+          "rel": "home.php",
+          "name": "home.php",
+          "suffix": ".php",
+          "size": 8940,
+          "sha256": "84821c76b58186b10b4c5e52963dd6f64548dd265c348c5a7efb51c583aefbcf"
+        },
+        {
+          "rel": "index.php",
+          "name": "index.php",
+          "suffix": ".php",
+          "size": 8699,
+          "sha256": "e2b1138b4ffd3715a7014b23272e004192e3f09e8c0a253b35ee59def3fc4c2c"
+        },
+        {
+          "rel": "single.php",
+          "name": "single.php",
+          "suffix": ".php",
+          "size": 674,
+          "sha256": "af6623e6ed0a30638e944ab34f99c13fd0ff29095e32abed2da3f6d97e00a396"
+        },
+        {
+          "rel": "style.css",
+          "name": "style.css",
+          "suffix": ".css",
+          "size": 715,
+          "sha256": "b6287159cba337fcb17d3ac2d809c0d5ad1f3cdb75bd807fe352bb53e67e2704"
+        },
+        {
+          "rel": "subscribe.php",
+          "name": "subscribe.php",
+          "suffix": ".php",
+          "size": 1446,
+          "sha256": "5b5ec52b71fb37c797fba1b8c8d9dd2f8ef092d8a0685524e551504e5fbd51c1"
+        },
+        {
+          "rel": "template-tbow-tactics.php",
+          "name": "template-tbow-tactics.php",
+          "suffix": ".php",
+          "size": 3324,
+          "sha256": "d4b3f1bea44b9663015164cedb196e3459445c1126714e76d117d42a02eb3866"
+        },
+        {
+          "rel": ".project/tasks.json",
+          "name": "tasks.json",
+          "suffix": ".json",
+          "size": 298,
+          "sha256": "1a1f72f3da80e8c57cf44d775232d8e05befbbb1064b215e6cb1146487f3440f"
+        },
+        {
+          "rel": "css/_base.scss",
+          "name": "_base.scss",
+          "suffix": ".scss",
+          "size": 239,
+          "sha256": "d9168af7993314bf061524c34cf93852d5bf643ae095c55a8a4fd58016dbcc5c"
+        },
+        {
+          "rel": "css/_bootstrap.scss",
+          "name": "_bootstrap.scss",
+          "suffix": ".scss",
+          "size": 260,
+          "sha256": "9138e5f48a1c7afb8a8773920e7fe117c46d0ff9150fb5f965d03fb5445773c4"
+        },
+        {
+          "rel": "css/_buttons.scss",
+          "name": "_buttons.scss",
+          "suffix": ".scss",
+          "size": 877,
+          "sha256": "1cd0cb6342002254d209844b36978b147aec9c9f488051c3c6a19b34cf71e9f7"
+        },
+        {
+          "rel": "css/_cards.scss",
+          "name": "_cards.scss",
+          "suffix": ".scss",
+          "size": 857,
+          "sha256": "b9ed76048e9aa67301c470830b41ad588a2d1c30b4417cdcb119a083b0aeddaa"
+        },
+        {
+          "rel": "css/_dark.scss",
+          "name": "_dark.scss",
+          "suffix": ".scss",
+          "size": 460,
+          "sha256": "9b4db20b009ff3ccba4fc9e79cc2e9cc237dd9b233f37029af423ad082ff6e50"
+        },
+        {
+          "rel": "css/_footer.scss",
+          "name": "_footer.scss",
+          "suffix": ".scss",
+          "size": 293,
+          "sha256": "7c75cdadcfae470b8cc0c9e063f04f5decea6a803c505017fd4dbd55e5eb8d8b"
+        },
+        {
+          "rel": "css/_functions.scss",
+          "name": "_functions.scss",
+          "suffix": ".scss",
+          "size": 186,
+          "sha256": "5bf308c56e29f0552ade37f92a16158c70b4cd35f6367ac2bde4276f2e09e542"
+        },
+        {
+          "rel": "css/_grid.scss",
+          "name": "_grid.scss",
+          "suffix": ".scss",
+          "size": 584,
+          "sha256": "f60abbc4c2324076c31bafe772689a931a424192feb65ff613c3b97cbcaa084b"
+        },
+        {
+          "rel": "css/_header.scss",
+          "name": "_header.scss",
+          "suffix": ".scss",
+          "size": 243,
+          "sha256": "bb03765bae5e2a9cc174f8b0ffe32f845ef6942b736d3497baea10a129d83c30"
+        },
+        {
+          "rel": "css/_helpers.scss",
+          "name": "_helpers.scss",
+          "suffix": ".scss",
+          "size": 195,
+          "sha256": "5f2cc66402f92a26d40ec452785346fc891147a62b5a79cf03bdc3a837cb9166"
+        },
+        {
+          "rel": "css/_mixins.scss",
+          "name": "_mixins.scss",
+          "suffix": ".scss",
+          "size": 356,
+          "sha256": "0b3ea62c90989544739c9356fdd521585496d4743e1108a47b3a657a0eb81bd1"
+        },
+        {
+          "rel": "css/_modals.scss",
+          "name": "_modals.scss",
+          "suffix": ".scss",
+          "size": 748,
+          "sha256": "beec217ef5f21ef3e7d50e3f4dce60101ff5969c7e155ab608e8b95e496bc2ca"
+        },
+        {
+          "rel": "css/_reset.scss",
+          "name": "_reset.scss",
+          "suffix": ".scss",
+          "size": 548,
+          "sha256": "0c98ffc0856a5a40a78bbf30e7bc0224800b1862a73b070c55096cb69dd59e66"
+        },
+        {
+          "rel": "css/_tables.scss",
+          "name": "_tables.scss",
+          "suffix": ".scss",
+          "size": 535,
+          "sha256": "4b04fa071591efc979ea583e1b424dd403a64f93fd10838ce7ce47d2e413f511"
+        },
+        {
+          "rel": "css/_typography.scss",
+          "name": "_typography.scss",
+          "suffix": ".scss",
+          "size": 744,
+          "sha256": "a3b8cc00136842dff1b926f7fcacd7e8b7dc29ca5312a6eb167b380600c0ff13"
+        },
+        {
+          "rel": "css/_utilities.scss",
+          "name": "_utilities.scss",
+          "suffix": ".scss",
+          "size": 551,
+          "sha256": "e9174e159167eb1d022cda938337515a4f97d17fa81d17c5c9ffb5647edff1a1"
+        },
+        {
+          "rel": "css/main.scss",
+          "name": "main.scss",
+          "suffix": ".scss",
+          "size": 774,
+          "sha256": "0ead9e94996bae3d7594fb2bf1d2ec74d0d3211be096ea27090213849cc5d549"
+        },
+        {
+          "rel": "ui/blog_template.html",
+          "name": "blog_template.html",
+          "suffix": ".html",
+          "size": 4195,
+          "sha256": "49ef84ac7a29b8a7a7a89f97bbe09ae8fc937d70035393553cfd7a19482f52d7"
+        },
+        {
+          "rel": "ui/output/unleash_the_power_of_ai_effortlessly_automate_your_blog_posts_for_skyrocketing_productivitydiscover_20241121030526.html",
+          "name": "unleash_the_power_of_ai_effortlessly_automate_your_blog_posts_for_skyrocketing_productivitydiscover_20241121030526.html",
+          "suffix": ".html",
+          "size": 17750,
+          "sha256": "6273c47de39bc00ffa2f332f3b6484d47d73ae6e57461ddcaa2c8f076bf8504e"
+        },
+        {
+          "rel": "ui/output/unleashing_creativity_harnessing_the_power_of_ai_to_automate_your_blog_posts_welcome_fellow_content_20241121030541.html",
+          "name": "unleashing_creativity_harnessing_the_power_of_ai_to_automate_your_blog_posts_welcome_fellow_content_20241121030541.html",
+          "suffix": ".html",
+          "size": 22450,
+          "sha256": "e2e4520bd0a70bcfa014f38a7c8a568e0a49dab98dca4e3f5918323c3692a586"
+        },
+        {
+          "rel": "ui/output/unleashing_creativity_how_ai_is_revolutionizing_the_way_we_write_blog_posts_are_you_tired_of_staring_20241121033235.html",
+          "name": "unleashing_creativity_how_ai_is_revolutionizing_the_way_we_write_blog_posts_are_you_tired_of_staring_20241121033235.html",
+          "suffix": ".html",
+          "size": 18518,
+          "sha256": "8b92cef9c8822bf8203b2a4b6a85acbeb5060dd7cd49f2b3b3749cd46fbb80fb"
+        },
+        {
+          "rel": "ui/output/unleashing_creativity_how_ai_is_revolutionizing_the_way_we_write_blog_postsare_you_tired_of_spending_20241121042920.html",
+          "name": "unleashing_creativity_how_ai_is_revolutionizing_the_way_we_write_blog_postsare_you_tired_of_spending_20241121042920.html",
+          "suffix": ".html",
+          "size": 18198,
+          "sha256": "dc240be91c76f4ba43026a70f2bdf2f9b75c1bba2d6baf436b908171d0a5185d"
+        },
+        {
+          "rel": "css/abstracts/_variables.scss",
+          "name": "_variables.scss",
+          "suffix": ".scss",
+          "size": 701,
+          "sha256": "0f8b9f293a7fd9437ac87534dcc19d1a986bf7fdb227e2315b5398fa1a342c1e"
+        },
+        {
+          "rel": "css/components/_ai-trade-plan.scss",
+          "name": "_ai-trade-plan.scss",
+          "suffix": ".scss",
+          "size": 1814,
+          "sha256": "cf5537fe76914146af736e3d16445448c121545dd95d4369614b9ea407c669da"
+        },
+        {
+          "rel": "css/components/_entry-title.scss",
+          "name": "_entry-title.scss",
+          "suffix": ".scss",
+          "size": 383,
+          "sha256": "793a04ecee0e663b7a7c5f7a454c5fb62a78b4a4edc71b57cd3d5f054068324f"
+        },
+        {
+          "rel": "css/pages/_home.scss",
+          "name": "_home.scss",
+          "suffix": ".scss",
+          "size": 4293,
+          "sha256": "6ad1d6f83380f75dffe3d908d34f3eb65f33892b0dcc58000b5706bf1c0816ba"
+        },
+        {
+          "rel": "css/utilities/_highlight-box.scss",
+          "name": "_highlight-box.scss",
+          "suffix": ".scss",
+          "size": 277,
+          "sha256": "df38d30ee0ee83231ce6c96eeca894933076a1e28b5033da0533cc38c35a928d"
+        },
+        {
+          "rel": "Plugins/freeride investor/freeride-investor.php",
+          "name": "freeride-investor.php",
+          "suffix": ".php",
+          "size": 3624,
+          "sha256": "55d433dcc499085f4b30a8cb75150328375526471aa21d53ef8bf915c28e5ecb"
+        },
+        {
+          "rel": "Plugins/freeride investor/uninstall.php",
+          "name": "uninstall.php",
+          "suffix": ".php",
+          "size": 582,
+          "sha256": "f2b1ddb8d80ae3b50865f63173c5b43998e1b0ef4b4ddd1483ad5f26ec0529aa"
+        },
+        {
+          "rel": "Plugins/freerideinvestor/freeride-investor.php",
+          "name": "freeride-investor.php",
+          "suffix": ".php",
+          "size": 5558,
+          "sha256": "6885e10d0ce7e659edc9b045f6bf5b8bd74f8e05edbbc0a7879a735c65645ad4"
+        },
+        {
+          "rel": "Plugins/freerideinvestor/tests/test-plugin.php",
+          "name": "test-plugin.php",
+          "suffix": ".php",
+          "size": 900,
+          "sha256": "d06b1ec4e2d2784842e4948ab8ad8f81861b801babfbf37465f40476e5db649c"
+        },
+        {
+          "rel": "Plugins/freeride investor/templates/shortcode-alert-setup.php",
+          "name": "shortcode-alert-setup.php",
+          "suffix": ".php",
+          "size": 2323,
+          "sha256": "fa26ab7e8861f2eb391de009ba18e1f3ead3ddc40089727239366a923aca28b7"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/FreerideinvestorWebsite",
+      "name": "FreerideinvestorWebsite",
+      "dirty_count": 0,
+      "asset_count": 229,
+      "duplicate_hash_count": 89,
+      "same_name_count": 53,
+      "missing_count": 87,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "1.html",
+          "name": "1.html",
+          "suffix": ".html",
+          "size": 28620,
+          "sha256": "9e0dcd470c591951eeda293e4943bfe3392eea2bf65b65fbeecc41c15ff00307"
+        },
+        {
+          "rel": "1.json",
+          "name": "1.json",
+          "suffix": ".json",
+          "size": 342,
+          "sha256": "01bf6532187d06a420b44df5c359fc861dcc06958dd123827d4502c7eaa4cad6"
+        },
+        {
+          "rel": "Plugins/db_connect.php",
+          "name": "db_connect.php",
+          "suffix": ".php",
+          "size": 449,
+          "sha256": "88f61f912eb4add32f107a03314dc43da6fd9a64128379709a9cd2feeaf17eae"
+        },
+        {
+          "rel": "Plugins/fetch_trades.php",
+          "name": "fetch_trades.php",
+          "suffix": ".php",
+          "size": 247,
+          "sha256": "98500c1d64c4ce97e4b6cb5f2fa443a56d25103ab26ed14b4e87dbc925a1ad2f"
+        },
+        {
+          "rel": "Plugins/store_trade.php",
+          "name": "store_trade.php",
+          "suffix": ".php",
+          "size": 1174,
+          "sha256": "ae87381be2747e4f3e5091dc12de468efc9ec73386e6c4156f985e97d8e1129e"
+        },
+        {
+          "rel": "freerideinvestor-theme/admin-tools-page.php",
+          "name": "admin-tools-page.php",
+          "suffix": ".php",
+          "size": 2962,
+          "sha256": "0231d1bb23ee9bfd42abb70c1f9c7063f88c7c8a447d77c26a9a8fac4529fb9d"
+        },
+        {
+          "rel": "freerideinvestor-theme/category-tbow-tactic.php",
+          "name": "category-tbow-tactic.php",
+          "suffix": ".php",
+          "size": 4147,
+          "sha256": "239a98a725e0c8c69a96d74cb407fcfb95b3db40ec6af4b6236d0a9459827e8b"
+        },
+        {
+          "rel": "freerideinvestor-theme/comments.php",
+          "name": "comments.php",
+          "suffix": ".php",
+          "size": 1898,
+          "sha256": "0ef75ae8a38cfdd81a0f3d75a54e278b6fca7df8c46ddd823ee97f854e50a52b"
+        },
+        {
+          "rel": "freerideinvestor-theme/custom.css",
+          "name": "custom.css",
+          "suffix": ".css",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "rel": "freerideinvestor-theme/footer.php",
+          "name": "footer.php",
+          "suffix": ".php",
+          "size": 2698,
+          "sha256": "bf643c342ed085c6268872f706ab41054a1449e95cf6ebeb765eba96b7097841"
+        },
+        {
+          "rel": "freerideinvestor-theme/functions.php",
+          "name": "functions.php",
+          "suffix": ".php",
+          "size": 47506,
+          "sha256": "f797a6aac4e63e809fa7ef7f502ed665efa12c58a7f4d0d62401a04002b10a9d"
+        },
+        {
+          "rel": "freerideinvestor-theme/header.php",
+          "name": "header.php",
+          "suffix": ".php",
+          "size": 470,
+          "sha256": "b4933cbf92d237d3282bddd57577db4b1201c5ded6133af8257b45e4f0f1a7d4"
+        },
+        {
+          "rel": "freerideinvestor-theme/home.php",
+          "name": "home.php",
+          "suffix": ".php",
+          "size": 8940,
+          "sha256": "84821c76b58186b10b4c5e52963dd6f64548dd265c348c5a7efb51c583aefbcf"
+        },
+        {
+          "rel": "freerideinvestor-theme/index.php",
+          "name": "index.php",
+          "suffix": ".php",
+          "size": 8511,
+          "sha256": "193fc67f00243f488c0ebe3f5ab3fb8a1eb67bb15a92b780cced50e8e63906aa"
+        },
+        {
+          "rel": "freerideinvestor-theme/plugin-health-check.php",
+          "name": "plugin-health-check.php",
+          "suffix": ".php",
+          "size": 9059,
+          "sha256": "2b2fcefbc12a411d2cae845bd62845b24330526fb84e379c5e0d6f906d4a2aff"
+        },
+        {
+          "rel": "freerideinvestor-theme/single.php",
+          "name": "single.php",
+          "suffix": ".php",
+          "size": 674,
+          "sha256": "af6623e6ed0a30638e944ab34f99c13fd0ff29095e32abed2da3f6d97e00a396"
+        },
+        {
+          "rel": "freerideinvestor-theme/style.css",
+          "name": "style.css",
+          "suffix": ".css",
+          "size": 686,
+          "sha256": "8762bcece41fdb9490e4f0868bf316d63f47821df4ce8fa2f74a18c8e4afcad3"
+        },
+        {
+          "rel": "freerideinvestor-theme/subscribe.php",
+          "name": "subscribe.php",
+          "suffix": ".php",
+          "size": 1412,
+          "sha256": "559946d83d56c795a8e33d016b8ebda6b9b63765f97f793a1130570f6a4c1396"
+        },
+        {
+          "rel": "freerideinvestor-theme/template-market-news.php",
+          "name": "template-market-news.php",
+          "suffix": ".php",
+          "size": 1829,
+          "sha256": "76325af00d80a14c05bb430b42436ddef2db03a332ecb3a984b46847abd0c958"
+        },
+        {
+          "rel": "freerideinvestor-theme/template-tbow-tactics.php",
+          "name": "template-tbow-tactics.php",
+          "suffix": ".php",
+          "size": 3241,
+          "sha256": "aab495db0d5abeb6fcee2deeccc8dff354dc87484ecdb66a08b0f7193ce0a287"
+        },
+        {
+          "rel": "website_posts/1st_Freeride_Investor_Sample_Cheatsheet.html",
+          "name": "1st_Freeride_Investor_Sample_Cheatsheet.html",
+          "suffix": ".html",
+          "size": 505,
+          "sha256": "89a16cc8a72fe3213ee64f9a81120d99b27caf7ecd51f2c423723dea3df9d64d"
+        },
+        {
+          "rel": "website_posts/50_Script_Ideas_for_FreeRideInvestor.html",
+          "name": "50_Script_Ideas_for_FreeRideInvestor.html",
+          "suffix": ".html",
+          "size": 2699,
+          "sha256": "1cf6745132f5ec7984127b880cba3ceeed8ad22ab843954e0d2c6944f2061f32"
+        },
+        {
+          "rel": "website_posts/Analyzing_a_Tesla_Options_Trade_in_Real-Time.html",
+          "name": "Analyzing_a_Tesla_Options_Trade_in_Real-Time.html",
+          "suffix": ".html",
+          "size": 5348,
+          "sha256": "86b0c9836add65427dfe794ece07389b0006abfb2df7ea354715e0548fe9510e"
+        },
+        {
+          "rel": "website_posts/Analyzing_a_Tesla_Options_Trade_in_Real_Time.html",
+          "name": "Analyzing_a_Tesla_Options_Trade_in_Real_Time.html",
+          "suffix": ".html",
+          "size": 5348,
+          "sha256": "86b0c9836add65427dfe794ece07389b0006abfb2df7ea354715e0548fe9510e"
+        },
+        {
+          "rel": "website_posts/Backtest_Similar_Setups.html",
+          "name": "Backtest_Similar_Setups.html",
+          "suffix": ".html",
+          "size": 5468,
+          "sha256": "e79de5e41424345c9f8bb71d7ef7594a4689d6082d39ca77578020b85678de17"
+        },
+        {
+          "rel": "website_posts/Behind_the_Scenes_Building_a_Better_FreeRideInvestor.html",
+          "name": "Behind_the_Scenes_Building_a_Better_FreeRideInvestor.html",
+          "suffix": ".html",
+          "size": 1672,
+          "sha256": "3014a4651df547cc7b416adcef8f708b5b668a0551eb3b100d4138f95b540319"
+        },
+        {
+          "rel": "website_posts/Behind_the_Screens_Building_FreeRideInvestor_Together_A_12_Year_Olds_Perspective.html",
+          "name": "Behind_the_Screens_Building_FreeRideInvestor_Together_A_12_Year_Olds_Perspective.html",
+          "suffix": ".html",
+          "size": 5984,
+          "sha256": "9ef1b342186ad87f0fa2021705a7225557b9dc8b58ba6316111d9637c0579f61"
+        },
+        {
+          "rel": "website_posts/Breaking_Down_the_Tbow_Tactics_Best_Practices_for_Small_Account_Traders.html",
+          "name": "Breaking_Down_the_Tbow_Tactics_Best_Practices_for_Small_Account_Traders.html",
+          "suffix": ".html",
+          "size": 4809,
+          "sha256": "c24c118db07ed4bb4f47ab62955c954af95492321b2f24c1f8baf1cf18396951"
+        },
+        {
+          "rel": "website_posts/Building_the_Future_of_Trading_Tools_Progress_and_What8217s_Next.html",
+          "name": "Building_the_Future_of_Trading_Tools_Progress_and_What8217s_Next.html",
+          "suffix": ".html",
+          "size": 4742,
+          "sha256": "f428dfb414064fb882c46d749cfa10b26c20e1c94ebbf7281cbf056bccf4e97f"
+        },
+        {
+          "rel": "website_posts/Customizing_Our_Blog_Page_Adding_Tactics_Latest_Posts_and_Dev_Logs_to_FreeRideInvestor.html",
+          "name": "Customizing_Our_Blog_Page_Adding_Tactics_Latest_Posts_and_Dev_Logs_to_FreeRideInvestor.html",
+          "suffix": ".html",
+          "size": 4225,
+          "sha256": "94aca9d63251e682af1300eeeffdb3524e963614b4e87c98a5ff1e4cc793473d"
+        },
+        {
+          "rel": "website_posts/December_7_2024_8211_FreeRideInvestor_Development_Blog.html",
+          "name": "December_7_2024_8211_FreeRideInvestor_Development_Blog.html",
+          "suffix": ".html",
+          "size": 6175,
+          "sha256": "b66c2bec57ffbf18a4a0ab1de89d274f5ba5c89e713aa0390355308c142ed100"
+        },
+        {
+          "rel": "website_posts/Dev_Blog_12062024_1058pm.html",
+          "name": "Dev_Blog_12062024_1058pm.html",
+          "suffix": ".html",
+          "size": 5490,
+          "sha256": "13b24981f1984f0e97834c1f413e5a9c78011b6953a5ee0b547049486c659f62"
+        },
+        {
+          "rel": "website_posts/Dev_Blog_Exploring_Assembly_for_Market_Data_Replay.html",
+          "name": "Dev_Blog_Exploring_Assembly_for_Market_Data_Replay.html",
+          "suffix": ".html",
+          "size": 4906,
+          "sha256": "575e0f11e4c249c6e94accbbc95b766bdb0a51614e4f1fbcc34d92b33e94182e"
+        },
+        {
+          "rel": "website_posts/Dev_Blog_Refining_the_TSLA_MACD_RSI_Trading_Strategy.html",
+          "name": "Dev_Blog_Refining_the_TSLA_MACD_RSI_Trading_Strategy.html",
+          "suffix": ".html",
+          "size": 3659,
+          "sha256": "c07ec96851b800fcabdc6f695ef81c897ae74a65fd6f705fe079b05598e5547f"
+        },
+        {
+          "rel": "website_posts/Dev_Log_Advanced_Fintech_Engine_Build.html",
+          "name": "Dev_Log_Advanced_Fintech_Engine_Build.html",
+          "suffix": ".html",
+          "size": 4964,
+          "sha256": "49232514b3636a4a2caf6428beee7b655ae7de0119eba5e60bd7b0a0488db310"
+        },
+        {
+          "rel": "website_posts/Developer_Log_TradingRobotPlug_Progress_Update.html",
+          "name": "Developer_Log_TradingRobotPlug_Progress_Update.html",
+          "suffix": ".html",
+          "size": 2241,
+          "sha256": "ee48d99b83e9e92e28bb95c7e65785f35a30d3f9deebd90fffc28fd149e76cbd"
+        },
+        {
+          "rel": "website_posts/Discord_Page_Updates.html",
+          "name": "Discord_Page_Updates.html",
+          "suffix": ".html",
+          "size": 4505,
+          "sha256": "1b69062f8127ba4e9271e7c1241cea2e584579c6c5f9684d83ea0295438878c4"
+        },
+        {
+          "rel": "website_posts/Enhancing_FreerideInvestor_and_TradingRobotPlug_A_Day_of_Strategic_Development.html",
+          "name": "Enhancing_FreerideInvestor_and_TradingRobotPlug_A_Day_of_Strategic_Development.html",
+          "suffix": ".html",
+          "size": 6925,
+          "sha256": "c1f7814260ed24c372ecbcab0be1894a39b91456deb973a227f80619d53fd761"
+        },
+        {
+          "rel": "website_posts/Enhancing_Tools_Management_and_Display_for_FreeRideInvestor.html",
+          "name": "Enhancing_Tools_Management_and_Display_for_FreeRideInvestor.html",
+          "suffix": ".html",
+          "size": 3797,
+          "sha256": "5896ca32266dc7fd11d1e40f55d159f35d9df6ffe5d385db8d5fcbcaa71d880f"
+        },
+        {
+          "rel": "website_posts/Explore_Scaling_Strategies.html",
+          "name": "Explore_Scaling_Strategies.html",
+          "suffix": ".html",
+          "size": 5304,
+          "sha256": "7223b13debb8b97d01bb01b58694a6b34df2cef9b27cb55a8da74d9c0d7801e6"
+        },
+        {
+          "rel": "website_posts/FreeRideInvestor_Building_the_Future_of_AI_Driven_Trading.html",
+          "name": "FreeRideInvestor_Building_the_Future_of_AI_Driven_Trading.html",
+          "suffix": ".html",
+          "size": 4808,
+          "sha256": "46c02ce9c03399a44fcaaf696bab73ede8383812aa455a4e630fe21f3a2c734e"
+        },
+        {
+          "rel": "website_posts/FreeRideInvestor_Dev_Log_Annotating_Charts_Like_a_Sniper.html",
+          "name": "FreeRideInvestor_Dev_Log_Annotating_Charts_Like_a_Sniper.html",
+          "suffix": ".html",
+          "size": 2449,
+          "sha256": "9308209315028d85783850916f3be5358e150f6e6731de9c65ffbb09fce6c330"
+        },
+        {
+          "rel": "website_posts/FreeRideInvestor_Development_Blog_Building_a_Million_Dollar_Venture_by_2026.html",
+          "name": "FreeRideInvestor_Development_Blog_Building_a_Million_Dollar_Venture_by_2026.html",
+          "suffix": ".html",
+          "size": 17266,
+          "sha256": "6a2ebe7cd17cdd71133091e6c76afa33081633146b8e0e3ca3f4119d500d27c4"
+        },
+        {
+          "rel": "website_posts/FreeRide_Investor_Dev_Blog_Comprehensive_Update_and_Reflections.html",
+          "name": "FreeRide_Investor_Dev_Blog_Comprehensive_Update_and_Reflections.html",
+          "suffix": ".html",
+          "size": 2607,
+          "sha256": "d63ef457f0dbc86831bcb76a6ed5e8cb0257758ffeff1c597a828d50d700b6ed"
+        },
+        {
+          "rel": "website_posts/From_Profitable_to_Non_Profitable_My_Journey_Lessons_and_Plan.html",
+          "name": "From_Profitable_to_Non_Profitable_My_Journey_Lessons_and_Plan.html",
+          "suffix": ".html",
+          "size": 17954,
+          "sha256": "91d197742c97948a4754e8f40eb8b1e21f71bdb62d2ae5d05204e0dc17ba61c8"
+        },
+        {
+          "rel": "website_posts/Fueling_Progress_at_128_AM_A_Reflection_on_Passion_and_Motivation.html",
+          "name": "Fueling_Progress_at_128_AM_A_Reflection_on_Passion_and_Motivation.html",
+          "suffix": ".html",
+          "size": 4920,
+          "sha256": "3ced0370ab170bdc4fd4d5003f86fe5231d3a93e28173393fa9ef39fc0e826af"
+        },
+        {
+          "rel": "website_posts/Habit_Tracker.html",
+          "name": "Habit_Tracker.html",
+          "suffix": ".html",
+          "size": 34,
+          "sha256": "cf47803a0950977346699353650a35bf9868a862d3c760b81958fc74562b3871"
+        },
+        {
+          "rel": "website_posts/Holding_onto_our_mistakes.html",
+          "name": "Holding_onto_our_mistakes.html",
+          "suffix": ".html",
+          "size": 1758,
+          "sha256": "0a58a63b730e4ff0f9a538e4e62a844573457b75d997cd83eb649774d7fa654e"
+        },
+        {
+          "rel": "website_posts/How_to_Build_Confidence_as_a_Trader.html",
+          "name": "How_to_Build_Confidence_as_a_Trader.html",
+          "suffix": ".html",
+          "size": 911,
+          "sha256": "ba30113fa8280bae533dcc87072c477b65ef80c4f1aa5509b7d263f0493e290a"
+        },
+        {
+          "rel": "website_posts/How_to_Trade_Like_a_Sniper_Not_a_Machine_Gun.html",
+          "name": "How_to_Trade_Like_a_Sniper_Not_a_Machine_Gun.html",
+          "suffix": ".html",
+          "size": 6268,
+          "sha256": "8f457f26f613f3c70ca648a6936cefe5cfb420b03e200e4b7a4258d74ef0e205"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/HomeSchool_Mastery",
+      "name": "HomeSchool_Mastery",
+      "dirty_count": 0,
+      "asset_count": 39,
+      "duplicate_hash_count": 0,
+      "same_name_count": 1,
+      "missing_count": 38,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "app.html",
+          "name": "app.html",
+          "suffix": ".html",
+          "size": 49559,
+          "sha256": "511f9f330df692f372681c0b457db90f0f94d7f0fa6d8611260bd710f15b22df"
+        },
+        {
+          "rel": "quiz-engine.js",
+          "name": "quiz-engine.js",
+          "suffix": ".js",
+          "size": 6823,
+          "sha256": "68b2608f160b8546f83e34cfb598746a0f51c14e3d855e31a47102ac302ae8f7"
+        },
+        {
+          "rel": "server.js",
+          "name": "server.js",
+          "suffix": ".js",
+          "size": 30119,
+          "sha256": "e3c341041d05411cb3b90c9e790df28f67859961cf5df7502d321eaa795e7ac3"
+        },
+        {
+          "rel": "tests/quiz-engine.test.js",
+          "name": "quiz-engine.test.js",
+          "suffix": ".js",
+          "size": 1995,
+          "sha256": "2022509392f6384f6e8c8822c35c6307066e37ad64f7439efec8cfcaca0823d4"
+        },
+        {
+          "rel": "lessons_lan/plugins/teks_daily_training/plugin.json",
+          "name": "plugin.json",
+          "suffix": ".json",
+          "size": 462,
+          "sha256": "03db9da24983231b9b15aa423907b126e3ec81cb04b71d307b249a30eb17bf5c"
+        },
+        {
+          "rel": "lessons_lan/app/templates/_lesson_ai_coach.html",
+          "name": "_lesson_ai_coach.html",
+          "suffix": ".html",
+          "size": 4725,
+          "sha256": "eb2780e7f3c16577474617010f6d3ef89bda879eaa9b891936094807443de68e"
+        },
+        {
+          "rel": "lessons_lan/app/templates/admin_edit_lesson.html",
+          "name": "admin_edit_lesson.html",
+          "suffix": ".html",
+          "size": 1846,
+          "sha256": "f57c4eb1dd82dd9acaa2ed7bca7f1a98f99a155f0b7a4a9c5ea90c3495f653ce"
+        },
+        {
+          "rel": "lessons_lan/app/templates/admin_feedback.html",
+          "name": "admin_feedback.html",
+          "suffix": ".html",
+          "size": 1581,
+          "sha256": "946c5e9df1061b323ed08aeaa302d4daaba5bbcca6f961858ba09188b7a3b434"
+        },
+        {
+          "rel": "lessons_lan/app/templates/admin_home.html",
+          "name": "admin_home.html",
+          "suffix": ".html",
+          "size": 1762,
+          "sha256": "b6adf622ddd8fc8687212e0fdb3c11d619f2c229f76be085eeb87144ce6b0758"
+        },
+        {
+          "rel": "lessons_lan/app/templates/admin_lessons.html",
+          "name": "admin_lessons.html",
+          "suffix": ".html",
+          "size": 4907,
+          "sha256": "ac11aa54735a48930d1d5db51eaaf15a8f42afb887c73e73bbbf88aefc600bbe"
+        },
+        {
+          "rel": "lessons_lan/app/templates/admin_user.html",
+          "name": "admin_user.html",
+          "suffix": ".html",
+          "size": 1106,
+          "sha256": "1b4c75beb082e15a02eff1dd728349c39392c9eeea3a5039c5dfc4bd58a0f48b"
+        },
+        {
+          "rel": "lessons_lan/app/templates/adventure.html",
+          "name": "adventure.html",
+          "suffix": ".html",
+          "size": 2850,
+          "sha256": "9d348c2163dbfd75e946de1646295b08abbfe3b661fcf49c0785faa88bf8833a"
+        },
+        {
+          "rel": "lessons_lan/app/templates/base.html",
+          "name": "base.html",
+          "suffix": ".html",
+          "size": 4753,
+          "sha256": "a921cc236c311beed31b2ea40a283ce591fc48f089f20c6e7b63a4315f5d2945"
+        },
+        {
+          "rel": "lessons_lan/app/templates/boss.html",
+          "name": "boss.html",
+          "suffix": ".html",
+          "size": 2583,
+          "sha256": "79013d5f81e76a95bc0a43ab44dfe1f3ebcd68ab0fd0e0615ee3d6ed1d037a00"
+        },
+        {
+          "rel": "lessons_lan/app/templates/boss_result.html",
+          "name": "boss_result.html",
+          "suffix": ".html",
+          "size": 2171,
+          "sha256": "0ecb7df436bf1eb7c4ddae1bc26a2ba9ad352ea56264862950a82de04586cf61"
+        },
+        {
+          "rel": "lessons_lan/app/templates/feedback.html",
+          "name": "feedback.html",
+          "suffix": ".html",
+          "size": 1522,
+          "sha256": "58e857b7446cd3f030fb859c26c37c8952b7fa7e7fb3bccb9deb825aef3b18c6"
+        },
+        {
+          "rel": "lessons_lan/app/templates/games_hub.html",
+          "name": "games_hub.html",
+          "suffix": ".html",
+          "size": 3856,
+          "sha256": "7202008634eead021c6c1e49d8b3d354060d1aae5c1f52c46863fbd1b269036a"
+        },
+        {
+          "rel": "lessons_lan/app/templates/lesson.html",
+          "name": "lesson.html",
+          "suffix": ".html",
+          "size": 2125,
+          "sha256": "62d5432441718801d64cdd531a0d678ce05c0a15af9af40625212d460287867e"
+        },
+        {
+          "rel": "lessons_lan/app/templates/lesson_discount_dash.html",
+          "name": "lesson_discount_dash.html",
+          "suffix": ".html",
+          "size": 9719,
+          "sha256": "745e0a1c6b943337f9370e67792750f1382ae80f4b6698f205e0d0e1a3c943ef"
+        },
+        {
+          "rel": "lessons_lan/app/templates/lesson_fraction_battle.html",
+          "name": "lesson_fraction_battle.html",
+          "suffix": ".html",
+          "size": 5201,
+          "sha256": "3fb224c32973db51e05e883cbd355b15f6c8331317297450f72b5bee34166b2f"
+        },
+        {
+          "rel": "lessons_lan/app/templates/lesson_games.html",
+          "name": "lesson_games.html",
+          "suffix": ".html",
+          "size": 3789,
+          "sha256": "d5092be01856102d6bd959297f47ad141494dfb06704fc86c50573b43a089134"
+        },
+        {
+          "rel": "lessons_lan/app/templates/lesson_text_detective.html",
+          "name": "lesson_text_detective.html",
+          "suffix": ".html",
+          "size": 10550,
+          "sha256": "a4aff62c359f61c1c17ff3639045b3341877135cbe78a8983f484febfadd7039"
+        },
+        {
+          "rel": "lessons_lan/app/templates/login.html",
+          "name": "login.html",
+          "suffix": ".html",
+          "size": 1200,
+          "sha256": "f3099cbf1bd446c41cdac291267a0ce7324cc1aa4426e92067f4004c0c7986b5"
+        },
+        {
+          "rel": "lessons_lan/app/templates/practice.html",
+          "name": "practice.html",
+          "suffix": ".html",
+          "size": 2957,
+          "sha256": "fd87d19985b782dcc2191e7f1972da80d613f7f46e0a3ed1691e28df0dc32ba4"
+        },
+        {
+          "rel": "lessons_lan/app/templates/practice_result.html",
+          "name": "practice_result.html",
+          "suffix": ".html",
+          "size": 1346,
+          "sha256": "4957d1fd914bcc33734a790f27f76aca4776a86faa5ce96cb2a6bc3faace164b"
+        },
+        {
+          "rel": "lessons_lan/app/templates/snake_practice.html",
+          "name": "snake_practice.html",
+          "suffix": ".html",
+          "size": 23625,
+          "sha256": "44f874d95e51aebb613368d690bc94a1d17382d9f59a21fad10dae50d1a7bf12"
+        },
+        {
+          "rel": "lessons_lan/app/templates/spelling_lab.html",
+          "name": "spelling_lab.html",
+          "suffix": ".html",
+          "size": 10073,
+          "sha256": "0496ae5c21bcf73409aa99a10b85fe7748fc30943156c1a981787756eab203a0"
+        },
+        {
+          "rel": "lessons_lan/app/templates/story_duel.html",
+          "name": "story_duel.html",
+          "suffix": ".html",
+          "size": 11432,
+          "sha256": "cda41285f1ee78b9f84220fc51d38ca2d47b487916fdd6de496773a74379f3ff"
+        },
+        {
+          "rel": "lessons_lan/app/templates/today.html",
+          "name": "today.html",
+          "suffix": ".html",
+          "size": 2639,
+          "sha256": "82eb30d12e741a11930865a969124f2859cd0c95a57f43dcfac21d1667dc31d9"
+        },
+        {
+          "rel": "lessons_lan/app/templates/vocabulary_signal_breaker.html",
+          "name": "vocabulary_signal_breaker.html",
+          "suffix": ".html",
+          "size": 26200,
+          "sha256": "14c7feafd112200bb88c12caa074b648ead7b06314cfbaece7d860752f43155f"
+        },
+        {
+          "rel": "lessons_lan/app/static/css/fraction_battle.css",
+          "name": "fraction_battle.css",
+          "suffix": ".css",
+          "size": 2731,
+          "sha256": "dd8fd5b8d3326d1ee4f25c31f88ece8ae1400912de8a414de67d2a53e55054c3"
+        },
+        {
+          "rel": "lessons_lan/app/static/js/fraction_battle/main.js",
+          "name": "main.js",
+          "suffix": ".js",
+          "size": 13581,
+          "sha256": "d6620887d758aa2dd083e2c1037b1b3ca4072d863a8216970b512454786e2c47"
+        },
+        {
+          "rel": "lessons_lan/app/static/js/fraction_battle/question_engine.js",
+          "name": "question_engine.js",
+          "suffix": ".js",
+          "size": 3152,
+          "sha256": "4928522879c371caecf7c659904d1cad31247055d4afbd08be92754345fd4547"
+        },
+        {
+          "rel": "lessons_lan/app/data/story_duel/marcus_wallet_v1.json",
+          "name": "marcus_wallet_v1.json",
+          "suffix": ".json",
+          "size": 2714,
+          "sha256": "a0cc12d342006c0e6fb5a28a4c4a39775242ee497de70afa923f02c8c4e985f1"
+        },
+        {
+          "rel": "lessons_lan/app/data/story_duel/registry.json",
+          "name": "registry.json",
+          "suffix": ".json",
+          "size": 642,
+          "sha256": "62d5bdae9a33839c85408899dd48c26f97403b796a61ddff6efaa479d0d64041"
+        },
+        {
+          "rel": "lessons_lan/app/data/story_duel/schema.json",
+          "name": "schema.json",
+          "suffix": ".json",
+          "size": 767,
+          "sha256": "e810d690ce9640587e26dd175e8b4c1b4dac6ac096cda0e8f5f63581489ce495"
+        },
+        {
+          "rel": "lessons_lan/app/data/story_duel/storm_library_v1.json",
+          "name": "storm_library_v1.json",
+          "suffix": ".json",
+          "size": 2863,
+          "sha256": "5d7c83f8a6cb07e979198b7a2d87519e12bd6f4bf262a641fa03c21749cd0820"
+        },
+        {
+          "rel": "lessons_lan/app/data/story_duel/vocab_genesis_v1.json",
+          "name": "vocab_genesis_v1.json",
+          "suffix": ".json",
+          "size": 9552,
+          "sha256": "4e84af5cee7fefba1b19dfc2a5f6d931d178d0c748485beeab876a4d659a9e21"
+        },
+        {
+          "rel": "lessons_lan/app/data/story_duel/vocab_ocean_v1.json",
+          "name": "vocab_ocean_v1.json",
+          "suffix": ".json",
+          "size": 2685,
+          "sha256": "cf46de1cd2a24ceec88494c31573bf5f12eb589d7f79755834b349425ba527df"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/ProfessorSama",
+      "name": "ProfessorSama",
+      "dirty_count": 0,
+      "asset_count": 2,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 2,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "dashboard.html",
+          "name": "dashboard.html",
+          "suffix": ".html",
+          "size": 39765,
+          "sha256": "1ec448c091773f4cebdb0e926a25bfe107f2bf40ae191072a8f107806ebe1f3a"
+        },
+        {
+          "rel": ".github/workflows/ci.yml",
+          "name": "ci.yml",
+          "suffix": ".yml",
+          "size": 1282,
+          "sha256": "bb7b7a8a5a4d7e43d846b5e86ad35ffb18b2e77dbb2a8fc380f430bb74570abf"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/TROOP",
+      "name": "TROOP",
+      "dirty_count": 8,
+      "asset_count": 3,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 3,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "IT_HUB/Templates/mysql_flexible_server_template.json",
+          "name": "mysql_flexible_server_template.json",
+          "suffix": ".json",
+          "size": 3352,
+          "sha256": "90cb76029c1327a5ffa3a5fcbeaed50c4eb355d633347960d7d21a88357dd914"
+        },
+        {
+          "rel": "IT_HUB/monitoring/alert_rules.json",
+          "name": "alert_rules.json",
+          "suffix": ".json",
+          "size": 311,
+          "sha256": "f50d593272ac4690d11c72ab2fb8304def11be5447bf8c2360797bacc24612de"
+        },
+        {
+          "rel": ".github/workflows/ci-cd.yml",
+          "name": "ci-cd.yml",
+          "suffix": ".yml",
+          "size": 2623,
+          "sha256": "a692dc3c7e4f812c3adbf53f95fb6b487150ecbf8300d75a138c1c6ffc6873b9"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/The-emergence-",
+      "name": "The-emergence-",
+      "dirty_count": 0,
+      "asset_count": 74,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 74,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "package-lock.json",
+          "name": "package-lock.json",
+          "suffix": ".json",
+          "size": 12814,
+          "sha256": "7afb229498986e865d950f4e1ebc62048f568955d53bef8f0f3e8ba385b66db0"
+        },
+        {
+          "rel": "package.json",
+          "name": "package.json",
+          "suffix": ".json",
+          "size": 2197,
+          "sha256": "6c5e294225918a59f051abb7db05f9f98e9d22ba0e3a93ece201b13f442dc23a"
+        },
+        {
+          "rel": "tests/answer_choices.test.js",
+          "name": "answer_choices.test.js",
+          "suffix": ".js",
+          "size": 835,
+          "sha256": "8b014650fd915017fa5929d154fe1211654f9c5edb1d33228b475799a6c906dd"
+        },
+        {
+          "rel": "tests/quiz_contract.test.js",
+          "name": "quiz_contract.test.js",
+          "suffix": ".js",
+          "size": 1833,
+          "sha256": "2ee7a7d871a28e0a5160255fd4b52e520a5869e9e1c19242079d93bec3501fd9"
+        },
+        {
+          "rel": "tests/ai/profile_flavor_reader.test.js",
+          "name": "profile_flavor_reader.test.js",
+          "suffix": ".js",
+          "size": 1566,
+          "sha256": "7d62d7706786ce486708ed630dfc8340ff920f9406a4dd66f2bbe05f9543ab76"
+        },
+        {
+          "rel": "tests/e2e/adaptive_discord_model.e2e.test.js",
+          "name": "adaptive_discord_model.e2e.test.js",
+          "suffix": ".js",
+          "size": 1355,
+          "sha256": "795b767c51d5132eba391460dbb40ec6895f0dd06488e35b6ea9edc91260f324"
+        },
+        {
+          "rel": "tests/e2e/adaptive_quiz_stress_percentile.e2e.test.js",
+          "name": "adaptive_quiz_stress_percentile.e2e.test.js",
+          "suffix": ".js",
+          "size": 5079,
+          "sha256": "1471cc2215a4dd4ac9714690cc15c7f5fa243c9646996e5035d536a845d23c93"
+        },
+        {
+          "rel": "tests/e2e/derived_question_pointer.e2e.test.js",
+          "name": "derived_question_pointer.e2e.test.js",
+          "suffix": ".js",
+          "size": 754,
+          "sha256": "af9b101a1ca1090bbba7d739bb4b29637584067057ef54febaf13579c89cea15"
+        },
+        {
+          "rel": "tests/e2e/discord_session_integrity.e2e.test.js",
+          "name": "discord_session_integrity.e2e.test.js",
+          "suffix": ".js",
+          "size": 1487,
+          "sha256": "29d495621654dcc0999ed97eb6e9625348458517f9bcdfdec6131e51163d5ac7"
+        },
+        {
+          "rel": "tests/e2e/quiz_flow.e2e.test.js",
+          "name": "quiz_flow.e2e.test.js",
+          "suffix": ".js",
+          "size": 1534,
+          "sha256": "b6ad16c9c41ed4ead0853a7d3749e84c2f987b04c15a199204500b9b5cd92eec"
+        },
+        {
+          "rel": "tests/e2e/quiz_session_state_machine.e2e.test.js",
+          "name": "quiz_session_state_machine.e2e.test.js",
+          "suffix": ".js",
+          "size": 3422,
+          "sha256": "ca480b9f3abd1248723620d5ae50360b26f449e277c8b08b84dea06ab354fe60"
+        },
+        {
+          "rel": "tests/e2e/quiz_view_self_heal.e2e.test.js",
+          "name": "quiz_view_self_heal.e2e.test.js",
+          "suffix": ".js",
+          "size": 752,
+          "sha256": "27025297fb5cee333438f9fde484c81f6ed880a343548a01c2e4cd2667633cd9"
+        },
+        {
+          "rel": "tests/e2e/scored_sheet_flow.e2e.test.js",
+          "name": "scored_sheet_flow.e2e.test.js",
+          "suffix": ".js",
+          "size": 1153,
+          "sha256": "4e63adcc014aa031fc83e8fc8e0a6b23bcd55aa0d5072b3ea1cd327cb25c38e2"
+        },
+        {
+          "rel": "tests/e2e/stale_safe_button_quiz.e2e.test.js",
+          "name": "stale_safe_button_quiz.e2e.test.js",
+          "suffix": ".js",
+          "size": 2602,
+          "sha256": "238b9edcea2a172ea94cfd2c7e2f2c7d617b37180137810685fbe529f2c7d644"
+        },
+        {
+          "rel": "tests/scoring/adaptive_engine_full.test.js",
+          "name": "adaptive_engine_full.test.js",
+          "suffix": ".js",
+          "size": 2223,
+          "sha256": "ff1c32c2263c264983d4b854225ea726ccd35682134e61d1cbe289b3cd77eee5"
+        },
+        {
+          "rel": "tests/scoring/adaptive_progress.test.js",
+          "name": "adaptive_progress.test.js",
+          "suffix": ".js",
+          "size": 1851,
+          "sha256": "ada3b00421aac0f61cf9c5f5f234860608b4d0496c4cc0af82f4e212ecf9d7a4"
+        },
+        {
+          "rel": "tests/scoring/adaptive_quiz.test.js",
+          "name": "adaptive_quiz.test.js",
+          "suffix": ".js",
+          "size": 2125,
+          "sha256": "26959e31ab98cd7300672cc3b12b3b2c2b52d9729f92f5daf9783ffa963cf3a6"
+        },
+        {
+          "rel": "tests/scoring/percentile_distribution.test.js",
+          "name": "percentile_distribution.test.js",
+          "suffix": ".js",
+          "size": 791,
+          "sha256": "b2ddadd9674e45e51ee7790a42619577a12f9dd6bf6027a4b4e6cc4b51462c13"
+        },
+        {
+          "rel": "tests/scoring/percentile_floor.test.js",
+          "name": "percentile_floor.test.js",
+          "suffix": ".js",
+          "size": 512,
+          "sha256": "e51149277f9980b92d76d04e772b9e3a11b072308ba41c080393cc7831e20f1c"
+        },
+        {
+          "rel": "tests/scoring/scoring_engine.test.js",
+          "name": "scoring_engine.test.js",
+          "suffix": ".js",
+          "size": 3122,
+          "sha256": "b489d11d1e786d83c0589e858564eff06ab86af1e3cd597d2dfdc2832950c4ea"
+        },
+        {
+          "rel": "tests/scoring/v5_scoring_contract.test.js",
+          "name": "v5_scoring_contract.test.js",
+          "suffix": ".js",
+          "size": 2242,
+          "sha256": "cb322453df90e2a2682afc9b3661ee06930645d97dc53f5aa47922b1b385f5fc"
+        },
+        {
+          "rel": "runtime/config/server.config.yaml",
+          "name": "server.config.yaml",
+          "suffix": ".yaml",
+          "size": 142,
+          "sha256": "97f01c0a92e679fb49569cc00273a6c10ebcd155c9796c57eb4c96d64705e473"
+        },
+        {
+          "rel": "runtime/tasks/spark_protocol_absorb_quizbot_into_node_001.yaml",
+          "name": "spark_protocol_absorb_quizbot_into_node_001.yaml",
+          "suffix": ".yaml",
+          "size": 579,
+          "sha256": "2cdda5f522cf3a6244f66529453da5ce086ee6aa074ec13e22d4a0728259fc11"
+        },
+        {
+          "rel": "runtime/tasks/spark_protocol_foundation_bootstrap_001.yaml",
+          "name": "spark_protocol_foundation_bootstrap_001.yaml",
+          "suffix": ".yaml",
+          "size": 404,
+          "sha256": "23e619db272928961399d32ac37e465a57e4acfa2137c39057709fe18ee7dcea"
+        },
+        {
+          "rel": "runtime/reports/deterministic_battle_runtime_001.json",
+          "name": "deterministic_battle_runtime_001.json",
+          "suffix": ".json",
+          "size": 754,
+          "sha256": "81c24eead51f62df0136eb876cf24296a597a01f934e70fa2f65e2763151009c"
+        },
+        {
+          "rel": "runtime/reports/character_persistence_discord_lock_002.json",
+          "name": "character_persistence_discord_lock_002.json",
+          "suffix": ".json",
+          "size": 1701,
+          "sha256": "e8059f2b50d3754fe949cdc8725756c7de543067e355f9f0869d9eba9b868436"
+        },
+        {
+          "rel": "runtime/reports/canonical_character_generation_pipeline_003.json",
+          "name": "canonical_character_generation_pipeline_003.json",
+          "suffix": ".json",
+          "size": 551,
+          "sha256": "bcd3f662094f03d079be0089906cd2fd3e2e3555fd42897434caac60485c7ec7"
+        },
+        {
+          "rel": "runtime/reports/t5_solo_manifestation_math_guard_004.json",
+          "name": "t5_solo_manifestation_math_guard_004.json",
+          "suffix": ".json",
+          "size": 347,
+          "sha256": "06200623cb088004233070ae972bd0ce943d705d95ba0b5a91f1c128d9f56a19"
+        },
+        {
+          "rel": "runtime/reports/protocol_math_validator_006.json",
+          "name": "protocol_math_validator_006.json",
+          "suffix": ".json",
+          "size": 547,
+          "sha256": "9ed6405104305a162304ae4af098c61dbdeeb359227dc73c858bc6f487e20f5c"
+        },
+        {
+          "rel": "runtime/reports/protocol_property_fuzz_tests_007.json",
+          "name": "protocol_property_fuzz_tests_007.json",
+          "suffix": ".json",
+          "size": 439,
+          "sha256": "dd42754aa4964049d90322be3b5a3d65bea6127b3142ad7aca5243f0012517f2"
+        },
+        {
+          "rel": "runtime/reports/discord_quiz_to_locked_character_flow_008.json",
+          "name": "discord_quiz_to_locked_character_flow_008.json",
+          "suffix": ".json",
+          "size": 1089,
+          "sha256": "16c7f02548c3ffeb5218d117e9179174f1070138fdfe33858e6338dc036a6209"
+        },
+        {
+          "rel": "runtime/reports/ai_dm_campaign_runtime_009.json",
+          "name": "ai_dm_campaign_runtime_009.json",
+          "suffix": ".json",
+          "size": 4386,
+          "sha256": "a77949abafb58d9c35d50a3361ee4b95116023fd45c7f0d4b9dc862060da3fe4"
+        },
+        {
+          "rel": "runtime/reports/ai_dm_discord_platform_permissions_010.json",
+          "name": "ai_dm_discord_platform_permissions_010.json",
+          "suffix": ".json",
+          "size": 4063,
+          "sha256": "27ddcb7e28de5296e1fd472070afc4c97a7f083289e7785572ae94dcfde6299b"
+        },
+        {
+          "rel": "runtime/reports/discord_platform_action_executor_014.json",
+          "name": "discord_platform_action_executor_014.json",
+          "suffix": ".json",
+          "size": 450,
+          "sha256": "a5895233e0ced6a098ed3ae4698f862ce10e6c215085bd5fcb33940ba5c6d955"
+        },
+        {
+          "rel": "runtime/reports/discord_platform_action_executor_014_manifest.json",
+          "name": "discord_platform_action_executor_014_manifest.json",
+          "suffix": ".json",
+          "size": 4102,
+          "sha256": "1e0c8daa99627cbb4e17994dd408a0cd604e798c789055b05190f6b60d985d73"
+        },
+        {
+          "rel": "runtime/reports/discord_platform_action_executor_014_audit.json",
+          "name": "discord_platform_action_executor_014_audit.json",
+          "suffix": ".json",
+          "size": 3133,
+          "sha256": "10055daaf47ccd5b1f93e6ea2efc14fe4cec21dc65690781e43c7f9b5b18a10b"
+        },
+        {
+          "rel": "packages/aegis-interpreter/index.js",
+          "name": "index.js",
+          "suffix": ".js",
+          "size": 2477,
+          "sha256": "471b2a68b413a71925237e0da5abe71e79f80daa1631f5f7ec47573f4d1bbab4"
+        },
+        {
+          "rel": "packages/profile-flavor-reader/index.js",
+          "name": "index.js",
+          "suffix": ".js",
+          "size": 2218,
+          "sha256": "86c5e296414c80d86fd1a7c45bbd3fe7f1d6e4820b315d4e0ca32be34f3d43ab"
+        },
+        {
+          "rel": "packages/quiz-button-session/index.js",
+          "name": "index.js",
+          "suffix": ".js",
+          "size": 5376,
+          "sha256": "14c5c294da274836e29aae0ee466acd901272b9d39f7a191caeefe4a1b44a091"
+        },
+        {
+          "rel": "packages/quiz-engine/index.js",
+          "name": "index.js",
+          "suffix": ".js",
+          "size": 2214,
+          "sha256": "097a1ce634643a198d06594741e3146ca12d7ac65a065f8a77f45577054d642f"
+        },
+        {
+          "rel": "packages/quiz-session/index.js",
+          "name": "index.js",
+          "suffix": ".js",
+          "size": 4175,
+          "sha256": "18900d3b92d6fc8eafb57761a40cff345c484bcda54f6a4cb46eba63b2981a91"
+        },
+        {
+          "rel": "packages/scoring-engine/index.js",
+          "name": "index.js",
+          "suffix": ".js",
+          "size": 12843,
+          "sha256": "ae933b73e7ac96d6f9015f396a721af777d4435ff9651db391edc55ae4b4a7b1"
+        },
+        {
+          "rel": "fixtures/scoring/balanced_average.json",
+          "name": "balanced_average.json",
+          "suffix": ".json",
+          "size": 201,
+          "sha256": "6b99e3aae19be8bf8a827b7e15324d5f34703f06291585c2e941f43947c9dbac"
+        },
+        {
+          "rel": "fixtures/scoring/solo_t5_energy.json",
+          "name": "solo_t5_energy.json",
+          "suffix": ".json",
+          "size": 119,
+          "sha256": "0cffdedf1fbc922b537b6219031124b76d222be8026d1e9b295edeea2275b2c6"
+        },
+        {
+          "rel": "fixtures/quiz/livewire.quiz.json",
+          "name": "livewire.quiz.json",
+          "suffix": ".json",
+          "size": 297,
+          "sha256": "d14d38bd400a040e83997f3177275b0b3ba2dba6f70090000822a8fde654abba"
+        },
+        {
+          "rel": "data/quiz/questions.json",
+          "name": "questions.json",
+          "suffix": ".json",
+          "size": 107293,
+          "sha256": "ab2ca719ff86dbaf96dc89931a55feeef1e658bb8485e80104b8194870861165"
+        },
+        {
+          "rel": "data/reports/quiz_schema_a_g_audit.json",
+          "name": "quiz_schema_a_g_audit.json",
+          "suffix": ".json",
+          "size": 721,
+          "sha256": "54a27684ae214af7b9ef6ab7b2138ea5b6526482abaffa647df2f1f4465590ad"
+        },
+        {
+          "rel": "data/characters/100000000000001.json",
+          "name": "100000000000001.json",
+          "suffix": ".json",
+          "size": 609,
+          "sha256": "b8c2b3b44185cab8bb54c8ed1675c66481492b1a3928f94ef0942e0d7a2767f9"
+        },
+        {
+          "rel": "data/characters/100000000000002.json",
+          "name": "100000000000002.json",
+          "suffix": ".json",
+          "size": 893,
+          "sha256": "ef4aa8a6839ea3f5ea331310102b8e64c58efce5e10a29f6340e6e2bd68d52ba"
+        },
+        {
+          "rel": "data/campaigns/the-emergence-demo.json",
+          "name": "the-emergence-demo.json",
+          "suffix": ".json",
+          "size": 1530,
+          "sha256": "ab025bdbf1bbfe64d6557f683489963913fddfece501b08f0718d2f9173e24d9"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/Thea",
+      "name": "Thea",
+      "dirty_count": 2,
+      "asset_count": 14,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 14,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": ".pre-commit-config.yaml",
+          "name": ".pre-commit-config.yaml",
+          "suffix": ".yaml",
+          "size": 559,
+          "sha256": "35d75a28af846155db8b1b88f8fdf84b5dbb7e27c24252700c5a9e9c83d6f911"
+        },
+        {
+          "rel": "docker-compose.yml",
+          "name": "docker-compose.yml",
+          "suffix": ".yml",
+          "size": 2829,
+          "sha256": "1f3182a85aabdc93694b322f21e85cdaf2eea5b00955c09dfafa0a03c7089eed"
+        },
+        {
+          "rel": "config/agents.yaml",
+          "name": "agents.yaml",
+          "suffix": ".yaml",
+          "size": 904,
+          "sha256": "c4a9bf1221ab97d52c20793db5a2fb652eed5a4872ff34b4139d3b785e5485ff"
+        },
+        {
+          "rel": "config/discord_config.json",
+          "name": "discord_config.json",
+          "suffix": ".json",
+          "size": 1375,
+          "sha256": "3770a0df7e16ab2e0ef88847a01d1f3437511eb831d7d26616aedf24422cc1b5"
+        },
+        {
+          "rel": "config/dream_dataset_utilization.yaml",
+          "name": "dream_dataset_utilization.yaml",
+          "suffix": ".yaml",
+          "size": 7746,
+          "sha256": "b0c014d46a082910cde45e66e0f9d9268ed2942aaad69b3f5ee25d518a697fcb"
+        },
+        {
+          "rel": "config/prompts.yaml",
+          "name": "prompts.yaml",
+          "suffix": ".yaml",
+          "size": 700,
+          "sha256": "3139ad0bcaf26d447d1b95bedb7fb5758c6082a72e3ea72f1b894439d91375ee"
+        },
+        {
+          "rel": "data/demo_export.json",
+          "name": "demo_export.json",
+          "suffix": ".json",
+          "size": 555,
+          "sha256": "82a0183d995233c8208b54373d993879b09cc66bfb5f2ccb38df2d2c32d80e0b"
+        },
+        {
+          "rel": "demos/discord_integration/config/bot_config.yaml",
+          "name": "bot_config.yaml",
+          "suffix": ".yaml",
+          "size": 1050,
+          "sha256": "b936b5fe3581dcc6a8e191c4fd84c66fb67a8495492367f3dabbbfae1987f5e3"
+        },
+        {
+          "rel": "demos/discord_integration/config/permissions.yaml",
+          "name": "permissions.yaml",
+          "suffix": ".yaml",
+          "size": 1960,
+          "sha256": "0de69da7f5d07c1562ae1b493215831ac9048e5b8af283a03888f5ecdbf35aef"
+        },
+        {
+          "rel": ".github/workflows/deploy-weaponizer.yml",
+          "name": "deploy-weaponizer.yml",
+          "suffix": ".yml",
+          "size": 5616,
+          "sha256": "ab50002ede5f34d10cce87ea36e5ad12d48dd6d6b47d174c21b750406b9da82a"
+        },
+        {
+          "rel": ".github/workflows/layout-check.yml",
+          "name": "layout-check.yml",
+          "suffix": ".yml",
+          "size": 625,
+          "sha256": "45f558b66d3d55ecdd05fef9717a8803f29b530e186d7819b663870583782f73"
+        },
+        {
+          "rel": ".github/workflows/parity-check.yml",
+          "name": "parity-check.yml",
+          "suffix": ".yml",
+          "size": 800,
+          "sha256": "6902e9d28a99e8d4fc90b4a434c337f6dcf6dd54c440611ff72727bcdf33e1aa"
+        },
+        {
+          "rel": ".github/workflows/refresh_chatgpt_cookies.yml",
+          "name": "refresh_chatgpt_cookies.yml",
+          "suffix": ".yml",
+          "size": 1118,
+          "sha256": "526e3662af6711a151c804c00d16b5755a8f1aa127f92d6bfb812f63418d4dff"
+        },
+        {
+          "rel": ".github/workflows/weaponization-tests.yml",
+          "name": "weaponization-tests.yml",
+          "suffix": ".yml",
+          "size": 8242,
+          "sha256": "c1ef07f29aba699103d0db0144fee1910d5f75177abd3434eb4b7a924f52b113"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/TradingRobotPlugWeb",
+      "name": "TradingRobotPlugWeb",
+      "dirty_count": 0,
+      "asset_count": 39,
+      "duplicate_hash_count": 36,
+      "same_name_count": 3,
+      "missing_count": 0,
+      "decision": "delete_ready_after_final_review",
+      "reason": "site assets appear already represented in websites by hash/name",
+      "top_assets": [
+        {
+          "rel": "TheTradingRobotPlugin/class-thetradingrobotplugin-activator.php",
+          "name": "class-thetradingrobotplugin-activator.php",
+          "suffix": ".php",
+          "size": 2767,
+          "sha256": "372c21df3c020299695ddf03f33d595b3de67ca77a36138e36ec4f8b1430bbf6"
+        },
+        {
+          "rel": "TheTradingRobotPlugin/class-thetradingrobotplugin-admin.php",
+          "name": "class-thetradingrobotplugin-admin.php",
+          "suffix": ".php",
+          "size": 4082,
+          "sha256": "bd2ec08e5b31bbadffad09da7f3f31d8af82679a26f95ec83d9f5aee4d6d1124"
+        },
+        {
+          "rel": "TheTradingRobotPlugin/class-thetradingrobotplugin-deactivator.php",
+          "name": "class-thetradingrobotplugin-deactivator.php",
+          "suffix": ".php",
+          "size": 2409,
+          "sha256": "fde2dd4ddc7d17eff97c185276a3b7963cbc87809282c49729bb3b1488ee4624"
+        },
+        {
+          "rel": "TheTradingRobotPlugin/class-thetradingrobotplugin-runner.php",
+          "name": "class-thetradingrobotplugin-runner.php",
+          "suffix": ".php",
+          "size": 4439,
+          "sha256": "5d6b026711bf6510c5c7f7c79a2b5415eab95d8b7abf558588dd2dba193c7bd8"
+        },
+        {
+          "rel": "TheTradingRobotPlugin/class-thetradingrobotplugin.php",
+          "name": "class-thetradingrobotplugin.php",
+          "suffix": ".php",
+          "size": 2294,
+          "sha256": "1aeba085c016ecaf2c53970c78b3cb1d33e05722f2333d8a78260fe3e2dc6b6d"
+        },
+        {
+          "rel": "config/config.yaml",
+          "name": "config.yaml",
+          "suffix": ".yaml",
+          "size": 801,
+          "sha256": "7db1d5f3a56027a185a15476d0606ecc0100f7bef36bc784ac37cfb913f191f6"
+        },
+        {
+          "rel": "my-custom-theme/404.php",
+          "name": "404.php",
+          "suffix": ".php",
+          "size": 586,
+          "sha256": "1195adace9388c815c5c78b95be86f21950e1fb655adbdc6a7faede01d62adc7"
+        },
+        {
+          "rel": "my-custom-theme/archive.php",
+          "name": "archive.php",
+          "suffix": ".php",
+          "size": 887,
+          "sha256": "7e3003faef3ba0ba48a23ad1e31a551221d870b82f8b5768be59a3f811030f21"
+        },
+        {
+          "rel": "my-custom-theme/comments.php",
+          "name": "comments.php",
+          "suffix": ".php",
+          "size": 5119,
+          "sha256": "bc83832dc39f2bc47f88ef55be9f264d7a23758179d7012fc813d87f34da2a09"
+        },
+        {
+          "rel": "my-custom-theme/content-none.php",
+          "name": "content-none.php",
+          "suffix": ".php",
+          "size": 706,
+          "sha256": "0a4656070b07f6bfb64a2ce266ab929382111e4563c79d1df41b02da764c4195"
+        },
+        {
+          "rel": "my-custom-theme/content-page.php",
+          "name": "content-page.php",
+          "suffix": ".php",
+          "size": 1402,
+          "sha256": "67935de6db024c4f5acc0aa5955a80bf54df12dd839a35d3100d4d9af03a918c"
+        },
+        {
+          "rel": "my-custom-theme/content.php",
+          "name": "content.php",
+          "suffix": ".php",
+          "size": 893,
+          "sha256": "a82d16edeeff2d6a425b6c515ded8f124adb292e1ef40c57cd5718df3303c98e"
+        },
+        {
+          "rel": "my-custom-theme/footer.php",
+          "name": "footer.php",
+          "suffix": ".php",
+          "size": 847,
+          "sha256": "27c428004472243c6f7d69e12fb56649c29b8d30eda3b8dfc8bd2888d703055f"
+        },
+        {
+          "rel": "my-custom-theme/frontpage.php",
+          "name": "frontpage.php",
+          "suffix": ".php",
+          "size": 6545,
+          "sha256": "56a08091fb39db33e5900abd5b61fb4ff5a8038ff3f6a8431017ef89ef2004af"
+        },
+        {
+          "rel": "my-custom-theme/functions.php",
+          "name": "functions.php",
+          "suffix": ".php",
+          "size": 7451,
+          "sha256": "f7cf9c6b55b21b7f7264ae1dbe4435a7d4a96e3664de45b7f4875196e16fd820"
+        },
+        {
+          "rel": "my-custom-theme/header.php",
+          "name": "header.php",
+          "suffix": ".php",
+          "size": 1640,
+          "sha256": "9f5ccacf11d0779de5e7b2682e56f2f533d9b650f111c6743e670418e901ada3"
+        },
+        {
+          "rel": "my-custom-theme/home.php",
+          "name": "home.php",
+          "suffix": ".php",
+          "size": 1276,
+          "sha256": "6736001daa5432926d693a47dd7d1764d2589e89cd2b7ce24c52d97b9a3fad94"
+        },
+        {
+          "rel": "my-custom-theme/index.php",
+          "name": "index.php",
+          "suffix": ".php",
+          "size": 2911,
+          "sha256": "f76e90d6f48316522d6e9057bc4e956af540d54c6cd595be68f47d16e5843b08"
+        },
+        {
+          "rel": "my-custom-theme/page.php",
+          "name": "page.php",
+          "suffix": ".php",
+          "size": 746,
+          "sha256": "9a8af989dc2bd255c2f4af9f5e49d3cfd8b70f3389827f6ed552d91fa4f844d4"
+        },
+        {
+          "rel": "my-custom-theme/search.php",
+          "name": "search.php",
+          "suffix": ".php",
+          "size": 1029,
+          "sha256": "ebc2a2112202d03384ef9f336848765c4401c08689f538c02d12f58907018950"
+        },
+        {
+          "rel": "my-custom-theme/sidebar.php",
+          "name": "sidebar.php",
+          "suffix": ".php",
+          "size": 518,
+          "sha256": "97072d5ce1124934a46e8dbd8b8ce8d4b68ac84a66848fda8f4b22423d9fa337"
+        },
+        {
+          "rel": "my-custom-theme/single.php",
+          "name": "single.php",
+          "suffix": ".php",
+          "size": 778,
+          "sha256": "510e5f8576bfd901f78d5501be050b365697505e5262246761a24d610beb7368"
+        },
+        {
+          "rel": "my-custom-theme/style-rtl.css",
+          "name": "style-rtl.css",
+          "suffix": ".css",
+          "size": 1205,
+          "sha256": "4d56a62158c65921304945a378a73265f707bf7e44fb62c0dc7c83d6f4db287d"
+        },
+        {
+          "rel": "my-custom-theme/style.css",
+          "name": "style.css",
+          "suffix": ".css",
+          "size": 6473,
+          "sha256": "22a8471807de5033fde645964540a3645c5259beb5e39161f528d1c2b5115866"
+        },
+        {
+          "rel": "my-custom-theme/thetradingrobotplugin.php",
+          "name": "thetradingrobotplugin.php",
+          "suffix": ".php",
+          "size": 1816,
+          "sha256": "04f1940480334ab8e0d52844eb2044f5e6999e6b28a00589f533d0589759a117"
+        },
+        {
+          "rel": "my-custom-theme/variables.css",
+          "name": "variables.css",
+          "suffix": ".css",
+          "size": 612,
+          "sha256": "a01419ed62cee2d8818d076215da9bcb197a3cd55d9adbeb496a557dc5dfa1e4"
+        },
+        {
+          "rel": "my-custom-theme/admin/shortcodes.php",
+          "name": "shortcodes.php",
+          "suffix": ".php",
+          "size": 1902,
+          "sha256": "de663dc33cf1c5bd2065194b174a500057986522e09b2d098f22324986dbe772"
+        },
+        {
+          "rel": "my-custom-theme/admin/theme-options.php",
+          "name": "theme-options.php",
+          "suffix": ".php",
+          "size": 2744,
+          "sha256": "3f2857fec8c2220a1e27e2b8cb5b3eddc1effd0927742d8e3984d681a2e91aaa"
+        },
+        {
+          "rel": "my-custom-theme/inc/customizer.php",
+          "name": "customizer.php",
+          "suffix": ".php",
+          "size": 1679,
+          "sha256": "af359f89745c1a8b4af8efbb6aa7d2e70b80403d286d589c439ff1c477d05f1d"
+        },
+        {
+          "rel": "my-custom-theme/inc/widgets.php",
+          "name": "widgets.php",
+          "suffix": ".php",
+          "size": 1283,
+          "sha256": "f3a62c1583387191295e2253b5dd3b44ca86b9140aa494e6bbb39810acf07b3d"
+        },
+        {
+          "rel": "my-custom-theme/template-parts/content.php",
+          "name": "content.php",
+          "suffix": ".php",
+          "size": 504,
+          "sha256": "81deaaa3fa1e9cbced5777577623a59e11fb78030576fe90acd1a19b8ba41fd5"
+        },
+        {
+          "rel": "my-custom-theme/template-parts/contentsingle.php",
+          "name": "contentsingle.php",
+          "suffix": ".php",
+          "size": 647,
+          "sha256": "04c6d08fdc07110c386823305c8fb9d494a8972e307dd872015a1f9dd11a5a50"
+        },
+        {
+          "rel": "my-custom-theme/assets/js/customizer.js",
+          "name": "customizer.js",
+          "suffix": ".js",
+          "size": 175,
+          "sha256": "0a71b76309d5da0067245dc1638607ecd77330e69ade8f492c71bb57c72257f8"
+        },
+        {
+          "rel": "my-custom-theme/assets/js/main.js",
+          "name": "main.js",
+          "suffix": ".js",
+          "size": 4304,
+          "sha256": "b11666956def48c7eb06f86991d9a96e19380d86302de132c29be84aa960a818"
+        },
+        {
+          "rel": "TheTradingRobotPlugin/tests/class-thetradingrobotplugin-activator-test.php",
+          "name": "class-thetradingrobotplugin-activator-test.php",
+          "suffix": ".php",
+          "size": 2880,
+          "sha256": "7f96cda2531e5dde43b40a57acd7a9c27584a782287fad22b5380035482fb14c"
+        },
+        {
+          "rel": "TheTradingRobotPlugin/tests/class-thetradingrobotplugin-admin-test.php",
+          "name": "class-thetradingrobotplugin-admin-test.php",
+          "suffix": ".php",
+          "size": 3361,
+          "sha256": "53078027db6e222f6387a481f66d3662a56fc60629d9354e4e19510087ad527a"
+        },
+        {
+          "rel": "TheTradingRobotPlugin/tests/class-thetradingrobotplugin-deactivator-test.php",
+          "name": "class-thetradingrobotplugin-deactivator-test.php",
+          "suffix": ".php",
+          "size": 4124,
+          "sha256": "3df9fab89c67f913ab9c027386d78f706617becfdd42a476ecdf3f9abfe76d5b"
+        },
+        {
+          "rel": "TheTradingRobotPlugin/tests/class-thetradingrobotplugin-runner-test.php",
+          "name": "class-thetradingrobotplugin-runner-test.php",
+          "suffix": ".php",
+          "size": 3724,
+          "sha256": "4069935c900f072899225ca7f4836e4a688b71c18eb74560492159acbb881f9d"
+        },
+        {
+          "rel": "TheTradingRobotPlugin/tests/class-thetradingrobotplugin-test.php",
+          "name": "class-thetradingrobotplugin-test.php",
+          "suffix": ".php",
+          "size": 4071,
+          "sha256": "7ba8dc8356a0a0a21cfe2bb396468de845c48ffd0bbf5b93e5788c5ca5cd3d86"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/bible-application",
+      "name": "bible-application",
+      "dirty_count": 0,
+      "asset_count": 1,
+      "duplicate_hash_count": 1,
+      "same_name_count": 0,
+      "missing_count": 0,
+      "decision": "delete_ready_after_final_review",
+      "reason": "site assets appear already represented in websites by hash/name",
+      "top_assets": [
+        {
+          "rel": "index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 47737,
+          "sha256": "4e723c8bb27d2ccf6229b56143f79b9c2ae52744a658c8756a2a25e119026a87"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/contract-leads",
+      "name": "contract-leads",
+      "dirty_count": 0,
+      "asset_count": 3,
+      "duplicate_hash_count": 0,
+      "same_name_count": 2,
+      "missing_count": 1,
+      "decision": "salvage_small_delta_then_delete_review",
+      "reason": "mostly represented in websites; small unmatched site delta needs review",
+      "top_assets": [
+        {
+          "rel": ".pre-commit-config.yaml",
+          "name": ".pre-commit-config.yaml",
+          "suffix": ".yaml",
+          "size": 201,
+          "sha256": "d6b87eb3749a110813509ad1a50666b48ac25a5fc966450308adb2d53c870f80"
+        },
+        {
+          "rel": "config.yaml",
+          "name": "config.yaml",
+          "suffix": ".yaml",
+          "size": 341,
+          "sha256": "61c8917db2b69947645228d0fd4f1ece0b97b4aa3bd583f4a6c09591ec757784"
+        },
+        {
+          "rel": ".project/tasks.json",
+          "name": "tasks.json",
+          "suffix": ".json",
+          "size": 301,
+          "sha256": "84d8bfe4cbd6392bd65b37853c58332cc1a0ec4183ed319ecc2ea7316db93e7e"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/discord_teks_tester",
+      "name": "discord_teks_tester",
+      "dirty_count": 1,
+      "asset_count": 3,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 3,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "data/students.json",
+          "name": "students.json",
+          "suffix": ".json",
+          "size": 244,
+          "sha256": "af4f55892173c63ece467b9de2a8c2769ed395f7a0871f8dd4b9c6142b931e41"
+        },
+        {
+          "rel": "data/grade6_teks_ratios_rates_percents.json",
+          "name": "grade6_teks_ratios_rates_percents.json",
+          "suffix": ".json",
+          "size": 1249,
+          "sha256": "354b278745b204ad7d9eb6699bef93756af28f6d68d251072473f21bc4c85cdf"
+        },
+        {
+          "rel": "data/grade7_teks_foundation_check.json",
+          "name": "grade7_teks_foundation_check.json",
+          "suffix": ".json",
+          "size": 833,
+          "sha256": "f70414282b80cac2822901ed2800fcc07c11a182d7baef7ada92e35acc1a5fab"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/gpt_automation",
+      "name": "gpt_automation",
+      "dirty_count": 0,
+      "asset_count": 4,
+      "duplicate_hash_count": 1,
+      "same_name_count": 1,
+      "missing_count": 2,
+      "decision": "salvage_small_delta_then_delete_review",
+      "reason": "mostly represented in websites; small unmatched site delta needs review",
+      "top_assets": [
+        {
+          "rel": "dependency_cache.json",
+          "name": "dependency_cache.json",
+          "suffix": ".json",
+          "size": 3044,
+          "sha256": "c9ebc22b6b5ec32d61a1bf79e8f8b0d6a8f116d2af24ab73016df8333b41736e"
+        },
+        {
+          "rel": "project_analysis.json",
+          "name": "project_analysis.json",
+          "suffix": ".json",
+          "size": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "rel": ".project/tasks.json",
+          "name": "tasks.json",
+          "suffix": ".json",
+          "size": 5042,
+          "sha256": "4c66e2a4207051303be8782817d9593c87d7b61a9ae32368baa6edfe6f75f38c"
+        },
+        {
+          "rel": ".github/workflows/tests.yml",
+          "name": "tests.yml",
+          "suffix": ".yml",
+          "size": 714,
+          "sha256": "9f94b424a47ba17e82f17557361b444dc77253edd0e53d4680a6e06368b6c3f8"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/projectscanner",
+      "name": "projectscanner",
+      "dirty_count": 0,
+      "asset_count": 649,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 649,
+      "decision": "preserve_reference_only_or_ignore",
+      "reason": "toolbelt",
+      "top_assets": [
+        {
+          "rel": "project_analysis_projectscanner.json",
+          "name": "project_analysis_projectscanner.json",
+          "suffix": ".json",
+          "size": 17683,
+          "sha256": "ac0158cb91c71dca2dd621c90bd957925da4bc7aa985f467f35f670fde53ccc4"
+        },
+        {
+          "rel": "chatgpt_project_context_projectscanner.json",
+          "name": "chatgpt_project_context_projectscanner.json",
+          "suffix": ".json",
+          "size": 19478,
+          "sha256": "7ded2b2baf05325f33c0a4a7b07b8c3f9b6806f0d493f96253eefcaac2abc926"
+        },
+        {
+          "rel": ".projectscanner_cache.json",
+          "name": ".projectscanner_cache.json",
+          "suffix": ".json",
+          "size": 6117,
+          "sha256": "4050d97ba35ec74d372abba55b81f80a7a05215300a827f1f0532e1615ed69b2"
+        },
+        {
+          "rel": "config/.pre-commit-config.yaml",
+          "name": ".pre-commit-config.yaml",
+          "suffix": ".yaml",
+          "size": 4598,
+          "sha256": "153b82dfad9bcc59cb73d51392c284abd29c842b539926efabd3af7527557972"
+        },
+        {
+          "rel": "runtime/reports/project_context__root_.json",
+          "name": "project_context__root_.json",
+          "suffix": ".json",
+          "size": 1554,
+          "sha256": "24fde7daee43a8a32c700d292dd3c0336e2c5a10ac871da7da87162729fc5fbb"
+        },
+        {
+          "rel": "runtime/reports/project_context_config.json",
+          "name": "project_context_config.json",
+          "suffix": ".json",
+          "size": 164,
+          "sha256": "98559c9ec09d1bf63466f366c88903ce38c7856729718007fdbf6ba5aa0ad72b"
+        },
+        {
+          "rel": "runtime/reports/project_context_docs.json",
+          "name": "project_context_docs.json",
+          "suffix": ".json",
+          "size": 2046,
+          "sha256": "427786901d3cf4ccf9d89d9a664650209d596c5d2e48db2beed90b4d7a0c59cb"
+        },
+        {
+          "rel": "runtime/reports/project_context_scripts.json",
+          "name": "project_context_scripts.json",
+          "suffix": ".json",
+          "size": 309,
+          "sha256": "5e1ad494c42d3189e7763e58af773e3169b15baa1dc7d4d5c0628b944b76ba17"
+        },
+        {
+          "rel": "runtime/reports/project_context_src.json",
+          "name": "project_context_src.json",
+          "suffix": ".json",
+          "size": 7763,
+          "sha256": "e3264c50b8a440f8820fa040c1fb5d16e6af597b79b7fd641c578c3b73f74800"
+        },
+        {
+          "rel": "runtime/reports/project_context_.github.json",
+          "name": "project_context_.github.json",
+          "suffix": ".json",
+          "size": 493,
+          "sha256": "3ee7cdd17aa4a2bc7325e58669e0995437663d6313f4d4a9b8b99cff18ebee16"
+        },
+        {
+          "rel": "runtime/reports/project_context_tests.json",
+          "name": "project_context_tests.json",
+          "suffix": ".json",
+          "size": 1483,
+          "sha256": "98540ce769172075c6d728fe7b3e47026ec034ad402abda95369788291573dde"
+        },
+        {
+          "rel": "runtime/reports/project_context_index.json",
+          "name": "project_context_index.json",
+          "suffix": ".json",
+          "size": 647,
+          "sha256": "eb982e4d597271d4b2e928778d40a70d7e843b4af45b2ba4ee2eb65d48723b04"
+        },
+        {
+          "rel": "runtime/reports/bridge_analysis_ai_systems.json",
+          "name": "bridge_analysis_ai_systems.json",
+          "suffix": ".json",
+          "size": 1305,
+          "sha256": "28b4f8b81207d7f96405d2470f8e21c9d40fdb78f1d7e7f9eedda51727da247b"
+        },
+        {
+          "rel": "runtime/reports/projectscanner_json_artifact_inventory.json",
+          "name": "projectscanner_json_artifact_inventory.json",
+          "suffix": ".json",
+          "size": 12329,
+          "sha256": "91b61142ab45a2246b45ff155ba425f7513b4f3e7050dd26a8cb9f7fb9c394b9"
+        },
+        {
+          "rel": "runtime/reports/projectscanner_cleanup_manifest.json",
+          "name": "projectscanner_cleanup_manifest.json",
+          "suffix": ".json",
+          "size": 280801,
+          "sha256": "61bd260402edaadd87b76120ee33d072d6aebb9625372547c56878fa1370d153"
+        },
+        {
+          "rel": "runtime/targets/scan_targets_latest.json",
+          "name": "scan_targets_latest.json",
+          "suffix": ".json",
+          "size": 1631,
+          "sha256": "7c6d2d7f60ac54d975a167f4add1ec7e20704c1120fb0bea4caf956468429e30"
+        },
+        {
+          "rel": "runtime/targets/local_projects_census.json",
+          "name": "local_projects_census.json",
+          "suffix": ".json",
+          "size": 21337,
+          "sha256": "c3dacd5850f7fa0611b4768f50e88bf90531aa052d3cf8ca35e304c164ba2044"
+        },
+        {
+          "rel": "runtime/targets/local_scan_targets_latest.json",
+          "name": "local_scan_targets_latest.json",
+          "suffix": ".json",
+          "size": 36450,
+          "sha256": "537f7fc5abd385e4b736e6f09aadbf0241370036a922b5cac2f91878f4e8aa16"
+        },
+        {
+          "rel": "runtime/targets/github_repos_raw.json",
+          "name": "github_repos_raw.json",
+          "suffix": ".json",
+          "size": 11226,
+          "sha256": "2c710614ed76d42be575c51ff5ff8575b05664d5cc6ec1cf51c0639a981fb4a8"
+        },
+        {
+          "rel": "runtime/targets/github_inventory.json",
+          "name": "github_inventory.json",
+          "suffix": ".json",
+          "size": 13935,
+          "sha256": "4ca0bbd183bf1a6d63239e0d5819d7e3e01e042ec735f20840eafa2e9a1c7bc0"
+        },
+        {
+          "rel": "runtime/targets/github_scan_targets_latest.json",
+          "name": "github_scan_targets_latest.json",
+          "suffix": ".json",
+          "size": 33469,
+          "sha256": "0bc78c0b0bd8ae140ca061fa2add558c827858b3d8df7ac35593c48a807b44a0"
+        },
+        {
+          "rel": "runtime/tasks/master_project_task_list.json",
+          "name": "master_project_task_list.json",
+          "suffix": ".json",
+          "size": 55935,
+          "sha256": "84c2cdd68618761430e6fd5356f0943b8b7c466918bee1ed3dbed05ff900adbb"
+        },
+        {
+          "rel": "runtime/tasks/next_up.json",
+          "name": "next_up.json",
+          "suffix": ".json",
+          "size": 7238,
+          "sha256": "a2fa9056bf2d09086124fdbcd036bdba1c6682ee0b0d393a4fc43e8d94291a7a"
+        },
+        {
+          "rel": "runtime/tasks/projectscanner_scan_tasks.json",
+          "name": "projectscanner_scan_tasks.json",
+          "suffix": ".json",
+          "size": 34028,
+          "sha256": "0675944004410bdef0455b131c4d391c0443377305346657b92dd9a19aa179ec"
+        },
+        {
+          "rel": "runtime/tasks/master_next_up.json",
+          "name": "master_next_up.json",
+          "suffix": ".json",
+          "size": 4783,
+          "sha256": "265bd1ddd2638b4bc9b98db553dc15c46f4562907c7615ddea54a10764d74a0a"
+        },
+        {
+          "rel": "runtime/tasks/project_artifact_standard_report.json",
+          "name": "project_artifact_standard_report.json",
+          "suffix": ".json",
+          "size": 230,
+          "sha256": "7b08aa1c65097378a2215bbd13c21f4d9a01e8fd157c858650b3980f7183066e"
+        },
+        {
+          "rel": "runtime/tasks/build_project_artifacts_report.json",
+          "name": "build_project_artifacts_report.json",
+          "suffix": ".json",
+          "size": 81361,
+          "sha256": "2f4666292d79df62afc810a7b7cbfbca402adccc7b2099032bf8b006a34d6966"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/.workspace_index/scan_target.json",
+          "name": "scan_target.json",
+          "suffix": ".json",
+          "size": 595,
+          "sha256": "5f83d6bf70a5a95be135767f065a579e2c0fb5705b8f8be413ec00e973e95a64"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/.workspace_index/analysis.json",
+          "name": "analysis.json",
+          "suffix": ".json",
+          "size": 594,
+          "sha256": "1103e3bd158d626f7271df462e6f4a052d3cf419867cba96bcf0dd5bed01a715"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/.workspace_index/context.json",
+          "name": "context.json",
+          "suffix": ".json",
+          "size": 385,
+          "sha256": "1c06151d0f5a2485d36947e423ed0938c3446cf942bfadaad2d69d2f714b6c36"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/.workspace_index/next_up.json",
+          "name": "next_up.json",
+          "suffix": ".json",
+          "size": 522,
+          "sha256": "f4dded0a0baa3a3c8432c6e956ec418fe2fc23a0fe16a10b9002be2bce5c9c66"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/.workspace_index/health.json",
+          "name": "health.json",
+          "suffix": ".json",
+          "size": 422,
+          "sha256": "52bbfbaf49657382b307ee7f6d84d3b659082004834b87331028ff3a7e5b79c8"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AI_Debugger_Assistant/scan_target.json",
+          "name": "scan_target.json",
+          "suffix": ".json",
+          "size": 614,
+          "sha256": "08a43acf49ac90224c56e1058ed23da534ee6f9df31eecbdec4120da451c0291"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AI_Debugger_Assistant/analysis.json",
+          "name": "analysis.json",
+          "suffix": ".json",
+          "size": 597,
+          "sha256": "a75bb026461619cc53365d190463482faa948fe92160b1364bce2300d16a3f72"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AI_Debugger_Assistant/context.json",
+          "name": "context.json",
+          "suffix": ".json",
+          "size": 405,
+          "sha256": "fb7ef81e7f5fcac7a4b2a8d438021f277a93fc1dc6e46ae71fa475be3c00b9c8"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AI_Debugger_Assistant/next_up.json",
+          "name": "next_up.json",
+          "suffix": ".json",
+          "size": 527,
+          "sha256": "ae6cdbbe463b560cabd9f9bb5ef6ddaab343d45f44d246b4fe9e8f736bcd7d8b"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AI_Debugger_Assistant/health.json",
+          "name": "health.json",
+          "suffix": ".json",
+          "size": 425,
+          "sha256": "d6d1edfac2712da76f44b8a0e9a3faac6f48bb79b3ac3cc4ea53306fdb153244"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AgentTools/scan_target.json",
+          "name": "scan_target.json",
+          "suffix": ".json",
+          "size": 570,
+          "sha256": "11beb82246dc301e78ce0387009321f7d935377b953d8cea55ab3e1a537d66df"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AgentTools/analysis.json",
+          "name": "analysis.json",
+          "suffix": ".json",
+          "size": 586,
+          "sha256": "e6aa7bb79f367dbec9a6c4664ef464cd81f4524ecca65a215fd66d1c00332876"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AgentTools/context.json",
+          "name": "context.json",
+          "suffix": ".json",
+          "size": 361,
+          "sha256": "2547d5b1f28532b61d66f9cf7a49cd817283f463d6223b01bed81bbcfd7507e2"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AgentTools/next_up.json",
+          "name": "next_up.json",
+          "suffix": ".json",
+          "size": 516,
+          "sha256": "a7b04e0ec48892fe63a02cd8d08f924684d315956c7fcd77952d9692bd4f1005"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/AgentTools/health.json",
+          "name": "health.json",
+          "suffix": ".json",
+          "size": 414,
+          "sha256": "48d68f0acfa242681e22e08868e54bd1f795b2efd4ac2f665417d8fc46c12b79"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/Agent_Cellphone/scan_target.json",
+          "name": "scan_target.json",
+          "suffix": ".json",
+          "size": 590,
+          "sha256": "60f216739dbf6ce710503020a846e2571b0cec4c0a622ee0ded120f3225eed1f"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/Agent_Cellphone/analysis.json",
+          "name": "analysis.json",
+          "suffix": ".json",
+          "size": 591,
+          "sha256": "c9a663526223bef2b8ce2f6682f3dc9567f0604067ff01b7196d41f0b6c1e987"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/Agent_Cellphone/context.json",
+          "name": "context.json",
+          "suffix": ".json",
+          "size": 381,
+          "sha256": "a3133cf237462a82d451101102a35c656f5a732198c5527b050764e8ad07a64e"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/Agent_Cellphone/next_up.json",
+          "name": "next_up.json",
+          "suffix": ".json",
+          "size": 521,
+          "sha256": "b6485709f144e925f6992194a08826a818a1f2169db493c50a618c81039333af"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/Agent_Cellphone/health.json",
+          "name": "health.json",
+          "suffix": ".json",
+          "size": 419,
+          "sha256": "4933a7833ef50fb05b278b5dcbc246e12fca19b280af959dcdf1d4fc0590bf8b"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/Agent_Cellphone_V2_Repository/scan_target.json",
+          "name": "scan_target.json",
+          "suffix": ".json",
+          "size": 646,
+          "sha256": "fa0b865e66c55c4a88d4c34bc2b98a0c1d294d98dec6249deef4167fe0e46961"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/Agent_Cellphone_V2_Repository/analysis.json",
+          "name": "analysis.json",
+          "suffix": ".json",
+          "size": 607,
+          "sha256": "cf59f053bdfd000bbc2b6d3366c34bf945f71ead434e1fe90471d5143084bb12"
+        },
+        {
+          "rel": "runtime/project_artifacts/local/Agent_Cellphone_V2_Repository/context.json",
+          "name": "context.json",
+          "suffix": ".json",
+          "size": 437,
+          "sha256": "008e676090f7abd5e514a1e6f03ac18f0f727645ca232be754f90792c96c7dce"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/socialmediamanager",
+      "name": "socialmediamanager",
+      "dirty_count": 0,
+      "asset_count": 5,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 5,
+      "decision": "preserve_reference_only_or_ignore",
+      "reason": "workflow tool",
+      "top_assets": [
+        {
+          "rel": "stocktwits_cookies.json",
+          "name": "stocktwits_cookies.json",
+          "suffix": ".json",
+          "size": 13090,
+          "sha256": "a7a9f49ffeb341000ad3464a34ad6eef3539225beb2677c4726c228816cadfc3"
+        },
+        {
+          "rel": "data/stocktwits_data.json",
+          "name": "stocktwits_data.json",
+          "suffix": ".json",
+          "size": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "rel": "examples/dreamvault_imports/viral_marketing_tsla_trade_loser.example.draft.json",
+          "name": "viral_marketing_tsla_trade_loser.example.draft.json",
+          "suffix": ".json",
+          "size": 2803,
+          "sha256": "831afb46ee10eb8160f1c181529da45e0ac0dc6c3c9b810086a9236fcf2c72b2"
+        },
+        {
+          "rel": "data/drafts/dreamvault_imports/viral_marketing_20260603_051842_turning_a_winning_tsla_trade_into_a_loser.draft.json",
+          "name": "viral_marketing_20260603_051842_turning_a_winning_tsla_trade_into_a_loser.draft.json",
+          "suffix": ".json",
+          "size": 2803,
+          "sha256": "a5b482d1987477c3c1243524096a4de747bf0959d603abbeb189e8f294204580"
+        },
+        {
+          "rel": "data/drafts/dreamvault_imports/cpc_marketing_20260603_053737_repo_fleet_self_healing_001.draft.json",
+          "name": "cpc_marketing_20260603_053737_repo_fleet_self_healing_001.draft.json",
+          "suffix": ".json",
+          "size": 2587,
+          "sha256": "62added66350ccc11085c9164bd0689aee19f56fe31f56a62e98ef110a45c212"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/stocktwits-analyzer",
+      "name": "stocktwits-analyzer",
+      "dirty_count": 0,
+      "asset_count": 2,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 2,
+      "decision": "salvage_required_or_convert_to_reference",
+      "reason": "repo contains site/static assets not proven canonical in websites",
+      "top_assets": [
+        {
+          "rel": "stocktwits_cookies.json",
+          "name": "stocktwits_cookies.json",
+          "suffix": ".json",
+          "size": 13090,
+          "sha256": "a7a9f49ffeb341000ad3464a34ad6eef3539225beb2677c4726c228816cadfc3"
+        },
+        {
+          "rel": "data/stocktwits_data.json",
+          "name": "stocktwits_data.json",
+          "suffix": ".json",
+          "size": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/trade_analyzer",
+      "name": "trade_analyzer",
+      "dirty_count": 0,
+      "asset_count": 2,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 2,
+      "decision": "preserve_reference_only_or_ignore",
+      "reason": "trading tool",
+      "top_assets": [
+        {
+          "rel": "stock_data_output.html",
+          "name": "stock_data_output.html",
+          "suffix": ".html",
+          "size": 11767,
+          "sha256": "cc64a52055668a2371327efcf60cccecfae8a8d8b916048ec2f3e718642b4b03"
+        },
+        {
+          "rel": "scripts/config.json",
+          "name": "config.json",
+          "suffix": ".json",
+          "size": 3506,
+          "sha256": "b4788c1bf5c3456f21a0fb54dc1e2bccb39f0f65a64c50785a7a0e274a6055d9"
+        }
+      ]
+    },
+    {
+      "repo": "/data/data/com.termux/files/home/projects/websites",
+      "name": "websites",
+      "dirty_count": 7,
+      "asset_count": 1500,
+      "duplicate_hash_count": 0,
+      "same_name_count": 0,
+      "missing_count": 0,
+      "decision": "canonical_owner",
+      "reason": "websites owns canonical site/static assets",
+      "top_assets": [
+        {
+          "rel": "_reports/website_consolidation_manifest_001.json",
+          "name": "website_consolidation_manifest_001.json",
+          "suffix": ".json",
+          "size": 769,
+          "sha256": "a1727c4c3ba897a686e10c504b399be1177e4ab3f0f2e573ec44c571088e86fe"
+        },
+        {
+          "rel": "_reports/custom_plugin_classification_001.json",
+          "name": "custom_plugin_classification_001.json",
+          "suffix": ".json",
+          "size": 79320,
+          "sha256": "9c5740bd9e94438e9f33a506963cc42a6a7976b57cc7ba8686ee1fb7aa0ef6c8"
+        },
+        {
+          "rel": "_reports/shared_hostinger_plugin_stage_001.json",
+          "name": "shared_hostinger_plugin_stage_001.json",
+          "suffix": ".json",
+          "size": 35011,
+          "sha256": "8526e80f3f764036e5730fc23e1e99e2b5289c971fc6fe32612429e8547566cf"
+        },
+        {
+          "rel": "_reports/hostinger_domain_model_and_plugin_stage_002.json",
+          "name": "hostinger_domain_model_and_plugin_stage_002.json",
+          "suffix": ".json",
+          "size": 12364,
+          "sha256": "2c489886e29aeb8122269a526023bdf7094a2597409e1c66b6aec8dced985b63"
+        },
+        {
+          "rel": "_reports/hostinger_plugin_build_003.json",
+          "name": "hostinger_plugin_build_003.json",
+          "suffix": ".json",
+          "size": 2336,
+          "sha256": "8b86e97ce4b358fdb9338d1412a18ddeadfb89aaba2ccd5537ac165ba3e35731"
+        },
+        {
+          "rel": "_reports/freerideinvestor_content_engine_audit_004.json",
+          "name": "freerideinvestor_content_engine_audit_004.json",
+          "suffix": ".json",
+          "size": 4204,
+          "sha256": "21512b0b352150a4b7b5f04b3cc2ed9d00352c8beb472e82823b3ea158628ca6"
+        },
+        {
+          "rel": "_reports/freerideinvestor_content_engine_runtime_005.json",
+          "name": "freerideinvestor_content_engine_runtime_005.json",
+          "suffix": ".json",
+          "size": 1182,
+          "sha256": "3ffb3019c9d8f025dbd73bc47718051af8b8828d58977e78e88df03df3656167"
+        },
+        {
+          "rel": "_reports/freerideinvestor_content_engine_package_006.json",
+          "name": "freerideinvestor_content_engine_package_006.json",
+          "suffix": ".json",
+          "size": 1002,
+          "sha256": "c58aa3207ba61a963628fa7b19ec4d2f71389b2d7088deb1768b396e919bb041"
+        },
+        {
+          "rel": "_reports/dreamos_trading_tools_audit_008.json",
+          "name": "dreamos_trading_tools_audit_008.json",
+          "suffix": ".json",
+          "size": 10863,
+          "sha256": "ecfa3d788fa215627566324958658f46f515464682cbce71981b3a3557c7c3aa"
+        },
+        {
+          "rel": "_reports/dreamos_trading_tools_runtime_009.json",
+          "name": "dreamos_trading_tools_runtime_009.json",
+          "suffix": ".json",
+          "size": 1805,
+          "sha256": "0dc1aad9f270c01f990b0a17d494453695e711df8e95675f60827f9153190277"
+        },
+        {
+          "rel": "_reports/dreamos_trading_tools_package_010.json",
+          "name": "dreamos_trading_tools_package_010.json",
+          "suffix": ".json",
+          "size": 929,
+          "sha256": "c6dc79dba0a9025725f0325486154c5bb8a45a98e6b98883487c0418c7bde1e8"
+        },
+        {
+          "rel": "_reports/hostinger_site_install_plan_013.json",
+          "name": "hostinger_site_install_plan_013.json",
+          "suffix": ".json",
+          "size": 3310,
+          "sha256": "4c271d59279b8e23b5f9273216dba3bc4270b9715f16b384fad59937c80a0107"
+        },
+        {
+          "rel": "_reports/legacy_website_repo_deprecation_manifest_014.json",
+          "name": "legacy_website_repo_deprecation_manifest_014.json",
+          "suffix": ".json",
+          "size": 2136,
+          "sha256": "a86a4cdcc0f8110146d17b2633cfd5152ade173fd4d9c186406354c7d778b901"
+        },
+        {
+          "rel": "_reports/raw_legacy_site_salvage_policy_016.json",
+          "name": "raw_legacy_site_salvage_policy_016.json",
+          "suffix": ".json",
+          "size": 1249,
+          "sha256": "626d9388dcb93a8948bbe7951b60185b6df9e075f5a374d04030947751ace3c0"
+        },
+        {
+          "rel": "_reports/legacy_repo_archive_readiness_018.json",
+          "name": "legacy_repo_archive_readiness_018.json",
+          "suffix": ".json",
+          "size": 2801,
+          "sha256": "8ec81dfaaaaa06d0d30080c0e967bf76240fdbf7757896013e8635828619caf7"
+        },
+        {
+          "rel": "_reports/delete_archived_legacy_website_repos_024.json",
+          "name": "delete_archived_legacy_website_repos_024.json",
+          "suffix": ".json",
+          "size": 376,
+          "sha256": "34a43a81451374e93b792b22baf2ff94e60f16795771df998c6f46db692a9973"
+        },
+        {
+          "rel": "_reports/verify_or_delete_legacy_github_repos_025.json",
+          "name": "verify_or_delete_legacy_github_repos_025.json",
+          "suffix": ".json",
+          "size": 942,
+          "sha256": "3dba0f2e9854f1dc9c10c3ee278dda28827c028a8349bfc730ee730a3901ac17"
+        },
+        {
+          "rel": "_reports/emergence_domain_pass_behavior_078.md.fixture.json",
+          "name": "emergence_domain_pass_behavior_078.md.fixture.json",
+          "suffix": ".json",
+          "size": 546,
+          "sha256": "1a4480c87af6b7aae1dd52f14c6ac1162795495b2fb89ded26d1246803eaf1bc"
+        },
+        {
+          "rel": "_reports/emergence_character_sheet_output_081.md.flavor.json",
+          "name": "emergence_character_sheet_output_081.md.flavor.json",
+          "suffix": ".json",
+          "size": 1495,
+          "sha256": "f22d00667b401d20fdff2d7a7f34414a11106418ae149ff4db3644ab9a4fd393"
+        },
+        {
+          "rel": "_reports/spark_battle_sim_protocol_inventory_007.json",
+          "name": "spark_battle_sim_protocol_inventory_007.json",
+          "suffix": ".json",
+          "size": 7925,
+          "sha256": "1bde2e316fbff26b13ea1221255a1ac9638dfc8ca5914a0204e1658196b36889"
+        },
+        {
+          "rel": "_reports/spark_battle_sim_protocol_inventory_008.json",
+          "name": "spark_battle_sim_protocol_inventory_008.json",
+          "suffix": ".json",
+          "size": 7979,
+          "sha256": "3416723e82bbd20a55224ae88e79c8b462de267a27d33688568c5b8f7bc12f20"
+        },
+        {
+          "rel": "_reports/emergence_character_generator_render_072.md.html",
+          "name": "emergence_character_generator_render_072.md.html",
+          "suffix": ".html",
+          "size": 73106,
+          "sha256": "e0ffe80a4812bcd0309e276c0fb03601f0d6192385938b04f3bdf3b3536825c2"
+        },
+        {
+          "rel": "_reports/spark_protocol_fixture_expected_076.json",
+          "name": "spark_protocol_fixture_expected_076.json",
+          "suffix": ".json",
+          "size": 2301,
+          "sha256": "2e8ed2804e5a12f9bce14b57f70994cbe591c37d268ab1bc1e0c116ec4696495"
+        },
+        {
+          "rel": "_reports/domain_pass_invariants_078.json",
+          "name": "domain_pass_invariants_078.json",
+          "suffix": ".json",
+          "size": 372,
+          "sha256": "684b900b391040a7f099de0ed7211ca2369604a397f1cc6aa0ae787cee572afe"
+        },
+        {
+          "rel": "_reports/emergence_character_sheet_output_081.md.domain.json",
+          "name": "emergence_character_sheet_output_081.md.domain.json",
+          "suffix": ".json",
+          "size": 790,
+          "sha256": "5dc3d7f2e354827cc7b00397beacbdaf5ca45644837568db04dcb1db8d6f4590"
+        },
+        {
+          "rel": "_reports/emergence_openai_provider_error_096.json",
+          "name": "emergence_openai_provider_error_096.json",
+          "suffix": ".json",
+          "size": 374,
+          "sha256": "817f55531a094e54385c3c0c5ea719fcb8377c692c8c246084b0b74920002081"
+        },
+        {
+          "rel": "_reports/spark_shortcode_template_compat_020.html",
+          "name": "spark_shortcode_template_compat_020.html",
+          "suffix": ".html",
+          "size": 1778,
+          "sha256": "a14805499f1cbb09d36c3eb1415dc1efa0614e14c9bc42904c00a2b0c2511069"
+        },
+        {
+          "rel": "_reports/emergence_conversion_funnel_report_114.json",
+          "name": "emergence_conversion_funnel_report_114.json",
+          "suffix": ".json",
+          "size": 2623,
+          "sha256": "7da89d7c63b6589d602f99bfae3154764929315e61baa2429ba1eee7b69fda90"
+        },
+        {
+          "rel": "_reports/emergence_portrait_prompt_quality_fixtures_108.json",
+          "name": "emergence_portrait_prompt_quality_fixtures_108.json",
+          "suffix": ".json",
+          "size": 9133,
+          "sha256": "d35f61af848f12f6118baffe6b85b65380bce141bf72ddfc8bc874ab7a771fa1"
+        },
+        {
+          "rel": "_configs/hostinger_plan_config_013.json",
+          "name": "hostinger_plan_config_013.json",
+          "suffix": ".json",
+          "size": 2405,
+          "sha256": "668bcfafdfbcbfaa5d8165d1ba735941773501ced876d2e4768425ec614561aa"
+        },
+        {
+          "rel": "public/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 601,
+          "sha256": "7ec04ab10ec26a3555cab83f1bad21133ad1299667bca14dca6c26078638aa21"
+        },
+        {
+          "rel": "config/site_configs.json",
+          "name": "site_configs.json",
+          "suffix": ".json",
+          "size": 8263,
+          "sha256": "b932cd5f90ecd43f0349b97f7e418cdb460ee01a36790d7cdddec35f6799fba0"
+        },
+        {
+          "rel": "experiments/bible-application/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 47737,
+          "sha256": "4e723c8bb27d2ccf6229b56143f79b9c2ae52744a658c8756a2a25e119026a87"
+        },
+        {
+          "rel": "sites/production/websites/xthunder.site/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 5872,
+          "sha256": "89833c23fc640bcb1213a29508fd92fa9735da7e31fc3e6d499e99ad421a994d"
+        },
+        {
+          "rel": "sites/production/websites/xthunder.site/site-config.json",
+          "name": "site-config.json",
+          "suffix": ".json",
+          "size": 362,
+          "sha256": "1d6076ae1c6021e5ac2bed3946e105c57edeabaeba6ffc0943f156b862d45b9c"
+        },
+        {
+          "rel": "sites/production/websites/xthunder.site/assets/css/style.css",
+          "name": "style.css",
+          "suffix": ".css",
+          "size": 6360,
+          "sha256": "97cc1c4296e1a8bd20474c82ce9df70f5a73dcfa3b82f906198036821da66e3e"
+        },
+        {
+          "rel": "sites/production/websites/xthunder.site/assets/js/main.js",
+          "name": "main.js",
+          "suffix": ".js",
+          "size": 8417,
+          "sha256": "cda55d59b41c8a7791336e8bd3014389ed0744282ff896e8db8230df62a2f87c"
+        },
+        {
+          "rel": "ops/deployment/sites.yml",
+          "name": "sites.yml",
+          "suffix": ".yml",
+          "size": 4479,
+          "sha256": "1de4049f2ac2149c1a6134f7b99956d8ad15b847bef1d82e48760b36e613e382"
+        },
+        {
+          "rel": "public/worklog/discord-architect.html",
+          "name": "discord-architect.html",
+          "suffix": ".html",
+          "size": 7720,
+          "sha256": "2a5076af334b5f82e270e89015d1cf1a0079ff6d4922948803dd834344456954"
+        },
+        {
+          "rel": "_deploy/weareswarm/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 10774,
+          "sha256": "7a5032fc10b5166353da245854d1c712b707a702b98d63b544bff137e1526e90"
+        },
+        {
+          "rel": "_deploy/weareswarm/dreamos-services/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 4590,
+          "sha256": "ea99fee378ee29b9f304759171fad84fd70b9804880e79ec472e54e4c13edfc6"
+        },
+        {
+          "rel": "_deploy/weareswarm/dreamos-services/deploy-manifest.json",
+          "name": "deploy-manifest.json",
+          "suffix": ".json",
+          "size": 456,
+          "sha256": "8dc39bbe94d4cb4803944c0c2d699fc9d89be2027adeb3f370e2947a935cea82"
+        },
+        {
+          "rel": "_deploy/weareswarm/crosbyultimateevents/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 603,
+          "sha256": "21f193d6585f418f057d2e62bfc12f88ffaf3257a08cc7f8de0bab81691b94e7"
+        },
+        {
+          "rel": "_deploy/weareswarm/feed/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 11433,
+          "sha256": "bba782ba120876faf8c6de45307ad105b0dafed4a6760ae3500f087cc081600d"
+        },
+        {
+          "rel": "_deploy/weareswarm/projects/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 14020,
+          "sha256": "5d3d42000e62b695022335db8f888b1cb1a2a30e2cab6e9e30c6534e68aeb815"
+        },
+        {
+          "rel": "_deploy/weareswarm/tasks/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 13236,
+          "sha256": "56f20cd70bda05c82adbeb312c680d2fe3b497a26beeb9abfece5c392bf997d5"
+        },
+        {
+          "rel": "_deploy/weareswarm/skill-tree/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 9067,
+          "sha256": "30f3c5a4d138b039db4f363ab88eec377cbc7f7acdefed660b6cbbe2e3e6e730"
+        },
+        {
+          "rel": "_deploy/weareswarm/projects/crosbyultimateevents/index.html",
+          "name": "index.html",
+          "suffix": ".html",
+          "size": 2983,
+          "sha256": "80a57357dda360fc1d78a8d9d4af826b2ee186626923f3566f563e865bf5a227"
+        },
+        {
+          "rel": "dadudekc-service-funnel/.project/tasks.json",
+          "name": "tasks.json",
+          "suffix": ".json",
+          "size": 274,
+          "sha256": "53f2b0e0a6bdef67776b506041b951167e4e2478fa103b58dd3ce743b3d2d60a"
+        },
+        {
+          "rel": "dadudekc-service-funnel/config/training_config.yaml",
+          "name": "training_config.yaml",
+          "suffix": ".yaml",
+          "size": 951,
+          "sha256": "f1050d02d162b04a06263efc849e31b4d2e0930781857474d6b5ff91e59dd621"
+        }
+      ]
+    }
+  ],
+  "guardrails": [
+    "no destructive delete",
+    "websites owns site/static assets",
+    "other repos should reference websites-owned assets",
+    "salvage unmatched assets before deletion"
+  ]
+}
