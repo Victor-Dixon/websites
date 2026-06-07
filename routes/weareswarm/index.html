@@ -3,187 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WeAreSwarm | Dream.OS Operator Hub</title>
-  <meta name="description" content="WeAreSwarm public hub for Dream.OS services, skill tree, command center, and live status API.">
+  <title>Dream.OS Command Center | WeAreSwarm</title>
   <link rel="canonical" href="https://www.weareswarm.site/">
-  <style>
-    :root {
-      --bg: #0a0c10;
-      --panel: #171b22;
-      --text: #f4f7fb;
-      --muted: #9aa6b2;
-      --line: #2a3240;
-      --accent: #7cf7c9;
-      --accent2: #8ab4ff;
-      --accent-dim: rgba(124,247,201,.12);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-      background:
-        radial-gradient(ellipse 70% 45% at 50% -5%, rgba(124,247,201,.09), transparent),
-        radial-gradient(ellipse 50% 35% at 100% 10%, rgba(138,180,255,.08), transparent),
-        #0a0c10;
-      color: var(--text);
-      line-height: 1.6;
-    }
-    a { color: inherit; }
-    .site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(10,12,16,.92);
-    }
-    .logo {
-      font-weight: 800;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-size: .95rem;
-    }
-    .logo span { color: var(--accent); }
-    .site-nav { display: flex; flex-wrap: wrap; gap: 8px; }
-    .site-nav a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: .9rem;
-      font-weight: 600;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-    }
-    .site-nav a:hover { color: var(--text); border-color: var(--line); }
-    .site-nav a.active { color: var(--accent); border-color: rgba(124,247,201,.35); background: var(--accent-dim); }
-    .wrap { max-width: 1140px; margin: 0 auto; padding: 48px 20px 72px; }
-    .hero {
-      padding: 48px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: linear-gradient(145deg, rgba(124,247,201,.07), rgba(138,180,255,.05)), var(--panel);
-    }
-    .eyebrow {
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      font-size: .78rem;
-    }
-    h1 {
-      font-size: clamp(2.4rem, 6vw, 4.8rem);
-      line-height: 1.02;
-      margin: 14px 0 16px;
-      letter-spacing: -.03em;
-    }
-    .lead { color: var(--muted); font-size: 1.12rem; max-width: 58ch; margin: 0; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 28px;
-    }
-    .hub-card {
-      display: block;
-      text-decoration: none;
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(23,27,34,.88);
-      transition: .2s ease;
-    }
-    .hub-card:hover {
-      border-color: rgba(124,247,201,.4);
-      transform: translateY(-3px);
-    }
-    .hub-card .label {
-      color: var(--accent2);
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .hub-card h2 { margin: 10px 0 8px; font-size: 1.45rem; }
-    .hub-card p { color: var(--muted); margin: 0; font-size: .98rem; }
-    .note {
-      margin-top: 28px;
-      padding: 18px 20px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      color: var(--muted);
-      font-size: .92rem;
-      background: rgba(18,22,29,.55);
-    }
-    .note strong { color: var(--text); }
-    footer {
-      padding: 28px 20px 40px;
-      color: var(--muted);
-      text-align: center;
-      font-size: .92rem;
-      border-top: 1px solid var(--line);
-    }
-    footer a { color: var(--accent2); text-decoration: none; }
-    @media (max-width: 800px) {
-      .hero { padding: 28px; }
-      .grid { grid-template-columns: 1fr; }
-      .site-header { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/weareswarm-shell.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="logo" href="https://www.weareswarm.site/"><span>We</span>AreSwarm</a>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="/dreamos-services/">Services</a>
-      <a href="/skill-tree">Skill Tree</a>
-      <a href="/" class="active">Hub</a>
-      <a href="/wp-json/dreamos/v1/status">API</a>
-    </nav>
-  </header>
-
-  <main class="wrap">
-    <section class="hero">
-      <div class="eyebrow">Dream.OS Public Surface</div>
-      <h1>Operator hub for live swarm execution.</h1>
-      <p class="lead">
-        Services, capability map, command center, and status API — one site family for
-        proof-backed automation work across repos, websites, and agent lanes.
-      </p>
-    </section>
-
-    <section class="grid" aria-label="Site sections">
-      <a class="hub-card" href="/dreamos-services/">
-        <div class="label">Services</div>
-        <h2>Dream.OS Services</h2>
-        <p>Repo rescue, web funnels, agent workflows, and operational automation offers.</p>
-      </a>
-      <a class="hub-card" href="/skill-tree">
-        <div class="label">Capabilities</div>
-        <h2>Swarm Skill Tree</h2>
-        <p>Public map of unlocked production skills — earned through live deploys and verification gates.</p>
-      </a>
-      <a class="hub-card" href="/index.php">
-        <div class="label">Operations</div>
-        <h2>Command Center</h2>
-        <p>Live operator dashboard for active missions, unlocks, unfinished tasks, and runtime status.</p>
-      </a>
-      <a class="hub-card" href="/wp-json/dreamos/v1/status">
-        <div class="label">Integrations</div>
-        <h2>Status API</h2>
-        <p>Machine-readable Dream.OS status endpoint for dashboards, agents, and verification scripts.</p>
-      </a>
-    </section>
-
-    <p class="note">
-      <strong>Canonical domain:</strong> use <a href="https://www.weareswarm.site/" style="color:var(--accent2)">www.weareswarm.site</a>.
-      Both apex and www resolve here; www is the preferred host for public links.
-    </p>
-  </main>
-
-  <footer>
-    WeAreSwarm operator hub · Dream.OS by DaDudeKC
-  </footer>
+<div class="stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+  <div class="shell">
+    <header class="shell-header">
+      <a class="brand" href="https://www.weareswarm.site/">We Are Swarm</a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="/" class="active">Command Center</a>
+        <a href="/feed/">Feed</a>
+        <a href="/projects/">Projects</a>
+        <a href="/tasks/">Tasks</a>
+        <a href="/skill-tree">Skill Tree</a>
+        <a href="/dreamos-services/">Services</a>
+        <a href="/profile/">Operator</a>
+        <a href="/live-ops/">Live Ops</a>
+        <a href="/wp-json/dreamos/v1/status">API</a>
+      </nav>
+    </header>
+    <div class="shell-main">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Live Autonomous Operations</span>
+          <h1><span>Watch the</span><span class="grad">Swarm Work</span></h1>
+          <p>Dream.OS is a live automation swarm for repo recovery, website deployment, orchestration workflows, trading systems, and autonomous operational tooling.</p>
+          <div class="hero-actions">
+            <a class="btn" href="/skill-tree">Open Skill Tree</a>
+            <a class="btn ghost" href="/projects/">View Proof</a>
+            <a class="btn ghost" href="/profile/">Operator Profile</a>
+            <a class="btn ghost" href="/live-ops/">Live Operations</a>
+          </div>
+        </div>
+        <aside class="hud">
+          <div class="hud-card"><strong>LIVE</strong><span>SSH deploys, WP-CLI, REST status APIs online</span></div>
+          <div class="hud-card"><strong>12</strong><span>skill nodes tracked in registry</span></div>
+          <div class="hud-card"><strong>04</strong><span>power branches mapped</span></div>
+          <div class="hud-card"><strong>SSH</strong><span>server-side deploy lane unlocked</span></div>
+        </aside>
+      </section>
+      <section class="section">
+        <span class="eyebrow">Operator Hub</span>
+        <h2>Jump to a lane</h2>
+        <div class="grid-3">
+          <a class="card link" href="/dreamos-services/" style="text-decoration:none;color:inherit"><h3>Services</h3><p>Repo rescue, web funnels, agent workflows, and automation offers.</p></a>
+          <a class="card link" href="/skill-tree" style="text-decoration:none;color:inherit"><h3>Skill Tree</h3><p>Public capability map earned through live execution and proof.</p></a>
+          <a class="card link" href="/wp-json/dreamos/v1/status" style="text-decoration:none;color:inherit"><h3>Status API</h3><p>Machine-readable Dream.OS status for dashboards and agents.</p></a>
+        </div>
+      </section>
+    </div>
+    <div class="footerbar">
+      <span>Systems that recover, verify, and ship.</span>
+      <span>Dream.OS autonomous operations layer</span>
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+  const root = document.documentElement;
+  window.addEventListener('pointermove', (e) => {
+    root.style.setProperty('--mx', `${(e.clientX / window.innerWidth) * 100}%`);
+    root.style.setProperty('--my', `${(e.clientY / window.innerHeight) * 100}%`);
+  }, {passive: true});
+})();
+</script>
 </body>
 </html>
