@@ -375,7 +375,7 @@ homeschool infrastructure, and autonomous operational tooling.
 </p>
 
 <div class="button-row">
-<a href="/skills/">Open Skill Tree</a>
+<a href="/skill-tree">Open Skill Tree</a>
 <a href="/projects/">View Proof</a>
 <a href="/profile/">Operator Profile</a>
 <a href="/live-ops/">Live Operations</a>

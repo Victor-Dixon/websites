@@ -34,7 +34,7 @@ a{color:#63e6ff}
     <h1>Victor Dixon</h1>
     <p><strong>Dream.OS architect / automation builder / multi-agent systems operator.</strong></p>
     <p>I build self-healing automation systems for codebases, website recovery, repo consolidation, homeschool tools, trading workflows, and operator-grade productivity infrastructure.</p>
-    <a href="/skills/">View the Swarm Skill Tree →</a>
+    <a href="/skill-tree">View the Swarm Skill Tree →</a>
   </section>
 
   <section class="grid">
