@@ -10,19 +10,61 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function dreamos_swarm_status_generated_path() {
-    $candidates = array(
-        dirname(__DIR__, 3) . '/data/swarm-status.generated.json',
-        dirname(__DIR__, 4) . '/runtime/content/weareswarm.site/data/swarm-status.generated.json',
+function dreamos_swarm_generated_json_candidates($filename) {
+    return array(
+        dirname(__DIR__, 3) . '/data/' . $filename,
+        dirname(__DIR__, 4) . '/runtime/content/weareswarm.site/data/' . $filename,
     );
+}
 
-    foreach ($candidates as $path) {
+function dreamos_swarm_load_generated_json($filename) {
+    foreach (dreamos_swarm_generated_json_candidates($filename) as $path) {
+        if (!is_readable($path)) {
+            continue;
+        }
+        $decoded = json_decode(file_get_contents($path), true);
+        if (is_array($decoded)) {
+            return $decoded;
+        }
+    }
+
+    return null;
+}
+
+function dreamos_swarm_status_generated_path() {
+    foreach (dreamos_swarm_generated_json_candidates('swarm-status.generated.json') as $path) {
         if (is_readable($path)) {
             return $path;
         }
     }
 
     return null;
+}
+
+function dreamos_swarm_apply_project_board(array &$data) {
+    $project_board = dreamos_swarm_load_generated_json('project-board.generated.json');
+    if (!is_array($project_board) || empty($project_board['projects']) || !is_array($project_board['projects'])) {
+        return;
+    }
+
+    $data['project_board'] = $project_board;
+    $data['projects'] = array_map(function ($project) {
+        return array(
+            'name' => $project['name'] ?? 'Unknown Project',
+            'state' => $project['status'] ?? 'needs_review',
+            'proof' => $project['proof'] ?? '',
+            'next' => $project['next'] ?? '',
+            'kind' => $project['kind'] ?? 'unknown',
+            'action' => $project['consolidation_action'] ?? 'inspect',
+            'source' => $project['source'] ?? '',
+            'repo' => $project['repo'] ?? '',
+            'url' => $project['url'] ?? '',
+        );
+    }, $project_board['projects']);
+
+    if (!empty($project_board['generated_at'])) {
+        $data['project_board_updated_at'] = $project_board['generated_at'];
+    }
 }
 
 function dreamos_swarm_status_fallback() {
@@ -95,12 +137,16 @@ function dreamos_swarm_status_data() {
         $raw = file_get_contents($generated_path);
         $decoded = json_decode($raw, true);
         if (is_array($decoded)) {
-            $data = array_merge($data, $decoded);
+            $planner_payload = $decoded;
+            unset($planner_payload['projects']);
+            $data = array_merge($data, $planner_payload);
             if (!empty($decoded['generated_at'])) {
                 $data['updated_at'] = $decoded['generated_at'];
             }
         }
     }
+
+    dreamos_swarm_apply_project_board($data);
 
     return apply_filters('dreamos_swarm_status_data', $data);
 }

@@ -9,8 +9,10 @@ on:
       - collected/hostinger/wordpress/domains/weareswarm.site/**
       - routes/weareswarm/**
       - runtime/scripts/sync_weareswarm_planner_status_001.py
+      - runtime/scripts/build_weareswarm_project_board_001.py
       - runtime/content/weareswarm.site/**
       - runtime/tasks/weareswarm_planner_bridge_001.yaml
+      - runtime/tasks/weareswarm_project_board_001.yaml
   workflow_dispatch:
 
 concurrency:
@@ -27,21 +29,27 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate planner-driven swarm status JSON
+      - name: Generate planner status and project board JSON
         run: |
           set -euo pipefail
           export DREAMVAULT_ROOT="$GITHUB_WORKSPACE"
+          export PROJECT_BOARD_LOCAL_ROOTS="$GITHUB_WORKSPACE"
           python3 runtime/scripts/sync_weareswarm_planner_status_001.py
+          python3 runtime/scripts/build_weareswarm_project_board_001.py
           python3 - <<'PY'
           import json
           from pathlib import Path
-          path = Path("runtime/content/weareswarm.site/data/swarm-status.generated.json")
-          data = json.loads(path.read_text(encoding="utf-8"))
-          assert isinstance(data.get("projects"), list), "projects missing"
-          assert isinstance(data.get("unfinished_tasks"), list), "unfinished_tasks missing"
-          assert data.get("next_lane"), "next_lane missing"
+          status_path = Path("runtime/content/weareswarm.site/data/swarm-status.generated.json")
+          board_path = Path("runtime/content/weareswarm.site/data/project-board.generated.json")
+          status = json.loads(status_path.read_text(encoding="utf-8"))
+          board = json.loads(board_path.read_text(encoding="utf-8"))
+          assert isinstance(status.get("unfinished_tasks"), list), "unfinished_tasks missing"
+          assert status.get("next_lane"), "next_lane missing"
+          assert isinstance(board.get("projects"), list) and board["projects"], "projects empty"
+          assert isinstance(board.get("buckets"), dict), "buckets missing"
           print("JSON_VERIFY=PASS")
-          print("NEXT_LANE=" + data["next_lane"])
+          print("NEXT_LANE=" + status["next_lane"])
+          print("PROJECTS=" + str(len(board["projects"])))
           PY
 
       - name: Configure SSH key
@@ -101,6 +109,7 @@ jobs:
           "${ssh_base[@]}" "mkdir -p '$plugin_dir'"
           "${scp_base[@]}" "$plugin_src/dreamos-swarm-status.php" "$remote:$plugin_dir/dreamos-swarm-status.php"
           "${scp_base[@]}" "runtime/content/weareswarm.site/data/swarm-status.generated.json" "$remote:$REMOTE_ROOT/data/swarm-status.generated.json"
+          "${scp_base[@]}" "runtime/content/weareswarm.site/data/project-board.generated.json" "$remote:$REMOTE_ROOT/data/project-board.generated.json"
           "${scp_base[@]}" "$theme_src/assets/dreamos-shell.css" "$remote:$THEME_DIR/assets/dreamos-shell.css"
           "${scp_base[@]}" "$theme_src/assets/dreamos-shell.css" "$remote:$REMOTE_ROOT/assets/weareswarm-shell.css"
           "${scp_base[@]}" "$theme_src/assets/skill-tree.css" "$remote:$THEME_DIR/assets/skill-tree.css"
@@ -139,7 +148,7 @@ jobs:
             cat \"\$ht\" >> \"\$tmp\"
             mv \"\$tmp\" \"\$ht\"
             rm -f /tmp/weareswarm-htaccess-snippet.txt
-            chmod 644 '$THEME_DIR'/*.php '$THEME_DIR'/assets/* '$THEME_DIR'/inc/* '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/assets/weareswarm-shell.css' '$REMOTE_ROOT/data/swarm-status.generated.json'
+            chmod 644 '$THEME_DIR'/*.php '$THEME_DIR'/assets/* '$THEME_DIR'/inc/* '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/assets/weareswarm-shell.css' '$REMOTE_ROOT/data/swarm-status.generated.json' '$REMOTE_ROOT/data/project-board.generated.json'
             for route in projects profile live-ops feed tasks skill-tree; do
               [ -f '$REMOTE_ROOT/'\"\$route\" ] && chmod 644 '$REMOTE_ROOT/'\"\$route\"
             done
@@ -161,6 +170,6 @@ jobs:
           echo "https://weareswarm.site/projects/?cache=$GITHUB_RUN_ID => $apex_code"
           [ "$apex_code" = "200" ]
           grep -q 'Projects' /tmp/projects-apex.html
-          grep -q 'Planner Bridge\|Active Lane:' /tmp/projects-apex.html
+          grep -q 'Project Consolidation Board\|Canonical Core\|Websites' /tmp/projects-apex.html
           curl -sL -o /tmp/tasks.html "https://www.weareswarm.site/tasks/?cache=$GITHUB_RUN_ID"
-          grep -q 'Execute Operator Queue\|Planner Bridge\|Execute ' /tmp/tasks.html
+          grep -q 'Execute Website Ops\|Execute ' /tmp/tasks.html

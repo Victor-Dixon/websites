@@ -1,70 +1,104 @@
 <?php
 /*
-Template Name: Projects and Proof
+Template Name: Project Consolidation Board
 */
 $status = function_exists('dreamos_swarm_status_data') ? dreamos_swarm_status_data() : array();
-$projects = $status['projects'] ?? array(
-  array('name'=>'WeAreSwarm Theme Unification','state'=>'active','proof'=>'Command center, feed, projects, tasks, profile, live ops, and skill tree now share the Dream.OS wow shell and unified nav.'),
-  array('name'=>'Route Recovery','state'=>'operational','proof'=>'Flat static deploys fixed www/apex redirect loops on /projects/, /feed/, /tasks/, /profile/, and /live-ops/.'),
-  array('name'=>'Website Admin','state'=>'active','proof'=>'SSH deploy, WP-CLI activation, canonical website source, live verification.'),
-  array('name'=>'DigitalDreamscape Restored','state'=>'restored','proof'=>'Static deploy verified through portfolio website admin lane.'),
-  array('name'=>'WeAreSwarm Live Ops','state'=>'active','proof'=>'Custom theme, REST status plugin, Skill Tree, Operator Profile, Live Ops page.'),
-  array('name'=>'Portfolio Registry','state'=>'building','proof'=>'Controlled domains classified and recovery matrix generated.'),
-  array('name'=>'Repo Rescue','state'=>'advanced','proof'=>'Scan, classify, salvage, promote, verify, and commit workflow.'),
-  array('name'=>'Verification Gates','state'=>'operational','proof'=>'Every lane ends with live markers, reports, and closeout packets.'),
+$project_board = $status['project_board'] ?? array();
+$projects = $status['projects'] ?? array();
+$buckets = $project_board['buckets'] ?? array();
+
+$bucket_labels = array(
+  'canonical_core' => 'Canonical Core',
+  'website' => 'Websites',
+  'toolbelt' => 'Toolbelt',
+  'promotion_candidate' => 'Promotion Candidates',
+  'unknown' => 'Unknown / Needs Review',
+  'archive_candidate' => 'Archive Candidates',
 );
 
-$dreamos_title = 'Projects and Proof | WeAreSwarm';
+$bucket_order = array_keys($bucket_labels);
+$grouped = array();
+foreach ($bucket_order as $kind) {
+  $grouped[$kind] = array();
+}
+foreach ($projects as $project) {
+  $kind = $project['kind'] ?? 'unknown';
+  if (!isset($grouped[$kind])) {
+    $grouped[$kind] = array();
+  }
+  $grouped[$kind][] = $project;
+}
+
+$dreamos_title = 'Project Consolidation Board | WeAreSwarm';
 $dreamos_active = 'projects';
 $dreamos_canonical = 'https://www.weareswarm.site/projects/';
-$dreamos_footer_left = 'Proof before outreach.';
-$dreamos_footer_right = 'Dream.OS recovery lanes produce public receipts.';
+$dreamos_footer_left = 'Classify before consolidation.';
+$dreamos_footer_right = 'GitHub is public source of truth; local folders are candidates until promoted.';
 
 include get_template_directory() . '/inc/shell-head.php';
 ?>
     <section class="hero">
       <div class="hero-copy">
-        <span class="eyebrow">Recovered Systems / Public Receipts</span>
-        <h1><span>Projects</span><span class="grad">and Proof</span></h1>
-        <p>Not claims. Proof lanes. Each project exists because Dream.OS recovered, deployed, verified, or operationalized a real system.</p>
+        <span class="eyebrow">DreamVault Inventory / Public Consolidation</span>
+        <h1><span>Project</span><span class="grad">Consolidation Board</span></h1>
+        <p>GitHub repos, desktop projects, and laptop scans classified into canonical, website, toolbelt, promotion, archive, and review lanes.</p>
         <div class="hero-actions">
-          <a class="btn" href="/feed/">View closeout feed</a>
-          <a class="btn ghost" href="/tasks/">Open task board</a>
+          <a class="btn" href="/tasks/">Open task queue</a>
+          <a class="btn ghost" href="/feed/">View closeout feed</a>
         </div>
       </div>
       <aside class="hud">
-        <div class="hud-card"><strong><?php echo count($projects); ?></strong><span>proof cards tracked</span></div>
-        <div class="hud-card"><strong>LIVE</strong><span>canonical deploy source active</span></div>
-        <div class="hud-card"><strong>WP</strong><span>theme + plugin controlled</span></div>
-        <div class="hud-card"><strong>SSH</strong><span>server-side deploy lane unlocked</span></div>
+        <div class="hud-card"><strong><?php echo count($projects); ?></strong><span>projects inventoried</span></div>
+        <div class="hud-card"><strong><?php echo count($buckets); ?></strong><span>classification buckets</span></div>
+        <div class="hud-card"><strong>LIVE</strong><span>generated project board</span></div>
+        <div class="hud-card"><strong>OPS</strong><span>planner tasks stay on /tasks/</span></div>
       </aside>
     </section>
 
+    <?php foreach ($bucket_order as $kind):
+      $items = $grouped[$kind] ?? array();
+      if (!$items) {
+        continue;
+      }
+      $label = $bucket_labels[$kind];
+      $count = $buckets[$kind] ?? count($items);
+    ?>
     <section class="section">
+      <span class="eyebrow"><?php echo esc_html(strtoupper($kind)); ?></span>
+      <h2><?php echo esc_html($label); ?> (<?php echo (int) $count; ?>)</h2>
       <div class="grid-3">
-        <?php foreach ($projects as $project):
-          $state = strtolower($project['state'] ?? 'active');
+        <?php foreach ($items as $project):
+          $state = strtolower($project['state'] ?? 'needs_review');
         ?>
         <article class="card">
           <span class="badge <?php echo esc_attr($state); ?>"><?php echo esc_html($state); ?></span>
           <h3><?php echo esc_html($project['name'] ?? 'Project'); ?></h3>
-          <p><?php echo esc_html($project['proof'] ?? ($project['detail'] ?? 'Proof lane recorded.')); ?></p>
+          <?php if (!empty($project['repo'])): ?>
+          <p><strong style="color:var(--text)">Repo:</strong> <?php echo esc_html($project['repo']); ?></p>
+          <?php endif; ?>
+          <p><?php echo esc_html($project['proof'] ?? 'Inventory lane recorded.'); ?></p>
+          <?php if (!empty($project['action'])): ?>
+          <p><strong style="color:var(--text)">Action:</strong> <?php echo esc_html($project['action']); ?></p>
+          <?php endif; ?>
+          <?php if (!empty($project['next'])): ?>
+          <p><strong style="color:var(--text)">Next:</strong> <?php echo esc_html($project['next']); ?></p>
+          <?php endif; ?>
         </article>
         <?php endforeach; ?>
       </div>
     </section>
+    <?php endforeach; ?>
 
     <section class="section">
-      <span class="eyebrow">Recovery Timeline</span>
-      <h2>What changed publicly</h2>
+      <span class="eyebrow">Operating Model</span>
+      <h2>How consolidation works</h2>
       <div class="mission-card">
         <ul>
-          <li><strong>Theme Unification:</strong> all public WeAreSwarm routes now share the cinematic Dream.OS shell, unified nav, and static deploy lane.</li>
-          <li><strong>Route Recovery:</strong> /projects/, /feed/, /tasks/, /profile/, and /live-ops/ publish as flat static files to stop www/apex redirect loops.</li>
-          <li><strong>Website Admin:</strong> unlocked SSH deploys, WordPress theme activation, REST status plugin, and canonical source deploy.</li>
-          <li><strong>WeAreSwarm:</strong> converted from broken WordPress state into a live command center, skill tree, profile, live ops, and proof surface.</li>
-          <li><strong>DigitalDreamscape:</strong> static deploy verified through the portfolio website admin workflow.</li>
-          <li><strong>Portfolio Registry:</strong> controlled domains discovered and recovery order defined.</li>
+          <li><strong>GitHub:</strong> public source of truth for repo identity, visibility, and promotion status.</li>
+          <li><strong>Desktop / laptop:</strong> local scans feed candidates; promotion requires manifests and verification.</li>
+          <li><strong>DreamVault:</strong> governance decides canonical, stale, promote, archive, and public visibility.</li>
+          <li><strong>WeAreSwarm:</strong> public proof board for what exists, what is active, and what proof exists.</li>
+          <li><strong>/tasks/:</strong> active DreamVault execution queue from planner status, separate from this inventory board.</li>
         </ul>
       </div>
     </section>
