@@ -34,6 +34,7 @@ const BOSS_INTERVAL = 5;
 const MAX_WAVES = 10;
 const START_GOLD = 150;
 const MAX_TRAPS_PER_ROUND = 10;
+const BUILD_VERSION = "2026-06-07-trap-limit-v2";
 
 const canvas = document.getElementById("game-canvas");
 const ctx = canvas.getContext("2d");
@@ -129,18 +130,29 @@ function trapLimitHudCount() {
   return Math.max(countArmedTraps(), state.trapsPlacedThisRound);
 }
 
+function placementBlockReason(type, x, y) {
+  const def = BUILD[type];
+  if (!def) return "Unknown structure.";
+  if (isCoreTile(x, y)) return "Cannot build on the Thunder Core.";
+  if (state.grid[y][x]) return "That tile is already occupied.";
+  if (!canAfford(def.cost)) return `Not enough points for ${def.label}.`;
+  if (type === "trap" && isTrapLimitReached()) {
+    return `Shock trap limit reached: ${MAX_TRAPS_PER_ROUND} per round.`;
+  }
+  return "";
+}
 
 function canPlace(type, x, y) {
-  const def = BUILD[type];
-  if (!def || isCoreTile(x, y)) return false;
-  if (state.grid[y][x]) return false;
-  if (!canAfford(def.cost)) return false;
-  if (type === "trap" && isTrapLimitReached()) return false;
-  return true;
+  return !placementBlockReason(type, x, y);
 }
 
 function placeStructure(type, x, y) {
-  if (!canPlace(type, x, y)) return false;
+  const blockReason = placementBlockReason(type, x, y);
+  if (blockReason) {
+    if (type === "trap") addFeed("system", blockReason);
+    updateHUD();
+    return false;
+  }
   const def = BUILD[type];
   if (!spendGold(def.cost)) return false;
   state.grid[y][x] = {
@@ -1040,5 +1052,6 @@ initGrid();
 addFeed("system", "Welcome to Storm Siege. Build walls & towers, then hit Strike!");
 addFeed("system", "Protect the Thunder Core on the left. Survive 10 waves.");
 addFeed("system", "Boss fights at waves 5 & 10 — you get prep time to organize first.");
+addFeed("system", `Build ${BUILD_VERSION}: shock traps cap at ${MAX_TRAPS_PER_ROUND} per round.`);
 updateHUD();
 requestAnimationFrame(loop);
