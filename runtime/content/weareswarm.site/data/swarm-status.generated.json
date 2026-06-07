@@ -1,15 +1,15 @@
 {
   "feed": [
     {
-      "generated_at": "2026-06-07T20:34:27.216468+00:00",
-      "summary": "Next lane is `operator_queue`.",
+      "generated_at": "2026-06-07T21:06:51.179637+00:00",
+      "summary": "Next lane is `website_ops`.",
       "title": "Planner status synchronized",
       "type": "planner_transition"
     }
   ],
-  "generated_at": "2026-06-07T20:34:27.216468+00:00",
-  "next_lane": "operator_queue",
-  "planner_artifact": "/workspace/runtime/quarantine/discord_architect_artifacts_001/discord_architect/data/runtime/events/latest_planner_event.json",
+  "generated_at": "2026-06-07T21:06:51.179637+00:00",
+  "next_lane": "website_ops",
+  "planner_artifact": "/workspace/data/reports/planner/next_lane.json",
   "projects": [
     {
       "name": "Planner Bridge",
@@ -17,8 +17,8 @@
       "state": "active"
     },
     {
-      "name": "Active Lane: Operator Queue",
-      "proof": "Planner selected next lane `operator_queue` for operator execution.",
+      "name": "Active Lane: Website Ops",
+      "proof": "Refresh WeAreSwarm public operations board from planner state.",
       "state": "queued"
     },
     {
@@ -30,11 +30,11 @@
   "source": "dreamvault.planner",
   "unfinished_tasks": [
     {
-      "name": "Execute Operator Queue",
-      "next": "Run the task artifact assigned to `operator_queue` and publish closeout proof.",
+      "name": "Execute Website Ops",
+      "next": "Refresh WeAreSwarm public operations board from planner state.",
       "progress": "NEXT",
       "state": "next",
-      "task": "Execute Operator Queue"
+      "task": "Execute Website Ops"
     },
     {
       "name": "Publish planner closeouts",
@@ -51,5 +51,5 @@
       "task": "Render static WeAreSwarm routes"
     }
   ],
-  "updated_at": "2026-06-07T20:34:27.216468+00:00"
+  "updated_at": "2026-06-07T21:06:51.179637+00:00"
 }
