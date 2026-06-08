@@ -67,7 +67,13 @@ Refocused weareswarm.online homepage from "Dream.OS Command Center / public proo
 
 ## Verification checklist
 
-- [ ] Homepage contains: Dream.OS Planner, active lanes, approved tasks, blockers, repo consolidation
-- [ ] Homepage does NOT lead with "public proof layer"
-- [ ] `/tasks/`, `/projects/`, `/focus/` render
-- [ ] Live smoke test at https://www.weareswarm.online/
+- [x] Homepage contains: Dream.OS Planner, active lanes, approved tasks, blockers, repo consolidation
+- [x] Homepage does NOT lead with "public proof layer"
+- [x] `/tasks/`, `/projects/`, `/focus/` render (HTTP 200)
+- [x] Live smoke test at https://www.weareswarm.online/ — `next_lane=autodream_salvage_manifest_001`
+
+## Deploy
+
+- **Commit:** `4081445e` — Refocus WeAreSwarm online as DreamOS planner
+- **Deploy:** unified_deployer `--site weareswarm.online` — 25/25 files succeeded (2026-06-08)
+- **Planner sync:** manifest + spark_panel refreshed from DreamVault emit
