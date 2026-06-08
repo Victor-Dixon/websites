@@ -1,0 +1,63 @@
+{
+  "schema": "weareswarm.online.spark_panel.v1",
+  "generated_at": "2026-06-08T00:11:13+00:00",
+  "source": "sync_script",
+  "spark_project": {
+    "brand_id": "mzspark",
+    "display_name": "MZspark / Spark",
+    "description": "Character and battle-story short-form content.",
+    "status": "brand_defined",
+    "lane": "animation_studio",
+    "sources": [
+      "D:/DreamVault/runtime/apps/animation_studio/brands/mzspark.yaml"
+    ],
+    "next_actions": [
+      "Wire Spark brand into animation studio campaign pipeline",
+      "Publish character shorts and battle arcs",
+      "Public Spark surface live on dadudekc.site (auth immersion fixed)"
+    ]
+  },
+  "mission_loop": {
+    "MISSION_LOOP": "MVP_SHIPPED",
+    "commit": "5cced4a0",
+    "tests": 17,
+    "build_target": "desktop",
+    "modules": [
+      "mission_board",
+      "city_state",
+      "mission_resolver"
+    ],
+    "handoff": "data/reports/spark_game_loop/spark_game_loop_desktop_only_001.md"
+  },
+  "dadudekc_site": {
+    "live_domain": "dadudekc.site",
+    "canonical_domain": "dadudekc.com",
+    "alias_note": "dadudekc.site live on Hostinger with Spark immersive auth (2026-06-07). dadudekc.com remains blocked in domain registry until DNS resolves.",
+    "AUTH_IMMERSION": "FIXED",
+    "wp_login_redirect": "/spark-login/",
+    "auth_fix": {
+      "deployed": true,
+      "mechanism": "mu-plugin",
+      "mu_plugin": "wp-content/mu-plugins/spark-immersive-auth.php",
+      "behavior": "wp-login.php GET redirects to /spark-login/; register flows to /spark-signup/"
+    },
+    "status": "live_auth_fixed",
+    "linkage_status": "see project_website_linkage",
+    "production_tree": "D:/websites/sites/production/websites/dadudekc.com",
+    "github_repo": "DaDudeKC-Website",
+    "blockers": [
+      "dadudekc.com DNS_BLOCKED (dadudekc.site live)"
+    ],
+    "sources": [
+      "D:/DreamVault/data/reports/domain_inventory/project_website_linkage.json",
+      "D:/DreamVault/data/reports/hostinger_webops/api_debug_dadudekc_com.json",
+      "D:/websites/docs/website_audits/dadudekc_com_page_audit_2026-01-02.md",
+      "D:/websites/websites/dadudekc.site/wp/wp-content/mu-plugins/spark-immersive-auth.php"
+    ],
+    "next_actions": [
+      "Sync dreamos-emergence theme from Victor-Dixon__The-emergence- repo and fix #spark-auth-nav at source",
+      "Confirm dadudekc.site vs dadudekc.com canonical domain policy",
+      "Resolve dadudekc.com DNS or document intentional alias-only use"
+    ]
+  }
+}

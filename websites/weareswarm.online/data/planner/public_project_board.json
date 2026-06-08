@@ -1,0 +1,196 @@
+{
+  "buckets": {
+    "archive_candidate": [],
+    "canonical_core": [
+      {
+        "action": "inspect_manually",
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": true,
+        "project": "DreamOS_Core",
+        "public_surfaces": [],
+        "status": 80
+      },
+      {
+        "action": "preserve_as_canonical",
+        "capabilities": [
+          "aggregate_project_capabilities",
+          "architect_consolidation",
+          "dispatch_lane_tasks",
+          "emit_discord_cards",
+          "emit_intelligence_packet",
+          "emit_planner_transition"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": true,
+        "project": "DreamVault",
+        "public_surfaces": [
+          "weareswarm.site/projects",
+          "weareswarm.site/tasks"
+        ],
+        "status": 80
+      }
+    ],
+    "promotion_candidate": [
+      {
+        "action": "promote_into_canonical",
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": false,
+        "project": "Victor-Dixon__AutoDream.Os",
+        "public_surfaces": [],
+        "status": 80
+      },
+      {
+        "action": "promote_into_canonical",
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": false,
+        "project": "Victor-Dixon__SWARM",
+        "public_surfaces": [],
+        "status": 20
+      },
+      {
+        "action": "promote_into_canonical",
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": false,
+        "project": "Victor-Dixon__Victor.os",
+        "public_surfaces": [],
+        "status": 80
+      }
+    ],
+    "public_surface": [
+      {
+        "action": "keep_as_public_surface",
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "domain": "public web surface",
+        "is_canonical": false,
+        "project": "websites",
+        "public_surfaces": [
+          "weareswarm.site",
+          "public website"
+        ],
+        "status": 80
+      }
+    ],
+    "toolbelt": [
+      {
+        "action": "keep_as_toolbelt",
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "domain": "automation toolbelt",
+        "is_canonical": false,
+        "project": "agent-tools",
+        "public_surfaces": [],
+        "status": 80
+      },
+      {
+        "action": "keep_as_toolbelt",
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "domain": "automation toolbelt",
+        "is_canonical": false,
+        "project": "projectscanner",
+        "public_surfaces": [],
+        "status": 80
+      }
+    ],
+    "variant": [
+      {
+        "action": "inspect_manually",
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": false,
+        "project": "Dream.os-Core",
+        "public_surfaces": [],
+        "status": 5
+      },
+      {
+        "action": "preserve_as_canonical",
+        "capabilities": [
+          "aggregate_project_capabilities",
+          "architect_consolidation",
+          "dispatch_lane_tasks",
+          "emit_discord_cards",
+          "emit_intelligence_packet",
+          "emit_planner_transition"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": false,
+        "project": "DreamVault",
+        "public_surfaces": [
+          "weareswarm.site/projects",
+          "weareswarm.site/tasks"
+        ],
+        "status": 20
+      },
+      {
+        "action": "inspect_manually",
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "domain": "automation toolbelt",
+        "is_canonical": false,
+        "project": "Victor-Dixon__Thea",
+        "public_surfaces": [],
+        "status": 65
+      },
+      {
+        "action": "inspect_manually",
+        "capabilities": [
+          "aggregate_project_capabilities",
+          "architect_consolidation",
+          "dispatch_lane_tasks",
+          "emit_discord_cards",
+          "emit_intelligence_packet",
+          "emit_planner_transition"
+        ],
+        "domain": "automation toolbelt",
+        "is_canonical": false,
+        "project": "github-architect-bot",
+        "public_surfaces": [
+          "weareswarm.site/projects",
+          "weareswarm.site/tasks"
+        ],
+        "status": 20
+      }
+    ]
+  },
+  "generated_at": "2026-06-08T00:09:38+00:00",
+  "public_safe": true,
+  "schema": "dreamvault.planner.public_project_board.v1",
+  "source": "emit_weareswarm_planner_domain_artifacts_001",
+  "totals": {
+    "archive_candidate": 0,
+    "canonical_core": 2,
+    "promotion_candidate": 3,
+    "public_surface": 1,
+    "toolbelt": 2,
+    "variant": 4
+  }
+}

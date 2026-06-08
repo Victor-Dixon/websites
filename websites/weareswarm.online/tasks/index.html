@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks — weareswarm.online</title>
+  <meta name="description" content="DreamVault strategic task queue bridge on weareswarm.online">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a class="brand" href="/">🧠 We Are Swarm</a>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/focus/">Focus</a>
+      <a href="/projects/">Projects</a>
+      <a href="/tasks/" class="active">Tasks</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="hero">
+      <h1>Tasks</h1>
+      <p>Strategic active queue and next-lane approvals — planner bridge.</p>
+      <div class="meta-row">
+        <span class="badge" id="sync-meta">Loading…</span>
+        <a class="badge" href="/">Command Center</a>
+        <a class="badge" href="/focus/">Focus board</a>
+        <a class="badge" href="/projects/">Projects</a>
+      </div>
+    </header>
+
+    <div class="grid-2">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Active queue</h2>
+            <p class="subtitle">strategic_active_queue.json</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <dl class="kv">
+            <dt>Campaign</dt><dd id="campaign">—</dd>
+            <dt>Next lane</dt><dd id="queue-next">—</dd>
+            <dt>Rule</dt><dd id="deferred-rule">—</dd>
+          </dl>
+          <p class="section-title">Queued tasks</p>
+          <ul class="list" id="active-queue"></ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Next lane approvals</h2>
+            <p class="subtitle">next_lane.json</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <dl class="kv" id="next-lane-kv"></dl>
+          <p class="section-title">Approved tasks</p>
+          <div class="table-wrap">
+            <table id="approved-table">
+              <thead>
+                <tr>
+                  <th>Task ID</th>
+                  <th>Priority</th>
+                  <th>Repo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script>
+    (async function () {
+      const { fetchJson, el, setSyncMeta } = window.FocusDashboard;
+      try {
+        const [manifest, queue, nextLane] = await Promise.all([
+          fetchJson("manifest.json"),
+          fetchJson("strategic_active_queue.json"),
+          fetchJson("next_lane.json"),
+        ]);
+        setSyncMeta(manifest);
+
+        document.getElementById("campaign").textContent = queue.campaign || "—";
+        document.getElementById("queue-next").textContent = queue.next_lane || "—";
+        document.getElementById("deferred-rule").textContent = queue.deferred_rule || "—";
+
+        const aq = document.getElementById("active-queue");
+        (queue.active_queue || []).forEach((t) => aq.appendChild(el("li", { text: t })));
+
+        const nextKv = document.getElementById("next-lane-kv");
+        nextKv.innerHTML = "";
+        [
+          ["Lane", nextLane.next_lane || "—"],
+          ["Task YAML", nextLane.next_task || "—"],
+        ].forEach(([k, v]) => {
+          nextKv.appendChild(el("dt", { text: k }));
+          nextKv.appendChild(el("dd", { text: v }));
+        });
+
+        const tbody = document.querySelector("#approved-table tbody");
+        (nextLane.approved_tasks || []).forEach((t) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML =
+            "<td>" + (t.task_id || "—") + "</td>" +
+            "<td>" + (t.priority || "—") + "</td>" +
+            "<td>" + (t.repo || "—") + "</td>" +
+            "<td><span class=\"status-pill\">" + (t.status || "—") + "</span></td>";
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        document.getElementById("sync-meta").textContent = "Load error: " + err.message;
+      }
+    })();
+  </script>
+</body>
+</html>

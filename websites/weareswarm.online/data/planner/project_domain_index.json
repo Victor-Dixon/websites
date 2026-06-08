@@ -1,0 +1,93 @@
+{
+  "cross_links": {
+    "commander_cross_repo_scan": "D:\\DreamVault\\data\\reports\\discord\\commander_cross_repo_scan_latest.json",
+    "consolidation_lanes": "D:\\DreamVault\\data\\reports\\consolidation\\CONSOLIDATION_LANES_D_DRIVE.json"
+  },
+  "domains": [
+    {
+      "bounded_contexts": [
+        "discord_dispatch",
+        "github_automation",
+        "planner",
+        "project_consolidation",
+        "repo_intelligence",
+        "runtime_tasks",
+        "trading_runtime",
+        "website_status_bridge"
+      ],
+      "canonical_repo": "DreamVault",
+      "consolidation_recommendation": "preserve DreamVault as canonical; compare variants before promotion",
+      "domain": "Dream.OS governance/runtime automation",
+      "repos": [
+        "Dream.os-Core",
+        "DreamOS_Core",
+        "DreamVault",
+        "Victor-Dixon__AutoDream.Os",
+        "Victor-Dixon__SWARM",
+        "Victor-Dixon__Victor.os"
+      ]
+    },
+    {
+      "bounded_contexts": [
+        "discord_dispatch",
+        "github_automation",
+        "planner",
+        "project_consolidation",
+        "repo_intelligence",
+        "runtime_tasks",
+        "trading_runtime",
+        "website_status_bridge"
+      ],
+      "canonical_repo": "DreamVault",
+      "consolidation_recommendation": "preserve DreamVault as canonical",
+      "domain": "automation toolbelt",
+      "repos": [
+        "Victor-Dixon__Thea",
+        "agent-tools",
+        "github-architect-bot",
+        "projectscanner"
+      ]
+    },
+    {
+      "bounded_contexts": [
+        "runtime_tasks"
+      ],
+      "canonical_repo": "DreamVault",
+      "consolidation_recommendation": "preserve DreamVault as canonical",
+      "domain": "public web surface",
+      "repos": [
+        "websites"
+      ]
+    }
+  ],
+  "dreamvault_planner_root": "data/planner",
+  "generated_at": "2026-06-08T00:02:37+00:00",
+  "repo_buckets": {
+    "canonical_core": [
+      "DreamOS_Core",
+      "DreamVault"
+    ],
+    "plugin": [
+      "Victor-Dixon__Thea",
+      "github-architect-bot"
+    ],
+    "promotion_candidate": [
+      "Victor-Dixon__AutoDream.Os",
+      "Victor-Dixon__SWARM",
+      "Victor-Dixon__Victor.os"
+    ],
+    "public_surface": [
+      "websites"
+    ],
+    "toolbelt": [
+      "agent-tools",
+      "projectscanner"
+    ],
+    "variant": [
+      "Dream.os-Core",
+      "DreamVault"
+    ]
+  },
+  "schema": "dreamvault.planner.project_domain_index.v1",
+  "source": "emit_weareswarm_planner_domain_artifacts_001"
+}

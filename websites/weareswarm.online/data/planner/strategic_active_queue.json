@@ -1,0 +1,20 @@
+{
+  "generated": "2026-05-17T13:17:55.786583",
+  "campaign": "repo_professionalization_and_branch_governance",
+  "authority_policy": {
+    "old_master_tasks": "stale_by_default",
+    "old_runtime_tasks": "reference_only",
+    "old_p0_queue": "non_authoritative"
+  },
+  "active_queue": [
+    "required_project_surface_contract_002",
+    "dreamplan_cpc_cliprun_integration_001",
+    "repo_professionalization_checkpoint_001",
+    "dreambranch_pr_linkage_001",
+    "repo_consolidation_salvage_matrix_001",
+    "github_description_sync_001",
+    "branch_retirement_manifest_001"
+  ],
+  "next_lane": "repo_professionalization_checkpoint_001",
+  "deferred_rule": "All old tasks are deferred unless revalidated into the repo professionalization campaign."
+}

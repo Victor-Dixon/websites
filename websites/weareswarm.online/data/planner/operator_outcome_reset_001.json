@@ -1,0 +1,16 @@
+﻿{
+    "generated_at":  "2026-05-27T18:37:41.7477650-05:00",
+    "status":  "operator_complaint_valid",
+    "failed_expectations":  [
+                                "no Discord ping proof",
+                                "no working visible demo",
+                                "cleanup did not delete or archive",
+                                "planner drifted into classification/commits"
+                            ],
+    "required_next_outcome":  [
+                                  "one visible demo proof OR one Discord payload/ping proof",
+                                  "one cleanup apply proof: archived_count or deleted_count greater than zero",
+                                  "planner closeout must include files moved/deleted and exact output path"
+                              ],
+    "hard_rule":  "No more classification-only lanes until apply proof exists."
+}

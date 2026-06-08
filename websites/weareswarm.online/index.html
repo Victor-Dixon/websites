@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WeAreSwarm | Dream.OS Planner</title>
+  <meta name="description" content="Dream.OS Planner — one board for active lanes, approved tasks, blockers, repo consolidation, and verified closeouts.">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <style>
+    .planner-hero{margin-bottom:2rem}
+    .planner-hero h1{font-size:clamp(2rem,5vw,3.2rem);margin:0 0 .5rem;letter-spacing:-.03em}
+    .planner-hero .subtitle{color:var(--muted);max-width:760px;font-size:1.05rem}
+    .planner-cta{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.25rem}
+    .planner-cta .badge{padding:.45rem .85rem;border-radius:999px;border:1px solid var(--panel-border);background:rgba(255,255,255,.04);font-weight:600}
+    .planner-cta .badge.primary{background:var(--ok);color:#04100c;border-color:var(--ok)}
+    .module-stack{display:grid;gap:1.25rem}
+    .module-stack .panel{margin:0}
+    .muted-inline{color:var(--muted);margin-left:.35rem;font-weight:400}
+    .item-rationale{margin:.35rem 0 0;color:var(--muted);font-size:.9rem}
+    .bucket-row{display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:.75rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    .bucket-label{font-weight:700;text-transform:capitalize;color:var(--accent-2)}
+    .bucket-repos{color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85rem}
+    .closeout-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:.75rem}
+    .closeout-card{padding:1rem;border:1px solid var(--panel-border);border-radius:var(--radius);background:rgba(255,255,255,.03)}
+    .closeout-card h3{margin:0 0 .35rem;font-size:1rem}
+    .closeout-card p{margin:0 0 .75rem;color:var(--muted);font-size:.9rem}
+    .list--blockers li{color:var(--block)}
+    .footer-note{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--panel-border);color:var(--muted);font-size:.9rem}
+    @media(max-width:680px){.bucket-row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a class="brand" href="/">🧠 WeAreSwarm</a>
+    <div class="links">
+      <a href="/" class="active">Planner</a>
+      <a href="/focus/">Focus</a>
+      <a href="/tasks/">Tasks</a>
+      <a href="/projects/">Projects</a>
+      <a href="/feed/">Feed</a>
+      <a href="/skill-tree/">Skill Tree</a>
+      <a href="/roadmap/">Roadmap</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="hero planner-hero">
+      <p class="section-title">Dream.OS Planner</p>
+      <h1>Clear next actions from repo and task chaos.</h1>
+      <p class="subtitle">One board for active lanes, approved tasks, blockers, repo consolidation, and verified closeouts.</p>
+      <div class="meta-row">
+        <span class="badge ok" id="planner-live-badge">● Planner loading</span>
+        <span class="badge" id="sync-meta">Loading sync metadata…</span>
+      </div>
+      <div class="planner-cta">
+        <a class="badge primary" href="/tasks/">Approved tasks</a>
+        <a class="badge" href="/focus/">Operating focus</a>
+        <a class="badge" href="/projects/">Repo board</a>
+        <a class="badge" href="#verified-closeouts">Verified closeouts</a>
+      </div>
+    </header>
+
+    <div class="module-stack">
+      <section class="panel" id="operating-state">
+        <div class="panel-header">
+          <div>
+            <h2>Today's Operating State</h2>
+            <p class="subtitle">Current Dream.OS mode from planner next_lane</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <dl class="status-grid" id="operating-state-grid"></dl>
+        </div>
+      </section>
+
+      <section class="panel" id="approved-next-actions">
+        <div class="panel-header">
+          <div>
+            <h2>Approved Next Actions</h2>
+            <p class="subtitle">From next_lane.json approved_tasks</p>
+          </div>
+          <a class="badge" href="/tasks/">Open task queue</a>
+        </div>
+        <div class="panel-body" id="approved-tasks-list"></div>
+      </section>
+
+      <section class="panel" id="blocked-review">
+        <div class="panel-header">
+          <div>
+            <h2>Blocked / Needs Human Review</h2>
+            <p class="subtitle">Blockers from planner and consolidation manifests</p>
+          </div>
+        </div>
+        <div class="panel-body" id="blocked-list"></div>
+      </section>
+
+      <section class="panel" id="repo-consolidation">
+        <div class="panel-header">
+          <div>
+            <h2>Repo Consolidation Focus</h2>
+            <p class="subtitle">Bucket summary from consolidation decision manifest</p>
+          </div>
+          <a class="badge" href="/focus/">Full focus board</a>
+        </div>
+        <div class="panel-body" id="consolidation-summary"></div>
+      </section>
+
+      <section class="panel" id="active-lanes">
+        <div class="panel-header">
+          <div>
+            <h2>Active Lanes</h2>
+            <p class="subtitle">Strategic queue — next: <span id="queue-next-lane">—</span></p>
+          </div>
+          <a class="badge" href="/roadmap/">Roadmap</a>
+        </div>
+        <div class="panel-body" id="active-lanes-list"></div>
+      </section>
+
+      <section class="panel" id="verified-closeouts">
+        <div class="panel-header">
+          <div>
+            <h2>Latest Verified Closeouts</h2>
+            <p class="subtitle">Proof receipts — secondary to planner state</p>
+          </div>
+          <a class="badge" href="/feed/">Closeout feed</a>
+        </div>
+        <div class="panel-body">
+          <div class="closeout-grid">
+            <article class="closeout-card">
+              <span class="badge ok">SHIPPED</span>
+              <h3>Crosby Ultimate Events</h3>
+              <p>Recovered from HTTP 500, repositioned for private chef/event services, inquiry capture verified, Discord closeout routed.</p>
+              <a href="/projects/crosbyultimateevents/">View closeout proof</a>
+            </article>
+            <article class="closeout-card">
+              <span class="badge">FEED</span>
+              <h3>Closeout receipts</h3>
+              <p>Chronological proof surface for shipped Dream.OS work when safe to publish.</p>
+              <a href="/feed/">Open feed</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="capability-unlocks">
+        <div class="panel-header">
+          <div>
+            <h2>Capability Unlocks</h2>
+            <p class="subtitle">From project_capability_index</p>
+          </div>
+          <a class="badge" href="/skill-tree/">Skill tree</a>
+        </div>
+        <div class="panel-body">
+          <div id="capability-grid"></div>
+        </div>
+      </section>
+    </div>
+
+    <p class="footer-note">
+      Dream.OS Planner on weareswarm.online — active lanes, approved tasks, blockers, and repo consolidation first; verified closeouts second.
+      Routes: <a href="/focus/">Focus</a> · <a href="/tasks/">Tasks</a> · <a href="/projects/">Projects</a> · <a href="/feed/">Feed</a> · <a href="/skill-tree/">Skill Tree</a>
+    </p>
+  </main>
+
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script src="/data/shared/planner-home.js"></script>
+</body>
+</html>

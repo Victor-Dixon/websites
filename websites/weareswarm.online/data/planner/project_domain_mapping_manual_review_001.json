@@ -1,0 +1,181 @@
+{
+  "schema": "dreamvault.planner.project_domain_mapping_manual_review.v1",
+  "lane_id": "project_domain_mapping_manual_review_001",
+  "generated_at": "2026-06-07T23:45:00+00:00",
+  "destructive_actions": 0,
+  "execute": false,
+  "cross_links": {
+    "consolidation_lanes": "D:\\DreamVault\\data\\reports\\consolidation\\CONSOLIDATION_LANES_D_DRIVE.json",
+    "project_domain_index": "D:\\DreamVault\\data\\planner\\project_domain_index.json",
+    "consolidation_recommendations": "D:\\DreamVault\\data\\reports\\planner\\consolidation_recommendations.json",
+    "runtime_core_clone_pair_review": "D:\\DreamVault\\data\\reports\\repo_integrity\\runtime_core_clone_pair_review_001.json",
+    "runtime_core_clone_byte_compare": "D:\\DreamVault\\data\\reports\\repo_integrity\\runtime_core_clone_byte_compare_001.json"
+  },
+  "targets": [
+    {
+      "repo": "Dream.os-Core",
+      "repo_root": "D:\\Dream.os-Core",
+      "domain": "Dream.OS governance/runtime automation",
+      "classification": "variant",
+      "bucket": "variant",
+      "evidence": [
+        "domain_model_summary.json: bucket=variant, consolidation_action=inspect_manually, risk=90",
+        "git remote origin=https://github.com/Victor-Dixon/Dream.os-Core.git branch=main HEAD=74f237da dirty=true (57+ working-tree changes)",
+        "Large governed tree: dreamos/, src/, contracts/, docs/, 00_foundation..99_reference numbering",
+        "27+ pytest files under tests/ and dreamos/tests/ including audit and SSOT modes per README",
+        "runtime_core_clone_byte_compare: 36 files only on Dream.os-Core, 0 byte-identical compared pairs",
+        "CONSOLIDATION_LANES LANE_DEDUPE_DREAMOS_RUNTIME_CLONES lists as dedupe target vs DreamOS_Core SSOT",
+        "runtime_core_clone_pair_review: risk=critical experiment=true action=inspect_and_manifest_before_mutation"
+      ],
+      "overlaps": [
+        {
+          "repo": "DreamOS_Core",
+          "overlap_type": "runtime_core_clone_pair",
+          "shared_paths": ["src", "tests"],
+          "detail": "Byte-compare drift on .gitignore and README; 36 unique Python modules on Dream.os-Core"
+        },
+        {
+          "repo": "DreamVault",
+          "overlap_type": "governance_boundary",
+          "shared_capabilities": ["run_verification_gates"],
+          "detail": "DreamVault is governance SSOT; Dream.os-Core hosts runtime contracts not planner/tasks"
+        }
+      ],
+      "salvage_candidates": [
+        "dreamos/",
+        "src/core/",
+        "src/relay/",
+        "src/transports/",
+        "contracts/",
+        "scripts/ci/",
+        "tests/audit/",
+        "00_foundation/dreamos_system_bootstrap_v1.json"
+      ],
+      "risks": [
+        "Very dirty git working tree obscures lineage vs remote",
+        "SSOT conflict with DreamOS_Core unresolved without signed salvage manifest",
+        "domain_model git block stale (remote=null) vs live git remote evidence",
+        "Cannot promote to canonical without pytest green + salvage manifest on both sides"
+      ],
+      "recommended_action": {
+        "action": "inspect_manually",
+        "execute": false,
+        "detail": "Preserve read-only; emit salvage manifest before any promotion or archive decision"
+      },
+      "blockers": [
+        "salvage_manifest.json missing on disk",
+        "runtime SSOT decision pending human (conflicting lane vs pair-review signals)",
+        "no proof pytest green recorded in this lane"
+      ]
+    },
+    {
+      "repo": "DreamOS_Core",
+      "repo_root": "D:\\DreamOS_Core",
+      "domain": "Dream.OS governance/runtime automation",
+      "classification": "variant",
+      "bucket": "variant",
+      "evidence": [
+        "domain_model_summary.json incorrectly marks is_canonical=true; aggregator still flags inspect_manually risk=30",
+        "git: no remote; branch=master HEAD=2f37154; untracked data/reports/project_consolidation/ and runtime/state/",
+        "CONSOLIDATION_LANES ssot_roots.runtime_core=D:\\DreamOS_Core and LANE_SALVAGE_DREAM_DOT_OS SSOT",
+        "Smaller surface: governance/, runtime/, src/dreamos/runtime/publication/, src/dreamvault/runtime/publication/",
+        "5 pytest files vs 27+ on Dream.os-Core; pyproject.toml present only on DreamOS_Core in byte-compare",
+        "runtime_core_clone_byte_compare: 2 files only on mirror (pyproject.toml, tests/discord/test_live_update_preview.py)",
+        "runtime_core_clone_pair_review: is_git_repo=false preserve_runtime_state; name-mirror until manifest signed"
+      ],
+      "overlaps": [
+        {
+          "repo": "Dream.os-Core",
+          "overlap_type": "runtime_core_clone_pair",
+          "shared_paths": ["src", "tests"],
+          "detail": "Shared src/tests top-level dirs but divergent content; seeded publication runtime from DreamVault assets per README"
+        },
+        {
+          "repo": "DreamVault",
+          "overlap_type": "publication_runtime",
+          "shared_paths": [
+            "src/dreamvault/runtime/publication/",
+            "runtime/contracts/"
+          ],
+          "detail": "DreamVault remains governance brain; DreamOS_Core hosts publication kernel mirror"
+        }
+      ],
+      "salvage_candidates": [
+        "src/dreamos/runtime/publication/",
+        "src/dreamvault/runtime/publication/",
+        "runtime/scripts/run_dreamos_unified_publication_runtime_001.py",
+        "runtime/contracts/trading_decision_packet.v1.schema.json",
+        "tests/discord/test_live_update_preview.py"
+      ],
+      "risks": [
+        "domain_model_summary canonicality score contradicts aggregator inspect_manually flag",
+        "No git remote; lineage and freshness unprovable vs Dream.os-Core GitHub origin",
+        "Untracked intelligence_packet and consolidation reports may drift from SSOT scan",
+        "Premature canonical promotion would violate DreamVault governance SSOT for planner/tasks"
+      ],
+      "recommended_action": {
+        "action": "inspect_manually",
+        "execute": false,
+        "detail": "Treat as dedupe lane target; preserve both until salvage manifest + byte-compare proof gates pass"
+      },
+      "blockers": [
+        "salvage_manifest.json missing",
+        "runtime SSOT decision pending human",
+        "canonical lineage not proven (no remote, conflicting pair-review vs consolidation lanes)"
+      ]
+    },
+    {
+      "repo": "github-architect-bot",
+      "repo_root": "D:\\Projects\\github-architect-bot",
+      "domain": "automation toolbelt",
+      "classification": "toolbelt",
+      "bucket": "plugin",
+      "evidence": [
+        "domain_model_summary.json: bucket=plugin, 89 runtime tasks, bounded_contexts match DreamVault planner surface",
+        "git remote git@github.com:Victor-Dixon/github-architect-bot.git branch=master HEAD=4d61dde dirty=true",
+        "README: governed GitHub repo-management toolbelt; deletion requires manifest + confirmation",
+        "Tests: discord_architect interaction, closeout contract/delivery, task arbitration, portfolio pipeline",
+        "runtime/scripts/run_discord_architect.py, emit_planner_projection_to_discord_architect.py, route_tasks_to_discord.py",
+        "portfolio_consolidation_plan_001.md lists ship-ready toolbelt not Dream.OS core variant",
+        "portfolio_wide_consolidation_plan_001.yaml: code_changes_allowed=false governance lane owner"
+      ],
+      "overlaps": [
+        {
+          "repo": "DreamVault",
+          "overlap_type": "bounded_context_mirror",
+          "shared_capabilities": [
+            "dispatch_lane_tasks",
+            "emit_discord_cards",
+            "emit_planner_transition",
+            "map_domain_models",
+            "select_next_lane"
+          ],
+          "detail": "Actuator for Discord Architect and GitHub automation; DreamVault retains governance SSOT"
+        }
+      ],
+      "salvage_candidates": [
+        "src/github_architect_bot/closeout.py",
+        "runtime/scripts/run_discord_architect.py",
+        "runtime/scripts/task_arbitration_cli.py",
+        "runtime/tasks/governance/portfolio_wide_consolidation_plan_001.yaml"
+      ],
+      "risks": [
+        "Capability surface mirrors DreamVault bounded contexts; easy to misclassify as core variant",
+        "Dirty tree with many untracked closeout deliveries and portfolio reports",
+        "No pyproject.toml; packaging/CI maturity lower than projectscanner toolbelt peer"
+      ],
+      "recommended_action": {
+        "action": "keep_as_toolbelt",
+        "execute": false,
+        "detail": "Preserve as Discord Architect actuator; do not promote into Dream.OS governance canonical"
+      },
+      "blockers": []
+    }
+  ],
+  "summary": {
+    "dream_os_core_pair_verdict": "preserve_both_pending_human",
+    "github_architect_bot_verdict": "toolbelt_not_core",
+    "governance_canonical": "DreamVault",
+    "all_targets_classified": true
+  }
+}

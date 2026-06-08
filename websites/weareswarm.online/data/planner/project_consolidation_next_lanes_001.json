@@ -1,0 +1,109 @@
+{
+  "schema": "dreamvault.planner.project_consolidation_next_lanes.v1",
+  "lane_id": "project_consolidation_decision_manifest_001",
+  "generated_at": "2026-06-08T00:02:15+00:00",
+  "execute": false,
+  "lanes": [
+    {
+      "lane_id": "project_consolidation_decision_manifest_001",
+      "status": "complete",
+      "task_yaml": "runtime/tasks/project_consolidation_decision_manifest_001.yaml",
+      "execute": false,
+      "rationale": "Normalized decision matrix; DreamVault conflict resolved"
+    },
+    {
+      "lane_id": "autodream_salvage_manifest_001",
+      "status": "pending",
+      "task_yaml": "runtime/tasks/autodream_salvage_manifest_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repo": "Victor-Dixon__AutoDream.Os",
+      "blocked_until": [
+        "inventory",
+        "overlap_check",
+        "unique_asset_salvage"
+      ],
+      "execute": false,
+      "rationale": "Promotion candidate blocked until salvage manifest"
+    },
+    {
+      "lane_id": "victor_os_salvage_manifest_001",
+      "status": "pending",
+      "task_yaml": "runtime/tasks/victor_os_salvage_manifest_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repo": "Victor-Dixon__Victor.os",
+      "blocked_until": [
+        "inventory",
+        "overlap_check",
+        "unique_asset_salvage"
+      ],
+      "execute": false,
+      "rationale": "Promotion candidate blocked until salvage manifest"
+    },
+    {
+      "lane_id": "swarm_salvage_manifest_001",
+      "status": "pending",
+      "task_yaml": "runtime/tasks/swarm_salvage_manifest_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repo": "Victor-Dixon__SWARM",
+      "blocked_until": [
+        "inventory",
+        "overlap_check",
+        "unique_asset_salvage"
+      ],
+      "execute": false,
+      "rationale": "Promotion candidate blocked until salvage manifest"
+    },
+    {
+      "lane_id": "dreamos_core_manual_review_001",
+      "status": "pending",
+      "task_yaml": "runtime/tasks/dreamos_core_manual_review_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repo": "DreamOS_Core",
+      "execute": false,
+      "rationale": "Runtime SSOT manual review; linked to runtime_core_clone_salvage_manifest_001",
+      "cross_link": "runtime/tasks/runtime_core_clone_salvage_manifest_001.yaml"
+    },
+    {
+      "lane_id": "dream_os_core_manual_review_001",
+      "status": "pending",
+      "task_yaml": "runtime/tasks/dream_os_core_manual_review_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repo": "Dream.os-Core",
+      "execute": false,
+      "rationale": "Runtime SSOT manual review; linked to runtime_core_clone_salvage_manifest_001",
+      "cross_link": "runtime/tasks/runtime_core_clone_salvage_manifest_001.yaml"
+    },
+    {
+      "lane_id": "github_architect_bot_role_review_001",
+      "status": "pending",
+      "task_yaml": "runtime/tasks/github_architect_bot_role_review_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repo": "github-architect-bot",
+      "execute": false,
+      "rationale": "User gate: inspect_manually until evidence proves role"
+    },
+    {
+      "lane_id": "thea_role_review_001",
+      "status": "pending",
+      "task_yaml": "runtime/tasks/thea_role_review_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repo": "Victor-Dixon__Thea",
+      "execute": false,
+      "rationale": "Plugin/toolbelt role review"
+    },
+    {
+      "lane_id": "duplicate_dreamvault_path_review_001",
+      "status": "pending",
+      "task_yaml": "runtime/tasks/duplicate_dreamvault_path_review_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_paths": [
+        "D:\\Projects\\DreamVault",
+        "D:\\projects\\DreamVault",
+        "D:\\repos\\Dadudekc\\DreamVault"
+      ],
+      "canonical_winner": "D:\\DreamVault",
+      "execute": false,
+      "rationale": "Byte-compare mirror paths against canonical D:\\DreamVault before any prune"
+    }
+  ]
+}

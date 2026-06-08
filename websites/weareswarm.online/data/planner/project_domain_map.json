@@ -1,0 +1,107 @@
+{
+  "cross_links": {
+    "consolidation_recommendations": "data/reports/planner/consolidation_recommendations.json",
+    "domain_index": "data/planner/project_domain_index.json"
+  },
+  "entries": [
+    {
+      "action": "keep_as_toolbelt",
+      "bucket": "toolbelt",
+      "canonical_target": null,
+      "domain": "automation toolbelt",
+      "repo": "agent-tools",
+      "risk": 55
+    },
+    {
+      "action": "inspect_manually",
+      "bucket": "variant",
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "repo": "Dream.os-Core",
+      "risk": 90
+    },
+    {
+      "action": "inspect_manually",
+      "bucket": "canonical_core",
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "repo": "DreamOS_Core",
+      "risk": 30
+    },
+    {
+      "action": "preserve_as_canonical",
+      "bucket": "canonical_core",
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "repo": "DreamVault",
+      "risk": 15
+    },
+    {
+      "action": "preserve_as_canonical",
+      "bucket": "variant",
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "repo": "DreamVault",
+      "risk": 15
+    },
+    {
+      "action": "inspect_manually",
+      "bucket": "plugin",
+      "canonical_target": null,
+      "domain": "automation toolbelt",
+      "repo": "github-architect-bot",
+      "risk": 70
+    },
+    {
+      "action": "keep_as_toolbelt",
+      "bucket": "toolbelt",
+      "canonical_target": null,
+      "domain": "automation toolbelt",
+      "repo": "projectscanner",
+      "risk": 55
+    },
+    {
+      "action": "promote_into_canonical",
+      "bucket": "promotion_candidate",
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "repo": "Victor-Dixon__AutoDream.Os",
+      "risk": 55
+    },
+    {
+      "action": "promote_into_canonical",
+      "bucket": "promotion_candidate",
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "repo": "Victor-Dixon__SWARM",
+      "risk": 55
+    },
+    {
+      "action": "inspect_manually",
+      "bucket": "plugin",
+      "canonical_target": null,
+      "domain": "automation toolbelt",
+      "repo": "Victor-Dixon__Thea",
+      "risk": 75
+    },
+    {
+      "action": "promote_into_canonical",
+      "bucket": "promotion_candidate",
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "repo": "Victor-Dixon__Victor.os",
+      "risk": 55
+    },
+    {
+      "action": "keep_as_public_surface",
+      "bucket": "public_surface",
+      "canonical_target": null,
+      "domain": "public web surface",
+      "repo": "websites",
+      "risk": 55
+    }
+  ],
+  "generated_at": "2026-06-08T00:09:38+00:00",
+  "schema": "dreamvault.planner.project_domain_map.v1",
+  "source": "emit_weareswarm_planner_domain_artifacts_001"
+}

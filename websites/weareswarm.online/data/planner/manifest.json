@@ -1,0 +1,48 @@
+{
+  "schema": "weareswarm.online.planner_manifest.v1",
+  "synced_at": "2026-06-08T00:11:13+00:00",
+  "source": "dreamvault_sync",
+  "mode": "local_only",
+  "dreamvault_planner_root": "D:/DreamVault/data/reports/planner",
+  "dreamvault_emit_root": "D:/DreamVault/data/planner",
+  "site_data_root": "data/planner",
+  "files": [
+    "consolidation_recommendations.json",
+    "manifest.json",
+    "next_lane.json",
+    "operator_outcome_reset_001.json",
+    "project_capability_index.json",
+    "project_consolidation_decision_manifest_001.json",
+    "project_consolidation_next_lanes_001.json",
+    "project_domain_index.json",
+    "project_domain_map.json",
+    "project_domain_mapping_manual_review_001.json",
+    "public_project_board.json",
+    "repo_consolidation_candidates.json",
+    "spark_panel.json",
+    "ssot_reconciliation_manifest_001.json",
+    "strategic_active_queue.json",
+    "weareswarm_online_identity_lock.json"
+  ],
+  "copied": [
+    "project_domain_index.json",
+    "project_domain_map.json",
+    "repo_consolidation_candidates.json",
+    "public_project_board.json",
+    "project_capability_index.json",
+    "consolidation_recommendations.json",
+    "next_lane.json",
+    "ssot_reconciliation_manifest_001.json",
+    "project_domain_mapping_manual_review_001.json",
+    "project_consolidation_decision_manifest_001.json",
+    "project_consolidation_next_lanes_001.json",
+    "strategic_active_queue.json",
+    "operator_outcome_reset_001.json",
+    "spark_panel.json"
+  ],
+  "skipped_missing_or_unsafe": [
+    "task_inventory_report.json (secret_marker)"
+  ],
+  "refresh_command": "python D:/DreamVault/runtime/scripts/sync_planner_reports_to_weareswarm_online_001.py --local-only",
+  "public_safe": true
+}

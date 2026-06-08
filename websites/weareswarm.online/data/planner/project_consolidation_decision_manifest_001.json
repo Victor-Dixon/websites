@@ -1,0 +1,335 @@
+{
+  "schema": "dreamvault.planner.project_consolidation_decision_manifest.v1",
+  "lane_id": "project_consolidation_decision_manifest_001",
+  "generated_at": "2026-06-08T00:02:15+00:00",
+  "destructive_actions": 0,
+  "execute": false,
+  "cross_links": {
+    "project_domain_index": "D:\\DreamVault\\data\\planner\\project_domain_index.json",
+    "repo_consolidation_candidates": "D:\\DreamVault\\data\\planner\\repo_consolidation_candidates.json",
+    "ssot_reconciliation_manifest": "D:\\DreamVault\\data\\planner\\ssot_reconciliation_manifest_001.json",
+    "consolidation_recommendations": "D:\\DreamVault\\data\\reports\\planner\\consolidation_recommendations.json",
+    "consolidation_lanes": "D:\\DreamVault\\data\\reports\\consolidation\\CONSOLIDATION_LANES_D_DRIVE.json"
+  },
+  "dreamvault_conflict_resolution": {
+    "conflict": "Two DreamVault rows in consolidation matrix: inspect_manually (D:\\Projects\\DreamVault duplicate path) vs preserve_as_canonical (D:\\DreamVault)",
+    "winner": "preserve_as_canonical",
+    "canonical_repo": "DreamVault",
+    "canonical_repo_root": "D:\\DreamVault",
+    "loser_disposition": "duplicate path evidence moved to duplicates bucket; not canonical row",
+    "rule_applied": "preserve_as_canonical wins over inspect_manually for DreamVault key",
+    "execute": false
+  },
+  "buckets": {
+    "canonical": [
+      "DreamVault"
+    ],
+    "promotion_candidates": [
+      "Victor-Dixon__AutoDream.Os",
+      "Victor-Dixon__Victor.os",
+      "Victor-Dixon__SWARM"
+    ],
+    "toolbelt": [
+      "projectscanner",
+      "agent-tools"
+    ],
+    "public_surface": [
+      "websites"
+    ],
+    "manual_review": [
+      "Dream.os-Core",
+      "DreamOS_Core",
+      "Victor-Dixon__Thea",
+      "github-architect-bot"
+    ],
+    "duplicates": [
+      "Projects\\DreamVault",
+      "projects\\DreamVault",
+      "repos\\Dadudekc\\DreamVault"
+    ]
+  },
+  "repos": {
+    "DreamVault": {
+      "repo": "DreamVault",
+      "repo_root": "D:\\DreamVault",
+      "action": "preserve_as_canonical",
+      "bucket": "canonical",
+      "domain": "Dream.OS governance/runtime automation",
+      "execute": false,
+      "note": "canonical planner/runtime/public-board aggregator unless duplicate path evidence proves otherwise",
+      "evidence": [
+        "preserve_as_canonical wins over inspect_manually for DreamVault key",
+        "CONSOLIDATION_LANES governance_vault=D:\\DreamVault",
+        "project_domain_index canonical_repo=DreamVault",
+        "ssot_reconciliation_manifest governance_ssot.repo=DreamVault",
+        "CONSOLIDATION_LANES ssot_roots.governance_vault=D:\\DreamVault",
+        "project_domain_index canonical_repo=DreamVault for Dream.OS governance/runtime automation",
+        "consolidation_recommendations preserve_as_canonical for D:\\DreamVault risk=15"
+      ]
+    },
+    "Victor-Dixon__AutoDream.Os": {
+      "repo": "Victor-Dixon__AutoDream.Os",
+      "repo_root": "D:\\Projects\\portfolio-review\\Victor-Dixon__AutoDream.Os",
+      "action": "promote_into_canonical",
+      "bucket": "promotion_candidates",
+      "domain": "Dream.OS governance/runtime automation",
+      "execute": false,
+      "blocked_until": [
+        "autodream_salvage_manifest_001",
+        "human_approval"
+      ],
+      "canonical_target": "DreamVault",
+      "promotion_pipeline": [
+        "inventory",
+        "overlap_check",
+        "unique_asset_salvage",
+        "tests",
+        "promotion_manifest",
+        "human_approval"
+      ],
+      "required_manifest": "promotion_manifest",
+      "salvage_lane": "autodream_salvage_manifest_001",
+      "salvage_task_yaml": "runtime/tasks/autodream_salvage_manifest_001.yaml",
+      "note": "BLOCKED until salvage manifest and promotion proof gates pass",
+      "evidence": [
+        "repo_consolidation_candidates promotion bucket",
+        "project_domain_index promotion_candidate bucket",
+        "Shares Dream.OS governance/runtime automation domain with DreamVault"
+      ]
+    },
+    "Victor-Dixon__Victor.os": {
+      "repo": "Victor-Dixon__Victor.os",
+      "repo_root": "D:\\Projects\\portfolio-review\\Victor-Dixon__Victor.os",
+      "action": "promote_into_canonical",
+      "bucket": "promotion_candidates",
+      "domain": "Dream.OS governance/runtime automation",
+      "execute": false,
+      "blocked_until": [
+        "victor_os_salvage_manifest_001",
+        "human_approval"
+      ],
+      "canonical_target": "DreamVault",
+      "promotion_pipeline": [
+        "inventory",
+        "overlap_check",
+        "unique_asset_salvage",
+        "tests",
+        "promotion_manifest",
+        "human_approval"
+      ],
+      "required_manifest": "promotion_manifest",
+      "salvage_lane": "victor_os_salvage_manifest_001",
+      "salvage_task_yaml": "runtime/tasks/victor_os_salvage_manifest_001.yaml",
+      "note": "BLOCKED until salvage manifest and promotion proof gates pass",
+      "evidence": [
+        "repo_consolidation_candidates promotion bucket",
+        "project_domain_index promotion_candidate bucket",
+        "Shares Dream.OS governance/runtime automation domain with DreamVault"
+      ]
+    },
+    "Victor-Dixon__SWARM": {
+      "repo": "Victor-Dixon__SWARM",
+      "repo_root": "D:\\Projects\\portfolio-review\\Victor-Dixon__SWARM",
+      "action": "promote_into_canonical",
+      "bucket": "promotion_candidates",
+      "domain": "Dream.OS governance/runtime automation",
+      "execute": false,
+      "blocked_until": [
+        "swarm_salvage_manifest_001",
+        "human_approval"
+      ],
+      "canonical_target": "DreamVault",
+      "promotion_pipeline": [
+        "inventory",
+        "overlap_check",
+        "unique_asset_salvage",
+        "tests",
+        "promotion_manifest",
+        "human_approval"
+      ],
+      "required_manifest": "promotion_manifest",
+      "salvage_lane": "swarm_salvage_manifest_001",
+      "salvage_task_yaml": "runtime/tasks/swarm_salvage_manifest_001.yaml",
+      "note": "BLOCKED until salvage manifest and promotion proof gates pass",
+      "evidence": [
+        "repo_consolidation_candidates promotion bucket",
+        "project_domain_index promotion_candidate bucket",
+        "Shares Dream.OS governance/runtime automation domain with DreamVault"
+      ]
+    },
+    "projectscanner": {
+      "repo": "projectscanner",
+      "repo_root": "D:\\projectscanner",
+      "action": "keep_as_toolbelt",
+      "bucket": "toolbelt",
+      "domain": "automation toolbelt",
+      "execute": false,
+      "note": "Standalone toolbelt supporting canonical repos; not a Dream.OS variant",
+      "evidence": [
+        "project_domain_index repo_buckets.toolbelt",
+        "CONSOLIDATION_LANES ssot_roots.repo_intelligence=D:\\projectscanner"
+      ]
+    },
+    "agent-tools": {
+      "repo": "agent-tools",
+      "repo_root": "D:\\agent-tools",
+      "action": "keep_as_toolbelt",
+      "bucket": "toolbelt",
+      "domain": "automation toolbelt",
+      "execute": false,
+      "note": "Standalone toolbelt supporting canonical repos; not a Dream.OS variant",
+      "evidence": [
+        "project_domain_index repo_buckets.toolbelt",
+        "automation toolbelt domain"
+      ]
+    },
+    "websites": {
+      "repo": "websites",
+      "repo_root": "D:\\websites",
+      "action": "keep_as_public_surface",
+      "bucket": "public_surface",
+      "domain": "public web surface",
+      "execute": false,
+      "note": "Public web surface; preserve-first",
+      "evidence": [
+        "project_domain_index repo_buckets.public_surface"
+      ]
+    },
+    "Dream.os-Core": {
+      "repo": "Dream.os-Core",
+      "repo_root": "D:\\Dream.os-Core",
+      "action": "inspect_manually",
+      "bucket": "manual_review",
+      "domain": "Dream.OS governance/runtime automation",
+      "execute": false,
+      "note": "Runtime variant; SSOT conflict with DreamOS_Core pending salvage",
+      "evidence": [
+        "repo_consolidation_candidates inspect bucket",
+        "consolidation_recommendations inspect_manually",
+        "ssot_reconciliation_manifest dream_os_core_pair verdict=preserve_both"
+      ]
+    },
+    "DreamOS_Core": {
+      "repo": "DreamOS_Core",
+      "repo_root": "D:\\DreamOS_Core",
+      "action": "inspect_manually",
+      "bucket": "manual_review",
+      "domain": "Dream.OS governance/runtime automation",
+      "execute": false,
+      "note": "Runtime variant; dedupe lane target vs Dream.os-Core pending salvage",
+      "evidence": [
+        "repo_consolidation_candidates inspect bucket",
+        "consolidation_recommendations inspect_manually",
+        "CONSOLIDATION_LANES runtime_core SSOT contested"
+      ]
+    },
+    "Victor-Dixon__Thea": {
+      "repo": "Victor-Dixon__Thea",
+      "repo_root": "D:\\Projects\\portfolio-review\\Victor-Dixon__Thea",
+      "action": "inspect_manually",
+      "bucket": "manual_review",
+      "domain": "automation toolbelt",
+      "execute": false,
+      "note": "Plugin/toolbelt role review pending",
+      "evidence": [
+        "repo_consolidation_candidates inspect bucket",
+        "consolidation_recommendations inspect_manually",
+        "project_domain_index repo_buckets.plugin"
+      ]
+    },
+    "github-architect-bot": {
+      "repo": "github-architect-bot",
+      "repo_root": "D:\\Projects\\github-architect-bot",
+      "action": "inspect_manually",
+      "bucket": "manual_review",
+      "domain": "automation toolbelt",
+      "execute": false,
+      "note": "User override: inspect_manually until evidence proves role; prior SSOT lane classified toolbelt",
+      "evidence": [
+        "repo_consolidation_candidates inspect bucket",
+        "consolidation_recommendations inspect_manually",
+        "ssot_reconciliation_manifest github_architect_bot verdict=toolbelt (superseded by user gate)",
+        "User prompt: inspect_manually until evidence proves"
+      ]
+    }
+  },
+  "duplicate_paths": [
+    {
+      "repo": "DreamVault",
+      "repo_root": "D:\\Projects\\DreamVault",
+      "alias": "Projects\\DreamVault",
+      "action": "inspect_manually",
+      "bucket": "duplicates",
+      "domain": "Dream.OS governance/runtime automation",
+      "execute": false,
+      "canonical_winner": "D:\\DreamVault",
+      "relationship": "mirror_candidate",
+      "note": "duplicate path or mirror candidate; do not promote or prune yet",
+      "evidence": [
+        "consolidation_recommendations inspect_manually reason=duplicate of D:\\DreamVault SSOT path",
+        "repo_consolidation_candidates inspect action for DreamVault at duplicate path",
+        "path_exists=True"
+      ],
+      "next_lane": "duplicate_dreamvault_path_review_001"
+    },
+    {
+      "repo": "DreamVault",
+      "repo_root": "D:\\projects\\DreamVault",
+      "alias": "projects\\DreamVault",
+      "action": "inspect_manually",
+      "bucket": "duplicates",
+      "domain": "Dream.OS governance/runtime automation",
+      "execute": false,
+      "canonical_winner": "D:\\DreamVault",
+      "relationship": "mirror_candidate",
+      "note": "duplicate path or mirror candidate; do not promote or prune yet",
+      "evidence": [
+        "dedup_master_manifest: mirrors canonical D:\\DreamVault \u2014 archive non-canonical tree",
+        "duplicate_absorb_archive archive_queue source_path",
+        "path_exists=True"
+      ],
+      "next_lane": "duplicate_dreamvault_path_review_001"
+    },
+    {
+      "repo": "DreamVault",
+      "repo_root": "D:\\repos\\Dadudekc\\DreamVault",
+      "alias": "repos\\Dadudekc\\DreamVault",
+      "action": "inspect_manually",
+      "bucket": "duplicates",
+      "domain": "Dream.OS governance/runtime automation",
+      "execute": false,
+      "canonical_winner": "D:\\DreamVault",
+      "relationship": "mirror_candidate",
+      "note": "duplicate path or mirror candidate; do not promote or prune yet",
+      "evidence": [
+        "CONSOLIDATION_LANES LANE_MIRROR_REPOS_DADUDEKC target",
+        "robocopy /L compare before delete candidate",
+        "path_exists=True"
+      ],
+      "next_lane": "duplicate_dreamvault_path_review_001"
+    }
+  ],
+  "promotion_gates": {
+    "salvage_manifest_required": true,
+    "pipeline": [
+      "inventory",
+      "overlap_check",
+      "unique_asset_salvage",
+      "tests",
+      "promotion_manifest",
+      "human_approval"
+    ],
+    "execute": false,
+    "blocked_repos": [
+      "Victor-Dixon__AutoDream.Os",
+      "Victor-Dixon__Victor.os",
+      "Victor-Dixon__SWARM"
+    ]
+  },
+  "summary": {
+    "total_repos": 11,
+    "duplicate_path_count": 3,
+    "promotion_blocked_count": 3,
+    "destructive_actions": 0
+  }
+}

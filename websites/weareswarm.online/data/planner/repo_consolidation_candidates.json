@@ -1,0 +1,81 @@
+{
+  "candidates": {
+    "archive": [],
+    "inspect": [
+      {
+        "action": "inspect_manually",
+        "canonical_target": null,
+        "domain": "Dream.OS governance/runtime automation",
+        "reason": "Manual review required: ambiguous git state, domain, or canonical evidence.",
+        "repo": "Dream.os-Core",
+        "risk": 90
+      },
+      {
+        "action": "inspect_manually",
+        "canonical_target": null,
+        "domain": "automation toolbelt",
+        "reason": "Manual review required: ambiguous git state, domain, or canonical evidence.",
+        "repo": "Victor-Dixon__Thea",
+        "risk": 75
+      },
+      {
+        "action": "inspect_manually",
+        "canonical_target": null,
+        "domain": "automation toolbelt",
+        "reason": "Manual review required: ambiguous git state, domain, or canonical evidence.",
+        "repo": "github-architect-bot",
+        "risk": 70
+      },
+      {
+        "action": "inspect_manually",
+        "canonical_target": null,
+        "domain": "Dream.OS governance/runtime automation",
+        "reason": "duplicate of D:\\DreamVault SSOT path",
+        "repo": "DreamVault",
+        "risk": 55
+      },
+      {
+        "action": "inspect_manually",
+        "canonical_target": null,
+        "domain": "Dream.OS governance/runtime automation",
+        "reason": "Manual review required: ambiguous git state, domain, or canonical evidence.",
+        "repo": "DreamOS_Core",
+        "risk": 30
+      }
+    ],
+    "promotion": [
+      {
+        "action": "promote_into_canonical",
+        "canonical_target": null,
+        "domain": "Dream.OS governance/runtime automation",
+        "reason": "Shares domain 'Dream.OS governance/runtime automation' with DreamVault; compare before promotion.",
+        "repo": "Victor-Dixon__AutoDream.Os",
+        "risk": 55
+      },
+      {
+        "action": "promote_into_canonical",
+        "canonical_target": null,
+        "domain": "Dream.OS governance/runtime automation",
+        "reason": "Shares domain 'Dream.OS governance/runtime automation' with DreamVault; compare before promotion.",
+        "repo": "Victor-Dixon__SWARM",
+        "risk": 55
+      },
+      {
+        "action": "promote_into_canonical",
+        "canonical_target": null,
+        "domain": "Dream.OS governance/runtime automation",
+        "reason": "Shares domain 'Dream.OS governance/runtime automation' with DreamVault; compare before promotion.",
+        "repo": "Victor-Dixon__Victor.os",
+        "risk": 55
+      }
+    ]
+  },
+  "counts": {
+    "archive": 0,
+    "inspect": 5,
+    "promotion": 3
+  },
+  "generated_at": "2026-06-08T00:09:38+00:00",
+  "schema": "dreamvault.planner.repo_consolidation_candidates.v1",
+  "source": "emit_weareswarm_planner_domain_artifacts_001"
+}

@@ -1,0 +1,39 @@
+{
+  "approved_tasks": [
+    {
+      "priority": "P1",
+      "rationale": "Promotion candidate blocked until salvage manifest",
+      "repo": "DreamVault",
+      "status": "approved",
+      "task_id": "autodream_salvage_manifest_001"
+    },
+    {
+      "priority": "P1",
+      "rationale": "Runtime foundation manifest for /tasks bridge",
+      "repo": "DreamVault",
+      "status": "pending",
+      "task_id": "build_autonomous_runtime_manifest_014"
+    },
+    {
+      "priority": "P1",
+      "rationale": "Runtime SSOT salvage blocked until proof gates and human decision",
+      "repo": "DreamVault",
+      "status": "blocked",
+      "task_id": "runtime_core_clone_salvage_manifest_001"
+    }
+  ],
+  "blocked_until": [
+    "inventory",
+    "overlap_check",
+    "unique_asset_salvage"
+  ],
+  "execute": false,
+  "generated_at": "2026-06-08T00:09:39+00:00",
+  "next_lane": "autodream_salvage_manifest_001",
+  "next_task": "runtime/tasks/autodream_salvage_manifest_001.yaml",
+  "prior_lane": "project_consolidation_decision_manifest_001",
+  "rationale": "Promotion candidate blocked until salvage manifest",
+  "reason": "Promotion candidate blocked until salvage manifest",
+  "schema": "dreamvault.planner.next_lane.v1",
+  "source": "project_consolidation_next_lanes_001"
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — weareswarm.online</title>
+  <meta name="description" content="DreamVault planner project domain index bridge on weareswarm.online">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a class="brand" href="/">🧠 We Are Swarm</a>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/focus/">Focus</a>
+      <a href="/projects/" class="active">Projects</a>
+      <a href="/tasks/">Tasks</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="hero">
+      <h1>Projects</h1>
+      <p>Domain mapping and repo bucket view — planner bridge for portfolio consolidation.</p>
+      <div class="meta-row">
+        <span class="badge" id="sync-meta">Loading…</span>
+        <a class="badge" href="/">Command Center</a>
+        <a class="badge" href="/focus/">Focus board</a>
+        <a class="badge" href="/tasks/">Tasks</a>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Domain index</h2>
+          <p class="subtitle">project_domain_index.json</p>
+        </div>
+        <span class="badge warn" id="source-badge">—</span>
+      </div>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table id="domains-table">
+            <thead>
+              <tr>
+                <th>Domain</th>
+                <th>Contexts</th>
+                <th>Owner</th>
+                <th>Bucket</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <p class="section-title" style="margin-top:1.25rem;">Repo buckets</p>
+        <div id="repo-buckets"></div>
+
+        <p class="section-title" style="margin-top:1.25rem;">Seed repos</p>
+        <ul class="list" id="seed-repos"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script>
+    (async function () {
+      const { fetchJson, el, setSyncMeta, resolveRepoBuckets } = window.FocusDashboard;
+      try {
+        const [manifest, index, publicBoard] = await Promise.all([
+          fetchJson("manifest.json"),
+          fetchJson("project_domain_index.json"),
+          fetchJson("public_project_board.json").catch(() => ({})),
+        ]);
+        setSyncMeta(manifest);
+        document.getElementById("source-badge").textContent = index.source || manifest.source || "planner";
+
+        const tbody = document.querySelector("#domains-table tbody");
+        (index.domains || []).forEach((d) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML =
+            "<td>" + (d.domain || "—") + "</td>" +
+            "<td>" + ((d.bounded_contexts || []).join(", ") || "—") + "</td>" +
+            "<td>" + (d.canonical_repo || d.canonical_owner || "—") + "</td>" +
+            "<td><span class=\"status-pill\">" + (d.bucket || "—") + "</span></td>";
+          tbody.appendChild(tr);
+        });
+
+        const buckets = document.getElementById("repo-buckets");
+        Object.entries(resolveRepoBuckets(index, publicBoard)).forEach(([bucket, repos]) => {
+          buckets.appendChild(el("div", { style: "margin-bottom:0.45rem;font-size:0.88rem;" }, [
+            el("strong", { text: bucket + ": " }),
+            document.createTextNode((repos || []).join(", ")),
+          ]));
+        });
+
+        const seeds = document.getElementById("seed-repos");
+        (index.seed_repos || []).forEach((r) => seeds.appendChild(el("li", { text: r })));
+      } catch (err) {
+        document.getElementById("sync-meta").textContent = "Load error: " + err.message;
+      }
+    })();
+  </script>
+</body>
+</html>

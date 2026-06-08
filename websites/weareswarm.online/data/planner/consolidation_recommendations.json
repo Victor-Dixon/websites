@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-06-08T00:02:37+00:00",
+  "recommendations": [
+    {
+      "action": "inspect_manually",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "lane_id": "Dream.os-Core",
+      "reason": "Manual review required: ambiguous git state, domain, or canonical evidence.",
+      "repo": "Dream.os-Core",
+      "repo_root": "D:\\Dream.os-Core",
+      "risk": 90
+    },
+    {
+      "action": "inspect_manually",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "automation toolbelt",
+      "lane_id": "Victor-Dixon__Thea",
+      "reason": "Manual review required: ambiguous git state, domain, or canonical evidence.",
+      "repo": "Victor-Dixon__Thea",
+      "repo_root": "D:\\Projects\\portfolio-review\\Victor-Dixon__Thea",
+      "risk": 75
+    },
+    {
+      "action": "inspect_manually",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "automation toolbelt",
+      "lane_id": "github-architect-bot",
+      "reason": "Manual review required: ambiguous git state, domain, or canonical evidence.",
+      "repo": "github-architect-bot",
+      "repo_root": "D:\\Projects\\github-architect-bot",
+      "risk": 70
+    },
+    {
+      "action": "keep_as_toolbelt",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "automation toolbelt",
+      "lane_id": "projectscanner",
+      "reason": "Standalone toolbelt supporting canonical repos; not a Dream.OS variant.",
+      "repo": "projectscanner",
+      "repo_root": "D:\\projectscanner",
+      "risk": 55
+    },
+    {
+      "action": "keep_as_toolbelt",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "automation toolbelt",
+      "lane_id": "agent-tools",
+      "reason": "Standalone toolbelt supporting canonical repos; not a Dream.OS variant.",
+      "repo": "agent-tools",
+      "repo_root": "D:\\agent-tools",
+      "risk": 55
+    },
+    {
+      "action": "keep_as_public_surface",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "public web surface",
+      "lane_id": "websites",
+      "reason": "Classified from repo inspection of websites.",
+      "repo": "websites",
+      "repo_root": "D:\\websites",
+      "risk": 55
+    },
+    {
+      "action": "promote_into_canonical",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "lane_id": "Victor-Dixon__AutoDream.Os",
+      "reason": "Shares domain 'Dream.OS governance/runtime automation' with DreamVault; compare before promotion.",
+      "repo": "Victor-Dixon__AutoDream.Os",
+      "repo_root": "D:\\Projects\\portfolio-review\\Victor-Dixon__AutoDream.Os",
+      "required_manifest": "promotion_manifest",
+      "risk": 55
+    },
+    {
+      "action": "promote_into_canonical",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "lane_id": "Victor-Dixon__Victor.os",
+      "reason": "Shares domain 'Dream.OS governance/runtime automation' with DreamVault; compare before promotion.",
+      "repo": "Victor-Dixon__Victor.os",
+      "repo_root": "D:\\Projects\\portfolio-review\\Victor-Dixon__Victor.os",
+      "required_manifest": "promotion_manifest",
+      "risk": 55
+    },
+    {
+      "action": "promote_into_canonical",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "lane_id": "Victor-Dixon__SWARM",
+      "reason": "Shares domain 'Dream.OS governance/runtime automation' with DreamVault; compare before promotion.",
+      "repo": "Victor-Dixon__SWARM",
+      "repo_root": "D:\\Projects\\portfolio-review\\Victor-Dixon__SWARM",
+      "required_manifest": "promotion_manifest",
+      "risk": 55
+    },
+    {
+      "action": "inspect_manually",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "lane_id": "DreamVault",
+      "reason": "duplicate of D:\\DreamVault SSOT path",
+      "repo": "DreamVault",
+      "repo_root": "D:\\Projects\\DreamVault",
+      "risk": 55
+    },
+    {
+      "action": "inspect_manually",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "lane_id": "DreamOS_Core",
+      "reason": "Manual review required: ambiguous git state, domain, or canonical evidence.",
+      "repo": "DreamOS_Core",
+      "repo_root": "D:\\DreamOS_Core",
+      "risk": 30
+    },
+    {
+      "action": "preserve_as_canonical",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "Dream.OS governance/runtime automation",
+      "lane_id": "DreamVault",
+      "reason": "SSOT root in consolidation lanes; hosts planner, tasks, and governance reports.",
+      "repo": "DreamVault",
+      "repo_root": "D:\\DreamVault",
+      "risk": 15
+    }
+  ],
+  "schema": "dreamvault.planner.consolidation_recommendations.v1"
+}

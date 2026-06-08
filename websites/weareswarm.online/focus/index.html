@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Command Center — weareswarm.online</title>
+  <meta name="description" content="Dream.OS consolidation command center and Spark / dadudekc status on weareswarm.online">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a class="brand" href="/">🧠 We Are Swarm</a>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/focus/" class="active">Focus</a>
+      <a href="/projects/">Projects</a>
+      <a href="/tasks/">Tasks</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="hero">
+      <h1>Focus / Command Center</h1>
+      <p>Portfolio consolidation intelligence and Spark lane status — public-safe planner bridge.</p>
+      <div class="meta-row">
+        <span class="badge ok" id="live-badge">● Live board</span>
+        <span class="badge" id="sync-meta">Loading sync metadata…</span>
+      </div>
+    </header>
+
+    <div class="grid-2">
+      <section class="panel" id="consolidation-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Consolidation Command Center</h2>
+            <p class="subtitle">project_domain_mapping_and_task_prune_001</p>
+          </div>
+          <span class="badge warn" id="consolidation-source">scaffold</span>
+        </div>
+        <div class="panel-body">
+          <p class="section-title">Next lane</p>
+          <dl class="kv" id="next-lane-kv"></dl>
+
+          <p class="section-title">Repo buckets</p>
+          <div id="repo-buckets"></div>
+
+          <p class="section-title">Consolidation recommendations</p>
+          <div class="table-wrap">
+            <table id="recommendations-table">
+              <thead>
+                <tr>
+                  <th>Lane</th>
+                  <th>Action</th>
+                  <th>Blockers</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <p class="section-title">Unlocks &amp; blockers</p>
+          <div id="capability-signals"></div>
+        </div>
+      </section>
+
+      <section class="panel" id="spark-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Spark / dadudekc.site</h2>
+            <p class="subtitle">MZspark brand + portfolio site status</p>
+          </div>
+          <span class="badge block" id="dadudekc-status">checking</span>
+        </div>
+        <div class="panel-body spark-panel-body">
+          <div class="spark-section">
+            <p class="section-title">Spark project plan</p>
+            <dl class="status-grid" id="spark-kv"></dl>
+            <p class="section-title">Next actions</p>
+            <ul class="list" id="spark-actions"></ul>
+          </div>
+
+          <div class="section-divider" aria-hidden="true"></div>
+
+          <div class="spark-section">
+            <p class="section-title">dadudekc.site status</p>
+            <dl class="status-grid" id="dadudekc-kv"></dl>
+            <p class="section-title">Site next actions</p>
+            <ul class="list" id="dadudekc-actions"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <p class="footer-note">
+      Cross-links:
+      <a href="/">Command Center</a> ·
+      <a href="/projects/">Projects</a> ·
+      <a href="/tasks/">Tasks</a> ·
+      Data refresh via DreamVault sync script (no secrets exposed).
+    </p>
+  </main>
+
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script>
+    (async function () {
+      const {
+        fetchJson,
+        el,
+        setSyncMeta,
+        resolveRepoName,
+        resolveRationale,
+        resolveCapabilityLabel,
+        resolveCapabilityUnlocks,
+        renderCapabilityCards,
+        renderSparkPanel,
+        resolveRepoBuckets,
+      } = window.FocusDashboard;
+
+      try {
+        const [manifest, domainIndex, capabilities, recommendations, nextLane, spark, publicBoard] = await Promise.all([
+          fetchJson("manifest.json"),
+          fetchJson("project_domain_index.json"),
+          fetchJson("project_capability_index.json"),
+          fetchJson("consolidation_recommendations.json"),
+          fetchJson("next_lane.json"),
+          fetchJson("spark_panel.json"),
+          fetchJson("public_project_board.json").catch(() => ({})),
+        ]);
+
+        setSyncMeta(manifest);
+        document.getElementById("consolidation-source").textContent = manifest.source || "planner";
+
+        const nextKv = document.getElementById("next-lane-kv");
+        nextKv.innerHTML = "";
+        [
+          ["Lane", nextLane.next_lane || "—"],
+          ["Task", nextLane.next_task || "—"],
+          ["Rationale", resolveRationale(nextLane)],
+        ].forEach(([k, v]) => {
+          nextKv.appendChild(el("dt", { text: k }));
+          nextKv.appendChild(el("dd", { text: v }));
+        });
+
+        const buckets = document.getElementById("repo-buckets");
+        buckets.innerHTML = "";
+        Object.entries(resolveRepoBuckets(domainIndex, publicBoard)).forEach(([bucket, repos]) => {
+          const row = el("div", { style: "margin-bottom:0.5rem;font-size:0.88rem;" }, [
+            el("strong", { text: bucket + ": " }),
+            document.createTextNode((repos || []).join(", ") || "—"),
+          ]);
+          buckets.appendChild(row);
+        });
+
+        const tbody = document.querySelector("#recommendations-table tbody");
+        tbody.innerHTML = "";
+        (recommendations.recommendations || []).forEach((rec) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML =
+            "<td>" + resolveRepoName(rec) + "</td>" +
+            "<td><span class=\"status-pill\">" + (rec.action || "—") + "</span></td>" +
+            "<td>" + ((rec.blockers || []).join("; ") || "—") + "</td>";
+          tbody.appendChild(tr);
+        });
+
+        const signals = document.getElementById("capability-signals");
+        renderCapabilityCards(signals, capabilities.capabilities || []);
+
+        renderSparkPanel(spark);
+      } catch (err) {
+        document.getElementById("sync-meta").textContent = "Load error: " + err.message;
+        document.getElementById("live-badge").className = "badge block";
+        document.getElementById("live-badge").textContent = "● Data unavailable";
+      }
+    })();
+  </script>
+</body>
+</html>

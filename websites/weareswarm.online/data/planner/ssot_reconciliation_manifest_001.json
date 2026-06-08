@@ -1,0 +1,113 @@
+{
+  "schema": "dreamvault.planner.ssot_reconciliation_manifest.v1",
+  "lane_id": "project_domain_mapping_manual_review_001",
+  "generated_at": "2026-06-07T23:45:00+00:00",
+  "destructive_actions": 0,
+  "execute": false,
+  "canonical_recommendations": {
+    "governance_ssot": {
+      "repo": "DreamVault",
+      "repo_root": "D:\\DreamVault",
+      "evidence": [
+        "CONSOLIDATION_LANES ssot_roots.governance_vault=D:\\DreamVault",
+        "project_domain_index canonical_repo=DreamVault for Dream.OS governance/runtime automation",
+        "consolidation_recommendations preserve_as_canonical for D:\\DreamVault risk=15",
+        "Hosts data/planner/, runtime/tasks/, runtime/contracts/, data/reports/"
+      ],
+      "execute": false
+    },
+    "repo_intelligence_ssot": {
+      "repo": "projectscanner",
+      "repo_root": "D:\\projectscanner",
+      "evidence": [
+        "CONSOLIDATION_LANES ssot_roots.repo_intelligence=D:\\projectscanner"
+      ],
+      "execute": false
+    },
+    "runtime_core_note": "Neither Dream.os-Core nor DreamOS_Core promoted to governance canonical; runtime_core SSOT contested pending salvage proof"
+  },
+  "runtime_ssot_decision": {
+    "decision": "pending_human",
+    "alternatives_considered": [
+      {
+        "option": "preserve_both",
+        "evidence_for": [
+          "runtime_core_clone_pair_review recommended_action=preserve_both",
+          "runtime_core_clone_byte_compare delete_approved=false identical_count=0",
+          "Dream.os-Core hosts 36 unique Python modules; DreamOS_Core hosts publication kernel + pyproject.toml"
+        ]
+      },
+      {
+        "option": "promote_one",
+        "candidate_a": "Dream.os-Core",
+        "evidence_for_a": [
+          "runtime_core_clone_pair_review classification=intentional_parallel_variants_ssot_on_dream_dot_os_core",
+          "GitHub remote Victor-Dixon/Dream.os-Core; 27+ tests; full dreamos swarm runtime"
+        ],
+        "candidate_b": "DreamOS_Core",
+        "evidence_for_b": [
+          "CONSOLIDATION_LANES ssot_roots.runtime_core=D:\\DreamOS_Core",
+          "LANE_DEDUPE_DREAMOS_RUNTIME_CLONES and LANE_SALVAGE_DREAM_DOT_OS name DreamOS_Core as SSOT",
+          "Clean master HEAD; publication runtime seeded from DreamVault"
+        ],
+        "evidence_against_promotion": [
+          "No salvage_manifest.json on either target",
+          "Byte compare proves drift not duplicate",
+          "DreamOS_Core has no git remote; Dream.os-Core working tree critically dirty",
+          "User gate: do not mark canonical without lineage, freshness, tests, DreamVault contract overlap proof"
+        ]
+      }
+    ],
+    "human_decision_required": "Choose runtime contract SSOT (Dream.os-Core vs DreamOS_Core) after salvage manifest and pytest proof gates",
+    "execute": false
+  },
+  "dream_os_core_pair": {
+    "dream_dot_os_core": "D:\\Dream.os-Core",
+    "dreamos_core": "D:\\DreamOS_Core",
+    "relationship": "intentional_parallel_variants_not_proven_duplicate",
+    "verdict": "preserve_both",
+    "conflicting_signals": [
+      "CONSOLIDATION_LANES names DreamOS_Core runtime SSOT",
+      "runtime_core_clone_pair_review names Dream.os-Core runtime contract SSOT",
+      "domain_model_summary on DreamOS_Core claims is_canonical=true without salvage proof"
+    ],
+    "execute": false
+  },
+  "github_architect_bot": {
+    "repo_root": "D:\\Projects\\github-architect-bot",
+    "verdict": "toolbelt",
+    "not_core_variant": true,
+    "role": "Discord Architect actuator and GitHub repo lifecycle toolbelt",
+    "evidence": [
+      "domain_model domain=automation toolbelt bucket=plugin",
+      "portfolio_consolidation_plan Action 1 scopes Dream.os-Core/Victor.os/SWARM/DreamVault — github-architect-bot listed separately as ship-ready toolbelt",
+      "Overlaps DreamVault bounded contexts as actuator not governance brain",
+      "Tests focus on discord_architect, closeout delivery, task arbitration — not runtime message bus"
+    ],
+    "recommended_action": "keep_as_toolbelt",
+    "execute": false
+  },
+  "promotion_gates": {
+    "salvage_manifest_required": true,
+    "proof_gates": [
+      "cd D:\\DreamOS_Core && python -m pytest -q --maxfail=3",
+      "cd D:\\Dream.os-Core && python -m pytest -q --maxfail=3",
+      "cd D:\\projectscanner && python run.py D:\\Dream.os-Core --packet-only",
+      "cd D:\\projectscanner && python run.py D:\\DreamOS_Core --packet-only",
+      "runtime_core_clone_byte_compare_001.json summary.byte_identical_for_compared_set reviewed by human",
+      "data/reports/project_consolidation/salvage_manifest.json exists per target slated for promotion or archive"
+    ],
+    "execute": false
+  },
+  "next_lane": {
+    "lane_id": "runtime_core_clone_salvage_manifest_001",
+    "task_yaml": "runtime/tasks/runtime_core_clone_salvage_manifest_001.yaml",
+    "rationale": "Manual review complete; runtime SSOT remains pending_human until salvage manifests signed and pytest proof gates recorded in proof_log.jsonl",
+    "blocked_until": [
+      "salvage_manifest.json for Dream.os-Core and DreamOS_Core",
+      "human runtime_ssot_decision recorded",
+      "LANE_DEDUPE_DREAMOS_RUNTIME_CLONES proof_commands pass on chosen SSOT"
+    ],
+    "execute": false
+  }
+}
