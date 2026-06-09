@@ -1328,6 +1328,12 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
   overflow: hidden !important;
 }
 
+/* Keep the comic account nav from following scroll and covering quiz content. */
+.comic-nav {
+  position: relative !important;
+  top: auto !important;
+}
+
 .dreamos-clean-spark {
   width: min(100% - 1rem, 880px);
   max-width: calc(100vw - 1rem);
