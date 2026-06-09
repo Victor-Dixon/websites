@@ -77,7 +77,19 @@ sites:
     remote_root: public_html/weareswarm.online  # Addon domain
     enabled: true
     deploy_method: sftp
-    notes: "Swarm website (addon domain)"
+    deploy_files:
+      - websites/weareswarm.online/index.html
+      - websites/weareswarm.online/.well-known/deploy.json
+    deploy_dirs:
+      - websites/weareswarm.online/focus
+      - websites/weareswarm.online/projects
+      - websites/weareswarm.online/tasks
+      - websites/weareswarm.online/skill-tree
+      - websites/weareswarm.online/roadmap
+      - websites/weareswarm.online/feed
+      - websites/weareswarm.online/data/planner
+      - websites/weareswarm.online/data/shared
+    notes: "Command Center static (focus/projects/tasks/planner); unified_deployer deploy_files+deploy_dirs; SSOT websites/weareswarm.online"
 
   weareswarm.site:
     path: websites/weareswarm.site
@@ -113,7 +125,45 @@ sites:
     remote_root: public_html
     enabled: true
     deploy_method: sftp
-    notes: "Spark Protocol static demo — npm run site:publish from Victor-Dixon__The-emergence-"
+    deploy_files:
+      - websites/dadudekc.site/.htaccess
+      - websites/dadudekc.site/index.html
+      - websites/dadudekc.site/spark-dashboard/index.html
+      - websites/dadudekc.site/news/index.html
+      - websites/dadudekc.site/spark-login/index.html
+      - websites/dadudekc.site/spark-signup/index.html
+      - websites/dadudekc.site/spark-account/index.html
+      - websites/dadudekc.site/spark-logout/index.php
+      - websites/dadudekc.site/spark-generator/index.html
+      - websites/dadudekc.site/spark-battle/index.html
+      - websites/dadudekc.site/assets/js/spark-battle-sim.js
+      - websites/dadudekc.site/assets/data/battle_opponents.json
+      - websites/dadudekc.site/meridian-dispatch/index.html
+      - websites/dadudekc.site/meridian-map/index.html
+      - websites/dadudekc.site/meridian-map/map.js
+      - websites/dadudekc.site/meridian-map/missions.json
+      - websites/dadudekc.site/meridian-city/index.html
+      - websites/dadudekc.site/meridian-city/map.js
+      - websites/dadudekc.site/meridian-city/missions.json
+      - websites/dadudekc.site/meridian-city/news/index.html
+      - websites/dadudekc.site/meridian-city/news/newsfeed.json
+      - websites/dadudekc.site/meridian-city/news/news.js
+      - websites/dadudekc.site/assets/js/spark-account-runtime.js
+      - websites/dadudekc.site/assets/js/spark-auth-guard.js
+      - websites/dadudekc.site/assets/js/spark-auth-nav.js
+      - websites/dadudekc.site/assets/js/spark-dashboard.js
+      - websites/dadudekc.site/assets/js/spark-gauntlet-sim.js
+      - websites/dadudekc.site/assets/data/gauntlet_obstacle_catalog.json
+      - websites/dadudekc.site/assets/data/gauntlet_courses.json
+      - websites/dadudekc.site/spark-gauntlet/index.html
+      - websites/dadudekc.site/spark-auth-gate.php
+      - websites/dadudekc.site/assets/data/meridian_districts.json
+      - websites/dadudekc.site/assets/maps/meridian-city-map.png
+      - websites/dadudekc.site/assets/img/spark-logout-hero.png
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-immersive-auth.php
+      - websites/dadudekc.site/wp-content/themes/dreamos-emergence/parts/header.html
+      - websites/dadudekc.site/wp-content/themes/dreamos-emergence/templates/front-page.html
+    notes: "Spark Protocol — static index.html + WP Emergence; immersive auth + Battle Sim v8.6 + Meridian News nav"
 
   xthunder.site:
     path: sites/production/websites/xthunder.site
