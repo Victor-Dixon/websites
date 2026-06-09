@@ -47,11 +47,6 @@
     var sessionResult = await runtime.session();
     var loggedIn = !!(sessionResult.ok && sessionResult.data && sessionResult.data.logged_in);
 
-    if (!loggedIn) {
-      window.location.replace(runtime.loginUrl("/spark-dashboard/"));
-      return;
-    }
-
     var data = sessionResult.data || {};
     var label = data.display_name || data.user_login || "Operator";
     var localSpark = runtime.loadSparkIdentity();

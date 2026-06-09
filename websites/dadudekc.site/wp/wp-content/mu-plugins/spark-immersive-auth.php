@@ -296,7 +296,7 @@ function spark_immersive_auth_login_redirect($redirect_to, $requested_redirect_t
 
         $path = wp_parse_url($requested_redirect_to, PHP_URL_PATH);
 
-        if ($path && $path !== '/' && $path !== '/index.html') {
+        if ($path && strpos($path, '//') !== 0) {
 
             return $requested_redirect_to;
 
@@ -304,75 +304,17 @@ function spark_immersive_auth_login_redirect($redirect_to, $requested_redirect_t
 
     }
 
+    if (!empty($redirect_to) && $redirect_to !== admin_url()) {
 
+        return $redirect_to;
 
-    return home_url('/spark-dashboard/');
+    }
+
+    return home_url('/');
 
 }
 
 add_filter('login_redirect', 'spark_immersive_auth_login_redirect', 10, 3);
-
-
-
-/**
-
- * Logged-in visitors hitting branded login should skip the form.
-
- */
-
-function spark_immersive_auth_redirect_authenticated_login() {
-
-    if (is_admin() || wp_doing_ajax() || wp_doing_cron()) {
-
-        return;
-
-    }
-
-
-
-    $path = wp_parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
-
-    if ($path !== '/spark-login/' && $path !== '/spark-login') {
-
-        return;
-
-    }
-
-
-
-    if (!is_user_logged_in()) {
-
-        return;
-
-    }
-
-
-
-    $target = home_url('/spark-dashboard/');
-
-    if (!empty($_GET['redirect_to'])) {
-
-        $requested = wp_unslash($_GET['redirect_to']);
-
-        $requested_path = wp_parse_url($requested, PHP_URL_PATH);
-
-        if ($requested_path && strpos($requested_path, '/') === 0 && strpos($requested_path, '//') !== 0) {
-
-            $target = home_url($requested_path);
-
-        }
-
-    }
-
-
-
-    wp_safe_redirect($target, 302);
-
-    exit;
-
-}
-
-add_action('template_redirect', 'spark_immersive_auth_redirect_authenticated_login', 1);
 
 
 

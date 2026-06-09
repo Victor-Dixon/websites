@@ -271,7 +271,7 @@ button{
         <label for="user_pass">Secret Passcode</label>
         <input id="user_pass" name="pwd" type="password" autocomplete="current-password" required>
 
-        <input type="hidden" name="redirect_to" value="/spark-dashboard/">
+        <input type="hidden" name="redirect_to" value="/">
         <input type="hidden" name="rememberme" value="forever">
 
         <button type="submit">Log In</button>
@@ -283,7 +283,7 @@ button{
 <script id="sparkLoginRedirectPatch">
 (function(){
   const params = new URLSearchParams(window.location.search);
-  const DEFAULT_REDIRECT = "/spark-dashboard/";
+  const DEFAULT_REDIRECT = "/";
   const redirect = params.get("redirect_to") || params.get("returnUrl") || DEFAULT_REDIRECT;
   const safe = redirect.startsWith("/") && !redirect.startsWith("//") ? redirect : DEFAULT_REDIRECT;
   const input = document.querySelector('input[name="redirect_to"]');
@@ -292,19 +292,5 @@ button{
 </script>
   <script src="/assets/js/spark-account-runtime.js?v=6"></script>
   <script src="/assets/js/spark-auth-nav.js?v=7"></script>
-  <script id="sparkLoginAlreadyIn">
-(function(){
-  var runtime = window.SparkAccountRuntime;
-  if (!runtime || typeof runtime.session !== "function") return;
-  runtime.session().then(function(result){
-    if (result.ok && result.data && result.data.logged_in) {
-      var params = new URLSearchParams(window.location.search);
-      var target = params.get("redirect_to") || params.get("returnUrl") || runtime.defaultPostLogin || "/spark-dashboard/";
-      if (!target.startsWith("/") || target.startsWith("//")) target = "/spark-dashboard/";
-      window.location.replace(target);
-    }
-  });
-})();
-</script>
 </body>
 </html>

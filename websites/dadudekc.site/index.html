@@ -301,21 +301,6 @@ button{
       </article>
     </section>
   </main>
-  <script id="sparkHomeRedirect">
-(function(){
-  var DASH = "/spark-dashboard/";
-  if (document.cookie.indexOf("wordpress_logged_in") !== -1) {
-    window.location.replace(DASH);
-    return;
-  }
-  fetch("/wp-json/spark/v1/session", { credentials: "same-origin", cache: "no-store" })
-    .then(function(res){ return res.json(); })
-    .then(function(data){
-      if (data && data.logged_in) window.location.replace(DASH);
-    })
-    .catch(function(){});
-})();
-  </script>
   <script src="/assets/js/spark-account-runtime.js?v=6"></script>
   <script src="/assets/js/spark-auth-nav.js?v=7"></script>
 </body>

@@ -3,7 +3,7 @@
 
   const LOCAL_HERO_KEY = "spark.localHeroDossier.v1";
   const PENDING_SAVE_KEY = "spark.pendingSave.v1";
-  const DEFAULT_POST_LOGIN = "/spark-dashboard/";
+  const DEFAULT_POST_LOGIN = "/";
   // Same keys as meridian-dispatch plus generator save paths (account hub summary).
   const SPARK_IDENTITY_KEYS = [
     LOCAL_HERO_KEY,

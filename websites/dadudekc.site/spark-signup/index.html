@@ -315,7 +315,7 @@ button{
       if (!res.ok) throw new Error(data.message || "Could not create account.");
       const params = new URLSearchParams(window.location.search);
       const returnTarget = params.get("redirect_to") || params.get("returnUrl");
-      const defaultRedirect = "/spark-dashboard/";
+      const defaultRedirect = "/";
       status.textContent = "Account created. Opening your command post...";
       window.location.href = data.redirect || returnTarget || defaultRedirect;
     } catch (err) {
