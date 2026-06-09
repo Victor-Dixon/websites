@@ -285,6 +285,35 @@ body:before{
   margin:0 0 10px;
 }
 .spark-source{font-size:.9rem;color:#4a3b55}
+.spark-rename{margin-top:14px;padding-top:12px;border-top:3px dashed rgba(8,8,11,.25)}
+.spark-rename label{
+  display:block;
+  font-family:system-ui,sans-serif;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-size:.78rem;
+  margin-bottom:6px;
+}
+.spark-rename-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.spark-rename-row input{
+  flex:1 1 180px;
+  min-width:0;
+  border:4px solid var(--ink);
+  padding:10px 12px;
+  font:inherit;
+  font-size:1rem;
+  background:#fff;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.spark-rename-status{
+  margin:8px 0 0;
+  font-family:system-ui,sans-serif;
+  font-weight:800;
+  font-size:.88rem;
+}
+.spark-rename-status.ok{color:#0b5d2b}
+.spark-rename-status.err{color:#8b1030}
 .comic-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
 .comic-button{
   display:inline-block;
@@ -403,8 +432,8 @@ body:before{
     </footer>
   </main>
 
-  <script src="/assets/js/spark-account-runtime.js?v=7"></script>
+  <script src="/assets/js/spark-account-runtime.js?v=8"></script>
   <script src="/assets/js/spark-auth-nav.js?v=7"></script>
-  <script src="/assets/js/spark-dashboard.js?v=2"></script>
+  <script src="/assets/js/spark-dashboard.js?v=3"></script>
 </body>
 </html>

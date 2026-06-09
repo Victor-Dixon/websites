@@ -81,6 +81,38 @@
     });
   }
 
+  async function renameSpark(newName){
+    await session();
+    return jsonFetch("/wp-json/spark/v1/hero/rename", {
+      method:"POST",
+      headers: nonceHeaders(),
+      body: JSON.stringify({ name: String(newName || "").trim() })
+    });
+  }
+
+  function applySparkName(spark, newName){
+    const name = String(newName || "").trim();
+    if (!spark || typeof spark !== "object") {
+      return { name: name, hero_name: name, codename: name, spark_name: name };
+    }
+    return Object.assign({}, spark, {
+      name: name,
+      hero_name: name,
+      codename: name,
+      spark_name: name
+    });
+  }
+
+  function renameLocalSpark(newName, spark){
+    const updated = applySparkName(spark, newName);
+    writeLocalHero(updated);
+    try {
+      localStorage.setItem("spark.localHero.v1", JSON.stringify(updated));
+      localStorage.setItem("spark.finalDossier.v1", JSON.stringify(updated));
+    } catch(e) {}
+    return updated;
+  }
+
   function isLoggedIn(){
     return !!(window.SPARK_ACCOUNT && window.SPARK_ACCOUNT.logged_in);
   }
@@ -261,6 +293,9 @@
     session,
     hero,
     save,
+    renameSpark,
+    applySparkName,
+    renameLocalSpark,
     isLoggedIn,
     applyAuthVisibility,
     readLocalHero,
