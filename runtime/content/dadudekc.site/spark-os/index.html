@@ -18,7 +18,7 @@
       --danger:#ff7d7d;
     }
     * { box-sizing:border-box; }
-    html,body { margin:0; min-height:100%; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    html,body { margin:0; min-height:100%; overflow-x:hidden; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
     body {
       background:
         radial-gradient(circle at 20% 0%, rgba(125,255,190,.14), transparent 34rem),
@@ -26,7 +26,7 @@
         var(--bg);
     }
     a { color:inherit; }
-    .wrap { width:min(100% - 1rem, 920px); margin:0 auto; padding:1rem 0 4rem; }
+    .wrap { width:min(100% - 1rem, 920px); max-width:calc(100vw - 1rem); margin:0 auto; padding:1rem 0 4rem; }
     header {
       display:flex; justify-content:space-between; align-items:center; gap:1rem;
       padding:1rem 0 1.5rem;
@@ -35,6 +35,8 @@
     .nav { display:flex; gap:.75rem; flex-wrap:wrap; }
     .nav a { color:var(--muted); text-decoration:none; font-weight:750; }
     .hero,.panel {
+      max-width:100%;
+      overflow-x:clip;
       border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
       border-radius:28px;
@@ -65,32 +67,37 @@
     button:disabled { opacity:.42; cursor:not-allowed; }
     .progress {
       display:flex; justify-content:space-between; gap:1rem; align-items:center;
+      max-width:100%;
       background:rgba(255,255,255,.055);
       border:1px solid var(--line);
       padding:1rem;
       border-radius:20px;
       margin:1rem 0;
     }
-    .bar { height:10px; background:rgba(255,255,255,.1); border-radius:999px; overflow:hidden; flex:1; }
+    .bar { height:10px; background:rgba(255,255,255,.1); border-radius:999px; overflow:hidden; flex:1; min-width:0; }
     .bar span { display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
-    .question-list { display:grid; gap:1rem; margin-top:1rem; }
+    .question-list { display:grid; gap:1rem; min-width:0; max-width:100%; margin-top:1rem; }
     .question {
+      min-width:0;
+      max-width:100%;
       background:rgba(255,255,255,.045);
       border:1px solid var(--line);
       border-radius:24px;
       padding:1rem;
     }
     .question p { margin:.35rem 0 .9rem; color:var(--text); font-weight:750; }
-    .options { display:grid; gap:.65rem; }
+    .options { display:grid; gap:.65rem; min-width:0; max-width:100%; }
     .option {
       width:100%;
+      max-width:100%;
+      min-width:0;
       min-height:62px;
       border-radius:18px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.075);
       color:var(--text);
       display:grid;
-      grid-template-columns:2.5rem 1fr;
+      grid-template-columns:2.5rem minmax(0,1fr);
       gap:.75rem;
       align-items:center;
       padding:.8rem;
@@ -100,6 +107,11 @@
       width:2.25rem; height:2.25rem; border-radius:999px;
       background:rgba(255,255,255,.14);
       display:inline-flex; justify-content:center; align-items:center;
+    }
+    .option span {
+      min-width:0;
+      overflow-wrap:anywhere;
+      word-break:break-word;
     }
     .option[data-selected="1"] {
       outline:3px solid rgba(125,255,190,.75);
@@ -115,13 +127,18 @@
     pre { white-space:pre-wrap; overflow:auto; background:rgba(0,0,0,.24); padding:1rem; border-radius:16px; }
     footer { color:var(--muted); padding:2rem 0; text-align:center; }
     @media (max-width:760px) {
-      .wrap { width:calc(100% - .75rem); }
+      .wrap { width:min(100%, calc(100vw - .75rem)); max-width:calc(100vw - .75rem); }
       header { display:block; }
       .nav { margin-top:.75rem; }
-      .progress { display:block; }
+      .progress { display:block; padding:.85rem; }
       .bar { margin-top:.8rem; }
       .result-grid { grid-template-columns:1fr; }
-      .hero,.panel { border-radius:22px; }
+      .hero,.panel { border-radius:22px; padding:.85rem; }
+      .question { padding:.85rem; border-radius:18px; }
+      .option { grid-template-columns:2.15rem minmax(0,1fr); gap:.55rem; padding:.75rem; }
+      .option strong { width:2rem; height:2rem; }
+      .actions { display:grid; grid-template-columns:1fr; }
+      .actions button,.actions .btn { width:100%; }
     }
   </style>
 </head>
