@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  if (window.__DreamOSSparkNavFlowGuard) return;
-  window.__DreamOSSparkNavFlowGuard = true;
+  if (window.__DreamOSSparkMenuOffsetGuard) return;
+  window.__DreamOSSparkMenuOffsetGuard = true;
 
   var navSelectors = [
     ".comic-nav",
@@ -15,31 +15,42 @@
     "[data-dreamos-nav]"
   ];
 
-  function releaseNavFromViewport() {
-    navSelectors.forEach(function (selector) {
-      Array.prototype.forEach.call(document.querySelectorAll(selector), function (nav) {
-        if (!nav || !nav.style) return;
-
-        nav.style.setProperty("position", "static", "important");
-        nav.style.setProperty("top", "auto", "important");
-        nav.style.setProperty("right", "auto", "important");
-        nav.style.setProperty("bottom", "auto", "important");
-        nav.style.setProperty("left", "auto", "important");
-        nav.style.setProperty("z-index", "auto", "important");
-        nav.style.setProperty("transform", "none", "important");
-        nav.setAttribute("data-dreamos-nav-flow-guard", "1");
-      });
-    });
+  function isOverlayNav(nav) {
+    if (!nav) return false;
+    var style = window.getComputedStyle ? window.getComputedStyle(nav) : null;
+    var position = style ? style.position : "";
+    return position === "fixed" || position === "sticky" || nav.classList.contains("comic-nav");
   }
 
-  function bootNavFlowGuard() {
-    releaseNavFromViewport();
-    setTimeout(releaseNavFromViewport, 100);
-    setTimeout(releaseNavFromViewport, 500);
-    setTimeout(releaseNavFromViewport, 1500);
+  function updateSparkMenuOffset() {
+    var offset = 0;
+
+    navSelectors.forEach(function (selector) {
+      Array.prototype.forEach.call(document.querySelectorAll(selector), function (nav) {
+        if (!isOverlayNav(nav)) return;
+
+        var rect = nav.getBoundingClientRect();
+        if (!rect || rect.width <= 0 || rect.height <= 0) return;
+
+        offset = Math.max(offset, Math.ceil(rect.height));
+      });
+    });
+
+    document.documentElement.style.setProperty("--dreamos-spark-menu-offset", offset ? (offset + "px") : "0px");
+    document.documentElement.setAttribute("data-dreamos-spark-menu-offset", String(offset));
+  }
+
+  function bootSparkMenuOffsetGuard() {
+    updateSparkMenuOffset();
+    setTimeout(updateSparkMenuOffset, 100);
+    setTimeout(updateSparkMenuOffset, 500);
+    setTimeout(updateSparkMenuOffset, 1500);
+
+    window.addEventListener("resize", updateSparkMenuOffset, { passive: true });
+    window.addEventListener("orientationchange", updateSparkMenuOffset, { passive: true });
 
     if (window.MutationObserver && document.body) {
-      new MutationObserver(releaseNavFromViewport).observe(document.body, {
+      new MutationObserver(updateSparkMenuOffset).observe(document.body, {
         childList: true,
         subtree: true,
         attributes: true,
@@ -49,9 +60,9 @@
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bootNavFlowGuard, { once: true });
+    document.addEventListener("DOMContentLoaded", bootSparkMenuOffsetGuard, { once: true });
   } else {
-    bootNavFlowGuard();
+    bootSparkMenuOffsetGuard();
   }
 })();
 

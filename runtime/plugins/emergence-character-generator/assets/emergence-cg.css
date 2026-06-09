@@ -1,7 +1,8 @@
 .emergence-cg {
+  --ecg-shell-padding: 28px;
   max-width: 980px;
   margin: 32px auto;
-  padding: 28px;
+  padding: calc(var(--dreamos-spark-menu-offset, 0px) + var(--ecg-shell-padding)) var(--ecg-shell-padding) var(--ecg-shell-padding);
   border: 1px solid rgba(20,20,30,.12);
   border-radius: 22px;
   background: linear-gradient(135deg, #090b16, #171b31);
@@ -1328,27 +1329,12 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
   overflow: hidden !important;
 }
 
-/* Keep account/quiz nav shells in document flow so they never cover quiz content. */
-.comic-nav,
-.spark-nav,
-.spark-menu,
-.account-nav,
-.dreamos-header,
-.nav {
-  position: static !important;
-  top: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-  z-index: auto !important;
-  transform: none !important;
-}
-
 .dreamos-clean-spark {
+  --dreamos-clean-spark-padding: clamp(1rem, 4vw, 2rem);
   width: min(100% - 1rem, 880px);
   max-width: calc(100vw - 1rem);
   margin: 1rem auto 3rem;
-  padding: clamp(1rem, 4vw, 2rem);
+  padding: calc(var(--dreamos-spark-menu-offset, 0px) + var(--dreamos-clean-spark-padding)) var(--dreamos-clean-spark-padding) var(--dreamos-clean-spark-padding);
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 28px;
   background: radial-gradient(circle at top, rgba(85,95,255,.18), rgba(8,11,24,.94) 42%);
@@ -1525,10 +1511,10 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
 
 @media (max-width: 760px) {
   .dreamos-clean-spark {
+    --dreamos-clean-spark-padding: .85rem;
     width: min(100%, calc(100vw - .75rem));
     max-width: calc(100vw - .75rem);
     margin: .5rem auto 2rem;
-    padding: .85rem;
     border-radius: 20px;
   }
 

@@ -66,7 +66,8 @@ a {
 }
 
 .dreamos-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 50;
   padding: 18px 0;
   backdrop-filter: blur(18px);
@@ -277,8 +278,8 @@ body {
 
 /* Theme/header hardening */
 .dreamos-header {
-  position: relative;
-  top: auto;
+  position: sticky;
+  top: 0;
   z-index: 999;
   padding: 14px 12px;
 }
@@ -312,29 +313,13 @@ body {
 }
 
 .nav {
-  position: static;
-  top: auto;
-  z-index: auto;
+  position: sticky;
+  top: 0;
+  z-index: 60;
   display: flex;
   justify-content: center;
   padding: 14px 12px;
   pointer-events: none;
-}
-
-/* Account/quiz nav shells must stay in document flow so they never cover quiz cards. */
-.comic-nav,
-.spark-nav,
-.spark-menu,
-.account-nav,
-.dreamos-header,
-.nav {
-  position: static !important;
-  top: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-  z-index: auto !important;
-  transform: none !important;
 }
 
 .nav-inner {
