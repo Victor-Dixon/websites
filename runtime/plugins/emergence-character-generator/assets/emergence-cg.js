@@ -1,4 +1,61 @@
 (function () {
+  "use strict";
+
+  if (window.__DreamOSSparkNavFlowGuard) return;
+  window.__DreamOSSparkNavFlowGuard = true;
+
+  var navSelectors = [
+    ".comic-nav",
+    ".spark-nav",
+    ".spark-menu",
+    ".account-nav",
+    ".dreamos-header",
+    ".nav",
+    "[data-spark-nav]",
+    "[data-dreamos-nav]"
+  ];
+
+  function releaseNavFromViewport() {
+    navSelectors.forEach(function (selector) {
+      Array.prototype.forEach.call(document.querySelectorAll(selector), function (nav) {
+        if (!nav || !nav.style) return;
+
+        nav.style.setProperty("position", "static", "important");
+        nav.style.setProperty("top", "auto", "important");
+        nav.style.setProperty("right", "auto", "important");
+        nav.style.setProperty("bottom", "auto", "important");
+        nav.style.setProperty("left", "auto", "important");
+        nav.style.setProperty("z-index", "auto", "important");
+        nav.style.setProperty("transform", "none", "important");
+        nav.setAttribute("data-dreamos-nav-flow-guard", "1");
+      });
+    });
+  }
+
+  function bootNavFlowGuard() {
+    releaseNavFromViewport();
+    setTimeout(releaseNavFromViewport, 100);
+    setTimeout(releaseNavFromViewport, 500);
+    setTimeout(releaseNavFromViewport, 1500);
+
+    if (window.MutationObserver && document.body) {
+      new MutationObserver(releaseNavFromViewport).observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["class", "style"]
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootNavFlowGuard, { once: true });
+  } else {
+    bootNavFlowGuard();
+  }
+})();
+
+(function () {
   const form = document.getElementById('emergence-cg-form');
   const result = document.getElementById('emergence-cg-result');
   const flavorMount = document.getElementById('emergence-cg-flavor');

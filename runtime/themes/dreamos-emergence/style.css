@@ -312,19 +312,29 @@ body {
 }
 
 .nav {
-  position: relative;
+  position: static;
   top: auto;
-  z-index: 60;
+  z-index: auto;
   display: flex;
   justify-content: center;
   padding: 14px 12px;
   pointer-events: none;
 }
 
-/* Comic account shell nav should stay in document flow so it never covers quiz cards. */
-.comic-nav {
-  position: relative !important;
+/* Account/quiz nav shells must stay in document flow so they never cover quiz cards. */
+.comic-nav,
+.spark-nav,
+.spark-menu,
+.account-nav,
+.dreamos-header,
+.nav {
+  position: static !important;
   top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  transform: none !important;
 }
 
 .nav-inner {

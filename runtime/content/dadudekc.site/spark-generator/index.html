@@ -10,9 +10,9 @@
 html,body{overflow-x:hidden}
 body{margin:0;background:radial-gradient(circle at top left,rgba(125,255,190,.16),transparent 34rem),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 .wrap{width:min(100% - 1rem,920px);max-width:calc(100vw - 1rem);margin:0 auto;padding:1rem 0 4rem}
-header{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1rem 0}
+header{position:static!important;display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1rem 0}
 a{color:inherit}
-nav{display:flex;gap:.8rem;flex-wrap:wrap}
+nav{position:static!important;top:auto!important;display:flex;gap:.8rem;flex-wrap:wrap}
 nav a{color:var(--muted);text-decoration:none;font-weight:800}
 .panel{max-width:100%;overflow-x:clip;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border-radius:28px;padding:clamp(1rem,4vw,2rem);box-shadow:0 24px 70px rgba(0,0,0,.28)}
 .kicker{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:.8rem;font-weight:950}

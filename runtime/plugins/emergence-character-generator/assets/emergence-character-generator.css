@@ -752,10 +752,20 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
   overflow: hidden !important;
 }
 
-/* Keep the comic account nav from following scroll and covering quiz content. */
-.comic-nav {
-  position: relative !important;
+/* Keep account/quiz nav shells in document flow so they never cover quiz content. */
+.comic-nav,
+.spark-nav,
+.spark-menu,
+.account-nav,
+.dreamos-header,
+.nav {
+  position: static !important;
   top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  transform: none !important;
 }
 
 .dreamos-clean-spark {
