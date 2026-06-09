@@ -74,6 +74,18 @@
     },
     {
       "blockers": [],
+      "capability_id": "flow_b_strategy_loop",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "flow_b_strategy_loop",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_flow_b_strategy_loop"
+      ]
+    },
+    {
+      "blockers": [],
       "capability_id": "governed_paper_trading",
       "domain": "Dream.OS governance/runtime automation",
       "id": "governed_paper_trading",
@@ -181,6 +193,6 @@
       ]
     }
   ],
-  "generated_at": "2026-06-08T00:02:37+00:00",
+  "generated_at": "2026-06-09T19:03:11+00:00",
   "schema": "dreamvault.planner.project_capability_index.v1"
 }

@@ -1,0 +1,1341 @@
+{
+  "schema": "weareswarm.online.skill_tree_panel.v1",
+  "generated_at": "2026-06-09T19:24:15+00:00",
+  "source": "dreamvault_sync",
+  "summary": {
+    "total_nodes": 80,
+    "unlocked": 49,
+    "advanced": 17,
+    "building": 14,
+    "locked": 0,
+    "unlocked_or_advanced": 66,
+    "progress_percent": 82,
+    "verified_capabilities": 16,
+    "branch_count": 5
+  },
+  "branches": [
+    {
+      "id": "command_core",
+      "title": "01 \u2014 Command Core",
+      "subtitle": "Access, deploy, observe, recover",
+      "node_count": 8,
+      "nodes": [
+        {
+          "id": "portfolio_recovery",
+          "label": "Portfolio Recovery",
+          "branch": "command_core",
+          "status": "building",
+          "description": "Turn broken domains into usable proof surfaces.",
+          "capabilities": [
+            "recovery matrix",
+            "domain classification",
+            "hosting audits"
+          ],
+          "proof": [],
+          "source": "structural_proof"
+        },
+        {
+          "id": "cap_publish_website_status",
+          "label": "Publish Website Status",
+          "branch": "command_core",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_publish_website_status"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "cap_run_verification_gates",
+          "label": "Run Verification Gates",
+          "branch": "command_core",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_run_verification_gates"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "cap_sync_public_status",
+          "label": "Sync Public Status",
+          "branch": "command_core",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_sync_public_status"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "verification_gates",
+          "label": "Verification Gates",
+          "branch": "command_core",
+          "status": "unlocked",
+          "description": "Every lane closes with evidence, status, and rollback context.",
+          "capabilities": [
+            "verify_task_gates",
+            "runtime spine tests",
+            "status markers"
+          ],
+          "proof": [
+            "tests/test_runtime_spine.py",
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "structural_proof"
+        },
+        {
+          "id": "cap_verify_task_gates",
+          "label": "Verify Task Gates",
+          "branch": "command_core",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_verify_task_gates"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "website_admin",
+          "label": "Website Admin",
+          "branch": "command_core",
+          "status": "advanced",
+          "description": "Production access, deploy hygiene, and live-site triage.",
+          "capabilities": [
+            "SSH deploy",
+            "FTP deploy",
+            "WP-CLI activation",
+            "REST status plugin"
+          ],
+          "proof": [
+            "runtime/scripts/run_deploy_weareswarm_canonical_052.sh",
+            "runtime/scripts/sync_planner_reports_to_weareswarm_online_001.py"
+          ],
+          "source": "structural_proof"
+        },
+        {
+          "id": "project_websites",
+          "label": "websites",
+          "branch": "command_core",
+          "status": "unlocked",
+          "description": "Portfolio bucket: public_surface \u00b7 keep_as_public_surface",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        }
+      ]
+    },
+    {
+      "id": "runtime_engine",
+      "title": "02 \u2014 Runtime Engine",
+      "subtitle": "Repeatable agent lanes",
+      "node_count": 27,
+      "nodes": [
+        {
+          "id": "automation_ops",
+          "label": "Automation Ops",
+          "branch": "runtime_engine",
+          "status": "building",
+          "description": "Terminal lanes, CPC reports, closeouts, and repeatable checks.",
+          "capabilities": [
+            "terminal lanes",
+            "CPC reports",
+            "closeout packets"
+          ],
+          "proof": [],
+          "source": "structural_proof"
+        },
+        {
+          "id": "cap_dispatch_lane_tasks",
+          "label": "Dispatch Lane Tasks",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_dispatch_lane_tasks"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "runtime_distributed_ownership",
+          "label": "Distributed Ownership",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "lease claim",
+            "owner attribution",
+            "expiry recovery"
+          ],
+          "proof": [
+            "dreamvault/task_leases.py",
+            "tests/test_task_leases.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "runtime_dreamclose_continuity",
+          "label": "DreamClose Continuity",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "clipboard closeout",
+            "grade card",
+            "suggestion box"
+          ],
+          "proof": [
+            "dreamvault/closeout_prompt.py",
+            "tests/test_closeout_prompt.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "runtime_dreamhelp_agent_alignment",
+          "label": "DreamHelp Agent Alignment",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "agent tool usage prompt",
+            "clipboard agent bootstrap"
+          ],
+          "proof": [
+            "dreamvault/dreamhelp.py",
+            "tests/test_dreamhelp.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "runtime_dreamlearn_workload_learning",
+          "label": "DreamLearn Workload Learning",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "friction detection",
+            "workflow improvement proposals"
+          ],
+          "proof": [
+            "dreamvault/dreamlearn.py",
+            "tests/test_dreamlearn.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "dreamos_runtime",
+          "label": "DreamOS Runtime",
+          "branch": "runtime_engine",
+          "status": "building",
+          "description": "A durable command layer for multi-agent execution.",
+          "capabilities": [
+            "task FSM",
+            "lease ownership",
+            "dreamresume continuity"
+          ],
+          "proof": [],
+          "source": "structural_proof"
+        },
+        {
+          "id": "project_dreamos_core",
+          "label": "DreamOS_Core",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "Portfolio bucket: canonical_core \u00b7 inspect_manually",
+          "capabilities": [
+            "run_verification_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        },
+        {
+          "id": "project_dreamvault",
+          "label": "DreamVault",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "Portfolio bucket: canonical_core \u00b7 preserve_as_canonical",
+          "capabilities": [
+            "aggregate_project_capabilities",
+            "architect_consolidation",
+            "dispatch_lane_tasks",
+            "emit_discord_cards",
+            "emit_intelligence_packet",
+            "emit_planner_transition",
+            "flow_b_strategy_loop",
+            "governed_paper_trading",
+            "manage_repo_lifecycle"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        },
+        {
+          "id": "runtime_dreamlane_lane_compiler",
+          "label": "Dreamlane Lane Compiler",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "safe lane generation",
+            "script scaffolds",
+            "cliprun command emission"
+          ],
+          "proof": [
+            "dreamvault/dreamlane.py",
+            "tests/test_dreamlane.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "cap_emit_discord_cards",
+          "label": "Emit Discord Cards",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_emit_discord_cards"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "cap_emit_planner_transition",
+          "label": "Emit Planner Transition",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_emit_planner_transition"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "runtime_execution_journal_foundation",
+          "label": "Execution Journal Foundation",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "append-only events",
+            "replay ordering",
+            "runtime lineage"
+          ],
+          "proof": [
+            "dreamvault/execution_journal.py",
+            "tests/test_execution_journal.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "flow_b_strategy_loop",
+          "label": "Flow B Strategy Loop",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "ChatGPT \u2194 Cursor closed loop: emit planner state, send to strategy thread, capture directive, execute governed lane.",
+          "capabilities": [
+            "flow_b_strategy_loop",
+            "lead_cursor_sync_emit",
+            "chatgpt_directive_capture",
+            "governed_lane_execution"
+          ],
+          "proof": [
+            "runtime/scripts/lead_cursor_sync_001.py",
+            "run_conversation.py",
+            "data/conversation_links.json",
+            "data/reports/lead_sync/chatgpt_sync_latest.md",
+            "runtime/tasks/lead_cursor_sync_and_dispatch_001.yaml"
+          ],
+          "source": "structural_proof"
+        },
+        {
+          "id": "cap_flow_b_strategy_loop",
+          "label": "Flow B Strategy Loop",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_flow_b_strategy_loop"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "runtime_governed_event_schema",
+          "label": "Governed Event Schema",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "typed events",
+            "event taxonomy",
+            "versioned runtime lineage"
+          ],
+          "proof": [
+            "dreamvault/event_schema.py",
+            "dreamvault/event_types.py",
+            "tests/test_event_schema.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "runtime_journal_replay_reconstruction",
+          "label": "Journal Replay Reconstruction",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "task state reconstruction",
+            "replay summaries",
+            "recovery foundation"
+          ],
+          "proof": [
+            "dreamvault/journal_replay.py",
+            "tests/test_journal_replay.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "runtime_lifecycle_governance",
+          "label": "Lifecycle Governance",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "planned -> claimed -> running -> verified -> completed"
+          ],
+          "proof": [
+            "dreamvault/task_fsm.py",
+            "tests/test_task_fsm.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "cap_map_domain_models",
+          "label": "Map Domain Models",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_map_domain_models"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "runtime_prompt_governance",
+          "label": "Prompt Governance",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "template-driven prompts",
+            "semantic prompt validation"
+          ],
+          "proof": [
+            "runtime/prompts/token_registry.yaml",
+            "scripts/validate_runtime_prompts.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "runtime_prompt_library_canonicalization",
+          "label": "Prompt Library Canonicalization",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "prompt-library preference",
+            "DreamVault fallback prompts",
+            "canonical prompt sync"
+          ],
+          "proof": [
+            "data/reports/prompt_library_sync_manifest.md",
+            "dreamvault/prompt_loader.py",
+            "tests/test_prompt_loader.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "runtime_resume_continuity",
+          "label": "Resume Continuity",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "dreamresume",
+            "deterministic continuation"
+          ],
+          "proof": [
+            "dreamvault/resume.py",
+            "tests/test_resume.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "runtime_runtime_planning",
+          "label": "Runtime Planning",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "task artifact generation",
+            "deterministic routing"
+          ],
+          "proof": [
+            "dreamvault/planner_cli.py",
+            "tests/test_planner_cli.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "runtime_runtime_spine_verification",
+          "label": "Runtime Spine Verification",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "integration proof",
+            "replay-safe lifecycle confidence"
+          ],
+          "proof": [
+            "tests/test_runtime_spine.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        },
+        {
+          "id": "cap_select_next_lane",
+          "label": "Select Next Lane",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_select_next_lane"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "swarm_runtime",
+          "label": "Swarm Runtime",
+          "branch": "runtime_engine",
+          "status": "advanced",
+          "description": "Task artifacts, runtime scripts, and operator reports.",
+          "capabilities": [
+            "task artifacts",
+            "runtime scripts",
+            "operator reports"
+          ],
+          "proof": [
+            "runtime/tasks"
+          ],
+          "source": "structural_proof"
+        },
+        {
+          "id": "runtime_task_execution_spine",
+          "label": "Task Execution Spine",
+          "branch": "runtime_engine",
+          "status": "unlocked",
+          "description": "DreamVault runtime skill with file/test proof.",
+          "capabilities": [
+            "runner stub",
+            "dispatch contract"
+          ],
+          "proof": [
+            "dreamvault/task_runner.py",
+            "tests/test_task_runner.py"
+          ],
+          "source": "dreamvault_runtime_skills"
+        }
+      ]
+    },
+    {
+      "id": "recovery_loop",
+      "title": "03 \u2014 Recovery Loop",
+      "subtitle": "Rescue repos, ship proof",
+      "node_count": 14,
+      "nodes": [
+        {
+          "id": "cap_aggregate_project_capabilities",
+          "label": "Aggregate Project Capabilities",
+          "branch": "recovery_loop",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_aggregate_project_capabilities"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "cap_architect_consolidation",
+          "label": "Architect Consolidation",
+          "branch": "recovery_loop",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_architect_consolidation"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "project_dream_os_core",
+          "label": "Dream.os-Core",
+          "branch": "recovery_loop",
+          "status": "building",
+          "description": "Portfolio bucket: variant \u00b7 inspect_manually",
+          "capabilities": [
+            "run_verification_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        },
+        {
+          "id": "cap_emit_intelligence_packet",
+          "label": "Emit Intelligence Packet",
+          "branch": "recovery_loop",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_emit_intelligence_packet"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "cap_manage_repo_lifecycle",
+          "label": "Manage Repo Lifecycle",
+          "branch": "recovery_loop",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_manage_repo_lifecycle"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "operator_intelligence",
+          "label": "Operator Intelligence Layer",
+          "branch": "recovery_loop",
+          "status": "building",
+          "description": "Dashboards that expose risk, momentum, and next actions.",
+          "capabilities": [
+            "swarm operations center",
+            "planner bridge",
+            "cockpit snapshots"
+          ],
+          "proof": [],
+          "source": "structural_proof"
+        },
+        {
+          "id": "repo_rescue",
+          "label": "Repo Rescue",
+          "branch": "recovery_loop",
+          "status": "unlocked",
+          "description": "Scan, classify, salvage, promote, verify, commit.",
+          "capabilities": [
+            "scan_repo_topology",
+            "architect_consolidation",
+            "salvage manifests"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json",
+            "data/planner/public_project_board.json"
+          ],
+          "source": "structural_proof"
+        },
+        {
+          "id": "cap_scan_repo_topology",
+          "label": "Scan Repo Topology",
+          "branch": "recovery_loop",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_scan_repo_topology"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "swarm_memory",
+          "label": "Swarm Memory",
+          "branch": "recovery_loop",
+          "status": "building",
+          "description": "Persistent work history that makes the next agent smarter.",
+          "capabilities": [
+            "execution journal",
+            "journal replay",
+            "event schema"
+          ],
+          "proof": [],
+          "source": "structural_proof"
+        },
+        {
+          "id": "project_victor_dixon_autodream_os",
+          "label": "Victor-Dixon__AutoDream.Os",
+          "branch": "recovery_loop",
+          "status": "unlocked",
+          "description": "Portfolio bucket: variant \u00b7 promote_into_canonical",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        },
+        {
+          "id": "project_victor_dixon_swarm",
+          "label": "Victor-Dixon__SWARM",
+          "branch": "recovery_loop",
+          "status": "building",
+          "description": "Portfolio bucket: variant \u00b7 promote_into_canonical",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        },
+        {
+          "id": "project_victor_dixon_thea",
+          "label": "Victor-Dixon__Thea",
+          "branch": "recovery_loop",
+          "status": "advanced",
+          "description": "Portfolio bucket: plugin \u00b7 inspect_manually",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        },
+        {
+          "id": "project_victor_dixon_victor_os",
+          "label": "Victor-Dixon__Victor.os",
+          "branch": "recovery_loop",
+          "status": "unlocked",
+          "description": "Portfolio bucket: variant \u00b7 promote_into_canonical",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        },
+        {
+          "id": "project_github_architect_bot",
+          "label": "github-architect-bot",
+          "branch": "recovery_loop",
+          "status": "building",
+          "description": "Portfolio bucket: plugin \u00b7 inspect_manually",
+          "capabilities": [
+            "aggregate_project_capabilities",
+            "architect_consolidation",
+            "dispatch_lane_tasks",
+            "emit_discord_cards",
+            "emit_intelligence_packet",
+            "emit_planner_transition",
+            "governed_paper_trading",
+            "manage_repo_lifecycle"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        }
+      ]
+    },
+    {
+      "id": "revenue_frontier",
+      "title": "04 \u2014 Revenue Frontier",
+      "subtitle": "Proof into leverage",
+      "node_count": 15,
+      "nodes": [
+        {
+          "id": "offer_ai_debugger_assist",
+          "label": "AI Debugger Assistant \u2014 productized debug sessions",
+          "branch": "revenue_frontier",
+          "status": "building",
+          "description": "Rank #10 \u00b7 maturity=scaffold",
+          "capabilities": [
+            "$150",
+            "AI_Debugger_Assistant"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "offer_swarm_ops_consulting",
+          "label": "Agent Swarm operations setup (governed runtime + Discord commander)",
+          "branch": "revenue_frontier",
+          "status": "advanced",
+          "description": "Rank #3 \u00b7 maturity=operational_preview",
+          "capabilities": [
+            "$5000",
+            "DreamVault",
+            "agent-tools"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "offer_auto_blogger_saas",
+          "label": "Auto_Blogger content automation lane (blog + social syndication)",
+          "branch": "revenue_frontier",
+          "status": "building",
+          "description": "Rank #9 \u00b7 maturity=partial",
+          "capabilities": [
+            "$199",
+            "Auto_Blogger"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "offer_contract_leads_b2b",
+          "label": "B2B contract lead lists + outreach templates",
+          "branch": "revenue_frontier",
+          "status": "building",
+          "description": "Rank #7 \u00b7 maturity=scaffold",
+          "capabilities": [
+            "$800",
+            "contract-leads"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "distributed_swarm_mesh",
+          "label": "Distributed Swarm Mesh",
+          "branch": "revenue_frontier",
+          "status": "advanced",
+          "description": "Coordinated agent lanes across sites and systems.",
+          "capabilities": [
+            "multi-agent coordination",
+            "cross-repo lanes"
+          ],
+          "proof": [
+            "runtime/scripts/swarm_revenue_operator_001.py"
+          ],
+          "source": "structural_proof"
+        },
+        {
+          "id": "offer_dreamscan_local_business_starter",
+          "label": "DreamScan Local Business Starter \u2014 Lead Capture fix (48h, outcome not website)",
+          "branch": "revenue_frontier",
+          "status": "advanced",
+          "description": "Rank #1 \u00b7 maturity=operational_preview",
+          "capabilities": [
+            "$100",
+            "DreamVault",
+            "projectscanner"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "offer_dreamscan_repo_audit",
+          "label": "DreamScan governed repo audit (operator-grade recovery report)",
+          "branch": "revenue_frontier",
+          "status": "advanced",
+          "description": "Rank #2 \u00b7 maturity=operational_preview",
+          "capabilities": [
+            "$2500",
+            "DreamVault",
+            "projectscanner"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "offer_trading_signals_discord",
+          "label": "Freeride governed trading signals (paper-first, Discord premium lane)",
+          "branch": "revenue_frontier",
+          "status": "advanced",
+          "description": "Rank #4 \u00b7 maturity=operational_dry_run",
+          "capabilities": [
+            "$79",
+            "DreamVault"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "cap_governed_paper_trading",
+          "label": "Governed Paper Trading",
+          "branch": "revenue_frontier",
+          "status": "unlocked",
+          "description": "Dream.OS governance/runtime automation",
+          "capabilities": [
+            "enable_governed_paper_trading"
+          ],
+          "proof": [
+            "data/reports/planner/project_capability_index.json"
+          ],
+          "source": "project_capability_index"
+        },
+        {
+          "id": "offer_content_voice_retainer",
+          "label": "Multi-platform content drafts (Victor voice + platform rewrites)",
+          "branch": "revenue_frontier",
+          "status": "advanced",
+          "description": "Rank #6 \u00b7 maturity=operational_preview",
+          "capabilities": [
+            "$500",
+            "DreamVault"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "outreach_engine",
+          "label": "Outreach Engine",
+          "branch": "revenue_frontier",
+          "status": "advanced",
+          "description": "Proof-backed services, lead lists, and follow-up loops.",
+          "capabilities": [
+            "lead tracker",
+            "DreamScan offer",
+            "portfolio proof surfaces"
+          ],
+          "proof": [
+            "data/marketing/lead_tracker_001.json",
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "structural_proof"
+        },
+        {
+          "id": "offer_projectscanner_audit_pack",
+          "label": "Portfolio intelligence scan pack (52-repo topology + task audit)",
+          "branch": "revenue_frontier",
+          "status": "building",
+          "description": "Rank #8 \u00b7 maturity=operational",
+          "capabilities": [
+            "$499",
+            "projectscanner"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "revenue_automation",
+          "label": "Revenue Automation",
+          "branch": "revenue_frontier",
+          "status": "advanced",
+          "description": "Offer pipelines tied directly to shipped operational proof.",
+          "capabilities": [
+            "revenue operator",
+            "campaign tracking",
+            "daily operator loop"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "structural_proof"
+        },
+        {
+          "id": "offer_spark_quiz_funnel",
+          "label": "Spark Protocol character quiz + locked sheet (desktop MVP \u2192 paid unlock)",
+          "branch": "revenue_frontier",
+          "status": "building",
+          "description": "Rank #5 \u00b7 maturity=partial_mvp",
+          "capabilities": [
+            "$97",
+            "DreamVault"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        },
+        {
+          "id": "offer_planner_governance_saas",
+          "label": "WeAreSwarm planner + task governance for small teams",
+          "branch": "revenue_frontier",
+          "status": "building",
+          "description": "Rank #11 \u00b7 maturity=partial_mvp",
+          "capabilities": [
+            "$199",
+            "DreamVault"
+          ],
+          "proof": [
+            "data/reports/marketing/portfolio_revenue_inventory_001.json"
+          ],
+          "source": "portfolio_revenue_inventory"
+        }
+      ]
+    },
+    {
+      "id": "agent_tools",
+      "title": "05 \u2014 AgentTools Layer",
+      "subtitle": "Cross-cutting operator toolbelt and MCP surfaces",
+      "node_count": 16,
+      "nodes": [
+        {
+          "id": "agenttools_toolbelt",
+          "label": "AgentTools Toolbelt",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "Operator toolbelt SSOT \u2014 scripts, MCP servers, and swarm coordination utilities.",
+          "capabilities": [
+            "153 active tools",
+            "tools_inventory.json",
+            "mcp_servers/"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_agent_ops",
+          "label": "AgentTools \u00b7 Agent Ops",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "4 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "agent_activity_tools",
+            "agent_executor",
+            "agent_ops_tools",
+            "unified_agent"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_analysis",
+          "label": "AgentTools \u00b7 Analysis",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "10 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "analysis_tools",
+            "analyze_swarm_coordination_patterns",
+            "consolidation_analyzer",
+            "github_architecture_audit",
+            "refactoring_suggestion_engine",
+            "seo_meta_tag_extractor",
+            "+4 more"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_captain",
+          "label": "AgentTools \u00b7 Captain",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "11 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "captain_tools",
+            "captain_tools_advanced",
+            "captain_tools_architecture",
+            "captain_tools_coordination",
+            "captain_tools_core",
+            "captain_tools_messaging",
+            "+5 more"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_debug",
+          "label": "AgentTools \u00b7 Debug",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "6 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "check_stuck_messages",
+            "debug_chatgpt_elements",
+            "debug_message_queue",
+            "diagnose_github_cli_auth",
+            "fix_message_queue",
+            "unified_debugger"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_discord",
+          "label": "AgentTools \u00b7 Discord",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "7 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "discord_commands_tester",
+            "discord_mermaid_renderer",
+            "discord_profile_tools",
+            "discord_simple_test",
+            "discord_tools",
+            "discord_webhook_tools",
+            "+1 more"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json",
+            "agent-tools/mcp_servers"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_general",
+          "label": "AgentTools \u00b7 General",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "90 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "advisor_cli",
+            "analyze_chatgpt_selectors",
+            "autonomous_workflow_tools",
+            "base_adapter",
+            "bi_tools",
+            "changed_file_report",
+            "+84 more"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_github",
+          "label": "AgentTools \u00b7 Github",
+          "branch": "agent_tools",
+          "status": "advanced",
+          "description": "2 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "github_consolidation_tools",
+            "unified_github"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json",
+            "agent-tools/mcp_servers"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_infrastructure",
+          "label": "AgentTools \u00b7 Infrastructure",
+          "branch": "agent_tools",
+          "status": "advanced",
+          "description": "2 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "documentation_assistant",
+            "unified_environment"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json",
+            "agent-tools/mcp_servers"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_monitoring",
+          "label": "AgentTools \u00b7 Monitoring",
+          "branch": "agent_tools",
+          "status": "advanced",
+          "description": "2 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "captain_tools_monitoring",
+            "queue_monitor_tools"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_security",
+          "label": "AgentTools \u00b7 Security",
+          "branch": "agent_tools",
+          "status": "advanced",
+          "description": "2 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "check_sensitive_files",
+            "unified_security_scanner"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_testing",
+          "label": "AgentTools \u00b7 Testing",
+          "branch": "agent_tools",
+          "status": "advanced",
+          "description": "1 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "testing_tools"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_validation",
+          "label": "AgentTools \u00b7 Validation",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "15 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "agent_status_validator",
+            "audit_imports",
+            "captain_tools_validation",
+            "coordination_pattern_validator",
+            "coordination_validator",
+            "integration_validator",
+            "+9 more"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "agenttools_web",
+          "label": "AgentTools \u00b7 Web",
+          "branch": "agent_tools",
+          "status": "advanced",
+          "description": "1 active tools in agent-tools toolbelt.",
+          "capabilities": [
+            "unified_wordpress"
+          ],
+          "proof": [
+            "agent-tools/tools_inventory.json",
+            "agent-tools/mcp_servers"
+          ],
+          "source": "agent_tools_inventory"
+        },
+        {
+          "id": "project_agent_tools",
+          "label": "agent-tools",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "Portfolio bucket: toolbelt \u00b7 keep_as_toolbelt",
+          "capabilities": [
+            "run_verification_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        },
+        {
+          "id": "project_projectscanner",
+          "label": "projectscanner",
+          "branch": "agent_tools",
+          "status": "unlocked",
+          "description": "Portfolio bucket: toolbelt \u00b7 keep_as_toolbelt",
+          "capabilities": [
+            "run_verification_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board"
+        }
+      ]
+    }
+  ],
+  "next_unlock": {
+    "label": "AI Debugger Assistant \u2014 productized debug sessions",
+    "branch": "revenue_frontier",
+    "proof_hint": "data/reports/marketing/portfolio_revenue_inventory_001.json",
+    "trigger": "Close proof gap for AI Debugger Assistant \u2014 productized debug sessions."
+  },
+  "operator_signal": "No fake roadmap. Nodes unlock only with proof references.",
+  "sources": [
+    "data/reports/planner/project_capability_index.json",
+    "data/planner/public_project_board.json",
+    "data/reports/marketing/portfolio_revenue_inventory_001.json",
+    "src/dreamvault/utils/skill_tree.py",
+    "D:\\agent-tools\\tools_inventory.json"
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "schema": "weareswarm.online.onboarding_panel.v1",
+  "generated_at": "2026-06-09T19:24:16+00:00",
+  "source": "dreamvault_onboarding_consolidator",
+  "captain": {
+    "agent_id": "Agent-4",
+    "display_name": "Captain & Strategy",
+    "job_summary": "Swarm coordinator who executes own tasks, monitors agent progress, assigns gas (prompts), verifies work, and returns to execution after coordination.",
+    "execution_pattern": "Execute \u2192 Monitor \u2192 Coordinate \u2192 Execute",
+    "responsibilities": [
+      "Hard/soft onboard agents and align tasks to portfolio goals",
+      "Deliver gas via messaging tools (including self-activation)",
+      "Pick next tasks by ROI and swarm utilization",
+      "Verify claims (git, integrity, QA) before awarding points",
+      "Maintain Captain's log each cycle",
+      "Lead by example \u2014 Captain works too"
+    ],
+    "principles": [
+      "Prompts are gas \u2014 all agents need messages (including Captain)",
+      "Recognition = 5x gas \u2014 celebrate completions via leaderboard",
+      "ROI optimizes \u2014 math guides task priorities",
+      "Captain works too \u2014 self-message is mandatory",
+      "No workarounds \u2014 fix architecture properly",
+      "Verify before award \u2014 git and integrity tools first"
+    ],
+    "workflow": {
+      "start_of_cycle": [
+        "captain_find_idle_agents.py \u2014 who needs gas?",
+        "markov_8agent_roi_optimizer.py \u2014 optimal assignments",
+        "captain_message_all_agents.py \u2014 broadcast activation",
+        "captain_self_message.py \u2014 Captain starts own task"
+      ],
+      "during_cycle": [
+        "captain_check_agent_status.py \u2014 utilization check",
+        "git_work_verifier.py \u2014 verify completion claims",
+        "captain_leaderboard_update.py \u2014 award points",
+        "captain_next_task_picker.py \u2014 next assignment",
+        "captain_update_log.py \u2014 log cycle events"
+      ],
+      "end_of_cycle": [
+        "test_pyramid_analyzer.py / coverage_validator.py \u2014 quality gates",
+        "captain_check_agent_status.py \u2014 final status",
+        "captain_gas_check.py \u2014 idle agent sweep"
+      ]
+    },
+    "log": {
+      "canonical_dir": "D:/agent-tools/agent_workspaces/Agent-4",
+      "filename_pattern": "CAPTAINS_LOG_CYCLE_{cycle:03d}.md",
+      "update_command": "python tools/captain_update_log.py --cycle N --event \"description\" [--agent Agent-X] [--points N]",
+      "unified_captain": "python tools/captain/unified_captain.py",
+      "log_count": 0,
+      "latest_log": null,
+      "recent_entries": []
+    }
+  },
+  "cursor_agent": {
+    "core_rule": "Do not freehand long shell workflows when a governed lane exists. Prefer: task artifact \u2192 runtime script \u2192 cliprun \u2192 tests \u2192 commit \u2192 dreamclose.",
+    "command_shape": [
+      "TARGET",
+      "ACTION",
+      "VERIFY",
+      "COMMIT"
+    ],
+    "workflow": [
+      "Check for a resume task: `dreamresume`",
+      "If no resume, create a new lane: `dreamlane \"Your goal here\"`",
+      "Execute the generated runtime script",
+      "Verify with tests",
+      "Commit verified work",
+      "Close out: `dreamclose`"
+    ],
+    "cli_aliases": [
+      {
+        "label": "cliprun",
+        "detail": "cliprun <command>"
+      },
+      {
+        "label": "dreamresume",
+        "detail": "dreamresume"
+      },
+      {
+        "label": "dreamclose",
+        "detail": "dreamclose"
+      },
+      {
+        "label": "dreamlane",
+        "detail": "dreamlane \"Goal\" --type feature"
+      },
+      {
+        "label": "dreampush",
+        "detail": "dreampush"
+      },
+      {
+        "label": "dreamdashboard",
+        "detail": "dreamdashboard"
+      }
+    ],
+    "mcp_tools": [
+      "dreamtest",
+      "dreampr",
+      "dreambranch",
+      "uptime_check",
+      "task_router",
+      "pii_redact",
+      "query_db",
+      "github_architect",
+      "dreamcommit",
+      "task_arbitration"
+    ],
+    "key_paths": [
+      {
+        "label": "DreamVault",
+        "path": "D:/DreamVault"
+      },
+      {
+        "label": "Projects",
+        "path": "D:/Projects"
+      },
+      {
+        "label": "github-architect-bot",
+        "path": "D:/Projects/github-architect-bot"
+      }
+    ]
+  },
+  "swarm_onboarding": {
+    "soft_onboard": "python tools/toolbelt_cli.py onboard:soft --agent Agent-X",
+    "hard_onboard": "python tools/toolbelt_cli.py onboard:hard --agent Agent-X --yes (DESTRUCTIVE \u2014 full reset)",
+    "status": "python tools/toolbelt_cli.py onboard:status --agent Agent-X",
+    "registry": "D:/agent-tools/tools/toolbelt/registry/commands/onboarding.json",
+    "enforcement_rules": [
+      "Tools are means to goals \u2014 execute, don't plan endlessly",
+      "Report blockers immediately via major update channel",
+      "Report accomplishments when complete",
+      "Stay on assigned real project goals only"
+    ]
+  },
+  "dreamvault_boundaries": [
+    "Treat DreamVault as source of truth for portfolio intelligence.",
+    "Prefer machine-readable JSON plus human-readable Markdown.",
+    "Do not make Discord, ProjectScanner, or AgentTools the canonical store.",
+    "Keep generators dependency-light where possible.",
+    "Every governance lane should end with verification and a closeout artifact.",
+    "Use `runtime/tasks/` for task artifacts and `data/reports/` for durable reports."
+  ],
+  "portfolio_mission": [
+    "No batch remediation.",
+    "No repo deletion.",
+    "No archive action without retirement manifest.",
+    "No PROJECT_STRUCTURE.md edits before evidence dossier review.",
+    "No MASTER_TASK_LIST.md edits before evidence dossier review."
+  ],
+  "closeout": {
+    "required": true,
+    "cli": "closeout.bat \"Title\" --status PASS -a \"Action\" --commit abc123",
+    "root": "D:/Projects/github-architect-bot",
+    "status_values": [
+      "PASS",
+      "CLOSED",
+      "FAIL",
+      "BLOCKED",
+      "PARTIAL"
+    ]
+  },
+  "flow_b_strategy_loop": {
+    "capability_id": "flow_b_strategy_loop",
+    "label": "Flow B Strategy Loop",
+    "description": "Closed-loop ChatGPT \u2194 Cursor strategy execution: planner emit, strategy directive capture, governed lane dispatch.",
+    "steps": [
+      "lead_cursor_sync_001.py emit \u2192 data/reports/lead_sync/chatgpt_sync_latest.md",
+      "run_conversation.py --conversation-url <thread> --message \u2192 capture reply",
+      "data/conversation_links.json stores response_text; Cursor executes governed lane"
+    ],
+    "proof_paths": [
+      "runtime/scripts/lead_cursor_sync_001.py",
+      "run_conversation.py",
+      "data/conversation_links.json",
+      "runtime/tasks/lead_cursor_sync_and_dispatch_001.yaml"
+    ],
+    "enables_lanes": [
+      "lead_cursor_sync_and_dispatch_001",
+      "dreambranch_pr_linkage_001"
+    ]
+  },
+  "sources": [
+    "C:/Users/USER/.cursor/skills/agent-onboarding/SKILL.md",
+    "C:/Users/USER/.cursor/skills/session-closeout/SKILL.md",
+    "AGENTS.md",
+    "D:/Projects/github-architect-bot/AGENTS.md",
+    "D:/agent-tools/tools/CAPTAINS_COMPLETE_TOOLBELT_V3.md",
+    "D:/agent-tools/tools/README_TOOLBELT_CLI.md",
+    "runtime/scripts/lead_cursor_sync_001.py",
+    "run_conversation.py",
+    "runtime/tasks/lead_cursor_sync_and_dispatch_001.yaml"
+  ]
+}
