@@ -132,6 +132,7 @@
       <nav class="nav">
         <a href="/">Home</a>
         <a href="/the-emergence/">Emergence</a>
+        <a href="/missions/">Missions</a>
         <a href="/battles/">Battles</a>
       </nav>
     </header>
@@ -294,7 +295,8 @@
           ${powers ? `<p><strong>Powers:</strong> ${esc(powers)}</p>` : ""}
           <p>${esc(r.profile_shape || "Spark profile generated.")}</p>
           <div class="actions">
-            <a class="btn primary" href="/battles/">Enter the What-If Arena</a>
+            <a class="btn primary" href="/missions/">Open Missions</a>
+            <a class="btn secondary" href="/battles/">Enter the What-If Arena</a>
             <button class="secondary" type="button" data-action="reset">Start Over</button>
           </div>
           <details><summary>Raw protocol output</summary><pre>${esc(JSON.stringify(r, null, 2))}</pre></details>

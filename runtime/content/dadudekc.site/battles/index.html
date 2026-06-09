@@ -25,7 +25,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.24);padding:1rem;b
 <body data-dreamos-battle-character-reader="1">
 <div class="wrap">
   <section class="panel">
-    <p><a href="/">Home</a> · <a href="/spark-generator/">Generate Spark</a></p>
+    <p><a href="/">Home</a> · <a href="/spark-generator/">Generate Spark</a> · <a href="/missions/">Missions</a></p>
     <h1>What-If Arena</h1>
     <p>Saved Spark characters from the generator appear here.</p>
     <div id="battle-app"></div>
@@ -51,11 +51,11 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.24);padding:1rem;b
   function render(){
     const chars=load();
     if(!chars.length){
-      app.innerHTML='<div class="card"><h2>No saved characters yet</h2><p>Generate a Spark first, then return to the arena.</p><a class="btn primary" href="/spark-generator/">Generate Your Spark</a></div>';
+      app.innerHTML='<div class="card"><h2>No saved characters yet</h2><p>Generate a Spark first, then return to the arena or mission board.</p><a class="btn primary" href="/spark-generator/">Generate Your Spark</a><a class="btn secondary" href="/missions/">Open Missions</a></div>';
       return;
     }
     const c=selected(chars)||chars[0];
-    app.innerHTML=`<div class="card"><h2>${esc(c.lead_domain||"Generated")} Spark</h2><div class="grid"><div><strong>Cast</strong><span>${esc(c.cast||"Pending")}</span></div><div><strong>Signature</strong><span>${esc(c.spark_signature||"Pending")}</span></div><div><strong>Combat</strong><span>${esc(c.combat_capability||"Pending")}</span></div><div><strong>Domains</strong><span>${esc((c.manifested||[]).join(", "))}</span></div></div><p>${esc(c.profile_shape||"")}</p><details><summary>Character record</summary><pre>${esc(JSON.stringify(c,null,2))}</pre></details></div><div class="card"><h3>Saved Characters</h3>${chars.map(x=>`<p><a href="/battles/?character_id=${encodeURIComponent(x.id)}">${esc(x.lead_domain||"Spark")} · <small>${esc(x.created_at||"")}</small></a></p>`).join("")}</div>`;
+    app.innerHTML=`<div class="card"><h2>${esc(c.lead_domain||"Generated")} Spark</h2><div class="grid"><div><strong>Cast</strong><span>${esc(c.cast||"Pending")}</span></div><div><strong>Signature</strong><span>${esc(c.spark_signature||"Pending")}</span></div><div><strong>Combat</strong><span>${esc(c.combat_capability||"Pending")}</span></div><div><strong>Domains</strong><span>${esc((c.manifested||[]).join(", "))}</span></div></div><p>${esc(c.profile_shape||"")}</p><p><a class="btn primary" href="/missions/?character_id=${encodeURIComponent(c.id)}">Open Missions</a></p><details><summary>Character record</summary><pre>${esc(JSON.stringify(c,null,2))}</pre></details></div><div class="card"><h3>Saved Characters</h3>${chars.map(x=>`<p><a href="/battles/?character_id=${encodeURIComponent(x.id)}">${esc(x.lead_domain||"Spark")} · <small>${esc(x.created_at||"")}</small></a></p>`).join("")}</div>`;
   }
   render();
 })();
