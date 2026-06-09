@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var NAV_ASSET_VERSION = "6";
+  var NAV_ASSET_VERSION = "7";
   var navEl = null;
   var navIsComic = false;
 
@@ -155,11 +155,43 @@
     nav.innerHTML = html;
   }
 
+  function isRootHref(href) {
+    return href === "/" || href === "/index.html" || href === "";
+  }
+
+  function patchRootLinks(loggedIn) {
+    var selector =
+      '#spark-auth-nav a[href="/"], #spark-auth-nav a[href="/index.html"],' +
+      '.comic-nav a[href="/"], .comic-nav a[href="/index.html"],' +
+      '.spark-nav a[href="/"], .spark-nav a[href="/index.html"],' +
+      'a[data-spark-home]';
+
+    document.querySelectorAll(selector).forEach(function (link) {
+      if (link.hasAttribute("data-spark-cover")) {
+        return;
+      }
+
+      if (loggedIn) {
+        if (!link.dataset.sparkGuestHref) {
+          link.dataset.sparkGuestHref = link.getAttribute("href") || "/";
+        }
+        link.setAttribute("href", LOGGED_IN_HOME.href);
+        var label = (link.textContent || "").trim().toLowerCase();
+        if (label === "home" || label === "cover") {
+          link.textContent = linkLabel(LOGGED_IN_HOME, navIsComic);
+        }
+      } else if (link.dataset.sparkGuestHref) {
+        link.setAttribute("href", link.dataset.sparkGuestHref);
+      }
+    });
+  }
+
   function apply(loggedIn) {
+    setNavState(!!loggedIn);
+    patchRootLinks(!!loggedIn);
     if (!navEl) {
       return;
     }
-    setNavState(!!loggedIn);
     if (navIsComic) {
       renderComicNav(navEl, loggedIn);
     } else {
@@ -193,11 +225,7 @@
       document.querySelector(".spark-nav") ||
       document.querySelector(".comic-nav");
 
-    if (!navEl) {
-      return;
-    }
-
-    navIsComic = navEl.classList.contains("comic-nav");
+    navIsComic = !!(navEl && navEl.classList.contains("comic-nav"));
 
     var cachedLoggedIn = resolveLoggedIn();
     apply(cachedLoggedIn);
@@ -210,10 +238,14 @@
     runtime
       .session()
       .then(function (result) {
-        apply(!!(result.ok && result.data && result.data.logged_in));
+        var loggedIn = !!(result.ok && result.data && result.data.logged_in);
+        if (!loggedIn && cookieIndicatesLoggedIn()) {
+          loggedIn = true;
+        }
+        apply(loggedIn);
       })
       .catch(function () {
-        apply(false);
+        apply(cookieIndicatesLoggedIn());
       });
   }
 

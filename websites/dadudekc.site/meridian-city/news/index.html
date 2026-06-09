@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Meridian Ledger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --ink: #1b1711;
+      --paper: #eadbb8;
+      --paper2: #d6bf8f;
+      --red: #8f1d19;
+      --gold: #b78325;
+      --blue: #19324d;
+      --muted: #6c604f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 28%),
+        linear-gradient(135deg, #20170f, #080604);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      padding: 18px;
+    }
+
+    .paper {
+      max-width: 1180px;
+      margin: 0 auto;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(0,0,0,0.025),
+          rgba(0,0,0,0.025) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        linear-gradient(180deg, var(--paper), var(--paper2));
+      border: 8px solid #21170d;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.65);
+      padding: clamp(16px, 3vw, 34px);
+    }
+
+    .masthead {
+      text-align: center;
+      border-bottom: 6px double var(--ink);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 8px 0 4px;
+      font-size: clamp(42px, 8vw, 96px);
+      line-height: 0.86;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      margin: 0;
+      font-size: clamp(15px, 2vw, 22px);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .nav-row a,
+    .paper-btn {
+      display: inline-block;
+      color: #fff4d6;
+      background: var(--ink);
+      text-decoration: none;
+      padding: 9px 12px;
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--gold);
+      font-family: system-ui, sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .lead-slot {
+      margin-bottom: 20px;
+    }
+
+    .story {
+      border-top: 4px solid var(--ink);
+      padding: 16px 0;
+      break-inside: avoid;
+    }
+
+    .lead-story {
+      border: 5px solid var(--ink);
+      padding: 18px;
+      background: rgba(255,255,255,0.22);
+      box-shadow: 7px 7px 0 rgba(27,23,17,0.22);
+    }
+
+    .story-kicker {
+      display: inline-block;
+      background: var(--red);
+      color: #fff7df;
+      padding: 5px 9px;
+      font-family: system-ui, sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      transform: rotate(-1deg);
+    }
+
+    .story h2 {
+      margin: 10px 0;
+      font-size: clamp(26px, 4vw, 58px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+    }
+
+    .story:not(.lead-story) h2 {
+      font-size: clamp(22px, 3vw, 34px);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card-frame,
+    .card-placeholder {
+      margin: 0;
+      min-height: 260px;
+      border: 4px solid var(--ink);
+      background:
+        linear-gradient(135deg, rgba(143,29,25,0.25), rgba(25,50,77,0.24)),
+        rgba(255,255,255,0.25);
+      box-shadow: 5px 5px 0 rgba(27,23,17,0.22);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      transform: rotate(-1deg);
+    }
+
+    .card-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-frame figcaption,
+    .card-placeholder span {
+      font-family: system-ui, sans-serif;
+      font-weight: 1000;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .story-copy p {
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.35;
+      margin-top: 0;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 14px 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    dl div {
+      border: 2px solid rgba(27,23,17,0.35);
+      padding: 8px;
+      background: rgba(255,255,255,0.18);
+    }
+
+    dt {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    dd {
+      margin: 2px 0 0;
+      font-weight: 900;
+    }
+
+    .below-fold {
+      columns: 2 340px;
+      column-gap: 28px;
+      column-rule: 2px solid rgba(27,23,17,0.35);
+    }
+
+    .error {
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 8px;
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-frame,
+      .card-placeholder {
+        min-height: 220px;
+      }
+
+      dl {
+        grid-template-columns: 1fr;
+      }
+
+      .masthead-top {
+        display: block;
+      }
+    }
+    html[data-spark-auth="pending"] body {
+      visibility: hidden;
+    }
+  </style>
+  <script src="/assets/js/spark-account-runtime.js?v=4"></script>
+  <script src="/assets/js/spark-auth-guard.js?v=4" data-spark-require-auth></script>
+</head>
+
+<body>
+<nav id="spark-auth-nav" aria-label="Spark Protocol" style="position:sticky;top:0;z-index:9999;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px 12px;background:rgba(8,10,18,.94);border-bottom:1px solid rgba(255,255,255,.14);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <a href="/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Home</a>
+  <a href="/spark-account/" style="color:#78f0ff;text-decoration:none;font-weight:900">Build Account</a>
+  <a href="/spark-login/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Log In</a>
+  <a href="/spark-signup/" style="padding:8px 10px;border-radius:10px;background:#78f0ff;color:#061019;text-decoration:none;font-weight:900">Sign Up</a>
+</nav>
+
+
+  <main class="paper">
+    <header class="masthead">
+      <div class="masthead-top">
+        <span>Meridian City Edition</span>
+        <span>Dynamic World Feed</span>
+        <span>Sector Alerts Included</span>
+      </div>
+
+      <h1>The Meridian Ledger</h1>
+      <p class="tagline">Heroes Rise. Shadows Fall. The City Remembers.</p>
+
+      <nav class="nav-row">
+        <a href="../">Return to City Map</a>
+        <a href="./newsfeed.json">Raw Feed</a>
+      </nav>
+    </header>
+
+    <section class="lead-slot" data-lead-story></section>
+
+    <section class="below-fold" data-news-feed></section>
+  
+<section id="playable-dispatch-bridge" style="margin:24px 0;padding:16px;border:2px solid currentColor">
+  <h2>Respond To These Headlines</h2>
+  <p>The newspaper now has a playable field edition. Deploy your Spark, shift district pressure, and publish follow-up articles.</p>
+  <p><a href="../../meridian-dispatch/">Open Playable Dispatch</a></p>
+</section>
+
+</main>
+
+  <script src="./news.js"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=7"></script>
+</body>
+</html>

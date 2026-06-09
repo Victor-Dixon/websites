@@ -824,7 +824,7 @@ button{
 
   <script src="/assets/js/spark-account-runtime.js?v=4"></script>
 
-  <script src="/assets/js/spark-auth-nav.js?v=4"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=7"></script>
 
 </body>
 

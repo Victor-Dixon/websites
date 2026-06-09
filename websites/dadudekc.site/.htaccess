@@ -1,0 +1,33 @@
+# Spark Protocol — dadudekc.site
+# Static comic cover at / ; WordPress handles Emergence routes underneath.
+DirectoryIndex index.html index.php
+Options -Indexes
+
+<IfModule mod_headers.c>
+  Header set X-Spark-Site "dadudekc.site"
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+
+# Spark protected routes — auth gate before static index.html
+RewriteRule ^spark-dashboard/?$ /spark-auth-gate.php?target=/spark-dashboard/ [L,QSA]
+RewriteRule ^spark-generator/?$ /spark-auth-gate.php?target=/spark-generator/ [L,QSA]
+RewriteRule ^spark-battle/?$ /spark-auth-gate.php?target=/spark-battle/ [L,QSA]
+RewriteRule ^meridian-map/?$ /spark-auth-gate.php?target=/meridian-map/ [L,QSA]
+RewriteRule ^meridian-dispatch/?$ /spark-auth-gate.php?target=/meridian-dispatch/ [L,QSA]
+RewriteRule ^news/?$ /spark-auth-gate.php?target=/news/ [L,QSA]
+RewriteRule ^meridian-city/news/?$ /spark-auth-gate.php?target=/meridian-city/news/ [L,QSA]
+
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress

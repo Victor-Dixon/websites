@@ -1,0 +1,586 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Meridian Map | Spark Protocol</title>
+
+<meta name="description" content="Interactive Meridian City sector map — click grid cells A1 through P15 to inspect missions and Ledger updates.">
+
+<style>
+
+  :root{
+
+    --ink:#050505;
+
+    --paper:#fff5d6;
+
+    --gold:#ffd72e;
+
+    --blue:#62dfff;
+
+    --red:#ff355d;
+
+    --line:rgba(255,255,255,.28);
+
+    --hot:rgba(255,214,64,.5);
+
+    --active:rgba(255,214,64,.35);
+
+    --locked:rgba(255,64,64,.35);
+
+    --hidden:rgba(160,80,255,.35);
+
+    --muted:#b7b0a1;
+
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+
+    margin:0;
+
+    background:
+
+      radial-gradient(circle at 20% 20%,rgba(255,53,93,.25),transparent 18rem),
+
+      radial-gradient(circle at 85% 30%,rgba(98,223,255,.22),transparent 20rem),
+
+      #071018;
+
+    color:var(--ink);
+
+    font-family:Impact,Haettenschweiler,"Arial Black",system-ui,sans-serif;
+
+    letter-spacing:.04em;
+
+  }
+
+  .comic-nav{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
+
+    display:flex;
+
+    gap:10px;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    padding:12px;
+
+    background:var(--ink);
+
+    border-bottom:5px solid var(--yellow,#ffd12f);
+
+    box-shadow:0 6px 0 rgba(0,0,0,.45);
+
+  }
+
+  .comic-nav a{
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:950;
+
+    letter-spacing:.03em;
+
+    text-transform:uppercase;
+
+    padding:8px 10px;
+
+    border:3px solid transparent;
+
+  }
+
+  .comic-nav a:hover,.comic-nav .pop{
+
+    color:var(--ink);
+
+    background:var(--yellow,#ffd12f);
+
+    border-color:#fff;
+
+    transform:rotate(-1deg);
+
+  }
+
+  .wrap{max-width:1180px;margin:0 auto;padding:20px}
+
+  .panel{
+
+    background:var(--paper);
+
+    border:6px solid #050505;
+
+    padding:22px;
+
+    box-shadow:10px 10px 0 #050505;
+
+  }
+
+  .kicker{
+
+    display:inline-block;background:var(--red);color:#fff;
+
+    padding:10px 18px;border:5px solid #050505;
+
+    box-shadow:6px 6px 0 #050505;text-transform:uppercase;
+
+  }
+
+  h1{font-size:clamp(2.2rem,7vw,5rem);line-height:.9;margin:22px 0}
+
+  .intro{
+
+    font-family:system-ui,sans-serif;
+
+    font-weight:900;
+
+    font-size:1.05rem;
+
+    letter-spacing:.01em;
+
+    margin:0 0 16px;
+
+  }
+
+  .layout{
+
+    display:grid;
+
+    grid-template-columns:minmax(0,1fr) 340px;
+
+    gap:16px;
+
+    align-items:start;
+
+    margin-top:18px;
+
+  }
+
+  .map-shell{
+
+    position:relative;
+
+    width:100%;
+
+    border:6px solid #050505;
+
+    overflow:hidden;
+
+    background:#111;
+
+    box-shadow:10px 10px 0 rgba(0,0,0,.55);
+
+  }
+
+  .map-shell img{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    user-select:none;
+
+    pointer-events:none;
+
+  }
+
+  .grid-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    display:grid;
+
+    grid-template-columns:repeat(16,1fr);
+
+    grid-template-rows:repeat(15,1fr);
+
+    z-index:2;
+
+  }
+
+  .map-cell{
+
+    border:1px solid var(--line);
+
+    background:transparent;
+
+    color:rgba(255,255,255,0);
+
+    font-size:9px;
+
+    cursor:pointer;
+
+    padding:0;
+
+    min-width:0;
+
+    min-height:0;
+
+    font-family:system-ui,sans-serif;
+
+    font-weight:800;
+
+  }
+
+  .map-cell:hover,.map-cell:focus{
+
+    outline:2px solid rgba(255,255,255,.75);
+
+    background:rgba(255,255,255,.16);
+
+    color:#fff;
+
+    z-index:3;
+
+  }
+
+  .map-cell.has-mission{
+
+    background:var(--active);
+
+    box-shadow:inset 0 0 0 2px var(--hot);
+
+  }
+
+  .map-cell.status-locked{background:var(--locked)}
+
+  .map-cell.status-hidden{background:var(--hidden)}
+
+  .map-cell.has-news{box-shadow:inset 0 0 0 2px rgba(120,190,255,.85)}
+
+  .map-cell.is-selected{
+
+    outline:4px solid #fff;
+
+    background:rgba(255,255,255,.28);
+
+    color:#fff;
+
+    z-index:5;
+
+    animation:pulse-sector 1s ease-in-out 3;
+
+  }
+
+  @keyframes pulse-sector{
+
+    0%,100%{filter:brightness(1)}
+
+    50%{filter:brightness(1.8)}
+
+  }
+
+  .sector-panel{
+
+    position:sticky;
+
+    top:16px;
+
+    min-height:360px;
+
+    padding:18px;
+
+    border:5px solid #050505;
+
+    background:#fff;
+
+    box-shadow:8px 8px 0 #050505;
+
+    font-family:system-ui,sans-serif;
+
+    letter-spacing:.01em;
+
+  }
+
+  .sector-panel h2{
+
+    margin:0 0 12px;
+
+    font-family:Impact,Haettenschweiler,"Arial Black",system-ui,sans-serif;
+
+    font-size:clamp(1.4rem,3vw,2rem);
+
+    line-height:.95;
+
+    text-transform:uppercase;
+
+  }
+
+  .sector-panel p{color:#2b2116;line-height:1.45;font-weight:700}
+
+  .mission-card{
+
+    border:3px solid #050505;
+
+    padding:14px;
+
+    margin:12px 0;
+
+    background:rgba(255,245,214,.55);
+
+    box-shadow:5px 5px 0 #050505;
+
+  }
+
+  .mission-card h3{margin:6px 0;font-size:1.1rem}
+
+  .mission-meta{
+
+    color:#8a5a00;
+
+    text-transform:uppercase;
+
+    font-size:11px;
+
+    letter-spacing:.08em;
+
+    font-weight:900;
+
+  }
+
+  .reward{color:#050505;font-weight:800}
+
+  .mission-btn{
+
+    border:4px solid #050505;
+
+    border-radius:0;
+
+    padding:10px 14px;
+
+    background:var(--gold);
+
+    color:#050505;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    display:inline-block;
+
+    text-transform:uppercase;
+
+    font-family:Impact,Haettenschweiler,"Arial Black",system-ui,sans-serif;
+
+    box-shadow:4px 4px 0 #050505;
+
+  }
+
+  .panel-section-title{
+
+    margin:18px 0 8px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    color:#8a5a00;
+
+    font-size:12px;
+
+    font-weight:900;
+
+  }
+
+  .news-card{border-color:var(--blue)}
+
+  .panel-footnote a{color:#8a5a00;font-weight:900}
+
+  .legend{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-top:12px;
+
+    font-family:system-ui,sans-serif;
+
+    font-size:.82rem;
+
+    font-weight:800;
+
+    color:#2b2116;
+
+  }
+
+  .pill{
+
+    border:3px solid #050505;
+
+    padding:6px 10px;
+
+    background:#fff;
+
+    box-shadow:3px 3px 0 #050505;
+
+    text-transform:uppercase;
+
+  }
+
+  .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
+
+  .button{
+
+    appearance:none;
+
+    display:inline-block;background:var(--gold);color:#050505;text-decoration:none;
+
+    border:5px solid #050505;padding:14px 18px;
+
+    box-shadow:7px 7px 0 #050505;text-transform:uppercase;
+
+    font-family:Impact,Haettenschweiler,"Arial Black",system-ui,sans-serif;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+  }
+
+  .button.alt{background:var(--blue)}
+
+  @media (max-width:980px){
+
+    .layout{grid-template-columns:1fr}
+
+    .sector-panel{position:relative;top:0}
+
+  }
+
+  html[data-spark-auth="pending"] body {
+    visibility: hidden;
+  }
+
+</style>
+
+<script src="/assets/js/spark-account-runtime.js?v=4"></script>
+
+<script src="/assets/js/spark-auth-guard.js?v=4" data-spark-require-auth></script>
+
+</head>
+
+<body>
+
+<nav id="spark-auth-nav" class="comic-nav" aria-label="Spark Protocol">
+
+  <a href="/">Cover</a>
+
+  <a href="/spark-account/">Origin Rules</a>
+
+  <a href="/spark-login/">Log In</a>
+
+  <a class="pop" href="/spark-signup/">Join The Universe</a>
+
+</nav>
+
+
+
+<div class="wrap">
+
+  <section class="panel">
+
+    <span class="kicker">Meridian Ledger Map</span>
+
+    <h1>Choose The Battlefield</h1>
+
+    <p class="intro">Click any grid sector on the city map. Missions and Ledger updates attach to coordinates like <strong>D7</strong>, <strong>I2</strong>, or <strong>A13</strong>.</p>
+
+
+
+    <section class="layout">
+
+      <div>
+
+        <div class="map-shell">
+
+          <img src="/assets/maps/meridian-city-map.png" alt="Meridian City comic map" width="1200" height="800">
+
+          <div class="grid-overlay" data-grid aria-label="Meridian sector grid A1 through P15"></div>
+
+        </div>
+
+
+
+        <div class="legend">
+
+          <span class="pill">Gold = active mission</span>
+
+          <span class="pill">Red = locked/high threat</span>
+
+          <span class="pill">Purple = hidden/secret</span>
+
+          <span class="pill">Click any sector</span>
+
+        </div>
+
+      </div>
+
+
+
+      <aside class="sector-panel is-open" data-panel>
+
+        <h2 data-panel-title>Select a sector</h2>
+
+        <div data-panel-body>
+
+          <p>Hover or click a cell on the map grid. Active missions and newspaper reports appear here.</p>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+
+
+    <div class="actions">
+
+      <a class="button alt" href="/meridian-dispatch/">Return To Dispatch</a>
+
+      <a class="button" href="/news/">Meridian News</a>
+
+      <a class="button alt" href="/spark-generator/">View Hero Profile</a>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+
+<script src="/assets/js/spark-auth-nav.js?v=7"></script>
+
+<script src="./map.js"></script>
+
+</body>
+
+</html>
+
