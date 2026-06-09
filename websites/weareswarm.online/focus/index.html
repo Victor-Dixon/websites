@@ -8,15 +8,7 @@
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
 </head>
 <body>
-  <nav class="site-nav">
-    <a class="brand" href="/">🧠 We Are Swarm</a>
-    <div class="links">
-      <a href="/" >Home</a>
-      <a href="/focus/" class="active">Focus</a>
-      <a href="/projects/">Projects</a>
-      <a href="/tasks/">Tasks</a>
-    </div>
-  </nav>
+  <nav class="site-nav"></nav>
 
   <main class="container">
     <header class="hero">
@@ -28,14 +20,82 @@
       </div>
     </header>
 
+    <section class="panel panel--full" id="onboarding-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Dream.OS Onboarding</h2>
+          <p class="subtitle">Captain job · Captain's log · Cursor agent playbook · Flow B strategy loop</p>
+        </div>
+        <span class="badge warn" id="onboarding-status">loading</span>
+      </div>
+      <div class="panel-body">
+        <p class="section-title">Captain (Agent-4)</p>
+        <dl class="status-grid" id="onboarding-captain-kv"></dl>
+        <p class="section-title">Responsibilities</p>
+        <ul class="list" id="onboarding-captain-responsibilities"></ul>
+        <p class="section-title">Principles</p>
+        <div class="pill-row" id="onboarding-captain-principles"></div>
+        <p class="section-title">Captain's log — recent entries</p>
+        <ul class="list mono-note" id="onboarding-captain-log-entries"></ul>
+        <p class="section-title">Captain workflow</p>
+        <div id="onboarding-captain-workflow"></div>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <p class="section-title">Cursor / Dream.OS agent</p>
+        <dl class="status-grid" id="onboarding-cursor-kv"></dl>
+        <p class="section-title">CLI aliases</p>
+        <div class="pill-row" id="onboarding-cli-aliases"></div>
+        <p class="section-title">DreamVault boundaries</p>
+        <ul class="list" id="onboarding-boundaries"></ul>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <p class="section-title" id="onboarding-flow-b">Flow B Strategy Loop</p>
+        <dl class="status-grid" id="onboarding-flow-b-kv"></dl>
+        <p class="section-title">Loop steps (emit → run_conversation → execute)</p>
+        <ul class="list mono-note" id="onboarding-flow-b-steps"></ul>
+        <p class="section-title">Proof paths</p>
+        <div class="pill-row mono-note" id="onboarding-flow-b-proof"></div>
+        <p class="section-title">Enabled lanes</p>
+        <div class="pill-row" id="onboarding-flow-b-lanes"></div>
+
+        <p class="section-title">Consolidated sources</p>
+        <p class="mono-note" id="onboarding-sources">—</p>
+      </div>
+    </section>
+
+    <section class="panel panel--full" id="revenue-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Revenue Operator</h2>
+          <p class="subtitle">dreamscan_first_lead_001 · swarm_60k_60d_001</p>
+        </div>
+        <span class="badge warn" id="revenue-status">loading</span>
+      </div>
+      <div class="panel-body">
+        <dl class="status-grid" id="revenue-kv"></dl>
+        <p class="section-title">Daily targets</p>
+        <div class="pill-row" id="revenue-targets"></div>
+        <p class="section-title">Funnel pipeline</p>
+        <div class="pill-row" id="revenue-funnel"></div>
+        <p class="section-title">Marketing operator (HITL)</p>
+        <div class="pill-row" id="revenue-marketing-operator"></div>
+        <p class="section-title">Approval queue</p>
+        <div class="pill-row" id="revenue-approval-queue"></div>
+        <p class="section-title">Daily operator</p>
+        <p class="mono-note" id="revenue-operator">—</p>
+      </div>
+    </section>
+
     <div class="grid-2">
       <section class="panel" id="consolidation-panel">
         <div class="panel-header">
           <div>
             <h2>Consolidation Command Center</h2>
-            <p class="subtitle">project_domain_mapping_and_task_prune_001</p>
+            <p class="subtitle" id="consolidation-lane-subtitle">—</p>
           </div>
-          <span class="badge warn" id="consolidation-source">scaffold</span>
+          <span class="badge warn" id="consolidation-source">loading</span>
         </div>
         <div class="panel-body">
           <p class="section-title">Next lane</p>
@@ -69,7 +129,7 @@
             <h2>Spark / dadudekc.site</h2>
             <p class="subtitle">MZspark brand + portfolio site status</p>
           </div>
-          <span class="badge block" id="dadudekc-status">checking</span>
+          <span class="badge warn" id="dadudekc-status">loading</span>
         </div>
         <div class="panel-body spark-panel-body">
           <div class="spark-section">
@@ -100,35 +160,91 @@
     </p>
   </main>
 
+  <script src="/data/shared/site-nav.js"></script>
   <script src="/data/shared/focus-dashboard.js"></script>
   <script>
     (async function () {
+      const FD = window.FocusDashboard;
+      if (!FD || typeof FD.fetchJsonSettled !== "function") {
+        document.getElementById("sync-meta").textContent =
+          "focus-dashboard.js missing fetchJsonSettled — redeploy data/shared/";
+        document.getElementById("live-badge").className = "badge block";
+        document.getElementById("live-badge").textContent = "● Partial data";
+        return;
+      }
+
       const {
-        fetchJson,
+        fetchJsonSettled,
+        toList,
         el,
         setSyncMeta,
         resolveRepoName,
         resolveRationale,
-        resolveCapabilityLabel,
-        resolveCapabilityUnlocks,
         renderCapabilityCards,
+        renderRevenuePanel,
+        renderOnboardingPanel,
         renderSparkPanel,
         resolveRepoBuckets,
-      } = window.FocusDashboard;
+      } = FD;
+
+      const [
+        manifestResult,
+        domainIndexResult,
+        capabilitiesResult,
+        recommendationsResult,
+        nextLaneResult,
+        sparkResult,
+        revenueResult,
+        onboardingResult,
+        publicBoardResult,
+      ] = await Promise.all([
+        fetchJsonSettled("manifest.json"),
+        fetchJsonSettled("project_domain_index.json"),
+        fetchJsonSettled("project_capability_index.json", { capabilities: [] }),
+        fetchJsonSettled("consolidation_recommendations.json", { recommendations: [] }),
+        fetchJsonSettled("next_lane.json"),
+        fetchJsonSettled("spark_panel.json", { spark_project: {}, dadudekc_site: {} }),
+        fetchJsonSettled("revenue_operator_panel.json", {}),
+        fetchJsonSettled("onboarding_panel.json", {}),
+        fetchJsonSettled("public_project_board.json", {}),
+      ]);
+
+      const manifest = manifestResult.data || {};
+      const domainIndex = domainIndexResult.data || {};
+      const capabilities = capabilitiesResult.data || { capabilities: [] };
+      const recommendations = recommendationsResult.data || { recommendations: [] };
+      const nextLane = nextLaneResult.data || {};
+      const spark = sparkResult.data || { spark_project: {}, dadudekc_site: {} };
+      const revenue = revenueResult.data || {};
+      const onboarding = onboardingResult.data || {};
+      const publicBoard = publicBoardResult.data || {};
+
+      const failed = [
+        !manifestResult.ok && "manifest.json",
+        !domainIndexResult.ok && "project_domain_index.json",
+        !capabilitiesResult.ok && "project_capability_index.json",
+        !recommendationsResult.ok && "consolidation_recommendations.json",
+        !nextLaneResult.ok && "next_lane.json",
+        !sparkResult.ok && "spark_panel.json",
+        !revenueResult.ok && "revenue_operator_panel.json",
+        !onboardingResult.ok && "onboarding_panel.json",
+      ].filter(Boolean);
+
+      if (manifestResult.ok) {
+        setSyncMeta(manifest);
+      } else if (failed.length) {
+        document.getElementById("sync-meta").textContent =
+          "Partial load · missing: " + failed.join(", ");
+      }
 
       try {
-        const [manifest, domainIndex, capabilities, recommendations, nextLane, spark, publicBoard] = await Promise.all([
-          fetchJson("manifest.json"),
-          fetchJson("project_domain_index.json"),
-          fetchJson("project_capability_index.json"),
-          fetchJson("consolidation_recommendations.json"),
-          fetchJson("next_lane.json"),
-          fetchJson("spark_panel.json"),
-          fetchJson("public_project_board.json").catch(() => ({})),
-        ]);
+        document.getElementById("consolidation-source").textContent =
+          domainIndex.source || manifest.source || "planner";
 
-        setSyncMeta(manifest);
-        document.getElementById("consolidation-source").textContent = manifest.source || "planner";
+        const laneSubtitle = document.getElementById("consolidation-lane-subtitle");
+        if (laneSubtitle) {
+          laneSubtitle.textContent = nextLane.next_lane || "—";
+        }
 
         const nextKv = document.getElementById("next-lane-kv");
         nextKv.innerHTML = "";
@@ -158,18 +274,41 @@
           tr.innerHTML =
             "<td>" + resolveRepoName(rec) + "</td>" +
             "<td><span class=\"status-pill\">" + (rec.action || "—") + "</span></td>" +
-            "<td>" + ((rec.blockers || []).join("; ") || "—") + "</td>";
+            "<td>" + (toList(rec.blockers).join("; ") || "—") + "</td>";
           tbody.appendChild(tr);
         });
 
         const signals = document.getElementById("capability-signals");
         renderCapabilityCards(signals, capabilities.capabilities || []);
+      } catch (err) {
+        document.getElementById("consolidation-source").textContent = "render error";
+        console.error("consolidation panel", err);
+      }
 
+      try {
+        renderOnboardingPanel(onboarding);
+      } catch (err) {
+        document.getElementById("onboarding-status").textContent = "unavailable";
+        console.error("onboarding panel", err);
+      }
+
+      try {
+        renderRevenuePanel(revenue);
+      } catch (err) {
+        document.getElementById("revenue-status").textContent = "unavailable";
+        console.error("revenue panel", err);
+      }
+
+      try {
         renderSparkPanel(spark);
       } catch (err) {
-        document.getElementById("sync-meta").textContent = "Load error: " + err.message;
-        document.getElementById("live-badge").className = "badge block";
-        document.getElementById("live-badge").textContent = "● Data unavailable";
+        document.getElementById("dadudekc-status").textContent = "render error";
+        console.error("spark panel", err);
+      }
+
+      if (failed.length) {
+        document.getElementById("live-badge").className = "badge warn";
+        document.getElementById("live-badge").textContent = "● Partial data";
       }
     })();
   </script>
