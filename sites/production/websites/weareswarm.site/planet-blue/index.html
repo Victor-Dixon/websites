@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planet Blue</title>
+  <meta name="description" content="Planet Blue — tactical RPG on a blue-world frontier.">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-block">
+      <h1 class="brand"><a href="index.html">Planet Blue</a></h1>
+      <p class="tagline">Tactical RPG — Blue World Frontier</p>
+    </div>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html" class="active">Home</a>
+      <a href="character.html">Character</a>
+      <a href="map.html">Map</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <h1>Planet Blue</h1>
+      <p class="intro-text">
+        A crystalline frontier world where explorers, machines, and ancient spirits clash on tactical battle grids.
+        Create your avatar, chart the mission map, and secure the landing zones of the blue horizon.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Begin Your Campaign</h2>
+      <p class="muted">Static MVP — progress saved locally in your browser.</p>
+      <div class="btn-row">
+        <a class="btn primary" id="btn-start" href="character.html">Start New Game</a>
+        <a class="btn secondary hidden" id="btn-continue" href="map.html">Continue</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>How It Works</h2>
+      <ul class="muted" style="margin:0;padding-left:1.2rem;line-height:1.6;">
+        <li>Build a character — choose race and class with unique trade-offs.</li>
+        <li>Select missions on the world map — First Landing awaits.</li>
+        <li>Fight turn-based grid battles — move, attack, wait, defeat enemies.</li>
+        <li>Earn XP and currency — victories persist across sessions.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./js/data.js"></script>
+  <script src="./js/save.js"></script>
+  <script>
+    (function () {
+      var SAVE = window.PLANET_BLUE_SAVE;
+      if (SAVE.hasSave()) {
+        document.getElementById("btn-continue").classList.remove("hidden");
+      }
+      document.getElementById("btn-start").addEventListener("click", function (e) {
+        SAVE.resetSave();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planet Blue — Character</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-block">
+      <h1 class="brand"><a href="index.html">Planet Blue</a></h1>
+      <p class="tagline">Character Profile</p>
+    </div>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="character.html" class="active">Character</a>
+      <a href="map.html">Map</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <div class="map-layout">
+      <section class="panel">
+        <h2>Create Your Explorer</h2>
+        <form id="character-form" class="form-grid">
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" maxlength="24" placeholder="Explorer" required>
+          </div>
+          <div>
+            <label for="race">Race</label>
+            <select id="race" name="race"></select>
+          </div>
+          <div>
+            <label for="class">Class</label>
+            <select id="class" name="class"></select>
+          </div>
+          <button type="submit" class="btn primary">Save &amp; Go to Map</button>
+        </form>
+      </section>
+
+      <aside>
+        <section class="panel stat-preview">
+          <h2>Stats Preview</h2>
+          <div id="stat-preview"></div>
+        </section>
+        <section class="panel">
+          <h2>Ability</h2>
+          <div id="ability-preview"></div>
+        </section>
+        <section class="panel" id="progress-display">
+          <h2>Progress</h2>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script src="./js/data.js"></script>
+  <script src="./js/save.js"></script>
+  <script src="./js/abilities.js"></script>
+  <script src="./js/character.js"></script>
+</body>
+</html>
