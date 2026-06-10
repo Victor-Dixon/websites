@@ -63,3 +63,17 @@ function dreamos_emergence_shortcode_frame(string $content): string {
     return $content;
 }
 add_filter('the_content', 'dreamos_emergence_shortcode_frame', 8);
+
+function dreamos_emergence_route_aliases(): void {
+    if (is_admin()) {
+        return;
+    }
+
+    $path = trim((string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
+
+    if ($path === 'missions' || $path === 'mission') {
+        wp_safe_redirect(home_url('/meridian-dispatch/'), 301);
+        exit;
+    }
+}
+add_action('template_redirect', 'dreamos_emergence_route_aliases', 1);
