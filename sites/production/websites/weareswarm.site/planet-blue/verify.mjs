@@ -175,8 +175,42 @@ try {
   if (after.missions.first_landing !== "completed") fail("Mission not completed");
   else ok("Mission first_landing completed");
 
+  if (after.missions.deep_caverns !== "unlocked") fail("deep_caverns should unlock after first_landing");
+  else ok("Mission deep_caverns unlocked after first_landing");
+
+  if (after.missions.sky_spire !== "locked") fail("sky_spire should stay locked until deep_caverns");
+  else ok("Mission sky_spire still locked");
+
   if (after.character.xp !== 50) fail("XP should be 50, got " + after.character.xp);
   else ok("XP reward 50");
+
+  const freshTab = SAVE.loadSave();
+  if (freshTab.missions.first_landing !== "completed" || freshTab.missions.deep_caverns !== "unlocked") {
+    fail("Save persistence lost on reload");
+  } else ok("Save persists across reload (new tab)");
+
+  if (SAVE.STORAGE_KEY !== "planet-blue-save") fail("STORAGE_KEY mismatch");
+  else ok("STORAGE_KEY is planet-blue-save");
+
+  store[SAVE.STORAGE_KEY] = JSON.stringify({
+    version: 2,
+    profileCreated: true,
+    character: { ...DATA.DEFAULT_CHARACTER, xp: 50, currency: 25 },
+    missions: { first_landing: "completed", deep_caverns: "locked", sky_spire: "locked" },
+    world: after.world,
+    morality: after.morality,
+    nemesis: after.nemesis,
+    quests: after.quests
+  });
+  const repaired = SAVE.loadSave();
+  if (repaired.missions.deep_caverns !== "unlocked") fail("migrate should repair stale unlock chain");
+  else ok("Stale save unlock chain repaired on load");
+
+  SAVE.completeMission("deep_caverns", DATA.MISSIONS.deep_caverns.rewards);
+  const chain = SAVE.loadSave();
+  if (chain.missions.deep_caverns !== "completed" || chain.missions.sky_spire !== "unlocked") {
+    fail("sky_spire should unlock after deep_caverns");
+  } else ok("Mission sky_spire unlocked after deep_caverns");
 
   const unit = { x: 1, y: 4, move: 3 };
   const terrain = [];

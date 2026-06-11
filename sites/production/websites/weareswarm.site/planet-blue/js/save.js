@@ -27,11 +27,34 @@
     return save;
   }
 
+  function ensureMissionState(save) {
+    if (!save.missions || typeof save.missions !== "object") {
+      save.missions = Object.assign({}, DATA.DEFAULT_MISSIONS);
+    }
+    Object.keys(DATA.DEFAULT_MISSIONS).forEach(function (id) {
+      if (!save.missions[id]) {
+        save.missions[id] = DATA.DEFAULT_MISSIONS[id];
+      }
+    });
+    return save;
+  }
+
+  function syncMissionUnlocks(save) {
+    ensureMissionState(save);
+    Object.keys(DATA.MISSIONS).forEach(function (id) {
+      var m = DATA.MISSIONS[id];
+      if (m.requires && save.missions[m.requires] === "completed" && save.missions[id] === "locked") {
+        save.missions[id] = "unlocked";
+      }
+    });
+    return save;
+  }
+
   function migrateSave(parsed) {
     if (!parsed || typeof parsed !== "object") return createNewSave();
     if (parsed.version >= SAVE_VERSION) {
-      if (WORLD) return WORLD.ensureWorldSystems(parsed);
-      return parsed;
+      if (WORLD) parsed = WORLD.ensureWorldSystems(parsed);
+      return syncMissionUnlocks(parsed);
     }
     parsed.version = SAVE_VERSION;
     if (WORLD) {
@@ -42,7 +65,7 @@
       }
       parsed = WORLD.initQuestLog(parsed);
     }
-    return parsed;
+    return syncMissionUnlocks(parsed);
   }
 
   function loadSave() {
@@ -84,20 +107,13 @@
 
   function completeMission(missionId, rewards) {
     var s = getOrCreateSave();
+    ensureMissionState(s);
     s.missions[missionId] = "completed";
     if (rewards) {
       s.character.xp += rewards.xp || 0;
       s.character.currency += rewards.currency || 0;
     }
-    var mission = DATA.MISSIONS[missionId];
-    if (mission && mission.requires) {
-      Object.keys(DATA.MISSIONS).forEach(function (id) {
-        var m = DATA.MISSIONS[id];
-        if (m.requires === missionId && s.missions[id] === "locked") {
-          s.missions[id] = "unlocked";
-        }
-      });
-    }
+    syncMissionUnlocks(s);
     if (WORLD) {
       WORLD.applyMissionOutcome(s, missionId, "win");
       WORLD.syncQuestStatus(s);
@@ -124,6 +140,7 @@
     resetSave: resetSave,
     completeMission: completeMission,
     recordDefeat: recordDefeat,
-    migrateSave: migrateSave
+    migrateSave: migrateSave,
+    syncMissionUnlocks: syncMissionUnlocks
   };
 })(typeof window !== "undefined" ? window : global);
