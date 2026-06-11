@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Explore | Digital Dreamscape</title>
+  <meta name="description" content="Explore Digital Dreamscape with click-to-move walking, camera follow, interactable markers, and local save persistence.">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="explore-page">
+  <header class="site-header compact">
+    <a class="brand" href="./index.html">Digital Dreamscape</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="./index.html">Home</a>
+      <a href="#help">Controls</a>
+    </nav>
+  </header>
+
+  <main class="game-shell">
+    <section class="game-panel" aria-label="Digital Dreamscape world">
+      <canvas id="world-canvas" width="960" height="640" aria-label="Explorable Digital Dreamscape map"></canvas>
+      <div class="interaction-box" id="interaction-box" role="status" aria-live="polite">
+        Click a walkable tile to begin exploring.
+      </div>
+    </section>
+
+    <aside class="hud" aria-label="Player status">
+      <div class="hud-card">
+        <p class="eyebrow">Explorer HUD</p>
+        <h1>World Walker</h1>
+        <dl class="stat-list">
+          <div>
+            <dt>Name</dt>
+            <dd id="player-name">Explorer</dd>
+          </div>
+          <div>
+            <dt>Coordinates</dt>
+            <dd id="player-coordinates">8, 8</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd id="player-status">Ready</dd>
+          </div>
+          <div>
+            <dt>Save</dt>
+            <dd id="save-status">Not saved yet</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hud-card" id="help">
+        <p class="eyebrow">Controls</p>
+        <ul class="help-list">
+          <li>Click a tile to walk there.</li>
+          <li>Use WASD or arrow keys for one-tile steps.</li>
+          <li>Walk beside or onto markers to interact.</li>
+          <li>Refresh the page to confirm your position is saved.</li>
+        </ul>
+      </div>
+
+      <div class="hud-card">
+        <p class="eyebrow">Legend</p>
+        <div class="legend">
+          <span><i class="swatch grass"></i>Grass</span>
+          <span><i class="swatch path"></i>Path</span>
+          <span><i class="swatch water"></i>Water</span>
+          <span><i class="swatch blocked"></i>Blocked</span>
+          <span><i class="swatch marker"></i>Interactable</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script type="module" src="./js/explore.js"></script>
+</body>
+</html>

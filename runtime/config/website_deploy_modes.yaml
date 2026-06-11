@@ -67,10 +67,10 @@ domains:
     notes: Candidate static placeholder/funnel.
 
   digitaldreamscape.site:
-    mode: wordpress
-    deploy_policy: review_before_wp_or_static
-    source_hint: runtime/content/digitaldreamscape
-    notes: Candidate static/archive after review.
+    mode: static
+    deploy_policy: static_only
+    source_hint: sites/production/websites/digitaldreamscape.site
+    notes: Static Digital Dreamscape world walker MVP.
 
   prismblossom.online:
     mode: wordpress

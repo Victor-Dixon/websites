@@ -98,13 +98,25 @@ sites:
     notes: "Build-in-public site"
 
   digitaldreamscape.site:
-    path: websites/digitaldreamscape.site
+    path: sites/production/websites/digitaldreamscape.site
     deployer: unified
     verify_url: https://digitaldreamscape.site/.well-known/deploy.json
     remote_root: public_html/digitaldreamscape.site  # Addon domain
     enabled: true
     deploy_method: sftp
-    notes: "Build-in-public site (addon domain)"
+    deploy_files:
+      - sites/production/websites/digitaldreamscape.site/index.html
+      - sites/production/websites/digitaldreamscape.site/explore.html
+      - sites/production/websites/digitaldreamscape.site/style.css
+      - sites/production/websites/digitaldreamscape.site/js/world-data.js
+      - sites/production/websites/digitaldreamscape.site/js/save.js
+      - sites/production/websites/digitaldreamscape.site/js/pathfinding.js
+      - sites/production/websites/digitaldreamscape.site/js/player.js
+      - sites/production/websites/digitaldreamscape.site/js/camera.js
+      - sites/production/websites/digitaldreamscape.site/js/world-renderer.js
+      - sites/production/websites/digitaldreamscape.site/js/interactions.js
+      - sites/production/websites/digitaldreamscape.site/js/explore.js
+    notes: "Static Digital Dreamscape world walker MVP (addon domain)"
 
   dadudekc.site:
     path: websites/dadudekc.site
