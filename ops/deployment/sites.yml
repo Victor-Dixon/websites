@@ -138,8 +138,8 @@ sites:
     deploy_files:
       - sites/production/websites/xthunder.site/index.html
       - sites/production/websites/xthunder.site/assets/css/style.css
-      - sites/production/websites/xthunder.site/assets/js/main.js
-    notes: "Static global-chat game landing; SFTP via unified_deployer"
+      - sites/production/websites/xthunder.site/assets/js/game.js
+    notes: "Storm Siege playable game; SFTP via unified_deployer"
 
 # Deployment configuration
 deployment:
