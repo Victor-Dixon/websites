@@ -1,3 +1,5 @@
+import { drawLayeredAvatar } from "./avatar.js";
+
 const TERRAIN_STYLES = {
   grass: { fill: "#2f8d52", accent: "#3cae64" },
   path: { fill: "#9a8257", accent: "#b79a68" },
@@ -118,7 +120,7 @@ function drawObject(ctx, camera, world, object) {
   drawLabel(ctx, object.name, centerX, screen.y + 1);
 }
 
-function drawPlayer(ctx, camera, world, player) {
+function drawPlayer(ctx, camera, world, player, renderState = {}) {
   const size = world.tileSize;
   const screen = tileToScreen(camera, world, player);
   const centerX = screen.x + (size / 2);
@@ -129,27 +131,10 @@ function drawPlayer(ctx, camera, world, player) {
   ctx.arc(centerX, centerY, 17, 0, Math.PI * 2);
   ctx.fill();
 
-  ctx.fillStyle = "#f5f8ff";
-  ctx.strokeStyle = "#2866ff";
-  ctx.lineWidth = 3;
-  ctx.beginPath();
-  ctx.arc(centerX, centerY - 4, 9, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.stroke();
-
-  ctx.fillStyle = "#62d9ff";
-  ctx.fillRect(centerX - 8, centerY + 5, 16, 14);
-
-  ctx.fillStyle = "#050914";
-  if (player.direction === "north") {
-    ctx.fillRect(centerX - 3, centerY - 11, 6, 3);
-  } else if (player.direction === "south") {
-    ctx.fillRect(centerX - 3, centerY + 1, 6, 3);
-  } else if (player.direction === "east") {
-    ctx.fillRect(centerX + 4, centerY - 5, 3, 6);
-  } else {
-    ctx.fillRect(centerX - 7, centerY - 5, 3, 6);
-  }
+  drawLayeredAvatar(ctx, centerX, centerY, player, {
+    frameTime: renderState.frameTime || 0,
+    tileSize: size,
+  });
 }
 
 function drawPath(ctx, camera, world, path, destination) {
@@ -205,7 +190,7 @@ export function renderWorld(ctx, world, camera, player, renderState = {}) {
     })
     .forEach((object) => drawObject(ctx, camera, world, object));
 
-  drawPlayer(ctx, camera, world, player);
+  drawPlayer(ctx, camera, world, player, renderState);
 
   ctx.fillStyle = "rgba(5, 9, 20, .76)";
   ctx.fillRect(12, 12, 172, 30);
