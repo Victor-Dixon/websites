@@ -10,6 +10,7 @@
     celestial: { id: "celestial", name: "Celestial", hp: -2, atk: 0, def: 0, move: 0, range: 1, desc: "Star-touched, fragile but far-reaching." },
     infernal: { id: "infernal", name: "Infernal", hp: 0, atk: 2, def: -1, move: 0, range: 0, desc: "Fierce striker, light armor." },
     beastborn: { id: "beastborn", name: "Beastborn", hp: 0, atk: 0, def: 0, move: 1, range: -1, desc: "Swift predator, close-range fighter." },
+    beastmen: { id: "beastmen", name: "Beastmen", hp: 1, atk: 2, def: -1, move: 2, range: -1, desc: "Tribal warriors with claw and fang. Fast strikers of the wild clans." },
     stoneborn: { id: "stoneborn", name: "Stoneborn", hp: 3, atk: -1, def: 1, move: 0, range: 0, desc: "Living stone, slow but sturdy." },
     shadowborn: { id: "shadowborn", name: "Shadowborn", hp: -1, atk: 1, def: 0, move: 0, range: 0, desc: "Umbral hunter with keen strikes." },
     aquatic: { id: "aquatic", name: "Aquatic", hp: 1, atk: 0, def: 1, move: 0, range: 0, desc: "Tide-adapted, resilient shell." },
@@ -22,7 +23,10 @@
     rock: { id: "rock", name: "Rock", hp: 36, atk: 10, def: 6, move: 2, range: 1, ability: "guard", desc: "Tank class. High HP/DEF, short range." },
     light_magic: { id: "light_magic", name: "Light Magic", hp: 22, atk: 12, def: 3, move: 2, range: 3, ability: "light_beam", desc: "Ranged caster, fragile frame." },
     dark_magic: { id: "dark_magic", name: "Dark Magic", hp: 20, atk: 16, def: 2, move: 2, range: 2, ability: "shadow_pulse", desc: "Burst damage with self-risk." },
-    robot_class: { id: "robot_class", name: "Robot", hp: 30, atk: 11, def: 5, move: 3, range: 1, ability: "overclock", desc: "Balanced chassis with repair protocols." }
+    robot_class: { id: "robot_class", name: "Robot", hp: 30, atk: 11, def: 5, move: 3, range: 1, ability: "overclock", desc: "Balanced chassis with repair protocols." },
+    /* Chris draft classes — source: data/classes/chris_classes.json */
+    assassin: { id: "assassin", name: "Assassin", hp: 24, atk: 8, def: 3, move: 6, range: 1, ability: "backstab", desc: "Stealth fighter. Speed, flanking, and critical strikes.", status: "draft", created_by: "Chris" },
+    mage: { id: "mage", name: "Mage", hp: 22, atk: 10, def: 3, move: 4, range: 3, ability: "arcane_bolt", desc: "Ranged spellcaster. Elemental magic and battlefield control.", status: "draft", created_by: "Chris" }
   };
 
   var ABILITIES = {
@@ -30,7 +34,9 @@
     guard: { id: "guard", name: "Guard", type: "defense", power: 4, range: 0, class: "rock", level: 1, desc: "Brace and reduce incoming damage." },
     light_beam: { id: "light_beam", name: "Light Beam", type: "attack", power: 5, range: 3, class: "light_magic", level: 1, desc: "Piercing ray of starlight." },
     shadow_pulse: { id: "shadow_pulse", name: "Shadow Pulse", type: "attack", power: 8, range: 2, class: "dark_magic", level: 1, desc: "Volatile void eruption." },
-    overclock: { id: "overclock", name: "Overclock", type: "buff", power: 3, range: 0, class: "robot_class", level: 1, desc: "Boost ATK for one turn." }
+    overclock: { id: "overclock", name: "Overclock", type: "buff", power: 3, range: 0, class: "robot_class", level: 1, desc: "Boost ATK for one turn." },
+    backstab: { id: "backstab", name: "Backstab", type: "attack", power: 9, range: 1, class: "assassin", level: 1, desc: "Deal extra damage if attacking from behind or from the side." },
+    arcane_bolt: { id: "arcane_bolt", name: "Arcane Bolt", type: "attack", power: 7, range: 3, class: "mage", level: 1, desc: "Basic ranged magic attack." }
   };
 
   var ENEMIES = {

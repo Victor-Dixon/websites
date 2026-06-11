@@ -77,6 +77,51 @@ try {
   if (!DATA.CLASSES.fire) fail("Fire class missing");
   else ok("Fire class defined");
 
+  if (!DATA.CLASSES.assassin) fail("Assassin class missing from data.js");
+  else ok("Assassin class defined");
+
+  if (!DATA.CLASSES.mage) fail("Mage class missing from data.js");
+  else ok("Mage class defined");
+
+  if (!DATA.RACES.beastmen) fail("Beastmen race missing from data.js");
+  else ok("Beastmen race defined");
+
+  /* Chris draft class JSON */
+  const chrisPath = join(__dir, "data", "classes", "chris_classes.json");
+  if (!existsSync(chrisPath)) fail("data/classes/chris_classes.json missing");
+  else {
+    const chrisClasses = JSON.parse(readFileSync(chrisPath, "utf8"));
+    if (!Array.isArray(chrisClasses) || chrisClasses.length !== 2) {
+      fail("chris_classes.json must be an array of 2 classes");
+    } else {
+      ok("chris_classes.json parses");
+      const required = ["strengths", "weaknesses", "starter_abilities", "upgrade_paths", "balance_notes"];
+      for (const cls of chrisClasses) {
+        for (const field of required) {
+          if (!cls[field]) fail("Chris class " + cls.id + " missing " + field);
+          else ok("Chris class " + cls.id + " has " + field);
+        }
+        if (cls.status !== "draft" || cls.created_by !== "Chris") {
+          fail("Chris class " + cls.id + " metadata invalid");
+        } else {
+          ok("Chris class " + cls.id + " metadata valid");
+        }
+      }
+    }
+  }
+
+  /* Beastmen race JSON */
+  const beastmenPath = join(__dir, "data", "races", "beastmen.json");
+  if (!existsSync(beastmenPath)) fail("data/races/beastmen.json missing");
+  else {
+    const beastmen = JSON.parse(readFileSync(beastmenPath, "utf8"));
+    if (beastmen.id !== "beastmen" || !beastmen.strengths || !beastmen.weaknesses || !beastmen.story_hook) {
+      fail("beastmen.json incomplete");
+    } else {
+      ok("beastmen.json parses with strengths, weaknesses, story_hook");
+    }
+  }
+
   const stats = DATA.computeStats("human", "fire");
   if (stats.hp < 10 || stats.atk < 1) fail("Invalid computed stats");
   else ok("Stats compute: HP=" + stats.hp + " ATK=" + stats.atk);
