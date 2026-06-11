@@ -48,12 +48,14 @@
     const powers = (payload.selected_powers || []).map(function (power) {
       return '<li>' + esc(power.power || 'Unknown ability') + '</li>';
     }).join('');
+    const visualClass = payload.visual_class_label || payload.visual_class || '';
 
     return [
       '<section class="sbs-handoff-card" data-spark-handoff="1">',
       '<p class="sbs-handoff-kicker">Imported Spark</p>',
       '<h2>' + esc(payload.spark_name || payload.title || 'Unnamed Spark') + '</h2>',
       payload.archetype ? '<p><strong>' + esc(payload.archetype) + '</strong></p>' : '',
+      visualClass ? '<p><strong>Body Class:</strong> ' + esc(visualClass) + '</p>' : '',
       payload.summary ? '<p>' + esc(payload.summary) + '</p>' : '',
       powers ? '<h3>Manifested Abilities</h3><ul>' + powers + '</ul>' : '',
       '<div class="sbs-custom-battle-controls">',
@@ -96,6 +98,7 @@
     result.innerHTML = [
       '<h3>Winner: ' + esc(data.winner) + '</h3>',
       '<p><strong>Arena:</strong> ' + esc(data.arena) + '</p>',
+      data.visual_class_label ? '<p><strong>Story Mode Body:</strong> ' + esc(data.visual_class_label) + '</p>' : '',
       '<p>' + esc(data.story) + '</p>'
     ].join('');
   }

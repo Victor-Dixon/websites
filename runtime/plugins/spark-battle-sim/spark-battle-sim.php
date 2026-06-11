@@ -210,12 +210,14 @@ add_action('wp_footer', function () {
         const powers = (payload.selected_powers || []).map(function (power) {
           return '<li>' + esc(power.power || 'Unknown ability') + '</li>';
         }).join('');
+        const visualClass = payload.visual_class_label || payload.visual_class || '';
 
         return [
           '<section class="sbs-handoff-card" data-spark-handoff="1">',
           '<p class="sbs-handoff-kicker">Imported Spark</p>',
           '<h2>' + esc(payload.spark_name || payload.title || 'Unnamed Spark') + '</h2>',
           payload.archetype ? '<p><strong>' + esc(payload.archetype) + '</strong></p>' : '',
+          visualClass ? '<p><strong>Body Class:</strong> ' + esc(visualClass) + '</p>' : '',
           payload.summary ? '<p>' + esc(payload.summary) + '</p>' : '',
           powers ? '<h3>Manifested Abilities</h3><ul>' + powers + '</ul>' : '',
           '<p class="sbs-handoff-note">Player-safe handoff loaded. Backend scoring remains hidden.</p>',
@@ -335,6 +337,50 @@ function spark_battle_sim_cinematic_role($archetype, $powers) {
     return 'adaptive Spark combatant';
 }
 
+function spark_battle_sim_visual_class($archetype, $powers, $spark = array()) {
+    $hints = array(
+        $archetype,
+        is_array($spark) && isset($spark['visual_class']) ? $spark['visual_class'] : '',
+        is_array($spark) && isset($spark['visual_class_label']) ? $spark['visual_class_label'] : '',
+        is_array($spark) && isset($spark['spark_class']) ? $spark['spark_class'] : '',
+        is_array($spark) && isset($spark['character_class']) ? $spark['character_class'] : '',
+        is_array($spark) && isset($spark['body_class']) ? $spark['body_class'] : '',
+        is_array($spark) && isset($spark['species']) ? $spark['species'] : '',
+        is_array($spark) && isset($spark['class']) ? $spark['class'] : '',
+    );
+
+    if (is_array($powers)) {
+        $hints[] = implode(' ', $powers);
+    }
+
+    $text = strtolower(implode(' ', array_map('strval', $hints)));
+
+    if (preg_match('/\b(robot|android|cyborg|mech|mecha|machine|synthetic|automaton|technopathy|circuit|digital|metal)\b/', $text)) {
+        return array(
+            'key' => 'robot',
+            'label' => 'Robot',
+            'story_role' => 'robot-class Spark with a visible machine body',
+            'battle_line' => 'Their frame reads as robot, all metal joints, lit optics, and powered servos instead of a cube.'
+        );
+    }
+
+    if (preg_match('/\b(rock|stone|earth|granite|boulder|crystal|crystalline|geology|density control|giant size)\b/', $text)) {
+        return array(
+            'key' => 'stone',
+            'label' => 'Stone',
+            'story_role' => 'rock-class Spark with a living stone body',
+            'battle_line' => 'Their silhouette is carved stone: cracked mineral shoulders, heavy steps, and power moving through rock instead of a cube.'
+        );
+    }
+
+    return array(
+        'key' => 'human',
+        'label' => 'Elemental Human',
+        'story_role' => 'human Spark with elemental power around them',
+        'battle_line' => 'Their body stays human, while the manifested powers flare through aura, posture, and elemental effects.'
+    );
+}
+
 function spark_battle_sim_cinematic_arena($name, $opponent_name, $powers) {
     $seed = $name . '|' . $opponent_name . '|' . implode(',', is_array($powers) ? $powers : array());
 
@@ -350,16 +396,18 @@ function spark_battle_sim_cinematic_arena($name, $opponent_name, $powers) {
     return spark_battle_sim_cinematic_pick($arenas, $seed);
 }
 
-function spark_battle_sim_cinematic_story($name, $opponent_name, $archetype, $summary, $powers, $winner, $arena) {
+function spark_battle_sim_cinematic_story($name, $opponent_name, $archetype, $summary, $powers, $winner, $arena, $spark = array()) {
     $power_phrase = spark_battle_sim_power_phrase($powers);
-    $role = spark_battle_sim_cinematic_role($archetype, $powers);
+    $visual_class = spark_battle_sim_visual_class($archetype, $powers, $spark);
+    $role = $visual_class['story_role'];
+    $body_line = $visual_class['battle_line'];
     $seed = $name . '|' . $opponent_name . '|' . $winner . '|' . $arena['name'];
 
     $openers = array(
-        "$name steps into the {$arena['name']} as a $role, letting the first beat of the fight reveal nothing but posture.",
-        "$name arrives under the pressure of the {$arena['name']}, quiet until the field itself starts reacting.",
-        "The moment $opponent_name enters the {$arena['name']}, $name shifts from saved dossier to living threat.",
-        "$name does not announce the opening move. The {$arena['name']} does it for them."
+        "$name steps into the {$arena['name']} as a $role, letting the first beat of the fight reveal the body class.",
+        "$name arrives under the pressure of the {$arena['name']}. $body_line",
+        "The moment $opponent_name enters the {$arena['name']}, $name shifts from saved dossier to living threat: $body_line",
+        "$name does not announce the opening move. The {$arena['name']} does it for them, and $body_line"
     );
 
     $clashes = array(
@@ -492,7 +540,8 @@ function spark_battle_sim_custom_battle_rest($request) {
 
     $arena_data = spark_battle_sim_cinematic_arena($name, $opponent_name, $powers);
     $arena = $arena_data['name'];
-    $story = spark_battle_sim_cinematic_story($name, $opponent_name, $archetype, $summary, $powers, $winner, $arena_data);
+    $visual_class = spark_battle_sim_visual_class($archetype, $powers, $spark);
+    $story = spark_battle_sim_cinematic_story($name, $opponent_name, $archetype, $summary, $powers, $winner, $arena_data, $spark);
     $cinematic_role = spark_battle_sim_cinematic_role($archetype, $powers);
     $ability_line = spark_battle_sim_power_phrase($powers);
 
@@ -503,6 +552,8 @@ function spark_battle_sim_custom_battle_rest($request) {
         'arena' => $arena,
         'story' => $story,
         'cinematic_role' => $cinematic_role,
+        'visual_class' => $visual_class['key'],
+        'visual_class_label' => $visual_class['label'],
         'ability_showcase' => $ability_line,
         'player_safe' => true,
         'math_hidden' => true,

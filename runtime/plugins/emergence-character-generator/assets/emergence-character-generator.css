@@ -267,6 +267,81 @@
   stroke-width: 2;
 }
 
+.ecg-svg-body-robot .ecg-svg-robot-shoulders,
+.ecg-svg-body-robot .ecg-svg-robot-torso,
+.ecg-svg-body-robot .ecg-svg-robot-head {
+  fill: rgba(18, 24, 34, .94);
+  stroke: rgba(190, 228, 255, .42);
+  stroke-width: 2;
+}
+
+.ecg-svg-robot-lines,
+.ecg-svg-robot-antenna {
+  fill: none;
+  stroke: rgba(190, 228, 255, .54);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.ecg-svg-robot-eye,
+.ecg-svg-robot-core {
+  stroke: rgba(255,255,255,.72);
+  stroke-width: 1.5;
+}
+
+.ecg-svg-robot-eye,
+.ecg-svg-robot-mouth,
+.ecg-svg-robot-joint {
+  fill: rgba(138, 223, 255, .78);
+}
+
+.ecg-svg-body-stone .ecg-svg-stone-shoulders,
+.ecg-svg-body-stone .ecg-svg-stone-torso,
+.ecg-svg-body-stone .ecg-svg-stone-head {
+  fill: rgba(67, 64, 58, .96);
+  stroke: rgba(232, 221, 194, .38);
+  stroke-width: 2.25;
+}
+
+.ecg-svg-stone-crack,
+.ecg-svg-stone-eyes {
+  fill: none;
+  stroke: rgba(245, 232, 202, .72);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ecg-svg-stone-chip {
+  fill: rgba(114, 105, 91, .94);
+  stroke: rgba(232, 221, 194, .35);
+  stroke-width: 1.5;
+}
+
+.ecg-svg-power-effects {
+  opacity: .92;
+}
+
+.ecg-svg-power-accent,
+.ecg-svg-human-power {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 9px rgba(255,255,255,.42));
+}
+
+.ecg-svg-human-power {
+  stroke-width: 3;
+  opacity: .78;
+}
+
+.ecg-svg-power-orb {
+  fill: rgba(255,255,255,.045);
+  stroke-width: 4;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,.36));
+}
+
 .ecg-svg-mask {
   fill: rgba(255,255,255,.16);
   stroke: rgba(255,255,255,.38);
@@ -288,6 +363,7 @@
 .ecg-svg-badge-text,
 .ecg-svg-label,
 .ecg-svg-subtitle,
+.ecg-svg-classline,
 .ecg-svg-powerline {
   fill: rgba(255,255,255,.82);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -306,6 +382,14 @@
   font-weight: 650;
   letter-spacing: .08em;
   text-transform: uppercase;
+}
+
+.ecg-svg-classline {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .72;
 }
 
 .ecg-svg-badge-text {
