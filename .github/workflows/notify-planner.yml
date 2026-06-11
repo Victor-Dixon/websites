@@ -1,0 +1,49 @@
+# Notifies DreamVault to refresh the master planner after pushes to main/master.
+# Requires repository secret PLANNER_DISPATCH_TOKEN (PAT with repo scope on DreamVault).
+
+name: Notify DreamVault Planner
+
+on:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch planner refresh to DreamVault
+        env:
+          PLANNER_DISPATCH_TOKEN: ${{ secrets.PLANNER_DISPATCH_TOKEN }}
+          PLANNER_TARGET_REPO: ${{ vars.PLANNER_TARGET_REPO || 'Victor-Dixon/DreamVault' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${PLANNER_DISPATCH_TOKEN:-}" ]]; then
+            echo "PLANNER_DISPATCH_TOKEN is not configured; skipping planner notify."
+            exit 0
+          fi
+
+          CHANGED_PATHS="$(jq -r '[.commits[]? | (.modified + .added + .removed)] | add | unique | join(",")' "$GITHUB_EVENT_PATH")"
+          PAYLOAD="$(jq -n \
+            --arg repo "${GITHUB_REPOSITORY}" \
+            --arg branch "${GITHUB_REF_NAME}" \
+            --arg sha "${GITHUB_SHA}" \
+            --arg paths "${CHANGED_PATHS}" \
+            '{event_type:"planner-refresh", client_payload:{repo:$repo, branch:$branch, sha:$sha, changed_paths:$paths}}')"
+
+          HTTP_CODE="$(curl -sS -o /tmp/planner_dispatch.json -w "%{http_code}" \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${PLANNER_DISPATCH_TOKEN}" \
+            "https://api.github.com/repos/${PLANNER_TARGET_REPO}/dispatches" \
+            -d "${PAYLOAD}")"
+
+          echo "repository_dispatch_http=${HTTP_CODE}"
+          cat /tmp/planner_dispatch.json
+          if [[ "${HTTP_CODE}" -lt 200 || "${HTTP_CODE}" -ge 300 ]]; then
+            echo "Planner dispatch failed."
+            exit 1
+          fi
