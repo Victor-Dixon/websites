@@ -20,48 +20,15 @@
       </div>
     </header>
 
-    <section class="panel panel--full" id="onboarding-panel">
+    <section class="panel panel--full" id="main-focuses">
       <div class="panel-header">
         <div>
-          <h2>Dream.OS Onboarding</h2>
-          <p class="subtitle">Captain job · Captain's log · Cursor agent playbook · Flow B strategy loop</p>
+          <h2>Main Focuses</h2>
+          <p class="subtitle">Current operator priorities</p>
         </div>
-        <span class="badge warn" id="onboarding-status">loading</span>
       </div>
       <div class="panel-body">
-        <p class="section-title">Captain (Agent-4)</p>
-        <dl class="status-grid" id="onboarding-captain-kv"></dl>
-        <p class="section-title">Responsibilities</p>
-        <ul class="list" id="onboarding-captain-responsibilities"></ul>
-        <p class="section-title">Principles</p>
-        <div class="pill-row" id="onboarding-captain-principles"></div>
-        <p class="section-title">Captain's log — recent entries</p>
-        <ul class="list mono-note" id="onboarding-captain-log-entries"></ul>
-        <p class="section-title">Captain workflow</p>
-        <div id="onboarding-captain-workflow"></div>
-
-        <div class="section-divider" aria-hidden="true"></div>
-
-        <p class="section-title">Cursor / Dream.OS agent</p>
-        <dl class="status-grid" id="onboarding-cursor-kv"></dl>
-        <p class="section-title">CLI aliases</p>
-        <div class="pill-row" id="onboarding-cli-aliases"></div>
-        <p class="section-title">DreamVault boundaries</p>
-        <ul class="list" id="onboarding-boundaries"></ul>
-
-        <div class="section-divider" aria-hidden="true"></div>
-
-        <p class="section-title" id="onboarding-flow-b">Flow B Strategy Loop</p>
-        <dl class="status-grid" id="onboarding-flow-b-kv"></dl>
-        <p class="section-title">Loop steps (emit → run_conversation → execute)</p>
-        <ul class="list mono-note" id="onboarding-flow-b-steps"></ul>
-        <p class="section-title">Proof paths</p>
-        <div class="pill-row mono-note" id="onboarding-flow-b-proof"></div>
-        <p class="section-title">Enabled lanes</p>
-        <div class="pill-row" id="onboarding-flow-b-lanes"></div>
-
-        <p class="section-title">Consolidated sources</p>
-        <p class="mono-note" id="onboarding-sources">—</p>
+        <div class="focus-grid" id="main-focuses-grid"></div>
       </div>
     </section>
 
@@ -182,7 +149,7 @@
         resolveRationale,
         renderCapabilityCards,
         renderRevenuePanel,
-        renderOnboardingPanel,
+        renderMainFocuses,
         renderSparkPanel,
         resolveRepoBuckets,
       } = FD;
@@ -195,7 +162,6 @@
         nextLaneResult,
         sparkResult,
         revenueResult,
-        onboardingResult,
         publicBoardResult,
       ] = await Promise.all([
         fetchJsonSettled("manifest.json"),
@@ -205,7 +171,6 @@
         fetchJsonSettled("next_lane.json"),
         fetchJsonSettled("spark_panel.json", { spark_project: {}, dadudekc_site: {} }),
         fetchJsonSettled("revenue_operator_panel.json", {}),
-        fetchJsonSettled("onboarding_panel.json", {}),
         fetchJsonSettled("public_project_board.json", {}),
       ]);
 
@@ -216,7 +181,6 @@
       const nextLane = nextLaneResult.data || {};
       const spark = sparkResult.data || { spark_project: {}, dadudekc_site: {} };
       const revenue = revenueResult.data || {};
-      const onboarding = onboardingResult.data || {};
       const publicBoard = publicBoardResult.data || {};
 
       const failed = [
@@ -227,7 +191,6 @@
         !nextLaneResult.ok && "next_lane.json",
         !sparkResult.ok && "spark_panel.json",
         !revenueResult.ok && "revenue_operator_panel.json",
-        !onboardingResult.ok && "onboarding_panel.json",
       ].filter(Boolean);
 
       if (manifestResult.ok) {
@@ -286,10 +249,13 @@
       }
 
       try {
-        renderOnboardingPanel(onboarding);
+        renderMainFocuses(document.getElementById("main-focuses-grid"), {
+          nextLane: nextLane,
+          spark: spark,
+          revenue: revenue,
+        });
       } catch (err) {
-        document.getElementById("onboarding-status").textContent = "unavailable";
-        console.error("onboarding panel", err);
+        console.error("main focuses", err);
       }
 
       try {

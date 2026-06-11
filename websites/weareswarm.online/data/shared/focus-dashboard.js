@@ -332,160 +332,118 @@
     }
   }
 
-  function renderOnboardingFlowB(flowB) {
-    const block = flowB || {};
-
-    renderStatusGrid(document.getElementById("onboarding-flow-b-kv"), [
-      ["Capability", block.capability_id || "—", false],
-      ["Label", block.label || "—", false],
-      ["Description", block.description || "—", false],
-    ]);
-
-    const stepsNode = document.getElementById("onboarding-flow-b-steps");
-    if (stepsNode) {
-      stepsNode.innerHTML = "";
-      toList(block.steps).forEach(function (item, index) {
-        stepsNode.appendChild(el("li", { text: (index + 1) + ". " + item }));
-      });
+  function consolidationHighlights(nextLane, manifest) {
+    const items = [];
+    if (nextLane && nextLane.next_lane) items.push("Lane: " + nextLane.next_lane);
+    if (nextLane && nextLane.next_task) items.push("Next: " + nextLane.next_task);
+    const buckets = manifest && manifest.buckets;
+    if (buckets) {
+      const count = Object.keys(buckets).length;
+      if (count) items.push(count + " repo bucket" + (count === 1 ? "" : "s") + " tracked");
     }
-
-    const proofNode = document.getElementById("onboarding-flow-b-proof");
-    if (proofNode) {
-      proofNode.innerHTML = "";
-      toList(block.proof_paths).forEach(function (path) {
-        proofNode.appendChild(el("span", { className: "pill", text: path }));
-      });
-    }
-
-    const lanesNode = document.getElementById("onboarding-flow-b-lanes");
-    if (lanesNode) {
-      lanesNode.innerHTML = "";
-      toList(block.enables_lanes).forEach(function (lane) {
-        lanesNode.appendChild(el("span", { className: "pill", text: lane }));
-      });
-    }
+    return items.slice(0, 3);
   }
 
-  function renderOnboardingPanel(panel) {
-    const data = panel || {};
-    const captain = data.captain || {};
-    const log = captain.log || {};
-    const cursor = data.cursor_agent || {};
-    const swarm = data.swarm_onboarding || {};
-    const closeout = data.closeout || {};
+  function renderMainFocuses(container, opts) {
+    if (!container) return;
+    container.innerHTML = "";
 
-    const statusBadge = document.getElementById("onboarding-status");
-    if (statusBadge) {
-      const hasLog = log.log_count > 0;
-      statusBadge.textContent = hasLog ? "Captain log active" : "Awaiting first log";
-      statusBadge.className = "badge " + (hasLog ? "ok" : "warn");
-    }
+    const nextLane = (opts && opts.nextLane) || {};
+    const spark = (opts && opts.spark) || {};
+    const revenue = (opts && opts.revenue) || {};
+    const manifest = (opts && opts.consolidationManifest) || {};
 
-    renderStatusGrid(document.getElementById("onboarding-captain-kv"), [
-      ["Captain", captain.display_name || captain.agent_id || "—", false],
-      ["Pattern", captain.execution_pattern || "—", false],
-      ["Job", captain.job_summary || "—", false],
-      ["Log files", log.log_count != null ? String(log.log_count) : "0", false],
-      [
-        "Latest log",
-        (log.latest_log && log.latest_log.path) || "No CAPTAINS_LOG_CYCLE_*.md yet",
-        false,
-      ],
-      ["Update log", log.update_command || "—", false],
-    ]);
+    const sp = spark.spark_project || {};
+    const dd = spark.dadudekc_site || {};
+    const authLive = dd.AUTH_IMMERSION === "FIXED";
 
-    const captainList = document.getElementById("onboarding-captain-responsibilities");
-    if (captainList) {
-      captainList.innerHTML = "";
-      toList(captain.responsibilities).forEach(function (item) {
-        captainList.appendChild(el("li", { text: item }));
-      });
-    }
+    const cards = [
+      {
+        title: "Repo Consolidation",
+        status: nextLane.next_lane || "Planning",
+        statusClass: nextLane.execute === false ? "warn" : "ok",
+        description:
+          resolveRationale(nextLane) ||
+          "Canonical repo decisions, bucket merges, and consolidation manifests.",
+        highlights: consolidationHighlights(nextLane, manifest),
+        links: [
+          { href: "/projects/", text: "Repo board" },
+          { href: "/focus/#consolidation-panel", text: "Consolidation detail" },
+        ],
+      },
+      {
+        title: "dadudekc.site · Spark",
+        status: authLive ? "Live" : sp.status || dd.status || "In progress",
+        statusClass: authLive ? "ok" : "warn",
+        description:
+          sp.description ||
+          "MZspark brand, character shorts, and portfolio site on dadudekc.site.",
+        highlights: toList(sp.next_actions).slice(0, 2),
+        links: [
+          { href: "https://dadudekc.site", text: "Open dadudekc.site", external: true },
+          { href: "/focus/#spark-panel", text: "Spark status" },
+        ],
+      },
+      {
+        title: "Revenue",
+        status: revenue.status || "Active",
+        statusClass: (revenue.active_leads || 0) > 0 ? "ok" : "warn",
+        description:
+          revenue.next_action ||
+          "DreamScan offer, lead pipeline, and swarm_60k_60d campaign.",
+        highlights: [
+          revenue.bottleneck ? "Bottleneck: " + revenue.bottleneck : null,
+          revenue.revenue_goal_usd != null
+            ? "Goal: " + formatUsd(revenue.revenue_goal_usd)
+            : null,
+          revenue.campaign_id || null,
+        ].filter(Boolean).slice(0, 3),
+        links: [{ href: "/focus/#revenue-panel", text: "Revenue operator" }],
+      },
+    ];
 
-    const principlesNode = document.getElementById("onboarding-captain-principles");
-    if (principlesNode) {
-      principlesNode.innerHTML = "";
-      toList(captain.principles).forEach(function (item) {
-        principlesNode.appendChild(el("span", { className: "pill", text: item }));
-      });
-    }
+    cards.forEach(function (card) {
+      const tags = el("div", { className: "card-tags" }, [
+        el("span", {
+          className: "badge " + (card.statusClass || ""),
+          text: card.status,
+        }),
+      ]);
 
-    const logEntries = document.getElementById("onboarding-captain-log-entries");
-    if (logEntries) {
-      logEntries.innerHTML = "";
-      const entries = toList(log.recent_entries);
-      if (!entries.length) {
-        logEntries.appendChild(
-          el("li", {
-            className: "empty-state",
-            text:
-              "No log entries yet — create via captain_update_log.py in D:/agent-tools",
-          })
-        );
-      } else {
-        entries.forEach(function (entry) {
-          const line =
-            (entry.timestamp ? "[" + entry.timestamp + "] " : "") +
-            (entry.event || "—") +
-            (entry.agent ? " · " + entry.agent : "");
-          logEntries.appendChild(el("li", { text: line }));
-        });
-      }
-    }
+      const highlights = card.highlights || [];
+      const list = highlights.length
+        ? el(
+            "ul",
+            null,
+            highlights.map(function (item) {
+              return el("li", { text: item });
+            })
+          )
+        : null;
 
-    const workflow = captain.workflow || {};
-    const workflowNode = document.getElementById("onboarding-captain-workflow");
-    if (workflowNode) {
-      workflowNode.innerHTML = "";
-      [
-        ["Start of cycle", workflow.start_of_cycle],
-        ["During cycle", workflow.during_cycle],
-        ["End of cycle", workflow.end_of_cycle],
-      ].forEach(function (row) {
-        const block = el("div", { style: "margin-bottom:0.75rem;" }, [
-          el("p", { className: "section-title", text: row[0] }),
-          renderList(row[1], function (item) {
-            return el("span", { text: item });
-          }),
-        ]);
-        workflowNode.appendChild(block);
-      });
-    }
+      const links = el(
+        "div",
+        { className: "card-links" },
+        (card.links || []).map(function (link) {
+          const attrs = { href: link.href, text: link.text };
+          if (link.external) {
+            attrs.target = "_blank";
+            attrs.rel = "noopener noreferrer";
+          }
+          return el("a", attrs);
+        })
+      );
 
-    renderStatusGrid(document.getElementById("onboarding-cursor-kv"), [
-      ["Core rule", cursor.core_rule || "—", false],
-      ["Closeout CLI", closeout.cli || "—", false],
-      ["Soft onboard", swarm.soft_onboard || "—", false],
-      ["Hard onboard", swarm.hard_onboard || "—", false],
-    ]);
-
-    const aliasesNode = document.getElementById("onboarding-cli-aliases");
-    if (aliasesNode) {
-      aliasesNode.innerHTML = "";
-      toList(cursor.cli_aliases).forEach(function (row) {
-        aliasesNode.appendChild(
-          el("span", {
-            className: "pill",
-            text: (row.label || "—") + ": " + (row.detail || ""),
-          })
-        );
-      });
-    }
-
-    const boundaries = document.getElementById("onboarding-boundaries");
-    if (boundaries) {
-      boundaries.innerHTML = "";
-      toList(data.dreamvault_boundaries).forEach(function (item) {
-        boundaries.appendChild(el("li", { text: item }));
-      });
-    }
-
-    renderOnboardingFlowB(data.flow_b_strategy_loop);
-
-    const sourcesNode = document.getElementById("onboarding-sources");
-    if (sourcesNode) {
-      sourcesNode.textContent = toList(data.sources).join(" · ") || "—";
-    }
+      container.appendChild(
+        el("article", { className: "focus-card" }, [
+          tags,
+          el("h3", { text: card.title }),
+          el("p", { text: card.description }),
+          list,
+          links,
+        ])
+      );
+    });
   }
 
   function renderSparkPanel(spark) {
@@ -577,7 +535,7 @@
     renderCapabilityCards,
     renderStatusGrid,
     renderRevenuePanel,
-    renderOnboardingPanel,
+    renderMainFocuses,
     renderSparkPanel,
     formatUsd,
     statusTone,

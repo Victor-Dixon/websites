@@ -128,6 +128,18 @@ a:hover {
   overflow: hidden;
 }
 
+.panel--full {
+  margin-bottom: 1.25rem;
+}
+
+.mono-note {
+  margin: 0;
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+  font-size: 0.82rem;
+  color: var(--muted);
+  word-break: break-word;
+}
+
 .panel-header {
   padding: 1rem 1.15rem;
   border-bottom: 1px solid var(--panel-border);
@@ -481,4 +493,179 @@ th {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* Projects board */
+.projects-summary {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.project-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.project-card {
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, rgba(26, 35, 50, 0.9), rgba(15, 20, 25, 0.75));
+  box-shadow: var(--shadow);
+}
+
+.project-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.project-domain {
+  margin: 0 0 0.5rem;
+  color: var(--accent-2);
+  font-size: 0.82rem;
+}
+
+.project-desc,
+.project-surfaces {
+  margin: 0 0 0.65rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* Roadmap */
+.roadmap-lane-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.roadmap-lane {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.roadmap-lane--next {
+  border-color: rgba(61, 214, 140, 0.45);
+  background: rgba(61, 214, 140, 0.06);
+}
+
+.roadmap-lane--detail {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.65rem;
+}
+
+.roadmap-lane-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.roadmap-lane h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.roadmap-lane-index {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.roadmap-rationale,
+.roadmap-meta {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.roadmap-parallel {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
+  margin-bottom: 0.65rem;
+}
+
+.roadmap-parallel h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.closeout-grid,
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.closeout-card,
+.ecosystem-card,
+.focus-card {
+  padding: 1rem;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.closeout-card h3,
+.ecosystem-card h3,
+.focus-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.closeout-card p,
+.ecosystem-card p,
+.focus-card p {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.focus-card .card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.65rem;
+}
+
+.focus-card ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.focus-card ul li {
+  margin: 0.2rem 0;
+}
+
+.focus-card .card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  font-size: 0.88rem;
 }
