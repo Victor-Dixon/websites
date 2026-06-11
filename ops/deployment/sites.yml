@@ -105,6 +105,7 @@ sites:
     enabled: true
     deploy_method: sftp
     deploy_files:
+      - sites/production/websites/digitaldreamscape.site/.htaccess
       - sites/production/websites/digitaldreamscape.site/index.html
       - sites/production/websites/digitaldreamscape.site/explore.html
       - sites/production/websites/digitaldreamscape.site/style.css
