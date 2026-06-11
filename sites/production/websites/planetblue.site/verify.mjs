@@ -8,10 +8,11 @@ import { fileURLToPath } from "url";
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 
-const PAGES = ["index.html", "map.html", "battle.html", "character.html"];
+const PAGES = ["index.html", "world.html", "map.html", "battle.html", "character.html"];
 const JS_FILES = [
   "data.js", "world.js", "save.js", "pathfinding.js", "combat.js",
-  "abilities.js", "ai.js", "grid.js", "battle.js", "map.js", "character.js"
+  "abilities.js", "ai.js", "grid.js", "battle.js", "map.js", "character.js",
+  "sprites.js", "overworld.js"
 ];
 
 let passed = 0;
@@ -233,6 +234,40 @@ try {
   const aiRes = AI.enemyTurn(enemy, { terrain, units: [player, enemy], phase: "enemy" }, 8, 6, DATA.TERRAIN.GRASS, null);
   if (!aiRes) fail("AI returned null");
   else ok("Enemy AI turn executed");
+
+  loadScript("sprites.js");
+  loadScript("overworld.js");
+  const OW = sandbox.window.PLANET_BLUE_OVERWORLD;
+  const SPRITES = sandbox.window.PLANET_BLUE_SPRITES;
+
+  if (!OW || OW.COLS !== 20 || OW.ROWS !== 15) fail("Overworld dimensions invalid");
+  else ok("Overworld map 20x15");
+
+  if (!OW.isWalkable(10, 11)) fail("Hub spawn tile should be walkable");
+  else ok("Hub spawn tile walkable");
+
+  if (OW.isWalkable(0, 0)) fail("Tree border should block movement");
+  else ok("Tree border blocks movement");
+
+  const path = PATH.findPath(10, 11, 7, 14, OW.isWalkable, OW.COLS, OW.ROWS);
+  if (!path || path.length < 3) fail("Overworld path to First Landing too short");
+  else ok("Pathfind to First Landing: " + path.length + " steps");
+
+  WORLD.setOverworldPosition(loaded, 12, 13);
+  if (loaded.world.overworld.x !== 12 || loaded.world.overworld.y !== 13) fail("Overworld position not saved");
+  else ok("Overworld position persists in save");
+
+  SAVE.saveGame(loaded);
+  const reloaded = SAVE.loadSave();
+  if (reloaded.world.overworld.x !== 12) fail("Overworld position lost on reload");
+  else ok("Overworld position survives reload");
+
+  const landing = OW.interactableAt(7, 14);
+  if (!landing || landing.missionId !== "first_landing") fail("First Landing interactable missing");
+  else ok("First Landing mission trigger at (7,14)");
+
+  if (!SPRITES || typeof SPRITES.drawPlayer !== "function") fail("Sprite renderer missing");
+  else ok("Sprite renderer defined");
 
 } catch (e) {
   fail("Runtime error: " + e.message);

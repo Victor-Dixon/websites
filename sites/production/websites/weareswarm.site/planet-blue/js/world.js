@@ -12,11 +12,17 @@
     "Pain-Proof", "Grudge-Keeper", "Night Stalker", "The Persistent", "Blood Debt"
   ];
 
+  var DEFAULT_OVERWORLD = {
+    x: 10,
+    y: 11
+  };
+
   var DEFAULT_WORLD = {
     syncVersion: 1,
     lastUpdated: null,
     communityPlaceholder: true,
-    zones: {}
+    zones: {},
+    overworld: null
   };
 
   var DEFAULT_MORALITY = {
@@ -45,12 +51,29 @@
     return zones;
   }
 
+  function ensureOverworld(save) {
+    ensureWorldSystems(save);
+    if (!save.world.overworld || typeof save.world.overworld.x !== "number") {
+      save.world.overworld = clone(DEFAULT_OVERWORLD);
+    }
+    return save.world.overworld;
+  }
+
+  function setOverworldPosition(save, x, y) {
+    var pos = ensureOverworld(save);
+    pos.x = x;
+    pos.y = y;
+    save.world.lastUpdated = new Date().toISOString();
+    return save;
+  }
+
   function ensureWorldSystems(save) {
     if (!save.world || !save.world.zones) {
       save.world = clone(DEFAULT_WORLD);
       save.world.zones = initZones();
       save.world.lastUpdated = new Date().toISOString();
     }
+    if (!save.world.overworld) save.world.overworld = clone(DEFAULT_OVERWORLD);
     if (!save.morality) save.morality = clone(DEFAULT_MORALITY);
     if (!save.nemesis) save.nemesis = clone(DEFAULT_NEMESIS);
     if (!save.quests) save.quests = clone(DEFAULT_QUESTS);
@@ -327,11 +350,14 @@
   }
 
   global.PLANET_BLUE_WORLD = {
+    DEFAULT_OVERWORLD: DEFAULT_OVERWORLD,
     DEFAULT_WORLD: DEFAULT_WORLD,
     DEFAULT_MORALITY: DEFAULT_MORALITY,
     DEFAULT_NEMESIS: DEFAULT_NEMESIS,
     DEFAULT_QUESTS: DEFAULT_QUESTS,
     ensureWorldSystems: ensureWorldSystems,
+    ensureOverworld: ensureOverworld,
+    setOverworldPosition: setOverworldPosition,
     initZones: initZones,
     zoneStatus: zoneStatus,
     zoneStatusLabel: zoneStatusLabel,

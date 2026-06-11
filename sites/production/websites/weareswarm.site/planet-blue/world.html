@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planet Blue — Explore</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="overworld-body">
+  <header class="site-header">
+    <div class="brand-block">
+      <h1 class="brand"><a href="index.html">Planet Blue</a></h1>
+      <p class="tagline" id="world-greeting">Explore</p>
+    </div>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="character.html">Character</a>
+      <a href="world.html" class="active">Explore</a>
+      <a href="map.html">Mission Board</a>
+    </nav>
+  </header>
+
+  <main class="page-shell wide overworld-shell">
+    <p class="world-dialogue" id="world-dialogue"></p>
+
+    <div class="overworld-layout">
+      <section class="overworld-view stone-panel" aria-label="Overworld">
+        <canvas id="overworld-canvas" width="416" height="320" aria-label="Walkable world map. Use arrow keys or click to move."></canvas>
+        <p class="overworld-hint muted">Arrow keys / WASD to walk · Click a tile to pathfind · Walk onto markers to interact</p>
+      </section>
+
+      <aside class="overworld-sidebar">
+        <section class="panel" id="overworld-hud">
+          <h2>Explorer</h2>
+        </section>
+        <section class="panel help">
+          <h2>Controls</h2>
+          <ul>
+            <li><strong>Move</strong> — Arrow keys or WASD, one tile at a time</li>
+            <li><strong>Click</strong> — Pathfind and walk to that tile</li>
+            <li><strong>!</strong> markers — Mission zones (walk onto them)</li>
+            <li><strong>Buildings</strong> — Hub, character sheet, mission board</li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h2>Quick Links</h2>
+          <div class="btn-row">
+            <a class="btn secondary" href="map.html">Mission Board</a>
+            <a class="btn secondary" href="character.html">Character</a>
+          </div>
+        </section>
+        <section class="panel minimap-frame" id="zone-legend">
+          <h2>Zone Threat</h2>
+          <p class="muted" style="font-size:0.78rem;margin:0;">Tile tint reflects live zone safety from your campaign.</p>
+          <div class="zone-legend-row"><span class="legend-swatch safe"></span> Safe</div>
+          <div class="zone-legend-row"><span class="legend-swatch contested"></span> Contested</div>
+          <div class="zone-legend-row"><span class="legend-swatch overrun"></span> Overrun</div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <div class="overlay hidden" id="interact-overlay" role="dialog" aria-modal="true">
+    <div class="overlay-card">
+      <h2 id="interact-title">Interact</h2>
+      <p id="interact-body"></p>
+      <div class="btn-row" id="interact-actions"></div>
+      <button type="button" class="btn" id="btn-close-overlay" style="margin-top:0.5rem;">Close</button>
+    </div>
+  </div>
+
+  <script src="./js/data.js"></script>
+  <script src="./js/world.js"></script>
+  <script src="./js/save.js"></script>
+  <script src="./js/pathfinding.js"></script>
+  <script src="./js/sprites.js"></script>
+  <script src="./js/overworld.js"></script>
+</body>
+</html>

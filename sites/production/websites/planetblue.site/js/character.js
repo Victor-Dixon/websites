@@ -121,6 +121,6 @@
     save.profileCreated = true;
     SAVE.saveGame(save);
     renderProgress();
-    window.location.href = "map.html";
+    window.location.href = "world.html";
   });
 })();

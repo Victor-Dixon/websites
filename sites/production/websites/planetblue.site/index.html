@@ -16,7 +16,8 @@
     <nav class="site-nav" aria-label="Main">
       <a href="index.html" class="active">Home</a>
       <a href="character.html">Character</a>
-      <a href="map.html">World Map</a>
+      <a href="world.html">Explore</a>
+      <a href="map.html">Mission Board</a>
     </nav>
   </header>
 
@@ -35,13 +36,15 @@
       <p class="muted">Progress saved locally — classic MMO prototype, no account needed.</p>
       <div class="btn-row">
         <a class="btn primary" id="btn-start" href="character.html">Start New Game</a>
-        <a class="btn secondary hidden" id="btn-continue" href="map.html">Continue</a>
+        <a class="btn secondary hidden" id="btn-continue" href="world.html">Continue</a>
+        <a class="btn secondary hidden" id="btn-explore" href="world.html">Explore World</a>
       </div>
     </section>
 
     <section class="panel">
       <h2>World Systems</h2>
       <ul class="feature-list">
+        <li><strong>Walkable overworld</strong> — explore zones on foot, click or use arrow keys to move.</li>
         <li><strong>Shining Force combat</strong> — grid tactics, move, attack, wait, enemy phases.</li>
         <li><strong>Zone influence</strong> — victories push safety; defeats raise threat across the map.</li>
         <li><strong>Nemesis foes</strong> — survivors gain names, titles, and resistances; they return.</li>
@@ -58,6 +61,7 @@
       var SAVE = window.PLANET_BLUE_SAVE;
       if (SAVE.hasSave()) {
         document.getElementById("btn-continue").classList.remove("hidden");
+        document.getElementById("btn-explore").classList.remove("hidden");
       }
       document.getElementById("btn-start").addEventListener("click", function (e) {
         if (SAVE.hasSave() && !window.confirm("Start a new game? Your saved progress will be erased.")) {
