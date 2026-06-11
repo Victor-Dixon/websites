@@ -121,6 +121,22 @@ try {
   if (stats.hp < 10 || stats.atk < 1) fail("Invalid computed stats");
   else ok("Stats compute: HP=" + stats.hp + " ATK=" + stats.atk);
 
+  if (!stats.spd || stats.spd < 1) fail("Stats missing spd");
+  else ok("Stats include spd=" + stats.spd);
+
+  const fastStats = DATA.computeStats("beastmen", "assassin");
+  const slowStats = DATA.computeStats("ancient", "rock");
+  if (fastStats.spd <= slowStats.spd) fail("Assassin/beastmen should outpace ancient/rock on spd");
+  else ok("Speed stat ordering: assassin " + fastStats.spd + " > rock " + slowStats.spd);
+
+  const turnOrder = DATA.sortUnitsBySpeed([
+    { id: "player0", team: "player", hp: 30, spd: 5, move: 3 },
+    { id: "player1", team: "player", hp: 30, spd: 9, move: 6 },
+    { id: "enemy0", team: "enemy", hp: 16, spd: 7, move: 4 }
+  ], "player").map((u) => u.id);
+  if (turnOrder[0] !== "player1") fail("Player turn queue should lead with highest spd");
+  else ok("Player turn queue speed order: " + turnOrder.join(" → "));
+
   const store = {};
   sandbox.localStorage = {
     getItem: (k) => store[k] ?? null,

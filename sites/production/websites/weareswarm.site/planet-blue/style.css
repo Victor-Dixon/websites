@@ -294,6 +294,12 @@ button, .btn {
   color: var(--text-dim);
 }
 
+.badge.turn {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: #e8f0ff;
+}
+
 .badge.nemesis {
   color: var(--evil);
   border-color: var(--evil);

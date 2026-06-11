@@ -19,14 +19,14 @@
   };
 
   var CLASSES = {
-    fire: { id: "fire", name: "Fire", hp: 28, atk: 14, def: 2, move: 3, range: 2, ability: "firebolt", desc: "High ATK, low DEF. Burns through foes." },
-    rock: { id: "rock", name: "Rock", hp: 36, atk: 10, def: 6, move: 2, range: 1, ability: "guard", desc: "Tank class. High HP/DEF, short range." },
-    light_magic: { id: "light_magic", name: "Light Magic", hp: 22, atk: 12, def: 3, move: 2, range: 3, ability: "light_beam", desc: "Ranged caster, fragile frame." },
-    dark_magic: { id: "dark_magic", name: "Dark Magic", hp: 20, atk: 16, def: 2, move: 2, range: 2, ability: "shadow_pulse", desc: "Burst damage with self-risk." },
-    robot_class: { id: "robot_class", name: "Robot", hp: 30, atk: 11, def: 5, move: 3, range: 1, ability: "overclock", desc: "Balanced chassis with repair protocols." },
+    fire: { id: "fire", name: "Fire", hp: 28, atk: 14, def: 2, move: 3, range: 2, spd: 5, ability: "firebolt", desc: "High ATK, low DEF. Burns through foes." },
+    rock: { id: "rock", name: "Rock", hp: 36, atk: 10, def: 6, move: 2, range: 1, spd: 3, ability: "guard", desc: "Tank class. High HP/DEF, short range." },
+    light_magic: { id: "light_magic", name: "Light Magic", hp: 22, atk: 12, def: 3, move: 2, range: 3, spd: 4, ability: "light_beam", desc: "Ranged caster, fragile frame." },
+    dark_magic: { id: "dark_magic", name: "Dark Magic", hp: 20, atk: 16, def: 2, move: 2, range: 2, spd: 5, ability: "shadow_pulse", desc: "Burst damage with self-risk." },
+    robot_class: { id: "robot_class", name: "Robot", hp: 30, atk: 11, def: 5, move: 3, range: 1, spd: 4, ability: "overclock", desc: "Balanced chassis with repair protocols." },
     /* Chris draft classes — source: data/classes/chris_classes.json */
-    assassin: { id: "assassin", name: "Assassin", hp: 24, atk: 8, def: 3, move: 6, range: 1, ability: "backstab", desc: "Stealth fighter. Speed, flanking, and critical strikes.", status: "draft", created_by: "Chris" },
-    mage: { id: "mage", name: "Mage", hp: 22, atk: 10, def: 3, move: 4, range: 3, ability: "arcane_bolt", desc: "Ranged spellcaster. Elemental magic and battlefield control.", status: "draft", created_by: "Chris" }
+    assassin: { id: "assassin", name: "Assassin", hp: 24, atk: 8, def: 3, move: 6, range: 1, spd: 9, ability: "backstab", desc: "Stealth fighter. Speed, flanking, and critical strikes.", status: "draft", created_by: "Chris" },
+    mage: { id: "mage", name: "Mage", hp: 22, atk: 10, def: 3, move: 4, range: 3, spd: 5, ability: "arcane_bolt", desc: "Ranged spellcaster. Elemental magic and battlefield control.", status: "draft", created_by: "Chris" }
   };
 
   var ABILITIES = {
@@ -40,9 +40,9 @@
   };
 
   var ENEMIES = {
-    scout_drone: { id: "scout_drone", name: "Scout Drone", hp: 16, atk: 8, move: 3, range: 1, glyph: "SD" },
-    rust_crawler: { id: "rust_crawler", name: "Rust Crawler", hp: 22, atk: 10, move: 2, range: 1, glyph: "RC" },
-    void_stalker: { id: "void_stalker", name: "Void Stalker", hp: 18, atk: 12, move: 4, range: 1, glyph: "VS" }
+    scout_drone: { id: "scout_drone", name: "Scout Drone", hp: 16, atk: 8, move: 3, range: 1, spd: 6, glyph: "SD" },
+    rust_crawler: { id: "rust_crawler", name: "Rust Crawler", hp: 22, atk: 10, move: 2, range: 1, spd: 3, glyph: "RC" },
+    void_stalker: { id: "void_stalker", name: "Void Stalker", hp: 18, atk: 12, move: 4, range: 1, spd: 7, glyph: "VS" }
   };
 
   var MISSIONS = {
@@ -221,14 +221,33 @@
   function computeStats(raceId, classId) {
     var race = RACES[raceId] || RACES.human;
     var cls = CLASSES[classId] || CLASSES.fire;
+    var baseSpd = cls.spd != null ? cls.spd : cls.move;
+    var raceSpd = race.spd != null ? race.spd : race.move;
     return {
       hp: Math.max(10, cls.hp + race.hp),
       atk: Math.max(1, cls.atk + race.atk),
       def: Math.max(0, cls.def + race.def),
       move: Math.max(1, cls.move + race.move),
       range: Math.max(1, cls.range + race.range),
+      spd: Math.max(1, baseSpd + raceSpd),
       ability: cls.ability
     };
+  }
+
+  /**
+   * Player-phase initiative: living units sorted by spd (desc), tie-break unit id.
+   * Used by battle.js for auto-select cycling during the player phase.
+   */
+  function sortUnitsBySpeed(units, team) {
+    return units
+      .filter(function (u) { return u.hp > 0 && (!team || u.team === team); })
+      .slice()
+      .sort(function (a, b) {
+        var ds = (b.spd != null ? b.spd : b.move) - (a.spd != null ? a.spd : a.move);
+        if (ds !== 0) return ds;
+        if (a.team !== b.team) return a.team === "player" ? -1 : 1;
+        return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+      });
   }
 
   global.PLANET_BLUE_DATA = {
@@ -245,6 +264,7 @@
     MORALITY_DIALOGUE: MORALITY_DIALOGUE,
     DEFAULT_CHARACTER: DEFAULT_CHARACTER,
     DEFAULT_MISSIONS: DEFAULT_MISSIONS,
-    computeStats: computeStats
+    computeStats: computeStats,
+    sortUnitsBySpeed: sortUnitsBySpeed
   };
 })(typeof window !== "undefined" ? window : global);

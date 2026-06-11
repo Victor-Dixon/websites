@@ -65,6 +65,8 @@
   var moveTargets = [];
   var attackTargets = [];
   var rewardsApplied = false;
+  /* Player phase initiative queue (speed order, rebuilt each round). */
+  var playerTurnQueue = [];
 
   function choiceAlreadyMade(choiceKey) {
     return save.morality.history.some(function (h) {
@@ -141,6 +143,7 @@
         def: e.nemesisDef || 0,
         move: def.move,
         range: def.range,
+        spd: def.spd != null ? def.spd : def.move,
         glyph: def.glyph,
         label: label,
         damageDealt: 0,
@@ -176,6 +179,7 @@
       def: stats.def,
       move: stats.move,
       range: stats.range,
+      spd: stats.spd,
       glyph: save.character.name.slice(0, 2).toUpperCase(),
       label: save.character.name,
       moved: false,
@@ -225,6 +229,50 @@
     attackTargets = [];
   }
 
+  /* Turn model: player phase cycles living units in spd order (higher first).
+   * Tie-break: unit id. Enemy phase runs AI in the same speed order. */
+  function buildPlayerTurnQueue() {
+    playerTurnQueue = DATA.sortUnitsBySpeed(state.units, "player").map(function (u) {
+      return u.id;
+    });
+  }
+
+  function autoSelectCurrentActor() {
+    if (state.phase !== "player" || state.gameOver) return false;
+    for (var i = 0; i < playerTurnQueue.length; i++) {
+      var unit = unitById(playerTurnQueue[i]);
+      if (unit && !(unit.moved && unit.acted)) {
+        selectedId = unit.id;
+        actionMode = null;
+        moveTargets = [];
+        attackTargets = [];
+        return true;
+      }
+    }
+    clearSelection();
+    return false;
+  }
+
+  function advanceToNextPlayerUnit() {
+    autoSelectCurrentActor();
+    render();
+  }
+
+  function beginPlayerPhase() {
+    resetPlayerTurnFlags();
+    buildPlayerTurnQueue();
+    log("— Player phase —");
+    if (playerTurnQueue.length > 1) {
+      var order = playerTurnQueue.map(function (id) {
+        var u = unitById(id);
+        return u ? u.label + " (spd " + u.spd + ")" : id;
+      }).join(" → ");
+      log("Turn order: " + order);
+    }
+    autoSelectCurrentActor();
+    render();
+  }
+
   function selectUnit(id) {
     var unit = unitById(id);
     if (!unit || unit.hp <= 0) return;
@@ -261,9 +309,9 @@
     unit.moved = true;
     unit.acted = true;
     log(unit.label + " holds position.");
-    clearSelection();
     checkAutoEndPlayerPhase();
-    render();
+    if (state.phase === "player") advanceToNextPlayerUnit();
+    else render();
   }
 
   function moveUnit(unit, x, y) {
@@ -305,11 +353,11 @@
     if (!attacker.moved) attacker.moved = true;
     actionMode = null;
     attackTargets = [];
-    clearSelection();
     checkMercyOffer();
     checkVictory();
     checkAutoEndPlayerPhase();
-    render();
+    if (state.phase === "player") advanceToNextPlayerUnit();
+    else render();
   }
 
   function checkMercyOffer() {
@@ -413,7 +461,7 @@
 
   function runEnemyPhase() {
     if (state.gameOver) return;
-    var enemies = livingUnits("enemy");
+    var enemies = DATA.sortUnitsBySpeed(state.units, "enemy");
     var delay = 0;
 
     enemies.forEach(function (enemy) {
@@ -436,9 +484,7 @@
     window.setTimeout(function () {
       if (state.gameOver) return;
       state.phase = "player";
-      resetPlayerTurnFlags();
-      log("— Player phase —");
-      render();
+      beginPlayerPhase();
     }, delay + 200);
   }
 
@@ -471,15 +517,16 @@
     var unit = selectedId ? unitById(selectedId) : null;
     if (!unit) {
       els.unitCard.className = "unit-card empty";
-      els.unitCard.textContent = "Select your unit";
+      els.unitCard.textContent = state.phase === "player" ? "No units ready" : "—";
       return;
     }
     els.unitCard.className = "unit-card";
     var tag = unit.isNemesis ? " <span class=\"badge nemesis\">Nemesis</span>" : "";
+    var turnHint = state.phase === "player" && unit.team === "player" ? " <span class=\"badge turn\">Your turn</span>" : "";
     els.unitCard.innerHTML =
-      "<p class=\"name\">" + unit.label + tag + "</p>" +
+      "<p class=\"name\">" + unit.label + tag + turnHint + "</p>" +
       "<p class=\"stat\">HP " + unit.hp + " / " + unit.maxHp + "</p>" +
-      "<p class=\"stat\">Move " + unit.move + " · Range " + unit.range + " · ATK " + unit.atk + "</p>" +
+      "<p class=\"stat\">SPD " + unit.spd + " · Move " + unit.move + " · Range " + unit.range + " · ATK " + unit.atk + "</p>" +
       "<p class=\"stat\">Tile (" + (unit.x + 1) + "," + (unit.y + 1) + ")</p>";
   }
 
@@ -494,9 +541,13 @@
     els.btnWait.disabled = !canSelect;
     els.btnMercy.disabled = livingUnits("enemy").length !== 1;
 
-    els.phaseBar.textContent = state.gameOver
+    var phaseLabel = state.gameOver
       ? "Battle Over"
       : state.phase === "player" ? "Player Phase" : "Enemy Phase";
+    if (state.phase === "player" && unit && unit.team === "player") {
+      phaseLabel += " — " + unit.label + "'s turn";
+    }
+    els.phaseBar.textContent = phaseLabel;
     els.phaseBar.classList.toggle("enemy", state.phase === "enemy");
   }
 
@@ -551,13 +602,16 @@
     log(greeting);
     log("Battle begins — " + mission.name);
 
+    buildPlayerTurnQueue();
     if (missionId === "first_landing" && !choiceAlreadyMade("first_landing_pre")) {
       showChoiceOverlay("first_landing_pre", function () {
         preBattleDone = true;
+        autoSelectCurrentActor();
         render();
       });
     } else {
       preBattleDone = true;
+      autoSelectCurrentActor();
       render();
     }
   }
