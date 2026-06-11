@@ -107,13 +107,24 @@ sites:
     notes: "Swarm website (addon domain)"
 
   houstonsipqueen.com:
-    path: websites/houstonsipqueen.com
+    path: sites/production/websites/houstonsipqueen.com
     deployer: unified
     verify_url: https://houstonsipqueen.com/.well-known/deploy.json
     remote_root: public_html
     enabled: true
     deploy_method: sftp
-    notes: "Build-in-public site"
+    deploy_files:
+      - sites/production/houstonsipqueen.com/index.html
+      - sites/production/houstonsipqueen.com/site-config.json
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/front-page.php
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/style.css
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/page-quote.php
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/functions.php
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/header.php
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/footer.php
+    deploy_dirs:
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen
+    notes: "Bridal conversion homepage + WP theme; production_sync SSOT (static index + theme)"
 
   digitaldreamscape.site:
     path: websites/digitaldreamscape.site
