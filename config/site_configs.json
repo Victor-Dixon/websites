@@ -73,7 +73,8 @@
 },
 "digitaldreamscape.site": {
   "site_url": "https://digitaldreamscape.site",
-  "deployment_method": "rest_api",
+  "path": "sites/production/websites/digitaldreamscape.site",
+  "deployment_method": "sftp",
   "rest_api": {
     "username": "DadudeKC@Gmail.com",
     "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
@@ -93,7 +94,21 @@
   "ux_deployment": {
     "method": "additional_css",
     "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
+  },
+  "deploy_files": [
+    "sites/production/websites/digitaldreamscape.site/.htaccess",
+    "sites/production/websites/digitaldreamscape.site/index.html",
+    "sites/production/websites/digitaldreamscape.site/explore.html",
+    "sites/production/websites/digitaldreamscape.site/style.css",
+    "sites/production/websites/digitaldreamscape.site/js/world-data.js",
+    "sites/production/websites/digitaldreamscape.site/js/save.js",
+    "sites/production/websites/digitaldreamscape.site/js/pathfinding.js",
+    "sites/production/websites/digitaldreamscape.site/js/player.js",
+    "sites/production/websites/digitaldreamscape.site/js/camera.js",
+    "sites/production/websites/digitaldreamscape.site/js/world-renderer.js",
+    "sites/production/websites/digitaldreamscape.site/js/interactions.js",
+    "sites/production/websites/digitaldreamscape.site/js/explore.js"
+  ]
 },
 "freerideinvestor.com": {
   "site_url": "https://freerideinvestor.com",
