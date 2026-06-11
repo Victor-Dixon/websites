@@ -7,6 +7,7 @@
 
   var save = SAVE.getOrCreateSave();
   WORLD.ensureWorldSystems(save);
+  SAVE.syncMissionUnlocks(save);
   WORLD.initQuestLog(save);
   SAVE.saveGame(save);
 

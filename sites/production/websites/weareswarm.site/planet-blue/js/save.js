@@ -39,15 +39,40 @@
     return save;
   }
 
+  function normalizeMissionStatus(status) {
+    if (status === "complete") return "completed";
+    return status;
+  }
+
   function syncMissionUnlocks(save) {
     ensureMissionState(save);
+    Object.keys(save.missions).forEach(function (id) {
+      save.missions[id] = normalizeMissionStatus(save.missions[id]);
+    });
     Object.keys(DATA.MISSIONS).forEach(function (id) {
       var m = DATA.MISSIONS[id];
-      if (m.requires && save.missions[m.requires] === "completed" && save.missions[id] === "locked") {
+      if (!m.requires) return;
+      var reqStatus = normalizeMissionStatus(save.missions[m.requires]);
+      if (reqStatus === "completed" && save.missions[id] === "locked") {
         save.missions[id] = "unlocked";
       }
     });
     return save;
+  }
+
+  function persistUnlockRepairs(synced) {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return synced;
+      var parsed = JSON.parse(raw);
+      if (!parsed.missions || JSON.stringify(parsed.missions) === JSON.stringify(synced.missions)) {
+        return synced;
+      }
+      saveGame(synced);
+    } catch (e) {
+      /* ignore parse errors */
+    }
+    return synced;
   }
 
   function migrateSave(parsed) {
@@ -80,6 +105,8 @@
   }
 
   function saveGame(data) {
+    ensureMissionState(data);
+    syncMissionUnlocks(data);
     if (WORLD) WORLD.syncQuestStatus(data);
     data.version = SAVE_VERSION;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
@@ -95,8 +122,9 @@
     if (!s) {
       s = createNewSave();
       saveGame(s);
+      return s;
     }
-    return s;
+    return persistUnlockRepairs(s);
   }
 
   function resetSave() {

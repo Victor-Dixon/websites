@@ -12,7 +12,7 @@ const PAGES = ["index.html", "world.html", "map.html", "battle.html", "character
 const JS_FILES = [
   "data.js", "world.js", "save.js", "pathfinding.js", "combat.js",
   "abilities.js", "ai.js", "grid.js", "battle.js", "map.js", "character.js",
-  "sprites.js", "overworld.js"
+  "sprites.js", "overworld.js", "nav.js"
 ];
 
 let passed = 0;
@@ -206,6 +206,26 @@ try {
   const repaired = SAVE.loadSave();
   if (repaired.missions.deep_caverns !== "unlocked") fail("migrate should repair stale unlock chain");
   else ok("Stale save unlock chain repaired on load");
+
+  store[SAVE.STORAGE_KEY] = JSON.stringify({
+    version: 2,
+    profileCreated: true,
+    character: { ...DATA.DEFAULT_CHARACTER, xp: 50, currency: 25 },
+    missions: { first_landing: "complete", deep_caverns: "locked", sky_spire: "locked" },
+    world: after.world,
+    morality: after.morality,
+    nemesis: after.nemesis,
+    quests: after.quests
+  });
+  const normalized = SAVE.getOrCreateSave();
+  if (normalized.missions.first_landing !== "completed" || normalized.missions.deep_caverns !== "unlocked") {
+    fail("getOrCreateSave should normalize complete status and unlock deep_caverns");
+  } else ok("getOrCreateSave repairs legacy complete status and unlock chain");
+
+  const persisted = JSON.parse(store[SAVE.STORAGE_KEY]);
+  if (persisted.missions.deep_caverns !== "unlocked") {
+    fail("getOrCreateSave should persist unlock repairs to localStorage");
+  } else ok("getOrCreateSave persists unlock repairs");
 
   SAVE.completeMission("deep_caverns", DATA.MISSIONS.deep_caverns.rewards);
   const chain = SAVE.loadSave();

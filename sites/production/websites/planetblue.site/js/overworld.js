@@ -122,6 +122,7 @@
 
   var save = SAVE.getOrCreateSave();
   WORLD.ensureWorldSystems(save);
+  SAVE.syncMissionUnlocks(save);
   SAVE.saveGame(save);
 
   if (!save.profileCreated) {

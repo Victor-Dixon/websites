@@ -21,6 +21,7 @@
 
   var save = SAVE.getOrCreateSave();
   WORLD.ensureWorldSystems(save);
+  SAVE.syncMissionUnlocks(save);
 
   var missionStatus = save.missions[missionId];
   if (missionStatus === "locked") {
@@ -386,11 +387,16 @@
   }
 
   function applyVictoryRewards() {
-    if (rewardsApplied || missionStatus === "completed") return;
+    if (rewardsApplied) return;
     rewardsApplied = true;
-    SAVE.completeMission(missionId, mission.rewards);
+    if (missionStatus !== "completed") {
+      SAVE.completeMission(missionId, mission.rewards);
+    } else {
+      SAVE.syncMissionUnlocks(save);
+      SAVE.saveGame(save);
+    }
     save = SAVE.loadSave();
-    missionStatus = "completed";
+    missionStatus = save.missions[missionId];
   }
 
   function checkAutoEndPlayerPhase() {
