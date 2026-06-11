@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Owner Panel | Spark Protocol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Spark Protocol owner and admin panel — account lookup, role management, and world tools." />
+  <link rel="stylesheet" href="/assets/css/spark-site-shell.css?v=2" />
+  <link rel="stylesheet" href="/assets/css/spark-owner-panel.css?v=1" />
+</head>
+<body class="owner-panel-page">
+  <nav id="spark-auth-nav" class="comic-nav site-header" aria-label="Spark Protocol site navigation"></nav>
+
+  <main class="owner-wrap comic-wrap">
+    <header class="owner-hero">
+      <span class="owner-issue-tag">Spark Protocol · Admin Channel</span>
+      <h1>Owner Panel</h1>
+      <p class="owner-lede" id="owner-lede">Loading admin session…</p>
+      <div class="owner-role-pill" id="owner-role-pill" hidden></div>
+    </header>
+
+    <div id="owner-denied" class="owner-denied" hidden>
+      <h2>Access Denied</h2>
+      <p>Elevated game role required. Return to Command Post.</p>
+      <a class="comic-button primary" href="/spark-dashboard/">Command Post</a>
+    </div>
+
+    <div id="owner-app" hidden>
+      <nav class="owner-section-nav" id="owner-section-nav" aria-label="Owner panel sections"></nav>
+      <div id="owner-sections"></div>
+    </div>
+  </main>
+
+  <script src="/assets/js/spark-site-shell.js?v=1"></script>
+  <script src="/assets/js/spark-account-runtime.js?v=14"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=14"></script>
+  <script src="/assets/js/spark-owner-panel.js?v=2"></script>
+</body>
+</html>

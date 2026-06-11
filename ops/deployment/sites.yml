@@ -203,6 +203,15 @@ sites:
       - websites/dadudekc.site/spark-owner-gate.php
       - websites/dadudekc.site/assets/css/spark-owner-panel.css
       - websites/dadudekc.site/assets/js/spark-owner-panel.js
+      - websites/dadudekc.site/spark-mission-admin/index.html
+      - websites/dadudekc.site/spark-mission-admin-gate.php
+      - websites/dadudekc.site/assets/js/spark-mission-admin.js
+      - websites/dadudekc.site/assets/css/spark-mission-admin.css
+      - websites/dadudekc.site/assets/data/missions.json
+      - websites/dadudekc.site/assets/data/mission.schema.json
+      - websites/dadudekc.site/missions/mission.template.json
+      - websites/dadudekc.site/docs/spark/MISSION_SCHEMA.md
+      - websites/dadudekc.site/docs/spark/MISSION_AI_PROMPT.md
       - websites/dadudekc.site/wp-content/themes/dreamos-emergence/parts/header.html
       - websites/dadudekc.site/wp-content/themes/dreamos-emergence/templates/front-page.html
     notes: "Spark Protocol — static index.html + WP Emergence; immersive auth + Battle Sim v8.6 + Meridian News nav"

@@ -1,0 +1,25 @@
+{
+  "id": "district_codename_001",
+  "title": "Mission Title — Newspaper Headline Style",
+  "description": "Two to four sentences describing the crisis, stakes, and what the hero must do in Meridian City.",
+  "coord": "D7",
+  "district": "Irongate",
+  "district_id": "irongate",
+  "type": "mission",
+  "status": "active",
+  "threat": "medium",
+  "tier": "standard",
+  "reward": "Reward Name",
+  "news_id": "district_codename_001",
+  "faction": "sterling_holdings",
+  "objectives": [
+    "First concrete objective",
+    "Second concrete objective"
+  ],
+  "unlock": {
+    "requires_hero": true,
+    "min_notoriety": 0,
+    "prerequisite_missions": []
+  },
+  "tags": ["tag_one", "tag_two"]
+}

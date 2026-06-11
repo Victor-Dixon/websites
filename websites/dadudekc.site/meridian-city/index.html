@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Meridian City Interactive Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #080b10;
+      --panel: rgba(10, 14, 22, 0.94);
+      --line: rgba(255, 255, 255, 0.28);
+      --hot: rgba(255, 214, 64, 0.5);
+      --active: rgba(255, 214, 64, 0.35);
+      --locked: rgba(255, 64, 64, 0.35);
+      --hidden: rgba(160, 80, 255, 0.35);
+      --text: #f4efe2;
+      --muted: #b7b0a1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #172033, var(--bg));
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .comic-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 12px;
+      background: #08080b;
+      border-bottom: 5px solid #ffd12f;
+      box-shadow: 0 6px 0 rgba(0, 0, 0, 0.45);
+      font-family: Impact, "Arial Black", system-ui, sans-serif;
+    }
+
+    .comic-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 950;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      border: 3px solid transparent;
+      letter-spacing: 0.03em;
+    }
+
+    .comic-nav a:hover,
+    .comic-nav .pop {
+      color: #08080b;
+      background: #ffd12f;
+      border-color: #fff;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 18px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 56px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .map-shell {
+      position: relative;
+      width: 100%;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #111;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    .map-shell img {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(16, 1fr);
+      grid-template-rows: repeat(15, 1fr);
+      z-index: 2;
+    }
+
+    .map-cell {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: rgba(255, 255, 255, 0);
+      font-size: 10px;
+      cursor: pointer;
+      padding: 0;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .map-cell:hover,
+    .map-cell:focus {
+      outline: 2px solid rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.16);
+      color: white;
+      z-index: 3;
+    }
+
+    .map-cell.has-mission {
+      background: var(--active);
+      box-shadow: inset 0 0 0 2px var(--hot);
+    }
+
+    .map-cell.status-locked {
+      background: var(--locked);
+    }
+
+    .map-cell.status-hidden {
+      background: var(--hidden);
+    }
+
+    .panel {
+      position: sticky;
+      top: 16px;
+      min-height: 380px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.4);
+    }
+
+    .panel h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .panel p {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .mission-card {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 12px 0;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .mission-card h3 {
+      margin: 6px 0;
+    }
+
+    .mission-meta {
+      color: #ffd966;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+
+    .reward {
+      color: #fff;
+    }
+
+    .mission-btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: #ffd966;
+      color: #16110a;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .legend {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pill {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    .map-cell.has-news {
+      box-shadow: inset 0 0 0 2px rgba(120, 190, 255, 0.85);
+    }
+
+    .map-cell.atmosphere-hopeful { background: rgba(50, 255, 156, 0.28); box-shadow: inset 0 0 0 2px rgba(50, 255, 156, 0.75); }
+    .map-cell.atmosphere-fearful { background: rgba(255, 53, 93, 0.28); box-shadow: inset 0 0 0 2px rgba(255, 53, 93, 0.75); }
+    .map-cell.atmosphere-stabilizing { background: rgba(98, 223, 255, 0.24); box-shadow: inset 0 0 0 2px rgba(98, 223, 255, 0.65); }
+    .map-cell.atmosphere-volatile { background: rgba(255, 214, 64, 0.34); animation: pulse-sector 1.4s ease-in-out infinite; }
+    .map-cell.influence-high { outline: 1px solid rgba(255, 255, 255, 0.45); }
+
+    .map-cell.is-selected {
+      outline: 4px solid #ffffff;
+      background: rgba(255, 255, 255, 0.28);
+      color: #fff;
+      z-index: 5;
+      animation: pulse-sector 1s ease-in-out 3;
+    }
+
+    .panel-section-title {
+      margin: 18px 0 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ffd966;
+      font-size: 13px;
+    }
+
+    .news-card {
+      border-color: rgba(120, 190, 255, 0.45);
+    }
+
+    .panel-footnote a,
+    .top-link {
+      color: #ffd966;
+      font-weight: 900;
+    }
+
+    @keyframes pulse-sector {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.8); }
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        position: relative;
+        top: 0;
+      }
+    }
+  </style>
+  <script src="/assets/js/spark-account-runtime.js?v=10"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=10"></script>
+  <script src="/assets/js/meridian-world-client.js?v=1"></script>
+</head>
+
+<body>
+  <nav id="spark-auth-nav" class="comic-nav" aria-label="Spark Protocol">
+    <a href="/">Cover</a>
+    <a href="/spark-generator/">Origin Lab</a>
+    <a href="/spark-login/">Log In</a>
+    <a class="pop" href="/spark-signup/">Join The Universe</a>
+  </nav>
+
+  <main class="page">
+    <header class="hero">
+      <div>
+        <h1>Meridian City</h1>
+        <p>Click a grid sector to inspect active events, missions, secrets, threat zones, and related Ledger updates.</p>
+        <p><a class="top-link" href="./news/">Open The Meridian Ledger</a></p>
+      </div>
+    </header>
+
+    <section class="layout">
+      <div>
+        <div class="map-shell">
+          <img src="/assets/maps/meridian-city-map.png" alt="Meridian City gridded comic map" />
+          <div class="grid-overlay" data-grid></div>
+        </div>
+
+        <div class="legend">
+          <span class="pill">Gold = active mission</span>
+          <span class="pill">Red = locked/high threat</span>
+          <span class="pill">Purple = hidden/secret</span>
+          <span class="pill">Click any sector</span>
+        </div>
+      </div>
+
+      <aside class="panel is-open" data-panel>
+        <h2 data-panel-title>Select a sector</h2>
+        <div data-panel-body>
+          <p>Mission data loads from <code>assets/data/missions.json</code>. Each event is attached to a coordinate like <strong>D7</strong>, <strong>I2</strong>, or <strong>A13</strong>.</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./map.js"></script>
+</body>
+</html>

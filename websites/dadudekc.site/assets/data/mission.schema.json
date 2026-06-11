@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dadudekc.site/assets/data/mission.schema.json",
+  "title": "Spark Meridian Mission",
+  "description": "Single mission object for map ledger and dispatch cross-reference.",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "description",
+    "coord",
+    "district",
+    "type",
+    "status",
+    "reward"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{2,63}$",
+      "description": "Stable snake_case identifier. Must be unique across missions.json."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 120
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000
+    },
+    "coord": {
+      "type": "string",
+      "pattern": "^[A-P](?:[1-9]|1[0-5])$",
+      "description": "Meridian grid sector, e.g. D7, I2, A13."
+    },
+    "district": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 80
+    },
+    "district_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Machine id matching assets/data/meridian_districts.json when possible."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["mission", "world-event", "secret", "dispatch"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "hidden", "completed", "archived"]
+    },
+    "threat": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical", "unknown"]
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["intro", "standard", "elite", "discovery"]
+    },
+    "reward": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 120
+    },
+    "news_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{2,63}$",
+      "description": "Optional cross-link to meridian-city/news/newsfeed.json entry."
+    },
+    "faction": {
+      "type": "string",
+      "description": "Faction id from meridian_districts.json factions block."
+    },
+    "objectives": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 3, "maxLength": 200 },
+      "minItems": 1,
+      "maxItems": 6
+    },
+    "unlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requires_hero": { "type": "boolean" },
+        "min_notoriety": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "prerequisite_missions": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$" }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]+$" },
+      "maxItems": 12
+    }
+  }
+}
