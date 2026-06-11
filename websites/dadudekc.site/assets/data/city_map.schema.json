@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dadudekc.site/assets/data/city_map.schema.json",
+  "title": "Spark City Map",
+  "type": "object",
+  "required": ["schema", "grid", "quadrants"],
+  "properties": {
+    "schema": { "const": "spark.city_map.v1" },
+    "city_id": { "type": "string" },
+    "city_name": { "type": "string" },
+    "grid": {
+      "type": "object",
+      "required": ["cols", "rows"],
+      "properties": {
+        "cols": { "type": "integer", "minimum": 4, "maximum": 120 },
+        "rows": { "type": "integer", "minimum": 4, "maximum": 120 }
+      }
+    },
+    "map_image": { "type": "string" },
+    "quadrants": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/quadrant" }
+    }
+  },
+  "$defs": {
+    "quadrant": {
+      "type": "object",
+      "required": ["id", "label", "bounds"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "label": { "type": "string" },
+        "bounds": {
+          "type": "object",
+          "required": ["x1", "y1", "x2", "y2"],
+          "properties": {
+            "x1": { "type": "integer", "minimum": 0 },
+            "y1": { "type": "integer", "minimum": 0 },
+            "x2": { "type": "integer", "minimum": 0 },
+            "y2": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "image": { "type": "string" },
+        "lore": { "type": "string" },
+        "mission_ids": { "type": "array", "items": { "type": "string" } },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "dock_heist_001",
+    "title": "Dockside Heist",
+    "description": "Cargo runners are moving forbidden tech through the docks. Intercept the shipment before it leaves Meridian Harbor.",
+    "coord": "D7",
+    "district": "Irongate",
+    "district_id": "irongate",
+    "quadrant_id": "sw_district",
+    "type": "mission",
+    "status": "active",
+    "threat": "medium",
+    "tier": "standard",
+    "reward": "Dockside Trophy Fragment",
+    "news_id": "dock_heist_001",
+    "faction": "sterling_holdings",
+    "objectives": [
+      "Locate the unmarked freight manifest",
+      "Intercept the shipment before dawn"
+    ],
+    "unlock": {
+      "requires_hero": true,
+      "min_notoriety": 0,
+      "prerequisite_missions": []
+    },
+    "tags": ["dock", "freight", "stealth"]
+  },
+  {
+    "id": "guardian_spire_signal_001",
+    "title": "Signal From Guardian Spire",
+    "description": "A distress signal pulses from the tower. Someone is spoofing hero-channel frequencies.",
+    "coord": "I2",
+    "district": "The Spindle",
+    "district_id": "spindle",
+    "quadrant_id": "ne_district",
+    "type": "world-event",
+    "status": "active",
+    "threat": "medium",
+    "tier": "standard",
+    "reward": "Hero Signal Badge",
+    "news_id": "guardian_spire_signal_001",
+    "faction": "aegis",
+    "objectives": [
+      "Trace the spoofed hero-channel frequency",
+      "Secure the Spindle field office perimeter"
+    ],
+    "unlock": {
+      "requires_hero": true,
+      "min_notoriety": 0,
+      "prerequisite_missions": []
+    },
+    "tags": ["aegis", "signal", "investigation"]
+  },
+  {
+    "id": "secret_tidegate_001",
+    "title": "Hidden Lair Entrance",
+    "description": "A sewer access point beneath the Old Tidegate. This route may unlock underground missions.",
+    "coord": "A13",
+    "district": "Old Tidegate",
+    "district_id": "old_tidegate",
+    "quadrant_id": "nw_district",
+    "type": "secret",
+    "status": "hidden",
+    "threat": "unknown",
+    "tier": "discovery",
+    "reward": "Secret Route",
+    "news_id": "secret_tidegate_001",
+    "faction": "undercity",
+    "objectives": [
+      "Find the concealed sewer grate",
+      "Document the route without alerting patrols"
+    ],
+    "unlock": {
+      "requires_hero": true,
+      "min_notoriety": 2,
+      "prerequisite_missions": ["dock_heist_001"]
+    },
+    "tags": ["secret", "undercity", "exploration"]
+  }
+]

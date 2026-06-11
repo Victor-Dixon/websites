@@ -1,0 +1,218 @@
+.city-admin-page {
+  --ink: #050505;
+  --paper: #fff5d6;
+  --gold: #ffd72e;
+  --blue: #62dfff;
+  --red: #ff355d;
+  --muted: #6b6358;
+  background: #071018;
+  color: var(--paper);
+  min-height: 100vh;
+}
+
+.city-admin-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.city-admin-hero h1 {
+  font-family: Impact, Haettenschweiler, "Arial Black", system-ui, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin: 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.city-admin-hero .lede {
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  max-width: 60ch;
+}
+
+.city-admin-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  align-items: start;
+}
+
+.city-admin-panel {
+  background: var(--paper);
+  color: var(--ink);
+  border: 5px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 1rem;
+}
+
+.city-admin-panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.city-admin-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
+.city-admin-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.city-admin-controls input[type="number"],
+.city-admin-controls input[type="text"],
+.city-admin-controls select,
+.city-admin-controls textarea {
+  border: 3px solid var(--ink);
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+  background: #fff;
+  min-width: 5rem;
+}
+
+.city-admin-controls textarea {
+  width: 100%;
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.city-admin-btn {
+  border: 3px solid var(--ink);
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.city-admin-btn.alt { background: var(--blue); }
+.city-admin-btn.danger { background: var(--red); color: #fff; }
+
+.city-admin-grid-shell {
+  position: relative;
+  border: 4px solid var(--ink);
+  background: #111;
+  overflow: auto;
+  max-height: 70vh;
+}
+
+.city-admin-grid {
+  display: grid;
+  gap: 0;
+  user-select: none;
+}
+
+.city-admin-cell {
+  aspect-ratio: 1;
+  min-width: 8px;
+  min-height: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: crosshair;
+  padding: 0;
+  background: transparent;
+}
+
+.city-admin-cell.in-quadrant {
+  opacity: 0.85;
+}
+
+.city-admin-cell.is-selecting {
+  background: rgba(255, 215, 46, 0.45) !important;
+  outline: 1px solid #fff;
+}
+
+.city-admin-cell.is-active-quadrant {
+  outline: 2px solid #fff;
+  z-index: 2;
+}
+
+.city-admin-quadrant-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.city-admin-quadrant-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.city-admin-quadrant-list li.active {
+  background: rgba(255, 215, 46, 0.35);
+  font-weight: 800;
+}
+
+.city-admin-missions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: 160px;
+  overflow: auto;
+  border: 2px solid var(--ink);
+  padding: 0.5rem;
+  background: #fff;
+}
+
+.city-admin-missions label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.city-admin-preview-img {
+  max-width: 100%;
+  max-height: 120px;
+  border: 3px solid var(--ink);
+  margin-top: 0.5rem;
+  object-fit: cover;
+}
+
+.city-admin-status {
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 2px solid var(--ink);
+  background: #fff;
+}
+
+.city-admin-status.ok { border-color: #16a34a; }
+.city-admin-status.err { border-color: var(--red); }
+
+.city-admin-export-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.city-admin-denied {
+  text-align: center;
+  padding: 3rem;
+}
+
+@media (max-width: 1000px) {
+  .city-admin-layout {
+    grid-template-columns: 1fr;
+  }
+}

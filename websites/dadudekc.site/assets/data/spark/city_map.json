@@ -1,0 +1,45 @@
+{
+  "schema": "spark.city_map.v1",
+  "city_id": "meridian",
+  "city_name": "Meridian City",
+  "grid": { "cols": 40, "rows": 40 },
+  "map_image": "/assets/maps/meridian-city-map.png",
+  "quadrants": [
+    {
+      "id": "nw_district",
+      "label": "Northwest Quarter",
+      "bounds": { "x1": 0, "y1": 0, "x2": 19, "y2": 19 },
+      "image": "assets/spark/map/nw_district.png",
+      "lore": "The Old Tidegate and flood-scarred blocks where Meridian's first walls still stand. Smugglers, archivists, and forgotten signal towers cluster in the shadow of the northern seawall.",
+      "mission_ids": ["secret_tidegate_001"],
+      "tags": ["flood_scar", "old_wall", "undercity_access"]
+    },
+    {
+      "id": "ne_district",
+      "label": "Northeast Quarter",
+      "bounds": { "x1": 20, "y1": 0, "x2": 39, "y2": 19 },
+      "image": "assets/spark/map/ne_district.png",
+      "lore": "Guardian Spire rises over glass towers and AEGIS field offices. Hero-channel frequencies crackle here — order maintained through registry, posture, and containment.",
+      "mission_ids": ["guardian_spire_signal_001"],
+      "tags": ["aegis", "spire", "hero_channels"]
+    },
+    {
+      "id": "sw_district",
+      "label": "Southwest Quarter",
+      "bounds": { "x1": 0, "y1": 20, "x2": 19, "y2": 39 },
+      "image": "assets/spark/map/sw_district.png",
+      "lore": "Meridian Docks and the working harbor. Cargo runners, dockside families, and forbidden tech move through the lanes before dawn.",
+      "mission_ids": ["dock_heist_001"],
+      "tags": ["docks", "harbor", "smuggling"]
+    },
+    {
+      "id": "se_district",
+      "label": "Southeast Quarter",
+      "bounds": { "x1": 20, "y1": 20, "x2": 39, "y2": 39 },
+      "image": "assets/spark/map/se_district.png",
+      "lore": "Halcyon Heights bleeds into market blocks and contested loyalty zones. Civic trust on the surface; debt and control underneath the gala lights.",
+      "mission_ids": [],
+      "tags": ["markets", "civic", "contested"]
+    }
+  ]
+}

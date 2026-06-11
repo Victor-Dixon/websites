@@ -17,13 +17,14 @@ RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /
 
 # Spark protected routes — auth gate before static index.html
-RewriteRule ^spark-dashboard/?$ /spark-auth-gate.php?target=/spark-dashboard/ [L,QSA]
-RewriteRule ^spark-generator/?$ /spark-auth-gate.php?target=/spark-generator/ [L,QSA]
 RewriteRule ^spark-battle/?$ /spark-auth-gate.php?target=/spark-battle/ [L,QSA]
 RewriteRule ^meridian-map/?$ /spark-auth-gate.php?target=/meridian-map/ [L,QSA]
 RewriteRule ^meridian-dispatch/?$ /spark-auth-gate.php?target=/meridian-dispatch/ [L,QSA]
 RewriteRule ^news/?$ /spark-auth-gate.php?target=/news/ [L,QSA]
 RewriteRule ^meridian-city/news/?$ /spark-auth-gate.php?target=/meridian-city/news/ [L,QSA]
+RewriteRule ^spark-owner/?$ /spark-owner-gate.php [L,QSA]
+RewriteRule ^spark-city-admin/?$ /spark-city-admin-gate.php [L,QSA]
+RewriteRule ^spark-mission-admin/?$ /spark-mission-admin-gate.php [L,QSA]
 
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
