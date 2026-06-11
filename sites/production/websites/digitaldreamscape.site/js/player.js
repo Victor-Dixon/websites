@@ -4,6 +4,10 @@ export const defaultPlayerState = {
   x: 8,
   y: 8,
   direction: "south",
+  avatar: {
+    style: "pseudo_3d_layered_2d",
+    layers: ["aura", "cape", "base_body", "hair", "outfit", "boots", "weapon"],
+  },
   walking: false,
   path: [],
   level: 1,
