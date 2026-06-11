@@ -41,7 +41,13 @@ sites:
     remote_root: public_html
     enabled: true
     deploy_method: sftp
-    notes: "Build-in-public site"
+    deploy_files:
+      - sites/production/websites/ariajet.site/cracked-screen-glowup.html
+      - sites/production/websites/ariajet.site/projects.html
+    deploy_dirs:
+      - sites/production/websites/ariajet.site/assets/images
+      - sites/production/websites/ariajet.site/wp/wp-content/themes/ariajet-cosmic/assets/images
+    notes: "Build-in-public site; static glowup page + theme image assets via deploy_dirs"
 
   dadudekc.com:
     path: websites/dadudekc.com
@@ -151,7 +157,11 @@ sites:
       - websites/dadudekc.site/assets/js/spark-account-runtime.js
       - websites/dadudekc.site/assets/js/spark-auth-guard.js
       - websites/dadudekc.site/assets/js/spark-auth-nav.js
+      - websites/dadudekc.site/assets/css/spark-site-shell.css
+      - websites/dadudekc.site/assets/js/spark-site-shell.js
       - websites/dadudekc.site/assets/js/spark-dashboard.js
+      - websites/dadudekc.site/assets/js/spark-domain-score-v86.js
+      - websites/dadudekc.site/assets/js/meridian-world-client.js
       - websites/dadudekc.site/assets/js/spark-gauntlet-sim.js
       - websites/dadudekc.site/assets/data/gauntlet_obstacle_catalog.json
       - websites/dadudekc.site/assets/data/gauntlet_courses.json
@@ -161,7 +171,27 @@ sites:
       - websites/dadudekc.site/assets/maps/meridian-city-map.png
       - websites/dadudekc.site/assets/img/spark-logout-hero.png
       - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-immersive-auth.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-account-api.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-name-policy.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-premium.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-inbox.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-maskzero-narrator.php
+      - websites/dadudekc.site/spark-inbox/index.html
+      - websites/dadudekc.site/assets/css/spark-inbox.css
+      - websites/dadudekc.site/assets/js/spark-inbox.js
+      - websites/dadudekc.site/assets/img/spark-hero-placeholder.svg
+      - websites/dadudekc.site/assets/js/meridian-news-client.js
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-save-api.php
       - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-hero-profile-api.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-score-api.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-meridian-world-api.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-game-roles.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-admin-audit-log.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-owner-panel.php
+      - websites/dadudekc.site/spark-owner/index.html
+      - websites/dadudekc.site/spark-owner-gate.php
+      - websites/dadudekc.site/assets/css/spark-owner-panel.css
+      - websites/dadudekc.site/assets/js/spark-owner-panel.js
       - websites/dadudekc.site/wp-content/themes/dreamos-emergence/parts/header.html
       - websites/dadudekc.site/wp-content/themes/dreamos-emergence/templates/front-page.html
     notes: "Spark Protocol — static index.html + WP Emergence; immersive auth + Battle Sim v8.6 + Meridian News nav"
@@ -178,6 +208,17 @@ sites:
       - sites/production/websites/xthunder.site/assets/css/style.css
       - sites/production/websites/xthunder.site/assets/js/main.js
     notes: "Static global-chat game landing; SFTP via unified_deployer"
+
+  planetblue.site:
+    path: sites/production/websites/planetblue.site
+    deployer: unified
+    verify_url: https://planetblue.site/
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    deploy_dirs:
+      - sites/production/websites/planetblue.site
+    notes: "Planet Blue tactical RPG static MVP; standalone product lane (not WeAreSwarm/Scott)"
 
 # Deployment configuration
 deployment:

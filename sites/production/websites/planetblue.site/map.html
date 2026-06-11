@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planet Blue — Mission Map</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-block">
+      <h1 class="brand"><a href="index.html">Planet Blue</a></h1>
+      <p class="tagline">Mission Map</p>
+    </div>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="character.html">Character</a>
+      <a href="map.html" class="active">Map</a>
+    </nav>
+  </header>
+
+  <main class="page-shell wide">
+    <div class="map-layout">
+      <section>
+        <h2 style="margin:0 0 1rem;color:var(--muted);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;">Mission Nodes</h2>
+        <div id="mission-nodes"></div>
+      </section>
+
+      <aside class="panel profile-panel" id="profile-summary">
+        <h2>Profile</h2>
+      </aside>
+    </div>
+  </main>
+
+  <script src="./js/data.js"></script>
+  <script src="./js/save.js"></script>
+  <script src="./js/map.js"></script>
+</body>
+</html>

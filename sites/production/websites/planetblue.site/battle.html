@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planet Blue — Battle</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-block">
+      <h1 class="brand"><a href="index.html">Planet Blue</a></h1>
+      <p class="tagline" id="mission-title">Battle</p>
+    </div>
+    <div class="phase-bar" id="phase-bar">Player Phase</div>
+    <button type="button" class="btn primary" id="btn-end-turn">End Turn</button>
+  </header>
+
+  <main class="battle-shell">
+    <section class="battlefield-wrap" aria-label="Battlefield">
+      <div class="battlefield" id="battlefield" role="grid"></div>
+    </section>
+
+    <aside class="side-panel" aria-label="Battle status">
+      <section class="panel-block">
+        <h2>Selected Unit</h2>
+        <div id="unit-card" class="unit-card empty">Select your unit</div>
+      </section>
+
+      <section class="panel-block">
+        <h2>Actions</h2>
+        <div class="action-row">
+          <button type="button" class="btn" id="btn-move" disabled>Move</button>
+          <button type="button" class="btn" id="btn-attack" disabled>Attack</button>
+          <button type="button" class="btn secondary" id="btn-wait" disabled>Wait</button>
+        </div>
+      </section>
+
+      <section class="panel-block">
+        <h2>Battle Log</h2>
+        <ol class="battle-log" id="battle-log" reversed></ol>
+      </section>
+
+      <section class="panel-block help">
+        <h2>How to Play</h2>
+        <ul>
+          <li>Click your unit (blue), then <strong>Move</strong> or <strong>Attack</strong>.</li>
+          <li>Each unit moves and acts once per player phase.</li>
+          <li>Defeat all enemies to win. Lose if you fall.</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+
+  <div class="overlay hidden" id="overlay" role="dialog" aria-modal="true">
+    <div class="overlay-card">
+      <h2 id="overlay-title">Battle Over</h2>
+      <p id="overlay-message"></p>
+      <button type="button" class="btn primary" id="btn-overlay-action">Continue</button>
+    </div>
+  </div>
+
+  <script src="./js/data.js"></script>
+  <script src="./js/save.js"></script>
+  <script src="./js/pathfinding.js"></script>
+  <script src="./js/combat.js"></script>
+  <script src="./js/abilities.js"></script>
+  <script src="./js/ai.js"></script>
+  <script src="./js/grid.js"></script>
+  <script src="./js/battle.js"></script>
+</body>
+</html>

@@ -46,6 +46,12 @@ Today, the repo still contains “legacy” layouts (themes/plugins scattered in
 
 - **weareswarm.site**
   - Current legacy source: `Swarm_website/wp-content/themes/swarm-theme/`
+  - Planet Blue legacy demo subpath: `sites/production/websites/weareswarm.site/planet-blue/` (canonical product is `planetblue.site`)
+
+- **planetblue.site**
+  - Planet Blue tactical RPG static MVP (standalone product lane)
+  - SSOT: `sites/production/websites/planetblue.site/`
+  - Deploy: `python ops/deployment/unified_deployer.py --site planetblue.site`
 
 ### Target standard (when we migrate)
 

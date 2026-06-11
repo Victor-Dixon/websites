@@ -1,0 +1,340 @@
+[
+  {
+    "id": "assassin",
+    "name": "Assassin",
+    "version": 1,
+    "status": "draft",
+    "created_by": "Chris",
+    "category": "speed",
+    "theme": "A stealth fighter for players who do not like fighting head-on.",
+    "description": "Assassins use speed, stealth, back attacks, poison, and critical strikes to defeat enemies before they can react. They are dangerous when positioned well, but fragile if caught in open combat.",
+
+    "combat_role": {
+      "primary": "damage",
+      "secondary": "scout",
+      "range_style": "melee",
+      "difficulty": "medium"
+    },
+
+    "allowed_races": ["any"],
+
+    "tags": ["stealth", "speed", "critical", "poison", "shadow"],
+
+    "elements": {
+      "primary": "dark",
+      "secondary": "poison"
+    },
+
+    "base_stats": {
+      "hp": 24,
+      "mp": 8,
+      "atk": 8,
+      "def": 3,
+      "mag": 3,
+      "res": 4,
+      "spd": 9,
+      "move": 6,
+      "range": 1
+    },
+
+    "stat_growth": {
+      "hp": "low",
+      "mp": "low",
+      "atk": "high",
+      "def": "low",
+      "mag": "low",
+      "res": "medium",
+      "spd": "high"
+    },
+
+    "strengths": [
+      "Very fast",
+      "High critical damage",
+      "Can attack weak targets",
+      "Good at flanking and finishing enemies"
+    ],
+
+    "weaknesses": [
+      "Low defense",
+      "Weak if surrounded",
+      "Bad against tanks",
+      "Needs good positioning"
+    ],
+
+    "resistances": ["dark", "poison"],
+
+    "vulnerabilities": ["light", "earth"],
+
+    "starter_abilities": [
+      {
+        "id": "shadow_step",
+        "name": "Shadow Step",
+        "type": "movement",
+        "element": "dark",
+        "power": 0,
+        "mp_cost": 2,
+        "cooldown": 2,
+        "range": 3,
+        "area": "self",
+        "description": "Dash up to 3 tiles. Useful for flanking or escaping."
+      },
+      {
+        "id": "backstab",
+        "name": "Backstab",
+        "type": "attack",
+        "element": "none",
+        "power": 9,
+        "mp_cost": 0,
+        "cooldown": 1,
+        "range": 1,
+        "area": "single",
+        "description": "Deal extra damage if attacking from behind or from the side."
+      },
+      {
+        "id": "poison_blade",
+        "name": "Poison Blade",
+        "type": "attack",
+        "element": "poison",
+        "power": 5,
+        "mp_cost": 2,
+        "cooldown": 2,
+        "range": 1,
+        "area": "single",
+        "description": "Strike an enemy and apply poison for damage over time."
+      }
+    ],
+
+    "passives": [
+      {
+        "id": "silent_hunter",
+        "name": "Silent Hunter",
+        "description": "Gain bonus damage against enemies below 50% HP."
+      }
+    ],
+
+    "upgrade_paths": [
+      {
+        "level": 5,
+        "choice": "Smoke Vanish",
+        "description": "Unlock a defensive escape ability that lowers enemy accuracy for one turn."
+      },
+      {
+        "level": 10,
+        "choice": "Nightblade",
+        "description": "Promote into a stronger assassin path with improved stealth and critical damage."
+      }
+    ],
+
+    "risk_reward_options": [
+      {
+        "id": "forbidden_blade_oath",
+        "name": "Forbidden Blade Oath",
+        "cost": {
+          "currency": 100,
+          "item": "shadow_gem"
+        },
+        "success_effect": "Backstab gains bonus critical chance.",
+        "failure_effect": "The assassin starts the next battle with reduced HP.",
+        "safe_failure_limit": "Never permanently delete the class or character."
+      }
+    ],
+
+    "ai_behavior": {
+      "preferred_range": 1,
+      "target_priority": "lowest_hp",
+      "personality": "tactical"
+    },
+
+    "visual_identity": {
+      "primary_color": "black",
+      "secondary_color": "purple",
+      "icon": "shadow_dagger",
+      "sprite_notes": "Fast hooded fighter with twin blades, smoke effects, and dark-purple trail."
+    },
+
+    "balance_notes": {
+      "power_budget": "medium",
+      "main_counterplay": "Reveal, trap, surround, or hit the assassin with area attacks.",
+      "avoid": [
+        "Do not give assassin high defense.",
+        "Do not let assassin one-shot every enemy.",
+        "Do not make stealth permanent."
+      ]
+    },
+
+    "example_character": {
+      "name": "Shade",
+      "race": "Shadowborn",
+      "personality": "Quiet, clever, patient"
+    }
+  },
+  {
+    "id": "mage",
+    "name": "Mage",
+    "version": 1,
+    "status": "draft",
+    "created_by": "Chris",
+    "category": "magic",
+    "theme": "A ranged spellcaster for players who prefer strategy over direct fighting.",
+    "description": "Mages attack from range using elemental spells, control effects, and magical bursts. They are powerful when protected, but weak if enemies close the distance.",
+
+    "combat_role": {
+      "primary": "damage",
+      "secondary": "control",
+      "range_style": "ranged",
+      "difficulty": "medium"
+    },
+
+    "allowed_races": ["any"],
+
+    "tags": ["magic", "ranged", "elemental", "control"],
+
+    "elements": {
+      "primary": "cosmic",
+      "secondary": "fire"
+    },
+
+    "base_stats": {
+      "hp": 22,
+      "mp": 18,
+      "atk": 2,
+      "def": 3,
+      "mag": 10,
+      "res": 7,
+      "spd": 5,
+      "move": 4,
+      "range": 3
+    },
+
+    "stat_growth": {
+      "hp": "low",
+      "mp": "high",
+      "atk": "low",
+      "def": "low",
+      "mag": "high",
+      "res": "medium",
+      "spd": "medium"
+    },
+
+    "strengths": [
+      "Strong ranged magic",
+      "Can hit enemy weaknesses",
+      "Good area damage",
+      "Can control enemy movement"
+    ],
+
+    "weaknesses": [
+      "Low HP",
+      "Low defense",
+      "Weak in close combat",
+      "Depends on MP"
+    ],
+
+    "resistances": ["cosmic"],
+
+    "vulnerabilities": ["physical", "silence"],
+
+    "starter_abilities": [
+      {
+        "id": "arcane_bolt",
+        "name": "Arcane Bolt",
+        "type": "attack",
+        "element": "cosmic",
+        "power": 7,
+        "mp_cost": 2,
+        "cooldown": 0,
+        "range": 3,
+        "area": "single",
+        "description": "Basic ranged magic attack."
+      },
+      {
+        "id": "flame_orb",
+        "name": "Flame Orb",
+        "type": "attack",
+        "element": "fire",
+        "power": 9,
+        "mp_cost": 4,
+        "cooldown": 1,
+        "range": 3,
+        "area": "single",
+        "description": "Launch a fire spell that deals higher damage and may burn."
+      },
+      {
+        "id": "slow_field",
+        "name": "Slow Field",
+        "type": "debuff",
+        "element": "psychic",
+        "power": 0,
+        "mp_cost": 4,
+        "cooldown": 3,
+        "range": 3,
+        "area": "circle",
+        "description": "Create a small field that lowers enemy movement for one turn."
+      }
+    ],
+
+    "passives": [
+      {
+        "id": "mana_focus",
+        "name": "Mana Focus",
+        "description": "Regain 1 MP after defeating an enemy with a spell."
+      }
+    ],
+
+    "upgrade_paths": [
+      {
+        "level": 5,
+        "choice": "Element Choice",
+        "description": "Choose a specialty: Fire Mage, Ice Mage, Storm Mage, Light Mage, or Dark Mage."
+      },
+      {
+        "level": 10,
+        "choice": "Archmage",
+        "description": "Promote into an advanced spellcaster with stronger range, area effects, and magic control."
+      }
+    ],
+
+    "risk_reward_options": [
+      {
+        "id": "unstable_spellbook",
+        "name": "Unstable Spellbook",
+        "cost": {
+          "currency": 100,
+          "item": "mana_crystal"
+        },
+        "success_effect": "A random starter spell upgrades into a rare version.",
+        "failure_effect": "Lose some MP at the start of the next battle.",
+        "safe_failure_limit": "Never erase all spells or permanently brick the class."
+      }
+    ],
+
+    "ai_behavior": {
+      "preferred_range": 3,
+      "target_priority": "highest_threat",
+      "personality": "tactical"
+    },
+
+    "visual_identity": {
+      "primary_color": "blue",
+      "secondary_color": "gold",
+      "icon": "spellbook",
+      "sprite_notes": "Robed caster with glowing hands, floating spellbook, and blue magic aura."
+    },
+
+    "balance_notes": {
+      "power_budget": "medium",
+      "main_counterplay": "Rush the mage, silence spells, drain MP, or use high-resistance enemies.",
+      "avoid": [
+        "Do not give mage high defense.",
+        "Do not make spells free forever.",
+        "Do not let one spell solve every battle."
+      ]
+    },
+
+    "example_character": {
+      "name": "Orion",
+      "race": "Human",
+      "personality": "Smart, curious, careful"
+    }
+  }
+]

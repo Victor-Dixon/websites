@@ -1,0 +1,31 @@
+{
+  "id": "beastmen",
+  "name": "Beastmen",
+  "version": 1,
+  "status": "draft",
+  "aliases": ["beastborn"],
+  "stat_modifiers": {
+    "hp": 1,
+    "atk": 2,
+    "def": -1,
+    "move": 2,
+    "range": -1
+  },
+  "strengths": [
+    "High mobility on the tactical grid",
+    "Strong natural weapon damage from claws and fangs",
+    "Excels at flanking, rushing, and finishing wounded prey"
+  ],
+  "weaknesses": [
+    "Light armor and low defensive stats",
+    "Vulnerable to ranged and area attacks",
+    "Short engagement range limits safe positioning"
+  ],
+  "identity": {
+    "theme": "Tribal hunters of the blue wilds",
+    "natural_weapons": ["claws", "fangs", "horns"],
+    "culture": "Pack and clan loyalty, territorial, honor earned through the hunt"
+  },
+  "story_hook": "The Beastmen clans roam the frontier between settled blue-world outposts and the untamed wastes, defending sacred hunting grounds from encroaching drones and void corruption.",
+  "desc": "Tribal warriors with claw and fang. Fast strikers of the wild clans."
+}
