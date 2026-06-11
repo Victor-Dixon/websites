@@ -114,6 +114,129 @@
     return clean.slice(0, max - 1) + '…';
   }
 
+  function resolveSparkBodyClass(payload) {
+    payload = payload || {};
+    const sheet = payload.character_sheet || {};
+    const powers = payload.powers || [];
+    const classHints = [
+      payload.visual_class,
+      payload.visual_class_label,
+      payload.spark_class,
+      payload.character_class,
+      payload.body_class,
+      payload.species,
+      payload.class,
+      sheet.visual_class,
+      sheet.spark_class,
+      sheet.character_class,
+      sheet.archetype,
+      sheet.title,
+      payload.cast,
+      payload.profile_shape,
+      powers.map(function (p) {
+        return [p.domain, p.power, p.selection].filter(Boolean).join(' ');
+      }).join(' ')
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    if (/\b(robot|android|cyborg|mech|mecha|machine|synthetic|automaton|technopathy|circuit|digital|metal)\b/.test(classHints)) {
+      return {
+        key: 'robot',
+        label: 'Robot',
+        badge: 'ROBOT',
+        prompt: 'robot class; visible robot body, mechanical limbs, metal panels, glowing optics, not a cube'
+      };
+    }
+
+    if (/\b(rock|stone|earth|granite|boulder|crystal|crystalline|geology|density control|giant size)\b/.test(classHints)) {
+      return {
+        key: 'stone',
+        label: 'Stone',
+        badge: 'STONE',
+        prompt: 'rock class; living stone body, carved rock anatomy, cracked mineral surface, not a cube'
+      };
+    }
+
+    return {
+      key: 'human',
+      label: 'Elemental Human',
+      badge: 'HUMAN',
+      prompt: 'human hero body; human face and anatomy with elemental power effects around the body, not a cube'
+    };
+  }
+
+  function buildElementalAccents(powers, seed, hue, bodyClass) {
+    const names = (powers || []).map(function (p) { return String(p.power || '').toLowerCase(); }).join(' ');
+    const stroke = 'hsl(' + hue + ' 95% 70%)';
+    const altStroke = 'hsl(' + ((hue + 62) % 360) + ' 95% 72%)';
+    const accents = [];
+
+    if (/pyro|fire|burn|heat/.test(names)) {
+      accents.push('<path d="M118 314 C96 282 120 259 111 231 C145 257 132 286 154 318" class="ecg-svg-power-accent" style="stroke:' + stroke + '"/>');
+      accents.push('<path d="M302 314 C324 282 300 259 309 231 C275 257 288 286 266 318" class="ecg-svg-power-accent" style="stroke:' + stroke + '"/>');
+    } else if (/cryo|ice|water|hydro/.test(names)) {
+      accents.push('<path d="M103 302 L137 278 L128 319 L162 296" class="ecg-svg-power-accent" style="stroke:' + stroke + '"/>');
+      accents.push('<path d="M317 302 L283 278 L292 319 L258 296" class="ecg-svg-power-accent" style="stroke:' + stroke + '"/>');
+    } else if (/electro|sonic|speed|vibration|laser|light|blast|energy/.test(names)) {
+      accents.push('<path d="M106 260 L143 247 L128 281 L164 270" class="ecg-svg-power-accent" style="stroke:' + stroke + '"/>');
+      accents.push('<path d="M314 260 L277 247 L292 281 L256 270" class="ecg-svg-power-accent" style="stroke:' + altStroke + '"/>');
+    } else if (/shadow|void|toxic|psychic|telepathy|mind|telekinesis|gravity|magnet/.test(names)) {
+      accents.push('<circle cx="126" cy="254" r="' + (18 + (seed % 8)) + '" class="ecg-svg-power-orb" style="stroke:' + stroke + '"/>');
+      accents.push('<circle cx="294" cy="254" r="' + (18 + ((seed >>> 4) % 8)) + '" class="ecg-svg-power-orb" style="stroke:' + altStroke + '"/>');
+    } else {
+      accents.push('<path d="M88 336 C128 302 164 286 210 286 C256 286 292 302 332 336" class="ecg-svg-power-accent" style="stroke:' + stroke + '"/>');
+    }
+
+    if (bodyClass.key === 'human') {
+      accents.push('<path d="M156 356 C183 381 237 381 264 356" class="ecg-svg-human-power" style="stroke:' + altStroke + '"/>');
+    }
+
+    return '<g class="ecg-svg-power-effects">' + accents.join('') + '</g>';
+  }
+
+  function buildSparkBodySvg(bodyClass, shoulders, mask, hue, seed) {
+    if (bodyClass.key === 'robot') {
+      return [
+        '<g class="ecg-svg-body ecg-svg-body-robot">',
+        '<rect x="133" y="326" width="154" height="72" rx="16" class="ecg-svg-robot-shoulders"/>',
+        '<rect x="166" y="260" width="88" height="83" rx="14" class="ecg-svg-robot-torso"/>',
+        '<rect x="170" y="154" width="80" height="80" rx="16" class="ecg-svg-robot-head"/>',
+        '<path d="M185 154 L174 133 M235 154 L246 133" class="ecg-svg-robot-antenna"/>',
+        '<circle cx="193" cy="194" r="8" class="ecg-svg-robot-eye"/>',
+        '<circle cx="227" cy="194" r="8" class="ecg-svg-robot-eye"/>',
+        '<rect x="190" y="218" width="40" height="6" rx="3" class="ecg-svg-robot-mouth"/>',
+        '<path d="M183 278 H237 M183 300 H237 M198 260 V343 M222 260 V343" class="ecg-svg-robot-lines"/>',
+        '<circle cx="164" cy="358" r="10" class="ecg-svg-robot-joint"/>',
+        '<circle cx="256" cy="358" r="10" class="ecg-svg-robot-joint"/>',
+        '<circle cx="210" cy="302" r="19" class="ecg-svg-robot-core" style="fill:hsl(' + hue + ' 90% 62%)"/>',
+        '</g>'
+      ].join('');
+    }
+
+    if (bodyClass.key === 'stone') {
+      return [
+        '<g class="ecg-svg-body ecg-svg-body-stone">',
+        '<path d="M94 397 L128 344 L174 316 L211 332 L252 315 L296 344 L329 397 Z" class="ecg-svg-stone-shoulders"/>',
+        '<path d="M161 280 L187 238 L225 232 L257 278 L243 326 L204 347 L169 323 Z" class="ecg-svg-stone-torso"/>',
+        '<path d="M169 178 L196 145 L238 151 L257 188 L241 229 L199 239 L171 214 Z" class="ecg-svg-stone-head"/>',
+        '<path d="M190 192 L204 199 M229 192 L216 199" class="ecg-svg-stone-eyes"/>',
+        '<path d="M204 151 L196 181 L215 202 L205 236 M238 154 L229 184 L246 205 M180 286 L212 302 L198 338 M252 319 L226 302" class="ecg-svg-stone-crack"/>',
+        '<circle cx="154" cy="357" r="9" class="ecg-svg-stone-chip"/>',
+        '<circle cx="274" cy="358" r="7" class="ecg-svg-stone-chip"/>',
+        '</g>'
+      ].join('');
+    }
+
+    return [
+      '<g class="ecg-svg-body ecg-svg-body-human">',
+      '<path d="' + shoulders.slice(2) + '" class="ecg-svg-shoulders"/>',
+      '<path d="M172 276 C178 246 194 230 210 230 C226 230 242 246 248 276 C241 306 226 324 210 324 C194 324 179 306 172 276 Z" class="ecg-svg-torso"/>',
+      '<circle cx="210" cy="194" r="48" class="ecg-svg-head"/>',
+      mask,
+      '<path d="M178 202 C194 212 226 212 242 202" class="ecg-svg-eye-line"/>',
+      '</g>'
+    ].join('');
+  }
+
   function buildSparkPortraitSvg(payload) {
     const sheet = payload.character_sheet || {};
     const powers = payload.powers || [];
@@ -143,10 +266,11 @@
     const silhouetteVariant = seed % 4;
     const maskVariant = (seed >>> 3) % 5;
     const starOffset = seed % 97;
+    const bodyClass = resolveSparkBodyClass(payload);
 
     const powerOne = powers[0] ? powers[0].power : 'Latent Spark';
     const powerTwo = powers[1] ? powers[1].power : 'Awaiting Battle Input';
-    const badge = cast.includes('Solo') ? 'SOLO' : cast.includes('Wild') ? 'WILD' : 'SPARK';
+    const badge = bodyClass.badge || (cast.includes('Solo') ? 'SOLO' : cast.includes('Wild') ? 'WILD' : 'SPARK');
 
     const glyphs = [];
     for (let i = 0; i < glyphCount; i++) {
@@ -199,18 +323,16 @@
       '</g>',
 
       '<g class="ecg-svg-glyph-ring">' + glyphs.join('') + '</g>',
+      buildElementalAccents(powers, seed, hue2, bodyClass),
 
-      '<path d="' + shoulders.slice(2) + '" class="ecg-svg-shoulders"/>',
-      '<path d="M172 276 C178 246 194 230 210 230 C226 230 242 246 248 276 C241 306 226 324 210 324 C194 324 179 306 172 276 Z" class="ecg-svg-torso"/>',
-      '<circle cx="210" cy="194" r="48" class="ecg-svg-head"/>',
-      mask,
-      '<path d="M178 202 C194 212 226 212 242 202" class="ecg-svg-eye-line"/>',
+      buildSparkBodySvg(bodyClass, shoulders, mask, hue2, seed),
 
       '<rect x="42" y="42" width="92" height="28" rx="14" class="ecg-svg-badge"/>',
       '<text x="88" y="61" text-anchor="middle" class="ecg-svg-badge-text">' + svgText(badge, 8) + '</text>',
 
       '<text x="210" y="462" text-anchor="middle" class="ecg-svg-title">' + svgText(title, 26) + '</text>',
       '<text x="210" y="488" text-anchor="middle" class="ecg-svg-subtitle">' + svgText(archetype, 34) + '</text>',
+      '<text x="210" y="506" text-anchor="middle" class="ecg-svg-classline">' + svgText(bodyClass.label, 28) + '</text>',
 
       '<g class="ecg-svg-bars">',
       '<text x="62" y="526" class="ecg-svg-label">SIGNATURE</text>',
@@ -365,6 +487,7 @@
     const role = inferCombatRole(payload);
     const profileShape = payload.profile_shape || 'identity-driven power profile';
     const playerDesign = compilePlayerDesignDirection(title, cosmetics);
+    const bodyClass = resolveSparkBodyClass(payload);
 
     return [
       'Create a premium original superhero character portrait for a new hero named "' + title + '".',
@@ -372,9 +495,10 @@
       'This character comes from a deterministic psychological power system, not a wish-list creator. The design should feel like the powers emerged from personality, pressure, instinct, and identity.',
       'STYLE: premium American superhero comic-book aesthetic, bold inked linework, high-end painted comic cover finish, dramatic cinematic lighting, strong rim light, dynamic shadow shapes, heroic costume design, cover-art composition, mythic but grounded.',
       'CHARACTER IDENTITY: name "' + title + '"; archetype "' + archetype + '"; cast type "' + cast + '"; combat role "' + role + '"; profile shape "' + profileShape + '".',
+      'BODY CLASS: ' + bodyClass.prompt + '.',
       'POWERS TO VISUALLY SHOWCASE: ' + (powerNames.length ? powerNames.join(', ') : 'latent unresolved abilities') + '.',
-      'CUSTOM COSTUME DIRECTION: ' + (tone.costume || 'system-designed heroic costume') + '.',
-      'CUSTOM PERSONALITY / ATTITUDE: ' + (tone.personality || 'system-interpreted heroic personality') + '.',
+      'CUSTOM COSTUME DIRECTION: ' + (cosmetics.costume || 'system-designed heroic costume') + '.',
+      'CUSTOM PERSONALITY / ATTITUDE: ' + (cosmetics.personality || 'system-interpreted heroic personality') + '.',
       'COMPOSITION: full-body reveal, complete head-to-toe superhero design, readable silhouette, costume and abilities visible in one image.',
       'ABILITY VISUALIZATION: ' + visualMotifs + '.',
       'PLAYER DESIGN DIRECTION: ' + playerDesign + '.',
@@ -543,6 +667,7 @@
 
   function buildBattleHandoffPayload(finalPayload) {
     const sheet = finalPayload.character_sheet || {};
+    const bodyClass = resolveSparkBodyClass(finalPayload);
     const powers = (finalPayload.powers || []).map(function (power) {
       return {
         domain: power.domain || '',
@@ -561,6 +686,8 @@
       summary: sheet.summary || '',
       cast: finalPayload.cast || '',
       profile_shape: finalPayload.profile_shape || '',
+      visual_class: bodyClass.key,
+      visual_class_label: bodyClass.label,
       selected_powers: powers,
       battle_ready_note: sheet.battle_ready_note || 'This Spark is ready for battle simulation.',
       visual_prompt_present: !!finalPayload.premium_portrait_prompt
@@ -612,6 +739,7 @@
     const sheet = finalPayload.character_sheet || {};
     const powers = finalPayload.powers || [];
     const tone = buildProfileTone(finalPayload);
+    const bodyClass = resolveSparkBodyClass(finalPayload);
     const selectedPowers = sheet.selected_powers || powers.map(function (p) { return p.power; });
 
     const powerList = powers.map(function (p, index) {
@@ -640,6 +768,7 @@
       '<section class="ecg-profile-panel">',
       '<h3>Identity</h3>',
       '<p><strong>Archetype:</strong> ' + esc(sheet.archetype || 'Unresolved Manifest') + '</p>',
+      '<p><strong>Body Class:</strong> ' + esc(bodyClass.label) + '</p>',
       '<p><strong>Cast:</strong> ' + esc(tone.cast) + '</p>',
       '<p><strong>Combat Role:</strong> ' + esc(tone.role) + '</p>',
       '</section>',
