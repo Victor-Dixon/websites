@@ -153,8 +153,6 @@
   };
 
   var moveQueue = [];
-  var keysDown = {};
-  var keyRepeatLock = false;
   var animStart = 0;
   var animFrom = { x: player.x, y: player.y };
   var animTo = { x: player.x, y: player.y };
@@ -256,15 +254,6 @@
     if (!beginStep(next.x, next.y)) {
       moveQueue = [];
     }
-  }
-
-  function tryKeyboardMove(dx, dy) {
-    if (player.moving) return;
-    moveQueue = [];
-    var tx = player.x + dx;
-    var ty = player.y + dy;
-    if (!OW.isWalkable(tx, ty)) return;
-    beginStep(tx, ty);
   }
 
   function checkInteraction() {
@@ -456,26 +445,6 @@
     requestAnimationFrame(tick);
   }
 
-  function onKeyDown(e) {
-    if (overlayEl && !overlayEl.classList.contains("hidden")) {
-      if (e.key === "Escape") closeOverlay();
-      return;
-    }
-    var k = e.key.toLowerCase();
-    if (["arrowup", "arrowdown", "arrowleft", "arrowright", "w", "a", "s", "d"].indexOf(k) === -1) return;
-    e.preventDefault();
-    if (keysDown[k]) return;
-    keysDown[k] = true;
-    if (k === "arrowup" || k === "w") tryKeyboardMove(0, -1);
-    else if (k === "arrowdown" || k === "s") tryKeyboardMove(0, 1);
-    else if (k === "arrowleft" || k === "a") tryKeyboardMove(-1, 0);
-    else if (k === "arrowright" || k === "d") tryKeyboardMove(1, 0);
-  }
-
-  function onKeyUp(e) {
-    keysDown[e.key.toLowerCase()] = false;
-  }
-
   if (dialogueEl) {
     dialogueEl.textContent = WORLD.getMoralityDialogue(save, "map_greeting");
   }
@@ -484,9 +453,11 @@
   }
 
   document.getElementById("btn-close-overlay").addEventListener("click", closeOverlay);
-  canvas.addEventListener("click", onCanvasClick);
-  window.addEventListener("keydown", onKeyDown);
-  window.addEventListener("keyup", onKeyUp);
+  canvas.addEventListener("pointerup", function (e) {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    e.preventDefault();
+    onCanvasClick(e);
+  });
   window.addEventListener("resize", resizeCanvas);
 
   if (!OW.isWalkable(player.x, player.y)) {

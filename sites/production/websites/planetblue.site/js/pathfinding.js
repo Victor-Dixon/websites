@@ -65,20 +65,49 @@
   }
 
   function attackableTiles(unit, units, cols, rows) {
-    var tiles = [];
-    for (var y = 0; y < rows; y++) {
-      for (var x = 0; x < cols; x++) {
-        var target = null;
-        for (var i = 0; i < units.length; i++) {
-          var u = units[i];
-          if (u.hp > 0 && u.x === x && u.y === y) target = u;
+    return combinedAttackFromPositions([{ x: unit.x, y: unit.y }], unit, units, cols, rows).enemies;
+  }
+
+  /* Shining Force style: union of attack zones from one or more positions (current + reachable). */
+  function combinedAttackFromPositions(positions, unit, units, cols, rows) {
+    var enemies = [];
+    var enemySeen = {};
+    var zones = [];
+    var zoneSeen = {};
+    var range = unit.range;
+
+    for (var p = 0; p < positions.length; p++) {
+      var px = positions[p].x;
+      var py = positions[p].y;
+      for (var y = 0; y < rows; y++) {
+        for (var x = 0; x < cols; x++) {
+          if (manhattan(px, py, x, y) > range) continue;
+          var key = x + "," + y;
+          if (!zoneSeen[key]) {
+            zoneSeen[key] = true;
+            zones.push({ x: x, y: y });
+          }
+          var target = null;
+          for (var i = 0; i < units.length; i++) {
+            var u = units[i];
+            if (u.hp > 0 && u.x === x && u.y === y) target = u;
+          }
+          if (!target || target.team === unit.team || enemySeen[target.id]) continue;
+          enemySeen[target.id] = true;
+          enemies.push({ x: x, y: y, targetId: target.id });
         }
-        if (!target || target.team === unit.team) continue;
-        var dist = manhattan(unit.x, unit.y, x, y);
-        if (dist <= unit.range) tiles.push({ x: x, y: y, targetId: target.id });
       }
     }
-    return tiles;
+
+    return { enemies: enemies, zones: zones };
+  }
+
+  function attackRangeForUnit(unit, terrain, units, cols, rows, terrainGrass) {
+    var positions = [{ x: unit.x, y: unit.y }];
+    if (!unit.moved) {
+      positions = positions.concat(reachableTiles(unit, terrain, units, cols, rows, terrainGrass));
+    }
+    return combinedAttackFromPositions(positions, unit, units, cols, rows);
   }
 
   function findPath(sx, sy, ex, ey, isWalkable, cols, rows) {
@@ -139,6 +168,8 @@
   global.PLANET_BLUE_PATH = {
     reachableTiles: reachableTiles,
     attackableTiles: attackableTiles,
+    combinedAttackFromPositions: combinedAttackFromPositions,
+    attackRangeForUnit: attackRangeForUnit,
     manhattan: manhattan,
     findPath: findPath
   };

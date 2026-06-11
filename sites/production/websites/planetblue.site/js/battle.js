@@ -61,9 +61,9 @@
 
   var state = null;
   var selectedId = null;
-  var actionMode = null;
   var moveTargets = [];
   var attackTargets = [];
+  var attackRangeTiles = [];
   var rewardsApplied = false;
   /* Player phase initiative queue (speed order, rebuilt each round). */
   var playerTurnQueue = [];
@@ -224,9 +224,26 @@
 
   function clearSelection() {
     selectedId = null;
-    actionMode = null;
     moveTargets = [];
     attackTargets = [];
+    attackRangeTiles = [];
+  }
+
+  function refreshSelectionHighlights() {
+    moveTargets = [];
+    attackTargets = [];
+    attackRangeTiles = [];
+    var unit = selectedId ? unitById(selectedId) : null;
+    if (!unit || unit.team !== "player" || unit.hp <= 0 || state.phase !== "player" || state.gameOver) return;
+
+    if (!unit.moved) {
+      moveTargets = PATH.reachableTiles(unit, state.terrain, state.units, COLS, ROWS, TERRAIN.GRASS);
+    }
+    if (!unit.acted) {
+      var attack = PATH.attackRangeForUnit(unit, state.terrain, state.units, COLS, ROWS, TERRAIN.GRASS);
+      attackTargets = attack.enemies;
+      attackRangeTiles = attack.zones;
+    }
   }
 
   /* Turn model: player phase cycles living units in spd order (higher first).
@@ -243,9 +260,7 @@
       var unit = unitById(playerTurnQueue[i]);
       if (unit && !(unit.moved && unit.acted)) {
         selectedId = unit.id;
-        actionMode = null;
-        moveTargets = [];
-        attackTargets = [];
+        refreshSelectionHighlights();
         return true;
       }
     }
@@ -279,27 +294,21 @@
     if (state.phase !== "player" || unit.team !== "player") return;
     if (unit.moved && unit.acted) return;
     selectedId = id;
-    actionMode = null;
-    moveTargets = [];
-    attackTargets = [];
+    refreshSelectionHighlights();
     render();
   }
 
   function beginMove() {
     var unit = unitById(selectedId);
     if (!unit || unit.moved) return;
-    actionMode = "move";
-    moveTargets = PATH.reachableTiles(unit, state.terrain, state.units, COLS, ROWS, TERRAIN.GRASS);
-    attackTargets = [];
+    refreshSelectionHighlights();
     render();
   }
 
   function beginAttack() {
     var unit = unitById(selectedId);
     if (!unit || unit.acted) return;
-    actionMode = "attack";
-    attackTargets = PATH.attackableTiles(unit, state.units, COLS, ROWS);
-    moveTargets = [];
+    refreshSelectionHighlights();
     render();
   }
 
@@ -319,8 +328,7 @@
     unit.y = y;
     unit.moved = true;
     log(unit.label + " moves to (" + (x + 1) + "," + (y + 1) + ").");
-    actionMode = null;
-    moveTargets = [];
+    refreshSelectionHighlights();
     render();
   }
 
@@ -351,8 +359,6 @@
     }
     attacker.acted = true;
     if (!attacker.moved) attacker.moved = true;
-    actionMode = null;
-    attackTargets = [];
     checkMercyOffer();
     checkVictory();
     checkAutoEndPlayerPhase();
@@ -536,8 +542,8 @@
     var canSelect = playerPhase && unit && unit.team === "player";
 
     els.btnEndTurn.disabled = !playerPhase;
-    els.btnMove.disabled = !canSelect || unit.moved || actionMode === "move";
-    els.btnAttack.disabled = !canSelect || unit.acted || actionMode === "attack";
+    els.btnMove.disabled = !canSelect || unit.moved;
+    els.btnAttack.disabled = !canSelect || unit.acted;
     els.btnWait.disabled = !canSelect;
     els.btnMercy.disabled = livingUnits("enemy").length !== 1;
 
@@ -554,28 +560,30 @@
   function onCellClick(x, y) {
     if (state.gameOver || state.phase !== "player") return;
 
-    var clickedUnit = GRID.unitAt(state.units, x, y);
+    var actor = selectedId ? unitById(selectedId) : null;
 
-    if (actionMode === "move" && selectedId) {
-      for (var i = 0; i < moveTargets.length; i++) {
-        if (moveTargets[i].x === x && moveTargets[i].y === y) {
-          moveUnit(unitById(selectedId), x, y);
-          return;
-        }
-      }
-    }
-
-    if (actionMode === "attack" && selectedId) {
+    if (actor && !actor.acted) {
       for (var j = 0; j < attackTargets.length; j++) {
         if (attackTargets[j].x === x && attackTargets[j].y === y) {
-          var attacker = unitById(selectedId);
           var target = unitById(attackTargets[j].targetId);
-          if (attacker && target) resolvePlayerAttack(attacker, target);
+          if (target) {
+            resolvePlayerAttack(actor, target);
+            return;
+          }
+        }
+      }
+    }
+
+    if (actor && !actor.moved) {
+      for (var i = 0; i < moveTargets.length; i++) {
+        if (moveTargets[i].x === x && moveTargets[i].y === y) {
+          moveUnit(actor, x, y);
           return;
         }
       }
     }
 
+    var clickedUnit = GRID.unitAt(state.units, x, y);
     if (clickedUnit && clickedUnit.team === "player") selectUnit(clickedUnit.id);
   }
 
@@ -588,6 +596,7 @@
       selectedId: selectedId,
       moveTargets: moveTargets,
       attackTargets: attackTargets,
+      attackRangeTiles: attackRangeTiles,
       phase: state.phase,
       onCellClick: onCellClick,
       onUnitClick: selectUnit

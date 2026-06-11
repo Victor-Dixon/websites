@@ -261,6 +261,13 @@ try {
   if (reachable.length < 3) fail("BFS reachable too small: " + reachable.length);
   else ok("BFS reachable tiles: " + reachable.length);
 
+  const rangedUnit = { x: 1, y: 4, move: 3, range: 3, team: "player", id: "hero", hp: 30 };
+  const nearEnemy = { id: "e1", team: "enemy", x: 5, y: 2, hp: 16, range: 1 };
+  const attackRange = PATH.attackRangeForUnit(rangedUnit, terrain, [rangedUnit, nearEnemy], 8, 6, DATA.TERRAIN.GRASS);
+  if (!attackRange.enemies.length || attackRange.zones.length < 5) {
+    fail("Combined attack range from reachable tiles too small");
+  } else ok("Attack range from reachable: " + attackRange.enemies.length + " targets, " + attackRange.zones.length + " zone tiles");
+
   const res = COMBAT.resolveAttack({ atk: 14, def: 0 }, { hp: 20, def: 2 });
   if (res.damage < 1) fail("Combat damage invalid");
   else ok("Combat damage: " + res.damage);

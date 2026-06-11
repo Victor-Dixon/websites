@@ -18,6 +18,7 @@
     var selectedId = options.selectedId;
     var moveTargets = options.moveTargets || [];
     var attackTargets = options.attackTargets || [];
+    var attackRangeTiles = options.attackRangeTiles || [];
     var phase = options.phase;
     var onCellClick = options.onCellClick;
     var onUnitClick = options.onUnitClick;
@@ -42,11 +43,22 @@
           if (sel && sel.x === x && sel.y === y) cell.classList.add("selected");
         }
 
-        for (var m = 0; m < moveTargets.length; m++) {
-          if (moveTargets[m].x === x && moveTargets[m].y === y) cell.classList.add("move-target");
-        }
+        var isAttackEnemy = false;
         for (var a = 0; a < attackTargets.length; a++) {
-          if (attackTargets[a].x === x && attackTargets[a].y === y) cell.classList.add("attack-target");
+          if (attackTargets[a].x === x && attackTargets[a].y === y) {
+            cell.classList.add("attack-target");
+            isAttackEnemy = true;
+          }
+        }
+        if (!isAttackEnemy) {
+          for (var m = 0; m < moveTargets.length; m++) {
+            if (moveTargets[m].x === x && moveTargets[m].y === y) cell.classList.add("move-target");
+          }
+          for (var r = 0; r < attackRangeTiles.length; r++) {
+            if (attackRangeTiles[r].x === x && attackRangeTiles[r].y === y) {
+              cell.classList.add("attack-range");
+            }
+          }
         }
 
         var unit = unitAt(units, x, y);
@@ -68,8 +80,10 @@
           if (unit.team === "player" && phase === "player" && !(unit.moved && unit.acted)) {
             token.style.cursor = "pointer";
             (function (uid) {
-              token.addEventListener("click", function (e) {
+              token.addEventListener("pointerup", function (e) {
+                if (e.pointerType === "mouse" && e.button !== 0) return;
                 e.stopPropagation();
+                e.preventDefault();
                 if (onUnitClick) onUnitClick(uid);
               });
             })(unit.id);
@@ -78,9 +92,14 @@
           cell.appendChild(token);
         }
 
-        cell.addEventListener("click", function (cx, cy) {
-          if (onCellClick) onCellClick(cx, cy);
-        }.bind(null, x, y));
+        (function (cx, cy, el) {
+          function handleTap(e) {
+            if (e.pointerType === "mouse" && e.button !== 0) return;
+            e.preventDefault();
+            if (onCellClick) onCellClick(cx, cy);
+          }
+          el.addEventListener("pointerup", handleTap);
+        })(x, y, cell);
 
         container.appendChild(cell);
       }
