@@ -4,8 +4,57 @@
   <meta charset="utf-8">
   <title>Website Ops</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+    }
+
+    .navbar-brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .navbar-brand img {
+      display: block;
+      height: 38px;
+      width: auto;
+    }
+
+    main {
+      padding: 0 18px;
+    }
+
+    @media (min-width: 768px) {
+      .site-header {
+        padding: 18px 24px;
+      }
+
+      .navbar-brand img {
+        height: 42px;
+      }
+
+      main {
+        padding: 0 24px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header class="site-header">
+    <a class="navbar-brand" href="/" rel="home">
+      <img src="/assets/we-are-swarm-logo.png" alt="We Are Swarm">
+    </a>
+  </header>
+
   <main>
     <h1>Website Ops</h1>
   
