@@ -127,6 +127,8 @@ function resize() {
 }
 
 function tick(timestamp) {
+  renderState.frameTime = timestamp;
+
   if (player.walking && timestamp - lastStepAt >= STEP_DELAY_MS) {
     const moved = stepPlayer(player);
     lastStepAt = timestamp;
