@@ -1,7 +1,8 @@
 .emergence-cg {
+  --ecg-shell-padding: 28px;
   max-width: 980px;
   margin: 32px auto;
-  padding: 28px;
+  padding: calc(var(--dreamos-spark-menu-offset, 0px) + var(--ecg-shell-padding)) var(--ecg-shell-padding) var(--ecg-shell-padding);
   border: 1px solid rgba(20,20,30,.12);
   border-radius: 22px;
   background: linear-gradient(135deg, #090b16, #171b31);
@@ -837,13 +838,23 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
 }
 
 .dreamos-clean-spark {
+  --dreamos-clean-spark-padding: clamp(1rem, 4vw, 2rem);
   width: min(100% - 1rem, 880px);
+  max-width: calc(100vw - 1rem);
   margin: 1rem auto 3rem;
-  padding: clamp(1rem, 4vw, 2rem);
+  padding: calc(var(--dreamos-spark-menu-offset, 0px) + var(--dreamos-clean-spark-padding)) var(--dreamos-clean-spark-padding) var(--dreamos-clean-spark-padding);
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 28px;
   background: radial-gradient(circle at top, rgba(85,95,255,.18), rgba(8,11,24,.94) 42%);
   color: #f5f5f7;
+  box-sizing: border-box;
+  overflow-x: clip;
+}
+
+.dreamos-clean-spark *,
+.dreamos-clean-spark *::before,
+.dreamos-clean-spark *::after {
+  box-sizing: border-box;
 }
 
 .dreamos-clean-kicker {
@@ -871,6 +882,8 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
 .dreamos-clean-question-list {
   display: grid;
   gap: 1rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .dreamos-clean-question {
@@ -878,6 +891,8 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
   border-radius: 22px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.045);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .dreamos-clean-question h3 {
@@ -888,14 +903,18 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
   display: grid;
   gap: .65rem;
   margin-top: .9rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .dreamos-clean-options button {
   display: grid;
-  grid-template-columns: 2.5rem 1fr;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
   align-items: center;
   gap: .75rem;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 58px;
   padding: .85rem;
   border-radius: 18px;
@@ -906,6 +925,12 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
   cursor: pointer;
   pointer-events: auto !important;
   touch-action: manipulation !important;
+}
+
+.dreamos-clean-options button span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .dreamos-clean-options button strong {
@@ -994,13 +1019,39 @@ select[data-dreamos-original-renderer-q11-fixed="1"] option,
 
 @media (max-width: 760px) {
   .dreamos-clean-spark {
-    width: calc(100% - .75rem);
-    padding: 1rem;
+    --dreamos-clean-spark-padding: .85rem;
+    width: min(100%, calc(100vw - .75rem));
+    max-width: calc(100vw - .75rem);
+    margin: .5rem auto 2rem;
     border-radius: 20px;
   }
 
   .dreamos-clean-progress {
     display: block;
+    padding: .85rem;
+  }
+
+  .dreamos-clean-question {
+    padding: .85rem;
+    border-radius: 18px;
+  }
+
+  .dreamos-clean-options button {
+    grid-template-columns: 2.15rem minmax(0, 1fr);
+    gap: .55rem;
+    padding: .75rem;
+  }
+
+  .dreamos-clean-options button strong {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .dreamos-clean-submit,
+  .dreamos-clean-reset,
+  .dreamos-clean-battle-link {
+    width: 100%;
+    margin-left: 0;
   }
 
   .dreamos-clean-final-grid {

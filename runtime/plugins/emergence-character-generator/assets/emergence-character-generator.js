@@ -1,4 +1,72 @@
 (function () {
+  "use strict";
+
+  if (window.__DreamOSSparkMenuOffsetGuard) return;
+  window.__DreamOSSparkMenuOffsetGuard = true;
+
+  var navSelectors = [
+    ".comic-nav",
+    ".spark-nav",
+    ".spark-menu",
+    ".account-nav",
+    ".dreamos-header",
+    ".nav",
+    "[data-spark-nav]",
+    "[data-dreamos-nav]"
+  ];
+
+  function isOverlayNav(nav) {
+    if (!nav) return false;
+    var style = window.getComputedStyle ? window.getComputedStyle(nav) : null;
+    var position = style ? style.position : "";
+    return position === "fixed" || position === "sticky" || nav.classList.contains("comic-nav");
+  }
+
+  function updateSparkMenuOffset() {
+    var offset = 0;
+
+    navSelectors.forEach(function (selector) {
+      Array.prototype.forEach.call(document.querySelectorAll(selector), function (nav) {
+        if (!isOverlayNav(nav)) return;
+
+        var rect = nav.getBoundingClientRect();
+        if (!rect || rect.width <= 0 || rect.height <= 0) return;
+
+        offset = Math.max(offset, Math.ceil(rect.height));
+      });
+    });
+
+    document.documentElement.style.setProperty("--dreamos-spark-menu-offset", offset ? (offset + "px") : "0px");
+    document.documentElement.setAttribute("data-dreamos-spark-menu-offset", String(offset));
+  }
+
+  function bootSparkMenuOffsetGuard() {
+    updateSparkMenuOffset();
+    setTimeout(updateSparkMenuOffset, 100);
+    setTimeout(updateSparkMenuOffset, 500);
+    setTimeout(updateSparkMenuOffset, 1500);
+
+    window.addEventListener("resize", updateSparkMenuOffset, { passive: true });
+    window.addEventListener("orientationchange", updateSparkMenuOffset, { passive: true });
+
+    if (window.MutationObserver && document.body) {
+      new MutationObserver(updateSparkMenuOffset).observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["class", "style"]
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootSparkMenuOffsetGuard, { once: true });
+  } else {
+    bootSparkMenuOffsetGuard();
+  }
+})();
+
+(function () {
   const form = document.getElementById('emergence-cg-form');
   const result = document.getElementById('emergence-cg-result');
   const flavorMount = document.getElementById('emergence-cg-flavor');
