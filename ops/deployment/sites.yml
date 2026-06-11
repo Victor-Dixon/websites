@@ -212,6 +212,18 @@ sites:
       - websites/dadudekc.site/missions/mission.template.json
       - websites/dadudekc.site/docs/spark/MISSION_SCHEMA.md
       - websites/dadudekc.site/docs/spark/MISSION_AI_PROMPT.md
+      - websites/dadudekc.site/spark-city-admin/index.html
+      - websites/dadudekc.site/spark-city-admin-gate.php
+      - websites/dadudekc.site/assets/css/spark-city-admin.css
+      - websites/dadudekc.site/assets/js/spark-city-admin.js
+      - websites/dadudekc.site/assets/js/spark-city-map-player.js
+      - websites/dadudekc.site/assets/data/spark/city_map.json
+      - websites/dadudekc.site/assets/data/city_map.schema.json
+      - websites/dadudekc.site/assets/data/spark/schemas/city_map.schema.json
+      - websites/dadudekc.site/assets/data/spark/templates/quadrant.template.json
+      - websites/dadudekc.site/assets/spark/map/.gitkeep
+      - websites/dadudekc.site/docs/spark/CITY_MAP_SCHEMA.md
+      - websites/dadudekc.site/docs/spark/CITY_MAP_AI_PROMPT.md
       - websites/dadudekc.site/wp-content/themes/dreamos-emergence/parts/header.html
       - websites/dadudekc.site/wp-content/themes/dreamos-emergence/templates/front-page.html
     notes: "Spark Protocol — static index.html + WP Emergence; immersive auth + Battle Sim v8.6 + Meridian News nav"
