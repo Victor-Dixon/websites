@@ -98,13 +98,19 @@ sites:
     notes: "Command Center static (focus/projects/tasks/planner); unified_deployer deploy_files+deploy_dirs; SSOT websites/weareswarm.online"
 
   weareswarm.site:
-    path: websites/weareswarm.site
+    path: sites/production/websites/weareswarm.site
     deployer: unified
     verify_url: https://weareswarm.site/.well-known/deploy.json
-    remote_root: public_html/weareswarm.site  # Addon domain
+    remote_root: domains/weareswarm.site/public_html
     enabled: true
     deploy_method: sftp
-    notes: "Swarm website (addon domain)"
+    deploy_dirs:
+      - sites/production/websites/weareswarm.site/feed
+      - sites/production/websites/weareswarm.site/closeouts
+      - sites/production/websites/weareswarm.site/data
+    deploy_files:
+      - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/page-feed.php
+    notes: "Swarm marketing site — /feed WP template + /closeouts static fallback + data JSON"
 
   houstonsipqueen.com:
     path: sites/production/websites/houstonsipqueen.com

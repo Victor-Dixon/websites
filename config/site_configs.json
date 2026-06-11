@@ -217,19 +217,22 @@
     "path": "websites/weareswarm.online",
     "deploy_files": [
       "websites/weareswarm.online/index.html",
-      "websites/weareswarm.online/.well-known/deploy.json"
+      "websites/weareswarm.online/.well-known/deploy.json",
+      "websites/weareswarm.online/data/closeout-feed.json"
     ],
     "deploy_dirs": [
       "websites/weareswarm.online/focus",
       "websites/weareswarm.online/projects",
       "websites/weareswarm.online/tasks",
+      "websites/weareswarm.online/feed",
       "websites/weareswarm.online/data/planner",
       "websites/weareswarm.online/data/shared"
     ]
   },
   "weareswarm.site": {
     "site_url": "https://weareswarm.site",
-    "deployment_method": "rest_api",
+    "path": "sites/production/websites/weareswarm.site",
+    "deployment_method": "sftp",
     "rest_api": {
       "username": "DadudeKC@Gmail.com",
       "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
@@ -242,6 +245,16 @@
       "remote_path": "domains/weareswarm.site/public_html",
       "port": 65002
     },
+    "deploy_files": [
+      "sites/production/websites/weareswarm.site/feed/index.html",
+      "sites/production/websites/weareswarm.site/data/closeout-feed.json",
+      "sites/production/websites/weareswarm.site/data/closeout-feed.js",
+      "sites/production/websites/weareswarm.site/data/closeout-feed.css"
+    ],
+    "deploy_dirs": [
+      "sites/production/websites/weareswarm.site/feed",
+      "sites/production/websites/weareswarm.site/data"
+    ],
     "seo_deployment": {
       "method": "functions.php",
       "target_file": "wp-content/themes/{active_theme}/functions.php"
