@@ -3,36 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Planet Blue — Mission Map</title>
+  <title>Planet Blue — World Map</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="brand-block">
       <h1 class="brand"><a href="index.html">Planet Blue</a></h1>
-      <p class="tagline">Mission Map</p>
+      <p class="tagline" id="map-greeting">World Map</p>
     </div>
     <nav class="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="character.html">Character</a>
-      <a href="map.html" class="active">Map</a>
+      <a href="map.html" class="active">World Map</a>
     </nav>
   </header>
 
   <main class="page-shell wide">
-    <div class="map-layout">
+    <p class="world-dialogue" id="world-dialogue"></p>
+
+    <div class="map-layout-triple">
+      <aside class="minimap-frame" id="zone-panel">
+        <h2>Zone Influence</h2>
+        <div id="zone-list"></div>
+        <p class="muted" style="font-size:0.72rem;margin:0.5rem 0 0;">Community sync: simulated (MVP)</p>
+      </aside>
+
       <section>
-        <h2 style="margin:0 0 1rem;color:var(--muted);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;">Mission Nodes</h2>
+        <h2 style="margin:0 0 0.85rem;color:var(--gold);font-size:0.82rem;text-transform:uppercase;letter-spacing:0.1em;">Mission Board</h2>
         <div id="mission-nodes"></div>
       </section>
 
-      <aside class="panel profile-panel" id="profile-summary">
-        <h2>Profile</h2>
+      <aside>
+        <section class="panel profile-panel" id="profile-summary">
+          <h2>Adventurer</h2>
+        </section>
+        <section class="panel" id="morality-panel">
+          <h2>Alignment</h2>
+          <div id="morality-display"></div>
+        </section>
+        <section class="panel" id="nemesis-panel">
+          <h2>Nemesis Registry</h2>
+          <div id="nemesis-list"></div>
+        </section>
+        <section class="quest-log" id="quest-log">
+          <h2 style="margin:0 0 0.65rem;font-size:0.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;border-bottom:2px groove var(--stone-shadow);padding-bottom:0.35rem;">Quest Journal</h2>
+          <div id="quest-entries"></div>
+        </section>
       </aside>
     </div>
   </main>
 
   <script src="./js/data.js"></script>
+  <script src="./js/world.js"></script>
   <script src="./js/save.js"></script>
   <script src="./js/map.js"></script>
 </body>

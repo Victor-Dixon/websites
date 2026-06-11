@@ -53,6 +53,7 @@
         if (unit) {
           var token = document.createElement("div");
           token.className = "unit " + unit.team;
+          if (unit.isNemesis) token.classList.add("nemesis");
           if (unit.team === "player" && unit.moved && unit.acted) token.classList.add("spent");
           token.textContent = unit.glyph || "??";
           token.title = unit.label || "";

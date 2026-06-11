@@ -10,19 +10,19 @@
   <header class="site-header">
     <div class="brand-block">
       <h1 class="brand"><a href="index.html">Planet Blue</a></h1>
-      <p class="tagline">Character Profile</p>
+      <p class="tagline">Character Sheet</p>
     </div>
     <nav class="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="character.html" class="active">Character</a>
-      <a href="map.html">Map</a>
+      <a href="map.html">World Map</a>
     </nav>
   </header>
 
   <main class="page-shell">
     <div class="map-layout">
       <section class="panel">
-        <h2>Create Your Explorer</h2>
+        <h2>Create Your Adventurer</h2>
         <form id="character-form" class="form-grid">
           <div>
             <label for="name">Name</label>
@@ -36,18 +36,26 @@
             <label for="class">Class</label>
             <select id="class" name="class"></select>
           </div>
-          <button type="submit" class="btn primary">Save &amp; Go to Map</button>
+          <button type="submit" class="btn primary">Save &amp; Enter World</button>
         </form>
       </section>
 
       <aside>
         <section class="panel stat-preview">
-          <h2>Stats Preview</h2>
+          <h2>Combat Stats</h2>
           <div id="stat-preview"></div>
         </section>
         <section class="panel">
           <h2>Ability</h2>
           <div id="ability-preview"></div>
+        </section>
+        <section class="panel" id="morality-panel">
+          <h2>Alignment</h2>
+          <div id="morality-display"></div>
+        </section>
+        <section class="panel" id="nemesis-panel">
+          <h2>Nemesis Registry</h2>
+          <div id="nemesis-list"></div>
         </section>
         <section class="panel" id="progress-display">
           <h2>Progress</h2>
@@ -57,6 +65,7 @@
   </main>
 
   <script src="./js/data.js"></script>
+  <script src="./js/world.js"></script>
   <script src="./js/save.js"></script>
   <script src="./js/abilities.js"></script>
   <script src="./js/character.js"></script>

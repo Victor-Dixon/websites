@@ -132,6 +132,92 @@
     sky_spire: "locked"
   };
 
+  var ZONES = {
+    landing_bay: {
+      id: "landing_bay",
+      name: "Landing Bay",
+      missionId: "first_landing",
+      threat: 45,
+      safety: 55,
+      factionControl: "contested",
+      playerContributions: 0
+    },
+    deep_caverns: {
+      id: "deep_caverns",
+      name: "Deep Caverns",
+      missionId: "deep_caverns",
+      threat: 60,
+      safety: 40,
+      factionControl: "contested",
+      playerContributions: 0
+    },
+    sky_spire: {
+      id: "sky_spire",
+      name: "Sky Spire",
+      missionId: "sky_spire",
+      threat: 70,
+      safety: 30,
+      factionControl: "hostile",
+      playerContributions: 0
+    }
+  };
+
+  var MISSION_ZONE = {
+    first_landing: "landing_bay",
+    deep_caverns: "deep_caverns",
+    sky_spire: "sky_spire"
+  };
+
+  var MORAL_CHOICES = {
+    first_landing_pre: {
+      id: "first_landing_pre",
+      zoneId: "landing_bay",
+      prompt: "A wounded scout drone sparks in the brush. The colonists aren't watching.",
+      options: [
+        { id: "spare", label: "Spare it — mercy costs nothing", delta: 15, hint: "+Good" },
+        { id: "finish", label: "Finish it — no loose ends", delta: -15, hint: "-Evil" }
+      ]
+    },
+    first_landing_post: {
+      id: "first_landing_post",
+      zoneId: "landing_bay",
+      prompt: "The landing zone is secure. A survivor waves from the wreckage.",
+      options: [
+        { id: "aid", label: "Help the survivor to camp", delta: 12, hint: "+Good" },
+        { id: "loot", label: "Strip the wreck for parts", delta: -12, hint: "-Evil" }
+      ]
+    },
+    battle_mercy: {
+      id: "battle_mercy",
+      zoneId: null,
+      prompt: "One enemy still breathes. Show mercy?",
+      options: [
+        { id: "mercy", label: "Spare them", delta: 10, hint: "+Good" },
+        { id: "execute", label: "No witnesses", delta: -10, hint: "-Evil" }
+      ]
+    }
+  };
+
+  var MORALITY_GATES = {};
+
+  var MORALITY_DIALOGUE = {
+    good: {
+      default: "The frontier remembers your kindness.",
+      map_greeting: "Colonists nod as you pass — they trust your banner.",
+      battle_start: "Fight with honor. The bay depends on it."
+    },
+    neutral: {
+      default: "The frontier holds its breath.",
+      map_greeting: "Merchants barter under watchful guards.",
+      battle_start: "Steel your nerve. The grid awaits."
+    },
+    evil: {
+      default: "Fear travels faster than footfalls here.",
+      map_greeting: "Whispers follow you — some call you useful, others cursed.",
+      battle_start: "Crush them. Leave nothing standing."
+    }
+  };
+
   function computeStats(raceId, classId) {
     var race = RACES[raceId] || RACES.human;
     var cls = CLASSES[classId] || CLASSES.fire;
@@ -152,6 +238,11 @@
     ABILITIES: ABILITIES,
     ENEMIES: ENEMIES,
     MISSIONS: MISSIONS,
+    ZONES: ZONES,
+    MISSION_ZONE: MISSION_ZONE,
+    MORAL_CHOICES: MORAL_CHOICES,
+    MORALITY_GATES: MORALITY_GATES,
+    MORALITY_DIALOGUE: MORALITY_DIALOGUE,
     DEFAULT_CHARACTER: DEFAULT_CHARACTER,
     DEFAULT_MISSIONS: DEFAULT_MISSIONS,
     computeStats: computeStats

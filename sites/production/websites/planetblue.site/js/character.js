@@ -3,13 +3,46 @@
 
   var DATA = window.PLANET_BLUE_DATA;
   var SAVE = window.PLANET_BLUE_SAVE;
+  var WORLD = window.PLANET_BLUE_WORLD;
   var ABIL = window.PLANET_BLUE_ABILITIES;
 
   var save = SAVE.getOrCreateSave();
+  WORLD.ensureWorldSystems(save);
+
   var form = document.getElementById("character-form");
   var previewEl = document.getElementById("stat-preview");
   var abilityEl = document.getElementById("ability-preview");
   var progressEl = document.getElementById("progress-display");
+  var moralityEl = document.getElementById("morality-display");
+  var nemesisEl = document.getElementById("nemesis-list");
+
+  function renderMoralityBar() {
+    if (!moralityEl) return;
+    var score = save.morality.score;
+    var pct = ((score + 100) / 200) * 100;
+    moralityEl.innerHTML =
+      "<div class=\"morality-bar-wrap\">" +
+      "<div class=\"morality-bar\">" +
+      "<div class=\"evil-side\"></div><div class=\"neutral-side\"></div><div class=\"good-side\"></div>" +
+      "</div>" +
+      "<div class=\"morality-marker\"><span style=\"left:" + pct + "%\"></span></div>" +
+      "<p class=\"morality-label\">" + WORLD.alignmentLabel(save.morality.alignment) +
+      " (" + (score > 0 ? "+" : "") + score + ")</p></div>";
+  }
+
+  function renderNemeses() {
+    if (!nemesisEl) return;
+    var active = save.nemesis.registry.filter(function (n) { return n.active; });
+    if (!active.length) {
+      nemesisEl.innerHTML = "<p class=\"muted\">No nemeses registered.</p>";
+      return;
+    }
+    nemesisEl.innerHTML = active.map(function (n) {
+      return "<div class=\"nemesis-card\">" +
+        "<h4>" + n.displayName + "</h4>" +
+        "<p>Kills vs you: " + n.killsVsPlayer + " · Power Lv " + n.powerLevel + "</p></div>";
+    }).join("");
+  }
 
   function populateSelects() {
     var raceSel = document.getElementById("race");
@@ -68,12 +101,14 @@
     progressEl.innerHTML =
       "<p>Level <strong>" + save.character.level + "</strong></p>" +
       "<p>XP <strong>" + save.character.xp + "</strong></p>" +
-      "<p>Currency <strong>" + save.character.currency + "</strong></p>";
+      "<p>Gold <strong>" + save.character.currency + "</strong></p>";
   }
 
   populateSelects();
   updatePreview();
   renderProgress();
+  renderMoralityBar();
+  renderNemeses();
 
   document.getElementById("race").addEventListener("change", updatePreview);
   document.getElementById("class").addEventListener("change", updatePreview);

@@ -17,7 +17,7 @@
   </header>
 
   <main class="battle-shell">
-    <section class="battlefield-wrap" aria-label="Battlefield">
+    <section class="battlefield-wrap stone-panel" aria-label="Battlefield">
       <div class="battlefield" id="battlefield" role="grid"></div>
     </section>
 
@@ -33,6 +33,7 @@
           <button type="button" class="btn" id="btn-move" disabled>Move</button>
           <button type="button" class="btn" id="btn-attack" disabled>Attack</button>
           <button type="button" class="btn secondary" id="btn-wait" disabled>Wait</button>
+          <button type="button" class="btn good hidden" id="btn-mercy" disabled>Mercy</button>
         </div>
       </section>
 
@@ -42,25 +43,28 @@
       </section>
 
       <section class="panel-block help">
-        <h2>How to Play</h2>
+        <h2>How to Fight</h2>
         <ul>
-          <li>Click your unit (blue), then <strong>Move</strong> or <strong>Attack</strong>.</li>
-          <li>Each unit moves and acts once per player phase.</li>
-          <li>Defeat all enemies to win. Lose if you fall.</li>
+          <li>Click your unit, then Move or Attack.</li>
+          <li>Each unit acts once per player phase.</li>
+          <li>Defeat all foes — or show mercy for alignment.</li>
+          <li>Nemeses glow gold and hit harder.</li>
         </ul>
       </section>
     </aside>
   </main>
 
   <div class="overlay hidden" id="overlay" role="dialog" aria-modal="true">
-    <div class="overlay-card">
+    <div class="overlay-card" id="overlay-card">
       <h2 id="overlay-title">Battle Over</h2>
       <p id="overlay-message"></p>
-      <button type="button" class="btn primary" id="btn-overlay-action">Continue</button>
+      <div id="overlay-choices" class="choice-row hidden"></div>
+      <button type="button" class="btn primary hidden" id="btn-overlay-action">Continue</button>
     </div>
   </div>
 
   <script src="./js/data.js"></script>
+  <script src="./js/world.js"></script>
   <script src="./js/save.js"></script>
   <script src="./js/pathfinding.js"></script>
   <script src="./js/combat.js"></script>

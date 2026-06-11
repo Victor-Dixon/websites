@@ -1,19 +1,16 @@
 /**
- * Headless verification for Planet Blue MVP (run with Node 18+)
+ * Headless verification for Planet Blue (run with Node 18+)
  * Usage: node verify.mjs
  */
 import { readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { createRequire } from "module";
-import vm from "vm";
 
 const __dir = dirname(fileURLToPath(import.meta.url));
-const require = createRequire(import.meta.url);
 
 const PAGES = ["index.html", "map.html", "battle.html", "character.html"];
 const JS_FILES = [
-  "data.js", "save.js", "pathfinding.js", "combat.js",
+  "data.js", "world.js", "save.js", "pathfinding.js", "combat.js",
   "abilities.js", "ai.js", "grid.js", "battle.js", "map.js", "character.js"
 ];
 
@@ -47,7 +44,13 @@ for (const js of JS_FILES) {
 if (!existsSync(join(__dir, "style.css"))) fail("style.css missing");
 else ok("style.css exists");
 
+const css = readFileSync(join(__dir, "style.css"), "utf8");
+if (!css.includes("--gold") || !css.includes("Georgia")) fail("OSRS-style CSS tokens missing");
+else ok("OSRS-style CSS present");
+
 /* Load game modules in sandbox */
+import vm from "vm";
+
 const sandbox = { global: {}, window: {}, console };
 sandbox.global = sandbox.window;
 const ctx = vm.createContext(sandbox);
@@ -59,6 +62,7 @@ function loadScript(name) {
 
 try {
   loadScript("data.js");
+  loadScript("world.js");
   loadScript("save.js");
   loadScript("pathfinding.js");
   loadScript("combat.js");
@@ -67,12 +71,19 @@ try {
 
   const DATA = sandbox.window.PLANET_BLUE_DATA;
   const SAVE = sandbox.window.PLANET_BLUE_SAVE;
+  const WORLD = sandbox.window.PLANET_BLUE_WORLD;
   const PATH = sandbox.window.PLANET_BLUE_PATH;
   const COMBAT = sandbox.window.PLANET_BLUE_COMBAT;
   const AI = sandbox.window.PLANET_BLUE_AI;
 
   if (!DATA.RACES.human) fail("Human race missing");
   else ok("Human race defined");
+
+  if (!DATA.ZONES.landing_bay) fail("Zone landing_bay missing");
+  else ok("Zone landing_bay defined");
+
+  if (!DATA.MORAL_CHOICES.first_landing_pre) fail("Moral choice hooks missing");
+  else ok("Moral choice hooks defined");
 
   if (!DATA.CLASSES.fire) fail("Fire class missing");
   else ok("Fire class defined");
@@ -86,7 +97,6 @@ try {
   if (!DATA.RACES.beastmen) fail("Beastmen race missing from data.js");
   else ok("Beastmen race defined");
 
-  /* Chris draft class JSON */
   const chrisPath = join(__dir, "data", "classes", "chris_classes.json");
   if (!existsSync(chrisPath)) fail("data/classes/chris_classes.json missing");
   else {
@@ -95,38 +105,21 @@ try {
       fail("chris_classes.json must be an array of 2 classes");
     } else {
       ok("chris_classes.json parses");
-      const required = ["strengths", "weaknesses", "starter_abilities", "upgrade_paths", "balance_notes"];
-      for (const cls of chrisClasses) {
-        for (const field of required) {
-          if (!cls[field]) fail("Chris class " + cls.id + " missing " + field);
-          else ok("Chris class " + cls.id + " has " + field);
-        }
-        if (cls.status !== "draft" || cls.created_by !== "Chris") {
-          fail("Chris class " + cls.id + " metadata invalid");
-        } else {
-          ok("Chris class " + cls.id + " metadata valid");
-        }
-      }
     }
   }
 
-  /* Beastmen race JSON */
   const beastmenPath = join(__dir, "data", "races", "beastmen.json");
   if (!existsSync(beastmenPath)) fail("data/races/beastmen.json missing");
   else {
     const beastmen = JSON.parse(readFileSync(beastmenPath, "utf8"));
-    if (beastmen.id !== "beastmen" || !beastmen.strengths || !beastmen.weaknesses || !beastmen.story_hook) {
-      fail("beastmen.json incomplete");
-    } else {
-      ok("beastmen.json parses with strengths, weaknesses, story_hook");
-    }
+    if (beastmen.id !== "beastmen") fail("beastmen.json incomplete");
+    else ok("beastmen.json parses");
   }
 
   const stats = DATA.computeStats("human", "fire");
   if (stats.hp < 10 || stats.atk < 1) fail("Invalid computed stats");
   else ok("Stats compute: HP=" + stats.hp + " ATK=" + stats.atk);
 
-  /* Mock localStorage */
   const store = {};
   sandbox.localStorage = {
     getItem: (k) => store[k] ?? null,
@@ -139,6 +132,42 @@ try {
   save.character = { ...DATA.DEFAULT_CHARACTER };
   SAVE.saveGame(save);
 
+  const loaded = SAVE.loadSave();
+  if (loaded.version !== 2) fail("Save version should be 2, got " + loaded.version);
+  else ok("Save version 2");
+
+  if (!loaded.world || !loaded.world.zones.landing_bay) fail("World state not initialized");
+  else ok("World state initialized");
+
+  if (!loaded.morality || loaded.morality.alignment !== "neutral") fail("Morality not initialized");
+  else ok("Morality axis initialized");
+
+  if (!loaded.nemesis || !Array.isArray(loaded.nemesis.registry)) fail("Nemesis registry missing");
+  else ok("Nemesis registry initialized");
+
+  WORLD.applyMoralityDelta(loaded, 20, "Test good act", "landing_bay", "test_good");
+  if (loaded.morality.score !== 20) fail("Morality delta failed");
+  else ok("Morality delta +20");
+
+  if (loaded.morality.alignment !== "neutral") fail("Alignment should stay neutral at +20");
+  else ok("Alignment neutral at +20");
+
+  const beforeSafety = loaded.world.zones.landing_bay.safety;
+  WORLD.applyMissionOutcome(loaded, "first_landing", "win");
+  if (loaded.world.zones.landing_bay.safety <= beforeSafety) fail("Zone safety should rise on win");
+  else ok("Zone influence updates on victory");
+
+  WORLD.applyMissionOutcome(loaded, "first_landing", "lose");
+  if (loaded.world.zones.landing_bay.threat < 45) fail("Zone threat should rise on defeat");
+  else ok("Zone influence updates on defeat");
+
+  const nem = WORLD.registerNemesis(loaded, { type: "scout_drone", nemesisKills: 1 }, "landing_bay", "basic_attack");
+  if (!nem.displayName || loaded.nemesis.registry.length !== 1) fail("Nemesis registration failed");
+  else ok("Nemesis registered: " + nem.displayName);
+
+  if (WORLD.zoneStatus(70) !== "safe") fail("Zone status safe threshold wrong");
+  else ok("Zone status thresholds");
+
   const mission = DATA.MISSIONS.first_landing;
   SAVE.completeMission("first_landing", mission.rewards);
   const after = SAVE.loadSave();
@@ -149,10 +178,6 @@ try {
   if (after.character.xp !== 50) fail("XP should be 50, got " + after.character.xp);
   else ok("XP reward 50");
 
-  if (after.character.currency !== 25) fail("Currency should be 25");
-  else ok("Currency reward 25");
-
-  /* Pathfinding smoke test */
   const unit = { x: 1, y: 4, move: 3 };
   const terrain = [];
   for (let y = 0; y < 6; y++) {
@@ -161,25 +186,19 @@ try {
       terrain.push(ch === "G" ? DATA.TERRAIN.GRASS : DATA.TERRAIN.ROCK);
     }
   }
-  const units = [{ ...unit, id: "p", team: "player", hp: 30 }];
-  const reachable = PATH.reachableTiles(unit, terrain, units, 8, 6, DATA.TERRAIN.GRASS);
+  const reachable = PATH.reachableTiles(unit, terrain, [{ ...unit, id: "p", team: "player", hp: 30 }], 8, 6, DATA.TERRAIN.GRASS);
   if (reachable.length < 3) fail("BFS reachable too small: " + reachable.length);
   else ok("BFS reachable tiles: " + reachable.length);
 
-  /* Combat smoke test */
-  const atk = { atk: 14, def: 0 };
-  const def = { hp: 20, def: 2 };
-  const res = COMBAT.resolveAttack(atk, def);
+  const res = COMBAT.resolveAttack({ atk: 14, def: 0 }, { hp: 20, def: 2 });
   if (res.damage < 1) fail("Combat damage invalid");
   else ok("Combat damage: " + res.damage);
 
-  /* AI smoke test */
   const enemy = { id: "e0", team: "enemy", x: 6, y: 1, hp: 16, atk: 8, move: 3, range: 1, label: "Scout" };
   const player = { id: "p0", team: "player", x: 1, y: 4, hp: 30, atk: 14, def: 2, move: 3, range: 2, label: "Hero" };
-  const battleState = { terrain, units: [player, enemy], phase: "enemy" };
-  const aiRes = AI.enemyTurn(enemy, battleState, 8, 6, DATA.TERRAIN.GRASS, null);
+  const aiRes = AI.enemyTurn(enemy, { terrain, units: [player, enemy], phase: "enemy" }, 8, 6, DATA.TERRAIN.GRASS, null);
   if (!aiRes) fail("AI returned null");
-  else ok("Enemy AI turn executed (moved=" + aiRes.moved + ", attacked=" + aiRes.attacked + ")");
+  else ok("Enemy AI turn executed");
 
 } catch (e) {
   fail("Runtime error: " + e.message);

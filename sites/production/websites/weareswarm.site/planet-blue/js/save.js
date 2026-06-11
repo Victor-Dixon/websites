@@ -1,17 +1,48 @@
-/* Planet Blue — localStorage persistence */
+/* Planet Blue — localStorage persistence (v2) */
 (function (global) {
   "use strict";
 
   var STORAGE_KEY = "planet-blue-save";
+  var SAVE_VERSION = 2;
   var DATA = global.PLANET_BLUE_DATA;
+  var WORLD = global.PLANET_BLUE_WORLD;
 
   function createNewSave() {
-    return {
-      version: 1,
+    var save = {
+      version: SAVE_VERSION,
       profileCreated: false,
       character: Object.assign({}, DATA.DEFAULT_CHARACTER),
-      missions: Object.assign({}, DATA.DEFAULT_MISSIONS)
+      missions: Object.assign({}, DATA.DEFAULT_MISSIONS),
+      world: null,
+      morality: null,
+      nemesis: null,
+      quests: null
     };
+    if (WORLD) {
+      save = WORLD.ensureWorldSystems(save);
+      save.world.zones = WORLD.initZones();
+      save.world.lastUpdated = new Date().toISOString();
+      save = WORLD.initQuestLog(save);
+    }
+    return save;
+  }
+
+  function migrateSave(parsed) {
+    if (!parsed || typeof parsed !== "object") return createNewSave();
+    if (parsed.version >= SAVE_VERSION) {
+      if (WORLD) return WORLD.ensureWorldSystems(parsed);
+      return parsed;
+    }
+    parsed.version = SAVE_VERSION;
+    if (WORLD) {
+      parsed = WORLD.ensureWorldSystems(parsed);
+      if (!parsed.world.lastUpdated) {
+        parsed.world.zones = WORLD.initZones();
+        parsed.world.lastUpdated = new Date().toISOString();
+      }
+      parsed = WORLD.initQuestLog(parsed);
+    }
+    return parsed;
   }
 
   function loadSave() {
@@ -19,14 +50,15 @@
       var raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       var parsed = JSON.parse(raw);
-      if (!parsed || typeof parsed !== "object") return null;
-      return parsed;
+      return migrateSave(parsed);
     } catch (e) {
       return null;
     }
   }
 
   function saveGame(data) {
+    if (WORLD) WORLD.syncQuestStatus(data);
+    data.version = SAVE_VERSION;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
 
@@ -59,7 +91,6 @@
     }
     var mission = DATA.MISSIONS[missionId];
     if (mission && mission.requires) {
-      /* unlock next missions that require this one */
       Object.keys(DATA.MISSIONS).forEach(function (id) {
         var m = DATA.MISSIONS[id];
         if (m.requires === missionId && s.missions[id] === "locked") {
@@ -67,18 +98,32 @@
         }
       });
     }
+    if (WORLD) {
+      WORLD.applyMissionOutcome(s, missionId, "win");
+      WORLD.syncQuestStatus(s);
+    }
+    saveGame(s);
+    return s;
+  }
+
+  function recordDefeat(missionId) {
+    var s = getOrCreateSave();
+    if (WORLD) WORLD.applyMissionOutcome(s, missionId, "lose");
     saveGame(s);
     return s;
   }
 
   global.PLANET_BLUE_SAVE = {
     STORAGE_KEY: STORAGE_KEY,
+    SAVE_VERSION: SAVE_VERSION,
     createNewSave: createNewSave,
     loadSave: loadSave,
     saveGame: saveGame,
     hasSave: hasSave,
     getOrCreateSave: getOrCreateSave,
     resetSave: resetSave,
-    completeMission: completeMission
+    completeMission: completeMission,
+    recordDefeat: recordDefeat,
+    migrateSave: migrateSave
   };
 })(typeof window !== "undefined" ? window : global);

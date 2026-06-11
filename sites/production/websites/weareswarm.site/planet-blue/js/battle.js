@@ -3,6 +3,7 @@
 
   var DATA = window.PLANET_BLUE_DATA;
   var SAVE = window.PLANET_BLUE_SAVE;
+  var WORLD = window.PLANET_BLUE_WORLD;
   var PATH = window.PLANET_BLUE_PATH;
   var COMBAT = window.PLANET_BLUE_COMBAT;
   var AI = window.PLANET_BLUE_AI;
@@ -19,14 +20,22 @@
   }
 
   var save = SAVE.getOrCreateSave();
+  WORLD.ensureWorldSystems(save);
+
   var missionStatus = save.missions[missionId];
   if (missionStatus === "locked") {
     window.location.href = "map.html";
     return;
   }
 
+  var zoneId = DATA.MISSION_ZONE[missionId];
   var COLS = mission.gridCols;
   var ROWS = mission.gridRows;
+  var lastAbilityUsed = "basic_attack";
+  var playerMaxHp = 0;
+  var preBattleDone = false;
+  var postBattlePending = false;
+  var mercyOffered = false;
 
   var els = {
     battlefield: document.getElementById("battlefield"),
@@ -34,24 +43,113 @@
     unitCard: document.getElementById("unit-card"),
     battleLog: document.getElementById("battle-log"),
     overlay: document.getElementById("overlay"),
+    overlayCard: document.getElementById("overlay-card"),
     overlayTitle: document.getElementById("overlay-title"),
     overlayMessage: document.getElementById("overlay-message"),
+    overlayChoices: document.getElementById("overlay-choices"),
     btnEndTurn: document.getElementById("btn-end-turn"),
     btnMove: document.getElementById("btn-move"),
     btnAttack: document.getElementById("btn-attack"),
     btnWait: document.getElementById("btn-wait"),
+    btnMercy: document.getElementById("btn-mercy"),
     btnOverlay: document.getElementById("btn-overlay-action"),
     missionTitle: document.getElementById("mission-title")
   };
 
   if (els.missionTitle) els.missionTitle.textContent = mission.name;
 
-  var state = createInitialState();
+  var state = null;
   var selectedId = null;
   var actionMode = null;
   var moveTargets = [];
   var attackTargets = [];
   var rewardsApplied = false;
+
+  function choiceAlreadyMade(choiceKey) {
+    return save.morality.history.some(function (h) {
+      return h.choiceKey === choiceKey;
+    });
+  }
+
+  function recordChoice(choiceKey, option) {
+    var choiceDef = DATA.MORAL_CHOICES[choiceKey];
+    WORLD.applyMoralityDelta(save, option.delta, option.label, choiceDef.zoneId, choiceKey);
+    SAVE.saveGame(save);
+  }
+
+  function showChoiceOverlay(choiceKey, onComplete) {
+    var choiceDef = DATA.MORAL_CHOICES[choiceKey];
+    if (!choiceDef) {
+      if (onComplete) onComplete();
+      return;
+    }
+
+    els.overlayTitle.textContent = "Decision";
+    els.overlayMessage.textContent = choiceDef.prompt;
+    els.overlayChoices.innerHTML = "";
+    els.overlayChoices.classList.remove("hidden");
+    els.btnOverlay.classList.add("hidden");
+    els.overlayCard.classList.add("wide");
+
+    choiceDef.options.forEach(function (opt) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn " + (opt.delta > 0 ? "good" : "evil");
+      btn.innerHTML = opt.label + " <span class=\"choice-hint\">" + opt.hint + "</span>";
+      btn.addEventListener("click", function () {
+        recordChoice(choiceKey, opt);
+        hideOverlay();
+        if (onComplete) onComplete();
+      });
+      els.overlayChoices.appendChild(btn);
+    });
+
+    els.overlay.classList.remove("hidden");
+  }
+
+  function hideOverlay() {
+    els.overlay.classList.add("hidden");
+    els.overlayChoices.classList.add("hidden");
+    els.overlayChoices.innerHTML = "";
+    els.btnOverlay.classList.remove("hidden");
+    els.overlayCard.classList.remove("wide");
+  }
+
+  function buildEnemyUnits() {
+    var enemies = mission.enemies.slice();
+    enemies = WORLD.maybeSpawnNemesis(save, missionId, enemies);
+
+    var units = [];
+    for (var i = 0; i < enemies.length; i++) {
+      var e = enemies[i];
+      var def = DATA.ENEMIES[e.type];
+      var hp = e.nemesisHp || def.hp;
+      var atk = e.nemesisAtk || def.atk;
+      var label = e.nemesisName || def.name;
+      units.push({
+        id: "enemy" + i,
+        team: "enemy",
+        type: e.type,
+        nemesisId: e.nemesisId || null,
+        isNemesis: !!e.nemesisId,
+        x: e.x,
+        y: e.y,
+        hp: hp,
+        maxHp: hp,
+        atk: atk,
+        def: e.nemesisDef || 0,
+        move: def.move,
+        range: def.range,
+        glyph: def.glyph,
+        label: label,
+        damageDealt: 0,
+        nemesisKills: 0,
+        moved: false,
+        acted: false
+      });
+    }
+    return units;
+  }
 
   function createInitialState() {
     var terrain = [];
@@ -63,7 +161,7 @@
     }
 
     var stats = DATA.computeStats(save.character.race, save.character.class);
-    var cls = DATA.CLASSES[save.character.class];
+    playerMaxHp = stats.hp;
     var units = [];
 
     units.push({
@@ -83,27 +181,8 @@
       acted: false
     });
 
-    for (var i = 0; i < mission.enemies.length; i++) {
-      var e = mission.enemies[i];
-      var def = DATA.ENEMIES[e.type];
-      units.push({
-        id: "enemy" + i,
-        team: "enemy",
-        type: e.type,
-        x: e.x,
-        y: e.y,
-        hp: def.hp,
-        maxHp: def.hp,
-        atk: def.atk,
-        def: 0,
-        move: def.move,
-        range: def.range,
-        glyph: def.glyph,
-        label: def.name,
-        moved: false,
-        acted: false
-      });
-    }
+    units = units.concat(buildEnemyUnits());
+    SAVE.saveGame(save);
 
     return { terrain: terrain, units: units, phase: "player", gameOver: null };
   }
@@ -196,35 +275,121 @@
     render();
   }
 
+  function applyDamageToUnit(target, damage, attacker) {
+    var resist = 0;
+    if (target.isNemesis && target.nemesisId) {
+      var nem = save.nemesis.registry.find(function (n) { return n.id === target.nemesisId; });
+      if (nem && nem.resistances[lastAbilityUsed]) {
+        resist = nem.resistances[lastAbilityUsed];
+        damage = Math.max(1, Math.floor(damage * (1 - resist)));
+      }
+    }
+    target.hp = Math.max(0, target.hp - damage);
+    if (attacker && attacker.team === "enemy") {
+      attacker.damageDealt = (attacker.damageDealt || 0) + damage;
+    }
+    return damage;
+  }
+
   function resolvePlayerAttack(attacker, target) {
-    var result = COMBAT.resolveAttack(attacker, target);
-    log(attacker.label + " hits " + target.label + " for " + result.damage + ".");
-    if (result.defeated) log(target.label + " is defeated.");
+    lastAbilityUsed = "basic_attack";
+    var raw = COMBAT.resolveAttack(attacker, target);
+    var damage = applyDamageToUnit(target, raw.damage, null);
+    log(attacker.label + " hits " + target.label + " for " + damage + ".");
+    if (target.hp <= 0) {
+      log(target.label + " is defeated.");
+      if (target.nemesisId) WORLD.onNemesisDefeated(save, target.nemesisId);
+    }
     attacker.acted = true;
     if (!attacker.moved) attacker.moved = true;
     actionMode = null;
     attackTargets = [];
     clearSelection();
+    checkMercyOffer();
     checkVictory();
     checkAutoEndPlayerPhase();
     render();
   }
 
+  function checkMercyOffer() {
+    var enemies = livingUnits("enemy");
+    if (enemies.length === 1 && !mercyOffered && !state.gameOver) {
+      mercyOffered = true;
+      els.btnMercy.classList.remove("hidden");
+    } else if (enemies.length !== 1) {
+      els.btnMercy.classList.add("hidden");
+    }
+  }
+
+  function offerMercy() {
+    var choiceDef = DATA.MORAL_CHOICES.battle_mercy;
+    showChoiceOverlay("battle_mercy", function () {
+      var enemy = livingUnits("enemy")[0];
+      if (enemy) {
+        log("Mercy shown to " + enemy.label + ".");
+        enemy.hp = 0;
+        if (enemy.nemesisId) {
+          WORLD.registerNemesis(save, enemy, zoneId, lastAbilityUsed);
+          log(enemy.label + " escapes — a nemesis is born!");
+        }
+      }
+      els.btnMercy.classList.add("hidden");
+      SAVE.saveGame(save);
+      checkVictory();
+      render();
+    });
+  }
+
+  function handleNemesisCreation(outcome) {
+    var player = livingUnits("player")[0];
+    var playerHp = player ? player.hp : 0;
+    var candidate = WORLD.pickNemesisCandidate(state.units, outcome, playerMaxHp, playerHp);
+
+    if (candidate) {
+      if (candidate.nemesisId) {
+        WORLD.onNemesisSurvivesBattle(save, candidate.nemesisId, lastAbilityUsed);
+        log(candidate.label + " grows stronger — nemesis power rises!");
+      } else {
+        var record = WORLD.registerNemesis(save, candidate, zoneId, lastAbilityUsed);
+        log(record.displayName + " has sworn vengeance!");
+      }
+      SAVE.saveGame(save);
+    }
+  }
+
   function checkVictory() {
     if (livingUnits("enemy").length === 0) {
       state.gameOver = "win";
-      applyVictoryRewards();
-      showOverlay("Victory", "Mission complete! +" + mission.rewards.xp + " XP, +" + mission.rewards.currency + " currency.");
+      handleNemesisCreation("win");
+      if (missionId === "first_landing" && !choiceAlreadyMade("first_landing_post")) {
+        postBattlePending = true;
+        applyVictoryRewards();
+        showChoiceOverlay("first_landing_post", function () {
+          finishVictoryOverlay();
+        });
+      } else {
+        applyVictoryRewards();
+        finishVictoryOverlay();
+      }
     } else if (livingUnits("player").length === 0) {
       state.gameOver = "lose";
-      showOverlay("Defeat", "Your squad has fallen. Return to the map and try again.");
+      SAVE.recordDefeat(missionId);
+      handleNemesisCreation("lose");
+      showOverlay("Defeat", "Your squad has fallen. The zone grows more dangerous.");
     }
+  }
+
+  function finishVictoryOverlay() {
+    var zone = save.world.zones[zoneId];
+    var zoneMsg = zone ? " Zone safety now " + zone.safety + "%." : "";
+    showOverlay("Victory", "Mission complete! +" + mission.rewards.xp + " XP, +" + mission.rewards.currency + " gp." + zoneMsg);
   }
 
   function applyVictoryRewards() {
     if (rewardsApplied || missionStatus === "completed") return;
     rewardsApplied = true;
     SAVE.completeMission(missionId, mission.rewards);
+    save = SAVE.loadSave();
     missionStatus = "completed";
   }
 
@@ -248,7 +413,14 @@
     enemies.forEach(function (enemy) {
       window.setTimeout(function () {
         if (state.gameOver) return;
+        var playerBefore = livingUnits("player")[0];
         AI.enemyTurn(enemy, state, COLS, ROWS, TERRAIN.GRASS, log);
+        if (playerBefore && playerBefore.hp > 0) {
+          var playerAfter = unitById(playerBefore.id);
+          if (playerAfter && playerAfter.hp < playerBefore.hp) {
+            enemy.damageDealt = (enemy.damageDealt || 0) + (playerBefore.hp - playerAfter.hp);
+          }
+        }
         checkVictory();
         render();
       }, delay);
@@ -267,6 +439,8 @@
   function showOverlay(title, message) {
     els.overlayTitle.textContent = title;
     els.overlayMessage.textContent = message;
+    els.overlayChoices.classList.add("hidden");
+    els.btnOverlay.classList.remove("hidden");
     els.overlay.classList.remove("hidden");
     if (state.gameOver === "win") {
       els.btnOverlay.textContent = "Return to Map";
@@ -277,17 +451,14 @@
     }
   }
 
-  function hideOverlay() {
-    els.overlay.classList.add("hidden");
-  }
-
   function restartBattle() {
+    hideOverlay();
+    mercyOffered = false;
+    preBattleDone = false;
     state = createInitialState();
     clearSelection();
-    hideOverlay();
     els.battleLog.innerHTML = "";
-    log("Planet Blue battle begins — " + mission.name);
-    render();
+    beginBattleFlow();
   }
 
   function renderUnitCard() {
@@ -298,8 +469,9 @@
       return;
     }
     els.unitCard.className = "unit-card";
+    var tag = unit.isNemesis ? " <span class=\"badge nemesis\">Nemesis</span>" : "";
     els.unitCard.innerHTML =
-      "<p class=\"name\">" + unit.label + " (Blue)</p>" +
+      "<p class=\"name\">" + unit.label + tag + "</p>" +
       "<p class=\"stat\">HP " + unit.hp + " / " + unit.maxHp + "</p>" +
       "<p class=\"stat\">Move " + unit.move + " · Range " + unit.range + " · ATK " + unit.atk + "</p>" +
       "<p class=\"stat\">Tile (" + (unit.x + 1) + "," + (unit.y + 1) + ")</p>";
@@ -314,6 +486,7 @@
     els.btnMove.disabled = !canSelect || unit.moved || actionMode === "move";
     els.btnAttack.disabled = !canSelect || unit.acted || actionMode === "attack";
     els.btnWait.disabled = !canSelect;
+    els.btnMercy.disabled = livingUnits("enemy").length !== 1;
 
     els.phaseBar.textContent = state.gameOver
       ? "Battle Over"
@@ -366,11 +539,28 @@
     renderControls();
   }
 
+  function beginBattleFlow() {
+    state = createInitialState();
+    var greeting = WORLD.getMoralityDialogue(save, "battle_start");
+    log(greeting);
+    log("Battle begins — " + mission.name);
+
+    if (missionId === "first_landing" && !choiceAlreadyMade("first_landing_pre")) {
+      showChoiceOverlay("first_landing_pre", function () {
+        preBattleDone = true;
+        render();
+      });
+    } else {
+      preBattleDone = true;
+      render();
+    }
+  }
+
   els.btnMove.addEventListener("click", beginMove);
   els.btnAttack.addEventListener("click", beginAttack);
   els.btnWait.addEventListener("click", waitUnit);
+  els.btnMercy.addEventListener("click", offerMercy);
   els.btnEndTurn.addEventListener("click", endPlayerPhase);
 
-  log("Planet Blue battle begins — " + mission.name);
-  render();
+  beginBattleFlow();
 })();
