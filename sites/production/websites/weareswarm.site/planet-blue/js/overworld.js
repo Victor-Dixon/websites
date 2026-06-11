@@ -52,8 +52,8 @@
   ];
 
   var NPCS = [
-    { id: "colonist_a", x: 9, y: 12, color: "#88cc44", label: "Scout", path: [[9, 12], [11, 12], [11, 11], [9, 11], [9, 12]] },
-    { id: "colonist_b", x: 15, y: 11, color: "#c9a227", label: "Trader", path: [[15, 11], [17, 11], [17, 12], [15, 12], [15, 11]] }
+    { id: "colonist_a", x: 9, y: 12, shirt: "#00B06F", pants: "#1B2A35", label: "Scout", path: [[9, 12], [11, 12], [11, 11], [9, 11], [9, 12]] },
+    { id: "colonist_b", x: 15, y: 11, shirt: "#FFAA00", pants: "#2D3436", label: "Trader", path: [[15, 11], [17, 11], [17, 12], [15, 12], [15, 11]] }
   ];
 
   global.PLANET_BLUE_OVERWORLD = {
@@ -397,6 +397,7 @@
     ctx.save();
     ctx.scale(sc, sc);
     ctx.clearRect(0, 0, viewCols * OW.TILE_SIZE, viewRows * OW.TILE_SIZE);
+    SPRITES.drawSky(ctx, viewCols * OW.TILE_SIZE, viewRows * OW.TILE_SIZE);
 
     for (var vy = 0; vy < viewRows; vy++) {
       for (var vx = 0; vx < viewCols; vx++) {
@@ -424,12 +425,15 @@
 
     npcStates.forEach(function (ns) {
       if (ns.renderX < camera.x || ns.renderY < camera.y || ns.renderX >= camera.x + viewCols || ns.renderY >= camera.y + viewRows) return;
-      SPRITES.drawNpc(ctx, ns.renderX - camera.x, ns.renderY - camera.y, OW.TILE_SIZE, ns.def.color, ns.def.label);
+      SPRITES.drawNpc(ctx, ns.renderX - camera.x, ns.renderY - camera.y, OW.TILE_SIZE, ns.def.shirt, ns.def.label, {
+        shirt: ns.def.shirt,
+        pants: ns.def.pants
+      });
     });
 
     var prx = player.renderX - camera.x;
     var pry = player.renderY - camera.y;
-    SPRITES.drawPlayer(ctx, prx, pry, OW.TILE_SIZE, player.facing, SPRITES.raceColor(save.character.race));
+    SPRITES.drawPlayer(ctx, prx, pry, OW.TILE_SIZE, player.facing, SPRITES.raceColor(save.character.race), SPRITES.racePants(save.character.race));
 
     ctx.restore();
   }

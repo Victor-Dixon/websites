@@ -46,8 +46,8 @@ if (!existsSync(join(__dir, "style.css"))) fail("style.css missing");
 else ok("style.css exists");
 
 const css = readFileSync(join(__dir, "style.css"), "utf8");
-if (!css.includes("--gold") || !css.includes("Georgia")) fail("OSRS-style CSS tokens missing");
-else ok("OSRS-style CSS present");
+if (!css.includes("--rbx-border") || !css.includes("Nunito")) fail("Roblox-style CSS tokens missing");
+else ok("Roblox-style CSS present");
 
 /* Load game modules in sandbox */
 import vm from "vm";
@@ -288,6 +288,12 @@ try {
 
   if (!SPRITES || typeof SPRITES.drawPlayer !== "function") fail("Sprite renderer missing");
   else ok("Sprite renderer defined");
+
+  if (typeof SPRITES.drawSky !== "function") fail("Sky renderer missing");
+  else ok("Sky renderer defined");
+
+  if (!SPRITES.TILE_PALETTE || !SPRITES.TILE_PALETTE.grass) fail("Blox tile palette missing");
+  else ok("Blox tile palette defined");
 
 } catch (e) {
   fail("Runtime error: " + e.message);
