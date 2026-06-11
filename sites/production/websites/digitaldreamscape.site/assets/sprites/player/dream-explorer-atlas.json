@@ -1,0 +1,129 @@
+{
+  "asset": {
+    "name": "dream-explorer",
+    "version": "1.0",
+    "texture": "dream-explorer.png",
+    "gridSize": {
+      "w": 64,
+      "h": 64
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 1.0
+    }
+  },
+  "animations": {
+    "idle_up": {
+      "row": 0,
+      "startFrame": 0,
+      "length": 1,
+      "loop": true,
+      "fps": 8
+    },
+    "idle_down": {
+      "row": 0,
+      "startFrame": 1,
+      "length": 1,
+      "loop": true,
+      "fps": 8
+    },
+    "idle_left": {
+      "row": 0,
+      "startFrame": 2,
+      "length": 1,
+      "loop": true,
+      "fps": 8
+    },
+    "idle_right": {
+      "row": 0,
+      "startFrame": 3,
+      "length": 1,
+      "loop": true,
+      "fps": 8
+    },
+    "walk_up": {
+      "row": 1,
+      "startFrame": 0,
+      "length": 4,
+      "loop": true,
+      "fps": 10
+    },
+    "walk_down": {
+      "row": 2,
+      "startFrame": 0,
+      "length": 4,
+      "loop": true,
+      "fps": 10
+    },
+    "walk_left": {
+      "row": 3,
+      "startFrame": 0,
+      "length": 4,
+      "loop": true,
+      "fps": 10
+    },
+    "walk_right": {
+      "row": 4,
+      "startFrame": 0,
+      "length": 4,
+      "loop": true,
+      "fps": 10
+    },
+    "run_up": {
+      "row": 5,
+      "startFrame": 0,
+      "length": 4,
+      "loop": true,
+      "fps": 12
+    },
+    "run_down": {
+      "row": 6,
+      "startFrame": 0,
+      "length": 4,
+      "loop": true,
+      "fps": 12
+    },
+    "run_left": {
+      "row": 7,
+      "startFrame": 0,
+      "length": 4,
+      "loop": true,
+      "fps": 12
+    },
+    "run_right": {
+      "row": 8,
+      "startFrame": 0,
+      "length": 4,
+      "loop": true,
+      "fps": 12
+    },
+    "interact": {
+      "row": 9,
+      "startFrame": 0,
+      "length": 2,
+      "loop": false,
+      "fps": 10
+    },
+    "attack": {
+      "row": 10,
+      "startFrame": 0,
+      "length": 2,
+      "loop": false,
+      "fps": 10
+    },
+    "magic": {
+      "row": 11,
+      "startFrame": 0,
+      "length": 2,
+      "loop": false,
+      "fps": 10
+    },
+    "hurt": {
+      "row": 12,
+      "startFrame": 0,
+      "length": 2,
+      "loop": false,
+      "fps": 10
+    }
+  }
+}

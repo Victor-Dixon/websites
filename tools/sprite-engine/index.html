@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sprite Engine — Demo</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --btn: #21262d;
+      --btn-active: #388bfd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    .stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: min(100%, 420px);
+    }
+    canvas {
+      display: block;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      touch-action: manipulation;
+    }
+    .hud {
+      width: 100%;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.75rem;
+      background: #010409;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+    .hud strong { color: var(--accent); }
+    .controls {
+      display: grid;
+      gap: 0.75rem;
+      width: min(100%, 420px);
+      margin-top: 1rem;
+    }
+    .control-group {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem;
+    }
+    .control-group h2 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--btn);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      min-width: 3.5rem;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    button:hover { border-color: var(--accent); }
+    button:active, button.active {
+      background: var(--btn-active);
+      border-color: var(--btn-active);
+      color: #fff;
+    }
+    .dpad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, auto);
+      gap: 0.35rem;
+      max-width: 180px;
+      margin: 0 auto;
+    }
+    .dpad button { min-width: 3rem; padding: 0.65rem; }
+    .dpad .spacer { visibility: hidden; }
+    .hint {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Custom Web Sprite Engine</h1>
+  <p class="subtitle">Grid Schema V1 · 60 FPS render · 8–12 FPS animation</p>
+
+  <div class="stage">
+    <canvas id="sprite-canvas" width="128" height="128" aria-label="Animated character sprite"></canvas>
+    <div class="hud" id="hud" aria-live="polite">Loading…</div>
+  </div>
+
+  <div class="controls">
+    <div class="control-group">
+      <h2>State</h2>
+      <div class="btn-row" id="state-buttons">
+        <button type="button" data-state="idle" class="active">Idle</button>
+        <button type="button" data-state="walking">Walk</button>
+        <button type="button" data-state="running">Run</button>
+        <button type="button" data-one-shot="attack">Attack</button>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <h2>Direction</h2>
+      <div class="dpad" id="dir-pad">
+        <span class="spacer"></span>
+        <button type="button" data-dir="up" aria-label="Up">↑</button>
+        <span class="spacer"></span>
+        <button type="button" data-dir="left" aria-label="Left">←</button>
+        <button type="button" data-dir="down" aria-label="Down" class="active">↓</button>
+        <button type="button" data-dir="right" aria-label="Right">→</button>
+      </div>
+      <p class="hint">WASD or arrow keys · touch buttons</p>
+    </div>
+  </div>
+
+  <script type="module" src="./js/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digital Dreamscape — Explore the Dreamfield</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="explore-body">
+  <header class="site-header">
+    <div class="brand-block">
+      <h1 class="brand"><a href="index.html">Digital Dreamscape</a></h1>
+      <p class="tagline" id="explore-greeting">Dreamfield</p>
+    </div>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="explore.html" class="active">Explore</a>
+    </nav>
+  </header>
+
+  <main class="page-shell wide explore-shell">
+    <div class="explore-layout">
+      <section class="explore-view dream-panel" aria-label="Dreamfield">
+        <canvas id="explore-canvas" width="960" height="640" aria-label="Dreamfield map. Click a tile to walk."></canvas>
+        <p class="explore-hint muted">Click any walkable tile to pathfind · Walk onto NPCs, portals, and resources to interact</p>
+      </section>
+
+      <aside class="explore-sidebar">
+        <section class="panel" id="explore-hud">
+          <h2>Dream Explorer</h2>
+        </section>
+        <section class="panel help">
+          <h2>Controls</h2>
+          <ul>
+            <li><strong>Move</strong> — Click a walkable tile</li>
+            <li><strong>Interact</strong> — Walk onto or click adjacent objects</li>
+            <li><strong>Portals</strong> — Dormant for now</li>
+            <li><strong>Resources</strong> — Gathering unlocks later</li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h2>Legend</h2>
+          <div class="legend-row"><span class="legend-swatch grass"></span> Grass / Path</div>
+          <div class="legend-row"><span class="legend-swatch water"></span> Water (blocked)</div>
+          <div class="legend-row"><span class="legend-swatch crystal"></span> Crystal cluster</div>
+          <div class="legend-row"><span class="legend-swatch portal"></span> Portal</div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <div class="overlay hidden" id="interact-overlay" role="dialog" aria-modal="true">
+    <div class="overlay-card">
+      <h2 id="interact-title">Interact</h2>
+      <p id="interact-body"></p>
+      <div class="btn-row" id="interact-actions"></div>
+      <button type="button" class="btn" id="btn-close-overlay" style="margin-top:0.5rem;">Close</button>
+    </div>
+  </div>
+
+  <script src="./js/tile-types.js"></script>
+  <script src="./js/world-data.js"></script>
+  <script src="./js/world-generator.js"></script>
+  <script src="./js/pathfinding.js"></script>
+  <script src="./js/camera.js"></script>
+  <script src="./js/player.js"></script>
+  <script src="./js/sprite-engine.js"></script>
+  <script src="./js/player-sprite.js"></script>
+  <script src="./js/save.js"></script>
+  <script src="./js/interactions.js"></script>
+  <script src="./js/world-renderer.js"></script>
+  <script src="./js/explore.js"></script>
+</body>
+</html>

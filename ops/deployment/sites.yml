@@ -133,13 +133,15 @@ sites:
     notes: "Bridal conversion homepage + WP theme; production_sync SSOT (static index + theme)"
 
   digitaldreamscape.site:
-    path: websites/digitaldreamscape.site
+    path: sites/production/websites/digitaldreamscape.site
     deployer: unified
-    verify_url: https://digitaldreamscape.site/.well-known/deploy.json
-    remote_root: public_html/digitaldreamscape.site  # Addon domain
+    verify_url: https://digitaldreamscape.site/explore.html
+    remote_root: public_html
     enabled: true
     deploy_method: sftp
-    notes: "Build-in-public site (addon domain)"
+    deploy_dirs:
+      - sites/production/websites/digitaldreamscape.site
+    notes: "Digital Dreamscape Dreamfield MVP — static explore game"
 
   dadudekc.site:
     path: websites/dadudekc.site

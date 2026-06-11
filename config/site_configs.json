@@ -73,7 +73,8 @@
   },
   "digitaldreamscape.site": {
     "site_url": "https://digitaldreamscape.site",
-    "deployment_method": "rest_api",
+    "path": "sites/production/websites/digitaldreamscape.site",
+    "deployment_method": "sftp",
     "rest_api": {
       "username": "DadudeKC@Gmail.com",
       "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
@@ -93,7 +94,10 @@
     "ux_deployment": {
       "method": "additional_css",
       "target_file": "wp-content/themes/{active_theme}/style.css"
-    }
+    },
+    "deploy_dirs": [
+      "sites/production/websites/digitaldreamscape.site"
+    ]
   },
   "freerideinvestor.com": {
     "site_url": "https://freerideinvestor.com",
