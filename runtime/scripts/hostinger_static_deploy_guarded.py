@@ -5,6 +5,7 @@ import argparse
 import os
 import shlex
 import subprocess
+import sys
 from pathlib import Path
 
 
@@ -59,7 +60,7 @@ def scp(env: dict[str, str], local: Path, remote_path: str) -> None:
 
 def validate_mode(domain: str, env_file: str) -> str:
     cmd = [
-        "python",
+        sys.executable,
         "runtime/scripts/validate_website_deploy_modes.py",
         "--env",
         env_file,
