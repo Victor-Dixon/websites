@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kids Agent Planner — WeAreSwarm</title>
+  <meta name="description" content="Kid-safe task kanban with agent prompt helper — WeAreSwarm family planner">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="site-nav"></nav>
+
+  <main class="container kids-planner">
+    <header class="hero">
+      <h1>🌟 Kids Agent Planner</h1>
+      <p>Pick a task, clock your work, and ask an agent to help — all saved on this device.</p>
+      <div class="meta-row">
+        <span class="badge ok" id="status-badge">● Ready</span>
+        <span class="badge" id="task-count-badge">0 tasks</span>
+      </div>
+    </header>
+
+    <section class="panel panel--full kid-toolbar">
+      <div class="panel-body toolbar-row">
+        <div class="toolbar-group">
+          <label for="kid-select" class="toolbar-label">Who is working?</label>
+          <select id="kid-select" class="kid-select" aria-label="Select kid profile">
+            <option value="Aria">Aria</option>
+            <option value="Charlie">Charlie</option>
+            <option value="Guest">Guest</option>
+          </select>
+        </div>
+        <div class="toolbar-group toolbar-actions">
+          <button type="button" class="btn btn-secondary" id="btn-reset-tasks" title="Reload tasks from sample file">↻ Reset tasks</button>
+          <button type="button" class="btn btn-secondary" id="btn-export-logs">⬇ Export work logs</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="planner-layout">
+      <section class="kanban-section" aria-label="Task board">
+        <div class="kanban-board" id="kanban-board"></div>
+      </section>
+
+      <aside class="side-panel" id="side-panel" hidden>
+        <div class="panel detail-panel">
+          <div class="panel-header">
+            <div>
+              <h2 id="detail-title">Task</h2>
+              <p class="subtitle" id="detail-project">—</p>
+            </div>
+            <button type="button" class="btn-icon" id="btn-close-detail" aria-label="Close detail panel">✕</button>
+          </div>
+          <div class="panel-body detail-body">
+            <dl class="kv detail-kv" id="detail-meta"></dl>
+
+            <p class="section-title">Instructions</p>
+            <p class="detail-text" id="detail-instructions">—</p>
+
+            <p class="section-title">Objective</p>
+            <p class="detail-text" id="detail-objective">—</p>
+
+            <div class="detail-actions">
+              <button type="button" class="btn btn-primary" id="btn-claim">Claim task</button>
+              <button type="button" class="btn btn-secondary" id="btn-move-next">Move forward →</button>
+              <button type="button" class="btn btn-secondary" id="btn-park">Park task</button>
+            </div>
+
+            <div class="clock-section" id="clock-section">
+              <p class="section-title">Work clock</p>
+              <div class="clock-display">
+                <span class="clock-status" id="clock-status">Not clocked in</span>
+                <span class="clock-duration" id="clock-duration"></span>
+              </div>
+              <div class="clock-buttons">
+                <button type="button" class="btn btn-primary" id="btn-clock-in">⏱ Clock in</button>
+                <button type="button" class="btn btn-secondary" id="btn-clock-out" disabled>⏹ Clock out</button>
+              </div>
+            </div>
+
+            <div class="prompt-section">
+              <p class="section-title">Agent prompt</p>
+              <textarea class="prompt-box" id="agent-prompt" readonly rows="10" placeholder="Generate a prompt to copy into your agent…"></textarea>
+              <div class="prompt-buttons">
+                <button type="button" class="btn btn-primary" id="btn-generate-prompt">✨ Generate prompt</button>
+                <button type="button" class="btn btn-secondary" id="btn-copy-prompt">📋 Copy prompt</button>
+              </div>
+            </div>
+
+            <div class="worklog-section">
+              <p class="section-title">Work log</p>
+              <label for="kid-summary" class="sr-only">What did you do?</label>
+              <textarea id="kid-summary" class="worklog-text" rows="4" placeholder="Write what you tried, learned, or built…"></textarea>
+              <label for="agent-result" class="sr-only">Agent result</label>
+              <textarea id="agent-result" class="worklog-text" rows="4" placeholder="Paste agent result here (optional)…"></textarea>
+              <div class="review-row">
+                <label for="parent-review">Parent review</label>
+                <select id="parent-review">
+                  <option value="pending_review">Pending review</option>
+                  <option value="approved">Approved</option>
+                  <option value="needs_revision">Needs revision</option>
+                  <option value="celebrated">Celebrated 🎉</option>
+                </select>
+              </div>
+              <button type="button" class="btn btn-primary" id="btn-save-worklog">💾 Save work log</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="panel panel--full worklog-history">
+      <div class="panel-header">
+        <div>
+          <h2>Work log history</h2>
+          <p class="subtitle">Saved on this browser — export to share with a parent</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="worklog-list" class="worklog-list">
+          <p class="empty-state">No work logs yet. Clock in on a task to start.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Public-safe only · No login · Data stays in your browser until you export</p>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

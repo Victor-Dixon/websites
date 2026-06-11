@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "generated_at": "2026-06-11T00:00:00Z",
+  "tasks": [
+    {
+      "id": "kids_dd_worldgen_001",
+      "title": "Design a Digital Dreamscape biome",
+      "source": "digitaldreamscape.site",
+      "project": "Digital Dreamscape",
+      "status": "available",
+      "difficulty": "medium",
+      "estimated_minutes": 45,
+      "kid_owner": null,
+      "agent_type": "creative_coder",
+      "skills": ["worldbuilding", "writing", "art_direction"],
+      "parent_approved": true,
+      "objective": "Create one kid-friendly biome concept (name, mood, 3 landmarks, 1 mini-quest) for Digital Dreamscape explore mode.",
+      "kid_instructions": "Pick a mood (cosy, spooky, neon, underwater). Sketch or describe 3 places a player would visit. Write one short quest a friend could finish in 5 minutes.",
+      "agent_prompt_template": {
+        "PROJECT": "Digital Dreamscape — kid-safe explore game at digitaldreamscape.site",
+        "TASK": "Design a biome concept pack from kid notes",
+        "OBJECTIVE": "Turn kid biome notes into a structured JSON snippet: name, mood, landmarks[], mini_quest{title, steps[], reward}",
+        "RULES": "Public-safe only. No API keys. No scary/violent content. Reading level grade 4–6.",
+        "ACTION": "Read kid_summary and agent_result fields; output valid JSON only.",
+        "VERIFY": "JSON parses; 3 landmarks; mini_quest has 2–4 steps; reward is kid-friendly.",
+        "CLOSEOUT": "Paste JSON into work log agent_result; set status ready_for_review."
+      }
+    },
+    {
+      "id": "kids_swarm_card_001",
+      "title": "Draw your agent trading card",
+      "source": "weareswarm.online",
+      "project": "WeAreSwarm",
+      "status": "available",
+      "difficulty": "easy",
+      "estimated_minutes": 30,
+      "kid_owner": null,
+      "agent_type": "illustrator_helper",
+      "skills": ["drawing", "character_design"],
+      "parent_approved": true,
+      "objective": "Design a trading card for your personal agent avatar with name, power, and weakness.",
+      "kid_instructions": "Draw on paper or tablet. Include: agent name, one superpower, one silly weakness, favorite color.",
+      "agent_prompt_template": {
+        "PROJECT": "WeAreSwarm Kids Agent Planner",
+        "TASK": "Describe trading card from kid artwork notes",
+        "OBJECTIVE": "Produce card text: name, power, weakness, flavor_line (one sentence)",
+        "RULES": "Kid-safe humor only. No personal info (school, address).",
+        "ACTION": "Use kid_summary as source; write card copy markdown.",
+        "VERIFY": "All four fields present; under 120 words total.",
+        "CLOSEOUT": "Save copy to agent_result; kid moves task to Ready for Review."
+      }
+    },
+    {
+      "id": "kids_blog_draft_001",
+      "title": "Write a 3-sentence project update",
+      "source": "weareswarm.online",
+      "project": "WeAreSwarm",
+      "status": "available",
+      "difficulty": "easy",
+      "estimated_minutes": 20,
+      "kid_owner": null,
+      "agent_type": "writing_helper",
+      "skills": ["writing", "communication"],
+      "parent_approved": true,
+      "objective": "Draft a short public-safe update about something you built or learned this week.",
+      "kid_instructions": "Three sentences: what you did, what was hard, what is next. Ask a parent before sharing names.",
+      "agent_prompt_template": {
+        "PROJECT": "WeAreSwarm public feed",
+        "TASK": "Polish kid project update",
+        "OBJECTIVE": "Edit kid draft to 3 clear sentences; keep kid voice; public-safe.",
+        "RULES": "No last names, locations, or contact info. No secrets.",
+        "ACTION": "Proofread kid_summary; return final 3 sentences.",
+        "VERIFY": "Exactly 3 sentences; passes public-safe scan.",
+        "CLOSEOUT": "Paste polished text to agent_result."
+      }
+    },
+    {
+      "id": "kids_spark_mission_001",
+      "title": "Plan a Spark side-quest",
+      "source": "dadudekc.site",
+      "project": "Spark Protocol",
+      "status": "parked",
+      "difficulty": "hard",
+      "estimated_minutes": 60,
+      "kid_owner": null,
+      "agent_type": "game_designer",
+      "skills": ["game_design", "storytelling"],
+      "parent_approved": false,
+      "objective": "Outline a small side-quest for Spark Meridian City (trigger, 3 beats, reward).",
+      "kid_instructions": "Parked until parent approves. When unlocked: name an NPC, what they need, and what the player earns.",
+      "agent_prompt_template": {
+        "PROJECT": "Spark Protocol / Meridian City",
+        "TASK": "Structure kid quest outline",
+        "OBJECTIVE": "Convert outline to mission.template.json fields: title, trigger, beats[], reward",
+        "RULES": "Age-appropriate; no combat gore; parent_approved must be true before claim.",
+        "ACTION": "Expand kid notes into mission JSON skeleton.",
+        "VERIFY": "3 beats; reward specified; trigger is clear.",
+        "CLOSEOUT": "Hand JSON to parent for review."
+      }
+    }
+  ]
+}

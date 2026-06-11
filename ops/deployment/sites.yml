@@ -93,9 +93,11 @@ sites:
       - websites/weareswarm.online/skill-tree
       - websites/weareswarm.online/roadmap
       - websites/weareswarm.online/feed
+      - websites/weareswarm.online/kids-planner
       - websites/weareswarm.online/data/planner
+      - websites/weareswarm.online/data/kids-planner
       - websites/weareswarm.online/data/shared
-    notes: "Command Center static (focus/projects/tasks/planner); unified_deployer deploy_files+deploy_dirs; SSOT websites/weareswarm.online"
+    notes: "Command Center static (focus/projects/tasks/planner/kids-planner); unified_deployer deploy_files+deploy_dirs; SSOT websites/weareswarm.online"
 
   weareswarm.site:
     path: sites/production/websites/weareswarm.site
@@ -109,8 +111,10 @@ sites:
       - sites/production/websites/weareswarm.site/closeouts
       - sites/production/websites/weareswarm.site/data
     deploy_files:
+      - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/front-page.php
+      - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/header.php
       - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/page-feed.php
-    notes: "Swarm marketing site — /feed WP template + /closeouts static fallback + data JSON"
+    notes: "Swarm marketing site — swarm-theme PHP + /feed WP template + /closeouts static fallback + data JSON"
 
   houstonsipqueen.com:
     path: sites/production/websites/houstonsipqueen.com
