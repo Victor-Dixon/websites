@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Houston Sip Queen | Luxury Mobile Bartending for Weddings &amp; Events</title>
+  <meta name="description" content="Houston Sip Queen brings polished, bridal-forward mobile bartending to weddings, showers, and private celebrations across Houston. Sip pretty. Party smooth.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --navy: #002d62;
+      --navy-deep: #061833;
+      --orange: #eb6e1f;
+      --orange-bright: #ff8a2a;
+      --cream: #fff4df;
+      --blush: #f4d4d0;
+      --rose-gold: #b76e79;
+      --champagne: #f7e7ce;
+      --white: #ffffff;
+      --muted: #d7dce8;
+      --panel: rgba(6,24,51,.86);
+      --panel2: rgba(255,255,255,.075);
+      --line: rgba(255,255,255,.16);
+      --shadow: rgba(0,0,0,.38);
+      --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --font-body: "Source Sans 3", Arial, Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background:
+        radial-gradient(circle at top left, rgba(183,110,121,.22), transparent 28rem),
+        radial-gradient(circle at top right, rgba(235,110,31,.28), transparent 24rem),
+        radial-gradient(circle at bottom right, rgba(255,138,42,.16), transparent 30rem),
+        linear-gradient(145deg, var(--navy-deep), var(--navy));
+      color: var(--white);
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(6,24,51,.88);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    nav {
+      min-height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .brand span:last-child {
+      color: var(--champagne);
+      font-size: .78rem;
+      letter-spacing: .22em;
+      font-family: var(--font-display);
+      font-style: italic;
+      text-transform: none;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .85rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--champagne);
+    }
+
+    .hero {
+      padding: 5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: var(--panel);
+      box-shadow: 0 30px 90px var(--shadow);
+      padding: clamp(2rem, 5vw, 4.2rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card:before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        linear-gradient(135deg, rgba(183,110,121,.18), transparent 34%),
+        linear-gradient(135deg, rgba(235,110,31,.2), transparent 32%),
+        radial-gradient(circle at 80% 20%, rgba(247,231,206,.16), transparent 18rem);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .bridal-panel {
+      border: 1px solid rgba(247,231,206,.28);
+      border-radius: 32px;
+      background:
+        linear-gradient(160deg, rgba(183,110,121,.24), rgba(244,212,208,.08)),
+        rgba(255,255,255,.05);
+      box-shadow: 0 24px 70px var(--shadow);
+      padding: clamp(1.6rem, 4vw, 2.4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .bridal-panel .photo-placeholder {
+      border-radius: 22px;
+      min-height: 220px;
+      border: 1px dashed rgba(247,231,206,.35);
+      background:
+        linear-gradient(135deg, rgba(247,231,206,.12), rgba(183,110,121,.08)),
+        rgba(6,24,51,.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--champagne);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      line-height: 1.35;
+    }
+
+    .eyebrow {
+      color: var(--champagne);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: .74rem;
+      font-weight: 800;
+    }
+
+    .eyebrow.rose {
+      color: var(--blush);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 1rem 0;
+      font-size: clamp(2.8rem, 8vw, 5.8rem);
+      line-height: .92;
+      max-width: 12ch;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--champagne);
+    }
+
+    h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.02;
+    }
+
+    h3 {
+      margin: 0 0 .5rem;
+      font-size: 1.35rem;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 1.05rem;
+    }
+
+    .hero p,
+    .bridal-panel p {
+      max-width: 66ch;
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+    }
+
+    .tagline {
+      display: inline-block;
+      margin-top: .5rem;
+      padding: .45rem .85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(247,231,206,.28);
+      background: rgba(183,110,121,.14);
+      color: var(--cream);
+      font-size: .88rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .92rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.07);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .btn.primary {
+      border: 0;
+      color: var(--navy-deep);
+      background: linear-gradient(135deg, var(--rose-gold), var(--orange), var(--champagne));
+    }
+
+    .btn.champagne {
+      border-color: rgba(247,231,206,.35);
+      background: rgba(247,231,206,.12);
+      color: var(--champagne);
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 1.2rem;
+      background: var(--panel2);
+    }
+
+    .card.feature,
+    .card.bridal {
+      background:
+        linear-gradient(135deg, rgba(183,110,121,.16), rgba(235,110,31,.12)),
+        var(--panel2);
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: .35rem .65rem;
+      border-radius: 999px;
+      background: var(--rose-gold);
+      color: var(--cream);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .7rem;
+      margin-bottom: .8rem;
+    }
+
+    .badge.gold {
+      background: linear-gradient(135deg, var(--rose-gold), var(--orange));
+    }
+
+    ul {
+      margin: .55rem 0 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .price {
+      color: var(--champagne);
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-top: 1rem;
+    }
+
+    .notice {
+      border: 1px solid rgba(255,138,42,.42);
+      background: rgba(235,110,31,.11);
+      border-radius: 26px;
+      padding: clamp(1.4rem, 4vw, 2.4rem);
+    }
+
+    .security-card {
+      border: 1px solid rgba(247,231,206,.28);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(6,24,51,.92), rgba(183,110,121,.14)),
+        var(--panel);
+      padding: clamp(1.5rem, 4vw, 2.6rem);
+      box-shadow: 0 20px 60px var(--shadow);
+    }
+
+    .security-card .disclaimer {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      font-size: .92rem;
+      color: var(--muted);
+    }
+
+    .why-brides {
+      background:
+        radial-gradient(circle at 10% 20%, rgba(244,212,208,.12), transparent 18rem),
+        transparent;
+    }
+
+    .contact-card {
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .fields {
+      display: grid;
+      gap: .8rem;
+      margin-top: 1rem;
+    }
+
+    .field {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      padding: 1rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 2rem 0;
+      font-size: .95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 1rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <div class="brand">
+        <span>Houston Sip Queen</span>
+        <span>Sip pretty. Party smooth.</span>
+      </div>
+      <div class="nav-links">
+        <a href="/" data-scroll-target="bridal">Weddings</a>
+        <a href="/" data-scroll-target="services">Services</a>
+        <a href="/" data-scroll-target="packages">Packages</a>
+        <a href="/" data-scroll-target="security">Security</a>
+        <a href="/" data-scroll-target="compliance">Alcohol Policy</a>
+        <a href="/" data-scroll-target="book">Book</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-card">
+            <div class="hero-content">
+              <div class="eyebrow">Luxury Mobile Bartending · Houston</div>
+              <h1>Sip pretty. <em>Party smooth.</em></h1>
+              <p>
+                For brides and hosts who want a bar that feels as intentional as the rest of the celebration —
+                polished service, signature sips, and a look that photographs beautifully.
+              </p>
+              <span class="tagline">Bridal-forward · Houston luxury</span>
+              <div class="actions">
+                <a class="btn primary" href="/" data-scroll-target="book">Request Wedding Quote</a>
+                <a class="btn champagne" href="/" data-scroll-target="bridal">Why Brides Choose Us</a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="bridal-panel" id="bridal">
+            <div class="eyebrow rose">For Your Wedding Day</div>
+            <h2>Your wedding bar, elevated.</h2>
+            <p>
+              From rehearsal dinners to reception toasts — curated cocktails, champagne-forward pours,
+              and bar styling that matches your palette, not a generic package.
+            </p>
+            <div class="photo-placeholder" aria-hidden="true">
+              Bridal bar styling · champagne tower · signature cocktail menu
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="/" data-scroll-target="book">Plan My Wedding Bar</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-brides">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Why Brides Choose Houston Sip Queen</div>
+          <h2>Not another generic bartender listing.</h2>
+          <p>
+            You are comparing dozens of options. Houston Sip Queen is built for hosts who want the bar
+            to feel designed — feminine, elevated, and unmistakably yours.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card bridal">
+            <span class="badge gold">Bridal Detail</span>
+            <h3>Curated, not copied</h3>
+            <p>Menus shaped around your colors, season, and celebration — not a one-size-fits-all drink list.</p>
+          </article>
+          <article class="card bridal">
+            <span class="badge gold">Presentation</span>
+            <h3>Photo-ready bar styling</h3>
+            <p>Glassware, garnishes, and a polished setup that belongs in your wedding photos and guest stories.</p>
+          </article>
+          <article class="card bridal">
+            <span class="badge gold">Hosting</span>
+            <h3>You enjoy your day</h3>
+            <p>We handle service flow, setup guidance, and breakdown so you are hosting — not managing the bar.</p>
+          </article>
+          <article class="card bridal">
+            <span class="badge gold">Houston</span>
+            <h3>Local, mobile, flexible</h3>
+            <p>Venue limitations, backyard receptions, and private estates — we bring the bar experience to you.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Services</div>
+          <h2>Mobile bartending with style.</h2>
+          <p>
+            We help hosts create a smooth bar experience without the stress: setup guidance,
+            signature drink planning, service flow, and cleanup support.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card feature">
+            <span class="badge">Service</span>
+            <h3>Bartender Service</h3>
+            <p>Professional event bartending for private celebrations and hosted gatherings.</p>
+          </article>
+
+          <article class="card">
+            <span class="badge">Menus</span>
+            <h3>Signature Cocktails</h3>
+            <p>Custom drink menu ideas based on your event theme, crowd, and vibe.</p>
+          </article>
+
+          <article class="card">
+            <span class="badge">Mocktails</span>
+            <h3>Mocktail Bar</h3>
+            <p>Non-alcoholic sips for guests who want something pretty without alcohol.</p>
+          </article>
+
+          <article class="card">
+            <span class="badge">Setup</span>
+            <h3>Bar Setup + Breakdown</h3>
+            <p>Bar tools, garnish planning, mixer guidance, and a cleaner event flow.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Packages</div>
+          <h2>Choose the sip setup.</h2>
+          <p>Final quote depends on guest count, location, hours, setup needs, and event type.</p>
+        </div>
+
+        <div class="packages">
+          <article class="card">
+            <span class="badge">Starter</span>
+            <h3>Queen Pour</h3>
+            <p>Simple bartender service for smaller private gatherings.</p>
+            <ul>
+              <li>Basic bar setup guidance</li>
+              <li>Host-provided alcohol</li>
+              <li>Simple mixer and garnish list</li>
+              <li>Service for private events</li>
+            </ul>
+            <div class="price">Request quote</div>
+          </article>
+
+          <article class="card feature">
+            <span class="badge">Popular</span>
+            <h3>Sip Queen Experience</h3>
+            <p>Best for showers, girls' nights, rehearsal dinners, and stylish private parties.</p>
+            <ul>
+              <li>Custom drink menu ideas</li>
+              <li>Shopping list guidance</li>
+              <li>Garnish and mixer planning</li>
+              <li>Bar setup and breakdown support</li>
+            </ul>
+            <div class="price">Request quote</div>
+          </article>
+
+          <article class="card bridal">
+            <span class="badge gold">Wedding</span>
+            <h3>Royal Event Bar</h3>
+            <p>For weddings, corporate mixers, larger celebrations, and elevated events.</p>
+            <ul>
+              <li>Event flow planning</li>
+              <li>Signature cocktail planning</li>
+              <li>Mocktail option support</li>
+              <li>Multi-hour service quote</li>
+            </ul>
+            <div class="price">Custom quote</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="events">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Events</div>
+          <h2>Built for Houston celebrations.</h2>
+        </div>
+
+        <div class="grid">
+          <article class="card bridal"><h3>Weddings</h3><p>Reception and private wedding bartending with planned service flow and bridal-ready presentation.</p></article>
+          <article class="card bridal"><h3>Bridal Showers</h3><p>Champagne-forward bars, blush palettes, and mocktail options for every guest.</p></article>
+          <article class="card"><h3>Birthdays</h3><p>Pretty drinks, smooth service, and a bar setup that matches the celebration.</p></article>
+          <article class="card"><h3>Corporate Mixers</h3><p>Professional bar service for networking events and private company gatherings.</p></article>
+          <article class="card"><h3>Backyard Parties</h3><p>Hosted home events with a cleaner, more organized drink experience.</p></article>
+          <article class="card"><h3>Girls' Night</h3><p>Fun signature sips, photo-ready garnishes, and a polished bar vibe.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="security">
+      <div class="wrap">
+        <div class="security-card">
+          <div class="eyebrow">Security Partner Advantage</div>
+          <h2>Discounted security coordination when regulations require it.</h2>
+          <p>
+            Some private events in Texas and the Houston area must meet security requirements set by law,
+            local ordinance, or venue policy. For qualifying bookings, Houston Sip Queen can connect you
+            with vetted security partners at a coordinated discount — so bar service and security planning
+            stay on one timeline.
+          </p>
+          <ul>
+            <li>Help identifying when your event type or venue may require licensed security</li>
+            <li>Introduction to independent security partners (not provided directly by Houston Sip Queen)</li>
+            <li>Coordinated pricing for hosts booking bar service through Houston Sip Queen</li>
+          </ul>
+          <p class="disclaimer">
+            <strong>Important:</strong> Event hosts remain responsible for confirming and meeting all legal,
+            venue, and permit requirements. Houston Sip Queen provides mobile bartending service only;
+            security services are arranged through independent licensed partners. Discount availability
+            depends on event date, location, and partner capacity. Ask about security coordination when you request a quote.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="/" data-scroll-target="book">Request Quote with Security Coordination</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="compliance">
+      <div class="wrap">
+        <div class="notice">
+          <div class="eyebrow">Alcohol Policy</div>
+          <h2>Host provides alcohol.</h2>
+          <p>
+            Houston Sip Queen provides mobile bartending service, setup support, drink menu planning,
+            mixer and garnish guidance, and event service. The host is responsible for purchasing
+            and providing alcohol for the event unless a separate licensed arrangement is confirmed.
+          </p>
+          <ul>
+            <li>We do not sell alcohol directly through this website.</li>
+            <li>Service is reviewed before booking.</li>
+            <li>Guests must be of legal drinking age to consume alcohol.</li>
+            <li>We reserve the right to refuse unsafe service.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="book">
+      <div class="wrap">
+        <div class="contact-card">
+          <div class="eyebrow">Book Houston Sip Queen</div>
+          <h2>Tell us about your event.</h2>
+          <p>
+            Send the date, location, guest count, event type, service hours, and the kind of bar vibe you want.
+            Mention if you may need security coordination for your venue or event type.
+          </p>
+
+          <div class="fields">
+            <div class="field">Event date</div>
+            <div class="field">Houston-area location</div>
+            <div class="field">Guest count</div>
+            <div class="field">Event type: wedding, shower, birthday, corporate, private party</div>
+            <div class="field">Service needed: bartender, signature menu, mocktails, setup support, security coordination</div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="mailto:dadudekc@gmail.com?subject=Houston%20Sip%20Queen%20Booking%20Request">Email Booking Request</a>
+            <a class="btn" href="/" data-scroll-target="packages">Review Packages</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Houston Sip Queen · Luxury mobile bartending for Houston-area weddings and private events.
+    </div>
+  </footer>
+  <script>
+(function () {
+  function findScrollTarget(el) {
+    while (el && el !== document) {
+      if (el.getAttribute && el.getAttribute("data-scroll-target")) {
+        return el;
+      }
+      el = el.parentNode;
+    }
+    return null;
+  }
+
+  document.addEventListener("click", function (event) {
+    var trigger = findScrollTarget(event.target);
+    if (!trigger) return;
+
+    var targetId = trigger.getAttribute("data-scroll-target");
+    var target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+  </script>
+</body>
+</html>

@@ -46,7 +46,7 @@
             <!-- CTA Button -->
             <div class="header-cta">
                 <a href="<?php echo esc_url(home_url('/quote')); ?>" class="btn-request-quote">
-                    Request a Quote
+                    Book Your Event
                 </a>
             </div>
 
@@ -73,8 +73,7 @@ function houstonsipqueen_default_menu() {
         <li><a href="<?php echo esc_url(home_url('/blog')); ?>">Blog</a></li>
         <li><a href="<?php echo esc_url(home_url('/faq')); ?>">FAQ</a></li>
         <li><a href="<?php echo esc_url(home_url('/portfolio')); ?>">Portfolio</a></li>
-        <li><a href="<?php echo esc_url(home_url('/testimonials')); ?>">Testimonials</a></li>
-        <li><a href="<?php echo esc_url(home_url('/quote')); ?>">Request a Quote</a></li>
+        <li><a href="<?php echo esc_url(home_url('/quote')); ?>">Book Your Event</a></li>
     </ul>
     <?php
 }

@@ -35,10 +35,9 @@
                 <div class="footer-column">
                     <h3>Get Started</h3>
                     <ul class="footer-menu">
-                        <li><a href="<?php echo esc_url(home_url('/quote')); ?>">Request a Quote</a></li>
-                        <li><a href="<?php echo esc_url(home_url('/book')); ?>">Book Consultation</a></li>
-                        <li><a href="<?php echo esc_url(home_url('/event-bar-checklist')); ?>">Free Checklist</a></li>
-                        <li><a href="<?php echo esc_url(home_url('/contact')); ?>">Contact</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/quote')); ?>">Book Your Event</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/event-planning-guide')); ?>">Free Planning Guide</a></li>
+                        <li><a href="https://www.instagram.com/houston_sipqueen/" target="_blank" rel="noopener noreferrer">@houston_sipqueen</a></li>
                     </ul>
                 </div>
 
@@ -61,16 +60,17 @@
                 </div>
             </div>
 
+            <div class="footer-policy">
+                <?php houstonsipqueen_alcohol_policy_notice(); ?>
+            </div>
+
             <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <div class="footer-copyright">
                     <p>&copy; <?php echo date('Y'); ?> Houston Sip Queen. All rights reserved.</p>
                 </div>
                 <div class="footer-social">
-                    <?php
-                    // Social media links can be added here
-                    // Example: <a href="#" class="social-link">Facebook</a>
-                    ?>
+                    <a href="https://www.instagram.com/houston_sipqueen/" class="social-link" target="_blank" rel="noopener noreferrer">Instagram</a>
                 </div>
             </div>
         </div>

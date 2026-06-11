@@ -69,6 +69,19 @@ function houstonsipqueen_widgets_init() {
 add_action('widgets_init', 'houstonsipqueen_widgets_init');
 
 /**
+ * Alcohol service policy notice (host-provided alcohol; no sales).
+ */
+function houstonsipqueen_alcohol_policy_notice() {
+    ?>
+    <p class="alcohol-policy-notice">
+        <strong>Service Policy:</strong> Houston Sip Queen provides mobile bartending services only&mdash;we do not sell or supply alcohol.
+        The host is responsible for providing all alcoholic beverages. All guests must be of legal drinking age (21+).
+        Service may be refused if conditions are unsafe or guests are underage.
+    </p>
+    <?php
+}
+
+/**
  * Create Quote Page if it doesn't exist
  */
 function houstonsipqueen_create_quote_page() {
@@ -109,8 +122,15 @@ function houstonsipqueen_handle_quote_form() {
     $email = sanitize_email($_POST['quote_email'] ?? '');
     $phone = sanitize_text_field($_POST['quote_phone'] ?? '');
     $event_date = sanitize_text_field($_POST['event_date'] ?? '');
+    $event_location = sanitize_text_field($_POST['event_location'] ?? '');
     $event_type = sanitize_text_field($_POST['event_type'] ?? '');
     $guest_count = sanitize_text_field($_POST['guest_count'] ?? '');
+    $service_hours = sanitize_text_field($_POST['service_hours'] ?? '');
+    $alcohol_provided = sanitize_text_field($_POST['alcohol_provided'] ?? '');
+    $need_mocktails = sanitize_text_field($_POST['need_mocktails'] ?? '');
+    $need_signature_menu = sanitize_text_field($_POST['need_signature_menu'] ?? '');
+    $budget_range = sanitize_text_field($_POST['budget_range'] ?? '');
+    $instagram_handle = sanitize_text_field($_POST['instagram_handle'] ?? '');
     $message = sanitize_textarea_field($_POST['quote_message'] ?? '');
 
     // Validation
@@ -143,14 +163,35 @@ function houstonsipqueen_handle_quote_form() {
     if (!empty($event_date)) {
         $email_message .= "Event Date: {$event_date}\n";
     }
+    if (!empty($event_location)) {
+        $email_message .= "Location/ZIP: {$event_location}\n";
+    }
     if (!empty($event_type)) {
         $email_message .= "Event Type: {$event_type}\n";
     }
     if (!empty($guest_count)) {
         $email_message .= "Guest Count: {$guest_count}\n";
     }
+    if (!empty($service_hours)) {
+        $email_message .= "Service Hours: {$service_hours}\n";
+    }
+    if (!empty($alcohol_provided)) {
+        $email_message .= "Alcohol Provided by Host: {$alcohol_provided}\n";
+    }
+    if (!empty($need_mocktails)) {
+        $email_message .= "Need Mocktails: {$need_mocktails}\n";
+    }
+    if (!empty($need_signature_menu)) {
+        $email_message .= "Need Signature Menu: {$need_signature_menu}\n";
+    }
+    if (!empty($budget_range)) {
+        $email_message .= "Budget Range: {$budget_range}\n";
+    }
+    if (!empty($instagram_handle)) {
+        $email_message .= "Instagram Handle: {$instagram_handle}\n";
+    }
     if (!empty($message)) {
-        $email_message .= "\nMessage:\n{$message}\n";
+        $email_message .= "\nAdditional Details:\n{$message}\n";
     }
     $email_message .= "\n---\n";
     $email_message .= "Submitted: " . date('F j, Y, g:i a') . "\n";

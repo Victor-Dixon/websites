@@ -24,12 +24,15 @@ Tags: business, events, bartending, one-column, custom-menu, featured-images, th
     --primary-color: #002D62; /* Astros Navy Blue */
     --secondary-color: #EB6E1F; /* Astros Orange */
     --accent-color: #EB6E1F; /* Astros Orange accent */
+    --blush: #f4d4d0;
+    --rose-gold: #b76e79;
+    --champagne: #f7e7ce;
     --text-color: #333333;
     --light-bg: #f8f9fa;
     --white: #ffffff;
     --dark: #000000;
-    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-heading: Georgia, 'Times New Roman', serif;
+    --font-primary: 'Source Sans 3', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
 }
 
 body {
@@ -310,6 +313,24 @@ body {
     background-color: var(--accent-color);
 }
 
+.btn-secondary {
+    background-color: transparent;
+    color: var(--white);
+    padding: 1rem 2rem;
+    border: 2px solid var(--white);
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--white);
+    color: var(--secondary-color);
+}
+
 .btn-large {
     padding: 1.25rem 2.5rem;
     font-size: 1.2rem;
@@ -368,24 +389,98 @@ body {
    HOMEPAGE HERO SECTION
    ============================================ */
 .hero-section {
-    background-color: var(--secondary-color);
+    background: linear-gradient(145deg, #061833, var(--primary-color));
     color: var(--white);
     padding: 5rem 0;
-    text-align: center;
 }
 
-.hero-content {
-    max-width: 800px;
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
+.hero-content {
+    max-width: none;
+    padding: 2rem;
+    border-radius: 24px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(247,231,206,.2);
+}
+
+.hero-eyebrow {
+    color: var(--champagne);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    font-size: .78rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-eyebrow.bridal {
+    color: var(--blush);
+}
+
 .hero-title {
-    font-size: 2.5rem;
-    font-weight: bold;
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 600;
     margin-bottom: 1.5rem;
     color: var(--white);
-    line-height: 1.2;
+    line-height: 1.05;
+}
+
+.hero-title em {
+    font-style: italic;
+    color: var(--champagne);
+}
+
+.hero-tagline {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: .4rem .8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(247,231,206,.28);
+    background: rgba(183,110,121,.14);
+    color: var(--champagne);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.bridal-panel {
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid rgba(247,231,206,.28);
+    background: linear-gradient(160deg, rgba(183,110,121,.22), rgba(244,212,208,.08));
+}
+
+.bridal-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.bridal-placeholder {
+    margin: 1.25rem 0;
+    min-height: 160px;
+    border-radius: 18px;
+    border: 1px dashed rgba(247,231,206,.35);
+    background: rgba(6,24,51,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    color: var(--champagne);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
 }
 
 .hero-subtitle {
@@ -579,48 +674,229 @@ body {
 }
 
 /* ============================================
-   SOCIAL PROOF SECTION
+   PACKAGES SECTION
    ============================================ */
-.social-proof-section {
+.packages-section {
     padding: 4rem 0;
     background-color: var(--white);
 }
 
-.social-proof-section h2 {
+.packages-section h2,
+.trust-section h2 {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     color: var(--secondary-color);
 }
 
-.testimonials-grid {
+.section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    color: var(--text-color);
+}
+
+.packages-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto 1.5rem;
+}
+
+.package-card {
+    background-color: var(--light-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.package-card:hover,
+.package-featured {
+    border-color: var(--primary-color);
+}
+
+.package-card h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.package-price {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.package-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.package-card li {
+    padding: 0.35rem 0 0.35rem 1.25rem;
+    position: relative;
+}
+
+.package-card li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* ============================================
+   WHY BRIDES SECTION
+   ============================================ */
+.why-brides-section {
+    padding: 4rem 0;
+    background: linear-gradient(180deg, #fff8f4, var(--white));
+}
+
+.why-brides-section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--rose-gold);
+    font-family: var(--font-heading);
+}
+
+.why-brides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
     max-width: 1000px;
     margin: 0 auto;
 }
 
-.testimonial {
-    background-color: var(--light-bg);
-    padding: 2rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--primary-color);
-    margin: 0;
+.why-brides-item {
+    background: var(--white);
+    padding: 1.75rem;
+    border-radius: 12px;
+    border: 1px solid rgba(183,110,121,.2);
+    box-shadow: 0 8px 24px rgba(0,45,98,.06);
 }
 
-.testimonial p {
-    font-style: italic;
+.why-brides-item h3 {
+    color: var(--primary-color);
+    font-family: var(--font-heading);
+}
+
+/* ============================================
+   SECURITY PARTNER SECTION
+   ============================================ */
+.security-partner-section {
+    padding: 4rem 0;
+    background-color: var(--primary-color);
+}
+
+.security-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(247,231,206,.28);
+    background: rgba(255,255,255,.06);
+    color: var(--white);
+}
+
+.security-card h2 {
+    font-family: var(--font-heading);
+    color: var(--white);
     margin-bottom: 1rem;
-    font-size: 1.1rem;
-    line-height: 1.6;
 }
 
-.testimonial cite {
-    display: block;
-    text-align: right;
-    font-style: normal;
+.security-card ul {
+    margin: 1rem 0;
+    padding-left: 1.25rem;
+}
+
+.security-disclaimer {
+    margin: 1.25rem 0 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,.15);
+    font-size: .92rem;
+    opacity: .92;
+}
+
+/* ============================================
+   TRUST SECTION
+   ============================================ */
+.trust-section {
+    padding: 4rem 0;
+    background-color: var(--light-bg);
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+}
+
+.trust-item {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.trust-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+}
+
+.instagram-cta {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.instagram-cta p {
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   ALCOHOL POLICY NOTICE
+   ============================================ */
+.alcohol-policy-notice {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 1rem auto 0;
+    max-width: 700px;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    text-align: left;
+}
+
+.hero-section .alcohol-policy-notice,
+.cta-section .alcohol-policy-notice {
+    color: var(--white);
+}
+
+.quote-form-section .alcohol-policy-notice,
+.packages-section .alcohol-policy-notice {
+    background-color: var(--white);
+    border: 1px solid #ddd;
     color: var(--text-color);
+}
+
+.footer-policy .alcohol-policy-notice {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    margin-bottom: 1.5rem;
+}
+
+.footer-social .social-link {
+    color: var(--white);
+    text-decoration: none;
     font-weight: 600;
+}
+
+.footer-social .social-link:hover {
+    text-decoration: underline;
 }
 
 /* ============================================
@@ -851,6 +1127,10 @@ body {
 
 /* Mobile Responsive for New Sections */
 @media (max-width: 768px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
@@ -866,7 +1146,9 @@ body {
     .outcomes-grid,
     .offer-ladder,
     .services-grid,
-    .testimonials-grid {
+    .packages-grid,
+    .trust-grid,
+    .why-brides-grid {
         grid-template-columns: 1fr;
     }
     
