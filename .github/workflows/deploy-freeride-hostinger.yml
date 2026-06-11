@@ -11,16 +11,6 @@ on:
         options:
           - production
           - staging
-  push:
-    branches:
-      - cursor/deploy-freeride-static-5df3
-    paths:
-      - .github/workflows/deploy-freeride-hostinger.yml
-      - runtime/config/website_deploy_modes.yaml
-      - runtime/content/freerideinvestor.com/**
-      - runtime/scripts/hostinger_deploy_target_guard.py
-      - runtime/scripts/hostinger_static_deploy_guarded.py
-      - runtime/scripts/validate_website_deploy_modes.py
 
 jobs:
   deploy:
