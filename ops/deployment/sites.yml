@@ -80,7 +80,7 @@ sites:
     path: websites/weareswarm.online
     deployer: unified
     verify_url: https://weareswarm.online/.well-known/deploy.json
-    remote_root: public_html/weareswarm.online  # Addon domain
+    remote_root: domains/weareswarm.online/public_html
     enabled: true
     deploy_method: sftp
     deploy_files:

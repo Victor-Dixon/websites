@@ -46,6 +46,21 @@
     sampleTasks: [],
   };
 
+  var dragState = {
+    taskId: null,
+    isDragging: false,
+    suppressClick: false,
+  };
+
+  var touchDrag = {
+    taskId: null,
+    startX: 0,
+    startY: 0,
+    active: false,
+    clone: null,
+    hoverColumn: null,
+  };
+
   function $(id) {
     return document.getElementById(id);
   }
@@ -168,6 +183,265 @@
     return lines.join("\n");
   }
 
+  function validateStatusMove(task, newStatus) {
+    if (!task || newStatus === task.status) return { ok: false, reason: "same" };
+
+    if (!task.parent_approved && task.status === "parked" && newStatus !== "parked") {
+      return {
+        ok: false,
+        reason: "Parent must approve before moving this task out of Parked.",
+      };
+    }
+
+    if (
+      (newStatus === "claimed" || newStatus === "in_progress") &&
+      getCurrentUser() === "Guest"
+    ) {
+      return {
+        ok: false,
+        reason: "Select who is working (not Guest) to claim or start tasks.",
+      };
+    }
+
+    if (
+      (newStatus === "claimed" || newStatus === "in_progress") &&
+      !task.parent_approved
+    ) {
+      return { ok: false, reason: "Parent has not approved this task yet." };
+    }
+
+    var ownedStatuses = [
+      "claimed",
+      "in_progress",
+      "waiting_on_agent",
+      "ready_for_review",
+      "done",
+      "parked",
+    ];
+    if (
+      ownedStatuses.indexOf(task.status) >= 0 &&
+      task.kid_owner &&
+      task.kid_owner !== getCurrentUser()
+    ) {
+      return { ok: false, reason: "Only " + task.kid_owner + " can move this task." };
+    }
+
+    if (newStatus === "parked" && task.kid_owner && task.kid_owner !== getCurrentUser()) {
+      return { ok: false, reason: "Only the task owner can park it." };
+    }
+
+    return { ok: true };
+  }
+
+  function moveTaskToStatus(taskId, newStatus, options) {
+    options = options || {};
+    var task = findTask(taskId);
+    if (!task) return false;
+
+    var check = validateStatusMove(task, newStatus);
+    if (!check.ok) {
+      if (check.reason && check.reason !== "same") toast(check.reason);
+      return false;
+    }
+
+    var prev = task.status;
+    task.status = newStatus;
+
+    if (
+      newStatus === "claimed" ||
+      (prev === "available" &&
+        newStatus !== "available" &&
+        newStatus !== "parked" &&
+        getCurrentUser() !== "Guest")
+    ) {
+      if (!task.kid_owner) task.kid_owner = getCurrentUser();
+    }
+
+    if (newStatus === "available") {
+      task.kid_owner = null;
+    }
+
+    persistTasks();
+    renderKanban();
+    if (state.selectedTaskId === task.id) renderDetail();
+    if (options.silent !== true) {
+      toast("Moved to " + newStatus.replace(/_/g, " "));
+    }
+    return true;
+  }
+
+  function clearDragHighlights() {
+    document.querySelectorAll(".kanban-column.drag-over").forEach(function (el) {
+      el.classList.remove("drag-over");
+    });
+    document.querySelectorAll(".kanban-cards.drag-over").forEach(function (el) {
+      el.classList.remove("drag-over");
+    });
+  }
+
+  function highlightDropColumn(columnEl) {
+    clearDragHighlights();
+    if (!columnEl) {
+      touchDrag.hoverColumn = null;
+      return;
+    }
+    touchDrag.hoverColumn = columnEl;
+    columnEl.classList.add("drag-over");
+    var list = columnEl.querySelector(".kanban-cards");
+    if (list) list.classList.add("drag-over");
+  }
+
+  function cleanupTouchDrag() {
+    document.querySelectorAll(".task-card.dragging").forEach(function (el) {
+      el.classList.remove("dragging");
+    });
+    if (touchDrag.clone && touchDrag.clone.parentNode) {
+      touchDrag.clone.parentNode.removeChild(touchDrag.clone);
+    }
+    touchDrag.clone = null;
+    touchDrag.active = false;
+    touchDrag.hoverColumn = null;
+    clearDragHighlights();
+  }
+
+  function setupDragDrop() {
+    var board = $("kanban-board");
+    if (!board || board.dataset.dragBound) return;
+    board.dataset.dragBound = "1";
+
+    board.addEventListener("dragstart", function (e) {
+      var card = e.target.closest(".task-card");
+      if (!card || !card.draggable) return;
+      dragState.taskId = card.dataset.taskId;
+      dragState.isDragging = true;
+      card.classList.add("dragging");
+      card.setAttribute("aria-grabbed", "true");
+      if (e.dataTransfer) {
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.setData("text/plain", dragState.taskId);
+        if (e.dataTransfer.setDragImage) {
+          var ghost = card.cloneNode(true);
+          ghost.classList.add("drag-ghost-clone");
+          ghost.style.width = card.offsetWidth + "px";
+          document.body.appendChild(ghost);
+          e.dataTransfer.setDragImage(ghost, card.offsetWidth / 2, 20);
+          setTimeout(function () {
+            if (ghost.parentNode) ghost.parentNode.removeChild(ghost);
+          }, 0);
+        }
+      }
+    });
+
+    board.addEventListener("dragend", function (e) {
+      var card = e.target.closest(".task-card");
+      if (card) {
+        card.classList.remove("dragging");
+        card.setAttribute("aria-grabbed", "false");
+      }
+      dragState.isDragging = false;
+      dragState.taskId = null;
+      clearDragHighlights();
+      dragState.suppressClick = true;
+      setTimeout(function () {
+        dragState.suppressClick = false;
+      }, 100);
+    });
+
+    board.addEventListener("dragover", function (e) {
+      if (!dragState.taskId) return;
+      var col = e.target.closest(".kanban-column");
+      if (!col) return;
+      e.preventDefault();
+      if (e.dataTransfer) e.dataTransfer.dropEffect = "move";
+      highlightDropColumn(col);
+    });
+
+    board.addEventListener("dragleave", function (e) {
+      var col = e.target.closest(".kanban-column");
+      if (!col) return;
+      var related = e.relatedTarget;
+      if (related && col.contains(related)) return;
+      col.classList.remove("drag-over");
+      var list = col.querySelector(".kanban-cards");
+      if (list) list.classList.remove("drag-over");
+    });
+
+    board.addEventListener("drop", function (e) {
+      e.preventDefault();
+      var col = e.target.closest(".kanban-column");
+      clearDragHighlights();
+      if (!col || !dragState.taskId) return;
+      moveTaskToStatus(dragState.taskId, col.dataset.status);
+      dragState.taskId = null;
+      dragState.isDragging = false;
+    });
+
+    board.addEventListener(
+      "touchstart",
+      function (e) {
+        var card = e.target.closest(".task-card");
+        if (!card || e.touches.length !== 1) return;
+        touchDrag.taskId = card.dataset.taskId;
+        touchDrag.startX = e.touches[0].clientX;
+        touchDrag.startY = e.touches[0].clientY;
+        touchDrag.active = false;
+      },
+      { passive: true }
+    );
+
+    board.addEventListener(
+      "touchmove",
+      function (e) {
+        if (!touchDrag.taskId) return;
+        var touch = e.touches[0];
+        var dx = touch.clientX - touchDrag.startX;
+        var dy = touch.clientY - touchDrag.startY;
+        if (!touchDrag.active && (Math.abs(dx) > 14 || Math.abs(dy) > 14)) {
+          touchDrag.active = true;
+          var card = board.querySelector('[data-task-id="' + touchDrag.taskId + '"]');
+          if (card) {
+            card.classList.add("dragging");
+            touchDrag.clone = card.cloneNode(true);
+            touchDrag.clone.classList.add("touch-drag-ghost");
+            touchDrag.clone.style.width = card.offsetWidth + "px";
+            document.body.appendChild(touchDrag.clone);
+          }
+        }
+        if (touchDrag.active) {
+          e.preventDefault();
+          if (touchDrag.clone) {
+            touchDrag.clone.style.left = touch.clientX - 40 + "px";
+            touchDrag.clone.style.top = touch.clientY - 24 + "px";
+          }
+          var el = document.elementFromPoint(touch.clientX, touch.clientY);
+          highlightDropColumn(el ? el.closest(".kanban-column") : null);
+        }
+      },
+      { passive: false }
+    );
+
+    board.addEventListener("touchend", function (e) {
+      if (!touchDrag.taskId) return;
+      if (touchDrag.active) {
+        if (touchDrag.hoverColumn) {
+          moveTaskToStatus(touchDrag.taskId, touchDrag.hoverColumn.dataset.status);
+          dragState.suppressClick = true;
+          setTimeout(function () {
+            dragState.suppressClick = false;
+          }, 200);
+        }
+        cleanupTouchDrag();
+        e.preventDefault();
+      }
+      touchDrag.taskId = null;
+    });
+
+    board.addEventListener("touchcancel", function () {
+      cleanupTouchDrag();
+      touchDrag.taskId = null;
+    });
+  }
+
   function renderKanban() {
     var board = $("kanban-board");
     if (!board) return;
@@ -193,10 +467,10 @@
 
       if (!cards.length) {
         var empty = document.createElement("p");
-        empty.className = "empty-state";
+        empty.className = "empty-state kanban-drop-hint";
         empty.style.fontSize = "0.8rem";
         empty.style.padding = "0.5rem";
-        empty.textContent = "No tasks";
+        empty.textContent = "Drop tasks here";
         list.appendChild(empty);
       }
 
@@ -205,6 +479,10 @@
         card.className = "task-card";
         if (task.id === state.selectedTaskId) card.classList.add("selected");
         card.dataset.taskId = task.id;
+        card.draggable = true;
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-grabbed", "false");
+        card.title = "Drag to another column or tap to open";
 
         var title = document.createElement("h3");
         title.className = "task-card-title";
@@ -237,7 +515,14 @@
           card.appendChild(skills);
         }
 
+        var grip = document.createElement("span");
+        grip.className = "task-card-grip";
+        grip.setAttribute("aria-hidden", "true");
+        grip.textContent = "⠿";
+        card.appendChild(grip);
+
         card.addEventListener("click", function () {
+          if (dragState.suppressClick || dragState.isDragging || touchDrag.active) return;
           selectTask(task.id);
         });
 
@@ -361,12 +646,9 @@
       toast("Cannot claim this task");
       return;
     }
-    task.status = "claimed";
-    task.kid_owner = getCurrentUser();
-    persistTasks();
-    renderKanban();
-    renderDetail();
-    toast("Task claimed!");
+    if (moveTaskToStatus(task.id, "claimed", { silent: true })) {
+      toast("Task claimed!");
+    }
   }
 
   function moveTaskNext() {
@@ -374,22 +656,16 @@
     if (!task || task.kid_owner !== getCurrentUser()) return;
     var idx = STATUS_FLOW.indexOf(task.status);
     if (idx >= 0 && idx < STATUS_FLOW.length - 1) {
-      task.status = STATUS_FLOW[idx + 1];
-      persistTasks();
-      renderKanban();
-      renderDetail();
-      toast("Moved to " + task.status.replace(/_/g, " "));
+      moveTaskToStatus(task.id, STATUS_FLOW[idx + 1]);
     }
   }
 
   function parkTask() {
     var task = findTask(state.selectedTaskId);
     if (!task || task.kid_owner !== getCurrentUser()) return;
-    task.status = "parked";
-    persistTasks();
-    renderKanban();
-    renderDetail();
-    toast("Task parked");
+    if (moveTaskToStatus(task.id, "parked", { silent: true })) {
+      toast("Task parked");
+    }
   }
 
   function clockIn() {
@@ -720,6 +996,7 @@
 
     $("kid-select").value = state.currentUser;
     bindEvents();
+    setupDragDrop();
 
     loadTasks().then(function () {
       renderKanban();

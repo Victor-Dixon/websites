@@ -15,15 +15,28 @@
 
 - **Deploy root (sites.yml):** `D:\websites\websites\weareswarm.online`
 - **Production overlays:** `D:\websites\sites\production\websites\weareswarm.online`
-- **Remote:** `public_html/weareswarm.online` on Hostinger (SFTP)
+- **Remote:** `domains/weareswarm.online/public_html` on Hostinger (SFTP)
 
-## Refresh planner data
+## Refresh planner data (agents — required after planner edits)
 
 ```powershell
-python D:\DreamVault\runtime\scripts\sync_planner_reports_to_weareswarm_online_001.py
+python D:\DreamVault\runtime\scripts\publish_planner_to_weareswarm_001.py
 ```
 
-Copies public-safe JSON from `D:\DreamVault\data\reports\planner\` when present; regenerates `spark_panel.json` and `manifest.json`.
+Or:
+
+```powershell
+cd D:\websites
+.\ops\deployment\auto_publish_planner.ps1
+```
+
+Pipeline: dynamic planner refresh (if module present) → `sync_planner_reports` `--local-only` → `unified_deployer` for `weareswarm.online`. Exit **2** = creds missing (local preview only).
+
+Local sync only (no deploy):
+
+```powershell
+python D:\DreamVault\runtime\scripts\sync_planner_reports_to_weareswarm_online_001.py --local-only
+```
 
 ## Deploy manifest
 
@@ -46,18 +59,48 @@ python ops\deployment\unified_deployer.py --site weareswarm.online --dry-run
 
 ## Deploy
 
+**Recommended (secure creds):**
+
+```powershell
+cd D:\websites
+.\ops\deployment\deploy_weareswarm.ps1
+```
+
+First run prompts for Hostinger SFTP password (`Read-Host -AsSecureString`). Save locally with:
+
+```powershell
+.\ops\deployment\deploy_weareswarm.ps1 -SaveCreds
+```
+
+Sync planner data then deploy:
+
+```powershell
+.\ops\deployment\deploy_weareswarm.ps1 -SyncFirst
+```
+
+**Direct (uses `config/site_configs.json` SFTP or `HOSTINGER_*` env):**
+
 ```powershell
 cd D:\websites
 python ops\deployment\unified_deployer.py --site weareswarm.online
 ```
+
+### Credentials
+
+| Source | Keys | Notes |
+|--------|------|-------|
+| `D:\websites\.env.deploy.local` | `HOSTINGER_HOST`, `HOSTINGER_USER`, `HOSTINGER_PASS`, `HOSTINGER_PORT` | **Preferred** — gitignored; copy from `.env.deploy.example` |
+| `D:\Agent_Cellphone_V2_Repository\.env` | `HOSTINGER_*` | Shared Hostinger account |
+| `config/site_configs.json` | `weareswarm.online.sftp.*` | Fallback if env unset |
+| WordPress REST (optional) | `SWARMONLINE_WP_*` | Not used for static SFTP deploy |
+
+`unified_deployer.py` does **not** prompt interactively — use `deploy_weareswarm.ps1` or set env before running Python.
 
 Or full pipeline:
 
 ```powershell
 python ops\deployment\deployment_pipeline.py --site weareswarm.online
 ```
-
-**Blocker (inventory):** `MISSING_FTP_ENV` — set `SWARMONLINE_*` / Hostinger FTP env per `docs/deployment/site_identity_map.json` before live upload.
 
 ## Verify
 

@@ -197,7 +197,7 @@
   },
   "weareswarm.online": {
     "site_url": "https://weareswarm.online",
-    "deployment_method": "rest_api",
+    "deployment_method": "sftp",
     "rest_api": {
       "username": "DadudeKC@Gmail.com",
       "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
@@ -228,8 +228,12 @@
       "websites/weareswarm.online/focus",
       "websites/weareswarm.online/projects",
       "websites/weareswarm.online/tasks",
+      "websites/weareswarm.online/skill-tree",
+      "websites/weareswarm.online/roadmap",
       "websites/weareswarm.online/feed",
+      "websites/weareswarm.online/kids-planner",
       "websites/weareswarm.online/data/planner",
+      "websites/weareswarm.online/data/kids-planner",
       "websites/weareswarm.online/data/shared"
     ]
   },
