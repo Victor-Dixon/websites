@@ -175,7 +175,7 @@
   }
 
   function allKidDisplayNames() {
-    return ["Aria", "Charlie"];
+    return ["Aria", "Charlie", "Chris"];
   }
 
   function getProfileForUser(user) {

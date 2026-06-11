@@ -1,0 +1,104 @@
+{
+  "schema": "dreamvault.kids_planner_tasks.v1",
+  "version": 1,
+  "generated_at": "2026-06-11T23:47:36+00:00",
+  "source": "runtime/tasks/*.yaml",
+  "export_script": "runtime/scripts/export_kids_planner_tasks_001.py",
+  "task_count": 2,
+  "skipped_count": 941,
+  "tasks": [
+    {
+      "id": "kids_agent_planner_mvp_001",
+      "title": "WeAreSwarm Kids Agent Planner MVP",
+      "source": "dreamvault_runtime_tasks",
+      "source_path": "runtime/tasks/kids_agent_planner_mvp_001.yaml",
+      "project": "WeAreSwarm",
+      "system": "weareswarm.online",
+      "lane": "websites",
+      "priority": "P0",
+      "status": "available",
+      "swarm_status": "in_progress",
+      "difficulty": "medium",
+      "estimated_minutes": 60,
+      "kid_owner": null,
+      "agent_type": "helper",
+      "skills": [
+        "websites",
+        "planning",
+        "web",
+        "communication"
+      ],
+      "parent_approved": true,
+      "kid_safe": true,
+      "objective": "Ship a kid-safe, static MVP planner at weareswarm.online/kids-planner/ so Aria and Charlie\ncan claim tasks, clock work, generate agent prompts, and log results \u2014 all in localStorage with\nno backend or secrets. Parents review work via parent_review status on work logs.",
+      "kid_instructions": "Open Kids Planner, pick your name, claim an approved task, generate the agent prompt,\npaste it into your agent chat, then save what happened in the work log.",
+      "owner": "",
+      "repo": "websites",
+      "public_summary": "Kids Agent Planner MVP \u2014 kid-safe task kanban with agent prompt generation on weareswarm.online.",
+      "agent_prompt_template": {
+        "PROJECT": "WeAreSwarm Kids Agent Planner on weareswarm.online",
+        "TASK": "Verify real Swarm tasks and prompt generation",
+        "OBJECTIVE": "Confirm exported kid-safe tasks load, claim works, and generated prompts match the task YAML.",
+        "RULES": "- Make small safe changes.\n- Do not delete unrelated files.\n- Do not touch secrets.\n- Explain errors clearly.\n- After each step, tell the kid what happened.\n- End with: Files Changed, Verification, Next Step.",
+        "ACTION": "Walk through claim \u2192 generate prompt \u2192 copy \u2192 work log on one exported task.",
+        "VERIFY": "Live JSON has no secrets; prompt includes PROJECT, TASK, OBJECTIVE, RULES, ACTION, VERIFY, CLOSEOUT.",
+        "CLOSEOUT": "Paste a short kid summary into the work log for parent review."
+      },
+      "points": 25,
+      "points_on_complete": 25,
+      "points_on_review": 12
+    },
+    {
+      "id": "projectscanner_dedup_authority_pipeline_001",
+      "title": "Use projectscanner analysis to drive Dream.OS deduplication",
+      "source": "dreamvault_runtime_tasks",
+      "source_path": "runtime/tasks/projectscanner_dedup_authority_pipeline_001.yaml",
+      "project": "projectscanner",
+      "system": "projectscanner",
+      "lane": "projectscanner",
+      "priority": "P0",
+      "status": "available",
+      "swarm_status": "ready",
+      "difficulty": "medium",
+      "estimated_minutes": 45,
+      "kid_owner": null,
+      "agent_type": "helper",
+      "skills": [
+        "projectscanner"
+      ],
+      "parent_approved": false,
+      "kid_safe": false,
+      "objective": "Convert projectscanner project_analysis output into a Dream.OS authority graph and cleanup manifest.\nThis makes deduplication evidence-driven instead of folder-by-folder guessing.",
+      "kid_instructions": "Read the objective. Ask a parent if unsure. Use Generate Prompt before pasting into your agent.",
+      "owner": "",
+      "repo": "DreamVault",
+      "public_summary": "Projectscanner will convert project analysis into a deduplication authority graph and cleanup manifest.",
+      "agent_prompt_template": {
+        "PROJECT": "projectscanner",
+        "TASK": "Use projectscanner analysis to drive Dream.OS deduplication",
+        "OBJECTIVE": "Convert projectscanner project_analysis output into a Dream.OS authority graph and cleanup manifest.\nThis makes deduplication evidence-driven instead of folder-by-folder guessing.",
+        "RULES": "- Make small safe changes.\n- Do not delete unrelated files.\n- Do not touch secrets.\n- Explain errors clearly.\n- After each step, tell the kid what happened.\n- End with: Files Changed, Verification, Next Step.",
+        "ACTION": "Help the kid complete this objective step by step: Projectscanner will convert project analysis into a deduplication authority graph and cleanup manifest.",
+        "VERIFY": "Confirm project_analysis input loads.; Confirm authority_graph_latest.json exists.; Confirm cleanup_manifest_latest.json exists.",
+        "CLOSEOUT": "Return a short report the kid can paste into the work log."
+      },
+      "points": 25,
+      "points_on_complete": 25,
+      "points_on_review": 12
+    }
+  ],
+  "public_safe": true,
+  "prompt_template_hint": {
+    "intro": "You are an agent working under a kid project manager.",
+    "kid_manager": "The kid will supervise you. Use simple explanations.",
+    "fields": [
+      "PROJECT",
+      "TASK",
+      "OBJECTIVE",
+      "RULES",
+      "ACTION",
+      "VERIFY",
+      "CLOSEOUT"
+    ]
+  }
+}

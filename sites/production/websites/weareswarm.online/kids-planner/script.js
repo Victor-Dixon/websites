@@ -6,6 +6,64 @@
     tasks: "kidsPlanner.tasks",
     worklogs: "kidsPlanner.worklogs",
     activeClock: "kidsPlanner.activeClock",
+    profiles: "kidsPlanner.profiles",
+  };
+
+  var DIFFICULTY_POINTS = {
+    beginner_manager: 10,
+    beginner: 10,
+    easy: 10,
+    intermediate: 25,
+    medium: 25,
+    advanced: 50,
+    hard: 50,
+    expert: 100,
+  };
+
+  var BADGES = {
+    first_claim: {
+      id: "first_claim",
+      name: "First Mission",
+      emoji: "🚀",
+      description: "Claim your first task",
+      points_required: 0,
+      trigger: "first_task_claimed",
+    },
+    agent_manager_10: {
+      id: "agent_manager_10",
+      name: "Agent Manager",
+      emoji: "⭐",
+      description: "Earn 10 Swarm Points",
+      points_required: 10,
+    },
+    agent_manager_50: {
+      id: "agent_manager_50",
+      name: "Supervisor",
+      emoji: "🌟",
+      description: "Earn 50 Swarm Points",
+      points_required: 50,
+    },
+    agent_manager_100: {
+      id: "agent_manager_100",
+      name: "Swarm Captain",
+      emoji: "👑",
+      description: "Earn 100 Swarm Points",
+      points_required: 100,
+    },
+    streak_3: {
+      id: "streak_3",
+      name: "3-Day Streak",
+      emoji: "🔥",
+      description: "Work 3 days in a row",
+      trigger: "streak_days_3",
+    },
+    celebrated_5: {
+      id: "celebrated_5",
+      name: "Star Performer",
+      emoji: "✨",
+      description: "Get 5 celebrated reviews",
+      trigger: "celebrated_count_5",
+    },
   };
 
   var COLUMNS = [
@@ -37,13 +95,25 @@
     /private_key/i,
   ];
 
+  var KIDS_TASKS_FEED = "/data/planner/kids_planner_tasks.json";
+  var DEFAULT_RULES =
+    "- Make small safe changes.\n" +
+    "- Do not delete unrelated files.\n" +
+    "- Do not touch secrets.\n" +
+    "- Explain errors clearly.\n" +
+    "- After each step, tell the kid what happened.\n" +
+    "- End with: Files Changed, Verification, Next Step.";
+
   var state = {
     tasks: [],
     worklogs: [],
-    currentUser: "Guest",
+    currentUser: "",
+    authSession: null,
     selectedTaskId: null,
     activeClock: null,
     sampleTasks: [],
+    rewards: [],
+    currentTab: "board",
   };
 
   var dragState = {
@@ -93,7 +163,23 @@
   }
 
   function getCurrentUser() {
-    return state.currentUser || "Guest";
+    return state.currentUser || "";
+  }
+
+  function isParent() {
+    return !!(state.authSession && state.authSession.role === "parent");
+  }
+
+  function isKid() {
+    return !!(state.authSession && state.authSession.role === "kid");
+  }
+
+  function allKidDisplayNames() {
+    return ["Aria", "Charlie", "Chris"];
+  }
+
+  function getProfileForUser(user) {
+    return getProfile(user || getCurrentUser());
   }
 
   function findTask(id) {
@@ -104,35 +190,77 @@
 
   function findWorklogForTask(taskId) {
     var logs = state.worklogs.filter(function (w) {
-      return w.task_id === taskId && w.kid_owner === getCurrentUser();
+      if (w.task_id !== taskId) return false;
+      if (isParent()) return true;
+      return w.kid_owner === getCurrentUser();
     });
     return logs.length ? logs[logs.length - 1] : null;
   }
 
-  function isKidSafeTask(task) {
-    if (!task || !task.parent_approved) return false;
+  function hasSecretMarkers(task) {
+    if (!task) return true;
     var blob = JSON.stringify(task);
-    return !KID_SAFE_BLOCKLIST.some(function (re) {
+    return KID_SAFE_BLOCKLIST.some(function (re) {
       return re.test(blob);
     });
   }
 
+  function isKidSafeTask(task) {
+    if (!task || !task.parent_approved) return false;
+    return !hasSecretMarkers(task);
+  }
+
+  function mapSwarmStatusToKanban(rawStatus) {
+    var s = String(rawStatus || "available").toLowerCase();
+    if (
+      s === "available" ||
+      s === "claimed" ||
+      s === "in_progress" ||
+      s === "waiting_on_agent" ||
+      s === "ready_for_review" ||
+      s === "done" ||
+      s === "parked"
+    ) {
+      return s;
+    }
+    if (s === "ready" || s === "active" || s === "pending" || s === "blocked" || s === "in_progress") {
+      return "available";
+    }
+    if (s === "complete" || s === "done" || s === "closed" || s === "cancelled" || s === "archived") {
+      return "done";
+    }
+    return "available";
+  }
+
   function normalizeTask(raw) {
+    var difficulty = raw.difficulty || "easy";
+    var points =
+      raw.points != null
+        ? Number(raw.points)
+        : DIFFICULTY_POINTS[String(difficulty).toLowerCase().replace(/[\s-]/g, "_")] || 10;
+    var reviewPts =
+      raw.points_on_review != null ? Number(raw.points_on_review) : Math.max(1, Math.floor(points / 2));
     return {
       id: raw.id,
       title: raw.title || "Untitled",
       source: raw.source || "weareswarm.online",
-      project: raw.project || "General",
-      status: raw.status || "available",
-      difficulty: raw.difficulty || "easy",
+      project: raw.project || raw.system || "General",
+      status: mapSwarmStatusToKanban(raw.status),
+      difficulty: difficulty,
       estimated_minutes: raw.estimated_minutes || 15,
       kid_owner: raw.kid_owner || null,
       agent_type: raw.agent_type || "helper",
       skills: Array.isArray(raw.skills) ? raw.skills : [],
-      parent_approved: raw.parent_approved !== false,
-      objective: raw.objective || "",
+      parent_approved: raw.parent_approved === true,
+      objective: raw.objective || raw.public_summary || "",
       kid_instructions: raw.kid_instructions || "",
       agent_prompt_template: raw.agent_prompt_template || {},
+      lane: raw.lane || "",
+      priority: raw.priority || "",
+      swarm_status: raw.swarm_status || raw.status || "",
+      points: points,
+      points_on_complete: raw.points_on_complete != null ? Number(raw.points_on_complete) : points,
+      points_on_review: reviewPts,
     };
   }
 
@@ -164,18 +292,27 @@
   function generateAgentPrompt(task) {
     var tpl = task.agent_prompt_template || {};
     var user = getCurrentUser();
+    var rules = tpl.RULES || DEFAULT_RULES;
     var lines = [
+      "You are an agent working under a kid project manager.",
+      "",
       "PROJECT: " + (tpl.PROJECT || task.project),
       "TASK: " + (tpl.TASK || task.title),
       "OBJECTIVE: " + (tpl.OBJECTIVE || task.objective),
-      "RULES: " + (tpl.RULES || "Public-safe only. No secrets. Kid-friendly output."),
-      "ACTION: " + (tpl.ACTION || "Help the kid complete the objective using their notes."),
+      "RULES:",
+      rules,
+      "",
+      "KID MANAGER: The kid will supervise you. Use simple explanations.",
+      "",
+      "ACTION: " +
+        (tpl.ACTION || "Help the kid complete the objective using their notes and instructions."),
       "VERIFY: " + (tpl.VERIFY || "Output is public-safe and matches the objective."),
-      "CLOSEOUT: " + (tpl.CLOSEOUT || "Return result for kid to paste into work log."),
+      "CLOSEOUT: " + (tpl.CLOSEOUT || "Return a short report the kid can paste into the work log."),
       "",
       "--- Kid context ---",
       "Kid: " + user,
       "Task ID: " + task.id,
+      "Lane: " + (task.lane || "—"),
       "Difficulty: " + task.difficulty,
       "Estimated: " + task.estimated_minutes + " min",
       "Instructions: " + (task.kid_instructions || "—"),
@@ -195,11 +332,11 @@
 
     if (
       (newStatus === "claimed" || newStatus === "in_progress") &&
-      getCurrentUser() === "Guest"
+      !isKid()
     ) {
       return {
         ok: false,
-        reason: "Select who is working (not Guest) to claim or start tasks.",
+        reason: "Only kid accounts can claim or start tasks.",
       };
     }
 
@@ -252,7 +389,7 @@
       (prev === "available" &&
         newStatus !== "available" &&
         newStatus !== "parked" &&
-        getCurrentUser() !== "Guest")
+        isKid())
     ) {
       if (!task.kid_owner) task.kid_owner = getCurrentUser();
     }
@@ -264,6 +401,8 @@
     persistTasks();
     renderKanban();
     if (state.selectedTaskId === task.id) renderDetail();
+    if (newStatus === "ready_for_review") onTaskReadyForReview(task);
+    if (newStatus === "claimed" && prev !== "claimed") onTaskClaimed(task);
     if (options.silent !== true) {
       toast("Moved to " + newStatus.replace(/_/g, " "));
     }
@@ -501,7 +640,10 @@
           "</span>" +
           '<span class="task-pill">' +
           task.estimated_minutes +
-          " min</span>";
+          " min</span>" +
+          '<span class="task-pill points-pill">⭐ ' +
+          (task.points_on_complete || task.points || 10) +
+          " pts</span>";
         if (task.kid_owner) {
           meta.innerHTML +=
             '<span class="task-pill owner">' + escapeHtml(task.kid_owner) + "</span>";
@@ -545,8 +687,420 @@
       .replace(/"/g, "&quot;");
   }
 
+  function profileKey(user) {
+    return user || "Guest";
+  }
+
+  function defaultProfile() {
+    return {
+      points: 0,
+      badges: [],
+      redemptions: [],
+      streak: { count: 0, lastDate: null },
+      taskAwards: {},
+      stats: { claimsCount: 0, celebratedCount: 0 },
+    };
+  }
+
+  function loadProfiles() {
+    return loadJson(STORAGE.profiles, {});
+  }
+
+  function getProfile(user) {
+    var profiles = loadProfiles();
+    var key = profileKey(user);
+    if (!profiles[key]) {
+      profiles[key] = defaultProfile();
+      saveJson(STORAGE.profiles, profiles);
+    }
+    return profiles[key];
+  }
+
+  function saveProfile(user, profile) {
+    var profiles = loadProfiles();
+    profiles[profileKey(user)] = profile;
+    saveJson(STORAGE.profiles, profiles);
+  }
+
+  function getTaskPoints(task) {
+    if (!task) return 10;
+    if (task.points_on_complete != null) return task.points_on_complete;
+    if (task.points != null) return task.points;
+    var d = String(task.difficulty || "easy").toLowerCase().replace(/[\s-]/g, "_");
+    return DIFFICULTY_POINTS[d] || 10;
+  }
+
+  function getReviewPoints(task) {
+    if (task.points_on_review != null) return task.points_on_review;
+    return Math.max(1, Math.floor(getTaskPoints(task) / 2));
+  }
+
+  function todayDateStr() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function updateStreak(profile) {
+    var today = todayDateStr();
+    var streak = profile.streak || { count: 0, lastDate: null };
+    if (streak.lastDate === today) return streak;
+    if (!streak.lastDate) {
+      streak.count = 1;
+    } else {
+      var last = new Date(streak.lastDate + "T12:00:00");
+      var now = new Date(today + "T12:00:00");
+      var diffDays = Math.round((now - last) / 86400000);
+      streak.count = diffDays === 1 ? streak.count + 1 : 1;
+    }
+    streak.lastDate = today;
+    profile.streak = streak;
+    return streak;
+  }
+
+  function triggerPointsCelebration(extra) {
+    var bar = $("profile-bar");
+    if (bar) {
+      bar.classList.add("points-burst");
+      if (extra) bar.classList.add("celebrated-burst");
+      setTimeout(function () {
+        bar.classList.remove("points-burst", "celebrated-burst");
+      }, 900);
+    }
+  }
+
+  function checkBadges(profile, user) {
+    var pts = profile.points || 0;
+    var stats = profile.stats || {};
+    if ((stats.claimsCount || 0) >= 1) grantBadge(profile, "first_claim");
+    if (pts >= 10) grantBadge(profile, "agent_manager_10");
+    if (pts >= 50) grantBadge(profile, "agent_manager_50");
+    if (pts >= 100) grantBadge(profile, "agent_manager_100");
+    if ((profile.streak || {}).count >= 3) grantBadge(profile, "streak_3");
+    if ((stats.celebratedCount || 0) >= 5) grantBadge(profile, "celebrated_5");
+    saveProfile(user, profile);
+  }
+
+  function hasBadge(profile, id) {
+    return (profile.badges || []).indexOf(id) >= 0;
+  }
+
+  function grantBadge(profile, id) {
+    if (hasBadge(profile, id)) return false;
+    profile.badges = profile.badges || [];
+    profile.badges.push(id);
+    var badge = BADGES[id];
+    if (badge) toast("New badge: " + badge.emoji + " " + badge.name + "!");
+    return true;
+  }
+
+  function ensureTaskAward(profile, taskId) {
+    profile.taskAwards = profile.taskAwards || {};
+    if (!profile.taskAwards[taskId]) {
+      profile.taskAwards[taskId] = { review: false, complete: false, celebrated: false };
+    }
+    return profile.taskAwards[taskId];
+  }
+
+  function awardPoints(user, amount, reason) {
+    if (!amount || amount <= 0) return 0;
+    var profile = getProfile(user);
+    profile.points = (profile.points || 0) + amount;
+    saveProfile(user, profile);
+    checkBadges(profile, user);
+    renderProfileBar();
+    renderShop();
+    renderBadges();
+    if (reason) toast("+" + amount + " Swarm Points! " + reason);
+    return amount;
+  }
+
+  function onTaskReadyForReview(task) {
+    var user = task.kid_owner;
+    if (!user) return;
+    var profile = getProfile(user);
+    var award = ensureTaskAward(profile, task.id);
+    if (award.review) return;
+    var pts = getReviewPoints(task);
+    award.review = true;
+    saveProfile(user, profile);
+    awardPoints(user, pts, "Ready for review!");
+    triggerPointsCelebration();
+  }
+
+  function onTaskClaimed(task) {
+    var user = task.kid_owner || getCurrentUser();
+    if (!user) return;
+    var profile = getProfile(user);
+    updateStreak(profile);
+    profile.stats = profile.stats || {};
+    profile.stats.claimsCount = (profile.stats.claimsCount || 0) + 1;
+    saveProfile(user, profile);
+    checkBadges(profile, user);
+    renderProfileBar();
+    renderBadges();
+  }
+
+  function onParentReviewChange(task, newReview, oldReview) {
+    if (newReview === oldReview) return;
+    if (!isParent()) return;
+    var user = task.kid_owner;
+    if (!user) return;
+    if (newReview !== "approved" && newReview !== "celebrated") return;
+
+    var profile = getProfile(user);
+    var award = ensureTaskAward(profile, task.id);
+    if (award.complete) return;
+
+    var full = getTaskPoints(task);
+    var reviewPts = award.review ? getReviewPoints(task) : 0;
+    var remainder = Math.max(0, full - reviewPts);
+    award.complete = true;
+
+    if (newReview === "celebrated") {
+      award.celebrated = true;
+      remainder += Math.max(1, Math.round(full * 0.1));
+      profile.stats = profile.stats || {};
+      profile.stats.celebratedCount = (profile.stats.celebratedCount || 0) + 1;
+      saveProfile(user, profile);
+      awardPoints(user, remainder, "Celebrated! Bonus included!");
+      triggerPointsCelebration(true);
+    } else {
+      saveProfile(user, profile);
+      awardPoints(user, remainder, "Parent approved!");
+    }
+    checkBadges(getProfile(user), user);
+  }
+
+  function renderProfileBar() {
+    var profile = getProfile(getCurrentUser());
+    var ptsEl = $("profile-points");
+    if (ptsEl) ptsEl.textContent = String(profile.points || 0);
+
+    var badgesEl = $("profile-badges");
+    if (!badgesEl) return;
+    badgesEl.innerHTML = "";
+    var earned = (profile.badges || []).slice(-3);
+    if (!earned.length) {
+      badgesEl.innerHTML = '<span class="profile-badge-hint">Earn badges by completing tasks!</span>';
+      return;
+    }
+    earned.forEach(function (id) {
+      var b = BADGES[id];
+      if (!b) return;
+      var chip = document.createElement("span");
+      chip.className = "profile-badge-chip";
+      chip.title = b.name;
+      chip.textContent = b.emoji + " " + b.name;
+      badgesEl.appendChild(chip);
+    });
+  }
+
+  function switchTab(tabId) {
+    if (tabId === "admin" && !isParent()) {
+      toast("Admin panel is for parents only");
+      return;
+    }
+    state.currentTab = tabId;
+    ["board", "shop", "badges", "history", "admin"].forEach(function (id) {
+      var panel = $("panel-" + id);
+      var tab = $("tab-" + id);
+      if (panel) panel.hidden = id !== tabId;
+      if (tab) tab.classList.toggle("active", id === tabId);
+    });
+    if (tabId === "shop") renderShop();
+    if (tabId === "badges") renderBadges();
+    if (tabId === "history") renderWorklogHistory();
+    if (tabId === "admin") renderAdmin();
+  }
+
+  function renderShop() {
+    if (isParent()) {
+      var balanceEl = $("shop-balance");
+      if (balanceEl) balanceEl.textContent = "—";
+      var catalog = $("shop-catalog");
+      if (catalog) {
+        catalog.innerHTML =
+          '<p class="empty-state">Parents approve redemptions in the Admin tab.</p>';
+      }
+      var list = $("redemption-list");
+      if (list) list.innerHTML = "";
+      return;
+    }
+    var profile = getProfile(getCurrentUser());
+    var balanceEl = $("shop-balance");
+    if (balanceEl) balanceEl.textContent = String(profile.points || 0);
+
+    var catalog = $("shop-catalog");
+    if (!catalog) return;
+    catalog.innerHTML = "";
+    if (!state.rewards.length) {
+      catalog.innerHTML = '<p class="empty-state">Rewards loading…</p>';
+      return;
+    }
+    state.rewards.forEach(function (reward) {
+      var card = document.createElement("article");
+      card.className = "shop-card";
+      var canAfford = (profile.points || 0) >= reward.cost;
+      card.innerHTML =
+        '<div class="shop-card-emoji">' +
+        escapeHtml(reward.emoji || "🎁") +
+        "</div>" +
+        "<h3>" +
+        escapeHtml(reward.name) +
+        "</h3>" +
+        '<p class="shop-card-desc">' +
+        escapeHtml(reward.description || "") +
+        "</p>" +
+        '<div class="shop-card-footer">' +
+        '<span class="shop-cost">⭐ ' +
+        reward.cost +
+        "</span>" +
+        '<span class="shop-category">' +
+        escapeHtml(reward.category || "") +
+        "</span>" +
+        "</div>";
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn btn-primary shop-redeem-btn";
+      btn.textContent = canAfford ? "Redeem" : "Need more points";
+      btn.disabled = !canAfford;
+      btn.addEventListener("click", function () {
+        redeemReward(reward.id);
+      });
+      card.appendChild(btn);
+      catalog.appendChild(card);
+    });
+
+    var list = $("redemption-list");
+    if (!list) return;
+    var redemptions = (profile.redemptions || []).slice().reverse();
+    if (!redemptions.length) {
+      list.innerHTML =
+        '<p class="empty-state">No redemptions yet — earn points and pick a reward!</p>';
+      return;
+    }
+    list.innerHTML = "";
+    redemptions.forEach(function (r) {
+      var row = document.createElement("div");
+      row.className = "redemption-row";
+      row.innerHTML =
+        "<strong>" +
+        escapeHtml(r.name) +
+        "</strong> · ⭐ " +
+        r.cost +
+        ' · <span class="redemption-status ' +
+        escapeHtml(r.status) +
+        '">' +
+        escapeHtml(r.status) +
+        "</span>";
+      var sel = document.createElement("select");
+      sel.className = "redemption-approval";
+      sel.title = "Parent approval";
+      ["pending", "approved"].forEach(function (opt) {
+        var o = document.createElement("option");
+        o.value = opt;
+        o.textContent = opt === "pending" ? "Pending parent OK" : "Approved ✓";
+        if (r.status === opt) o.selected = true;
+        sel.appendChild(o);
+      });
+      if (isParent()) {
+        sel.addEventListener("change", function () {
+          var p = getProfile(getCurrentUser());
+          var rev = (p.redemptions || []).find(function (x) {
+            return x.id === r.id;
+          });
+          if (rev) {
+            rev.status = sel.value;
+            saveProfile(getCurrentUser(), p);
+            renderShop();
+          }
+        });
+        row.appendChild(sel);
+      }
+      list.appendChild(row);
+    });
+  }
+
+  function redeemReward(rewardId) {
+    var reward = state.rewards.find(function (r) {
+      return r.id === rewardId;
+    });
+    if (!reward) return;
+    var user = getCurrentUser();
+    if (!isKid()) {
+      toast("Only kid accounts can redeem rewards");
+      return;
+    }
+    var profile = getProfile(user);
+    if ((profile.points || 0) < reward.cost) {
+      toast("Not enough points yet — keep going!");
+      return;
+    }
+    if (!confirm("Redeem " + reward.name + " for " + reward.cost + " points?")) return;
+    profile.points -= reward.cost;
+    profile.redemptions = profile.redemptions || [];
+    profile.redemptions.push({
+      id: uid("rd"),
+      rewardId: reward.id,
+      name: reward.name,
+      cost: reward.cost,
+      category: reward.category,
+      status: "pending",
+      redeemedAt: new Date().toISOString(),
+    });
+    saveProfile(user, profile);
+    renderProfileBar();
+    renderShop();
+    toast("Redeemed! Waiting for parent approval.");
+  }
+
+  function renderBadges() {
+    var profile = getProfile(getCurrentUser());
+    var grid = $("badges-grid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    Object.keys(BADGES).forEach(function (id) {
+      var badge = BADGES[id];
+      var earned = hasBadge(profile, id);
+      var card = document.createElement("article");
+      card.className = "badge-card" + (earned ? " earned" : " locked");
+      var req = badge.points_required
+        ? badge.points_required + " pts"
+        : badge.trigger
+          ? "Special"
+          : "";
+      card.innerHTML =
+        '<div class="badge-emoji">' +
+        badge.emoji +
+        "</div>" +
+        "<h3>" +
+        escapeHtml(badge.name) +
+        "</h3>" +
+        "<p>" +
+        escapeHtml(badge.description) +
+        "</p>" +
+        (req ? '<span class="badge-req">' + escapeHtml(req) + "</span>" : "") +
+        (earned ? '<span class="badge-earned-tag">Earned!</span>' : '<span class="badge-lock">🔒</span>');
+      grid.appendChild(card);
+    });
+  }
+
+  function loadRewards() {
+    return fetch("rewards.json")
+      .then(function (r) {
+        if (!r.ok) throw new Error("rewards fetch failed");
+        return r.json();
+      })
+      .then(function (data) {
+        state.rewards = (data && data.rewards) || [];
+      })
+      .catch(function () {
+        state.rewards = [];
+      });
+  }
+
   function selectTask(taskId) {
     state.selectedTaskId = taskId;
+    if (state.currentTab !== "board") switchTab("board");
     var panel = $("side-panel");
     var layout = document.querySelector(".planner-layout");
     if (panel) panel.hidden = false;
@@ -580,6 +1134,11 @@
       "<dt>Difficulty</dt><dd>" +
       escapeHtml(task.difficulty) +
       "</dd>" +
+      "<dt>Points</dt><dd>⭐ " +
+      getTaskPoints(task) +
+      " (" +
+      getReviewPoints(task) +
+      " on review)</dd>" +
       "<dt>Estimate</dt><dd>" +
       task.estimated_minutes +
       " min</dd>" +
@@ -636,7 +1195,22 @@
     var log = findWorklogForTask(task.id);
     $("kid-summary").value = (log && log.kid_summary) || "";
     $("agent-result").value = (log && log.agent_result) || "";
-    $("parent-review").value = (log && log.parent_review) || "pending_review";
+    $("kid-summary").readOnly = isParent();
+    $("agent-result").readOnly = isParent();
+    var reviewVal = (log && log.parent_review) || "pending_review";
+    $("parent-review").value = reviewVal;
+    var reviewSelect = $("parent-review");
+    var reviewReadonly = $("parent-review-readonly");
+    if (isParent()) {
+      if (reviewSelect) reviewSelect.hidden = false;
+      if (reviewReadonly) reviewReadonly.hidden = true;
+    } else {
+      if (reviewSelect) reviewSelect.hidden = true;
+      if (reviewReadonly) {
+        reviewReadonly.hidden = false;
+        reviewReadonly.textContent = reviewVal.replace(/_/g, " ");
+      }
+    }
     $("agent-prompt").value = generateAgentPrompt(task);
   }
 
@@ -647,7 +1221,9 @@
       return;
     }
     if (moveTaskToStatus(task.id, "claimed", { silent: true })) {
-      toast("Task claimed!");
+      task = findTask(state.selectedTaskId);
+      $("agent-prompt").value = generateAgentPrompt(task);
+      toast("Task claimed — prompt ready!");
     }
   }
 
@@ -734,6 +1310,22 @@
     var task = findTask(state.selectedTaskId);
     if (!task) return;
 
+    if (isParent()) {
+      var existing = findWorklogForTask(task.id);
+      if (!existing) {
+        toast("No kid work log to review on this task yet");
+        return;
+      }
+      var oldReview = existing.parent_review || "pending_review";
+      existing.parent_review = $("parent-review").value;
+      onParentReviewChange(task, existing.parent_review, oldReview);
+      persistWorklogs();
+      renderWorklogHistory();
+      if (isParent()) renderAdmin();
+      toast("Parent review saved");
+      return;
+    }
+
     var log = findWorklogForTask(task.id);
     if (!log) {
       log = {
@@ -754,9 +1346,12 @@
 
     log.kid_summary = $("kid-summary").value.trim();
     log.agent_result = $("agent-result").value.trim();
+    var oldReview = log.parent_review || "pending_review";
     log.parent_review = $("parent-review").value;
     log.status = task.status;
     log.agent_used = task.agent_type;
+
+    onParentReviewChange(task, log.parent_review, oldReview);
 
     persistWorklogs();
     renderWorklogHistory();
@@ -841,76 +1436,257 @@
 
   function exportWorklogs() {
     var user = getCurrentUser();
+    var logs = isParent()
+      ? state.worklogs.slice()
+      : state.worklogs.filter(function (w) {
+          return w.kid_owner === user;
+        });
     var payload = {
       exported_at: new Date().toISOString(),
-      kid_owner: user,
-      worklogs: state.worklogs.filter(function (w) {
-        return w.kid_owner === user;
-      }),
+      exported_by: user,
+      role: state.authSession ? state.authSession.role : "",
+      worklogs: logs,
     };
     var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "kids-planner-worklogs-" + user.toLowerCase() + ".json";
+    a.download =
+      "kids-planner-worklogs-" +
+      (isParent() ? "all" : user.toLowerCase()) +
+      ".json";
     a.click();
     URL.revokeObjectURL(a.href);
     toast("Work logs exported");
   }
 
-  function resetTasksFromSample() {
+  function renderSessionBar() {
+    var nameEl = $("session-user");
+    var roleEl = $("session-role");
+    if (nameEl) nameEl.textContent = getCurrentUser() || "—";
+    if (roleEl) {
+      var role = state.authSession ? state.authSession.role : "";
+      roleEl.textContent = role === "parent" ? "Parent" : role === "kid" ? "Kid" : role;
+      roleEl.className = "session-role badge " + (role === "parent" ? "ok" : "");
+    }
+  }
+
+  function applyRoleUI() {
+    var adminTab = $("tab-admin");
+    if (adminTab) adminTab.hidden = !isParent();
+    renderSessionBar();
+    if (isParent()) {
+      $("btn-claim") && ($("btn-claim").disabled = true);
+    }
+  }
+
+  function collectAllRedemptions() {
+    var rows = [];
+    allKidDisplayNames().forEach(function (kid) {
+      var profile = getProfile(kid);
+      (profile.redemptions || []).forEach(function (r) {
+        rows.push({ kid: kid, redemption: r });
+      });
+    });
+    return rows.sort(function (a, b) {
+      return String(b.redemption.redeemedAt || "").localeCompare(String(a.redemption.redeemedAt || ""));
+    });
+  }
+
+  function renderAdmin() {
+    if (!isParent()) return;
+    var statsEl = $("admin-stats");
+    var redEl = $("admin-redemptions");
+    var logsEl = $("admin-worklogs");
+    if (!statsEl || !redEl || !logsEl) return;
+
+    var kidStats = allKidDisplayNames().map(function (kid) {
+      var profile = getProfile(kid);
+      var minutes = state.worklogs
+        .filter(function (w) {
+          return w.kid_owner === kid;
+        })
+        .reduce(function (sum, w) {
+          return sum + (w.duration_minutes || 0);
+        }, 0);
+      return {
+        kid: kid,
+        points: profile.points || 0,
+        badges: (profile.badges || []).length,
+        minutes: minutes,
+        logs: state.worklogs.filter(function (w) {
+          return w.kid_owner === kid;
+        }).length,
+      };
+    });
+
+    statsEl.innerHTML = "";
+    kidStats.forEach(function (s) {
+      var card = document.createElement("div");
+      card.className = "admin-stat-card";
+      card.innerHTML =
+        "<strong>" +
+        escapeHtml(s.kid) +
+        "</strong><span>⭐ " +
+        s.points +
+        " pts</span><span>🏅 " +
+        s.badges +
+        " badges</span><span>⏱ " +
+        formatDuration(s.minutes) +
+        "</span><span>📝 " +
+        s.logs +
+        " logs</span>";
+      statsEl.appendChild(card);
+    });
+
+    var reds = collectAllRedemptions().filter(function (x) {
+      return x.redemption.status === "pending";
+    });
+    if (!reds.length) {
+      redEl.innerHTML = '<p class="empty-state">No pending redemptions</p>';
+    } else {
+      redEl.innerHTML = "";
+      reds.forEach(function (item) {
+        var r = item.redemption;
+        var row = document.createElement("div");
+        row.className = "redemption-row";
+        row.innerHTML =
+          "<strong>" +
+          escapeHtml(item.kid) +
+          "</strong> · " +
+          escapeHtml(r.name) +
+          " · ⭐ " +
+          r.cost;
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "btn btn-primary";
+        btn.textContent = "Approve";
+        btn.addEventListener("click", function () {
+          var p = getProfile(item.kid);
+          var rev = (p.redemptions || []).find(function (x) {
+            return x.id === r.id;
+          });
+          if (rev) {
+            rev.status = "approved";
+            saveProfile(item.kid, p);
+            renderAdmin();
+            toast("Approved " + r.name + " for " + item.kid);
+          }
+        });
+        row.appendChild(btn);
+        redEl.appendChild(row);
+      });
+    }
+
+    var logs = state.worklogs.slice().reverse();
+    if (!logs.length) {
+      logsEl.innerHTML = '<p class="empty-state">No work logs yet</p>';
+      return;
+    }
+    logsEl.innerHTML = "";
+    logs.forEach(function (log) {
+      var task = findTask(log.task_id);
+      var entry = document.createElement("div");
+      entry.className = "worklog-entry";
+      var review = log.parent_review || "pending_review";
+      entry.innerHTML =
+        '<div class="worklog-entry-header">' +
+        "<strong>" +
+        escapeHtml(task ? task.title : log.task_id) +
+        "</strong>" +
+        '<span class="task-pill owner">' +
+        escapeHtml(log.kid_owner || "—") +
+        "</span>" +
+        '<span class="review-badge ' +
+        review +
+        '">' +
+        review.replace(/_/g, " ") +
+        "</span>" +
+        (log.duration_minutes
+          ? '<span class="task-pill">' + formatDuration(log.duration_minutes) + "</span>"
+          : "") +
+        "</div>" +
+        "<p>" +
+        escapeHtml(log.kid_summary || "(no summary)") +
+        "</p>";
+      var sel = document.createElement("select");
+      sel.className = "redemption-approval";
+      ["pending_review", "approved", "needs_revision", "celebrated"].forEach(function (opt) {
+        var o = document.createElement("option");
+        o.value = opt;
+        o.textContent = opt.replace(/_/g, " ");
+        if (review === opt) o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener("change", function () {
+        var oldReview = log.parent_review || "pending_review";
+        log.parent_review = sel.value;
+        if (task) onParentReviewChange(task, log.parent_review, oldReview);
+        persistWorklogs();
+        renderAdmin();
+      });
+      entry.appendChild(sel);
+      entry.addEventListener("click", function (e) {
+        if (e.target === sel) return;
+        selectTask(log.task_id);
+      });
+      logsEl.appendChild(entry);
+    });
+  }
+
+  function resetTasksFromFeed() {
     if (
       !confirm(
-        "Reset tasks from sample file? Your work logs stay saved, but task board resets."
+        "Reset tasks from the live Swarm feed? Your work logs stay saved, but the task board resets."
       )
     ) {
       return;
     }
-    state.tasks = state.sampleTasks.map(function (t) {
-      return normalizeTask(JSON.parse(JSON.stringify(t)));
+    loadTasks({ forceRefresh: true }).then(function () {
+      closeDetail();
+      renderKanban();
+      toast("Tasks reset from feed");
     });
-    persistTasks();
-    closeDetail();
-    renderKanban();
-    toast("Tasks reset from sample");
   }
 
-  function mergeKidSafePlannerTasks(plannerTasks) {
-    if (!Array.isArray(plannerTasks)) return;
-    var existingIds = {};
-    state.tasks.forEach(function (t) {
-      existingIds[t.id] = true;
-    });
-    plannerTasks.forEach(function (raw) {
-      if (!raw || !raw.id || existingIds[raw.id]) return;
-      var candidate = normalizeTask({
-        id: "planner_" + raw.id,
-        title: raw.title || raw.id,
-        source: "planner_bridge",
-        project: raw.repo || raw.lane || "DreamVault",
-        status: "available",
-        difficulty: raw.priority === "P0" ? "medium" : "easy",
-        estimated_minutes: 30,
-        kid_owner: null,
-        agent_type: "operator_helper",
-        skills: raw.lane ? [raw.lane] : [],
-        parent_approved: false,
-        objective: (raw.objective || raw.title || "").slice(0, 280),
-        kid_instructions: "Parent must approve before claiming planner tasks.",
-        agent_prompt_template: {},
+  function mergeFeedTasks(feedTasks, preserveLocal) {
+    if (!Array.isArray(feedTasks)) return;
+    var byId = {};
+    if (preserveLocal) {
+      state.tasks.forEach(function (t) {
+        byId[t.id] = t;
       });
-      if (isKidSafeTask(candidate)) {
-        state.tasks.push(candidate);
-        existingIds[candidate.id] = true;
+    }
+    feedTasks.forEach(function (raw) {
+      if (!raw || !raw.id) return;
+      var incoming = normalizeTask(raw);
+      if (hasSecretMarkers(incoming)) return;
+      var existing = byId[incoming.id];
+      if (existing && (existing.kid_owner || existing.status !== "available")) {
+        byId[incoming.id] = Object.assign({}, incoming, {
+          status: existing.status,
+          kid_owner: existing.kid_owner,
+        });
+      } else {
+        byId[incoming.id] = incoming;
       }
     });
+    state.tasks = Object.keys(byId).map(function (id) {
+      return byId[id];
+    });
   }
 
-  function loadTasks() {
-    var cached = loadJson(STORAGE.tasks, null);
-    if (cached && cached.length) {
-      state.tasks = cached.map(normalizeTask);
-      return Promise.resolve();
-    }
+  function fetchKidsTaskFeed() {
+    return fetch(KIDS_TASKS_FEED)
+      .then(function (r) {
+        if (!r.ok) throw new Error("kids feed fetch failed");
+        return r.json();
+      })
+      .then(function (data) {
+        return (data && data.tasks) || [];
+      });
+  }
+
+  function fetchSampleTasks() {
     return fetch("tasks.sample.json")
       .then(function (r) {
         if (!r.ok) throw new Error("sample fetch failed");
@@ -918,42 +1694,61 @@
       })
       .then(function (data) {
         state.sampleTasks = (data.tasks || []).map(normalizeTask);
-        state.tasks = state.sampleTasks.map(function (t) {
-          return JSON.parse(JSON.stringify(t));
-        });
-        return fetch("/data/planner/strategic_active_queue.json")
-          .then(function (r) {
-            if (!r.ok) return null;
-            return r.json();
-          })
-          .catch(function () {
-            return null;
-          });
-      })
-      .then(function (planner) {
-        if (planner) {
-          var items = []
-            .concat(planner.active_queue || [])
-            .concat(planner.runtime_active || [])
-            .concat(planner.master_ledger || []);
-          mergeKidSafePlannerTasks(items);
+        return state.sampleTasks;
+      });
+  }
+
+  function loadTasks(options) {
+    options = options || {};
+    var cached = options.forceRefresh ? null : loadJson(STORAGE.tasks, null);
+    var preserveLocal = !!(cached && cached.length && !options.forceRefresh);
+
+    return fetchKidsTaskFeed()
+      .then(function (feedTasks) {
+        if (feedTasks.length) {
+          if (preserveLocal) {
+            state.tasks = cached.map(normalizeTask);
+          } else {
+            state.tasks = [];
+          }
+          mergeFeedTasks(feedTasks, preserveLocal);
+          persistTasks();
+          return;
         }
-        persistTasks();
+        throw new Error("empty kids feed");
       })
       .catch(function () {
-        state.tasks = [];
-        toast("Could not load tasks.sample.json");
+        if (preserveLocal) {
+          state.tasks = cached.map(normalizeTask);
+          return;
+        }
+        return fetchSampleTasks().then(function (sample) {
+          state.tasks = sample.map(function (t) {
+            return JSON.parse(JSON.stringify(t));
+          });
+          persistTasks();
+        });
+      })
+      .catch(function () {
+        if (!state.tasks.length) {
+          state.tasks = [];
+          toast("Could not load task feed");
+        }
       });
   }
 
   function bindEvents() {
-    $("kid-select").addEventListener("change", function (e) {
-      state.currentUser = e.target.value;
-      localStorage.setItem(STORAGE.user, state.currentUser);
-      renderKanban();
-      renderDetail();
-      renderWorklogHistory();
-      toast("Hello, " + state.currentUser + "!");
+    var logoutBtn = $("btn-logout");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", function () {
+        if (window.KidsAuth) KidsAuth.logout();
+      });
+    }
+
+    document.querySelectorAll(".planner-tab").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        switchTab(tab.dataset.tab || "board");
+      });
     });
 
     $("btn-close-detail").addEventListener("click", closeDetail);
@@ -971,7 +1766,7 @@
     $("btn-copy-prompt").addEventListener("click", copyPrompt);
     $("btn-save-worklog").addEventListener("click", saveWorklog);
     $("btn-export-logs").addEventListener("click", exportWorklogs);
-    $("btn-reset-tasks").addEventListener("click", resetTasksFromSample);
+    $("btn-reset-tasks").addEventListener("click", resetTasksFromFeed);
   }
 
   function initNav() {
@@ -988,19 +1783,39 @@
     }
   }
 
-  function init() {
-    initNav();
-    state.currentUser = localStorage.getItem(STORAGE.user) || "Guest";
+  function startPlanner(session) {
+    state.authSession = session;
+    state.currentUser = session.displayName;
     state.worklogs = loadJson(STORAGE.worklogs, []);
     state.activeClock = loadJson(STORAGE.activeClock, null);
 
-    $("kid-select").value = state.currentUser;
+    applyRoleUI();
     bindEvents();
     setupDragDrop();
 
-    loadTasks().then(function () {
-      renderKanban();
-      renderWorklogHistory();
+    loadRewards()
+      .then(function () {
+        return loadTasks();
+      })
+      .then(function () {
+        renderKanban();
+        renderWorklogHistory();
+        renderProfileBar();
+        renderShop();
+        renderBadges();
+        if (isParent()) renderAdmin();
+      });
+  }
+
+  function init() {
+    initNav();
+    if (!window.KidsAuth) {
+      window.location.href = "/kids-planner/login.html";
+      return;
+    }
+    KidsAuth.requireAuth().then(function (session) {
+      if (!session) return;
+      startPlanner(session);
     });
   }
 

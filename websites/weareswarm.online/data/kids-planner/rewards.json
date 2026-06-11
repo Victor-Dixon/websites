@@ -1,0 +1,40 @@
+{
+  "schema": "dreamvault.kids_planner_rewards.v1",
+  "version": 1,
+  "generated_at": "2026-06-11T00:00:00Z",
+  "public_safe": true,
+  "rewards": [
+    {
+      "id": "extra_screen_30",
+      "name": "30 min extra screen time",
+      "cost": 50,
+      "category": "privilege",
+      "emoji": "📱",
+      "description": "Earn 30 extra minutes of screen time tonight."
+    },
+    {
+      "id": "pick_dinner",
+      "name": "Pick dinner tonight",
+      "cost": 75,
+      "category": "privilege",
+      "emoji": "🍕",
+      "description": "You choose what's for dinner (within reason!)."
+    },
+    {
+      "id": "agent_theme",
+      "name": "Custom agent chat theme",
+      "cost": 100,
+      "category": "digital",
+      "emoji": "🎨",
+      "description": "Pick colors for your agent helper chat window."
+    },
+    {
+      "id": "swarm_sticker",
+      "name": "WeAreSwarm sticker",
+      "cost": 150,
+      "category": "physical",
+      "emoji": "🏷️",
+      "description": "A cool WeAreSwarm sticker for your laptop or water bottle."
+    }
+  ]
+}
