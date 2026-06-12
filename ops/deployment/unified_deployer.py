@@ -50,13 +50,17 @@ def resolve_site_base_dir(site_domain: str) -> tuple[Path, str]:
     """
     Resolve deploy source tree with explicit priority:
       1. sites/production/websites/{domain}  (governed production-sync SSOT)
-      2. websites/{domain}                   (local/dev content)
+      2. runtime/content/{domain}            (runtime-managed static content)
+      3. websites/{domain}                   (local/dev content)
     """
     root = repo_root()
     production_base = root / "sites" / "production" / "websites" / site_domain
+    runtime_content_base = root / "runtime" / "content" / site_domain
     legacy_base = root / "websites" / site_domain
     if production_base.exists():
         return production_base, "production_sync"
+    if runtime_content_base.exists():
+        return runtime_content_base, "runtime_content"
     return legacy_base, "legacy_warning"
 
 
