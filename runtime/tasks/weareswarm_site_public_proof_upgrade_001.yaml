@@ -1,0 +1,55 @@
+id: weareswarm_site_public_proof_upgrade_001
+title: Upgrade WeAreSwarm.site from ops board to public proof portfolio
+priority: P0
+owner: Victor
+target_domain: weareswarm.site
+target_repo: websites
+status: ready
+
+problem:
+  summary: >
+    WeAreSwarm.site is live and stronger than weareswarm.online, but it presents
+    internal Dream.OS operations instead of a complete client/investor-facing
+    portfolio. Projects are abstract, feed is not rendering closeouts, and the
+    public API is stale.
+
+findings:
+  - /projects/ only renders 3 abstract proof cards.
+  - /feed/ shows Loading feed... and No closeouts published yet.
+  - /wp-json/dreamos/v1/status is live but stale from 2026-06-07.
+  - /tasks/ only renders 3 generic task lanes.
+  - /skill-tree is strong but lacks proof links per node.
+  - /dreamos-services/ needs pricing packages and stronger CTAs.
+
+acceptance_criteria:
+  - /wp-json/dreamos/v1/status updated with current generated_at timestamp.
+  - /feed/ renders at least 5 public-safe closeout/proof cards.
+  - /projects/ renders at least 12 real portfolio cards.
+  - Each project card includes title, domain, repo/source, status, one_liner, proof, next_unlock, and revenue_angle.
+  - /tasks/ includes real planner lanes, not only 3 generic website ops tasks.
+  - /skill-tree nodes link to proof artifacts or live routes.
+  - /dreamos-services/ includes 3 package cards with price anchors and deliverables.
+  - No public route displays permanent Loading... state.
+
+project_cards_required:
+  - WeAreSwarm Command Center
+  - DigitalDreamscape
+  - FreeRideInvestor
+  - TradingRobotPlug
+  - AriaJet
+  - DaDudeKC / MaskZero
+  - Planet Blue
+  - HomeSchool Mastery
+  - ProjectScanner
+  - AgentTools
+  - Dream.OS Runtime
+  - Discord Architect Bot
+
+verification:
+  commands:
+    - curl -fsSL https://www.weareswarm.site/wp-json/dreamos/v1/status | python -m json.tool
+    - curl -fsSL https://www.weareswarm.site/feed/ | grep -Ev "Loading feed|No closeouts published yet"
+    - curl -fsSL https://www.weareswarm.site/projects/ | grep -E "DigitalDreamscape|FreeRideInvestor|ProjectScanner|Dream.OS"
+    - curl -fsSL https://www.weareswarm.site/dreamos-services/ | grep -E "Website Recovery Sprint|Repo Rescue Sprint|Automation Operator Setup"
+
+commit_message: "feat(weareswarm): upgrade public proof portfolio and closeout feed"

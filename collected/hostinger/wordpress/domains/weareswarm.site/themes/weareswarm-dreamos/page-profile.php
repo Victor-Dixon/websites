@@ -34,7 +34,7 @@ a{color:#63e6ff}
     <h1>Victor Dixon</h1>
     <p><strong>Dream.OS architect / automation builder / multi-agent systems operator.</strong></p>
     <p>I build self-healing automation systems for codebases, website recovery, repo consolidation, homeschool tools, trading workflows, and operator-grade productivity infrastructure.</p>
-    <a href="/skills/">View the Swarm Skill Tree →</a>
+    <a href="/skill-tree/">View the Swarm Skill Tree →</a> · <a href="/projects/">View proof cards →</a> · <a href="/dreamos-services/">Work with Dream.OS →</a>
   </section>
 
   <section class="grid">
@@ -58,9 +58,28 @@ a{color:#63e6ff}
     </div>
   </section>
 
+  <section class="grid">
+    <div class="card">
+      <h2>Proof Links</h2>
+      <ul>
+        <li><a href="/projects/">Portfolio recovery and project cards</a></li>
+        <li><a href="/feed/">Closeout feed and shipped-work receipts</a></li>
+        <li><a href="/wp-json/dreamos/v1/status">Machine-readable Dream.OS status API</a></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>What I Can Do For You</h2>
+      <ul>
+        <li>Recover broken websites and publish proof pages.</li>
+        <li>Classify messy repos into salvage, promote, archive, or discard lanes.</li>
+        <li>Install task boards, agent prompts, verification gates, dashboards, and handoff docs.</li>
+      </ul>
+    </div>
+  </section>
+
   <section class="card">
     <h2>Current Focus</h2>
-    <p>Turn WeAreSwarm into a public proof surface: live operations, unlocked capabilities, active plans, recovered websites, and machine-readable Dream.OS status.</p>
+    <p>Turn WeAreSwarm into a public proof surface: live operations, unlocked capabilities, active plans, recovered websites, machine-readable Dream.OS status, and conversion-ready service packages.</p>
   </section>
 </main>
 <?php wp_footer(); ?>
