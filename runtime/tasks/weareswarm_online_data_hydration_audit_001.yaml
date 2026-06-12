@@ -1,0 +1,48 @@
+id: weareswarm_online_data_hydration_audit_001
+title: Audit and repair WeAreSwarm.online data hydration
+priority: P0
+owner: Victor
+target_repo: websites
+target_domain: weareswarm.online
+status: ready
+
+problem:
+  summary: >
+    Public routes are live but planner/project/task/skill/feed data is not hydrating.
+    The site shows loading placeholders, empty task feeds, empty closeout feed, and weak project cards.
+
+acceptance_criteria:
+  - /projects/ renders real project cards with descriptions, proof links, domain status, and next actions.
+  - /tasks/ renders all_tasks.json with executor badges.
+  - /tasks/?executor=kids or kids planner renders kids_tasks.json.
+  - /kids-planner/ starts with nonzero eligible copy-paste tasks.
+  - /feed/ renders verified public-safe closeouts.
+  - /skill-tree/ renders capability nodes and next unlock.
+  - Every data route has visible last_sync timestamp.
+  - No public page ships only Loading... without fallback/error detail.
+
+kids_task_filter:
+  ai_heavy_lift: true
+  copy_paste_ready: true
+  no_secret_required: true
+  no_billing_required: true
+  no_destructive_repo_action: true
+  no_live_trading_action: true
+
+special_unlock_rules:
+  mission_type: special_unlock
+  requires_adult_gate: true
+
+verification:
+  commands:
+    - bash audit_weareswarm_online.sh .
+    - python runtime/tools/export_tasks_feed.py
+    - python runtime/tools/export_project_portfolio.py
+  public_checks:
+    - https://www.weareswarm.online/projects/
+    - https://www.weareswarm.online/tasks/
+    - https://www.weareswarm.online/kids-planner/
+    - https://www.weareswarm.online/feed/
+    - https://www.weareswarm.online/skill-tree/
+
+commit_message: "fix(weareswarm): hydrate public planner project task and kids feeds"

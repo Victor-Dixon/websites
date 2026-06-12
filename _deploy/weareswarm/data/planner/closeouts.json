@@ -1,0 +1,21 @@
+{
+  "last_sync": "2026-06-12T00:00:00Z",
+  "closeouts": [
+    {
+      "id": "weareswarm_live_proof_001",
+      "date": "2026-06-06",
+      "title": "WeAreSwarm reframed as Dream.OS Command Center",
+      "summary": "Homepage positioned WeAreSwarm as the public proof surface for closeouts, project cards, active lanes, skill unlocks, and build-in-public history.",
+      "proof": "SECRET_SCOPE=PASS; DEPLOY=PASS; LIVE_ROOT=https://weareswarm.online/",
+      "url": "https://www.weareswarm.online/"
+    },
+    {
+      "id": "crosby_recovery_001",
+      "date": "2026-06-06",
+      "title": "Crosby Ultimate Events restored and verified",
+      "summary": "Static recovery moved the site from HTTP 500 to HTTP 200 and added a public proof-card route.",
+      "proof": "HTTP_500_TO_200=PASS; PROJECT_CARD=LIVE; CLOSEOUT=DISPATCHED",
+      "url": "https://www.weareswarm.online/projects/crosbyultimateevents/"
+    }
+  ]
+}

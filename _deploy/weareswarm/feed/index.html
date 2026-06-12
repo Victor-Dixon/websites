@@ -120,6 +120,7 @@
         <a href="/feed/" aria-current="page">Feed</a>
         <a href="/projects/">Projects</a>
         <a href="/tasks/">Tasks</a>
+        <a href="/kids-planner/">Kids Planner</a>
         <a href="/skill-tree/">Skill Tree</a>
         <a href="/dreamos-services/">Services</a>
       </div>
@@ -249,6 +250,28 @@
         </article>
       </div>
     </section>
+
+    <section id="data-contract">
+      <h2>Public closeout JSON</h2>
+      <p class="sync" id="closeout-sync">Sync source: /data/planner/closeouts.json</p>
+      <div class="grid" id="closeout-data-cards">
+        <article class="card"><h3>Fallback closeouts ready</h3><p>The verified static closeouts above remain visible if the JSON path is missing.</p><div class="proof">MISSING_FILE=/data/planner/closeouts.json<br>FALLBACK=static closeout snapshot</div></article>
+      </div>
+    </section>
+    <script>
+      (() => {
+        const file = '/data/planner/closeouts.json';
+        const sync = document.getElementById('closeout-sync');
+        const root = document.getElementById('closeout-data-cards');
+        const esc = (v) => String(v || '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+        fetch(file).then(r => { if (!r.ok) throw new Error(`${file} returned ${r.status}`); return r.json(); })
+          .then(data => {
+            sync.textContent = `Last sync: ${data.last_sync || 'unknown'} · Source: ${file}`;
+            root.innerHTML = (data.closeouts || []).map(c => `<article class="card"><span class="tag">${esc(c.date)}</span><h3>${esc(c.title)}</h3><p>${esc(c.summary)}</p><div class="proof">${esc(c.proof)}</div><div class="cta"><a class="btn" href="${esc(c.url)}">Open proof</a></div></article>`).join('');
+          })
+          .catch(err => { sync.textContent = `Data fallback active: ${err.message}`; });
+      })();
+    </script>
 
     <footer>
       WeAreSwarm closeout feed: public receipts for Dream.OS and the Swarm.
