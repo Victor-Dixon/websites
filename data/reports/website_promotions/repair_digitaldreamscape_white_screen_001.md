@@ -34,4 +34,3 @@ Active stylesheet: digitaldreamscape
 Active template: digitaldreamscape
 https://digitaldreamscape.site/ => HTTP 200
 ```
-
