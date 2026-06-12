@@ -279,6 +279,20 @@
       "target_file": "wp-content/themes/{active_theme}/style.css"
     }
   },
+"dadudekc.site": {
+  "site_url": "https://dadudekc.site",
+  "path": "runtime/content/dadudekc.site",
+  "canonical_target": "https://maskzero.site",
+  "deployment_method": "sftp",
+  "sftp": {
+    "remote_path": "domains/dadudekc.site/public_html",
+    "port": 65002
+  },
+  "deploy_files": [
+    "runtime/content/dadudekc.site/.htaccess",
+    "runtime/content/dadudekc.site/index.html"
+  ]
+},
 "maskzero.site": {
   "site_url": "https://maskzero.site",
   "path": "runtime/content/maskzero.site",

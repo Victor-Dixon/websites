@@ -1,0 +1,5 @@
+# Canonical project routing for the Spark / Emergence / Mask Zero rename chain.
+# dadudekc.site no longer hosts these pages; preserve any requested path on maskzero.site.
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?dadudekc\.site$ [NC]
+RewriteRule ^(.*)$ https://maskzero.site/$1 [R=301,L,NE]
