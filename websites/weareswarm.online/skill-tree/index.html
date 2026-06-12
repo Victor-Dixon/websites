@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swarm Skill Tree — weareswarm.online</title>
+  <meta name="description" content="Evidence-backed Dream.OS capability map — Final Fantasy sphere grid with live unlock states.">
+  <link rel="stylesheet" href="/skill-tree/skill-tree-sphere.css">
+</head>
+<body>
+  <nav class="site-nav"></nav>
+
+  <main class="container">
+    <header class="hero skill-hero">
+      <p class="badge ok">WeAreSwarm × Dream.OS</p>
+      <h1>Swarm Skill Tree</h1>
+      <p>
+        The public capability map for Dream.OS — sphere grid layout with evidence-backed unlocks,
+        live planner bridge, and operator lane markers.
+      </p>
+      <div class="meta-row">
+        <span class="badge ok" id="live-badge">● Planner bridge</span>
+        <span class="badge" id="sync-meta">Loading sync metadata…</span>
+      </div>
+    </header>
+
+    <section class="hud-grid" id="skill-hud" aria-label="Skill tree summary"></section>
+
+    <div class="view-tabs" role="tablist" aria-label="Skill tree view mode">
+      <button type="button" class="view-tab active" data-view="sphere" role="tab" aria-selected="true">Sphere Grid</button>
+      <button type="button" class="view-tab" data-view="cards" role="tab" aria-selected="false">Card Grid</button>
+    </div>
+
+    <section id="sphere-view" class="panel-view" aria-label="Sphere grid skill tree">
+      <div class="sphere-shell" id="sphere-shell">
+        <div class="sphere-viewport" id="sphere-viewport"></div>
+        <div class="sphere-controls" id="sphere-controls">
+          <button type="button" data-zoom-in" title="Zoom in">+</button>
+          <button type="button" data-zoom-out" title="Zoom out">−</button>
+          <button type="button" data-reset" title="Reset view">◎</button>
+        </div>
+      </div>
+      <div class="sphere-legend" aria-hidden="true">
+        <span class="legend-unlocked">Unlocked</span>
+        <span class="legend-building">Building</span>
+        <span class="legend-locked">Locked</span>
+        <span class="legend-current">You are here</span>
+      </div>
+    </section>
+
+    <section id="card-view" class="panel-view hidden" aria-label="Card grid skill tree">
+      <div class="skill-tree-grid" id="skill-tree">
+        <p class="empty-state">Loading capability map…</p>
+      </div>
+    </section>
+
+    <section class="panel-note">
+      <h2 style="margin-top:0;font-size:1rem;">Next Unlock</h2>
+      <p id="next-unlock">Loading…</p>
+    </section>
+
+    <section class="panel-note">
+      <h2 style="margin-top:0;font-size:1rem;">Operator Signal</h2>
+      <p id="operator-signal">No fake roadmap. The skill tree advances when production work ships.</p>
+    </section>
+
+    <p class="footer-note">
+      Cross-links:
+      <a href="/">Command Center</a> ·
+      <a href="/focus/">Focus</a> ·
+      <a href="/projects/">Projects</a> ·
+      <a href="/tasks/">Tasks</a> ·
+      Data refresh via DreamVault sync script (no secrets exposed).
+    </p>
+  </main>
+
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script src="/data/shared/skill-tree-dashboard.js"></script>
+  <script src="/skill-tree/skill-tree-sphere.js"></script>
+  <script>
+    (async function () {
+      const FD = window.FocusDashboard;
+      const STD = window.SkillTreeDashboard;
+      const STS = window.SkillTreeSphere;
+      if (!FD || typeof FD.fetchJsonSettled !== "function" || !STD || !STS) {
+        document.getElementById("sync-meta").textContent =
+          "Shared dashboard scripts missing — redeploy data/shared/ and /skill-tree/";
+        document.getElementById("live-badge").className = "badge block";
+        document.getElementById("live-badge").textContent = "● Partial data";
+        return;
+      }
+
+      STS.initTabs();
+
+      const [manifestResult, panelResult, eventsResult, laneResult] = await Promise.all([
+        FD.fetchJsonSettled("manifest.json"),
+        FD.fetchJsonSettled("skill_tree_panel.json", { branches: [], summary: {} }),
+        FD.fetchJsonSettled("skill_events.json", { events: [] }),
+        FD.fetchJsonSettled("next_lane.json", {}),
+      ]);
+
+      const manifest = manifestResult.data || {};
+      const panel = panelResult.data || {};
+      const skillEvents = eventsResult.data || { events: [] };
+      const nextLane = laneResult.data || {};
+
+      if (!panelResult.ok) {
+        document.getElementById("skill-tree").innerHTML =
+          "<p class=\"empty-state\">skill_tree_panel.json unavailable — run DreamVault sync.</p>";
+        document.getElementById("sphere-viewport").innerHTML =
+          "<p class=\"empty-state\">skill_tree_panel.json unavailable — run DreamVault sync.</p>";
+        document.getElementById("live-badge").className = "badge warn";
+        document.getElementById("live-badge").textContent = "● Stale / missing JSON";
+      } else {
+        STD.renderSkillTreePanel(panel, manifest);
+        STS.renderSphereGrid(panel, nextLane, skillEvents);
+      }
+
+      if (!manifestResult.ok && panelResult.ok) {
+        document.getElementById("sync-meta").textContent =
+          "Loaded skill tree panel · manifest.json missing";
+      }
+    })();
+  </script>
+</body>
+</html>
