@@ -1,0 +1,181 @@
+{
+  "last_sync": "2026-06-12T00:00:00Z",
+  "source_of_truth": "runtime/data/weareswarm_public_contract.json",
+  "tasks": [
+    {
+      "id": "weareswarm_projects_hydration_001",
+      "title": "Hydrate WeAreSwarm project portfolio cards",
+      "priority": "P0",
+      "executor": "agent",
+      "status": "ready",
+      "lane": "portfolio",
+      "summary": "Publish project cards with problem, solution, proof, links, revenue potential, and next unlock fields.",
+      "ai_heavy_lift": true,
+      "copy_paste_ready": true,
+      "no_secret_required": true,
+      "no_billing_required": true,
+      "no_destructive_repo_action": true,
+      "no_live_trading_action": true,
+      "kids_safe": true,
+      "next_action": "Open /projects/ and verify every public card has a proof block and CTA."
+    },
+    {
+      "id": "weareswarm_kids_lane_seed_001",
+      "title": "Seed kids-safe copy-paste missions",
+      "priority": "P0",
+      "executor": "kids",
+      "status": "ready",
+      "lane": "kids-planner",
+      "summary": "Create non-secret, non-billing, non-destructive tasks that kids can copy into an AI helper and review with an adult.",
+      "ai_heavy_lift": true,
+      "copy_paste_ready": true,
+      "no_secret_required": true,
+      "no_billing_required": true,
+      "no_destructive_repo_action": true,
+      "no_live_trading_action": true,
+      "kids_safe": true,
+      "next_action": "Pick one mission card and ask the AI for a draft, then save the answer for adult review."
+    },
+    {
+      "id": "weareswarm_closeout_feed_001",
+      "title": "Publish public-safe closeout proof cards",
+      "priority": "P1",
+      "executor": "agent",
+      "status": "ready",
+      "lane": "feed",
+      "summary": "Mirror verified closeout receipts into /feed/ and /data/planner/closeouts.json without private payloads.",
+      "ai_heavy_lift": true,
+      "copy_paste_ready": true,
+      "no_secret_required": true,
+      "no_billing_required": true,
+      "no_destructive_repo_action": true,
+      "no_live_trading_action": true,
+      "kids_safe": false,
+      "next_action": "Confirm Crosby and WeAreSwarm proof cards render from closeouts.json."
+    },
+    {
+      "id": "special_spark_unlock_001",
+      "title": "Special unlock: design a Spark mission badge",
+      "priority": "P2",
+      "executor": "kids",
+      "status": "adult_gate",
+      "lane": "special-unlock",
+      "summary": "A creative mission that requires adult approval before publishing or uploading anywhere.",
+      "mission_type": "special_unlock",
+      "requires_adult_gate": true,
+      "ai_heavy_lift": true,
+      "copy_paste_ready": true,
+      "no_secret_required": true,
+      "no_billing_required": true,
+      "no_destructive_repo_action": true,
+      "no_live_trading_action": true,
+      "kids_safe": true,
+      "next_action": "Draft three badge names and ask an adult which one is safe to publish."
+    }
+  ],
+  "projects": [
+    {
+      "project_id": "dreamos-core",
+      "title": "Dream.OS",
+      "domain": "weareswarm.online",
+      "status": "active",
+      "category": "canonical_core",
+      "one_line": "The operating spine for task lanes, verification gates, closeouts, and multi-agent workflow control.",
+      "problem": "Scattered repo work and agent outputs need a durable command structure with verification receipts.",
+      "solution": "Use task YAML, public-safe feeds, project cards, and closeout reports as the visible operating layer.",
+      "proof": "Command center, project index, tasks board, skill tree, and closeout feed are deployed as static routes.",
+      "live_url": "https://www.weareswarm.online/",
+      "repo_url": "",
+      "kids_safe": false,
+      "revenue_potential": "Agency operating system, automation retainers, and proof-driven delivery workflows.",
+      "next_unlock": "Automate public-safe data exports into the route data contract."
+    },
+    {
+      "project_id": "weareswarm-command-center",
+      "title": "WeAreSwarm Command Center",
+      "domain": "weareswarm.online",
+      "status": "live",
+      "category": "public_surface",
+      "one_line": "Public proof surface for Dream.OS closeouts, project cards, task lanes, and capability unlocks.",
+      "problem": "The homepage overpromised when downstream planner routes had no reliable public data contract.",
+      "solution": "Ship guaranteed /data/planner/*.json files plus route-level fallbacks and visible sync metadata.",
+      "proof": "This deploy includes all_tasks, kids_tasks, projects, next_lane, skill_tree, and closeouts JSON files.",
+      "live_url": "https://www.weareswarm.online/projects/",
+      "repo_url": "",
+      "kids_safe": true,
+      "revenue_potential": "Portfolio proof and inbound trust for Dream.OS services.",
+      "next_unlock": "Connect the exporter to live repo scanner and closeout sources."
+    },
+    {
+      "project_id": "crosbyultimateevents",
+      "title": "Crosby Ultimate Events",
+      "domain": "crosbyultimateevents.com",
+      "status": "live",
+      "category": "client_proof",
+      "one_line": "Private chef and event services site recovered from HTTP 500 with inquiry capture.",
+      "problem": "A client-facing WordPress install was returning HTTP 500 and could not capture event leads.",
+      "solution": "Preserve the broken install, deploy a static fallback, add inquiry capture, and verify private CSV handling.",
+      "proof": "HTTP 500 to HTTP 200 recovery, CSV capture pass, private access blocked, Discord closeout accepted.",
+      "live_url": "https://crosbyultimateevents.com/",
+      "repo_url": "",
+      "kids_safe": false,
+      "revenue_potential": "Website rescue, lead capture, and local services funnel package.",
+      "next_unlock": "Publish before/after proof and package as a repeatable rescue offer."
+    },
+    {
+      "project_id": "maskzero-spark",
+      "title": "MZspark / Spark Protocol",
+      "domain": "maskzero.site",
+      "status": "active_candidate",
+      "category": "family_product_lab",
+      "one_line": "Character generation, Spark lore, battle cards, and future kid-led mission systems.",
+      "problem": "Creative game assets and product experiments need a safe public path and clear mission structure.",
+      "solution": "Separate public-safe game routes from private drafts, then expose verified unlocks as portfolio cards.",
+      "proof": "Character generator and Spark battle components exist in runtime plugin and content lanes.",
+      "live_url": "https://maskzero.site/",
+      "repo_url": "",
+      "kids_safe": true,
+      "revenue_potential": "Family-safe game content, printables, and creative mission products.",
+      "next_unlock": "Connect kids-safe planner missions to Spark creative tasks."
+    }
+  ],
+  "closeouts": [
+    {
+      "id": "weareswarm_live_proof_001",
+      "date": "2026-06-06",
+      "title": "WeAreSwarm reframed as Dream.OS Command Center",
+      "summary": "Homepage positioned WeAreSwarm as the public proof surface for closeouts, project cards, active lanes, skill unlocks, and build-in-public history.",
+      "proof": "SECRET_SCOPE=PASS; DEPLOY=PASS; LIVE_ROOT=https://weareswarm.online/",
+      "url": "https://www.weareswarm.online/"
+    },
+    {
+      "id": "crosby_recovery_001",
+      "date": "2026-06-06",
+      "title": "Crosby Ultimate Events restored and verified",
+      "summary": "Static recovery moved the site from HTTP 500 to HTTP 200 and added a public proof-card route.",
+      "proof": "HTTP_500_TO_200=PASS; PROJECT_CARD=LIVE; CLOSEOUT=DISPATCHED",
+      "url": "https://www.weareswarm.online/projects/crosbyultimateevents/"
+    }
+  ],
+  "skill_tree": {
+    "nodes": [
+      {"id": "static_recovery", "title": "Static website recovery", "status": "unlocked", "proof": "Crosby Ultimate Events HTTP 500 recovery"},
+      {"id": "lead_capture", "title": "Lead capture workflow", "status": "unlocked", "proof": "Private CSV capture and export lane"},
+      {"id": "public_data_contract", "title": "Public planner data contract", "status": "unlocked", "proof": "/data/planner/*.json deployed with fallbacks"},
+      {"id": "agentic_exporters", "title": "Agentic exporter automation", "status": "next", "proof": "runtime/tools export scripts generate deploy data"}
+    ],
+    "next_unlock": "Wire exporter inputs to live repo scanner, task logs, and closeout manifests."
+  },
+  "next_lane": {
+    "last_sync": "2026-06-12T00:00:00Z",
+    "focus": "Repair public data hydration before adding new marketing promises.",
+    "owner": "Victor",
+    "route": "/projects/",
+    "next_actions": [
+      "Run bash audit_weareswarm_online.sh _deploy/weareswarm",
+      "Run python runtime/tools/export_tasks_feed.py",
+      "Run python runtime/tools/export_project_portfolio.py",
+      "Verify /kids-planner/ renders nonzero kids-safe tasks"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "last_sync": "2026-06-12T00:00:00Z",
+  "projects": [
+    {
+      "project_id": "dreamos-core",
+      "title": "Dream.OS",
+      "domain": "weareswarm.online",
+      "status": "active",
+      "category": "canonical_core",
+      "one_line": "The operating spine for task lanes, verification gates, closeouts, and multi-agent workflow control.",
+      "proof": "Command center, project index, tasks board, skill tree, and closeout feed are deployed as static routes.",
+      "live_url": "https://www.weareswarm.online/",
+      "next_unlock": "Automate public-safe data exports into the route data contract."
+    },
+    {
+      "project_id": "weareswarm-command-center",
+      "title": "WeAreSwarm Command Center",
+      "domain": "weareswarm.online",
+      "status": "live",
+      "category": "public_surface",
+      "one_line": "Public proof surface for Dream.OS closeouts, project cards, task lanes, and capability unlocks.",
+      "proof": "This deploy includes all_tasks, kids_tasks, projects, next_lane, skill_tree, and closeouts JSON files.",
+      "live_url": "https://www.weareswarm.online/projects/",
+      "next_unlock": "Connect the exporter to live repo scanner and closeout sources."
+    },
+    {
+      "project_id": "crosbyultimateevents",
+      "title": "Crosby Ultimate Events",
+      "domain": "crosbyultimateevents.com",
+      "status": "live",
+      "category": "client_proof",
+      "one_line": "Private chef and event services site recovered from HTTP 500 with inquiry capture.",
+      "proof": "HTTP 500 to HTTP 200 recovery, CSV capture pass, private access blocked, Discord closeout accepted.",
+      "live_url": "https://crosbyultimateevents.com/",
+      "next_unlock": "Publish before/after proof and package as a repeatable rescue offer."
+    },
+    {
+      "project_id": "maskzero-spark",
+      "title": "MZspark / Spark Protocol",
+      "domain": "maskzero.site",
+      "status": "active_candidate",
+      "category": "family_product_lab",
+      "one_line": "Character generation, Spark lore, battle cards, and future kid-led mission systems.",
+      "proof": "Character generator and Spark battle components exist in runtime plugin and content lanes.",
+      "live_url": "https://maskzero.site/",
+      "next_unlock": "Connect kids-safe planner missions to Spark creative tasks."
+    }
+  ]
+}
