@@ -5,19 +5,150 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Early Access | FreeRideInvestor</title>
   <meta name="description" content="Request early access to the FreeRideInvestor agent-powered trading journal.">
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #b6c2d1;
+      --line: rgba(255,255,255,.13);
+      --accent: #70e1ff;
+      --accent2: #a78bfa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #172554 0, var(--bg) 44%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,11,18,.86);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner, main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      color: var(--text);
+      font-weight: 950;
+      letter-spacing: -.03em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .nav-links a {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      border-color: var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    main { padding: 64px 0 80px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 460px);
+      gap: 22px;
+      align-items: start;
+    }
+    h1 { margin: 0 0 16px; font-size: clamp(40px, 7vw, 76px); line-height: .95; letter-spacing: -.06em; }
+    p { color: var(--muted); }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      background: rgba(17,24,39,.82);
+      box-shadow: 0 24px 70px rgba(0,0,0,.22);
+    }
+    form { display: grid; gap: 12px; }
+    label { display: grid; gap: 7px; color: var(--muted); font-weight: 800; }
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px;
+      background: rgba(2,6,23,.72);
+      color: var(--text);
+      font: inherit;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    button {
+      border: 0;
+      border-radius: 12px;
+      min-height: 50px;
+      padding: 0 18px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #020617;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .page-links { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .nav-inner { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .nav-links { justify-content: flex-start; }
+    }
+  </style>
 </head>
 <body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="/">FreeRideInvestor</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/trading-journal.html">Journal</a>
+        <a href="/replay-proof.html">Replay Proof</a>
+        <a href="/day-trade-planner.html">Day Planner</a>
+        <a href="/early-access.html" aria-current="page">Early Access</a>
+      </div>
+    </div>
+  </nav>
   <main>
-    <h1>FreeRideInvestor Early Access</h1>
-    <p>Bring your trades. Leave with your pattern.</p>
-    <p>Early access is for traders who want behavior replay, not trade signals.</p>
-    <form method="post" action="#">
-      <label>Name <input name="name" autocomplete="name"></label><br>
-      <label>Email <input name="email" type="email" autocomplete="email" required></label><br>
-      <label>What should the journal reveal?<br><textarea name="message"></textarea></label><br>
-      <button type="submit">Request early access</button>
-    </form>
-    <p><a href="index.html">Back to homepage</a></p>
+    <section class="hero">
+      <div>
+        <h1>FreeRideInvestor Early Access</h1>
+        <p>Bring your trades. Leave with your pattern.</p>
+        <p>Early access is for traders who want behavior replay, not trade signals.</p>
+        <div class="page-links">
+          <a href="/trading-journal.html">Try the working journal</a>
+          <a href="/replay-proof.html">View replay proof</a>
+        </div>
+      </div>
+      <form class="card" method="post" action="#">
+        <label>Name <input name="name" autocomplete="name"></label>
+        <label>Email <input name="email" type="email" autocomplete="email" required></label>
+        <label>What should the journal reveal?<textarea name="message"></textarea></label>
+        <button type="submit">Request early access</button>
+      </form>
+    </section>
   </main>
 </body>
 </html>

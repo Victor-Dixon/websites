@@ -3,90 +3,629 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Trading Journal Workflow | FreeRideInvestor</title>
-  <meta name="description" content="A clean Dream.OS-approved trading journal workflow for fill import, replay, behavior scorecard, and next-rule generation.">
+  <title>Working Trading Journal | FreeRideInvestor</title>
+  <meta name="description" content="A working browser-based trading journal for logging trades, scoring discipline, and exporting journal data.">
   <style>
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, sans-serif; background: #080b12; color: #f8fafc; line-height: 1.6; }
-    main { width: min(1040px, calc(100% - 32px)); margin: 0 auto; padding: 64px 0; }
-    a { color: #70e1ff; }
-    h1 { font-size: clamp(38px, 7vw, 72px); line-height: .95; letter-spacing: -.05em; margin: 0 0 18px; }
-    h2 { font-size: clamp(26px, 4vw, 42px); letter-spacing: -.03em; margin-top: 48px; }
-    .sub { color: #b6c2d1; font-size: 20px; max-width: 760px; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
-    .card { border: 1px solid rgba(255,255,255,.12); background: rgba(17,24,39,.78); border-radius: 18px; padding: 20px; }
-    .card p, li { color: #b6c2d1; }
-    .pill { display: inline-block; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: 7px 11px; color: #b6c2d1; background: rgba(255,255,255,.04); }
-    .warning { color: #fb7185; font-weight: 800; }
-    .good { color: #86efac; font-weight: 800; }
-    .flow { counter-reset: step; display: grid; gap: 12px; }
-    .step { counter-increment: step; border-left: 3px solid #70e1ff; padding: 12px 16px; background: rgba(255,255,255,.04); border-radius: 12px; }
-    .step:before { content: counter(step) ". "; color: #70e1ff; font-weight: 900; }
-    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    :root {
+      --bg: #080b12;
+      --panel: #111827;
+      --panel2: #172033;
+      --text: #f8fafc;
+      --muted: #b6c2d1;
+      --line: rgba(255,255,255,.13);
+      --accent: #70e1ff;
+      --accent2: #a78bfa;
+      --good: #86efac;
+      --danger: #fb7185;
+      --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #172554 0, var(--bg) 44%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,11,18,.86);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner {
+      width: min(1180px, calc(100% - 32px));
+      min-height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      color: var(--text);
+      font-weight: 950;
+      letter-spacing: -.03em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .nav-links a {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      border-color: var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 72px; }
+    h1 { margin: 14px 0 12px; max-width: 940px; font-size: clamp(38px, 7vw, 76px); line-height: .95; letter-spacing: -.06em; }
+    h2 { margin: 0 0 16px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.035em; }
+    h3 { margin: 0 0 10px; }
+    p { color: var(--muted); }
+    label { display: grid; gap: 7px; color: var(--muted); font-size: 14px; font-weight: 700; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 13px;
+      background: rgba(2,6,23,.72);
+      color: var(--text);
+      font: inherit;
+    }
+    textarea { min-height: 94px; resize: vertical; }
+    button, .button {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #020617;
+    }
+    button.secondary, .button.secondary {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    button.danger { background: rgba(251,113,133,.18); color: #fecdd3; border: 1px solid rgba(251,113,133,.4); }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 22px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      background: rgba(17,24,39,.82);
+      box-shadow: 0 24px 70px rgba(0,0,0,.22);
+    }
+    .grid { display: grid; gap: 16px; }
+    .metrics { grid-template-columns: repeat(4, 1fr); margin: 24px 0; }
+    .metric strong { display: block; font-size: 30px; color: var(--accent); line-height: 1; }
+    .metric span { color: var(--muted); font-size: 13px; }
+    .workspace { display: grid; grid-template-columns: minmax(320px, .9fr) minmax(0, 1.1fr); gap: 16px; align-items: start; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .full { grid-column: 1 / -1; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+    .hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+    .status { min-height: 22px; color: var(--good); font-weight: 800; }
+    .table-wrap { overflow-x: auto; border-radius: 16px; border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; min-width: 820px; }
+    th, td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; background: rgba(255,255,255,.04); }
+    td { color: #e5edf7; }
+    tr:last-child td { border-bottom: 0; }
+    .tag { display: inline-block; border-radius: 999px; padding: 3px 8px; font-size: 12px; font-weight: 900; }
+    .tag.good { background: rgba(134,239,172,.16); color: var(--good); }
+    .tag.bad { background: rgba(251,113,133,.16); color: #fecdd3; }
+    .tag.flat { background: rgba(255,255,255,.08); color: var(--muted); }
+    .score.good { color: var(--good); }
+    .score.warn { color: var(--warn); }
+    .score.bad { color: var(--danger); }
+    .empty { padding: 28px; text-align: center; color: var(--muted); }
+    .import-box { margin-top: 16px; }
+    .footer-nav { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 900px) {
+      .hero, .workspace, .metrics { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .nav-inner { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .nav-links { justify-content: flex-start; }
+    }
   </style>
 </head>
 <body>
+<nav class="site-nav" aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a class="brand" href="/">FreeRideInvestor</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/trading-journal.html" aria-current="page">Journal</a>
+      <a href="/replay-proof.html">Replay Proof</a>
+      <a href="/day-trade-planner.html">Day Planner</a>
+      <a href="/early-access.html">Early Access</a>
+    </div>
+  </div>
+</nav>
 <main>
-  <p class="pill">FreeRideInvestor · powered by Dream.OS</p>
-  <h1>Trading Journal Workflow</h1>
-  <p class="sub">This is not a diary. This is the operator workflow: intake → import → replay → behavior scorecard → next rule.</p>
-
-  <section>
-    <h2>Core Promise</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Import</h3>
-        <p>Bring broker fills, activity exports, or supported trading records into the journal pipeline.</p>
-      </div>
-      <div class="card">
-        <h3>Replay</h3>
-        <p>Match each fill to market context so the system can reconstruct what was happening when you acted.</p>
-      </div>
-      <div class="card">
-        <h3>Score</h3>
-        <p>Generate behavior tags, discipline components, and a next-rule candidate for the next session.</p>
-      </div>
+  <section class="hero">
+    <div>
+      <p class="pill">FreeRideInvestor working journal</p>
+      <h1>Log the trade. Score the behavior. Export the evidence.</h1>
+      <p>This browser-based journal works now: entries save locally on this device, metrics update instantly, and you can import or export CSV without an account.</p>
     </div>
-  </section>
-
-  <section>
-    <h2>Workflow</h2>
-    <div class="flow">
-      <div class="step"><strong>Define thesis.</strong> What trade idea were you acting on?</div>
-      <div class="step"><strong>Set invalidation.</strong> What would prove the trade wrong?</div>
-      <div class="step"><strong>Import fills.</strong> Broker records become the evidence source.</div>
-      <div class="step"><strong>Match market context.</strong> Each fill receives candle context.</div>
-      <div class="step"><strong>Tag behavior.</strong> Rapid repeats, fast flips, chase entries, and weak exits are detected.</div>
-      <div class="step"><strong>Generate scorecard.</strong> Patience, flip control, chase control, exit quality, and balance are scored.</div>
-      <div class="step"><strong>Create next rule.</strong> The system outputs one behavior rule to test next.</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Current Proof</h2>
-    <ul>
-      <li><span class="good">47/47</span> TSLA option fills matched to market candles.</li>
-      <li><span class="good">5,760</span> one-minute TSLA candles used.</li>
-      <li><span class="good">8</span> behavior tags generated.</li>
-      <li><span class="good">62/100</span> calibrated discipline baseline.</li>
-      <li>Top leak: <strong>rapid repeat fills / clustering</strong>.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Policy</h2>
-    <p class="warning">Exact option P/L remains blocked until broker contract identity is imported.</p>
-    <p>Valid now: behavior replay, timing analysis, market context, clustering detection, and rule generation.</p>
-    <p>Blocked for now: exact option contract pairing, exact contract-level P/L, and definitive winner/loser accounting.</p>
-  </section>
-
-  <section>
-    <h2>Next Rule Candidate</h2>
     <div class="card">
-      <p><strong>After any debit fill, wait at least one full 1-minute candle close before adding or flipping, unless the original thesis invalidation level is hit.</strong></p>
+      <h3>Current rule candidate</h3>
+      <p><strong>After any debit fill, wait one full 1-minute candle close before adding or flipping, unless thesis invalidation is hit.</strong></p>
+      <p class="hint">Use the "Rule followed" checkbox to track whether the trade respected the current operator rule.</p>
     </div>
   </section>
 
-  <p><a href="index.html">Back to homepage</a> · <a href="replay-proof.html">View replay proof</a> · <a href="day-trade-planner.html">Open day trade planner</a></p>
+  <section class="grid metrics" aria-label="Journal scorecard">
+    <div class="card metric"><strong id="metric-trades">0</strong><span>trades logged</span></div>
+    <div class="card metric"><strong id="metric-win-rate">0%</strong><span>closed win rate</span></div>
+    <div class="card metric"><strong id="metric-r">0.00R</strong><span>net risk multiple</span></div>
+    <div class="card metric"><strong id="metric-discipline">100</strong><span>discipline score</span></div>
+  </section>
+
+  <section class="workspace">
+    <form class="card" id="trade-form">
+      <h2>Add a trade</h2>
+      <div class="form-grid">
+        <label>Date
+          <input id="trade-date" name="date" type="date" required>
+        </label>
+        <label>Symbol
+          <input id="symbol" name="symbol" placeholder="TSLA" autocomplete="off" required>
+        </label>
+        <label>Side
+          <select id="side" name="side">
+            <option value="long">Long / call / debit</option>
+            <option value="short">Short / put / credit</option>
+          </select>
+        </label>
+        <label>Setup
+          <input id="setup" name="setup" placeholder="Opening range, VWAP reclaim, etc.">
+        </label>
+        <label>Quantity
+          <input id="quantity" name="quantity" type="number" min="0" step="any" placeholder="1" required>
+        </label>
+        <label>Entry
+          <input id="entry" name="entry" type="number" min="0" step="any" placeholder="2.10" required>
+        </label>
+        <label>Exit
+          <input id="exit" name="exit" type="number" min="0" step="any" placeholder="2.55">
+        </label>
+        <label>Stop / invalidation
+          <input id="stop" name="stop" type="number" min="0" step="any" placeholder="1.90">
+        </label>
+        <label class="full">Thesis
+          <textarea id="thesis" name="thesis" placeholder="Why was this trade valid before entry?"></textarea>
+        </label>
+        <label>Emotion tag
+          <select id="emotion" name="emotion">
+            <option value="calm">Calm</option>
+            <option value="hesitant">Hesitant</option>
+            <option value="chasing">Chasing</option>
+            <option value="revenge">Revenge</option>
+          </select>
+        </label>
+        <label>Rule followed?
+          <select id="rule-followed" name="ruleFollowed">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </label>
+        <label class="full">Review note
+          <textarea id="review" name="review" placeholder="What should future-you repeat or avoid?"></textarea>
+        </label>
+      </div>
+      <div class="actions">
+        <button type="submit">Save trade</button>
+        <button class="secondary" type="button" id="load-sample">Load sample</button>
+        <button class="danger" type="button" id="clear-journal">Clear journal</button>
+      </div>
+      <p class="hint">Data is stored in this browser only. Export CSV before clearing browser storage.</p>
+      <p class="status" id="status" aria-live="polite"></p>
+    </form>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Journal actions</h2>
+        <div class="actions">
+          <button type="button" id="export-csv">Export CSV</button>
+          <label class="button secondary" for="csv-file">Import CSV</label>
+          <input id="csv-file" type="file" accept=".csv,text/csv" hidden>
+        </div>
+        <p class="hint">CSV import accepts headers like date, symbol, side, quantity, entry, exit, stop, setup, thesis, emotion, ruleFollowed, review.</p>
+      </section>
+
+      <section class="card">
+        <h2>Behavior readout</h2>
+        <p id="readout">No trades yet. Add a trade or load the sample to generate a scorecard.</p>
+      </section>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:16px">
+    <h2>Trade log</h2>
+    <div class="table-wrap" id="table-wrap"></div>
+  </section>
+
+  <nav class="footer-nav" aria-label="FreeRideInvestor navigation">
+    <a href="/">Back to homepage</a>
+    <a href="/replay-proof.html">Replay proof</a>
+    <a href="/day-trade-planner.html">Day trade planner</a>
+    <a href="/early-access.html">Early access</a>
+  </nav>
 </main>
+
+<script>
+(() => {
+  const storageKey = "freerideinvestor.tradingJournal.v1";
+  const fields = ["date", "symbol", "side", "setup", "quantity", "entry", "exit", "stop", "thesis", "emotion", "ruleFollowed", "review"];
+  const sampleTrades = [
+    {
+      date: "2026-06-10",
+      symbol: "TSLA",
+      side: "long",
+      setup: "VWAP reclaim",
+      quantity: 1,
+      entry: 2.1,
+      exit: 2.55,
+      stop: 1.9,
+      thesis: "Buyer reclaimed VWAP after opening flush.",
+      emotion: "calm",
+      ruleFollowed: "yes",
+      review: "Waited for confirmation before adding."
+    },
+    {
+      date: "2026-06-10",
+      symbol: "TSLA",
+      side: "long",
+      setup: "Continuation chase",
+      quantity: 1,
+      entry: 3.1,
+      exit: 2.8,
+      stop: 2.95,
+      thesis: "Tried to catch continuation after a large candle.",
+      emotion: "chasing",
+      ruleFollowed: "no",
+      review: "Entered before one candle close. This violated the active rule."
+    }
+  ];
+
+  const els = {
+    form: document.getElementById("trade-form"),
+    table: document.getElementById("table-wrap"),
+    status: document.getElementById("status"),
+    readout: document.getElementById("readout"),
+    date: document.getElementById("trade-date"),
+    metrics: {
+      trades: document.getElementById("metric-trades"),
+      winRate: document.getElementById("metric-win-rate"),
+      r: document.getElementById("metric-r"),
+      discipline: document.getElementById("metric-discipline")
+    }
+  };
+
+  let trades = loadTrades();
+  els.date.valueAsDate = new Date();
+  render();
+
+  els.form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const trade = Object.fromEntries(new FormData(els.form).entries());
+    trade.id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
+    trade.symbol = trade.symbol.trim().toUpperCase();
+    trade.quantity = Number(trade.quantity || 0);
+    trade.entry = Number(trade.entry || 0);
+    trade.exit = trade.exit === "" ? "" : Number(trade.exit || 0);
+    trade.stop = trade.stop === "" ? "" : Number(trade.stop || 0);
+    trades.unshift(trade);
+    saveTrades();
+    els.form.reset();
+    els.date.valueAsDate = new Date();
+    setStatus("Trade saved.");
+    render();
+  });
+
+  document.getElementById("load-sample").addEventListener("click", () => {
+    trades = sampleTrades.map((trade, index) => ({ ...trade, id: `sample-${Date.now()}-${index}` })).concat(trades);
+    saveTrades();
+    setStatus("Sample trades loaded.");
+    render();
+  });
+
+  document.getElementById("clear-journal").addEventListener("click", () => {
+    if (!confirm("Clear all locally saved trades?")) return;
+    trades = [];
+    saveTrades();
+    setStatus("Journal cleared.");
+    render();
+  });
+
+  document.getElementById("export-csv").addEventListener("click", () => {
+    const csv = toCsv(trades);
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `freerideinvestor-journal-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+    setStatus("CSV exported.");
+  });
+
+  document.getElementById("csv-file").addEventListener("change", async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    const text = await file.text();
+    const imported = parseCsv(text);
+    trades = imported.concat(trades);
+    saveTrades();
+    setStatus(`Imported ${imported.length} trade${imported.length === 1 ? "" : "s"}.`);
+    event.target.value = "";
+    render();
+  });
+
+  els.table.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-delete]");
+    if (!button) return;
+    trades = trades.filter((trade) => trade.id !== button.dataset.delete);
+    saveTrades();
+    setStatus("Trade deleted.");
+    render();
+  });
+
+  function loadTrades() {
+    try {
+      return JSON.parse(localStorage.getItem(storageKey) || "[]");
+    } catch {
+      return [];
+    }
+  }
+
+  function saveTrades() {
+    localStorage.setItem(storageKey, JSON.stringify(trades));
+  }
+
+  function setStatus(message) {
+    els.status.textContent = message;
+    window.setTimeout(() => {
+      if (els.status.textContent === message) els.status.textContent = "";
+    }, 3000);
+  }
+
+  function render() {
+    const stats = calculateStats(trades);
+    els.metrics.trades.textContent = trades.length;
+    els.metrics.winRate.textContent = `${stats.winRate}%`;
+    els.metrics.r.textContent = `${formatNumber(stats.netR)}R`;
+    els.metrics.discipline.textContent = stats.discipline;
+    els.metrics.discipline.className = scoreClass(stats.discipline);
+    els.readout.textContent = buildReadout(stats);
+    renderTable();
+  }
+
+  function calculateStats(rows) {
+    const closed = rows.filter((trade) => trade.exit !== "" && Number.isFinite(Number(trade.exit)));
+    const wins = closed.filter((trade) => pnl(trade) > 0).length;
+    const netR = rows.reduce((sum, trade) => sum + riskMultiple(trade), 0);
+    const disciplineHits = rows.reduce((sum, trade) => sum + disciplineFor(trade), 0);
+    return {
+      closed: closed.length,
+      winRate: closed.length ? Math.round((wins / closed.length) * 100) : 0,
+      netR,
+      discipline: rows.length ? Math.max(0, Math.round(disciplineHits / rows.length)) : 100,
+      ruleBreaks: rows.filter((trade) => trade.ruleFollowed === "no").length,
+      chasing: rows.filter((trade) => trade.emotion === "chasing" || trade.emotion === "revenge").length
+    };
+  }
+
+  function pnl(trade) {
+    const direction = trade.side === "short" ? -1 : 1;
+    const qty = Number(trade.quantity || 0);
+    const entry = Number(trade.entry || 0);
+    const exit = Number(trade.exit || 0);
+    if (!exit) return 0;
+    return (exit - entry) * direction * qty;
+  }
+
+  function riskMultiple(trade) {
+    const entry = Number(trade.entry || 0);
+    const exit = Number(trade.exit || 0);
+    const stop = Number(trade.stop || 0);
+    if (!entry || !exit || !stop || entry === stop) return 0;
+    const direction = trade.side === "short" ? -1 : 1;
+    const risk = Math.abs(entry - stop);
+    return ((exit - entry) * direction) / risk;
+  }
+
+  function disciplineFor(trade) {
+    let score = 100;
+    if (trade.ruleFollowed === "no") score -= 35;
+    if (trade.emotion === "chasing") score -= 20;
+    if (trade.emotion === "revenge") score -= 30;
+    if (!String(trade.thesis || "").trim()) score -= 15;
+    if (!Number(trade.stop || 0)) score -= 15;
+    return Math.max(0, score);
+  }
+
+  function buildReadout(stats) {
+    if (!trades.length) return "No trades yet. Add a trade or load the sample to generate a scorecard.";
+    const parts = [
+      `${trades.length} trade${trades.length === 1 ? "" : "s"} logged`,
+      `${stats.closed} closed`,
+      `${stats.ruleBreaks} active-rule break${stats.ruleBreaks === 1 ? "" : "s"}`,
+      `${stats.chasing} chase/revenge tag${stats.chasing === 1 ? "" : "s"}`
+    ];
+    if (stats.ruleBreaks > 0) {
+      parts.push("Next review: isolate the trade that broke the one-candle wait rule.");
+    } else {
+      parts.push("Next review: compare clean-rule trades against outcome quality.");
+    }
+    return parts.join(". ") + ".";
+  }
+
+  function renderTable() {
+    if (!trades.length) {
+      els.table.innerHTML = '<div class="empty">No trades logged yet.</div>';
+      return;
+    }
+    els.table.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th><th>Symbol</th><th>Side</th><th>Setup</th><th>P/L</th><th>R</th><th>Discipline</th><th>Review</th><th></th>
+          </tr>
+        </thead>
+        <tbody>
+          ${trades.map(rowHtml).join("")}
+        </tbody>
+      </table>
+    `;
+  }
+
+  function rowHtml(trade) {
+    const result = pnl(trade);
+    const r = riskMultiple(trade);
+    const discipline = disciplineFor(trade);
+    const resultClass = result > 0 ? "good" : result < 0 ? "bad" : "flat";
+    return `
+      <tr>
+        <td>${escapeHtml(trade.date || "")}</td>
+        <td><strong>${escapeHtml(trade.symbol || "")}</strong></td>
+        <td>${escapeHtml(trade.side || "")}</td>
+        <td>${escapeHtml(trade.setup || "")}</td>
+        <td><span class="tag ${resultClass}">${formatMoney(result)}</span></td>
+        <td>${formatNumber(r)}R</td>
+        <td><span class="${scoreClass(discipline)}">${discipline}</span></td>
+        <td>${escapeHtml(trade.review || trade.thesis || "")}</td>
+        <td><button class="secondary" type="button" data-delete="${escapeHtml(trade.id)}">Delete</button></td>
+      </tr>
+    `;
+  }
+
+  function scoreClass(score) {
+    if (score >= 80) return "score good";
+    if (score >= 60) return "score warn";
+    return "score bad";
+  }
+
+  function toCsv(rows) {
+    const header = fields.join(",");
+    const lines = rows.map((trade) => fields.map((field) => csvEscape(trade[field] ?? "")).join(","));
+    return [header].concat(lines).join("\n") + "\n";
+  }
+
+  function csvEscape(value) {
+    const text = String(value);
+    if (/[",\n]/.test(text)) return `"${text.replace(/"/g, '""')}"`;
+    return text;
+  }
+
+  function parseCsv(text) {
+    const rows = splitCsvRows(text).filter((row) => row.some((cell) => cell.trim() !== ""));
+    if (rows.length < 2) return [];
+    const headers = rows.shift().map((header) => header.trim());
+    return rows.map((row, index) => {
+      const trade = { id: `import-${Date.now()}-${index}` };
+      headers.forEach((header, col) => {
+        trade[header] = row[col] ?? "";
+      });
+      trade.symbol = String(trade.symbol || "").toUpperCase();
+      trade.side = trade.side === "short" ? "short" : "long";
+      trade.quantity = Number(trade.quantity || 0);
+      trade.entry = Number(trade.entry || 0);
+      trade.exit = trade.exit === "" ? "" : Number(trade.exit || 0);
+      trade.stop = trade.stop === "" ? "" : Number(trade.stop || 0);
+      trade.ruleFollowed = trade.ruleFollowed === "no" ? "no" : "yes";
+      trade.emotion = trade.emotion || "calm";
+      return trade;
+    });
+  }
+
+  function splitCsvRows(text) {
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let quoted = false;
+    for (let i = 0; i < text.length; i += 1) {
+      const char = text[i];
+      const next = text[i + 1];
+      if (quoted && char === '"' && next === '"') {
+        cell += '"';
+        i += 1;
+      } else if (char === '"') {
+        quoted = !quoted;
+      } else if (!quoted && char === ",") {
+        row.push(cell);
+        cell = "";
+      } else if (!quoted && (char === "\n" || char === "\r")) {
+        if (char === "\r" && next === "\n") i += 1;
+        row.push(cell);
+        rows.push(row);
+        row = [];
+        cell = "";
+      } else {
+        cell += char;
+      }
+    }
+    row.push(cell);
+    rows.push(row);
+    return rows;
+  }
+
+  function formatMoney(value) {
+    return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(value || 0);
+  }
+
+  function formatNumber(value) {
+    return Number(value || 0).toFixed(2);
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char]));
+  }
+})();
+</script>
 </body>
 </html>

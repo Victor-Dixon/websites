@@ -5,20 +5,129 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Replay Proof | FreeRideInvestor</title>
   <meta name="description" content="FreeRideInvestor replay proof: fills matched to market context and behavior tags.">
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #b6c2d1;
+      --line: rgba(255,255,255,.13);
+      --accent: #70e1ff;
+      --accent2: #a78bfa;
+      --good: #86efac;
+      --danger: #fb7185;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #172554 0, var(--bg) 44%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,11,18,.86);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner, main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      color: var(--text);
+      font-weight: 950;
+      letter-spacing: -.03em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .nav-links a {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      border-color: var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    main { padding: 64px 0 80px; }
+    h1 { margin: 0 0 16px; font-size: clamp(40px, 7vw, 76px); line-height: .95; letter-spacing: -.06em; }
+    p, li { color: var(--muted); }
+    .sub { max-width: 780px; font-size: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 28px 0; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      background: rgba(17,24,39,.82);
+      box-shadow: 0 24px 70px rgba(0,0,0,.22);
+    }
+    .metric strong { display: block; color: var(--accent); font-size: 32px; line-height: 1; }
+    .metric span { color: var(--muted); font-size: 14px; }
+    .warning { color: var(--danger); font-weight: 900; }
+    .page-links { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .nav-inner { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .nav-links { justify-content: flex-start; }
+    }
+  </style>
 </head>
 <body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="/">FreeRideInvestor</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/trading-journal.html">Journal</a>
+        <a href="/replay-proof.html" aria-current="page">Replay Proof</a>
+        <a href="/day-trade-planner.html">Day Planner</a>
+        <a href="/early-access.html">Early Access</a>
+      </div>
+    </div>
+  </nav>
   <main>
     <h1>Replay Proof</h1>
-    <p>Dream.OS reconstructed a TSLA options trading month into a fill-level behavior scorecard.</p>
-    <ul>
-      <li>47/47 fills matched</li>
-      <li>5,760 one-minute TSLA candles</li>
-      <li>8 behavior tags</li>
-      <li>Discipline score: 62/100</li>
-      <li>Top leak: rapid repeat fills / clustering</li>
-    </ul>
-    <p>Exact option P/L remains blocked until contract identity is imported.</p>
-    <p><a href="index.html">Back to homepage</a></p>
+    <p class="sub">Dream.OS reconstructed a TSLA options trading month into a fill-level behavior scorecard.</p>
+    <section class="grid" aria-label="Replay proof metrics">
+      <div class="card metric"><strong>47/47</strong><span>fills matched</span></div>
+      <div class="card metric"><strong>5,760</strong><span>one-minute TSLA candles</span></div>
+      <div class="card metric"><strong>8</strong><span>behavior tags</span></div>
+      <div class="card metric"><strong>62/100</strong><span>discipline score</span></div>
+    </section>
+    <section class="card">
+      <h2>Top leak</h2>
+      <p>Rapid repeat fills / clustering.</p>
+      <p class="warning">Exact option P/L remains blocked until contract identity is imported.</p>
+    </section>
+    <div class="page-links">
+      <a href="/trading-journal.html">Open the working journal</a>
+      <a href="/day-trade-planner.html">Open day planner</a>
+      <a href="/early-access.html">Request early access</a>
+    </div>
   </main>
 </body>
 </html>
