@@ -2,306 +2,199 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Spark Protocol #1 | dadudekc.site</title>
+  <title>Victor Dixon | AI Automation, Websites &amp; Business Workflow Systems</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-:root{
-  --ink:#08080b;
-  --paper:#fff4d6;
-  --cream:#ffeec2;
-  --red:#ff3155;
-  --blue:#2dd4ff;
-  --yellow:#ffd12f;
-  --purple:#7c3cff;
-  --green:#32ff9c;
-  --shadow:#151019;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  min-height:100vh;
-  color:var(--ink);
-  font-family:Impact,"Arial Black",system-ui,sans-serif;
-  background:
-    radial-gradient(circle at 20% 10%,rgba(255,49,85,.35) 0 8%,transparent 9%),
-    radial-gradient(circle at 80% 20%,rgba(45,212,255,.32) 0 9%,transparent 10%),
-    radial-gradient(circle at 70% 80%,rgba(255,209,47,.34) 0 10%,transparent 11%),
-    linear-gradient(135deg,#20122d,#090912 55%,#190f13);
-  overflow-x:hidden;
-}
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:.19;
-  background-image:radial-gradient(#fff 1px,transparent 1px);
-  background-size:8px 8px;
-  mix-blend-mode:screen;
-}
-.comic-nav{
-  position:sticky;
-  top:0;
-  z-index:50;
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  align-items:center;
-  flex-wrap:wrap;
-  padding:12px;
-  background:var(--ink);
-  border-bottom:5px solid var(--yellow);
-  box-shadow:0 6px 0 rgba(0,0,0,.45);
-}
-.comic-nav a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:950;
-  letter-spacing:.03em;
-  text-transform:uppercase;
-  padding:8px 10px;
-  border:3px solid transparent;
-}
-.comic-nav a:hover,.comic-nav .pop{
-  color:var(--ink);
-  background:var(--yellow);
-  border-color:#fff;
-  transform:rotate(-1deg);
-}
-.comic-wrap{
-  width:min(1120px,calc(100% - 24px));
-  margin:0 auto;
-  padding:34px 0 76px;
-}
-.issue-tag{
-  display:inline-block;
-  background:var(--yellow);
-  color:var(--ink);
-  border:4px solid var(--ink);
-  box-shadow:6px 6px 0 var(--ink);
-  padding:8px 12px;
-  transform:rotate(-2deg);
-  text-transform:uppercase;
-  font-size:.95rem;
-  letter-spacing:.08em;
-}
-.comic-cover{
-  position:relative;
-  margin-top:24px;
-  border:7px solid var(--ink);
-  background:
-    radial-gradient(circle at 76% 20%,rgba(255,255,255,.95) 0 8%,transparent 9%),
-    linear-gradient(135deg,#ff3155 0 35%,#ffd12f 35% 58%,#2dd4ff 58% 100%);
-  box-shadow:14px 14px 0 rgba(0,0,0,.65);
-  padding:clamp(22px,5vw,54px);
-  overflow:hidden;
-}
-.comic-cover:after{
-  content:"SPARK!";
-  position:absolute;
-  right:-20px;
-  bottom:16px;
-  color:rgba(8,8,11,.12);
-  font-size:clamp(5rem,16vw,13rem);
-  transform:rotate(-11deg);
-  line-height:.8;
-}
-h1{
-  position:relative;
-  z-index:2;
-  margin:12px 0;
-  font-size:clamp(3rem,12vw,8.8rem);
-  line-height:.78;
-  letter-spacing:-.08em;
-  text-transform:uppercase;
-  color:#fff;
-  -webkit-text-stroke:3px var(--ink);
-  text-shadow:7px 7px 0 var(--ink);
-}
-h2{
-  margin:0 0 10px;
-  font-size:clamp(1.7rem,5vw,3rem);
-  line-height:.9;
-  text-transform:uppercase;
-}
-p{
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-weight:800;
-  line-height:1.5;
-}
-.caption{
-  position:relative;
-  z-index:2;
-  display:inline-block;
-  max-width:780px;
-  background:var(--paper);
-  border:5px solid var(--ink);
-  padding:14px 16px;
-  box-shadow:8px 8px 0 var(--ink);
-  font-size:1.08rem;
-}
-.comic-actions{
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:24px;
-}
-.comic-button{
-  display:inline-block;
-  text-decoration:none;
-  border:5px solid var(--ink);
-  color:var(--ink);
-  background:#fff;
-  padding:13px 16px;
-  box-shadow:6px 6px 0 var(--ink);
-  text-transform:uppercase;
-  font-weight:950;
-  letter-spacing:.04em;
-}
-.comic-button.primary{background:var(--yellow)}
-.comic-button.red{background:var(--red);color:#fff}
-.comic-button.blue{background:var(--blue)}
-.comic-button:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--ink)}
-.panel-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:18px;
-  margin-top:30px;
-}
-.comic-panel{
-  background:var(--paper);
-  border:6px solid var(--ink);
-  box-shadow:9px 9px 0 rgba(0,0,0,.7);
-  padding:18px;
-  transform:rotate(var(--tilt,0deg));
-}
-.comic-panel:nth-child(1){--tilt:-1deg}
-.comic-panel:nth-child(2){--tilt:1deg}
-.comic-panel:nth-child(3){--tilt:-.5deg}
-.comic-panel strong{
-  display:inline-block;
-  background:var(--ink);
-  color:#fff;
-  padding:6px 9px;
-  margin-top:6px;
-}
-.speech{
-  position:relative;
-  background:#fff;
-  border:5px solid var(--ink);
-  border-radius:24px;
-  padding:16px;
-  box-shadow:7px 7px 0 rgba(0,0,0,.7);
-}
-.speech:after{
-  content:"";
-  position:absolute;
-  bottom:-22px;
-  left:34px;
-  border-width:22px 18px 0 0;
-  border-style:solid;
-  border-color:var(--ink) transparent transparent transparent;
-}
-.form-panel{
-  background:var(--paper);
-  border:7px solid var(--ink);
-  box-shadow:12px 12px 0 rgba(0,0,0,.7);
-  padding:22px;
-}
-label{
-  display:block;
-  margin:14px 0 6px;
-  text-transform:uppercase;
-  font-weight:950;
-}
-input{
-  width:100%;
-  border:4px solid var(--ink);
-  padding:13px;
-  font-size:1rem;
-  font-weight:800;
-  background:#fff;
-  color:var(--ink);
-  box-shadow:4px 4px 0 rgba(0,0,0,.25) inset;
-}
-button{
-  cursor:pointer;
-  border:5px solid var(--ink);
-  background:var(--yellow);
-  color:var(--ink);
-  padding:13px 16px;
-  box-shadow:6px 6px 0 var(--ink);
-  text-transform:uppercase;
-  font-weight:950;
-  margin-top:16px;
-  font-family:Impact,"Arial Black",system-ui,sans-serif;
-  letter-spacing:.04em;
-}
-.status{
-  margin-top:14px;
-  font-family:system-ui,sans-serif;
-  font-weight:900;
-}
-.error{color:var(--red)}
-  </style>
+  <meta name="description" content="Victor Dixon builds AI automation systems, business websites, employee onboarding portals, and workflow dashboards for small businesses, creators, and operators." />
+  <meta name="keywords" content="AI automation, business websites, onboarding portals, workflow systems, small business automation, Victor Dixon, Dream.OS" />
+  <link rel="stylesheet" href="/assets/css/services-site.css?v=1" />
 </head>
 <body>
-  <nav id="spark-auth-nav" class="comic-nav" aria-label="Spark Protocol">
-    <a href="/">Cover</a>
-    <a href="/spark-account/">Origin Rules</a>
-    <a href="/spark-login/">Log In</a>
-    <a class="pop" href="/spark-signup/">Join The Universe</a>
-  </nav>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/">
+        <span class="brand-name">Victor Dixon</span>
+        <span class="brand-tag">AI Automation Builder</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="nav-links" aria-label="Primary">
+        <a href="/" class="active">Home</a>
+        <a href="/services/">Services</a>
+        <a href="/case-studies/">Case Studies</a>
+        <a href="/contact/">Contact</a>
+        <a href="/contact/" class="nav-cta">Book a Strategy Call</a>
+      </nav>
+    </div>
+  </header>
 
-  <main class="comic-wrap">
-    <span class="issue-tag">Issue #001 · Meridian City Emergency Edition</span>
-
-    <section class="comic-cover">
-      <h1>Spark Protocol</h1>
-      <div class="caption">
-        Choose your power. Lock your hero identity. Enter Meridian City when the Dispatch calls for help.
-      </div>
-      <div class="comic-actions">
-        <a class="comic-button primary" href="/spark-signup/">Create Your Hero</a>
-        <a class="comic-button blue" href="/spark-login/">Continue Your Story</a>
-        <a class="comic-button red" href="/spark-account/">Read Origin Rules</a>
+  <main>
+    <section class="hero" id="top">
+      <p class="section-label">Dream.OS Architect · Workflow Systems</p>
+      <h1>AI Automation Systems for Small Businesses, Creators, and Operators</h1>
+      <p class="hero-sub">I help businesses turn messy workflows into websites, dashboards, onboarding systems, AI assistants, and automation pipelines that actually save time.</p>
+      <p class="hero-trust">Built by <strong>Victor Dixon</strong> — Dream.OS architect, automation builder, and multi-agent systems operator.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contact/">Book a Strategy Call</a>
+        <a class="btn btn-secondary" href="#services">See What I Can Build</a>
       </div>
     </section>
 
-    <section class="panel-grid">
-      <article class="comic-panel">
-        <h2>Anonymous</h2>
-        <p>You can preview the cover, but the panels stay locked until you create a hero identity.</p>
-        <strong>0 Sparks</strong>
-      </article>
-      <article class="comic-panel">
-        <h2>Free Hero</h2>
-        <p>Create one official Spark. That character becomes your entry into the world.</p>
-        <strong>1 Spark</strong>
-      </article>
-      <article class="comic-panel">
-        <h2>Paid Roster</h2>
-        <p>Build a small team of Sparks for alternate powers, family builds, and mission roles.</p>
-        <strong>5 Sparks</strong>
-      </article>
+    <section class="section" id="pain">
+      <span class="section-label">The Problem</span>
+      <h2>Your business is leaking time through manual work.</h2>
+      <p class="section-lead">You probably have:</p>
+      <ul class="pain-list">
+        <li>Tasks stuck in texts, notes, or spreadsheets</li>
+        <li>Employees asking the same questions repeatedly</li>
+        <li>No clean onboarding process</li>
+        <li>A website that does not explain or sell your services</li>
+        <li>Leads coming in without automation</li>
+        <li>No dashboard showing what is actually happening</li>
+      </ul>
     </section>
 
-    <section class="panel-grid">
-      <article class="comic-panel speech">
-        <h2>First Rule</h2>
-        <p>Account first. Hero second. Mission third.</p>
-      </article>
-      <article class="comic-panel">
-        <h2>Dispatch Locked</h2>
-        <p>The newspaper carries live crises. You need a hero identity before responding.</p>
-        <a class="comic-button" href="/spark-login/?redirect_to=%2Fmeridian-dispatch%2F">Unlock Dispatch</a>
-      </article>
+    <section class="section" id="services">
+      <span class="section-label">Capabilities</span>
+      <h2>What I Build</h2>
+      <ul class="services-list">
+        <li><span>01</span>Business websites that explain, sell, and capture leads</li>
+        <li><span>02</span>AI-assisted onboarding portals for employees and contractors</li>
+        <li><span>03</span>Internal dashboards for tasks, records, and operations</li>
+        <li><span>04</span>Discord, Slack, and email automation systems</li>
+        <li><span>05</span>Custom GPT and agent workflows for repeat business processes</li>
+        <li><span>06</span>Multi-site portfolio and deployment systems</li>
+      </ul>
+    </section>
+
+    <section class="section" id="packages">
+      <span class="section-label">Engagement</span>
+      <h2>Service Packages</h2>
+      <p class="section-lead">Clear starting points — scoped to your workflow, team size, and timeline.</p>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Website + AI Upgrade</h3>
+          <p>Best for local businesses with outdated websites.</p>
+          <span class="package-price">From $500+</span>
+        </article>
+        <article class="card">
+          <h3>Employee Onboarding Portal</h3>
+          <p>Best for security, service, and field teams.</p>
+          <span class="package-price">From $750+</span>
+        </article>
+        <article class="card">
+          <h3>Automation Audit</h3>
+          <p>Best for businesses drowning in manual work.</p>
+          <span class="package-price">From $150+</span>
+        </article>
+        <article class="card">
+          <h3>Custom AI Workflow System</h3>
+          <p>Best for operators who need dashboards and tools.</p>
+          <span class="package-price">From $1,500+</span>
+        </article>
+        <article class="card">
+          <h3>Ongoing Automation Partner</h3>
+          <p>Best for monthly support and iteration.</p>
+          <span class="package-price">From $300/mo+</span>
+        </article>
+      </div>
+      <p style="margin-top:24px"><a href="/services/">View full service details →</a></p>
+    </section>
+
+    <section class="section" id="proof">
+      <span class="section-label">Track Record</span>
+      <h2>Proof of Work</h2>
+      <p class="section-lead">Built and operated across real systems — not slide decks.</p>
+      <div class="proof-grid">
+        <div class="proof-item"><a href="https://weareswarm.online/focus/" rel="noopener">Dream.OS</a> multi-agent automation system</div>
+        <div class="proof-item"><a href="https://weareswarm.online/focus/" rel="noopener">WeAreSwarm</a> planner and task systems</div>
+        <div class="proof-item"><a href="https://freerideinvestor.com/" rel="noopener">FreeRideInvestor</a> trading cockpit</div>
+        <div class="proof-item"><a href="https://digitaldreamscape.site/" rel="noopener">Digital Dreamscape</a> game and world experiments</div>
+        <div class="proof-item">Discord automation and agent command systems</div>
+        <div class="proof-item">Small business website automation lanes</div>
+      </div>
+    </section>
+
+    <section class="section" id="case-studies">
+      <span class="section-label">Results</span>
+      <h2>Example Builds</h2>
+      <div class="card-grid">
+        <article class="card case-study-card">
+          <p class="label">Case Study</p>
+          <h3>Security Company Website + Onboarding</h3>
+          <div class="case-block"><strong>Problem</strong><p>A security company needs a professional site, lead capture, site-specific rules, and employee onboarding.</p></div>
+          <div class="case-block"><strong>Solution</strong><p>A clean business website with service pages, intake forms, onboarding documents, AI-assisted FAQ, and training portal.</p></div>
+          <div class="case-block"><strong>Value</strong><p>Less owner repetition, better employee readiness, and stronger sales presence.</p></div>
+        </article>
+        <article class="card case-study-card">
+          <p class="label">Case Study</p>
+          <h3><a href="https://weareswarm.online/focus/">WeAreSwarm Planner</a></h3>
+          <div class="case-block"><strong>Problem</strong><p>Family and student projects need task visibility, ownership, and records.</p></div>
+          <div class="case-block"><strong>Solution</strong><p>A planner that lets users view tasks, claim work, track completion, and build accountability.</p></div>
+          <div class="case-block"><strong>Value</strong><p>Turns scattered ideas into managed execution.</p></div>
+        </article>
+        <article class="card case-study-card">
+          <p class="label">Case Study</p>
+          <h3>Dream.OS</h3>
+          <div class="case-block"><strong>Problem</strong><p>Too many repos, agents, tasks, and workflows become impossible to manage manually.</p></div>
+          <div class="case-block"><strong>Solution</strong><p>A self-healing automation operating system using task artifacts, verification gates, terminal lanes, and repo-level discipline.</p></div>
+          <div class="case-block"><strong>Value</strong><p>Faster execution with less chaos.</p></div>
+        </article>
+      </div>
+      <p style="margin-top:24px"><a href="/case-studies/">Read all case studies →</a></p>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="contact-section">
+        <span class="section-label">Get Started</span>
+        <h2>Want to automate the messy part of your business?</h2>
+        <p class="section-lead">Send me your website, workflow, or business problem. I will tell you what I would fix first.</p>
+        <form id="contact-form" class="contact-form" action="/contact/" method="get">
+          <label>Name<input type="text" name="name" required autocomplete="name" /></label>
+          <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Business<input type="text" name="business" autocomplete="organization" /></label>
+          <label>Current website<input type="url" name="website" placeholder="https://" /></label>
+          <label>Biggest workflow problem<textarea name="problem" required></textarea></label>
+          <button type="submit" class="btn btn-primary">Request an Automation Audit</button>
+        </form>
+        <p class="form-note">Opens your email client to hello@dadudekc.site — or use the <a href="/contact/">full contact page</a>.</p>
+      </div>
     </section>
   </main>
-  <script src="/assets/js/spark-account-runtime.js?v=6"></script>
-  <script src="/assets/js/spark-auth-nav.js?v=7"></script>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <h4>Victor Dixon</h4>
+          <p style="margin:0;color:var(--text-muted);font-size:0.9rem">AI Automation Builder · Dream.OS Architect · Small Business Workflow + Website Automation</p>
+        </div>
+        <div>
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="/services/">Services</a></li>
+            <li><a href="/case-studies/">Case Studies</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Systems I've Built</h4>
+          <ul>
+            <li><a href="/spark-dashboard/">Spark Dashboard</a></li>
+            <li><a href="/meridian-map/">Meridian Map</a></li>
+            <li><a href="/spark-mission-admin/">Mission Admin</a></li>
+            <li><a href="https://weareswarm.online/focus/">WeAreSwarm Planner</a></li>
+            <li><a href="https://maskzero.site/">Mask Zero (lore)</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@dadudekc.site">hello@dadudekc.site</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© Victor Dixon · dadudekc.site · Hire me for automation, websites, and workflow systems.</div>
+    </div>
+  </footer>
+  <script src="/assets/js/services-site.js?v=1"></script>
 </body>
 </html>
