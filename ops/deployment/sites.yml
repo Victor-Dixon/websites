@@ -240,6 +240,17 @@ sites:
       - websites/dadudekc.site/wp-content/themes/dreamos-emergence/templates/front-page.html
     notes: "Spark Protocol — static index.html + WP Emergence; immersive auth + Battle Sim v8.6 + Meridian News nav"
 
+  maskzero.site:
+    path: websites/dadudekc.site
+    deployer: unified
+    verify_url: https://maskzero.site/
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    deploy_dirs:
+      - websites/dadudekc.site
+    notes: "Spark Protocol mirror on maskzero.site — shares dadudekc.site source tree; Hostinger domains/maskzero.site/public_html"
+
   xthunder.site:
     path: sites/production/websites/xthunder.site
     deployer: unified

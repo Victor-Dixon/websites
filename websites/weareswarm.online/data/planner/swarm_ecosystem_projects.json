@@ -1,0 +1,68 @@
+{
+  "schema": "weareswarm.online.ecosystem_projects.v1",
+  "generated_at": "2026-06-08T12:00:00+00:00",
+  "source": "manual_homepage_refresh",
+  "public_safe": true,
+  "summary": "Canonical tool repos surfaced for planner context \u2014 not a portfolio showcase.",
+  "projects": [
+    {
+      "id": "metuber",
+      "name": "MeTuber",
+      "status": "active",
+      "bucket": "creator_tools",
+      "tagline": "Real-time webcam filters and virtual camera output",
+      "description": "Desktop app for live video effects with OBS/UnityCapture virtual camera support. Includes a LAN web filter tester \u2014 no PyQt GUI required on test devices.",
+      "highlights": [
+        "PyQt desktop app: python webcam_filter_pyqt5.py",
+        "LAN web tester: python run_web.py (port 8765)",
+        "Artistic, color, distortion, and basic effect categories"
+      ],
+      "repo_url": "https://github.com/Victor-Dixon/MeTuber",
+      "local_path": "D:/MeTuber"
+    },
+    {
+      "id": "streamertools",
+      "name": "StreamerTools",
+      "status": "active",
+      "bucket": "creator_tools",
+      "tagline": "Twitch bots and bot scaffolds only",
+      "description": "Streaming automation focused on Twitch IRC bots. MeTuber duplicate code removed \u2014 webcam filters live exclusively in MeTuber.",
+      "highlights": [
+        "twitch_bots/scaffold \u2014 base bot class and .env template",
+        "twitch_bots/echo_bot \u2014 minimal working bot (!ping, !echo)",
+        "Quick start: python -m twitch_bots.echo_bot"
+      ],
+      "repo_url": "https://github.com/Dadudekc/Streamertools",
+      "local_path": "D:/Streamertools"
+    },
+    {
+      "id": "dreamvault",
+      "name": "DreamVault",
+      "status": "canonical",
+      "bucket": "dream_os_core",
+      "tagline": "Dream.OS governance, planner, and runtime automation",
+      "description": "Canonical repo for lane dispatch, repo consolidation, verification gates, and the planner JSON that powers this site.",
+      "highlights": [
+        "Planner sync: sync_planner_reports_to_weareswarm_online_001.py",
+        "Repo consolidation and domain mapping",
+        "Discord closeout cards and task gates"
+      ],
+      "repo_url": "https://github.com/Victor-Dixon/DreamVault",
+      "local_path": "D:/DreamVault"
+    },
+    {
+      "id": "websites",
+      "name": "websites",
+      "status": "public_surface",
+      "bucket": "public_web",
+      "tagline": "Multi-site WordPress and static deploy monorepo",
+      "description": "Package-based WordPress architecture plus static surfaces like weareswarm.online. Deploy via unified_deployer.",
+      "highlights": [
+        "Static planner: weareswarm.online",
+        "Deploy: ops/deployment/deploy_weareswarm.ps1",
+        "Sites registry: ops/deployment/sites.yml"
+      ],
+      "local_path": "D:/websites"
+    }
+  ]
+}

@@ -4,39 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects — weareswarm.online</title>
-  <meta name="description" content="DreamVault planner project domain index bridge on weareswarm.online">
+  <meta name="description" content="DreamVault project portfolio — live projectscanner + GitHub stats grid.">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
 </head>
 <body>
-  <nav class="site-nav">
-    <a class="brand" href="/">🧠 We Are Swarm</a>
-    <div class="links">
-      <a href="/">Home</a>
-      <a href="/focus/">Focus</a>
-      <a href="/projects/" class="active">Projects</a>
-      <a href="/tasks/">Tasks</a>
-    </div>
-  </nav>
+  <nav class="site-nav"></nav>
 
   <main class="container">
     <header class="hero">
-      <h1>Projects</h1>
-      <p>Domain mapping and repo bucket view — planner bridge for portfolio consolidation.</p>
+      <h1>DreamVault Project Portfolio</h1>
+      <p>Live-generated from DreamVault repos + GitHub stats — projectscanner scan enriched via <code>gh</code> API.</p>
       <div class="meta-row">
+        <span class="badge ok" id="live-badge">● Live feed</span>
         <span class="badge" id="sync-meta">Loading…</span>
-        <a class="badge" href="/">Command Center</a>
-        <a class="badge" href="/focus/">Focus board</a>
-        <a class="badge" href="/tasks/">Tasks</a>
       </div>
     </header>
 
     <section class="panel">
       <div class="panel-header">
         <div>
+          <h2>Portfolio grid</h2>
+          <p class="subtitle">projects_full.json — stars, issues, last push</p>
+        </div>
+        <span class="badge warn" id="source-badge">—</span>
+      </div>
+      <div class="panel-body" id="project-cards"></div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Planner board</h2>
+          <p class="subtitle">public_project_board.json — consolidation buckets</p>
+        </div>
+        <a class="badge" href="/focus/">Focus board</a>
+      </div>
+      <div class="panel-body" id="planner-cards"></div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
           <h2>Domain index</h2>
           <p class="subtitle">project_domain_index.json</p>
         </div>
-        <span class="badge warn" id="source-badge">—</span>
       </div>
       <div class="panel-body">
         <div class="table-wrap">
@@ -52,52 +63,69 @@
             <tbody></tbody>
           </table>
         </div>
-
-        <p class="section-title" style="margin-top:1.25rem;">Repo buckets</p>
-        <div id="repo-buckets"></div>
-
-        <p class="section-title" style="margin-top:1.25rem;">Seed repos</p>
-        <ul class="list" id="seed-repos"></ul>
       </div>
     </section>
   </main>
 
+  <script src="/data/shared/site-nav.js"></script>
   <script src="/data/shared/focus-dashboard.js"></script>
+  <script src="/data/shared/projects-dashboard.js"></script>
   <script>
     (async function () {
-      const { fetchJson, el, setSyncMeta, resolveRepoBuckets } = window.FocusDashboard;
-      try {
-        const [manifest, index, publicBoard] = await Promise.all([
-          fetchJson("manifest.json"),
-          fetchJson("project_domain_index.json"),
-          fetchJson("public_project_board.json").catch(() => ({})),
-        ]);
-        setSyncMeta(manifest);
-        document.getElementById("source-badge").textContent = index.source || manifest.source || "planner";
+      const FD = window.FocusDashboard;
+      const PD = window.ProjectsDashboard;
+      if (!FD || !PD) {
+        document.getElementById("sync-meta").textContent = "Dashboard scripts missing — redeploy data/shared/";
+        return;
+      }
 
-        const tbody = document.querySelector("#domains-table tbody");
-        (index.domains || []).forEach((d) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML =
-            "<td>" + (d.domain || "—") + "</td>" +
-            "<td>" + ((d.bounded_contexts || []).join(", ") || "—") + "</td>" +
-            "<td>" + (d.canonical_repo || d.canonical_owner || "—") + "</td>" +
-            "<td><span class=\"status-pill\">" + (d.bucket || "—") + "</span></td>";
-          tbody.appendChild(tr);
-        });
+      const [manifestResult, feedResult, boardResult, indexResult, ecosystemResult] = await Promise.all([
+        FD.fetchJsonSettled("manifest.json"),
+        FD.fetchJsonSettled("projects_full.json", { projects: [] }),
+        FD.fetchJsonSettled("public_project_board.json", { buckets: {} }),
+        FD.fetchJsonSettled("project_domain_index.json", { domains: [] }),
+        FD.fetchJsonSettled("swarm_ecosystem_projects.json", { projects: [] }),
+      ]);
 
-        const buckets = document.getElementById("repo-buckets");
-        Object.entries(resolveRepoBuckets(index, publicBoard)).forEach(([bucket, repos]) => {
-          buckets.appendChild(el("div", { style: "margin-bottom:0.45rem;font-size:0.88rem;" }, [
-            el("strong", { text: bucket + ": " }),
-            document.createTextNode((repos || []).join(", ")),
-          ]));
-        });
+      const manifest = manifestResult.data || {};
+      const feed = feedResult.data || {};
+      const board = boardResult.data || {};
+      const index = indexResult.data || {};
+      const ecosystem = ecosystemResult.data || {};
 
-        const seeds = document.getElementById("seed-repos");
-        (index.seed_repos || []).forEach((r) => seeds.appendChild(el("li", { text: r })));
-      } catch (err) {
-        document.getElementById("sync-meta").textContent = "Load error: " + err.message;
+      if (manifestResult.ok) FD.setSyncMeta(manifest);
+      else if (feed.generated) {
+        document.getElementById("sync-meta").textContent = "Feed · " + (feed.generated || "").slice(0, 19);
+      }
+
+      const source = feed.source || board.source || manifest.source || "planner";
+      document.getElementById("source-badge").textContent = source;
+
+      if (feedResult.ok && (feed.projects || []).length) {
+        PD.renderProjectsFeedGrid(document.getElementById("project-cards"), feed);
+      } else {
+        PD.renderProjectCards(
+          document.getElementById("project-cards"),
+          board,
+          ecosystem,
+          index
+        );
+        document.getElementById("live-badge").className = "badge warn";
+        document.getElementById("live-badge").textContent = "● Planner fallback";
+      }
+
+      PD.renderProjectCards(
+        document.getElementById("planner-cards"),
+        board,
+        ecosystem,
+        index
+      );
+      PD.renderDomainTable(document.getElementById("domains-table"), index);
+
+      const failed = [feedResult, boardResult, indexResult].filter(function (r) { return !r.ok; });
+      if (failed.length && !feedResult.ok) {
+        document.getElementById("live-badge").className = "badge warn";
+        document.getElementById("live-badge").textContent = "● Partial data";
       }
     })();
   </script>

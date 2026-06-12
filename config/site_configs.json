@@ -284,6 +284,21 @@
       "port": 65002
     }
   },
+  "maskzero.site": {
+    "site_url": "https://maskzero.site",
+    "path": "websites/dadudekc.site",
+    "deployment_method": "sftp",
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/maskzero.site/public_html",
+      "port": 65002
+    },
+    "deploy_dirs": [
+      "websites/dadudekc.site"
+    ]
+  },
   "dadudekc.com": {
     "site_url": "https://dadudekc.com",
     "deployment_method": "rest_api",
