@@ -1,6 +1,6 @@
-# Owner Approval Required: ariajet.site
+# Owner Approval / Deployment Notes: ariajet.site
 
-This package is generated only. It must not be deployed until owner approval is recorded.
+This static package is the source for the AriaJet public build-in-public hub.
 
 ## Domain
 
@@ -12,18 +12,17 @@ rebuild_static
 
 ## Business Purpose
 
-phone repair and tech help landing page
+Build-in-public project hub for AriaJet as a growing travel/startup product.
 
-## Requested Homepage Content
+## Requested Hub Content
 
-- Explain what Ariajet is before anything else.
-- Explain why visitors should choose Ariajet.
-- Feature the iPhone 12 repair story:
-  - screen was cracked
-  - screen replacement completed
-  - repair took 3 hours
-  - this was the first phone ever fixed
-  - both provided photos are after photos because no before photo was taken
+- Dashboard-style homepage with "Building AriaJet in Public" hero.
+- Recent updates feed, activity stream, metrics, announcements, and project status.
+- Blog-style development log categories for features, bug fixes, design changes, experiments, and lessons learned.
+- Public roadmap with Core Website, Flight Search, Booking System, and Mobile App phases.
+- System updates page for technical updates, deployment logs, performance improvements, and infrastructure changes.
+- Mission and achievement system with milestones, goals, challenges, and badges.
+- Navigation: Home, Roadmap, Updates, Dev Log, Projects, Achievements, About.
 
 ## Approval Gate
 

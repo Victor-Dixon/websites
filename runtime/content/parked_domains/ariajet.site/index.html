@@ -3,122 +3,244 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Ariajet | Phone Repair & Tech Help</title>
-  <meta name="description" content="Ariajet is a careful, honest phone repair and tech help service. See the first iPhone 12 screen replacement repair story.">
-  <link rel="stylesheet" href="assets/style.css">
+  <title>AriaJet | Building in Public</title>
+  <meta name="description" content="Follow AriaJet as it grows in public: roadmap, updates, development logs, milestones, experiments, and project metrics.">
+  <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-  <header class="site-header" aria-label="Ariajet site header">
-    <a class="brand" href="#top" aria-label="Ariajet home">Ariajet</a>
-    <nav aria-label="Main navigation">
-      <a href="#why">Why choose me</a>
-      <a href="#phones-fixed">Phones I've fixed</a>
-      <a href="#contact">Contact</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" aria-label="AriaJet site header">
+    <a class="brand" href="/" aria-label="AriaJet home"><span class="brand-mark"></span>AriaJet</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/roadmap/">Roadmap</a>
+      <a href="/updates/">Updates</a>
+      <a href="/dev-log/">Dev Log</a>
+      <a href="/projects/">Projects</a>
+      <a href="/achievements/">Achievements</a>
+      <a href="/about/">About</a>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
+  <main id="main" class="shell">
+    <section class="hero hero-dashboard" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <span class="eyebrow">Phone repair & tech help</span>
-        <h1 id="hero-title">Careful repairs, honest service, and real progress you can see.</h1>
+        <span class="eyebrow">Build log open</span>
+        <h1 id="hero-title">Building AriaJet in Public</h1>
         <p class="lead">
-          Ariajet helps with phone screen repair and everyday tech problems with patience,
-          clear communication, and respect for your device.
+          AriaJet is becoming a transparent startup project hub for flight discovery,
+          booking flows, mobile experiments, and the lessons learned while building each layer.
         </p>
         <div class="hero-actions" aria-label="Primary actions">
-          <a class="button" href="#phones-fixed">See phones I've fixed</a>
-          <a class="button button-secondary" href="#why">Why choose Ariajet</a>
+          <a class="button" href="/roadmap/">View roadmap</a>
+          <a class="button button-secondary" href="/dev-log/">Read dev log</a>
         </div>
       </div>
 
-      <aside class="hero-card" aria-label="Featured repair summary">
-        <span class="card-label">Featured repair</span>
-        <h2>iPhone 12 screen replacement</h2>
-        <dl>
-          <div>
-            <dt>Problem</dt>
-            <dd>Cracked screen</dd>
-          </div>
-          <div>
-            <dt>Fix</dt>
-            <dd>Screen replacement</dd>
-          </div>
-          <div>
-            <dt>Time</dt>
-            <dd>3 hours</dd>
-          </div>
-          <div>
-            <dt>Milestone</dt>
-            <dd>My first phone repair</dd>
-          </div>
-        </dl>
+      <aside class="feed-card" aria-labelledby="recent-updates-title">
+        <div class="card-heading">
+          <span class="card-label">Recent updates</span>
+          <h2 id="recent-updates-title">Activity feed</h2>
+        </div>
+        <div class="activity-list">
+          <article class="activity-item featured">
+            <span class="activity-date">Jun 12</span>
+            <div>
+              <h3>Public hub redesign shipped</h3>
+              <p>Homepage reframed from static marketing into a live project dashboard.</p>
+            </div>
+          </article>
+          <article class="activity-item">
+            <span class="activity-date">Jun 12</span>
+            <div>
+              <h3>Roadmap phases published</h3>
+              <p>Core Website, Flight Search, Booking System, and Mobile App milestones are now trackable.</p>
+            </div>
+          </article>
+          <article class="activity-item">
+            <span class="activity-date">Jun 11</span>
+            <div>
+              <h3>Dashboard system planned</h3>
+              <p>Metrics cards, badges, timelines, and build notes were mapped into the first public version.</p>
+            </div>
+          </article>
+        </div>
       </aside>
     </section>
 
-    <section class="section" id="why" aria-labelledby="why-title">
+    <section class="stats-grid" aria-label="Project metrics">
+      <article class="stat-card">
+        <span class="stat-value">01</span>
+        <h2>Current phase</h2>
+        <p>Phase 1: Core Website</p>
+      </article>
+      <article class="stat-card">
+        <span class="stat-value">7</span>
+        <h2>Public sections</h2>
+        <p>Home, roadmap, updates, dev log, projects, achievements, and about.</p>
+      </article>
+      <article class="stat-card">
+        <span class="stat-value">5</span>
+        <h2>Dev log types</h2>
+        <p>Features, bug fixes, design changes, experiments, and lessons learned.</p>
+      </article>
+      <article class="stat-card">
+        <span class="stat-value">4</span>
+        <h2>Roadmap phases</h2>
+        <p>From launch foundation to mobile app expansion.</p>
+      </article>
+    </section>
+
+    <section class="section" id="project-status" aria-labelledby="status-title">
       <div class="section-heading">
-        <span class="eyebrow">Why choose me</span>
-        <h2 id="why-title">Ariajet is built on being careful, honest, and focused.</h2>
+        <span class="eyebrow">Project status</span>
+        <h2 id="status-title">What is done, moving, and queued.</h2>
+        <p>AriaJet is tracked like a live product, with progress visible before everything is polished.</p>
       </div>
-      <div class="reason-grid">
-        <article class="reason-card">
-          <span class="reason-number">01</span>
-          <h3>Care with every device</h3>
-          <p>I take my time so the repair is handled carefully instead of rushed.</p>
+      <div class="status-board">
+        <article class="panel accent-panel">
+          <span class="tag">Current Phase</span>
+          <h3>Phase 1: Core Website</h3>
+          <p>Build the public identity, information architecture, update streams, and trust layer for the product.</p>
+          <div class="progress" aria-label="Core Website progress">
+            <span style="width: 72%"></span>
+          </div>
+          <strong class="progress-label">72% complete</strong>
         </article>
-        <article class="reason-card">
-          <span class="reason-number">02</span>
-          <h3>Clear, honest updates</h3>
-          <p>You get the real story about the repair, what was done, and how long it took.</p>
+        <article class="panel">
+          <span class="tag">Features Completed</span>
+          <ul class="check-list">
+            <li>Build-in-public homepage</li>
+            <li>Roadmap phase model</li>
+            <li>Recent activity dashboard</li>
+            <li>Achievement badge system</li>
+          </ul>
         </article>
-        <article class="reason-card">
-          <span class="reason-number">03</span>
-          <h3>Real work, real growth</h3>
-          <p>Ariajet is starting with hands-on repair experience and a commitment to keep improving.</p>
+        <article class="panel">
+          <span class="tag">Features In Progress</span>
+          <ul class="check-list active-list">
+            <li>Flight search concept screens</li>
+            <li>Booking flow architecture</li>
+            <li>Performance monitoring notes</li>
+            <li>Community challenge loop</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="tag">Planned Features</span>
+          <ul class="check-list planned-list">
+            <li>Live flight search prototype</li>
+            <li>Account and saved itinerary system</li>
+            <li>Booking handoff and confirmation flow</li>
+            <li>Mobile companion app</li>
+          </ul>
         </article>
       </div>
     </section>
 
-    <section class="section repair-story" id="phones-fixed" aria-labelledby="phones-fixed-title">
-      <div class="section-heading">
-        <span class="eyebrow">Phones I've fixed</span>
-        <h2 id="phones-fixed-title">iPhone 12 screen replacement.</h2>
+    <section class="section" aria-labelledby="roadmap-title">
+      <div class="section-heading split-heading">
+        <div>
+          <span class="eyebrow">Public roadmap</span>
+          <h2 id="roadmap-title">Four phases from website foundation to mobile product.</h2>
+        </div>
+        <a class="button button-secondary" href="/roadmap/">Open roadmap</a>
+      </div>
+      <div class="roadmap-list">
+        <article class="roadmap-row">
+          <div>
+            <span class="phase">Phase 1</span>
+            <h3>Core Website</h3>
+          </div>
+          <div class="progress" aria-label="Phase 1 progress"><span style="width: 72%"></span></div>
+          <strong>72%</strong>
+        </article>
+        <article class="roadmap-row">
+          <div>
+            <span class="phase">Phase 2</span>
+            <h3>Flight Search</h3>
+          </div>
+          <div class="progress" aria-label="Phase 2 progress"><span style="width: 34%"></span></div>
+          <strong>34%</strong>
+        </article>
+        <article class="roadmap-row">
+          <div>
+            <span class="phase">Phase 3</span>
+            <h3>Booking System</h3>
+          </div>
+          <div class="progress" aria-label="Phase 3 progress"><span style="width: 14%"></span></div>
+          <strong>14%</strong>
+        </article>
+        <article class="roadmap-row">
+          <div>
+            <span class="phase">Phase 4</span>
+            <h3>Mobile App</h3>
+          </div>
+          <div class="progress" aria-label="Phase 4 progress"><span style="width: 6%"></span></div>
+          <strong>6%</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="dev-log-title">
+      <div class="section-heading split-heading">
+        <div>
+          <span class="eyebrow">Development log</span>
+          <h2 id="dev-log-title">Blog-style posts from the build floor.</h2>
+        </div>
+        <a class="button button-secondary" href="/dev-log/">All posts</a>
+      </div>
+      <div class="post-grid">
+        <article class="post-card">
+          <span class="tag">New Feature</span>
+          <h3>Public dashboard becomes the homepage</h3>
+          <p>The main route now surfaces project status, progress bars, activity, and announcements.</p>
+          <a href="/dev-log/#public-dashboard">Read note</a>
+        </article>
+        <article class="post-card">
+          <span class="tag blue-tag">Design Change</span>
+          <h3>Dark command-center theme</h3>
+          <p>AriaJet moved from service copy to cards, widgets, timelines, badges, and live project signals.</p>
+          <a href="/dev-log/#dark-dashboard-theme">Read note</a>
+        </article>
+        <article class="post-card">
+          <span class="tag gold-tag">Lesson Learned</span>
+          <h3>Make the roadmap visible early</h3>
+          <p>Publishing direction before the product is finished gives visitors a reason to return.</p>
+          <a href="/dev-log/#visible-roadmap">Read note</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="dashboard-grid" aria-label="Dashboard widgets">
+      <article class="panel wide-panel">
+        <span class="tag">Latest announcement</span>
+        <h2>AriaJet is now a living startup/project hub.</h2>
         <p>
-          I fixed this iPhone 12 after the screen was cracked. It was a screen replacement,
-          and the repair took me 3 hours from start to finish.
+          This public surface will collect technical updates, launch notes, product experiments,
+          design decisions, and milestone receipts as the travel platform evolves.
         </p>
-      </div>
-
-      <div class="photo-grid" aria-label="After photos of the iPhone 12 repair">
-        <figure class="photo-card photo-card-light">
-          <div class="photo-frame" role="img" aria-label="After photo of the repaired iPhone 12 powered on at the lock screen"></div>
-          <figcaption>After photo: repaired iPhone 12 powered on after the screen replacement.</figcaption>
-        </figure>
-        <figure class="photo-card photo-card-dark">
-          <div class="photo-frame" role="img" aria-label="After photo of the repaired iPhone 12 with the screen off"></div>
-          <figcaption>After photo: repaired iPhone 12 with the screen off.</figcaption>
-        </figure>
-      </div>
-
-      <div class="note">
-        <strong>Photo note:</strong> These are both after photos. I forgot to take a before photo
-        of the cracked screen before I started the repair.
-      </div>
-    </section>
-
-    <section class="section contact-panel" id="contact" aria-labelledby="contact-title">
-      <div>
-        <span class="eyebrow">Ready to ask?</span>
-        <h2 id="contact-title">Need help with a screen or phone issue?</h2>
-        <p>Contact Ariajet to talk about what happened to your device and what kind of repair may help.</p>
-      </div>
-      <span class="button button-static">Contact details coming soon</span>
+      </article>
+      <article class="panel">
+        <span class="tag">Project metrics</span>
+        <div class="metric-line"><strong>Launch surface</strong><span>Online</span></div>
+        <div class="metric-line"><strong>Design system</strong><span>v1</span></div>
+        <div class="metric-line"><strong>Update cadence</strong><span>Public</span></div>
+        <div class="metric-line"><strong>Community loop</strong><span>Open</span></div>
+      </article>
+      <article class="panel">
+        <span class="tag">Achievements</span>
+        <div class="badge-rack">
+          <span class="badge">Core Site</span>
+          <span class="badge">Roadmap</span>
+          <span class="badge">Dev Log</span>
+          <span class="badge muted-badge">Flight Search Next</span>
+        </div>
+      </article>
     </section>
   </main>
 
-  <footer>
-    <p>Ariajet &copy; 2026. Phone repair and tech help with honest updates.</p>
+  <footer class="site-footer">
+    <p>AriaJet &copy; 2026. Building the flight platform in public, one shipped note at a time.</p>
   </footer>
 </body>
 </html>
