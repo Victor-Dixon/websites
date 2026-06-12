@@ -4,14 +4,7 @@ Template Name: Projects and Proof
 */
 $status = function_exists('dreamos_swarm_status_data') ? dreamos_swarm_status_data() : array();
 
-$projects = $status['projects'] ?? array(
-  array('name'=>'Website Admin','state'=>'active','proof'=>'SSH deploy, WP-CLI activation, canonical website source, live verification.'),
-  array('name'=>'DigitalDreamscape Restored','state'=>'restored','proof'=>'Static deploy verified through portfolio website admin lane.'),
-  array('name'=>'WeAreSwarm Live Ops','state'=>'active','proof'=>'Custom theme, REST status plugin, Skill Tree, Operator Profile, Live Ops page.'),
-  array('name'=>'Portfolio Registry','state'=>'building','proof'=>'Controlled domains classified and recovery matrix generated.'),
-  array('name'=>'Repo Rescue','state'=>'advanced','proof'=>'Scan, classify, salvage, promote, verify, and commit workflow.'),
-  array('name'=>'Verification Gates','state'=>'operational','proof'=>'Every lane ends with live markers, reports, and closeout packets.'),
-);
+$projects = $status['projects'] ?? (function_exists('dreamos_swarm_project_cards') ? dreamos_swarm_project_cards() : array());
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -42,7 +35,7 @@ p{color:var(--muted);font-size:1.06rem;line-height:1.7}
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .metric{font-size:2.7rem;font-weight:950;color:var(--cyan);line-height:1}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{position:relative;overflow:hidden;border:1px solid var(--line);background:#08101d;border-radius:22px;padding:20px;transition:.22s ease;min-height:220px}
+.card{position:relative;overflow:hidden;border:1px solid var(--line);background:#08101d;border-radius:22px;padding:20px;transition:.22s ease;min-height:320px}.meta{color:var(--cyan);font-weight:800;font-size:.9rem}.proof{border:1px solid var(--line);border-radius:14px;padding:10px;background:#050b16;color:var(--muted);font-size:.9rem}.mini{font-size:.92rem}
 .card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 16px 50px #00e5ff22}
 .badge{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:.72rem;font-weight:900;letter-spacing:.1em;margin-bottom:14px;text-transform:uppercase;background:rgba(60,255,179,.12);color:var(--green)}
 .badge.building{background:rgba(168,85,247,.14);color:var(--purple)}
@@ -84,8 +77,14 @@ p{color:var(--muted);font-size:1.06rem;line-height:1.7}
 ?>
   <article class="card">
     <span class="badge <?php echo esc_attr($state); ?>"><?php echo esc_html($state); ?></span>
-    <h2><?php echo esc_html($project['name'] ?? 'Project'); ?></h2>
-    <p><?php echo esc_html($project['proof'] ?? ($project['detail'] ?? 'Proof lane recorded.')); ?></p>
+    <h2><?php echo esc_html($project['title'] ?? ($project['name'] ?? 'Project')); ?></h2>
+    <p class="meta"><?php echo esc_html($project['domain'] ?? 'domain pending'); ?> · <?php echo esc_html($project['repo'] ?? 'source pending'); ?></p>
+    <p><?php echo esc_html($project['one_liner'] ?? ($project['proof'] ?? 'Proof lane recorded.')); ?></p>
+    <p class="mini"><strong>Problem solved:</strong> <?php echo esc_html($project['problem_solved'] ?? 'Operational proof captured.'); ?></p>
+    <div class="proof"><strong>Proof:</strong><br><?php echo esc_html(implode(' · ', $project['proof_artifacts'] ?? array($project['proof'] ?? 'receipt pending'))); ?></div>
+    <p class="mini"><strong>Next unlock:</strong> <?php echo esc_html($project['next_unlock'] ?? 'Promote proof route.'); ?></p>
+    <p class="mini"><strong>Revenue angle:</strong> <?php echo esc_html($project['revenue_angle'] ?? 'Package into a client-facing offer.'); ?></p>
+    <p><a href="<?php echo esc_url($project['live_url'] ?? '/projects/'); ?>">Open proof route →</a></p>
   </article>
 <?php endforeach; ?>
 </section>

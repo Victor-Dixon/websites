@@ -47,7 +47,7 @@ p{color:var(--muted);font-size:1.08rem;line-height:1.68}
 .building{border-color:#7442c8}.building .state,.building:before{color:var(--purple);background:rgba(168,85,247,.14)}
 .locked{opacity:.58}.locked .state,.locked:before{color:var(--amber);background:rgba(255,176,32,.14)}
 .node h3{margin:0 0 8px;font-size:1.04rem}
-.node p{font-size:.92rem;margin:0}
+.node p{font-size:.92rem;margin:0}.proof-link{display:inline-block;margin-top:10px;color:var(--cyan);font-weight:900;text-decoration:none}
 .connector{height:2px;background:linear-gradient(90deg,var(--cyan),transparent);opacity:.45;margin:12px 0}
 .footerbar{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding:18px 22px;color:var(--muted);font-size:.9rem;background:#030712aa}
 @media(max-width:1100px){.hero{grid-template-columns:1fr}.tree{grid-template-columns:repeat(2,1fr)}}
@@ -104,6 +104,7 @@ p{color:var(--muted);font-size:1.08rem;line-height:1.68}
               <h3><?php echo esc_html($match['skill']); ?></h3>
               <div class="connector"></div>
               <p><?php echo esc_html(implode(' • ', $match['capabilities'] ?? array())); ?></p>
+              <a class="proof-link" href="<?php echo esc_url($match['proof_url'] ?? '/live-ops/'); ?>">View proof →</a>
             </article>
           <?php endforeach; ?>
         </div>
