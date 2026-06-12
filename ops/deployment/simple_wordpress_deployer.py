@@ -22,10 +22,19 @@ except ImportError:
     PARAMIKO_AVAILABLE = False
 
 
+def load_dotenv_if_available(env_path: Path) -> bool:
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        return False
+
+    load_dotenv(env_path)
+    return True
+
+
 def load_hostinger_env_credentials():
     """Load Hostinger credentials from environment variables or .env file."""
     import os
-    from dotenv import load_dotenv
     
     # Try multiple .env locations
     env_paths = [
@@ -36,7 +45,7 @@ def load_hostinger_env_credentials():
     
     for env_path in env_paths:
         if env_path.exists():
-            load_dotenv(env_path)
+            load_dotenv_if_available(env_path)
             break
     
     host = os.getenv("HOSTINGER_HOST")
@@ -148,7 +157,6 @@ class SimpleWordPressDeployer:
         
         # Try to get credentials from Hostinger environment variables first
         import os
-        from dotenv import load_dotenv
         
         # Try multiple .env locations
         env_paths = [
@@ -159,7 +167,7 @@ class SimpleWordPressDeployer:
         
         for env_path in env_paths:
             if env_path.exists():
-                load_dotenv(env_path)
+                load_dotenv_if_available(env_path)
                 break
         
         # Check environment variables first (Hostinger tool credentials)
@@ -345,11 +353,10 @@ class SimpleWordPressDeployer:
         try:
             # Use same credential loading logic as connect() method
             import os
-            from dotenv import load_dotenv
             
             env_path = Path("D:/Agent_Cellphone_V2_Repository/.env")
             if env_path.exists():
-                load_dotenv(env_path)
+                load_dotenv_if_available(env_path)
             
             # Check environment variables first (Hostinger tool credentials)
             host = os.getenv("HOSTINGER_HOST")

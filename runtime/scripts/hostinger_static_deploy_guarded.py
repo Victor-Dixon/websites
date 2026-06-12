@@ -9,7 +9,16 @@ import sys
 from pathlib import Path
 
 
+class UnifiedFallback(Exception):
+    def __init__(self, reason: str) -> None:
+        super().__init__(reason)
+        self.reason = reason
+
+
 def load_env(path: Path) -> dict[str, str]:
+    if not path.exists():
+        raise UnifiedFallback(f"ENV_MISSING={path}")
+
     env: dict[str, str] = {}
     for line in path.read_text().splitlines():
         line = line.strip()
@@ -22,6 +31,29 @@ def load_env(path: Path) -> dict[str, str]:
 
 def run(cmd: list[str], *, check: bool = True) -> subprocess.CompletedProcess[str]:
     return subprocess.run(cmd, check=check, capture_output=True, text=True)
+
+
+def run_unified_fallback(domain: str, dry_run: bool, reason: str) -> None:
+    if os.environ.get("HOSTINGER_STATIC_DEPLOY_DISABLE_UNIFIED_FALLBACK") == "1":
+        raise SystemExit(reason)
+
+    cmd = [
+        sys.executable,
+        "ops/deployment/unified_deployer.py",
+        "--site",
+        domain,
+    ]
+    if dry_run:
+        cmd.append("--dry-run")
+
+    print(f"GUARDED_STATIC_DEPLOY_FALLBACK=UNIFIED reason={reason}")
+    proc = subprocess.run(cmd, check=False, capture_output=True, text=True)
+    print(proc.stdout, end="")
+    print(proc.stderr, end="")
+    if proc.returncode != 0:
+        raise SystemExit(proc.returncode)
+    print("UNIFIED_DEPLOY_FALLBACK=PASS")
+    raise SystemExit(0)
 
 
 def ssh(env: dict[str, str], remote: str) -> str:
@@ -106,7 +138,11 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
-    env = load_env(Path(args.env))
+    try:
+        env = load_env(Path(args.env))
+    except UnifiedFallback as fallback:
+        run_unified_fallback(args.domain, args.dry_run, fallback.reason)
+
     required = [
         "HOSTINGER_HOST",
         "HOSTINGER_USER",
@@ -115,7 +151,11 @@ def main() -> None:
     ]
     for key in required:
         if not env.get(key):
-            raise SystemExit(f"MISSING_ENV={key}")
+            run_unified_fallback(args.domain, args.dry_run, f"MISSING_ENV={key}")
+
+    key_file = Path(env["HOSTINGER_SSH_PRIVATE_KEY_FILE"].replace("$HOME", str(Path.home())))
+    if not key_file.exists():
+        run_unified_fallback(args.domain, args.dry_run, f"SSH_KEY_MISSING={key_file}")
 
     print(validate_mode(args.domain, args.env).strip())
 

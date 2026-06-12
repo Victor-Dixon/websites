@@ -51,16 +51,20 @@ def resolve_site_base_dir(site_domain: str) -> tuple[Path, str]:
     Resolve deploy source tree with explicit priority:
       1. sites/production/websites/{domain}  (governed production-sync SSOT)
       2. runtime/content/{domain}            (runtime-managed static content)
-      3. websites/{domain}                   (local/dev content)
+      3. runtime/content/parked_domains/{domain}
+      4. websites/{domain}                   (local/dev content)
     """
     root = repo_root()
     production_base = root / "sites" / "production" / "websites" / site_domain
     runtime_content_base = root / "runtime" / "content" / site_domain
+    parked_domain_base = root / "runtime" / "content" / "parked_domains" / site_domain
     legacy_base = root / "websites" / site_domain
     if production_base.exists():
         return production_base, "production_sync"
     if runtime_content_base.exists():
         return runtime_content_base, "runtime_content"
+    if parked_domain_base.exists():
+        return parked_domain_base, "parked_domain_static"
     return legacy_base, "legacy_warning"
 
 
@@ -196,9 +200,51 @@ def find_plugin_files(site_domain: str) -> List[Path]:
     return plugin_files
 
 
+def find_static_files(site_domain: str) -> List[Path]:
+    """Find deployable files for static site roots while skipping source notes."""
+    base_dir, ssot_source = resolve_site_base_dir(site_domain)
+    if ssot_source not in {"production_sync", "runtime_content", "parked_domain_static"}:
+        return []
+    if not (base_dir / "index.html").exists():
+        return []
+
+    deployable_suffixes = {
+        ".html",
+        ".htm",
+        ".css",
+        ".js",
+        ".json",
+        ".txt",
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp",
+        ".svg",
+        ".ico",
+        ".pdf",
+    }
+    deployable_names = {".htaccess"}
+    ignored_dirs = {"__pycache__", ".git", "node_modules"}
+
+    files: List[Path] = []
+    for path in base_dir.rglob("*"):
+        if not path.is_file():
+            continue
+        if any(part in ignored_dirs for part in path.parts):
+            continue
+        if path.name in deployable_names or path.suffix.lower() in deployable_suffixes:
+            files.append(path)
+
+    return files
+
+
 def get_files_to_deploy(site_domain: str, site_config: Dict) -> List[Path]:
     """Get list of files to deploy for a site."""
     files = []
+
+    # Static roots are deployable as complete public site trees.
+    static_files = find_static_files(site_domain)
+    files.extend(static_files)
     
     # Add theme files
     theme_files = find_theme_files(site_domain)
@@ -322,8 +368,12 @@ def deploy_site(site_domain: str, site_config: Dict, dry_run: bool = False) -> b
                 if len(parts) > 1 and sftp_base:
                     remote_path = f"{sftp_base}/wp-content/{parts[1]}"
             elif sftp_base:
-                site_local = site_config.get('path') or f"sites/production/websites/{site_domain}"
-                local_root = (repo_root() / site_local).resolve()
+                configured_path = site_config.get('path')
+                local_root = (
+                    (repo_root() / configured_path).resolve()
+                    if configured_path
+                    else base_dir.resolve()
+                )
                 try:
                     rel = file_path.resolve().relative_to(local_root)
                     remote_path = f"{sftp_base}/{rel.as_posix()}"
