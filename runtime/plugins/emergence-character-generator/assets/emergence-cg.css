@@ -214,9 +214,53 @@
   border: 1px solid rgba(255,255,255,.14);
 }
 
+.ecg-account-panel {
+  margin: 1.25rem 0;
+  padding: 1.15rem;
+  border: 1px solid rgba(125,255,190,.24);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(125,255,190,.16), transparent 18rem),
+    rgba(255,255,255,.055);
+}
+
+.ecg-account-panel h2 {
+  margin: .2rem 0 .65rem;
+}
+
+.ecg-account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+
+.ecg-battle-handoff-panel {
+  border-color: rgba(125,255,190,.22);
+}
+
+.ecg-battle-handoff-panel button {
+  border: 0;
+  border-radius: 999px;
+  padding: .8rem 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ecg-battle-handoff-status {
+  min-height: 1.4rem;
+  margin: .75rem 0 0;
+  opacity: .86;
+  font-weight: 700;
+}
+
 @media (max-width: 720px) {
   .ecg-profile-grid {
     grid-template-columns: 1fr;
+  }
+
+  .ecg-account-actions {
+    display: grid;
   }
 }
 

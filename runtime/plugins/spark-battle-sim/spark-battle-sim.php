@@ -23,91 +23,28 @@ function spark_battle_sim_enqueue_assets() {
         'spark-battle-sim-css',
         SPARK_BATTLE_SIM_URL . 'assets/battle.css',
         array(),
-        '0.1.0'
+        '0.4.0-one-card-ai-arena'
     );
 }
 add_action('wp_enqueue_scripts', 'spark_battle_sim_enqueue_assets');
 
 function spark_battle_sim_shortcode() {
-    $repo = new Spark_Battle_CharacterRepository();
-    $engine = new Spark_Battle_BattleEngine($repo);
-
-    $characters = $repo->all();
-    $result = null;
-    $error = null;
-
-    if (
-        isset($_POST['spark_battle_nonce']) &&
-        wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['spark_battle_nonce'])), 'spark_battle_run')
-    ) {
-        $fighter_a = sanitize_text_field(wp_unslash($_POST['fighter_a'] ?? ''));
-        $fighter_b = sanitize_text_field(wp_unslash($_POST['fighter_b'] ?? ''));
-
-        if (!$fighter_a || !$fighter_b) {
-            $error = 'Choose two fighters.';
-        } elseif ($fighter_a === $fighter_b) {
-            $error = 'Choose two different fighters.';
-        } else {
-            try {
-                $result = $engine->run($fighter_a, $fighter_b);
-            } catch (Throwable $e) {
-                if (defined('SPARK_BATTLE_SIM_TESTING') && SPARK_BATTLE_SIM_TESTING) {
-                    throw $e;
-                }
-                $error = 'Battle could not start.';
-            }
-        }
-    }
-
     ob_start();
     ?>
-    <div class="spark-battle-shell">
-        <h2>Spark Protocol Battle Arena</h2>
-
-        <form method="post" class="spark-battle-form">
-            <?php wp_nonce_field('spark_battle_run', 'spark_battle_nonce'); ?>
-
-            <label>
-                Fighter A
-                <select name="fighter_a">
-                    <?php foreach ($characters as $slug => $character): ?>
-                        <option value="<?php echo esc_attr($slug); ?>" <?php selected($slug, 'the-victor'); ?>>
-                            <?php echo esc_html($character['name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </label>
-
-            <span class="spark-vs">vs</span>
-
-            <label>
-                Fighter B
-                <select name="fighter_b">
-                    <?php foreach ($characters as $slug => $character): ?>
-                        <option value="<?php echo esc_attr($slug); ?>" <?php selected($slug, 'captain-cap-wilson'); ?>>
-                            <?php echo esc_html($character['name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </label>
-
-            <button type="submit">Start Battle</button>
-        </form>
-
-        <?php if ($error): ?>
-            <p class="spark-battle-error"><?php echo esc_html($error); ?></p>
-        <?php endif; ?>
-
-        <?php if ($result): ?>
-            <section class="spark-battle-result">
-                <h3><?php echo esc_html($result['title']); ?></h3>
-                <p><strong>Arena:</strong> <?php echo esc_html($result['arena']['summary']); ?></p>
-                <p><strong>Result:</strong> <?php echo esc_html($result['winner']['name']); ?> is left standing.</p>
-                <div class="spark-story">
-                    <?php echo wp_kses_post(wpautop($result['story'])); ?>
-                </div>
-            </section>
-        <?php endif; ?>
+    <div
+        class="spark-battle-shell"
+        data-spark-battle-arena="1"
+        data-account-endpoint="<?php echo esc_url(rest_url('emergence/v1/characters/me')); ?>"
+        data-account-nonce="<?php echo esc_attr(wp_create_nonce('wp_rest')); ?>"
+        data-login-url="<?php echo esc_url(wp_login_url(home_url('/battles/'))); ?>"
+        data-register-url="<?php echo esc_url(function_exists('wp_registration_url') ? wp_registration_url() : wp_login_url(home_url('/battles/'))); ?>"
+        data-logged-in="<?php echo is_user_logged_in() ? '1' : '0'; ?>"
+    >
+        <div class="sbs-arena-loading">
+            <p class="sbs-kicker">What-If Arena</p>
+            <h2>Loading your card battle...</h2>
+            <p>If you have a saved Spark character, it will appear here as your one battle card.</p>
+        </div>
     </div>
     <?php
     return ob_get_clean();
@@ -126,8 +63,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('spark-battle-sim-handoff', $base . 'battle-handoff.css', array(), '0.2.2');
-    wp_enqueue_script('spark-battle-sim-handoff', $base . 'battle-handoff.js', array(), '0.2.2', true);
+    wp_enqueue_style('spark-battle-sim-handoff', $base . 'battle-handoff.css', array(), '0.4.0-one-card-ai-arena');
+    wp_enqueue_script('spark-battle-sim-handoff', $base . 'battle-handoff.js', array(), '0.4.0-one-card-ai-arena', true);
 });
 
 // dreamos-bs-handoff-public-asset-guard lane 098d
@@ -142,8 +79,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $base = plugin_dir_url(__FILE__) . 'assets/';
-    wp_enqueue_style('spark-battle-sim-handoff-public', $base . 'battle-handoff.css', array(), '0.2.3');
-    wp_enqueue_script('spark-battle-sim-handoff-public', $base . 'battle-handoff.js', array(), '0.2.3', true);
+    wp_enqueue_style('spark-battle-sim-handoff-public', $base . 'battle-handoff.css', array(), '0.4.0-one-card-ai-arena');
+    wp_enqueue_script('spark-battle-sim-handoff-public', $base . 'battle-handoff.js', array(), '0.4.0-one-card-ai-arena', true);
 });
 
 // DREAMOS_BATTLE_HANDOFF_INLINE_BEGIN lane 098e
@@ -226,6 +163,10 @@ add_action('wp_footer', function () {
       }
 
       function mount() {
+        if (document.querySelector('[data-spark-battle-arena="1"]')) {
+          return;
+        }
+
         let payload = null;
         try {
           payload = readPayload();

@@ -158,9 +158,9 @@ window.Spark=(function(){
     const keyChars="dreamos.savedSparkCharacters.v1";
     let chars=[];
     try{chars=JSON.parse(localStorage.getItem(keyChars)||"[]")||[]}catch(e){chars=[]}
-    chars.unshift(record);
-    chars=chars.slice(0,25);
+    chars=[record];
     localStorage.setItem(keyChars,JSON.stringify(chars));
+    localStorage.setItem("dreamos.singleSparkCharacter.v1",JSON.stringify(record));
     localStorage.setItem("dreamos.currentSparkCharacter.v1",JSON.stringify(record));
     return record;
   }

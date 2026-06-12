@@ -89,6 +89,14 @@
 
   const questionBank = (window.EmergenceCG && window.EmergenceCG.question_bank) || {};
   const flavorQuestions = Array.isArray(questionBank.flavor_questions) ? questionBank.flavor_questions : [];
+  const accountEndpoint = (window.EmergenceCG && window.EmergenceCG.account_character_endpoint) || '/wp-json/emergence/v1/characters/me';
+  const accountNonce = (window.EmergenceCG && window.EmergenceCG.nonce) || '';
+  const loginUrl = (window.EmergenceCG && window.EmergenceCG.login_url) || '/wp-login.php';
+  const registerUrl = (window.EmergenceCG && window.EmergenceCG.register_url) || loginUrl;
+  const isLoggedIn = !!(window.EmergenceCG && window.EmergenceCG.is_logged_in);
+  const accountStorageKey = 'emergence_spark_battle_handoff_v1';
+  const localSingleCharacterKey = 'dreamos.singleSparkCharacter.v1';
+  const legacySavedCharactersKey = 'dreamos.savedSparkCharacters.v1';
 
   if (!form || !result || !flavorMount || !window.EmergenceCG) {
     console.error('[EmergenceCG] bootstrap failed', {
@@ -104,6 +112,196 @@
     return String(value).replace(/[&<>"']/g, function (ch) {
       return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[ch];
     });
+  }
+
+  function accountHeaders() {
+    const headers = {'Content-Type': 'application/json'};
+    if (accountNonce) {
+      headers['X-WP-Nonce'] = accountNonce;
+    }
+    return headers;
+  }
+
+  function titleFromCharacter(character) {
+    return character.spark_name || character.title || (character.character_sheet && character.character_sheet.title) || 'Unnamed Spark';
+  }
+
+  function characterPowers(character) {
+    if (Array.isArray(character.selected_powers)) {
+      return character.selected_powers.map(function (power) {
+        return typeof power === 'string' ? power : (power.power || power.name || '');
+      }).filter(Boolean);
+    }
+
+    if (Array.isArray(character.powers)) {
+      return character.powers.map(function (power) {
+        return typeof power === 'string' ? power : (power.power || power.name || '');
+      }).filter(Boolean);
+    }
+
+    return [];
+  }
+
+  function storeSingleCharacterLocally(character) {
+    const serialized = JSON.stringify(character);
+    window.localStorage.setItem(accountStorageKey, serialized);
+    window.localStorage.setItem(localSingleCharacterKey, serialized);
+
+    const legacyRecord = {
+      id: 'single_account_fallback',
+      created_at: character.created_at || new Date().toISOString(),
+      lead_domain: character.archetype || character.title || character.spark_name || 'Spark',
+      manifested: character.manifested_domains || [],
+      cast: character.cast || '',
+      spark_signature: '',
+      combat_capability: '',
+      profile_shape: character.profile_shape || character.summary || '',
+      powers: character.selected_powers || []
+    };
+    window.localStorage.setItem(legacySavedCharactersKey, JSON.stringify([legacyRecord]));
+    window.localStorage.setItem('dreamos.currentSparkCharacter.v1', JSON.stringify(legacyRecord));
+  }
+
+  async function saveCharacterToAccount(finalPayload) {
+    const character = buildBattleHandoffPayload(finalPayload);
+    storeSingleCharacterLocally(character);
+
+    if (!isLoggedIn) {
+      return {
+        status: 'local',
+        character: character,
+        battle_url: '/battles/?spark_handoff=1',
+        message: 'Saved on this browser. Sign in to keep this character on your account.'
+      };
+    }
+
+    const response = await fetch(accountEndpoint, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: accountHeaders(),
+      body: JSON.stringify({character: character})
+    });
+    const data = await response.json();
+    if (!response.ok || (data.status !== 'saved' && data.status !== 'loaded')) {
+      throw new Error(data.message || 'Account save failed.');
+    }
+
+    if (data.character) {
+      storeSingleCharacterLocally(data.character);
+    }
+
+    return data;
+  }
+
+  async function loadAccountCharacter() {
+    if (!isLoggedIn) {
+      try {
+        const local = JSON.parse(window.localStorage.getItem(localSingleCharacterKey) || 'null');
+        return local ? {status: 'local', character: local} : {status: 'signed_out'};
+      } catch (error) {
+        return {status: 'signed_out'};
+      }
+    }
+
+    const response = await fetch(accountEndpoint, {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {'Accept': 'application/json', 'X-WP-Nonce': accountNonce}
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || 'Account character load failed.');
+    }
+    if (data.character) {
+      storeSingleCharacterLocally(data.character);
+    }
+    return data;
+  }
+
+  function accountPanelHtml(state, character) {
+    if (state === 'loaded' || state === 'local') {
+      const powers = characterPowers(character).slice(0, 3).join(', ') || 'Battle-ready Spark';
+      const mode = state === 'loaded' ? 'Saved to account' : 'Saved on this browser';
+      return [
+        '<section id="ecg-account-character" class="ecg-account-panel" data-account-character-state="' + esc(state) + '">',
+        '<p class="ecg-kicker">' + esc(mode) + '</p>',
+        '<h2>Your Spark is ready</h2>',
+        '<p><strong>' + esc(titleFromCharacter(character)) + '</strong></p>',
+        '<p>' + esc(character.summary || character.profile_shape || powers) + '</p>',
+        '<p><strong>Powers:</strong> ' + esc(powers) + '</p>',
+        '<div class="ecg-account-actions">',
+        '<a class="ecg-profile-cta" href="/battles/?account_character=1">Fight the AI</a>',
+        '<button type="button" class="ecg-secondary-action" data-ecg-replace-character="1">Replace Character</button>',
+        '</div>',
+        '</section>'
+      ].join('');
+    }
+
+    if (state === 'empty') {
+      return [
+        '<section id="ecg-account-character" class="ecg-account-panel">',
+        '<p class="ecg-kicker">Account ready</p>',
+        '<h2>Create your one Spark character</h2>',
+        '<p>This account does not have a saved character yet. Finish the generator once, then this slot will load when you sign back in.</p>',
+        '</section>'
+      ].join('');
+    }
+
+    return [
+      '<section id="ecg-account-character" class="ecg-account-panel">',
+      '<p class="ecg-kicker">Account character</p>',
+      '<h2>Sign in to keep one Spark forever</h2>',
+      '<p>Use a WordPress account now; Google or GitHub can be connected through the site login provider without changing your character flow.</p>',
+      '<div class="ecg-account-actions">',
+      '<a class="ecg-profile-cta" href="' + esc(loginUrl) + '">Sign in</a>',
+      '<a class="ecg-secondary-action" href="' + esc(registerUrl) + '">Create account</a>',
+      '</div>',
+      '</section>'
+    ].join('');
+  }
+
+  function mountAccountPanel(state, character) {
+    let panel = document.getElementById('ecg-account-character');
+    if (!panel) {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = accountPanelHtml(state, character || {});
+      panel = wrapper.firstElementChild;
+      form.parentNode.insertBefore(panel, form);
+    } else {
+      panel.outerHTML = accountPanelHtml(state, character || {});
+      panel = document.getElementById('ecg-account-character');
+    }
+
+    const replace = panel.querySelector('[data-ecg-replace-character]');
+    if (replace) {
+      replace.addEventListener('click', function () {
+        form.hidden = false;
+        form.style.display = '';
+        flavorMount.hidden = false;
+        result.innerHTML = '<p class="ecg-empty">Answer the protocol again to replace your one saved Spark character.</p>';
+        form.scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+      form.hidden = true;
+      form.style.display = 'none';
+    }
+  }
+
+  function bootAccountCharacter() {
+    loadAccountCharacter()
+      .then(function (data) {
+        if (data.status === 'loaded' && data.character) {
+          mountAccountPanel('loaded', data.character);
+        } else if (data.status === 'local' && data.character) {
+          mountAccountPanel('local', data.character);
+        } else if (data.status === 'empty') {
+          mountAccountPanel('empty');
+        } else {
+          mountAccountPanel('signed_out');
+        }
+      })
+      .catch(function () {
+        mountAccountPanel(isLoggedIn ? 'empty' : 'signed_out');
+      });
   }
 
   function flavorQuestion(q) {
@@ -667,13 +865,85 @@
   function renderBattleHandoffCTA(finalPayload) {
     return [
       '<section class="ecg-profile-panel ecg-battle-handoff-panel">',
-      '<p class="ecg-kicker">Battle Ready</p>',
-      '<h3>Use this Spark in Battle Simulator</h3>',
-      '<p>Export a player-safe version of this dossier into the battle simulator. Backend scoring stays hidden.</p>',
-      '<button type="button" id="ecg-export-to-battle">Use this Spark in Battle Simulator</button>',
+      '<p class="ecg-kicker">One Character Slot</p>',
+      '<h3>Save this Spark and fight the AI</h3>',
+      '<p>' + (isLoggedIn ? 'This will replace your one saved account character, so you can sign back in later without redoing the questions.' : 'Sign in to keep this character on your account. For now, the battle handoff also saves one browser-local character.') + '</p>',
+      '<button type="button" id="ecg-save-account-character">Save One Character</button>',
+      '<button type="button" id="ecg-export-to-battle" class="ecg-secondary-action">Fight AI Now</button>',
       '<p id="ecg-battle-handoff-status" class="ecg-battle-handoff-status" aria-live="polite"></p>',
       '</section>'
     ].join('');
+  }
+
+  function bindGeneratedCharacterActions(finalPayload) {
+    const status = document.getElementById('ecg-battle-handoff-status');
+    const saveButton = document.getElementById('ecg-save-account-character');
+    const battleButton = document.getElementById('ecg-export-to-battle');
+    const premiumButton = document.getElementById('ecg-generate-premium-image');
+
+    if (saveButton) {
+      saveButton.addEventListener('click', async function () {
+        saveButton.disabled = true;
+        saveButton.textContent = 'Saving...';
+        if (status) {
+          status.textContent = isLoggedIn ? 'Saving to your account character slot...' : 'Saving this browser copy and preparing sign-in.';
+        }
+        try {
+          const saved = await saveCharacterToAccount(finalPayload);
+          if (status) {
+            status.textContent = saved.status === 'local'
+              ? saved.message
+              : 'Saved. This is now your one account character.';
+          }
+          mountAccountPanel(saved.status === 'local' ? 'local' : 'loaded', saved.character || buildBattleHandoffPayload(finalPayload));
+        } catch (error) {
+          if (status) {
+            status.textContent = 'Save failed: ' + (error && error.message ? error.message : 'try again.');
+          }
+        } finally {
+          saveButton.disabled = false;
+          saveButton.textContent = 'Save One Character';
+        }
+      });
+    }
+
+    if (battleButton) {
+      battleButton.addEventListener('click', async function () {
+        if (status) {
+          status.textContent = 'Preparing your card for AI battle...';
+        }
+        try {
+          const saved = await saveCharacterToAccount(finalPayload);
+          const url = saved.battle_url || '/battles/?spark_handoff=1';
+          window.location.href = url;
+        } catch (error) {
+          try {
+            storeBattleHandoffPayload(finalPayload);
+            window.location.href = '/battles/?spark_handoff=1';
+          } catch (blocked) {
+            if (status) {
+              status.textContent = 'Battle export failed: unsafe payload blocked.';
+            }
+          }
+        }
+      });
+    }
+
+    if (premiumButton) {
+      premiumButton.addEventListener('click', async function () {
+        premiumButton.disabled = true;
+        premiumButton.textContent = 'Checking provider...';
+        try {
+          const providerResult = await requestPremiumHeroImage(finalPayload);
+          renderPremiumImageProviderResult(providerResult);
+        } catch (error) {
+          renderPremiumImageProviderResult({status: 'error', message: 'Provider request failed.'});
+        } finally {
+          premiumButton.disabled = false;
+          premiumButton.textContent = 'Generate Premium Hero Image';
+        }
+      });
+    }
   }
 
   function renderCharacterProfile(finalPayload) {
@@ -739,8 +1009,10 @@
       '<div id="ecg-premium-image-provider-result" class="ecg-premium-image-provider-result" aria-live="polite"></div>',
       '</section>',
 
+      renderBattleHandoffCTA(finalPayload),
+
       '<div class="ecg-profile-actions">',
-      '<a href="/battle-simulator/" class="ecg-profile-cta">Use this Spark in Battle Simulator</a>',
+      '<a href="/battles/?spark_handoff=1" class="ecg-profile-cta">Open Battles</a>',
       '<button type="button" class="ecg-secondary-action" onclick="window.location.reload()">Generate Another Spark</button>',
       '</div>',
       '</article>'
@@ -748,6 +1020,7 @@
 
     flavorMount.dataset.phase = 'complete';
     flavorMount.innerHTML = '';
+    bindGeneratedCharacterActions(finalPayload);
     result.scrollIntoView({behavior: 'smooth', block: 'start'});
   }
 
@@ -857,6 +1130,7 @@
 
   form.addEventListener('change', updateProgress);
   updateProgress();
+  bootAccountCharacter();
 
   form.addEventListener('submit', async function (event) {
     event.preventDefault();

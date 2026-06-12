@@ -544,6 +544,11 @@ function emergence_cg_register_assets() {
         'endpoint' => esc_url_raw(rest_url('emergence/v1/generate')),
         'nonce' => wp_create_nonce('wp_rest'),
         'question_bank' => emergence_cg_question_bank(),
+        'account_character_endpoint' => esc_url_raw(rest_url('emergence/v1/characters/me')),
+        'is_logged_in' => is_user_logged_in(),
+        'login_url' => esc_url_raw(wp_login_url(home_url('/spark-generator/'))),
+        'register_url' => esc_url_raw(function_exists('wp_registration_url') ? wp_registration_url() : wp_login_url(home_url('/spark-generator/'))),
+        'account_provider_note' => 'Google or GitHub sign-in can be connected through the WordPress login/OAuth provider; this frontend uses the signed-in WordPress account slot.',
     ));
 }
 
@@ -1387,7 +1392,27 @@ add_action('rest_api_init', function () {
         'callback' => 'emergence_cg_character_record_battle_token_rest',
         'permission_callback' => '__return_true',
     ));
+
+    register_rest_route('emergence/v1', '/characters/me', array(
+        'methods' => 'GET',
+        'callback' => 'emergence_cg_get_account_character_rest',
+        'permission_callback' => 'emergence_cg_account_character_permission',
+    ));
+
+    register_rest_route('emergence/v1', '/characters/me', array(
+        'methods' => 'POST',
+        'callback' => 'emergence_cg_save_account_character_rest',
+        'permission_callback' => 'emergence_cg_account_character_permission',
+    ));
 });
+
+function emergence_cg_account_character_meta_key() {
+    return 'emergence_single_spark_character_v1';
+}
+
+function emergence_cg_account_character_permission() {
+    return is_user_logged_in();
+}
 
 function emergence_cg_character_record_forbidden_keys() {
     return array(
@@ -1479,6 +1504,63 @@ function emergence_cg_sanitize_character_record_payload($payload) {
 
 function emergence_cg_create_character_record_id() {
     return substr(strtr(base64_encode(random_bytes(18)), '+/', '-_'), 0, 24);
+}
+
+function emergence_cg_get_account_character_rest($request) {
+    $user_id = get_current_user_id();
+    $record = get_user_meta($user_id, emergence_cg_account_character_meta_key(), true);
+
+    if (!is_array($record) || empty($record['payload'])) {
+        return new WP_REST_Response(array(
+            'status' => 'empty',
+            'message' => 'No saved Spark character for this account yet.',
+            'account_bound' => true,
+            'player_safe' => true,
+        ), 200);
+    }
+
+    return new WP_REST_Response(array(
+        'status' => 'loaded',
+        'character' => $record['payload'],
+        'updated_at' => isset($record['updated_at']) ? intval($record['updated_at']) : null,
+        'battle_url' => home_url('/battles/?account_character=1'),
+        'account_bound' => true,
+        'single_character_slot' => true,
+        'player_safe' => true,
+    ), 200);
+}
+
+function emergence_cg_save_account_character_rest($request) {
+    $params = $request->get_json_params();
+    if (!is_array($params)) {
+        $params = array();
+    }
+
+    $payload = isset($params['character']) ? $params['character'] : $params;
+    $safe = emergence_cg_sanitize_character_record_payload($payload);
+
+    if (is_wp_error($safe)) {
+        return new WP_REST_Response(array(
+            'status' => 'blocked',
+            'message' => $safe->get_error_message(),
+        ), 400);
+    }
+
+    $record = array(
+        'payload' => $safe,
+        'updated_at' => time(),
+    );
+
+    update_user_meta(get_current_user_id(), emergence_cg_account_character_meta_key(), $record);
+
+    return new WP_REST_Response(array(
+        'status' => 'saved',
+        'character' => $safe,
+        'battle_url' => home_url('/battles/?account_character=1'),
+        'account_bound' => true,
+        'single_character_slot' => true,
+        'player_safe' => true,
+    ), 200);
 }
 
 function emergence_cg_save_character_record_rest($request) {
