@@ -434,6 +434,11 @@
 
   window.ProjectsDashboard = {
     renderEnrichedPage: renderEnrichedPage,
+    renderEnrichedBoard: renderEnrichedBoard,
+    renderLanePanel: renderLanePanel,
+    renderProductsGrid: renderProductsGrid,
+    renderScannerSummary: renderScannerSummary,
+    renderStatsHero: renderStatsHero,
     renderProjectsFeedGrid: renderProjectsFeedGrid,
     renderProjectCards: renderProjectCards,
     renderDomainTable: renderDomainTable,

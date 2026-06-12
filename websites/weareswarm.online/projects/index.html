@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects — weareswarm.online</title>
-  <meta name="description" content="DreamVault project portfolio — live projectscanner + GitHub stats grid.">
+  <meta name="description" content="DreamVault portfolio — projectscanner + GitHub stats, planner consolidation, and productized offers.">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
 </head>
 <body>
@@ -13,41 +13,80 @@
   <main class="container">
     <header class="hero">
       <h1>DreamVault Project Portfolio</h1>
-      <p>Live-generated from DreamVault repos + GitHub stats — projectscanner scan enriched via <code>gh</code> API.</p>
+      <p>Live GitHub + projectscanner grid, planner consolidation board, domain index, and productized revenue offers — public-safe DreamVault bridge.</p>
       <div class="meta-row">
-        <span class="badge ok" id="live-badge">● Live feed</span>
+        <span class="badge ok" id="live-badge">● Planner bridge</span>
         <span class="badge" id="sync-meta">Loading…</span>
       </div>
     </header>
 
+    <section class="stats-hero" id="stats-hero" aria-live="polite">
+      <div class="stat-card"><span class="stat-value" id="stat-projects">—</span><span class="stat-label">Board repos</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-github">—</span><span class="stat-label">GitHub scanned</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-domains">—</span><span class="stat-label">Domains</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-productized">—</span><span class="stat-label">Productized</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-scanner">—</span><span class="stat-label">Scanner nodes</span></div>
+    </section>
+
+    <section class="panel" id="lane-panel" style="display:none;">
+      <div class="panel-header">
+        <div>
+          <h2>Active lane</h2>
+          <p class="subtitle" id="lane-subtitle">next_lane.json</p>
+        </div>
+        <span class="badge ok" id="lane-badge">—</span>
+      </div>
+      <div class="panel-body">
+        <p id="lane-rationale" class="lane-rationale"></p>
+      </div>
+    </section>
+
     <section class="panel">
       <div class="panel-header">
         <div>
-          <h2>Portfolio grid</h2>
+          <h2>GitHub portfolio grid</h2>
           <p class="subtitle">projects_full.json — stars, issues, last push</p>
         </div>
-        <span class="badge warn" id="source-badge">—</span>
+        <span class="badge warn" id="feed-badge">—</span>
       </div>
-      <div class="panel-body" id="project-cards"></div>
+      <div class="panel-body" id="github-grid">
+        <p class="empty-state" id="feed-loading">Loading GitHub portfolio…</p>
+      </div>
     </section>
 
     <section class="panel" style="margin-top: 1.5rem;">
       <div class="panel-header">
         <div>
-          <h2>Planner board</h2>
-          <p class="subtitle">public_project_board.json — consolidation buckets</p>
+          <h2>Planner consolidation board</h2>
+          <p class="subtitle">projects_board_enriched.json · buckets + capabilities</p>
         </div>
-        <a class="badge" href="/focus/">Focus board</a>
+        <span class="badge warn" id="source-badge">—</span>
       </div>
-      <div class="panel-body" id="planner-cards"></div>
+      <div class="panel-body" id="planner-cards">
+        <p class="empty-state" id="board-loading">Loading planner board…</p>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Revenue &amp; productized offers</h2>
+          <p class="subtitle">portfolio_revenue_inventory_001.json</p>
+        </div>
+        <a class="badge" href="/focus/#revenue-panel">Revenue operator</a>
+      </div>
+      <div class="panel-body" id="products-grid">
+        <p class="empty-state">Loading products…</p>
+      </div>
     </section>
 
     <section class="panel" style="margin-top: 1.5rem;">
       <div class="panel-header">
         <div>
           <h2>Domain index</h2>
-          <p class="subtitle">project_domain_index.json</p>
+          <p class="subtitle">Bounded contexts per consolidation domain</p>
         </div>
+        <a class="badge" href="/focus/">Focus board</a>
       </div>
       <div class="panel-body">
         <div class="table-wrap">
@@ -58,12 +97,24 @@
                 <th>Contexts</th>
                 <th>Owner</th>
                 <th>Bucket</th>
+                <th>Repos</th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
         </div>
       </div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;" id="scanner-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Projectscanner intelligence</h2>
+          <p class="subtitle">Public-safe authority graph summary</p>
+        </div>
+        <span class="badge" id="scanner-badge">—</span>
+      </div>
+      <div class="panel-body" id="scanner-summary"></div>
     </section>
   </main>
 
@@ -74,58 +125,107 @@
     (async function () {
       const FD = window.FocusDashboard;
       const PD = window.ProjectsDashboard;
+      const syncMeta = document.getElementById("sync-meta");
+      const liveBadge = document.getElementById("live-badge");
+
       if (!FD || !PD) {
-        document.getElementById("sync-meta").textContent = "Dashboard scripts missing — redeploy data/shared/";
+        if (syncMeta) syncMeta.textContent = "Dashboard scripts missing — redeploy data/shared/";
         return;
       }
 
-      const [manifestResult, feedResult, boardResult, indexResult, ecosystemResult] = await Promise.all([
-        FD.fetchJsonSettled("manifest.json"),
-        FD.fetchJsonSettled("projects_full.json", { projects: [] }),
-        FD.fetchJsonSettled("public_project_board.json", { buckets: {} }),
-        FD.fetchJsonSettled("project_domain_index.json", { domains: [] }),
-        FD.fetchJsonSettled("swarm_ecosystem_projects.json", { projects: [] }),
-      ]);
-
-      const manifest = manifestResult.data || {};
-      const feed = feedResult.data || {};
-      const board = boardResult.data || {};
-      const index = indexResult.data || {};
-      const ecosystem = ecosystemResult.data || {};
-
-      if (manifestResult.ok) FD.setSyncMeta(manifest);
-      else if (feed.generated) {
-        document.getElementById("sync-meta").textContent = "Feed · " + (feed.generated || "").slice(0, 19);
+      function showError(msg) {
+        if (syncMeta) syncMeta.textContent = msg;
+        if (liveBadge) {
+          liveBadge.className = "badge block";
+          liveBadge.textContent = "● Load error";
+        }
       }
 
-      const source = feed.source || board.source || manifest.source || "planner";
-      document.getElementById("source-badge").textContent = source;
-
-      if (feedResult.ok && (feed.projects || []).length) {
-        PD.renderProjectsFeedGrid(document.getElementById("project-cards"), feed);
-      } else {
-        PD.renderProjectCards(
-          document.getElementById("project-cards"),
-          board,
-          ecosystem,
-          index
-        );
-        document.getElementById("live-badge").className = "badge warn";
-        document.getElementById("live-badge").textContent = "● Planner fallback";
+      function setStat(id, value) {
+        const node = document.getElementById(id);
+        if (node) node.textContent = value != null ? String(value) : "—";
       }
 
-      PD.renderProjectCards(
-        document.getElementById("planner-cards"),
-        board,
-        ecosystem,
-        index
-      );
-      PD.renderDomainTable(document.getElementById("domains-table"), index);
+      try {
+        const [manifestResult, enrichedResult, feedResult, boardResult, indexResult, ecosystemResult] = await Promise.all([
+          FD.fetchJsonSettled("manifest.json"),
+          FD.fetchJsonSettled("projects_board_enriched.json"),
+          FD.fetchJsonSettled("projects_full.json", { projects: [] }),
+          FD.fetchJsonSettled("public_project_board.json", { buckets: {} }),
+          FD.fetchJsonSettled("project_domain_index.json", { domains: [] }),
+          FD.fetchJsonSettled("swarm_ecosystem_projects.json", { projects: [] }),
+        ]);
 
-      const failed = [feedResult, boardResult, indexResult].filter(function (r) { return !r.ok; });
-      if (failed.length && !feedResult.ok) {
-        document.getElementById("live-badge").className = "badge warn";
-        document.getElementById("live-badge").textContent = "● Partial data";
+        const manifest = manifestResult.data || {};
+        const enriched = enrichedResult.data;
+        const feed = feedResult.data || {};
+        const board = boardResult.data || {};
+        const index = indexResult.data || {};
+        const ecosystem = ecosystemResult.data || {};
+
+        if (manifestResult.ok) FD.setSyncMeta(manifest);
+        else if (feed.generated) {
+          syncMeta.textContent = "Feed · " + String(feed.generated).slice(0, 19);
+        } else if (syncMeta) {
+          syncMeta.textContent = "Board loaded · manifest unavailable";
+        }
+
+        const feedLoading = document.getElementById("feed-loading");
+        if (feedLoading) feedLoading.remove();
+        const boardLoading = document.getElementById("board-loading");
+        if (boardLoading) boardLoading.remove();
+
+        const githubCount = (feed.projects || []).length;
+        setStat("stat-github", githubCount || "—");
+
+        if (feedResult.ok && githubCount) {
+          PD.renderProjectsFeedGrid(document.getElementById("github-grid"), feed);
+          document.getElementById("feed-badge").textContent = feed.source || "github";
+          document.getElementById("feed-badge").className = "badge ok";
+          if (liveBadge) {
+            liveBadge.className = "badge ok";
+            liveBadge.textContent = "● Live feed";
+          }
+        } else {
+          document.getElementById("github-grid").innerHTML = "";
+          document.getElementById("github-grid").appendChild(FD.el("p", {
+            className: "empty-state",
+            text: "projects_full.json unavailable — run export_projects_feed.py",
+          }));
+        }
+
+        if (enrichedResult.ok && enriched) {
+          const stats = enriched.stats || {};
+          setStat("stat-projects", stats.projects);
+          setStat("stat-domains", stats.domains);
+          setStat("stat-productized", stats.productized);
+          setStat("stat-scanner", stats.authority_nodes != null ? stats.authority_nodes.toLocaleString() : "—");
+
+          document.getElementById("source-badge").textContent =
+            (enriched.board_meta && enriched.board_meta.source) || enriched.source || "enriched";
+          document.getElementById("source-badge").className = "badge ok";
+
+          PD.renderLanePanel(enriched.next_lane);
+          PD.renderEnrichedBoard(document.getElementById("planner-cards"), enriched);
+          PD.renderProductsGrid(document.getElementById("products-grid"), enriched.products);
+          PD.renderDomainTable(document.getElementById("domains-table"), { domains: enriched.domains });
+          PD.renderScannerSummary(document.getElementById("scanner-summary"), enriched);
+        } else {
+          document.getElementById("source-badge").textContent = board.source || manifest.source || "planner";
+          PD.renderProjectCards(document.getElementById("planner-cards"), board, ecosystem, index);
+          PD.renderDomainTable(document.getElementById("domains-table"), index);
+          if (liveBadge && !boardResult.ok) {
+            liveBadge.className = "badge warn";
+            liveBadge.textContent = "● Partial data";
+          }
+        }
+
+        const allFailed = !feedResult.ok && !enrichedResult.ok && !boardResult.ok;
+        if (allFailed) {
+          showError("Could not load planner JSON — run export_projects_board.py and deploy.");
+        }
+      } catch (err) {
+        showError("Unexpected error: " + (err && err.message ? err.message : String(err)));
       }
     })();
   </script>
