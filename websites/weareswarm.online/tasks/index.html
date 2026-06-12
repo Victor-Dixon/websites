@@ -8,15 +8,7 @@
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
 </head>
 <body>
-  <nav class="site-nav">
-    <a class="brand" href="/">🧠 We Are Swarm</a>
-    <div class="links">
-      <a href="/">Home</a>
-      <a href="/focus/">Focus</a>
-      <a href="/projects/">Projects</a>
-      <a href="/tasks/" class="active">Tasks</a>
-    </div>
-  </nav>
+  <nav class="site-nav"></nav>
 
   <main class="container">
     <header class="hero">
@@ -43,8 +35,10 @@
             <dt>Campaign</dt><dd id="campaign">—</dd>
             <dt>Next lane</dt><dd id="queue-next">—</dd>
             <dt>Rule</dt><dd id="deferred-rule">—</dd>
+            <dt>Runtime active</dt><dd id="runtime-count">—</dd>
+            <dt>Master ledger</dt><dd id="master-count">—</dd>
           </dl>
-          <p class="section-title">Queued tasks</p>
+          <p class="section-title">Campaign queued tasks</p>
           <ul class="list" id="active-queue"></ul>
         </div>
       </section>
@@ -75,23 +69,113 @@
         </div>
       </section>
     </div>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Master task ledger</h2>
+          <p class="subtitle" id="master-source">docs/planning/MASTER_TASK_LIST.md</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table id="master-table">
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Project</th>
+                <th>Lane</th>
+                <th>Task</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="full-task-feed" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Full task feed</h2>
+          <p class="subtitle">DreamVault runtime/tasks → all_tasks.json</p>
+        </div>
+        <span class="badge ok" data-feed-meta>Loading feed…</span>
+      </div>
+      <div class="panel-body">
+        <div class="feed-toolbar">
+          <div class="feed-filters" data-feed-filters>
+            <a href="?executor=all" data-filter="all">All</a>
+            <a href="?executor=agent" data-filter="agent">Agent</a>
+            <a href="?executor=kids" data-filter="kids">Kids</a>
+            <a href="?executor=victor" data-filter="victor">Victor only</a>
+          </div>
+          <input class="feed-search" type="search" placeholder="Search id, title, lane…" id="feed-search" aria-label="Search tasks">
+          <a class="badge" href="/kids-planner/">Kids planner · <span data-kids-count>—</span></a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Owner</th>
+                <th>Lane</th>
+                <th>Status</th>
+                <th>Executor</th>
+              </tr>
+            </thead>
+            <tbody data-feed-tbody></tbody>
+          </table>
+        </div>
+        <p class="empty-state" data-feed-empty hidden>No tasks match this filter.</p>
+        <div class="feed-pagination" data-feed-pagination></div>
+        <p class="footer-note" style="margin-top: 1rem;">
+          Kids lane feed: <code>/data/planner/kids_tasks.json</code> ·
+          Kanban planner: <a href="/kids-planner/">/kids-planner/</a>
+        </p>
+      </div>
+    </section>
   </main>
 
+  <script src="/data/shared/site-nav.js"></script>
   <script src="/data/shared/focus-dashboard.js"></script>
+  <script src="/data/shared/tasks-paginated.js"></script>
   <script>
     (async function () {
       const { fetchJson, el, setSyncMeta } = window.FocusDashboard;
       try {
-        const [manifest, queue, nextLane] = await Promise.all([
-          fetchJson("manifest.json"),
+        const [queueResult, nextLaneResult, manifestResult] = await Promise.allSettled([
           fetchJson("strategic_active_queue.json"),
           fetchJson("next_lane.json"),
+          fetchJson("manifest.json"),
         ]);
-        setSyncMeta(manifest);
+        if (queueResult.status !== "fulfilled") {
+          throw queueResult.reason;
+        }
+        if (nextLaneResult.status !== "fulfilled") {
+          throw nextLaneResult.reason;
+        }
+        const queue = queueResult.value;
+        const nextLane = nextLaneResult.value;
+        if (manifestResult.status === "fulfilled") {
+          setSyncMeta(manifestResult.value);
+        } else {
+          document.getElementById("sync-meta").textContent =
+            "Queue loaded · manifest unavailable";
+        }
 
         document.getElementById("campaign").textContent = queue.campaign || "—";
         document.getElementById("queue-next").textContent = queue.next_lane || "—";
         document.getElementById("deferred-rule").textContent = queue.deferred_rule || "—";
+        document.getElementById("runtime-count").textContent =
+          queue.runtime_active_count != null ? String(queue.runtime_active_count) : "—";
+        document.getElementById("master-count").textContent =
+          queue.master_task_count != null ? String(queue.master_task_count) : "—";
+        if (queue.master_task_source) {
+          document.getElementById("master-source").textContent = queue.master_task_source;
+        }
 
         const aq = document.getElementById("active-queue");
         (queue.active_queue || []).forEach((t) => aq.appendChild(el("li", { text: t })));
@@ -116,6 +200,40 @@
             "<td><span class=\"status-pill\">" + (t.status || "—") + "</span></td>";
           tbody.appendChild(tr);
         });
+
+        const masterBody = document.querySelector("#master-table tbody");
+        (queue.master_tasks || []).forEach((t) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML =
+            "<td>" + (t.priority || "—") + "</td>" +
+            "<td><span class=\"status-pill\">" + (t.status || "—") + "</span></td>" +
+            "<td>" + (t.project || "—") + "</td>" +
+            "<td>" + (t.lane || "—") + "</td>" +
+            "<td>" + (t.title || t.id || "—") + "</td>";
+          masterBody.appendChild(tr);
+        });
+
+        const feedRoot = document.getElementById("full-task-feed");
+        if (feedRoot && window.TasksPaginated) {
+          await window.TasksPaginated.mountTasksFeed(
+            feedRoot,
+            "/data/planner/all_tasks.json",
+            "/data/planner/kids_tasks.json"
+          );
+          const search = document.getElementById("feed-search");
+          if (search) {
+            const params = new URLSearchParams(window.location.search);
+            search.value = params.get("q") || "";
+            search.addEventListener("change", () => {
+              const f = window.TasksPaginated.parseFilter();
+              const q = search.value.trim();
+              const qs = new URLSearchParams();
+              if (f.executor !== "all") qs.set("executor", f.executor);
+              if (q) qs.set("q", q);
+              window.location.search = qs.toString();
+            });
+          }
+        }
       } catch (err) {
         document.getElementById("sync-meta").textContent = "Load error: " + err.message;
       }

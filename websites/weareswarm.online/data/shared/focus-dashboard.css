@@ -240,6 +240,75 @@ th {
 .status-pill.blocked { background: rgba(240, 113, 120, 0.15); color: var(--block); }
 .status-pill.ready { background: rgba(61, 214, 140, 0.15); color: var(--ok); }
 
+.executor-badge.executor-agent { background: rgba(91, 141, 239, 0.18); color: var(--accent); }
+.executor-badge.executor-kids { background: rgba(155, 109, 255, 0.2); color: var(--accent-2); }
+.executor-badge.executor-victor { background: rgba(245, 197, 66, 0.18); color: var(--warn); }
+
+.muted-small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 0.2rem;
+}
+
+.feed-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.feed-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.feed-filters a {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.feed-filters a.active,
+.feed-filters a:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.feed-search {
+  flex: 1 1 180px;
+  min-width: 160px;
+  padding: 0.35rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.feed-pagination {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
+.page-btn {
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  font-size: 0.85rem;
+}
+
+.page-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 .empty-state {
   color: var(--muted);
   font-size: 0.9rem;
@@ -637,6 +706,25 @@ th {
   margin: 0 0 0.75rem;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.closeout-card ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.closeout-card .feed-verify,
+.closeout-card .feed-meta {
+  font-size: 0.82rem;
+  margin-bottom: 0.35rem;
+}
+
+.empty-state {
+  color: var(--muted);
+  text-align: center;
+  padding: 1.5rem;
 }
 
 .focus-grid {

@@ -1,0 +1,269 @@
+{
+  "schema": "dreamvault.tasks_feed.v1",
+  "generated_at": "2026-06-12T08:14:35+00:00",
+  "source": "D:\\DreamVault\\runtime\\tasks",
+  "export_script": "runtime/tools/export_tasks_feed.py",
+  "task_count": 26,
+  "tasks": [
+    {
+      "id": "add_xthunder_discord_planning_cockpit_001",
+      "title": "Add XThunder Discord planning cockpit",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "proposed",
+      "desc": "Add a Discord Architect planning cockpit for XThunder that keeps the family battle card game separate from Emergence/MZspark and supports planning, scheduling, playtest logging, and build-in-public content.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/add_xthunder_discord_planning_cockpit_001.yaml"
+    },
+    {
+      "id": "add_xthunder_discord_schedule_envelopes_010",
+      "title": "Add XThunder Discord schedule envelopes",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "active",
+      "desc": "Add dispatchable Discord event envelopes for the XThunder family battle-card planning rhythm: weekly plan, Aria Ability Lab, Charlie Rarity Vault, family playtest log, and content queue.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/add_xthunder_discord_schedule_envelopes_010.yaml"
+    },
+    {
+      "id": "add_xthunder_discord_weekly_scheduler_018",
+      "title": "Add XThunder Discord weekly scheduler runner",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "active",
+      "desc": "Add a small scheduler runner that selects the correct XThunder Discord event envelope by day-of-week and dispatches through the repaired Discord dispatcher. Default mode is dry-run. Live mode is blocked unless required Discord env is present.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/add_xthunder_discord_weekly_scheduler_018.yaml"
+    },
+    {
+      "id": "patch_xthunder_discord_card_packets_003",
+      "title": "Add XThunder Discord card packet builder",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "active",
+      "desc": "Add source-backed XThunder Discord card packet builders for weekly planning, playtest logging, and build-in-public content without mutating the existing Discord dispatcher until the packet contract is verified.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/patch_xthunder_discord_card_packets_003.yaml"
+    },
+    {
+      "id": "patch_xthunder_discord_cli_route_008",
+      "title": "Add XThunder Discord CLI event route",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "active",
+      "desc": "Connect the verified XThunder dispatcher event helper to the actual dispatch_discord_event_001.py CLI path so dry-run can emit XThunder weekly, playtest, and build-in-public payloads without requiring Discord webhook env.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/patch_xthunder_discord_cli_route_008.yaml"
+    },
+    {
+      "id": "patch_xthunder_discord_dispatch_event_006",
+      "title": "Add XThunder Discord dispatcher event",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "active",
+      "desc": "Wire the verified XThunder Discord packet builder into the canonical Discord dispatcher behind an explicit xthunder_cards event flag, preserving existing closeout dispatch behavior.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/patch_xthunder_discord_dispatch_event_006.yaml"
+    },
+    {
+      "id": "repair_xthunder_discord_card_packets_verify_004",
+      "title": "Repair XThunder Discord card packet verification",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "active",
+      "desc": "Repair verification for the XThunder Discord card packet builder after pytest failed during plugin startup because pytest-qt requires PyQt/PySide packages that are not installed in the Termux environment.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/repair_xthunder_discord_card_packets_verify_004.yaml"
+    },
+    {
+      "id": "repair_xthunder_discord_cli_direct_execution_012",
+      "title": "Repair XThunder Discord CLI direct execution",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "active",
+      "desc": "Repair dispatch_discord_event_001.py so direct script execution from the repo root can import dreamvault modules and so --event-type xthunder_* dry-run routes to XThunder payload JSON lines.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/repair_xthunder_discord_cli_direct_execution_012.yaml"
+    },
+    {
+      "id": "repair_xthunder_discord_cli_direct_route_013",
+      "title": "Repair XThunder Discord direct CLI route",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "active",
+      "desc": "Move XThunder dispatcher helper functions before the __main__ execution guard and enforce the --event-type xthunder_* dry-run branch so direct script execution emits payload JSON lines instead of the generic dispatcher dry-run.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/repair_xthunder_discord_cli_direct_route_013.yaml"
+    },
+    {
+      "id": "repair_xthunder_discord_cli_direct_route_014",
+      "title": "Repair XThunder Discord direct CLI route using event_type line",
+      "owner": "Victor",
+      "lane": "discord_architect",
+      "status": "active",
+      "desc": "Repair direct XThunder dispatcher execution by moving helper functions before the __main__ guard and injecting the dry-run route after the stable event_type = args.event_type assignment.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/repair_xthunder_discord_cli_direct_route_014.yaml"
+    },
+    {
+      "id": "add_xthunder_v01_rulebook_020",
+      "title": "Add XThunder v0.1 rulebook",
+      "owner": "Victor",
+      "lane": "game_design",
+      "status": "active",
+      "desc": "Create the first family-readable XThunder rulebook and playtest sheet in phases.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/add_xthunder_v01_rulebook_020.yaml"
+    },
+    {
+      "id": "xthunder_rulebook_phase1_skeleton_020a",
+      "title": "Create XThunder rulebook skeleton",
+      "owner": "Victor",
+      "lane": "game_design",
+      "status": "active",
+      "desc": "Create the initial XThunder v0.1 rulebook and playtest sheet skeletons only. Content will be filled in later phases.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/xthunder_rulebook_phase1_skeleton_020a.yaml"
+    },
+    {
+      "id": "xthunder_rulebook_whole_020",
+      "title": "Verify whole XThunder v0.1 rulebook",
+      "owner": "Victor",
+      "lane": "game_design",
+      "status": "active",
+      "desc": "Verify the manually edited whole XThunder v0.1 rulebook.",
+      "executor": "kids",
+      "source_path": "runtime/tasks/xthunder/xthunder_rulebook_whole_020.yaml"
+    },
+    {
+      "id": "charlie_actual_cleanup_001",
+      "title": "Execute safe generated junk cleanup",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/cleanup/charlie_actual_cleanup_001.yaml"
+    },
+    {
+      "id": "charlie_preserve_trading_source_002",
+      "title": "Verify and preserve untracked trading source files",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/cleanup/charlie_preserve_trading_source_002.yaml"
+    },
+    {
+      "id": "commit_safe_fetch_repair_clean_013",
+      "title": "Commit safe_fetch_quotes repair with clean staged scope",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/commit_safe_fetch_repair_clean_013.yaml"
+    },
+    {
+      "id": "fix_quote_fallback_status_007",
+      "title": "Fix quote fallback status return shape",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/fix_quote_fallback_status_007.yaml"
+    },
+    {
+      "id": "fix_quote_status_contract_008",
+      "title": "Fix quote status contract compatibility",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/fix_quote_status_contract_008.yaml"
+    },
+    {
+      "id": "fix_quote_status_source_009",
+      "title": "Add source compatibility to quote fallback status",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/fix_quote_status_source_009.yaml"
+    },
+    {
+      "id": "fix_safe_fetch_quotes_chain_011",
+      "title": "Fix safe_fetch_quotes provider-chain contract",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/fix_safe_fetch_quotes_chain_011.yaml"
+    },
+    {
+      "id": "fix_safe_fetch_quotes_legacy_010",
+      "title": "Fix safe_fetch_quotes fallback source contract",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/fix_safe_fetch_quotes_legacy_010.yaml"
+    },
+    {
+      "id": "fix_safe_fetch_quotes_monkeypatch_012",
+      "title": "Fix safe_fetch_quotes monkeypatch compatibility",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/fix_safe_fetch_quotes_monkeypatch_012.yaml"
+    },
+    {
+      "id": "fix_snapshot_bootstrap_005",
+      "title": "Normalize trading snapshot Python bootstrap",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/fix_snapshot_bootstrap_005.yaml"
+    },
+    {
+      "id": "fix_snapshot_pythonpath_004",
+      "title": "Fix trading snapshot script import path for dry-run wrapper",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/fix_snapshot_pythonpath_004.yaml"
+    },
+    {
+      "id": "promote_remaining_trading_suite_006",
+      "title": "Promote remaining trading-suite code after Charlie cleanup",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/promote_remaining_trading_suite_006.yaml"
+    },
+    {
+      "id": "repair_premarket_dry_run_wrapper_003",
+      "title": "Repair premarket Discord dry-run wrapper",
+      "owner": "Charlie",
+      "lane": "\u2014",
+      "status": "running",
+      "desc": "",
+      "executor": "kids",
+      "source_path": "runtime/tasks/trading/repair_premarket_dry_run_wrapper_003.yaml"
+    }
+  ]
+}
