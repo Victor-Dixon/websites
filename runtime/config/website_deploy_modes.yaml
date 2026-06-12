@@ -12,6 +12,13 @@ domains:
     source_hint: runtime/content/freerideinvestor
     notes: TSLA daytrading command center, funnel, replay proof, static JSON-fed pages.
 
+
+  dadudekc.site:
+    mode: static
+    deploy_policy: domain_redirect_only
+    source_hint: runtime/content/dadudekc.site
+    notes: Redirect shell only; Spark, Emergence, and Mask Zero project pages are canonical on maskzero.site.
+
   maskzero.site:
     mode: wordpress
     deploy_policy: wp_plugin_allowed
@@ -79,6 +86,16 @@ domains:
     notes: WP-CLI output looked contaminated; repair/classify before deploy.
 
 allowed_policies:
+
+  domain_redirect_only:
+    allows:
+      - redirect_shell_upload
+      - htaccess_redirect
+    blocks:
+      - project_page_canonical_content
+      - wp_plugin_install
+      - blind_static_overwrite_without_redirect_review
+
   static_only:
     allows:
       - static_file_upload
