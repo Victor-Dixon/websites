@@ -123,7 +123,6 @@
         <a href="/feed/">Feed</a>
         <a href="/projects/">Projects</a>
         <a href="/tasks/" aria-current="page">Tasks</a>
-        <a href="/kids-planner/">Kids Planner</a>
         <a href="/skill-tree/">Skill Tree</a>
         <a href="/dreamos-services/">Services</a>
       </div>
@@ -301,31 +300,10 @@
       </div>
     </section>
 
-    <section id="data-contract">
-      <h2>Hydrated task feed</h2>
-      <p class="sync" id="task-sync">Sync source: /data/planner/all_tasks.json</p>
-      <div class="grid" id="task-data-cards">
-        <article class="card"><h3>Fallback task snapshot ready</h3><p>The static task board remains visible if the public JSON path is missing.</p><div class="proof">MISSING_FILE=/data/planner/all_tasks.json<br>FALLBACK=static task board</div></article>
-      </div>
-    </section>
-    <script>
-      (() => {
-        const file = '/data/planner/all_tasks.json';
-        const sync = document.getElementById('task-sync');
-        const root = document.getElementById('task-data-cards');
-        const esc = (v) => String(v || '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-        fetch(file).then(r => { if (!r.ok) throw new Error(`${file} returned ${r.status}`); return r.json(); })
-          .then(data => {
-            sync.textContent = `Last sync: ${data.last_sync || 'unknown'} · Source: ${file}`;
-            root.innerHTML = (data.tasks || []).map(t => `<article class="card"><span class="tag">${esc(t.priority)}</span><span class="tag blue">${esc(t.executor)}</span><h3>${esc(t.title)}</h3><p>${esc(t.summary)}</p><div class="proof">LANE=${esc(t.lane)}<br>STATUS=${esc(t.status)}<br>NEXT=${esc(t.next_action)}</div></article>`).join('');
-          })
-          .catch(err => { sync.textContent = `Data fallback active: ${err.message}`; });
-      })();
-    </script>
-
     <footer>
       WeAreSwarm tasks: active lanes, future plans, skill unlocks, and Dream.OS master task visibility.
     </footer>
   </main>
+    <script src="/assets/weareswarm-hydration.js" defer></script>
 </body>
 </html>

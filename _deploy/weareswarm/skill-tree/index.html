@@ -48,7 +48,6 @@
         <a href="/feed/">Feed</a>
         <a href="/projects/">Projects</a>
         <a href="/tasks/">Tasks</a>
-        <a href="/kids-planner/">Kids Planner</a>
         <a href="/skill-tree/" aria-current="page">Skill Tree</a>
         <a href="/dreamos-services/">Services</a>
       </div>
@@ -138,31 +137,10 @@
       </div>
     </section>
 
-    <section id="data-contract">
-      <h2>Hydrated capability map</h2>
-      <p class="sync" id="skill-sync">Sync source: /data/planner/skill_tree.json</p>
-      <div class="grid" id="skill-data-cards">
-        <article class="card"><h3>Fallback capability snapshot ready</h3><p>The static skill tree remains visible if the JSON path is missing.</p><div class="proof">MISSING_FILE=/data/planner/skill_tree.json<br>FALLBACK=static skill snapshot</div></article>
-      </div>
-    </section>
-    <script>
-      (() => {
-        const file = '/data/planner/skill_tree.json';
-        const sync = document.getElementById('skill-sync');
-        const root = document.getElementById('skill-data-cards');
-        const esc = (v) => String(v || '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-        fetch(file).then(r => { if (!r.ok) throw new Error(`${file} returned ${r.status}`); return r.json(); })
-          .then(data => {
-            sync.textContent = `Last sync: ${data.last_sync || 'unknown'} · Next unlock: ${data.next_unlock || 'none'}`;
-            root.innerHTML = (data.nodes || []).map(n => `<article class="card"><span class="tag">${esc(n.status)}</span><h3>${esc(n.title)}</h3><div class="proof">PROOF=${esc(n.proof)}</div></article>`).join('');
-          })
-          .catch(err => { sync.textContent = `Data fallback active: ${err.message}`; });
-      })();
-    </script>
-
     <footer>
       Skill Tree: Dream.OS capabilities earned through verified closeouts.
     </footer>
   </main>
+    <script src="/assets/weareswarm-hydration.js" defer></script>
 </body>
 </html>
