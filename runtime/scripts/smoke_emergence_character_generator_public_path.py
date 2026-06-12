@@ -8,9 +8,9 @@ import urllib.request
 from pathlib import Path
 
 
-SITE_URL = "https://dadudekc.site/character-generator/"
-REST_URL = "https://dadudekc.site/wp-json/emergence/v1/generate"
-JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+SITE_URL = "https://maskzero.site/character-generator/"
+REST_URL = "https://maskzero.site/wp-json/emergence/v1/generate"
+JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
 
 
 ALL_H = ["H"] * 28

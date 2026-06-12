@@ -1,0 +1,35 @@
+version: 1
+name: emergence_openai_premium_image_provider
+site: maskzero.site
+status: live_gated_provider_deployed
+implemented:
+  - server_side_openai_image_provider
+  - non_destructive_v2_provider
+  - live_gate_required
+  - prompt_only_fallback_preserved
+  - svg_fallback_preserved
+  - upload_storage_for_generated_portraits
+verified:
+  source_openai_provider: pass
+  public_provider_assets: pass
+  disabled_or_safe_error_fallback: pass
+  provider_no_key_leaks: pass
+  openai_provider_smoke: pass
+env_contract:
+  provider: EMERGENCE_IMAGE_PROVIDER=openai
+  key: EMERGENCE_IMAGE_API_KEY
+  fallback_key: OPENAI_API_KEY
+  live_gate: EMERGENCE_IMAGE_LIVE=1
+  model: EMERGENCE_IMAGE_MODEL=gpt-image-1
+  size: EMERGENCE_IMAGE_SIZE=1024x1024
+  quality: EMERGENCE_IMAGE_QUALITY=medium
+safety:
+  server_side_only: true
+  no_key_leaks: true
+  live_requires_explicit_flag: true
+  svg_fallback_preserved: true
+  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/openai_provider_094d_20260531_115948'
+next_allowed_actions:
+  - configure_hostinger_image_env
+  - run_live_generated_portrait_smoke
+  - add_shareable_character_permalink

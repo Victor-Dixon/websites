@@ -36,7 +36,7 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `_reports/hostinger_wordpress_inventory_044.md`
 - Score: `4`
-- Hits: `dadudekc.com, dadudekc.site, u996867598, 65002`
+- Hits: `dadudekc.com, maskzero.site, u996867598, 65002`
 - L19: `HOSTINGER_USER=u996867598`
 - L21: `HOSTINGER_PORT=65002`
 - L25: `WP_ROOT=/home/u996867598/domains/ariajet.site/public_html`
@@ -50,7 +50,7 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `_reports/hostinger_wordpress_inventory_044.md`
 - Score: `4`
-- Hits: `dadudekc.com, dadudekc.site, u996867598, 65002`
+- Hits: `dadudekc.com, maskzero.site, u996867598, 65002`
 - L19: `HOSTINGER_USER=u996867598`
 - L21: `HOSTINGER_PORT=65002`
 - L25: `WP_ROOT=/home/u996867598/domains/ariajet.site/public_html`
@@ -64,7 +64,7 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `_reports/hostinger_wordpress_raw_inventory_044.txt`
 - Score: `4`
-- Hits: `dadudekc.com, dadudekc.site, u996867598, 65002`
+- Hits: `dadudekc.com, maskzero.site, u996867598, 65002`
 - L2: `HOSTINGER_USER=u996867598`
 - L4: `HOSTINGER_PORT=65002`
 - L8: `WP_ROOT=/home/u996867598/domains/ariajet.site/public_html`
@@ -78,7 +78,7 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `_reports/hostinger_wordpress_raw_inventory_044.txt`
 - Score: `4`
-- Hits: `dadudekc.com, dadudekc.site, u996867598, 65002`
+- Hits: `dadudekc.com, maskzero.site, u996867598, 65002`
 - L2: `HOSTINGER_USER=u996867598`
 - L4: `HOSTINGER_PORT=65002`
 - L8: `WP_ROOT=/home/u996867598/domains/ariajet.site/public_html`
@@ -92,7 +92,7 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `data/reports/website_promotions/resolve_weareswarm_sftp_target_001.json`
 - Score: `4`
-- Hits: `dadudekc.com, dadudekc.site, u996867598, 65002`
+- Hits: `dadudekc.com, maskzero.site, u996867598, 65002`
 - L156: `          "text": "    wp_root: '/home/u996867598/domains/ariajet.site/public_html'"`
 - L160: `          "text": "    plugins_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/plugins'"`
 - L164: `          "text": "    themes_dir: '/home/u996867598/domains/ariajet.site/public_html/wp-content/themes'"`
@@ -106,11 +106,11 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `_reports/guarded_static_hostinger_deploy_helper_001.txt`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L2: `ariajet.site	wordpress	/home/u996867598/domains/ariajet.site/public_html	1	1	1	1	0	1`
 - L3: `crosbyultimateevents.com	wordpress	/home/u996867598/domains/crosbyultimateevents.com/public_html	1	1	1	1	0	1`
 - L4: `dadudekc.com	wordpress	/home/u996867598/domains/dadudekc.com/public_html	1	1	1	1	0	1`
-- L5: `dadudekc.site	wordpress	/home/u996867598/domains/dadudekc.site/public_html	1	1	1	1	0	1`
+- L5: `maskzero.site	wordpress	/home/u996867598/domains/maskzero.site/public_html	1	1	1	1	0	1`
 - L6: `digitaldreamscape.site	wordpress	/home/u996867598/domains/digitaldreamscape.site/public_html	1	1	1	1	0	1`
 - L7: `freerideinvestor.com	static	/home/u996867598/domains/freerideinvestor.com/public_html	0	0	0	0	1	1`
 - L8: `houstonsipqueen.com	wordpress	/home/u996867598/domains/houstonsipqueen.com/public_html	1	1	1	1	0	1`
@@ -120,11 +120,11 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `_reports/guarded_static_hostinger_deploy_helper_001.txt`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L2: `ariajet.site	wordpress	/home/u996867598/domains/ariajet.site/public_html	1	1	1	1	0	1`
 - L3: `crosbyultimateevents.com	wordpress	/home/u996867598/domains/crosbyultimateevents.com/public_html	1	1	1	1	0	1`
 - L4: `dadudekc.com	wordpress	/home/u996867598/domains/dadudekc.com/public_html	1	1	1	1	0	1`
-- L5: `dadudekc.site	wordpress	/home/u996867598/domains/dadudekc.site/public_html	1	1	1	1	0	1`
+- L5: `maskzero.site	wordpress	/home/u996867598/domains/maskzero.site/public_html	1	1	1	1	0	1`
 - L6: `digitaldreamscape.site	wordpress	/home/u996867598/domains/digitaldreamscape.site/public_html	1	1	1	1	0	1`
 - L7: `freerideinvestor.com	static	/home/u996867598/domains/freerideinvestor.com/public_html	0	0	0	0	1	1`
 - L8: `houstonsipqueen.com	wordpress	/home/u996867598/domains/houstonsipqueen.com/public_html	1	1	1	1	0	1`
@@ -134,67 +134,67 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `_reports/hostinger_access_preflight_002b.md`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L15: `REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html`
 - L22: `REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
 - L26: `== SITE dadudekc.com ==`
 - L29: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
 - L31: `SITE_ACCESS=PASS site=dadudekc.com`
-- L33: `== SITE dadudekc.site ==`
-- L36: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
-- L38: `SITE_ACCESS=PASS site=dadudekc.site`
+- L33: `== SITE maskzero.site ==`
+- L36: `REMOTE_ROOT=/home/u996867598/domains/maskzero.site/public_html`
+- L38: `SITE_ACCESS=PASS site=maskzero.site`
 - L43: `REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
 - L50: `REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html`
 
 ### `_reports/hostinger_access_preflight_002b.md`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L15: `REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html`
 - L22: `REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
 - L26: `== SITE dadudekc.com ==`
 - L29: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
 - L31: `SITE_ACCESS=PASS site=dadudekc.com`
-- L33: `== SITE dadudekc.site ==`
-- L36: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
-- L38: `SITE_ACCESS=PASS site=dadudekc.site`
+- L33: `== SITE maskzero.site ==`
+- L36: `REMOTE_ROOT=/home/u996867598/domains/maskzero.site/public_html`
+- L38: `SITE_ACCESS=PASS site=maskzero.site`
 - L43: `REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
 - L50: `REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html`
 
 ### `_reports/hostinger_access_preflight_002b.txt`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L6: `REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html`
 - L13: `REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
 - L17: `== SITE dadudekc.com ==`
 - L20: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
 - L22: `SITE_ACCESS=PASS site=dadudekc.com`
-- L24: `== SITE dadudekc.site ==`
-- L27: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
-- L29: `SITE_ACCESS=PASS site=dadudekc.site`
+- L24: `== SITE maskzero.site ==`
+- L27: `REMOTE_ROOT=/home/u996867598/domains/maskzero.site/public_html`
+- L29: `SITE_ACCESS=PASS site=maskzero.site`
 - L34: `REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
 - L41: `REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html`
 
 ### `_reports/hostinger_access_preflight_002b.txt`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L6: `REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html`
 - L13: `REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
 - L17: `== SITE dadudekc.com ==`
 - L20: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
 - L22: `SITE_ACCESS=PASS site=dadudekc.com`
-- L24: `== SITE dadudekc.site ==`
-- L27: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
-- L29: `SITE_ACCESS=PASS site=dadudekc.site`
+- L24: `== SITE maskzero.site ==`
+- L27: `REMOTE_ROOT=/home/u996867598/domains/maskzero.site/public_html`
+- L29: `SITE_ACCESS=PASS site=maskzero.site`
 - L34: `REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
 - L41: `REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html`
 
 ### `_reports/hostinger_deploy_target_guard_001.txt`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L2: `ariajet.site	wordpress	/home/u996867598/domains/ariajet.site/public_html	1	1	1	1	0	1`
 - L3: `crosbyultimateevents.com	wordpress	/home/u996867598/domains/crosbyultimateevents.com/public_html	1	1	1	1	0	1`
 - L4: `dadudekc.com	wordpress	/home/u996867598/domains/dadudekc.com/public_html	1	1	1	1	0	1`
-- L5: `dadudekc.site	wordpress	/home/u996867598/domains/dadudekc.site/public_html	1	1	1	1	0	1`
+- L5: `maskzero.site	wordpress	/home/u996867598/domains/maskzero.site/public_html	1	1	1	1	0	1`
 - L6: `digitaldreamscape.site	wordpress	/home/u996867598/domains/digitaldreamscape.site/public_html	1	1	1	1	0	1`
 - L7: `freerideinvestor.com	static	/home/u996867598/domains/freerideinvestor.com/public_html	0	0	0	0	1	1`
 - L8: `houstonsipqueen.com	wordpress	/home/u996867598/domains/houstonsipqueen.com/public_html	1	1	1	1	0	1`
@@ -204,11 +204,11 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `_reports/hostinger_deploy_target_guard_001.txt`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L2: `ariajet.site	wordpress	/home/u996867598/domains/ariajet.site/public_html	1	1	1	1	0	1`
 - L3: `crosbyultimateevents.com	wordpress	/home/u996867598/domains/crosbyultimateevents.com/public_html	1	1	1	1	0	1`
 - L4: `dadudekc.com	wordpress	/home/u996867598/domains/dadudekc.com/public_html	1	1	1	1	0	1`
-- L5: `dadudekc.site	wordpress	/home/u996867598/domains/dadudekc.site/public_html	1	1	1	1	0	1`
+- L5: `maskzero.site	wordpress	/home/u996867598/domains/maskzero.site/public_html	1	1	1	1	0	1`
 - L6: `digitaldreamscape.site	wordpress	/home/u996867598/domains/digitaldreamscape.site/public_html	1	1	1	1	0	1`
 - L7: `freerideinvestor.com	static	/home/u996867598/domains/freerideinvestor.com/public_html	0	0	0	0	1	1`
 - L8: `houstonsipqueen.com	wordpress	/home/u996867598/domains/houstonsipqueen.com/public_html	1	1	1	1	0	1`
@@ -218,7 +218,7 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 
 ### `_reports/hostinger_manager_smoke_matrix_062.txt`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L5: `/home/u996867598`
 - L23: `WP-CLI cache dir:	/home/u996867598/.wp-cli/cache`
 - L36: `/home/u996867598`
@@ -227,12 +227,12 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 - L64: `ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env`
 - L67: `/home/u996867598`
 - L85: `WP-CLI cache dir:	/home/u996867598/.wp-cli/cache`
-- L94: `===== SITE dadudekc.site =====`
-- L95: `ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env`
+- L94: `===== SITE maskzero.site =====`
+- L95: `ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env`
 
 ### `_reports/hostinger_manager_smoke_matrix_062.txt`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L5: `/home/u996867598`
 - L23: `WP-CLI cache dir:	/home/u996867598/.wp-cli/cache`
 - L36: `/home/u996867598`
@@ -241,40 +241,40 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 - L64: `ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env`
 - L67: `/home/u996867598`
 - L85: `WP-CLI cache dir:	/home/u996867598/.wp-cli/cache`
-- L94: `===== SITE dadudekc.site =====`
-- L95: `ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env`
+- L94: `===== SITE maskzero.site =====`
+- L95: `ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env`
 
 ### `_reports/hostinger_website_fleet_connection_061.md`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L12: `WP_ROOT=/home/u996867598/domains/ariajet.site/public_html`
 - L19: `WP_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
 - L24: `SITE=dadudekc.com`
 - L25: `ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env`
 - L26: `WP_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
-- L31: `SITE=dadudekc.site`
-- L32: `ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env`
-- L33: `WP_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
+- L31: `SITE=maskzero.site`
+- L32: `ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env`
+- L33: `WP_ROOT=/home/u996867598/domains/maskzero.site/public_html`
 - L40: `WP_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
 - L47: `WP_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html`
 
 ### `_reports/hostinger_website_fleet_connection_061.md`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L12: `WP_ROOT=/home/u996867598/domains/ariajet.site/public_html`
 - L19: `WP_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
 - L24: `SITE=dadudekc.com`
 - L25: `ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env`
 - L26: `WP_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
-- L31: `SITE=dadudekc.site`
-- L32: `ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env`
-- L33: `WP_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
+- L31: `SITE=maskzero.site`
+- L32: `ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env`
+- L33: `WP_ROOT=/home/u996867598/domains/maskzero.site/public_html`
 - L40: `WP_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
 - L47: `WP_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html`
 
 ### `_reports/tsla_command_center_hostinger_deploy_diagnosis_001.txt`
 - Score: `3`
-- Hits: `dadudekc.com, dadudekc.site, u996867598`
+- Hits: `dadudekc.com, maskzero.site, u996867598`
 - L9: `u996867598`
 - L10: `/home/u996867598`
 - L15: `/home/u996867598/domains`
@@ -284,7 +284,7 @@ Secrets are not printed. Use existing Hostinger credentials only for SSH preflig
 - L19: `/home/u996867598/domains/crosbyultimateevents.com/public_html`
 - L20: `/home/u996867598/domains/dadudekc.com`
 - L21: `/home/u996867598/domains/dadudekc.com/public_html`
-- L22: `/home/u996867598/domains/dadudekc.site`
+- L22: `/home/u996867598/domains/maskzero.site`
 
 ## SSH Preflight Result
 

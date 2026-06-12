@@ -120,10 +120,10 @@ sites:
       - sites/production/websites/digitaldreamscape.site/js/explore.js
     notes: "Static Digital Dreamscape world walker MVP (addon domain)"
 
-  dadudekc.site:
-    path: websites/dadudekc.site
+  maskzero.site:
+    path: runtime/content/maskzero.site
     deployer: unified
-    verify_url: https://dadudekc.site/.well-known/deploy.json
+    verify_url: https://maskzero.site/.well-known/deploy.json
     remote_root: public_html
     enabled: true
     deploy_method: sftp

@@ -1,0 +1,31 @@
+version: 1
+name: emergence_scan_submit_state_reset
+site: maskzero.site
+status: deployed
+implemented:
+  - text_independent_submit_guard
+  - form_submit_prevent_default
+  - submit_button_type_hardening
+  - answer_session_draft_autosave
+  - answer_session_draft_restore
+verified:
+  static_scan_reset_guard: pass
+  static_draft_autosave: pass
+  static_text_independent: pass
+  remote_php_lint: pass
+  public_scan_reset_guard: pass
+  public_draft_autosave_guard: pass
+  public_text_independent_guard: pass
+  public_no_raw_score_leak: pass
+safety:
+  raw_scores_visible: false
+  roll_visible: false
+  odds_visible: false
+  backend_math_hidden: true
+  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/scan_submit_state_reset_110b_20260601_010608'
+urls:
+  character_generator: https://maskzero.site/character-generator/
+next_allowed_actions:
+  - true_playwright_scan_no_reload_smoke
+  - public_demo_hardening
+  - partnership_operating_packet

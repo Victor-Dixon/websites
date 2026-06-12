@@ -13,38 +13,38 @@ Generated: 2026-06-05T02:15:58-05:00
 ## Remote asset dirs
 
 ```text
-/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets
+/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets
 ```
 
 ## Upload
 
 ```text
---- REMOTE_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets ---
-UPLOADED_ALIAS_SET=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets
+--- REMOTE_DIR=/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets ---
+UPLOADED_ALIAS_SET=/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets
 ```
 
 ## Remote grep verify
 
 ```text
-== /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets ==
- 64014 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js
- 64014 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js
- 17645 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css
- 17645 /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css
+== /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets ==
+ 64014 /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js
+ 64014 /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js
+ 17645 /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css
+ 17645 /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css
 163318 total
-/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js:827:/* DreamOS Spark Generator Fail-Open Guard
-/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js:827:/* DreamOS Spark Generator Fail-Open Guard
-/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js:918:      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
-/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js:918:      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
-/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css:477:/* DreamOS Spark Generator Fail-Open Visibility Guard */
-/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css:477:/* DreamOS Spark Generator Fail-Open Visibility Guard */
+/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js:827:/* DreamOS Spark Generator Fail-Open Guard
+/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js:827:/* DreamOS Spark Generator Fail-Open Guard
+/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js:918:      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
+/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js:918:      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
+/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css:477:/* DreamOS Spark Generator Fail-Open Visibility Guard */
+/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css:477:/* DreamOS Spark Generator Fail-Open Visibility Guard */
 ```
 
 ## Cache purge
 
 ```text
-CACHE_BASE=/home/u996867598/domains/dadudekc.site/public_html
-CACHE_PURGE_ATTEMPTED=/home/u996867598/domains/dadudekc.site/public_html
+CACHE_BASE=/home/u996867598/domains/maskzero.site/public_html
+CACHE_PURGE_ATTEMPTED=/home/u996867598/domains/maskzero.site/public_html
 CACHE_BASE=/home/u996867598/public_html
 CACHE_PURGE_ATTEMPTED=/home/u996867598/public_html
 ```
@@ -52,7 +52,7 @@ CACHE_PURGE_ATTEMPTED=/home/u996867598/public_html
 ## Live asset verify
 
 ```text
---- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js?cb=1780643755152854813 ---
+--- https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js?cb=1780643755152854813 ---
 HEADERS:
 HTTP/2 200 
 cache-control: public, max-age=604800
@@ -75,7 +75,7 @@ SIGNALS:
 827:/* DreamOS Spark Generator Fail-Open Guard
 918:      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
 
---- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js?cb=1780643755783137274 ---
+--- https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.js?cb=1780643755783137274 ---
 HEADERS:
 HTTP/2 200 
 cache-control: public, max-age=604800
@@ -98,7 +98,7 @@ SIGNALS:
 827:/* DreamOS Spark Generator Fail-Open Guard
 918:      '<button type="button" class="ecg-fail-open-button" data-ecg-fail-open-generate="1">Generate Diagnostic Spark</button>',
 
---- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css?cb=1780643756421120351 ---
+--- https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css?cb=1780643756421120351 ---
 HEADERS:
 HTTP/2 200 
 cache-control: public, max-age=604800
@@ -120,7 +120,7 @@ SIZE:
 SIGNALS:
 477:/* DreamOS Spark Generator Fail-Open Visibility Guard */
 
---- https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css?cb=1780643756948744044 ---
+--- https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-character-generator.css?cb=1780643756948744044 ---
 HEADERS:
 HTTP/2 200 
 cache-control: public, max-age=604800

@@ -1,0 +1,30 @@
+version: 1
+name: emergence_flavor_privacy_unlock_routing
+site: maskzero.site
+status: deployed
+implemented:
+  - hide_unlocked_domain_names_from_public_ui
+  - show_generic_unlocked_flavor_blocks
+  - preserve_internal_domain_to_flavor_question_routing
+  - normalize_domain_key_schema_for_tests
+  - add_single_domain_fixture_smoke
+  - add_coprimary_fixture_smoke
+verified:
+  domain_key_normalized: pass
+  public_domain_routing_privacy: pass
+  single_domain_fixtures: pass
+  coprimary_fixtures: pass
+  flavor_block_names_hidden: pass
+  unlock_routing_smoke: pass
+safety:
+  theme_deploy_enabled: false
+  old_theme_deploy_enabled: false
+notes:
+  - Co-primary fixtures are generated from the scoring key, not by assuming fixed letter-to-domain mapping.
+  - Remote REST response is source of truth.
+  - Exact raw score ties are not required; matching tier plus threshold pass validates co-primary behavior.
+  - Public UI hides domain names during flavor unlock and uses generic unlocked block labels.
+next_allowed_actions:
+  - add shareable character permalink
+  - add saved character records
+  - build Battle Simulator demo

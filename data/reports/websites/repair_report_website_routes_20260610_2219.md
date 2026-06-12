@@ -5,8 +5,8 @@ branch=cursor/website-repair-7e11
 
 ## Scope
 
-- dadudekc.site missions/buttons
-- dadudekc.site/spark-dashboard routing
+- maskzero.site missions/buttons
+- maskzero.site/spark-dashboard routing
 - weareswarm.online/focus missing Trading Plan
 - project/tasks board pages
 
@@ -49,18 +49,18 @@ BACKUP=SKIP missing project/tasks/index.html
 UPLOAD=PASS project/tasks/index.html
 BACKUP=SKIP missing projects/tasks/index.html
 UPLOAD=PASS projects/tasks/index.html
-BACKUP=PASS dadudekc.site/functions.php
+BACKUP=PASS maskzero.site/functions.php
 PATCH=PASS dadudekc route alias
-REMOTE_PHP_LINT_OUT=No syntax errors detected in domains/dadudekc.site/public_html/wp-content/themes/dreamos-emergence/functions.php
+REMOTE_PHP_LINT_OUT=No syntax errors detected in domains/maskzero.site/public_html/wp-content/themes/dreamos-emergence/functions.php
 REMOTE_DEPLOY=PASS
 ```
 
 ## Live verification after repair
 
 ```text
-LIVE_AFTER https://dadudekc.site/missions status=200 final=https://dadudekc.site/spark-login/?redirect_to=%2Fmeridian-dispatch%2F markers=['Command Post', 'Log In']
-LIVE_AFTER https://dadudekc.site/mission status=200 final=https://dadudekc.site/spark-login/?redirect_to=%2Fmeridian-dispatch%2F markers=['Command Post', 'Log In']
-LIVE_AFTER https://dadudekc.site/spark-dashboard status=200 final=https://dadudekc.site/spark-dashboard/ markers=['Command Post', 'Meridian Dispatch', 'Log In']
+LIVE_AFTER https://maskzero.site/missions status=200 final=https://maskzero.site/spark-login/?redirect_to=%2Fmeridian-dispatch%2F markers=['Command Post', 'Log In']
+LIVE_AFTER https://maskzero.site/mission status=200 final=https://maskzero.site/spark-login/?redirect_to=%2Fmeridian-dispatch%2F markers=['Command Post', 'Log In']
+LIVE_AFTER https://maskzero.site/spark-dashboard status=200 final=https://maskzero.site/spark-dashboard/ markers=['Command Post', 'Meridian Dispatch', 'Log In']
 LIVE_AFTER https://weareswarm.online/focus status=200 final=https://www.weareswarm.online/focus/ markers=['Trading Plan', 'STATUS=VISIBLE']
 LIVE_AFTER https://weareswarm.online/project/tasks status=200 final=https://www.weareswarm.online/project/tasks/ markers=['WeAreSwarm Tasks']
 LIVE_AFTER https://weareswarm.online/projects/tasks/ status=200 final=https://www.weareswarm.online/projects/tasks/ markers=['WeAreSwarm Tasks']

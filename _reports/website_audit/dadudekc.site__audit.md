@@ -1,4 +1,4 @@
-# Website Audit: dadudekc.site
+# Website Audit: maskzero.site
 
 Generated: 2026-06-01T05:34:24-05:00
 
@@ -6,14 +6,14 @@ Generated: 2026-06-01T05:34:24-05:00
 
 | Field | Value |
 |---|---|
-| Domain | dadudekc.site |
+| Domain | maskzero.site |
 | SSH Access | PASS |
-| Remote Root | `/home/u996867598/domains/dadudekc.site/public_html` |
+| Remote Root | `/home/u996867598/domains/maskzero.site/public_html` |
 | Root Writable |  |
 | App Type | unknown |
 | HTTPS Status | 200 |
 | HTTP Status | 200 |
-| Homepage Title | dadudekc.site |
+| Homepage Title | maskzero.site |
 | Body Signals | wordpress,form |
 | File Count | 0 |
 | Dir Count | 0 |
@@ -26,8 +26,8 @@ Generated: 2026-06-01T05:34:24-05:00
 
 ## Public Checks
 
-- HTTPS: https://dadudekc.site/ => 200
-- HTTP: http://dadudekc.site/ => 200
+- HTTPS: https://maskzero.site/ => 200
+- HTTP: https://maskzero.site/ => 200
 
 ## Findings
 

@@ -34,7 +34,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L11: `    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/ariajet.site.env'`
 - L21: `    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/crosbyultimateevents.com.env'`
 - L31: `    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.com.env'`
-- L41: `    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env'`
+- L41: `    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env'`
 - L51: `    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/digitaldreamscape.site.env'`
 - L61: `    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/freerideinvestor.com.env'`
 - L71: `    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/houstonsipqueen.com.env'`
@@ -196,7 +196,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L2: `ariajet.site	wordpress	/home/u996867598/domains/ariajet.site/public_html	1	1	1	1	0	1`
 - L3: `crosbyultimateevents.com	wordpress	/home/u996867598/domains/crosbyultimateevents.com/public_html	1	1	1	1	0	1`
 - L4: `dadudekc.com	wordpress	/home/u996867598/domains/dadudekc.com/public_html	1	1	1	1	0	1`
-- L5: `dadudekc.site	wordpress	/home/u996867598/domains/dadudekc.site/public_html	1	1	1	1	0	1`
+- L5: `maskzero.site	wordpress	/home/u996867598/domains/maskzero.site/public_html	1	1	1	1	0	1`
 - L6: `digitaldreamscape.site	wordpress	/home/u996867598/domains/digitaldreamscape.site/public_html	1	1	1	1	0	1`
 - L7: `freerideinvestor.com	static	/home/u996867598/domains/freerideinvestor.com/public_html	0	0	0	0	1	1`
 - L8: `houstonsipqueen.com	wordpress	/home/u996867598/domains/houstonsipqueen.com/public_html	1	1	1	1	0	1`
@@ -210,7 +210,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L15: `REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html`
 - L22: `REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
 - L29: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
-- L36: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
+- L36: `REMOTE_ROOT=/home/u996867598/domains/maskzero.site/public_html`
 - L43: `REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
 
 ### `_reports/hostinger_access_preflight_002b.txt`
@@ -219,7 +219,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L6: `REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html`
 - L13: `REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
 - L20: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
-- L27: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
+- L27: `REMOTE_ROOT=/home/u996867598/domains/maskzero.site/public_html`
 - L34: `REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
 - L41: `REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html`
 - L48: `REMOTE_ROOT=/home/u996867598/domains/houstonsipqueen.com/public_html`
@@ -251,7 +251,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L2: `ariajet.site	wordpress	/home/u996867598/domains/ariajet.site/public_html	1	1	1	1	0	1`
 - L3: `crosbyultimateevents.com	wordpress	/home/u996867598/domains/crosbyultimateevents.com/public_html	1	1	1	1	0	1`
 - L4: `dadudekc.com	wordpress	/home/u996867598/domains/dadudekc.com/public_html	1	1	1	1	0	1`
-- L5: `dadudekc.site	wordpress	/home/u996867598/domains/dadudekc.site/public_html	1	1	1	1	0	1`
+- L5: `maskzero.site	wordpress	/home/u996867598/domains/maskzero.site/public_html	1	1	1	1	0	1`
 - L6: `digitaldreamscape.site	wordpress	/home/u996867598/domains/digitaldreamscape.site/public_html	1	1	1	1	0	1`
 - L7: `freerideinvestor.com	static	/home/u996867598/domains/freerideinvestor.com/public_html	0	0	0	0	1	1`
 - L8: `houstonsipqueen.com	wordpress	/home/u996867598/domains/houstonsipqueen.com/public_html	1	1	1	1	0	1`
@@ -377,7 +377,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L10: `  "remote_root": "/home/u996867598/domains/ariajet.site/public_html",`
 - L26: `  "remote_root": "/home/u996867598/domains/crosbyultimateevents.com/public_html",`
 - L42: `  "remote_root": "/home/u996867598/domains/dadudekc.com/public_html",`
-- L58: `  "remote_root": "/home/u996867598/domains/dadudekc.site/public_html",`
+- L58: `  "remote_root": "/home/u996867598/domains/maskzero.site/public_html",`
 - L75: `  "remote_root": "/home/u996867598/domains/digitaldreamscape.site/public_html",`
 - L91: `  "remote_root": "/home/u996867598/domains/freerideinvestor.com/public_html",`
 - L107: `  "remote_root": "/home/u996867598/domains/houstonsipqueen.com/public_html",`
@@ -388,7 +388,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L7: `| ariajet.site | PASS | unknown | 500 | 500 | `/home/u996867598/domains/ariajet.site/public_html` | [report](ariajet.site__audit.md) |`
 - L8: `| crosbyultimateevents.com | PASS | unknown | 500 | 500 | `/home/u996867598/domains/crosbyultimateevents.com/public_html` | [report](crosbyultimateevents.com__audit.md) |`
 - L9: `| dadudekc.com | PASS | unknown | 000 | 000 | `/home/u996867598/domains/dadudekc.com/public_html` | [report](dadudekc.com__audit.md) |`
-- L10: `| dadudekc.site | PASS | unknown | 200 | 200 | `/home/u996867598/domains/dadudekc.site/public_html` | [report](dadudekc.site__audit.md) |`
+- L10: `| maskzero.site | PASS | unknown | 200 | 200 | `/home/u996867598/domains/maskzero.site/public_html` | [report](maskzero.site__audit.md) |`
 - L11: `| digitaldreamscape.site | PASS | unknown | 500 | 500 | `/home/u996867598/domains/digitaldreamscape.site/public_html` | [report](digitaldreamscape.site__audit.md) |`
 - L12: `| freerideinvestor.com | PASS | unknown | 200 | 200 | `/home/u996867598/domains/freerideinvestor.com/public_html` | [report](freerideinvestor.com__audit.md) |`
 - L13: `| houstonsipqueen.com | PASS | unknown | 500 | 500 | `/home/u996867598/domains/houstonsipqueen.com/public_html` | [report](houstonsipqueen.com__audit.md) |`
@@ -401,7 +401,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L41: `      "remote_root": "/home/u996867598/domains/ariajet.site/public_html",`
 - L65: `      "remote_root": "/home/u996867598/domains/crosbyultimateevents.com/public_html",`
 - L89: `      "remote_root": "/home/u996867598/domains/dadudekc.com/public_html",`
-- L113: `      "remote_root": "/home/u996867598/domains/dadudekc.site/public_html",`
+- L113: `      "remote_root": "/home/u996867598/domains/maskzero.site/public_html",`
 - L137: `      "remote_root": "/home/u996867598/domains/digitaldreamscape.site/public_html",`
 - L161: `      "remote_root": "/home/u996867598/domains/freerideinvestor.com/public_html",`
 
@@ -419,7 +419,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L41: `      "remote_root": "/home/u996867598/domains/ariajet.site/public_html",`
 - L65: `      "remote_root": "/home/u996867598/domains/crosbyultimateevents.com/public_html",`
 - L89: `      "remote_root": "/home/u996867598/domains/dadudekc.com/public_html",`
-- L116: `      "remote_root": "/home/u996867598/domains/dadudekc.site/public_html",`
+- L116: `      "remote_root": "/home/u996867598/domains/maskzero.site/public_html",`
 - L140: `      "remote_root": "/home/u996867598/domains/digitaldreamscape.site/public_html",`
 - L164: `      "remote_root": "/home/u996867598/domains/freerideinvestor.com/public_html",`
 
@@ -435,7 +435,7 @@ Review matched domain/config entries before upload; target must be route-only.
 - L2: `ariajet.site	wordpress	/home/u996867598/domains/ariajet.site/public_html	1	1	1	1	0	1`
 - L3: `crosbyultimateevents.com	wordpress	/home/u996867598/domains/crosbyultimateevents.com/public_html	1	1	1	1	0	1`
 - L4: `dadudekc.com	wordpress	/home/u996867598/domains/dadudekc.com/public_html	1	1	1	1	0	1`
-- L5: `dadudekc.site	wordpress	/home/u996867598/domains/dadudekc.site/public_html	1	1	1	1	0	1`
+- L5: `maskzero.site	wordpress	/home/u996867598/domains/maskzero.site/public_html	1	1	1	1	0	1`
 - L6: `digitaldreamscape.site	wordpress	/home/u996867598/domains/digitaldreamscape.site/public_html	1	1	1	1	0	1`
 - L7: `freerideinvestor.com	static	/home/u996867598/domains/freerideinvestor.com/public_html	0	0	0	0	1	1`
 - L8: `houstonsipqueen.com	wordpress	/home/u996867598/domains/houstonsipqueen.com/public_html	1	1	1	1	0	1`
@@ -467,30 +467,30 @@ Review matched domain/config entries before upload; target must be route-only.
 - `runtime/deploy/hostinger_plugin_registry.yaml` terms=`weareswarm, hostinger`
 - `runtime/deploy/hostinger_sites_manifest.yaml` terms=`weareswarm, hostinger, public_html, domains`
 - `runtime/deploy/hostinger_theme_registry.yaml` terms=`weareswarm, hostinger`
-- `runtime/deploy/sites/dadudekc.site/client_theme_update_manifest.yaml` terms=`hostinger, public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/custom_spark_battle_participant_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_admin_event_dashboard_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_battle_story_cinematics_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_character_battle_handoff_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_character_generator_demo_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_disguised_answer_labels_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_domain_pass_plugin_syntax_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_flavor_phase_transition_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_flavor_power_selection_pass_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_generated_spark_portrait_card_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_generator_answer_labels_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_hostinger_image_env_manifest.yaml` terms=`hostinger`
-- `runtime/deploy/sites/dadudekc.site/emergence_openai_premium_image_provider_manifest.yaml` terms=`hostinger, public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_portrait_prompt_preview_polish_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_premium_portrait_prompt_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_privacy_safe_event_tracking_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_protocol_v85_question_bank_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_public_demo_hardening_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_public_scoring_privacy_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_public_share_card_ui_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_saved_character_records_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_scan_submit_state_reset_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/emergence_totality_observation_portrait_prompt_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/shareable_spark_handoff_token_manifest.yaml` terms=`public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/spark_battle_sim_hostinger_install_manifest.yaml` terms=`hostinger, public_html, domains`
-- `runtime/deploy/sites/dadudekc.site/spark_protocol_character_generation_port_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/client_theme_update_manifest.yaml` terms=`hostinger, public_html, domains`
+- `runtime/deploy/sites/maskzero.site/custom_spark_battle_participant_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_admin_event_dashboard_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_battle_story_cinematics_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_character_battle_handoff_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_character_generator_demo_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_disguised_answer_labels_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_domain_pass_plugin_syntax_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_flavor_phase_transition_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_flavor_power_selection_pass_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_generated_spark_portrait_card_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_generator_answer_labels_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_hostinger_image_env_manifest.yaml` terms=`hostinger`
+- `runtime/deploy/sites/maskzero.site/emergence_openai_premium_image_provider_manifest.yaml` terms=`hostinger, public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_portrait_prompt_preview_polish_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_premium_portrait_prompt_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_privacy_safe_event_tracking_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_protocol_v85_question_bank_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_public_demo_hardening_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_public_scoring_privacy_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_public_share_card_ui_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_saved_character_records_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_scan_submit_state_reset_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/emergence_totality_observation_portrait_prompt_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/shareable_spark_handoff_token_manifest.yaml` terms=`public_html, domains`
+- `runtime/deploy/sites/maskzero.site/spark_battle_sim_hostinger_install_manifest.yaml` terms=`hostinger, public_html, domains`
+- `runtime/deploy/sites/maskzero.site/spark_protocol_character_generation_port_manifest.yaml` terms=`public_html, domains`

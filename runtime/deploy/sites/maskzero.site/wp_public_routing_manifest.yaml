@@ -1,0 +1,14 @@
+version: 1
+name: dadudekc_wp_public_routing
+site: maskzero.site
+status: repaired
+backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/routing_fix_20260531_071847'
+changes:
+  - disabled_static_index_html_if_present
+  - wrote_wordpress_htaccess_rewrite_rules
+  - set_permalink_structure_postname
+  - flushed_rewrite_rules
+safety:
+  theme_deploy_enabled: false
+  old_theme_deploy_enabled: false
+  backup_created: true

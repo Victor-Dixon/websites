@@ -7,9 +7,9 @@ import urllib.request
 from pathlib import Path
 
 
-REST_URL = "https://dadudekc.site/wp-json/emergence/v1/generate"
-PAGE_URL = "https://dadudekc.site/character-generator/"
-JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+REST_URL = "https://maskzero.site/wp-json/emergence/v1/generate"
+PAGE_URL = "https://maskzero.site/character-generator/"
+JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
 DOMAIN_KEY_PATH = Path("runtime/plugins/emergence-character-generator/assets/spark-protocol-v85-domain-key.json")
 
 DOMAINS = ["Titan", "Velocity", "Energy", "Specter", "Duality", "Omni", "Primal", "Mind"]

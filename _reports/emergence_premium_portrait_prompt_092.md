@@ -10,7 +10,7 @@
 ## Deploy Output
 
 ```text
-No syntax errors detected in /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/emergence-character-generator.php
+No syntax errors detected in /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/emergence-character-generator.php
 REMOTE_PHP_LINT=PASS
       'POWERS TO VISUALLY SHOWCASE: ' + (powerNames.length ? powerNames.join(', ') : 'latent unresolved abilities') + '.',
       '<label>Build Type<select id="emergence-build-style"><option value="system">System-chosen</option><option value="lean">Lean athletic</option><option value="powerful">Powerful</option><option value="compact">Compact fighter</option><option value="tall">Tall imposing</option><option value="elegant">Elegant refined</option></select></label>',

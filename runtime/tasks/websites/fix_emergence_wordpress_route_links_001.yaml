@@ -3,8 +3,8 @@ title: Fix Emergence WordPress route links
 lane: repo_fleet_self_healing_001
 status: completed
 target:
-  live_domain: dadudekc.site
-  content_dir: runtime/content/dadudekc.site
+  live_domain: maskzero.site
+  content_dir: runtime/content/maskzero.site
 actions:
   - replace static .html route links with WordPress slug routes
   - verify no stale spark-generator.html CTAs remain

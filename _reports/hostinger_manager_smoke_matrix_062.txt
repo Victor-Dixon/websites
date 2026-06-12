@@ -91,8 +91,8 @@ WP_CLI=PASS
 == WP CORE CHECK SAFE ==
 MANAGER_CHECK=FAIL rc=255
 
-===== SITE dadudekc.site =====
-ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env
+===== SITE maskzero.site =====
+ENV=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env
 == SSH CHECK ==
 HOSTINGER_SSH_LOGIN=PASS
 /home/u996867598
@@ -123,11 +123,11 @@ WP_CLI=PASS
 WP_CORE_INSTALLED=PASS
 
 == SITE CHECK SAFE ==
-https://dadudekc.site
+https://maskzero.site
 WP_SITEURL=PASS
 
 == HOME CHECK SAFE ==
-https://dadudekc.site
+https://maskzero.site
 WP_HOME=PASS
 MANAGER_CHECK=PASS rc=0
 

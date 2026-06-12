@@ -1,0 +1,25 @@
+version: 1
+name: spark_protocol_character_generation_port
+site: maskzero.site
+status: deployed
+plugin:
+  slug: emergence-character-generator
+  version: 0.2.0
+  source: runtime/plugins/emergence-character-generator
+  domain_table: runtime/plugins/emergence-character-generator/assets/spark-protocol-v85-domain-key.json
+implemented:
+  - Q1_Q28_domain_key
+  - score_to_tier
+  - manifested_domains_25_percent_gate
+verified_fixtures:
+  - all_H_duality_score_31_tier_5_manifested_only_duality
+  - all_G_mind_score_31_tier_5_manifested_only_mind
+safety:
+  theme_deploy_enabled: false
+  old_theme_deploy_enabled: false
+  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/spark_protocol_generation_port_20260531_074202'
+next_allowed_actions:
+  - port flavor tables Q29_Q68
+  - port healing disposition hidden axis
+  - port Spark Signature exact test fixtures
+  - add saved character records

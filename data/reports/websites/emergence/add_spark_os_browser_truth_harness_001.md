@@ -12,7 +12,7 @@ SPARK_OS_STATIC_SOURCE_TRUTH=PASS
 
 ```javascript
 /*
-Manual browser-console probe for https://dadudekc.site/spark-os/
+Manual browser-console probe for https://maskzero.site/spark-os/
 Paste into DevTools Console if phone/desktop behavior disagrees.
 
 Expected:

@@ -1,7 +1,7 @@
 # dadudekc Theme Placeholder Cleanup 002
 
 ## Task
-Remove visible Hostinger AI theme footer placeholder junk from dadudekc.site.
+Remove visible Hostinger AI theme footer placeholder junk from maskzero.site.
 
 ## Actions Taken
 - Backed up remote active theme footer parts.

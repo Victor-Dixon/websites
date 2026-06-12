@@ -1,0 +1,35 @@
+version: 1
+name: emergence_saved_character_browser_smoke
+site: maskzero.site
+status: pass
+verified:
+  safe_character_payload: pass
+  record_save: pass
+  record_load: pass
+  record_no_raw_score_leak: pass
+  record_invalid_rejected: pass
+  character_record_reload_page: pass
+  battle_record_bridge: pass
+  battle_record_import_semantics: pass
+  record_battle_token: pass
+  saved_record_custom_battle: pass
+  saved_record_battle_winner_visible: pass
+  saved_record_battle_arena_visible: pass
+  saved_record_battle_story_visible: pass
+  saved_record_battle_no_raw_score_leak: pass
+  saved_record_fresh_page_assert: pass
+  battle_bridge_from_record_assert: pass
+  invalid_record_reject_assert: pass
+  winner_arena_story_visible_assert: pass
+safety:
+  raw_scores_visible: false
+  roll_visible: false
+  odds_visible: false
+  backend_math_hidden: true
+urls:
+  character_generator: https://maskzero.site/character-generator/
+  battles: https://maskzero.site/battles/
+next_allowed_actions:
+  - public_share_card_ui
+  - improve_battle_story_cinematics
+  - saved_character_gallery

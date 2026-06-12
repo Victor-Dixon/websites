@@ -48,9 +48,9 @@ Removed attribute-watching MutationObserver behavior from dossier helper patches
 == VERIFY ENV ==
 == WRITE TASK ==
 == DISCOVER REMOTE PLUGIN DIR ==
-/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
-REMOTE_PLUGIN_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
-REMOTE_ASSET_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets
+/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_PLUGIN_DIR=/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_ASSET_DIR=/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets
 == UPLOAD PHP AND ASSETS ==
 UPLOAD=PASS
 == REMOTE CHMOD / CACHE FLUSH ==

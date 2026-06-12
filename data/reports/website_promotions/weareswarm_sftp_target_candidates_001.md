@@ -26,7 +26,7 @@ No upload performed. Do not overwrite public root or homepage.
   - L15: `REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html`
   - L22: `REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
   - L29: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
-  - L36: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
+  - L36: `REMOTE_ROOT=/home/u996867598/domains/maskzero.site/public_html`
   - L43: `REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
 
 ### 2. `_reports/guarded_static_hostinger_deploy_helper_001.txt`
@@ -45,7 +45,7 @@ No upload performed. Do not overwrite public root or homepage.
   - L2: `ariajet.site	wordpress	/home/u996867598/domains/ariajet.site/public_html	1	1	1	1	0	1`
   - L3: `crosbyultimateevents.com	wordpress	/home/u996867598/domains/crosbyultimateevents.com/public_html	1	1	1	1	0	1`
   - L4: `dadudekc.com	wordpress	/home/u996867598/domains/dadudekc.com/public_html	1	1	1	1	0	1`
-  - L5: `dadudekc.site	wordpress	/home/u996867598/domains/dadudekc.site/public_html	1	1	1	1	0	1`
+  - L5: `maskzero.site	wordpress	/home/u996867598/domains/maskzero.site/public_html	1	1	1	1	0	1`
   - L6: `digitaldreamscape.site	wordpress	/home/u996867598/domains/digitaldreamscape.site/public_html	1	1	1	1	0	1`
   - L7: `freerideinvestor.com	static	/home/u996867598/domains/freerideinvestor.com/public_html	0	0	0	0	1	1`
   - L8: `houstonsipqueen.com	wordpress	/home/u996867598/domains/houstonsipqueen.com/public_html	1	1	1	1	0	1`
@@ -63,7 +63,7 @@ No upload performed. Do not overwrite public root or homepage.
   - L2: `ariajet.site	wordpress	/home/u996867598/domains/ariajet.site/public_html	1	1	1	1	0	1`
   - L3: `crosbyultimateevents.com	wordpress	/home/u996867598/domains/crosbyultimateevents.com/public_html	1	1	1	1	0	1`
   - L4: `dadudekc.com	wordpress	/home/u996867598/domains/dadudekc.com/public_html	1	1	1	1	0	1`
-  - L5: `dadudekc.site	wordpress	/home/u996867598/domains/dadudekc.site/public_html	1	1	1	1	0	1`
+  - L5: `maskzero.site	wordpress	/home/u996867598/domains/maskzero.site/public_html	1	1	1	1	0	1`
   - L6: `digitaldreamscape.site	wordpress	/home/u996867598/domains/digitaldreamscape.site/public_html	1	1	1	1	0	1`
   - L7: `freerideinvestor.com	static	/home/u996867598/domains/freerideinvestor.com/public_html	0	0	0	0	1	1`
   - L8: `houstonsipqueen.com	wordpress	/home/u996867598/domains/houstonsipqueen.com/public_html	1	1	1	1	0	1`
@@ -80,7 +80,7 @@ No upload performed. Do not overwrite public root or homepage.
   - L6: `REMOTE_ROOT=/home/u996867598/domains/ariajet.site/public_html`
   - L13: `REMOTE_ROOT=/home/u996867598/domains/crosbyultimateevents.com/public_html`
   - L20: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.com/public_html`
-  - L27: `REMOTE_ROOT=/home/u996867598/domains/dadudekc.site/public_html`
+  - L27: `REMOTE_ROOT=/home/u996867598/domains/maskzero.site/public_html`
   - L34: `REMOTE_ROOT=/home/u996867598/domains/digitaldreamscape.site/public_html`
   - L41: `REMOTE_ROOT=/home/u996867598/domains/freerideinvestor.com/public_html`
   - L48: `REMOTE_ROOT=/home/u996867598/domains/houstonsipqueen.com/public_html`

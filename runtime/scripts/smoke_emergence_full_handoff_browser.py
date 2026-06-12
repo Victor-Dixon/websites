@@ -6,9 +6,9 @@ import re
 import urllib.request
 from html.parser import HTMLParser
 
-CHARACTER_URL = "https://dadudekc.site/character-generator/?dreamos_smoke=100"
-BATTLE_URL = "https://dadudekc.site/battles/?spark_handoff=1&dreamos_smoke=100"
-CUSTOM_BATTLE_URL = "https://dadudekc.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=100"
+CHARACTER_URL = "https://maskzero.site/character-generator/?dreamos_smoke=100"
+BATTLE_URL = "https://maskzero.site/battles/?spark_handoff=1&dreamos_smoke=100"
+CUSTOM_BATTLE_URL = "https://maskzero.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=100"
 
 FORBIDDEN_PUBLIC = [
     "showwork",

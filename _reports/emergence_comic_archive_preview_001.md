@@ -4,7 +4,7 @@
 Package the new Emergence comic archive homepage for Hostinger preview.
 
 ## Source
-- `runtime/content/dadudekc.site/the-emergence.html`
+- `runtime/content/maskzero.site/the-emergence.html`
 
 ## Package
 - `_hostinger_build/emergence_comic_archive_preview_001.zip`
@@ -18,26 +18,26 @@ index.html
 Upload `index.html` to a temporary folder:
 
 ```text
-dadudekc.site/public_html/emergence-preview/index.html
+maskzero.site/public_html/emergence-preview/index.html
 ```
 
 Expected preview URL:
 
 ```text
-https://dadudekc.site/emergence-preview/
+https://maskzero.site/emergence-preview/
 ```
 
 ## Production Deploy Option
 After visual approval, upload as:
 
 ```text
-dadudekc.site/public_html/the-emergence.html
+maskzero.site/public_html/the-emergence.html
 ```
 
 Expected production URL:
 
 ```text
-https://dadudekc.site/the-emergence.html
+https://maskzero.site/the-emergence.html
 ```
 
 ## Verification Checklist

@@ -6,9 +6,9 @@ import re
 import urllib.request
 from pathlib import Path
 
-PAGE_URL = "https://dadudekc.site/character-generator/"
-JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-REST_URL = "https://dadudekc.site/wp-json/emergence/v1/portrait"
+PAGE_URL = "https://maskzero.site/character-generator/"
+JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+REST_URL = "https://maskzero.site/wp-json/emergence/v1/portrait"
 PLUGIN_SOURCE = Path("runtime/plugins/emergence-character-generator/emergence-character-generator.php")
 
 PROMPT = (

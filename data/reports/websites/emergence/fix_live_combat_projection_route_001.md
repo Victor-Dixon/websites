@@ -5,7 +5,7 @@ Generated: 2026-06-05T01:52:02-05:00
 ## Repo before
 
 ```text
-runtime/content/dadudekc.site/the-emergence.html:790:              <a class="btn secondary" href="/spark-battle-sim.html">Open Combat Projection</a>
+runtime/content/maskzero.site/the-emergence.html:790:              <a class="btn secondary" href="/spark-battle-sim.html">Open Combat Projection</a>
 ```
 
 ## Repo after

@@ -4,10 +4,10 @@ from __future__ import annotations
 import json
 import urllib.request
 
-PAGE_URL = "https://dadudekc.site/character-generator/"
-JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-CSS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
-REST_URL = "https://dadudekc.site/wp-json/emergence/v1/generate"
+PAGE_URL = "https://maskzero.site/character-generator/"
+JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+CSS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
+REST_URL = "https://maskzero.site/wp-json/emergence/v1/generate"
 
 ALL_H = ["H"] * 28
 DUALITY_FLAVOR = {"49": "A", "50": "A", "51": "A", "52": "A", "53": "A"}

@@ -40,9 +40,9 @@ ops/deployment/simple_wordpress_deployer.py:358:            port = int(os.getenv
 ops/deployment/simple_wordpress_deployer.py:377:                print(f"      - HOSTINGER_HOST: {'✅ Set' if host else '❌ Missing'}")
 ops/deployment/simple_wordpress_deployer.py:378:                print(f"      - HOSTINGER_USER: {'✅ Set' if username else '❌ Missing'}")
 ops/deployment/simple_wordpress_deployer.py:379:                print(f"      - HOSTINGER_PASS: {'✅ Set' if password else '❌ Missing'}")
-ops/deployment/sites.yml:109:  dadudekc.site:
-ops/deployment/sites.yml:110:    path: websites/dadudekc.site
-ops/deployment/sites.yml:112:    verify_url: https://dadudekc.site/.well-known/deploy.json
+ops/deployment/sites.yml:109:  maskzero.site:
+ops/deployment/sites.yml:110:    path: websites/maskzero.site
+ops/deployment/sites.yml:112:    verify_url: https://maskzero.site/.well-known/deploy.json
 ops/deployment/sites.yml:129:    notes: "Static global-chat game landing; SFTP via unified_deployer"
 ops/deployment/unified_deployer.py:10:    python ops/deployment/unified_deployer.py --all              # Deploy all sites
 ops/deployment/unified_deployer.py:11:    python ops/deployment/unified_deployer.py --site <domain>     # Deploy single site
@@ -75,49 +75,49 @@ runtime/scripts/hostinger_wp_manager.py:265:            "HOSTINGER_HOST",
 runtime/scripts/hostinger_wp_manager.py:266:            "HOSTINGER_USER",
 runtime/scripts/hostinger_wp_manager.py:267:            "HOSTINGER_PORT",
 runtime/scripts/hostinger_wp_manager.py:268:            "HOSTINGER_SSH_PRIVATE_KEY_FILE",
-runtime/scripts/smoke_emergence_character_generator_public_path.py:11:SITE_URL = "https://dadudekc.site/character-generator/"
-runtime/scripts/smoke_emergence_character_generator_public_path.py:12:REST_URL = "https://dadudekc.site/wp-json/emergence/v1/generate"
-runtime/scripts/smoke_emergence_character_generator_public_path.py:13:JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-runtime/scripts/smoke_emergence_flavor_unlock_routing.py:10:REST_URL = "https://dadudekc.site/wp-json/emergence/v1/generate"
-runtime/scripts/smoke_emergence_flavor_unlock_routing.py:11:PAGE_URL = "https://dadudekc.site/character-generator/"
-runtime/scripts/smoke_emergence_flavor_unlock_routing.py:12:JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-runtime/scripts/smoke_emergence_character_profile_display.py:7:PAGE_URL = "https://dadudekc.site/character-generator/"
-runtime/scripts/smoke_emergence_character_profile_display.py:8:JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-runtime/scripts/smoke_emergence_character_profile_display.py:9:CSS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
-runtime/scripts/smoke_emergence_character_profile_display.py:10:REST_URL = "https://dadudekc.site/wp-json/emergence/v1/generate"
-runtime/scripts/smoke_emergence_generated_spark_portrait_card.py:7:PAGE_URL = "https://dadudekc.site/character-generator/"
-runtime/scripts/smoke_emergence_generated_spark_portrait_card.py:8:JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-runtime/scripts/smoke_emergence_generated_spark_portrait_card.py:9:CSS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
-runtime/scripts/smoke_emergence_generated_spark_portrait_card.py:10:REST_URL = "https://dadudekc.site/wp-json/emergence/v1/generate"
-runtime/scripts/smoke_emergence_totality_observation_portrait_prompt.py:7:PAGE_URL = "https://dadudekc.site/character-generator/"
-runtime/scripts/smoke_emergence_totality_observation_portrait_prompt.py:8:JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-runtime/scripts/smoke_emergence_totality_observation_portrait_prompt.py:9:CSS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
-runtime/scripts/smoke_emergence_totality_observation_portrait_prompt.py:10:REST_URL = "https://dadudekc.site/wp-json/emergence/v1/generate"
-runtime/scripts/smoke_emergence_premium_portrait_prompt.py:7:PAGE_URL = "https://dadudekc.site/character-generator/"
-runtime/scripts/smoke_emergence_premium_portrait_prompt.py:8:JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-runtime/scripts/smoke_emergence_premium_portrait_prompt.py:9:CSS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
-runtime/scripts/smoke_emergence_premium_portrait_prompt.py:10:REST_URL = "https://dadudekc.site/wp-json/emergence/v1/generate"
-runtime/scripts/smoke_emergence_premium_hero_image_provider.py:8:PAGE_URL = "https://dadudekc.site/character-generator/"
-runtime/scripts/smoke_emergence_premium_hero_image_provider.py:9:JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-runtime/scripts/smoke_emergence_premium_hero_image_provider.py:10:CSS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
-runtime/scripts/smoke_emergence_premium_hero_image_provider.py:11:REST_URL = "https://dadudekc.site/wp-json/emergence/v1/portrait"
-runtime/scripts/smoke_emergence_openai_premium_image_provider.py:9:PAGE_URL = "https://dadudekc.site/character-generator/"
-runtime/scripts/smoke_emergence_openai_premium_image_provider.py:10:JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-runtime/scripts/smoke_emergence_openai_premium_image_provider.py:11:REST_URL = "https://dadudekc.site/wp-json/emergence/v1/portrait"
-runtime/scripts/smoke_emergence_full_handoff_browser.py:9:CHARACTER_URL = "https://dadudekc.site/character-generator/?dreamos_smoke=100"
-runtime/scripts/smoke_emergence_full_handoff_browser.py:10:BATTLE_URL = "https://dadudekc.site/battles/?spark_handoff=1&dreamos_smoke=100"
-runtime/scripts/smoke_emergence_full_handoff_browser.py:11:CUSTOM_BATTLE_URL = "https://dadudekc.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=100"
-runtime/scripts/smoke_emergence_token_handoff_browser.py:10:CREATE_TOKEN_URL = "https://dadudekc.site/wp-json/emergence/v1/spark-token?dreamos_smoke=102"
-runtime/scripts/smoke_emergence_token_handoff_browser.py:11:LOAD_TOKEN_BASE = "https://dadudekc.site/wp-json/emergence/v1/spark-token/"
-runtime/scripts/smoke_emergence_token_handoff_browser.py:12:CUSTOM_BATTLE_URL = "https://dadudekc.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=102"
-runtime/scripts/smoke_emergence_token_handoff_browser.py:13:BATTLE_PAGE_BASE = "https://dadudekc.site/battles/?dreamos_smoke=102&spark_token="
-runtime/scripts/smoke_emergence_saved_character_browser.py:10:SAVE_RECORD_URL = "https://dadudekc.site/wp-json/emergence/v1/characters?dreamos_smoke=104"
-runtime/scripts/smoke_emergence_saved_character_browser.py:11:LOAD_RECORD_BASE = "https://dadudekc.site/wp-json/emergence/v1/characters/"
-runtime/scripts/smoke_emergence_saved_character_browser.py:12:CUSTOM_BATTLE_URL = "https://dadudekc.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=104"
-runtime/scripts/smoke_emergence_saved_character_browser.py:13:CHARACTER_PAGE_BASE = "https://dadudekc.site/character-generator/?dreamos_smoke=104&character_record="
-runtime/scripts/smoke_emergence_saved_character_browser.py:14:BATTLE_PAGE_BASE = "https://dadudekc.site/battles/?dreamos_smoke=104&character_record="
-runtime/scripts/smoke_emergence_scan_no_reload_browser.mjs:22:const URL = 'https://dadudekc.site/character-generator/?dreamos_smoke=112';
-runtime/scripts/report_emergence_conversion_funnel.py:15:SUMMARY_URL = "https://dadudekc.site/wp-json/emergence/v1/events/summary?dreamos_smoke=114"
+runtime/scripts/smoke_emergence_character_generator_public_path.py:11:SITE_URL = "https://maskzero.site/character-generator/"
+runtime/scripts/smoke_emergence_character_generator_public_path.py:12:REST_URL = "https://maskzero.site/wp-json/emergence/v1/generate"
+runtime/scripts/smoke_emergence_character_generator_public_path.py:13:JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+runtime/scripts/smoke_emergence_flavor_unlock_routing.py:10:REST_URL = "https://maskzero.site/wp-json/emergence/v1/generate"
+runtime/scripts/smoke_emergence_flavor_unlock_routing.py:11:PAGE_URL = "https://maskzero.site/character-generator/"
+runtime/scripts/smoke_emergence_flavor_unlock_routing.py:12:JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+runtime/scripts/smoke_emergence_character_profile_display.py:7:PAGE_URL = "https://maskzero.site/character-generator/"
+runtime/scripts/smoke_emergence_character_profile_display.py:8:JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+runtime/scripts/smoke_emergence_character_profile_display.py:9:CSS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
+runtime/scripts/smoke_emergence_character_profile_display.py:10:REST_URL = "https://maskzero.site/wp-json/emergence/v1/generate"
+runtime/scripts/smoke_emergence_generated_spark_portrait_card.py:7:PAGE_URL = "https://maskzero.site/character-generator/"
+runtime/scripts/smoke_emergence_generated_spark_portrait_card.py:8:JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+runtime/scripts/smoke_emergence_generated_spark_portrait_card.py:9:CSS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
+runtime/scripts/smoke_emergence_generated_spark_portrait_card.py:10:REST_URL = "https://maskzero.site/wp-json/emergence/v1/generate"
+runtime/scripts/smoke_emergence_totality_observation_portrait_prompt.py:7:PAGE_URL = "https://maskzero.site/character-generator/"
+runtime/scripts/smoke_emergence_totality_observation_portrait_prompt.py:8:JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+runtime/scripts/smoke_emergence_totality_observation_portrait_prompt.py:9:CSS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
+runtime/scripts/smoke_emergence_totality_observation_portrait_prompt.py:10:REST_URL = "https://maskzero.site/wp-json/emergence/v1/generate"
+runtime/scripts/smoke_emergence_premium_portrait_prompt.py:7:PAGE_URL = "https://maskzero.site/character-generator/"
+runtime/scripts/smoke_emergence_premium_portrait_prompt.py:8:JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+runtime/scripts/smoke_emergence_premium_portrait_prompt.py:9:CSS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
+runtime/scripts/smoke_emergence_premium_portrait_prompt.py:10:REST_URL = "https://maskzero.site/wp-json/emergence/v1/generate"
+runtime/scripts/smoke_emergence_premium_hero_image_provider.py:8:PAGE_URL = "https://maskzero.site/character-generator/"
+runtime/scripts/smoke_emergence_premium_hero_image_provider.py:9:JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+runtime/scripts/smoke_emergence_premium_hero_image_provider.py:10:CSS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
+runtime/scripts/smoke_emergence_premium_hero_image_provider.py:11:REST_URL = "https://maskzero.site/wp-json/emergence/v1/portrait"
+runtime/scripts/smoke_emergence_openai_premium_image_provider.py:9:PAGE_URL = "https://maskzero.site/character-generator/"
+runtime/scripts/smoke_emergence_openai_premium_image_provider.py:10:JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+runtime/scripts/smoke_emergence_openai_premium_image_provider.py:11:REST_URL = "https://maskzero.site/wp-json/emergence/v1/portrait"
+runtime/scripts/smoke_emergence_full_handoff_browser.py:9:CHARACTER_URL = "https://maskzero.site/character-generator/?dreamos_smoke=100"
+runtime/scripts/smoke_emergence_full_handoff_browser.py:10:BATTLE_URL = "https://maskzero.site/battles/?spark_handoff=1&dreamos_smoke=100"
+runtime/scripts/smoke_emergence_full_handoff_browser.py:11:CUSTOM_BATTLE_URL = "https://maskzero.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=100"
+runtime/scripts/smoke_emergence_token_handoff_browser.py:10:CREATE_TOKEN_URL = "https://maskzero.site/wp-json/emergence/v1/spark-token?dreamos_smoke=102"
+runtime/scripts/smoke_emergence_token_handoff_browser.py:11:LOAD_TOKEN_BASE = "https://maskzero.site/wp-json/emergence/v1/spark-token/"
+runtime/scripts/smoke_emergence_token_handoff_browser.py:12:CUSTOM_BATTLE_URL = "https://maskzero.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=102"
+runtime/scripts/smoke_emergence_token_handoff_browser.py:13:BATTLE_PAGE_BASE = "https://maskzero.site/battles/?dreamos_smoke=102&spark_token="
+runtime/scripts/smoke_emergence_saved_character_browser.py:10:SAVE_RECORD_URL = "https://maskzero.site/wp-json/emergence/v1/characters?dreamos_smoke=104"
+runtime/scripts/smoke_emergence_saved_character_browser.py:11:LOAD_RECORD_BASE = "https://maskzero.site/wp-json/emergence/v1/characters/"
+runtime/scripts/smoke_emergence_saved_character_browser.py:12:CUSTOM_BATTLE_URL = "https://maskzero.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=104"
+runtime/scripts/smoke_emergence_saved_character_browser.py:13:CHARACTER_PAGE_BASE = "https://maskzero.site/character-generator/?dreamos_smoke=104&character_record="
+runtime/scripts/smoke_emergence_saved_character_browser.py:14:BATTLE_PAGE_BASE = "https://maskzero.site/battles/?dreamos_smoke=104&character_record="
+runtime/scripts/smoke_emergence_scan_no_reload_browser.mjs:22:const URL = 'https://maskzero.site/character-generator/?dreamos_smoke=112';
+runtime/scripts/report_emergence_conversion_funnel.py:15:SUMMARY_URL = "https://maskzero.site/wp-json/emergence/v1/events/summary?dreamos_smoke=114"
 runtime/scripts/hostinger_access_preflight.sh:7:echo "== HOSTINGER ACCESS PREFLIGHT =="
 runtime/scripts/hostinger_access_preflight.sh:14:  echo "NO_HOSTINGER_SITE_ENVS_FOUND"
 runtime/scripts/hostinger_access_preflight.sh:26:  HOSTINGER_USER=""
@@ -196,130 +196,130 @@ runtime/deploy/hostinger_sites_manifest.yaml:6:  user_secret: HOSTINGER_USER
 runtime/deploy/hostinger_sites_manifest.yaml:7:  port_secret: HOSTINGER_PORT
 runtime/deploy/hostinger_sites_manifest.yaml:8:  private_key_secret: HOSTINGER_SSH_PRIVATE_KEY
 runtime/deploy/hostinger_sites_manifest.yaml:293:  dadudekc_site:
-runtime/deploy/hostinger_sites_manifest.yaml:294:    domain: 'dadudekc.site'
-runtime/deploy/hostinger_sites_manifest.yaml:297:    wp_root: '/home/u996867598/domains/dadudekc.site/public_html'
-runtime/deploy/hostinger_sites_manifest.yaml:298:    plugins_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins'
-runtime/deploy/hostinger_sites_manifest.yaml:299:    themes_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/themes'
-runtime/deploy/hostinger_plugin_registry.yaml:77:      - dadudekc.site
-runtime/deploy/hostinger_plugin_registry.yaml:95:      - dadudekc.site
-runtime/deploy/hostinger_plugin_registry.yaml:113:      - dadudekc.site
-runtime/deploy/hostinger_plugin_registry.yaml:143:      - dadudekc.site
-runtime/deploy/hostinger_theme_registry.yaml:126:      - dadudekc.site
-runtime/deploy/hostinger_theme_registry.yaml:221:      - dadudekc.site
-runtime/deploy/hostinger_theme_registry.yaml:238:      - dadudekc.site
-runtime/deploy/hostinger_theme_registry.yaml:255:      - dadudekc.site
+runtime/deploy/hostinger_sites_manifest.yaml:294:    domain: 'maskzero.site'
+runtime/deploy/hostinger_sites_manifest.yaml:297:    wp_root: '/home/u996867598/domains/maskzero.site/public_html'
+runtime/deploy/hostinger_sites_manifest.yaml:298:    plugins_dir: '/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins'
+runtime/deploy/hostinger_sites_manifest.yaml:299:    themes_dir: '/home/u996867598/domains/maskzero.site/public_html/wp-content/themes'
+runtime/deploy/hostinger_plugin_registry.yaml:77:      - maskzero.site
+runtime/deploy/hostinger_plugin_registry.yaml:95:      - maskzero.site
+runtime/deploy/hostinger_plugin_registry.yaml:113:      - maskzero.site
+runtime/deploy/hostinger_plugin_registry.yaml:143:      - maskzero.site
+runtime/deploy/hostinger_theme_registry.yaml:126:      - maskzero.site
+runtime/deploy/hostinger_theme_registry.yaml:221:      - maskzero.site
+runtime/deploy/hostinger_theme_registry.yaml:238:      - maskzero.site
+runtime/deploy/hostinger_theme_registry.yaml:255:      - maskzero.site
 runtime/deploy/hostinger_connected_sites.yaml:44:  dadudekc_site:
-runtime/deploy/hostinger_connected_sites.yaml:45:    domain: 'dadudekc.site'
-runtime/deploy/hostinger_connected_sites.yaml:46:    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env'
-runtime/deploy/hostinger_connected_sites.yaml:47:    wp_root: '/home/u996867598/domains/dadudekc.site/public_html'
-runtime/deploy/hostinger_connected_sites.yaml:48:    plugins_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins'
-runtime/deploy/hostinger_connected_sites.yaml:49:    themes_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/themes'
+runtime/deploy/hostinger_connected_sites.yaml:45:    domain: 'maskzero.site'
+runtime/deploy/hostinger_connected_sites.yaml:46:    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env'
+runtime/deploy/hostinger_connected_sites.yaml:47:    wp_root: '/home/u996867598/domains/maskzero.site/public_html'
+runtime/deploy/hostinger_connected_sites.yaml:48:    plugins_dir: '/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins'
+runtime/deploy/hostinger_connected_sites.yaml:49:    themes_dir: '/home/u996867598/domains/maskzero.site/public_html/wp-content/themes'
 runtime/deploy/hostinger_manager_smoke_matrix.yaml:39:  dadudekc_site:
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:40:    domain: 'dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:41:    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:44:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:45:    home: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:54:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:55:    home: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:64:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:65:    home: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:74:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:75:    home: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:84:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:85:    home: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:94:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:95:    home: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:104:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:105:    home: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:114:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:115:    home: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:124:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:125:    home: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:134:    siteurl: 'https://dadudekc.site'
-runtime/deploy/hostinger_manager_smoke_matrix.yaml:135:    home: 'https://dadudekc.site'
-runtime/deploy/sites/dadudekc.site/spark_protocol_product_map.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/client_theme_update_manifest.yaml:2:name: dadudekc_site_client_theme_update_manifest
-runtime/deploy/sites/dadudekc.site/client_theme_update_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/client_theme_update_manifest.yaml:11:  wp_root: /home/u996867598/domains/dadudekc.site/public_html
-runtime/deploy/sites/dadudekc.site/client_theme_update_manifest.yaml:12:  backup_dir: /home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/dadudekc_site_intake_20260531_061437
-runtime/deploy/sites/dadudekc.site/client_theme_update_manifest.yaml:14:  manager_profile: runtime/env/hostinger/sites/dadudekc.site.env
-runtime/deploy/sites/dadudekc.site/spark_preview_pages_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_public_site_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/wp_public_routing_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/wp_public_routing_manifest.yaml:5:backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/routing_fix_20260531_071847'
-runtime/deploy/sites/dadudekc.site/emergence_character_generator_demo_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_character_generator_demo_manifest.yaml:8:  remote: /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
-runtime/deploy/sites/dadudekc.site/emergence_character_generator_demo_manifest.yaml:13:  url: https://dadudekc.site/character-generator/
-runtime/deploy/sites/dadudekc.site/emergence_character_generator_demo_manifest.yaml:21:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/character_generator_demo_20260531_073205'
-runtime/deploy/sites/dadudekc.site/emergence_homepage_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/spark_protocol_character_generation_port_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/spark_protocol_character_generation_port_manifest.yaml:20:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/spark_protocol_generation_port_20260531_074202'
-runtime/deploy/sites/dadudekc.site/emergence_domain_pass_plugin_syntax_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_domain_pass_plugin_syntax_manifest.yaml:21:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/domain_pass_syntax_repair_20260531_082636'
-runtime/deploy/sites/dadudekc.site/emergence_flavor_power_selection_pass_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_flavor_power_selection_pass_manifest.yaml:18:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/flavor_power_selection_20260531_082938'
-runtime/deploy/sites/dadudekc.site/emergence_character_sheet_output_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_generator_answer_labels_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_generator_answer_labels_manifest.yaml:16:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/answer_labels_082b_20260531_084136'
-runtime/deploy/sites/dadudekc.site/emergence_disguised_answer_labels_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_disguised_answer_labels_manifest.yaml:17:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/disguised_answer_labels_20260531_085000'
-runtime/deploy/sites/dadudekc.site/emergence_protocol_v85_question_bank_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_protocol_v85_question_bank_manifest.yaml:20:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/protocol_question_bank_084b_20260531_092917'
-runtime/deploy/sites/dadudekc.site/emergence_flavor_phase_transition_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_flavor_phase_transition_manifest.yaml:18:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/flavor_phase_transition_085_20260531_101334'
-runtime/deploy/sites/dadudekc.site/emergence_public_scoring_privacy_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_public_scoring_privacy_manifest.yaml:17:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/public_scoring_privacy_086_20260531_101501'
-runtime/deploy/sites/dadudekc.site/emergence_cg_public_path_smoke_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_cg_public_path_smoke_manifest.yaml:6:target_url: https://dadudekc.site/character-generator/
-runtime/deploy/sites/dadudekc.site/emergence_flavor_privacy_unlock_routing_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_character_profile_display_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_generated_spark_portrait_card_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_generated_spark_portrait_card_manifest.yaml:20:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/generated_spark_portrait_090_20260531_110641'
-runtime/deploy/sites/dadudekc.site/emergence_totality_observation_portrait_prompt_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_totality_observation_portrait_prompt_manifest.yaml:21:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/totality_observation_091_20260531_113235'
-runtime/deploy/sites/dadudekc.site/emergence_premium_portrait_prompt_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_premium_portrait_prompt_manifest.yaml:34:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/premium_prompt_092_20260531_113806'
-runtime/deploy/sites/dadudekc.site/emergence_premium_hero_image_provider_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_openai_premium_image_provider_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_openai_premium_image_provider_manifest.yaml:31:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/openai_provider_094d_20260531_115948'
-runtime/deploy/sites/dadudekc.site/emergence_hostinger_image_env_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_openai_provider_error_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/spark_battle_sim_hostinger_install_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/spark_battle_sim_hostinger_install_manifest.yaml:6:url: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/spark_battle_sim_hostinger_install_manifest.yaml:17:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/spark_battle_sim_install_097_20260531_125112'
-runtime/deploy/sites/dadudekc.site/emergence_character_battle_handoff_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_character_battle_handoff_manifest.yaml:20:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/character_battle_handoff_098e_20260531_130001'
-runtime/deploy/sites/dadudekc.site/emergence_character_battle_handoff_manifest.yaml:22:  character_generator: https://dadudekc.site/character-generator/
-runtime/deploy/sites/dadudekc.site/emergence_character_battle_handoff_manifest.yaml:23:  battles: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/custom_spark_battle_participant_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/custom_spark_battle_participant_manifest.yaml:21:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/custom_spark_battle_participant_099_20260531_130155'
-runtime/deploy/sites/dadudekc.site/custom_spark_battle_participant_manifest.yaml:23:  battles: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/emergence_full_handoff_browser_smoke_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_full_handoff_browser_smoke_manifest.yaml:29:  character_generator: https://dadudekc.site/character-generator/
-runtime/deploy/sites/dadudekc.site/emergence_full_handoff_browser_smoke_manifest.yaml:30:  battles: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/shareable_spark_handoff_token_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/shareable_spark_handoff_token_manifest.yaml:28:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/shareable_spark_token_101_20260531_130546'
-runtime/deploy/sites/dadudekc.site/shareable_spark_handoff_token_manifest.yaml:30:  character_generator: https://dadudekc.site/character-generator/
-runtime/deploy/sites/dadudekc.site/shareable_spark_handoff_token_manifest.yaml:31:  battles: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/emergence_token_handoff_browser_smoke_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_token_handoff_browser_smoke_manifest.yaml:27:  character_generator: https://dadudekc.site/character-generator/
-runtime/deploy/sites/dadudekc.site/emergence_token_handoff_browser_smoke_manifest.yaml:28:  battles: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/emergence_saved_character_records_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_saved_character_records_manifest.yaml:29:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/saved_character_records_103_20260531_131233'
-runtime/deploy/sites/dadudekc.site/emergence_saved_character_records_manifest.yaml:31:  character_generator: https://dadudekc.site/character-generator/
-runtime/deploy/sites/dadudekc.site/emergence_saved_character_records_manifest.yaml:32:  battles: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/emergence_saved_character_browser_smoke_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_saved_character_browser_smoke_manifest.yaml:30:  character_generator: https://dadudekc.site/character-generator/
-runtime/deploy/sites/dadudekc.site/emergence_saved_character_browser_smoke_manifest.yaml:31:  battles: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/emergence_public_share_card_ui_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_public_share_card_ui_manifest.yaml:27:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/public_share_card_ui_105_20260531_131901'
-runtime/deploy/sites/dadudekc.site/emergence_public_share_card_ui_manifest.yaml:29:  character_generator: https://dadudekc.site/character-generator/
-runtime/deploy/sites/dadudekc.site/emergence_public_share_card_ui_manifest.yaml:30:  battles: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/emergence_battle_story_cinematics_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_battle_story_cinematics_manifest.yaml:24:  remote_backup_dir: '/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/battle_story_cinematics_106b_20260531_132151'
-runtime/deploy/sites/dadudekc.site/emergence_battle_story_cinematics_manifest.yaml:26:  battles: https://dadudekc.site/battles/
-runtime/deploy/sites/dadudekc.site/emergence_premium_portrait_design_controls_manifest.yaml:3:site: dadudekc.site
-runtime/deploy/sites/dadudekc.site/emergence_premium_portrait_design_controls_manifest.yaml:29:  character_generator: https://dadudekc.site/character-generator/
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:40:    domain: 'maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:41:    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:44:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:45:    home: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:54:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:55:    home: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:64:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:65:    home: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:74:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:75:    home: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:84:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:85:    home: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:94:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:95:    home: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:104:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:105:    home: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:114:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:115:    home: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:124:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:125:    home: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:134:    siteurl: 'https://maskzero.site'
+runtime/deploy/hostinger_manager_smoke_matrix.yaml:135:    home: 'https://maskzero.site'
+runtime/deploy/sites/maskzero.site/spark_protocol_product_map.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/client_theme_update_manifest.yaml:2:name: dadudekc_site_client_theme_update_manifest
+runtime/deploy/sites/maskzero.site/client_theme_update_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/client_theme_update_manifest.yaml:11:  wp_root: /home/u996867598/domains/maskzero.site/public_html
+runtime/deploy/sites/maskzero.site/client_theme_update_manifest.yaml:12:  backup_dir: /home/u996867598/domains/maskzero.site/public_html/dreamos_backups/dadudekc_site_intake_20260531_061437
+runtime/deploy/sites/maskzero.site/client_theme_update_manifest.yaml:14:  manager_profile: runtime/env/hostinger/sites/maskzero.site.env
+runtime/deploy/sites/maskzero.site/spark_preview_pages_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_public_site_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/wp_public_routing_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/wp_public_routing_manifest.yaml:5:backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/routing_fix_20260531_071847'
+runtime/deploy/sites/maskzero.site/emergence_character_generator_demo_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_character_generator_demo_manifest.yaml:8:  remote: /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator
+runtime/deploy/sites/maskzero.site/emergence_character_generator_demo_manifest.yaml:13:  url: https://maskzero.site/character-generator/
+runtime/deploy/sites/maskzero.site/emergence_character_generator_demo_manifest.yaml:21:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/character_generator_demo_20260531_073205'
+runtime/deploy/sites/maskzero.site/emergence_homepage_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/spark_protocol_character_generation_port_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/spark_protocol_character_generation_port_manifest.yaml:20:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/spark_protocol_generation_port_20260531_074202'
+runtime/deploy/sites/maskzero.site/emergence_domain_pass_plugin_syntax_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_domain_pass_plugin_syntax_manifest.yaml:21:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/domain_pass_syntax_repair_20260531_082636'
+runtime/deploy/sites/maskzero.site/emergence_flavor_power_selection_pass_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_flavor_power_selection_pass_manifest.yaml:18:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/flavor_power_selection_20260531_082938'
+runtime/deploy/sites/maskzero.site/emergence_character_sheet_output_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_generator_answer_labels_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_generator_answer_labels_manifest.yaml:16:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/answer_labels_082b_20260531_084136'
+runtime/deploy/sites/maskzero.site/emergence_disguised_answer_labels_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_disguised_answer_labels_manifest.yaml:17:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/disguised_answer_labels_20260531_085000'
+runtime/deploy/sites/maskzero.site/emergence_protocol_v85_question_bank_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_protocol_v85_question_bank_manifest.yaml:20:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/protocol_question_bank_084b_20260531_092917'
+runtime/deploy/sites/maskzero.site/emergence_flavor_phase_transition_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_flavor_phase_transition_manifest.yaml:18:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/flavor_phase_transition_085_20260531_101334'
+runtime/deploy/sites/maskzero.site/emergence_public_scoring_privacy_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_public_scoring_privacy_manifest.yaml:17:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/public_scoring_privacy_086_20260531_101501'
+runtime/deploy/sites/maskzero.site/emergence_cg_public_path_smoke_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_cg_public_path_smoke_manifest.yaml:6:target_url: https://maskzero.site/character-generator/
+runtime/deploy/sites/maskzero.site/emergence_flavor_privacy_unlock_routing_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_character_profile_display_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_generated_spark_portrait_card_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_generated_spark_portrait_card_manifest.yaml:20:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/generated_spark_portrait_090_20260531_110641'
+runtime/deploy/sites/maskzero.site/emergence_totality_observation_portrait_prompt_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_totality_observation_portrait_prompt_manifest.yaml:21:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/totality_observation_091_20260531_113235'
+runtime/deploy/sites/maskzero.site/emergence_premium_portrait_prompt_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_premium_portrait_prompt_manifest.yaml:34:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/premium_prompt_092_20260531_113806'
+runtime/deploy/sites/maskzero.site/emergence_premium_hero_image_provider_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_openai_premium_image_provider_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_openai_premium_image_provider_manifest.yaml:31:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/openai_provider_094d_20260531_115948'
+runtime/deploy/sites/maskzero.site/emergence_hostinger_image_env_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_openai_provider_error_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/spark_battle_sim_hostinger_install_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/spark_battle_sim_hostinger_install_manifest.yaml:6:url: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/spark_battle_sim_hostinger_install_manifest.yaml:17:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/spark_battle_sim_install_097_20260531_125112'
+runtime/deploy/sites/maskzero.site/emergence_character_battle_handoff_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_character_battle_handoff_manifest.yaml:20:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/character_battle_handoff_098e_20260531_130001'
+runtime/deploy/sites/maskzero.site/emergence_character_battle_handoff_manifest.yaml:22:  character_generator: https://maskzero.site/character-generator/
+runtime/deploy/sites/maskzero.site/emergence_character_battle_handoff_manifest.yaml:23:  battles: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/custom_spark_battle_participant_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/custom_spark_battle_participant_manifest.yaml:21:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/custom_spark_battle_participant_099_20260531_130155'
+runtime/deploy/sites/maskzero.site/custom_spark_battle_participant_manifest.yaml:23:  battles: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/emergence_full_handoff_browser_smoke_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_full_handoff_browser_smoke_manifest.yaml:29:  character_generator: https://maskzero.site/character-generator/
+runtime/deploy/sites/maskzero.site/emergence_full_handoff_browser_smoke_manifest.yaml:30:  battles: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/shareable_spark_handoff_token_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/shareable_spark_handoff_token_manifest.yaml:28:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/shareable_spark_token_101_20260531_130546'
+runtime/deploy/sites/maskzero.site/shareable_spark_handoff_token_manifest.yaml:30:  character_generator: https://maskzero.site/character-generator/
+runtime/deploy/sites/maskzero.site/shareable_spark_handoff_token_manifest.yaml:31:  battles: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/emergence_token_handoff_browser_smoke_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_token_handoff_browser_smoke_manifest.yaml:27:  character_generator: https://maskzero.site/character-generator/
+runtime/deploy/sites/maskzero.site/emergence_token_handoff_browser_smoke_manifest.yaml:28:  battles: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/emergence_saved_character_records_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_saved_character_records_manifest.yaml:29:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/saved_character_records_103_20260531_131233'
+runtime/deploy/sites/maskzero.site/emergence_saved_character_records_manifest.yaml:31:  character_generator: https://maskzero.site/character-generator/
+runtime/deploy/sites/maskzero.site/emergence_saved_character_records_manifest.yaml:32:  battles: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/emergence_saved_character_browser_smoke_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_saved_character_browser_smoke_manifest.yaml:30:  character_generator: https://maskzero.site/character-generator/
+runtime/deploy/sites/maskzero.site/emergence_saved_character_browser_smoke_manifest.yaml:31:  battles: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/emergence_public_share_card_ui_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_public_share_card_ui_manifest.yaml:27:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/public_share_card_ui_105_20260531_131901'
+runtime/deploy/sites/maskzero.site/emergence_public_share_card_ui_manifest.yaml:29:  character_generator: https://maskzero.site/character-generator/
+runtime/deploy/sites/maskzero.site/emergence_public_share_card_ui_manifest.yaml:30:  battles: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/emergence_battle_story_cinematics_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_battle_story_cinematics_manifest.yaml:24:  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/battle_story_cinematics_106b_20260531_132151'
+runtime/deploy/sites/maskzero.site/emergence_battle_story_cinematics_manifest.yaml:26:  battles: https://maskzero.site/battles/
+runtime/deploy/sites/maskzero.site/emergence_premium_portrait_design_controls_manifest.yaml:3:site: maskzero.site
+runtime/deploy/sites/maskzero.site/emergence_premium_portrait_design_controls_manifest.yaml:29:  character_generator: https://maskzero.site/character-generator/
 ```
 
 ## Deployer help
@@ -343,44 +343,44 @@ options:
 
 ```text
 usage: unified_deployer.py [-h] [--all] [--site SITE] [--dry-run]
-unified_deployer.py: error: unrecognized arguments: dadudekc.site
+unified_deployer.py: error: unrecognized arguments: maskzero.site
 ```
 
 ## Live DOM summary
 
 ```text
---- https://dadudekc.site/ ---
+--- https://maskzero.site/ ---
 48829 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_emergence_spark_loop_live_001/root.html
-<title>dadudekc.site
+<title>maskzero.site
 Generate Your Spark
 What-If Arena
 What-If Arena
 
---- https://dadudekc.site/spark-generator/ ---
+--- https://maskzero.site/spark-generator/ ---
 176537 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_emergence_spark_loop_live_001/_spark-generator_.html
-<title>Spark Generator &#8211; dadudekc.site
+<title>Spark Generator &#8211; maskzero.site
 Character Record
 character record
 Character Record
 
---- https://dadudekc.site/character-generator/ ---
+--- https://maskzero.site/character-generator/ ---
 176959 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_emergence_spark_loop_live_001/_character-generator_.html
-<title>Character Generator &#8211; dadudekc.site
+<title>Character Generator &#8211; maskzero.site
 Character Record
 character record
 Character Record
 
---- https://dadudekc.site/battles/ ---
+--- https://maskzero.site/battles/ ---
 40941 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_emergence_spark_loop_live_001/_battles_.html
-<title>Battles &#8211; dadudekc.site
+<title>Battles &#8211; maskzero.site
 character record
 Character record
 character record
 cinematic story
 
---- https://dadudekc.site/the-emergence/ ---
+--- https://maskzero.site/the-emergence/ ---
 48829 /data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence/tmp/deploy_emergence_spark_loop_live_001/_the-emergence_.html
-<title>dadudekc.site
+<title>maskzero.site
 Generate Your Spark
 What-If Arena
 What-If Arena

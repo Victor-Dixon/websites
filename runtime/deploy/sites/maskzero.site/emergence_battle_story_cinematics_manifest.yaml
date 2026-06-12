@@ -1,0 +1,30 @@
+version: 1
+name: emergence_battle_story_cinematics
+site: maskzero.site
+status: deployed
+implemented:
+  - cinematic_custom_battle_story
+  - character_specific_story_beats
+  - cinematic_arena_details
+  - ability_showcase_public_field
+  - cinematic_role_public_field
+verified:
+  static_cinematic_story_safe: pass
+  remote_php_lint: pass
+  cinematic_custom_battle: pass
+  cinematic_story_richness: pass
+  cinematic_story_character_specific: pass
+  cinematic_story_no_raw_score_leak: pass
+  existing_handoff_smokes: pass
+safety:
+  raw_scores_visible: false
+  roll_visible: false
+  odds_visible: false
+  backend_math_hidden: true
+  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/battle_story_cinematics_106b_20260531_132151'
+urls:
+  battles: https://maskzero.site/battles/
+next_allowed_actions:
+  - battle_story_ui_polish
+  - saved_character_gallery
+  - premium_image_billing_retry

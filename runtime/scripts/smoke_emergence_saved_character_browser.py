@@ -7,11 +7,11 @@ import urllib.error
 import urllib.request
 from html.parser import HTMLParser
 
-SAVE_RECORD_URL = "https://dadudekc.site/wp-json/emergence/v1/characters?dreamos_smoke=104"
-LOAD_RECORD_BASE = "https://dadudekc.site/wp-json/emergence/v1/characters/"
-CUSTOM_BATTLE_URL = "https://dadudekc.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=104"
-CHARACTER_PAGE_BASE = "https://dadudekc.site/character-generator/?dreamos_smoke=104&character_record="
-BATTLE_PAGE_BASE = "https://dadudekc.site/battles/?dreamos_smoke=104&character_record="
+SAVE_RECORD_URL = "https://maskzero.site/wp-json/emergence/v1/characters?dreamos_smoke=104"
+LOAD_RECORD_BASE = "https://maskzero.site/wp-json/emergence/v1/characters/"
+CUSTOM_BATTLE_URL = "https://maskzero.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=104"
+CHARACTER_PAGE_BASE = "https://maskzero.site/character-generator/?dreamos_smoke=104&character_record="
+BATTLE_PAGE_BASE = "https://maskzero.site/battles/?dreamos_smoke=104&character_record="
 
 FORBIDDEN_VISIBLE = [
     "showwork",

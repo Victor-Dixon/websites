@@ -20,5 +20,5 @@ The legacy source had hardcoded API-key shaped content. The experimental copy wa
 Rules:
 
 - Keep this under `websites/experiments/digital-dreamscape-original/`.
-- Do not deploy as dadudekc.site production without review.
+- Do not deploy as maskzero.site production without review.
 - Use environment variables for any API credential.

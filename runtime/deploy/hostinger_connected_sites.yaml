@@ -41,12 +41,12 @@ sites:
     design_enabled: false
     repair_enabled: false
     deploy_enabled: false
-  dadudekc_site:
-    domain: 'dadudekc.site'
-    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env'
-    wp_root: '/home/u996867598/domains/dadudekc.site/public_html'
-    plugins_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins'
-    themes_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/themes'
+  maskzero_site:
+    domain: 'maskzero.site'
+    env_file_local: '/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env'
+    wp_root: '/home/u996867598/domains/maskzero.site/public_html'
+    plugins_dir: '/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/maskzero.site/public_html/wp-content/themes'
     public_html: 'PUBLIC_HTML=PASS'
     wp_config: 'WP_CONFIG=PASS'
     wp_cli_info: 'WP_CLI_INFO=PASS'

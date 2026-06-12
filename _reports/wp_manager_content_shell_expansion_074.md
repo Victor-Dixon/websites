@@ -9,7 +9,7 @@
 
 ## URL
 
-- https://dadudekc.site/character-generator/
+- https://maskzero.site/character-generator/
 
 ## Raw Output
 

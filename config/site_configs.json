@@ -279,6 +279,29 @@
       "target_file": "wp-content/themes/{active_theme}/style.css"
     }
   },
+"maskzero.site": {
+  "site_url": "https://maskzero.site",
+  "path": "runtime/content/maskzero.site",
+  "deployment_method": "sftp",
+  "sftp": {
+    "remote_path": "domains/maskzero.site/public_html",
+    "port": 65002
+  },
+  "deploy_files": [
+    "runtime/content/maskzero.site/assets/js/spark-auth-nav.js",
+    "runtime/content/maskzero.site/battle-simulator.html",
+    "runtime/content/maskzero.site/battles.html",
+    "runtime/content/maskzero.site/battles/index.html",
+    "runtime/content/maskzero.site/character-generator.html",
+    "runtime/content/maskzero.site/client-preview.html",
+    "runtime/content/maskzero.site/home.html",
+    "runtime/content/maskzero.site/missions/index.html",
+    "runtime/content/maskzero.site/protocol.html",
+    "runtime/content/maskzero.site/spark-generator/index.html",
+    "runtime/content/maskzero.site/spark-os/index.html",
+    "runtime/content/maskzero.site/the-emergence.html"
+  ]
+},
 "xthunder.site": {
   "site_url": "https://xthunder.site",
   "path": "sites/production/websites/xthunder.site",

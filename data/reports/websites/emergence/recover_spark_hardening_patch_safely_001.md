@@ -106,9 +106,9 @@ No syntax errors detected in runtime/plugins/emergence-character-generator/emerg
 == VERIFY ENV ==
 == WRITE TASK ==
 == DISCOVER REMOTE PLUGIN DIR ==
-/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
-REMOTE_PLUGIN_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator
-REMOTE_ASSET_DIR=/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/assets
+/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_PLUGIN_DIR=/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator
+REMOTE_ASSET_DIR=/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/assets
 == UPLOAD PHP AND ASSETS ==
 UPLOAD=PASS
 == REMOTE CHMOD / CACHE FLUSH ==
@@ -145,7 +145,7 @@ HTTP/2 200
 x-powered-by: PHP/8.3.30
 content-type: application/json; charset=UTF-8
 x-robots-tag: noindex
-link: <https://dadudekc.site/wp-json/>; rel="https://api.w.org/"
+link: <https://maskzero.site/wp-json/>; rel="https://api.w.org/"
 x-content-type-options: nosniff
 access-control-expose-headers: X-WP-Total, X-WP-TotalPages, Link
 access-control-allow-headers: Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type

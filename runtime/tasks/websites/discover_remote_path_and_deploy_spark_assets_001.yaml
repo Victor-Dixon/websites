@@ -3,11 +3,11 @@ title: Discover Hostinger remote path and deploy Spark assets
 lane: repo_fleet_self_healing_001
 status: in_progress
 target:
-  live_domain: dadudekc.site
+  live_domain: maskzero.site
   plugin: emergence-character-generator
 actions:
   - discover Hostinger home path
-  - find dadudekc.site public_html
+  - find maskzero.site public_html
   - upload patched emergence-cg.js and emergence-cg.css
   - verify live assets
 verify:

@@ -1,0 +1,24 @@
+version: 1
+name: emergence_generated_spark_portrait_card
+site: maskzero.site
+status: deployed
+implemented:
+  - deterministic_svg_spark_portrait
+  - seeded_visual_variation
+  - silhouette_aura_glyph_card
+  - profile_card_mount_in_final_result
+  - no_external_image_api
+verified:
+  public_svg_assets: pass
+  deterministic_payload_basis: pass
+  svg_profile_public_privacy: pass
+  svg_card_smoke: pass
+safety:
+  theme_deploy_enabled: false
+  old_theme_deploy_enabled: false
+  external_api_cost: zero
+  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/generated_spark_portrait_090_20260531_110641'
+next_allowed_actions:
+  - add shareable character permalink
+  - add saved character records
+  - build Battle Simulator demo

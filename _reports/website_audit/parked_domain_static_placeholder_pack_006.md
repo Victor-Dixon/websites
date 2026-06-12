@@ -16,7 +16,7 @@ Status: `PACKAGED_NOT_DEPLOYED`
 | Domain | Reason |
 |---|---|
 | dadudekc.com | active_or_hold_exclusion |
-| dadudekc.site | active_or_hold_exclusion |
+| maskzero.site | active_or_hold_exclusion |
 | digitaldreamscape.site | not_placeholder_candidate |
 | freerideinvestor.com | active_or_hold_exclusion |
 | prismblossom.online | not_placeholder_candidate |

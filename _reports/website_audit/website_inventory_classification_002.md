@@ -6,7 +6,7 @@ Total sites: `13`
 
 ### healthy_live
 
-- dadudekc.site
+- maskzero.site
 - freerideinvestor.com
 - prismblossom.online
 - xthunder.site
@@ -20,7 +20,7 @@ Total sites: `13`
 - ariajet.site
 - crosbyultimateevents.com
 - dadudekc.com
-- dadudekc.site
+- maskzero.site
 - digitaldreamscape.site
 - freerideinvestor.com
 - houstonsipqueen.com
@@ -50,7 +50,7 @@ Total sites: `13`
 | ariajet.site | 500 | unknown | 0 | classify_purpose | access_ok, unknown_type, http_review, thin_or_parked, parked_or_placeholder |
 | crosbyultimateevents.com | 500 | unknown | 0 | classify_purpose | access_ok, unknown_type, http_review, thin_or_parked, parked_or_placeholder |
 | dadudekc.com | 000 | unknown | 0 | repair_next | access_ok, unknown_type, offline_or_dns_ssl, thin_or_parked, parked_or_placeholder |
-| dadudekc.site | 200 | unknown | 0 | classify_purpose | access_ok, unknown_type, healthy_live, thin_or_parked |
+| maskzero.site | 200 | unknown | 0 | classify_purpose | access_ok, unknown_type, healthy_live, thin_or_parked |
 | digitaldreamscape.site | 500 | unknown | 0 | classify_purpose | access_ok, unknown_type, http_review, thin_or_parked, parked_or_placeholder |
 | freerideinvestor.com | 200 | unknown | 0 | classify_purpose | access_ok, unknown_type, healthy_live, thin_or_parked |
 | houstonsipqueen.com | 500 | unknown | 0 | classify_purpose | access_ok, unknown_type, http_review, thin_or_parked, parked_or_placeholder |

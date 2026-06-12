@@ -1,4 +1,4 @@
-# dadudekc.site WordPress Public Routing 070
+# maskzero.site WordPress Public Routing 070
 
 ## Result
 
@@ -9,12 +9,12 @@
 
 ## Backup
 
-- `/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/routing_fix_20260531_071847`
+- `/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/routing_fix_20260531_071847`
 
 ## Raw Output
 
 ```text
-BACKUP_DIR=/home/u996867598/domains/dadudekc.site/public_html/dreamos_backups/routing_fix_20260531_071847
+BACKUP_DIR=/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/routing_fix_20260531_071847
 STATIC_INDEX_DISABLED=PASS
 HTACCESS_BACKUP=PASS
 HTACCESS_WORDPRESS_REWRITE=PASS
@@ -40,9 +40,9 @@ ROOT
 HTTP/2 200 
 x-powered-by: PHP/8.3.30
 content-type: text/html; charset=UTF-8
-link: <https://dadudekc.site/wp-json/>; rel="https://api.w.org/"
-link: <https://dadudekc.site/wp-json/wp/v2/pages/16>; rel="alternate"; title="JSON"; type="application/json"
-link: <https://dadudekc.site/>; rel=shortlink
+link: <https://maskzero.site/wp-json/>; rel="https://api.w.org/"
+link: <https://maskzero.site/wp-json/wp/v2/pages/16>; rel="alternate"; title="JSON"; type="application/json"
+link: <https://maskzero.site/>; rel=shortlink
 x-litespeed-cache-control: public,max-age=604800
 x-litespeed-tag: 45f_front,45f_URL.6666cd76f96956469e7be39d750cc7d9,45f_F,45f_Po.16,45f_PGS,45f_
 date: Sun, 31 May 2026 12:19:02 GMT
@@ -57,7 +57,7 @@ HTTP/2 301
 x-powered-by: PHP/8.3.30
 content-type: text/html; charset=UTF-8
 x-redirect-by: WordPress
-location: https://dadudekc.site/
+location: https://maskzero.site/
 x-litespeed-cache-control: public,max-age=604800
 x-litespeed-tag: 45f_front,45f_URL.8700be93340feb269876acbc6aa09492,45f_F,45f_Po.16,45f_PGS,45f_
 date: Sun, 31 May 2026 12:19:03 GMT
@@ -72,9 +72,9 @@ PROTOCOL
 HTTP/2 200 
 x-powered-by: PHP/8.3.30
 content-type: text/html; charset=UTF-8
-link: <https://dadudekc.site/wp-json/>; rel="https://api.w.org/"
-link: <https://dadudekc.site/wp-json/wp/v2/pages/6>; rel="alternate"; title="JSON"; type="application/json"
-link: <https://dadudekc.site/?p=6>; rel=shortlink
+link: <https://maskzero.site/wp-json/>; rel="https://api.w.org/"
+link: <https://maskzero.site/wp-json/wp/v2/pages/6>; rel="alternate"; title="JSON"; type="application/json"
+link: <https://maskzero.site/?p=6>; rel=shortlink
 x-litespeed-cache-control: public,max-age=604800
 x-litespeed-tag: 45f_page,45f_URL.39da48980688d342bd43065168ae4ce0,45f_Po.6,45f_PGS,45f_
 date: Sun, 31 May 2026 12:19:03 GMT
@@ -88,9 +88,9 @@ CHARACTER_GENERATOR
 HTTP/2 200 
 x-powered-by: PHP/8.3.30
 content-type: text/html; charset=UTF-8
-link: <https://dadudekc.site/wp-json/>; rel="https://api.w.org/"
-link: <https://dadudekc.site/wp-json/wp/v2/pages/7>; rel="alternate"; title="JSON"; type="application/json"
-link: <https://dadudekc.site/?p=7>; rel=shortlink
+link: <https://maskzero.site/wp-json/>; rel="https://api.w.org/"
+link: <https://maskzero.site/wp-json/wp/v2/pages/7>; rel="alternate"; title="JSON"; type="application/json"
+link: <https://maskzero.site/?p=7>; rel=shortlink
 x-litespeed-cache-control: public,max-age=604800
 x-litespeed-tag: 45f_page,45f_URL.606f5d8ba43b0e41d0f57dcc5971140a,45f_Po.7,45f_PGS,45f_
 date: Sun, 31 May 2026 12:19:03 GMT
@@ -104,9 +104,9 @@ BATTLE_SIMULATOR
 HTTP/2 200 
 x-powered-by: PHP/8.3.30
 content-type: text/html; charset=UTF-8
-link: <https://dadudekc.site/wp-json/>; rel="https://api.w.org/"
-link: <https://dadudekc.site/wp-json/wp/v2/pages/8>; rel="alternate"; title="JSON"; type="application/json"
-link: <https://dadudekc.site/?p=8>; rel=shortlink
+link: <https://maskzero.site/wp-json/>; rel="https://api.w.org/"
+link: <https://maskzero.site/wp-json/wp/v2/pages/8>; rel="alternate"; title="JSON"; type="application/json"
+link: <https://maskzero.site/?p=8>; rel=shortlink
 x-litespeed-cache-control: public,max-age=604800
 x-litespeed-tag: 45f_page,45f_URL.8a2005ab328950f908e80a144c5985e9,45f_Po.8,45f_PGS,45f_
 date: Sun, 31 May 2026 12:19:04 GMT
@@ -120,9 +120,9 @@ BUILD_LOG
 HTTP/2 200 
 x-powered-by: PHP/8.3.30
 content-type: text/html; charset=UTF-8
-link: <https://dadudekc.site/wp-json/>; rel="https://api.w.org/"
-link: <https://dadudekc.site/wp-json/wp/v2/pages/17>; rel="alternate"; title="JSON"; type="application/json"
-link: <https://dadudekc.site/?p=17>; rel=shortlink
+link: <https://maskzero.site/wp-json/>; rel="https://api.w.org/"
+link: <https://maskzero.site/wp-json/wp/v2/pages/17>; rel="alternate"; title="JSON"; type="application/json"
+link: <https://maskzero.site/?p=17>; rel=shortlink
 x-litespeed-cache-control: public,max-age=604800
 x-litespeed-tag: 45f_page,45f_URL.695e0e85772a20a8ab0519383f4417a3,45f_Po.17,45f_PGS,45f_
 date: Sun, 31 May 2026 12:19:04 GMT

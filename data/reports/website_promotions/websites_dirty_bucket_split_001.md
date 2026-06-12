@@ -265,7 +265,7 @@ Once these buckets are closed, DaDudeKC can be promoted into websites/dadudekc-s
 - Reason: misc runtime artifacts require inspection before commit
 - File count: `2`
 
-### `runtime/content/dadudekc.site/client-preview.freeride-funnel-candidate.html`
+### `runtime/content/maskzero.site/client-preview.freeride-funnel-candidate.html`
 - Source group: `dadudekc_content`
 - Lane: `review_with_dadudekc_promotion`
 - Decision: `HOLD_FOR_PROMOTION`

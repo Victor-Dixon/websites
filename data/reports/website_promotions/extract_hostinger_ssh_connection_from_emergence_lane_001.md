@@ -25,7 +25,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### data/reports/website_promotions/resolve_weareswarm_sftp_target_001.json
 - Score: 18
-- Hits: hostinger, ssh, sftp, dadudekc.com, dadudekc.site, emergence, u996867598, 65002, remote_root, public_html
+- Hits: hostinger, ssh, sftp, dadudekc.com, maskzero.site, emergence, u996867598, 65002, remote_root, public_html
 - Hosts found: `weareswarm`
 - Ports found: none
 - Users found: u201311, u996867598
@@ -40,7 +40,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### data/reports/website_promotions/resolve_weareswarm_sftp_target_001.md
 - Score: 17
-- Hits: hostinger, ssh, sftp, dadudekc.com, dadudekc.site, emergence, u996867598, remote_root, public_html
+- Hits: hostinger, ssh, sftp, dadudekc.com, maskzero.site, emergence, u996867598, remote_root, public_html
 - Hosts found: `weareswarm``
 - Ports found: none
 - Users found: u996867598
@@ -55,7 +55,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### _reports/tsla_command_center_hostinger_deploy_diagnosis_001.txt
 - Score: 14
-- Hits: hostinger, dadudekc.com, dadudekc.site, emergence, u996867598, public_html
+- Hits: hostinger, dadudekc.com, maskzero.site, emergence, u996867598, public_html
 - Hosts found: =
 - Ports found: none
 - Users found: u996867598
@@ -70,7 +70,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### data/reports/website_promotions/reuse_emergence_hostinger_creds_for_weareswarm_preflight_001.md
 - Score: 13
-- Hits: hostinger, ssh, sftp, dadudekc.com, dadudekc.site, emergence, u996867598, 65002, remote_root, public_html
+- Hits: hostinger, ssh, sftp, dadudekc.com, maskzero.site, emergence, u996867598, 65002, remote_root, public_html
 - Hosts found: none
 - Ports found: none
 - Users found: u996867598
@@ -85,7 +85,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### data/reports/website_promotions/reuse_emergence_hostinger_creds_for_weareswarm_preflight_001.json
 - Score: 12
-- Hits: hostinger, ssh, sftp, dadudekc.com, dadudekc.site, u996867598, 65002, remote_root, public_html
+- Hits: hostinger, ssh, sftp, dadudekc.com, maskzero.site, u996867598, 65002, remote_root, public_html
 - Hosts found: none
 - Ports found: none
 - Users found: u996867598
@@ -100,7 +100,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### _reports/websites_hostinger_access_inspection_001.txt
 - Score: 11
-- Hits: hostinger, ssh, dadudekc.com, dadudekc.site, emergence, u996867598, remote_root, public_html
+- Hits: hostinger, ssh, dadudekc.com, maskzero.site, emergence, u996867598, remote_root, public_html
 - Hosts found: none
 - Ports found: none
 - Users found: u996867598
@@ -115,7 +115,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### data/reports/website_promotions/weareswarm_sftp_target_candidates_001.json
 - Score: 11
-- Hits: hostinger, ssh, sftp, dadudekc.com, dadudekc.site, u996867598, remote_root, public_html
+- Hits: hostinger, ssh, sftp, dadudekc.com, maskzero.site, u996867598, remote_root, public_html
 - Hosts found: none
 - Ports found: none
 - Users found: u996867598
@@ -130,7 +130,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### data/reports/website_promotions/weareswarm_sftp_target_candidates_001.md
 - Score: 11
-- Hits: hostinger, ssh, sftp, dadudekc.com, dadudekc.site, u996867598, remote_root, public_html
+- Hits: hostinger, ssh, sftp, dadudekc.com, maskzero.site, u996867598, remote_root, public_html
 - Hosts found: none
 - Ports found: none
 - Users found: u996867598
@@ -145,7 +145,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### _reports/hostinger_access_preflight_002b.md
 - Score: 10
-- Hits: hostinger, ssh, dadudekc.com, dadudekc.site, u996867598, remote_root, public_html
+- Hits: hostinger, ssh, dadudekc.com, maskzero.site, u996867598, remote_root, public_html
 - Hosts found: none
 - Ports found: none
 - Users found: u996867598
@@ -160,7 +160,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### _reports/hostinger_access_preflight_002b.txt
 - Score: 10
-- Hits: hostinger, ssh, dadudekc.com, dadudekc.site, u996867598, remote_root, public_html
+- Hits: hostinger, ssh, dadudekc.com, maskzero.site, u996867598, remote_root, public_html
 - Hosts found: none
 - Ports found: none
 - Users found: u996867598
@@ -175,7 +175,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### _reports/hostinger_wordpress_inventory_044.md
 - Score: 10
-- Hits: hostinger, ssh, dadudekc.com, dadudekc.site, u996867598, 65002, public_html
+- Hits: hostinger, ssh, dadudekc.com, maskzero.site, u996867598, 65002, public_html
 - Hosts found: none
 - Ports found: none
 - Users found: u996867598
@@ -190,7 +190,7 @@ No secrets printed. No upload performed. Route-only preflight only.
 
 ### _reports/hostinger_wordpress_raw_inventory_044.txt
 - Score: 10
-- Hits: hostinger, ssh, dadudekc.com, dadudekc.site, u996867598, 65002, public_html
+- Hits: hostinger, ssh, dadudekc.com, maskzero.site, u996867598, 65002, public_html
 - Hosts found: none
 - Ports found: none
 - Users found: u996867598

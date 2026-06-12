@@ -10,7 +10,7 @@ Removed the untracked held runtime preview after verifying the promoted copy is 
 
 ## Removed Duplicate
 
-`runtime/content/dadudekc.site/client-preview.freeride-funnel-candidate.html`
+`runtime/content/maskzero.site/client-preview.freeride-funnel-candidate.html`
 
 ## Verification
 
