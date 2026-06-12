@@ -1,0 +1,81 @@
+{
+  "schema": "spark.meridian.missions.v1",
+  "missions": [
+    {
+      "id": "mission_spindle_signal_theft_001",
+      "title": "Signal Theft in the Spindle",
+      "district": "spindle",
+      "faction_hooks": ["AEGIS", "Undercity"],
+      "notoriety_reward": 25,
+      "rep_changes": { "AEGIS": 1, "Undercity": 1 },
+      "risk": "low",
+      "unlock": ["map_node_spindle_001", "gear_exchange_hint_basic"],
+      "summary": "Intercept stolen broadcast keys before the Spindle relay goes dark.",
+      "initial_state": "available"
+    },
+    {
+      "id": "mission_halcyon_skyline_patrol_001",
+      "title": "Skyline Patrol",
+      "district": "halcyon_heights",
+      "faction_hooks": ["Sterling", "AEGIS"],
+      "notoriety_reward": 30,
+      "rep_changes": { "Sterling": 1, "AEGIS": 1 },
+      "risk": "medium",
+      "unlock": ["map_node_halcyon_001"],
+      "summary": "Escort Sterling analysts across exposed rooftop corridors after a power surge.",
+      "initial_state": "available"
+    },
+    {
+      "id": "mission_drowned_quarter_floodgate_001",
+      "title": "Floodgate Sabotage",
+      "district": "drowned_quarter",
+      "faction_hooks": ["Gods Armor", "Undercity"],
+      "notoriety_reward": 35,
+      "rep_changes": { "Gods Armor": 1, "Undercity": -1 },
+      "risk": "medium",
+      "unlock": ["map_node_drowned_001"],
+      "summary": "Stabilize a failing floodgate before the quarter drowns overnight.",
+      "initial_state": "locked",
+      "requires_notoriety": 10
+    },
+    {
+      "id": "mission_ladderways_vertical_sprint_001",
+      "title": "Vertical Sprint",
+      "district": "ladderways",
+      "faction_hooks": ["AEGIS"],
+      "notoriety_reward": 20,
+      "rep_changes": { "AEGIS": 1 },
+      "risk": "low",
+      "unlock": ["map_node_ladderways_001"],
+      "summary": "Chase a witness across ladderways before rival crews erase the trail.",
+      "initial_state": "available"
+    },
+    {
+      "id": "mission_irongate_convoy_escort_001",
+      "title": "Convoy Under Pressure",
+      "district": "irongate",
+      "faction_hooks": ["Sterling", "Gods Armor"],
+      "notoriety_reward": 40,
+      "rep_changes": { "Sterling": 1, "Gods Armor": -1 },
+      "risk": "high",
+      "unlock": ["map_node_irongate_001"],
+      "summary": "Move a sealed convoy through Irongate checkpoints without triggering a citywide alert.",
+      "initial_state": "locked",
+      "requires_notoriety": 20
+    },
+    {
+      "id": "mission_undercity_gear_exchange_001",
+      "title": "Gear Exchange Orientation",
+      "district": "undercity",
+      "faction_hooks": ["Undercity"],
+      "notoriety_reward": 15,
+      "rep_changes": { "Undercity": 2 },
+      "risk": "low",
+      "unlock": ["undercity_gear_exchange", "gear_exchange_catalog_basic"],
+      "summary": "Earn enough notoriety to access the hidden Undercity Gear Exchange.",
+      "initial_state": "hidden",
+      "requires_notoriety": 50,
+      "hidden_district": true
+    }
+  ]
+}

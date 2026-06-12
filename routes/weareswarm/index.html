@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dream.OS Command Center | WeAreSwarm</title>
+  <link rel="canonical" href="https://www.weareswarm.site/">
+  <link rel="stylesheet" href="/assets/weareswarm-shell.css">
+</head>
+<body>
+<div class="stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+  <div class="shell">
+    <header class="shell-header">
+      <a class="brand" href="https://www.weareswarm.site/">We Are Swarm</a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="/" class="active">Command Center</a>
+        <a href="/feed/">Feed</a>
+        <a href="/projects/">Projects</a>
+        <a href="/tasks/">Tasks</a>
+        <a href="/skill-tree">Skill Tree</a>
+        <a href="/dreamos-services/">Services</a>
+        <a href="/profile/">Operator</a>
+        <a href="/live-ops/">Live Ops</a>
+        <a href="/wp-json/dreamos/v1/status">API</a>
+      </nav>
+    </header>
+    <div class="shell-main">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Live Autonomous Operations</span>
+          <h1><span>Watch the</span><span class="grad">Swarm Work</span></h1>
+          <p>Dream.OS is a live automation swarm for repo recovery, website deployment, orchestration workflows, trading systems, and autonomous operational tooling.</p>
+          <div class="hero-actions">
+            <a class="btn" href="/skill-tree">Open Skill Tree</a>
+            <a class="btn ghost" href="/projects/">View Proof</a>
+            <a class="btn ghost" href="/profile/">Operator Profile</a>
+            <a class="btn ghost" href="/live-ops/">Live Operations</a>
+          </div>
+        </div>
+        <aside class="hud">
+          <div class="hud-card"><strong>LIVE</strong><span>SSH deploys, WP-CLI, REST status APIs online</span></div>
+          <div class="hud-card"><strong>12</strong><span>skill nodes tracked in registry</span></div>
+          <div class="hud-card"><strong>04</strong><span>power branches mapped</span></div>
+          <div class="hud-card"><strong>SSH</strong><span>server-side deploy lane unlocked</span></div>
+        </aside>
+      </section>
+      <section class="section">
+        <span class="eyebrow">Operator Hub</span>
+        <h2>Jump to a lane</h2>
+        <div class="grid-3">
+          <a class="card link" href="/dreamos-services/" style="text-decoration:none;color:inherit"><h3>Services</h3><p>Repo rescue, web funnels, agent workflows, and automation offers.</p></a>
+          <a class="card link" href="/skill-tree" style="text-decoration:none;color:inherit"><h3>Skill Tree</h3><p>Public capability map earned through live execution and proof.</p></a>
+          <a class="card link" href="/wp-json/dreamos/v1/status" style="text-decoration:none;color:inherit"><h3>Status API</h3><p>Machine-readable Dream.OS status for dashboards and agents.</p></a>
+        </div>
+      </section>
+    </div>
+    <div class="footerbar">
+      <span>Systems that recover, verify, and ship.</span>
+      <span>Dream.OS autonomous operations layer</span>
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+  const root = document.documentElement;
+  window.addEventListener('pointermove', (e) => {
+    root.style.setProperty('--mx', `${(e.clientX / window.innerWidth) * 100}%`);
+    root.style.setProperty('--my', `${(e.clientY / window.innerHeight) * 100}%`);
+  }, {passive: true});
+})();
+</script>
+</body>
+</html>

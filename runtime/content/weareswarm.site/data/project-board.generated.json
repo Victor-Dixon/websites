@@ -1,0 +1,154 @@
+{
+  "buckets": {
+    "promotion_candidate": 1,
+    "unknown": 6,
+    "website": 1
+  },
+  "generated_at": "2026-06-07T21:16:43.418156+00:00",
+  "intent": "Public project consolidation board for GitHub, desktop, and laptop projects.",
+  "projects": [
+    {
+      "consolidation_action": "publish_or_consolidate_under_websites",
+      "description": "",
+      "is_private": true,
+      "kind": "website",
+      "local_branch": "cursor/repair-weareswarm-white-screen-0b91",
+      "local_dirty": true,
+      "local_head": "7fd4e221",
+      "local_paths": [
+        "/workspace"
+      ],
+      "name": "websites",
+      "next": "Connect to WeAreSwarm project board and deploy reports.",
+      "proof": "GitHub repository detected: Victor-Dixon/websites",
+      "repo": "Victor-Dixon/websites",
+      "source": "github",
+      "status": "public_surface",
+      "updated_at": "2026-06-07T06:22:57Z",
+      "url": "https://github.com/Victor-Dixon/websites"
+    },
+    {
+      "consolidation_action": "inspect_then_promote_or_archive",
+      "description": "Dream.OS-Core is a multi-agent, human-in-the-loop orchestration framework for Dream.OS v2. It coordinates agents, tasks, sessions, recovery, handoffs, locks, and policy through explicit state and artifacts. Core governs swarm behavior and continuity, while external adapters like Agent Cellphone handle message delivery and execution transport",
+      "is_private": false,
+      "kind": "promotion_candidate",
+      "local_paths": [],
+      "name": "Dream.os-Core",
+      "next": "Compare against canonical DreamVault before merge.",
+      "proof": "GitHub repository detected: Victor-Dixon/Dream.os-Core",
+      "repo": "Victor-Dixon/Dream.os-Core",
+      "source": "github",
+      "status": "candidate",
+      "updated_at": "2026-05-15T18:54:16Z",
+      "url": "https://github.com/Victor-Dixon/Dream.os-Core"
+    },
+    {
+      "consolidation_action": "inspect",
+      "description": "Scripts that i turn into agents",
+      "is_private": false,
+      "kind": "unknown",
+      "local_paths": [],
+      "name": "Agents",
+      "next": "Inspect README, git status, remotes, and last activity.",
+      "proof": "GitHub repository detected: Victor-Dixon/Agents",
+      "repo": "Victor-Dixon/Agents",
+      "source": "github",
+      "status": "needs_review",
+      "updated_at": "2026-05-17T17:01:47Z",
+      "url": "https://github.com/Victor-Dixon/Agents"
+    },
+    {
+      "consolidation_action": "inspect",
+      "description": "Agent Cellphone is a standalone swarm transport adapter for Dream.OS v2. It delivers structured commands between human and Cursor agents, supports agent-to-agent handoffs, logs all transport events, and surfaces failures clearly. It is not the orchestration core; it is the messaging and delivery layer that powers autonomy.",
+      "is_private": false,
+      "kind": "unknown",
+      "local_paths": [],
+      "name": "cursor-cellphone",
+      "next": "Inspect README, git status, remotes, and last activity.",
+      "proof": "GitHub repository detected: Victor-Dixon/cursor-cellphone",
+      "repo": "Victor-Dixon/cursor-cellphone",
+      "source": "github",
+      "status": "needs_review",
+      "updated_at": "2026-04-06T10:45:16Z",
+      "url": "https://github.com/Victor-Dixon/cursor-cellphone"
+    },
+    {
+      "consolidation_action": "inspect",
+      "description": " A real-time, diagnostic-first learning system for Charlie, Chris, and Victor 6th and 7th grade",
+      "is_private": false,
+      "kind": "unknown",
+      "local_paths": [],
+      "name": "HomeSchool_Mastery",
+      "next": "Inspect README, git status, remotes, and last activity.",
+      "proof": "GitHub repository detected: Victor-Dixon/HomeSchool_Mastery",
+      "repo": "Victor-Dixon/HomeSchool_Mastery",
+      "source": "github",
+      "status": "needs_review",
+      "updated_at": "2026-05-14T11:33:16Z",
+      "url": "https://github.com/Victor-Dixon/HomeSchool_Mastery"
+    },
+    {
+      "consolidation_action": "inspect",
+      "description": "",
+      "is_private": false,
+      "kind": "unknown",
+      "local_paths": [],
+      "name": "osrs",
+      "next": "Inspect README, git status, remotes, and last activity.",
+      "proof": "GitHub repository detected: Victor-Dixon/osrs",
+      "repo": "Victor-Dixon/osrs",
+      "source": "github",
+      "status": "needs_review",
+      "updated_at": "2026-05-17T17:12:24Z",
+      "url": "https://github.com/Victor-Dixon/osrs"
+    },
+    {
+      "consolidation_action": "inspect",
+      "description": "",
+      "is_private": false,
+      "kind": "unknown",
+      "local_paths": [],
+      "name": "ProfessorSama",
+      "next": "Inspect README, git status, remotes, and last activity.",
+      "proof": "GitHub repository detected: Victor-Dixon/ProfessorSama",
+      "repo": "Victor-Dixon/ProfessorSama",
+      "source": "github",
+      "status": "needs_review",
+      "updated_at": "2026-05-25T09:18:56Z",
+      "url": "https://github.com/Victor-Dixon/ProfessorSama"
+    },
+    {
+      "consolidation_action": "inspect",
+      "description": "",
+      "is_private": false,
+      "kind": "unknown",
+      "local_paths": [],
+      "name": "TradingRobots",
+      "next": "Inspect README, git status, remotes, and last activity.",
+      "proof": "GitHub repository detected: Victor-Dixon/TradingRobots",
+      "repo": "Victor-Dixon/TradingRobots",
+      "source": "github",
+      "status": "needs_review",
+      "updated_at": "2026-05-17T17:12:21Z",
+      "url": "https://github.com/Victor-Dixon/TradingRobots"
+    }
+  ],
+  "source": "dreamvault.project_board",
+  "tasks_projection": [
+    {
+      "name": "Classify project inventory",
+      "next": "Review unknown and promotion_candidate projects before merge/prune.",
+      "state": "active"
+    },
+    {
+      "name": "Promote canonical work",
+      "next": "Move verified work into canonical GitHub repos with manifests.",
+      "state": "queued"
+    },
+    {
+      "name": "Archive stale variants",
+      "next": "Create salvage manifests before destructive cleanup.",
+      "state": "queued"
+    }
+  ]
+}

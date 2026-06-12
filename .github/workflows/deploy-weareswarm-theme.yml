@@ -1,0 +1,175 @@
+name: Deploy WeAreSwarm DreamOS Theme
+
+on:
+  push:
+    branches:
+      - cursor/repair-weareswarm-white-screen-0b91
+    paths:
+      - .github/workflows/deploy-weareswarm-theme.yml
+      - collected/hostinger/wordpress/domains/weareswarm.site/**
+      - routes/weareswarm/**
+      - runtime/scripts/sync_weareswarm_planner_status_001.py
+      - runtime/scripts/build_weareswarm_project_board_001.py
+      - runtime/content/weareswarm.site/**
+      - runtime/tasks/weareswarm_planner_bridge_001.yaml
+      - runtime/tasks/weareswarm_project_board_001.yaml
+  workflow_dispatch:
+
+concurrency:
+  group: weareswarm-theme-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Upload unified Dream.OS theme and routes
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate planner status and project board JSON
+        run: |
+          set -euo pipefail
+          export DREAMVAULT_ROOT="$GITHUB_WORKSPACE"
+          export PROJECT_BOARD_LOCAL_ROOTS="$GITHUB_WORKSPACE"
+          python3 runtime/scripts/sync_weareswarm_planner_status_001.py
+          python3 runtime/scripts/build_weareswarm_project_board_001.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          status_path = Path("runtime/content/weareswarm.site/data/swarm-status.generated.json")
+          board_path = Path("runtime/content/weareswarm.site/data/project-board.generated.json")
+          status = json.loads(status_path.read_text(encoding="utf-8"))
+          board = json.loads(board_path.read_text(encoding="utf-8"))
+          assert isinstance(status.get("unfinished_tasks"), list), "unfinished_tasks missing"
+          assert status.get("next_lane"), "next_lane missing"
+          assert isinstance(board.get("projects"), list) and board["projects"], "projects empty"
+          assert isinstance(board.get("buckets"), dict), "buckets missing"
+          print("JSON_VERIFY=PASS")
+          print("NEXT_LANE=" + status["next_lane"])
+          print("PROJECTS=" + str(len(board["projects"])))
+          PY
+
+      - name: Configure SSH key
+        env:
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_PORT: "65002"
+        run: |
+          set -euo pipefail
+          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+          chmod 600 "$HOME/.ssh/id_hostinger"
+          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+
+      - name: Upload theme, assets, routes, render static pages, fix www loop
+        env:
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_USER: u996867598
+          HOSTINGER_PORT: "65002"
+          REMOTE_ROOT: /home/u996867598/domains/weareswarm.site/public_html
+          THEME_DIR: /home/u996867598/domains/weareswarm.site/public_html/wp-content/themes/weareswarm-dreamos
+        run: |
+          set -euo pipefail
+          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+          ssh_common=(-i "$HOME/.ssh/id_hostinger" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30 -o ConnectionAttempts=3 -o ServerAliveInterval=15 -o ServerAliveCountMax=3)
+          ssh_base=(ssh "${ssh_common[@]}" -p "$HOSTINGER_PORT" "$remote")
+          scp_base=(scp "${ssh_common[@]}" -P "$HOSTINGER_PORT")
+
+          retry() {
+            local attempt=1
+            local delay=4
+            while true; do
+              if "$@"; then
+                return 0
+              fi
+              if [ "$attempt" -ge 4 ]; then
+                return 1
+              fi
+              echo "Retry $attempt failed; waiting ${delay}s..."
+              sleep "$delay"
+              attempt=$((attempt + 1))
+              delay=$((delay * 2))
+            done
+          }
+
+          theme_src="collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos"
+
+          retry "${ssh_base[@]}" "mkdir -p '$THEME_DIR/assets' '$THEME_DIR/inc' '$REMOTE_ROOT/assets' '$REMOTE_ROOT/dreamos-services' '$REMOTE_ROOT/data'"
+
+          for f in functions.php index.php nav.php page-skills.php page-projects.php page-profile.php page-live-ops.php page-feed.php page-tasks.php render-static-routes.php style.css; do
+            retry "${scp_base[@]}" "$theme_src/$f" "$remote:$THEME_DIR/$f"
+          done
+          plugin_src="collected/hostinger/wordpress/domains/weareswarm.site/plugins/dreamos-swarm-status"
+          plugin_dir="$REMOTE_ROOT/wp-content/plugins/dreamos-swarm-status"
+          "${ssh_base[@]}" "mkdir -p '$plugin_dir'"
+          "${scp_base[@]}" "$plugin_src/dreamos-swarm-status.php" "$remote:$plugin_dir/dreamos-swarm-status.php"
+          "${scp_base[@]}" "runtime/content/weareswarm.site/data/swarm-status.generated.json" "$remote:$REMOTE_ROOT/data/swarm-status.generated.json"
+          "${scp_base[@]}" "runtime/content/weareswarm.site/data/project-board.generated.json" "$remote:$REMOTE_ROOT/data/project-board.generated.json"
+          "${scp_base[@]}" "$theme_src/assets/dreamos-shell.css" "$remote:$THEME_DIR/assets/dreamos-shell.css"
+          "${scp_base[@]}" "$theme_src/assets/dreamos-shell.css" "$remote:$REMOTE_ROOT/assets/weareswarm-shell.css"
+          "${scp_base[@]}" "$theme_src/assets/skill-tree.css" "$remote:$THEME_DIR/assets/skill-tree.css"
+          "${scp_base[@]}" "$theme_src/inc/shell-head.php" "$remote:$THEME_DIR/inc/shell-head.php"
+          "${scp_base[@]}" "$theme_src/inc/shell-foot.php" "$remote:$THEME_DIR/inc/shell-foot.php"
+          "${scp_base[@]}" "routes/weareswarm/index.html" "$remote:$REMOTE_ROOT/index.html"
+          "${scp_base[@]}" "routes/weareswarm/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
+          "${scp_base[@]}" "routes/weareswarm/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-htaccess-snippet.txt"
+
+          render_script="/tmp/render-weareswarm-routes-${GITHUB_RUN_ID}.php"
+          cat > "$render_script" <<'PHP'
+          <?php
+          $root = '/home/u996867598/domains/weareswarm.site/public_html';
+          chdir($root);
+          define('WP_USE_THEMES', false);
+          require $root . '/wp-load.php';
+          include $root . '/wp-content/themes/weareswarm-dreamos/render-static-routes.php';
+          PHP
+          "${scp_base[@]}" "$render_script" "$remote:$render_script"
+          retry "${ssh_base[@]}" "set -e
+            for f in page-skills.php page-projects.php page-profile.php page-live-ops.php page-feed.php page-tasks.php render-static-routes.php; do
+              php -l '$THEME_DIR/'\"\$f\"
+            done
+            php '$render_script'
+            rm -f '$render_script'
+            if command -v wp >/dev/null 2>&1; then
+              wp --path='$REMOTE_ROOT' option update siteurl 'https://www.weareswarm.site' || true
+              wp --path='$REMOTE_ROOT' option update home 'https://www.weareswarm.site' || true
+            fi
+            ht='$REMOTE_ROOT/.htaccess'
+            cp \"\$ht\" \"\$ht.bak.${GITHUB_RUN_ID}\"
+            sed -i '/WeAreSwarm canonical host/,/^<\\/IfModule>$/d' \"\$ht\" || true
+            tmp=\"/tmp/weareswarm-htaccess-${GITHUB_RUN_ID}.txt\"
+            cat /tmp/weareswarm-htaccess-snippet.txt > \"\$tmp\"
+            echo '' >> \"\$tmp\"
+            cat \"\$ht\" >> \"\$tmp\"
+            mv \"\$tmp\" \"\$ht\"
+            rm -f /tmp/weareswarm-htaccess-snippet.txt
+            chmod 644 '$THEME_DIR'/*.php '$THEME_DIR'/assets/* '$THEME_DIR'/inc/* '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/assets/weareswarm-shell.css' '$REMOTE_ROOT/data/swarm-status.generated.json' '$REMOTE_ROOT/data/project-board.generated.json'
+            for route in projects profile live-ops feed tasks skill-tree; do
+              [ -f '$REMOTE_ROOT/'\"\$route\" ] && chmod 644 '$REMOTE_ROOT/'\"\$route\"
+            done
+            ls -la '$REMOTE_ROOT'/projects '$REMOTE_ROOT'/profile '$REMOTE_ROOT'/live-ops '$REMOTE_ROOT'/feed '$REMOTE_ROOT'/tasks '$REMOTE_ROOT'/skill-tree
+          "
+
+      - name: Verify unified theme and fixed routes
+        run: |
+          set -euo pipefail
+          base="https://www.weareswarm.site"
+          for path in "/" "/dreamos-services/" "/skill-tree" "/skill-tree/" "/projects/" "/profile/" "/live-ops/" "/feed/" "/tasks/"; do
+            url="$base$path?cache=$GITHUB_RUN_ID"
+            code="$(curl -sL -o /tmp/page.html -w '%{http_code}' --max-redirs 8 --max-time 25 "$url")"
+            echo "$url => $code"
+            [ "$code" = "200" ]
+            grep -q 'class="shell"' /tmp/page.html || grep -q 'class="topnav"' /tmp/page.html
+          done
+          apex_code="$(curl -sL -o /tmp/projects-apex.html -w '%{http_code}' --max-redirs 8 --max-time 25 "https://weareswarm.site/projects/?cache=$GITHUB_RUN_ID")"
+          echo "https://weareswarm.site/projects/?cache=$GITHUB_RUN_ID => $apex_code"
+          [ "$apex_code" = "200" ]
+          grep -q 'Projects' /tmp/projects-apex.html
+          grep -q 'Project Consolidation Board\|Canonical Core\|Websites' /tmp/projects-apex.html
+          curl -sL -o /tmp/tasks.html "https://www.weareswarm.site/tasks/?cache=$GITHUB_RUN_ID"
+          grep -q 'Execute Website Ops\|Execute ' /tmp/tasks.html

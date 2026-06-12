@@ -1,0 +1,45 @@
+{
+  "city": "Meridian City",
+  "schema": "spark.meridian.world.v1",
+  "districts_visible": [
+    { "id": "spindle", "name": "Spindle", "tagline": "Signal towers and transit chokepoints." },
+    { "id": "halcyon_heights", "name": "Halcyon Heights", "tagline": "Elevated districts and corporate glass." },
+    { "id": "drowned_quarter", "name": "Drowned Quarter", "tagline": "Flood channels and salvage lanes." },
+    { "id": "ladderways", "name": "Ladderways", "tagline": "Vertical routes between rooftops and fire escapes." },
+    { "id": "irongate", "name": "Irongate", "tagline": "Industrial checkpoints and convoy pressure." }
+  ],
+  "districts_hidden": [
+    {
+      "id": "undercity",
+      "name": "Undercity",
+      "tagline": "Tunnels, sewers, refuge routes — black-market gear layer.",
+      "visible_on_map": false,
+      "unlock_requires_notoriety": 50,
+      "access_via": ["tunnels", "sewers", "refuge_routes"]
+    }
+  ],
+  "economy": {
+    "notoriety": {
+      "label": "Notoriety",
+      "description": "Global mission currency earned from missions and public acts.",
+      "spend_at": "Undercity Gear Exchange"
+    },
+    "faction_reputation": {
+      "label": "Faction Reputation",
+      "description": "Separate relationship standing. Opens access and perks. Does not discount gear.",
+      "factions": ["AEGIS", "Sterling", "Gods Armor", "Undercity"],
+      "rungs": ["Stranger", "Known", "Trusted", "Inner Circle"],
+      "oppositions": [["Sterling", "Gods Armor"]],
+      "independent": [["AEGIS", "Undercity"]]
+    }
+  },
+  "framework_status": {
+    "WORLD_LAYER": "BUILT",
+    "NOTORIETY_ECONOMY": "BUILT",
+    "FACTION_REPUTATION": "BUILT",
+    "UNDERCITY_GEAR_EXCHANGE": "BUILT",
+    "NAMED_MISSIONS": "BUILT",
+    "CITY_MAP_GRID": "BUILT",
+    "MISSION_NODE_BINDINGS": "BUILT"
+  }
+}

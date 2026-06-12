@@ -1,0 +1,55 @@
+{
+  "feed": [
+    {
+      "generated_at": "2026-06-07T21:06:51.179637+00:00",
+      "summary": "Next lane is `website_ops`.",
+      "title": "Planner status synchronized",
+      "type": "planner_transition"
+    }
+  ],
+  "generated_at": "2026-06-07T21:06:51.179637+00:00",
+  "next_lane": "website_ops",
+  "planner_artifact": "/workspace/data/reports/planner/next_lane.json",
+  "projects": [
+    {
+      "name": "Planner Bridge",
+      "proof": "WeAreSwarm status is generated from planner governance artifacts. Source: dreamvault.planner.",
+      "state": "active"
+    },
+    {
+      "name": "Active Lane: Website Ops",
+      "proof": "Refresh WeAreSwarm public operations board from planner state.",
+      "state": "queued"
+    },
+    {
+      "name": "WeAreSwarm Operations Board",
+      "proof": "Projects and tasks refresh from generated JSON before static route rendering.",
+      "state": "operational"
+    }
+  ],
+  "source": "dreamvault.planner",
+  "unfinished_tasks": [
+    {
+      "name": "Execute Website Ops",
+      "next": "Refresh WeAreSwarm public operations board from planner state.",
+      "progress": "NEXT",
+      "state": "next",
+      "task": "Execute Website Ops"
+    },
+    {
+      "name": "Publish planner closeouts",
+      "next": "Map completed task reports into public /projects/ proof cards.",
+      "progress": "QUEUED",
+      "state": "queued",
+      "task": "Publish planner closeouts"
+    },
+    {
+      "name": "Render static WeAreSwarm routes",
+      "next": "Run the static renderer after generated status changes.",
+      "progress": "QUEUED",
+      "state": "queued",
+      "task": "Render static WeAreSwarm routes"
+    }
+  ],
+  "updated_at": "2026-06-07T21:06:51.179637+00:00"
+}

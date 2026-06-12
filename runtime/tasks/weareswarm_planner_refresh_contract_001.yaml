@@ -1,0 +1,20 @@
+id: weareswarm_planner_refresh_contract_001
+title: Define planner refresh contract for WeAreSwarm status bridge
+lane: website_ops
+target: data/reports/planner
+status: active
+intent: >
+  Establish one authoritative planner source and a documented refresh contract so
+  swarm-status.generated.json stays in sync without hand-editing PHP arrays.
+constraints:
+  - authoritative source is data/reports/planner/next_lane.json
+  - SSH deploy remains a separate lane
+  - preserve hardcoded fallback in dreamos-swarm-status.php
+outputs:
+  - data/reports/planner/next_lane.json
+  - data/reports/planner/refresh_contract.json
+  - runtime/content/weareswarm.site/PLANNER_BRIDGE.md
+verification:
+  - sync_weareswarm_planner_status_001.py reads next_lane.json first
+  - generated JSON includes next_lane website_ops when contract is present
+  - deploy workflow regenerates JSON before upload

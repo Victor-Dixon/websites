@@ -9,6 +9,71 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+$swarm_api_enhanced = get_template_directory() . '/swarm-api-enhanced.php';
+if (file_exists($swarm_api_enhanced)) {
+    require_once $swarm_api_enhanced;
+}
+
+function swarm_theme_setup() {
+    add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
+}
+add_action('after_setup_theme', 'swarm_theme_setup');
+
+function swarm_theme_enqueue_assets() {
+    wp_enqueue_style('weareswarm-style', get_stylesheet_uri(), array(), '1.0.0');
+}
+add_action('wp_enqueue_scripts', 'swarm_theme_enqueue_assets');
+
+if (!function_exists('get_swarm_agents')) {
+    function get_swarm_agents() {
+        $agents = get_option('swarm_agents_data', array());
+        if (empty($agents) && function_exists('get_swarm_default_agents')) {
+            $agents = get_swarm_default_agents();
+        }
+
+        foreach ($agents as $id => &$agent) {
+            $agent['id'] = $agent['agent_id'] ?? $id;
+            $agent['description'] = $agent['description'] ?? ($agent['mission'] ?? 'Ready for the next coordinated swarm mission.');
+            $agent['coordinates'] = $agent['coordinates'] ?? 'Dream.OS';
+            $agent['specialties'] = $agent['specialties'] ?? array($agent['role'] ?? 'Swarm Operations');
+        }
+        unset($agent);
+
+        return $agents;
+    }
+}
+
+if (!function_exists('get_swarm_stats')) {
+    function get_swarm_stats() {
+        $agents = get_swarm_agents();
+        $total_agents = count($agents);
+        $active_agents = 0;
+        $total_points = 0;
+
+        foreach ($agents as $agent) {
+            if (($agent['status'] ?? '') === 'active') {
+                $active_agents++;
+            }
+            $total_points += (int) ($agent['points'] ?? 0);
+        }
+
+        return array(
+            'total_agents' => $total_agents,
+            'active_agents' => $active_agents,
+            'total_points' => $total_points,
+            'avg_points' => $total_agents > 0 ? round($total_points / $total_agents) : 0,
+        );
+    }
+}
+
+if (!function_exists('get_swarm_mission_logs')) {
+    function get_swarm_mission_logs($limit = 20) {
+        $logs = get_option('swarm_mission_logs', array());
+        return array_slice($logs, 0, max(0, (int) $limit));
+    }
+}
+
 function weareswarm_fix_text_rendering($content) {
     // Fix common text rendering issues found on weareswarm.online
     $fixes = array(

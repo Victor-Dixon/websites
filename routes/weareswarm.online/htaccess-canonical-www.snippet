@@ -1,0 +1,14 @@
+# WeAreSwarm.online canonical host rules (managed snippet)
+# Prepended ahead of existing rules. Back up .htaccess before applying.
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Canonical host: apex -> www
+RewriteCond %{HTTP_HOST} ^weareswarm\.online$ [NC]
+RewriteRule ^ https://www.weareswarm.online%{REQUEST_URI} [R=301,L]
+</IfModule>
