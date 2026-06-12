@@ -25,18 +25,23 @@
     }
     .command-nav a:hover{color:var(--text);border-color:rgba(120,240,195,.45);background:rgba(120,240,195,.09);text-decoration:none}
     .command-nav a[aria-current="page"]{color:#04100c;background:var(--accent);border-color:var(--accent)}
+    .brand-logo{display:inline-flex;align-items:center;max-width:260px;height:48px;text-decoration:none;flex:0 0 auto;border:0;padding:0;background:transparent;border-radius:0}
+    .command-nav a.brand-logo{border:0;padding:0;background:transparent;color:inherit;border-radius:0}
+    .brand-logo:hover{text-decoration:none}
+    .brand-logo img{display:block;height:42px;width:auto;max-width:100%;object-fit:contain}
+    @media(max-width:640px){.command-nav{align-items:flex-start;flex-direction:column}.brand-logo{max-width:230px;height:44px}.brand-logo img{height:38px}}
   </style>
 
 </head>
 <body>
   <main class="wrap">
     <nav class="command-nav" aria-label="WeAreSwarm command navigation">
-      <a href="/">Command Center</a>
-      <a href="/feed/">Feed</a>
-      <a href="/projects/">Projects</a>
+      <a class="brand-logo" href="/" aria-label="We Are Swarm home"><img src="/assets/we-are-swarm-logo.png" alt="We Are Swarm"></a>
+      <a href="/">Home</a>
+      <a href="/focus/">Focus</a>
+      <a href="/projects/" aria-current="page">Projects</a>
       <a href="/tasks/">Tasks</a>
-      <a href="/skill-tree/">Skill Tree</a>
-      <a href="/dreamos-services/">Services</a>
+      <a href="/feed/">Closeout Feed</a>
     </nav>
     <h1>Crosby Ultimate Events moved from broken WordPress to live lead capture.</h1>
     <p>OWNER=Jacori Crosby</p>
