@@ -1,0 +1,82 @@
+id: projects_page_truthful_enrichment_001
+title: Fix /projects/ descriptions and consolidation buckets at exporter source
+status: active
+priority: P0
+owner: Victor
+site: weareswarm.online
+lane: projects_page
+
+problem:
+  projects-dashboard.js renderProjectCard shows row.tagline || row.description — blank means missing in JSON.
+  mergeEcosystemMeta weak name matching fails for DreamOS/Dream.os/DreamVault variants.
+  flattenBoard trusts board.buckets from exported JSON — fix exporter not renderer.
+
+classification_rules:
+  canonical_core:
+    - DreamOS
+  toolbelt:
+    - AgentTools
+    - projectscanner
+  promotion_candidate:
+    - AutoDream.Os
+    - Victor.os
+    - SWARM
+  inspect_manually:
+    - Dream.os-Core
+    - DreamOS_Core
+    - DreamVault
+    - Thea
+    - github-architect-bot
+  public_surface:
+    - weareswarm.online
+    - weareswarm.site
+    - dadudekc.site
+    - maskzero.site
+    - freerideinvestor.com
+    - digitaldreamscape.site
+    - ariajet.site
+    - xthunder.site
+
+required_descriptions:
+  DreamOS: Canonical Dream.OS core for multi-agent automation, task orchestration, repo discipline, verification gates, and operating-system style workflow execution.
+  AgentTools: Toolbelt repository for agent utilities, adapters, command helpers, and reusable automation support scripts.
+  projectscanner: Toolbelt scanner for repo discovery, authority graphs, duplicate detection, and portfolio/consolidation intelligence.
+  AutoDream.Os: Promotion candidate containing automation patterns or Dream.OS-adjacent systems that require salvage review before canonical promotion.
+  Victor.os: Promotion candidate containing personal operating-system experiments and reusable automation ideas that require inspection before merge.
+  SWARM: Promotion candidate for swarm-facing systems, public task flows, or coordination logic that may feed WeAreSwarm.
+  DreamVault: Current planning/report authority and task/report archive; inspect carefully before treating as canonical code.
+  Dream.os-Core: Manual inspection candidate with possible legacy/core overlap.
+  DreamOS_Core: Manual inspection candidate with possible legacy/core overlap.
+  Thea: Manual inspection candidate; classify by actual contents before promotion.
+  github-architect-bot: Manual inspection candidate for GitHub automation and repo management capabilities.
+
+source_of_truth:
+  primary_exporters:
+    - D:/DreamVault/runtime/tools/export_projects_board.py
+    - D:/DreamVault/runtime/tools/export_projects_feed.py
+  truth_map: D:/DreamVault/runtime/tools/project_metadata_truth_map.py
+  enriched_output: websites/weareswarm.online/data/planner/projects_board_enriched.json
+
+implementation_steps:
+  - Create project_metadata_truth_map.py with aliases, bucket overrides, required descriptions
+  - Patch export_projects_board.py to apply truth map and rebuild buckets
+  - Patch export_projects_feed.py to apply truth map metadata
+  - Optional JS hardening via canonical_id in mergeEcosystemMeta
+  - Regenerate enriched JSON and verify bucket counts
+  - Deploy weareswarm.online
+  - Commit DreamVault + websites
+
+verification:
+  commands:
+    - python runtime/tools/export_projects_board.py
+    - python runtime/tools/export_projects_feed.py
+    - python ops/deployment/unified_deployer.py --site weareswarm.online
+  checks:
+    - AgentTools → toolbelt
+    - projectscanner → toolbelt
+    - DreamOS → canonical_core
+    - AutoDream.Os, Victor.os, SWARM → promotion_candidate
+    - inspect_manually projects in inspect_manually bucket (or variant Review Needed)
+    - zero projects missing tagline+description in enriched output
+
+commit_message: "Fix projects page metadata and consolidation classification"

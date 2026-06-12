@@ -1,37 +1,55 @@
 {
   "schema": "weareswarm.online.projects_board_enriched.v1",
-  "generated_at": "2026-06-12T08:56:29+00:00",
+  "generated_at": "2026-06-12T10:48:42+00:00",
   "public_safe": true,
   "source": "export_projects_board.py",
   "stats": {
-    "projects": 12,
+    "projects": 11,
     "domains": 3,
     "productized": 1,
     "active_lanes": 1,
-    "open_tasks": 655,
+    "open_tasks": 661,
     "authority_nodes": 1514,
     "scanner_roots": 82
   },
   "projects": [
     {
-      "project": "DreamOS_Core",
-      "bucket": "canonical_core",
+      "project": "Dream.os-Core",
+      "bucket": "inspect_manually",
       "domain": "Dream.OS governance/runtime automation",
       "action": "inspect_manually",
-      "status": 80,
-      "is_canonical": true,
+      "status": 5,
+      "is_canonical": false,
       "capabilities": [
         "run_verification_gates"
       ],
+      "canonical_id": "Dream.os-Core",
+      "tagline": "Legacy/core overlap candidate",
+      "description": "Manual inspection candidate with possible legacy/core overlap.",
+      "repo_url": "https://github.com/Victor-Dixon/Dream.os-Core"
+    },
+    {
+      "project": "DreamOS_Core",
+      "bucket": "inspect_manually",
+      "domain": "Dream.OS governance/runtime automation",
+      "action": "inspect_manually",
+      "status": 80,
+      "is_canonical": false,
+      "capabilities": [
+        "run_verification_gates"
+      ],
+      "canonical_id": "DreamOS_Core",
+      "tagline": "Legacy/core overlap candidate",
+      "description": "Manual inspection candidate with possible legacy/core overlap.",
       "repo_url": "https://github.com/Victor-Dixon/DreamOS_Core"
     },
     {
       "project": "DreamVault",
-      "bucket": "canonical_core",
+      "bucket": "inspect_manually",
       "domain": "Dream.OS governance/runtime automation",
-      "action": "preserve_as_canonical",
+      "action": "inspect_manually",
       "status": 80,
-      "is_canonical": true,
+      "is_canonical": false,
       "capabilities": [
         "aggregate_project_capabilities",
         "architect_consolidation",
@@ -46,8 +64,9 @@
         "weareswarm.site/projects",
         "weareswarm.site/tasks"
       ],
-      "tagline": "Dream.OS governance, planner, and runtime automation",
-      "description": "Canonical repo for lane dispatch, repo consolidation, verification gates, and the planner JSON that powers this site.",
+      "canonical_id": "DreamVault",
+      "tagline": "Planning and report authority",
+      "description": "Current planning/report authority and task/report archive; inspect carefully before treating as canonical code.",
       "highlights": [
         "Planner sync: sync_planner_reports_to_weareswarm_online_001.py",
         "Repo consolidation and domain mapping",
@@ -63,7 +82,7 @@
     },
     {
       "project": "Victor-Dixon__Thea",
-      "bucket": "plugin",
+      "bucket": "inspect_manually",
       "domain": "automation toolbelt",
       "action": "inspect_manually",
       "status": 65,
@@ -73,11 +92,14 @@
         "run_verification_gates",
         "verify_task_gates"
       ],
+      "canonical_id": "Thea",
+      "tagline": "Inspect before promotion",
+      "description": "Manual inspection candidate; classify by actual contents before promotion.",
       "repo_url": "https://github.com/Victor-Dixon/Thea"
     },
     {
       "project": "github-architect-bot",
-      "bucket": "plugin",
+      "bucket": "inspect_manually",
       "domain": "automation toolbelt",
       "action": "inspect_manually",
       "status": 20,
@@ -96,7 +118,61 @@
         "weareswarm.site/projects",
         "weareswarm.site/tasks"
       ],
+      "canonical_id": "github-architect-bot",
+      "tagline": "GitHub automation candidate",
+      "description": "Manual inspection candidate for GitHub automation and repo management capabilities.",
       "repo_url": "https://github.com/Victor-Dixon/github-architect-bot"
+    },
+    {
+      "project": "Victor-Dixon__AutoDream.Os",
+      "bucket": "promotion_candidate",
+      "domain": "Dream.OS governance/runtime automation",
+      "action": "promote_into_canonical",
+      "status": 80,
+      "is_canonical": false,
+      "capabilities": [
+        "dispatch_lane_tasks",
+        "run_verification_gates",
+        "verify_task_gates"
+      ],
+      "canonical_id": "AutoDream.Os",
+      "tagline": "Dream.OS-adjacent automation patterns",
+      "description": "Promotion candidate containing automation patterns or Dream.OS-adjacent systems that require salvage review before canonical promotion.",
+      "repo_url": "https://github.com/Victor-Dixon/AutoDream.Os"
+    },
+    {
+      "project": "Victor-Dixon__SWARM",
+      "bucket": "promotion_candidate",
+      "domain": "Dream.OS governance/runtime automation",
+      "action": "promote_into_canonical",
+      "status": 20,
+      "is_canonical": false,
+      "capabilities": [
+        "dispatch_lane_tasks",
+        "run_verification_gates",
+        "verify_task_gates"
+      ],
+      "canonical_id": "SWARM",
+      "tagline": "Swarm coordination systems",
+      "description": "Promotion candidate for swarm-facing systems, public task flows, or coordination logic that may feed WeAreSwarm.",
+      "repo_url": "https://github.com/Victor-Dixon/SWARM"
+    },
+    {
+      "project": "Victor-Dixon__Victor.os",
+      "bucket": "promotion_candidate",
+      "domain": "Dream.OS governance/runtime automation",
+      "action": "promote_into_canonical",
+      "status": 80,
+      "is_canonical": false,
+      "capabilities": [
+        "dispatch_lane_tasks",
+        "run_verification_gates",
+        "verify_task_gates"
+      ],
+      "canonical_id": "Victor.os",
+      "tagline": "Personal OS experiments",
+      "description": "Promotion candidate containing personal operating-system experiments and reusable automation ideas that require inspection before merge.",
+      "repo_url": "https://github.com/Victor-Dixon/Victor.os"
     },
     {
       "project": "websites",
@@ -114,7 +190,8 @@
         "weareswarm.site",
         "public website"
       ],
-      "tagline": "Multi-site WordPress and static deploy monorepo",
+      "canonical_id": "websites",
+      "tagline": "Multi-site deploy monorepo",
       "description": "Package-based WordPress architecture plus static surfaces like weareswarm.online. Deploy via unified_deployer.",
       "highlights": [
         "Static planner: weareswarm.online",
@@ -140,6 +217,9 @@
       "capabilities": [
         "run_verification_gates"
       ],
+      "canonical_id": "AgentTools",
+      "tagline": "Agent toolbelt utilities",
+      "description": "Toolbelt repository for agent utilities, adapters, command helpers, and reusable automation support scripts.",
       "repo_url": "https://github.com/Victor-Dixon/agent-tools"
     },
     {
@@ -152,6 +232,9 @@
       "capabilities": [
         "run_verification_gates"
       ],
+      "canonical_id": "projectscanner",
+      "tagline": "Portfolio scanner and authority graph",
+      "description": "Toolbelt scanner for repo discovery, authority graphs, duplicate detection, and portfolio/consolidation intelligence.",
       "repo_url": "https://github.com/Victor-Dixon/projectscanner",
       "scanner": {
         "project": "projectscanner",
@@ -159,96 +242,6 @@
         "is_canonical": true,
         "file_count": 118
       }
-    },
-    {
-      "project": "Dream.os-Core",
-      "bucket": "variant",
-      "domain": "Dream.OS governance/runtime automation",
-      "action": "inspect_manually",
-      "status": 5,
-      "is_canonical": false,
-      "capabilities": [
-        "run_verification_gates"
-      ],
-      "repo_url": "https://github.com/Victor-Dixon/Dream.os-Core"
-    },
-    {
-      "project": "DreamVault",
-      "bucket": "variant",
-      "domain": "Dream.OS governance/runtime automation",
-      "action": "preserve_as_canonical",
-      "status": 20,
-      "is_canonical": false,
-      "capabilities": [
-        "aggregate_project_capabilities",
-        "architect_consolidation",
-        "dispatch_lane_tasks",
-        "emit_discord_cards",
-        "emit_intelligence_packet",
-        "emit_planner_transition",
-        "governed_paper_trading",
-        "manage_repo_lifecycle"
-      ],
-      "public_surfaces": [
-        "weareswarm.site/projects",
-        "weareswarm.site/tasks"
-      ],
-      "tagline": "Dream.OS governance, planner, and runtime automation",
-      "description": "Canonical repo for lane dispatch, repo consolidation, verification gates, and the planner JSON that powers this site.",
-      "highlights": [
-        "Planner sync: sync_planner_reports_to_weareswarm_online_001.py",
-        "Repo consolidation and domain mapping",
-        "Discord closeout cards and task gates"
-      ],
-      "repo_url": "https://github.com/Victor-Dixon/DreamVault",
-      "scanner": {
-        "project": "DreamVault",
-        "classification": "canonical_keep",
-        "is_canonical": true,
-        "file_count": 64
-      }
-    },
-    {
-      "project": "Victor-Dixon__AutoDream.Os",
-      "bucket": "variant",
-      "domain": "Dream.OS governance/runtime automation",
-      "action": "promote_into_canonical",
-      "status": 80,
-      "is_canonical": false,
-      "capabilities": [
-        "dispatch_lane_tasks",
-        "run_verification_gates",
-        "verify_task_gates"
-      ],
-      "repo_url": "https://github.com/Victor-Dixon/AutoDream.Os"
-    },
-    {
-      "project": "Victor-Dixon__SWARM",
-      "bucket": "variant",
-      "domain": "Dream.OS governance/runtime automation",
-      "action": "promote_into_canonical",
-      "status": 20,
-      "is_canonical": false,
-      "capabilities": [
-        "dispatch_lane_tasks",
-        "run_verification_gates",
-        "verify_task_gates"
-      ],
-      "repo_url": "https://github.com/Victor-Dixon/SWARM"
-    },
-    {
-      "project": "Victor-Dixon__Victor.os",
-      "bucket": "variant",
-      "domain": "Dream.OS governance/runtime automation",
-      "action": "promote_into_canonical",
-      "status": 80,
-      "is_canonical": false,
-      "capabilities": [
-        "dispatch_lane_tasks",
-        "run_verification_gates",
-        "verify_task_gates"
-      ],
-      "repo_url": "https://github.com/Victor-Dixon/Victor.os"
     }
   ],
   "domains": [
@@ -498,11 +491,11 @@
     ]
   },
   "tasks_summary": {
-    "total": 671,
-    "open": 655,
+    "total": 677,
+    "open": 661,
     "by_repo": {
       "DreamTradeData": 7,
-      "DreamVault": 637,
+      "DreamVault": 643,
       "AgentTools": 17,
       "Agent_Cellphone_V2_Repository": 1,
       "websites": 1,
@@ -519,11 +512,250 @@
     "generated_at": "2026-06-09T19:03:11+00:00",
     "source": "aggregate_project_domain_mapping_001",
     "totals": {
-      "canonical_core": 2,
-      "plugin": 2,
-      "public_surface": 1,
       "toolbelt": 2,
-      "variant": 5
-    }
+      "promotion_candidate": 3,
+      "inspect_manually": 5,
+      "public_surface": 1
+    },
+    "truth_map_applied": true
+  },
+  "buckets": {
+    "toolbelt": [
+      {
+        "project": "agent-tools",
+        "domain": "automation toolbelt",
+        "action": "keep_as_toolbelt",
+        "status": 80,
+        "is_canonical": false,
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "public_surfaces": [],
+        "canonical_id": "AgentTools",
+        "tagline": "Agent toolbelt utilities",
+        "description": "Toolbelt repository for agent utilities, adapters, command helpers, and reusable automation support scripts."
+      },
+      {
+        "project": "projectscanner",
+        "domain": "automation toolbelt",
+        "action": "keep_as_toolbelt",
+        "status": 80,
+        "is_canonical": false,
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "public_surfaces": [],
+        "canonical_id": "projectscanner",
+        "tagline": "Portfolio scanner and authority graph",
+        "description": "Toolbelt scanner for repo discovery, authority graphs, duplicate detection, and portfolio/consolidation intelligence."
+      }
+    ],
+    "promotion_candidate": [
+      {
+        "project": "Victor-Dixon__AutoDream.Os",
+        "domain": "Dream.OS governance/runtime automation",
+        "action": "promote_into_canonical",
+        "status": 80,
+        "is_canonical": false,
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "public_surfaces": [],
+        "canonical_id": "AutoDream.Os",
+        "tagline": "Dream.OS-adjacent automation patterns",
+        "description": "Promotion candidate containing automation patterns or Dream.OS-adjacent systems that require salvage review before canonical promotion."
+      },
+      {
+        "project": "Victor-Dixon__SWARM",
+        "domain": "Dream.OS governance/runtime automation",
+        "action": "promote_into_canonical",
+        "status": 20,
+        "is_canonical": false,
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "public_surfaces": [],
+        "canonical_id": "SWARM",
+        "tagline": "Swarm coordination systems",
+        "description": "Promotion candidate for swarm-facing systems, public task flows, or coordination logic that may feed WeAreSwarm."
+      },
+      {
+        "project": "Victor-Dixon__Victor.os",
+        "domain": "Dream.OS governance/runtime automation",
+        "action": "promote_into_canonical",
+        "status": 80,
+        "is_canonical": false,
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "public_surfaces": [],
+        "canonical_id": "Victor.os",
+        "tagline": "Personal OS experiments",
+        "description": "Promotion candidate containing personal operating-system experiments and reusable automation ideas that require inspection before merge."
+      }
+    ],
+    "inspect_manually": [
+      {
+        "project": "DreamOS_Core",
+        "domain": "Dream.OS governance/runtime automation",
+        "action": "inspect_manually",
+        "status": 80,
+        "is_canonical": false,
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "public_surfaces": [],
+        "canonical_id": "DreamOS_Core",
+        "tagline": "Legacy/core overlap candidate",
+        "description": "Manual inspection candidate with possible legacy/core overlap."
+      },
+      {
+        "project": "DreamVault",
+        "domain": "Dream.OS governance/runtime automation",
+        "action": "inspect_manually",
+        "status": 80,
+        "is_canonical": false,
+        "capabilities": [
+          "aggregate_project_capabilities",
+          "architect_consolidation",
+          "dispatch_lane_tasks",
+          "emit_discord_cards",
+          "emit_intelligence_packet",
+          "emit_planner_transition",
+          "flow_b_strategy_loop",
+          "governed_paper_trading"
+        ],
+        "public_surfaces": [
+          "weareswarm.site/projects",
+          "weareswarm.site/tasks"
+        ],
+        "canonical_id": "DreamVault",
+        "tagline": "Planning and report authority",
+        "description": "Current planning/report authority and task/report archive; inspect carefully before treating as canonical code."
+      },
+      {
+        "project": "Victor-Dixon__Thea",
+        "domain": "automation toolbelt",
+        "action": "inspect_manually",
+        "status": 65,
+        "is_canonical": false,
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "public_surfaces": [],
+        "canonical_id": "Thea",
+        "tagline": "Inspect before promotion",
+        "description": "Manual inspection candidate; classify by actual contents before promotion."
+      },
+      {
+        "project": "github-architect-bot",
+        "domain": "automation toolbelt",
+        "action": "inspect_manually",
+        "status": 20,
+        "is_canonical": false,
+        "capabilities": [
+          "aggregate_project_capabilities",
+          "architect_consolidation",
+          "dispatch_lane_tasks",
+          "emit_discord_cards",
+          "emit_intelligence_packet",
+          "emit_planner_transition",
+          "governed_paper_trading",
+          "manage_repo_lifecycle"
+        ],
+        "public_surfaces": [
+          "weareswarm.site/projects",
+          "weareswarm.site/tasks"
+        ],
+        "canonical_id": "github-architect-bot",
+        "tagline": "GitHub automation candidate",
+        "description": "Manual inspection candidate for GitHub automation and repo management capabilities."
+      },
+      {
+        "project": "Dream.os-Core",
+        "domain": "Dream.OS governance/runtime automation",
+        "action": "inspect_manually",
+        "status": 5,
+        "is_canonical": false,
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "public_surfaces": [],
+        "canonical_id": "Dream.os-Core",
+        "tagline": "Legacy/core overlap candidate",
+        "description": "Manual inspection candidate with possible legacy/core overlap."
+      }
+    ],
+    "public_surface": [
+      {
+        "project": "websites",
+        "domain": "public web surface",
+        "action": "keep_as_public_surface",
+        "status": 80,
+        "is_canonical": false,
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "public_surfaces": [
+          "weareswarm.site",
+          "public website"
+        ],
+        "canonical_id": "websites",
+        "tagline": "Multi-site deploy monorepo",
+        "description": "Package-based WordPress architecture plus static surfaces like weareswarm.online. Deploy via unified_deployer."
+      }
+    ]
+  },
+  "canonical_aliases": {
+    "dreamos": "DreamOS",
+    "dream.os": "DreamOS",
+    "dreamos_core": "DreamOS_Core",
+    "dreamos-core": "Dream.os-Core",
+    "dream.os-core": "Dream.os-Core",
+    "dream.oscore": "Dream.os-Core",
+    "agenttools": "AgentTools",
+    "agent-tools": "AgentTools",
+    "projectscanner": "projectscanner",
+    "autodream.os": "AutoDream.Os",
+    "victor-dixon__autodream.os": "AutoDream.Os",
+    "victor.os": "Victor.os",
+    "victor-dixon__victor.os": "Victor.os",
+    "swarm": "SWARM",
+    "victor-dixon__swarm": "SWARM",
+    "thea": "Thea",
+    "victor-dixon__thea": "Thea",
+    "githubarchitectbot": "github-architect-bot",
+    "github-architect-bot": "github-architect-bot",
+    "dreamvault": "DreamVault",
+    "websites": "websites",
+    "weareswarmonline": "weareswarm.online",
+    "weareswarm.site": "weareswarm.site",
+    "weareswarmsite": "weareswarm.site",
+    "dadudekc.site": "dadudekc.site",
+    "dadudekcsite": "dadudekc.site",
+    "maskzero.site": "maskzero.site",
+    "maskzerosite": "maskzero.site",
+    "freerideinvestor.com": "freerideinvestor.com",
+    "freerideinvestorcom": "freerideinvestor.com",
+    "digitaldreamscape.site": "digitaldreamscape.site",
+    "digitaldreamscapesite": "digitaldreamscape.site",
+    "ariajet.site": "ariajet.site",
+    "ariajetsite": "ariajet.site",
+    "xthunder.site": "xthunder.site",
+    "xthundersite": "xthunder.site",
+    "autodreamos": "AutoDream.Os",
+    "victoros": "Victor.os",
+    "dreamoscore": "DreamOS_Core",
+    "weareswarm.online": "weareswarm.online"
   }
 }

@@ -13,6 +13,7 @@
     promotion_candidate: "Promotion candidate",
     public_surface: "Public surface",
     toolbelt: "Toolbelt",
+    inspect_manually: "Review needed",
     variant: "Variant",
     archive_candidate: "Archive candidate",
     plugin: "Plugin",
@@ -54,6 +55,9 @@
           action: row.action || "—",
           status: row.status,
           is_canonical: !!row.is_canonical,
+          canonical_id: row.canonical_id,
+          tagline: row.tagline,
+          description: row.description,
           capabilities: toList(row.capabilities),
           public_surfaces: toList(row.public_surfaces),
         });
@@ -67,22 +71,28 @@
     return rows;
   }
 
-  function mergeEcosystemMeta(rows, ecosystem) {
+  function mergeEcosystemMeta(rows, ecosystem, enriched) {
     var byName = {};
     toList(ecosystem && ecosystem.projects).forEach(function (p) {
-      var keys = [p.id, p.name, (p.name || "").toLowerCase()];
+      var keys = [p.id, p.name, p.canonical_id, (p.name || "").toLowerCase()];
       keys.forEach(function (k) {
         if (k) byName[String(k).toLowerCase()] = p;
       });
     });
+    var aliases = (enriched && enriched.canonical_aliases) || {};
     return rows.map(function (row) {
       var key = String(row.project || "").toLowerCase();
-      var meta = byName[key] || byName[key.replace(/-/g, "")];
+      var canonicalId = row.canonical_id || aliases[key] || aliases[key.replace(/-/g, "")];
+      var meta =
+        byName[key] ||
+        byName[key.replace(/-/g, "")] ||
+        (canonicalId && byName[String(canonicalId).toLowerCase()]);
       return Object.assign({}, row, {
-        tagline: meta && meta.tagline,
-        description: meta && meta.description,
-        repo_url: (meta && meta.repo_url) || githubUrl(row.project),
-        highlights: meta && meta.highlights,
+        canonical_id: canonicalId || row.canonical_id,
+        tagline: row.tagline || (meta && meta.tagline),
+        description: row.description || (meta && meta.description),
+        repo_url: (meta && meta.repo_url) || row.repo_url || githubUrl(row.project),
+        highlights: row.highlights || (meta && meta.highlights),
       });
     });
   }
@@ -187,6 +197,8 @@
   }
 
   function renderProjectCard(row) {
+    var capabilities = toList(row && row.capabilities);
+    var publicSurfaces = toList(row && row.public_surfaces);
     var tone = statusTone(
       row.is_canonical ? "VERIFIED" :
       row.status >= 80 ? "MVP_SHIPPED" :
@@ -218,22 +230,22 @@
       bodyChildren.push(
         el("p", {
           className: "project-desc",
-          text: actionLabel(row.action) + " · " + row.capabilities.slice(0, 4).join(", "),
+          text: actionLabel(row.action) + " · " + capabilities.slice(0, 4).join(", "),
         })
       );
     }
 
-    if (row.capabilities.length) {
+    if (capabilities.length) {
       bodyChildren.push(
-        el("div", { className: "pill-row" }, row.capabilities.slice(0, 6).map(function (cap) {
+        el("div", { className: "pill-row" }, capabilities.slice(0, 6).map(function (cap) {
           return el("span", { className: "pill", text: cap });
         }))
       );
     }
 
-    if (row.public_surfaces.length) {
+    if (publicSurfaces.length) {
       bodyChildren.push(
-        el("p", { className: "project-surfaces", text: "Surfaces: " + row.public_surfaces.join(", ") })
+        el("p", { className: "project-surfaces", text: "Surfaces: " + publicSurfaces.join(", ") })
       );
     }
 
@@ -296,11 +308,11 @@
     renderScannerSummary(document.getElementById("scanner-summary"), enriched);
   }
 
-  function renderProjectCards(container, board, ecosystem, domainIndex) {
+  function renderProjectCards(container, board, ecosystem, domainIndex, enriched) {
     if (!container) return;
     container.innerHTML = "";
 
-    var rows = mergeEcosystemMeta(flattenBoard(board), ecosystem);
+    var rows = mergeEcosystemMeta(flattenBoard(board), ecosystem, enriched);
     if (!rows.length) {
       container.appendChild(el("p", {
         className: "empty-state",

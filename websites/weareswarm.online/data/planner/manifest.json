@@ -1,6 +1,6 @@
 {
   "schema": "weareswarm.online.planner_manifest.v1",
-  "synced_at": "2026-06-12T08:57:46+00:00",
+  "synced_at": "2026-06-12T10:48:42+00:00",
   "source": "dreamvault_sync",
   "mode": "local_only",
   "dreamvault_planner_root": "D:/DreamVault/data/reports/planner",
@@ -63,5 +63,6 @@
     "operator_outcome_reset_001.json"
   ],
   "refresh_command": "python D:/DreamVault/runtime/scripts/sync_planner_reports_to_weareswarm_online_001.py --local-only",
-  "public_safe": true
+  "public_safe": true,
+  "projects_board_enriched": "projects_board_enriched.json"
 }
