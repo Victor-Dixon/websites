@@ -3,7 +3,7 @@ title: Fix Spark generate public payload hardening
 lane: repo_fleet_self_healing_001
 status: in_progress
 target:
-  live_domain: dadudekc.site
+  live_domain: maskzero.site
   route: /spark-generator/
   endpoint: /wp-json/emergence/v1/generate
   plugin: runtime/plugins/emergence-character-generator/emergence-character-generator.php

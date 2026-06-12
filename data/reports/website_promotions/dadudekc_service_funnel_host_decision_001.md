@@ -22,7 +22,7 @@ Use DaDudeKC as founder-proof/redirect identity. Use Dream.OS as the product/sys
 - Reason: Best separates service business from personal founder brand and trading brand.
 - Risk: Needs clear proof/logging so it does not sound generic or made up.
 
-### `dadudekc.site`
+### `maskzero.site`
 - Decision: `REDIRECT_OR_FOUNDER_PROOF`
 - Fit: Personal/founder credibility layer.
 - Recommended path: `/`

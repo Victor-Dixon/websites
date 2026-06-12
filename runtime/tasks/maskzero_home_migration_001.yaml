@@ -1,0 +1,31 @@
+id: maskzero_home_migration_001
+title: Move Mask Zero project from temp domain to canonical home
+status: active
+priority: P0
+owner: Victor
+
+domains:
+  temp_project_domain: dadudekc.site
+  canonical_project_domain: maskzero.site
+
+rules:
+  redirect_dadudekc_to_maskzero: false
+  preserve_dadudekc_as_separate_site: true
+  destructive_actions: false
+
+objectives:
+  - Replace Mask Zero project canonical references with maskzero.site.
+  - Keep dadudekc.site available for its own future standalone site.
+  - Do not add redirect rules from dadudekc.site to maskzero.site.
+  - Deploy current Mask Zero project to maskzero.site.
+  - Verify build and public routing.
+
+verification:
+  - Repo search confirms Mask Zero canonical URL is maskzero.site.
+  - No redirect configuration was added for dadudekc.site.
+  - Build passes.
+  - maskzero.site serves the current project.
+  - dadudekc.site remains independently assignable.
+
+report:
+  path: data/reports/domain_migration/maskzero_home_migration_20260612_082218.txt

@@ -5,7 +5,7 @@ Generated: 2026-06-05T06:50:56-05:00
 Exact URL:
 
 ```text
-https://dadudekc.site/spark-generator
+https://maskzero.site/spark-generator
 ```
 
 ## Patch result

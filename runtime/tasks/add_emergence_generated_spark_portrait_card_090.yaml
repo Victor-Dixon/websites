@@ -11,8 +11,8 @@ action: >
   a debug panel. It should render from protocol output already produced by the
   two-pass generator and remain privacy-safe.
 context:
-  project: dadudekc.site
-  url: https://dadudekc.site/character-generator/
+  project: maskzero.site
+  url: https://maskzero.site/character-generator/
   plugin: runtime/plugins/emergence-character-generator
   related_commits:
     - 8098fba
@@ -116,7 +116,7 @@ verification:
       Add a privacy assertion: public HTML/SVG must not contain raw score labels
       such as manifest_threshold, scores, tiers, or debug summaries.
   manual:
-    - Open https://dadudekc.site/character-generator/
+    - Open https://maskzero.site/character-generator/
     - Complete pass 1 and confirm pass 2 appears.
     - Complete pass 2 and confirm final Spark Profile shows a portrait/card.
     - Confirm card looks character-sheet-like rather than raw mechanics.

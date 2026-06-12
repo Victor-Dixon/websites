@@ -5,7 +5,7 @@ Transform The Emergence site direction into a comic-book operating interface.
 
 ## Actions Taken
 - Created standalone comic archive homepage:
-  - `runtime/content/dadudekc.site/the-emergence.html`
+  - `runtime/content/maskzero.site/the-emergence.html`
 - Created task artifact:
   - `runtime/tasks/emergence/add_emergence_comic_archive_homepage_001.yaml`
 - Positioned battle sim as:

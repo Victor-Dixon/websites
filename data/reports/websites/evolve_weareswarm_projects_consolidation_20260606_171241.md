@@ -12,7 +12,7 @@ root=/data/data/com.termux/files/home/projects/websites
 82:      <h2>Canonical systems</h2>
 124:          <h3>Crosby Ultimate Events</h3>
 156:      <h2>Project inventory model</h2>
-193:            <td>Crosby Ultimate Events, dadudekc.site, AriaJet</td>
+193:            <td>Crosby Ultimate Events, maskzero.site, AriaJet</td>
 202:      <h2>Consolidation lanes</h2>
 209:          <h3>Spark/Emergence website drift</h3>
 == DEPLOY TO WEARESWARM.ONLINE ==
@@ -33,7 +33,7 @@ REMOTE_DEPLOY=PASS
       <h2>Canonical systems</h2>
           <h3>Crosby Ultimate Events</h3>
       <h2>Project inventory model</h2>
-            <td>Crosby Ultimate Events, dadudekc.site, AriaJet</td>
+            <td>Crosby Ultimate Events, maskzero.site, AriaJet</td>
       <h2>Consolidation lanes</h2>
           <h3>Spark/Emergence website drift</h3>
 --- https://weareswarm.online/ ---

@@ -10,7 +10,7 @@
 ## Raw Output
 
 ```text
-No syntax errors detected in /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/emergence-character-generator.php
+No syntax errors detected in /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/emergence-character-generator.php
 REMOTE_PHP_LINT=PASS
       "question": "When something genuinely good finally happens to you, what is your honest reaction?",
       "question": "How do you handle being overwhelmed?",

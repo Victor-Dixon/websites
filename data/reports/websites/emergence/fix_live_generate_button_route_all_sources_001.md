@@ -5,17 +5,17 @@ Generated: 2026-06-05T01:49:57-05:00
 ## Before homepage scan
 
 ```text
-8:<link rel="alternate" type="application/rss+xml" title="dadudekc.site &raquo; Feed" href="https://dadudekc.site/feed/" />
-9:<link rel="alternate" type="application/rss+xml" title="dadudekc.site &raquo; Comments Feed" href="https://dadudekc.site/comments/feed/" />
-10:<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://dadudekc.site/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdadudekc.site%2F" />
-11:<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://dadudekc.site/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdadudekc.site%2F&#038;format=xml" />
+8:<link rel="alternate" type="application/rss+xml" title="maskzero.site &raquo; Feed" href="https://maskzero.site/feed/" />
+9:<link rel="alternate" type="application/rss+xml" title="maskzero.site &raquo; Comments Feed" href="https://maskzero.site/comments/feed/" />
+10:<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://maskzero.site/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmaskzero.site%2F" />
+11:<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://maskzero.site/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmaskzero.site%2F&#038;format=xml" />
 57:/*! This file is auto-generated */
-61:<link rel='stylesheet' id='spark-battle-sim-css-css' href='https://dadudekc.site/wp-content/plugins/spark-battle-sim/assets/battle.css?ver=0.1.0' media='all' />
-62:<link rel='stylesheet' id='hostinger-reach-subscription-block-css' href='https://dadudekc.site/wp-content/plugins/hostinger-reach/frontend/dist/blocks/subscription.css?ver=1779933706' media='all' />
-63:<link rel='stylesheet' id='dreamos-emergence-style-css' href='https://dadudekc.site/wp-content/themes/dreamos-emergence/style.css?ver=1780480266' media='all' />
-64:<link rel="https://api.w.org/" href="https://dadudekc.site/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://dadudekc.site/wp-json/wp/v2/pages/16" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://dadudekc.site/xmlrpc.php?rsd" />
-66:<link rel="canonical" href="https://dadudekc.site/" />
-67:<link rel='shortlink' href='https://dadudekc.site/' />
+61:<link rel='stylesheet' id='spark-battle-sim-css-css' href='https://maskzero.site/wp-content/plugins/spark-battle-sim/assets/battle.css?ver=0.1.0' media='all' />
+62:<link rel='stylesheet' id='hostinger-reach-subscription-block-css' href='https://maskzero.site/wp-content/plugins/hostinger-reach/frontend/dist/blocks/subscription.css?ver=1779933706' media='all' />
+63:<link rel='stylesheet' id='dreamos-emergence-style-css' href='https://maskzero.site/wp-content/themes/dreamos-emergence/style.css?ver=1780480266' media='all' />
+64:<link rel="https://api.w.org/" href="https://maskzero.site/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://maskzero.site/wp-json/wp/v2/pages/16" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://maskzero.site/xmlrpc.php?rsd" />
+66:<link rel="canonical" href="https://maskzero.site/" />
+67:<link rel='shortlink' href='https://maskzero.site/' />
 72:<a class="skip-link screen-reader-text" id="wp-skip-link" href="#wp--skip-link--target">Skip to content</a><div class="wp-site-blocks"><header class="wp-block-template-part">
 75:    <a class="dreamos-brand" href="/">
 83:      <a href="/#loop">Loop</a>
@@ -34,7 +34,7 @@ Generated: 2026-06-05T01:49:57-05:00
 ## Remote route repair
 
 ```text
-WP_ROOT=/home/u996867598/domains/dadudekc.site/public_html
+WP_ROOT=/home/u996867598/domains/maskzero.site/public_html
 == WP DB SEARCH BEFORE ==
 == WP SEARCH REPLACE ALL TABLES ==
 Table	Column	Replacements	Type
@@ -349,17 +349,17 @@ ROUTE_REPAIR_ALL_SOURCES=PASS
 ## After homepage scan
 
 ```text
-8:<link rel="alternate" type="application/rss+xml" title="dadudekc.site &raquo; Feed" href="https://dadudekc.site/feed/" />
-9:<link rel="alternate" type="application/rss+xml" title="dadudekc.site &raquo; Comments Feed" href="https://dadudekc.site/comments/feed/" />
-10:<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://dadudekc.site/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdadudekc.site%2F" />
-11:<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://dadudekc.site/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdadudekc.site%2F&#038;format=xml" />
+8:<link rel="alternate" type="application/rss+xml" title="maskzero.site &raquo; Feed" href="https://maskzero.site/feed/" />
+9:<link rel="alternate" type="application/rss+xml" title="maskzero.site &raquo; Comments Feed" href="https://maskzero.site/comments/feed/" />
+10:<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://maskzero.site/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmaskzero.site%2F" />
+11:<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://maskzero.site/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmaskzero.site%2F&#038;format=xml" />
 57:/*! This file is auto-generated */
-61:<link rel='stylesheet' id='spark-battle-sim-css-css' href='https://dadudekc.site/wp-content/plugins/spark-battle-sim/assets/battle.css?ver=0.1.0' media='all' />
-62:<link rel='stylesheet' id='hostinger-reach-subscription-block-css' href='https://dadudekc.site/wp-content/plugins/hostinger-reach/frontend/dist/blocks/subscription.css?ver=1779933706' media='all' />
-63:<link rel='stylesheet' id='dreamos-emergence-style-css' href='https://dadudekc.site/wp-content/themes/dreamos-emergence/style.css?ver=1780480266' media='all' />
-64:<link rel="https://api.w.org/" href="https://dadudekc.site/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://dadudekc.site/wp-json/wp/v2/pages/16" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://dadudekc.site/xmlrpc.php?rsd" />
-66:<link rel="canonical" href="https://dadudekc.site/" />
-67:<link rel='shortlink' href='https://dadudekc.site/' />
+61:<link rel='stylesheet' id='spark-battle-sim-css-css' href='https://maskzero.site/wp-content/plugins/spark-battle-sim/assets/battle.css?ver=0.1.0' media='all' />
+62:<link rel='stylesheet' id='hostinger-reach-subscription-block-css' href='https://maskzero.site/wp-content/plugins/hostinger-reach/frontend/dist/blocks/subscription.css?ver=1779933706' media='all' />
+63:<link rel='stylesheet' id='dreamos-emergence-style-css' href='https://maskzero.site/wp-content/themes/dreamos-emergence/style.css?ver=1780480266' media='all' />
+64:<link rel="https://api.w.org/" href="https://maskzero.site/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://maskzero.site/wp-json/wp/v2/pages/16" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://maskzero.site/xmlrpc.php?rsd" />
+66:<link rel="canonical" href="https://maskzero.site/" />
+67:<link rel='shortlink' href='https://maskzero.site/' />
 72:<a class="skip-link screen-reader-text" id="wp-skip-link" href="#wp--skip-link--target">Skip to content</a><div class="wp-site-blocks"><header class="wp-block-template-part">
 75:    <a class="dreamos-brand" href="/">
 83:      <a href="/#loop">Loop</a>

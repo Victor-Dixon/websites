@@ -5,7 +5,7 @@ Generated: 2026-06-05T02:37:50-05:00
 ## Remote patch
 
 ```text
-WP_ROOT=/home/u996867598/domains/dadudekc.site/public_html
+WP_ROOT=/home/u996867598/domains/maskzero.site/public_html
 == PYTHON FILE PATCH ==
 PATCH_FILE=wp-content/themes/dreamos-emergence/parts/header.html
 PATCH_FILE=wp-content/plugins/emergence-character-generator/assets/emergence-cg.js

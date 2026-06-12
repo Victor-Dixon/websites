@@ -11,7 +11,7 @@
 ## Deploy Output
 
 ```text
-No syntax errors detected in /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/emergence-character-generator.php
+No syntax errors detected in /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/emergence-character-generator.php
 REMOTE_PHP_LINT=PASS
 // DREAMOS_OPENAI_IMAGE_PROVIDER_V2_BEGIN
 function emergence_cg_v2_call_openai_image_provider($config, $spark_name, $prompt) {

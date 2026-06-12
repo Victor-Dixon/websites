@@ -1,0 +1,28 @@
+version: 1
+name: emergence_hostinger_image_env
+site: maskzero.site
+status: configured
+implemented:
+  - wp_config_constant_fallback
+  - hostinger_wp_config_image_constants
+  - live_openai_provider_gate_enabled
+verified:
+  plugin_constant_fallback: pass
+  wp_config_constants: pass
+  remote_env_config: pass
+  live_provider_reached: pass
+  live_provider_no_key_leaks: pass
+safety:
+  key_committed: false
+  key_printed: false
+  note: "Provider reached live OpenAI path; generated or safe provider_error are both accepted."
+env_runtime:
+  EMERGENCE_IMAGE_PROVIDER: openai
+  EMERGENCE_IMAGE_LIVE: '1'
+  EMERGENCE_IMAGE_MODEL: gpt-image-1
+  EMERGENCE_IMAGE_SIZE: 1024x1024
+  EMERGENCE_IMAGE_QUALITY: medium
+next_allowed_actions:
+  - inspect_provider_error_message_without_key
+  - verify_generated_image_ui_render
+  - add_shareable_character_permalink

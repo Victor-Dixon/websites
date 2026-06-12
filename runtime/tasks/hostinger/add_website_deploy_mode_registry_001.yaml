@@ -11,5 +11,5 @@ intent: >
 verify:
   - python -m py_compile runtime/scripts/validate_website_deploy_modes.py
   - python runtime/scripts/validate_website_deploy_modes.py --domain freerideinvestor.com
-  - python runtime/scripts/validate_website_deploy_modes.py --domain dadudekc.site
+  - python runtime/scripts/validate_website_deploy_modes.py --domain maskzero.site
 commit_message: Add website deploy mode registry

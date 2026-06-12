@@ -28,9 +28,9 @@ PUBLIC_HTML=PASS
 WP_CONFIG=PASS
 WP_CLI_INFO=PASS
 ---
-SITE=dadudekc.site
-ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/dadudekc.site.env
-WP_ROOT=/home/u996867598/domains/dadudekc.site/public_html
+SITE=maskzero.site
+ENV_LOCAL=/data/data/com.termux/files/home/projects/websites/runtime/env/hostinger/sites/maskzero.site.env
+WP_ROOT=/home/u996867598/domains/maskzero.site/public_html
 PUBLIC_HTML=PASS
 WP_CONFIG=PASS
 WP_CLI_INFO=PASS

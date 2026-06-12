@@ -5,7 +5,7 @@ Generated: 2026-06-05T06:52:01-05:00
 Canonical URL tested:
 
 ```text
-https://dadudekc.site/spark-generator/
+https://maskzero.site/spark-generator/
 ```
 
 ## Page signals

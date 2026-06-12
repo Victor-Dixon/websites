@@ -1,0 +1,34 @@
+version: 1
+name: emergence_portrait_prompt_preview_polish
+site: maskzero.site
+status: deployed
+implemented:
+  - polished_prompt_preview_card
+  - prompt_copy_button
+  - costume_section
+  - personality_section
+  - powers_section
+  - ability_showcase_section
+  - full_body_standard_section
+verified:
+  static_prompt_preview_safe: pass
+  static_prompt_copy_ui: pass
+  static_prompt_sections: pass
+  remote_php_lint: pass
+  public_prompt_preview_inline: pass
+  public_prompt_preview_sections: pass
+  public_prompt_copy_button: pass
+  public_prompt_no_raw_score_leak: pass
+  prompt_fixture_smoke: pass
+safety:
+  raw_scores_visible: false
+  roll_visible: false
+  odds_visible: false
+  backend_math_hidden: true
+  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/portrait_prompt_preview_polish_109_20260531_133500'
+urls:
+  character_generator: https://maskzero.site/character-generator/
+next_allowed_actions:
+  - premium_image_billing_retry
+  - saved_character_gallery
+  - battle_story_ui_polish

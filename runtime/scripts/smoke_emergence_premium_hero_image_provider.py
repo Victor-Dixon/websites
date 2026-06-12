@@ -5,10 +5,10 @@ import json
 import re
 import urllib.request
 
-PAGE_URL = "https://dadudekc.site/character-generator/"
-JS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
-CSS_URL = "https://dadudekc.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
-REST_URL = "https://dadudekc.site/wp-json/emergence/v1/portrait"
+PAGE_URL = "https://maskzero.site/character-generator/"
+JS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.js"
+CSS_URL = "https://maskzero.site/wp-content/plugins/emergence-character-generator/assets/emergence-cg.css"
+REST_URL = "https://maskzero.site/wp-json/emergence/v1/portrait"
 
 PROMPT = (
     'Create a premium original superhero character portrait for a new hero named "The Prism Warden". '

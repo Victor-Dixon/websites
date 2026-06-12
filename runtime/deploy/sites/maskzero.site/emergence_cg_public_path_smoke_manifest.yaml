@@ -1,0 +1,24 @@
+version: 1
+name: emergence_cg_public_path_smoke
+site: maskzero.site
+status: pass
+smoke_type: curl_js_lite
+target_url: https://maskzero.site/character-generator/
+script: runtime/scripts/smoke_emergence_character_generator_public_path.py
+verified:
+  public_page_structure: pass
+  public_js_phase_path: pass
+  domain_pass_rest: pass
+  visible_pass_2_assert: pass
+  flavor_pass_rest: pass
+  visible_spark_profile_assert: pass
+  public_privacy_assert: pass
+notes:
+  - This is not full browser automation.
+  - It proves the public page mounts required elements, public JS contains transition/render path, and REST fixtures complete both phases.
+  - Upgrade to Playwright later when browser dependencies are stable in the operator environment.
+next_allowed_actions:
+  - add Playwright browser smoke
+  - add saved character records
+  - add shareable character permalink
+  - build Battle Simulator demo

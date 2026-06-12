@@ -260,7 +260,7 @@ The promotion guardrail worked: DaDudeKC was not promoted into a dirty websites 
 - Reason: unclassified dirty artifact
 - File count: `2`
 
-### `runtime/content/dadudekc.site/client-preview.freeride-funnel-candidate.html`
+### `runtime/content/maskzero.site/client-preview.freeride-funnel-candidate.html`
 - Git status: `??`
 - Group: `dadudekc_content`
 - Decision: `REVIEW_WITH_DADUDEKC_PROMOTION`

@@ -5,7 +5,7 @@ Replace the retro comic design with a modern 2026 premium Spark OS interface and
 
 ## Actions Taken
 - Rewrote:
-  - `runtime/content/dadudekc.site/the-emergence.html`
+  - `runtime/content/maskzero.site/the-emergence.html`
 - New design direction:
   - luminous dark glass UI
   - cyan/violet/pink/green gradient system
@@ -13,9 +13,9 @@ Replace the retro comic design with a modern 2026 premium Spark OS interface and
   - premium product interface
   - no retro comic fonts/panels
 - Deployed to:
-  - `https://dadudekc.site/the-emergence/`
+  - `https://maskzero.site/the-emergence/`
 - Promoted WordPress homepage with domain-safe env override:
-  - `https://dadudekc.site/`
+  - `https://maskzero.site/`
 
 ## Verification
 ```text

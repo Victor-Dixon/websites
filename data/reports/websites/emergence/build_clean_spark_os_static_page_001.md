@@ -16,12 +16,12 @@ Generated: 2026-06-05T08:02:36-05:00
 382:          btn.textContent = "Generate Spark Pass 1";
 397:            source: "spark-os-static"
 406:          btn.textContent = "Build Final Dossier";
-61881 /data/data/com.termux/files/home/projects/websites/runtime/content/dadudekc.site/spark-os/index.html
+61881 /data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/spark-os/index.html
 ```
 
 ## Result
 
-Built isolated static route at runtime/content/dadudekc.site/spark-os/index.html.
+Built isolated static route at runtime/content/maskzero.site/spark-os/index.html.
 
 ## Live verification
 

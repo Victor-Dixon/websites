@@ -7,7 +7,7 @@ Generated: 2026-06-01T05:34:12-05:00
 | ariajet.site | PASS | unknown | 500 | 500 | `/home/u996867598/domains/ariajet.site/public_html` | [report](ariajet.site__audit.md) |
 | crosbyultimateevents.com | PASS | unknown | 500 | 500 | `/home/u996867598/domains/crosbyultimateevents.com/public_html` | [report](crosbyultimateevents.com__audit.md) |
 | dadudekc.com | PASS | unknown | 000 | 000 | `/home/u996867598/domains/dadudekc.com/public_html` | [report](dadudekc.com__audit.md) |
-| dadudekc.site | PASS | unknown | 200 | 200 | `/home/u996867598/domains/dadudekc.site/public_html` | [report](dadudekc.site__audit.md) |
+| maskzero.site | PASS | unknown | 200 | 200 | `/home/u996867598/domains/maskzero.site/public_html` | [report](maskzero.site__audit.md) |
 | digitaldreamscape.site | PASS | unknown | 500 | 500 | `/home/u996867598/domains/digitaldreamscape.site/public_html` | [report](digitaldreamscape.site__audit.md) |
 | freerideinvestor.com | PASS | unknown | 200 | 200 | `/home/u996867598/domains/freerideinvestor.com/public_html` | [report](freerideinvestor.com__audit.md) |
 | houstonsipqueen.com | PASS | unknown | 500 | 500 | `/home/u996867598/domains/houstonsipqueen.com/public_html` | [report](houstonsipqueen.com__audit.md) |

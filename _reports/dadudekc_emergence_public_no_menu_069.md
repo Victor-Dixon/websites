@@ -1,9 +1,9 @@
-# dadudekc.site Emergence Public Skeleton 069
+# maskzero.site Emergence Public Skeleton 069
 
 ## Result
 
 - Build mode: build in public
-- Homepage: https://dadudekc.site/
+- Homepage: https://maskzero.site/
 - Product: The Emergence
 - Menu mutation: deferred
 
@@ -55,7 +55,7 @@ server: LiteSpeed
 platform: hostinger
 panel: hpanel
 content-security-policy: upgrade-insecure-requests
-x-spark-site: dadudekc.site
+x-spark-site: maskzero.site
 
 THE_EMERGENCE
 HTTP/2 404 

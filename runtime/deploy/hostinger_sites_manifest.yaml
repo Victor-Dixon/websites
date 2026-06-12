@@ -290,13 +290,13 @@ sites:
         collect_enabled: false
         deploy_enabled: false
 
-  dadudekc_site:
-    domain: 'dadudekc.site'
+  maskzero_site:
+    domain: 'maskzero.site'
     platform: wordpress
     wordpress_detected: true
-    wp_root: '/home/u996867598/domains/dadudekc.site/public_html'
-    plugins_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins'
-    themes_dir: '/home/u996867598/domains/dadudekc.site/public_html/wp-content/themes'
+    wp_root: '/home/u996867598/domains/maskzero.site/public_html'
+    plugins_dir: '/home/u996867598/domains/maskzero.site/public_html/wp-content/plugins'
+    themes_dir: '/home/u996867598/domains/maskzero.site/public_html/wp-content/themes'
     deploy_enabled: false
     plugin_deploy_enabled: false
     theme_deploy_enabled: false

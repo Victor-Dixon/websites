@@ -1,0 +1,21 @@
+version: 1
+name: spark_battle_sim_hostinger_install
+site: maskzero.site
+status: installed
+zip: _reports/spark-battle-sim-0.2.0-spark-protocol.zip
+url: https://maskzero.site/battles/
+verified:
+  zip_test: pass
+  remote_install: pass
+  plugin_active: pass
+  page_upsert: pass
+  public_page_200: pass
+  public_character_options: pass
+  player_output_math_hidden: pass
+safety:
+  backend_math_hidden: true
+  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/spark_battle_sim_install_097_20260531_125112'
+next_allowed_actions:
+  - run_manual_battle_ui_proof
+  - improve_public_battle_page_copy
+  - connect_character_generator_output_to_battle_input

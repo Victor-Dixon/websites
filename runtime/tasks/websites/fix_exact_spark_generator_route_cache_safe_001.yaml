@@ -3,7 +3,7 @@ title: Fix exact Spark generator route cache safely
 lane: repo_fleet_self_healing_001
 status: completed
 target:
-  exact_url: https://dadudekc.site/spark-generator
+  exact_url: https://maskzero.site/spark-generator
   canonical_route: /spark-generator
   asset_version: 0.8.1-canonical-route-nostore-001
 actions:
@@ -13,7 +13,7 @@ actions:
   - purge WordPress/LiteSpeed cache for canonical route
   - verify exact no-query URL serves fresh version
 verify:
-  - https://dadudekc.site/spark-generator loads 0.8.1-canonical-route-nostore-001
+  - https://maskzero.site/spark-generator loads 0.8.1-canonical-route-nostore-001
   - exact no-query URL does not serve 0.7.3
   - exact no-query URL does not expose blocker text
 commit_message: Fix exact Spark generator route cache safely

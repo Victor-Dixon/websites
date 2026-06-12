@@ -4,10 +4,10 @@
 Deploy the redesigned Emergence comic archive page to production.
 
 ## Source
-- `runtime/content/dadudekc.site/the-emergence.html`
+- `runtime/content/maskzero.site/the-emergence.html`
 
 ## Target
-- `https://dadudekc.site/the-emergence/`
+- `https://maskzero.site/the-emergence/`
 
 ## Deployer
 - `runtime/scripts/dreamos_site_deployer.py`

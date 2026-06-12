@@ -9,7 +9,7 @@
 ## Raw Output
 
 ```text
-No syntax errors detected in /home/u996867598/domains/dadudekc.site/public_html/wp-content/plugins/emergence-character-generator/emergence-character-generator.php
+No syntax errors detected in /home/u996867598/domains/maskzero.site/public_html/wp-content/plugins/emergence-character-generator/emergence-character-generator.php
 REMOTE_PHP_LINT=PASS
 function emergence_cg_domain_option_label($q, $letter) {
   const flavorOptions = {

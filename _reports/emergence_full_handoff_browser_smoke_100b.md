@@ -15,19 +15,19 @@ Finalize Character Generator → Battle Simulator → custom battle smoke.
 ## Verification
 ```text
 == FETCH CHARACTER PAGE ==
-HTTP_FETCH=200 url=https://dadudekc.site/character-generator/?dreamos_smoke=100
+HTTP_FETCH=200 url=https://maskzero.site/character-generator/?dreamos_smoke=100
 CHARACTER_PAGE_HANDOFF_BRIDGE=PASS
 == VERIFY CHARACTER INLINE SCRIPT SEMANTICS ==
 CHARACTER_EXPORT_SEMANTICS=PASS
 == SIMULATE LOCALSTORAGE HANDOFF PAYLOAD ==
 SIMULATED_HANDOFF_PAYLOAD_SAFE=PASS
 == FETCH BATTLE PAGE ==
-HTTP_FETCH=200 url=https://dadudekc.site/battles/?spark_handoff=1&dreamos_smoke=100
+HTTP_FETCH=200 url=https://maskzero.site/battles/?spark_handoff=1&dreamos_smoke=100
 BATTLE_PAGE_HANDOFF_BRIDGE=PASS
 == VERIFY BATTLE INLINE SCRIPT SEMANTICS ==
 BATTLE_IMPORT_SEMANTICS=PASS
 == RUN CUSTOM SPARK BATTLE REST ==
-HTTP_POST=200 url=https://dadudekc.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=100
+HTTP_POST=200 url=https://maskzero.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=100
 CUSTOM_BATTLE_REST_RESOLVES=PASS
 CUSTOM_BATTLE_WINNER_VISIBLE=PASS
 CUSTOM_BATTLE_ARENA_VISIBLE=PASS

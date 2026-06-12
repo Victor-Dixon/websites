@@ -18,7 +18,7 @@ Fix the deployment workflow and make future website deploys easier.
 - Deployed Emergence preview using auto mode.
 
 ## Target
-- `https://dadudekc.site/emergence-preview/`
+- `https://maskzero.site/emergence-preview/`
 
 ## Verification
 ```text

@@ -30,7 +30,7 @@ DaDudeKC-Website is promoted into the websites SSOT as a **Dream.OS development 
 
 ## Attached Preview Content
 
-- Source: `runtime/content/dadudekc.site/client-preview.freeride-funnel-candidate.html`
+- Source: `runtime/content/maskzero.site/client-preview.freeride-funnel-candidate.html`
 - Destination: `dadudekc-service-funnel/funnel-previews/client-preview.freeride-funnel-candidate.html`
 - Decision: `ATTACH_TO_DADUDEKC_PROMOTION`
 

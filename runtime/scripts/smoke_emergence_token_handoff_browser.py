@@ -7,10 +7,10 @@ import urllib.error
 import urllib.request
 from html.parser import HTMLParser
 
-CREATE_TOKEN_URL = "https://dadudekc.site/wp-json/emergence/v1/spark-token?dreamos_smoke=102"
-LOAD_TOKEN_BASE = "https://dadudekc.site/wp-json/emergence/v1/spark-token/"
-CUSTOM_BATTLE_URL = "https://dadudekc.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=102"
-BATTLE_PAGE_BASE = "https://dadudekc.site/battles/?dreamos_smoke=102&spark_token="
+CREATE_TOKEN_URL = "https://maskzero.site/wp-json/emergence/v1/spark-token?dreamos_smoke=102"
+LOAD_TOKEN_BASE = "https://maskzero.site/wp-json/emergence/v1/spark-token/"
+CUSTOM_BATTLE_URL = "https://maskzero.site/wp-json/spark-battle/v1/custom-battle?dreamos_smoke=102"
+BATTLE_PAGE_BASE = "https://maskzero.site/battles/?dreamos_smoke=102&spark_token="
 
 FORBIDDEN_VISIBLE = [
     "showwork",

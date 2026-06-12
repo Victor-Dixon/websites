@@ -6,7 +6,7 @@
 
 ## Decision
 
-- Path: `runtime/content/dadudekc.site/client-preview.freeride-funnel-candidate.html`
+- Path: `runtime/content/maskzero.site/client-preview.freeride-funnel-candidate.html`
 - Decision: `ATTACH_TO_DADUDEKC_PROMOTION`
 - Reason: HTML preview is likely useful source material for the DaDudeKC service funnel promotion, but should be repositioned away from FreeRide-only branding if needed
 - Risk flags: `trading_brand_content, preview_artifact`

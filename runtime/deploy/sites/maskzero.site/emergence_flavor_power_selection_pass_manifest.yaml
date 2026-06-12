@@ -1,0 +1,23 @@
+version: 1
+name: emergence_flavor_power_selection_pass
+site: maskzero.site
+status: deployed
+implemented:
+  - Q29_Q68_flavor_key
+  - flavor_block_domain_gate
+  - flavor_scoring_only_for_manifested_domains
+  - power_selection_after_domain_pass
+  - latent_fallback_when_no_flavor_score_reaches_2
+verified:
+  no_powers_before_flavor: pass
+  all_H_duality_can_select_duality_powers_only: pass
+  public_render: pass
+safety:
+  theme_deploy_enabled: false
+  old_theme_deploy_enabled: false
+  remote_backup_dir: '/home/u996867598/domains/maskzero.site/public_html/dreamos_backups/flavor_power_selection_20260531_082938'
+next_allowed_actions:
+  - compute Combat Capability with Step 9 spine
+  - compute final Spark Signature from exact selected powers
+  - add saved character records
+  - build Battle Simulator demo

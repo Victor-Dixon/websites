@@ -1,0 +1,18 @@
+version: 1
+name: emergence_openai_provider_error_inspection
+site: maskzero.site
+status: inspected
+classification: "billing_or_quota"
+recommended_fix: "Check OpenAI billing, project limits, usage caps, and available credits."
+verified:
+  provider_error_inspection_json: pass
+  provider_error_no_key_leaks: pass
+  sanitized_message_recorded: pass
+safety:
+  key_committed: false
+  key_printed: false
+  raw_secret_patterns_checked: true
+next_allowed_actions:
+  - apply_classification_fix
+  - rerun_live_generated_portrait_smoke
+  - verify_generated_image_ui_render

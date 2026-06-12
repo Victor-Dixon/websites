@@ -19,7 +19,7 @@ try {
   process.exit(12);
 }
 
-const URL = 'https://dadudekc.site/character-generator/?dreamos_smoke=112';
+const URL = 'https://maskzero.site/character-generator/?dreamos_smoke=112';
 
 const FORBIDDEN_VISIBLE = [
   'raw scores',

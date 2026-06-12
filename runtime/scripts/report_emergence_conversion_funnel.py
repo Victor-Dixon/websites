@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 JSON_OUT = ROOT / "_reports" / "emergence_conversion_funnel_report_114.json"
 MD_OUT = ROOT / "_reports" / "emergence_conversion_funnel_report_114.md"
 
-SUMMARY_URL = "https://dadudekc.site/wp-json/emergence/v1/events/summary?dreamos_smoke=114"
+SUMMARY_URL = "https://maskzero.site/wp-json/emergence/v1/events/summary?dreamos_smoke=114"
 
 FORBIDDEN = [
     "scores",
