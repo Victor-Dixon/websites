@@ -95,7 +95,7 @@
     /private_key/i,
   ];
 
-  var KIDS_TASKS_FEED = "/data/planner/kids_planner_tasks.json";
+  var KIDS_TASKS_FEED = "/data/planner/kids_tasks.json";
   var DEFAULT_RULES =
     "- Make small safe changes.\n" +
     "- Do not delete unrelated files.\n" +
@@ -240,21 +240,35 @@
         : DIFFICULTY_POINTS[String(difficulty).toLowerCase().replace(/[\s-]/g, "_")] || 10;
     var reviewPts =
       raw.points_on_review != null ? Number(raw.points_on_review) : Math.max(1, Math.floor(points / 2));
+    var missionType = raw.mission_type || "standard";
+    var isSpecial = missionType === "special_unlock";
+    var parentApproved =
+      raw.parent_approved === true || (!isSpecial && raw.parent_approved !== false);
     return {
       id: raw.id,
       title: raw.title || "Untitled",
       source: raw.source || "weareswarm.online",
-      project: raw.project || raw.system || "General",
+      project: raw.project || raw.system || raw.lane || "General",
       status: mapSwarmStatusToKanban(raw.status),
       difficulty: difficulty,
       estimated_minutes: raw.estimated_minutes || 15,
       kid_owner: raw.kid_owner || null,
       agent_type: raw.agent_type || "helper",
       skills: Array.isArray(raw.skills) ? raw.skills : [],
-      parent_approved: raw.parent_approved === true,
-      objective: raw.objective || raw.public_summary || "",
-      kid_instructions: raw.kid_instructions || "",
+      parent_approved: parentApproved,
+      objective: raw.objective || raw.summary || raw.public_summary || "",
+      summary: raw.summary || raw.objective || raw.public_summary || "",
+      kid_instructions: raw.kid_instructions || raw.kid_prompt || "",
+      kid_prompt: raw.kid_prompt || raw.kid_instructions || "",
+      agent_prompt: raw.agent_prompt || "",
       agent_prompt_template: raw.agent_prompt_template || {},
+      verify_steps: Array.isArray(raw.verify_steps) ? raw.verify_steps : [],
+      proof_fields: Array.isArray(raw.proof_fields) ? raw.proof_fields : [],
+      completion_discord_message: raw.completion_discord_message || "",
+      completion_website_message: raw.completion_website_message || "",
+      mission_type: missionType,
+      adult_gate: raw.adult_gate === true,
+      locked: raw.locked === true || (isSpecial && raw.adult_gate === true),
       lane: raw.lane || "",
       priority: raw.priority || "",
       swarm_status: raw.swarm_status || raw.status || "",
@@ -262,6 +276,20 @@
       points_on_complete: raw.points_on_complete != null ? Number(raw.points_on_complete) : points,
       points_on_review: reviewPts,
     };
+  }
+
+  function isTaskLocked(task) {
+    if (!task) return true;
+    if (task.mission_type === "special_unlock" && task.locked && !task.parent_approved) {
+      return true;
+    }
+    return false;
+  }
+
+  function missionBadgeLabel(task) {
+    if (!task || !task.mission_type) return "";
+    if (task.mission_type === "special_unlock") return "🔒 Special";
+    return "⭐ Standard";
   }
 
   function persistTasks() {
@@ -290,6 +318,9 @@
   }
 
   function generateAgentPrompt(task) {
+    if (task.agent_prompt && String(task.agent_prompt).trim()) {
+      return String(task.agent_prompt).trim();
+    }
     var tpl = task.agent_prompt_template || {};
     var user = getCurrentUser();
     var rules = tpl.RULES || DEFAULT_RULES;
@@ -322,6 +353,13 @@
 
   function validateStatusMove(task, newStatus) {
     if (!task || newStatus === task.status) return { ok: false, reason: "same" };
+
+    if (isTaskLocked(task) && newStatus !== "parked" && newStatus !== "available") {
+      return {
+        ok: false,
+        reason: "Special unlock — parent must approve before you can work on this mission.",
+      };
+    }
 
     if (!task.parent_approved && task.status === "parked" && newStatus !== "parked") {
       return {
@@ -616,9 +654,10 @@
       cards.forEach(function (task) {
         var card = document.createElement("article");
         card.className = "task-card";
+        if (isTaskLocked(task)) card.classList.add("locked-mission");
         if (task.id === state.selectedTaskId) card.classList.add("selected");
         card.dataset.taskId = task.id;
-        card.draggable = true;
+        card.draggable = !isTaskLocked(task);
         card.setAttribute("role", "button");
         card.setAttribute("aria-grabbed", "false");
         card.title = "Drag to another column or tap to open";
@@ -631,7 +670,11 @@
         var meta = document.createElement("div");
         meta.className = "task-card-meta";
         meta.innerHTML =
-          '<span class="task-pill">' +
+          '<span class="task-pill mission-' +
+          escapeHtml(task.mission_type || "standard") +
+          '">' +
+          escapeHtml(missionBadgeLabel(task)) +
+          '</span><span class="task-pill">' +
           escapeHtml(task.project) +
           '</span><span class="task-pill difficulty-' +
           escapeHtml(task.difficulty) +
@@ -1128,6 +1171,10 @@
 
     var meta = $("detail-meta");
     meta.innerHTML =
+      "<dt>Mission</dt><dd>" +
+      escapeHtml(missionBadgeLabel(task)) +
+      (isTaskLocked(task) ? " (locked)" : "") +
+      "</dd>" +
       "<dt>Status</dt><dd>" +
       escapeHtml(task.status.replace(/_/g, " ")) +
       "</dd>" +
@@ -1153,13 +1200,36 @@
       "</dd>" +
       "<dt>Parent OK</dt><dd>" +
       (task.parent_approved ? "Yes ✓" : "Not yet") +
-      "</dd>";
+      "</dd>" +
+      (task.adult_gate ? "<dt>Adult gate</dt><dd>Required</dd>" : "");
 
-    $("detail-instructions").textContent = task.kid_instructions || "—";
-    $("detail-objective").textContent = task.objective || "—";
+    $("detail-objective").textContent = task.summary || task.objective || "—";
+
+    var verifyEl = $("detail-verify-steps");
+    if (verifyEl) {
+      verifyEl.innerHTML = "";
+      (task.verify_steps || []).forEach(function (step) {
+        var li = document.createElement("li");
+        li.textContent = step;
+        verifyEl.appendChild(li);
+      });
+      verifyEl.parentElement.hidden = !(task.verify_steps && task.verify_steps.length);
+    }
+
+    var kidPromptEl = $("kid-prompt");
+    if (kidPromptEl) {
+      kidPromptEl.value = task.kid_prompt || task.kid_instructions || "";
+    }
+
+    var unlockBtn = $("btn-unlock-special");
+    if (unlockBtn) {
+      var showUnlock =
+        isParent() && task.mission_type === "special_unlock" && !task.parent_approved;
+      unlockBtn.hidden = !showUnlock;
+    }
 
     var canClaim =
-      task.status === "available" && task.parent_approved && !task.kid_owner;
+      task.status === "available" && task.parent_approved && !task.kid_owner && !isTaskLocked(task);
     var isOwner = task.kid_owner === getCurrentUser();
     $("btn-claim").disabled = !canClaim;
     $("btn-claim").textContent = canClaim
@@ -1172,6 +1242,94 @@
 
     renderClockUI(task);
     loadWorklogFields(task);
+    renderCloseoutPreview(task);
+  }
+
+  function interpolateCloseout(template, proof) {
+    if (!template) return "";
+    proof = proof || {};
+    return String(template).replace(/\{\{(\w+)\}\}/g, function (_m, key) {
+      return proof[key] != null && String(proof[key]).trim() ? String(proof[key]).trim() : "{{" + key + "}}";
+    });
+  }
+
+  function renderCloseoutPreview(task) {
+    var panel = $("closeout-preview");
+    if (!panel) return;
+    var log = findWorklogForTask(task.id);
+    var proof = (log && log.proof) || {};
+    var hasProof = Object.keys(proof).some(function (k) {
+      return proof[k] && String(proof[k]).trim();
+    });
+    panel.hidden = !(task.completion_discord_message || task.completion_website_message || hasProof);
+    var discordEl = $("detail-discord-closeout");
+    var websiteEl = $("detail-website-closeout");
+    var closerEl = $("detail-closer-name");
+    if (discordEl) {
+      discordEl.textContent = interpolateCloseout(task.completion_discord_message, proof);
+    }
+    if (websiteEl) {
+      websiteEl.textContent = interpolateCloseout(task.completion_website_message, proof);
+    }
+    if (closerEl) {
+      closerEl.textContent = proof.closer_name
+        ? "Closed by: " + proof.closer_name
+        : "Fill proof fields to preview closeout messages.";
+    }
+  }
+
+  function renderProofFields(task, log) {
+    var container = $("proof-fields");
+    if (!container) return;
+    container.innerHTML = "";
+    var fields = task.proof_fields || [];
+    if (!fields.length) return;
+    var proof = (log && log.proof) || {};
+    fields.forEach(function (field) {
+      var wrap = document.createElement("div");
+      wrap.className = "proof-field";
+      var label = document.createElement("label");
+      label.textContent = field.label || field.name;
+      label.setAttribute("for", "proof-" + field.name);
+      wrap.appendChild(label);
+      var input;
+      if (field.type === "textarea") {
+        input = document.createElement("textarea");
+        input.rows = 3;
+      } else {
+        input = document.createElement("input");
+        input.type = "text";
+      }
+      input.id = "proof-" + field.name;
+      input.className = "worklog-text proof-input";
+      input.dataset.proofName = field.name;
+      input.value = proof[field.name] || "";
+      input.readOnly = isParent();
+      input.placeholder = field.label || field.name;
+      wrap.appendChild(input);
+      container.appendChild(wrap);
+    });
+  }
+
+  function collectProofFromForm() {
+    var proof = {};
+    document.querySelectorAll(".proof-input").forEach(function (el) {
+      var name = el.dataset.proofName;
+      if (name) proof[name] = el.value.trim();
+    });
+    return proof;
+  }
+
+  function unlockSpecialMission() {
+    var task = findTask(state.selectedTaskId);
+    if (!task || !isParent()) return;
+    if (task.mission_type !== "special_unlock") return;
+    task.parent_approved = true;
+    task.locked = false;
+    persistTasks();
+    renderKanban();
+    renderDetail();
+    toast("Special mission unlocked for kids");
   }
 
   function renderClockUI(task) {
@@ -1193,6 +1351,7 @@
 
   function loadWorklogFields(task) {
     var log = findWorklogForTask(task.id);
+    renderProofFields(task, log);
     $("kid-summary").value = (log && log.kid_summary) || "";
     $("agent-result").value = (log && log.agent_result) || "";
     $("kid-summary").readOnly = isParent();
@@ -1212,6 +1371,7 @@
       }
     }
     $("agent-prompt").value = generateAgentPrompt(task);
+    renderCloseoutPreview(task);
   }
 
   function claimTask() {
@@ -1346,6 +1506,7 @@
 
     log.kid_summary = $("kid-summary").value.trim();
     log.agent_result = $("agent-result").value.trim();
+    log.proof = collectProofFromForm();
     var oldReview = log.parent_review || "pending_review";
     log.parent_review = $("parent-review").value;
     log.status = task.status;
@@ -1355,6 +1516,7 @@
 
     persistWorklogs();
     renderWorklogHistory();
+    renderCloseoutPreview(task);
     toast("Work log saved");
   }
 
@@ -1417,21 +1579,29 @@
     });
   }
 
-  function copyPrompt() {
-    var text = $("agent-prompt").value;
+  function copyTextFromElement(el, label) {
+    var text = el && el.value ? el.value : "";
     if (!text) {
-      toast("Generate a prompt first");
+      toast("Nothing to copy");
       return;
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () {
-        toast("Prompt copied!");
+        toast(label + " copied!");
       });
     } else {
-      $("agent-prompt").select();
+      el.select();
       document.execCommand("copy");
-      toast("Prompt copied!");
+      toast(label + " copied!");
     }
+  }
+
+  function copyPrompt() {
+    copyTextFromElement($("agent-prompt"), "Agent prompt");
+  }
+
+  function copyKidPrompt() {
+    copyTextFromElement($("kid-prompt"), "Kid prompt");
   }
 
   function exportWorklogs() {
@@ -1764,6 +1934,10 @@
       toast("Prompt generated");
     });
     $("btn-copy-prompt").addEventListener("click", copyPrompt);
+    var copyKidBtn = $("btn-copy-kid-prompt");
+    if (copyKidBtn) copyKidBtn.addEventListener("click", copyKidPrompt);
+    var unlockBtn = $("btn-unlock-special");
+    if (unlockBtn) unlockBtn.addEventListener("click", unlockSpecialMission);
     $("btn-save-worklog").addEventListener("click", saveWorklog);
     $("btn-export-logs").addEventListener("click", exportWorklogs);
     $("btn-reset-tasks").addEventListener("click", resetTasksFromFeed);

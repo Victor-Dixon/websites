@@ -1,0 +1,522 @@
+{
+  "generated_at": "2026-06-12T10:28:56.056346+00:00",
+  "source": "D:\\websites\\websites\\weareswarm.online\\data\\planner\\all_tasks.json",
+  "outputs": [
+    "D:\\websites\\websites\\weareswarm.online\\data\\planner\\kids_tasks.json",
+    "D:\\websites\\kids_tasks.json",
+    "D:\\websites\\public\\kids_tasks.json"
+  ],
+  "input_count": 953,
+  "included_count": 361,
+  "standard_count": 332,
+  "special_unlock_count": 29,
+  "excluded_count": 592,
+  "counts_by_reason": {
+    "not_ai_heavy": 585,
+    "included_standard": 332,
+    "included_special": 29,
+    "blocked_standard": 7
+  },
+  "excluded_sample": [
+    {
+      "source_task_id": "desktop_consolidation_cleanup_001",
+      "title": "Root junk and security cleanup",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_canonical_dispatcher_034",
+      "title": "Add AgentTools canonical CLI dispatcher",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_inventory_cleanup_001",
+      "title": "Capture AgentTools inventory baseline only. No destructive cleanup.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_itooladapter_export_repair_043",
+      "title": "Restore IToolAdapter compatibility exports",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_registry_export_repair_042",
+      "title": "Restore ToolRegistry compatibility exports",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_revitalization_032",
+      "title": "Revitalize AgentTools Control Plane",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_test_inventory_037",
+      "title": "Inventory AgentTools tests and capability coverage",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_toolbeltcore_export_repair_041",
+      "title": "Restore ToolbeltCore compatibility exports",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_toolregistry_behavior_repair_044",
+      "title": "Restore ToolRegistry compatibility behaviors",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_toolregistry_final_contract_repair_046",
+      "title": "Finalize ToolRegistry compatibility contract",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_tools_v2_adapter_repair_040",
+      "title": "Repair AgentTools tools_v2 adapter exports",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "agenttools_typescript_gate_repair_051",
+      "title": "Restore AgentTools TypeScript typecheck gate",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "thea_workflow_bridge_boundary_114",
+      "title": "Define Thea workflow bridge boundary",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "synchronize_intelligence_architecture_001",
+      "title": "Synchronize DreamOS ecosystem docs, DreamStart, preflight, and cliprun response contract around intelligence bundles.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "autodream_delete_dod_001",
+      "title": "Define deletion-grade acceptance criteria for safely retiring AutoDream.Os after salvage.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "codex_cleanup_pr_001",
+      "title": "Codex consolidation cleanup PR prep (manifest-only)",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "codex_repo_inventory_001",
+      "title": "Codex read-only repo inventory manifest",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "codex_salvage_manifest_001",
+      "title": "Codex salvage manifest (no destructive ops)",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_mobile_safe_pytest_profile_002",
+      "title": "Handle pytest-qt / PyQt dependency failures on Termux/mobile without installing GUI stacks.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_hostinger_dashboard_deploy_manifest_065",
+      "title": "Add Hostinger dashboard deploy manifest",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "inspect_hostinger_api_deploy_shape_066",
+      "title": "Inspect Hostinger API deploy shape",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_controller_animation_layer_080",
+      "title": "Add controller animation layer",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "codify_operator_controller_tests_081",
+      "title": "Codify operator controller tests",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "improve_operator_dashboard_design_071",
+      "title": "Improve operator dashboard design",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "improve_operator_dashboard_design_072",
+      "title": "Improve operator dashboard design into DreamOS command nexus",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "inspect_admin_panel_design_surface_062",
+      "title": "Inspect admin panel design surface",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "mobile_first_operator_controller_077",
+      "title": "Make operator controller mobile first",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "modern_futuristic_controller_try8_079",
+      "title": "Modern futuristic controller try8",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "website_repo_consolidation_001",
+      "title": "LANE D — Websites, trading, and toolbelt desktop consolidation",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_discord_action_controls_057",
+      "title": "Add Discord action controls",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_discord_bot_callback_handler_059",
+      "title": "Add Discord bot callback handler",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_discord_delivery_retry_queue_052",
+      "title": "Add Discord delivery retry queue",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_discord_operator_e2e_smoke_061",
+      "title": "Add Discord operator E2E smoke",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_discord_retry_state_compaction_060",
+      "title": "Add Discord retry state compaction",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_discord_retry_worker_cli_054",
+      "title": "Add Discord retry worker CLI",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_discord_webhook_secret_docs_055",
+      "title": "Add Discord webhook secret docs",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "implement_live_discord_retry_worker_056",
+      "title": "Implement live Discord retry worker",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "migrate_trading_discord_sender_to_agenttools_011",
+      "title": "Migrate DreamVault trading Discord payload sender to use AgentTools canonical Discord webhook sender, preserving env-only webhook configuration and no secret commits.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "wire_failed_discord_delivery_to_retry_queue_053",
+      "title": "Wire failed Discord delivery to retry queue",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "rotate_trade_robot_webhook_001",
+      "title": "Rotate exposed Trade Robot Discord webhook",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "discord_architect_registry_bootstrap_001",
+      "title": "Bootstrap Discord Architect server registry",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "discord_bot_inventory_route_scan_001",
+      "title": "Inventory existing Discord bots and route them through Discord Architect",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "discord_manager_architect_upgrade_001",
+      "title": "Upgrade Discord Manager into schema-driven Discord Architect",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "discord_daily_command_hub_live_view_002",
+      "title": "Add live discord.ui.View adapter for Daily Command Hub",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "desktop_llm_ssh_bridge_103",
+      "title": "Add desktop SSH LLM bridge for Dream.OS",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "dreamsync_projectscanner_context_bridge_001",
+      "title": "Package ProjectScanner cognition outputs into DreamSync-ready context packets for desktop/mobile/agent routing.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_agent_cellphone",
+      "title": "Repair DreamTest failure - Agent_Cellphone",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_agent_cellphone_v2_repository",
+      "title": "Repair DreamTest failure - Agent_Cellphone_V2_Repository",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_agentproject",
+      "title": "Repair DreamTest failure - agentproject",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_auto_blogger",
+      "title": "Repair DreamTest failure - Auto_Blogger",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_bible-application",
+      "title": "Repair DreamTest failure - bible-application",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_dream_os",
+      "title": "Repair DreamTest failure - Dream.os",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_dream_os-core",
+      "title": "Repair DreamTest failure - Dream.os-Core",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_dreamos",
+      "title": "Repair DreamTest failure - DreamOS",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_dreamvault",
+      "title": "Repair DreamTest failure - DreamVault",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_focusforge",
+      "title": "Repair DreamTest failure - FocusForge",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_gpt_automation",
+      "title": "Repair DreamTest failure - gpt_automation",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_hcshinobi",
+      "title": "Repair DreamTest failure - HCshinobi",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_homeschool_mastery",
+      "title": "Repair DreamTest failure - HomeSchool_Mastery",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_lstmmodel_trainer",
+      "title": "Repair DreamTest failure - LSTMmodel_trainer",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_machinelearningmodelmaker",
+      "title": "Repair DreamTest failure - machinelearningmodelmaker",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_mlrobotmaker",
+      "title": "Repair DreamTest failure - MLRobotmaker",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_network-scanner",
+      "title": "Repair DreamTest failure - network-scanner",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_self-evolving-ai",
+      "title": "Repair DreamTest failure - self-evolving-ai",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_side-projects",
+      "title": "Repair DreamTest failure - Side-projects",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_socialmediamanager",
+      "title": "Repair DreamTest failure - socialmediamanager",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_stocktwits-analyzer",
+      "title": "Repair DreamTest failure - stocktwits-analyzer",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_streamertools",
+      "title": "Repair DreamTest failure - Streamertools",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_swarm",
+      "title": "Repair DreamTest failure - SWARM",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_thea",
+      "title": "Repair DreamTest failure - Thea",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "repair_victor_os",
+      "title": "Repair DreamTest failure - Victor.os",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "cognition_execution_router_001",
+      "title": "Convert DreamScan cognition artifacts into executable autonomous action queues.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "dreamscan_northstar_001",
+      "title": "Codify DreamScan ecosystem cognition completion gates and portable continuation standards.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "duplicate_detection_engine_001",
+      "title": "Detect duplicated architectural systems and promotable overlap across repos.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "projectscanner_first_class_input_001",
+      "title": "Make projectscanner outputs first-class inputs to DreamScan cognition and dashboard artifacts.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_complexity_budget_tests_001",
+      "title": "Codify complexity-risk criticism into executable tests.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_dreamclose_cli_001",
+      "title": "Add dreamclose CLI for operational session closeouts",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_dreamos_manifesto_001",
+      "title": "Add the Dream.OS manifesto as durable doctrine anchored by the mission statement: \"Dream.OS exists to be the light that sparks the mind that illuminates the world.\"",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "add_shared_agent_input_contract_001",
+      "title": "Add shared agent input contract for all Dream.OS prompts",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "canonical_authority_registry_001",
+      "title": "Formalize canonical authority ownership across Dream.OS ecosystem repos and capabilities.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "dirty_scope_salvage_before_manifest_close_001",
+      "title": "Classify current DreamVault dirty scope before closing autonomous runtime manifest 014.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "dreamclose_protocol_foundation_001",
+      "title": "Add DreamClose operational synchronization protocol",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "execution_governance_readiness_tdd_001",
+      "title": "Add TDD gate for execution governance readiness",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "file_mass_census_006",
+      "title": "Classify repository file mass before pruning.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "file_mass_git_classification_007",
+      "title": "Classify DreamVault file mass by git tracking state before cleanup.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "github_repo_retirement_salvage_matrix_001",
+      "title": "Classify GitHub repos into canonical keep, product keep, salvage source, duplicate retire after salvage, archive candidate, and review buckets.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "harden_dreamclose_prompt_v2_001",
+      "title": "Harden DreamClose prompt with required closeout sections",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "inspect_project_task_authority_009",
+      "title": "Inspect every project directory for task-list authority duplication before consolidation.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "master_task_list_census_008a",
+      "title": "Search existing DreamVault task-list and task-ledger artifacts before creating canonical files.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "projectscanner_prompt_registry_001",
+      "title": "Register canonical ProjectScanner prompts and classify each prompt by operational role.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "run_projectscanner_task_authority_pass_010",
+      "title": "Run ProjectScanner-style read-only pass across projects and correlate repo metadata with task authority duplication.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "runtime_reality_packet_001",
+      "title": "Emit a compact runtime reality packet summarizing ecosystem operational truth for agents and operators.",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "runtime_task_completed_archive_batches_001",
+      "title": "Archive completed runtime task batches (guarded v2)",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "session_intelligence_metrics_001",
+      "title": "Add session intelligence metrics from DreamClose artifacts",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "thea_promotion_matrix_001",
+      "title": "classify Thea components for safe promotion into DreamOS, AgentTools, DreamVault, or internal-only retention",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "wire_dreamclose_into_cliprun_001",
+      "title": "Wire DreamClose automatic closeout emission into cliprun workflow",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "wire_readiness_gate_into_autonomy_001",
+      "title": "Wire execution governance readiness gate into autonomous lane startup",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "implement_swarm_controller_v1_084",
+      "title": "Implement swarm controller v1",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "show_brand_foundation_001",
+      "title": "Define show brand, positioning, and episode one package",
+      "reason": "not_ai_heavy"
+    },
+    {
+      "source_task_id": "social_posting_automation_research_001",
+      "title": "Research safe posting automation paths by platform",
+      "reason": "not_ai_heavy"
+    }
+  ]
+}

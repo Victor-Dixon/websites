@@ -69,16 +69,34 @@
           <div class="panel-body detail-body">
             <dl class="kv detail-kv" id="detail-meta"></dl>
 
-            <p class="section-title">Instructions</p>
-            <p class="detail-text" id="detail-instructions">—</p>
-
-            <p class="section-title">Objective</p>
+            <p class="section-title">Mission summary</p>
             <p class="detail-text" id="detail-objective">—</p>
+
+            <div class="prompt-section kid-prompt-section">
+              <p class="section-title">Kid mission prompt</p>
+              <textarea class="prompt-box" id="kid-prompt" readonly rows="6" placeholder="Copy this mission brief…"></textarea>
+              <div class="prompt-buttons">
+                <button type="button" class="btn btn-secondary" id="btn-copy-kid-prompt">📋 Copy kid prompt</button>
+              </div>
+            </div>
+
+            <p class="section-title">Verify steps</p>
+            <ol class="verify-steps-list" id="detail-verify-steps"></ol>
+
+            <div class="closeout-preview" id="closeout-preview" hidden>
+              <p class="section-title">Closeout preview</p>
+              <p class="section-subtitle">Discord</p>
+              <pre class="closeout-box" id="detail-discord-closeout"></pre>
+              <p class="section-subtitle">Website</p>
+              <pre class="closeout-box" id="detail-website-closeout"></pre>
+              <p class="mono-note" id="detail-closer-name"></p>
+            </div>
 
             <div class="detail-actions">
               <button type="button" class="btn btn-primary" id="btn-claim">Claim task</button>
               <button type="button" class="btn btn-secondary" id="btn-move-next">Move forward →</button>
               <button type="button" class="btn btn-secondary" id="btn-park">Park task</button>
+              <button type="button" class="btn btn-secondary parent-only-btn" id="btn-unlock-special" hidden>🔓 Unlock special mission</button>
             </div>
 
             <div class="clock-section" id="clock-section">
@@ -103,7 +121,8 @@
             </div>
 
             <div class="worklog-section">
-              <p class="section-title">Work log</p>
+              <p class="section-title">Proof &amp; work log</p>
+              <div id="proof-fields" class="proof-fields"></div>
               <label for="kid-summary" class="sr-only">What did you do?</label>
               <textarea id="kid-summary" class="worklog-text" rows="4" placeholder="Write what you tried, learned, or built…"></textarea>
               <label for="agent-result" class="sr-only">Agent result</label>

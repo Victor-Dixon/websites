@@ -1,0 +1,113 @@
+id: kids_planner_promptized_feed_001
+title: Populate kids planner from promptized kid-safe task feed
+status: active
+priority: P0
+owner: Victor
+site: weareswarm.online
+lane: kids_planner
+
+problem:
+  The kids planner is not populating because it needs a processed kids_tasks.json feed, not raw all_tasks.json.
+
+source_of_truth:
+  primary_feed: all_tasks.json
+  existing_public_page: /tasks/
+  target_feed: kids_tasks.json
+
+required_flags:
+  ai_heavy_lift: true
+  copy_paste_ready: true
+  no_secret_required: true
+  no_billing_required: true
+  no_destructive_repo_action: true
+  no_live_trading_action: true
+
+blocked_task_types:
+  - secrets
+  - billing
+  - DNS
+  - domains
+  - destructive repo actions
+  - live trading
+  - brokerage actions
+  - account access
+  - credential setup
+  - deployment requiring private credentials
+  - deleting files
+  - deleting branches
+  - production database mutation
+
+special_unlock_rules:
+  allowed: true
+  mission_type: special_unlock
+  requires_adult_gate: true
+  adult_gate: true
+  examples:
+    - token generation
+    - login/account tasks
+    - domain/DNS review
+    - deployment requiring adult credentials
+    - paid tool setup
+
+required_output_fields:
+  - id
+  - title
+  - summary
+  - source_task_id
+  - points
+  - mission_type
+  - adult_gate
+  - kid_prompt
+  - agent_prompt
+  - verify_steps
+  - proof_fields
+  - completion_discord_message
+  - completion_website_message
+  - safety
+
+planner_requirements:
+  - Load kids_tasks.json instead of all_tasks.json.
+  - Show only tasks from kids_tasks.json.
+  - Add copy button for kid_prompt.
+  - Add copy button for agent_prompt.
+  - Add completion/proof fields.
+  - Lock special_unlock tasks unless adult_gate is true.
+  - Show who closed out the task.
+  - Show closeout message suitable for Discord and website feed.
+
+agent_prompt_requirements:
+  - Force the agent to execute Dream.OS style.
+  - Force TARGET, ACTION, VERIFY, COMMIT structure.
+  - Require proof before closeout.
+  - Require files changed, verification result, and commit message.
+  - Forbid secrets, billing, destructive repo actions, and live trading.
+  - Require the agent to stop and request adult gate for special_unlock missions.
+
+verification:
+  commands:
+    - python runtime/tools/build_kids_task_feed.py
+    - python -m json.tool kids_tasks.json
+    - npm run build
+  checks:
+    - kids_tasks.json exists.
+    - kids_tasks.json contains tasks.
+    - every task has kid_prompt.
+    - every task has agent_prompt.
+    - every task has verify_steps.
+    - every special_unlock task has adult_gate true.
+    - no standard task requires secrets, billing, destructive repo action, or live trading.
+    - planner loads kids_tasks.json.
+    - copy buttons exist.
+    - proof fields exist.
+
+closeout:
+  required:
+    - files changed
+    - task count
+    - standard mission count
+    - special unlock count
+    - excluded task count
+    - build result
+    - commit message
+
+commit_message: "Populate kids planner from promptized kid-safe task feed"
