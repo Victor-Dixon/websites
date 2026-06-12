@@ -1,8 +1,9 @@
-# Ariajet repair photo assets
+# AriaJet static hub assets
 
-Save the two real iPhone 12 after photos in this folder with these filenames:
+This folder contains shared assets for the AriaJet build-in-public hub.
 
-- `iphone-12-after-screen-off.jpg`
-- `iphone-12-after-screen-on.jpg`
+## Current assets
 
-The homepage already references these paths from `assets/style.css`. Both images should be after photos because no before photo was taken before the cracked-screen repair started.
+- `style.css` - shared dark dashboard theme for the homepage and public hub routes.
+
+The current design does not require photo assets. Add future images only when they support a public project update, roadmap proof, or product screenshot.

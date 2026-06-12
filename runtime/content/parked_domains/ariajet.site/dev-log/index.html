@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dev Log | AriaJet</title>
+  <meta name="description" content="AriaJet development log for new features, bug fixes, design changes, experiments, and lessons learned.">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" aria-label="AriaJet site header">
+    <a class="brand" href="/"><span class="brand-mark"></span>AriaJet</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/roadmap/">Roadmap</a>
+      <a href="/updates/">Updates</a>
+      <a href="/dev-log/" aria-current="page">Dev Log</a>
+      <a href="/projects/">Projects</a>
+      <a href="/achievements/">Achievements</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="page-hero" aria-labelledby="dev-log-title">
+      <span class="eyebrow">Development log</span>
+      <h1 id="dev-log-title">Build notes from each product layer.</h1>
+      <p class="lead">AriaJet's dev log is organized like a startup journal: features, fixes, design changes, experiments, and lessons learned.</p>
+    </section>
+
+    <section class="section" aria-labelledby="featured-title">
+      <div class="section-heading">
+        <span class="eyebrow">Latest posts</span>
+        <h2 id="featured-title">Blog-style build entries.</h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item featured" id="public-dashboard">
+          <div class="date-pill">Feature<br>Jun 12</div>
+          <div>
+            <h3>Public dashboard becomes the homepage</h3>
+            <div class="label-row">
+              <span class="tag">New Feature</span>
+              <span class="tag blue-tag">Dashboard</span>
+            </div>
+            <p>The homepage now leads with project status, recent activity, roadmap progress, project metrics, and latest announcements.</p>
+            <div class="proof-box">ADDED=hero,activity_feed,status_board,roadmap_preview,metric_cards</div>
+          </div>
+        </article>
+
+        <article class="timeline-item" id="dark-dashboard-theme">
+          <div class="date-pill">Design<br>Jun 12</div>
+          <div>
+            <h3>Dark command-center theme</h3>
+            <div class="label-row">
+              <span class="tag blue-tag">Design Change</span>
+              <span class="tag">UI System</span>
+            </div>
+            <p>The visual direction shifted to a modern dashboard with glowing navigation, startup-style cards, progress indicators, timelines, and badges.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="date-pill">Fix<br>Jun 12</div>
+          <div>
+            <h3>Navigation paths made explicit</h3>
+            <div class="label-row">
+              <span class="tag gold-tag">Bug Fix</span>
+              <span class="tag">Routing</span>
+            </div>
+            <p>Top navigation now points to real static routes instead of old repair-service anchors, making the site behave like a hub.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="date-pill">Experiment<br>Jun 12</div>
+          <div>
+            <h3>Achievement system as product motivation</h3>
+            <div class="label-row">
+              <span class="tag">Experiment</span>
+              <span class="tag blue-tag">Community</span>
+            </div>
+            <p>Badges and community challenges turn progress into a visible game layer that gives followers simple reasons to check back.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item" id="visible-roadmap">
+          <div class="date-pill">Lesson<br>Jun 12</div>
+          <div>
+            <h3>Make the roadmap visible early</h3>
+            <div class="label-row">
+              <span class="tag gold-tag">Lesson Learned</span>
+              <span class="tag">Product</span>
+            </div>
+            <p>A public roadmap creates accountability and makes unfinished work feel intentional instead of empty.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="types-title">
+      <div class="section-heading">
+        <span class="eyebrow">Log system</span>
+        <h2 id="types-title">Post categories that will continue growing.</h2>
+      </div>
+      <div class="card-grid">
+        <article class="panel">
+          <span class="tag">New features</span>
+          <h3>What shipped</h3>
+          <p>Search screens, booking modules, account features, and public pages.</p>
+        </article>
+        <article class="panel">
+          <span class="tag gold-tag">Bug fixes</span>
+          <h3>What got repaired</h3>
+          <p>Broken links, layout issues, performance regressions, and deployment problems.</p>
+        </article>
+        <article class="panel">
+          <span class="tag blue-tag">Design changes</span>
+          <h3>What changed visually</h3>
+          <p>Navigation, cards, widgets, typography, timelines, and visual experiments.</p>
+        </article>
+        <article class="panel">
+          <span class="tag">Experiments</span>
+          <h3>What is being tested</h3>
+          <p>Prototype flows, community loops, route structures, and product ideas.</p>
+        </article>
+        <article class="panel">
+          <span class="tag gold-tag">Lessons learned</span>
+          <h3>What the build teaches</h3>
+          <p>Short reflections on constraints, decisions, wins, misses, and next adjustments.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>AriaJet &copy; 2026. Every build note becomes part of the product story.</p>
+  </footer>
+</body>
+</html>
