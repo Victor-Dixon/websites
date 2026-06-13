@@ -15,9 +15,9 @@ domains:
 
   dadudekc.site:
     mode: static
-    deploy_policy: domain_redirect_only
+    deploy_policy: standalone_static_site
     source_hint: runtime/content/dadudekc.site
-    notes: Redirect shell only; Spark, Emergence, and Mask Zero project pages are canonical on maskzero.site.
+    notes: Independent dadudekc.site static site; do not redirect to maskzero.site.
 
   maskzero.site:
     mode: wordpress

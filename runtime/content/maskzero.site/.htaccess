@@ -4,4 +4,7 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.maskzero\.site$ [NC]
 RewriteRule ^(.*)$ https://maskzero.site/$1 [R=301,L,NE]
 
+# /login/ is a public alias for the restored Spark account login flow.
+RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]
+
 DirectoryIndex index.html index.php

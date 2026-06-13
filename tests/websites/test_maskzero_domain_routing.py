@@ -10,27 +10,27 @@ DADUDEKC = ROOT / "runtime/content/dadudekc.site"
 MASKZERO = ROOT / "runtime/content/maskzero.site"
 
 
-def test_dadudekc_site_is_redirect_shell_to_maskzero_ssot():
+def test_dadudekc_site_is_standalone_static_site():
     sites = json.loads(CONFIG.read_text(encoding="utf-8"))
     dadudekc = sites["dadudekc.site"]
 
     assert dadudekc["path"] == "runtime/content/dadudekc.site"
-    assert dadudekc["canonical_target"] == "https://maskzero.site"
-    assert dadudekc["deploy_files"] == [
-        "runtime/content/dadudekc.site/.htaccess",
-        "runtime/content/dadudekc.site/index.html",
-    ]
+    assert dadudekc["site_role"] == "standalone_static_site"
+    assert "canonical_target" not in dadudekc
+    assert "runtime/content/dadudekc.site/index.html" in dadudekc["deploy_files"]
+    assert "runtime/content/dadudekc.site/spark-generator/index.html" in dadudekc["deploy_files"]
     assert sites["maskzero.site"]["path"] == "runtime/content/maskzero.site"
 
 
-def test_dadudekc_redirect_preserves_stale_project_paths():
+def test_dadudekc_no_longer_redirects_to_maskzero():
     htaccess = (DADUDEKC / ".htaccess").read_text(encoding="utf-8")
     index = (DADUDEKC / "index.html").read_text(encoding="utf-8")
 
-    assert "RewriteRule ^(.*)$ https://maskzero.site/$1 [R=301,L,NE]" in htaccess
-    assert "data-canonical-project-redirect" in index
-    assert "Spark, Emergence, and Mask Zero are the same project" in index
-    assert "https://maskzero.site/" in index
+    assert "maskzero.site" not in htaccess
+    assert "https://maskzero.site/" not in index
+    assert 'data-dadudekc-site="standalone"' in index
+    assert "DadudeKC standalone site" in index
+    assert "The Emergence" in index
 
 
 def test_spark_and_emergence_pages_are_canonical_maskzero_content():
@@ -48,7 +48,7 @@ def test_spark_and_emergence_pages_are_canonical_maskzero_content():
     assert not missing, f"Mask Zero canonical pages missing: {missing}"
 
     dadudekc_pages = [p for p in DADUDEKC.rglob("*") if p.is_file() and p.name not in {".htaccess", "index.html"}]
-    assert not dadudekc_pages, f"dadudekc.site must only contain redirect shell files: {dadudekc_pages}"
+    assert dadudekc_pages, "dadudekc.site must keep its standalone site files"
 
 
 def test_migration_registry_documents_current_redirect_decision():
@@ -56,8 +56,8 @@ def test_migration_registry_documents_current_redirect_decision():
     task = MIGRATION_TASK.read_text(encoding="utf-8")
 
     assert "dadudekc.site:" in deploy_modes
-    assert "deploy_policy: domain_redirect_only" in deploy_modes
-    assert "redirect_dadudekc_to_maskzero: true" in task
+    assert "deploy_policy: standalone_static_site" in deploy_modes
+    assert "redirect_dadudekc_to_maskzero: false" in task
     assert "preserve_dadudekc_as_separate_site: true" in task
 
 
@@ -94,6 +94,22 @@ def test_maskzero_required_routes_have_static_sources():
         assert "MaskZero" in html
         assert "Created by WeAreSwarm · Powered by Dream.OS" in html
         assert "Loading" not in html
+
+
+def test_maskzero_login_hands_off_to_spark_account_flow():
+    sites = json.loads(CONFIG.read_text(encoding="utf-8"))
+    htaccess = (MASKZERO / ".htaccess").read_text(encoding="utf-8")
+    login = (MASKZERO / "login/index.html").read_text(encoding="utf-8")
+
+    assert "RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
+    assert "runtime/content/maskzero.site/spark-login/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/spark-signup/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/spark-dashboard/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert '<link rel="canonical" href="https://maskzero.site/spark-login/">' in login
+    assert "url=/spark-login/?redirect_to=%2Fspark-dashboard%2F" in login
+    assert "Log In" in (MASKZERO / "spark-login/index.html").read_text(encoding="utf-8")
+    assert "Create Account" in (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
+    assert "Command Post" in (MASKZERO / "spark-dashboard/index.html").read_text(encoding="utf-8")
 
 
 def test_maskzero_quiz_restores_migrated_spark_flow_as_primary_route():

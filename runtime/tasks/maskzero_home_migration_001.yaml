@@ -9,23 +9,23 @@ domains:
   canonical_project_domain: maskzero.site
 
 rules:
-  redirect_dadudekc_to_maskzero: true
+  redirect_dadudekc_to_maskzero: false
   preserve_dadudekc_as_separate_site: true
   destructive_actions: false
 
 objectives:
   - Replace Mask Zero project canonical references with maskzero.site.
-  - Remove Spark/Emergence project pages from dadudekc.site.
-  - Keep MaskZero canonical on maskzero.site; dadudekc.site can later become its own separate site after stale project traffic is retired.
+  - Keep dadudekc.site as its own standalone site instead of a cross-domain redirect shell.
+  - Keep MaskZero canonical on maskzero.site without breaking dadudekc.site ownership.
   - Deploy current Mask Zero project to maskzero.site.
   - Verify build and public routing.
 
 verification:
   - Repo search confirms Mask Zero canonical URL is maskzero.site.
-  - maskzero.site canonical configuration and public content contain no dadudekc.site references.
+  - maskzero.site canonical configuration and public content do not depend on dadudekc.site redirects.
   - Build passes.
   - maskzero.site serves the current project.
-  - dadudekc.site is no longer required to carry the MaskZero/Spark/Emergence canonical brand.
+  - dadudekc.site serves its own standalone site and does not redirect to maskzero.site.
 
 report:
   path: data/reports/domain_migration/maskzero_home_migration_20260612_082218.txt
