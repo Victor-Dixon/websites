@@ -7,6 +7,7 @@
     { href: "/kids-planner/", label: "Kids Planner" },
     { href: "/tasks/", label: "Tasks" },
     { href: "/projects/", label: "Projects" },
+    { href: "/investor-dashboard/", label: "Investor" },
     { href: "/feed/", label: "Feed" },
     { href: "/skill-tree/", label: "Skill Tree" },
     { href: "/roadmap/", label: "Roadmap" },
