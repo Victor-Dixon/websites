@@ -296,12 +296,29 @@
 "maskzero.site": {
   "site_url": "https://maskzero.site",
   "path": "runtime/content/maskzero.site",
+  "canonical_host": "https://maskzero.site",
+  "www_policy": "301_redirect_to_canonical_host",
+  "brand_hierarchy": {
+    "primary_brand": "MaskZero",
+    "experience_system": "Spark Protocol",
+    "world": "Meridian City",
+    "attribution": "Created by WeAreSwarm · Powered by Dream.OS"
+  },
   "deployment_method": "sftp",
   "sftp": {
     "remote_path": "domains/maskzero.site/public_html",
     "port": 65002
   },
   "deploy_files": [
+    "runtime/content/maskzero.site/.htaccess",
+    "runtime/content/maskzero.site/index.html",
+    "runtime/content/maskzero.site/create-hero/index.html",
+    "runtime/content/maskzero.site/how-it-works/index.html",
+    "runtime/content/maskzero.site/origin-rules/index.html",
+    "runtime/content/maskzero.site/roster-rules/index.html",
+    "runtime/content/maskzero.site/login/index.html",
+    "runtime/content/maskzero.site/meridian-map/index.html",
+    "runtime/content/maskzero.site/dispatch/index.html",
     "runtime/content/maskzero.site/assets/js/spark-auth-nav.js",
     "runtime/content/maskzero.site/battle-simulator.html",
     "runtime/content/maskzero.site/battles.html",

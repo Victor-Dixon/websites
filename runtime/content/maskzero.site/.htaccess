@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# MaskZero canonical host. Serve maskzero.site as the public SSOT and keep www as an intentional 301 alias.
+RewriteCond %{HTTP_HOST} ^www\.maskzero\.site$ [NC]
+RewriteRule ^(.*)$ https://maskzero.site/$1 [R=301,L,NE]
+
+DirectoryIndex index.html index.php

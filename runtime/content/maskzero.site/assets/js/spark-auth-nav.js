@@ -1,16 +1,16 @@
 (function () {
   "use strict";
 
-  var NAV_ASSET_VERSION = "9";
+  var NAV_ASSET_VERSION = "10";
   var navEl = null;
   var navIsComic = false;
   var menuToggleEl = null;
 
   var GUEST_LINKS = [
-    { href: "/", label: "Home", comicLabel: "Cover", key: "home" },
+    { href: "/", label: "MaskZero", comicLabel: "Cover", key: "home" },
     {
-      href: "/spark-generator/",
-      label: "Origin Lab",
+      href: "/create-hero/",
+      label: "Create Hero",
       comicLabel: "Origin Lab",
       key: "generator"
     }
@@ -26,15 +26,16 @@
 
   var LOGGED_IN_LINKS = [
     LOGGED_IN_HOME,
+    { href: "/dispatch/", label: "Dispatch", comicLabel: "Dispatch", key: "dispatch", accent: true },
     {
-      href: "/spark-generator/",
-      label: "Origin Lab",
+      href: "/create-hero/",
+      label: "Create Hero",
       comicLabel: "Origin Lab",
       key: "generator"
     },
     {
-      href: "/spark-account/",
-      label: "Account",
+      href: "/origin-rules/",
+      label: "Origin Rules",
       comicLabel: "Origin Rules",
       key: "account"
     }
@@ -75,14 +76,14 @@
     var path = window.location.pathname.replace(/\/+$/, "") || "/";
     if (path === "/" || path === "") return "home";
     if (path.indexOf("/news") === 0) return "news";
-    if (path.indexOf("/meridian-dispatch") === 0) return "dispatch";
+    if (path.indexOf("/dispatch") === 0 || path.indexOf("/meridian-dispatch") === 0) return "dispatch";
     if (path.indexOf("/meridian-map") === 0) return "map";
     if (path.indexOf("/spark-dashboard") === 0) return "dashboard";
-    if (path.indexOf("/spark-account") === 0) return "account";
-    if (path.indexOf("/spark-login") === 0) return "login";
+    if (path.indexOf("/origin-rules") === 0 || path.indexOf("/spark-account") === 0) return "account";
+    if (path.indexOf("/login") === 0 || path.indexOf("/spark-login") === 0) return "login";
     if (path.indexOf("/spark-signup") === 0) return "signup";
     if (path.indexOf("/spark-logout") === 0) return "logout";
-    if (path.indexOf("/spark-generator") === 0) return "generator";
+    if (path.indexOf("/create-hero") === 0 || path.indexOf("/spark-generator") === 0) return "generator";
     if (path.indexOf("/spark-gauntlet") === 0) return "gauntlet";
     if (path.indexOf("/spark-battle") === 0) return "battle";
     return "";
@@ -127,7 +128,7 @@
         '<a href="/spark-logout/" style="padding:8px 10px;border-radius:10px;background:#ff3155;color:#fff;text-decoration:none;font-weight:900">Log Out</a>';
     } else {
       html +=
-        '<a href="/spark-login/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Log In</a>' +
+        '<a href="/login/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Log In</a>' +
         '<a href="/spark-signup/" style="padding:8px 10px;border-radius:10px;background:#78f0ff;color:#061019;text-decoration:none;font-weight:900">Sign Up</a>';
     }
 
@@ -154,7 +155,7 @@
       html += '<a href="/spark-logout/">Log Out</a>';
     } else {
       html +=
-        '<a href="/spark-login/">Log In</a>' +
+        '<a href="/login/">Log In</a>' +
         '<a class="pop" href="/spark-signup/">Join The Universe</a>';
     }
 
@@ -184,7 +185,8 @@
         link.setAttribute("href", LOGGED_IN_HOME.href);
         var label = (link.textContent || "").trim().toLowerCase();
         if (label === "home" || label === "cover") {
-          link.textContent = linkLabel(LOGGED_IN_HOME, navIsComic);
+          link.textContent = linkLabel(LOGGED_IN_HOME,
+    { href: "/dispatch/", label: "Dispatch", comicLabel: "Dispatch", key: "dispatch", accent: true }, navIsComic);
         }
       } else if (link.dataset.sparkGuestHref) {
         link.setAttribute("href", link.dataset.sparkGuestHref);

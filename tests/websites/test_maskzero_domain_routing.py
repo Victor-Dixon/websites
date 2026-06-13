@@ -57,4 +57,48 @@ def test_migration_registry_documents_current_redirect_decision():
     assert "dadudekc.site:" in deploy_modes
     assert "deploy_policy: domain_redirect_only" in deploy_modes
     assert "redirect_dadudekc_to_maskzero: true" in task
-    assert "preserve_dadudekc_as_separate_site: false" in task
+    assert "preserve_dadudekc_as_separate_site: true" in task
+
+
+def test_maskzero_canonical_brand_contract_static_ssot():
+    index = (MASKZERO / "index.html").read_text(encoding="utf-8")
+    htaccess = (MASKZERO / ".htaccess").read_text(encoding="utf-8")
+
+    assert "<title>MaskZero | Spark Protocol in Meridian City</title>" in index
+    assert '<h1 id="home-title">MaskZero</h1>' in index
+    assert "Create your Spark. Enter Meridian City. Answer the Dispatch." in index
+    assert "MaskZero · Spark Protocol v8.6" in index
+    assert "Created by WeAreSwarm · Powered by Dream.OS" in index
+    assert r"RewriteCond %{HTTP_HOST} ^www\.maskzero\.site$ [NC]" in htaccess
+    assert "RewriteRule ^(.*)$ https://maskzero.site/$1 [R=301,L,NE]" in htaccess
+
+
+def test_maskzero_required_routes_have_static_sources():
+    routes = [
+        "index.html",
+        "create-hero/index.html",
+        "how-it-works/index.html",
+        "origin-rules/index.html",
+        "roster-rules/index.html",
+        "login/index.html",
+        "meridian-map/index.html",
+        "dispatch/index.html",
+    ]
+    missing = [route for route in routes if not (MASKZERO / route).exists()]
+    assert not missing, f"Missing MaskZero route sources: {missing}"
+
+    for route in routes:
+        html = (MASKZERO / route).read_text(encoding="utf-8")
+        assert "MaskZero" in html
+        assert "Created by WeAreSwarm · Powered by Dream.OS" in html
+        assert "Loading" not in html
+
+
+def test_maskzero_public_sources_do_not_reference_old_domain():
+    public_files = list(MASKZERO.rglob("*.html")) + list((MASKZERO / "assets").rglob("*.js"))
+    offenders = [
+        str(path.relative_to(ROOT))
+        for path in public_files
+        if "dadudekc.site" in path.read_text(encoding="utf-8", errors="ignore").lower()
+    ]
+    assert not offenders, f"MaskZero public files reference dadudekc.site: {offenders}"
