@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dispatch Missions | MaskZero</title>
+<meta name="description" content="Preview MaskZero Dispatch missions and route saved Spark characters into Meridian City.">
+<style>
+:root{--bg:#070915;--panel:#11172b;--text:#f7f7fb;--muted:rgba(247,247,251,.72);--line:rgba(255,255,255,.14);--accent:#7dffbe;--accent2:#9da7ff;--warn:#ffd166}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top left,rgba(125,255,190,.15),transparent 34rem),radial-gradient(circle at bottom right,rgba(157,167,255,.14),transparent 34rem),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.wrap{width:min(100% - 1rem,1040px);margin:0 auto;padding:1rem 0 4rem}
+header{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1rem 0}
+a{color:inherit}
+nav{display:flex;gap:.8rem;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-weight:800}
+.panel,.mission,.status{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border-radius:28px;padding:clamp(1rem,4vw,2rem);box-shadow:0 24px 70px rgba(0,0,0,.26)}
+.kicker{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:.8rem;font-weight:950}
+h1{font-size:clamp(2.25rem,8vw,4.6rem);line-height:.94;margin:.35rem 0 1rem}
+h2{font-size:clamp(1.45rem,5vw,2.25rem);margin:.25rem 0 .85rem}
+h3{margin:.1rem 0 .5rem}
+p,li,small{color:var(--muted);line-height:1.55}
+.actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+button,.btn{min-height:52px;border:0;border-radius:999px;padding:.8rem 1.1rem;font-weight:950;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
+.primary{background:var(--accent);color:#071015}
+.secondary{background:rgba(255,255,255,.1);color:var(--text);border:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1rem}
+.mission{display:flex;flex-direction:column;gap:.75rem;padding:1rem;border-radius:22px}
+.mission[data-selected="1"]{outline:3px solid rgba(125,255,190,.75);background:rgba(125,255,190,.1)}
+.mission-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{border:1px solid var(--line);background:rgba(255,255,255,.075);border-radius:999px;padding:.35rem .6rem;color:var(--muted);font-size:.82rem;font-weight:800}
+.status{margin-top:1rem;border-radius:22px}
+.status strong,.status span{display:block}
+.warn{color:var(--warn)}
+pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.25);padding:1rem;border-radius:16px}
+@media(max-width:860px){header{display:block}nav{margin-top:.75rem}.grid{grid-template-columns:1fr}.panel{border-radius:22px}}
+</style>
+<link rel="stylesheet" href="/assets/css/maskzero-comic-theme.css?v=1">
+</head>
+<body data-dreamos-missions-route="static-001" class="maskzero-comic-skin">
+<div class="wrap">
+  <header>
+    <strong>MaskZero</strong>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/how-it-works/">How It Works</a>
+      <a href="/spark-generator/">Generate Spark</a>
+      <a href="/missions/">Missions</a>
+      <a href="/battles/">Battles</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="kicker">MaskZero · Meridian Mission Board</div>
+      <h1>Answer the Dispatch.</h1>
+      <p>
+        Generate a Spark, save the character, then pick a Meridian City mission seed to carry into the first playable MaskZero loop.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="/spark-generator/">Generate or Save a Spark</a>
+        <a class="btn secondary" href="/battles/">Open What-If Arena</a>
+      </div>
+    </section>
+
+    <section id="mission-status" class="status" aria-live="polite"></section>
+
+    <section class="grid" aria-label="Available missions">
+      <article class="mission" data-mission-id="signal-on-avery-block">
+        <div class="kicker">Rescue</div>
+        <h2>Signal on Avery Block</h2>
+        <p>A blackout hits three buildings at once. Your Spark has to choose between crowd control, search, and a visible first save.</p>
+        <div class="mission-meta">
+          <span class="pill">Threat: unstable grid</span>
+          <span class="pill">Focus: control</span>
+          <span class="pill">Public witnesses</span>
+        </div>
+        <button class="primary" type="button" data-action="select-mission">Select Mission</button>
+      </article>
+
+      <article class="mission" data-mission-id="market-street-afterimage">
+        <div class="kicker">Investigation</div>
+        <h2>Market Street Afterimage</h2>
+        <p>Security footage shows a blur that should not exist. Track the pattern before the next incident turns into a public panic.</p>
+        <div class="mission-meta">
+          <span class="pill">Threat: unknown Spark</span>
+          <span class="pill">Focus: perception</span>
+          <span class="pill">Low collateral</span>
+        </div>
+        <button class="primary" type="button" data-action="select-mission">Select Mission</button>
+      </article>
+
+      <article class="mission" data-mission-id="riverline-containment">
+        <div class="kicker">Containment</div>
+        <h2>Riverline Containment</h2>
+        <p>An awakened power spills through an underpass. Hold the line, protect civilians, and learn what your limits cost.</p>
+        <div class="mission-meta">
+          <span class="pill">Threat: area hazard</span>
+          <span class="pill">Focus: endurance</span>
+          <span class="pill">High pressure</span>
+        </div>
+        <button class="primary" type="button" data-action="select-mission">Select Mission</button>
+      </article>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const status = document.getElementById("mission-status");
+  const savedKey = "dreamos.savedSparkCharacters.v1";
+  const currentKey = "dreamos.currentSparkCharacter.v1";
+  const missionKey = "dreamos.currentMission.v1";
+
+  function esc(s){
+    return String(s || "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+  }
+
+  function readJson(key, fallback){
+    try { return JSON.parse(localStorage.getItem(key) || "null") || fallback; }
+    catch(e) { return fallback; }
+  }
+
+  function currentCharacter(){
+    const current = readJson(currentKey, null);
+    if (current) return current;
+    const saved = readJson(savedKey, []);
+    return Array.isArray(saved) && saved.length ? saved[saved.length - 1] : null;
+  }
+
+  function missionSummary(card){
+    return {
+      id: card.getAttribute("data-mission-id"),
+      title: card.querySelector("h2").textContent.trim(),
+      focus: Array.from(card.querySelectorAll(".pill")).map(x => x.textContent.trim()),
+      selected_at: new Date().toISOString()
+    };
+  }
+
+  function renderStatus(selected){
+    const character = currentCharacter();
+    if (!character) {
+      status.innerHTML = '<div class="kicker">Account path</div><h2>No saved Spark detected yet.</h2><p>Mission previews are available now. To start with a character record, generate a Spark and use the save button on the final dossier.</p><div class="actions"><a class="btn primary" href="/spark-generator/">Generate Your Spark</a></div>';
+      return;
+    }
+    const mission = selected || readJson(missionKey, null);
+    status.innerHTML = '<div class="kicker">Active Spark</div><h2>' + esc(character.lead_domain || "Generated") + ' Spark ready</h2><p>Saved character found. Choose a mission to stage the next campaign step.</p>' +
+      (mission ? '<pre>Mission: ' + esc(mission.title) + '\nSpark: ' + esc(character.lead_domain || "Generated") + '\nStatus: staged locally for campaign handoff</pre>' : '') +
+      '<div class="actions"><a class="btn secondary" href="/battles/">Test this Spark in the What-If Arena</a></div>';
+  }
+
+  document.addEventListener("click", function(ev){
+    const button = ev.target.closest("[data-action='select-mission']");
+    if (!button) return;
+    const card = button.closest(".mission");
+    const mission = missionSummary(card);
+    localStorage.setItem(missionKey, JSON.stringify(mission));
+    document.querySelectorAll(".mission").forEach(x => x.removeAttribute("data-selected"));
+    card.setAttribute("data-selected", "1");
+    renderStatus(mission);
+    status.scrollIntoView({behavior:"smooth", block:"nearest"});
+  });
+
+  renderStatus();
+})();
+</script>
+<footer style="padding:2rem 0;text-align:center;color:rgba(247,247,251,.72)"><strong>MaskZero · Spark Protocol v8.6</strong><br><small>Created by WeAreSwarm · Powered by Dream.OS</small></footer>
+</body>
+</html>

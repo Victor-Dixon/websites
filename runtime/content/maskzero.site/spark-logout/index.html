@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Logging Out | MaskZero</title>
+  <link rel="stylesheet" href="/assets/css/maskzero-comic-theme.css?v=1">
+  <style>
+    body{margin:0;min-height:100vh}
+  </style>
+</head>
+<body class="maskzero-comic-skin">
+  <main>
+    <section class="hero">
+      <div class="kicker">Spark account</div>
+      <h1>Logging Out</h1>
+      <p class="tagline" id="logout-status">Clearing your MaskZero session...</p>
+      <div class="actions">
+        <a class="btn primary" href="/spark-login/">Return To Login</a>
+      </div>
+    </section>
+  </main>
+  <script>
+  (function () {
+    const status = document.getElementById("logout-status");
+    fetch("/api/spark-auth.php?action=logout", {
+      method: "POST",
+      credentials: "same-origin"
+    }).then(function () {
+      status.textContent = "Logged out. Returning to the Spark login...";
+    }).catch(function () {
+      status.textContent = "Session clear requested. Returning to the Spark login...";
+    }).finally(function () {
+      setTimeout(function () {
+        window.location.href = "/spark-login/";
+      }, 700);
+    });
+  })();
+  </script>
+</body>
+</html>

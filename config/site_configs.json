@@ -286,7 +286,15 @@
   },
   "maskzero.site": {
     "site_url": "https://maskzero.site",
-    "path": "websites/dadudekc.site",
+    "path": "runtime/content/maskzero.site",
+    "canonical_host": "https://maskzero.site",
+    "www_policy": "301_redirect_to_canonical_host",
+    "brand_hierarchy": {
+      "primary_brand": "MaskZero",
+      "experience_system": "Spark Protocol",
+      "world": "Meridian City",
+      "attribution": "Created by WeAreSwarm · Powered by Dream.OS"
+    },
     "deployment_method": "sftp",
     "sftp": {
       "host": "157.173.214.121",
@@ -295,8 +303,41 @@
       "remote_path": "domains/maskzero.site/public_html",
       "port": 65002
     },
-    "deploy_dirs": [
-      "websites/dadudekc.site"
+    "deploy_files": [
+      "runtime/content/maskzero.site/.htaccess",
+      "runtime/content/maskzero.site/api/spark-auth.php",
+      "runtime/content/maskzero.site/api/class-phpass.php",
+      "runtime/content/maskzero.site/index.html",
+      "runtime/content/maskzero.site/create-hero/index.html",
+      "runtime/content/maskzero.site/how-it-works/index.html",
+      "runtime/content/maskzero.site/origin-rules/index.html",
+      "runtime/content/maskzero.site/roster-rules/index.html",
+      "runtime/content/maskzero.site/login/index.html",
+      "runtime/content/maskzero.site/spark-login/index.html",
+      "runtime/content/maskzero.site/spark-logout/index.html",
+      "runtime/content/maskzero.site/spark-signup/index.html",
+      "runtime/content/maskzero.site/spark-account/index.html",
+      "runtime/content/maskzero.site/spark-dashboard/index.html",
+      "runtime/content/maskzero.site/meridian-map/index.html",
+      "runtime/content/maskzero.site/dispatch/index.html",
+      "runtime/content/maskzero.site/assets/css/maskzero-comic-theme.css",
+      "runtime/content/maskzero.site/assets/css/spark-site-shell.css",
+      "runtime/content/maskzero.site/assets/js/spark-account-runtime.js",
+      "runtime/content/maskzero.site/assets/js/spark-auth-nav.js",
+      "runtime/content/maskzero.site/assets/js/spark-dashboard.js",
+      "runtime/content/maskzero.site/assets/js/spark-site-shell.js",
+      "runtime/content/maskzero.site/battle-simulator.html",
+      "runtime/content/maskzero.site/battles.html",
+      "runtime/content/maskzero.site/battles/index.html",
+      "runtime/content/maskzero.site/character-generator.html",
+      "runtime/content/maskzero.site/client-preview.html",
+      "runtime/content/maskzero.site/home.html",
+      "runtime/content/maskzero.site/missions/index.html",
+      "runtime/content/maskzero.site/protocol.html",
+      "runtime/content/maskzero.site/quiz/index.html",
+      "runtime/content/maskzero.site/spark-generator/index.html",
+      "runtime/content/maskzero.site/spark-os/index.html",
+      "runtime/content/maskzero.site/the-emergence.html"
     ]
   },
   "dadudekc.com": {
