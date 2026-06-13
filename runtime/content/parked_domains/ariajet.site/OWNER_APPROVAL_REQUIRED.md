@@ -1,6 +1,6 @@
 # Owner Approval / Deployment Notes: ariajet.site
 
-This static package is the source for the AriaJet public build-in-public hub.
+This static package is the source for the AriaJet Phone Repair website.
 
 ## Domain
 
@@ -12,17 +12,17 @@ rebuild_static
 
 ## Business Purpose
 
-Build-in-public project hub for AriaJet as a growing travel/startup product.
+Small independent phone repair and device restoration business that also documents the owner's journey learning electronics repair.
 
-## Requested Hub Content
+## Requested Website Content
 
-- Dashboard-style homepage with "Building AriaJet in Public" hero.
-- Recent updates feed, activity stream, metrics, announcements, and project status.
-- Blog-style development log categories for features, bug fixes, design changes, experiments, and lessons learned.
-- Public roadmap with Core Website, Flight Search, Booking System, and Mobile App phases.
-- System updates page for technical updates, deployment logs, performance improvements, and infrastructure changes.
-- Mission and achievement system with milestones, goals, challenges, and badges.
-- Navigation: Home, Roadmap, Updates, Dev Log, Projects, Achievements, About.
+- Home page with the headline "AriaJet Phone Repair".
+- Prominent "Get a Quote" and "Contact" actions.
+- Services page covering screen replacement, battery replacement, device cleaning, diagnostics, and software troubleshooting.
+- Repair Gallery page for before-and-after repair documentation, repair details, and completed projects.
+- Repair Journey page for repairs completed, lessons learned, current projects, and technician growth.
+- Contact page with quote guidance and customer-safe repair intake details.
+- Modern dark theme with blue accents, fast static pages, and mobile-first responsive layout.
 
 ## Approval Gate
 
