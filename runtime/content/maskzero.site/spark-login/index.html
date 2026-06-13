@@ -278,7 +278,7 @@ button{
     </section>
 
     <section class="form-panel">
-      <form method="post" action="/wp-login.php" target="sparkLoginFrame" id="sparkLoginForm">
+      <form method="post" action="/api/spark-auth.php?action=login" target="sparkLoginFrame" id="sparkLoginForm">
         <label for="user_login">Email or Display Name</label>
         <input id="user_login" name="log" type="text" autocomplete="username" required aria-required="true">
 
@@ -291,9 +291,7 @@ button{
 
         <input type="hidden" name="redirect_to" value="/spark-dashboard/">
         <input type="hidden" name="rememberme" value="forever">
-        <input type="hidden" name="testcookie" value="1">
-
-        <button type="submit" id="sparkLoginSubmit" name="wp-submit" value="Log In">Log In</button>
+        <button type="submit" id="sparkLoginSubmit">Log In</button>
         <a class="comic-button secondary" href="/spark-signup/">Create Account</a>
         <p class="field-help"><a href="/spark-login/?help=lost-password">Forgot password?</a></p>
       </form>
@@ -343,7 +341,8 @@ button{
   }
 
   function hasLoggedInCookie() {
-    return document.cookie.indexOf("wordpress_logged_in") !== -1;
+    return document.cookie.indexOf("wordpress_logged_in") !== -1 ||
+      document.cookie.indexOf("maskzero_spark_session") !== -1;
   }
 
   const form = document.getElementById("sparkLoginForm");
@@ -366,16 +365,16 @@ button{
     debugLog.textContent = "Login debug started. Passwords are never logged.";
   }
 
-  function detectWordPressClues(html) {
-    const lowered = String(html || "").toLowerCase();
+  function detectAuthClues(payload, text) {
+    const lowered = String((payload && payload.message) || text || "").toLowerCase();
     const clues = [];
     if (lowered.indexOf("incorrect") !== -1) clues.push("incorrect credential message");
     if (lowered.indexOf("invalid username") !== -1) clues.push("invalid username");
     if (lowered.indexOf("unknown email") !== -1) clues.push("unknown email");
-    if (lowered.indexOf("cookies are blocked") !== -1 || lowered.indexOf("test cookie") !== -1) clues.push("cookie test failed");
-    if (lowered.indexOf("lost your password") !== -1) clues.push("WordPress login form returned");
-    if (lowered.indexOf("wp-submit") !== -1) clues.push("WordPress login fields returned");
-    return clues.length ? clues : ["no obvious WordPress error clue found"];
+    if (lowered.indexOf("already has") !== -1) clues.push("existing account");
+    if (lowered.indexOf("password") !== -1) clues.push("password-related response");
+    if (lowered.indexOf("cookie") !== -1) clues.push("cookie-related response");
+    return clues.length ? clues : ["no obvious MaskZero auth error clue found"];
   }
 
   if (help === "lost-password" && status) {
@@ -392,54 +391,56 @@ button{
       resetDebug();
       submitBtn.disabled = true;
       status.textContent = "Signing in…";
-      document.cookie = "wordpress_test_cookie=WP Cookie check; path=/; SameSite=Lax";
       debugLine("Attempt " + attempt + " started", {
         page: window.location.pathname,
         redirect_to: safe,
         username_supplied: !!document.getElementById("user_login").value.trim(),
         password_supplied: !!document.getElementById("user_pass").value,
-        test_cookie_visible_before_post: document.cookie.indexOf("wordpress_test_cookie") !== -1,
+        endpoint: "/api/spark-auth.php?action=login",
+        maskzero_cookie_visible_before_post: document.cookie.indexOf("maskzero_spark_session") !== -1,
         logged_in_cookie_before_post: hasLoggedInCookie()
       });
 
       try {
-        const res = await fetch("/wp-login.php", {
+        const res = await fetch("/api/spark-auth.php?action=login", {
           method: "POST",
           body: new FormData(form),
           credentials: "same-origin",
           redirect: "follow"
         });
 
-        const finalUrl = new URL(res.url || window.location.href, window.location.origin);
-        const html = await res.text().catch(function () { return ""; });
-        const clues = detectWordPressClues(html);
-        debugLine("WordPress auth response", {
+        const text = await res.text().catch(function () { return ""; });
+        let payload = {};
+        try {
+          payload = text ? JSON.parse(text) : {};
+        } catch (err) {
+          payload = {};
+        }
+        const clues = detectAuthClues(payload, text);
+        debugLine("MaskZero auth response", {
           http_status: res.status,
           ok: res.ok,
-          final_url: finalUrl.href,
-          final_path: finalUrl.pathname,
+          endpoint: "/api/spark-auth.php?action=login",
           redirected: res.redirected,
-          response_bytes: html.length,
+          response_bytes: text.length,
+          response_ok: payload.ok === true,
+          response_logged_in: payload.logged_in === true,
+          response_message: payload.message || "",
           logged_in_cookie_after_post: hasLoggedInCookie(),
-          test_cookie_visible_after_post: document.cookie.indexOf("wordpress_test_cookie") !== -1,
+          maskzero_cookie_visible_after_post: document.cookie.indexOf("maskzero_spark_session") !== -1,
           clues: clues
         });
 
-        if (hasLoggedInCookie() || finalUrl.pathname.indexOf(safe.replace(/\/+$/, "")) === 0 || finalUrl.pathname.indexOf("/spark-dashboard") === 0) {
-          debugLine("Result", "Login appears successful. Redirecting custom page to " + safe);
-          window.location.href = safe;
+        if (payload.ok === true && payload.logged_in === true) {
+          const target = payload.redirect && payload.redirect.startsWith("/") ? payload.redirect : safe;
+          debugLine("Result", "Login appears successful. Redirecting custom page to " + target);
+          window.location.href = target;
           return;
         }
 
-        const lowered = html.toLowerCase();
         status.className = "status error form-status";
-        if (lowered.indexOf("cookies are blocked") !== -1 || lowered.indexOf("test cookie") !== -1) {
-          status.textContent = "Login needs browser cookies enabled for MaskZero. Enable cookies for this site, then try again.";
-          debugLine("Result", "Cookie test appears to be failing.");
-        } else {
-          status.textContent = "Login did not complete. Check your username and password, then try again.";
-          debugLine("Result", "Login rejected or did not create a WordPress logged-in cookie.");
-        }
+        status.textContent = payload.message || "Login did not complete. Check your username and password, then try again.";
+        debugLine("Result", "Login rejected or did not create a MaskZero session.");
       } catch (err) {
         status.className = "status error form-status";
         status.textContent = "Login could not connect. Please try again in a moment.";

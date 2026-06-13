@@ -2,6 +2,7 @@
   "use strict";
 
   var SESSION_ENDPOINTS = [
+    "/api/spark-auth.php?action=session",
     "/wp-json/spark/v1/session",
     "/wp-json/emergence/v1/session"
   ];

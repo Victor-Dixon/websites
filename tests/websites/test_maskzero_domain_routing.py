@@ -104,10 +104,13 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
 
     assert "RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
     assert "RewriteRule ^wp-login\\.php$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
+    assert "RewriteRule ^\\.spark-auth/ - [F,L]" in htaccess
     assert "RewriteRule ^the-emergence/?$ /the-emergence.html [L]" in htaccess
     assert "RewriteRule ^meridian-dispatch/?$ /dispatch/ [R=302,L,NE]" in htaccess
     assert "RewriteRule ^spark-battle/?$ /battles/ [R=302,L,NE]" in htaccess
+    assert "runtime/content/maskzero.site/api/spark-auth.php" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-login/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/spark-logout/index.html" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-signup/index.html" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-account/index.html" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-dashboard/index.html" in sites["maskzero.site"]["deploy_files"]
@@ -123,23 +126,32 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
     assert 'target="sparkLoginFrame"' in spark_login
     assert 'name="sparkLoginFrame"' in spark_login
     assert "event.preventDefault()" in spark_login
-    assert 'fetch("/wp-login.php"' in spark_login
-    assert 'name="testcookie" value="1"' in spark_login
-    assert 'name="wp-submit" value="Log In"' in spark_login
-    assert "wordpress_test_cookie=WP Cookie check" in spark_login
+    assert 'action="/api/spark-auth.php?action=login"' in spark_login
+    assert 'fetch("/api/spark-auth.php?action=login"' in spark_login
+    assert 'fetch("/wp-login.php"' not in spark_login
     assert 'href="/spark-login/?help=lost-password"' in spark_login
     assert 'href="/wp-login.php?action=lostpassword"' not in spark_login
-    assert 'window.location.href = safe' in spark_login
+    assert 'window.location.href = target' in spark_login
     assert "Login did not complete" in spark_login
-    assert "Login needs browser cookies enabled" in spark_login
     assert 'id="sparkLoginDebugLog"' in spark_login
     assert "Login debug started. Passwords are never logged." in spark_login
-    assert "WordPress auth response" in spark_login
-    assert "detectWordPressClues" in spark_login
+    assert "MaskZero auth response" in spark_login
+    assert "detectAuthClues" in spark_login
     assert "password_supplied" in spark_login
     assert 'document.getElementById("user_pass").value' in spark_login
     assert "password:" not in spark_login.lower()
-    assert "Create Account" in (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
+    signup = (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
+    runtime = (MASKZERO / "assets/js/spark-account-runtime.js").read_text(encoding="utf-8")
+    auth_api = (MASKZERO / "api/spark-auth.php").read_text(encoding="utf-8")
+    logout = (MASKZERO / "spark-logout/index.html").read_text(encoding="utf-8")
+    assert "Create Account" in signup
+    assert 'fetch("/api/spark-auth.php?action=register"' in signup
+    assert '"/api/spark-auth.php?action=session"' in runtime
+    assert "maskzero_spark_session" in auth_api
+    assert "password_hash" in auth_api
+    assert "password_verify" in auth_api
+    assert "/.spark-auth" in auth_api
+    assert 'fetch("/api/spark-auth.php?action=logout"' in logout
     assert "Spark Account" in (MASKZERO / "spark-account/index.html").read_text(encoding="utf-8")
     assert "Command Post" in (MASKZERO / "spark-dashboard/index.html").read_text(encoding="utf-8")
 
