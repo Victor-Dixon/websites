@@ -282,7 +282,7 @@
 "dadudekc.site": {
   "site_url": "https://dadudekc.site",
   "path": "runtime/content/dadudekc.site",
-  "canonical_target": "https://maskzero.site",
+  "site_role": "standalone_static_site",
   "deployment_method": "sftp",
   "sftp": {
     "host": "157.173.214.121",
@@ -293,7 +293,19 @@
   },
   "deploy_files": [
     "runtime/content/dadudekc.site/.htaccess",
-    "runtime/content/dadudekc.site/index.html"
+    "runtime/content/dadudekc.site/index.html",
+    "runtime/content/dadudekc.site/assets/js/spark-auth-nav.js",
+    "runtime/content/dadudekc.site/battle-simulator.html",
+    "runtime/content/dadudekc.site/battles.html",
+    "runtime/content/dadudekc.site/battles/index.html",
+    "runtime/content/dadudekc.site/character-generator.html",
+    "runtime/content/dadudekc.site/client-preview.html",
+    "runtime/content/dadudekc.site/home.html",
+    "runtime/content/dadudekc.site/missions/index.html",
+    "runtime/content/dadudekc.site/protocol.html",
+    "runtime/content/dadudekc.site/spark-generator/index.html",
+    "runtime/content/dadudekc.site/spark-os/index.html",
+    "runtime/content/dadudekc.site/the-emergence.html"
   ]
 },
 "maskzero.site": {
@@ -323,6 +335,9 @@
     "runtime/content/maskzero.site/origin-rules/index.html",
     "runtime/content/maskzero.site/roster-rules/index.html",
     "runtime/content/maskzero.site/login/index.html",
+    "runtime/content/maskzero.site/spark-login/index.html",
+    "runtime/content/maskzero.site/spark-signup/index.html",
+    "runtime/content/maskzero.site/spark-dashboard/index.html",
     "runtime/content/maskzero.site/meridian-map/index.html",
     "runtime/content/maskzero.site/dispatch/index.html",
     "runtime/content/maskzero.site/assets/js/spark-auth-nav.js",
@@ -334,6 +349,7 @@
     "runtime/content/maskzero.site/home.html",
     "runtime/content/maskzero.site/missions/index.html",
     "runtime/content/maskzero.site/protocol.html",
+    "runtime/content/maskzero.site/quiz/index.html",
     "runtime/content/maskzero.site/spark-generator/index.html",
     "runtime/content/maskzero.site/spark-os/index.html",
     "runtime/content/maskzero.site/the-emergence.html"
