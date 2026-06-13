@@ -22,8 +22,8 @@
 
     <section class="stats-hero" id="stats-hero" aria-live="polite">
       <div class="stat-card"><span class="stat-value" id="stat-products">8</span><span class="stat-label">Products</span></div>
-      <div class="stat-card"><span class="stat-value" id="stat-operational">—</span><span class="stat-label">Operational</span></div>
-      <div class="stat-card"><span class="stat-value" id="stat-productized">—</span><span class="stat-label">Productized</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-revenue-engines">—</span><span class="stat-label">Revenue engines</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-lead-gen">—</span><span class="stat-label">Lead gen</span></div>
       <div class="stat-card"><span class="stat-value" id="stat-github">—</span><span class="stat-label">GitHub repos</span></div>
       <div class="stat-card"><span class="stat-value" id="stat-scanner">—</span><span class="stat-label">Scanner nodes</span></div>
     </section>
@@ -32,7 +32,7 @@
       <div class="panel-header">
         <div>
           <h2>Product outcomes</h2>
-          <p class="subtitle">portfolio_products.json — operational portfolio truth</p>
+          <p class="subtitle">portfolio_products.json — revenue class + sellable use case</p>
         </div>
         <span class="badge ok" id="products-badge">loading</span>
       </div>
@@ -42,14 +42,15 @@
             <thead>
               <tr>
                 <th>Product</th>
+                <th>Revenue Class</th>
                 <th>Status</th>
                 <th>Proof</th>
-                <th>Revenue Potential</th>
+                <th>Sellable Use Case</th>
                 <th>Live Surface</th>
               </tr>
             </thead>
             <tbody id="products-table-body">
-              <tr><td colspan="5" class="empty-state">Loading product portfolio…</td></tr>
+              <tr><td colspan="6" class="empty-state">Loading product portfolio…</td></tr>
             </tbody>
           </table>
         </div>
@@ -200,12 +201,14 @@
           productsBadge.className = "badge " + (productsResult.ok ? "ok" : "warn");
         }
         setStat("stat-products", productRows.length || 8);
-        const operationalCount = productRows.filter(function (p) {
-          return String(p.status || "").toLowerCase().indexOf("operational") >= 0 ||
-            String(p.status || "").toLowerCase().indexOf("productized") >= 0 ||
-            String(p.status || "").toLowerCase().indexOf("verified") >= 0;
+        const revenueEngineCount = productRows.filter(function (p) {
+          return p.revenue_class === "Revenue Engine";
         }).length;
-        setStat("stat-operational", operationalCount || "—");
+        const leadGenCount = productRows.filter(function (p) {
+          return p.revenue_class === "Lead Gen";
+        }).length;
+        setStat("stat-revenue-engines", revenueEngineCount || "—");
+        setStat("stat-lead-gen", leadGenCount || "—");
 
         const githubCount = (feed.projects || []).length;
         setStat("stat-github", githubCount || "—");

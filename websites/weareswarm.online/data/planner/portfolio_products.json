@@ -1,63 +1,235 @@
 {
-  "schema": "weareswarm.online.portfolio_products.v1",
-  "generated_at": "2026-06-12T12:00:00+00:00",
-  "source": "portfolio_publication_lane",
+  "schema": "weareswarm.online.portfolio_products.v2",
+  "generated_at": "2026-06-13T10:05:43+00:00",
+  "source": "product_revenue_classification_001",
+  "revenue_classes": [
+    "Revenue Engine",
+    "Lead Gen",
+    "Internal Tool",
+    "Client Asset",
+    "Research",
+    "Experimental",
+    "Archived"
+  ],
   "products": [
     {
       "name": "DreamOS",
-      "status": "Operational",
-      "proof": "Governance spine live — closeout, Discord, and WeAreSwarm publication enforcement; DreamVault task/planner authority",
-      "revenue_potential": "Platform + swarm ops consulting ($5k+ fixed)",
-      "live_surface": "https://weareswarm.online"
+      "revenue_class": "Revenue Engine",
+      "sellable_use_case": "Platform + swarm ops consulting ($5k+ fixed); planner governance SaaS ($199/mo)",
+      "status": "active",
+      "operational_status": "Operational",
+      "proof": "D:/DreamVault \u2014 governance spine, closeout enforcement, WeAreSwarm publication",
+      "live_surface": "https://weareswarm.online",
+      "revenue_potential": "Platform + swarm ops consulting ($5k+ fixed); planner governance SaaS ($199/mo)",
+      "canonical_repo": "DreamVault",
+      "skill_tree_nodes": [
+        "dreamos_core",
+        "offer_swarm_ops_consulting",
+        "offer_planner_governance_saas"
+      ]
     },
     {
       "name": "AI Debugger Assistant",
-      "status": "Productized",
-      "proof": "debug-as-a-service model indexed; session artifacts in data/reports/debugger/",
-      "revenue_potential": "Hourly debug + success bonus",
-      "live_surface": "https://weareswarm.online/projects"
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "Productized debug sessions \u2014 hourly ($150) + success bonus",
+      "status": "active",
+      "operational_status": "Productized",
+      "proof": "data/reports/debugger/ \u00b7 Victor-Dixon/AI_Debugger_Assistant",
+      "live_surface": "https://weareswarm.online/projects",
+      "revenue_potential": "Productized debug sessions \u2014 hourly ($150) + success bonus",
+      "canonical_repo": "AI_Debugger_Assistant",
+      "skill_tree_nodes": [
+        "offer_ai_debugger_assist"
+      ]
     },
     {
       "name": "Trading Robot Plug",
-      "status": "Paper-first (Robinhood gate)",
-      "proof": "Governed paper trading in DreamVault; Freeride signals dry-run lane",
-      "revenue_potential": "$79/mo Discord premium signals",
-      "live_surface": "Discord premium · freerideinvestor (production auth gated)"
+      "revenue_class": "Revenue Engine",
+      "sellable_use_case": "$79/mo Discord premium signals (paper-first until RH adult gate)",
+      "status": "active",
+      "operational_status": "Paper-first (Robinhood gate)",
+      "proof": "DreamVault src/dreamvault/trading/ \u00b7 Freeride signals dry-run lane",
+      "live_surface": "Discord premium \u00b7 freerideinvestor (production auth gated)",
+      "revenue_potential": "$79/mo Discord premium signals (paper-first until RH adult gate)",
+      "canonical_repo": "DreamVault",
+      "skill_tree_nodes": [
+        "offer_trading_signals_discord",
+        "cap_governed_paper_trading"
+      ]
     },
     {
       "name": "Agent Cellphone",
-      "status": "Active runtime",
-      "proof": "Command bus + Thea/Cursor bridge closeout; canonical desktop runtime at Agent_Cellphone_V2_Repository",
-      "revenue_potential": "Swarm ops setup ($5k fixed)",
-      "live_surface": "DreamVault runtime /tasks bridge"
+      "revenue_class": "Revenue Engine",
+      "sellable_use_case": "Swarm ops setup \u2014 governed multi-agent runtime ($5k fixed)",
+      "status": "active",
+      "operational_status": "Active runtime",
+      "proof": "D:/Agent_Cellphone_V2_Repository \u2014 command bus + Cursor bridge closeout",
+      "live_surface": "DreamVault runtime /tasks bridge",
+      "revenue_potential": "Swarm ops setup \u2014 governed multi-agent runtime ($5k fixed)",
+      "canonical_repo": "Agent_Cellphone_V2_Repository",
+      "skill_tree_nodes": [
+        "offer_swarm_ops_consulting",
+        "distributed_swarm_mesh"
+      ]
     },
     {
       "name": "Social Media Manager",
-      "status": "Preview-first",
-      "proof": "Victor voice pipeline + daily-preview artifacts; DreamVault owns governance",
-      "revenue_potential": "$500/mo content retainer",
-      "live_surface": "DreamVault marketing preview → optional SMM publish"
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "$500/mo content retainer \u2014 Victor voice + platform rewrites",
+      "status": "active",
+      "operational_status": "Preview-first",
+      "proof": "D:/socialmediamanager \u00b7 DreamVault marketing preview artifacts",
+      "live_surface": "DreamVault marketing preview \u2192 optional SMM publish",
+      "revenue_potential": "$500/mo content retainer \u2014 Victor voice + platform rewrites",
+      "canonical_repo": "socialmediamanager",
+      "skill_tree_nodes": [
+        "offer_content_voice_retainer"
+      ]
     },
     {
       "name": "ProjectScanner",
-      "status": "Operational",
-      "proof": "1,514 authority nodes · portfolio intelligence scan pack deliverable",
-      "revenue_potential": "$499 audit pack · $2.5k governed repo audit",
-      "live_surface": "https://weareswarm.online/projects"
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "$499 audit pack \u00b7 $2.5k governed repo audit",
+      "status": "active",
+      "operational_status": "Operational",
+      "proof": "D:/projectscanner \u00b7 1,514 authority nodes \u00b7 data/reports/projectscanner/",
+      "live_surface": "https://weareswarm.online/projects",
+      "revenue_potential": "$499 audit pack \u00b7 $2.5k governed repo audit",
+      "canonical_repo": "projectscanner",
+      "skill_tree_nodes": [
+        "offer_projectscanner_audit_pack",
+        "offer_dreamscan_repo_audit"
+      ]
     },
     {
       "name": "HomeSchool Mastery",
-      "status": "Active (kids lane)",
-      "proof": "Kids planner missions wired to DreamVault; lessons_lan + story duel modules",
+      "revenue_class": "Experimental",
+      "sellable_use_case": "Education SaaS / family learning (TBD pricing)",
+      "status": "active",
+      "operational_status": "Active (kids lane)",
+      "proof": "Victor-Dixon/HomeSchool_Mastery \u00b7 kids planner missions at weareswarm.online/kids-planner/",
+      "live_surface": "https://weareswarm.online/kids-planner/",
       "revenue_potential": "Education SaaS / family learning (TBD pricing)",
-      "live_surface": "https://weareswarm.online/kids-planner/"
+      "canonical_repo": "HomeSchool_Mastery",
+      "skill_tree_nodes": []
     },
     {
       "name": "Discord Architect",
-      "status": "Verified",
-      "proof": "Plan CLI + signed apply manifest; closeout verification passing on master_task_closed events",
+      "revenue_class": "Client Asset",
+      "sellable_use_case": "Included in swarm ops + Discord commander packages",
+      "status": "active",
+      "operational_status": "Verified",
+      "proof": "Plan CLI + signed apply manifest \u00b7 discord_architect npm test 7/7 PASS",
+      "live_surface": "Discord server governance (apply gated)",
       "revenue_potential": "Included in swarm ops + Discord commander packages",
-      "live_surface": "Discord server governance (apply gated)"
+      "canonical_repo": "DreamVault",
+      "skill_tree_nodes": [
+        "offer_swarm_ops_consulting"
+      ]
+    }
+  ],
+  "day1_lane_products": [
+    {
+      "name": "Agent Cellphone (v1)",
+      "revenue_class": "Archived",
+      "sellable_use_case": null,
+      "status": "archived",
+      "operational_status": "Superseded by V2",
+      "proof": "D:/Agent_Cellphone \u00b7 Victor-Dixon/Agent_Cellphone \u2014 salvage reference only",
+      "live_surface": null,
+      "canonical_repo": "Agent_Cellphone",
+      "bucket": "archive_candidate",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "Agent Cellphone V2",
+      "revenue_class": "Revenue Engine",
+      "sellable_use_case": "Swarm ops setup ($5k fixed)",
+      "status": "active",
+      "operational_status": "Canonical runtime",
+      "proof": "D:/Agent_Cellphone_V2_Repository",
+      "live_surface": "DreamVault runtime /tasks bridge",
+      "canonical_repo": "Agent_Cellphone_V2_Repository",
+      "bucket": "canonical",
+      "skill_tree_nodes": [
+        "offer_swarm_ops_consulting"
+      ]
+    },
+    {
+      "name": "AgentProject",
+      "revenue_class": "Research",
+      "sellable_use_case": null,
+      "status": "parked",
+      "operational_status": "Prototype",
+      "proof": "Victor-Dixon/agentproject \u00b7 data/reports/projectscanner/ecosystem_review_055.md",
+      "live_surface": null,
+      "canonical_repo": "agentproject",
+      "bucket": "promotion_candidate",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "GPT Automation",
+      "revenue_class": "Internal Tool",
+      "sellable_use_case": null,
+      "status": "active",
+      "operational_status": "Operator lane automation",
+      "proof": "Victor-Dixon/gpt_automation \u00b7 runtime/scripts/setup_gpt_automation.py",
+      "live_surface": null,
+      "canonical_repo": "gpt_automation",
+      "bucket": "toolbelt",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "Self-evolving AI",
+      "revenue_class": "Research",
+      "sellable_use_case": null,
+      "status": "parked",
+      "operational_status": "Research scaffold",
+      "proof": "Victor-Dixon/self-evolving-ai \u00b7 data/swarm_brain/devlogs/repository_analysis/",
+      "live_surface": null,
+      "canonical_repo": "self-evolving-ai",
+      "bucket": "promotion_candidate",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "contract-leads",
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "B2B contract lead lists + outreach templates ($800/mo)",
+      "status": "active",
+      "operational_status": "Scaffold",
+      "proof": "Victor-Dixon/contract-leads \u00b7 data/marketing/lead_tracker_001.json",
+      "live_surface": null,
+      "canonical_repo": "contract-leads",
+      "bucket": "promotion_candidate",
+      "skill_tree_nodes": [
+        "offer_contract_leads_b2b"
+      ]
+    },
+    {
+      "name": "SocialMediaManager",
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "External publish adapter for $500/mo content retainer",
+      "status": "active",
+      "operational_status": "Preview-first adapter",
+      "proof": "Victor-Dixon/socialmediamanager \u00b7 D:/socialmediamanager",
+      "live_surface": "DreamVault preview \u2192 SMM publish",
+      "canonical_repo": "socialmediamanager",
+      "bucket": "toolbelt",
+      "skill_tree_nodes": [
+        "offer_content_voice_retainer"
+      ]
+    },
+    {
+      "name": "StockTwits Analyzer",
+      "revenue_class": "Experimental",
+      "sellable_use_case": null,
+      "status": "parked",
+      "operational_status": "API risk \u2014 deferred",
+      "proof": "Victor-Dixon/stocktwits-analyzer \u00b7 data/swarm_brain/devlogs/agent_sessions/",
+      "live_surface": null,
+      "canonical_repo": "stocktwits-analyzer",
+      "bucket": "archive_candidate",
+      "skill_tree_nodes": []
     }
   ]
 }

@@ -444,30 +444,52 @@
     });
   }
 
+  var REVENUE_CLASS_TONE = {
+    "Revenue Engine": "ok",
+    "Lead Gen": "warn",
+    "Internal Tool": "",
+    "Client Asset": "ok",
+    "Research": "",
+    "Experimental": "warn",
+    "Archived": "block",
+  };
+
+  function revenueClassTone(revenueClass) {
+    return REVENUE_CLASS_TONE[revenueClass] || "";
+  }
+
+  function displayStatus(p) {
+    return p.operational_status || p.status || "—";
+  }
+
   function renderProductOutcomesTable(tbody, products) {
     if (!tbody) return;
     tbody.innerHTML = "";
     var items = toList(products);
     if (!items.length) {
       var emptyRow = document.createElement("tr");
-      emptyRow.innerHTML = '<td colspan="5" class="empty-state">No products in portfolio_products.json</td>';
+      emptyRow.innerHTML = '<td colspan="6" class="empty-state">No products in portfolio_products.json</td>';
       tbody.appendChild(emptyRow);
       return;
     }
     items.forEach(function (p) {
       var tr = document.createElement("tr");
-      var status = p.status || "—";
-      var statusClass = statusTone(status);
+      var lifecycle = p.status || "—";
+      var lifecycleClass = statusTone(lifecycle === "active" ? "VERIFIED" : lifecycle === "parked" ? "CHECKING" : "OPEN");
+      var revenueClass = p.revenue_class || "—";
+      var revenueTone = revenueClassTone(revenueClass);
       var surface = p.live_surface || "—";
       var surfaceCell = surface;
       if (String(surface).indexOf("http") === 0) {
         surfaceCell = '<a href="' + surface + '" target="_blank" rel="noopener">' + surface + "</a>";
       }
+      var sellable = p.sellable_use_case || p.revenue_potential || "—";
       tr.innerHTML =
         "<td><strong>" + (p.name || "—") + "</strong></td>" +
-        '<td><span class="field-pill field-pill--' + statusClass + '">' + status + "</span></td>" +
+        '<td><span class="field-pill field-pill--' + revenueTone + '">' + revenueClass + "</span></td>" +
+        '<td><span class="field-pill field-pill--' + lifecycleClass + '">' + displayStatus(p) + "</span></td>" +
         '<td class="muted-cell">' + (p.proof || "—") + "</td>" +
-        '<td class="muted-cell">' + (p.revenue_potential || "—") + "</td>" +
+        '<td class="muted-cell">' + sellable + "</td>" +
         '<td class="muted-cell">' + surfaceCell + "</td>";
       tbody.appendChild(tr);
     });
