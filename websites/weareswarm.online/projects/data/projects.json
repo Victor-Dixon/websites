@@ -1,0 +1,839 @@
+{
+  "schema": "weareswarm.online.projects_surface.v1",
+  "generated_at": "2026-06-13T10:42:17+00:00",
+  "source": "auto_portfolio_surface_sync",
+  "authority_root": "D:/DreamVault",
+  "portfolio_schema": "weareswarm.online.portfolio_products.v2",
+  "products": [
+    {
+      "name": "DreamOS",
+      "revenue_class": "Revenue Engine",
+      "sellable_use_case": "Platform + swarm ops consulting ($5k+ fixed); planner governance SaaS ($199/mo)",
+      "status": "active",
+      "operational_status": "Operational",
+      "proof": "D:/DreamVault — governance spine, closeout enforcement, WeAreSwarm publication",
+      "live_surface": "https://weareswarm.online",
+      "revenue_potential": "Platform + swarm ops consulting ($5k+ fixed); planner governance SaaS ($199/mo)",
+      "canonical_repo": "DreamVault",
+      "skill_tree_nodes": [
+        "dreamos_core",
+        "offer_swarm_ops_consulting",
+        "offer_planner_governance_saas"
+      ]
+    },
+    {
+      "name": "AI Debugger Assistant",
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "Productized debug sessions — hourly ($150) + success bonus",
+      "status": "active",
+      "operational_status": "Productized",
+      "proof": "data/reports/debugger/ · Victor-Dixon/AI_Debugger_Assistant",
+      "live_surface": "https://weareswarm.online/projects",
+      "revenue_potential": "Productized debug sessions — hourly ($150) + success bonus",
+      "canonical_repo": "AI_Debugger_Assistant",
+      "skill_tree_nodes": [
+        "offer_ai_debugger_assist"
+      ]
+    },
+    {
+      "name": "Trading Robot Plug",
+      "revenue_class": "Revenue Engine",
+      "sellable_use_case": "$79/mo Discord premium signals (paper-first until RH adult gate)",
+      "status": "active",
+      "operational_status": "Paper-first (Robinhood gate)",
+      "proof": "DreamVault src/dreamvault/trading/ · Freeride signals dry-run lane",
+      "live_surface": "Discord premium · freerideinvestor (production auth gated)",
+      "revenue_potential": "$79/mo Discord premium signals (paper-first until RH adult gate)",
+      "canonical_repo": "DreamVault",
+      "skill_tree_nodes": [
+        "offer_trading_signals_discord",
+        "cap_governed_paper_trading"
+      ]
+    },
+    {
+      "name": "Agent Cellphone",
+      "revenue_class": "Revenue Engine",
+      "sellable_use_case": "Swarm ops setup — governed multi-agent runtime ($5k fixed)",
+      "status": "active",
+      "operational_status": "Active runtime",
+      "proof": "D:/Agent_Cellphone_V2_Repository — command bus + Cursor bridge closeout",
+      "live_surface": "DreamVault runtime /tasks bridge",
+      "revenue_potential": "Swarm ops setup — governed multi-agent runtime ($5k fixed)",
+      "canonical_repo": "Agent_Cellphone_V2_Repository",
+      "skill_tree_nodes": [
+        "offer_swarm_ops_consulting",
+        "distributed_swarm_mesh"
+      ]
+    },
+    {
+      "name": "Social Media Manager",
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "$500/mo content retainer — Victor voice + platform rewrites",
+      "status": "active",
+      "operational_status": "Preview-first",
+      "proof": "D:/socialmediamanager · DreamVault marketing preview artifacts",
+      "live_surface": "DreamVault marketing preview → optional SMM publish",
+      "revenue_potential": "$500/mo content retainer — Victor voice + platform rewrites",
+      "canonical_repo": "socialmediamanager",
+      "skill_tree_nodes": [
+        "offer_content_voice_retainer"
+      ]
+    },
+    {
+      "name": "ProjectScanner",
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "$499 audit pack · $2.5k governed repo audit",
+      "status": "active",
+      "operational_status": "Operational",
+      "proof": "D:/projectscanner · 1,514 authority nodes · data/reports/projectscanner/",
+      "live_surface": "https://weareswarm.online/projects",
+      "revenue_potential": "$499 audit pack · $2.5k governed repo audit",
+      "canonical_repo": "projectscanner",
+      "skill_tree_nodes": [
+        "offer_projectscanner_audit_pack",
+        "offer_dreamscan_repo_audit"
+      ]
+    },
+    {
+      "name": "HomeSchool Mastery",
+      "revenue_class": "Experimental",
+      "sellable_use_case": "Education SaaS / family learning (TBD pricing)",
+      "status": "active",
+      "operational_status": "Active (kids lane)",
+      "proof": "Victor-Dixon/HomeSchool_Mastery · kids planner missions at weareswarm.online/kids-planner/",
+      "live_surface": "https://weareswarm.online/kids-planner/",
+      "revenue_potential": "Education SaaS / family learning (TBD pricing)",
+      "canonical_repo": "HomeSchool_Mastery",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "Spark / MaskZero",
+      "revenue_class": "Experimental",
+      "sellable_use_case": "Character universe experiences, manifestation onboarding, and battle-arc content (TBD pricing)",
+      "status": "active",
+      "operational_status": "ACTIVE_RELOCATION — migrating to maskzero.site",
+      "proof": "Victor-Dixon/The-emergence · dadudekc.site Spark Protocol · maskzero.site canonical",
+      "live_surface": "https://maskzero.site (migration in progress)",
+      "revenue_potential": "Character universe experiences, manifestation onboarding, and battle-arc content (TBD pricing)",
+      "canonical_repo": "The-emergence",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "Discord Architect",
+      "revenue_class": "Client Asset",
+      "sellable_use_case": "Included in swarm ops + Discord commander packages",
+      "status": "active",
+      "operational_status": "Verified",
+      "proof": "Plan CLI + signed apply manifest · discord_architect npm test 7/7 PASS",
+      "live_surface": "Discord server governance (apply gated)",
+      "revenue_potential": "Included in swarm ops + Discord commander packages",
+      "canonical_repo": "DreamVault",
+      "skill_tree_nodes": [
+        "offer_swarm_ops_consulting"
+      ]
+    }
+  ],
+  "day1_lane_products": [
+    {
+      "name": "Agent Cellphone (v1)",
+      "revenue_class": "Archived",
+      "sellable_use_case": null,
+      "status": "archived",
+      "operational_status": "Superseded by V2",
+      "proof": "D:/Agent_Cellphone · Victor-Dixon/Agent_Cellphone — salvage reference only",
+      "live_surface": null,
+      "canonical_repo": "Agent_Cellphone",
+      "bucket": "archive_candidate",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "Agent Cellphone V2",
+      "revenue_class": "Revenue Engine",
+      "sellable_use_case": "Swarm ops setup ($5k fixed)",
+      "status": "active",
+      "operational_status": "Canonical runtime",
+      "proof": "D:/Agent_Cellphone_V2_Repository",
+      "live_surface": "DreamVault runtime /tasks bridge",
+      "canonical_repo": "Agent_Cellphone_V2_Repository",
+      "bucket": "canonical",
+      "skill_tree_nodes": [
+        "offer_swarm_ops_consulting"
+      ]
+    },
+    {
+      "name": "AgentProject",
+      "revenue_class": "Research",
+      "sellable_use_case": null,
+      "status": "parked",
+      "operational_status": "Prototype",
+      "proof": "Victor-Dixon/agentproject · data/reports/projectscanner/ecosystem_review_055.md",
+      "live_surface": null,
+      "canonical_repo": "agentproject",
+      "bucket": "promotion_candidate",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "GPT Automation",
+      "revenue_class": "Internal Tool",
+      "sellable_use_case": null,
+      "status": "active",
+      "operational_status": "Operator lane automation",
+      "proof": "Victor-Dixon/gpt_automation · runtime/scripts/setup_gpt_automation.py",
+      "live_surface": null,
+      "canonical_repo": "gpt_automation",
+      "bucket": "toolbelt",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "Self-evolving AI",
+      "revenue_class": "Research",
+      "sellable_use_case": null,
+      "status": "parked",
+      "operational_status": "Research scaffold",
+      "proof": "Victor-Dixon/self-evolving-ai · data/swarm_brain/devlogs/repository_analysis/",
+      "live_surface": null,
+      "canonical_repo": "self-evolving-ai",
+      "bucket": "promotion_candidate",
+      "skill_tree_nodes": []
+    },
+    {
+      "name": "contract-leads",
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "B2B contract lead lists + outreach templates ($800/mo)",
+      "status": "active",
+      "operational_status": "Scaffold",
+      "proof": "Victor-Dixon/contract-leads · data/marketing/lead_tracker_001.json",
+      "live_surface": null,
+      "canonical_repo": "contract-leads",
+      "bucket": "promotion_candidate",
+      "skill_tree_nodes": [
+        "offer_contract_leads_b2b"
+      ]
+    },
+    {
+      "name": "SocialMediaManager",
+      "revenue_class": "Lead Gen",
+      "sellable_use_case": "External publish adapter for $500/mo content retainer",
+      "status": "active",
+      "operational_status": "Preview-first adapter",
+      "proof": "Victor-Dixon/socialmediamanager · D:/socialmediamanager",
+      "live_surface": "DreamVault preview → SMM publish",
+      "canonical_repo": "socialmediamanager",
+      "bucket": "toolbelt",
+      "skill_tree_nodes": [
+        "offer_content_voice_retainer"
+      ]
+    },
+    {
+      "name": "StockTwits Analyzer",
+      "revenue_class": "Experimental",
+      "sellable_use_case": null,
+      "status": "parked",
+      "operational_status": "API risk — deferred",
+      "proof": "Victor-Dixon/stocktwits-analyzer · data/swarm_brain/devlogs/agent_sessions/",
+      "live_surface": null,
+      "canonical_repo": "stocktwits-analyzer",
+      "bucket": "archive_candidate",
+      "skill_tree_nodes": []
+    }
+  ],
+  "public_project_board": {
+    "schema": "dreamvault.planner.public_project_board.v1",
+    "bucket_count": 5,
+    "buckets": {
+      "canonical_core": [
+        {
+          "action": "inspect_manually",
+          "capabilities": [
+            "run_verification_gates"
+          ],
+          "domain": "Dream.OS governance/runtime automation",
+          "is_canonical": true,
+          "project": "DreamOS_Core",
+          "public_surfaces": [],
+          "status": 80
+        },
+        {
+          "action": "preserve_as_canonical",
+          "capabilities": [
+            "aggregate_project_capabilities",
+            "architect_consolidation",
+            "dispatch_lane_tasks",
+            "emit_discord_cards",
+            "emit_intelligence_packet",
+            "emit_planner_transition",
+            "flow_b_strategy_loop",
+            "governed_paper_trading"
+          ],
+          "domain": "Dream.OS governance/runtime automation",
+          "is_canonical": true,
+          "project": "DreamVault",
+          "public_surfaces": [
+            "weareswarm.site/projects",
+            "weareswarm.site/tasks"
+          ],
+          "status": 80
+        }
+      ],
+      "plugin": [
+        {
+          "action": "inspect_manually",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "domain": "automation toolbelt",
+          "is_canonical": false,
+          "project": "Victor-Dixon__Thea",
+          "public_surfaces": [],
+          "status": 65
+        },
+        {
+          "action": "inspect_manually",
+          "capabilities": [
+            "aggregate_project_capabilities",
+            "architect_consolidation",
+            "dispatch_lane_tasks",
+            "emit_discord_cards",
+            "emit_intelligence_packet",
+            "emit_planner_transition",
+            "governed_paper_trading",
+            "manage_repo_lifecycle"
+          ],
+          "domain": "automation toolbelt",
+          "is_canonical": false,
+          "project": "github-architect-bot",
+          "public_surfaces": [],
+          "status": 20
+        }
+      ],
+      "public_surface": [
+        {
+          "action": "keep_as_public_surface",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "domain": "public web surface",
+          "is_canonical": false,
+          "project": "websites",
+          "public_surfaces": [
+            "weareswarm.site",
+            "public website"
+          ],
+          "status": 80
+        }
+      ],
+      "toolbelt": [
+        {
+          "action": "keep_as_toolbelt",
+          "capabilities": [
+            "run_verification_gates"
+          ],
+          "domain": "automation toolbelt",
+          "is_canonical": false,
+          "project": "agent-tools",
+          "public_surfaces": [],
+          "status": 80
+        },
+        {
+          "action": "keep_as_toolbelt",
+          "capabilities": [
+            "run_verification_gates"
+          ],
+          "domain": "automation toolbelt",
+          "is_canonical": false,
+          "project": "projectscanner",
+          "public_surfaces": [],
+          "status": 80
+        }
+      ],
+      "variant": [
+        {
+          "action": "inspect_manually",
+          "capabilities": [
+            "run_verification_gates"
+          ],
+          "domain": "Dream.OS governance/runtime automation",
+          "is_canonical": false,
+          "project": "Dream.os-Core",
+          "public_surfaces": [],
+          "status": 5
+        },
+        {
+          "action": "archived_donor",
+          "capabilities": [
+            "governed_paper_trading",
+            "run_verification_gates"
+          ],
+          "domain": "trading automation",
+          "is_canonical": false,
+          "project": "TradingRobotPlug",
+          "public_surfaces": [],
+          "status": 0
+        },
+        {
+          "action": "archived_donor",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "domain": "Dream.OS governance/runtime automation",
+          "is_canonical": false,
+          "project": "Victor-Dixon__AutoDream.Os",
+          "public_surfaces": [],
+          "status": 0
+        },
+        {
+          "action": "promote_into_canonical",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "domain": "Dream.OS governance/runtime automation",
+          "is_canonical": false,
+          "project": "Victor-Dixon__SWARM",
+          "public_surfaces": [],
+          "status": 20
+        },
+        {
+          "action": "promote_into_canonical",
+          "capabilities": [
+            "dispatch_lane_tasks",
+            "run_verification_gates",
+            "verify_task_gates"
+          ],
+          "domain": "Dream.OS governance/runtime automation",
+          "is_canonical": false,
+          "project": "Victor-Dixon__Victor.os",
+          "public_surfaces": [],
+          "status": 80
+        }
+      ]
+    }
+  },
+  "classification_summary": {
+    "portfolio_products": 8,
+    "day1_lane_products": 8,
+    "total_classified": 16,
+    "by_revenue_class": {
+      "Revenue Engine": 4,
+      "Lead Gen": 5,
+      "Experimental": 2,
+      "Client Asset": 1,
+      "Archived": 1,
+      "Research": 2,
+      "Internal Tool": 1
+    },
+    "sellable_active": 11,
+    "parked_or_archived": 4
+  },
+  "active_runtime_tasks": [
+    {
+      "task_id": "add_account_aware_trading_risk_engine_007",
+      "title": "",
+      "status": "active",
+      "lane": "trading",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_action_time_tracking_guardrail_001",
+      "title": "",
+      "status": "pending",
+      "lane": "repo_fleet_self_healing_002",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_append_only_execution_event_journal_030",
+      "title": "Add Append-Only Execution Event Journal",
+      "status": "planned",
+      "lane": "",
+      "priority": "critical",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_automated_intraday_plan_loop_008",
+      "title": "",
+      "status": "active",
+      "lane": "trading",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_cliprun_smart_truncation_summary_001",
+      "title": "Add smart truncation summaries to cliprun reports",
+      "status": "queued",
+      "lane": "operator_tooling",
+      "priority": "high",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_closeout_tool_001",
+      "title": "Add DreamVault agent closeout validator and projections",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "/data/data/com.termux/files/home/projects/DreamVault"
+    },
+    {
+      "task_id": "add_complexity_budget_tests_001",
+      "title": "",
+      "status": "",
+      "lane": "governance",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_controller_animation_layer_080",
+      "title": "Add controller animation layer",
+      "status": "ready",
+      "lane": "design",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_cross_repo_scanner_source_runtime_protection_001",
+      "title": "",
+      "status": "pending",
+      "lane": "repo_fleet_self_healing_002",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_daily_trade_data_repo_archive_workflow_001",
+      "title": "",
+      "status": "pending",
+      "lane": "repo_fleet_self_healing_003",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dataset_health_discord_heartbeat_020",
+      "title": "",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_action_controls_057",
+      "title": "Add Discord action controls",
+      "status": "pending",
+      "lane": "discord",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_bot_callback_handler_059",
+      "title": "Add Discord bot callback handler",
+      "status": "ready",
+      "lane": "discord",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_closeout_cards_001",
+      "title": "Add Discord closeout card payload bridge",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "/data/data/com.termux/files/home/projects/DreamVault"
+    },
+    {
+      "task_id": "add_discord_delivery_journal_events_051",
+      "title": "Add Discord delivery journal events",
+      "status": "ready",
+      "lane": "discord",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_delivery_retry_queue_052",
+      "title": "Add Discord delivery retry queue",
+      "status": "ready",
+      "lane": "discord",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_journal_card_payloads_046",
+      "title": "Add Discord journal card payloads",
+      "status": "ready",
+      "lane": "operator-1",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_journal_payload_export_047",
+      "title": "Add Discord journal payload export",
+      "status": "ready",
+      "lane": "operator-1",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_operator_e2e_smoke_061",
+      "title": "Add Discord operator E2E smoke",
+      "status": "pending",
+      "lane": "discord",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_paper_trade_payload_exporter_005",
+      "title": "Add Discord paper trade payload exporter",
+      "status": "ready",
+      "lane": "trading_runtime",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_paper_trade_webhook_sender_006",
+      "title": "Add Discord paper trade webhook sender",
+      "status": "ready",
+      "lane": "trading_runtime",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_retry_state_compaction_060",
+      "title": "Add Discord retry state compaction",
+      "status": "ready",
+      "lane": "discord",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_retry_worker_cli_054",
+      "title": "Add Discord retry worker CLI",
+      "status": "ready",
+      "lane": "discord",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_webhook_secret_docs_055",
+      "title": "Add Discord webhook secret docs",
+      "status": "ready",
+      "lane": "discord",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_discord_webhook_sender_050",
+      "title": "Add Discord webhook sender",
+      "status": "ready",
+      "lane": "discord",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_domain_web_map",
+      "title": "Add DreamVault domain web map",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "/data/data/com.termux/files/home/projects/DreamVault"
+    },
+    {
+      "task_id": "add_dream_task_commands_001",
+      "title": "Add dream task compile/run/report commands",
+      "status": "queued",
+      "lane": "",
+      "priority": "high",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamclose_alias_020",
+      "title": "Add DreamClose governed closeout alias",
+      "status": "planned",
+      "lane": "",
+      "priority": "high",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamclose_cli_001",
+      "title": "Add dreamclose CLI for operational session closeouts",
+      "status": "queued",
+      "lane": "governance",
+      "priority": "P0",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamclose_skill_tree_031",
+      "title": "",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamclose_stale_unlock_detector_041",
+      "title": "Add DreamClose stale unlock detector",
+      "status": "planned",
+      "lane": "",
+      "priority": "critical",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamhelp_alias_prompt_037",
+      "title": "Add DreamHelp alias prompt",
+      "status": "planned",
+      "lane": "",
+      "priority": "critical",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamintel_command_001",
+      "title": "",
+      "status": "",
+      "lane": "repo_cleanup_governance",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamlane_execute_run_mode_042",
+      "title": "Add Dreamlane execute run mode",
+      "status": "planned",
+      "lane": "",
+      "priority": "critical",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamlane_journal_execution_events_043",
+      "title": "Add Dreamlane journal execution events",
+      "status": "planned",
+      "lane": "",
+      "priority": "critical",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamlearn_introspection_engine_022",
+      "title": "Add DreamLearn workload introspection engine",
+      "status": "planned",
+      "lane": "",
+      "priority": "high",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamprompt_command_002",
+      "title": "Add dreamprompt command wrapper",
+      "status": "ready",
+      "lane": "prompt_compiler",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamstart_runtime_session_bootstrap_004",
+      "title": "Add runtime session bootstrap to dreamstart",
+      "status": "ready",
+      "lane": "runtime_session_bootstrap",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamsync_cold_storage_profile_019",
+      "title": "Add dreamsync cold-storage profile",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamtradedata_sparse_local_storage_policy_001",
+      "title": "",
+      "status": "pending",
+      "lane": "repo_fleet_self_healing_003",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamvault_plan_alias_007",
+      "title": "",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dreamvault_task_runner_001",
+      "title": "Add DreamVault local task runner and script compiler",
+      "status": "queued",
+      "lane": "",
+      "priority": "highest",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_dvplan_run_flow_008",
+      "title": "",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_execution_gate_engine_001",
+      "title": "Add autonomous execution gate engine",
+      "status": "active",
+      "lane": "",
+      "priority": "P1",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_free_multi_agent_router_097",
+      "title": "Add free-tier multi-agent router CLI",
+      "status": "",
+      "lane": "agent-orchestration",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_freeride_ops_discord_router_019",
+      "title": "",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_fsm_resume_logic_011",
+      "title": "",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_future_task_capture_048",
+      "title": "Add future task capture",
+      "status": "ready",
+      "lane": "operator-1",
+      "priority": "",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_governed_execution_event_schema_032",
+      "title": "Add governed execution event schema",
+      "status": "planned",
+      "lane": "",
+      "priority": "critical",
+      "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_governed_paper_position_manager_014",
+      "title": "",
+      "status": "",
+      "lane": "",
+      "priority": "",
+      "repo": "DreamVault"
+    }
+  ],
+  "active_task_count": 946,
+  "public_safe": true
+}
