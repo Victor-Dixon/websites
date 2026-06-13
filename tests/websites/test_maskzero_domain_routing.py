@@ -124,7 +124,7 @@ def test_maskzero_quiz_restores_migrated_spark_flow_as_primary_route():
     assert '<link rel="canonical" href="https://maskzero.site/quiz/">' in quiz_html
     assert '<link rel="canonical" href="https://maskzero.site/quiz/">' in spark_html
     assert 'data-maskzero-quiz="dadudekc-migration"' in quiz_html
-    assert '"protocol_version":"Spark Protocol v8.5"' in quiz_html
+    assert '"protocol_version":"Spark Protocol v8.6"' in quiz_html
     assert "Start Spark Quiz" in quiz_html
     assert "Spark.submitDomain()" in quiz_html
     assert "Spark.submitFlavor()" in quiz_html
