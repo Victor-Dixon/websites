@@ -111,6 +111,7 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
     assert "runtime/content/maskzero.site/spark-signup/index.html" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-account/index.html" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-dashboard/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/css/maskzero-comic-theme.css" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/assets/css/spark-site-shell.css" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/assets/js/spark-account-runtime.js" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/assets/js/spark-dashboard.js" in sites["maskzero.site"]["deploy_files"]
@@ -121,6 +122,32 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
     assert "Create Account" in (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
     assert "Spark Account" in (MASKZERO / "spark-account/index.html").read_text(encoding="utf-8")
     assert "Command Post" in (MASKZERO / "spark-dashboard/index.html").read_text(encoding="utf-8")
+
+
+def test_maskzero_migrated_pages_use_comic_book_skin():
+    pages = [
+        "index.html",
+        "create-hero/index.html",
+        "how-it-works/index.html",
+        "dispatch/index.html",
+        "meridian-map/index.html",
+        "origin-rules/index.html",
+        "roster-rules/index.html",
+        "spark-account/index.html",
+        "quiz/index.html",
+        "spark-generator/index.html",
+        "spark-os/index.html",
+        "missions/index.html",
+        "battles/index.html",
+    ]
+
+    missing = []
+    for route in pages:
+        html = (MASKZERO / route).read_text(encoding="utf-8")
+        if 'class="maskzero-comic-skin' not in html or "/assets/css/maskzero-comic-theme.css" not in html:
+            missing.append(route)
+
+    assert not missing, f"MaskZero pages missing comic skin: {missing}"
 
 
 def test_maskzero_quiz_restores_migrated_spark_flow_as_primary_route():
