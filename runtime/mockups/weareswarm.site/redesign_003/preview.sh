@@ -4,8 +4,8 @@ set -euo pipefail
 DIR="$(cd "$(dirname "$0")" && pwd)"
 PORT="${PORT:-8789}"
 URL="http://127.0.0.1:$PORT"
-LOG="${HOME}/.cache/weareswarm_mockup_revision_002.log"
-PIDFILE="${HOME}/.cache/weareswarm_mockup_revision_002.pid"
+LOG="${HOME}/.cache/weareswarm_motion_shell_001.log"
+PIDFILE="${HOME}/.cache/weareswarm_motion_shell_001.pid"
 
 cd "$DIR"
 
@@ -23,7 +23,7 @@ echo "$PID" > "$PIDFILE"
 
 sleep 1
 
-echo "Serving WeAreSwarm professional mockup at $URL"
+echo "Serving WeAreSwarm motion mockup at $URL"
 echo "PID=$PID"
 echo "LOG=$LOG"
 
