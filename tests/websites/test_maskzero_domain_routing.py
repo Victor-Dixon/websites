@@ -83,6 +83,7 @@ def test_maskzero_required_routes_have_static_sources():
         "origin-rules/index.html",
         "roster-rules/index.html",
         "login/index.html",
+        "spark-account/index.html",
         "meridian-map/index.html",
         "dispatch/index.html",
     ]
@@ -102,13 +103,23 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
     login = (MASKZERO / "login/index.html").read_text(encoding="utf-8")
 
     assert "RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
+    assert "RewriteRule ^wp-login\\.php$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
+    assert "RewriteRule ^the-emergence/?$ /the-emergence.html [L]" in htaccess
+    assert "RewriteRule ^meridian-dispatch/?$ /dispatch/ [R=302,L,NE]" in htaccess
+    assert "RewriteRule ^spark-battle/?$ /battles/ [R=302,L,NE]" in htaccess
     assert "runtime/content/maskzero.site/spark-login/index.html" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-signup/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/spark-account/index.html" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-dashboard/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/css/spark-site-shell.css" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/js/spark-account-runtime.js" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/js/spark-dashboard.js" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/js/spark-site-shell.js" in sites["maskzero.site"]["deploy_files"]
     assert '<link rel="canonical" href="https://maskzero.site/spark-login/">' in login
     assert "url=/spark-login/?redirect_to=%2Fspark-dashboard%2F" in login
     assert "Log In" in (MASKZERO / "spark-login/index.html").read_text(encoding="utf-8")
     assert "Create Account" in (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
+    assert "Spark Account" in (MASKZERO / "spark-account/index.html").read_text(encoding="utf-8")
     assert "Command Post" in (MASKZERO / "spark-dashboard/index.html").read_text(encoding="utf-8")
 
 
