@@ -332,15 +332,108 @@
     }
   }
 
-  function consolidationHighlights(nextLane, manifest) {
-    const items = [];
-    if (nextLane && nextLane.next_lane) items.push("Lane: " + nextLane.next_lane);
-    if (nextLane && nextLane.next_task) items.push("Next: " + nextLane.next_task);
-    const buckets = manifest && manifest.buckets;
-    if (buckets) {
-      const count = Object.keys(buckets).length;
-      if (count) items.push(count + " repo bucket" + (count === 1 ? "" : "s") + " tracked");
+  function statusIcon(icon) {
+    if (icon === "ok") return "✅ ";
+    if (icon === "warn") return "⚠️ ";
+    if (icon === "block") return "⛔ ";
+    return "";
+  }
+
+  function metricToneClass(tone) {
+    if (tone === "ok") return "metric-card__status--ok";
+    if (tone === "warn") return "metric-card__status--warn";
+    if (tone === "block") return "metric-card__status--block";
+    return "";
+  }
+
+  function renderMetricCards(container, metrics) {
+    if (!container) return;
+    container.innerHTML = "";
+    container.className = "metric-grid";
+    (metrics || []).forEach(function (metric) {
+      const tone = metric.tone || statusTone(metric.status);
+      container.appendChild(
+        el("article", { className: "metric-card" }, [
+          el("p", { className: "metric-card__label", text: metric.label || "—" }),
+          el("p", {
+            className: "metric-card__status " + metricToneClass(tone),
+            text: metric.status || "—",
+          }),
+        ])
+      );
+    });
+  }
+
+  function renderFocusStatus(container, items) {
+    if (!container) return;
+    container.innerHTML = "";
+    container.className = "status-checklist";
+    (items || []).forEach(function (item) {
+      const icon = item.icon || "ok";
+      container.appendChild(
+        el("li", {
+          className: "status-" + icon,
+          text: statusIcon(icon) + (item.text || "—"),
+        })
+      );
+    });
+  }
+
+  function renderConsolidationPanel(container, panel) {
+    if (!container || !panel) return;
+    container.innerHTML = "";
+    container.className = "consolidation-prose";
+
+    container.appendChild(el("h3", { text: panel.title || "Consolidation Status" }));
+    container.appendChild(el("h3", { text: panel.status_heading || "Status: COMPLETE" }));
+
+    container.appendChild(el("h3", { text: "Completed" }));
+    const completed = el("ul");
+    toList(panel.completed).forEach(function (item) {
+      completed.appendChild(el("li", { text: item }));
+    });
+    container.appendChild(completed);
+
+    container.appendChild(el("h3", { text: "Remaining" }));
+    const remaining = el("ul");
+    toList(panel.remaining || panel.active_work).forEach(function (item) {
+      remaining.appendChild(el("li", { text: item }));
+    });
+    container.appendChild(remaining);
+
+    if (panel.operating_phase) {
+      container.appendChild(
+        el("p", {
+          className: "result-line",
+          text: "Current Phase: " + panel.operating_phase,
+        })
+      );
     }
+  }
+
+  function renderHomepageHero(hero) {
+    if (!hero) return;
+    var eyebrow = document.getElementById("hero-eyebrow");
+    var title = document.getElementById("hero-title");
+    var desc = document.getElementById("hero-description");
+    var milestones = document.getElementById("hero-milestones");
+    var focus = document.getElementById("hero-current-focus");
+    if (eyebrow && hero.eyebrow) eyebrow.textContent = hero.eyebrow;
+    if (title && hero.title) title.textContent = hero.title;
+    if (desc && hero.description) desc.textContent = hero.description;
+    if (milestones) {
+      milestones.innerHTML = "";
+      toList(hero.milestones).forEach(function (item) {
+        milestones.appendChild(el("li", { text: item }));
+      });
+    }
+    if (focus && hero.current_focus) focus.textContent = hero.current_focus;
+  }
+
+  function consolidationHighlights(focusPanel) {
+    const panel = (focusPanel && focusPanel.consolidation) || {};
+    const items = toList(panel.remaining || panel.active_work).slice(0, 2);
+    if (panel.operating_phase) items.push("Phase: " + panel.operating_phase);
     return items.slice(0, 3);
   }
 
@@ -351,23 +444,23 @@
     const nextLane = (opts && opts.nextLane) || {};
     const spark = (opts && opts.spark) || {};
     const revenue = (opts && opts.revenue) || {};
-    const manifest = (opts && opts.consolidationManifest) || {};
+    const focusPanel = (opts && opts.focusPanel) || {};
 
     const sp = spark.spark_project || {};
     const dd = spark.dadudekc_site || {};
     const authLive = dd.AUTH_IMMERSION === "FIXED";
+    const phase = focusPanel.phase === "maintenance" ? "Consolidation Complete" : "Active";
 
     const cards = [
       {
-        title: "Repo Consolidation",
-        status: nextLane.next_lane || "Planning",
-        statusClass: nextLane.execute === false ? "warn" : "ok",
+        title: "DreamOS",
+        status: phase,
+        statusClass: "ok",
         description:
-          resolveRationale(nextLane) ||
-          "Canonical repo decisions, bucket merges, and consolidation manifests.",
-        highlights: consolidationHighlights(nextLane, manifest),
+          "Operational — maintenance, promotion, and productization phase.",
+        highlights: consolidationHighlights(focusPanel),
         links: [
-          { href: "/projects/", text: "Repo board" },
+          { href: "/projects/", text: "Product portfolio" },
           { href: "/focus/#consolidation-panel", text: "Consolidation detail" },
         ],
       },
@@ -537,6 +630,10 @@
     renderRevenuePanel,
     renderMainFocuses,
     renderSparkPanel,
+    renderMetricCards,
+    renderFocusStatus,
+    renderConsolidationPanel,
+    renderHomepageHero,
     formatUsd,
     statusTone,
     resolveRepoBuckets,

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects — weareswarm.online</title>
-  <meta name="description" content="DreamVault portfolio — projectscanner + GitHub stats, planner consolidation, and productized offers.">
+  <meta name="description" content="Dream.OS product portfolio — operational systems, proof artifacts, revenue potential, and live surfaces.">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
 </head>
 <body>
@@ -12,8 +12,8 @@
 
   <main class="container">
     <header class="hero">
-      <h1>DreamVault Project Portfolio</h1>
-      <p>Live GitHub + projectscanner grid, planner consolidation board, domain index, and productized revenue offers — public-safe DreamVault bridge.</p>
+      <h1>Product Portfolio</h1>
+      <p>Operational Dream.OS products and services — status, proof, revenue potential, and live surfaces.</p>
       <div class="meta-row">
         <span class="badge ok" id="live-badge">● Planner bridge</span>
         <span class="badge" id="sync-meta">Loading…</span>
@@ -21,31 +21,46 @@
     </header>
 
     <section class="stats-hero" id="stats-hero" aria-live="polite">
-      <div class="stat-card"><span class="stat-value" id="stat-projects">—</span><span class="stat-label">Board repos</span></div>
-      <div class="stat-card"><span class="stat-value" id="stat-github">—</span><span class="stat-label">GitHub scanned</span></div>
-      <div class="stat-card"><span class="stat-value" id="stat-domains">—</span><span class="stat-label">Domains</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-products">8</span><span class="stat-label">Products</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-operational">—</span><span class="stat-label">Operational</span></div>
       <div class="stat-card"><span class="stat-value" id="stat-productized">—</span><span class="stat-label">Productized</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-github">—</span><span class="stat-label">GitHub repos</span></div>
       <div class="stat-card"><span class="stat-value" id="stat-scanner">—</span><span class="stat-label">Scanner nodes</span></div>
-    </section>
-
-    <section class="panel" id="lane-panel" style="display:none;">
-      <div class="panel-header">
-        <div>
-          <h2>Active lane</h2>
-          <p class="subtitle" id="lane-subtitle">next_lane.json</p>
-        </div>
-        <span class="badge ok" id="lane-badge">—</span>
-      </div>
-      <div class="panel-body">
-        <p id="lane-rationale" class="lane-rationale"></p>
-      </div>
     </section>
 
     <section class="panel">
       <div class="panel-header">
         <div>
+          <h2>Product outcomes</h2>
+          <p class="subtitle">portfolio_products.json — operational portfolio truth</p>
+        </div>
+        <span class="badge ok" id="products-badge">loading</span>
+      </div>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table id="products-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Status</th>
+                <th>Proof</th>
+                <th>Revenue Potential</th>
+                <th>Live Surface</th>
+              </tr>
+            </thead>
+            <tbody id="products-table-body">
+              <tr><td colspan="5" class="empty-state">Loading product portfolio…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
           <h2>GitHub portfolio grid</h2>
-          <p class="subtitle">projects_full.json — stars, issues, last push</p>
+          <p class="subtitle">projects_full.json — stars, issues, last push (reference)</p>
         </div>
         <span class="badge warn" id="feed-badge">—</span>
       </div>
@@ -54,11 +69,11 @@
       </div>
     </section>
 
-    <section class="panel" style="margin-top: 1.5rem;">
+    <section class="panel" style="margin-top: 1.5rem; display:none;" id="planner-board-panel">
       <div class="panel-header">
         <div>
-          <h2>Planner consolidation board</h2>
-          <p class="subtitle">projects_board_enriched.json · buckets + capabilities</p>
+          <h2>Planner repo index</h2>
+          <p class="subtitle">Internal reference — projects_board_enriched.json</p>
         </div>
         <span class="badge warn" id="source-badge">—</span>
       </div>
@@ -84,7 +99,7 @@
       <div class="panel-header">
         <div>
           <h2>Domain index</h2>
-          <p class="subtitle">Bounded contexts per consolidation domain</p>
+          <p class="subtitle">Bounded contexts per domain (reference)</p>
         </div>
         <a class="badge" href="/focus/">Focus board</a>
       </div>
@@ -147,8 +162,9 @@
       }
 
       try {
-        const [manifestResult, enrichedResult, feedResult, boardResult, indexResult, ecosystemResult] = await Promise.all([
+        const [manifestResult, productsResult, enrichedResult, feedResult, boardResult, indexResult, ecosystemResult] = await Promise.all([
           FD.fetchJsonSettled("manifest.json"),
+          FD.fetchJsonSettled("portfolio_products.json", { products: [] }),
           FD.fetchJsonSettled("projects_board_enriched.json"),
           FD.fetchJsonSettled("projects_full.json", { projects: [] }),
           FD.fetchJsonSettled("public_project_board.json", { buckets: {} }),
@@ -157,6 +173,7 @@
         ]);
 
         const manifest = manifestResult.data || {};
+        const productsPanel = productsResult.data || {};
         const enriched = enrichedResult.data;
         const feed = feedResult.data || {};
         const board = boardResult.data || {};
@@ -174,6 +191,21 @@
         if (feedLoading) feedLoading.remove();
         const boardLoading = document.getElementById("board-loading");
         if (boardLoading) boardLoading.remove();
+
+        const productRows = productsPanel.products || [];
+        PD.renderProductOutcomesTable(document.getElementById("products-table-body"), productRows);
+        const productsBadge = document.getElementById("products-badge");
+        if (productsBadge) {
+          productsBadge.textContent = productsResult.ok ? (productRows.length + " products") : "fallback";
+          productsBadge.className = "badge " + (productsResult.ok ? "ok" : "warn");
+        }
+        setStat("stat-products", productRows.length || 8);
+        const operationalCount = productRows.filter(function (p) {
+          return String(p.status || "").toLowerCase().indexOf("operational") >= 0 ||
+            String(p.status || "").toLowerCase().indexOf("productized") >= 0 ||
+            String(p.status || "").toLowerCase().indexOf("verified") >= 0;
+        }).length;
+        setStat("stat-operational", operationalCount || "—");
 
         const githubCount = (feed.projects || []).length;
         setStat("stat-github", githubCount || "—");
@@ -196,8 +228,6 @@
 
         if (enrichedResult.ok && enriched) {
           const stats = enriched.stats || {};
-          setStat("stat-projects", stats.projects);
-          setStat("stat-domains", stats.domains);
           setStat("stat-productized", stats.productized);
           setStat("stat-scanner", stats.authority_nodes != null ? stats.authority_nodes.toLocaleString() : "—");
 
@@ -205,14 +235,11 @@
             (enriched.board_meta && enriched.board_meta.source) || enriched.source || "enriched";
           document.getElementById("source-badge").className = "badge ok";
 
-          PD.renderLanePanel(enriched.next_lane);
-          PD.renderEnrichedBoard(document.getElementById("planner-cards"), enriched);
           PD.renderProductsGrid(document.getElementById("products-grid"), enriched.products);
           PD.renderDomainTable(document.getElementById("domains-table"), { domains: enriched.domains });
           PD.renderScannerSummary(document.getElementById("scanner-summary"), enriched);
         } else {
           document.getElementById("source-badge").textContent = board.source || manifest.source || "planner";
-          PD.renderProjectCards(document.getElementById("planner-cards"), board, ecosystem, index);
           PD.renderDomainTable(document.getElementById("domains-table"), index);
           if (liveBadge && !boardResult.ok) {
             liveBadge.className = "badge warn";

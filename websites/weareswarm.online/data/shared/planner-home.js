@@ -6,12 +6,13 @@
 
   const {
     fetchJson,
+    fetchJsonSettled,
     el,
     setSyncMeta,
-    resolveRepoName,
     resolveRationale,
     renderStatusGrid,
     renderMainFocuses,
+    renderHomepageHero,
   } = FD;
 
   function sanitizePath(value) {
@@ -61,72 +62,69 @@
     container.appendChild(ul);
   }
 
-  function collectBlockedRecommendations(recommendations) {
-    return (recommendations || [])
-      .filter(function (rec) {
-        return (rec.blockers && rec.blockers.length) || rec.action === "inspect_manually";
-      })
-      .slice(0, 8)
-      .map(function (rec) {
-        const blockers = (rec.blockers || []).join(", ");
-        const suffix = blockers ? " — " + blockers : " — manual review";
-        return resolveRepoName(rec) + ": " + (rec.action || "review") + suffix;
-      });
-  }
-
   async function hydrate() {
     const [
-      manifest,
-      nextLane,
-      recommendations,
-      consolidationManifest,
+      manifestResult,
+      homepageResult,
+      focusPanelResult,
+      nextLaneResult,
       dynamicPanel,
-      spark,
-      revenue,
+      sparkResult,
+      revenueResult,
     ] = await Promise.all([
-      fetchJson("manifest.json").catch(function () { return null; }),
-      fetchJson("next_lane.json").catch(function () { return null; }),
-      fetchJson("consolidation_recommendations.json").catch(function () { return null; }),
-      fetchJson("project_consolidation_decision_manifest_001.json").catch(function () { return null; }),
-      fetchJson("dynamic_planner_panel.json").catch(function () { return null; }),
-      fetchJson("spark_panel.json").catch(function () { return null; }),
-      fetchJson("revenue_operator_panel.json").catch(function () { return null; }),
+      fetchJsonSettled("manifest.json"),
+      fetchJsonSettled("homepage_panel.json", {}),
+      fetchJsonSettled("focus_panel.json", {}),
+      fetchJsonSettled("next_lane.json", {}),
+      fetchJsonSettled("dynamic_planner_panel.json", {}),
+      fetchJsonSettled("spark_panel.json", {}),
+      fetchJsonSettled("revenue_operator_panel.json", {}),
     ]);
 
-    setSyncMeta(manifest);
+    const manifest = manifestResult.data || {};
+    const homepage = homepageResult.data || {};
+    const focusPanel = focusPanelResult.data || {};
+    const nextLane = nextLaneResult.data || {};
+    const dynamic = dynamicPanel.data || {};
+    const spark = sparkResult.data || {};
+    const revenue = revenueResult.data || {};
 
-    const nextBest = dynamicPanel && dynamicPanel.next_best_task;
-    const operatingMode = nextLane && nextLane.execute === false ? "PLAN_ONLY" : "EXECUTE_READY";
+    if (manifestResult.ok) setSyncMeta(manifest);
+
+    renderHomepageHero(homepage.hero);
+
+    const nextBest = dynamic.next_best_task;
+    const remaining = (focusPanel.consolidation && focusPanel.consolidation.remaining) || [];
     renderStatusGrid(document.getElementById("operating-state-grid"), [
-      ["Operating mode", operatingMode, true],
+      ["Dream.OS status", "Operational", true],
+      ["Consolidation", (focusPanel.consolidation && focusPanel.consolidation.status_heading) || "Status: COMPLETE", true],
+      ["Current phase", (focusPanel.consolidation && focusPanel.consolidation.operating_phase) || "—", false],
       ["Next best task", (nextBest && nextBest.task_id) || "—", false],
-      ["Next lane", (nextLane && nextLane.next_lane) || (dynamicPanel && dynamicPanel.consolidation_next_lane) || "—", false],
-      ["Prior lane", nextLane && nextLane.prior_lane || "—", false],
-      ["Rationale", (nextBest && nextBest.rationale) || resolveRationale(nextLane), false],
-      ["Next task", sanitizePath(nextLane && nextLane.next_task), false],
-      ["Data refreshed", FD.formatSyncTime((manifest && manifest.synced_at) || (dynamicPanel && dynamicPanel.generated_at) || (nextLane && nextLane.generated_at)) || "—", false],
+      ["Active work", remaining.slice(0, 2).join("; ") || "—", false],
+      ["Data refreshed", FD.formatSyncTime(manifest.synced_at || dynamic.generated_at || nextLane.generated_at) || "—", false],
     ]);
 
     renderTaskList(
       document.getElementById("approved-tasks-list"),
-      nextLane && nextLane.approved_tasks,
+      nextLane.approved_tasks,
       "No approved tasks in next_lane.json."
     );
 
     const blocked = []
-      .concat((nextLane && nextLane.blocked_until) || [])
-      .concat(collectBlockedRecommendations(recommendations && recommendations.recommendations));
+      .concat(nextLane.blocked_until || [])
+      .concat(remaining.filter(function (item) {
+        return String(item).toLowerCase().indexOf("robinhood") >= 0;
+      }));
     renderBlockedList(document.getElementById("blocked-list"), blocked);
 
     renderMainFocuses(document.getElementById("main-focuses-grid"), {
-      nextLane: nextLane,
+      focusPanel: focusPanel,
       spark: spark,
       revenue: revenue,
-      consolidationManifest: consolidationManifest,
     });
 
     const liveBadge = document.getElementById("planner-live-badge");
-    if (liveBadge) liveBadge.textContent = "● Hub live";
+    if (liveBadge) liveBadge.textContent = "● Operational";
   }
 
   document.addEventListener("DOMContentLoaded", function () {

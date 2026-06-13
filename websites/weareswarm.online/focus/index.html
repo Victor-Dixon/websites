@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Focus Command Center — weareswarm.online</title>
-  <meta name="description" content="Dream.OS consolidation command center and Spark / dadudekc status on weareswarm.online">
+  <meta name="description" content="DreamOS maintenance phase command center — governance, productization, and Spark / dadudekc status on weareswarm.online">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
 </head>
 <body>
@@ -13,12 +13,27 @@
   <main class="container">
     <header class="hero">
       <h1>Focus / Command Center</h1>
-      <p>Portfolio consolidation intelligence and Spark lane status — public-safe planner bridge.</p>
+      <p id="hero-subtitle">DreamOS maintenance and promotion phase — governance enforcement, productization, and revenue activation.</p>
       <div class="meta-row">
         <span class="badge ok" id="live-badge">● Live board</span>
         <span class="badge" id="sync-meta">Loading sync metadata…</span>
       </div>
     </header>
+
+    <section class="metric-grid" id="focus-metrics" aria-label="Consolidation metrics"></section>
+
+    <section class="panel panel--full" id="consolidation-status">
+      <div class="panel-header">
+        <div>
+          <h2>Consolidation Status</h2>
+          <p class="subtitle">Completed gates, active work, and blockers</p>
+        </div>
+        <span class="badge ok" id="phase-badge">Consolidation Complete</span>
+      </div>
+      <div class="panel-body">
+        <ul class="status-checklist" id="focus-status-list"></ul>
+      </div>
+    </section>
 
     <section class="panel panel--full" id="main-focuses">
       <div class="panel-header">
@@ -59,34 +74,13 @@
       <section class="panel" id="consolidation-panel">
         <div class="panel-header">
           <div>
-            <h2>Consolidation Command Center</h2>
-            <p class="subtitle" id="consolidation-lane-subtitle">—</p>
+            <h2>Consolidation Panel</h2>
+            <p class="subtitle" id="consolidation-lane-subtitle">Status: COMPLETE</p>
           </div>
-          <span class="badge warn" id="consolidation-source">loading</span>
+          <span class="badge ok" id="consolidation-source">complete</span>
         </div>
         <div class="panel-body">
-          <p class="section-title">Next lane</p>
-          <dl class="kv" id="next-lane-kv"></dl>
-
-          <p class="section-title">Repo buckets</p>
-          <div id="repo-buckets"></div>
-
-          <p class="section-title">Consolidation recommendations</p>
-          <div class="table-wrap">
-            <table id="recommendations-table">
-              <thead>
-                <tr>
-                  <th>Lane</th>
-                  <th>Action</th>
-                  <th>Blockers</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-
-          <p class="section-title">Unlocks &amp; blockers</p>
-          <div id="capability-signals"></div>
+          <div id="consolidation-content"></div>
         </div>
       </section>
 
@@ -142,53 +136,35 @@
 
       const {
         fetchJsonSettled,
-        toList,
-        el,
         setSyncMeta,
-        resolveRepoName,
-        resolveRationale,
-        renderCapabilityCards,
         renderRevenuePanel,
         renderMainFocuses,
         renderSparkPanel,
-        resolveRepoBuckets,
+        renderMetricCards,
+        renderFocusStatus,
+        renderConsolidationPanel,
       } = FD;
 
       const [
         manifestResult,
-        domainIndexResult,
-        capabilitiesResult,
-        recommendationsResult,
-        nextLaneResult,
+        focusPanelResult,
         sparkResult,
         revenueResult,
-        publicBoardResult,
       ] = await Promise.all([
         fetchJsonSettled("manifest.json"),
-        fetchJsonSettled("project_domain_index.json"),
-        fetchJsonSettled("project_capability_index.json", { capabilities: [] }),
-        fetchJsonSettled("consolidation_recommendations.json", { recommendations: [] }),
-        fetchJsonSettled("next_lane.json"),
+        fetchJsonSettled("focus_panel.json", {}),
         fetchJsonSettled("spark_panel.json", { spark_project: {}, dadudekc_site: {} }),
         fetchJsonSettled("revenue_operator_panel.json", {}),
-        fetchJsonSettled("public_project_board.json", {}),
       ]);
 
       const manifest = manifestResult.data || {};
-      const domainIndex = domainIndexResult.data || {};
-      const capabilities = capabilitiesResult.data || { capabilities: [] };
-      const recommendations = recommendationsResult.data || { recommendations: [] };
-      const nextLane = nextLaneResult.data || {};
+      const focusPanel = focusPanelResult.data || {};
       const spark = sparkResult.data || { spark_project: {}, dadudekc_site: {} };
       const revenue = revenueResult.data || {};
-      const publicBoard = publicBoardResult.data || {};
 
       const failed = [
         !manifestResult.ok && "manifest.json",
-        !domainIndexResult.ok && "project_domain_index.json",
-        !capabilitiesResult.ok && "project_capability_index.json",
-        !recommendationsResult.ok && "consolidation_recommendations.json",
-        !nextLaneResult.ok && "next_lane.json",
+        !focusPanelResult.ok && "focus_panel.json",
         !sparkResult.ok && "spark_panel.json",
         !revenueResult.ok && "revenue_operator_panel.json",
       ].filter(Boolean);
@@ -200,49 +176,34 @@
           "Partial load · missing: " + failed.join(", ");
       }
 
-      try {
-        document.getElementById("consolidation-source").textContent =
-          domainIndex.source || manifest.source || "planner";
+      const heroSubtitle = document.getElementById("hero-subtitle");
+      if (heroSubtitle && focusPanel.hero_subtitle) {
+        heroSubtitle.textContent = focusPanel.hero_subtitle;
+      }
 
-        const laneSubtitle = document.getElementById("consolidation-lane-subtitle");
-        if (laneSubtitle) {
-          laneSubtitle.textContent = nextLane.next_lane || "—";
+      try {
+        renderMetricCards(document.getElementById("focus-metrics"), focusPanel.metrics);
+        renderFocusStatus(document.getElementById("focus-status-list"), focusPanel.status_items);
+
+        const phaseBadge = document.getElementById("phase-badge");
+        if (phaseBadge) {
+          phaseBadge.textContent = focusPanel.consolidation && focusPanel.consolidation.status_heading
+            ? focusPanel.consolidation.status_heading.replace("Status: ", "") + " ✓"
+            : "Consolidation Complete";
         }
 
-        const nextKv = document.getElementById("next-lane-kv");
-        nextKv.innerHTML = "";
-        [
-          ["Lane", nextLane.next_lane || "—"],
-          ["Task", nextLane.next_task || "—"],
-          ["Rationale", resolveRationale(nextLane)],
-        ].forEach(([k, v]) => {
-          nextKv.appendChild(el("dt", { text: k }));
-          nextKv.appendChild(el("dd", { text: v }));
-        });
+        document.getElementById("consolidation-source").textContent =
+          (focusPanel.consolidation && focusPanel.consolidation.status_heading) || "complete";
 
-        const buckets = document.getElementById("repo-buckets");
-        buckets.innerHTML = "";
-        Object.entries(resolveRepoBuckets(domainIndex, publicBoard)).forEach(([bucket, repos]) => {
-          const row = el("div", { style: "margin-bottom:0.5rem;font-size:0.88rem;" }, [
-            el("strong", { text: bucket + ": " }),
-            document.createTextNode((repos || []).join(", ") || "—"),
-          ]);
-          buckets.appendChild(row);
-        });
+        const laneSubtitle = document.getElementById("consolidation-lane-subtitle");
+        if (laneSubtitle && focusPanel.consolidation) {
+          laneSubtitle.textContent = focusPanel.consolidation.status_heading || "Status: COMPLETE";
+        }
 
-        const tbody = document.querySelector("#recommendations-table tbody");
-        tbody.innerHTML = "";
-        (recommendations.recommendations || []).forEach((rec) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML =
-            "<td>" + resolveRepoName(rec) + "</td>" +
-            "<td><span class=\"status-pill\">" + (rec.action || "—") + "</span></td>" +
-            "<td>" + (toList(rec.blockers).join("; ") || "—") + "</td>";
-          tbody.appendChild(tr);
-        });
-
-        const signals = document.getElementById("capability-signals");
-        renderCapabilityCards(signals, capabilities.capabilities || []);
+        renderConsolidationPanel(
+          document.getElementById("consolidation-content"),
+          focusPanel.consolidation
+        );
       } catch (err) {
         document.getElementById("consolidation-source").textContent = "render error";
         console.error("consolidation panel", err);
@@ -250,7 +211,7 @@
 
       try {
         renderMainFocuses(document.getElementById("main-focuses-grid"), {
-          nextLane: nextLane,
+          focusPanel: focusPanel,
           spark: spark,
           revenue: revenue,
         });

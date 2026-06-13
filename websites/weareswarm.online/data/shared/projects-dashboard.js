@@ -116,7 +116,7 @@
     if (!panel || !nextLane || !nextLane.next_lane) return;
     panel.style.display = "";
     setText("lane-badge", nextLane.next_lane);
-    setText("lane-subtitle", nextLane.next_task || "Active consolidation lane");
+    setText("lane-subtitle", nextLane.next_task || "Active productization lane");
     var rationale = document.getElementById("lane-rationale");
     if (rationale) {
       rationale.textContent = nextLane.rationale || "Governed lane from DreamVault planner.";
@@ -444,6 +444,35 @@
     });
   }
 
+  function renderProductOutcomesTable(tbody, products) {
+    if (!tbody) return;
+    tbody.innerHTML = "";
+    var items = toList(products);
+    if (!items.length) {
+      var emptyRow = document.createElement("tr");
+      emptyRow.innerHTML = '<td colspan="5" class="empty-state">No products in portfolio_products.json</td>';
+      tbody.appendChild(emptyRow);
+      return;
+    }
+    items.forEach(function (p) {
+      var tr = document.createElement("tr");
+      var status = p.status || "—";
+      var statusClass = statusTone(status);
+      var surface = p.live_surface || "—";
+      var surfaceCell = surface;
+      if (String(surface).indexOf("http") === 0) {
+        surfaceCell = '<a href="' + surface + '" target="_blank" rel="noopener">' + surface + "</a>";
+      }
+      tr.innerHTML =
+        "<td><strong>" + (p.name || "—") + "</strong></td>" +
+        '<td><span class="field-pill field-pill--' + statusClass + '">' + status + "</span></td>" +
+        '<td class="muted-cell">' + (p.proof || "—") + "</td>" +
+        '<td class="muted-cell">' + (p.revenue_potential || "—") + "</td>" +
+        '<td class="muted-cell">' + surfaceCell + "</td>";
+      tbody.appendChild(tr);
+    });
+  }
+
   window.ProjectsDashboard = {
     renderEnrichedPage: renderEnrichedPage,
     renderEnrichedBoard: renderEnrichedBoard,
@@ -454,6 +483,7 @@
     renderProjectsFeedGrid: renderProjectsFeedGrid,
     renderProjectCards: renderProjectCards,
     renderDomainTable: renderDomainTable,
+    renderProductOutcomesTable: renderProductOutcomesTable,
     flattenBoard: flattenBoard,
   };
 })();
