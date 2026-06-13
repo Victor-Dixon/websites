@@ -3,6 +3,19 @@
 
   var STORAGE_KEY = "swarm_skill_tree_last_visit";
   var SESSION_MS = 30 * 60 * 1000;
+  var sphereRuntime = {
+    viewport: null,
+    world: null,
+    nodeMap: {},
+    vbX: 0,
+    vbY: 0,
+    vbW: 0,
+    vbH: 0,
+    scale: 1,
+    tx: 0,
+    ty: 0,
+    applyTransform: null,
+  };
 
   function statusClass(status) {
     var value = String(status || "building").toLowerCase();
@@ -84,6 +97,26 @@
     return building[0] || null;
   }
 
+  function resolveNodeId(taskOrNodeId, nodeMap) {
+    if (!taskOrNodeId) return null;
+    if (nodeMap[taskOrNodeId]) return taskOrNodeId;
+    var tid = String(taskOrNodeId).toLowerCase().replace(/\.yaml$/, "");
+    var keys = Object.keys(nodeMap);
+    var match = keys.find(function (id) {
+      var n = nodeMap[id];
+      var lid = id.toLowerCase();
+      var label = String(n.label || "").toLowerCase();
+      return (
+        lid === tid ||
+        label === tid ||
+        lid.indexOf(tid) >= 0 ||
+        tid.indexOf(lid) >= 0 ||
+        label.indexOf(tid.replace(/_/g, " ")) >= 0
+      );
+    });
+    return match || null;
+  }
+
   function recentUnlockIds(events) {
     var lastVisit = 0;
     try {
@@ -121,6 +154,7 @@
 
     var flat = flattenNodes(panel);
     var nodeMap = flat.map;
+    sphereRuntime.nodeMap = nodeMap;
     var hub = (panel.layout && panel.layout.hub) || { id: "dreamos_core", grid: { x: 0, y: 0, tier: 0 } };
     var bounds = (panel.layout && panel.layout.bounds) || { min_x: -200, min_y: -200, max_x: 200, max_y: 200 };
     var current = resolveCurrentNode(panel, nextLane, nodeMap);
@@ -257,9 +291,16 @@
     viewport.appendChild(svg);
     initPanZoom(viewport, world, vbX, vbY, vbW, vbH);
     wireControls(viewport, world);
+    return { nodeMap: nodeMap, viewport: viewport };
   }
 
   function initPanZoom(viewport, world, vbX, vbY, vbW, vbH) {
+    sphereRuntime.viewport = viewport;
+    sphereRuntime.world = world;
+    sphereRuntime.vbX = vbX;
+    sphereRuntime.vbY = vbY;
+    sphereRuntime.vbW = vbW;
+    sphereRuntime.vbH = vbH;
     var scale = 1;
     var tx = 0;
     var ty = 0;
@@ -274,8 +315,12 @@
         "transform",
         "translate(" + (tx + cx) + "," + (ty + cy) + ") scale(" + scale + ") translate(" + (-cx) + "," + (-cy) + ")"
       );
+      sphereRuntime.scale = scale;
+      sphereRuntime.tx = tx;
+      sphereRuntime.ty = ty;
     }
 
+    sphereRuntime.applyTransform = apply;
     apply();
 
     viewport.addEventListener("wheel", function (ev) {
@@ -336,23 +381,66 @@
     };
   }
 
-  function initTabs() {
+  function switchToView(viewName) {
     var tabs = document.querySelectorAll(".view-tab");
     var sphereView = document.getElementById("sphere-view");
     var cardView = document.getElementById("card-view");
+    var ceremonyView = document.getElementById("ceremony-view");
+    tabs.forEach(function (t) {
+      var active = t.getAttribute("data-view") === viewName;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    if (sphereView) sphereView.classList.toggle("hidden", viewName !== "sphere");
+    if (cardView) cardView.classList.toggle("hidden", viewName !== "cards");
+    if (ceremonyView) ceremonyView.classList.toggle("hidden", viewName !== "ceremony");
+  }
+
+  function initTabs() {
+    var tabs = document.querySelectorAll(".view-tab");
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function () {
-        var target = tab.getAttribute("data-view");
-        tabs.forEach(function (t) { t.classList.toggle("active", t === tab); });
-        if (sphereView) sphereView.classList.toggle("hidden", target !== "sphere");
-        if (cardView) cardView.classList.toggle("hidden", target !== "cards");
+        switchToView(tab.getAttribute("data-view") || "sphere");
       });
     });
+  }
+
+  function panToNode(taskOrNodeId) {
+    var nodeId = resolveNodeId(taskOrNodeId, sphereRuntime.nodeMap);
+    if (!nodeId || !sphereRuntime.viewport || !sphereRuntime.applyTransform) return false;
+    var node = sphereRuntime.nodeMap[nodeId];
+    if (!node || !node.grid) return false;
+    switchToView("sphere");
+    sphereRuntime.tx = -node.grid.x;
+    sphereRuntime.ty = -node.grid.y;
+    sphereRuntime.scale = Math.min(2.2, Math.max(sphereRuntime.scale, 1.15));
+    sphereRuntime.applyTransform();
+    return true;
+  }
+
+  function pulseNode(taskOrNodeId) {
+    var nodeId = resolveNodeId(taskOrNodeId, sphereRuntime.nodeMap);
+    if (!nodeId || !sphereRuntime.viewport) return;
+    var g = sphereRuntime.viewport.querySelector('.sphere-node[data-id="' + nodeId + '"]');
+    if (!g) return;
+    g.classList.add("ceremony-pulse");
+    var links = sphereRuntime.viewport.querySelectorAll(".sphere-link");
+    links.forEach(function (link) {
+      link.classList.remove("ceremony-path-pulse");
+    });
+    setTimeout(function () {
+      g.classList.remove("ceremony-pulse");
+    }, 3200);
   }
 
   window.SkillTreeSphere = {
     renderSphereGrid: renderSphereGrid,
     initTabs: initTabs,
+    switchToSphere: function () { switchToView("sphere"); },
+    switchToView: switchToView,
+    panToNode: panToNode,
+    pulseNode: pulseNode,
+    resolveNodeId: resolveNodeId,
     scrubProof: scrubProof,
   };
 })();

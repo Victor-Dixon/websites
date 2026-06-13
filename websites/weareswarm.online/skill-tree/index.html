@@ -26,9 +26,12 @@
 
     <section class="hud-grid" id="skill-hud" aria-label="Skill tree summary"></section>
 
+    <p id="ceremony-feed-notice" class="ceremony-feed-notice hidden" role="status"></p>
+
     <div class="view-tabs" role="tablist" aria-label="Skill tree view mode">
       <button type="button" class="view-tab active" data-view="sphere" role="tab" aria-selected="true">Sphere Grid</button>
       <button type="button" class="view-tab" data-view="cards" role="tab" aria-selected="false">Card Grid</button>
+      <button type="button" class="view-tab" data-view="ceremony" role="tab" aria-selected="false">Ceremony / History</button>
     </div>
 
     <section id="sphere-view" class="panel-view" aria-label="Sphere grid skill tree">
@@ -51,6 +54,16 @@
     <section id="card-view" class="panel-view hidden" aria-label="Card grid skill tree">
       <div class="skill-tree-grid" id="skill-tree">
         <p class="empty-state">Loading capability map…</p>
+      </div>
+    </section>
+
+    <section id="ceremony-view" class="panel-view hidden" aria-label="Unlock ceremony history">
+      <div class="panel-note" style="margin-top:0;">
+        <h2 style="margin-top:0;font-size:1rem;">Unlock Timeline</h2>
+        <p style="margin:0 0 0.75rem;font-size:0.82rem;">Chronological unlock ceremonies from DreamClose. Click an entry to highlight nodes on the sphere grid.</p>
+        <div id="ceremony-timeline" class="ceremony-timeline">
+          <p class="empty-state">Loading ceremony feed…</p>
+        </div>
       </div>
     </section>
 
@@ -78,11 +91,13 @@
   <script src="/data/shared/focus-dashboard.js"></script>
   <script src="/data/shared/skill-tree-dashboard.js"></script>
   <script src="/skill-tree/skill-tree-sphere.js"></script>
+  <script src="/skill-tree/skill-tree-ceremony.js"></script>
   <script>
     (async function () {
       const FD = window.FocusDashboard;
       const STD = window.SkillTreeDashboard;
       const STS = window.SkillTreeSphere;
+      const STC = window.SkillTreeCeremony;
       if (!FD || typeof FD.fetchJsonSettled !== "function" || !STD || !STS) {
         document.getElementById("sync-meta").textContent =
           "Shared dashboard scripts missing — redeploy data/shared/ and /skill-tree/";
@@ -93,17 +108,19 @@
 
       STS.initTabs();
 
-      const [manifestResult, panelResult, eventsResult, laneResult] = await Promise.all([
+      const [manifestResult, panelResult, eventsResult, laneResult, feedResult] = await Promise.all([
         FD.fetchJsonSettled("manifest.json"),
         FD.fetchJsonSettled("skill_tree_panel.json", { branches: [], summary: {} }),
         FD.fetchJsonSettled("skill_events.json", { events: [] }),
         FD.fetchJsonSettled("next_lane.json", {}),
+        FD.fetchJsonSettled("closeout-feed.json", { items: [] }),
       ]);
 
       const manifest = manifestResult.data || {};
       const panel = panelResult.data || {};
-      const skillEvents = eventsResult.data || { events: [] };
+      const skillEvents = eventsResult.ok ? (eventsResult.data || { events: [] }) : { events: [] };
       const nextLane = laneResult.data || {};
+      const closeoutFeed = feedResult.ok ? (feedResult.data || { items: [] }) : null;
 
       if (!panelResult.ok) {
         document.getElementById("skill-tree").innerHTML =
@@ -115,6 +132,15 @@
       } else {
         STD.renderSkillTreePanel(panel, manifest);
         STS.renderSphereGrid(panel, nextLane, skillEvents);
+      }
+
+      if (STC && typeof STC.initCeremony === "function") {
+        STC.initCeremony({
+          events: skillEvents,
+          eventsOk: eventsResult.ok,
+          panel: panel,
+          feed: closeoutFeed,
+        });
       }
 
       if (!manifestResult.ok && panelResult.ok) {
