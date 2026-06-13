@@ -20,10 +20,10 @@ domains:
     notes: Redirect shell only; Spark, Emergence, and Mask Zero project pages are canonical on maskzero.site.
 
   maskzero.site:
-    mode: wordpress
-    deploy_policy: wp_plugin_allowed
-    source_hint: runtime/plugins
-    notes: WordPress/plugin demo host.
+    mode: static
+    deploy_policy: static_only
+    source_hint: runtime/content/maskzero.site
+    notes: Evidence-first commercial landing system for MaskZero respiratory protection diligence.
 
   tradingrobotplug.com:
     mode: wordpress
