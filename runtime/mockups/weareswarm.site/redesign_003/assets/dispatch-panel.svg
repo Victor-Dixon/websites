@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#38BDF8"/>
+      <stop offset=".5" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#86EFAC"/>
+    </linearGradient>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="10" y="10" width="880" height="600" rx="34" fill="url(#bg)" stroke="#334155" stroke-width="2"/>
+  <rect x="34" y="34" width="832" height="68" rx="20" fill="#0B1222" stroke="#1E293B"/>
+  <circle cx="72" cy="68" r="9" fill="#86EFAC"/>
+  <text x="94" y="74" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#E0F2FE">SWARM DISPATCH</text>
+  <text x="630" y="74" font-family="Arial, sans-serif" font-size="16" fill="#94A3B8">LIVE OPERATIONS</text>
+  <rect x="34" y="132" width="430" height="334" rx="26" fill="#08111F" stroke="#1E293B"/>
+  <text x="64" y="180" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#FDE68A">CURRENT MISSION</text>
+  <text x="64" y="230" font-family="Arial, sans-serif" font-size="39" font-weight="900" fill="#F8FAFC">Ideas → Lanes</text>
+  <text x="64" y="278" font-family="Arial, sans-serif" font-size="39" font-weight="900" fill="#F8FAFC">Lanes → Proof</text>
+  <rect x="64" y="326" width="332" height="14" rx="7" fill="#1E293B"/>
+  <rect x="64" y="326" width="246" height="14" rx="7" fill="url(#accent)"/>
+  <text x="64" y="386" font-family="Arial, sans-serif" font-size="18" fill="#CBD5E1">Upgrade scattered work into one</text>
+  <text x="64" y="414" font-family="Arial, sans-serif" font-size="18" fill="#CBD5E1">proof-backed command system.</text>
+  <rect x="500" y="132" width="366" height="154" rx="26" fill="#08111F" stroke="#1E293B"/>
+  <text x="530" y="180" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#38BDF8">REWARD</text>
+  <text x="530" y="225" font-family="Arial, sans-serif" font-size="29" font-weight="900" fill="#F8FAFC">Trust + Clients</text>
+  <rect x="500" y="312" width="366" height="154" rx="26" fill="#08111F" stroke="#1E293B"/>
+  <text x="530" y="360" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#86EFAC">UNLOCK</text>
+  <text x="530" y="405" font-family="Arial, sans-serif" font-size="29" font-weight="900" fill="#F8FAFC">Dream.OS Standard</text>
+  <g filter="url(#softGlow)">
+    <circle cx="724" cy="520" r="28" fill="#38BDF8"/>
+    <circle cx="654" cy="520" r="18" fill="#86EFAC"/>
+    <circle cx="792" cy="520" r="18" fill="#A78BFA"/>
+    <line x1="672" y1="520" x2="696" y2="520" stroke="#E0F2FE" stroke-opacity=".75"/>
+    <line x1="752" y1="520" x2="774" y2="520" stroke="#E0F2FE" stroke-opacity=".75"/>
+  </g>
+  <text x="34" y="548" font-family="Arial, sans-serif" font-size="17" fill="#94A3B8">IDEA FIRST · LANE SECOND · PROOF THIRD</text>
+</svg>

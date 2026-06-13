@@ -1,0 +1,33 @@
+{
+  "approval_questions": [
+    "Does this now look like a professional theme?",
+    "Do the generated visuals help or should they be more realistic / more comic / more corporate?",
+    "Is the animated background tasteful or too busy?",
+    "Approve this direction for wiring into weareswarm.site?"
+  ],
+  "changes_from_revision_001": [
+    "Added generated SVG visual assets.",
+    "Added non-static animated background.",
+    "Added moving grid and orbit layer.",
+    "Added hover motion and more professional card depth.",
+    "Kept Swarm Dispatch structure.",
+    "Kept mission quote high on page."
+  ],
+  "direction": "professional_dynamic_visual_theme",
+  "generated_assets": [
+    "runtime/mockups/weareswarm.site/redesign_003/assets/swarm-orb.svg",
+    "runtime/mockups/weareswarm.site/redesign_003/assets/dispatch-panel.svg",
+    "runtime/mockups/weareswarm.site/redesign_003/assets/proof-map.svg"
+  ],
+  "generated_utc": "2026-06-13T14:17:24.909429+00:00",
+  "lane": "weareswarm_site_mockup_revision_002",
+  "live_deploy": false,
+  "live_site_edit": false,
+  "mockup_html": "runtime/mockups/weareswarm.site/redesign_003/index.html",
+  "mockup_only": true,
+  "next_lane_if_approved": "weareswarm_site_mockup_connect_001",
+  "next_lane_if_rejected": "weareswarm_site_mockup_revision_003",
+  "preview_script": "runtime/mockups/weareswarm.site/redesign_003/preview.sh",
+  "preview_url": "http://127.0.0.1:8789",
+  "status": "PASS"
+}

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520">
+  <defs>
+    <linearGradient id="node" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="520" rx="36" fill="#020617"/>
+  <g stroke="#1E293B" stroke-width="1">
+    <path d="M0 80H1000M0 160H1000M0 240H1000M0 320H1000M0 400H1000"/>
+    <path d="M100 0V520M200 0V520M300 0V520M400 0V520M500 0V520M600 0V520M700 0V520M800 0V520M900 0V520"/>
+  </g>
+  <g stroke="#38BDF8" stroke-opacity=".42" stroke-width="2" fill="none">
+    <path d="M190 260C310 120 475 120 584 242C684 354 770 360 875 214"/>
+    <path d="M125 380C275 320 361 382 482 316C650 225 704 190 858 302"/>
+  </g>
+  <g>
+    <circle cx="190" cy="260" r="38" fill="url(#node)"/>
+    <circle cx="410" cy="170" r="28" fill="#86EFAC"/>
+    <circle cx="584" cy="242" r="44" fill="#FDE68A"/>
+    <circle cx="760" cy="342" r="30" fill="#FDA4AF"/>
+    <circle cx="875" cy="214" r="40" fill="#38BDF8"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-weight="800" fill="#F8FAFC">
+    <text x="88" y="70" font-size="28">PROOF MAP</text>
+    <text x="145" y="340" font-size="18">IDEA</text>
+    <text x="365" y="116" font-size="18">LANE</text>
+    <text x="525" y="328" font-size="18">REPORT</text>
+    <text x="714" y="415" font-size="18">DEPLOY</text>
+    <text x="824" y="137" font-size="18">TRUST</text>
+  </g>
+  <text x="88" y="108" font-family="Arial, sans-serif" font-size="18" fill="#94A3B8">Every claim routes to evidence, output, or closeout.</text>
+</svg>
