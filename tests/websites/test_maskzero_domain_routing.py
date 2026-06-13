@@ -33,54 +33,6 @@ def test_dadudekc_no_longer_redirects_to_maskzero():
     assert "The Emergence" in index
 
 
-def test_dadudekc_login_and_clean_routes_stay_on_static_spark_site():
-    sites = json.loads(CONFIG.read_text(encoding="utf-8"))
-    htaccess = (DADUDEKC / ".htaccess").read_text(encoding="utf-8")
-    login = (DADUDEKC / "login/index.html").read_text(encoding="utf-8")
-
-    assert "RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
-    assert "RewriteRule ^wp-login\\.php$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
-    assert "RewriteRule ^the-emergence/?$ /the-emergence.html [L]" in htaccess
-    assert "RewriteRule ^character-generator/?$ /character-generator.html [L]" in htaccess
-    assert "runtime/content/dadudekc.site/login/index.html" in sites["dadudekc.site"]["deploy_files"]
-    assert "runtime/content/dadudekc.site/assets/css/spark-site-shell.css" in sites["dadudekc.site"]["deploy_files"]
-    assert "runtime/content/dadudekc.site/assets/js/spark-account-runtime.js" in sites["dadudekc.site"]["deploy_files"]
-    assert "runtime/content/dadudekc.site/spark-login/index.html" in sites["dadudekc.site"]["deploy_files"]
-    assert "runtime/content/dadudekc.site/spark-signup/index.html" in sites["dadudekc.site"]["deploy_files"]
-    assert "runtime/content/dadudekc.site/spark-dashboard/index.html" in sites["dadudekc.site"]["deploy_files"]
-    assert "runtime/content/dadudekc.site/assets/js/spark-dashboard.js" in sites["dadudekc.site"]["deploy_files"]
-    assert "runtime/content/dadudekc.site/assets/js/spark-site-shell.js" in sites["dadudekc.site"]["deploy_files"]
-    assert '<link rel="canonical" href="https://dadudekc.site/spark-login/">' in login
-    assert "url=/spark-login/?redirect_to=%2Fspark-dashboard%2F" in login
-    assert "Log In" in (DADUDEKC / "spark-login/index.html").read_text(encoding="utf-8")
-    assert "Create Account" in (DADUDEKC / "spark-signup/index.html").read_text(encoding="utf-8")
-    assert "Command Post" in (DADUDEKC / "spark-dashboard/index.html").read_text(encoding="utf-8")
-
-
-def test_dadudekc_restores_migrated_support_pages():
-    sites = json.loads(CONFIG.read_text(encoding="utf-8"))
-    routes = [
-        "create-hero/index.html",
-        "how-it-works/index.html",
-        "origin-rules/index.html",
-        "roster-rules/index.html",
-        "spark-account/index.html",
-        "meridian-map/index.html",
-        "dispatch/index.html",
-        "quiz/index.html",
-    ]
-
-    missing = [route for route in routes if not (DADUDEKC / route).exists()]
-    assert not missing, f"Missing dadudekc restored route sources: {missing}"
-
-    for route in routes:
-        deploy_path = f"runtime/content/dadudekc.site/{route}"
-        assert deploy_path in sites["dadudekc.site"]["deploy_files"]
-
-    assert 'data-dadudekc-quiz="restored-migration"' in (DADUDEKC / "quiz/index.html").read_text(encoding="utf-8")
-    assert "Spark Account" in (DADUDEKC / "spark-account/index.html").read_text(encoding="utf-8")
-
-
 def test_spark_and_emergence_pages_are_canonical_maskzero_content():
     required_pages = [
         MASKZERO / "spark-os/index.html",

@@ -5,17 +5,4 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.dadudekc\.site$ [NC]
 RewriteRule ^(.*)$ https://dadudekc.site/$1 [R=301,L,NE]
 
-# Keep public login entry points on the restored Spark comic login page.
-RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]
-RewriteCond %{REQUEST_METHOD} GET [NC]
-RewriteRule ^wp-login\.php$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]
-
-# Static clean-url aliases for migrated standalone HTML pages.
-RewriteRule ^the-emergence/?$ /the-emergence.html [L]
-RewriteRule ^character-generator/?$ /character-generator.html [L]
-RewriteRule ^battle-simulator/?$ /battle-simulator.html [L]
-RewriteRule ^protocol/?$ /protocol.html [L]
-RewriteRule ^client-preview/?$ /client-preview.html [L]
-RewriteRule ^home/?$ /home.html [L]
-
 DirectoryIndex index.html home.html
