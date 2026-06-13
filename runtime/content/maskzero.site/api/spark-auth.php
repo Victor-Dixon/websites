@@ -88,7 +88,13 @@ function spark_auth_find_user_index(array $users, string $identifier): ?int {
         $email = spark_auth_normalize_email((string)($user['email'] ?? ''));
         $display = strtolower((string)($user['display_name'] ?? ''));
         $userLogin = strtolower((string)($user['user_login'] ?? ''));
-        if ($email === $needle || $display === $login || ($userLogin !== '' && $userLogin === $login)) {
+        $username = strtolower((string)($user['username'] ?? ''));
+        if (
+            $email === $needle
+            || $display === $login
+            || ($userLogin !== '' && $userLogin === $login)
+            || ($username !== '' && $username === $login)
+        ) {
             return $index;
         }
     }
@@ -116,12 +122,33 @@ function spark_auth_verify_wp_password(string $password, string $stored_hash): b
     if ($stored_hash === '' || $password === '') {
         return false;
     }
-    if (!defined('SPARK_AUTH_LOADING_PHPASS')) {
-        define('SPARK_AUTH_LOADING_PHPASS', true);
+    if (strlen($password) > 4096) {
+        return false;
     }
-    require_once __DIR__ . '/class-phpass.php';
-    $hasher = new PasswordHash(8, true);
-    return $hasher->CheckPassword($password, $stored_hash);
+
+    // WordPress 6.8+ prefixed bcrypt: $wp$2y$...
+    if (str_starts_with($stored_hash, '$wp')) {
+        $password_to_verify = base64_encode(hash_hmac('sha384', $password, 'wp-sha384', true));
+        return password_verify($password_to_verify, substr($stored_hash, 3));
+    }
+
+    // Legacy WordPress phpass portable hashes: $P$ / $H$
+    if (str_starts_with($stored_hash, '$P$') || str_starts_with($stored_hash, '$H$')) {
+        if (!defined('SPARK_AUTH_LOADING_PHPASS')) {
+            define('SPARK_AUTH_LOADING_PHPASS', true);
+        }
+        require_once __DIR__ . '/class-phpass.php';
+        $hasher = new PasswordHash(8, true);
+        return $hasher->CheckPassword($password, $stored_hash);
+    }
+
+    // Very old md5-style hashes (32 chars or less).
+    if (strlen($stored_hash) <= 32) {
+        return hash_equals($stored_hash, md5($password));
+    }
+
+    // Plain bcrypt / argon2 and other password_hash() formats.
+    return password_verify($password, $stored_hash);
 }
 
 function spark_auth_check_password(string $password, array &$user): bool {
