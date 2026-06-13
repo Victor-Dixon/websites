@@ -90,6 +90,7 @@ sites:
       - websites/weareswarm.online/focus
       - websites/weareswarm.online/projects
       - websites/weareswarm.online/portfolio
+      - websites/weareswarm.online/investor-dashboard
       - websites/weareswarm.online/tasks
       - websites/weareswarm.online/skill-tree
       - websites/weareswarm.online/roadmap
@@ -247,15 +248,23 @@ sites:
     notes: "Spark Protocol — static index.html + WP Emergence; immersive auth + Battle Sim v8.6 + Meridian News nav"
 
   maskzero.site:
-    path: websites/dadudekc.site
+    path: runtime/content/maskzero.site
     deployer: unified
     verify_url: https://maskzero.site/
     remote_root: public_html
     enabled: true
     deploy_method: sftp
-    deploy_dirs:
-      - websites/dadudekc.site
-    notes: "Spark Protocol mirror on maskzero.site — shares dadudekc.site source tree; Hostinger domains/maskzero.site/public_html"
+    deploy_files:
+      - runtime/content/maskzero.site/.htaccess
+      - runtime/content/maskzero.site/api/spark-auth.php
+      - runtime/content/maskzero.site/api/class-phpass.php
+      - runtime/content/maskzero.site/spark-login/index.html
+      - runtime/content/maskzero.site/spark-logout/index.html
+      - runtime/content/maskzero.site/spark-signup/index.html
+      - runtime/content/maskzero.site/spark-dashboard/index.html
+      - runtime/content/maskzero.site/assets/js/spark-account-runtime.js
+      - runtime/content/maskzero.site/assets/js/spark-auth-nav.js
+    notes: "MaskZero first-party auth overlay — runtime/content/maskzero.site SSOT; WP user migration via ops/migration/run_maskzero_user_migration.py"
 
   xthunder.site:
     path: sites/production/websites/xthunder.site

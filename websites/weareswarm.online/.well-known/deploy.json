@@ -1,12 +1,13 @@
 {
   "site": "weareswarm.online",
-  "deployed_at": "2026-01-24T23:10:00-06:00",
-  "deployed_by": "Agent-5",
-  "commit_sha": "23665014d",
-  "deployment_id": "dreamos-website-audit-patch-2026-01-24",
+  "deployed_at": "2026-06-08T10:00:00+00:00",
+  "deployed_by": "Cursor-Agent",
+  "commit_sha": "local-sync",
+  "deployment_id": "planner-json-refresh-2026-06-08",
   "status": "active",
   "patches_applied": [
-    "font-corruption-scan",
-    "deploy-stamp-restoration"
+    "planner-json-sync",
+    "dynamic-planner-panel",
+    "revenue-operator-panel"
   ]
 }
