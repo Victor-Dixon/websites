@@ -132,6 +132,13 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
     assert 'window.location.href = safe' in spark_login
     assert "Login did not complete" in spark_login
     assert "Login needs browser cookies enabled" in spark_login
+    assert 'id="sparkLoginDebugLog"' in spark_login
+    assert "Login debug started. Passwords are never logged." in spark_login
+    assert "WordPress auth response" in spark_login
+    assert "detectWordPressClues" in spark_login
+    assert "password_supplied" in spark_login
+    assert 'document.getElementById("user_pass").value' in spark_login
+    assert "password:" not in spark_login.lower()
     assert "Create Account" in (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
     assert "Spark Account" in (MASKZERO / "spark-account/index.html").read_text(encoding="utf-8")
     assert "Command Post" in (MASKZERO / "spark-dashboard/index.html").read_text(encoding="utf-8")
