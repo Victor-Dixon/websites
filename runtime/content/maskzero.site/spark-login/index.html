@@ -273,7 +273,7 @@ button{
 
         <button type="submit" id="sparkLoginSubmit">Log In</button>
         <a class="comic-button secondary" href="/spark-signup/">Create Account</a>
-        <p class="field-help"><a href="/wp-login.php?action=lostpassword">Forgot password?</a></p>
+        <p class="field-help"><a href="/spark-login/?help=lost-password">Forgot password?</a></p>
       </form>
       <iframe
         id="sparkLoginFrame"
@@ -303,6 +303,8 @@ button{
   const input = document.querySelector('input[name="redirect_to"]');
   if (input) input.value = safe;
 
+  const help = params.get("help");
+
   const toggle = document.getElementById("sparkLoginTogglePassword");
   const password = document.getElementById("user_pass");
   if (toggle && password) {
@@ -323,12 +325,46 @@ button{
   const submitBtn = document.getElementById("sparkLoginSubmit");
   let loginPending = false;
 
+  if (help === "lost-password" && status) {
+    status.className = "status form-status";
+    status.textContent = "Password reset is handled by MaskZero support right now. Email hello@maskzero.site and we will reset your access.";
+  }
+
   if (form && frame && status && submitBtn) {
-    form.addEventListener("submit", function () {
+    async function submitWithCustomPage(event) {
+      event.preventDefault();
       loginPending = true;
       submitBtn.disabled = true;
       status.textContent = "Signing in…";
-    });
+
+      try {
+        const res = await fetch("/wp-login.php", {
+          method: "POST",
+          body: new FormData(form),
+          credentials: "same-origin",
+          redirect: "follow"
+        });
+
+        const finalUrl = new URL(res.url || window.location.href, window.location.origin);
+        if (hasLoggedInCookie() || finalUrl.pathname.indexOf(safe.replace(/\/+$/, "")) === 0 || finalUrl.pathname.indexOf("/spark-dashboard") === 0) {
+          window.location.href = safe;
+          return;
+        }
+
+        status.className = "status error form-status";
+        status.textContent = "Login did not complete. Check your username and password, then try again.";
+      } catch (err) {
+        status.className = "status error form-status";
+        status.textContent = "Login could not connect. Please try again in a moment.";
+      } finally {
+        if (!hasLoggedInCookie()) {
+          submitBtn.disabled = false;
+          loginPending = false;
+        }
+      }
+    }
+
+    form.addEventListener("submit", submitWithCustomPage);
 
     frame.addEventListener("load", function () {
       if (!loginPending) return;

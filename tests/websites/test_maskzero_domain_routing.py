@@ -122,6 +122,10 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
     assert "Log In" in spark_login
     assert 'target="sparkLoginFrame"' in spark_login
     assert 'name="sparkLoginFrame"' in spark_login
+    assert "event.preventDefault()" in spark_login
+    assert 'fetch("/wp-login.php"' in spark_login
+    assert 'href="/spark-login/?help=lost-password"' in spark_login
+    assert 'href="/wp-login.php?action=lostpassword"' not in spark_login
     assert 'window.location.href = safe' in spark_login
     assert "Login did not complete" in spark_login
     assert "Create Account" in (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
