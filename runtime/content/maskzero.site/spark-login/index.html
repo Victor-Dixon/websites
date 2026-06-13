@@ -270,8 +270,9 @@ button{
 
         <input type="hidden" name="redirect_to" value="/spark-dashboard/">
         <input type="hidden" name="rememberme" value="forever">
+        <input type="hidden" name="testcookie" value="1">
 
-        <button type="submit" id="sparkLoginSubmit">Log In</button>
+        <button type="submit" id="sparkLoginSubmit" name="wp-submit" value="Log In">Log In</button>
         <a class="comic-button secondary" href="/spark-signup/">Create Account</a>
         <p class="field-help"><a href="/spark-login/?help=lost-password">Forgot password?</a></p>
       </form>
@@ -336,6 +337,7 @@ button{
       loginPending = true;
       submitBtn.disabled = true;
       status.textContent = "Signing in…";
+      document.cookie = "wordpress_test_cookie=WP Cookie check; path=/; SameSite=Lax";
 
       try {
         const res = await fetch("/wp-login.php", {
@@ -351,8 +353,14 @@ button{
           return;
         }
 
+        const html = await res.text().catch(function () { return ""; });
+        const lowered = html.toLowerCase();
         status.className = "status error form-status";
-        status.textContent = "Login did not complete. Check your username and password, then try again.";
+        if (lowered.indexOf("cookies are blocked") !== -1 || lowered.indexOf("test cookie") !== -1) {
+          status.textContent = "Login needs browser cookies enabled for MaskZero. Enable cookies for this site, then try again.";
+        } else {
+          status.textContent = "Login did not complete. Check your username and password, then try again.";
+        }
       } catch (err) {
         status.className = "status error form-status";
         status.textContent = "Login could not connect. Please try again in a moment.";
