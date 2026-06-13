@@ -471,26 +471,97 @@
     if (!hero) return;
     var eyebrow = document.getElementById("hero-eyebrow");
     var title = document.getElementById("hero-title");
+    var subhero = document.getElementById("hero-subhero");
     var desc = document.getElementById("hero-description");
+    var capabilities = document.getElementById("hero-capabilities");
     var milestones = document.getElementById("hero-milestones");
     var focus = document.getElementById("hero-current-focus");
+    var phaseBadge = document.getElementById("phase-badge");
+    var liveBadge = document.getElementById("planner-live-badge");
     if (eyebrow && hero.eyebrow) eyebrow.textContent = hero.eyebrow;
     if (title && hero.title) title.textContent = hero.title;
+    if (subhero && hero.subhero) subhero.textContent = hero.subhero;
     if (desc && hero.description) desc.textContent = hero.description;
-    if (milestones) {
-      milestones.innerHTML = "";
-      toList(hero.milestones).forEach(function (item) {
-        milestones.appendChild(el("li", { text: item }));
+    if (phaseBadge && hero.phase_badge) phaseBadge.textContent = hero.phase_badge;
+    if (liveBadge && hero.live_badge) liveBadge.textContent = hero.live_badge;
+    var capItems = toList(hero.capabilities || hero.milestones);
+    var capNode = capabilities || milestones;
+    if (capNode) {
+      capNode.innerHTML = "";
+      capItems.forEach(function (item) {
+        capNode.appendChild(el("li", { text: item }));
       });
     }
     if (focus && hero.current_focus) focus.textContent = hero.current_focus;
   }
 
-  function consolidationHighlights(focusPanel) {
+  function renderPortfolioNetwork(network) {
+    if (!network) return;
+    var titleNode = document.getElementById("portfolio-network-title");
+    var subtitleNode = document.getElementById("portfolio-network-subtitle");
+    var rootNode = document.getElementById("portfolio-root");
+    var grid = document.getElementById("portfolio-network-grid");
+    if (titleNode && network.title) titleNode.textContent = network.title;
+    if (subtitleNode && network.subtitle) subtitleNode.textContent = network.subtitle;
+    if (rootNode && network.root) {
+      rootNode.innerHTML = "";
+      rootNode.appendChild(el("h3", { text: network.root.name || "Dream.OS" }));
+      rootNode.appendChild(el("p", { text: network.root.role || "" }));
+    }
+    if (!grid) return;
+    grid.innerHTML = "";
+    toList(network.domains).forEach(function (domain) {
+      var links = el("div", { className: "card-links" });
+      if (domain.href) {
+        var linkAttrs = { href: domain.href, text: domain.domain || domain.name };
+        if (domain.external) {
+          linkAttrs.target = "_blank";
+          linkAttrs.rel = "noopener noreferrer";
+        }
+        links.appendChild(el("a", linkAttrs));
+      }
+      grid.appendChild(
+        el("article", { className: "ecosystem-card" }, [
+          el("h3", { text: domain.name || "—" }),
+          el("p", { text: domain.role || "" }),
+          links,
+        ])
+      );
+    });
+  }
+
+  function renderProofLayer(proof, themes) {
+    if (!proof && !themes) return;
+    var titleNode = document.getElementById("proof-layer-title");
+    var flowNode = document.getElementById("proof-layer-flow");
+    var descNode = document.getElementById("proof-layer-description");
+    var themesNode = document.getElementById("hero-themes");
+    if (proof) {
+      if (titleNode && proof.title) titleNode.textContent = proof.title;
+      if (flowNode && proof.flow) flowNode.textContent = proof.flow;
+      if (descNode && proof.description) descNode.textContent = proof.description;
+    }
+    if (themesNode) {
+      themesNode.innerHTML = "";
+      toList(themes).forEach(function (theme) {
+        themesNode.appendChild(el("span", { className: "pill", text: theme }));
+      });
+    }
+  }
+
+  function renderHomepagePanel(homepage) {
+    if (!homepage) return;
+    var hero = Object.assign({}, homepage.hero || {}, {
+      capabilities: homepage.capabilities || (homepage.hero && homepage.hero.capabilities),
+    });
+    renderHomepageHero(hero);
+    renderPortfolioNetwork(homepage.portfolio_network);
+    renderProofLayer(homepage.proof_layer, homepage.themes);
+  }
+
+  function operationalHighlights(focusPanel) {
     const panel = (focusPanel && focusPanel.consolidation) || {};
-    const items = toList(panel.remaining || panel.active_work).slice(0, 2);
-    if (panel.operating_phase) items.push("Phase: " + panel.operating_phase);
-    return items.slice(0, 3);
+    return toList(panel.remaining || panel.active_work).slice(0, 3);
   }
 
   function renderMainFocuses(container, opts) {
@@ -503,7 +574,8 @@
     const focusPanel = (opts && opts.focusPanel) || {};
 
     const sp = spark.spark_project || {};
-    const phase = focusPanel.phase === "maintenance" ? "Consolidation Complete" : "Active";
+    const phase =
+      focusPanel.phase === "maintenance" ? "Productization" : "Active";
 
     const cards = [
       {
@@ -511,11 +583,11 @@
         status: phase,
         statusClass: "ok",
         description:
-          "Operational — maintenance, promotion, and productization phase.",
-        highlights: consolidationHighlights(focusPanel),
+          "Operating system for building — governed runtime, planner authority, and investor-facing proof.",
+        highlights: operationalHighlights(focusPanel),
         links: [
           { href: "/projects/", text: "Product portfolio" },
-          { href: "/focus/#consolidation-panel", text: "Consolidation detail" },
+          { href: "/focus/", text: "Mission control" },
         ],
       },
       {
@@ -702,6 +774,9 @@
     renderFocusStatus,
     renderConsolidationPanel,
     renderHomepageHero,
+    renderHomepagePanel,
+    renderPortfolioNetwork,
+    renderProofLayer,
     formatUsd,
     statusTone,
     resolveRepoBuckets,

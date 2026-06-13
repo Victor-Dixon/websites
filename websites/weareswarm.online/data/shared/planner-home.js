@@ -13,6 +13,8 @@
     renderStatusGrid,
     renderMainFocuses,
     renderHomepageHero,
+    renderHomepagePanel,
+    toList,
   } = FD;
 
   function sanitizePath(value) {
@@ -91,16 +93,22 @@
 
     if (manifestResult.ok) setSyncMeta(manifest);
 
-    renderHomepageHero(homepage.hero);
+    renderHomepagePanel(homepage);
 
     const nextBest = dynamic.next_best_task;
-    const remaining = (focusPanel.consolidation && focusPanel.consolidation.remaining) || [];
+    const hero = homepage.hero || {};
+    const activeWork = toList(nextLane.approved_tasks)
+      .slice(0, 2)
+      .map(function (t) {
+        return t.task_id || t.lane_id || t.id;
+      })
+      .filter(Boolean);
     renderStatusGrid(document.getElementById("operating-state-grid"), [
-      ["Dream.OS status", "Operational", true],
-      ["Consolidation", (focusPanel.consolidation && focusPanel.consolidation.status_heading) || "Status: COMPLETE", true],
-      ["Current phase", (focusPanel.consolidation && focusPanel.consolidation.operating_phase) || "—", false],
+      ["Dream.OS status", "Operating", true],
+      ["Current phase", hero.phase_badge || "Productization → Investor Layer", false],
+      ["Governance", "Enforcement live", true],
       ["Next best task", (nextBest && nextBest.task_id) || "—", false],
-      ["Active work", remaining.slice(0, 2).join("; ") || "—", false],
+      ["Active queue", activeWork.join("; ") || "—", false],
       ["Data refreshed", FD.formatSyncTime(manifest.synced_at || dynamic.generated_at || nextLane.generated_at) || "—", false],
     ]);
 
@@ -110,11 +118,7 @@
       "No approved tasks in next_lane.json."
     );
 
-    const blocked = []
-      .concat(nextLane.blocked_until || [])
-      .concat(remaining.filter(function (item) {
-        return String(item).toLowerCase().indexOf("robinhood") >= 0;
-      }));
+    const blocked = [].concat(nextLane.blocked_until || []);
     renderBlockedList(document.getElementById("blocked-list"), blocked);
 
     renderMainFocuses(document.getElementById("main-focuses-grid"), {
@@ -124,7 +128,7 @@
     });
 
     const liveBadge = document.getElementById("planner-live-badge");
-    if (liveBadge) liveBadge.textContent = "● Operational";
+    if (liveBadge) liveBadge.textContent = (hero.live_badge) || "● Operating";
   }
 
   document.addEventListener("DOMContentLoaded", function () {

@@ -1,20 +1,79 @@
 {
-  "schema": "weareswarm.online.homepage_panel.v1",
-  "generated_at": "2026-06-12T12:00:00+00:00",
+  "schema": "weareswarm.online.homepage_panel.v2",
+  "generated_at": "2026-06-13T10:35:00+00:00",
   "source": "portfolio_publication_lane",
   "hero": {
-    "eyebrow": "WeAreSwarm Operator Hub",
-    "title": "Dream.OS Is Operational",
-    "description": "Dream.OS is a self-healing automation ecosystem for software development, trading workflows, business operations, education systems, and AI-assisted execution.",
-    "milestones": [
-      "Task authority consolidated into DreamVault",
-      "Discord closeout enforcement deployed",
-      "WeAreSwarm publication enforcement deployed",
-      "Trading infrastructure consolidated",
-      "DreamOS runtime authority established",
-      "AutoDream archived after salvage",
-      "Planner and task systems unified"
-    ],
-    "current_focus": "Productization, automation services, AI tooling, and revenue-generating systems."
-  }
+    "eyebrow": "WeAreSwarm · Venture Studio",
+    "title": "Dream.OS — An Operating System for Building",
+    "subhero": "Building an organization that can build things — not just interesting projects.",
+    "description": "Governed venture studio stack: centralized authority, proof-backed surfaces, and portfolio domains wired through mission control.",
+    "phase_badge": "Productization → Investor Layer",
+    "live_badge": "● Operating",
+    "current_focus": "Investor-facing proof surfaces, revenue activation, and modular product delivery."
+  },
+  "portfolio_network": {
+    "title": "Portfolio Network",
+    "subtitle": "Dream.OS venture studio — linked domains under one operating system",
+    "root": {
+      "name": "Dream.OS",
+      "role": "Governance spine, planner authority, and runtime"
+    },
+    "domains": [
+      {
+        "name": "WeAreSwarm",
+        "role": "Mission control & operator hub",
+        "href": "/focus/",
+        "domain": "weareswarm.online"
+      },
+      {
+        "name": "MaskZero",
+        "role": "Spark universe & character systems",
+        "href": "https://maskzero.site",
+        "domain": "maskzero.site",
+        "external": true
+      },
+      {
+        "name": "FreeRideInvestor",
+        "role": "Trading signals & market discipline",
+        "href": "https://freerideinvestor.com",
+        "domain": "freerideinvestor.com",
+        "external": true
+      },
+      {
+        "name": "DigitalDreamscape",
+        "role": "Creative world & modular architecture",
+        "href": "/projects/",
+        "domain": "digitaldreamscape"
+      },
+      {
+        "name": "TradingRobotPlug",
+        "role": "Systematized edge — governed paper-first execution",
+        "href": "/projects/",
+        "domain": "tradingrobotplug"
+      },
+      {
+        "name": "Dadudekc",
+        "role": "Victor portfolio & client services",
+        "href": "https://dadudekc.site",
+        "domain": "dadudekc.site",
+        "external": true
+      }
+    ]
+  },
+  "proof_layer": {
+    "title": "Proof Layer",
+    "flow": "Closeout → Discord → WeAreSwarm → historical record",
+    "description": "Every lane ships with evidence. Session closeouts publish to Discord, sync portfolio surfaces, and land in the feed as auditable history — not vanity demos."
+  },
+  "capabilities": [
+    "Governance enforcement live — closeout gates block incomplete work",
+    "16 products revenue-classified across portfolio lanes",
+    "Planner as task authority — active queue + NEXT_LANE routing",
+    "Portfolio surfaces auto-sync from proof artifacts"
+  ],
+  "themes": [
+    "System, not collection — authority centralized, governance enforced",
+    "Modular architecture — separated concerns across domains and toolbelt",
+    "Leverage layers — systems that build features, not one-off builds"
+  ]
 }

@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>WeAreSwarm | Operator Hub</title>
-  <meta name="description" content="Dream.OS is operational — self-healing automation for development, trading, business ops, education, and AI-assisted execution.">
+  <meta name="description" content="Dream.OS venture studio — an operating system for building. Governed portfolio network, proof-backed surfaces, productization toward investor layer.">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
   <style>
     .planner-hero{margin-bottom:2rem}
     .planner-hero h1{font-size:clamp(2rem,5vw,3.2rem);margin:0 0 .5rem;letter-spacing:-.03em}
     .planner-hero .subtitle{color:var(--muted);max-width:760px;font-size:1.05rem}
+    .planner-hero .subhero{color:var(--text);max-width:760px;font-size:1.1rem;font-weight:500;margin:.5rem 0 0}
     .planner-cta{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.25rem}
     .planner-cta .badge{padding:.45rem .85rem;border-radius:999px;border:1px solid var(--panel-border);background:rgba(255,255,255,.04);font-weight:600}
     .planner-cta .badge.primary{background:var(--ok);color:#04100c;border-color:var(--ok)}
@@ -18,9 +19,15 @@
     .muted-inline{color:var(--muted);margin-left:.35rem;font-weight:400}
     .item-rationale{margin:.35rem 0 0;color:var(--muted);font-size:.9rem}
     .list--blockers li{color:var(--block)}
-    .hero-milestones{margin:1rem 0 0;padding-left:1.25rem;color:var(--muted)}
-    .hero-milestones li{margin:.25rem 0}
+    .hero-capabilities{margin:1rem 0 0;padding-left:1.25rem;color:var(--muted)}
+    .hero-capabilities li{margin:.25rem 0}
     .hero-current-focus{margin:.75rem 0 0;color:var(--text);font-weight:500}
+    .portfolio-root{margin:0 0 .75rem;padding:.75rem 1rem;border:1px solid var(--panel-border);border-radius:var(--radius);background:rgba(91,141,239,.08)}
+    .portfolio-root h3{margin:0 0 .25rem;font-size:1rem}
+    .portfolio-root p{margin:0;color:var(--muted);font-size:.9rem}
+    .proof-flow{font-family:ui-monospace,monospace;font-size:.88rem;color:var(--accent);margin:.35rem 0 .65rem}
+    .theme-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.65rem}
+    .theme-pills .pill{font-size:.78rem;padding:.2rem .55rem;border-radius:999px;border:1px solid var(--panel-border);color:var(--muted)}
   </style>
 </head>
 <body>
@@ -28,37 +35,68 @@
 
   <main class="container">
     <header class="hero planner-hero">
-      <p class="section-title" id="hero-eyebrow">WeAreSwarm Operator Hub</p>
-      <h1 id="hero-title">Dream.OS Is Operational</h1>
-      <p class="subtitle" id="hero-description">Dream.OS is a self-healing automation ecosystem for software development, trading workflows, business operations, education systems, and AI-assisted execution.</p>
-      <p class="section-title" style="margin-top:1rem;margin-bottom:.35rem;">Recent milestones</p>
-      <ul class="hero-milestones" id="hero-milestones">
-        <li>Task authority consolidated into DreamVault</li>
-        <li>Discord closeout enforcement deployed</li>
-        <li>WeAreSwarm publication enforcement deployed</li>
-        <li>Trading infrastructure consolidated</li>
-        <li>DreamOS runtime authority established</li>
-        <li>AutoDream archived after salvage</li>
-        <li>Planner and task systems unified</li>
+      <p class="section-title" id="hero-eyebrow">WeAreSwarm · Venture Studio</p>
+      <h1 id="hero-title">Dream.OS — An Operating System for Building</h1>
+      <p class="subhero" id="hero-subhero">Building an organization that can build things — not just interesting projects.</p>
+      <p class="subtitle" id="hero-description">Governed venture studio stack: centralized authority, proof-backed surfaces, and portfolio domains wired through mission control.</p>
+      <p class="section-title" style="margin-top:1rem;margin-bottom:.35rem;">Recent capabilities</p>
+      <ul class="hero-capabilities" id="hero-capabilities">
+        <li>Governance enforcement live — closeout gates block incomplete work</li>
+        <li>16 products revenue-classified across portfolio lanes</li>
+        <li>Planner as task authority — active queue + NEXT_LANE routing</li>
+        <li>Portfolio surfaces auto-sync from proof artifacts</li>
       </ul>
-      <p class="hero-current-focus"><strong>Current focus:</strong> <span id="hero-current-focus">Productization, automation services, AI tooling, and revenue-generating systems.</span></p>
+      <p class="hero-current-focus"><strong>Current focus:</strong> <span id="hero-current-focus">Investor-facing proof surfaces, revenue activation, and modular product delivery.</span></p>
       <div class="meta-row">
-        <span class="badge ok" id="planner-live-badge">● Operational</span>
+        <span class="badge ok" id="planner-live-badge">● Operating</span>
+        <span class="badge warn" id="phase-badge">Productization → Investor Layer</span>
         <span class="badge" id="sync-meta">Loading sync metadata…</span>
       </div>
       <div class="planner-cta">
-        <a class="badge primary" href="/focus/">Command center</a>
-        <a class="badge" href="/tasks/">Tasks</a>
-        <a class="badge" href="/projects/">Products</a>
+        <a class="badge primary" href="/focus/">Mission Control</a>
+        <a class="badge" href="/projects/">Portfolio</a>
+        <a class="badge" href="/feed/">Proof Feed</a>
       </div>
     </header>
 
     <div class="module-stack">
+      <section class="panel panel--full" id="portfolio-network">
+        <div class="panel-header">
+          <div>
+            <h2 id="portfolio-network-title">Portfolio Network</h2>
+            <p class="subtitle" id="portfolio-network-subtitle">Dream.OS venture studio — linked domains under one operating system</p>
+          </div>
+          <a class="badge" href="/projects/">All products</a>
+        </div>
+        <div class="panel-body">
+          <div class="portfolio-root" id="portfolio-root">
+            <h3>Dream.OS</h3>
+            <p>Governance spine, planner authority, and runtime</p>
+          </div>
+          <div class="ecosystem-grid" id="portfolio-network-grid"></div>
+        </div>
+      </section>
+
+      <section class="panel panel--full" id="proof-layer">
+        <div class="panel-header">
+          <div>
+            <h2 id="proof-layer-title">Proof Layer</h2>
+            <p class="subtitle">Evidence that things operate — not vanity demos</p>
+          </div>
+          <a class="badge" href="/feed/">View feed</a>
+        </div>
+        <div class="panel-body">
+          <p class="proof-flow" id="proof-layer-flow">Closeout → Discord → WeAreSwarm → historical record</p>
+          <p id="proof-layer-description">Every lane ships with evidence. Session closeouts publish to Discord, sync portfolio surfaces, and land in the feed as auditable history.</p>
+          <div class="theme-pills" id="hero-themes"></div>
+        </div>
+      </section>
+
       <section class="panel panel--full" id="main-focuses">
         <div class="panel-header">
           <div>
-            <h2>Main Focuses</h2>
-            <p class="subtitle">Current operator priorities</p>
+            <h2>Operator Priorities</h2>
+            <p class="subtitle">Active lanes across the portfolio</p>
           </div>
         </div>
         <div class="panel-body">
@@ -71,7 +109,7 @@
           <div class="panel-header">
             <div>
               <h2>Operating State</h2>
-              <p class="subtitle">Dream.OS operational status</p>
+              <p class="subtitle">Dream.OS operationalization status</p>
             </div>
           </div>
           <div class="panel-body">
@@ -95,7 +133,7 @@
         <div class="panel-header">
           <div>
             <h2>Blocked / Needs Human Review</h2>
-            <p class="subtitle">Human gates and remaining activation blockers</p>
+            <p class="subtitle">Human gates and activation blockers</p>
           </div>
         </div>
         <div class="panel-body" id="blocked-list"></div>
@@ -103,7 +141,7 @@
     </div>
 
     <p class="footer-note">
-      WeAreSwarm operator hub on weareswarm.online — Dream.OS operational, productization and revenue in progress.
+      WeAreSwarm operator hub on weareswarm.online — Dream.OS venture studio, productization and investor layer in progress.
       Routes: <a href="/focus/">Focus</a> · <a href="/tasks/">Tasks</a> · <a href="/projects/">Projects</a> · <a href="/feed/">Feed</a> · <a href="/roadmap/">Roadmap</a>
     </p>
   </main>
