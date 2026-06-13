@@ -118,7 +118,12 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
     assert "runtime/content/maskzero.site/assets/js/spark-site-shell.js" in sites["maskzero.site"]["deploy_files"]
     assert '<link rel="canonical" href="https://maskzero.site/spark-login/">' in login
     assert "url=/spark-login/?redirect_to=%2Fspark-dashboard%2F" in login
-    assert "Log In" in (MASKZERO / "spark-login/index.html").read_text(encoding="utf-8")
+    spark_login = (MASKZERO / "spark-login/index.html").read_text(encoding="utf-8")
+    assert "Log In" in spark_login
+    assert 'target="sparkLoginFrame"' in spark_login
+    assert 'name="sparkLoginFrame"' in spark_login
+    assert 'window.location.href = safe' in spark_login
+    assert "Login did not complete" in spark_login
     assert "Create Account" in (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
     assert "Spark Account" in (MASKZERO / "spark-account/index.html").read_text(encoding="utf-8")
     assert "Command Post" in (MASKZERO / "spark-dashboard/index.html").read_text(encoding="utf-8")

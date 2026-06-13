@@ -257,7 +257,7 @@ button{
     </section>
 
     <section class="form-panel">
-      <form method="post" action="/wp-login.php" id="sparkLoginForm">
+      <form method="post" action="/wp-login.php" target="sparkLoginFrame" id="sparkLoginForm">
         <label for="user_login">Email or Display Name</label>
         <input id="user_login" name="log" type="text" autocomplete="username" required aria-required="true">
 
@@ -275,6 +275,13 @@ button{
         <a class="comic-button secondary" href="/spark-signup/">Create Account</a>
         <p class="field-help"><a href="/wp-login.php?action=lostpassword">Forgot password?</a></p>
       </form>
+      <iframe
+        id="sparkLoginFrame"
+        name="sparkLoginFrame"
+        title="Spark login handoff"
+        style="position:absolute;width:1px;height:1px;border:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden"
+        aria-hidden="true"
+      ></iframe>
       <div id="sparkLoginStatus" class="status form-status" role="status" aria-live="polite"></div>
     </section>
   </main>
@@ -306,13 +313,42 @@ button{
     });
   }
 
+  function hasLoggedInCookie() {
+    return document.cookie.indexOf("wordpress_logged_in") !== -1;
+  }
+
   const form = document.getElementById("sparkLoginForm");
+  const frame = document.getElementById("sparkLoginFrame");
   const status = document.getElementById("sparkLoginStatus");
   const submitBtn = document.getElementById("sparkLoginSubmit");
-  if (form && status && submitBtn) {
+  let loginPending = false;
+
+  if (form && frame && status && submitBtn) {
     form.addEventListener("submit", function () {
+      loginPending = true;
       submitBtn.disabled = true;
       status.textContent = "Signing in…";
+    });
+
+    frame.addEventListener("load", function () {
+      if (!loginPending) return;
+
+      let framePath = "";
+      try {
+        framePath = frame.contentWindow.location.pathname || "";
+      } catch (err) {
+        framePath = "";
+      }
+
+      if (hasLoggedInCookie() || framePath.indexOf(safe.replace(/\/+$/, "")) === 0 || framePath.indexOf("/spark-dashboard") === 0) {
+        window.location.href = safe;
+        return;
+      }
+
+      submitBtn.disabled = false;
+      status.className = "status error form-status";
+      status.textContent = "Login did not complete. Check your username and password, then try again.";
+      loginPending = false;
     });
   }
 })();
