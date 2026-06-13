@@ -5,6 +5,7 @@
     user: "kidsPlanner.currentUser",
     tasks: "kidsPlanner.tasks",
     worklogs: "kidsPlanner.worklogs",
+    completed: "kidsPlanner.completed",
     activeClock: "kidsPlanner.activeClock",
     profiles: "kidsPlanner.profiles",
   };
@@ -85,17 +86,13 @@
     "done",
   ];
 
-  var KID_SAFE_BLOCKLIST = [
-    /secret/i,
-    /password/i,
-    /token/i,
-    /api_key/i,
-    /credential/i,
-    /\.env\b/i,
-    /private_key/i,
-  ];
+  var SECRET_ASSIGNMENT_RE =
+    /(api[_-]?key|password|secret|token|credential|private[_-]?key|ftp_pass)\s*[=:]\s*\S+/i;
 
-  var KIDS_TASKS_FEED = "/data/planner/kids_tasks.json";
+  var KIDS_TASKS_FEEDS = [
+    "/data/planner/kids_tasks.json",
+    "/data/planner/kids_planner_tasks.json",
+  ];
   var DEFAULT_RULES =
     "- Make small safe changes.\n" +
     "- Do not delete unrelated files.\n" +
@@ -107,6 +104,7 @@
   var state = {
     tasks: [],
     worklogs: [],
+    completed: [],
     currentUser: "",
     authSession: null,
     selectedTaskId: null,
@@ -197,12 +195,39 @@
     return logs.length ? logs[logs.length - 1] : null;
   }
 
+  function taskTextFields(task) {
+    if (!task) return "";
+    var parts = [
+      task.title,
+      task.objective,
+      task.summary,
+      task.kid_instructions,
+      task.kid_prompt,
+      task.agent_prompt,
+      task.project,
+      task.source,
+    ];
+    if (task.agent_prompt_template && typeof task.agent_prompt_template === "object") {
+      Object.keys(task.agent_prompt_template).forEach(function (key) {
+        parts.push(task.agent_prompt_template[key]);
+      });
+    }
+    return parts.filter(Boolean).join("\n");
+  }
+
   function hasSecretMarkers(task) {
     if (!task) return true;
-    var blob = JSON.stringify(task);
-    return KID_SAFE_BLOCKLIST.some(function (re) {
-      return re.test(blob);
-    });
+    var blob = taskTextFields(task);
+    if (/\.env\b/i.test(blob)) return true;
+    return SECRET_ASSIGNMENT_RE.test(blob);
+  }
+
+  function canViewTaskInColumn(task, colId) {
+    if (!task || task.status !== colId) return false;
+    if (isParent()) return true;
+    if (colId === "available") return !task.kid_owner;
+    if (!task.kid_owner) return false;
+    return task.kid_owner === getCurrentUser();
   }
 
   function isKidSafeTask(task) {
@@ -275,6 +300,13 @@
       points: points,
       points_on_complete: raw.points_on_complete != null ? Number(raw.points_on_complete) : points,
       points_on_review: reviewPts,
+      unlocks: Array.isArray(raw.unlocks)
+        ? raw.unlocks.map(String)
+        : Array.isArray(raw.downstream_unlocks)
+          ? raw.downstream_unlocks.map(String)
+          : [],
+      claimed_at: raw.claimed_at || null,
+      completed_at: raw.completed_at || null,
     };
   }
 
@@ -298,6 +330,43 @@
 
   function persistWorklogs() {
     saveJson(STORAGE.worklogs, state.worklogs);
+  }
+
+  function persistCompleted() {
+    saveJson(STORAGE.completed, state.completed);
+  }
+
+  function recordTaskCompleted(task) {
+    if (!task || task.status !== "done") return;
+    var owner = task.kid_owner || getCurrentUser();
+    if (!owner) return;
+    var log = findWorklogForTask(task.id);
+    var existing = state.completed.find(function (c) {
+      return c.task_id === task.id && c.kid_owner === owner;
+    });
+    if (existing && existing.completed_at) return;
+
+    var entry = {
+      task_id: task.id,
+      task_title: task.title,
+      kid_owner: owner,
+      claimed_at: task.claimed_at || null,
+      completed_at: new Date().toISOString(),
+      duration_minutes: log && log.duration_minutes ? log.duration_minutes : 0,
+      work_log_summary: log && log.kid_summary ? log.kid_summary : "",
+      unlocked: Array.isArray(task.unlocks) ? task.unlocks.slice() : [],
+      points_earned: getTaskPoints(task),
+    };
+    if (existing) {
+      Object.assign(existing, entry);
+    } else {
+      state.completed.push(entry);
+    }
+    if (!task.completed_at) {
+      task.completed_at = entry.completed_at;
+      persistTasks();
+    }
+    persistCompleted();
   }
 
   function formatDuration(minutes) {
@@ -430,10 +499,13 @@
         isKid())
     ) {
       if (!task.kid_owner) task.kid_owner = getCurrentUser();
+      if (!task.claimed_at) task.claimed_at = new Date().toISOString();
     }
 
     if (newStatus === "available") {
       task.kid_owner = null;
+      task.claimed_at = null;
+      task.completed_at = null;
     }
 
     persistTasks();
@@ -441,6 +513,7 @@
     if (state.selectedTaskId === task.id) renderDetail();
     if (newStatus === "ready_for_review") onTaskReadyForReview(task);
     if (newStatus === "claimed" && prev !== "claimed") onTaskClaimed(task);
+    if (newStatus === "done" && prev !== "done") recordTaskCompleted(task);
     if (options.silent !== true) {
       toast("Moved to " + newStatus.replace(/_/g, " "));
     }
@@ -630,7 +703,7 @@
       columnEl.dataset.status = col.id;
 
       var cards = state.tasks.filter(function (t) {
-        return t.status === col.id;
+        return canViewTaskInColumn(t, col.id);
       });
 
       var header = document.createElement("div");
@@ -951,7 +1024,10 @@
     });
     if (tabId === "shop") renderShop();
     if (tabId === "badges") renderBadges();
-    if (tabId === "history") renderWorklogHistory();
+    if (tabId === "history") {
+      renderCompletedHistory();
+      renderWorklogHistory();
+    }
     if (tabId === "admin") renderAdmin();
   }
 
@@ -1520,6 +1596,65 @@
     toast("Work log saved");
   }
 
+  function renderCompletedHistory() {
+    var container = $("completed-list");
+    if (!container) return;
+
+    var user = getCurrentUser();
+    var rows = state.completed
+      .filter(function (c) {
+        return isParent() || c.kid_owner === user;
+      })
+      .slice()
+      .reverse();
+
+    if (!rows.length) {
+      container.innerHTML =
+        '<p class="empty-state">No completed missions yet. Move a task to Done when you finish!</p>';
+      return;
+    }
+
+    container.innerHTML = "";
+    rows.forEach(function (row) {
+      var entry = document.createElement("div");
+      entry.className = "worklog-entry completed-entry";
+      var unlockText =
+        row.unlocked && row.unlocked.length
+          ? row.unlocked.join(", ")
+          : "None listed";
+      entry.innerHTML =
+        '<div class="worklog-entry-header">' +
+        "<strong>" +
+        escapeHtml(row.task_title || row.task_id) +
+        "</strong>" +
+        (isParent()
+          ? '<span class="task-pill owner">' + escapeHtml(row.kid_owner || "—") + "</span>"
+          : "") +
+        '<span class="task-pill">⭐ ' +
+        (row.points_earned || 0) +
+        " pts</span>" +
+        (row.duration_minutes
+          ? '<span class="task-pill">' + formatDuration(row.duration_minutes) + "</span>"
+          : "") +
+        "</div>" +
+        "<p>" +
+        escapeHtml(row.work_log_summary || "(no summary)") +
+        "</p>" +
+        '<p class="mono-note">Claimed: ' +
+        formatTime(row.claimed_at) +
+        " · Done: " +
+        formatTime(row.completed_at) +
+        "</p>" +
+        '<p class="mono-note"><strong>Unlocked:</strong> ' +
+        escapeHtml(unlockText) +
+        "</p>";
+      entry.addEventListener("click", function () {
+        selectTask(row.task_id);
+      });
+      container.appendChild(entry);
+    });
+  }
+
   function renderWorklogHistory() {
     var container = $("worklog-list");
     if (!container) return;
@@ -1750,56 +1885,101 @@
     var logs = state.worklogs.slice().reverse();
     if (!logs.length) {
       logsEl.innerHTML = '<p class="empty-state">No work logs yet</p>';
+    } else {
+      logsEl.innerHTML = "";
+      logs.forEach(function (log) {
+        var task = findTask(log.task_id);
+        var entry = document.createElement("div");
+        entry.className = "worklog-entry";
+        var review = log.parent_review || "pending_review";
+        entry.innerHTML =
+          '<div class="worklog-entry-header">' +
+          "<strong>" +
+          escapeHtml(task ? task.title : log.task_id) +
+          "</strong>" +
+          '<span class="task-pill owner">' +
+          escapeHtml(log.kid_owner || "—") +
+          "</span>" +
+          '<span class="review-badge ' +
+          review +
+          '">' +
+          review.replace(/_/g, " ") +
+          "</span>" +
+          (log.duration_minutes
+            ? '<span class="task-pill">' + formatDuration(log.duration_minutes) + "</span>"
+            : "") +
+          "</div>" +
+          "<p>" +
+          escapeHtml(log.kid_summary || "(no summary)") +
+          "</p>";
+        var sel = document.createElement("select");
+        sel.className = "redemption-approval";
+        ["pending_review", "approved", "needs_revision", "celebrated"].forEach(function (opt) {
+          var o = document.createElement("option");
+          o.value = opt;
+          o.textContent = opt.replace(/_/g, " ");
+          if (review === opt) o.selected = true;
+          sel.appendChild(o);
+        });
+        sel.addEventListener("change", function () {
+          var oldReview = log.parent_review || "pending_review";
+          log.parent_review = sel.value;
+          if (task) onParentReviewChange(task, log.parent_review, oldReview);
+          persistWorklogs();
+          renderAdmin();
+        });
+        entry.appendChild(sel);
+        entry.addEventListener("click", function (e) {
+          if (e.target === sel) return;
+          selectTask(log.task_id);
+        });
+        logsEl.appendChild(entry);
+      });
+    }
+
+    var completedEl = $("admin-completed");
+    if (!completedEl) return;
+    var completedRows = state.completed.slice().reverse();
+    if (!completedRows.length) {
+      completedEl.innerHTML = '<p class="empty-state">No completed missions yet</p>';
       return;
     }
-    logsEl.innerHTML = "";
-    logs.forEach(function (log) {
-      var task = findTask(log.task_id);
+    completedEl.innerHTML = "";
+    completedRows.forEach(function (row) {
       var entry = document.createElement("div");
-      entry.className = "worklog-entry";
-      var review = log.parent_review || "pending_review";
+      entry.className = "worklog-entry completed-entry";
+      var unlockText =
+        row.unlocked && row.unlocked.length ? row.unlocked.join(", ") : "None listed";
       entry.innerHTML =
         '<div class="worklog-entry-header">' +
         "<strong>" +
-        escapeHtml(task ? task.title : log.task_id) +
+        escapeHtml(row.task_title || row.task_id) +
         "</strong>" +
         '<span class="task-pill owner">' +
-        escapeHtml(log.kid_owner || "—") +
+        escapeHtml(row.kid_owner || "—") +
         "</span>" +
-        '<span class="review-badge ' +
-        review +
-        '">' +
-        review.replace(/_/g, " ") +
-        "</span>" +
-        (log.duration_minutes
-          ? '<span class="task-pill">' + formatDuration(log.duration_minutes) + "</span>"
+        '<span class="task-pill">⭐ ' +
+        (row.points_earned || 0) +
+        " pts</span>" +
+        (row.duration_minutes
+          ? '<span class="task-pill">' + formatDuration(row.duration_minutes) + "</span>"
           : "") +
         "</div>" +
         "<p>" +
-        escapeHtml(log.kid_summary || "(no summary)") +
+        escapeHtml(row.work_log_summary || "(no summary)") +
+        "</p>" +
+        '<p class="mono-note">Claimed: ' +
+        formatTime(row.claimed_at) +
+        " · Done: " +
+        formatTime(row.completed_at) +
+        "</p>" +
+        '<p class="mono-note"><strong>Unlocked:</strong> ' +
+        escapeHtml(unlockText) +
         "</p>";
-      var sel = document.createElement("select");
-      sel.className = "redemption-approval";
-      ["pending_review", "approved", "needs_revision", "celebrated"].forEach(function (opt) {
-        var o = document.createElement("option");
-        o.value = opt;
-        o.textContent = opt.replace(/_/g, " ");
-        if (review === opt) o.selected = true;
-        sel.appendChild(o);
+      entry.addEventListener("click", function () {
+        selectTask(row.task_id);
       });
-      sel.addEventListener("change", function () {
-        var oldReview = log.parent_review || "pending_review";
-        log.parent_review = sel.value;
-        if (task) onParentReviewChange(task, log.parent_review, oldReview);
-        persistWorklogs();
-        renderAdmin();
-      });
-      entry.appendChild(sel);
-      entry.addEventListener("click", function (e) {
-        if (e.target === sel) return;
-        selectTask(log.task_id);
-      });
-      logsEl.appendChild(entry);
+      completedEl.appendChild(entry);
     });
   }
 
@@ -1835,6 +2015,8 @@
         byId[incoming.id] = Object.assign({}, incoming, {
           status: existing.status,
           kid_owner: existing.kid_owner,
+          claimed_at: existing.claimed_at,
+          completed_at: existing.completed_at,
         });
       } else {
         byId[incoming.id] = incoming;
@@ -1845,8 +2027,8 @@
     });
   }
 
-  function fetchKidsTaskFeed() {
-    return fetch(KIDS_TASKS_FEED)
+  function fetchJsonTasks(url) {
+    return fetch(url)
       .then(function (r) {
         if (!r.ok) throw new Error("kids feed fetch failed");
         return r.json();
@@ -1854,6 +2036,23 @@
       .then(function (data) {
         return (data && data.tasks) || [];
       });
+  }
+
+  function fetchKidsTaskFeed() {
+    function tryFeed(index) {
+      if (index >= KIDS_TASKS_FEEDS.length) {
+        return Promise.reject(new Error("no kids feed available"));
+      }
+      return fetchJsonTasks(KIDS_TASKS_FEEDS[index])
+        .then(function (tasks) {
+          if (tasks.length) return tasks;
+          return tryFeed(index + 1);
+        })
+        .catch(function () {
+          return tryFeed(index + 1);
+        });
+    }
+    return tryFeed(0);
   }
 
   function fetchSampleTasks() {
@@ -1871,6 +2070,7 @@
   function loadTasks(options) {
     options = options || {};
     var cached = options.forceRefresh ? null : loadJson(STORAGE.tasks, null);
+    if (cached && !cached.length) cached = null;
     var preserveLocal = !!(cached && cached.length && !options.forceRefresh);
 
     return fetchKidsTaskFeed()
@@ -1907,6 +2107,11 @@
       });
   }
 
+  function bindEvent(id, event, handler) {
+    var el = $(id);
+    if (el) el.addEventListener(event, handler);
+  }
+
   function bindEvents() {
     var logoutBtn = $("btn-logout");
     if (logoutBtn) {
@@ -1921,26 +2126,24 @@
       });
     });
 
-    $("btn-close-detail").addEventListener("click", closeDetail);
-    $("btn-claim").addEventListener("click", claimTask);
-    $("btn-move-next").addEventListener("click", moveTaskNext);
-    $("btn-park").addEventListener("click", parkTask);
-    $("btn-clock-in").addEventListener("click", clockIn);
-    $("btn-clock-out").addEventListener("click", clockOut);
-    $("btn-generate-prompt").addEventListener("click", function () {
+    bindEvent("btn-close-detail", "click", closeDetail);
+    bindEvent("btn-claim", "click", claimTask);
+    bindEvent("btn-move-next", "click", moveTaskNext);
+    bindEvent("btn-park", "click", parkTask);
+    bindEvent("btn-clock-in", "click", clockIn);
+    bindEvent("btn-clock-out", "click", clockOut);
+    bindEvent("btn-generate-prompt", "click", function () {
       var task = findTask(state.selectedTaskId);
       if (!task) return;
       $("agent-prompt").value = generateAgentPrompt(task);
       toast("Prompt generated");
     });
-    $("btn-copy-prompt").addEventListener("click", copyPrompt);
-    var copyKidBtn = $("btn-copy-kid-prompt");
-    if (copyKidBtn) copyKidBtn.addEventListener("click", copyKidPrompt);
-    var unlockBtn = $("btn-unlock-special");
-    if (unlockBtn) unlockBtn.addEventListener("click", unlockSpecialMission);
-    $("btn-save-worklog").addEventListener("click", saveWorklog);
-    $("btn-export-logs").addEventListener("click", exportWorklogs);
-    $("btn-reset-tasks").addEventListener("click", resetTasksFromFeed);
+    bindEvent("btn-copy-prompt", "click", copyPrompt);
+    bindEvent("btn-copy-kid-prompt", "click", copyKidPrompt);
+    bindEvent("btn-unlock-special", "click", unlockSpecialMission);
+    bindEvent("btn-save-worklog", "click", saveWorklog);
+    bindEvent("btn-export-logs", "click", exportWorklogs);
+    bindEvent("btn-reset-tasks", "click", resetTasksFromFeed);
   }
 
   function initNav() {
@@ -1961,11 +2164,13 @@
     state.authSession = session;
     state.currentUser = session.displayName;
     state.worklogs = loadJson(STORAGE.worklogs, []);
+    state.completed = loadJson(STORAGE.completed, []);
     state.activeClock = loadJson(STORAGE.activeClock, null);
 
     applyRoleUI();
     bindEvents();
     setupDragDrop();
+    switchTab("board");
 
     loadRewards()
       .then(function () {
@@ -1973,6 +2178,7 @@
       })
       .then(function () {
         renderKanban();
+        renderCompletedHistory();
         renderWorklogHistory();
         renderProfileBar();
         renderShop();

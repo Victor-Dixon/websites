@@ -58,7 +58,9 @@
   display: none;
 }
 
-.kids-planner .hero h1 {
+.worklog-entry.completed-entry {
+  border-left: 3px solid var(--ok, #3dd68c);
+}
   background: linear-gradient(120deg, #9b6dff, #5b8def, #3dd68c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
