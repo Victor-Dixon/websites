@@ -128,13 +128,69 @@
     if (v === "FIXED" || v === "MVP_SHIPPED" || v === "VERIFIED" || v === "LIVE_AUTH_FIXED") {
       return "ok";
     }
-    if (v.indexOf("BLOCK") >= 0 || v === "OPEN" || v.indexOf("DNS_BLOCKED") >= 0) {
+    if (
+      v.indexOf("BLOCK") >= 0 ||
+      v === "OPEN" ||
+      v.indexOf("DNS_BLOCKED") >= 0
+    ) {
       return "block";
     }
-    if (v.indexOf("NEED") >= 0 || v === "UNKNOWN" || v === "CHECKING") {
+    if (
+      v.indexOf("NEED") >= 0 ||
+      v === "UNKNOWN" ||
+      v === "CHECKING" ||
+      v.indexOf("RELOCATION") >= 0 ||
+      v.indexOf("MIGRATION") >= 0
+    ) {
       return "warn";
     }
     return "neutral";
+  }
+
+  function renderProgressWidget(container, items) {
+    if (!container) return;
+    container.innerHTML = "";
+    container.className = "progress-widget";
+    const rows = items || [];
+    if (!rows.length) {
+      container.appendChild(el("p", { className: "empty-state", text: "No progress metrics yet." }));
+      return;
+    }
+    rows.forEach(function (item) {
+      const pct = Math.max(0, Math.min(100, Number(item.percent) || 0));
+      container.appendChild(
+        el("div", { className: "progress-row" }, [
+          el("span", { className: "progress-label", text: item.label || "—" }),
+          el("div", { className: "progress-track" }, [
+            el("div", {
+              className: "progress-fill",
+              style: "width:" + pct + "%",
+            }),
+          ]),
+          el("span", { className: "progress-pct", text: pct + "%" }),
+        ])
+      );
+    });
+  }
+
+  function renderSparkStateList(container, projectState) {
+    if (!container) return;
+    container.innerHTML = "";
+    container.className = "status-checklist";
+    const state = projectState || {};
+    toList(state.completed).forEach(function (item) {
+      container.appendChild(
+        el("li", { className: "status-ok", text: statusIcon("ok") + item })
+      );
+    });
+    toList(state.in_progress).forEach(function (item) {
+      container.appendChild(
+        el("li", { className: "status-warn", text: "🔄 " + item })
+      );
+    });
+    if (!container.children.length) {
+      container.appendChild(el("li", { className: "empty-state", text: "No project state items yet." }));
+    }
   }
 
   function renderPills(items, className) {
@@ -447,8 +503,6 @@
     const focusPanel = (opts && opts.focusPanel) || {};
 
     const sp = spark.spark_project || {};
-    const dd = spark.dadudekc_site || {};
-    const authLive = dd.AUTH_IMMERSION === "FIXED";
     const phase = focusPanel.phase === "maintenance" ? "Consolidation Complete" : "Active";
 
     const cards = [
@@ -465,15 +519,17 @@
         ],
       },
       {
-        title: "dadudekc.site · Spark",
-        status: authLive ? "Live" : sp.status || dd.status || "In progress",
-        statusClass: authLive ? "ok" : "warn",
+        title: "Spark / MaskZero",
+        status: sp.status || spark.mission_state || "ACTIVE_RELOCATION",
+        statusClass: statusTone(sp.status || "ACTIVE_RELOCATION"),
         description:
+          spark.subtitle ||
           sp.description ||
-          "MZspark brand, character shorts, and portfolio site on dadudekc.site.",
-        highlights: toList(sp.next_actions).slice(0, 2),
+          "MZSpark character universe — migration to maskzero.site in progress.",
+        highlights: toList(spark.next_actions || sp.next_actions).slice(0, 2),
         links: [
-          { href: "https://dadudekc.site", text: "Open dadudekc.site", external: true },
+          { href: "https://maskzero.site", text: "Open maskzero.site", external: true },
+          { href: "https://dadudekc.site", text: "Legacy surface", external: true },
           { href: "/focus/#spark-panel", text: "Spark status" },
         ],
       },
@@ -540,54 +596,64 @@
   }
 
   function renderSparkPanel(spark) {
-    const sp = (spark && spark.spark_project) || {};
-    const ml = (spark && spark.mission_loop) || {};
-    const dd = (spark && spark.dadudekc_site) || {};
+    const data = spark || {};
+    const sp = data.spark_project || {};
+    const ml = data.mission_loop || {};
+    const legacy = data.legacy_site || {};
+
+    const titleNode = document.getElementById("spark-panel-title");
+    if (titleNode) titleNode.textContent = data.title || "Spark / MaskZero";
+
+    const subtitleNode = document.getElementById("spark-panel-subtitle");
+    if (subtitleNode) {
+      subtitleNode.textContent =
+        data.subtitle ||
+        "MZSpark universe, character systems, battle arcs, and manifestation engine.";
+    }
+
+    const statusBadge = document.getElementById("spark-status") || document.getElementById("dadudekc-status");
+    if (statusBadge) {
+      const status = sp.status || sp.mission_state || "ACTIVE_RELOCATION";
+      statusBadge.textContent = status;
+      statusBadge.className = "badge " + statusTone(status);
+    }
 
     renderStatusGrid(document.getElementById("spark-kv"), [
-      ["Brand", sp.display_name || sp.brand_id || "—", false],
+      ["Brand", sp.brand || sp.display_name || sp.brand_id || "—", false],
       ["Status", sp.status || "—", true],
       ["Lane", sp.lane || "—", false],
       ["Description", sp.description || "—", false],
+      ["Current Canonical Domain", sp.canonical_domain || "maskzero.site", false],
+      ["Legacy Surface", sp.legacy_surface || legacy.domain || "dadudekc.site", false],
+      ["Repository", sp.repository || "—", false],
+      ["Mission State", sp.mission_state || "—", true],
+      ["Public Surface", sp.public_surface || "—", false],
       ["MISSION_LOOP", ml.MISSION_LOOP || "—", true],
       ["Commit", ml.commit || "—", false],
       ["Tests", ml.tests != null ? String(ml.tests) : "—", false],
       ["Build target", ml.build_target || "—", false],
     ]);
 
+    renderSparkStateList(document.getElementById("spark-state-list"), data.project_state);
+    renderProgressWidget(document.getElementById("spark-progress"), data.progress);
+
+    const reasonNode = document.getElementById("spark-reason");
+    if (reasonNode) reasonNode.textContent = data.reason || "—";
+
     const sparkActions = document.getElementById("spark-actions");
     if (sparkActions) {
       sparkActions.innerHTML = "";
-      toList(sp.next_actions).forEach(function (a) {
+      toList(data.next_actions || sp.next_actions).forEach(function (a) {
         sparkActions.appendChild(el("li", { text: a }));
       });
     }
 
-    const authFixed = dd.AUTH_IMMERSION === "FIXED";
-    const statusBadge = document.getElementById("dadudekc-status");
-    if (statusBadge) {
-      statusBadge.textContent = authFixed ? "AUTH_IMMERSION=FIXED" : (dd.status || "unknown");
-      statusBadge.className = "badge " + (
-        authFixed ? "ok" : (toList(dd.blockers).length ? "block" : "ok")
-      );
-    }
-
-    renderStatusGrid(document.getElementById("dadudekc-kv"), [
-      ["Live domain", dd.live_domain || dd.canonical_domain || "—", false],
-      ["AUTH_IMMERSION", dd.AUTH_IMMERSION || "—", true],
-      ["wp-login redirect", dd.wp_login_redirect || "—", false],
-      ["Alias note", dd.alias_note || "—", false],
-      ["Linkage", dd.linkage_status || "—", false],
-      ["Repo", dd.github_repo || "—", false],
-      ["Blockers", toList(dd.blockers).join(", ") || "none", false],
-    ]);
-
-    const dadActions = document.getElementById("dadudekc-actions");
-    if (dadActions) {
-      dadActions.innerHTML = "";
-      toList(dd.next_actions).forEach(function (a) {
-        dadActions.appendChild(el("li", { text: a }));
-      });
+    const blockersNode = document.getElementById("spark-blockers");
+    if (blockersNode) {
+      const blockers = toList(data.blockers);
+      blockersNode.textContent = blockers.length
+        ? blockers.join("; ")
+        : (data.blockers_note || "None");
     }
   }
 
@@ -630,6 +696,8 @@
     renderRevenuePanel,
     renderMainFocuses,
     renderSparkPanel,
+    renderProgressWidget,
+    renderSparkStateList,
     renderMetricCards,
     renderFocusStatus,
     renderConsolidationPanel,

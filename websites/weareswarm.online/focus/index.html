@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Focus Command Center — weareswarm.online</title>
-  <meta name="description" content="DreamOS maintenance phase command center — governance, productization, and Spark / dadudekc status on weareswarm.online">
+  <meta name="description" content="DreamOS maintenance phase command center — governance, productization, and Spark / MaskZero status on weareswarm.online">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
 </head>
 <body>
@@ -87,26 +87,40 @@
       <section class="panel" id="spark-panel">
         <div class="panel-header">
           <div>
-            <h2>Spark / dadudekc.site</h2>
-            <p class="subtitle">MZspark brand + portfolio site status</p>
+            <h2 id="spark-panel-title">Spark / MaskZero</h2>
+            <p class="subtitle" id="spark-panel-subtitle">MZSpark universe, character systems, battle arcs, and manifestation engine.</p>
           </div>
-          <span class="badge warn" id="dadudekc-status">loading</span>
+          <span class="badge warn" id="spark-status">loading</span>
         </div>
         <div class="panel-body spark-panel-body">
           <div class="spark-section">
-            <p class="section-title">Spark project plan</p>
+            <p class="section-title">Project overview</p>
             <dl class="status-grid" id="spark-kv"></dl>
-            <p class="section-title">Next actions</p>
-            <ul class="list" id="spark-actions"></ul>
           </div>
 
           <div class="section-divider" aria-hidden="true"></div>
 
           <div class="spark-section">
-            <p class="section-title">dadudekc.site status</p>
-            <dl class="status-grid" id="dadudekc-kv"></dl>
-            <p class="section-title">Site next actions</p>
-            <ul class="list" id="dadudekc-actions"></ul>
+            <p class="section-title">Current project state</p>
+            <ul class="status-checklist" id="spark-state-list"></ul>
+          </div>
+
+          <div class="section-divider" aria-hidden="true"></div>
+
+          <div class="spark-section">
+            <p class="section-title">Progress</p>
+            <div id="spark-progress"></div>
+          </div>
+
+          <div class="section-divider" aria-hidden="true"></div>
+
+          <div class="spark-section">
+            <p class="section-title">Reason</p>
+            <p class="result-line" id="spark-reason">—</p>
+            <p class="section-title">Next actions</p>
+            <ul class="list" id="spark-actions"></ul>
+            <p class="section-title">Blockers</p>
+            <p class="mono-note" id="spark-blockers">—</p>
           </div>
         </div>
       </section>
@@ -153,13 +167,13 @@
       ] = await Promise.all([
         fetchJsonSettled("manifest.json"),
         fetchJsonSettled("focus_panel.json", {}),
-        fetchJsonSettled("spark_panel.json", { spark_project: {}, dadudekc_site: {} }),
+        fetchJsonSettled("spark_panel.json", { spark_project: {}, project_state: {}, progress: [] }),
         fetchJsonSettled("revenue_operator_panel.json", {}),
       ]);
 
       const manifest = manifestResult.data || {};
       const focusPanel = focusPanelResult.data || {};
-      const spark = sparkResult.data || { spark_project: {}, dadudekc_site: {} };
+      const spark = sparkResult.data || { spark_project: {}, project_state: {}, progress: [] };
       const revenue = revenueResult.data || {};
 
       const failed = [
@@ -229,7 +243,7 @@
       try {
         renderSparkPanel(spark);
       } catch (err) {
-        document.getElementById("dadudekc-status").textContent = "render error";
+        document.getElementById("spark-status").textContent = "render error";
         console.error("spark panel", err);
       }
 
