@@ -36,6 +36,7 @@ def test_dadudekc_redirect_preserves_stale_project_paths():
 def test_spark_and_emergence_pages_are_canonical_maskzero_content():
     required_pages = [
         MASKZERO / "spark-os/index.html",
+        MASKZERO / "quiz/index.html",
         MASKZERO / "spark-generator/index.html",
         MASKZERO / "the-emergence.html",
         MASKZERO / "character-generator.html",
@@ -77,6 +78,7 @@ def test_maskzero_required_routes_have_static_sources():
     routes = [
         "index.html",
         "create-hero/index.html",
+        "quiz/index.html",
         "how-it-works/index.html",
         "origin-rules/index.html",
         "roster-rules/index.html",
@@ -92,6 +94,26 @@ def test_maskzero_required_routes_have_static_sources():
         assert "MaskZero" in html
         assert "Created by WeAreSwarm · Powered by Dream.OS" in html
         assert "Loading" not in html
+
+
+def test_maskzero_quiz_restores_migrated_spark_flow_as_primary_route():
+    sites = json.loads(CONFIG.read_text(encoding="utf-8"))
+    quiz = MASKZERO / "quiz/index.html"
+    spark_alias = MASKZERO / "spark-generator/index.html"
+    quiz_html = quiz.read_text(encoding="utf-8")
+    spark_html = spark_alias.read_text(encoding="utf-8")
+
+    assert "runtime/content/maskzero.site/quiz/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/spark-generator/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert '<link rel="canonical" href="https://maskzero.site/quiz/">' in quiz_html
+    assert '<link rel="canonical" href="https://maskzero.site/quiz/">' in spark_html
+    assert 'data-maskzero-quiz="dadudekc-migration"' in quiz_html
+    assert '"protocol_version":"Spark Protocol v8.5"' in quiz_html
+    assert "Start Spark Quiz" in quiz_html
+    assert "Spark.submitDomain()" in quiz_html
+    assert "Spark.submitFlavor()" in quiz_html
+    assert "MaskZero quiz ready" in quiz_html
+    assert quiz_html == spark_html
 
 
 def test_maskzero_public_sources_do_not_reference_old_domain():
