@@ -2,6 +2,29 @@
   "last_sync": "2026-06-12T00:00:00Z",
   "tasks": [
     {
+      "id": "kids_planner_execution_loop_001",
+      "title": "Build Kids Planner task claim and closeout loop",
+      "priority": "P0",
+      "executor": "agent",
+      "status": "shipped",
+      "project": "WeAreSwarm Planner",
+      "route": "/kids-planner/",
+      "updated_at": "2026-06-14T17:27:35.994350+00:00",
+      "goal": "Turn the kids planner from a task list into a task execution system.",
+      "acceptance": [
+        "Task appears",
+        "Kid claims it",
+        "Kid gives prompt to agent",
+        "Kid collects proof",
+        "Closeout gets reviewed",
+        "Task can be marked done locally",
+        "Skill tree updated",
+        "Roadmap updated",
+        "Discord ping artifact created",
+        "Website updated"
+      ]
+    },
+    {
       "id": "weareswarm_projects_hydration_001",
       "title": "Hydrate WeAreSwarm project portfolio cards",
       "priority": "P0",
@@ -877,5 +900,6 @@
     }
   ],
   "generated_at": "2026-06-14T17:10:35.695312+00:00",
-  "dreamvault_import_count": 20
+  "dreamvault_import_count": 20,
+  "updated_at": "2026-06-14T17:27:35.994350+00:00"
 }

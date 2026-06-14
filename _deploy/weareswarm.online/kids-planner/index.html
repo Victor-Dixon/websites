@@ -1,307 +1,666 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>WeAreSwarm Kids Planner</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
-:root{--bg:#0a0a0a;--surface:#111;--surface2:#171717;--border:#262626;--amber:#f5a623;--purple:#a78bfa;--green:#39d353;--red:#e63946;--blue:#58a6ff;--text:#d4d4d4;--muted:#777;--white:#f4f4f4;--display:'Bebas Neue',sans-serif;--mono:'Space Mono',monospace;--body:'Inter',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;min-height:100vh}
-body:before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.14) 2px,rgba(0,0,0,.14) 4px);pointer-events:none;z-index:999}
-a{color:var(--amber);text-decoration:none}
-a:hover{text-decoration:underline}
-nav{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(10,10,10,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
-.logo{font-family:var(--display);font-size:1.55rem;color:var(--amber);letter-spacing:.05em}
-.logo span{color:var(--white)}
-.navlinks{display:flex;gap:1rem;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
-.navlinks a{color:var(--muted)}
-.wrap{width:min(1220px,calc(100% - 2rem));margin:0 auto}
-.hero{padding:4rem 0 2rem}
-.eyebrow{font-family:var(--mono);font-size:.72rem;color:var(--purple);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem}
-h1{font-family:var(--display);font-size:clamp(3.5rem,10vw,7rem);line-height:.9;color:var(--white);letter-spacing:.03em}
-h1 span{color:var(--purple)}
-.intro{font-family:var(--mono);font-size:.88rem;color:var(--muted);max-width:820px;margin-top:1.4rem;line-height:1.9;border-left:2px solid var(--purple);padding-left:1rem}
-.panel{background:var(--surface);border:1px solid var(--border);padding:1rem;margin:1rem 0}
-.operator{display:grid;grid-template-columns:1fr auto auto auto;gap:.7rem;align-items:center}
-input,select,textarea{background:#0d0d0d;border:1px solid var(--border);color:var(--text);padding:.75rem .9rem;font-family:var(--mono);font-size:.78rem;border-radius:2px;width:100%}
-textarea{min-height:110px;resize:vertical;line-height:1.5}
-button{cursor:pointer;border:0;border-radius:2px;padding:.7rem .9rem;font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
-button:disabled{opacity:.45;cursor:not-allowed}
-.btn-amber{background:var(--amber);color:#000}.btn-purple{background:var(--purple);color:#000}.btn-green{background:var(--green);color:#000}.btn-blue{background:var(--blue);color:#000}.btn-red{background:var(--red);color:#000}.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:1.2rem 0}
-.stat{background:var(--surface);padding:1.1rem}
-.stat-label{font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.13em;text-transform:uppercase}
-.stat-value{font-family:var(--display);font-size:2rem;color:var(--purple);margin-top:.15rem}
-.toolbar{display:grid;grid-template-columns:1fr 210px 190px;gap:.7rem;margin:1rem 0 1.5rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:3rem}
-.card{background:var(--surface);padding:1.25rem;display:flex;flex-direction:column;gap:.9rem;min-height:360px}
-.card:hover{background:var(--surface2)}
-.top{display:flex;justify-content:space-between;gap:.7rem;align-items:flex-start}
-.badges{display:flex;gap:.4rem;flex-wrap:wrap}
-.badge{font-family:var(--mono);font-size:.58rem;color:#000;background:var(--purple);padding:.2rem .45rem;border-radius:2px;font-weight:700;text-transform:uppercase}
-.badge.status-new{background:var(--muted);color:#000}.badge.status-claimed{background:var(--blue);color:#000}.badge.status-started{background:var(--amber);color:#000}.badge.status-complete{background:var(--green);color:#000}
-.priority{font-family:var(--mono);font-size:.6rem;color:var(--amber);border:1px solid rgba(245,166,35,.35);padding:.2rem .45rem;border-radius:2px}
-.title{font-family:var(--display);font-size:1.5rem;color:var(--white);line-height:1;letter-spacing:.04em}
-.meta{display:grid;gap:.3rem;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
-.meta strong{color:var(--amber);font-weight:400}
-.actions{display:flex;gap:.45rem;flex-wrap:wrap}
-details{border:1px solid var(--border);border-radius:2px;overflow:hidden}
-summary{cursor:pointer;padding:.7rem;background:#0d0d0d;color:var(--purple);font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}
-pre{white-space:pre-wrap;word-break:break-word;padding:.9rem;max-height:230px;overflow:auto;font-family:var(--mono);font-size:.7rem;color:var(--text)}
-.proofbox{display:grid;gap:.6rem}
-.empty,.error,.ok{background:var(--surface);border:1px dashed var(--border);padding:1.3rem;margin-bottom:2rem;color:var(--muted);font-family:var(--mono);font-size:.78rem}
-.error{color:var(--red)}.ok{color:var(--green)}
-.log{margin:2rem 0 4rem}
-.tablewrap{overflow:auto;border:1px solid var(--border)}
-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.72rem}
-th,td{border-bottom:1px solid var(--border);padding:.65rem;text-align:left;vertical-align:top}
-th{color:var(--amber);background:#0d0d0d;text-transform:uppercase;font-size:.65rem;letter-spacing:.08em}
-td{color:var(--muted)}
-footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted);font-family:var(--mono);font-size:.7rem}
-.toast{position:fixed;right:1rem;bottom:1rem;background:var(--surface);border:1px solid var(--border);color:var(--green);font-family:var(--mono);font-size:.78rem;padding:.8rem 1rem;display:none;z-index:1000}
-@media(max-width:820px){nav{padding:0 1rem}.navlinks{display:none}.operator,.toolbar{grid-template-columns:1fr}.hero{padding:3rem 0 1.5rem}.grid{grid-template-columns:1fr}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WeAreSwarm Kids Planner — Execution Loop</title>
+  <meta name="description" content="Claim kids-safe Dream.OS tasks, copy agent prompts, collect proof, and generate closeout reports." />
+  <style>
+    :root {
+      --bg: #060812;
+      --panel: #101522;
+      --panel2: #151c2d;
+      --text: #f5f7ff;
+      --muted: #a8b0c7;
+      --line: rgba(255,255,255,.12);
+      --accent: #7cf7d4;
+      --accent2: #8fb3ff;
+      --warn: #ffd166;
+      --bad: #ff6b6b;
+      --good: #70e000;
+      --shadow: 0 22px 80px rgba(0,0,0,.38);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(124,247,212,.16), transparent 36%),
+        radial-gradient(circle at 80% 15%, rgba(143,179,255,.14), transparent 36%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(6,8,18,.78);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 58px);
+      line-height: .95;
+      letter-spacing: -0.06em;
+    }
+
+    .sub {
+      margin: 12px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.55;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      padding: 8px 11px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      padding: 22px 0;
+    }
+
+    .stat, .panel, .task {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
+      box-shadow: var(--shadow);
+      border-radius: 22px;
+    }
+
+    .stat {
+      padding: 16px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      letter-spacing: -0.04em;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .panel {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr 160px 160px;
+      gap: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.2);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 13px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    button, .button {
+      border: 1px solid rgba(124,247,212,.4);
+      color: var(--text);
+      background: rgba(124,247,212,.12);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 750;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+    }
+
+    button.secondary {
+      background: rgba(143,179,255,.10);
+      border-color: rgba(143,179,255,.35);
+    }
+
+    button.warn {
+      background: rgba(255,209,102,.12);
+      border-color: rgba(255,209,102,.45);
+    }
+
+    button.danger {
+      background: rgba(255,107,107,.12);
+      border-color: rgba(255,107,107,.4);
+    }
+
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    .tasks {
+      display: grid;
+      gap: 14px;
+      padding-bottom: 60px;
+    }
+
+    .task {
+      padding: 16px;
+    }
+
+    .task-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: start;
+    }
+
+    .task h2 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 11px 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      background: rgba(255,255,255,.045);
+    }
+
+    .pill.good { color: var(--good); border-color: rgba(112,224,0,.35); }
+    .pill.warn { color: var(--warn); border-color: rgba(255,209,102,.4); }
+    .pill.bad { color: var(--bad); border-color: rgba(255,107,107,.4); }
+
+    .task p {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    details {
+      margin-top: 13px;
+      border-top: 1px solid var(--line);
+      padding-top: 13px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .proof-list {
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      background: #0f1727;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: .2s ease;
+      z-index: 99;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .toolbar { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .grid { grid-template-columns: 1fr; }
+      header { padding: 18px 0; }
+      .wrap { width: min(100% - 20px, 1180px); }
+      .task, .panel, .stat { border-radius: 18px; }
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <a class="logo" href="/">WeAre<span>Swarm</span></a>
-  <div class="navlinks">
-    <a href="/">Home</a>
-    <a href="/tasks/">All Tasks</a>
-    <a href="/kids-planner/">Kids Planner</a>
-    <a href="/roadmap/">Roadmap</a>
-  </div>
-</nav>
-
-<main class="wrap">
-  <section class="hero">
-    <div class="eyebrow">Junior Operator Mission Board</div>
-    <h1>KIDS<br><span>PLANNER.</span></h1>
-    <p class="intro">
-      Claim a task, clock in, copy the agent prompt, supervise the work, paste proof,
-      mark complete, and export the work log for review.
-    </p>
-  </section>
-
-  <section class="panel operator">
-    <input id="operatorName" placeholder="Operator name / initials">
-    <button class="btn-purple" id="saveOperator">Save Operator</button>
-    <button class="btn-blue" id="exportJson">Export JSON</button>
-    <button class="btn-amber" id="exportCsv">Export CSV</button>
-  </section>
-
-  <section class="stats">
-    <div class="stat"><div class="stat-label">Tasks Loaded</div><div class="stat-value" id="taskCount">—</div></div>
-    <div class="stat"><div class="stat-label">Claimed</div><div class="stat-value" id="claimedCount">0</div></div>
-    <div class="stat"><div class="stat-label">Started</div><div class="stat-value" id="startedCount">0</div></div>
-    <div class="stat"><div class="stat-label">Complete</div><div class="stat-value" id="completeCount">0</div></div>
-  </section>
-
-  <section class="toolbar">
-    <input id="search" type="search" placeholder="Search tasks..." autocomplete="off">
-    <select id="statusFilter">
-      <option value="all">All statuses</option>
-      <option value="new">New</option>
-      <option value="claimed">Claimed</option>
-      <option value="started">Started</option>
-      <option value="complete">Complete</option>
-    </select>
-    <select id="typeFilter">
-      <option value="all">All task types</option>
-      <option value="qa">QA / verification</option>
-      <option value="documentation">Documentation</option>
-      <option value="accessibility">Accessibility</option>
-    </select>
-  </section>
-
-  <section id="status"></section>
-  <section class="grid" id="grid"></section>
-
-  <section class="log">
-    <div class="eyebrow">Daily Work Log</div>
-    <div class="actions" style="margin:.8rem 0 1rem">
-      <button class="btn-green" id="copyCloseout">Copy Daily Closeout</button>
-      <button class="btn-red" id="clearLog">Clear Local Log</button>
+  <header>
+    <div class="wrap">
+      <div class="topline">
+        <div>
+          <div class="badge">Dream.OS Kids Planner • Execution Loop</div>
+          <h1>Claim. Prompt. Prove. Close.</h1>
+          <p class="sub">
+            Pick a kids-safe task, copy the agent prompt, supervise the agent, collect proof,
+            and generate a closeout report for adult review.
+          </p>
+        </div>
+        <a class="button" href="/data/planner/kids_tasks.json">Open Feed</a>
+      </div>
     </div>
-    <div class="tablewrap">
-      <table>
-        <thead><tr><th>Task</th><th>Status</th><th>Operator</th><th>Started</th><th>Completed</th><th>Proof</th></tr></thead>
-        <tbody id="logBody"><tr><td colspan="6">No work logged yet.</td></tr></tbody>
-      </table>
-    </div>
-  </section>
-</main>
+  </header>
 
-<footer><div class="wrap">© WeAreSwarm — Kids Planner powered by Dream.OS</div></footer>
-<div class="toast" id="toast">Saved.</div>
+  <main class="wrap">
+    <section class="grid" aria-label="planner stats">
+      <div class="stat"><strong id="stat-total">0</strong><span>Total tasks</span></div>
+      <div class="stat"><strong id="stat-dreamvault">0</strong><span>DreamVault tasks</span></div>
+      <div class="stat"><strong id="stat-claimed">0</strong><span>Claimed locally</span></div>
+      <div class="stat"><strong id="stat-done">0</strong><span>Done locally</span></div>
+    </section>
 
-<script>
-const FEED_URLS=['/data/planner/kids_tasks.json','../data/planner/kids_tasks.json'];
-const LOG_KEY='weareswarm.kidsPlanner.workLog.v2';
-const OPERATOR_KEY='weareswarm.kidsPlanner.operator.v2';
-let allTasks=[];
-let workLog={};
+    <section class="panel">
+      <div class="toolbar">
+        <input id="search" placeholder="Search tasks..." />
+        <select id="status-filter">
+          <option value="all">All statuses</option>
+          <option value="available">Available</option>
+          <option value="claimed">Claimed</option>
+          <option value="in_progress">In progress</option>
+          <option value="review_pending">Review pending</option>
+          <option value="done">Done</option>
+        </select>
+        <select id="source-filter">
+          <option value="all">All sources</option>
+          <option value="dreamvault">DreamVault</option>
+          <option value="website">Website</option>
+        </select>
+      </div>
+    </section>
 
-function nowIso(){return new Date().toISOString()}
-function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-function toast(msg='Saved.'){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',1200)}
-function getOperator(){return document.getElementById('operatorName').value.trim()||'Unassigned'}
-function loadLog(){try{workLog=JSON.parse(localStorage.getItem(LOG_KEY)||'{}')}catch(e){workLog={}}}
-function saveLog(){localStorage.setItem(LOG_KEY,JSON.stringify(workLog,null,2))}
-function saveOperator(){localStorage.setItem(OPERATOR_KEY,getOperator());toast('Operator saved.')}
-function statusOf(id){return (workLog[id]&&workLog[id].status)||'new'}
-function entryFor(id){if(!workLog[id])workLog[id]={taskId:id,status:'new',operator:getOperator(),claimedAt:'',startedAt:'',completedAt:'',proof:'',events:[]};return workLog[id]}
-function record(id,event){const e=entryFor(id);e.operator=getOperator();e.events=e.events||[];e.events.push({event,time:nowIso(),operator:getOperator()});saveLog()}
-function taskById(id){return allTasks.find(t=>String(t.id)===String(id))}
-function promptFor(t){return t.agent_prompt||[
-'You are helping complete a Dream.OS kids planner task.','',
-'Task: '+(t.title||t.id),
-'Project: '+(t.project||'DreamVault'),
-'Source: '+(t.source_path||t.path||''),'',
-'Rules:',
-'- No secrets.',
-'- No billing.',
-'- No destructive repo actions.',
-'- No live trading.',
-'- Produce a short proof closeout.'
-].join('\n')}
-async function copyText(text){try{await navigator.clipboard.writeText(text);toast('Copied.')}catch(e){prompt('Copy this:',text)}}
-function downloadFile(name,mime,content){const blob=new Blob([content],{type:mime});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
-function csvCell(v){return '"'+String(v??'').replace(/"/g,'""')+'"'}
-function typeMatches(t,type){const b=JSON.stringify(t).toLowerCase();if(type==='all')return true;if(type==='qa')return b.includes('qa')||b.includes('test')||b.includes('verify');if(type==='documentation')return b.includes('doc')||b.includes('markdown')||b.includes('report');if(type==='accessibility')return b.includes('accessibility');return true}
-function filteredTasks(){
-  const q=document.getElementById('search').value.toLowerCase().trim();
-  const sf=document.getElementById('statusFilter').value;
-  const tf=document.getElementById('typeFilter').value;
-  return allTasks.filter(t=>{
-    const blob=JSON.stringify(t).toLowerCase();
-    const st=statusOf(t.id);
-    return (!q||blob.includes(q))&&(sf==='all'||st===sf)&&typeMatches(t,tf);
-  });
-}
-function renderStats(){
-  const vals=allTasks.map(t=>statusOf(t.id));
-  document.getElementById('taskCount').textContent=allTasks.length;
-  document.getElementById('claimedCount').textContent=vals.filter(v=>v==='claimed').length;
-  document.getElementById('startedCount').textContent=vals.filter(v=>v==='started').length;
-  document.getElementById('completeCount').textContent=vals.filter(v=>v==='complete').length;
-}
-function renderLog(){
-  const rows=Object.values(workLog).filter(e=>e.status&&e.status!=='new');
-  const body=document.getElementById('logBody');
-  if(!rows.length){body.innerHTML='<tr><td colspan="6">No work logged yet.</td></tr>';return}
-  body.innerHTML=rows.sort((a,b)=>String(b.startedAt||b.claimedAt).localeCompare(String(a.startedAt||a.claimedAt))).map(e=>{
-    const t=taskById(e.taskId)||{};
-    return `<tr>
-      <td>${esc(t.title||e.taskId)}<br><small>${esc(e.taskId)}</small></td>
-      <td>${esc(e.status)}</td>
-      <td>${esc(e.operator)}</td>
-      <td>${esc(e.startedAt||e.claimedAt||'')}</td>
-      <td>${esc(e.completedAt||'')}</td>
-      <td>${esc((e.proof||'').slice(0,180))}</td>
-    </tr>`;
-  }).join('');
-}
-function render(){
-  renderStats();
-  renderLog();
-  const tasks=filteredTasks();
-  const grid=document.getElementById('grid');
-  const status=document.getElementById('status');
-  if(!tasks.length){grid.innerHTML='';status.innerHTML='<div class="empty">No matching tasks.</div>';return}
-  status.innerHTML='';
-  grid.innerHTML=tasks.map(t=>{
-    const e=workLog[t.id]||{};
-    const st=statusOf(t.id);
-    const p=promptFor(t);
-    return `<article class="card" data-task-id="${esc(t.id)}">
-      <div class="top">
-        <div class="badges"><span class="badge status-${esc(st)}">${esc(st)}</span><span class="badge">${esc(t.executor||'kids')}</span></div>
-        <span class="priority">${esc(t.priority||'P2')}</span>
-      </div>
-      <h2 class="title">${esc(t.title||t.id)}</h2>
-      <div class="meta">
-        <div><strong>ID:</strong> ${esc(t.id)}</div>
-        <div><strong>Project:</strong> ${esc(t.project||'DreamVault')}</div>
-        <div><strong>Operator:</strong> ${esc(e.operator||'Unassigned')}</div>
-        <div><strong>Points:</strong> ${esc(t.points||100)} · <strong>Time:</strong> ${esc(t.estimated_time_minutes||20)} min</div>
-      </div>
-      <div class="actions">
-        <button class="btn-blue" data-action="claim" data-id="${esc(t.id)}">Claim</button>
-        <button class="btn-amber" data-action="start" data-id="${esc(t.id)}">Start</button>
-        <button class="btn-purple" data-action="copyPrompt" data-id="${esc(t.id)}">Copy Prompt</button>
-        <button class="btn-green" data-action="complete" data-id="${esc(t.id)}">Complete</button>
-      </div>
-      <details>
-        <summary>Agent Prompt</summary>
-        <pre>${esc(p)}</pre>
-      </details>
-      <div class="proofbox">
-        <textarea data-proof-id="${esc(t.id)}" placeholder="Paste proof, screenshot note, agent closeout, or verification result here...">${esc(e.proof||'')}</textarea>
-        <button class="btn-ghost" data-action="saveProof" data-id="${esc(t.id)}">Save Proof</button>
-      </div>
-    </article>`;
-  }).join('');
-}
-function handleAction(action,id){
-  const t=taskById(id);
-  if(!t)return;
-  const e=entryFor(id);
-  if(action==='claim'){e.status='claimed';e.operator=getOperator();e.claimedAt=e.claimedAt||nowIso();record(id,'claimed');toast('Task claimed.')}
-  if(action==='start'){e.status='started';e.operator=getOperator();e.claimedAt=e.claimedAt||nowIso();e.startedAt=e.startedAt||nowIso();record(id,'started');toast('Clocked in.')}
-  if(action==='copyPrompt'){copyText(promptFor(t))}
-  if(action==='saveProof'){const box=document.querySelector(`textarea[data-proof-id="${CSS.escape(id)}"]`);e.proof=box?box.value:'';e.operator=getOperator();record(id,'proof_saved');toast('Proof saved.')}
-  if(action==='complete'){const box=document.querySelector(`textarea[data-proof-id="${CSS.escape(id)}"]`);e.proof=box?box.value:e.proof;if(!e.proof.trim()){alert('Paste proof before marking complete.');return}e.status='complete';e.operator=getOperator();e.completedAt=e.completedAt||nowIso();record(id,'completed');toast('Marked complete.')}
-  saveLog();render();
-}
-function exportJson(){
-  const payload={exportedAt:nowIso(),operator:getOperator(),tasks:allTasks,workLog};
-  downloadFile('weareswarm_kids_worklog.json','application/json',JSON.stringify(payload,null,2));
-}
-function exportCsv(){
-  const rows=[['task_id','title','status','operator','claimed_at','started_at','completed_at','proof']];
-  Object.values(workLog).forEach(e=>{const t=taskById(e.taskId)||{};rows.push([e.taskId,t.title||'',e.status,e.operator,e.claimedAt,e.startedAt,e.completedAt,e.proof||''])});
-  downloadFile('weareswarm_kids_worklog.csv','text/csv',rows.map(r=>r.map(csvCell).join(',')).join('\n'));
-}
-function dailyCloseout(){
-  const rows=Object.values(workLog).filter(e=>e.status&&e.status!=='new');
-  const lines=['KIDS PLANNER DAILY CLOSEOUT','OPERATOR: '+getOperator(),'DATE: '+new Date().toLocaleDateString(),'','TASKS:'];
-  rows.forEach(e=>{const t=taskById(e.taskId)||{};lines.push(`- ${e.status.toUpperCase()} :: ${t.title||e.taskId} :: ${e.proof||'No proof text saved.'}`)});
-  copyText(lines.join('\n'));
-}
-async function loadFeed(){
-  loadLog();
-  document.getElementById('operatorName').value=localStorage.getItem(OPERATOR_KEY)||'';
-  document.getElementById('status').innerHTML='<div class="empty">Loading kids tasks...</div>';
-  let last=null;
-  for(const url of FEED_URLS){
-    try{
-      const r=await fetch(url,{cache:'no-store'});
-      if(!r.ok)throw new Error(url+' returned '+r.status);
-      const data=await r.json();
-      allTasks=Array.isArray(data.tasks)?data.tasks:[];
-      if(!allTasks.length)throw new Error(url+' had no tasks');
+    <section class="panel">
+      <strong>Execution rule</strong>
+      <p class="sub">
+        Kids do not deploy, delete, use secrets, touch billing, or perform live trading actions.
+        They manage an agent, collect proof, and submit a closeout for review.
+      </p>
+    </section>
+
+    <section id="tasks" class="tasks" aria-label="kids tasks"></section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const FEED_URL = "/data/planner/kids_tasks.json";
+    const STATE_KEY = "weareswarmKidsPlannerStateV1";
+
+    let allTasks = [];
+    let state = loadState();
+
+    function loadState() {
+      try {
+        return JSON.parse(localStorage.getItem(STATE_KEY) || "{}");
+      } catch {
+        return {};
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STATE_KEY, JSON.stringify(state, null, 2));
       render();
-      return;
-    }catch(e){last=e}
-  }
-  document.getElementById('status').innerHTML='<div class="error">Failed to load tasks: '+esc(last&&last.message)+'</div>';
-}
-document.addEventListener('click',e=>{const b=e.target.closest('button[data-action]');if(!b)return;handleAction(b.dataset.action,b.dataset.id)});
-document.getElementById('saveOperator').addEventListener('click',saveOperator);
-document.getElementById('exportJson').addEventListener('click',exportJson);
-document.getElementById('exportCsv').addEventListener('click',exportCsv);
-document.getElementById('copyCloseout').addEventListener('click',dailyCloseout);
-document.getElementById('clearLog').addEventListener('click',()=>{if(confirm('Clear local kids planner work log on this device?')){workLog={};saveLog();render();toast('Local log cleared.')}});
-document.getElementById('search').addEventListener('input',render);
-document.getElementById('statusFilter').addEventListener('change',render);
-document.getElementById('typeFilter').addEventListener('change',render);
-loadFeed();
-</script>
+    }
 
+    function getTaskState(id) {
+      return state[id] || { status: "available" };
+    }
 
-<!-- deploy-trigger: 2026-06-14T15:36:41.239980+00:00 -->
+    function setTaskState(id, patch) {
+      state[id] = { ...getTaskState(id), ...patch, updated_at: new Date().toISOString() };
+      saveState();
+    }
+
+    function normalizeFeed(data) {
+      if (Array.isArray(data)) return data;
+      if (Array.isArray(data.tasks)) return data.tasks;
+      if (Array.isArray(data.items)) return data.items;
+      return [];
+    }
+
+    function isDreamVault(task) {
+      return task.origin === "dreamvault" || task.source_repo === "DreamVault" || String(task.id || "").startsWith("kids_dreamvault_");
+    }
+
+    function safeText(value, fallback = "") {
+      return String(value ?? fallback).replace(/[&<>"']/g, c => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[c]);
+    }
+
+    function promptText(task) {
+      const title = task.title || task.id;
+      const agentPrompt = task.agent_prompt || task.prompt || task.summary || `Complete the task: ${title}`;
+      return `TASK_ID: ${task.id}
+TITLE: ${title}
+SOURCE: ${task.source_repo || task.origin || "weareswarm"}
+SOURCE_PATH: ${task.source_path || ""}
+
+MISSION:
+${agentPrompt}
+
+SAFETY RULES:
+- Do not use secrets, tokens, credentials, private keys, or billing systems.
+- Do not delete files.
+- Do not deploy live systems.
+- Do not perform live trading or brokerage actions.
+- Stop and ask Victor/adult reviewer if blocked.
+
+REQUIRED CLOSEOUT:
+- What changed or was checked
+- Proof collected
+- Files touched
+- Blockers
+- Final status`;
+    }
+
+    function closeoutText(task) {
+      const s = getTaskState(task.id);
+      const operator = s.operator_name || "UNASSIGNED";
+      return `# DreamOS Kids Planner Closeout
+version=1
+task_id=${task.id}
+title=${task.title || task.id}
+operator=${operator}
+source_repo=${task.source_repo || task.origin || "weareswarm"}
+source_path=${task.source_path || ""}
+claimed_at=${s.claimed_at || ""}
+started_at=${s.started_at || ""}
+completed_at=${new Date().toISOString()}
+status=review_pending
+
+== SUMMARY ==
+Describe what the agent did and what you supervised.
+
+== PROOF ==
+Paste screenshots, links, command output, file names, or verification notes here.
+
+== FILES CHANGED ==
+List files changed, or write "none" for QA-only tasks.
+
+== BLOCKERS ==
+Write blockers or "none".
+
+== SAFETY CHECK ==
+No secrets used.
+No billing touched.
+No destructive delete actions.
+No live trading actions.
+No deploy performed by kid operator.
+
+== REVIEW REQUEST ==
+Victor/adult reviewer should review proof and mark the task done.`;
+    }
+
+    async function copyText(text, label) {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast(`${label} copied`);
+      } catch {
+        const area = document.createElement("textarea");
+        area.value = text;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+        toast(`${label} copied`);
+      }
+    }
+
+    function downloadCloseout(task) {
+      const blob = new Blob([closeoutText(task)], { type: "text/markdown" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${task.id}_closeout.md`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function claimTask(task) {
+      const current = getTaskState(task.id);
+      const existing = current.operator_name || "";
+      const name = prompt("Operator name:", existing);
+      if (!name) return;
+      setTaskState(task.id, {
+        status: "claimed",
+        operator_name: name,
+        claimed_at: current.claimed_at || new Date().toISOString()
+      });
+      toast("Task claimed");
+    }
+
+    function startTask(task) {
+      setTaskState(task.id, {
+        status: "in_progress",
+        started_at: getTaskState(task.id).started_at || new Date().toISOString()
+      });
+      toast("Task started");
+    }
+
+    function reviewPending(task) {
+      setTaskState(task.id, {
+        status: "review_pending",
+        completed_at: new Date().toISOString()
+      });
+      toast("Closeout marked review pending");
+    }
+
+    function markDone(task) {
+      setTaskState(task.id, {
+        status: "done",
+        reviewed_at: new Date().toISOString()
+      });
+      toast("Task marked done locally");
+    }
+
+    function resetTask(task) {
+      delete state[task.id];
+      saveState();
+      toast("Local task state reset");
+    }
+
+    function toast(message) {
+      const el = document.getElementById("toast");
+      el.textContent = message;
+      el.classList.add("show");
+      setTimeout(() => el.classList.remove("show"), 1600);
+    }
+
+    function statusPill(status) {
+      const cls = status === "done" ? "good" : status === "review_pending" ? "warn" : "";
+      return `<span class="pill ${cls}">${safeText(status)}</span>`;
+    }
+
+    function renderStats(tasks) {
+      const claimed = Object.values(state).filter(s => ["claimed", "in_progress", "review_pending"].includes(s.status)).length;
+      const done = Object.values(state).filter(s => s.status === "done").length;
+
+      document.getElementById("stat-total").textContent = tasks.length;
+      document.getElementById("stat-dreamvault").textContent = tasks.filter(isDreamVault).length;
+      document.getElementById("stat-claimed").textContent = claimed;
+      document.getElementById("stat-done").textContent = done;
+    }
+
+    function filteredTasks() {
+      const q = document.getElementById("search").value.toLowerCase().trim();
+      const status = document.getElementById("status-filter").value;
+      const source = document.getElementById("source-filter").value;
+
+      return allTasks.filter(task => {
+        const s = getTaskState(task.id).status || "available";
+        const blob = `${task.id} ${task.title || ""} ${task.summary || ""} ${task.project || ""}`.toLowerCase();
+
+        if (q && !blob.includes(q)) return false;
+        if (status !== "all" && s !== status) return false;
+        if (source === "dreamvault" && !isDreamVault(task)) return false;
+        if (source === "website" && isDreamVault(task)) return false;
+
+        return true;
+      });
+    }
+
+    function render() {
+      const list = filteredTasks();
+      renderStats(allTasks);
+
+      const root = document.getElementById("tasks");
+      if (!list.length) {
+        root.innerHTML = `<div class="panel">No tasks match the current filters.</div>`;
+        return;
+      }
+
+      root.innerHTML = list.map(task => {
+        const s = getTaskState(task.id);
+        const status = s.status || "available";
+        const source = isDreamVault(task) ? "DreamVault" : "WeAreSwarm";
+        const proof = Array.isArray(task.proof_required) ? task.proof_required : [];
+        const acceptance = Array.isArray(task.acceptance_criteria) ? task.acceptance_criteria : [];
+
+        return `<article class="task">
+          <div class="task-head">
+            <div>
+              <h2>${safeText(task.title || task.id)}</h2>
+              <div class="meta">
+                ${statusPill(status)}
+                <span class="pill">${safeText(source)}</span>
+                <span class="pill">${safeText(task.priority || "P2")}</span>
+                <span class="pill">${safeText(task.mission_type || "copy_paste_agent_supervision")}</span>
+                ${s.operator_name ? `<span class="pill good">operator: ${safeText(s.operator_name)}</span>` : ""}
+              </div>
+            </div>
+            <span class="pill">${safeText(task.id)}</span>
+          </div>
+
+          <p>${safeText(task.summary || task.why_it_matters || "Kids-safe agent supervision task.")}</p>
+
+          <div class="actions">
+            <button onclick='claimTaskById(${JSON.stringify(task.id)})'>Claim</button>
+            <button class="secondary" onclick='startTaskById(${JSON.stringify(task.id)})'>Start Work</button>
+            <button class="secondary" onclick='copyPromptById(${JSON.stringify(task.id)})'>Copy Agent Prompt</button>
+            <button class="warn" onclick='copyCloseoutById(${JSON.stringify(task.id)})'>Copy Closeout</button>
+            <button class="warn" onclick='downloadCloseoutById(${JSON.stringify(task.id)})'>Download Closeout</button>
+            <button class="secondary" onclick='reviewPendingById(${JSON.stringify(task.id)})'>Review Pending</button>
+            <button onclick='markDoneById(${JSON.stringify(task.id)})'>Mark Done Local</button>
+            <button class="danger" onclick='resetTaskById(${JSON.stringify(task.id)})'>Reset</button>
+          </div>
+
+          <details>
+            <summary>Proof and acceptance</summary>
+            <ul class="proof-list">
+              ${(acceptance.length ? acceptance : ["Prompt copied", "Agent supervised", "Proof collected", "Closeout submitted for adult review"]).map(x => `<li>${safeText(x)}</li>`).join("")}
+              ${proof.map(x => `<li>${safeText(x)}</li>`).join("")}
+            </ul>
+          </details>
+
+          <details>
+            <summary>Source</summary>
+            <textarea readonly>${safeText(task.source_path || task.repo || source)}</textarea>
+          </details>
+        </article>`;
+      }).join("");
+    }
+
+    function findTask(id) {
+      return allTasks.find(t => t.id === id);
+    }
+
+    window.claimTaskById = id => claimTask(findTask(id));
+    window.startTaskById = id => startTask(findTask(id));
+    window.copyPromptById = id => copyText(promptText(findTask(id)), "Agent prompt");
+    window.copyCloseoutById = id => copyText(closeoutText(findTask(id)), "Closeout");
+    window.downloadCloseoutById = id => downloadCloseout(findTask(id));
+    window.reviewPendingById = id => reviewPending(findTask(id));
+    window.markDoneById = id => markDone(findTask(id));
+    window.resetTaskById = id => resetTask(findTask(id));
+
+    async function boot() {
+      try {
+        const res = await fetch(`${FEED_URL}?cache=${Date.now()}`);
+        if (!res.ok) throw new Error(`Feed HTTP ${res.status}`);
+        const data = await res.json();
+        allTasks = normalizeFeed(data);
+        allTasks.sort((a, b) => String(a.title || a.id).localeCompare(String(b.title || b.id)));
+        render();
+      } catch (err) {
+        document.getElementById("tasks").innerHTML = `<div class="panel"><strong>Feed load failed</strong><p class="sub">${safeText(err.message)}</p></div>`;
+      }
+    }
+
+    document.getElementById("search").addEventListener("input", render);
+    document.getElementById("status-filter").addEventListener("change", render);
+    document.getElementById("source-filter").addEventListener("change", render);
+
+    boot();
+  </script>
 </body>
 </html>
