@@ -43,7 +43,7 @@ jobs:
       - name: Remove stale kids planner from weareswarm.site
         run: |
           ssh -p "${{ secrets.HOSTINGER_PORT }}" \
-            -i "$HOME/.ssh/hostinger_key" \
+            -i "$HOME/.ssh/id_hostinger" \
             -o StrictHostKeyChecking=no \
             "${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }}" \
             "rm -rf /home/u996867598/domains/weareswarm.site/public_html/kids-planner /home/u996867598/domains/weareswarm.site/public_html/data/planner/kids_tasks.json"
