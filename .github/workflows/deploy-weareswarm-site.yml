@@ -39,6 +39,15 @@ jobs:
           chmod 600 "$HOME/.ssh/id_hostinger"
           ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
 
+
+      - name: Remove stale kids planner from weareswarm.site
+        run: |
+          ssh -p "${{ secrets.HOSTINGER_PORT }}" \
+            -i "$HOME/.ssh/hostinger_key" \
+            -o StrictHostKeyChecking=no \
+            "${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }}" \
+            "rm -rf /home/u996867598/domains/weareswarm.site/public_html/kids-planner /home/u996867598/domains/weareswarm.site/public_html/data/planner/kids_tasks.json"
+
       - name: Upload routes and patch canonical host rules
         env:
           HOSTINGER_HOST: 157.173.214.121
