@@ -1,9 +1,5 @@
 name: Deploy WeAreSwarm Online Kids Planner
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
-
 on:
   workflow_dispatch:
   push:
@@ -12,6 +8,7 @@ on:
     paths:
       - 'routes/weareswarm.online/kids-planner/**'
       - 'routes/weareswarm.online/tasks/**'
+      - 'routes/weareswarm.online/roadmap/**'
       - 'routes/weareswarm.online/data/planner/kids_tasks.json'
       - 'routes/weareswarm.online/data/planner/all_tasks.json'
       - '.github/workflows/deploy-weareswarm-online-kids-planner.yml'
@@ -49,39 +46,29 @@ jobs:
 
           test -f routes/weareswarm.online/kids-planner/index.html
           test -f routes/weareswarm.online/tasks/index.html
+          test -f routes/weareswarm.online/roadmap/index.html
           test -f routes/weareswarm.online/data/planner/kids_tasks.json
 
           ssh -p "$HOSTINGER_PORT" \
             -i "$HOME/.ssh/id_hostinger" \
             "$HOSTINGER_USER@$HOSTINGER_HOST" \
-            "mkdir -p '$REMOTE_ROOT/kids-planner' '$REMOTE_ROOT/tasks' '$REMOTE_ROOT/data/planner'"
+            "mkdir -p '$REMOTE_ROOT/kids-planner' '$REMOTE_ROOT/tasks' '$REMOTE_ROOT/roadmap' '$REMOTE_ROOT/data/planner'"
 
-          rsync -az --delete \
-            -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" \
-            routes/weareswarm.online/kids-planner/ \
-            "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/kids-planner/"
+          rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/kids-planner/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/kids-planner/"
+          rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/tasks/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/tasks/"
+          rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/roadmap/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/roadmap/"
 
-          rsync -az --delete \
-            -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" \
-            routes/weareswarm.online/tasks/ \
-            "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/tasks/"
-
-          rsync -az \
-            -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" \
-            routes/weareswarm.online/data/planner/kids_tasks.json \
-            "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/data/planner/kids_tasks.json"
+          rsync -az -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/data/planner/kids_tasks.json "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/data/planner/kids_tasks.json"
 
           if [ -f routes/weareswarm.online/data/planner/all_tasks.json ]; then
-            rsync -az \
-              -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" \
-              routes/weareswarm.online/data/planner/all_tasks.json \
-              "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/data/planner/all_tasks.json"
+            rsync -az -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/data/planner/all_tasks.json "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/data/planner/all_tasks.json"
           fi
 
       - name: Verify live planner routes
         run: |
           set -euo pipefail
           sleep 3
+
           curl -LfsS https://weareswarm.online/kids-planner/ -o /tmp/kids-planner.html
           grep -q "Export JSON" /tmp/kids-planner.html
           grep -q "Save Proof" /tmp/kids-planner.html
@@ -90,6 +77,11 @@ jobs:
           grep -q "Kids Tasks" /tmp/tasks.html
           grep -q "kids_tasks.json" /tmp/tasks.html
           grep -q "Open Kids Planner" /tmp/tasks.html
+
+          curl -LfsS https://weareswarm.online/roadmap/ -o /tmp/roadmap.html
+          grep -q "Closeout Roadmap" /tmp/roadmap.html
+          grep -q "/tasks/?executor=kids" /tmp/roadmap.html
+          grep -q "/tasks/?q=swarm%20brain" /tmp/roadmap.html
 
           curl -LfsS https://weareswarm.online/data/planner/kids_tasks.json -o /tmp/kids_tasks.json
           python3 -c 'import json; from pathlib import Path; data=json.loads(Path("/tmp/kids_tasks.json").read_text()); count=data.get("count", len(data.get("tasks", []))); print(f"LIVE_KIDS_FEED_COUNT={count}"); assert count >= 20'

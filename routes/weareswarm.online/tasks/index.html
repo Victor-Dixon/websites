@@ -56,6 +56,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted);font
     <a href="/">Home</a>
     <a href="/tasks/">Tasks</a>
     <a href="/kids-planner/">Kids Planner</a>
+    <a href="/roadmap/">Roadmap</a>
   </div>
 </nav>
 
@@ -209,7 +210,14 @@ async function load(){
     try{allFeed=arrFromPayload(await fetchFirst(ALL_URLS));}catch(e){allFeed=[]}
     kidsFeed=arrFromPayload(await fetchFirst(KIDS_URLS));
     mergeFeeds();
-    if(kidsFeed.length>=20){document.getElementById('executorFilter').value='kids'}
+    const params=new URLSearchParams(location.search);
+    const qParam=params.get('q')||params.get('search')||'';
+    const executorParam=params.get('executor')||'';
+    const statusParam=params.get('status')||'';
+    if(qParam)document.getElementById('search').value=qParam;
+    if(executorParam)document.getElementById('executorFilter').value=executorParam;
+    else if(kidsFeed.length>=20)document.getElementById('executorFilter').value='kids';
+    if(statusParam)document.getElementById('statusFilter').value=statusParam;
     render();
   }catch(e){
     document.getElementById('status').innerHTML='<div class="error">Failed to load task feeds: '+esc(e.message)+'</div>';
