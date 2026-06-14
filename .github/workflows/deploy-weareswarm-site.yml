@@ -66,7 +66,6 @@ jobs:
 
           "${ssh_base[@]}" "set -e
             mkdir -p '$REMOTE_ROOT/dreamos-services'
-            mkdir -p '$REMOTE_ROOT/data/planner'
             if [ -f '$REMOTE_ROOT/index.html' ]; then cp '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/index.html.bak.${GITHUB_RUN_ID}'; fi
             if [ -f '$REMOTE_ROOT/dreamos-services/index.html' ]; then cp '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/dreamos-services/index.html.bak.${GITHUB_RUN_ID}'; fi
             if [ -f '$REMOTE_ROOT/.htaccess' ]; then cp '$REMOTE_ROOT/.htaccess' '$REMOTE_ROOT/.htaccess.bak.${GITHUB_RUN_ID}'; fi
@@ -74,13 +73,10 @@ jobs:
 
           "${scp_base[@]}" "routes/weareswarm/index.html" "$remote:$REMOTE_ROOT/index.html"
           "${scp_base[@]}" "routes/weareswarm/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
-          "${scp_base[@]}" "routes/weareswarm/data/planner/kids_tasks.json" "$remote:$REMOTE_ROOT/data/planner/kids_tasks.json"
-          "${scp_base[@]}" "routes/weareswarm/data/planner/all_tasks.json" "$remote:$REMOTE_ROOT/data/planner/all_tasks.json"
           "${scp_base[@]}" "routes/weareswarm/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-htaccess-snippet.txt"
 
           "${ssh_base[@]}" "set -e
             chmod 644 '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html'
-            chmod 644 '$REMOTE_ROOT/data/planner/kids_tasks.json' '$REMOTE_ROOT/data/planner/all_tasks.json'
             ht='$REMOTE_ROOT/.htaccess'
             touch \"\$ht\"
             # Remove old root -> dreamos-services redirect if present
@@ -115,9 +111,3 @@ jobs:
           # Services route is a smoke check only; root landing page owns the Dream.OS movement verification.
           test -s /tmp/weareswarm-services.html
 
-          planner_code="$(curl -sL -o /tmp/weareswarm-kids-tasks.json -w '%{http_code}' --max-time 25 'https://www.weareswarm.site/data/planner/kids_tasks.json?cache='"${GITHUB_RUN_ID}")"
-          echo "WWW_KIDS_TASKS_JSON=$planner_code"
-          [ "$planner_code" = "200" ]
-          DREAMVAULT_KIDS_TASKS="$(grep -o 'kids_dreamvault_' /tmp/weareswarm-kids-tasks.json | wc -l | tr -d ' ')"
-          echo "DREAMVAULT_KIDS_TASKS=$DREAMVAULT_KIDS_TASKS"
-          [ "$DREAMVAULT_KIDS_TASKS" -ge 20 ]
