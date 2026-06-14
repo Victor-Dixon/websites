@@ -820,6 +820,56 @@
     .footer-links { justify-content: center; flex-wrap: wrap; }
   }
 </style>
+<style id="dreamos-black-screen-hotfix">
+  html,
+  body {
+    min-height: 100% !important;
+    background: #05070d !important;
+    color: #f6f8ff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  body,
+  main,
+  header,
+  nav,
+  section,
+  article,
+  footer,
+  #root,
+  #app,
+  .app,
+  .page,
+  .site,
+  .shell,
+  .container {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  main,
+  header,
+  nav,
+  section,
+  article,
+  footer {
+    display: block !important;
+  }
+
+  a {
+    color: #8fd3ff !important;
+  }
+
+  .black-screen,
+  .loading-screen,
+  .loading,
+  .preloader,
+  .splash,
+  .overlay {
+    pointer-events: none !important;
+  }
+</style>
 </head>
 <body>
 
