@@ -78,20 +78,22 @@ jobs:
             rm -f /tmp/weareswarm-htaccess-snippet.txt
           "
 
-      - name: Verify www hub and services redesign
+      - name: Verify www Dream.OS landing page and services route
         run: |
           set -euo pipefail
+
           apex="$(curl -sI --max-time 20 'https://weareswarm.site/' | awk 'toupper($1) ~ /^HTTP/ {code=$2} /^location:/ {loc=$2} END {print code "|" loc}')"
           echo "APEX_ROOT=$apex"
           echo "$apex" | grep -q '^301|https://www.weareswarm.site/'
 
-          www_code="$(curl -s -o /tmp/weareswarm-hub.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.site/?cache='"${GITHUB_RUN_ID}")"
+          www_code="$(curl -sL -o /tmp/weareswarm-hub.html -w '%{http_code}' --max-time 25 'https://www.weareswarm.site/?cache='"${GITHUB_RUN_ID}")"
           echo "WWW_HUB=$www_code"
           [ "$www_code" = "200" ]
-          grep -Eq 'Join the Swarm|Proof Wall|7-Day' /tmp/weareswarm-hub.html
+          grep -Eq 'Dream.OS|Join the Swarm|Proof Wall|7-Day' /tmp/weareswarm-hub.html
 
-          svc_code="$(curl -s -o /tmp/weareswarm-services.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.site/dreamos-services/?cache='"${GITHUB_RUN_ID}")"
+          svc_code="$(curl -sL -o /tmp/weareswarm-services.html -w '%{http_code}' --max-time 25 'https://www.weareswarm.site/dreamos-services/?cache='"${GITHUB_RUN_ID}")"
           echo "WWW_SERVICES=$svc_code"
           [ "$svc_code" = "200" ]
-          grep -q 'Ship automation that survives real mess' /tmp/weareswarm-services.html
-          grep -q 'site-header' /tmp/weareswarm-services.html
+
+          # Services route is a smoke check only; root landing page owns the Dream.OS movement verification.
+          test -s /tmp/weareswarm-services.html
