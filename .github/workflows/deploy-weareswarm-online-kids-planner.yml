@@ -1,0 +1,78 @@
+name: Deploy WeAreSwarm Online Kids Planner
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'routes/weareswarm.online/kids-planner/**'
+      - 'routes/weareswarm.online/data/planner/kids_tasks.json'
+      - '.github/workflows/deploy-weareswarm-online-kids-planner.yml'
+
+jobs:
+  deploy-online-kids-planner:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure SSH key
+        env:
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+        run: |
+          set -euo pipefail
+          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+          chmod 600 "$HOME/.ssh/id_hostinger"
+          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+
+      - name: Deploy kids planner route to weareswarm.online
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          REMOTE_ROOT: /home/u996867598/domains/weareswarm.online/public_html
+        run: |
+          set -euo pipefail
+
+          test -f routes/weareswarm.online/kids-planner/index.html
+          test -f routes/weareswarm.online/data/planner/kids_tasks.json
+
+          ssh -p "$HOSTINGER_PORT" \
+            -i "$HOME/.ssh/id_hostinger" \
+            "$HOSTINGER_USER@$HOSTINGER_HOST" \
+            "mkdir -p '$REMOTE_ROOT/kids-planner' '$REMOTE_ROOT/data/planner'"
+
+          rsync -az --delete \
+            -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" \
+            routes/weareswarm.online/kids-planner/ \
+            "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/kids-planner/"
+
+          rsync -az \
+            -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" \
+            routes/weareswarm.online/data/planner/kids_tasks.json \
+            "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/data/planner/kids_tasks.json"
+
+      - name: Verify live kids planner
+        run: |
+          set -euo pipefail
+          sleep 3
+          curl -LfsS https://weareswarm.online/kids-planner/ -o /tmp/kids-planner.html
+          grep -q "Export JSON" /tmp/kids-planner.html
+          grep -q "Save Proof" /tmp/kids-planner.html
+          grep -q "weareswarm.kidsPlanner.workLog.v2" /tmp/kids-planner.html
+          curl -LfsS https://weareswarm.online/data/planner/kids_tasks.json -o /tmp/kids_tasks.json
+          python - << 'PY'
+import json
+from pathlib import Path
+data = json.loads(Path("/tmp/kids_tasks.json").read_text())
+count = data.get("count", len(data.get("tasks", [])))
+print(f"LIVE_KIDS_FEED_COUNT={count}")
+assert count >= 20
+PY
