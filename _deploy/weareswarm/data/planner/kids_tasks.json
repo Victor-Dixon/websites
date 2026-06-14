@@ -1,72 +1,42 @@
-{
-  "last_sync": "2026-06-12T00:00:00Z",
-  "source_of_truth": "runtime/data/weareswarm_public_contract.json",
-  "filter": {
-    "ai_heavy_lift": true,
-    "copy_paste_ready": true,
-    "no_secret_required": true,
-    "no_billing_required": true,
-    "no_destructive_repo_action": true,
-    "no_live_trading_action": true
+[
+  {
+    "ai_heavy_lift": 1,
+    "copy_paste_ready": 1,
+    "created_at": "2026-06-14 15:52:57",
+    "executor": "agent",
+    "id": "weareswarm_projects_hydration_001",
+    "kid_safe": 1,
+    "no_billing_required": 1,
+    "no_destructive_repo_action": 1,
+    "no_live_trading_action": 1,
+    "no_secret_required": 1,
+    "payload_json": "{\"ai_heavy_lift\": true, \"copy_paste_ready\": true, \"executor\": \"agent\", \"id\": \"weareswarm_projects_hydration_001\", \"kids_safe\": true, \"lane\": \"portfolio\", \"next_action\": \"Open /projects/ and verify every public card has a proof block and CTA.\", \"no_billing_required\": true, \"no_destructive_repo_action\": true, \"no_live_trading_action\": true, \"no_secret_required\": true, \"priority\": \"P0\", \"source_of_truth\": \"runtime/data/weareswarm_public_contract.json\", \"status\": \"ready\", \"summary\": \"Publish project cards with problem, solution, proof, links, revenue potential, and next unlock fields.\", \"title\": \"Hydrate WeAreSwarm project portfolio cards\"}",
+    "priority": "P0",
+    "project": "WeAreSwarm",
+    "prompt": "Publish project cards with problem, solution, proof, links, revenue potential, and next unlock fields.",
+    "source_path": "/data/data/com.termux/files/home/projects/websites/_deploy/weareswarm/data/planner/kids_tasks.json",
+    "status": "active",
+    "title": "Hydrate WeAreSwarm project portfolio cards",
+    "updated_at": "2026-06-14 16:14:29"
   },
-  "tasks": [
-    {
-      "id": "weareswarm_projects_hydration_001",
-      "title": "Hydrate WeAreSwarm project portfolio cards",
-      "priority": "P0",
-      "executor": "agent",
-      "status": "ready",
-      "lane": "portfolio",
-      "summary": "Publish project cards with problem, solution, proof, links, revenue potential, and next unlock fields.",
-      "ai_heavy_lift": true,
-      "copy_paste_ready": true,
-      "no_secret_required": true,
-      "no_billing_required": true,
-      "no_destructive_repo_action": true,
-      "no_live_trading_action": true,
-      "kids_safe": true,
-      "next_action": "Open /projects/ and verify every public card has a proof block and CTA.",
-      "source_of_truth": "runtime/data/weareswarm_public_contract.json"
-    },
-    {
-      "id": "weareswarm_kids_lane_seed_001",
-      "title": "Seed kids-safe copy-paste missions",
-      "priority": "P0",
-      "executor": "kids",
-      "status": "ready",
-      "lane": "kids-planner",
-      "summary": "Create non-secret, non-billing, non-destructive tasks that kids can copy into an AI helper and review with an adult.",
-      "ai_heavy_lift": true,
-      "copy_paste_ready": true,
-      "no_secret_required": true,
-      "no_billing_required": true,
-      "no_destructive_repo_action": true,
-      "no_live_trading_action": true,
-      "kids_safe": true,
-      "next_action": "Pick one mission card and ask the AI for a draft, then save the answer for adult review.",
-      "source_of_truth": "runtime/data/weareswarm_public_contract.json"
-    }
-  ],
-  "special_missions": [
-    {
-      "id": "special_spark_unlock_001",
-      "title": "Special unlock: design a Spark mission badge",
-      "priority": "P2",
-      "executor": "kids",
-      "status": "adult_gate",
-      "lane": "special-unlock",
-      "summary": "A creative mission that requires adult approval before publishing or uploading anywhere.",
-      "mission_type": "special_unlock",
-      "requires_adult_gate": true,
-      "ai_heavy_lift": true,
-      "copy_paste_ready": true,
-      "no_secret_required": true,
-      "no_billing_required": true,
-      "no_destructive_repo_action": true,
-      "no_live_trading_action": true,
-      "kids_safe": true,
-      "next_action": "Draft three badge names and ask an adult which one is safe to publish.",
-      "source_of_truth": "runtime/data/weareswarm_public_contract.json"
-    }
-  ]
-}
+  {
+    "ai_heavy_lift": 1,
+    "copy_paste_ready": 1,
+    "created_at": "2026-06-14 15:52:57",
+    "executor": "kids",
+    "id": "weareswarm_kids_lane_seed_001",
+    "kid_safe": 1,
+    "no_billing_required": 1,
+    "no_destructive_repo_action": 1,
+    "no_live_trading_action": 1,
+    "no_secret_required": 1,
+    "payload_json": "{\"ai_heavy_lift\": true, \"copy_paste_ready\": true, \"executor\": \"kids\", \"id\": \"weareswarm_kids_lane_seed_001\", \"kids_safe\": true, \"lane\": \"kids-planner\", \"next_action\": \"Pick one mission card and ask the AI for a draft, then save the answer for adult review.\", \"no_billing_required\": true, \"no_destructive_repo_action\": true, \"no_live_trading_action\": true, \"no_secret_required\": true, \"priority\": \"P0\", \"source_of_truth\": \"runtime/data/weareswarm_public_contract.json\", \"status\": \"ready\", \"summary\": \"Create non-secret, non-billing, non-destructive tasks that kids can copy into an AI helper and review with an adult.\", \"title\": \"Seed kids-safe copy-paste missions\"}",
+    "priority": "P0",
+    "project": "WeAreSwarm",
+    "prompt": "Create non-secret, non-billing, non-destructive tasks that kids can copy into an AI helper and review with an adult.",
+    "source_path": "/data/data/com.termux/files/home/projects/websites/_deploy/weareswarm/data/planner/kids_tasks.json",
+    "status": "active",
+    "title": "Seed kids-safe copy-paste missions",
+    "updated_at": "2026-06-14 16:14:29"
+  }
+]
