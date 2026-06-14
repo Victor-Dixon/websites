@@ -68,11 +68,4 @@ jobs:
           grep -q "Save Proof" /tmp/kids-planner.html
           grep -q "weareswarm.kidsPlanner.workLog.v2" /tmp/kids-planner.html
           curl -LfsS https://weareswarm.online/data/planner/kids_tasks.json -o /tmp/kids_tasks.json
-          python - << 'PY'
-import json
-from pathlib import Path
-data = json.loads(Path("/tmp/kids_tasks.json").read_text())
-count = data.get("count", len(data.get("tasks", [])))
-print(f"LIVE_KIDS_FEED_COUNT={count}")
-assert count >= 20
-PY
+          python3 -c 'import json; from pathlib import Path; data=json.loads(Path("/tmp/kids_tasks.json").read_text()); count=data.get("count", len(data.get("tasks", []))); print(f"LIVE_KIDS_FEED_COUNT={count}"); assert count >= 20'
