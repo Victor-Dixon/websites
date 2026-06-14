@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T14:58:37.057818+00:00",
+  "generated_at": "2026-06-14T17:10:35.689697+00:00",
   "source": "runtime/tasks/kids/*.yaml",
   "count": 20,
   "tasks": [
@@ -11,9 +11,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_check_for_regression_issues_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_check_for_regression_issues_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -22,7 +22,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Check for regression issues\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_gather_user_feedback_001",
@@ -32,9 +52,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_gather_user_feedback_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_gather_user_feedback_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -43,7 +63,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Gather user feedback\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_iterate_based_on_feedback_001",
@@ -53,9 +93,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_iterate_based_on_feedback_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_iterate_based_on_feedback_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -64,7 +104,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Iterate based on feedback\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_accessibility_features_001",
@@ -74,9 +134,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_accessibility_features_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_accessibility_features_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -85,7 +145,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test accessibility features\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_all_shared_components_001",
@@ -95,9 +175,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_all_shared_components_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_all_shared_components_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -106,7 +186,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test all shared components\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_component_functionality_001",
@@ -116,9 +216,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_component_functionality_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_component_functionality_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -127,7 +227,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test component functionality\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_cross_panel_functionality_001",
@@ -137,9 +257,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_cross_panel_functionality_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_cross_panel_functionality_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -148,7 +268,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test cross-panel functionality\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_data_loader_capabilities_001",
@@ -158,9 +298,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_data_loader_capabilities_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_data_loader_capabilities_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -169,7 +309,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test data loader capabilities\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_data_loading_functionality_001",
@@ -179,9 +339,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_data_loading_functionality_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_data_loading_functionality_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -190,7 +350,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test data loading functionality\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_error_handling_001",
@@ -200,9 +380,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_error_handling_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_error_handling_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -211,7 +391,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test error handling\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_export_center_functionality_001",
@@ -221,9 +421,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_export_center_functionality_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_export_center_functionality_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -232,7 +432,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test export center functionality\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_export_functionality_001",
@@ -242,9 +462,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_export_functionality_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_export_functionality_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -253,7 +473,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test export functionality\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_panel_integrations_001",
@@ -263,9 +503,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_panel_integrations_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_panel_integrations_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -274,7 +514,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test panel integrations\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_performance_under_load_001",
@@ -284,9 +544,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_performance_under_load_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_performance_under_load_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -295,7 +555,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test performance under load\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_refresh_functionality_001",
@@ -305,9 +585,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_refresh_functionality_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_refresh_functionality_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -316,7 +596,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test refresh functionality\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_refresh_manager_operations_001",
@@ -326,9 +626,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_refresh_manager_operations_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_refresh_manager_operations_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -337,7 +637,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test refresh manager operations\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_ui_responsiveness_001",
@@ -347,9 +667,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_ui_responsiveness_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_ui_responsiveness_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -358,7 +678,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test UI responsiveness\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_test_with_real_user_workflows_001",
@@ -368,9 +708,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_test_with_real_user_workflows_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_test_with_real_user_workflows_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -379,7 +719,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Test with real user workflows\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_ui_responsiveness_maintained_001",
@@ -389,9 +749,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GLOBAL_REFRESH_MANAGER_INTEGRATION_GUIDE.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_ui_responsiveness_maintained_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_ui_responsiveness_maintained_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -400,7 +760,27 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  UI responsiveness maintained\n\n  Source reference:\n  docs/GLOBAL_REFRESH_MANAGER_INTEGRATION_GUIDE.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     },
     {
       "id": "kids_dreamvault_validate_usability_improvements_001",
@@ -410,9 +790,9 @@
       "executor": "kids",
       "lane": "kids_planner",
       "project": "DreamVault",
-      "source_path": "docs/GUI_OPTIMIZATION_PLAN.md",
-      "points": 100,
-      "estimated_time_minutes": 20,
+      "source_path": "/data/data/com.termux/files/home/projects/DreamVault/runtime/tasks/kids/kids_dreamvault_validate_usability_improvements_001.yaml",
+      "points": "100",
+      "estimated_time_minutes": "20",
       "path": "runtime/tasks/kids/kids_dreamvault_validate_usability_improvements_001.yaml",
       "kid_safe": true,
       "parent_approved": true,
@@ -421,7 +801,28 @@
       "no_secret_required": true,
       "no_billing_required": true,
       "no_destructive_repo_action": true,
-      "no_live_trading_action": true
+      "no_live_trading_action": true,
+      "repo": "DreamVault",
+      "origin": "dreamvault",
+      "source_repo": "DreamVault",
+      "summary": "Kids planner task promoted from DreamVault candidate audit. This is a safe\n  QA/documentation/verification mission where the kid supervises an AI agent,\n  reviews the output, and records proof.",
+      "why_it_matters": "These tasks turn DreamVault maintenance into supervised, copy-paste-ready\n  missions. The kid does not need to code directly; they manage the agent,\n  verify the result, and submit proof.",
+      "mission_type": "copy_paste_agent_supervision",
+      "agent_prompt": "You are working in the DreamVault repo.\n\n  Mission title:\n  Validate usability improvements\n\n  Source reference:\n  docs/GUI_OPTIMIZATION_PLAN.md\n\n  Task:\n  Help complete this QA/documentation/verification task safely.\n\n  Rules:\n  - Do not use secrets, tokens, credentials, billing accounts, or private keys.\n  - Do not deploy to production.\n  - Do not delete files.\n  - Do not perform live trading or brokerage actions.\n  - Prefer read-only inspection, tests, documentation updates, and clear reports.\n  - If code changes are needed, explain them first and keep them small.\n  - Produce copy-paste-ready commands or file edits.\n  - End with a proof summary the kid can paste into the planner.\n\n  Acceptance:\n  - The task result is clear and reviewable.\n  - Any tests/checks are listed.\n  - Any changed files are listed.\n  - No risky actions were taken.\n  - Proof is provided as a short closeout.",
+      "acceptance_criteria": [
+        "No secrets, billing, destructive repo actions, deploys, or live trading are required",
+        "The kid can supervise the AI agent using the included prompt",
+        "The task produces a clear proof summary",
+        "Any file changes are small and reviewable",
+        "Any test or verification output is recorded"
+      ],
+      "proof_required": [
+        "Short summary of what was checked or updated",
+        "Files changed, if any",
+        "Test or verification output, if any",
+        "Agent closeout message"
+      ]
     }
-  ]
+  ],
+  "dreamvault_import_count": 20
 }
