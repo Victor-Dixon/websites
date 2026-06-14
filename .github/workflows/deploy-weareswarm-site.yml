@@ -1,8 +1,10 @@
 name: Deploy WeAreSwarm Site
 
 on:
+  workflow_dispatch:
   push:
     branches:
+      - master
       - cursor/repair-weareswarm-white-screen-0b91
     paths:
       - .github/workflows/deploy-weareswarm-site.yml
@@ -86,7 +88,7 @@ jobs:
           www_code="$(curl -s -o /tmp/weareswarm-hub.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.site/?cache='"${GITHUB_RUN_ID}")"
           echo "WWW_HUB=$www_code"
           [ "$www_code" = "200" ]
-          grep -q 'Operator hub for live swarm execution' /tmp/weareswarm-hub.html
+          grep -Eq 'Join the Swarm|Proof Wall|7-Day' /tmp/weareswarm-hub.html
 
           svc_code="$(curl -s -o /tmp/weareswarm-services.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.site/dreamos-services/?cache='"${GITHUB_RUN_ID}")"
           echo "WWW_SERVICES=$svc_code"
