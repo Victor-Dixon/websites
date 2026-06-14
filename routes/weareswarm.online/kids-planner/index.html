@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WeAreSwarm Kids Planner</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap');
+:root{--bg:#0a0a0a;--surface:#111;--surface2:#171717;--border:#242424;--amber:#f5a623;--purple:#a78bfa;--green:#39d353;--red:#e63946;--text:#d4d4d4;--muted:#777;--white:#f0f0f0;--display:'Bebas Neue',sans-serif;--mono:'Space Mono',monospace;--body:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;min-height:100vh}
+body:before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.14) 2px,rgba(0,0,0,.14) 4px);pointer-events:none;z-index:999}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{height:56px;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;background:rgba(10,10,10,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+.logo{font-family:var(--display);font-size:1.5rem;color:var(--amber);letter-spacing:.05em}
+.logo span{color:var(--white)}
+.navlinks{display:flex;gap:1rem;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.navlinks a{color:var(--muted)}
+.wrap{width:min(1180px,calc(100% - 2rem));margin:0 auto}
+.hero{padding:4.5rem 0 2.5rem}
+.eyebrow{font-family:var(--mono);font-size:.75rem;color:var(--purple);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem}
+h1{font-family:var(--display);font-size:clamp(3.5rem,10vw,7rem);line-height:.9;color:var(--white);letter-spacing:.03em}
+h1 span{color:var(--purple)}
+.intro{font-family:var(--mono);font-size:.9rem;color:var(--muted);max-width:760px;margin-top:1.5rem;line-height:1.9;border-left:2px solid var(--purple);padding-left:1rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:2rem 0}
+.stat{background:var(--surface);padding:1.2rem}
+.stat-label{font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.13em;text-transform:uppercase}
+.stat-value{font-family:var(--display);font-size:2rem;color:var(--purple);margin-top:.2rem}
+.toolbar{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
+input,select{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.8rem 1rem;font-family:var(--mono);font-size:.8rem;border-radius:2px}
+input{flex:1;min-width:240px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:4rem}
+.card{background:var(--surface);padding:1.35rem;display:flex;flex-direction:column;gap:1rem;min-height:275px}
+.card:hover{background:var(--surface2)}
+.top{display:flex;justify-content:space-between;gap:1rem}
+.badge{font-family:var(--mono);font-size:.62rem;color:#000;background:var(--purple);padding:.2rem .5rem;border-radius:2px;font-weight:700;text-transform:uppercase}
+.priority{font-family:var(--mono);font-size:.62rem;color:var(--amber);border:1px solid rgba(245,166,35,.35);padding:.2rem .5rem;border-radius:2px}
+.title{font-family:var(--display);font-size:1.55rem;color:var(--white);line-height:1;letter-spacing:.04em}
+.meta{display:grid;gap:.35rem;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.meta strong{color:var(--amber);font-weight:400}
+details{border:1px solid var(--border);border-radius:2px;overflow:hidden;margin-top:auto}
+summary{cursor:pointer;padding:.75rem;background:#0d0d0d;color:var(--purple);font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+pre{white-space:pre-wrap;word-break:break-word;padding:1rem;max-height:250px;overflow:auto;font-family:var(--mono);font-size:.72rem}
+.actions{display:flex;gap:.5rem;flex-wrap:wrap}
+button{cursor:pointer;border:0;border-radius:2px;padding:.65rem .85rem;font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase}
+.copy{background:var(--amber);color:#000}.claim{background:var(--purple);color:#000}.ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.empty,.error{background:var(--surface);border:1px dashed var(--border);padding:2rem;margin-bottom:3rem;color:var(--muted);font-family:var(--mono)}
+.error{color:var(--red)}
+footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted);font-family:var(--mono);font-size:.7rem}
+@media(max-width:720px){nav{padding:0 1rem}.navlinks{font-size:.65rem;gap:.6rem}.hero{padding:3rem 0 2rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">WeAre<span>Swarm</span></a>
+  <div class="navlinks">
+    <a href="/">Home</a>
+    <a href="/tasks/">All Tasks</a>
+    <a href="/kids-planner/">Kids Planner</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Junior Operator Mission Board</div>
+    <h1>KIDS<br><span>PLANNER.</span></h1>
+    <p class="intro">
+      Kid-safe Dream.OS missions from DreamVault. The kid supervises an AI agent,
+      copies the prompt, checks the result, and submits proof. No secrets. No billing.
+      No destructive repo actions. No live trading.
+    </p>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="stat-label">Tasks Loaded</div><div class="stat-value" id="taskCount">—</div></div>
+    <div class="stat"><div class="stat-label">Source</div><div class="stat-value">DreamVault</div></div>
+    <div class="stat"><div class="stat-label">Lane</div><div class="stat-value">Kids</div></div>
+  </section>
+
+  <section class="toolbar">
+    <input id="search" type="search" placeholder="Search kids tasks..." autocomplete="off">
+    <select id="filter">
+      <option value="all">All active tasks</option>
+      <option value="qa">QA / verification</option>
+      <option value="documentation">Documentation</option>
+      <option value="accessibility">Accessibility</option>
+    </select>
+  </section>
+
+  <section id="status"></section>
+  <section class="grid" id="grid"></section>
+</main>
+
+<footer><div class="wrap">© WeAreSwarm — Kids Planner powered by Dream.OS</div></footer>
+
+<script>
+const FEED_URLS=['/data/planner/kids_tasks.json','../data/planner/kids_tasks.json'];
+let allTasks=[];
+
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function promptFor(t){return t.agent_prompt||[
+'You are helping complete a Dream.OS kids planner task.','',
+'Task: '+(t.title||t.id),
+'Project: '+(t.project||'DreamVault'),
+'Source: '+(t.source_path||t.path||''),'',
+'Rules:',
+'- No secrets.',
+'- No billing.',
+'- No destructive repo actions.',
+'- No live trading.',
+'- Produce a short proof closeout.'
+].join('\n')}
+function matches(t,f){
+  const b=JSON.stringify(t).toLowerCase();
+  if(f==='all')return true;
+  if(f==='qa')return b.includes('qa')||b.includes('test')||b.includes('verify');
+  if(f==='documentation')return b.includes('doc')||b.includes('markdown')||b.includes('report');
+  if(f==='accessibility')return b.includes('accessibility');
+  return true;
+}
+function render(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  const f=document.getElementById('filter').value;
+  const tasks=allTasks.filter(t=>(!q||JSON.stringify(t).toLowerCase().includes(q))&&matches(t,f));
+  document.getElementById('taskCount').textContent=allTasks.length;
+  if(!tasks.length){
+    document.getElementById('grid').innerHTML='';
+    document.getElementById('status').innerHTML='<div class="empty">No matching kids tasks found.</div>';
+    return;
+  }
+  document.getElementById('status').innerHTML='';
+  document.getElementById('grid').innerHTML=tasks.map(t=>{
+    const p=promptFor(t);
+    const ep=encodeURIComponent(p);
+    return `<article class="card">
+      <div class="top"><span class="badge">${esc(t.executor||'kids')}</span><span class="priority">${esc(t.priority||'P2')}</span></div>
+      <h2 class="title">${esc(t.title||t.id)}</h2>
+      <div class="meta">
+        <div><strong>ID:</strong> ${esc(t.id)}</div>
+        <div><strong>Project:</strong> ${esc(t.project||'DreamVault')}</div>
+        <div><strong>Source:</strong> ${esc(t.source_path||t.path||'')}</div>
+        <div><strong>Points:</strong> ${esc(t.points||100)} · <strong>Time:</strong> ${esc(t.estimated_time_minutes||20)} min</div>
+      </div>
+      <details><summary>Agent Prompt</summary><pre>${esc(p)}</pre></details>
+      <div class="actions">
+        <button class="copy" onclick="copyPrompt(decodeURIComponent('${ep}'))">Copy Prompt</button>
+        <button class="claim" onclick="copyText('CLAIM TASK\\nTASK_ID: ${esc(t.id)}\\nOPERATOR: [name]\\nSTATUS: CLAIMED')">Copy Claim</button>
+        <button class="ghost" onclick="copyText('KIDS TASK CLOSEOUT\\nTASK_ID: ${esc(t.id)}\\nACTION: [what was done]\\nVERIFY: [how it was checked]\\nPROOF: [screenshot/log/link]\\nSTATUS: COMPLETE')">Copy Closeout</button>
+      </div>
+    </article>`;
+  }).join('');
+}
+async function copyText(text){try{await navigator.clipboard.writeText(text);alert('Copied.')}catch(e){prompt('Copy this:',text)}}
+function copyPrompt(text){copyText(text)}
+async function loadFeed(){
+  let last=null;
+  document.getElementById('status').innerHTML='<div class="empty">Loading kids tasks...</div>';
+  for(const url of FEED_URLS){
+    try{
+      const r=await fetch(url,{cache:'no-store'});
+      if(!r.ok)throw new Error(url+' returned '+r.status);
+      const data=await r.json();
+      allTasks=Array.isArray(data.tasks)?data.tasks:[];
+      if(!allTasks.length)throw new Error(url+' had no tasks');
+      render();
+      return;
+    }catch(e){last=e}
+  }
+  document.getElementById('status').innerHTML='<div class="error">Failed to load kids tasks: '+esc(last&&last.message)+'</div>';
+}
+document.getElementById('search').addEventListener('input',render);
+document.getElementById('filter').addEventListener('change',render);
+loadFeed();
+</script>
+</body>
+</html>
