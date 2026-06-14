@@ -5,50 +5,63 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>WeAreSwarm Kids Planner</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap');
-:root{--bg:#0a0a0a;--surface:#111;--surface2:#171717;--border:#242424;--amber:#f5a623;--purple:#a78bfa;--green:#39d353;--red:#e63946;--text:#d4d4d4;--muted:#777;--white:#f0f0f0;--display:'Bebas Neue',sans-serif;--mono:'Space Mono',monospace;--body:'Inter',sans-serif}
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
+:root{--bg:#0a0a0a;--surface:#111;--surface2:#171717;--border:#262626;--amber:#f5a623;--purple:#a78bfa;--green:#39d353;--red:#e63946;--blue:#58a6ff;--text:#d4d4d4;--muted:#777;--white:#f4f4f4;--display:'Bebas Neue',sans-serif;--mono:'Space Mono',monospace;--body:'Inter',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;min-height:100vh}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;min-height:100vh}
 body:before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.14) 2px,rgba(0,0,0,.14) 4px);pointer-events:none;z-index:999}
 a{color:var(--amber);text-decoration:none}
 a:hover{text-decoration:underline}
-nav{height:56px;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;background:rgba(10,10,10,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
-.logo{font-family:var(--display);font-size:1.5rem;color:var(--amber);letter-spacing:.05em}
+nav{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(10,10,10,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.logo{font-family:var(--display);font-size:1.55rem;color:var(--amber);letter-spacing:.05em}
 .logo span{color:var(--white)}
 .navlinks{display:flex;gap:1rem;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
 .navlinks a{color:var(--muted)}
-.wrap{width:min(1180px,calc(100% - 2rem));margin:0 auto}
-.hero{padding:4.5rem 0 2.5rem}
-.eyebrow{font-family:var(--mono);font-size:.75rem;color:var(--purple);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem}
+.wrap{width:min(1220px,calc(100% - 2rem));margin:0 auto}
+.hero{padding:4rem 0 2rem}
+.eyebrow{font-family:var(--mono);font-size:.72rem;color:var(--purple);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem}
 h1{font-family:var(--display);font-size:clamp(3.5rem,10vw,7rem);line-height:.9;color:var(--white);letter-spacing:.03em}
 h1 span{color:var(--purple)}
-.intro{font-family:var(--mono);font-size:.9rem;color:var(--muted);max-width:760px;margin-top:1.5rem;line-height:1.9;border-left:2px solid var(--purple);padding-left:1rem}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:2rem 0}
-.stat{background:var(--surface);padding:1.2rem}
+.intro{font-family:var(--mono);font-size:.88rem;color:var(--muted);max-width:820px;margin-top:1.4rem;line-height:1.9;border-left:2px solid var(--purple);padding-left:1rem}
+.panel{background:var(--surface);border:1px solid var(--border);padding:1rem;margin:1rem 0}
+.operator{display:grid;grid-template-columns:1fr auto auto auto;gap:.7rem;align-items:center}
+input,select,textarea{background:#0d0d0d;border:1px solid var(--border);color:var(--text);padding:.75rem .9rem;font-family:var(--mono);font-size:.78rem;border-radius:2px;width:100%}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+button{cursor:pointer;border:0;border-radius:2px;padding:.7rem .9rem;font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+button:disabled{opacity:.45;cursor:not-allowed}
+.btn-amber{background:var(--amber);color:#000}.btn-purple{background:var(--purple);color:#000}.btn-green{background:var(--green);color:#000}.btn-blue{background:var(--blue);color:#000}.btn-red{background:var(--red);color:#000}.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:1.2rem 0}
+.stat{background:var(--surface);padding:1.1rem}
 .stat-label{font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.13em;text-transform:uppercase}
-.stat-value{font-family:var(--display);font-size:2rem;color:var(--purple);margin-top:.2rem}
-.toolbar{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
-input,select{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.8rem 1rem;font-family:var(--mono);font-size:.8rem;border-radius:2px}
-input{flex:1;min-width:240px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:4rem}
-.card{background:var(--surface);padding:1.35rem;display:flex;flex-direction:column;gap:1rem;min-height:275px}
+.stat-value{font-family:var(--display);font-size:2rem;color:var(--purple);margin-top:.15rem}
+.toolbar{display:grid;grid-template-columns:1fr 210px 190px;gap:.7rem;margin:1rem 0 1.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:3rem}
+.card{background:var(--surface);padding:1.25rem;display:flex;flex-direction:column;gap:.9rem;min-height:360px}
 .card:hover{background:var(--surface2)}
-.top{display:flex;justify-content:space-between;gap:1rem}
-.badge{font-family:var(--mono);font-size:.62rem;color:#000;background:var(--purple);padding:.2rem .5rem;border-radius:2px;font-weight:700;text-transform:uppercase}
-.priority{font-family:var(--mono);font-size:.62rem;color:var(--amber);border:1px solid rgba(245,166,35,.35);padding:.2rem .5rem;border-radius:2px}
-.title{font-family:var(--display);font-size:1.55rem;color:var(--white);line-height:1;letter-spacing:.04em}
-.meta{display:grid;gap:.35rem;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.top{display:flex;justify-content:space-between;gap:.7rem;align-items:flex-start}
+.badges{display:flex;gap:.4rem;flex-wrap:wrap}
+.badge{font-family:var(--mono);font-size:.58rem;color:#000;background:var(--purple);padding:.2rem .45rem;border-radius:2px;font-weight:700;text-transform:uppercase}
+.badge.status-new{background:var(--muted);color:#000}.badge.status-claimed{background:var(--blue);color:#000}.badge.status-started{background:var(--amber);color:#000}.badge.status-complete{background:var(--green);color:#000}
+.priority{font-family:var(--mono);font-size:.6rem;color:var(--amber);border:1px solid rgba(245,166,35,.35);padding:.2rem .45rem;border-radius:2px}
+.title{font-family:var(--display);font-size:1.5rem;color:var(--white);line-height:1;letter-spacing:.04em}
+.meta{display:grid;gap:.3rem;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
 .meta strong{color:var(--amber);font-weight:400}
-details{border:1px solid var(--border);border-radius:2px;overflow:hidden;margin-top:auto}
-summary{cursor:pointer;padding:.75rem;background:#0d0d0d;color:var(--purple);font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
-pre{white-space:pre-wrap;word-break:break-word;padding:1rem;max-height:250px;overflow:auto;font-family:var(--mono);font-size:.72rem}
-.actions{display:flex;gap:.5rem;flex-wrap:wrap}
-button{cursor:pointer;border:0;border-radius:2px;padding:.65rem .85rem;font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase}
-.copy{background:var(--amber);color:#000}.claim{background:var(--purple);color:#000}.ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
-.empty,.error{background:var(--surface);border:1px dashed var(--border);padding:2rem;margin-bottom:3rem;color:var(--muted);font-family:var(--mono)}
-.error{color:var(--red)}
+.actions{display:flex;gap:.45rem;flex-wrap:wrap}
+details{border:1px solid var(--border);border-radius:2px;overflow:hidden}
+summary{cursor:pointer;padding:.7rem;background:#0d0d0d;color:var(--purple);font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}
+pre{white-space:pre-wrap;word-break:break-word;padding:.9rem;max-height:230px;overflow:auto;font-family:var(--mono);font-size:.7rem;color:var(--text)}
+.proofbox{display:grid;gap:.6rem}
+.empty,.error,.ok{background:var(--surface);border:1px dashed var(--border);padding:1.3rem;margin-bottom:2rem;color:var(--muted);font-family:var(--mono);font-size:.78rem}
+.error{color:var(--red)}.ok{color:var(--green)}
+.log{margin:2rem 0 4rem}
+.tablewrap{overflow:auto;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.72rem}
+th,td{border-bottom:1px solid var(--border);padding:.65rem;text-align:left;vertical-align:top}
+th{color:var(--amber);background:#0d0d0d;text-transform:uppercase;font-size:.65rem;letter-spacing:.08em}
+td{color:var(--muted)}
 footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted);font-family:var(--mono);font-size:.7rem}
-@media(max-width:720px){nav{padding:0 1rem}.navlinks{font-size:.65rem;gap:.6rem}.hero{padding:3rem 0 2rem}}
+.toast{position:fixed;right:1rem;bottom:1rem;background:var(--surface);border:1px solid var(--border);color:var(--green);font-family:var(--mono);font-size:.78rem;padding:.8rem 1rem;display:none;z-index:1000}
+@media(max-width:820px){nav{padding:0 1rem}.navlinks{display:none}.operator,.toolbar{grid-template-columns:1fr}.hero{padding:3rem 0 1.5rem}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -66,22 +79,36 @@ footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted);font
     <div class="eyebrow">Junior Operator Mission Board</div>
     <h1>KIDS<br><span>PLANNER.</span></h1>
     <p class="intro">
-      Kid-safe Dream.OS missions from DreamVault. The kid supervises an AI agent,
-      copies the prompt, checks the result, and submits proof. No secrets. No billing.
-      No destructive repo actions. No live trading.
+      Claim a task, clock in, copy the agent prompt, supervise the work, paste proof,
+      mark complete, and export the work log for review.
     </p>
+  </section>
+
+  <section class="panel operator">
+    <input id="operatorName" placeholder="Operator name / initials">
+    <button class="btn-purple" id="saveOperator">Save Operator</button>
+    <button class="btn-blue" id="exportJson">Export JSON</button>
+    <button class="btn-amber" id="exportCsv">Export CSV</button>
   </section>
 
   <section class="stats">
     <div class="stat"><div class="stat-label">Tasks Loaded</div><div class="stat-value" id="taskCount">—</div></div>
-    <div class="stat"><div class="stat-label">Source</div><div class="stat-value">DreamVault</div></div>
-    <div class="stat"><div class="stat-label">Lane</div><div class="stat-value">Kids</div></div>
+    <div class="stat"><div class="stat-label">Claimed</div><div class="stat-value" id="claimedCount">0</div></div>
+    <div class="stat"><div class="stat-label">Started</div><div class="stat-value" id="startedCount">0</div></div>
+    <div class="stat"><div class="stat-label">Complete</div><div class="stat-value" id="completeCount">0</div></div>
   </section>
 
   <section class="toolbar">
-    <input id="search" type="search" placeholder="Search kids tasks..." autocomplete="off">
-    <select id="filter">
-      <option value="all">All active tasks</option>
+    <input id="search" type="search" placeholder="Search tasks..." autocomplete="off">
+    <select id="statusFilter">
+      <option value="all">All statuses</option>
+      <option value="new">New</option>
+      <option value="claimed">Claimed</option>
+      <option value="started">Started</option>
+      <option value="complete">Complete</option>
+    </select>
+    <select id="typeFilter">
+      <option value="all">All task types</option>
       <option value="qa">QA / verification</option>
       <option value="documentation">Documentation</option>
       <option value="accessibility">Accessibility</option>
@@ -90,15 +117,43 @@ footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted);font
 
   <section id="status"></section>
   <section class="grid" id="grid"></section>
+
+  <section class="log">
+    <div class="eyebrow">Daily Work Log</div>
+    <div class="actions" style="margin:.8rem 0 1rem">
+      <button class="btn-green" id="copyCloseout">Copy Daily Closeout</button>
+      <button class="btn-red" id="clearLog">Clear Local Log</button>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Task</th><th>Status</th><th>Operator</th><th>Started</th><th>Completed</th><th>Proof</th></tr></thead>
+        <tbody id="logBody"><tr><td colspan="6">No work logged yet.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
 </main>
 
 <footer><div class="wrap">© WeAreSwarm — Kids Planner powered by Dream.OS</div></footer>
+<div class="toast" id="toast">Saved.</div>
 
 <script>
 const FEED_URLS=['/data/planner/kids_tasks.json','../data/planner/kids_tasks.json'];
+const LOG_KEY='weareswarm.kidsPlanner.workLog.v2';
+const OPERATOR_KEY='weareswarm.kidsPlanner.operator.v2';
 let allTasks=[];
+let workLog={};
 
+function nowIso(){return new Date().toISOString()}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function toast(msg='Saved.'){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',1200)}
+function getOperator(){return document.getElementById('operatorName').value.trim()||'Unassigned'}
+function loadLog(){try{workLog=JSON.parse(localStorage.getItem(LOG_KEY)||'{}')}catch(e){workLog={}}}
+function saveLog(){localStorage.setItem(LOG_KEY,JSON.stringify(workLog,null,2))}
+function saveOperator(){localStorage.setItem(OPERATOR_KEY,getOperator());toast('Operator saved.')}
+function statusOf(id){return (workLog[id]&&workLog[id].status)||'new'}
+function entryFor(id){if(!workLog[id])workLog[id]={taskId:id,status:'new',operator:getOperator(),claimedAt:'',startedAt:'',completedAt:'',proof:'',events:[]};return workLog[id]}
+function record(id,event){const e=entryFor(id);e.operator=getOperator();e.events=e.events||[];e.events.push({event,time:nowIso(),operator:getOperator()});saveLog()}
+function taskById(id){return allTasks.find(t=>String(t.id)===String(id))}
 function promptFor(t){return t.agent_prompt||[
 'You are helping complete a Dream.OS kids planner task.','',
 'Task: '+(t.title||t.id),
@@ -111,51 +166,115 @@ function promptFor(t){return t.agent_prompt||[
 '- No live trading.',
 '- Produce a short proof closeout.'
 ].join('\n')}
-function matches(t,f){
-  const b=JSON.stringify(t).toLowerCase();
-  if(f==='all')return true;
-  if(f==='qa')return b.includes('qa')||b.includes('test')||b.includes('verify');
-  if(f==='documentation')return b.includes('doc')||b.includes('markdown')||b.includes('report');
-  if(f==='accessibility')return b.includes('accessibility');
-  return true;
+async function copyText(text){try{await navigator.clipboard.writeText(text);toast('Copied.')}catch(e){prompt('Copy this:',text)}}
+function downloadFile(name,mime,content){const blob=new Blob([content],{type:mime});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
+function csvCell(v){return '"'+String(v??'').replace(/"/g,'""')+'"'}
+function typeMatches(t,type){const b=JSON.stringify(t).toLowerCase();if(type==='all')return true;if(type==='qa')return b.includes('qa')||b.includes('test')||b.includes('verify');if(type==='documentation')return b.includes('doc')||b.includes('markdown')||b.includes('report');if(type==='accessibility')return b.includes('accessibility');return true}
+function filteredTasks(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  const sf=document.getElementById('statusFilter').value;
+  const tf=document.getElementById('typeFilter').value;
+  return allTasks.filter(t=>{
+    const blob=JSON.stringify(t).toLowerCase();
+    const st=statusOf(t.id);
+    return (!q||blob.includes(q))&&(sf==='all'||st===sf)&&typeMatches(t,tf);
+  });
+}
+function renderStats(){
+  const vals=allTasks.map(t=>statusOf(t.id));
+  document.getElementById('taskCount').textContent=allTasks.length;
+  document.getElementById('claimedCount').textContent=vals.filter(v=>v==='claimed').length;
+  document.getElementById('startedCount').textContent=vals.filter(v=>v==='started').length;
+  document.getElementById('completeCount').textContent=vals.filter(v=>v==='complete').length;
+}
+function renderLog(){
+  const rows=Object.values(workLog).filter(e=>e.status&&e.status!=='new');
+  const body=document.getElementById('logBody');
+  if(!rows.length){body.innerHTML='<tr><td colspan="6">No work logged yet.</td></tr>';return}
+  body.innerHTML=rows.sort((a,b)=>String(b.startedAt||b.claimedAt).localeCompare(String(a.startedAt||a.claimedAt))).map(e=>{
+    const t=taskById(e.taskId)||{};
+    return `<tr>
+      <td>${esc(t.title||e.taskId)}<br><small>${esc(e.taskId)}</small></td>
+      <td>${esc(e.status)}</td>
+      <td>${esc(e.operator)}</td>
+      <td>${esc(e.startedAt||e.claimedAt||'')}</td>
+      <td>${esc(e.completedAt||'')}</td>
+      <td>${esc((e.proof||'').slice(0,180))}</td>
+    </tr>`;
+  }).join('');
 }
 function render(){
-  const q=document.getElementById('search').value.toLowerCase().trim();
-  const f=document.getElementById('filter').value;
-  const tasks=allTasks.filter(t=>(!q||JSON.stringify(t).toLowerCase().includes(q))&&matches(t,f));
-  document.getElementById('taskCount').textContent=allTasks.length;
-  if(!tasks.length){
-    document.getElementById('grid').innerHTML='';
-    document.getElementById('status').innerHTML='<div class="empty">No matching kids tasks found.</div>';
-    return;
-  }
-  document.getElementById('status').innerHTML='';
-  document.getElementById('grid').innerHTML=tasks.map(t=>{
+  renderStats();
+  renderLog();
+  const tasks=filteredTasks();
+  const grid=document.getElementById('grid');
+  const status=document.getElementById('status');
+  if(!tasks.length){grid.innerHTML='';status.innerHTML='<div class="empty">No matching tasks.</div>';return}
+  status.innerHTML='';
+  grid.innerHTML=tasks.map(t=>{
+    const e=workLog[t.id]||{};
+    const st=statusOf(t.id);
     const p=promptFor(t);
-    const ep=encodeURIComponent(p);
-    return `<article class="card">
-      <div class="top"><span class="badge">${esc(t.executor||'kids')}</span><span class="priority">${esc(t.priority||'P2')}</span></div>
+    return `<article class="card" data-task-id="${esc(t.id)}">
+      <div class="top">
+        <div class="badges"><span class="badge status-${esc(st)}">${esc(st)}</span><span class="badge">${esc(t.executor||'kids')}</span></div>
+        <span class="priority">${esc(t.priority||'P2')}</span>
+      </div>
       <h2 class="title">${esc(t.title||t.id)}</h2>
       <div class="meta">
         <div><strong>ID:</strong> ${esc(t.id)}</div>
         <div><strong>Project:</strong> ${esc(t.project||'DreamVault')}</div>
-        <div><strong>Source:</strong> ${esc(t.source_path||t.path||'')}</div>
+        <div><strong>Operator:</strong> ${esc(e.operator||'Unassigned')}</div>
         <div><strong>Points:</strong> ${esc(t.points||100)} · <strong>Time:</strong> ${esc(t.estimated_time_minutes||20)} min</div>
       </div>
-      <details><summary>Agent Prompt</summary><pre>${esc(p)}</pre></details>
       <div class="actions">
-        <button class="copy" onclick="copyPrompt(decodeURIComponent('${ep}'))">Copy Prompt</button>
-        <button class="claim" onclick="copyText('CLAIM TASK\\nTASK_ID: ${esc(t.id)}\\nOPERATOR: [name]\\nSTATUS: CLAIMED')">Copy Claim</button>
-        <button class="ghost" onclick="copyText('KIDS TASK CLOSEOUT\\nTASK_ID: ${esc(t.id)}\\nACTION: [what was done]\\nVERIFY: [how it was checked]\\nPROOF: [screenshot/log/link]\\nSTATUS: COMPLETE')">Copy Closeout</button>
+        <button class="btn-blue" data-action="claim" data-id="${esc(t.id)}">Claim</button>
+        <button class="btn-amber" data-action="start" data-id="${esc(t.id)}">Start</button>
+        <button class="btn-purple" data-action="copyPrompt" data-id="${esc(t.id)}">Copy Prompt</button>
+        <button class="btn-green" data-action="complete" data-id="${esc(t.id)}">Complete</button>
+      </div>
+      <details>
+        <summary>Agent Prompt</summary>
+        <pre>${esc(p)}</pre>
+      </details>
+      <div class="proofbox">
+        <textarea data-proof-id="${esc(t.id)}" placeholder="Paste proof, screenshot note, agent closeout, or verification result here...">${esc(e.proof||'')}</textarea>
+        <button class="btn-ghost" data-action="saveProof" data-id="${esc(t.id)}">Save Proof</button>
       </div>
     </article>`;
   }).join('');
 }
-async function copyText(text){try{await navigator.clipboard.writeText(text);alert('Copied.')}catch(e){prompt('Copy this:',text)}}
-function copyPrompt(text){copyText(text)}
+function handleAction(action,id){
+  const t=taskById(id);
+  if(!t)return;
+  const e=entryFor(id);
+  if(action==='claim'){e.status='claimed';e.operator=getOperator();e.claimedAt=e.claimedAt||nowIso();record(id,'claimed');toast('Task claimed.')}
+  if(action==='start'){e.status='started';e.operator=getOperator();e.claimedAt=e.claimedAt||nowIso();e.startedAt=e.startedAt||nowIso();record(id,'started');toast('Clocked in.')}
+  if(action==='copyPrompt'){copyText(promptFor(t))}
+  if(action==='saveProof'){const box=document.querySelector(`textarea[data-proof-id="${CSS.escape(id)}"]`);e.proof=box?box.value:'';e.operator=getOperator();record(id,'proof_saved');toast('Proof saved.')}
+  if(action==='complete'){const box=document.querySelector(`textarea[data-proof-id="${CSS.escape(id)}"]`);e.proof=box?box.value:e.proof;if(!e.proof.trim()){alert('Paste proof before marking complete.');return}e.status='complete';e.operator=getOperator();e.completedAt=e.completedAt||nowIso();record(id,'completed');toast('Marked complete.')}
+  saveLog();render();
+}
+function exportJson(){
+  const payload={exportedAt:nowIso(),operator:getOperator(),tasks:allTasks,workLog};
+  downloadFile('weareswarm_kids_worklog.json','application/json',JSON.stringify(payload,null,2));
+}
+function exportCsv(){
+  const rows=[['task_id','title','status','operator','claimed_at','started_at','completed_at','proof']];
+  Object.values(workLog).forEach(e=>{const t=taskById(e.taskId)||{};rows.push([e.taskId,t.title||'',e.status,e.operator,e.claimedAt,e.startedAt,e.completedAt,e.proof||''])});
+  downloadFile('weareswarm_kids_worklog.csv','text/csv',rows.map(r=>r.map(csvCell).join(',')).join('\n'));
+}
+function dailyCloseout(){
+  const rows=Object.values(workLog).filter(e=>e.status&&e.status!=='new');
+  const lines=['KIDS PLANNER DAILY CLOSEOUT','OPERATOR: '+getOperator(),'DATE: '+new Date().toLocaleDateString(),'','TASKS:'];
+  rows.forEach(e=>{const t=taskById(e.taskId)||{};lines.push(`- ${e.status.toUpperCase()} :: ${t.title||e.taskId} :: ${e.proof||'No proof text saved.'}`)});
+  copyText(lines.join('\n'));
+}
 async function loadFeed(){
-  let last=null;
+  loadLog();
+  document.getElementById('operatorName').value=localStorage.getItem(OPERATOR_KEY)||'';
   document.getElementById('status').innerHTML='<div class="empty">Loading kids tasks...</div>';
+  let last=null;
   for(const url of FEED_URLS){
     try{
       const r=await fetch(url,{cache:'no-store'});
@@ -167,10 +286,17 @@ async function loadFeed(){
       return;
     }catch(e){last=e}
   }
-  document.getElementById('status').innerHTML='<div class="error">Failed to load kids tasks: '+esc(last&&last.message)+'</div>';
+  document.getElementById('status').innerHTML='<div class="error">Failed to load tasks: '+esc(last&&last.message)+'</div>';
 }
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-action]');if(!b)return;handleAction(b.dataset.action,b.dataset.id)});
+document.getElementById('saveOperator').addEventListener('click',saveOperator);
+document.getElementById('exportJson').addEventListener('click',exportJson);
+document.getElementById('exportCsv').addEventListener('click',exportCsv);
+document.getElementById('copyCloseout').addEventListener('click',dailyCloseout);
+document.getElementById('clearLog').addEventListener('click',()=>{if(confirm('Clear local kids planner work log on this device?')){workLog={};saveLog();render();toast('Local log cleared.')}});
 document.getElementById('search').addEventListener('input',render);
-document.getElementById('filter').addEventListener('change',render);
+document.getElementById('statusFilter').addEventListener('change',render);
+document.getElementById('typeFilter').addEventListener('change',render);
 loadFeed();
 </script>
 </body>
