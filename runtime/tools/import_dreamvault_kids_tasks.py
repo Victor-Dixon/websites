@@ -144,25 +144,26 @@ def is_safe_task(data: dict, raw: str):
         if data.get(key) is not True:
             return False, f"missing_or_false_flag:{key}"
 
-    blob = (json.dumps(data, default=str) + "\n" + raw).lower()
+    # Important:
+    # Do NOT scan the full agent_prompt for risk words.
+    # Kids-safe tasks intentionally include safety disclaimers like:
+    # "Do not use secrets, tokens, credentials..." and "Do not delete files."
+    # Those words are guardrails, not task requirements.
+    risk_scan_fields = {
+        "id": data.get("id", ""),
+        "title": data.get("title", ""),
+        "summary": data.get("summary", ""),
+        "project": data.get("project", ""),
+        "repo": data.get("repo", ""),
+        "source_path": data.get("source_path", ""),
+        "source_task_id": data.get("source_task_id", ""),
+    }
+
+    blob = json.dumps(risk_scan_fields, default=str).lower()
     hits = [w for w in RISK_WORDS if w in blob]
 
-    # These are allowed when they appear inside no_* safety flag names.
-    allowed_context = [
-        "no_secret_required",
-        "no_billing_required",
-        "no_destructive_repo_action",
-        "no_live_trading_action",
-    ]
-
-    filtered = []
-    for hit in hits:
-        if any(ctx in blob for ctx in allowed_context) and hit in {"secret", "billing", "destructive", "live trading"}:
-            continue
-        filtered.append(hit)
-
-    if filtered:
-        return False, "risk_words:" + ",".join(filtered[:5])
+    if hits:
+        return False, "risk_words:" + ",".join(hits[:5])
 
     return True, "safe"
 
