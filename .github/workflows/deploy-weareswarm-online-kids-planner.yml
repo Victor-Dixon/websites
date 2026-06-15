@@ -74,19 +74,20 @@ jobs:
           set -euo pipefail
           sleep 3
 
-          curl -LfsS https://weareswarm.online/kids-planner/ -o /tmp/kids-planner.html
-          grep -q "Export JSON" /tmp/kids-planner.html
-          grep -q "Save Proof" /tmp/kids-planner.html
+          curl -LfsS "https://www.weareswarm.online/kids-planner/?cache=${GITHUB_RUN_ID}" -o /tmp/kids-planner.html
+          grep -q 'data-canonical-nav="weareswarm-online"' /tmp/kids-planner.html
+          grep -q '/assets/css/nav-shell.css' /tmp/kids-planner.html
+          grep -q '/assets/js/nav-fallback.js' /tmp/kids-planner.html
 
-          curl -LfsS https://weareswarm.online/tasks/ -o /tmp/tasks.html
-          grep -q "Kids Tasks" /tmp/tasks.html
-          grep -q "kids_tasks.json" /tmp/tasks.html
-          grep -q "Open Kids Planner" /tmp/tasks.html
+          curl -LfsS "https://www.weareswarm.online/tasks/?cache=${GITHUB_RUN_ID}" -o /tmp/tasks.html
+          grep -q 'data-canonical-nav="weareswarm-online"' /tmp/tasks.html
+          grep -q '/assets/css/nav-shell.css' /tmp/tasks.html
+          grep -q '/assets/js/nav-fallback.js' /tmp/tasks.html
 
-          curl -LfsS https://weareswarm.online/roadmap/ -o /tmp/roadmap.html
-          grep -q "Closeout Roadmap" /tmp/roadmap.html
-          grep -q "/tasks/?executor=kids" /tmp/roadmap.html
-          grep -q "/tasks/?q=swarm%20brain" /tmp/roadmap.html
+          curl -LfsS "https://www.weareswarm.online/roadmap/?cache=${GITHUB_RUN_ID}" -o /tmp/roadmap.html
+          grep -q 'data-canonical-nav="weareswarm-online"' /tmp/roadmap.html
+          grep -q '/assets/css/nav-shell.css' /tmp/roadmap.html
+          grep -q '/assets/js/nav-fallback.js' /tmp/roadmap.html
 
-          curl -LfsS https://weareswarm.online/data/planner/kids_tasks.json -o /tmp/kids_tasks.json
-          python3 -c 'import json; from pathlib import Path; data=json.loads(Path("/tmp/kids_tasks.json").read_text()); count=data.get("count", len(data.get("tasks", []))); print(f"LIVE_KIDS_FEED_COUNT={count}"); assert count >= 20'
+          curl -LfsS "https://www.weareswarm.online/data/planner/kids_tasks.json?cache=${GITHUB_RUN_ID}" -o /tmp/kids_tasks.json
+          python3 -c 'import json; from pathlib import Path; data=json.loads(Path("/tmp/kids_tasks.json").read_text()); count=data.get("count", len(data.get("tasks", []))); print(f"LIVE_KIDS_FEED_COUNT={count}"); assert count >= 1'

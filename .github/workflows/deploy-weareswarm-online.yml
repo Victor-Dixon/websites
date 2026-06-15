@@ -70,7 +70,7 @@ jobs:
           "
 
           "${scp_base[@]}" "routes/weareswarm.online/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
-          "${ssh_base[@]}" "$remote" "mkdir -p '$REMOTE_ROOT/kids-planner' '$REMOTE_ROOT/data/planner'"
+          "${ssh_base[@]}" "mkdir -p '$REMOTE_ROOT/kids-planner' '$REMOTE_ROOT/data/planner'"
           "${scp_base[@]}" "routes/weareswarm.online/kids-planner/index.html" "$remote:$REMOTE_ROOT/kids-planner/index.html"
           "${scp_base[@]}" "routes/weareswarm.online/data/planner/kids_tasks.json" "$remote:$REMOTE_ROOT/data/planner/kids_tasks.json"
           "${scp_base[@]}" "routes/weareswarm.online/data/planner/all_tasks.json" "$remote:$REMOTE_ROOT/data/planner/all_tasks.json"
