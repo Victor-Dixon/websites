@@ -47,8 +47,8 @@ jobs:
         run: |
           set -euo pipefail
           remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
-          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
-          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
+          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=45 -o ConnectionAttempts=3 -o ServerAliveInterval=15 -o ServerAliveCountMax=4 "$remote")
+          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=45 -o ConnectionAttempts=3 -o ServerAliveInterval=15 -o ServerAliveCountMax=4)
 
           "${ssh_base[@]}" "set -e
             mkdir -p '$REMOTE_ROOT/dreamos-services' '$REMOTE_ROOT/skill-tree'
