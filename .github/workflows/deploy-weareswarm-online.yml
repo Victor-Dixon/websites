@@ -56,6 +56,11 @@ jobs:
           remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
           ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
           scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
+          # Dream.OS canonical nav assets
+          if [ -d routes/weareswarm.online/assets ]; then
+            "${ssh_base[@]}" "mkdir -p '$REMOTE_ROOT/assets'"
+            "${scp_base[@]}" -r routes/weareswarm.online/assets/* "$remote:$REMOTE_ROOT/assets/"
+          fi
 
           "${ssh_base[@]}" "set -e
             mkdir -p '$REMOTE_ROOT/dreamos-services' '$REMOTE_ROOT/skill-tree'
@@ -99,7 +104,7 @@ jobs:
           echo "WWW_SERVICES=$svc_code"
           [ "$svc_code" = "200" ]
           grep -q 'Ship automation that survives real mess' /tmp/weareswarm-online-services.html
-          grep -q 'class="nav"' /tmp/weareswarm-online-services.html
+          grep -q 'data-canonical-nav="weareswarm-online"' /tmp/weareswarm-online-services.html
           grep -q 'Command Center' /tmp/weareswarm-online-services.html
 
           hub_code="$(curl -s -o /tmp/weareswarm-online-root.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.online/?cache='"${GITHUB_RUN_ID}")"
@@ -112,6 +117,6 @@ jobs:
           [ "$tree_code" = "200" ]
           grep -q 'Swarm Skill Tree' /tmp/weareswarm-online-skill-tree.html
           grep -q 'Command Core' /tmp/weareswarm-online-skill-tree.html
-          grep -q 'site-header' /tmp/weareswarm-online-skill-tree.html
+          grep -q 'data-canonical-nav="weareswarm-online"' /tmp/weareswarm-online-skill-tree.html
 
 # Dream.OS kids planner live verification is handled by deployment step above.

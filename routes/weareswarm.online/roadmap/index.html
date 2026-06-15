@@ -43,15 +43,22 @@ h1 span{color:var(--purple)}
 footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted);font-family:var(--mono);font-size:.7rem}
 @media(max-width:820px){nav{padding:0 1rem}.navlinks{display:none}.level{grid-template-columns:1fr}.hero{padding:3rem 0 1.5rem}}
 </style>
+  <link rel="stylesheet" href="/assets/css/nav-shell.css">
 </head>
 <body>
-<nav>
-  <a class="logo" href="/">WeAre<span>Swarm</span></a>
-  <div class="navlinks">
-    <a href="/">Home</a>
-    <a href="/tasks/">Tasks</a>
-    <a href="/kids-planner/">Kids Planner</a>
+<nav class="swarm-nav-shell" data-canonical-nav="weareswarm-online" aria-label="Primary navigation">
+  <a class="swarm-nav-brand" href="/">WeAreSwarm</a>
+  <button class="nav-toggle swarm-nav-toggle" type="button" aria-controls="swarm-nav-links" aria-expanded="false">
+    Menu
+  </button>
+  <div id="swarm-nav-links" class="swarm-nav-links" data-nav-menu>
+    <a href="/">Command Center</a>
+    <a href="/focus/">Focus</a>
     <a href="/roadmap/">Roadmap</a>
+    <a href="/projects/">Projects</a>
+    <a href="/tasks/">Tasks</a>
+    <a href="/skill-tree/">Skill Tree</a>
+    <a href="/dreamos-services/">Services</a>
   </div>
 </nav>
 
@@ -162,5 +169,6 @@ async function loadKidsCount(){
 }
 loadKidsCount();
 </script>
+  <script src="/assets/js/nav-fallback.js" defer></script>
 </body>
 </html>

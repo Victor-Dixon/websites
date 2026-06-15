@@ -54,6 +54,11 @@ jobs:
             "$HOSTINGER_USER@$HOSTINGER_HOST" \
             "mkdir -p '$REMOTE_ROOT/kids-planner' '$REMOTE_ROOT/tasks' '$REMOTE_ROOT/roadmap' '$REMOTE_ROOT/data/planner'"
 
+          # Dream.OS canonical nav assets
+          if [ -d routes/weareswarm.online/assets ]; then
+            rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/assets/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/assets/"
+          fi
+
           rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/kids-planner/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/kids-planner/"
           rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/tasks/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/tasks/"
           rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/roadmap/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/roadmap/"

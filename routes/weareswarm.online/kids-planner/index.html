@@ -289,8 +289,25 @@
       .task, .panel, .stat { border-radius: 18px; }
     }
   </style>
+  <link rel="stylesheet" href="/assets/css/nav-shell.css">
 </head>
 <body>
+<nav class="swarm-nav-shell" data-canonical-nav="weareswarm-online" aria-label="Primary navigation">
+  <a class="swarm-nav-brand" href="/">WeAreSwarm</a>
+  <button class="nav-toggle swarm-nav-toggle" type="button" aria-controls="swarm-nav-links" aria-expanded="false">
+    Menu
+  </button>
+  <div id="swarm-nav-links" class="swarm-nav-links" data-nav-menu>
+    <a href="/">Command Center</a>
+    <a href="/focus/">Focus</a>
+    <a href="/roadmap/">Roadmap</a>
+    <a href="/projects/">Projects</a>
+    <a href="/tasks/">Tasks</a>
+    <a href="/skill-tree/">Skill Tree</a>
+    <a href="/dreamos-services/">Services</a>
+  </div>
+</nav>
+
   <header>
     <div class="wrap">
       <div class="topline">
@@ -662,5 +679,6 @@ Victor/adult reviewer should review proof and mark the task done.`;
 
     boot();
   </script>
+  <script src="/assets/js/nav-fallback.js" defer></script>
 </body>
 </html>
