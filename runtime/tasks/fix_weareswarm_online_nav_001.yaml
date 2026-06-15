@@ -1,0 +1,14 @@
+id: fix_weareswarm_online_nav_001
+title: Fix weareswarm.online navigation menu toggle
+status: ready_for_verification
+lane: website_repair
+target: weareswarm.online
+risk: low
+actions:
+  - add guarded static nav fallback controller
+  - inject fallback script into site html pages
+  - verify route links and script presence
+verification:
+  - grep for nav-fallback.js in deployed html
+  - grep fallback asset exists
+  - git diff review before commit
