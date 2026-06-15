@@ -1,12 +1,14 @@
 name: Deploy WeAreSwarm Online
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - cursor/repair-weareswarm-white-screen-0b91
     paths:
       - .github/workflows/deploy-weareswarm-online.yml
       - routes/weareswarm.online/**
+      - _deploy/weareswarm/level5/**
 
 concurrency:
   group: weareswarm-online-deploy
@@ -57,6 +59,15 @@ jobs:
 
           "${scp_base[@]}" "routes/weareswarm.online/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
           "${scp_base[@]}" "routes/weareswarm.online/skill-tree/index.html" "$remote:$REMOTE_ROOT/skill-tree/index.html"
+
+          # Level 5 scoreboard/API deploy
+          "${ssh_base[@]}" "mkdir -p '$REMOTE_ROOT/level5/api' '$REMOTE_ROOT/level5/missions'"
+          "${scp_base[@]}" "_deploy/weareswarm/level5/index.html" "$remote:$REMOTE_ROOT/level5/index.html"
+          "${scp_base[@]}" "_deploy/weareswarm/level5/missions/index.html" "$remote:$REMOTE_ROOT/level5/missions/index.html"
+          "${scp_base[@]}" "_deploy/weareswarm/level5/data_scoreboard_static_fallback.json" "$remote:$REMOTE_ROOT/level5/data_scoreboard_static_fallback.json"
+          "${scp_base[@]}" "_deploy/weareswarm/level5/api/.htaccess" "$remote:$REMOTE_ROOT/level5/api/.htaccess"
+          "${scp_base[@]}" "_deploy/weareswarm/level5/api/db.php" "$remote:$REMOTE_ROOT/level5/api/db.php"
+          "${scp_base[@]}" "_deploy/weareswarm/level5/api/scoreboard.php" "$remote:$REMOTE_ROOT/level5/api/scoreboard.php"
           "${scp_base[@]}" "routes/weareswarm.online/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-online-htaccess-snippet.txt"
 
           "${ssh_base[@]}" "set -e
@@ -98,3 +109,15 @@ jobs:
           grep -q 'Swarm Skill Tree' /tmp/weareswarm-online-skill-tree.html
           grep -q 'Command Core' /tmp/weareswarm-online-skill-tree.html
           grep -q 'site-header' /tmp/weareswarm-online-skill-tree.html
+
+          # Level 5 scoreboard/API verify
+          level5_code="$(curl -s -o /tmp/weareswarm-online-level5.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.online/level5/?cache='"${GITHUB_RUN_ID}")"
+          echo "https://www.weareswarm.online/level5/ => $level5_code"
+          test "$level5_code" = "200"
+          missions_code="$(curl -s -o /tmp/weareswarm-online-level5-missions.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.online/level5/missions/?cache='"${GITHUB_RUN_ID}")"
+          echo "https://www.weareswarm.online/level5/missions/ => $missions_code"
+          test "$missions_code" = "200"
+          api_body="$(curl -sL --max-time 20 'https://www.weareswarm.online/level5/api/scoreboard.php?cache='"${GITHUB_RUN_ID}")"
+          echo "$api_body"
+          ! echo "$api_body" | grep -q 'Missing DB env. Set LEVEL5_DB_NAME and LEVEL5_DB_USER.'
+          echo "$api_body" | grep -Eq 'Missing DB config|DB connection failed|"ok":true'
