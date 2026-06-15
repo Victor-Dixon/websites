@@ -52,20 +52,25 @@
     @media(max-width:900px){.hero-grid,.process,.split{grid-template-columns:1fr}}
     @media(max-width:720px){.nav{align-items:flex-start;flex-direction:column;border-radius:24px}.links{justify-content:flex-start}}
   </style>
+  <link rel="stylesheet" href="/assets/css/nav-shell.css">
 </head>
 <body>
   <main class="wrap">
-    <nav class="nav">
-      <div class="brand">WeAreSwarm</div>
-      <div class="links">
-        <a href="/">Command Center</a>
-        <a href="/feed/">Feed</a>
-        <a href="/projects/">Projects</a>
-        <a href="/tasks/">Tasks</a>
-        <a href="/skill-tree/">Skill Tree</a>
-        <a href="/dreamos-services/" aria-current="page">Services</a>
-      </div>
-    </nav>
+    <nav class="swarm-nav-shell" data-canonical-nav="weareswarm-online" aria-label="Primary navigation">
+  <a class="swarm-nav-brand" href="/">WeAreSwarm</a>
+  <button class="nav-toggle swarm-nav-toggle" type="button" aria-controls="swarm-nav-links" aria-expanded="false">
+    Menu
+  </button>
+  <div id="swarm-nav-links" class="swarm-nav-links" data-nav-menu>
+    <a href="/">Command Center</a>
+    <a href="/focus/">Focus</a>
+    <a href="/roadmap/">Roadmap</a>
+    <a href="/projects/">Projects</a>
+    <a href="/tasks/">Tasks</a>
+    <a href="/skill-tree/">Skill Tree</a>
+    <a href="/dreamos-services/">Services</a>
+  </div>
+</nav>
 
     <header class="hero hero-grid">
       <div>

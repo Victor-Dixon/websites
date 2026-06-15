@@ -1,0 +1,14 @@
+id: audit_weareswarm_online_css_consistency_001
+title: Audit CSS consistency across weareswarm.online
+status: complete
+lane: website_quality
+target: weareswarm.online
+risk: low
+verification:
+  page_count: checked
+  stylesheet_references: checked
+  missing_css_assets: checked
+  inline_style_drift: checked
+  shell_signature_drift: checked
+outputs:
+  - data/reports/weareswarm_online/css_consistency_audit_latest

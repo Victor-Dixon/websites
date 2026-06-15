@@ -139,17 +139,26 @@
       .site-header { flex-direction: column; align-items: flex-start; }
     }
   </style>
+  <link rel="stylesheet" href="/assets/css/nav-shell.css">
 </head>
 <body>
   <header class="site-header">
     <a class="logo" href="https://www.weareswarm.online/"><span>We</span>AreSwarm</a>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="/">Command Center</a>
-      <a href="/feed/">Feed</a>
-      <a href="/projects/">Projects</a>
-      <a href="/dreamos-services/">Services</a>
-      <a href="/skill-tree/" class="active">Skill Tree</a>
-    </nav>
+    <nav class="swarm-nav-shell" data-canonical-nav="weareswarm-online" aria-label="Primary navigation">
+  <a class="swarm-nav-brand" href="/">WeAreSwarm</a>
+  <button class="nav-toggle swarm-nav-toggle" type="button" aria-controls="swarm-nav-links" aria-expanded="false">
+    Menu
+  </button>
+  <div id="swarm-nav-links" class="swarm-nav-links" data-nav-menu>
+    <a href="/">Command Center</a>
+    <a href="/focus/">Focus</a>
+    <a href="/roadmap/">Roadmap</a>
+    <a href="/projects/">Projects</a>
+    <a href="/tasks/">Tasks</a>
+    <a href="/skill-tree/">Skill Tree</a>
+    <a href="/dreamos-services/">Services</a>
+  </div>
+</nav>
   </header>
   <main class="wrap">
     <section class="hero">
