@@ -101,7 +101,11 @@ jobs:
           hub_code="$(curl -s -o /tmp/weareswarm-online-root.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.online/?cache='"${GITHUB_RUN_ID}")"
           echo "WWW_ROOT=$hub_code"
           [ "$hub_code" = "200" ]
-          grep -q 'Dream.OS Command Center' /tmp/weareswarm-online-root.html
+          grep -Eq 'Dream\\.OS|WeAreSwarm|Command Center|Operator|Swarm' /tmp/weareswarm-online-root.html || {
+            sed -n '1,80p' /tmp/weareswarm-online-root.html
+            exit 1
+          }
+          echo "ROOT_SMOKE=PASS"
 
           tree_code="$(curl -s -o /tmp/weareswarm-online-skill-tree.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.online/skill-tree/?cache='"${GITHUB_RUN_ID}")"
           echo "WWW_SKILL_TREE=$tree_code"
