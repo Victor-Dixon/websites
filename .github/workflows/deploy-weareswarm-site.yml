@@ -67,18 +67,20 @@ jobs:
           scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
 
           "${ssh_base[@]}" "set -e
-            mkdir -p '$REMOTE_ROOT/dreamos-services'
+            mkdir -p '$REMOTE_ROOT/dreamos-services' '$REMOTE_ROOT/level10'
             if [ -f '$REMOTE_ROOT/index.html' ]; then cp '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/index.html.bak.${GITHUB_RUN_ID}'; fi
             if [ -f '$REMOTE_ROOT/dreamos-services/index.html' ]; then cp '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/dreamos-services/index.html.bak.${GITHUB_RUN_ID}'; fi
+            if [ -f '$REMOTE_ROOT/level10/index.html' ]; then cp '$REMOTE_ROOT/level10/index.html' '$REMOTE_ROOT/level10/index.html.bak.${GITHUB_RUN_ID}'; fi
             if [ -f '$REMOTE_ROOT/.htaccess' ]; then cp '$REMOTE_ROOT/.htaccess' '$REMOTE_ROOT/.htaccess.bak.${GITHUB_RUN_ID}'; fi
           "
 
           "${scp_base[@]}" "routes/weareswarm/index.html" "$remote:$REMOTE_ROOT/index.html"
           "${scp_base[@]}" "routes/weareswarm/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
+          "${scp_base[@]}" "routes/weareswarm/level10/index.html" "$remote:$REMOTE_ROOT/level10/index.html"
           "${scp_base[@]}" "routes/weareswarm/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-htaccess-snippet.txt"
 
           "${ssh_base[@]}" "set -e
-            chmod 644 '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html'
+            chmod 644 '$REMOTE_ROOT/index.html' '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/level10/index.html'
             ht='$REMOTE_ROOT/.htaccess'
             touch \"\$ht\"
             # Remove old root -> dreamos-services redirect if present
@@ -104,7 +106,7 @@ jobs:
           www_code="$(curl -sL -o /tmp/weareswarm-hub.html -w '%{http_code}' --max-time 25 'https://www.weareswarm.site/?cache='"${GITHUB_RUN_ID}")"
           echo "WWW_HUB=$www_code"
           [ "$www_code" = "200" ]
-          grep -Eq 'Dream.OS|Join the Swarm|Proof Wall|7-Day' /tmp/weareswarm-hub.html
+          grep -Eq 'sparks the mind|illuminates the world|Dream.OS|Join the Swarm|Proof Wall|7-Day' /tmp/weareswarm-hub.html
 
           svc_code="$(curl -sL -o /tmp/weareswarm-services.html -w '%{http_code}' --max-time 25 'https://www.weareswarm.site/dreamos-services/?cache='"${GITHUB_RUN_ID}")"
           echo "WWW_SERVICES=$svc_code"
@@ -112,4 +114,9 @@ jobs:
 
           # Services route is a smoke check only; root landing page owns the Dream.OS movement verification.
           test -s /tmp/weareswarm-services.html
+
+          level10_code="$(curl -sL -o /tmp/weareswarm-level10.html -w '%{http_code}' --max-time 25 'https://www.weareswarm.site/level10/?cache='"${GITHUB_RUN_ID}")"
+          echo "WWW_LEVEL10=$level10_code"
+          [ "$level10_code" = "200" ]
+          grep -q 'Level 10 is the ladder out' /tmp/weareswarm-level10.html
 
