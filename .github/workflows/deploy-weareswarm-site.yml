@@ -45,6 +45,8 @@ jobs:
 
 
       - name: Remove stale kids planner from weareswarm.site
+        continue-on-error: true
+        timeout-minutes: 1
         run: |
           ssh -p "${{ secrets.HOSTINGER_PORT }}" \
             -i "$HOME/.ssh/id_hostinger" \
