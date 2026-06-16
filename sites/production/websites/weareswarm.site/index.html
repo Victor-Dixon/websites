@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WeAreSwarm — Be the Light</title>
+  <meta name="description" content="WeAreSwarm is the movement layer for Dream.OS: be the light that sparks the mind that illuminates the world." />
+  <style>
+    :root{
+      --bg:#030404;--panel:#0a0d0c;--text:#effff8;--muted:#8aa39a;
+      --green:#00ff9c;--blue:#00d4ff;--gold:#ffd60a;--pink:#ff3b82;
+      --line:#163029;--mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+      --sans:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 50% -10%,#0d3b30 0%,#050807 38%,#020303 80%);color:var(--text);font-family:var(--sans);overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;background:
+      linear-gradient(transparent 0 96%,#00ff9c0a 97% 100%),
+      linear-gradient(90deg,transparent 0 96%,#00d4ff08 97% 100%);
+      background-size:48px 48px;mask-image:radial-gradient(circle at 50% 20%,#000 0%,transparent 72%);pointer-events:none}
+    .spark{position:fixed;width:42vw;height:42vw;min-width:360px;min-height:360px;right:-10vw;top:-12vw;border-radius:50%;
+      background:radial-gradient(circle,#00ff9c99 0%,#00d4ff33 28%,transparent 66%);
+      filter:blur(28px);animation:pulse 5s ease-in-out infinite;pointer-events:none}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 80px;position:relative}
+    nav{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:70px}
+    .mark{font:900 12px var(--mono);letter-spacing:.16em;color:var(--green);border:1px solid #00ff9c55;background:#00ff9c10;padding:7px 10px;border-radius:999px}
+    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
+    a{color:inherit;text-decoration:none}
+    .navlinks a{font:700 11px var(--mono);color:#a7bbb4;border:1px solid #18342d;padding:8px 10px;border-radius:999px;background:#07100d99}
+    .hero{min-height:68vh;display:grid;align-items:center}
+    .kicker{font:800 11px var(--mono);color:var(--blue);letter-spacing:.18em;margin-bottom:18px}
+    h1{font-size:clamp(48px,9vw,112px);line-height:.86;letter-spacing:-.08em;margin:0;max-width:980px}
+    .glow{color:var(--green);text-shadow:0 0 28px #00ff9c66}
+    .creed{font-size:clamp(20px,3vw,36px);line-height:1.1;max-width:840px;color:#dfffee;margin:28px 0 18px}
+    .sub{max-width:760px;color:var(--muted);font-size:15px;line-height:1.7}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{font:900 12px var(--mono);letter-spacing:.08em;border-radius:999px;padding:13px 16px;border:1px solid #00ff9c77;background:#00ff9c14;color:var(--green);box-shadow:0 0 30px #00ff9c10}
+    .btn.secondary{border-color:#263d38;background:#07100d;color:#cde8df}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:40px}
+    .card{border:1px solid #17332c;background:linear-gradient(180deg,#0b1411dd,#070908dd);border-radius:18px;padding:20px;position:relative;overflow:hidden;transform:translateY(18px);opacity:0;animation:rise .7s ease forwards}
+    .card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.24s}.card:nth-child(4){animation-delay:.36s}
+    .card:before{content:"";position:absolute;inset:auto -20% -45% -20%;height:70%;background:radial-gradient(circle,#00ff9c22,transparent 70%);pointer-events:none}
+    .num{font:900 12px var(--mono);color:var(--gold);margin-bottom:22px}
+    .card h2{font-size:18px;margin:0 0 8px}
+    .card p{font-size:13px;line-height:1.6;color:#91a9a0;margin:0}
+    .section{margin-top:90px;border-top:1px solid #11251f;padding-top:30px}
+    .section h2{font-size:clamp(28px,5vw,54px);letter-spacing:-.05em;margin:0 0 12px}
+    .manifesto{display:grid;grid-template-columns:1fr;gap:10px;counter-reset:m}
+    .line{border:1px solid #142d26;background:#07100d99;border-radius:14px;padding:16px;color:#cde8df;font-size:15px;line-height:1.55}
+    .line:before{counter-increment:m;content:"0" counter(m);font:900 11px var(--mono);color:var(--green);margin-right:12px}
+    .footer{margin-top:70px;color:#52645e;font:11px var(--mono);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    @keyframes pulse{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+    @keyframes rise{to{transform:translateY(0);opacity:1}}
+    @media(max-width:720px){nav{align-items:flex-start;display:block}.navlinks{margin-top:14px}.hero{min-height:60vh}}
+  </style>
+</head>
+<body>
+  <div class="spark"></div>
+  <main class="wrap">
+    <nav>
+      <a class="mark" href="/">WEARESWARM</a>
+      <div class="navlinks">
+        <a href="/level10/">LEVEL 10</a>
+        <a href="https://www.weareswarm.online/level5/">PROOF</a>
+        <a href="/roadmap/">ROADMAP</a>
+        <a href="https://www.weareswarm.online/">COMMAND CENTER</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="kicker">THE MOVEMENT LAYER OF DREAM.OS</div>
+        <h1>Be the <span class="glow">light</span> that sparks the mind that illuminates the world.</h1>
+        <p class="creed">We are not building a website. We are building an operating myth for autonomous teams, proof-driven work, and a new way to move.</p>
+        <p class="sub">WeAreSwarm.site is the public signal. WeAreSwarm.online is the command center. The site gathers belief. The command center proves the work.</p>
+        <div class="actions">
+          <a class="btn" href="/level10/">ENTER LEVEL 10</a>
+          <a class="btn secondary" href="https://www.weareswarm.online/level5/">VIEW LIVE PROOF</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card"><div class="num">01 / SIGNAL</div><h2>The spark</h2><p>Every mission starts as a signal: a broken page, a client need, a task, a proof artifact, a family mission, or a new idea.</p></article>
+      <article class="card"><div class="num">02 / SWARM</div><h2>The routing</h2><p>Dream.OS routes the signal into lanes, agents, workflows, and approval gates. No context gets lost.</p></article>
+      <article class="card"><div class="num">03 / PROOF</div><h2>The receipt</h2><p>Work does not count because it feels done. It counts when proof is stored, scored, and visible.</p></article>
+      <article class="card"><div class="num">04 / ASCENSION</div><h2>The ladder</h2><p>Level 10 is the autonomous income engine: proof becomes trust, trust becomes revenue, revenue deletes dependency.</p></article>
+    </section>
+
+    <section class="section">
+      <h2>The Swarm Manifesto</h2>
+      <div class="manifesto">
+        <div class="line">We do not worship automation. We build systems that make humans stronger.</div>
+        <div class="line">We do not chase noise. We follow proof.</div>
+        <div class="line">We do not hide the work. We publish the receipts.</div>
+        <div class="line">We do not ask agents to replace judgment. We give agents boundaries, tools, and gates.</div>
+        <div class="line">We do not wait for permission to become useful. We create leverage, then prove it.</div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>WEARESWARM.SITE = MOVEMENT</span>
+      <span>WEARESWARM.ONLINE = COMMAND CENTER</span>
+    </footer>
+  </main>
+</body>
+</html>

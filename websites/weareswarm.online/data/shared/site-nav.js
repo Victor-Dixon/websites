@@ -10,7 +10,8 @@
     { href: "/investor-dashboard/", label: "Investor" },
     { href: "/feed/", label: "Feed" },
     { href: "/skill-tree/", label: "Skill Tree" },
-    { href: "/roadmap/", label: "Roadmap" },
+    { href: "/level5/", label: "Level 5" },
+    { href: "/roadmap/", label: "Ops Roadmap" },
   ];
 
   function normalizePath(pathname) {
