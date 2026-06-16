@@ -26,12 +26,30 @@
 
     var active = normalizePath(window.location.pathname);
     nav.innerHTML = "";
+    nav.classList.remove("is-open");
+
+    var head = document.createElement("div");
+    head.className = "site-nav__head";
 
     var brand = document.createElement("a");
     brand.className = "brand";
     brand.href = "/";
     brand.textContent = "🧠 WeAreSwarm";
-    nav.appendChild(brand);
+    head.appendChild(brand);
+
+    var toggle = document.createElement("button");
+    toggle.className = "site-nav__toggle";
+    toggle.type = "button";
+    toggle.setAttribute("aria-label", "Toggle navigation");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.innerHTML = "&#9776;";
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    head.appendChild(toggle);
+
+    nav.appendChild(head);
 
     var links = document.createElement("div");
     links.className = "links";
