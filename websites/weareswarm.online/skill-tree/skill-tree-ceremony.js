@@ -280,7 +280,7 @@
     root.innerHTML = "";
     var sorted = sortEvents(events);
     if (!sorted.length) {
-      root.innerHTML = "<p class=\"empty-state\">No unlock ceremonies recorded yet. Complete a task and run dreamclose to emit events.</p>";
+      root.innerHTML = "<p class=\"empty-state movement-empty\">No ceremonies yet — the swarm waits for your next ascension. Complete a task and run dreamclose to emit unlock events.</p>";
       return;
     }
     sorted.forEach(function (ev) {
@@ -341,8 +341,8 @@
     if (!STS) return;
     var target =
       (ev.unlocked && ev.unlocked[0]) ||
-      ev.task_id ||
-      ev.next_lane;
+      ev.next_lane ||
+      ev.task_id;
     if (STS.switchToSphere) STS.switchToSphere();
     if (STS.panToNode) STS.panToNode(target);
     if (STS.pulseNode) STS.pulseNode(target);

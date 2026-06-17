@@ -370,13 +370,17 @@
   function wireControls(viewport, world) {
     var controls = document.getElementById("sphere-controls");
     if (!controls) return;
-    controls.querySelector("[data-zoom-in]").onclick = function () {
+    var zoomIn = controls.querySelector("[data-zoom-in]");
+    var zoomOut = controls.querySelector("[data-zoom-out]");
+    var resetBtn = controls.querySelector("[data-reset]");
+    if (!zoomIn || !zoomOut || !resetBtn) return;
+    zoomIn.onclick = function () {
       viewport._sphereZoom(1.15);
     };
-    controls.querySelector("[data-zoom-out]").onclick = function () {
+    zoomOut.onclick = function () {
       viewport._sphereZoom(0.87);
     };
-    controls.querySelector("[data-reset]").onclick = function () {
+    resetBtn.onclick = function () {
       viewport._sphereReset();
     };
   }

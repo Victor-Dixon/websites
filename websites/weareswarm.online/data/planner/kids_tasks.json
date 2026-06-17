@@ -1,13 +1,13 @@
 {
   "schema": "dreamvault.kids_tasks_feed.v1",
-  "generated_at": "2026-06-13T10:35:39+00:00",
+  "generated_at": "2026-06-16T23:43:07+00:00",
   "export_script": "runtime/scripts/task_prune_and_kids_route_001.py",
   "source_dirs": [
     "runtime/tasks",
     "tasks",
     "data/tasks"
   ],
-  "task_count": 5,
+  "task_count": 6,
   "routing_rules": {
     "strict": {
       "ai_heavy_lift": true,
@@ -49,6 +49,7 @@
       "owner": "",
       "repo": "websites",
       "public_summary": "Kids Agent Planner MVP \u2014 kid-safe task kanban with agent prompt generation on weareswarm.online.",
+      "unlocks": [],
       "agent_prompt_template": {
         "PROJECT": "WeAreSwarm Kids Agent Planner on weareswarm.online",
         "TASK": "Verify real Swarm tasks and prompt generation",
@@ -99,6 +100,7 @@
       "owner": "",
       "repo": "DreamVault",
       "public_summary": "Projectscanner will convert project analysis into a deduplication authority graph and cleanup manifest.",
+      "unlocks": [],
       "agent_prompt_template": {
         "PROJECT": "projectscanner deduplication",
         "TASK": "Build authority graph from project analysis",
@@ -107,6 +109,58 @@
         "ACTION": "Run analysis pipeline; verify manifest JSON files exist and contain classification buckets only.",
         "VERIFY": "cleanup_manifest_latest.json exists; zero executed deletes.",
         "CLOSEOUT": "Paste how many duplicate candidates were found (summary only)."
+      },
+      "points": 25,
+      "points_on_complete": 25,
+      "points_on_review": 12,
+      "kids_route_reason": "strict_routing",
+      "kids_routing": {
+        "ai_heavy_lift": true,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      }
+    },
+    {
+      "id": "kids_planner_proof_import_001",
+      "title": "Import Kids Planner work logs into DreamVault proof reports",
+      "source": "dreamvault_runtime_tasks",
+      "source_path": "runtime/tasks/kids_planner_proof_import_001.yaml",
+      "project": "WeAreSwarm",
+      "system": "weareswarm.online",
+      "lane": "websites",
+      "priority": "P1",
+      "status": "available",
+      "swarm_status": "ready",
+      "difficulty": "medium",
+      "estimated_minutes": 30,
+      "kid_owner": null,
+      "agent_type": "helper",
+      "skills": [
+        "websites",
+        "planning",
+        "integration",
+        "documentation"
+      ],
+      "parent_approved": true,
+      "kid_safe": true,
+      "objective": "Convert Kids Planner JSON/CSV work-log exports into public-safe DreamVault proof reports\nunder data/reports/kids_planner/ for parent review, closeout feed handoff, and archive.",
+      "kid_instructions": "Read the objective. Ask a parent if unsure. Use Generate Prompt before pasting into your agent.",
+      "owner": "",
+      "repo": "DreamVault",
+      "public_summary": "DreamVault proof import for Kids Planner work-log exports.",
+      "unlocks": [],
+      "agent_prompt_template": {
+        "PROJECT": "WeAreSwarm",
+        "TASK": "Import Kids Planner work logs into DreamVault proof reports",
+        "OBJECTIVE": "Convert Kids Planner JSON/CSV work-log exports into public-safe DreamVault proof reports\nunder data/reports/kids_planner/ for parent review, closeout feed handoff, and archive.",
+        "RULES": "- Make small safe changes.\n- Do not delete unrelated files.\n- Do not touch secrets.\n- Explain errors clearly.\n- After each step, tell the kid what happened.\n- End with: Files Changed, Verification, Next Step.",
+        "ACTION": "Help the kid complete this objective step by step: DreamVault proof import for Kids Planner work-log exports.",
+        "VERIFY": "pytest -q tests/test_kids_planner_worklog_import.py; python runtime/scripts/import_kids_planner_worklogs_001.py tests/fixtures/kids_planner_worklogs_export_sample.json --json",
+        "CLOSEOUT": "Return a short report the kid can paste into the work log."
       },
       "points": 25,
       "points_on_complete": 25,
@@ -149,6 +203,7 @@
       "owner": "",
       "repo": "DreamVault",
       "public_summary": "Kid-safe CSS animation layer for Dream.OS controller pages \u2014 fade, slide, pulse, glow.",
+      "unlocks": [],
       "agent_prompt_template": {
         "PROJECT": "DreamVault operator dashboard",
         "TASK": "Add controller animation layer",
@@ -198,6 +253,7 @@
       "owner": "",
       "repo": "DreamVault",
       "public_summary": "Add dream task compile, run, and report CLI commands for local task runner.",
+      "unlocks": [],
       "agent_prompt_template": {
         "PROJECT": "DreamVault dream CLI",
         "TASK": "Add dream task compile/run/report commands",
@@ -247,6 +303,7 @@
       "owner": "",
       "repo": "DreamVault",
       "public_summary": "Document autonomous runtime capabilities in a resumable manifest for future agents.",
+      "unlocks": [],
       "agent_prompt_template": {
         "PROJECT": "DreamVault autonomous runtime",
         "TASK": "Build autonomous runtime foundation manifest",

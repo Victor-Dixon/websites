@@ -8,17 +8,18 @@
   <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
   <link rel="stylesheet" href="/skill-tree/skill-tree-sphere.css">
+  <link rel="stylesheet" href="/skill-tree/skill-tree-movement-theme.css">
 </head>
-<body>
+<body class="swarm-movement">
   <nav class="site-nav"></nav>
 
   <main class="container">
     <header class="hero skill-hero">
-      <p class="badge ok">WeAreSwarm × Dream.OS</p>
+      <p class="badge ok movement-kicker">Be the Light · WeAreSwarm × Dream.OS</p>
       <h1>Swarm Skill Tree</h1>
-      <p>
-        The public capability map for Dream.OS — sphere grid layout with evidence-backed unlocks,
-        live planner bridge, and operator lane markers.
+      <p class="movement-manifesto">
+        The operating myth made visible — every unlock is a ceremony, every node proof that the
+        movement ships. Follow the ascension grid; the swarm advances when production work lands.
       </p>
       <div class="meta-row">
         <span class="badge ok" id="live-badge">● Planner bridge</span>
@@ -40,9 +41,9 @@
       <div class="sphere-shell" id="sphere-shell">
         <div class="sphere-viewport" id="sphere-viewport"></div>
         <div class="sphere-controls" id="sphere-controls">
-          <button type="button" data-zoom-in" title="Zoom in">+</button>
-          <button type="button" data-zoom-out" title="Zoom out">−</button>
-          <button type="button" data-reset" title="Reset view">◎</button>
+          <button type="button" data-zoom-in title="Zoom in">+</button>
+          <button type="button" data-zoom-out title="Zoom out">−</button>
+          <button type="button" data-reset title="Reset view">◎</button>
         </div>
       </div>
       <div class="sphere-legend" aria-hidden="true">
@@ -61,10 +62,10 @@
 
     <section id="ceremony-view" class="panel-view hidden" aria-label="Unlock ceremony history">
       <div class="panel-note" style="margin-top:0;">
-        <h2 style="margin-top:0;font-size:1rem;">Unlock Timeline</h2>
-        <p style="margin:0 0 0.75rem;font-size:0.82rem;">Chronological unlock ceremonies from DreamClose. Click an entry to highlight nodes on the sphere grid.</p>
-        <div id="ceremony-timeline" class="ceremony-timeline">
-          <p class="empty-state">Loading ceremony feed…</p>
+        <h2 class="movement-section-title" style="margin-top:0;font-size:1rem;">Unlock Timeline</h2>
+        <p class="movement-section-lead" style="margin:0 0 0.75rem;font-size:0.82rem;">Chronological unlock ceremonies from DreamClose — the believer's record. Click an entry to highlight nodes on the sphere grid.</p>
+        <div id="ceremony-timeline" class="ceremony-timeline" aria-live="polite">
+          <p class="empty-state movement-empty">Gathering ceremony feed…</p>
         </div>
       </div>
     </section>
@@ -105,6 +106,9 @@
           "Shared dashboard scripts missing — redeploy data/shared/ and /skill-tree/";
         document.getElementById("live-badge").className = "badge block";
         document.getElementById("live-badge").textContent = "● Partial data";
+        if (STC && typeof STC.initCeremony === "function") {
+          STC.initCeremony({ events: { events: [] }, eventsOk: false, panel: {}, feed: null });
+        }
         return;
       }
 
@@ -124,30 +128,39 @@
       const nextLane = laneResult.data || {};
       const closeoutFeed = feedResult.ok ? (feedResult.data || { items: [] }) : null;
 
-      if (!panelResult.ok) {
-        document.getElementById("skill-tree").innerHTML =
-          "<p class=\"empty-state\">skill_tree_panel.json unavailable — run DreamVault sync.</p>";
-        document.getElementById("sphere-viewport").innerHTML =
-          "<p class=\"empty-state\">skill_tree_panel.json unavailable — run DreamVault sync.</p>";
-        document.getElementById("live-badge").className = "badge warn";
-        document.getElementById("live-badge").textContent = "● Stale / missing JSON";
-      } else {
-        STD.renderSkillTreePanel(panel, manifest);
-        STS.renderSphereGrid(panel, nextLane, skillEvents);
-      }
+      try {
+        if (!panelResult.ok) {
+          document.getElementById("skill-tree").innerHTML =
+            "<p class=\"empty-state\">skill_tree_panel.json unavailable — run DreamVault sync.</p>";
+          document.getElementById("sphere-viewport").innerHTML =
+            "<p class=\"empty-state\">skill_tree_panel.json unavailable — run DreamVault sync.</p>";
+          document.getElementById("live-badge").className = "badge warn";
+          document.getElementById("live-badge").textContent = "● Stale / missing JSON";
+        } else {
+          STD.renderSkillTreePanel(panel, manifest);
+          STS.renderSphereGrid(panel, nextLane, skillEvents);
+        }
 
-      if (STC && typeof STC.initCeremony === "function") {
-        STC.initCeremony({
-          events: skillEvents,
-          eventsOk: eventsResult.ok,
-          panel: panel,
-          feed: closeoutFeed,
-        });
-      }
-
-      if (!manifestResult.ok && panelResult.ok) {
-        document.getElementById("sync-meta").textContent =
-          "Loaded skill tree panel · manifest.json missing";
+        if (!manifestResult.ok && panelResult.ok) {
+          document.getElementById("sync-meta").textContent =
+            "Loaded skill tree panel · manifest.json missing";
+        }
+      } catch (initErr) {
+        console.error("Skill tree render error:", initErr);
+        var liveBadge = document.getElementById("live-badge");
+        if (liveBadge) {
+          liveBadge.className = "badge warn";
+          liveBadge.textContent = "● Partial render — ceremony feed still loading";
+        }
+      } finally {
+        if (STC && typeof STC.initCeremony === "function") {
+          STC.initCeremony({
+            events: skillEvents,
+            eventsOk: eventsResult.ok,
+            panel: panel,
+            feed: closeoutFeed,
+          });
+        }
       }
     })();
   </script>

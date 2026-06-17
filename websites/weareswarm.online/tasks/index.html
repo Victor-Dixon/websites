@@ -143,102 +143,12 @@
   <script src="/data/shared/site-nav.js"></script>
   <script src="/data/shared/focus-dashboard.js"></script>
   <script src="/data/shared/tasks-paginated.js"></script>
-  <script>
-    (async function () {
-      const { fetchJson, el, setSyncMeta } = window.FocusDashboard;
-      try {
-        const [queueResult, nextLaneResult, manifestResult] = await Promise.allSettled([
-          fetchJson("strategic_active_queue.json"),
-          fetchJson("next_lane.json"),
-          fetchJson("manifest.json"),
-        ]);
-        if (queueResult.status !== "fulfilled") {
-          throw queueResult.reason;
-        }
-        if (nextLaneResult.status !== "fulfilled") {
-          throw nextLaneResult.reason;
-        }
-        const queue = queueResult.value;
-        const nextLane = nextLaneResult.value;
-        if (manifestResult.status === "fulfilled") {
-          setSyncMeta(manifestResult.value);
-        } else {
-          document.getElementById("sync-meta").textContent =
-            "Queue loaded · manifest unavailable";
-        }
-
-        document.getElementById("campaign").textContent = queue.campaign || "—";
-        document.getElementById("queue-next").textContent = queue.next_lane || "—";
-        document.getElementById("deferred-rule").textContent = queue.deferred_rule || "—";
-        document.getElementById("runtime-count").textContent =
-          queue.runtime_active_count != null ? String(queue.runtime_active_count) : "—";
-        document.getElementById("master-count").textContent =
-          queue.master_task_count != null ? String(queue.master_task_count) : "—";
-        if (queue.master_task_source) {
-          document.getElementById("master-source").textContent = queue.master_task_source;
-        }
-
-        const aq = document.getElementById("active-queue");
-        (queue.active_queue || []).forEach((t) => aq.appendChild(el("li", { text: t })));
-
-        const nextKv = document.getElementById("next-lane-kv");
-        nextKv.innerHTML = "";
-        [
-          ["Lane", nextLane.next_lane || "—"],
-          ["Task YAML", nextLane.next_task || "—"],
-        ].forEach(([k, v]) => {
-          nextKv.appendChild(el("dt", { text: k }));
-          nextKv.appendChild(el("dd", { text: v }));
-        });
-
-        const tbody = document.querySelector("#approved-table tbody");
-        (nextLane.approved_tasks || []).forEach((t) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML =
-            "<td>" + (t.task_id || "—") + "</td>" +
-            "<td>" + (t.priority || "—") + "</td>" +
-            "<td>" + (t.repo || "—") + "</td>" +
-            "<td><span class=\"status-pill\">" + (t.status || "—") + "</span></td>";
-          tbody.appendChild(tr);
-        });
-
-        const masterBody = document.querySelector("#master-table tbody");
-        (queue.master_tasks || []).forEach((t) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML =
-            "<td>" + (t.priority || "—") + "</td>" +
-            "<td><span class=\"status-pill\">" + (t.status || "—") + "</span></td>" +
-            "<td>" + (t.project || "—") + "</td>" +
-            "<td>" + (t.lane || "—") + "</td>" +
-            "<td>" + (t.title || t.id || "—") + "</td>";
-          masterBody.appendChild(tr);
-        });
-
-        const feedRoot = document.getElementById("full-task-feed");
-        if (feedRoot && window.TasksPaginated) {
-          await window.TasksPaginated.mountTasksFeed(
-            feedRoot,
-            "/data/planner/all_tasks.json",
-            "/data/planner/kids_tasks.json"
-          );
-          const search = document.getElementById("feed-search");
-          if (search) {
-            const params = new URLSearchParams(window.location.search);
-            search.value = params.get("q") || "";
-            search.addEventListener("change", () => {
-              const f = window.TasksPaginated.parseFilter();
-              const q = search.value.trim();
-              const qs = new URLSearchParams();
-              if (f.executor !== "all") qs.set("executor", f.executor);
-              if (q) qs.set("q", q);
-              window.location.search = qs.toString();
-            });
-          }
-        }
-      } catch (err) {
-        document.getElementById("sync-meta").textContent = "Load error: " + err.message;
-      }
-    })();
-  </script>
+  <script src="/data/shared/tasks-dashboard.js"></script>
+  <noscript>
+    <p class="empty-state" style="margin: 1rem 0;">
+      Tasks dashboard requires JavaScript. Planner JSON is at
+      <a href="/data/planner/strategic_active_queue.json">strategic_active_queue.json</a>.
+    </p>
+  </noscript>
 </body>
 </html>

@@ -46,9 +46,20 @@
     return qs ? "?" + qs : "";
   }
 
+  function resolveExecutor(task) {
+    var key = task && task.executor;
+    if (key === "agent" || key === "kids" || key === "victor") return key;
+    if (task && task.kids_routable) return "kids";
+    var routing = (task && task.kids_routing) || {};
+    if (routing.requires_adult_gate) return "victor";
+    var owner = String((task && task.owner) || "").toLowerCase();
+    if (owner === "victor" || owner === "operator" || owner === "human") return "victor";
+    return "agent";
+  }
+
   function filterTasks(tasks, filter) {
     return tasks.filter(function (task) {
-      if (filter.executor !== "all" && task.executor !== filter.executor) return false;
+      if (filter.executor !== "all" && resolveExecutor(task) !== filter.executor) return false;
       if (!filter.q) return true;
       var hay = [
         task.id,
@@ -65,8 +76,8 @@
     });
   }
 
-  function renderExecutorBadge(executor) {
-    var key = executor || "agent";
+  function renderExecutorBadge(executor, task) {
+    var key = executor || resolveExecutor(task || {});
     var span = el("span", {
       class: "status-pill executor-badge " + (EXECUTOR_CLASS[key] || "executor-agent"),
       text: EXECUTOR_LABELS[key] || key,
@@ -106,8 +117,21 @@
     }
   }
 
+  function normalizeTasksPayload(payload) {
+    if (!payload || typeof payload !== "object") {
+      return { tasks: [], task_count: 0 };
+    }
+    var tasks = Array.isArray(payload.tasks) ? payload.tasks : [];
+    return {
+      tasks: tasks,
+      task_count: payload.task_count != null ? payload.task_count : tasks.length,
+      generated_at: payload.generated_at,
+    };
+  }
+
   function renderFeedTable(root, payload, options) {
-    var tasks = (payload && payload.tasks) || [];
+    var normalized = normalizeTasksPayload(payload);
+    var tasks = normalized.tasks;
     var filter = parseFilter();
     var filtered = filterTasks(tasks, filter);
     var totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
@@ -118,11 +142,11 @@
     var metaEl = root.querySelector("[data-feed-meta]");
     if (metaEl) {
       metaEl.textContent =
-        (payload.task_count || tasks.length) +
+        (normalized.task_count || tasks.length) +
         " exported · " +
         filtered.length +
         " shown · updated " +
-        (payload.generated_at || "—");
+        (normalized.generated_at || "—");
     }
 
     var tbody = root.querySelector("[data-feed-tbody]");
@@ -152,7 +176,7 @@
         (task.status || "—") +
         "</span></td>" +
         "<td class=\"executor-cell\"></td>";
-      tr.querySelector(".executor-cell").appendChild(renderExecutorBadge(task.executor));
+      tr.querySelector(".executor-cell").appendChild(renderExecutorBadge(task.executor, task));
       tbody.appendChild(tr);
     });
 
@@ -189,12 +213,19 @@
     if (!fetchJson) {
       throw new Error("FocusDashboard.fetchJson unavailable");
     }
-    var allPayload = await fetchJson(plannerJsonName(feedUrl));
+    var allPayload;
+    try {
+      allPayload = normalizeTasksPayload(await fetchJson(plannerJsonName(feedUrl)));
+    } catch (e) {
+      allPayload = { tasks: [], task_count: 0 };
+      var metaEl = root.querySelector("[data-feed-meta]");
+      if (metaEl) metaEl.textContent = "Feed unavailable — " + (e && e.message ? e.message : String(e));
+    }
     var kidsPayload = null;
     try {
-      kidsPayload = await fetchJson(plannerJsonName(kidsFeedUrl));
+      kidsPayload = normalizeTasksPayload(await fetchJson(plannerJsonName(kidsFeedUrl)));
     } catch (e) {
-      kidsPayload = { task_count: 0 };
+      kidsPayload = { tasks: [], task_count: 0 };
     }
     renderFeedTable(root, allPayload, { kidsCount: kidsPayload.task_count || 0 });
     return { allPayload: allPayload, kidsPayload: kidsPayload };
@@ -205,5 +236,6 @@
     mountTasksFeed: mountTasksFeed,
     renderFeedTable: renderFeedTable,
     parseFilter: parseFilter,
+    resolveExecutor: resolveExecutor,
   };
 })();
