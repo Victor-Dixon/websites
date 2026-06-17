@@ -112,11 +112,14 @@ sites:
       - sites/production/websites/weareswarm.site/feed
       - sites/production/websites/weareswarm.site/closeouts
       - sites/production/websites/weareswarm.site/data
+      - sites/production/websites/weareswarm.site/level10
+      - sites/production/websites/weareswarm.site/roadmap
     deploy_files:
+      - sites/production/websites/weareswarm.site/index.html
       - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/front-page.php
       - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/header.php
       - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/page-feed.php
-    notes: "Swarm marketing site — swarm-theme PHP + /feed WP template + /closeouts static fallback + data JSON"
+    notes: "Movement layer static (index, level10, movement roadmap) + swarm-theme PHP + /feed + /closeouts + data JSON"
 
   houstonsipqueen.com:
     path: sites/production/websites/houstonsipqueen.com
