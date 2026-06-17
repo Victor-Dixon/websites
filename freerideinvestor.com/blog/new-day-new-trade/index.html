@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>New Day, New Trade | FreeRideInvestor</title>
+  <meta name="description" content="A 5 AM trading journal on discipline, Tesla, boredom, execution, and building trust with tomorrow's self." />
+  <style>
+    :root {
+      --bg: #07090d;
+      --panel: #101722;
+      --text: #f5f7fb;
+      --muted: #9aa7b8;
+      --accent: #39ff88;
+      --danger: #ff4d6d;
+      --line: rgba(255,255,255,.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(57,255,136,.14), transparent 34%),
+        radial-gradient(circle at 80% 10%, rgba(77,161,255,.12), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+
+    .shell {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 18px 70px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 56px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .brand {
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      background: rgba(16,23,34,.72);
+      border-radius: 28px;
+      padding: clamp(26px, 5vw, 54px);
+      box-shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: .95;
+      margin: 0 0 20px;
+      letter-spacing: -.06em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: clamp(18px, 2.3vw, 24px);
+      max-width: 760px;
+      margin: 0;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 28px 0 0;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    article {
+      max-width: 760px;
+      margin: 44px auto 0;
+      font-size: 18px;
+    }
+
+    h2 {
+      margin-top: 42px;
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+    }
+
+    p { margin: 18px 0; }
+
+    .pull {
+      margin: 36px 0;
+      padding: 24px;
+      border-left: 4px solid var(--accent);
+      background: rgba(57,255,136,.08);
+      border-radius: 18px;
+      font-size: 24px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .danger {
+      border-left-color: var(--danger);
+      background: rgba(255,77,109,.08);
+    }
+
+    .checklist {
+      display: grid;
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .checklist div {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      padding: 14px 16px;
+      border-radius: 14px;
+    }
+
+    footer {
+      max-width: 760px;
+      margin: 52px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      article { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="nav">
+      <a class="brand" href="/">FreeRideInvestor</a>
+      <a href="/blog/">Blog</a>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow">Trading Journal · 5 AM Reset</div>
+      <h1>New Day,<br />New Trade.</h1>
+      <p class="subtitle">
+        A morning check-in on discipline, Tesla, boredom, execution, and earning trust with tomorrow's self.
+      </p>
+
+      <div class="metrics">
+        <div class="metric"><strong>$1,025</strong><span>Account</span></div>
+        <div class="metric"><strong>$433</strong><span>Yesterday P/L</span></div>
+        <div class="metric"><strong>$1,203.10</strong><span>Weekly P/L</span></div>
+        <div class="metric"><strong>6</strong><span>Green Days</span></div>
+      </div>
+    </section>
+
+    <article>
+      <p>It's 5 AM.</p>
+
+      <p>The market hasn't opened yet.</p>
+
+      <p>Tesla hasn't made its move.</p>
+
+      <p>The account is sitting at $1,025.</p>
+
+      <p>A few weeks ago that number would have felt impossible. Yesterday alone I made $433. This week I'm up $1,203.10. Since PDT restrictions disappeared and I started trading with more flexibility, I've only had one red day.</p>
+
+      <p>Those numbers feel good.</p>
+
+      <p>But that's not what I'm thinking about this morning.</p>
+
+      <p>What I'm thinking about is how close things can be.</p>
+
+      <p>Yesterday started with about $590.</p>
+
+      <p>Today I'm sitting at $1,025.</p>
+
+      <p>But if a few decisions had gone differently, I could just as easily be starting the morning with $400.</p>
+
+      <p>That's not fear talking.</p>
+
+      <p>That's respect.</p>
+
+      <p>The market has a way of humbling people who start believing every green day was guaranteed.</p>
+
+      <h2>The Mental Check</h2>
+
+      <div class="checklist">
+        <div>Focus: 10/10</div>
+        <div>Energy: 8/10</div>
+        <div>Patience: 8/10</div>
+        <div>Confidence: 10/10</div>
+        <div>FOMO: 3/10</div>
+        <div>Revenge Trading: 0/10</div>
+        <div>Need To Make Money Today: 6/10</div>
+      </div>
+
+      <p>The confidence is high.</p>
+
+      <p>Maybe the highest it's been in a long time.</p>
+
+      <p>But confidence can be dangerous when it starts pretending to be certainty.</p>
+
+      <div class="pull">
+        The goal isn't to predict the market. The goal is to execute.
+      </div>
+
+      <h2>What Worked</h2>
+
+      <p>My entries were good.</p>
+
+      <p>Actually, after the first trade, they were beautiful.</p>
+
+      <p>I moved my option expirations further out. That gives me breathing room. It gives me flexibility. Most importantly, it prevents me from feeling trapped by time decay every second I'm in a position.</p>
+
+      <p>My trade selection continues to improve.</p>
+
+      <p>The removal of PDT restrictions has helped because now I don't feel forced into making every trade count. I can wait.</p>
+
+      <p>I can be selective.</p>
+
+      <p>I can take the setup instead of taking the opportunity.</p>
+
+      <p>That's a huge difference.</p>
+
+      <h2>What Didn't Work</h2>
+
+      <p>If I'm being critical, I overheld twice.</p>
+
+      <p>The first one happened early.</p>
+
+      <p>I saw QQQ divergence and held longer than normal.</p>
+
+      <p>I still had a stop.</p>
+
+      <p>I was literally hovering over the sell button once the position got close to my danger zone.</p>
+
+      <p>But I also know that holding that long early in the day could have rooted me emotionally into the trade.</p>
+
+      <p>That's something I need to keep watching.</p>
+
+      <p>The second hold happened near the close.</p>
+
+      <p>That one bothers me less.</p>
+
+      <p>The setup was A+.</p>
+
+      <p>The expiration was far enough away that I had time on my side.</p>
+
+      <p>I was willing to take the loss if the thesis failed.</p>
+
+      <p>The move eventually came.</p>
+
+      <p>Still, I log it because discipline isn't just about losses.</p>
+
+      <p>It's about reviewing everything.</p>
+
+      <p>Even the trades that worked.</p>
+
+      <h2>My Biggest Enemy</h2>
+
+      <p>It isn't fear.</p>
+
+      <p>It isn't chasing.</p>
+
+      <p>It isn't revenge trading.</p>
+
+      <p>It's boredom.</p>
+
+      <p>Most of my damage happens after I've already won.</p>
+
+      <p>The market gives me money.</p>
+
+      <p>Then I stay.</p>
+
+      <p>Then I get bored.</p>
+
+      <p>Then I convince myself there's another opportunity.</p>
+
+      <p>Then I start giving the day back.</p>
+
+      <div class="pull danger">
+        If I feel the urge to trade out of boredom, I trade shares. Not options.
+      </div>
+
+      <p>Options are for setups.</p>
+
+      <p>Shares are for curiosity.</p>
+
+      <h2>Today's Tesla Thesis</h2>
+
+      <p>Without looking at a chart:</p>
+
+      <p><strong>Bullish:</strong> Tesla needs to reclaim and push through 407.50 while QQQ provides market support.</p>
+
+      <p><strong>Bearish:</strong> QQQ rolls over and Tesla loses 400.</p>
+
+      <p><strong>Neutral:</strong> Tesla chops between key levels and simply respects support and resistance.</p>
+
+      <p>If that's the environment, I won't force anything.</p>
+
+      <p>I'll trade what the market gives me.</p>
+
+      <p>Nothing more.</p>
+
+      <h2>Beyond Trading</h2>
+
+      <p>Trading isn't the only scoreboard.</p>
+
+      <p>Today my biggest objective isn't actually making money.</p>
+
+      <p>It's bringing the agent cellphone messaging system back to life.</p>
+
+      <p>I want agents talking to agents again.</p>
+
+      <p>I want autonomous communication flowing through the system.</p>
+
+      <p>I want proof that the swarm is coordinating without me manually pushing every interaction.</p>
+
+      <p>Because the real goal has never been becoming a full-time trader.</p>
+
+      <p>The real goal is building systems that work while I sleep.</p>
+
+      <h2>The Real Objective</h2>
+
+      <p>Protect capital.</p>
+
+      <p>Gather data.</p>
+
+      <p>Grow the account.</p>
+
+      <p>Execute the process.</p>
+
+      <p>Yes, I want all four.</p>
+
+      <p>But if I had to choose one, it would be this:</p>
+
+      <div class="pull">
+        Follow the Tesla process so well that tomorrow's Victor can trust today's Victor.
+      </div>
+
+      <p>That's the game.</p>
+
+      <p>Not one trade.</p>
+
+      <p>Not one day.</p>
+
+      <p>Not one week.</p>
+
+      <p>Trust earned through repetition.</p>
+
+      <p>The money follows.</p>
+    </article>
+
+    <footer>
+      FreeRideInvestor trading journal. Not financial advice. Personal process documentation only.
+    </footer>
+  </main>
+</body>
+</html>
