@@ -444,6 +444,12 @@ function swarm_create_default_menu() {
             ));
 
             wp_update_nav_menu_item($menu_id, 0, array(
+                'menu-item-title' => 'Feed',
+                'menu-item-url' => home_url('/feed/'),
+                'menu-item-status' => 'publish',
+            ));
+
+            wp_update_nav_menu_item($menu_id, 0, array(
                 'menu-item-title' => 'About',
                 'menu-item-url' => home_url('/about-we-are-swarm-multi-agent-intelligence-system/'),
                 'menu-item-status' => 'publish',
