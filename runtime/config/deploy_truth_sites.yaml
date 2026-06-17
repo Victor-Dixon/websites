@@ -1,0 +1,14 @@
+sites:
+  freerideinvestor.com:
+    source_root: freerideinvestor.com
+    deploy_root: runtime/content/freerideinvestor.com
+    workflow: .github/workflows/deploy-freeride-hostinger.yml
+    url: https://freerideinvestor.com/
+    require_identical: true
+    require_live: true
+    files:
+      - index.html
+    markers:
+      - Dream.OS Cockpit
+      - cdn.tailwindcss.com
+      - three@0.165.0
