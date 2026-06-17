@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level 5 Scoreboard — weareswarm.online</title>
+  <meta name="description" content="Live L5 agent scoreboard fed from DreamVault SQLite authority via public JSON export.">
+  <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <link rel="stylesheet" href="/data/shared/command-hive.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/data/shared/command-hive-config.js"></script>
+</head>
+<body class="hive-body">
+  <nav class="site-nav"></nav>
+
+  <main class="container">
+    <div class="hive-site-redirect hive-glass">
+      <strong>Live Level 5 command dashboard</strong> runs on
+      <a href="https://www.weareswarm.site/level5/">weareswarm.site/level5/</a>
+      — movement narrative + full scoreboard. This page is the operator summary on the command center.
+    </div>
+
+    <header class="hero hive-mission-header">
+      <p class="hive-chip hive-chip--ready">Capability Summary</p>
+      <h1>Level 5 Scoreboard</h1>
+      <p>Public-safe capability snapshot for the command center — fed from DreamVault SQLite via JSON export.</p>
+      <div class="meta-row">
+        <span class="badge ok" id="live-badge">● Summary board</span>
+        <span class="badge" id="sync-meta">Loading scoreboard feed…</span>
+      </div>
+    </header>
+
+    <section class="panel hive-glass hive-glass--glow panel--full">
+      <div class="panel-header">
+        <div>
+          <h2>Agent totals</h2>
+          <p class="subtitle">Scores by agent and lane</p>
+        </div>
+        <a class="hive-chip hive-chip--live" href="https://www.weareswarm.site/level5/">Full dashboard →</a>
+      </div>
+      <div class="panel-body">
+        <div class="capability-score-grid" id="l5-scoreboard">
+          <p class="subtitle">Loading…</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-2" style="margin-top: 1.25rem;">
+      <section class="panel hive-glass">
+        <div class="panel-header"><div><h2>Mission loop</h2></div></div>
+        <div class="panel-body" id="l5-mission">
+          <p class="subtitle">Loading…</p>
+        </div>
+      </section>
+      <section class="panel hive-glass">
+        <div class="panel-header"><div><h2>Recent events</h2></div><a class="badge" href="/skill-tree/">Skill tree</a></div>
+        <div class="panel-body">
+          <ul class="list" id="l5-events">
+            <li>Loading…</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+      }[char]));
+    }
+
+    function renderScoreboard(rows) {
+      const root = document.getElementById("l5-scoreboard");
+      if (!rows.length) {
+        root.innerHTML = "<p class=\"subtitle\">No scoreboard rows yet.</p>";
+        return;
+      }
+      root.innerHTML = rows.slice(0, 14).map((row) => `
+        <article class="capability-score-card hive-glass">
+          <h3>${escapeHtml(row.agent)}</h3>
+          <p class="capability-score">${Number(row.total_score || 0).toFixed(1)}</p>
+          <span class="hive-chip">${escapeHtml(row.lane || "general")}</span>
+        </article>
+      `).join("");
+    }
+
+    function renderMission(loop) {
+      const root = document.getElementById("l5-mission");
+      root.innerHTML = `
+        <ul class="status-checklist">
+          <li><strong>Current mission</strong> — ${escapeHtml(loop.current_mission || "—")}</li>
+          <li><strong>Handoff</strong> — ${escapeHtml(loop.handoff || "—")}</li>
+          <li><strong>Queue position</strong> — ${escapeHtml(loop.queue_position ?? 0)}</li>
+        </ul>
+      `;
+    }
+
+    function renderEvents(events) {
+      const root = document.getElementById("l5-events");
+      if (!events.length) {
+        root.innerHTML = "<li>No events recorded.</li>";
+        return;
+      }
+      root.innerHTML = events.slice(0, 12).map((evt) => `
+        <li>
+          <strong>${escapeHtml(evt.task_id)}</strong>
+          — ${escapeHtml(evt.agent)} (+${Number(evt.score || 0).toFixed(1)})
+          <span class="mono-note">${escapeHtml(evt.event_type)} · ${escapeHtml(evt.created_at)}</span>
+        </li>
+      `).join("");
+    }
+
+    async function loadL5Scoreboard() {
+      const meta = document.getElementById("sync-meta");
+      const badge = document.getElementById("live-badge");
+      try {
+        const response = await fetch("/data/planner/l5_scoreboard.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("http " + response.status);
+        const data = await response.json();
+        meta.textContent = `Source: ${data.source || "dreamvault"} · Events: ${data.event_count || 0} · Generated: ${data.generated_at || "unknown"}`;
+        badge.textContent = "● Live JSON feed";
+        renderScoreboard(data.scoreboard || []);
+        renderMission(data.mission_loop || {});
+        renderEvents(data.recent_events || []);
+      } catch (error) {
+        meta.textContent = "Scoreboard feed unavailable";
+        badge.className = "badge warn";
+        badge.textContent = "● Feed error";
+        document.getElementById("l5-scoreboard").innerHTML = `
+          <p class="subtitle">Could not load <code>/data/planner/l5_scoreboard.json</code>: ${escapeHtml(error.message)}</p>`;
+      }
+    }
+
+    loadL5Scoreboard();
+  </script>
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/proof-feed-rail.js"></script>
+  <script src="/data/shared/command-hive-shell.js"></script>
+</body>
+</html>

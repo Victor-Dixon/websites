@@ -1,0 +1,1273 @@
+{
+  "agents": [
+    "cpc_dispatch",
+    "discord_closeout_md",
+    "dreamlane",
+    "dreamvault_closeout_json",
+    "live_build_feed",
+    "operator",
+    "operator-1",
+    "pytest",
+    "runtime",
+    "skill_tree",
+    "task_fsm"
+  ],
+  "db_path": "D:\\DreamVault\\data\\l5\\scoreboard.db",
+  "event_count": 81,
+  "generated_at": "2026-06-17T02:56:14+00:00",
+  "mission_loop": {
+    "current_mission": null,
+    "handoff": null,
+    "queue_position": 0,
+    "updated_at": "2026-06-17T02:29:40+00:00"
+  },
+  "recent_events": [
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-16T23:49:49+00:00",
+      "event_type": "cpc_closeout",
+      "id": 53,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T03-25-58-0500"
+    },
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-16T23:49:49+00:00",
+      "event_type": "cpc_closeout",
+      "id": 54,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T12-00-00-00-00"
+    },
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-16T23:49:49+00:00",
+      "event_type": "cpc_closeout",
+      "id": 55,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T03-06-54-0500"
+    },
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-16T23:49:49+00:00",
+      "event_type": "cpc_closeout",
+      "id": 56,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T03-04-50-0500"
+    },
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-16T23:49:49+00:00",
+      "event_type": "cpc_closeout",
+      "id": 57,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T02-58-22-0500"
+    },
+    {
+      "agent": "skill_tree",
+      "created_at": "2026-06-16T23:39:40+00:00",
+      "event_type": "skill_event",
+      "id": 16,
+      "metadata": {
+        "proof_path": "reports/debugger/ai_debugger_productized_proof.json",
+        "source": "skill_events.json"
+      },
+      "score": 10.0,
+      "task_id": "ai_debugger_assist_proof_gap_001"
+    },
+    {
+      "agent": "skill_tree",
+      "created_at": "2026-06-16T23:38:24+00:00",
+      "event_type": "skill_event",
+      "id": 15,
+      "metadata": {
+        "proof_path": "reports/debugger/ai_debugger_productized_proof.json",
+        "source": "skill_events.json"
+      },
+      "score": 10.0,
+      "task_id": "ai_debugger_assist_proof_gap_001"
+    },
+    {
+      "agent": "skill_tree",
+      "created_at": "2026-06-16T23:20:00+00:00",
+      "event_type": "skill_event",
+      "id": 13,
+      "metadata": {
+        "proof_path": "reports/debugger/ai_debugger_productized_proof.json",
+        "source": "skill_events.json"
+      },
+      "score": 10.0,
+      "task_id": "ai_debugger_assist_proof_gap_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-13T21:15:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 12,
+      "metadata": {
+        "lane": "deploy_investor_dashboard_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\deploy_investor_dashboard_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "deploy_investor_dashboard_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-13T21:15:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 58,
+      "metadata": {
+        "category": "governance",
+        "lane": "post_closeout_surface_sync (blocked on duplicate_dreamvault_path_review_001)",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "deploy_investor_dashboard_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-13T21:10:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 11,
+      "metadata": {
+        "lane": "productization",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\investor_dashboard_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "investor_dashboard_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-13T21:10:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 59,
+      "metadata": {
+        "category": "governance",
+        "lane": "deploy_investor_dashboard_001",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "investor_dashboard_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-13T14:00:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 8,
+      "metadata": {
+        "lane": "productization",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\auto_portfolio_surface_sync_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "auto_portfolio_surface_sync_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-13T14:00:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 60,
+      "metadata": {
+        "category": "governance",
+        "lane": "deploy_weareswarm_surfaces_001",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "auto_portfolio_surface_sync_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-13T10:55:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 10,
+      "metadata": {
+        "lane": "deploy_weareswarm_surfaces_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\deploy_weareswarm_surfaces_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "deploy_weareswarm_surfaces_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-13T10:55:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 61,
+      "metadata": {
+        "category": "governance",
+        "lane": "(none \u2014 surface deploy lane complete)",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "deploy_weareswarm_surfaces_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-13T10:42:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 9,
+      "metadata": {
+        "lane": "weareswarm_homepage_deploy_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\weareswarm_homepage_deploy_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "weareswarm_homepage_deploy_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-06-13T10:42:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 62,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "investor_dashboard_001",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "weareswarm_homepage_deploy_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-13T10:30:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 5,
+      "metadata": {
+        "lane": "scoped_commit_sweep_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\scoped_commit_sweep_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "scoped_commit_sweep_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-13T10:30:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 7,
+      "metadata": {
+        "lane": "portfolio_deploy_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\portfolio_deploy_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "portfolio_deploy_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-13T10:30:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 63,
+      "metadata": {
+        "category": "governance",
+        "lane": "product_revenue_classification_001",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "scoped_commit_sweep_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-13T10:30:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 64,
+      "metadata": {
+        "category": "governance",
+        "lane": "investor_dashboard_001 (P1 \u2014 revenue class investor surfaces)",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "portfolio_deploy_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-13T10:05:43+00:00",
+      "event_type": "closeout_backfill",
+      "id": 6,
+      "metadata": {
+        "lane": "product_revenue_classification_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\product_revenue_classification_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "product_revenue_classification_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-13T10:05:43+00:00",
+      "event_type": "cpc_closeout",
+      "id": 65,
+      "metadata": {
+        "category": "governance",
+        "lane": "investor_dashboard_001 (deferred per operator lane)",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "product_revenue_classification_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-13T10:00:55+00:00",
+      "event_type": "cpc_closeout",
+      "id": 66,
+      "metadata": {
+        "category": "governance",
+        "lane": "investor_dashboard_001 (deferred per operator lane)",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "product_revenue_classification_001"
+    },
+    {
+      "agent": "skill_tree",
+      "created_at": "2026-06-13T09:36:53+00:00",
+      "event_type": "skill_event",
+      "id": 14,
+      "metadata": {
+        "proof_path": "skill-tree-ceremony.js",
+        "source": "skill_events.json"
+      },
+      "score": 10.0,
+      "task_id": "unlock_ceremony_skill_tree_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-13T09:36:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 4,
+      "metadata": {
+        "lane": "prune_tasklist_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\prune_tasklist_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "prune_tasklist_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-13T09:36:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 67,
+      "metadata": {
+        "category": "governance",
+        "lane": "scoped_commit_sweep_001",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "prune_tasklist_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-12T14:00:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 3,
+      "metadata": {
+        "lane": "closeout_enforcement_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\closeout_enforcement_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "closeout_enforcement_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-12T14:00:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 68,
+      "metadata": {
+        "category": "governance",
+        "lane": "prune_tasklist_001",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "closeout_enforcement_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-11T03:03:43+00:00",
+      "event_type": "cpc_closeout",
+      "id": 69,
+      "metadata": {
+        "category": "governance",
+        "lane": "public_safe_branch_governance_publish_001",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "branch_retirement_manifest_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-09T19:26:37+00:00",
+      "event_type": "cpc_closeout",
+      "id": 70,
+      "metadata": {
+        "category": "governance",
+        "lane": "branch_retirement_manifest_001",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "dreambranch_pr_linkage_001"
+    },
+    {
+      "agent": "live_build_feed",
+      "created_at": "2026-06-07T12:37:20-0500",
+      "event_type": "cpc_closeout",
+      "id": 71,
+      "metadata": {
+        "category": "build_in_public",
+        "lane": "DreamOS CPC",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-closeout-cpc-20260607-123724-27880"
+    },
+    {
+      "agent": "live_build_feed",
+      "created_at": "2026-06-07T12:37:20-0500",
+      "event_type": "cpc_closeout",
+      "id": 72,
+      "metadata": {
+        "category": "build_in_public",
+        "lane": "Dream.OS",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-07T12-37-20-0500"
+    },
+    {
+      "agent": "live_build_feed",
+      "created_at": "2026-06-07T12:36:45-0500",
+      "event_type": "cpc_closeout",
+      "id": 73,
+      "metadata": {
+        "category": "build_in_public",
+        "lane": "DreamOS CPC",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-closeout-cpc-20260607-123651-27578"
+    },
+    {
+      "agent": "live_build_feed",
+      "created_at": "2026-06-07T12:36:45-0500",
+      "event_type": "cpc_closeout",
+      "id": 74,
+      "metadata": {
+        "category": "build_in_public",
+        "lane": "Dream.OS",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-07T12-36-45-0500"
+    },
+    {
+      "agent": "live_build_feed",
+      "created_at": "2026-06-07T12:32:17-0500",
+      "event_type": "cpc_closeout",
+      "id": 75,
+      "metadata": {
+        "category": "build_in_public",
+        "lane": "DreamOS CPC",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-closeout-cpc-20260607-123219-26193"
+    },
+    {
+      "agent": "live_build_feed",
+      "created_at": "2026-06-07T12:32:17-0500",
+      "event_type": "cpc_closeout",
+      "id": 76,
+      "metadata": {
+        "category": "build_in_public",
+        "lane": "Dream.OS",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-07T12-32-17-0500"
+    },
+    {
+      "agent": "live_build_feed",
+      "created_at": "2026-06-07T12:16:17-0500",
+      "event_type": "cpc_closeout",
+      "id": 77,
+      "metadata": {
+        "category": "build_in_public",
+        "lane": "DreamOS CPC",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-closeout-cpc-20260607-121621-22347"
+    },
+    {
+      "agent": "live_build_feed",
+      "created_at": "2026-06-07T12:16:17-0500",
+      "event_type": "cpc_closeout",
+      "id": 78,
+      "metadata": {
+        "category": "build_in_public",
+        "lane": "Dream.OS",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-07T12-16-17-0500"
+    },
+    {
+      "agent": "live_build_feed",
+      "created_at": "2026-06-07T12:14:22-0500",
+      "event_type": "cpc_closeout",
+      "id": 79,
+      "metadata": {
+        "category": "build_in_public",
+        "lane": "DreamOS CPC",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-closeout-cpc-20260607-121426-21283"
+    },
+    {
+      "agent": "operator-1",
+      "created_at": "2026-05-22T15:38:00.618712+00:00",
+      "event_type": "closeout_backfill",
+      "id": 1,
+      "metadata": {
+        "lane": "auto_master_task_post_proof_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\auto_master_task_post_proof_001.json",
+        "source": "closeout_json"
+      },
+      "score": 85.0,
+      "task_id": "auto_master_task_post_proof_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-05-22T15:38:00.618712+00:00",
+      "event_type": "cpc_closeout",
+      "id": 80,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "Commit master task closeout Discord routing proof",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "auto_master_task_post_proof_001"
+    },
+    {
+      "agent": "operator-1",
+      "created_at": "2026-05-22T13:08:46.674080+00:00",
+      "event_type": "closeout_backfill",
+      "id": 2,
+      "metadata": {
+        "lane": "dreamclose_discord_auto_ping_test_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\dreamclose_discord_auto_ping_test_001.json",
+        "source": "closeout_json"
+      },
+      "score": 85.0,
+      "task_id": "dreamclose_discord_auto_ping_test_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-05-22T13:08:46.674080+00:00",
+      "event_type": "cpc_closeout",
+      "id": 81,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "Commit DreamClose Discord auto-ping hook",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "dreamclose_discord_auto_ping_test_001"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:30:06.790065+00:00",
+      "event_type": "journal:task_running",
+      "id": 52,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:30:06.789292+00:00",
+      "event_type": "journal:task_claimed",
+      "id": 51,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "claimed"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:28:21.378625+00:00",
+      "event_type": "journal:task_running",
+      "id": 50,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:28:21.376123+00:00",
+      "event_type": "journal:task_claimed",
+      "id": 49,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "claimed"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:28:17.768877+00:00",
+      "event_type": "journal:task_running",
+      "id": 48,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:28:17.766654+00:00",
+      "event_type": "journal:task_claimed",
+      "id": 47,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "claimed"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:25:57.426896+00:00",
+      "event_type": "journal:task_running",
+      "id": 46,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:25:57.423947+00:00",
+      "event_type": "journal:task_claimed",
+      "id": 45,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "claimed"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:24:50.863791+00:00",
+      "event_type": "journal:task_running",
+      "id": 44,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:24:50.861411+00:00",
+      "event_type": "journal:task_claimed",
+      "id": 43,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "claimed"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:24:06.170341+00:00",
+      "event_type": "journal:task_running",
+      "id": 42,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:24:06.168797+00:00",
+      "event_type": "journal:task_claimed",
+      "id": 41,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "claimed"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:22:31.770127+00:00",
+      "event_type": "journal:task_running",
+      "id": 40,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "task_fsm",
+      "created_at": "2026-05-18T00:22:31.767973+00:00",
+      "event_type": "journal:task_claimed",
+      "id": 39,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "claimed"
+      },
+      "score": 1.0,
+      "task_id": "planned_test"
+    },
+    {
+      "agent": "dreamlane",
+      "created_at": "2026-05-09T20:49:51.786649+00:00",
+      "event_type": "journal:task_completed",
+      "id": 38,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
+    },
+    {
+      "agent": "dreamlane",
+      "created_at": "2026-05-09T20:49:51.786360+00:00",
+      "event_type": "journal:task_running",
+      "id": 37,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-09T20:49:48.542293+00:00",
+      "event_type": "journal:discord_delivery_attempt",
+      "id": 36,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "discord_journal_payload_delivery"
+    },
+    {
+      "agent": "dreamlane",
+      "created_at": "2026-05-09T19:49:51.033148+00:00",
+      "event_type": "journal:task_completed",
+      "id": 35,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
+    },
+    {
+      "agent": "dreamlane",
+      "created_at": "2026-05-09T19:49:51.032756+00:00",
+      "event_type": "journal:task_running",
+      "id": 34,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-09T19:49:46.811375+00:00",
+      "event_type": "journal:discord_delivery_attempt",
+      "id": 33,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "discord_journal_payload_delivery"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-08T18:51:52.437246+00:00",
+      "event_type": "journal:discord_delivery_attempt",
+      "id": 32,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "discord_journal_payload_delivery"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-08T18:50:45.930050+00:00",
+      "event_type": "journal:discord_delivery_attempt",
+      "id": 31,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "discord_journal_payload_delivery"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-08T18:37:21.518402+00:00",
+      "event_type": "journal:discord_delivery_attempt",
+      "id": 30,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "discord_journal_payload_delivery"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-08T18:36:48.272359+00:00",
+      "event_type": "journal:discord_delivery_attempt",
+      "id": 29,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "discord_journal_payload_delivery"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-08T18:29:57.322808+00:00",
+      "event_type": "journal:discord_delivery_attempt",
+      "id": 28,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "discord_journal_payload_delivery"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-08T18:27:05.162920+00:00",
+      "event_type": "journal:discord_delivery_attempt",
+      "id": 27,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "discord_journal_payload_delivery"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-08T18:27:04.361683+00:00",
+      "event_type": "journal:discord_delivery_attempt",
+      "id": 26,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "discord_journal_payload_delivery"
+    },
+    {
+      "agent": "dreamlane",
+      "created_at": "2026-05-08T17:30:57.181093+00:00",
+      "event_type": "journal:task_completed",
+      "id": 25,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
+    },
+    {
+      "agent": "dreamlane",
+      "created_at": "2026-05-08T17:30:57.178465+00:00",
+      "event_type": "journal:task_running",
+      "id": 24,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
+    },
+    {
+      "agent": "dreamlane",
+      "created_at": "2026-05-08T17:28:20.970109+00:00",
+      "event_type": "journal:task_completed",
+      "id": 23,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
+    },
+    {
+      "agent": "dreamlane",
+      "created_at": "2026-05-08T17:28:20.967323+00:00",
+      "event_type": "journal:task_running",
+      "id": 22,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-07T16:30:34.104403+00:00",
+      "event_type": "journal:append_check",
+      "id": 21,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "verified"
+      },
+      "score": 1.0,
+      "task_id": "growth_test"
+    },
+    {
+      "agent": "pytest",
+      "created_at": "2026-05-07T16:30:34.065643+00:00",
+      "event_type": "journal:task_transition",
+      "id": 20,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "runtime_test"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-07T16:30:00.053057+00:00",
+      "event_type": "journal:journal_smoke",
+      "id": 19,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "completed"
+      },
+      "score": 1.0,
+      "task_id": "smoke"
+    },
+    {
+      "agent": "runtime",
+      "created_at": "2026-05-07T16:29:59.262277+00:00",
+      "event_type": "journal:append_check",
+      "id": 18,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "verified"
+      },
+      "score": 1.0,
+      "task_id": "growth_test"
+    },
+    {
+      "agent": "pytest",
+      "created_at": "2026-05-07T16:29:59.254656+00:00",
+      "event_type": "journal:task_transition",
+      "id": 17,
+      "metadata": {
+        "source": "execution_journal.jsonl",
+        "state": "running"
+      },
+      "score": 1.0,
+      "task_id": "runtime_test"
+    }
+  ],
+  "schema": "dreamvault.l5_scoreboard.v1",
+  "schema_version": 1,
+  "scoreboard": [
+    {
+      "agent": "operator-1",
+      "lane": "auto_master_task_post_proof_001",
+      "last_event_at": "2026-05-22T15:38:00.618712+00:00",
+      "total_score": 85.0
+    },
+    {
+      "agent": "operator-1",
+      "lane": "dreamclose_discord_auto_ping_test_001",
+      "last_event_at": "2026-05-22T13:08:46.674080+00:00",
+      "total_score": 85.0
+    },
+    {
+      "agent": "cpc_dispatch",
+      "lane": "required_project_surface_contract_002",
+      "last_event_at": "2026-06-16T23:49:49+00:00",
+      "total_score": 75.0
+    },
+    {
+      "agent": "live_build_feed",
+      "lane": "DreamOS CPC",
+      "last_event_at": "2026-06-07T12:14:22-0500",
+      "total_score": 75.0
+    },
+    {
+      "agent": "live_build_feed",
+      "lane": "Dream.OS",
+      "last_event_at": "2026-06-07T12:16:17-0500",
+      "total_score": 60.0
+    },
+    {
+      "agent": "operator",
+      "lane": "productization",
+      "last_event_at": "2026-06-13T21:10:00+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "investor_dashboard_001 (deferred per operator lane)",
+      "last_event_at": "2026-06-13T10:00:55+00:00",
+      "total_score": 30.0
+    },
+    {
+      "agent": "operator",
+      "lane": "deploy_investor_dashboard_001",
+      "last_event_at": "2026-06-13T21:15:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator",
+      "lane": "deploy_weareswarm_surfaces_001",
+      "last_event_at": "2026-06-13T10:55:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator",
+      "lane": "weareswarm_homepage_deploy_001",
+      "last_event_at": "2026-06-13T10:42:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator",
+      "lane": "scoped_commit_sweep_001",
+      "last_event_at": "2026-06-13T10:30:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator",
+      "lane": "portfolio_deploy_001",
+      "last_event_at": "2026-06-13T10:30:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator",
+      "lane": "product_revenue_classification_001",
+      "last_event_at": "2026-06-13T10:05:43+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator",
+      "lane": "prune_tasklist_001",
+      "last_event_at": "2026-06-13T09:36:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator",
+      "lane": "closeout_enforcement_001",
+      "last_event_at": "2026-06-12T14:00:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "skill_tree",
+      "lane": "branch_governance_architect_001",
+      "last_event_at": "2026-06-16T23:39:40+00:00",
+      "total_score": 20.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "post_closeout_surface_sync (blocked on duplicate_dreamvault_path_review_001)",
+      "last_event_at": "2026-06-13T21:15:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "deploy_investor_dashboard_001",
+      "last_event_at": "2026-06-13T21:10:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "deploy_weareswarm_surfaces_001",
+      "last_event_at": "2026-06-13T14:00:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "(none \u2014 surface deploy lane complete)",
+      "last_event_at": "2026-06-13T10:55:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "investor_dashboard_001",
+      "last_event_at": "2026-06-13T10:42:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "product_revenue_classification_001",
+      "last_event_at": "2026-06-13T10:30:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "investor_dashboard_001 (P1 \u2014 revenue class investor surfaces)",
+      "last_event_at": "2026-06-13T10:30:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "scoped_commit_sweep_001",
+      "last_event_at": "2026-06-13T09:36:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "prune_tasklist_001",
+      "last_event_at": "2026-06-12T14:00:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "public_safe_branch_governance_publish_001",
+      "last_event_at": "2026-06-11T03:03:43+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "branch_retirement_manifest_001",
+      "last_event_at": "2026-06-09T19:26:37+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "Commit master task closeout Discord routing proof",
+      "last_event_at": "2026-05-22T15:38:00.618712+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "Commit DreamClose Discord auto-ping hook",
+      "last_event_at": "2026-05-22T13:08:46.674080+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "task_fsm",
+      "lane": "planned_test",
+      "last_event_at": "2026-05-18T00:30:06.790065+00:00",
+      "total_score": 14.0
+    },
+    {
+      "agent": "skill_tree",
+      "lane": "investor_dashboard_001",
+      "last_event_at": "2026-06-16T23:20:00+00:00",
+      "total_score": 10.0
+    },
+    {
+      "agent": "skill_tree",
+      "lane": "swarm_self_marketing_60k_60d_001",
+      "last_event_at": "2026-06-13T09:36:53+00:00",
+      "total_score": 10.0
+    },
+    {
+      "agent": "runtime",
+      "lane": "discord_journal_payload_delivery",
+      "last_event_at": "2026-05-09T20:49:48.542293+00:00",
+      "total_score": 9.0
+    },
+    {
+      "agent": "dreamlane",
+      "lane": "add_replay_safe_runtime_snapshots_dreamlane",
+      "last_event_at": "2026-05-09T20:49:51.786649+00:00",
+      "total_score": 8.0
+    },
+    {
+      "agent": "runtime",
+      "lane": "growth_test",
+      "last_event_at": "2026-05-07T16:30:34.104403+00:00",
+      "total_score": 2.0
+    },
+    {
+      "agent": "pytest",
+      "lane": "runtime_test",
+      "last_event_at": "2026-05-07T16:30:34.065643+00:00",
+      "total_score": 2.0
+    },
+    {
+      "agent": "runtime",
+      "lane": "smoke",
+      "last_event_at": "2026-05-07T16:30:00.053057+00:00",
+      "total_score": 1.0
+    }
+  ],
+  "source": "dreamvault_l5_sqlite",
+  "table_counts": {
+    "mission_loop_state": 1,
+    "proof_receipts": 29,
+    "score_events": 81,
+    "scoreboard": 37,
+    "verified_tasks": 28
+  }
+}
