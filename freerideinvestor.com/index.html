@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FreeRideInvestor | Trading Discipline Powered by Dream.OS</title>
+  <meta name="description" content="FreeRideInvestor documents trading discipline, automation, agent systems, and Dream.OS-powered operating leverage." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            swarm: {
+              bg: '#05070b',
+              panel: '#0b111c',
+              line: 'rgba(255,255,255,.12)',
+              green: '#39ff88',
+              blue: '#60a5fa',
+              gold: '#facc15',
+              red: '#fb7185'
+            }
+          },
+          boxShadow: {
+            glow: '0 0 80px rgba(57,255,136,.22)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(57,255,136,.18), transparent 32%),
+        radial-gradient(circle at 82% 10%, rgba(96,165,250,.14), transparent 30%),
+        #05070b;
+    }
+    #swarm-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: .5;
+      pointer-events: none;
+    }
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(18px);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white antialiased">
+  <canvas id="swarm-canvas"></canvas>
+
+  <div class="relative z-10">
+    <header class="sticky top-0 z-50 border-b border-white/10 bg-swarm-bg/80 backdrop-blur-xl">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <a href="/" class="flex items-center gap-3">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl border border-swarm-green/40 bg-swarm-green/10 text-swarm-green shadow-glow">FRI</span>
+          <span>
+            <span class="block text-sm font-black uppercase tracking-[.22em]">FreeRideInvestor</span>
+            <span class="block text-xs text-white/50">Dream.OS Trading Lab</span>
+          </span>
+        </a>
+
+        <button id="nav-toggle" class="rounded-xl border border-white/10 px-3 py-2 text-sm text-white/80 md:hidden">
+          Menu
+        </button>
+
+        <div id="nav-menu" class="hidden absolute left-4 right-4 top-20 rounded-2xl border border-white/10 bg-swarm-panel p-4 shadow-2xl md:static md:flex md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:shadow-none">
+          <a class="block py-2 text-sm text-white/70 hover:text-swarm-green" href="#dreamos">Dream.OS</a>
+          <a class="block py-2 text-sm text-white/70 hover:text-swarm-green" href="#process">Process</a>
+          <a class="block py-2 text-sm text-white/70 hover:text-swarm-green" href="#systems">Systems</a>
+          <a class="block py-2 text-sm text-white/70 hover:text-swarm-green" href="/blog/">Blog</a>
+          <a class="mt-3 inline-flex w-full justify-center rounded-xl bg-swarm-green px-4 py-2 text-sm font-bold text-black hover:bg-white md:mt-0 md:w-auto" href="#contact">
+            Build With Me
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:py-28">
+        <div>
+          <div class="mb-6 inline-flex rounded-full border border-swarm-green/30 bg-swarm-green/10 px-4 py-2 text-xs font-bold uppercase tracking-[.22em] text-swarm-green">
+            Trader + Automation Builder
+          </div>
+
+          <h1 class="max-w-4xl text-5xl font-black tracking-[-.07em] sm:text-7xl lg:text-8xl">
+            Discipline,
+            <span class="text-swarm-green">data,</span>
+            and agents that compound.
+          </h1>
+
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-white/65 sm:text-xl">
+            FreeRideInvestor is where trading journals meet Dream.OS automation:
+            process-first execution, agent coordination, proof gates, and systems that keep working after the trade is closed.
+          </p>
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="/blog/new-day-new-trade/" class="rounded-2xl bg-swarm-green px-6 py-4 text-center font-black text-black hover:bg-white">
+              Read Latest Journal
+            </a>
+            <a href="#dreamos" class="rounded-2xl border border-white/15 px-6 py-4 text-center font-black text-white/85 hover:border-swarm-green/60 hover:text-swarm-green">
+              See Dream.OS Stack
+            </a>
+          </div>
+
+          <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div class="glass rounded-2xl p-4">
+              <div class="text-2xl font-black text-swarm-green">$1,025</div>
+              <div class="text-xs uppercase tracking-widest text-white/45">Account</div>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <div class="text-2xl font-black">$433</div>
+              <div class="text-xs uppercase tracking-widest text-white/45">Last P/L</div>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <div class="text-2xl font-black">6</div>
+              <div class="text-xs uppercase tracking-widest text-white/45">Green Days</div>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <div class="text-2xl font-black text-swarm-blue">24/7</div>
+              <div class="text-xs uppercase tracking-widest text-white/45">Agent Ops</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-[2rem] p-5 shadow-glow">
+          <div class="rounded-[1.5rem] border border-white/10 bg-black/35 p-5">
+            <div class="mb-4 flex items-center justify-between">
+              <div>
+                <div class="text-xs uppercase tracking-[.24em] text-swarm-green">Dream.OS Cockpit</div>
+                <div class="text-2xl font-black">Autonomy Status</div>
+              </div>
+              <div class="rounded-full bg-swarm-green/15 px-3 py-1 text-xs font-bold text-swarm-green">ONLINE</div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="rounded-2xl border border-white/10 bg-white/[.04] p-4">
+                <div class="flex justify-between text-sm">
+                  <span class="text-white/60">Agent Cellphone</span>
+                  <span class="text-swarm-gold">RESTORE LANE</span>
+                </div>
+                <div class="mt-3 h-2 rounded-full bg-white/10">
+                  <div class="h-2 w-[72%] rounded-full bg-swarm-gold"></div>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/[.04] p-4">
+                <div class="flex justify-between text-sm">
+                  <span class="text-white/60">Proof Closeouts</span>
+                  <span class="text-swarm-green">PASS</span>
+                </div>
+                <div class="mt-3 h-2 rounded-full bg-white/10">
+                  <div class="h-2 w-full rounded-full bg-swarm-green"></div>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/[.04] p-4">
+                <div class="flex justify-between text-sm">
+                  <span class="text-white/60">Website Deploy Loop</span>
+                  <span class="text-swarm-green">LIVE</span>
+                </div>
+                <div class="mt-3 h-2 rounded-full bg-white/10">
+                  <div class="h-2 w-[90%] rounded-full bg-swarm-blue"></div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="mt-5 overflow-auto rounded-2xl border border-white/10 bg-black/50 p-4 text-xs leading-6 text-white/70"><code>STATUS=PASS
+REPO=websites
+ROUTE=/blog/new-day-new-trade/
+CLOSEOUT=DISCORD_POSTED
+NEXT=restore_agent_cellphone</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="dreamos" class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div class="mb-10 max-w-3xl">
+          <div class="text-sm font-bold uppercase tracking-[.25em] text-swarm-green">What Dream.OS Can Do</div>
+          <h2 class="mt-3 text-4xl font-black tracking-[-.05em] sm:text-6xl">From trading notes to autonomous execution loops.</h2>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="glass rounded-3xl p-6">
+            <div class="mb-5 text-4xl">01</div>
+            <h3 class="text-2xl font-black">Capture</h3>
+            <p class="mt-3 text-white/60">Turns journals, terminal output, trade reviews, and operator notes into structured artifacts.</p>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <div class="mb-5 text-4xl">02</div>
+            <h3 class="text-2xl font-black">Route</h3>
+            <p class="mt-3 text-white/60">Moves tasks into lanes: agents, websites, planners, Discord closeouts, and proof gates.</p>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <div class="mb-5 text-4xl">03</div>
+            <h3 class="text-2xl font-black">Verify</h3>
+            <p class="mt-3 text-white/60">Runs checks, records evidence, posts closeouts, and keeps the operator honest.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="process" class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div class="grid gap-5 lg:grid-cols-2">
+          <div class="glass rounded-3xl p-8">
+            <h2 class="text-4xl font-black tracking-[-.05em]">Trading Process</h2>
+            <p class="mt-4 text-white/60">TSLA-focused execution with multi-timeframe thesis, boredom control, defined exits, and journal review.</p>
+            <ul class="mt-6 space-y-3 text-white/75">
+              <li>✓ HTF trend before entries</li>
+              <li>✓ QQQ/SPY context before conviction</li>
+              <li>✓ Options for A+ setups only</li>
+              <li>✓ Shares when boredom tries to trade</li>
+            </ul>
+          </div>
+
+          <div class="glass rounded-3xl p-8">
+            <h2 class="text-4xl font-black tracking-[-.05em]">Operator Process</h2>
+            <p class="mt-4 text-white/60">Dream.OS converts momentum into shipping: target, action, verify, commit, closeout.</p>
+            <ul class="mt-6 space-y-3 text-white/75">
+              <li>✓ CPC cockpit proof</li>
+              <li>✓ Website feed updates</li>
+              <li>✓ Discord closeout routing</li>
+              <li>✓ Repo-level commit discipline</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="systems" class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div class="glass overflow-hidden rounded-[2rem]">
+          <div class="grid gap-0 lg:grid-cols-[.9fr_1.1fr]">
+            <div class="p-8 sm:p-10">
+              <div class="text-sm font-bold uppercase tracking-[.25em] text-swarm-green">System Showcase</div>
+              <h2 class="mt-3 text-4xl font-black tracking-[-.05em] sm:text-5xl">The site is not just content. It is proof.</h2>
+              <p class="mt-5 text-white/60">
+                Every published post, route, verification report, and closeout becomes part of the public operating system.
+              </p>
+            </div>
+
+            <div class="border-t border-white/10 bg-black/30 p-8 sm:p-10 lg:border-l lg:border-t-0">
+              <div class="grid gap-3">
+                <div class="rounded-2xl border border-white/10 bg-white/[.04] p-4">
+                  <strong>Blog Engine</strong>
+                  <p class="mt-1 text-sm text-white/55">Trading journals become publishable assets.</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/[.04] p-4">
+                  <strong>Agent Messaging</strong>
+                  <p class="mt-1 text-sm text-white/55">Agents coordinate through structured messages and closeouts.</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/[.04] p-4">
+                  <strong>Revenue Surface</strong>
+                  <p class="mt-1 text-sm text-white/55">Automation work becomes portfolio evidence for clients and investors.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="mx-auto max-w-7xl px-4 py-16 text-sm text-white/45 sm:px-6 lg:px-8">
+      <div class="flex flex-col justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+        <p>© FreeRideInvestor. Powered by Dream.OS.</p>
+        <p>Trading journal. Automation lab. Not financial advice.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.165.0/build/three.module.js';
+
+    const canvas = document.getElementById('swarm-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
+    camera.position.z = 75;
+
+    const group = new THREE.Group();
+    scene.add(group);
+
+    const particleCount = 110;
+    const positions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 140;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 90;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particles = new THREE.Points(
+      geometry,
+      new THREE.PointsMaterial({
+        color: 0x39ff88,
+        size: 1.7,
+        transparent: true,
+        opacity: 0.8
+      })
+    );
+    group.add(particles);
+
+    const lineGeometry = new THREE.BufferGeometry();
+    const linePositions = [];
+
+    for (let i = 0; i < particleCount; i++) {
+      for (let j = i + 1; j < particleCount; j++) {
+        if (Math.random() > 0.982) {
+          linePositions.push(
+            positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2],
+            positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]
+          );
+        }
+      }
+    }
+
+    lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+    const lines = new THREE.LineSegments(
+      lineGeometry,
+      new THREE.LineBasicMaterial({
+        color: 0x60a5fa,
+        transparent: true,
+        opacity: 0.16
+      })
+    );
+    group.add(lines);
+
+    function resize() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+
+    function animate(t) {
+      group.rotation.y = t * 0.00008;
+      group.rotation.x = Math.sin(t * 0.00018) * 0.12;
+      particles.rotation.z = t * 0.00005;
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animate(0);
+
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
+    });
+
+    navMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) navMenu.classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
