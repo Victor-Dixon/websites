@@ -2,70 +2,10 @@ TASK=maskzero_nav_theme_003
 STATUS=PASS
 SITE=/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site
 DEPLOY=/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site
- M runtime/content/maskzero.site/battles/index.html
- M runtime/content/maskzero.site/create-hero/index.html
- M runtime/content/maskzero.site/dispatch/index.html
- M runtime/content/maskzero.site/how-it-works/index.html
- M runtime/content/maskzero.site/index.html
- M runtime/content/maskzero.site/login/index.html
- M runtime/content/maskzero.site/meridian-map/index.html
- M runtime/content/maskzero.site/missions/index.html
- M runtime/content/maskzero.site/origin-rules/index.html
- M runtime/content/maskzero.site/quiz/index.html
- M runtime/content/maskzero.site/roster-rules/index.html
- M runtime/content/maskzero.site/spark-dashboard/index.html
- M runtime/content/maskzero.site/spark-generator/index.html
- M runtime/content/maskzero.site/spark-login/index.html
- M runtime/content/maskzero.site/spark-os/index.html
- M runtime/content/maskzero.site/spark-signup/index.html
- M runtime/content/maskzero.site/the-emergence.html
+ M data/reports/maskzero_nav_theme_003.txt
 ?? _deploy/freerideinvestor.com/
-?? data/reports/maskzero_nav_theme_003.txt
 ?? data/reports/weareswarm_online/nav_objective_verify_20260615_175355.txt
 ?? data/reports/weareswarm_online/nav_objective_verify_20260615_180650.txt
 ?? reports/
-?? runtime/content/maskzero.site/assets/css/
-?? runtime/content/maskzero.site/assets/js/maskzero-nav.js
-?? runtime/deploy/sites/maskzero.site/.htaccess
-?? runtime/deploy/sites/maskzero.site/assets/
-?? runtime/deploy/sites/maskzero.site/battle-simulator.html
-?? runtime/deploy/sites/maskzero.site/battles.html
-?? runtime/deploy/sites/maskzero.site/battles/
-?? runtime/deploy/sites/maskzero.site/character-generator.html
-?? runtime/deploy/sites/maskzero.site/client-preview.html
-?? runtime/deploy/sites/maskzero.site/create-hero/
-?? runtime/deploy/sites/maskzero.site/dispatch/
-?? runtime/deploy/sites/maskzero.site/home.html
-?? runtime/deploy/sites/maskzero.site/how-it-works/
-?? runtime/deploy/sites/maskzero.site/index.html
-?? runtime/deploy/sites/maskzero.site/login/
-?? runtime/deploy/sites/maskzero.site/meridian-map/
-?? runtime/deploy/sites/maskzero.site/missions/
-?? runtime/deploy/sites/maskzero.site/origin-rules/
-?? runtime/deploy/sites/maskzero.site/protocol.html
-?? runtime/deploy/sites/maskzero.site/quiz/
-?? runtime/deploy/sites/maskzero.site/roster-rules/
-?? runtime/deploy/sites/maskzero.site/spark-dashboard/
-?? runtime/deploy/sites/maskzero.site/spark-generator/
-?? runtime/deploy/sites/maskzero.site/spark-login/
-?? runtime/deploy/sites/maskzero.site/spark-os/
-?? runtime/deploy/sites/maskzero.site/spark-signup/
-?? runtime/deploy/sites/maskzero.site/the-emergence.html
- runtime/content/maskzero.site/battles/index.html   |   19 +-
- .../content/maskzero.site/create-hero/index.html   |   19 +-
- runtime/content/maskzero.site/dispatch/index.html  |   19 +-
- .../content/maskzero.site/how-it-works/index.html  |   19 +-
- runtime/content/maskzero.site/index.html           |   19 +-
- runtime/content/maskzero.site/login/index.html     |   19 +-
- .../content/maskzero.site/meridian-map/index.html  |   19 +-
- runtime/content/maskzero.site/missions/index.html  |   23 +-
- .../content/maskzero.site/origin-rules/index.html  |   19 +-
- runtime/content/maskzero.site/quiz/index.html      |   19 +-
- .../content/maskzero.site/roster-rules/index.html  |   19 +-
- .../maskzero.site/spark-dashboard/index.html       | 1188 ++++++++++----------
- .../maskzero.site/spark-generator/index.html       |   19 +-
- .../content/maskzero.site/spark-login/index.html   |   19 +-
- runtime/content/maskzero.site/spark-os/index.html  |   24 +-
- .../content/maskzero.site/spark-signup/index.html  |   19 +-
- runtime/content/maskzero.site/the-emergence.html   |   18 +
- 17 files changed, 886 insertions(+), 614 deletions(-)
+ data/reports/maskzero_nav_theme_003.txt | 64 +--------------------------------
+ 1 file changed, 1 insertion(+), 63 deletions(-)
