@@ -245,9 +245,25 @@ button{
 }
 .error{color:var(--red)}
   </style>
+  <link rel="stylesheet" href="assets/css/maskzero-theme.css">
 </head>
 <body>
-  <nav id="spark-auth-nav" class="comic-nav site-header" aria-label="Spark Protocol site navigation"></nav>
+  <nav class="mz-nav" data-mz-nav data-open="false">
+  <div class="mz-nav-inner">
+    <a class="mz-brand" href="/">
+      <span class="mz-brand-mark" aria-hidden="true"></span>
+      <span>MaskZero</span>
+    </a>
+    <button class="mz-nav-toggle" type="button" data-mz-nav-toggle aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <div class="mz-nav-links" data-mz-nav-links>
+      <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
+      <a href="/services/">Services</a>
+      <a href="/proof/">Proof</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
+</nav>
 
   <main class="comic-wrap">
     <span class="issue-tag">Return Of The Hero</span>
@@ -320,5 +336,6 @@ button{
   <script src="/assets/js/spark-site-shell.js?v=1"></script>
   <script src="/assets/js/spark-account-runtime.js?v=11"></script>
   <script src="/assets/js/spark-auth-nav.js?v=13"></script>
+  <script src="assets/js/maskzero-nav.js" defer></script>
 </body>
 </html>

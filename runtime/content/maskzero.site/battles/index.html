@@ -122,10 +122,24 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
+  <link rel="stylesheet" href="assets/css/maskzero-theme.css">
 </head>
 <body data-dreamos-battle-character-reader="1">
-<nav class="spark-route-link spark-missions-route-link" aria-label="MaskZero missions">
-  <a href="/missions/">Open Missions</a>
+<nav class="mz-nav" data-mz-nav data-open="false">
+  <div class="mz-nav-inner">
+    <a class="mz-brand" href="/">
+      <span class="mz-brand-mark" aria-hidden="true"></span>
+      <span>MaskZero</span>
+    </a>
+    <button class="mz-nav-toggle" type="button" data-mz-nav-toggle aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <div class="mz-nav-links" data-mz-nav-links>
+      <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
+      <a href="/services/">Services</a>
+      <a href="/proof/">Proof</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
 </nav>
 
 <div class="wrap">
@@ -528,5 +542,6 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
   boot();
 })();
 </script>
+  <script src="assets/js/maskzero-nav.js" defer></script>
 </body>
 </html>
