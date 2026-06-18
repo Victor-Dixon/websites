@@ -1,0 +1,35 @@
+name: Deploy MaskZero Site
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'runtime/content/maskzero.site/**'
+      - '.github/workflows/deploy-maskzero-site.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build deploy copy
+        run: |
+          rm -rf runtime/deploy/sites/maskzero.site
+          mkdir -p runtime/deploy/sites/maskzero.site
+          cp -a runtime/content/maskzero.site/. runtime/deploy/sites/maskzero.site/
+
+      - name: Verify deploy payload
+        run: |
+          test -f runtime/deploy/sites/maskzero.site/index.html
+          test -f runtime/deploy/sites/maskzero.site/assets/css/maskzero-theme.css
+          test -f runtime/deploy/sites/maskzero.site/assets/js/maskzero-nav.js
+          grep -R "data-mz-nav" runtime/deploy/sites/maskzero.site --include='*.html'
+
+      - name: Upload deploy artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: maskzero-site
+          path: runtime/deploy/sites/maskzero.site
