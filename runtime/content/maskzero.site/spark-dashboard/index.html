@@ -622,7 +622,7 @@ html[data-spark-nav="in"] [data-spark-guest-only]{display:none!important}
   <script src="/assets/js/spark-account-runtime.js?v=14"></script>
   <script src="/assets/js/spark-auth-nav.js?v=14"></script>
   <script src="/assets/js/spark-dashboard.js?v=8"></script>
-  <script src="assets/js/spark-engine.js"></script>
+  <script src="/assets/js/spark-engine.js"></script>
   <script>
   (function () {
     function esc(s){ return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])}); }
@@ -637,10 +637,10 @@ html[data-spark-nav="in"] [data-spark-guest-only]{display:none!important}
       var trailMap = {leadership:'#7dffbe',creativity:'#9d7cff',discipline:'#ffd166',compassion:'#ff8fa8',ambition:'#ff9a62',power:'#ff4c77'};
       var xp = SparkEngine.xpProgress(rec);
       var traitRows = SparkEngine.TRAIT_KEYS.map(function(k){
-        var v = rec.traits[k]||0;
+        var v = parseInt(rec.traits[k], 10) || 0;
         var c = trailMap[k]||'#7dffbe';
         return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:.82rem">' +
-          '<span style="width:82px;color:rgba(244,247,251,.6);font-weight:800;text-transform:capitalize;flex-shrink:0">' + k + '</span>' +
+          '<span style="width:82px;color:rgba(244,247,251,.6);font-weight:800;text-transform:capitalize;flex-shrink:0">' + esc(k) + '</span>' +
           '<div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden">' +
             '<div style="height:100%;width:' + v + '%;background:' + c + ';border-radius:999px;transition:width .4s"></div>' +
           '</div>' +
@@ -689,6 +689,6 @@ html[data-spark-nav="in"] [data-spark-guest-only]{display:none!important}
     }
   }());
   </script>
-  <script src="assets/js/maskzero-nav.js" defer></script>
+  <script src="/assets/js/maskzero-nav.js" defer></script>
 </body>
 </html>

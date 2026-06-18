@@ -575,10 +575,10 @@ a{color:inherit;text-decoration:none}
   function renderTraitSummary(rec) {
     if (!rec) return '';
     var rows = SparkEngine.TRAIT_KEYS.map(function(k) {
-      var v = rec.traits[k] || 0;
+      var v = parseInt(rec.traits[k], 10) || 0;
       var tc = trailClass[k] || '';
       return '<div class="trait-row">' +
-        '<span class="trait-name">' + k + '</span>' +
+        '<span class="trait-name">' + esc(k) + '</span>' +
         '<div class="trait-bar-wrap"><div class="trait-bar-fill ' + tc + '" style="width:' + v + '%"></div></div>' +
         '<span class="trait-score">' + v + '</span>' +
       '</div>';

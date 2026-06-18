@@ -621,10 +621,10 @@ dialog p{color:var(--muted);margin:0 0 20px;font-size:.9rem;line-height:1.5}
     // Traits
     var traitHtml = '';
     SparkEngine.TRAIT_KEYS.forEach(function(k) {
-      var v = rec.traits[k] || 0;
+      var v = parseInt(rec.traits[k], 10) || 0;
       traitHtml += '<div class="trait-row">' +
-        '<span class="trait-name">' + k + '</span>' +
-        '<div class="trait-bar"><span class="t-' + k + '" style="width:' + v + '%"></span></div>' +
+        '<span class="trait-name">' + esc(k) + '</span>' +
+        '<div class="trait-bar"><span class="t-' + esc(k) + '" style="width:' + v + '%"></span></div>' +
         '<span class="trait-val">' + v + '</span></div>';
     });
     $('cs-traits').innerHTML = traitHtml;
@@ -632,11 +632,11 @@ dialog p{color:var(--muted);margin:0 0 20px;font-size:.9rem;line-height:1.5}
     // Factions
     var factionHtml = '';
     SparkEngine.FACTION_KEYS.forEach(function(k) {
-      var v = rec.reputation[k] || 0;
+      var v = parseInt(rec.reputation[k], 10) || 0;
       var cls = v > 0 ? 'pos' : (v < 0 ? 'neg' : 'zero');
       var label = k.replace(/_/g,' ');
       factionHtml += '<div class="faction-row">' +
-        '<span class="faction-name">' + label + '</span>' +
+        '<span class="faction-name">' + esc(label) + '</span>' +
         '<span class="faction-val ' + cls + '">' + (v > 0 ? '+' : '') + v + '</span>' +
         '</div>';
     });
@@ -925,7 +925,10 @@ dialog p{color:var(--muted);margin:0 0 20px;font-size:.9rem;line-height:1.5}
       })
     })
     .then(function(r) {
-      if (!r.ok) return r.json().then(function(e){ throw new Error(e.error && e.error.message || 'API error'); });
+      if (!r.ok) {
+        var status = r.status;
+        return r.json().then(function(e){ var err = new Error(e.error && e.error.message || 'API error'); err.status = status; throw err; });
+      }
       return r.json();
     })
     .then(function(data) {
@@ -942,7 +945,7 @@ dialog p{color:var(--muted);margin:0 0 20px;font-size:.9rem;line-height:1.5}
     .catch(function(err) {
       removeTyping();
       appendMsg('system', '⚠ AI DM unavailable (' + err.message + '). Falling back to scripted mode.');
-      SparkEngine.setApiKey(''); // Clear bad key
+      if (err.status === 401) SparkEngine.setApiKey(''); // Only clear key on auth failure
       scriptedRespond(hintScene, traitFlashes);
     });
   }

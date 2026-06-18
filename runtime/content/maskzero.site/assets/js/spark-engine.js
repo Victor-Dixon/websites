@@ -27,7 +27,10 @@
   function now() { return new Date().toISOString(); }
 
   function uid() {
-    return 'spark_' + Math.random().toString(36).slice(2,10) + '_' + Date.now().toString(36);
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return 'spark_' + crypto.randomUUID().replace(/-/g,'').slice(0,16);
+    }
+    return 'spark_' + Math.random().toString(36).slice(2,10) + Math.random().toString(36).slice(2,10) + '_' + Date.now().toString(36);
   }
 
   function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
@@ -289,8 +292,9 @@
   }
 
   /* ── AI settings ─────────────────────────────────────────────────────── */
-  function getApiKey()        { return localStorage.getItem(API_KEY) || ''; }
-  function setApiKey(k)       { localStorage.setItem(API_KEY, k.trim()); }
+  // API key is stored in sessionStorage (cleared on tab close) to limit exposure.
+  function getApiKey()        { return sessionStorage.getItem(API_KEY) || ''; }
+  function setApiKey(k)       { if (k) { sessionStorage.setItem(API_KEY, k.trim()); } else { sessionStorage.removeItem(API_KEY); } }
   function getModel()         { return localStorage.getItem(MODEL_KEY) || 'gpt-4o-mini'; }
   function setModel(m)        { localStorage.setItem(MODEL_KEY, m); }
 
