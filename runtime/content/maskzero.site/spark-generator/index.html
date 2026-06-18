@@ -48,7 +48,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.25);padding:1rem;b
 .foot{padding:2rem 0;text-align:center;color:var(--muted);font-size:.92rem}.foot strong{display:block;color:var(--text);font-size:1rem;margin-bottom:.25rem}.attrib{font-size:.82rem;color:rgba(247,247,251,.58)}
 
 </style>
-  <link rel="stylesheet" href="assets/css/maskzero-theme.css">
+  <link rel="stylesheet" href="/assets/css/maskzero-theme.css">
 </head>
 <body data-maskzero-quiz="dadudekc-migration">
 <div class="wrap">
@@ -398,7 +398,7 @@ window.Spark=(function(){
   function renderFinal(){
     const s=load();const r=s.final_result||s.domain_result||{};const manifested=Array.isArray(r.manifested)?r.manifested.join(", "):"Pending";
     const prompt=buildImagePrompt(r);
-    app.innerHTML=`<section class="panel"><div class="kicker">Final Dossier</div><h2>${esc(r.lead_domain||"Generated")} Spark</h2><div class="result-grid"><div><strong>Cast</strong><span>${esc(r.cast||"Pending")}</span></div><div><strong>Signature</strong><span>${esc(r.spark_signature||r.provisional_spark_signature||"Pending")}</span></div><div><strong>Combat</strong><span>${esc(r.combat_capability||r.provisional_combat_capability||"Pending")}</span></div><div><strong>Domains</strong><span>${esc(manifested)}</span></div></div><p>${esc(r.profile_shape||"Spark profile generated.")}</p><div class="panel" style="margin-top:1rem"><div class="kicker">AI Image Prompt</div><p>Use this prompt to generate character art.</p><pre id="spark-image-prompt">${esc(prompt)}</pre></div><div class="card-maker"><div class="kicker">Collector Card</div><p>Generate an image from the prompt, then upload it here to build the Spark collector card.</p><input type="file" accept="image/*" onchange="Spark.loadCardImage(this)"><canvas id="spark-card-canvas" width="900" height="1260"></canvas></div><div class="actions"><button class="primary" type="button" onclick="Spark.saveCharacter()">Save Character</button><a class="btn primary" href="/missions/">Open Missions</a><button class="secondary" type="button" onclick="Spark.copyImagePrompt()">Copy Image Prompt</button><button class="secondary" type="button" onclick="Spark.renderCard()">Render Collector Card</button><button class="secondary" type="button" onclick="Spark.downloadCard()">Download Card PNG</button><a class="btn secondary" href="/battles/">Open Battle Simulator</a><button class="secondary" type="button" onclick="Spark.reset()">Start Over</button></div><details><summary>Raw protocol output</summary><pre>${esc(JSON.stringify(r,null,2))}</pre></details></section>`;
+    app.innerHTML=`<section class="panel"><div class="kicker">Final Dossier</div><h2>${esc(r.lead_domain||"Generated")} Spark</h2><div class="result-grid"><div><strong>Cast</strong><span>${esc(r.cast||"Pending")}</span></div><div><strong>Signature</strong><span>${esc(r.spark_signature||r.provisional_spark_signature||"Pending")}</span></div><div><strong>Combat</strong><span>${esc(r.combat_capability||r.provisional_combat_capability||"Pending")}</span></div><div><strong>Domains</strong><span>${esc(manifested)}</span></div></div><p>${esc(r.profile_shape||"Spark profile generated.")}</p><div class="panel hero-image-tools" style="margin-top:1rem"><div class="kicker">Hero Image Studio</div><h3>Create your hero art</h3><p>Your superhero art direction is generated privately from this dossier. Upload the finished hero image when ready to build the collector card.</p><div class="result-grid"><div><strong>Art Direction</strong><span>Private and ready</span></div><div><strong>Safety Rules</strong><span>Original character design</span></div><div><strong>Card Kit</strong><span>Upload art below</span></div></div></div><div class="card-maker"><div class="kicker">Collector Card</div><p>Upload your hero image here to build the Spark collector card.</p><input type="file" accept="image/*" onchange="Spark.loadCardImage(this)"><canvas id="spark-card-canvas" width="900" height="1260"></canvas></div><div class="actions"><button class="primary" type="button" onclick="Spark.saveCharacter()">Save Character</button><a class="btn primary" href="/missions/">Open Missions</a><button class="secondary" type="button" onclick="Spark.renderCard()">Render Collector Card</button><button class="secondary" type="button" onclick="Spark.downloadCard()">Download Card PNG</button><a class="btn secondary" href="/battles/">Open Battle Simulator</a><button class="secondary" type="button" onclick="Spark.reset()">Start Over</button></div><details><summary>Raw protocol output</summary><pre>${esc(JSON.stringify(r,null,2))}</pre></details></section>`;
     debug("final rendered; waiting for save choice"); setTimeout(renderCollectorCard,80);
   }
   async function post(body){
@@ -422,6 +422,6 @@ window.Spark=(function(){
   };
 })();
 </script>
-  <script src="assets/js/maskzero-nav.js" defer></script>
+  <script src="/assets/js/maskzero-nav.js" defer></script>
 </body>
 </html>

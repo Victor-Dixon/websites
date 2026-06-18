@@ -1,3 +1,5 @@
+import { createFactionReputation } from "./factions.js";
+
 export const defaultPlayerState = {
   id: "player",
   name: "Explorer",
@@ -14,6 +16,17 @@ export const defaultPlayerState = {
   xp: 0,
   currency: 0,
   visitedMarkers: [],
+  stats: {
+    knowledge: 0,
+    discipline: 0,
+    creativity: 0,
+    leadership: 0,
+    connection: 0,
+    purpose: 0,
+  },
+  reputation: createFactionReputation(),
+  quests: {},
+  lastLoginDate: null,
 };
 
 export const DIRECTIONS = {
@@ -34,6 +47,9 @@ export function createPlayerState(savedState = {}) {
   return {
     ...defaultPlayerState,
     ...savedState,
+    stats: { ...defaultPlayerState.stats, ...(savedState.stats || {}) },
+    reputation: { ...defaultPlayerState.reputation, ...(savedState.reputation || {}) },
+    quests: { ...(savedState.quests || {}) },
     walking: false,
     path: [],
   };

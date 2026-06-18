@@ -1,0 +1,43 @@
+name: Deploy MaskZero Live
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'runtime/content/maskzero.site/**'
+      - '.github/workflows/deploy-maskzero-live.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify payload
+        run: |
+          test -f runtime/content/maskzero.site/index.html
+          test -f runtime/content/maskzero.site/login/index.html
+          test -f runtime/content/maskzero.site/assets/css/maskzero-theme.css
+          test -f runtime/content/maskzero.site/assets/js/maskzero-nav.js
+          test -f runtime/content/maskzero.site/assets/js/maskzero-persist-login.js
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy to Hostinger
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          HOSTINGER_PASS: ${{ secrets.HOSTINGER_PASS }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+        run: |
+          test -n "$HOSTINGER_HOST"
+          test -n "$HOSTINGER_USER"
+          test -n "$HOSTINGER_PASS"
+          PORT="${HOSTINGER_PORT:-21}"
+          lftp -u "$HOSTINGER_USER","$HOSTINGER_PASS" -p "$PORT" "$HOSTINGER_HOST" -e "
+            set ssl:verify-certificate no;
+            mirror -R --delete --verbose runtime/content/maskzero.site public_html/maskzero.site;
+            bye
+          "

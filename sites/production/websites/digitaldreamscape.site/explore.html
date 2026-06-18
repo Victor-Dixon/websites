@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Explore | Digital Dreamscape</title>
-  <meta name="description" content="Explore Digital Dreamscape with click-to-move walking, camera follow, interactable markers, and local save persistence.">
+  <meta name="description" content="Explore Digital Dreamscape. Find quests, make decisions that shape your stats, and build reputation with five factions.">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body class="explore-page">
@@ -27,7 +27,7 @@
     <aside class="hud" aria-label="Player status">
       <div class="hud-card">
         <p class="eyebrow">Explorer HUD</p>
-        <h1>World Walker</h1>
+        <h1>Dreamhaven</h1>
         <dl class="stat-list">
           <div>
             <dt>Name</dt>
@@ -36,6 +36,10 @@
           <div>
             <dt>Coordinates</dt>
             <dd id="player-coordinates">8, 8</dd>
+          </div>
+          <div>
+            <dt>XP</dt>
+            <dd id="player-xp">0</dd>
           </div>
           <div>
             <dt>Status</dt>
@@ -48,14 +52,75 @@
         </dl>
       </div>
 
+      <div class="hud-card">
+        <p class="eyebrow">Core Stats</p>
+        <dl class="stat-list stat-list--core">
+          <div>
+            <dt>Knowledge</dt>
+            <dd id="stat-knowledge">0</dd>
+          </div>
+          <div>
+            <dt>Discipline</dt>
+            <dd id="stat-discipline">0</dd>
+          </div>
+          <div>
+            <dt>Creativity</dt>
+            <dd id="stat-creativity">0</dd>
+          </div>
+          <div>
+            <dt>Leadership</dt>
+            <dd id="stat-leadership">0</dd>
+          </div>
+          <div>
+            <dt>Connection</dt>
+            <dd id="stat-connection">0</dd>
+          </div>
+          <div>
+            <dt>Purpose</dt>
+            <dd id="stat-purpose">0</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hud-card">
+        <p class="eyebrow">Faction Standing</p>
+        <dl class="stat-list stat-list--factions">
+          <div>
+            <dt>Dreamweavers</dt>
+            <dd id="rep-dreamweavers">Neutral (0)</dd>
+          </div>
+          <div>
+            <dt>Ironforge</dt>
+            <dd id="rep-ironforge">Neutral (0)</dd>
+          </div>
+          <div>
+            <dt>Signal Corps</dt>
+            <dd id="rep-signal_corps">Neutral (0)</dd>
+          </div>
+          <div>
+            <dt>Wildpath</dt>
+            <dd id="rep-wildpath">Neutral (0)</dd>
+          </div>
+          <div>
+            <dt>Luminary</dt>
+            <dd id="rep-luminary">Neutral (0)</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hud-card">
+        <p class="eyebrow">Quests</p>
+        <ul class="quest-log" id="quest-log" aria-label="Quest log"></ul>
+      </div>
+
       <div class="hud-card" id="help">
         <p class="eyebrow">Controls</p>
         <ul class="help-list">
           <li>Click a tile to walk there.</li>
           <li>Use WASD or arrow keys for one-tile steps.</li>
-          <li>The original 2D avatar idles and walks in four directions.</li>
-          <li>Walk beside or onto markers to interact.</li>
-          <li>Refresh the page to confirm your position is saved.</li>
+          <li>Walk beside NPCs to receive quests.</li>
+          <li>Choices shape your stats and faction standing.</li>
+          <li>Refresh the page to confirm your progress is saved.</li>
         </ul>
       </div>
 
