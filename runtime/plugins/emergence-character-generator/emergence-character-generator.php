@@ -637,7 +637,7 @@ add_action('rest_api_init', function () {
 /**
  * Premium hero image provider scaffold.
  *
- * This intentionally returns a prompt-only fallback when no provider/key is
+ * This intentionally returns an image-studio fallback when no provider/key is
  * configured. No API key is ever returned to the browser.
  */
 function emergence_cg_legacy_image_provider_config_disabled() {
@@ -685,7 +685,7 @@ function emergence_cg_legacy_premium_portrait_rest_disabled($request) {
         return new WP_REST_Response(array(
             'status' => 'error',
             'code' => 'missing_prompt',
-            'message' => 'A premium portrait prompt is required.',
+            'message' => 'Premium hero art direction is required.',
         ), 400);
     }
 
@@ -698,8 +698,7 @@ function emergence_cg_legacy_premium_portrait_rest_disabled($request) {
             'prompt_only' => true,
             'image_url' => null,
             'spark_name' => $spark_name,
-            'message' => 'Premium image provider is disabled. SVG fallback remains active and the compiled prompt is ready for manual or future provider use.',
-            'premium_portrait_prompt' => $prompt,
+            'message' => 'Premium image provider is disabled. SVG fallback remains active.',
         ), 200);
     }
 
@@ -721,7 +720,6 @@ function emergence_cg_legacy_premium_portrait_rest_disabled($request) {
         'image_url' => null,
         'spark_name' => $spark_name,
         'message' => 'Provider environment is configured, but live image calls are not enabled in this scaffold lane.',
-        'premium_portrait_prompt' => $prompt,
     ), 200);
 }
 
@@ -894,7 +892,7 @@ function emergence_cg_openai_premium_portrait_rest_v2($request) {
         return new WP_REST_Response(array(
             'status' => 'error',
             'code' => 'missing_prompt',
-            'message' => 'A premium portrait prompt is required.',
+            'message' => 'Premium hero art direction is required.',
         ), 400);
     }
 
@@ -908,8 +906,7 @@ function emergence_cg_openai_premium_portrait_rest_v2($request) {
             'prompt_only' => true,
             'image_url' => null,
             'spark_name' => $spark_name,
-            'message' => 'Premium image provider is not live. SVG fallback remains active and the compiled prompt is ready.',
-            'premium_portrait_prompt' => $prompt,
+            'message' => 'Premium image provider is not live. SVG fallback remains active.',
         ), 200);
     }
 
@@ -923,7 +920,6 @@ function emergence_cg_openai_premium_portrait_rest_v2($request) {
             'image_url' => null,
             'spark_name' => $spark_name,
             'message' => $result->get_error_message(),
-            'premium_portrait_prompt' => $prompt,
         ), 200);
     }
 
@@ -1953,7 +1949,7 @@ add_action('wp_footer', function () {
         panel.innerHTML = [
           '<label>Costume Concept<input id="emergence-costume-style" type="text" maxlength="160" placeholder="Example: armored hooded suit, sleek tactical jacket, cosmic cape, cracked gold mask"></label>',
           '<label>Personality / Attitude<input id="emergence-personality-style" type="text" maxlength="120" placeholder="Example: stoic protector, cocky street hero, haunted survivor, noble guardian"></label>',
-          '<p class="ecg-result-note">FULL BODY REVEAL STANDARD: the premium prompt uses a complete head-to-toe superhero reveal as the default.</p>',
+          '<p class="ecg-result-note">FULL BODY REVEAL STANDARD: the premium image studio uses a complete head-to-toe superhero reveal as the default.</p>',
           '<p class="ecg-result-note">CUSTOM COSTUME DIRECTION and CUSTOM PERSONALITY / ATTITUDE are player-written design inputs.</p>'
         ].join('');
 
@@ -2054,42 +2050,6 @@ add_action('wp_footer', function () {
         return match ? match[1].trim() : 'Your Spark';
       }
 
-      function copyText(value, button) {
-        assertSafe(value);
-
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(value).then(function () {
-            button.textContent = 'Copied';
-            setTimeout(function () { button.textContent = button.getAttribute('data-label') || 'Copy Prompt'; }, 1400);
-          }).catch(function () {
-            fallbackCopy(value, button);
-          });
-          return;
-        }
-
-        fallbackCopy(value, button);
-      }
-
-      function fallbackCopy(value, button) {
-        const area = document.createElement('textarea');
-        area.value = value;
-        area.setAttribute('readonly', 'readonly');
-        area.style.position = 'fixed';
-        area.style.left = '-9999px';
-        document.body.appendChild(area);
-        area.select();
-
-        try {
-          document.execCommand('copy');
-          button.textContent = 'Copied';
-        } catch (error) {
-          button.textContent = 'Copy failed';
-        }
-
-        document.body.removeChild(area);
-        setTimeout(function () { button.textContent = button.getAttribute('data-label') || 'Copy Prompt'; }, 1400);
-      }
-
       function renderSection(label, value) {
         return [
           '<div class="ecg-prompt-preview-section">',
@@ -2115,11 +2075,10 @@ add_action('wp_footer', function () {
           '<section class="ecg-prompt-preview-card" data-prompt-preview="polished">',
           '<div class="ecg-prompt-preview-head">',
           '<div>',
-          '<p class="ecg-kicker">Premium Portrait Prompt</p>',
+          '<p class="ecg-kicker">Hero Image Studio</p>',
           '<h3>' + esc(name) + '</h3>',
-          '<p>Copy-ready art direction for the premium superhero image generator.</p>',
+          '<p>Your premium superhero art direction is locked behind the scenes. Use the creator actions below without technical setup.</p>',
           '</div>',
-          '<button type="button" class="ecg-copy-prompt-button" data-label="Copy Prompt">Copy Prompt</button>',
           '</div>',
           '<div class="ecg-prompt-preview-grid">',
           renderSection('Costume', costume),
@@ -2128,10 +2087,6 @@ add_action('wp_footer', function () {
           renderSection('Ability Showcase', showcase),
           renderSection('Full-Body Standard', composition),
           '</div>',
-          '<details class="ecg-prompt-preview-raw">',
-          '<summary>View full copy prompt</summary>',
-          '<pre>' + esc(prompt) + '</pre>',
-          '</details>',
           '</section>'
         ].join('');
       }
@@ -2151,16 +2106,14 @@ add_action('wp_footer', function () {
         panel.innerHTML = renderPreview(prompt);
         textarea.insertAdjacentElement('beforebegin', panel.firstElementChild);
         textarea.setAttribute('data-polished-preview-source', '1');
-      }
+        textarea.hidden = true;
+        textarea.style.display = 'none';
 
-      document.addEventListener('click', function (event) {
-        const button = event.target && event.target.closest ? event.target.closest('.ecg-copy-prompt-button') : null;
-        if (!button) {
-          return;
+        const legacyPanel = textarea.closest ? textarea.closest('.ecg-premium-prompt-panel') : null;
+        if (legacyPanel) {
+          legacyPanel.setAttribute('data-prompt-hidden', '1');
         }
-
-        copyText(readPromptText(), button);
-      });
+      }
 
       document.addEventListener('DOMContentLoaded', upgradePromptPreview);
       setInterval(upgradePromptPreview, 1000);
@@ -2210,36 +2163,14 @@ add_action('wp_footer', function () {
         margin: 0;
       }
 
-      .ecg-copy-prompt-button {
-        border: 0;
-        border-radius: 999px;
-        padding: .75rem 1rem;
-        font-weight: 900;
-        cursor: pointer;
-      }
-
-      .ecg-prompt-preview-raw {
-        margin-top: 1rem;
-      }
-
-      .ecg-prompt-preview-raw pre {
-        white-space: pre-wrap;
-        word-break: break-word;
-        max-height: 320px;
-        overflow: auto;
-        padding: .85rem;
-        border-radius: 16px;
-        background: rgba(0,0,0,.24);
+      .ecg-premium-prompt-panel[data-prompt-hidden="1"] > h3,
+      .ecg-premium-prompt-panel[data-prompt-hidden="1"] > p {
+        display: none;
       }
 
       @media (max-width: 760px) {
         .ecg-prompt-preview-head {
           display: block;
-        }
-
-        .ecg-copy-prompt-button {
-          margin-top: .75rem;
-          width: 100%;
         }
 
         .ecg-prompt-preview-grid {
@@ -2729,8 +2660,8 @@ add_action('wp_footer', function () {
         const text = textOf(button);
         const href = button.href || '';
 
-        if (text.indexOf('copy prompt') !== -1) {
-          track('premium_prompt_copied', {button: 'copy_prompt'});
+        if (text.indexOf('generate premium hero image') !== -1 || text.indexOf('hero image studio') !== -1) {
+          track('premium_image_requested', {button: 'hero_image_studio'});
           return;
         }
 
@@ -2871,7 +2802,7 @@ function emergence_cg_render_admin_event_dashboard() {
     $started = (int) $counts['character_started'];
     $scanned = (int) $counts['scan_completed'];
     $saved = (int) $counts['character_saved'];
-    $copied = (int) $counts['premium_prompt_copied'];
+    $image_requests = (int) $counts['premium_image_requested'] + (int) $counts['premium_prompt_copied'];
     $battle_opened = (int) $counts['battle_opened'];
     $battle_started = (int) $counts['battle_started'];
     $battle_completed = (int) $counts['battle_completed'];
@@ -2885,7 +2816,7 @@ function emergence_cg_render_admin_event_dashboard() {
         <div class="emergence-admin-grid">
             <?php emergence_cg_admin_metric_card('Character Started', $started, 'Visitors who loaded the generator.'); ?>
             <?php emergence_cg_admin_metric_card('Scan Completed', $scanned, 'Users who completed the first Spark scan.'); ?>
-            <?php emergence_cg_admin_metric_card('Prompt Copied', $copied, 'Premium portrait prompt copy actions.'); ?>
+            <?php emergence_cg_admin_metric_card('Hero Image Requests', $image_requests, 'Premium hero image studio actions.'); ?>
             <?php emergence_cg_admin_metric_card('Character Saved', $saved, 'Saved character record actions.'); ?>
             <?php emergence_cg_admin_metric_card('Battle Opened', $battle_opened, 'Battle page opens from links or visits.'); ?>
             <?php emergence_cg_admin_metric_card('Battle Started', $battle_started, 'Users who started a battle.'); ?>
@@ -2909,9 +2840,9 @@ function emergence_cg_render_admin_event_dashboard() {
                     <td><?php echo esc_html(emergence_cg_admin_event_rate($scanned, $started)); ?></td>
                 </tr>
                 <tr>
-                    <td>Prompt Copied</td>
-                    <td><?php echo esc_html((string) $copied); ?></td>
-                    <td><?php echo esc_html(emergence_cg_admin_event_rate($copied, $started)); ?></td>
+                    <td>Hero Image Requested</td>
+                    <td><?php echo esc_html((string) $image_requests); ?></td>
+                    <td><?php echo esc_html(emergence_cg_admin_event_rate($image_requests, $started)); ?></td>
                 </tr>
                 <tr>
                     <td>Character Saved</td>
@@ -3087,7 +3018,7 @@ add_action('wp_footer', function () {
           '<ol>',
           '<li><strong>Scan your Spark.</strong> Answer the first questions, then continue without losing progress.</li>',
           '<li><strong>Name and style the hero.</strong> Add a costume concept, personality, and ability showcase.</li>',
-          '<li><strong>Copy the portrait prompt.</strong> Use the polished prompt for premium comic-style art.</li>',
+          '<li><strong>Generate the hero image.</strong> Use the Hero Image Studio for premium comic-style art.</li>',
           '<li><strong>Save and share.</strong> Reload links and battle links are generated after save.</li>',
           '<li><strong>Battle the character.</strong> Send the saved Spark into the simulator.</li>',
           '</ol>',
@@ -3114,7 +3045,7 @@ add_action('wp_footer', function () {
         strip.innerHTML = [
           '<span data-step="scan">1 Scan</span>',
           '<span data-step="style">2 Style</span>',
-          '<span data-step="prompt">3 Prompt</span>',
+          '<span data-step="prompt">3 Image</span>',
           '<span data-step="save">4 Save</span>',
           '<span data-step="battle">5 Battle</span>'
         ].join('');
@@ -3136,7 +3067,7 @@ add_action('wp_footer', function () {
           markStep('save');
         }
 
-        if (text.indexOf('copy prompt') !== -1 || text.indexOf('premium portrait prompt') !== -1) {
+        if (text.indexOf('generate premium hero image') !== -1 || text.indexOf('hero image studio') !== -1) {
           markStep('prompt');
         }
 
@@ -3162,23 +3093,23 @@ add_action('wp_footer', function () {
         help.className = 'ecg-demo-friction-help';
         help.innerHTML = [
           '<strong>Demo tip:</strong> Finish each visible section from top to bottom. ',
-          'After your final dossier appears, use <em>Copy Prompt</em>, then <em>Save Character Record</em>, then <em>Open in Battle Simulator</em>.'
+          'After your final dossier appears, use <em>Generate Premium Hero Image</em>, then <em>Save Character Record</em>, then <em>Open in Battle Simulator</em>.'
         ].join('');
 
         safe(help.textContent);
         scope.insertAdjacentElement('afterend', help);
       }
 
-      function hardenCopyButtons() {
+      function hardenImageButtons() {
         document.querySelectorAll('button').forEach(function (button) {
           const text = String(button.textContent || '').toLowerCase();
-          if (text.indexOf('copy') === -1 || button.getAttribute('data-demo-copy-guard') === '1') {
+          if ((text.indexOf('generate premium hero image') === -1 && text.indexOf('hero image studio') === -1) || button.getAttribute('data-demo-image-guard') === '1') {
             return;
           }
 
-          button.setAttribute('data-demo-copy-guard', '1');
+          button.setAttribute('data-demo-image-guard', '1');
           button.addEventListener('click', function () {
-            track('premium_prompt_copied', {button: 'demo_copy_guard'});
+            track('premium_image_requested', {button: 'demo_image_guard'});
             button.setAttribute('aria-live', 'polite');
           }, true);
         });
@@ -3220,7 +3151,7 @@ add_action('wp_footer', function () {
           return;
         }
 
-        if (text.indexOf('save character') === -1 && text.indexOf('copy prompt') === -1) {
+        if (text.indexOf('save character') === -1 && text.indexOf('generate premium hero image') === -1 && text.indexOf('hero image studio') === -1) {
           return;
         }
 
@@ -3242,7 +3173,7 @@ add_action('wp_footer', function () {
         ensureProgressStrip();
         ensureFrictionHelp();
         detectCurrentStep();
-        hardenCopyButtons();
+        hardenImageButtons();
         hardenSaveButtons();
         hardenBattleLinks();
         ensureSaveFallbackNote();
