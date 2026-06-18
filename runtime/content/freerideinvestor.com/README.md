@@ -21,6 +21,7 @@ Agent-powered trading journal:
 
 - `index.html` — sales funnel homepage
 - `blog.html` — personal trading journal blog index
+- `blog/the-goal-is-no-longer-making-money.html` — personal journal entry on keeping profits
 - `blog/day-7-the-question-getting-louder.html` — Day 7 journal entry
 - `early-access.html` — intake/lead capture placeholder
 - `replay-proof.html` — product proof page
