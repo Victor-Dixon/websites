@@ -1,4 +1,5 @@
 import { getInteractionObjectAtTile } from "./pathfinding.js";
+import { isQuestCompleted, startQuestIfNew, getActiveStage, QUESTS } from "./quests.js";
 
 const TYPE_PREFIX = {
   dialogue: "Dialogue",
@@ -7,6 +8,7 @@ const TYPE_PREFIX = {
   shop_placeholder: "Shop",
   training_placeholder: "Training",
   encounter_placeholder: "Encounter",
+  quest: "Quest",
 };
 
 function distance(a, b) {
@@ -46,7 +48,7 @@ export function findNearbyInteractable(world, player) {
 export function interactionText(object) {
   if (!object?.interaction) return "";
   const prefix = TYPE_PREFIX[object.interaction.type] || "Interaction";
-  return `${prefix}: ${object.name} - ${object.interaction.text}`;
+  return `${prefix}: ${object.name} — ${object.interaction.text}`;
 }
 
 export function applyInteraction(player, object) {
@@ -58,10 +60,31 @@ export function applyInteraction(player, object) {
     player.visitedMarkers = [...visited];
   }
 
+  if (object.interaction?.type === "quest") {
+    const questId = object.interaction.questId;
+    if (isQuestCompleted(player, questId)) {
+      const quest = QUESTS[questId];
+      return quest?.completedDialogue
+        ? `${object.name}: ${quest.completedDialogue}`
+        : interactionText(object);
+    }
+    startQuestIfNew(player, questId);
+    const stage = getActiveStage(player, questId);
+    if (stage) {
+      return { kind: "quest", questId, stage };
+    }
+  }
+
   return interactionText(object);
 }
 
 export function showInteraction(messageBox, message) {
   if (!messageBox) return;
-  messageBox.textContent = message || "Nothing nearby is ready to respond yet.";
+  if (typeof message === "string") {
+    messageBox.innerHTML = "";
+    messageBox.textContent = message || "Nothing nearby is ready to respond yet.";
+    return;
+  }
+  // Quest objects are handled in explore.js
 }
+
