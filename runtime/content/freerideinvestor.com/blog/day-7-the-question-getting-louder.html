@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Day 7: The Question Getting Louder | FreeRideInvestor</title>
+  <meta name="description" content="A FreeRideInvestor personal trading journal entry about confidence falling while results improve, near misses, sizing discipline, and the test after a winning streak.">
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #b6c2d1;
+      --line: rgba(255,255,255,.13);
+      --accent: #70e1ff;
+      --accent2: #a78bfa;
+      --good: #86efac;
+      --danger: #fb7185;
+      --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #172554 0, var(--bg) 44%);
+      color: var(--text);
+      line-height: 1.68;
+    }
+    a { color: var(--accent); }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,11,18,.86);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner, main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      color: var(--text);
+      font-weight: 950;
+      letter-spacing: -.03em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .nav-links a {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      border-color: var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    main { padding: 56px 0 88px; }
+    article {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+      gap: 28px;
+      align-items: start;
+    }
+    .content { max-width: 760px; }
+    .eyebrow {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
+    h2 {
+      margin: 42px 0 12px;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
+    p, li { color: var(--muted); }
+    p { margin: 0 0 16px; }
+    .lede {
+      color: #e5edf7;
+      font-size: clamp(19px, 2vw, 24px);
+      line-height: 1.45;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      background: rgba(17,24,39,.82);
+      box-shadow: 0 24px 70px rgba(0,0,0,.22);
+    }
+    .scorecard {
+      position: sticky;
+      top: 96px;
+      display: grid;
+      gap: 16px;
+    }
+    .scorecard h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+    .metrics {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+    }
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    .metric:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .metric dt {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .metric dd {
+      margin: 0;
+      color: var(--text);
+      font-weight: 950;
+      text-align: right;
+    }
+    .good { color: var(--good); }
+    .warn { color: var(--warn); }
+    blockquote {
+      margin: 28px 0;
+      border-left: 4px solid var(--accent);
+      padding: 8px 0 8px 18px;
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: -.03em;
+    }
+    .page-links { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .page-links a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      background: rgba(255,255,255,.05);
+      font-weight: 800;
+      text-decoration: none;
+    }
+    @media (max-width: 920px) {
+      article { grid-template-columns: 1fr; }
+      .scorecard { position: static; }
+    }
+    @media (max-width: 860px) {
+      .nav-inner { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .nav-links { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="/">FreeRideInvestor</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/blog.html" aria-current="page">Blog</a>
+        <a href="/trading-journal.html">Journal</a>
+        <a href="/replay-proof.html">Replay Proof</a>
+        <a href="/day-trade-planner.html">Day Planner</a>
+        <a href="/early-access.html">Early Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <article>
+      <div class="content">
+        <p class="eyebrow">Personal trading journal · Day 7</p>
+        <h1>Day 7: The Question Getting Louder</h1>
+        <p class="lede">The most interesting part is not the P&amp;L. It is the fact that my confidence is falling while my results are improving.</p>
+
+        <h2>Morning Introspection</h2>
+        <p>Something interesting is happening.</p>
+        <p>As the account grows, my confidence is not increasing.</p>
+        <p>It is decreasing.</p>
+        <p>Not because I think I am failing. Not because I am afraid of the market. It is because a question keeps getting louder in the back of my mind:</p>
+        <blockquote>How long will this streak last?</blockquote>
+        <p>Seven green days.</p>
+        <p>Only one red day since getting PDT and margin access.</p>
+        <p>The numbers look good.</p>
+        <p>But the market has a way of humbling people who start believing they are invincible.</p>
+        <p>The question is not whether I will have a losing day.</p>
+        <p>The question is what happens when it arrives.</p>
+
+        <h2>The Near Misses</h2>
+        <p>Two days in a row I came dangerously close to my daily stop level.</p>
+        <p>Both times I managed to fight my way back.</p>
+        <p>Both times the account recovered.</p>
+        <p>Both times I finished green.</p>
+        <p>That is the part that worries me.</p>
+        <p>Because successful recoveries can teach the wrong lesson.</p>
+        <p>A comeback feels good.</p>
+        <p>But a comeback can also convince you that risk does not matter.</p>
+        <p>The market eventually punishes that belief.</p>
+
+        <h2>Yesterday's Battle</h2>
+        <p>My read on the Fed decision and the market reaction was good.</p>
+        <p>The thesis worked.</p>
+        <p>The execution was mixed.</p>
+        <p>At one point I was up around $90.</p>
+        <p>That should have been the moment to shift risk off.</p>
+        <p>Instead, I gave most of it back.</p>
+        <p>A $90 day became a $30 day.</p>
+        <p>Then that $30 day became a negative day.</p>
+        <p>At around -$40 the fight started.</p>
+        <p>From there it became a slow grind back upward.</p>
+        <p>The plan simplified itself:</p>
+        <blockquote>Buy around $400. Sell around $403. Protect the account. Let runners work.</blockquote>
+        <p>Simple.</p>
+        <p>Boring.</p>
+        <p>Profitable.</p>
+
+        <h2>Managing Risk Differently</h2>
+        <p>One thing that has changed recently is expiration selection.</p>
+        <p>Earlier in the journey I was regularly trading contracts with one, two, or three days until expiration.</p>
+        <p>Now I have started moving further out.</p>
+        <p>Instead of fighting theta every second, I have been buying additional time.</p>
+        <p>Not because I am becoming bearish.</p>
+        <p>Not because I am becoming less confident.</p>
+        <p>Because uncertainty deserves respect.</p>
+        <p>Yesterday, before the Fed event, I manually rolled part of my position.</p>
+        <p>I sold one contract at a loss and replaced it with a later expiration.</p>
+        <p>The trade reduced risk even though it locked in a temporary loss.</p>
+        <p>That decision mattered.</p>
+        <p>The goal was not maximizing profit.</p>
+        <p>The goal was surviving uncertainty.</p>
+
+        <h2>My Biggest Weakness</h2>
+        <p>I am still early.</p>
+        <p>Almost every A+ setup I identify, I arrive before confirmation.</p>
+        <p>Entry quality has been carrying me.</p>
+        <p>The problem is that good entries can hide bad sizing.</p>
+        <p>I have been using most of my account on trades.</p>
+        <p>That is simply the truth.</p>
+        <p>It works when you are right.</p>
+        <p>The market is less forgiving when you are wrong.</p>
+        <p>The next evolution is not finding better setups.</p>
+        <p>The next evolution is improving sizing discipline.</p>
+
+        <h2>Today's Tesla Levels</h2>
+        <p>For me, the market is simple today.</p>
+        <p>Above $400, Tesla has a chance to remain constructive.</p>
+        <p>Below $395, I become bearish.</p>
+        <p>Between those levels?</p>
+        <p>Chop.</p>
+        <p>Indecision.</p>
+        <p>Noise.</p>
+        <p>And noise is where traders donate money.</p>
+
+        <h2>The Real Goal</h2>
+        <p>The goal today is not making another $485.</p>
+        <p>The goal is not getting back above $1,000 immediately.</p>
+        <p>At the current pace, that only requires roughly $50 per trading day before payday.</p>
+        <p>That is manageable.</p>
+        <p>The real goal is proving that the process works even when the streak eventually ends.</p>
+        <p>Because every trader loves winning streaks.</p>
+        <p>The professionals are defined by what happens immediately after the first loss.</p>
+        <p>That is the test waiting for me.</p>
+        <p>And sooner or later, every trader takes it.</p>
+
+        <div class="page-links">
+          <a href="/blog.html">Back to blog</a>
+          <a href="/trading-journal.html">Open the working journal</a>
+        </div>
+      </div>
+
+      <aside class="scorecard" aria-label="Day 7 scorecard">
+        <section class="card">
+          <h2>Day 7 Stats</h2>
+          <dl class="metrics">
+            <div class="metric">
+              <dt>Account value</dt>
+              <dd>$795.27</dd>
+            </div>
+            <div class="metric">
+              <dt>Weekly P&amp;L</dt>
+              <dd class="good">+$1,119</dd>
+            </div>
+            <div class="metric">
+              <dt>Yesterday's P&amp;L</dt>
+              <dd class="good">+$485</dd>
+            </div>
+            <div class="metric">
+              <dt>Green streak</dt>
+              <dd class="good">7 days</dd>
+            </div>
+            <div class="metric">
+              <dt>Red days since PDT/margin</dt>
+              <dd>1</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="card">
+          <h2>Morning Scores</h2>
+          <dl class="metrics">
+            <div class="metric">
+              <dt>Focus</dt>
+              <dd>8/10</dd>
+            </div>
+            <div class="metric">
+              <dt>Energy</dt>
+              <dd>8/10</dd>
+            </div>
+            <div class="metric">
+              <dt>Patience</dt>
+              <dd class="good">10/10</dd>
+            </div>
+            <div class="metric">
+              <dt>Confidence</dt>
+              <dd class="warn">7/10</dd>
+            </div>
+            <div class="metric">
+              <dt>FOMO</dt>
+              <dd class="good">0/10</dd>
+            </div>
+            <div class="metric">
+              <dt>Revenge trading</dt>
+              <dd class="good">0/10</dd>
+            </div>
+            <div class="metric">
+              <dt>Need to make money today</dt>
+              <dd>3/10</dd>
+            </div>
+          </dl>
+        </section>
+      </aside>
+    </article>
+  </main>
+</body>
+</html>

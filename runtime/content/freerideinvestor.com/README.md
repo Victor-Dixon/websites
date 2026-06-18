@@ -20,6 +20,8 @@ Agent-powered trading journal:
 ## Pages
 
 - `index.html` — sales funnel homepage
+- `blog.html` — personal trading journal blog index
+- `blog/day-7-the-question-getting-louder.html` — Day 7 journal entry
 - `early-access.html` — intake/lead capture placeholder
 - `replay-proof.html` — product proof page
 - `day-trade-planner.html` — day planner rebuild placeholder

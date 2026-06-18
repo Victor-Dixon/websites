@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Replay Proof | FreeRideInvestor</title>
-  <meta name="description" content="FreeRideInvestor replay proof: fills matched to market context and behavior tags.">
+  <title>Blog | FreeRideInvestor</title>
+  <meta name="description" content="Personal trading journal entries and process notes from FreeRideInvestor.">
   <style>
     :root {
       --bg: #080b12;
@@ -75,22 +75,55 @@
     }
     main { padding: 64px 0 80px; }
     h1 { margin: 0 0 16px; font-size: clamp(40px, 7vw, 76px); line-height: .95; letter-spacing: -.06em; }
-    p, li { color: var(--muted); }
+    h2 { margin: 0 0 10px; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.04em; }
+    p { color: var(--muted); }
     .sub { max-width: 780px; font-size: 20px; }
-    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 28px 0; }
+    .eyebrow {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .posts {
+      display: grid;
+      gap: 18px;
+      margin-top: 32px;
+    }
     .card {
+      display: block;
       border: 1px solid var(--line);
       border-radius: 22px;
-      padding: 22px;
+      padding: 24px;
       background: rgba(17,24,39,.82);
       box-shadow: 0 24px 70px rgba(0,0,0,.22);
+      text-decoration: none;
     }
-    .metric strong { display: block; color: var(--accent); font-size: 32px; line-height: 1; }
-    .metric span { color: var(--muted); font-size: 14px; }
+    .card:hover {
+      border-color: rgba(112,225,255,.45);
+      background: rgba(23,32,51,.9);
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 9px;
+      color: var(--good);
+      background: rgba(134,239,172,.08);
+    }
     .warning { color: var(--danger); font-weight: 900; }
-    .page-links { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
     @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
       .nav-inner { align-items: flex-start; flex-direction: column; padding: 14px 0; }
       .nav-links { justify-content: flex-start; }
     }
@@ -102,33 +135,31 @@
       <a class="brand" href="/">FreeRideInvestor</a>
       <div class="nav-links">
         <a href="/">Home</a>
-        <a href="/blog.html">Blog</a>
+        <a href="/blog.html" aria-current="page">Blog</a>
         <a href="/trading-journal.html">Journal</a>
-        <a href="/replay-proof.html" aria-current="page">Replay Proof</a>
+        <a href="/replay-proof.html">Replay Proof</a>
         <a href="/day-trade-planner.html">Day Planner</a>
         <a href="/early-access.html">Early Access</a>
       </div>
     </div>
   </nav>
   <main>
-    <h1>Replay Proof</h1>
-    <p class="sub">Dream.OS reconstructed a TSLA options trading month into a fill-level behavior scorecard.</p>
-    <section class="grid" aria-label="Replay proof metrics">
-      <div class="card metric"><strong>47/47</strong><span>fills matched</span></div>
-      <div class="card metric"><strong>5,760</strong><span>one-minute TSLA candles</span></div>
-      <div class="card metric"><strong>8</strong><span>behavior tags</span></div>
-      <div class="card metric"><strong>62/100</strong><span>discipline score</span></div>
+    <p class="eyebrow">Personal trading journal</p>
+    <h1>FreeRideInvestor Blog</h1>
+    <p class="sub">Process notes from a small-account trading journey: discipline, sizing, risk, confidence, and the behavior behind each result.</p>
+
+    <section class="posts" aria-label="Recent blog posts">
+      <a class="card" href="/blog/day-7-the-question-getting-louder.html">
+        <div class="meta">
+          <span>Day 7</span>
+          <span>June 18, 2026</span>
+          <span class="tag">Trading journal</span>
+        </div>
+        <h2>Day 7: The Question Getting Louder</h2>
+        <p>The most interesting part is not the P&amp;L. It is the fact that confidence is falling while results are improving.</p>
+        <p class="warning">Read the entry -></p>
+      </a>
     </section>
-    <section class="card">
-      <h2>Top leak</h2>
-      <p>Rapid repeat fills / clustering.</p>
-      <p class="warning">Exact option P/L remains blocked until contract identity is imported.</p>
-    </section>
-    <div class="page-links">
-      <a href="/trading-journal.html">Open the working journal</a>
-      <a href="/day-trade-planner.html">Open day planner</a>
-      <a href="/early-access.html">Request early access</a>
-    </div>
   </main>
 </body>
 </html>
