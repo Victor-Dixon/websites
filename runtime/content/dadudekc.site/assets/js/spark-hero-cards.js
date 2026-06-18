@@ -236,6 +236,21 @@
     return card;
   }
 
+  function hydrateCard(record) {
+    const existing = record || {};
+    const raw = existing.raw || existing;
+    const rebuilt = buildCard(raw, {
+      id: existing.id,
+      source: existing.source,
+      artworkUrl: existing.artwork_url
+    });
+    return Object.assign({}, existing, rebuilt, {
+      artwork_url: existing.artwork_url || rebuilt.artwork_url,
+      created_at: existing.created_at || rebuilt.created_at,
+      raw: raw
+    });
+  }
+
   function loreFor(name, domains, rarity, description) {
     const domainText = domains.length ? domains.join(", ") : "unmapped Spark energy";
     const hook = description ? " Witness reports describe " + description : "";
@@ -278,6 +293,10 @@
   function readSaved() {
     try { return JSON.parse(localStorage.getItem(savedKey) || "[]") || []; }
     catch (e) { return []; }
+  }
+
+  function getSavedCards() {
+    return readSaved().map(hydrateCard);
   }
 
   function writeSaved(chars) {
@@ -350,6 +369,7 @@
   }
 
   function renderCard(card, options) {
+    card = hydrateCard(card);
     const actionAttr = options && options.onclick
       ? ' onclick="' + attr(options.onclick) + '"'
       : ' data-action="' + attr((options && options.action) || "open-profile") + '"';
@@ -360,9 +380,9 @@
       '<button class="spark-hero-card-shell ' + tierClass + '" type="button" style="' + attr(styleVars(card)) + '"' + actionAttr + ' aria-label="Open hero profile for ' + attr(card.character_name) + '">',
       '<span class="spark-hero-card-inner">',
       '<span class="spark-hero-card-face spark-hero-card-front">',
-      '<span class="spark-card-top"><span><b>' + esc(card.character_name) + '</b><small>' + esc(card.spark_classification) + '</small></span><em>' + esc(card.rarity_tier) + '</em></span>',
+      '<span class="spark-card-top"><span><small>COMIC CARD</small><b>' + esc(card.character_name) + '</b><small>' + esc(card.spark_classification) + '</small></span><em>' + esc(card.rarity_tier) + '</em></span>',
       '<span class="spark-card-art"><img alt="' + attr(card.character_name) + ' character artwork" src="' + attr(card.artwork_url) + '"><i></i></span>',
-      '<span class="spark-card-bottom"><span class="spark-rating-row"><span><small>Power</small><b>' + esc(card.power_rating) + '</b></span><span><small>Combat</small><b>' + esc(card.combat_rating) + '</b></span></span>',
+      '<span class="spark-card-bottom"><span class="spark-card-stars">' + rarityStars(card.rarity_tier) + '<b>TEAM EFFECT ACTIVE</b></span><span class="spark-rating-row"><span><small>Power</small><b>' + esc(card.power_rating) + '</b></span><span><small>Combat</small><b>' + esc(card.combat_rating) + '</b></span></span>',
       '<span class="spark-team-strip"><small>' + esc(card.team_name || "Spark Team Card") + '</small>' + teamEffectPills(card.team_effects) + '</span>',
       '<span class="spark-domain-row">' + domainIcons(card.domains) + '<strong>' + esc(card.rarity_tier) + '</strong></span></span>',
       '</span>',
@@ -388,7 +408,15 @@
     }).join("");
   }
 
+  function rarityStars(rarity) {
+    const count = Math.max(1, Math.min(6, tiers.indexOf(rarity) + 1 || 1));
+    let stars = "";
+    for (let i = 0; i < count; i += 1) stars += '<i></i>';
+    return '<span>' + stars + '</span>';
+  }
+
   function renderProfile(card, options) {
+    card = hydrateCard(card);
     const backAttr = options && options.backOnclick
       ? ' onclick="' + attr(options.backOnclick) + '"'
       : ' data-action="' + attr((options && options.backAction) || "profile-back") + '"';
@@ -421,24 +449,27 @@
     if (document.getElementById("spark-hero-card-styles")) return;
     const css = `
 .spark-card-zone{margin:1.25rem 0;display:grid;place-items:center;perspective:1600px}
-.spark-card-stage{width:min(100%,390px);display:grid;gap:.8rem;justify-items:center}
-.spark-hero-card-shell{width:min(100%,360px);aspect-ratio:5/7;border:0;background:transparent;color:#fff;padding:0;position:relative;cursor:pointer;filter:drop-shadow(0 24px 42px rgba(0,0,0,.42));transform:translateZ(0);transition:transform .28s ease,filter .28s ease}
-.spark-hero-card-shell:hover,.spark-hero-card-shell:focus-visible{transform:translateY(-8px) scale(1.015);filter:drop-shadow(0 32px 56px color-mix(in srgb,var(--card-accent) 34%,#000))}
+.spark-card-stage{width:min(100%,410px);display:grid;gap:.8rem;justify-items:center}
+.spark-hero-card-shell{width:min(100%,382px);aspect-ratio:5/7;border:0;background:transparent;color:#fff;padding:0;position:relative;cursor:pointer;filter:drop-shadow(0 28px 54px rgba(0,0,0,.56));transform:translateZ(0);transition:transform .28s ease,filter .28s ease}
+.spark-hero-card-shell:hover,.spark-hero-card-shell:focus-visible{transform:translateY(-10px) scale(1.018);filter:drop-shadow(0 36px 70px color-mix(in srgb,var(--card-accent) 42%,#000))}
 .spark-hero-card-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .72s cubic-bezier(.2,.8,.2,1)}
 .spark-hero-card-shell:hover .spark-hero-card-inner,.spark-hero-card-shell:focus-visible .spark-hero-card-inner{transform:rotateY(180deg)}
-.spark-hero-card-face{position:absolute;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:.75rem;overflow:hidden;border-radius:28px;padding:1rem;backface-visibility:hidden;background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.035) 36%,rgba(0,0,0,.34)),linear-gradient(135deg,hsl(var(--card-hue) 82% 18%),#090b17 44%,hsl(calc(var(--card-hue) + 70deg) 86% 18%));border:2px solid color-mix(in srgb,var(--card-accent) 72%,#fff 12%);box-shadow:inset 0 0 0 6px rgba(255,255,255,.055),inset 0 0 32px color-mix(in srgb,var(--card-accent) 25%,transparent),0 0 34px color-mix(in srgb,var(--card-accent) 38%,transparent)}
+.spark-hero-card-face{position:absolute;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:.72rem;overflow:hidden;border-radius:18px;padding:.72rem;backface-visibility:hidden;background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.035) 36%,rgba(0,0,0,.34)),linear-gradient(135deg,hsl(var(--card-hue) 82% 18%),#071427 44%,hsl(calc(var(--card-hue) + 70deg) 86% 18%));border:1px solid color-mix(in srgb,var(--card-accent) 80%,#fff 14%);box-shadow:inset 0 0 0 2px rgba(255,255,255,.12),inset 0 0 0 7px rgba(0,0,0,.35),inset 0 0 42px color-mix(in srgb,var(--card-accent) 28%,transparent),0 0 42px color-mix(in srgb,var(--card-accent) 42%,transparent)}
 .spark-hero-card-face:before{content:"";position:absolute;inset:-35%;background:linear-gradient(115deg,transparent 22%,rgba(255,255,255,.16),transparent 38%,rgba(255,255,255,.24),transparent 56%);transform:translateX(-38%) rotate(10deg);animation:spark-card-shine 3.8s linear infinite;mix-blend-mode:screen;pointer-events:none}
-.spark-hero-card-face:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 20%,rgba(255,255,255,.2),transparent 12%),radial-gradient(circle at 82% 18%,rgba(255,255,255,.14),transparent 10%),repeating-radial-gradient(circle at 50% 35%,rgba(255,255,255,.08) 0 1px,transparent 1px 6px);opacity:.42;pointer-events:none}
+.spark-hero-card-face:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(83,196,255,.18),transparent 12%,transparent 88%,rgba(83,196,255,.18)),radial-gradient(circle at 18% 20%,rgba(255,255,255,.2),transparent 12%),radial-gradient(circle at 82% 18%,rgba(255,255,255,.14),transparent 10%),repeating-radial-gradient(circle at 50% 35%,rgba(255,255,255,.08) 0 1px,transparent 1px 6px);opacity:.48;pointer-events:none}
 .spark-hero-card-back{transform:rotateY(180deg);grid-template-rows:auto 1fr auto auto;align-content:center;text-align:left}
 .spark-card-top,.spark-card-bottom,.spark-card-art,.spark-card-back-title,.spark-card-back-copy,.spark-card-back-stats,.spark-card-open{position:relative;z-index:1}
-.spark-card-top{display:flex;justify-content:space-between;gap:.7rem;align-items:flex-start;text-transform:uppercase;letter-spacing:.08em}
-.spark-card-top b{display:block;font-size:clamp(1.08rem,5vw,1.45rem);line-height:1.02;text-shadow:0 2px 0 #000}
-.spark-card-top small{display:block;margin-top:.28rem;color:rgba(255,255,255,.72);font-size:.62rem;font-weight:900}
-.spark-card-top em,.spark-domain-row strong{font-style:normal;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:color-mix(in srgb,var(--card-accent) 28%,rgba(0,0,0,.44));padding:.34rem .55rem;font-size:.68rem;font-weight:950;white-space:nowrap}
-.spark-card-art{min-height:0;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.28);background:#050713;box-shadow:inset 0 0 0 4px rgba(255,255,255,.055)}
+.spark-card-top{display:flex;justify-content:space-between;gap:.7rem;align-items:flex-start;text-transform:uppercase;letter-spacing:.08em;padding:.58rem .65rem;border:1px solid rgba(132,214,255,.28);border-radius:12px;background:linear-gradient(90deg,rgba(25,141,255,.32),rgba(4,12,32,.82));box-shadow:inset 0 0 18px rgba(78,181,255,.12)}
+.spark-card-top b{display:block;font-size:clamp(1.02rem,5vw,1.35rem);line-height:1.02;text-shadow:0 2px 0 #000}
+.spark-card-top small{display:block;margin-top:.2rem;color:rgba(205,235,255,.78);font-size:.56rem;font-weight:1000}
+.spark-card-top span>small:first-child{margin:0 0 .26rem;color:var(--card-accent);letter-spacing:.18em}
+.spark-card-top em,.spark-domain-row strong{font-style:normal;border:1px solid rgba(255,255,255,.35);border-radius:6px;background:linear-gradient(180deg,color-mix(in srgb,var(--card-accent) 48%,rgba(0,0,0,.35)),rgba(0,0,0,.58));padding:.4rem .54rem;font-size:.66rem;font-weight:1000;white-space:nowrap;box-shadow:0 0 16px color-mix(in srgb,var(--card-accent) 28%,transparent)}
+.spark-card-art{min-height:0;border-radius:13px;overflow:hidden;border:1px solid rgba(132,214,255,.35);background:#050713;box-shadow:inset 0 0 0 3px rgba(255,255,255,.055),0 0 22px rgba(68,174,255,.16)}
 .spark-card-art img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);filter:saturate(1.16) contrast(1.06)}
-.spark-card-art i{position:absolute;inset:0;background:linear-gradient(180deg,transparent 54%,rgba(0,0,0,.72)),radial-gradient(circle at 50% 12%,rgba(255,255,255,.18),transparent 38%);pointer-events:none}
-.spark-card-bottom{display:grid;gap:.7rem;padding:.75rem;border:1px solid rgba(255,255,255,.16);border-radius:20px;background:rgba(0,0,0,.24);box-shadow:inset 0 0 28px rgba(255,255,255,.04)}
+.spark-card-art i{position:absolute;inset:0;background:linear-gradient(180deg,transparent 46%,rgba(0,0,0,.82)),radial-gradient(circle at 50% 12%,rgba(255,255,255,.18),transparent 38%);pointer-events:none}
+.spark-card-bottom{display:grid;gap:.55rem;padding:.62rem;border:1px solid rgba(132,214,255,.24);border-radius:13px;background:linear-gradient(180deg,rgba(8,25,54,.86),rgba(0,0,0,.58));box-shadow:inset 0 0 28px rgba(78,181,255,.08)}
+.spark-card-stars{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.spark-card-stars span{display:flex;gap:.16rem}.spark-card-stars i{width:.62rem;height:.62rem;clip-path:polygon(50% 0,61% 34%,98% 34%,68% 55%,79% 91%,50% 70%,21% 91%,32% 55%,2% 34%,39% 34%);background:linear-gradient(180deg,#fff8a6,#ffb000);box-shadow:0 0 8px #ffd166}.spark-card-stars b{font-size:.56rem;letter-spacing:.16em;color:#9ee7ff}
 .spark-rating-row{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
 .spark-rating-row span{border-radius:15px;background:rgba(255,255,255,.08);padding:.62rem;text-align:left}
 .spark-rating-row small{display:block;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.64);font-size:.62rem;font-weight:900}
@@ -478,7 +509,8 @@
 .tier-common{--tier-glow:#d7dde8}.tier-rare{--tier-glow:#54d7ff}.tier-epic{--tier-glow:#bf7dff}.tier-legendary{--tier-glow:#ffd166}.tier-mythic{--tier-glow:#ff5fd2}.tier-transcendent{--tier-glow:#ffffff}
 .tier-legendary .spark-hero-card-face,.tier-mythic .spark-hero-card-face,.tier-transcendent .spark-hero-card-face{box-shadow:inset 0 0 0 6px rgba(255,255,255,.07),inset 0 0 42px color-mix(in srgb,var(--tier-glow) 34%,transparent),0 0 44px color-mix(in srgb,var(--tier-glow) 48%,transparent)}
 @keyframes spark-card-shine{0%{transform:translateX(-46%) rotate(10deg)}100%{transform:translateX(46%) rotate(10deg)}}
-@media(max-width:760px){.spark-card-stage{width:100%}.spark-hero-card-shell{width:min(100%,330px)}.spark-profile-hero,.spark-profile-grid{grid-template-columns:1fr}.spark-profile-art img{aspect-ratio:16/13}.spark-card-hint{font-size:.82rem}}
+@media(max-width:900px){.spark-profile-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.spark-card-stage{width:100%}.spark-hero-card-shell{width:min(100%,340px)}.spark-profile-hero,.spark-profile-grid{grid-template-columns:1fr}.spark-profile-art img{aspect-ratio:16/13}.spark-card-hint{font-size:.82rem}}
 @media(hover:none){.spark-hero-card-shell:hover .spark-hero-card-inner{transform:none}.spark-hero-card-shell:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){.spark-hero-card-shell,.spark-hero-card-inner{transition:none}.spark-hero-card-face:before{animation:none;opacity:.26}}
 `;
@@ -492,6 +524,8 @@
   window.SparkHeroCards = {
     escapeHTML: esc,
     buildCard: buildCard,
+    hydrateCard: hydrateCard,
+    getSavedCards: getSavedCards,
     ensureRecord: ensureRecord,
     upsertRecord: upsertRecord,
     setArtwork: setArtwork,
