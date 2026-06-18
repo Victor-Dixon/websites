@@ -207,7 +207,8 @@ function requestKeyboardMove(direction) {
 }
 
 function checkDailyLogin() {
-  const today = new Date().toISOString().slice(0, 10);
+  const d = new Date();
+  const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   if (player.lastLoginDate !== today) {
     player.lastLoginDate = today;
     player.xp = (player.xp || 0) + 10;
