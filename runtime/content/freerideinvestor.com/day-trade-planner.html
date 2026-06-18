@@ -90,9 +90,32 @@
       .nav-links { justify-content: flex-start; }
     }
   </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.tailwind = window.tailwind || {};
+    window.tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            freeride: {
+              bg: "#020617",
+              panel: "#0f172a",
+              cyan: "#70e1ff",
+              violet: "#a78bfa",
+              emerald: "#86efac",
+            },
+          },
+          boxShadow: {
+            glow: "0 0 80px rgba(112,225,255,.18)",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/assets/css/freeride-theme.css">
 </head>
-<body>
-  <nav class="site-nav" aria-label="Primary navigation">
+<body class="freeride-theme bg-slate-950 text-slate-100 antialiased selection:bg-cyan-300/25 selection:text-cyan-50">
+  <nav class="site-nav backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/70" aria-label="Primary navigation">
     <div class="nav-inner">
       <a class="brand" href="/">FreeRideInvestor</a>
       <div class="nav-links">
@@ -125,5 +148,6 @@
       <a href="/early-access.html">Request early access</a>
     </div>
   </main>
+  <script type="module" src="/assets/js/freeride-market-field.js"></script>
 </body>
 </html>

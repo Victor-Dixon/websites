@@ -26,6 +26,13 @@ Agent-powered trading journal:
 - `replay-proof.html` — product proof page
 - `day-trade-planner.html` — day planner rebuild placeholder
 
+## Theme Assets
+
+- `assets/css/freeride-theme.css` — shared glass/gradient theme layer
+- `assets/js/freeride-market-field.js` — Three.js market-field background animation
+
+The static pages use Tailwind via the CDN for utility classes and Three.js r184 via an ES module CDN import for progressive visual enhancement.
+
 ## Salvage Policy
 
 Preserve only:
