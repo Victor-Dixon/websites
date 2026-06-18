@@ -116,6 +116,13 @@
     return { accent: base[0], accent2: base[1], hue: hue };
   }
 
+  function paletteForDomain(domain, seed) {
+    const key = slug(domain || "default");
+    const base = palettes[key] || palettes.default;
+    const hue = (base[2] + (seed % 42) - 21 + 360) % 360;
+    return { accent: base[0], accent2: base[1], hue: hue };
+  }
+
   function nameFor(payload, domains, seed) {
     const explicit = firstValue(payload, ["character_name", "hero_name", "hero", "alias", "name", "title"]);
     if (explicit) return String(explicit);
@@ -131,6 +138,27 @@
       return String(domain).trim().slice(0, 2).toUpperCase();
     }).join(" ");
     const hue = card.palette.hue;
+    const positions = [
+      [205, 300, 86],
+      [700, 305, 86],
+      [176, 690, 78],
+      [724, 695, 78],
+      [450, 190, 70]
+    ];
+    const teamAuras = domains.slice(0, 5).map(function (domain, index) {
+      const visual = paletteForDomain(domain, card.card_seed + index * 17);
+      const pos = positions[index] || [450, 190 + index * 88, 64];
+      const label = esc(String(domain || "SP").slice(0, 2).toUpperCase());
+      return [
+        '<g opacity=".92" filter="url(#glow)">',
+        '<circle cx="', pos[0], '" cy="', pos[1], '" r="', pos[2], '" fill="hsl(', visual.hue, ',96%,56%)" opacity=".18"/>',
+        '<circle cx="', pos[0], '" cy="', pos[1], '" r="', Math.round(pos[2] * .68), '" fill="#050713" opacity=".72"/>',
+        '<path d="M', pos[0] - pos[2], ' ', pos[1], 'c', pos[2] * .5, ' -', pos[2] * .9, ' ', pos[2] * 1.5, ' -', pos[2] * .9, ' ', pos[2] * 2, ' 0c-', pos[2] * .42, ' ', pos[2] * .85, ' -', pos[2] * 1.55, ' ', pos[2] * .85, ' -', pos[2] * 2, ' 0z" fill="none" stroke="hsl(', visual.hue, ',100%,68%)" stroke-width="10" opacity=".78"/>',
+        '<circle cx="', pos[0], '" cy="', pos[1], '" r="', Math.round(pos[2] * .32), '" fill="hsl(', visual.hue, ',100%,66%)" opacity=".8"/>',
+        '<text x="', pos[0], '" y="', pos[1] + 10, '" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="30" font-weight="900" letter-spacing="2">', label, '</text>',
+        '</g>'
+      ].join("");
+    }).join("");
     const svg = [
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1260" role="img" aria-label="',
       esc(card.character_name),
@@ -144,6 +172,7 @@
       '<path d="M0 240h900M0 360h900M0 480h900M0 600h900M0 720h900M0 840h900M0 960h900"/>',
       '<path d="M120 0v1260M300 0v1260M480 0v1260M660 0v1260M840 0v1260"/></g>',
       '<g filter="url(#glow)"><path d="M450 176l78 178 193 20-145 130 42 190-168-98-168 98 42-190-145-130 193-20z" fill="#fff" opacity=".17"/>',
+      teamAuras,
       '<path d="M446 338c-122 0-212 101-212 238 0 114 50 189 129 226l-56 205h286l-55-205c80-37 130-112 130-226 0-137-92-238-222-238z" fill="#050713" opacity=".78"/>',
       '<path d="M282 669c84 53 251 53 336 0" fill="none" stroke="#fff" stroke-width="20" opacity=".22"/>',
       '<path d="M382 503h136l-68 121z" fill="hsl(',
@@ -198,6 +227,8 @@
     };
     if (!card.artwork_url) card.artwork_url = artworkSvg(card);
     card.stats = statsFor(card);
+    card.team_name = teamNameFor(card);
+    card.team_effects = teamEffectsFor(card);
     card.cast = card.spark_classification;
     card.spark_signature = card.power_rating;
     card.combat_capability = card.combat_rating;
@@ -222,6 +253,26 @@
       resilience: Math.min(100, Math.round((combat * .72) + domainBonus)),
       legend: Math.min(100, Math.round((power + combat + domainBonus) / 2.25))
     };
+  }
+
+  function teamNameFor(card) {
+    const lead = card.lead_domain || card.domains[0] || "Spark";
+    const teamWord = card.domains.length > 3 ? "Convergence Team" : "Strike Team";
+    return lead + " " + teamWord;
+  }
+
+  function teamEffectsFor(card) {
+    const rarityIndex = Math.max(0, tiers.indexOf(card.rarity_tier));
+    const domainCount = Math.max(1, card.domains.length);
+    const powerBoost = Math.min(35, 5 + rarityIndex * 3 + Math.round(ratingValue(card.power_rating) / 18) + domainCount);
+    const combatBoost = Math.min(35, 4 + rarityIndex * 2 + Math.round(ratingValue(card.combat_rating) / 20) + domainCount);
+    const domainBoost = Math.min(40, 6 + domainCount * 4 + rarityIndex * 2);
+    return [
+      { label: "All-Team Power", value: "+" + powerBoost + "%", detail: "All allied Sparks gain power pressure from this card." },
+      { label: "All-Team Combat", value: "+" + combatBoost + "%", detail: "Battle-ready characters gain combat tempo and finishing force." },
+      { label: "Domain Resonance", value: "+" + domainBoost + "%", detail: (card.domains.join(", ") || "Spark") + " domains unlock shared field synergy." },
+      { label: "Rarity Aura", value: card.rarity_tier, detail: card.rarity_tier + " cards glow brighter and project stronger squad identity." }
+    ];
   }
 
   function readSaved() {
@@ -282,6 +333,18 @@
     }).join("");
   }
 
+  function teamEffectPills(effects) {
+    return (effects || []).slice(0, 3).map(function (effect) {
+      return '<span><small>' + esc(effect.label) + '</small><b>' + esc(effect.value) + '</b></span>';
+    }).join("");
+  }
+
+  function teamEffectList(effects) {
+    return (effects || []).map(function (effect) {
+      return '<li><strong>' + esc(effect.label) + '</strong><span>' + esc(effect.value) + '</span><p>' + esc(effect.detail) + '</p></li>';
+    }).join("");
+  }
+
   function styleVars(card) {
     return "--card-accent:" + card.palette.accent + ";--card-accent-2:" + card.palette.accent2 + ";--card-hue:" + card.palette.hue + "deg;";
   }
@@ -300,12 +363,14 @@
       '<span class="spark-card-top"><span><b>' + esc(card.character_name) + '</b><small>' + esc(card.spark_classification) + '</small></span><em>' + esc(card.rarity_tier) + '</em></span>',
       '<span class="spark-card-art"><img alt="' + attr(card.character_name) + ' character artwork" src="' + attr(card.artwork_url) + '"><i></i></span>',
       '<span class="spark-card-bottom"><span class="spark-rating-row"><span><small>Power</small><b>' + esc(card.power_rating) + '</b></span><span><small>Combat</small><b>' + esc(card.combat_rating) + '</b></span></span>',
+      '<span class="spark-team-strip"><small>' + esc(card.team_name || "Spark Team Card") + '</small>' + teamEffectPills(card.team_effects) + '</span>',
       '<span class="spark-domain-row">' + domainIcons(card.domains) + '<strong>' + esc(card.rarity_tier) + '</strong></span></span>',
       '</span>',
       '<span class="spark-hero-card-face spark-hero-card-back">',
       '<span class="spark-card-back-title">' + esc(card.character_name) + '</span>',
       '<span class="spark-card-back-copy">' + esc(card.description) + '</span>',
       '<span class="spark-card-back-stats"><b>Aura ' + esc(card.stats.aura) + '</b><b>Control ' + esc(card.stats.control) + '</b><b>Legend ' + esc(card.stats.legend) + '</b></span>',
+      '<span class="spark-card-team-effects">' + teamEffectPills(card.team_effects) + '</span>',
       '<span class="spark-card-open">Open full hero profile</span>',
       '</span>',
       '</span>',
@@ -344,6 +409,7 @@
       '</div>',
       '<div class="spark-profile-grid">',
       '<article><h3>Hero Statistics</h3>' + statBars(card.stats) + '</article>',
+      '<article><h3>Team Card Effects</h3><p class="spark-team-name">' + esc(card.team_name || "Spark Team Card") + '</p><ul class="spark-team-effects">' + teamEffectList(card.team_effects) + '</ul></article>',
       '<article><h3>Character Lore</h3><p>' + esc(card.lore) + '</p>' + (card.powers.length ? '<p><strong>Powers:</strong> ' + esc(card.powers.join(", ")) + '</p>' : '') + '</article>',
       '</div>',
       '<div class="actions"><button class="primary" type="button"' + backAttr + '>Back to Card</button><a class="btn secondary" href="' + attr(missionHref) + '">Open Missions</a><a class="btn secondary" href="' + attr(battleHref) + '">Enter Battles</a></div>',
@@ -377,12 +443,18 @@
 .spark-rating-row span{border-radius:15px;background:rgba(255,255,255,.08);padding:.62rem;text-align:left}
 .spark-rating-row small{display:block;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.64);font-size:.62rem;font-weight:900}
 .spark-rating-row b{display:block;margin-top:.15rem;font-size:1.15rem;line-height:1.05}
+.spark-team-strip,.spark-card-team-effects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.35rem}
+.spark-team-strip>small{grid-column:1/-1;text-transform:uppercase;letter-spacing:.13em;color:var(--card-accent);font-size:.58rem;font-weight:1000;text-align:left}
+.spark-team-strip span,.spark-card-team-effects span{border:1px solid rgba(255,255,255,.14);border-radius:12px;background:rgba(255,255,255,.07);padding:.42rem;text-align:left;min-width:0}
+.spark-team-strip span small,.spark-card-team-effects span small{display:block;color:rgba(255,255,255,.6);font-size:.5rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spark-team-strip span b,.spark-card-team-effects span b{display:block;margin-top:.1rem;font-size:.72rem;font-weight:1000;color:#fff}
 .spark-domain-row{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
 .spark-domain-icon{width:2rem;height:2rem;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--card-accent),var(--card-accent-2));color:#050713;font-size:.72rem;font-weight:1000;border:1px solid rgba(255,255,255,.72);box-shadow:0 0 14px color-mix(in srgb,var(--card-accent) 45%,transparent)}
 .spark-card-back-title{font-size:1.7rem;font-weight:1000;text-transform:uppercase;letter-spacing:.08em;text-shadow:0 2px 0 #000}
 .spark-card-back-copy{color:rgba(255,255,255,.82);line-height:1.55;font-weight:760}
 .spark-card-back-stats{display:grid;grid-template-columns:1fr;gap:.48rem}
 .spark-card-back-stats b,.spark-card-open{border:1px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.08);padding:.65rem;font-weight:950}
+.spark-card-team-effects{grid-template-columns:1fr;gap:.42rem}
 .spark-card-open{text-align:center;background:linear-gradient(90deg,var(--card-accent),var(--card-accent-2));color:#071015}
 .spark-card-hint{margin:0;color:rgba(255,255,255,.68);font-size:.9rem;text-align:center}
 .spark-profile-page{border-color:color-mix(in srgb,var(--card-accent) 48%,rgba(255,255,255,.16));box-shadow:0 30px 90px rgba(0,0,0,.34),0 0 44px color-mix(in srgb,var(--card-accent) 22%,transparent)}
@@ -391,8 +463,14 @@
 .spark-profile-art img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
 .spark-profile-tier{color:var(--card-accent);font-weight:950;text-transform:uppercase;letter-spacing:.09em}
 .spark-profile-icons{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.8rem}
-.spark-profile-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:1rem;margin-top:1.25rem}
+.spark-profile-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.25rem}
 .spark-profile-grid article{border:1px solid rgba(255,255,255,.14);border-radius:22px;background:rgba(255,255,255,.045);padding:1rem}
+.spark-team-name{color:var(--card-accent);font-weight:950;text-transform:uppercase;letter-spacing:.08em}
+.spark-team-effects{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
+.spark-team-effects li{border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.055);padding:.75rem}
+.spark-team-effects strong,.spark-team-effects span{display:block}
+.spark-team-effects span{color:var(--card-accent);font-weight:1000;font-size:1.05rem}
+.spark-team-effects p{margin:.25rem 0 0;font-size:.88rem}
 .spark-stat{display:grid;gap:.35rem;margin:.75rem 0}
 .spark-stat span{display:flex;justify-content:space-between;gap:1rem;text-transform:capitalize}
 .spark-stat em{font-style:normal;color:var(--card-accent);font-weight:950}
