@@ -26,9 +26,17 @@
   /* ── Helpers ─────────────────────────────────────────────────────────── */
   function now() { return new Date().toISOString(); }
 
+  var ESC_MAP = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return ESC_MAP[c]; }); }
+
   function uid() {
     if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
       return 'spark_' + crypto.randomUUID().replace(/-/g,'').slice(0,16);
+    }
+    if (typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function') {
+      var arr = new Uint32Array(3);
+      crypto.getRandomValues(arr);
+      return 'spark_' + arr[0].toString(36) + arr[1].toString(36) + arr[2].toString(36) + '_' + Date.now().toString(36);
     }
     return 'spark_' + Math.random().toString(36).slice(2,10) + Math.random().toString(36).slice(2,10) + '_' + Date.now().toString(36);
   }
@@ -293,6 +301,8 @@
 
   /* ── AI settings ─────────────────────────────────────────────────────── */
   // API key is stored in sessionStorage (cleared on tab close) to limit exposure.
+  // Note: sessionStorage is still accessible to all JS on the same origin.
+  // Users should avoid entering keys on shared or public computers.
   function getApiKey()        { return sessionStorage.getItem(API_KEY) || ''; }
   function setApiKey(k)       { if (k) { sessionStorage.setItem(API_KEY, k.trim()); } else { sessionStorage.removeItem(API_KEY); } }
   function getModel()         { return localStorage.getItem(MODEL_KEY) || 'gpt-4o-mini'; }
@@ -331,6 +341,8 @@
     deriveDistrict:  deriveDistrict,
     deriveTitle:     deriveTitle,
     topTrait:        topTrait,
+    // Utilities
+    esc:             esc,
     // AI settings
     getApiKey:       getApiKey,
     setApiKey:       setApiKey,

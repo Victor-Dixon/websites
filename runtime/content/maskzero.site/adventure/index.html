@@ -945,7 +945,7 @@ dialog p{color:var(--muted);margin:0 0 20px;font-size:.9rem;line-height:1.5}
     .catch(function(err) {
       removeTyping();
       appendMsg('system', '⚠ AI DM unavailable (' + err.message + '). Falling back to scripted mode.');
-      if (err.status === 401) SparkEngine.setApiKey(''); // Only clear key on auth failure
+      if (err.status === 401 || err.status === 403) SparkEngine.setApiKey(''); // Clear key on auth failure
       scriptedRespond(hintScene, traitFlashes);
     });
   }
