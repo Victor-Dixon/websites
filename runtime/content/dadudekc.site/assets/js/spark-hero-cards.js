@@ -4,6 +4,7 @@
 
   const savedKey = "dreamos.savedSparkCharacters.v1";
   const currentKey = "dreamos.currentSparkCharacter.v1";
+  const accountSingleKey = "dreamos.singleSparkCharacter.v1";
   const tiers = ["Common", "Rare", "Epic", "Legendary", "Mythic", "Transcendent"];
   const palettes = {
     titan: ["#ffb86c", "#ff4f6d", 23],
@@ -325,6 +326,85 @@
     return upsertRecord(Object.assign({}, existing || {}, card));
   }
 
+  function accountConfig() {
+    return window.DreamOSSparkAccount || {};
+  }
+
+  function accountHeaders(method) {
+    const config = accountConfig();
+    const headers = {"Accept": "application/json"};
+    if (method !== "GET") headers["Content-Type"] = "application/json";
+    if (config.nonce) headers["X-WP-Nonce"] = config.nonce;
+    return headers;
+  }
+
+  function accountTitle(character) {
+    return character.spark_name || character.character_name || character.title || character.lead_domain || "Saved Spark";
+  }
+
+  function accountPowers(character) {
+    if (Array.isArray(character.selected_powers)) {
+      return character.selected_powers.map(function (power) {
+        return typeof power === "string" ? power : (power.power || power.name || "");
+      }).filter(Boolean);
+    }
+    return [];
+  }
+
+  function accountCharacterToCardPayload(character) {
+    const domains = listFrom(character.manifested_domains || character.domains || character.lead_domain);
+    return {
+      id: character.card_id || character.id || "account_spark",
+      character_name: accountTitle(character),
+      lead_domain: character.lead_domain || character.archetype || domains[0] || "Spark",
+      manifested: domains,
+      domains: domains,
+      cast: character.cast || character.archetype || "",
+      power_rating: character.power_rating || "",
+      combat_rating: character.combat_rating || "",
+      rarity_tier: character.rarity_tier || "",
+      profile_shape: character.profile_shape || character.summary || "",
+      description: character.summary || character.profile_shape || "",
+      powers: accountPowers(character),
+      selected_powers: character.selected_powers || [],
+      source: character.source || "account-spark"
+    };
+  }
+
+  function storeAccountCharacter(character) {
+    if (!character) return null;
+    try { localStorage.setItem(accountSingleKey, JSON.stringify(character)); }
+    catch (e) {}
+    return ensureRecord(accountCharacterToCardPayload(character), {source: "account-spark"});
+  }
+
+  async function loadAccountCharacter() {
+    const config = accountConfig();
+    const loggedIn = config.loggedIn === true || config.loggedIn === "1";
+    if (!loggedIn) {
+      try {
+        const local = JSON.parse(localStorage.getItem(accountSingleKey) || "null");
+        return local ? storeAccountCharacter(local) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    const endpoint = config.endpoint || "/wp-json/emergence/v1/characters/me";
+    try {
+      const response = await fetch(endpoint, {
+        method: "GET",
+        credentials: "same-origin",
+        headers: accountHeaders("GET")
+      });
+      const data = await response.json();
+      if (response.ok && data.status === "loaded" && data.character) {
+        return storeAccountCharacter(data.character);
+      }
+    } catch (e) {}
+    return null;
+  }
+
   function setArtwork(recordOrId, artworkUrl) {
     const id = typeof recordOrId === "string" ? recordOrId : recordOrId && recordOrId.id;
     if (!id || !artworkUrl) return null;
@@ -529,6 +609,8 @@
     ensureRecord: ensureRecord,
     upsertRecord: upsertRecord,
     setArtwork: setArtwork,
+    storeAccountCharacter: storeAccountCharacter,
+    loadAccountCharacter: loadAccountCharacter,
     renderCard: renderCard,
     renderProfile: renderProfile,
     domainIcons: domainIcons,
