@@ -154,20 +154,22 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
     </nav>
     <div class="hero">
       <div>
-        <div class="kicker">What-If Arena</div>
+        <div class="kicker">What-If Arena · Tier 3 Sandbox</div>
         <h1>Your card vs AI.</h1>
         <p>
-          Load your one saved Spark card, then throw that character into a
-          cinematic AI matchup with live damage drops and power themed attacks.
+          Load your saved Spark card, then throw that character into a
+          cinematic AI matchup. <strong style="color:var(--gold)">Arena outcomes are simulated — they don't change your main timeline.</strong> Explore alternate paths freely.
         </p>
         <div class="toolbar">
           <a class="btn primary" href="/spark-generator/">Create Another Card</a>
           <button class="secondary" type="button" id="shuffle-ai">Shuffle AI</button>
+          <a class="btn secondary" href="/adventure/" style="text-decoration:none">← Campaign Mode</a>
         </div>
       </div>
       <aside class="hero-card">
         <strong>Battle flow</strong>
         <p>1. Choose a saved card. 2. Lock in against an AI rival. 3. Tap Battle to trade attacks until somebody drops.</p>
+        <p style="font-size:.82em;color:rgba(0,0,0,.55);margin-top:.5rem">Arena fights log to your character as Tier 3 canon — Meridian City notes what you explored.</p>
       </aside>
     </div>
     <div id="battle-app"></div>
@@ -493,6 +495,14 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
       state.finished=true;
       state.resolving=false;
       addFeed(`<strong>${esc(cardName(player))}</strong> wins the projection.`);
+      // Log Arena outcome as Tier 3 canon (sandbox — does not change main timeline)
+      if(typeof SparkEngine!=="undefined"){
+        const rival=ai();
+        SparkEngine.logArenaTimeline(
+          cardName(player)+" defeated "+cardName(rival)+" in the What-If Arena ["+state.arena+"]"
+        );
+        SparkEngine.addXP(5,"arena",3);
+      }
       setTimeout(render,760);
       return;
     }
@@ -503,7 +513,15 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
       const aAttack=attackName(currentRival);
       const aDamage=damage(currentRival,currentPlayer);
       state.playerHp=Math.max(0,state.playerHp-aDamage);
-      if(state.playerHp<=0)state.finished=true;
+      if(state.playerHp<=0){
+        state.finished=true;
+        // Log Arena loss as Tier 3
+        if(typeof SparkEngine!=="undefined"){
+          SparkEngine.logArenaTimeline(
+            cardName(currentPlayer)+" lost to "+cardName(currentRival)+" in the What-If Arena ["+state.arena+"]"
+          );
+        }
+      }
       state.resolving=false;
       addFeed(`<strong>${esc(cardName(currentRival))}</strong> answers with ${esc(aAttack)} for <strong>${aDamage}</strong> damage.${state.finished?" AI wins the projection.":""}`);
       render();
@@ -542,6 +560,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
   boot();
 })();
 </script>
+  <script src="/assets/js/spark-engine.js"></script>
   <script src="/assets/js/maskzero-nav.js" defer></script>
 </body>
 </html>

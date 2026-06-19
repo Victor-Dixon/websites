@@ -106,3 +106,8 @@ jobs:
             --file runtime/content/freerideinvestor.com/trading-journal/index.html \
             --file runtime/content/freerideinvestor.com/trading-journal.html \
             --verify-url https://freerideinvestor.com/
+
+      - name: Deploy truth gate
+        run: |
+          set -euo pipefail
+          python3 runtime/scripts/run_deploy_truth_gates.py --site freerideinvestor.com

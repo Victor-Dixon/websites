@@ -625,6 +625,32 @@ if (!function_exists('dreamos_emergence_spark_generator_no_store_guard')) {
     add_action('template_redirect', 'dreamos_emergence_spark_generator_no_store_guard', 0);
 }
 
+if (!function_exists('dreamos_emergence_static_account_config')) {
+    function dreamos_emergence_static_account_config() {
+        $uri = isset($_SERVER['REQUEST_URI']) ? strtok((string) $_SERVER['REQUEST_URI'], '?') : '';
+        $uri = '/' . trim((string) $uri, '/');
+        $eligible = array('/spark-generator', '/spark-os', '/cards', '/missions', '/battles');
+
+        if (!in_array($uri, $eligible, true)) {
+            return;
+        }
+
+        $config = array(
+            'endpoint' => esc_url_raw(rest_url('emergence/v1/characters/me')),
+            'nonce' => wp_create_nonce('wp_rest'),
+            'loggedIn' => is_user_logged_in(),
+            'loginUrl' => esc_url_raw(wp_login_url(home_url($uri . '/'))),
+            'registerUrl' => esc_url_raw(function_exists('wp_registration_url') ? wp_registration_url() : wp_login_url(home_url($uri . '/'))),
+        );
+        ?>
+        <script id="dreamos-spark-account-config">
+        window.DreamOSSparkAccount = <?php echo wp_json_encode($config); ?>;
+        </script>
+        <?php
+    }
+    add_action('wp_footer', 'dreamos_emergence_static_account_config', 1);
+}
+
 add_action('rest_api_init', function () {
     register_rest_route('emergence/v1', '/generate', array(
         'methods' => 'POST',
@@ -1465,16 +1491,38 @@ function emergence_cg_sanitize_character_record_payload($payload) {
         'version' => 1,
         'source' => 'emergence-character-generator',
         'visibility' => $visibility,
+        'id' => isset($payload['id']) ? sanitize_key($payload['id']) : '',
         'spark_name' => isset($payload['spark_name']) ? sanitize_text_field($payload['spark_name']) : 'Unnamed Spark',
         'title' => isset($payload['title']) ? sanitize_text_field($payload['title']) : 'Unnamed Spark',
+        'character_name' => isset($payload['character_name']) ? sanitize_text_field($payload['character_name']) : '',
         'archetype' => isset($payload['archetype']) ? sanitize_text_field($payload['archetype']) : '',
         'summary' => isset($payload['summary']) ? sanitize_textarea_field($payload['summary']) : '',
         'cast' => isset($payload['cast']) ? sanitize_text_field($payload['cast']) : '',
+        'lead_domain' => isset($payload['lead_domain']) ? sanitize_text_field($payload['lead_domain']) : '',
+        'manifested_domains' => array(),
+        'domains' => array(),
         'profile_shape' => isset($payload['profile_shape']) ? sanitize_text_field($payload['profile_shape']) : '',
+        'power_rating' => isset($payload['power_rating']) ? sanitize_text_field($payload['power_rating']) : '',
+        'combat_rating' => isset($payload['combat_rating']) ? sanitize_text_field($payload['combat_rating']) : '',
+        'rarity_tier' => isset($payload['rarity_tier']) ? sanitize_text_field($payload['rarity_tier']) : '',
+        'card_id' => isset($payload['card_id']) ? sanitize_key($payload['card_id']) : '',
+        'team_name' => isset($payload['team_name']) ? sanitize_text_field($payload['team_name']) : '',
         'selected_powers' => array(),
         'battle_ready_note' => isset($payload['battle_ready_note']) ? sanitize_text_field($payload['battle_ready_note']) : 'Player-safe Spark dossier saved for battle simulation.',
         'created_at' => time(),
     );
+
+    foreach (array('manifested_domains', 'domains') as $list_key) {
+        if (isset($payload[$list_key]) && is_array($payload[$list_key])) {
+            foreach ($payload[$list_key] as $item) {
+                $label = sanitize_text_field((string) $item);
+                if ($label !== '') {
+                    $safe[$list_key][] = $label;
+                }
+            }
+            $safe[$list_key] = array_values(array_unique(array_slice($safe[$list_key], 0, 12)));
+        }
+    }
 
     if (isset($payload['selected_powers']) && is_array($payload['selected_powers'])) {
         foreach ($payload['selected_powers'] as $power) {
@@ -1489,7 +1537,7 @@ function emergence_cg_sanitize_character_record_payload($payload) {
 
             $safe['selected_powers'][] = array(
                 'power' => $label,
-                'domain' => '',
+                'domain' => isset($power['domain']) ? sanitize_text_field($power['domain']) : '',
                 'lead' => !empty($power['lead']),
             );
         }
