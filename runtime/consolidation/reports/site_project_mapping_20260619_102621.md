@@ -1,0 +1,585 @@
+# Website Project Consolidation Mapping
+
+## emergence_to_maskzero
+- intent: Move Emergence/Spark functionality into MaskZero site surface.
+- status: `mapped`
+- recommended_destination: `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site`
+
+### Sources
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001` files=253 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build` files=47 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim` files=47 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim` files=47 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/assets` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/bin` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/data` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/data/characters` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/includes` files=35 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/includes/Spark` files=29 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/includes/Spark/Battle` files=14 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/includes/Spark/Engine` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/includes/Spark/Exchange` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/includes/Spark/Model` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_hostinger_build/spark-battle-sim/spark-battle-sim/includes/Spark/Support` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_reports` files=13 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_reports/tmp_spark_battle_package_022` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_reports/tmp_spark_inventory_008` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work` files=193 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol` files=48 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009` files=48 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol` files=48 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/bin` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/src` files=29 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/src/Battle` files=14 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/src/Engine` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/src/Exchange` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/src/Model` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/src/Support` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/tests` files=12 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/tests/Integration` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-adapter-009/spark-protocol/tests/Unit` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007` files=48 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol` files=48 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/bin` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/src` files=29 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/src/Battle` files=14 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/src/Engine` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/src/Exchange` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/src/Model` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/src/Support` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/tests` files=12 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/tests/Integration` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-007/spark-protocol/tests/Unit` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008` files=48 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol` files=48 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/bin` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/src` files=29 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/src/Battle` files=14 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/src/Engine` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/src/Exchange` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/src/Model` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/src/Support` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/tests` files=12 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/tests/Integration` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol-inventory-008/spark-protocol/tests/Unit` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol` files=48 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/bin` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/src` files=29 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/src/Battle` files=14 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/src/Engine` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/src/Exchange` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/src/Model` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/src/Support` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/tests` files=12 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/tests/Integration` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_reports/backups/spark_emergence_quarantine_001/_work/spark-protocol/spark-protocol/tests/Unit` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/data/reports/websites/emergence` files=52 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/dadudekc.site` files=14 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/dadudekc.site/assets` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/dadudekc.site/assets/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/dadudekc.site/battles` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/dadudekc.site/missions` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/dadudekc.site/spark-generator` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/dadudekc.site/spark-os` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/plugins/emergence-character-generator` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/plugins/emergence-character-generator/assets` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__emergence_comic_archive_preview_001` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__emergence_comic_archive_wp_page_001` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__emergence_comic_archive_wp_page_002` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/hostinger_build_artifacts_001/_hostinger_build__emergence_comic_archive_wp_page_003` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/spark_emergence_sensitive_archive_purged_20260606_174637` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/dreamos_emergence_theme_restore_routes_001` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/emergence_comic_archive_deployer_002` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/emergence_comic_archive_production_001` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/emergence_comic_archive_wp_page_002` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/emergence_comic_archive_wp_page_003` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/emergence_homepage_promotion_001` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/emergence_mobile_finish_pass_001` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/emergence_mobile_visual_system_repair_001` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/emergence_premium_spark_os_redesign_001b` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/remove_duplicate_emergence_page_shell_001` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/quarantine/tmp_runtime_artifacts_001/_tmp/streamlined_emergence_site_deployer_001` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/tasks/emergence` files=25 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/themes/dreamos-emergence` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/themes/dreamos-emergence/parts` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/themes/dreamos-emergence/templates` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/sites/production/websites/dadudekc.site` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/sites/production/websites/dadudekc.site/meridian-dispatch` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/sites/production/websites/dadudekc.site/meridian-dispatch/data` files=3 branch=`master` head=`6d341e58`
+
+### Destinations
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site` files=28
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/assets` files=4
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/assets/css` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/assets/js` files=3
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/battles` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/create-hero` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/dispatch` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/how-it-works` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/login` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/meridian-map` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/missions` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/origin-rules` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/quiz` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/roster-rules` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/spark-dashboard` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/spark-generator` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/spark-login` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/spark-os` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/maskzero.site/spark-signup` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site` files=72
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/assets` files=3
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/assets/css` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/assets/js` files=2
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/battles` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/create-hero` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/dispatch` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/how-it-works` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/login` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/meridian-map` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/missions` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/origin-rules` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/quiz` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/roster-rules` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/spark-dashboard` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/spark-generator` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/spark-login` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/spark-os` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/maskzero.site/spark-signup` files=1
+
+## freeride_to_freerideinvestor
+- intent: Ensure FreerideInvestor project is mapped into FreerideInvestor website directory.
+- status: `mapped`
+- recommended_destination: `/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor.com`
+
+### Sources
+- `/data/data/com.termux/files/home/projects/websites/_deploy/freerideinvestor.com` files=10 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_deploy/freerideinvestor.com/data` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_deploy/freerideinvestor.com/data/freeride` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_github_deprecation_packets/FreerideinvestorWebsite` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-productivity-widgets/source_review/FreerideinvestorWebsite` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-productivity-widgets/source_review/FreerideinvestorWebsite/_salvage` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-productivity-widgets/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-productivity-widgets/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-productivity-widgets/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cli-commands` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cron-jobs` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/meta-boxes` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/taxonomies` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/FreerideinvestorWebsite/_salvage/Plugins` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine` files=16 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/includes` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/includes/post-types` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review/FreerideinvestorWebsite` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review/FreerideinvestorWebsite/_salvage` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/ui` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/freerideinvestor-content-engine/source_review/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_plan/freerideinvestor` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_plan/freerideinvestor/upload_payload_static_tsla_command_center_001` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_plan/freerideinvestor/upload_payload_static_tsla_command_center_001/data` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_plan/freerideinvestor/upload_payload_tsla_command_center_001` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_plan/freerideinvestor/upload_payload_tsla_command_center_001/wp-content` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_plan/freerideinvestor/upload_payload_tsla_command_center_001/wp-content/uploads` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_plan/freerideinvestor/upload_payload_tsla_command_center_001/wp-content/uploads/freerideinvestor` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-productivity-widgets/FreerideinvestorWebsite` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-productivity-widgets/FreerideinvestorWebsite/_salvage` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-productivity-widgets/FreerideinvestorWebsite/_salvage/freerideinvestor-theme` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-productivity-widgets/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-productivity-widgets/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/freerideinvestor-theme` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/assets/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cli-commands` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/cron-jobs` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/meta-boxes` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/taxonomies` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/FreerideinvestorWebsite/_salvage/Plugins` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/freerideinvestor-content-engine` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/freerideinvestor-content-engine/FreerideinvestorWebsite` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/freerideinvestor-content-engine/FreerideinvestorWebsite/_salvage` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/freerideinvestor-content-engine/FreerideinvestorWebsite/_salvage/freerideinvestor-theme` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/freerideinvestor-content-engine/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/freerideinvestor-content-engine/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/Auto_blogger/ui` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/freerideinvestor-content-engine/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/freerideinvestor-content-engine/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc/post-types` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/freerideinvestor-content-engine/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite` files=13 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite/_salvage` files=13 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite/_salvage/freerideinvestor-theme` files=13 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/inc` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/page-templates` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/freeride-journal` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/scripts/freeride-journal/app` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite/_salvage/freerideinvestor-theme/template-parts` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com` files=223 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins` files=40 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/dreamos-trading-tools` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/dreamos-trading-tools/includes` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-content-engine` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-content-engine/includes` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-content-engine/includes/post-types` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-setup` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/trading-plans-automator` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/trading-plans-automator/includes` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin` files=19 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin/partials` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/api-client` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/performance-tracker` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/rest-api` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/subscription-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/user-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public/templates` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes` files=183 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern` files=181 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/assets` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/assets/images` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css` files=56 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles` files=55 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/base` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/components` files=19 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/layout` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/pages` files=16 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/posts` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/utilities` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc` files=24 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/admin` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/assets` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/cli-commands` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/cron-jobs` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/helpers` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/meta-boxes` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/post-types` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/taxonomies` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/js` files=10 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/page-templates` files=38 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss` files=22 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss/abstracts` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss/components` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss/pages` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss/utilities` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/template-parts` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-v2` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor` files=22 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins` files=20 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor` files=18 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/assets` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/assets/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/assets/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes` files=10 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/admin` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/alerts` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/api` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/includes/cache` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/templates` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freeride investor/tests` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freerideinvestor` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/Plugins/freerideinvestor/tests` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/POSTS` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor/POSTS/TBOWTactics` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite` files=97 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/css` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/css/styles` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/css/styles/posts` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/inc` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite/freerideinvestor-theme/page-templates` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite/Plugins` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite/website_posts` files=84 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor.com` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor.com/trading-journal` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor/data` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/freerideinvestor.com` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com` files=26 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates` files=26 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/assets` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/assets/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/cli-commands` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/cron-jobs` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/meta-boxes` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/taxonomies` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/js` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates` files=11 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/scripts` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/scripts/freeride-journal` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/scripts/freeride-journal/app` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/template-parts` files=1 branch=`master` head=`6d341e58`
+
+### Destinations
+- `/data/data/com.termux/files/home/projects/websites/_deploy/freerideinvestor.com` files=10
+- `/data/data/com.termux/files/home/projects/websites/_deploy/freerideinvestor.com/data` files=4
+- `/data/data/com.termux/files/home/projects/websites/_deploy/freerideinvestor.com/data/freeride` files=4
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com` files=223
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins` files=40
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/dreamos-trading-tools` files=8
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/dreamos-trading-tools/includes` files=6
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-content-engine` files=7
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-content-engine/includes` files=5
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-content-engine/includes/post-types` files=3
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/freerideinvestor-setup` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/trading-plans-automator` files=5
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/trading-plans-automator/includes` files=4
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin` files=19
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin` files=4
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin/css` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin/js` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin/partials` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes` files=7
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/api-client` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/performance-tracker` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/rest-api` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/subscription-manager` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/user-manager` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public` files=7
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public/css` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public/js` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public/templates` files=4
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes` files=183
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern` files=181
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/assets` files=4
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/assets/images` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css` files=56
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles` files=55
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/base` files=4
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/components` files=19
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/layout` files=5
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/pages` files=16
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/posts` files=5
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/css/styles/utilities` files=5
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc` files=24
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/admin` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/assets` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/cli-commands` files=2
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/cron-jobs` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/helpers` files=2
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/meta-boxes` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/post-types` files=3
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/inc/taxonomies` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/js` files=10
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/page-templates` files=38
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss` files=22
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss/abstracts` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss/components` files=2
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss/pages` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/scss/utilities` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-modern/template-parts` files=9
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/themes/freerideinvestor-v2` files=2
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor.com` files=7
+- `/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor.com/trading-journal` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/freerideinvestor.com` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com` files=26
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates` files=26
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/assets` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/assets/js` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc` files=7
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/cli-commands` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/cron-jobs` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/meta-boxes` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/inc/taxonomies` files=1
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/js` files=2
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/page-templates` files=11
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/scripts` files=2
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/scripts/freeride-journal` files=2
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/scripts/freeride-journal/app` files=2
+- `/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com/custom-plugin-candidates/template-parts` files=1
+
+## tradingrobotplug_to_websites
+- intent: Ensure TradingRobotPlug is mapped into websites deployable site directory.
+- status: `mapped`
+- recommended_destination: `/data/data/com.termux/files/home/projects/websites/_github_deprecation_packets/TradingRobotPlugWeb`
+
+### Sources
+- `/data/data/com.termux/files/home/projects/websites/_github_deprecation_packets/TradingRobotPlugWeb` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/TradingRobotPlugWeb` files=10 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/TradingRobotPlugWeb/_salvage` files=10 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin` files=10 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_plan/tradingrobotplug` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/TradingRobotPlugWeb` files=10 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/TradingRobotPlugWeb/_salvage` files=10 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin` files=10 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb` files=25 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage` files=25 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/config` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts` files=24 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/DataFetchers` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/Tests` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/GUI` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/GUI/concepts` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Model_Training` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Model_Training/hyper_parameter` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Technical_Indicators` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Utilities` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin` files=25 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/admin` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/admin/css` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/admin/js` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/admin/partials` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/includes` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/includes/api-client` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/includes/performance-tracker` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/includes/rest-api` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/includes/subscription-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/includes/user-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/public` files=9 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/public/css` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/public/js` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/ariajet.site/plugins/tradingrobotplug-wordpress-plugin/public/templates` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin` files=19 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/admin/partials` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/api-client` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/performance-tracker` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/rest-api` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/subscription-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/includes/user-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com/plugins/tradingrobotplug-wordpress-plugin/public/templates` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin` files=19 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/admin` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/admin/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/admin/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/admin/partials` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/includes` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/includes/api-client` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/includes/performance-tracker` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/includes/rest-api` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/includes/subscription-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/includes/user-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/public` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/public/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/public/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/southwestsecret.com/plugins/tradingrobotplug-wordpress-plugin/public/templates` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com` files=141 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins` files=26 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin` files=18 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/admin` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/admin/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/admin/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/admin/partials` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/api-client` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/performance-tracker` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/rest-api` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/subscription-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/user-manager` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/public` files=7 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/public/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/public/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/public/templates` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/trp-paper-trading-stats` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/trp-swarm-status` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes` files=115 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/swarm-theme` files=8 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/swarm-theme/js` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme` files=42 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/admin` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/assets` files=5 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/assets/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/assets/js` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/automation` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/inc` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/template-parts` files=3 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme` files=65 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/admin` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/assets` files=6 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/assets/css` files=1 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/assets/js` files=4 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/automation` files=2 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/inc` files=11 branch=`master` head=`6d341e58`
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/template-parts` files=3 branch=`master` head=`6d341e58`
+
+### Destinations
+- `/data/data/com.termux/files/home/projects/websites/_github_deprecation_packets/TradingRobotPlugWeb` files=1
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/TradingRobotPlugWeb` files=10
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/TradingRobotPlugWeb/_salvage` files=10
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin` files=10
+- `/data/data/com.termux/files/home/projects/websites/_hostinger_build/plugins/dreamos-trading-tools/source_review/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests` files=5
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/TradingRobotPlugWeb` files=10
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/TradingRobotPlugWeb/_salvage` files=10
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin` files=10
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/dreamos-trading-tools/TradingRobotPlugWeb/_salvage/TheTradingRobotPlugin/tests` files=5
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb` files=25
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage` files=25
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/config` files=1
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts` files=24
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/DataFetchers` files=9
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/DataFetchers/Tests` files=4
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/GUI` files=3
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/GUI/concepts` files=1
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Model_Training` files=2
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Model_Training/hyper_parameter` files=2
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Technical_Indicators` files=3
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Utilities` files=6
+- `/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/TradingRobotPlugWeb/_salvage/Scripts/Utilities/tests` files=2
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com` files=141
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins` files=26
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin` files=18
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/admin` files=4
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/admin/css` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/admin/js` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/admin/partials` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes` files=6
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/api-client` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/performance-tracker` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/rest-api` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/subscription-manager` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/includes/user-manager` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/public` files=7
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/public/css` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/public/js` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/tradingrobotplug-wordpress-plugin/public/templates` files=4
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/trp-paper-trading-stats` files=5
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/plugins/trp-swarm-status` files=3
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes` files=115
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/swarm-theme` files=8
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/swarm-theme/js` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme` files=42
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/admin` files=2
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/assets` files=5
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/assets/css` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/assets/js` files=3
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/automation` files=2
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/inc` files=3
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobot-theme/template-parts` files=3
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme` files=65
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/admin` files=2
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/assets` files=6
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/assets/css` files=1
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/assets/js` files=4
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/automation` files=2
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/inc` files=11
+- `/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/tradingrobotplug.com/themes/tradingrobotplug-theme/template-parts` files=3

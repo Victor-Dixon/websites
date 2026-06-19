@@ -10,6 +10,6 @@ Promoted missing routes:
 
 Rules enforced:
 - maskzero.site is canonical Emergence/Spark home
-- dadudekc.site remains legacy/reference only for Spark/Emergence; it may still be used for separate website plans
+- dadudekc.site remains legacy/reference only
 - no dadudekc files promoted directly
 - no source deletion
