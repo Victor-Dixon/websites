@@ -4,6 +4,8 @@ import { findPath, findPathToAdjacent, getInteractionObjectAtTile, isWalkable } 
 import { createPlayerState, defaultPlayerState, directionToVector, setPlayerPath, stepPlayer } from "./player.js";
 import { formatSaveStatus, loadSave, savePlayerState } from "./save.js";
 import { applyInteraction, findNearbyInteractable, showInteraction } from "./interactions.js";
+import { advanceQuest, questSummary } from "./quests.js";
+import { getFactionStanding } from "./factions.js";
 import { renderWorld } from "./world-renderer.js";
 
 const STEP_DELAY_MS = 145;
@@ -15,6 +17,26 @@ const nameEl = document.getElementById("player-name");
 const coordinatesEl = document.getElementById("player-coordinates");
 const statusEl = document.getElementById("player-status");
 const saveStatusEl = document.getElementById("save-status");
+const xpEl = document.getElementById("player-xp");
+
+const statEls = {
+  knowledge: document.getElementById("stat-knowledge"),
+  discipline: document.getElementById("stat-discipline"),
+  creativity: document.getElementById("stat-creativity"),
+  leadership: document.getElementById("stat-leadership"),
+  connection: document.getElementById("stat-connection"),
+  purpose: document.getElementById("stat-purpose"),
+};
+
+const factionEls = {
+  dreamweavers: document.getElementById("rep-dreamweavers"),
+  ironforge: document.getElementById("rep-ironforge"),
+  signal_corps: document.getElementById("rep-signal_corps"),
+  wildpath: document.getElementById("rep-wildpath"),
+  luminary: document.getElementById("rep-luminary"),
+};
+
+const questLogEl = document.getElementById("quest-log");
 
 const loadedPlayer = loadSave({
   ...defaultPlayerState,
@@ -34,6 +56,29 @@ function updateHud(statusText = null) {
   nameEl.textContent = player.name;
   coordinatesEl.textContent = `${player.x}, ${player.y}`;
   statusEl.textContent = statusText || (player.walking ? `Walking (${player.path.length} steps)` : "Ready");
+  if (xpEl) xpEl.textContent = player.xp;
+
+  const stats = player.stats || {};
+  Object.keys(statEls).forEach((key) => {
+    if (statEls[key]) statEls[key].textContent = stats[key] || 0;
+  });
+
+  const rep = player.reputation || {};
+  Object.keys(factionEls).forEach((key) => {
+    if (factionEls[key]) {
+      const val = rep[key] || 0;
+      factionEls[key].textContent = `${getFactionStanding(val)} (${val > 0 ? "+" : ""}${val})`;
+    }
+  });
+
+  if (questLogEl) {
+    const summary = questSummary(player);
+    questLogEl.innerHTML = summary.map((q) => {
+      const cls = q.status === "completed" ? "quest-done" : q.status === "in_progress" ? "quest-active" : "quest-available";
+      const icon = q.status === "completed" ? "✓" : q.status === "in_progress" ? "◎" : "○";
+      return `<li class="${cls}"><span class="quest-icon">${icon}</span>${q.title}</li>`;
+    }).join("");
+  }
 }
 
 function updateSaveStatus(savedPayload = null) {
@@ -50,6 +95,46 @@ function persistPosition() {
   updateSaveStatus(savedPayload);
 }
 
+function showQuestChoices(questInteraction) {
+  const { stage } = questInteraction;
+  interactionBox.innerHTML = "";
+
+  const textEl = document.createElement("p");
+  textEl.className = "quest-text";
+  textEl.textContent = stage.text;
+  interactionBox.appendChild(textEl);
+
+  if (stage.choices?.length) {
+    const choicesEl = document.createElement("div");
+    choicesEl.className = "quest-choices";
+    stage.choices.forEach((choice, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "quest-choice-btn";
+      btn.textContent = choice.text;
+      btn.addEventListener("click", () => {
+        const nextStage = advanceQuest(player, questInteraction.questId, idx);
+        persistPosition();
+        updateHud();
+        if (nextStage) {
+          showInteraction(interactionBox, nextStage.text);
+        } else {
+          showInteraction(interactionBox, "Your choice has been recorded.");
+        }
+      });
+      choicesEl.appendChild(btn);
+    });
+    interactionBox.appendChild(choicesEl);
+  }
+}
+
+function handleInteractionResult(result) {
+  if (result && typeof result === "object" && result.kind === "quest") {
+    showQuestChoices(result);
+  } else {
+    showInteraction(interactionBox, result);
+  }
+}
+
 function finishMovement() {
   renderState.destination = null;
   persistPosition();
@@ -59,7 +144,7 @@ function finishMovement() {
   renderState.targetObject = null;
 
   if (nearby) {
-    showInteraction(interactionBox, applyInteraction(player, nearby));
+    handleInteractionResult(applyInteraction(player, nearby));
     persistPosition();
   }
 }
@@ -68,7 +153,7 @@ function beginPath(path, destination, targetObject = null) {
   if (!path.length) {
     const nearby = targetObject || findNearbyInteractable(WORLD, player);
     if (nearby) {
-      showInteraction(interactionBox, applyInteraction(player, nearby));
+      handleInteractionResult(applyInteraction(player, nearby));
       persistPosition();
       updateHud("Ready");
       return;
@@ -119,6 +204,20 @@ function requestKeyboardMove(direction) {
   }
 
   beginPath([goal], goal, getInteractionObjectAtTile(WORLD, goal.x, goal.y) || null);
+}
+
+function checkDailyLogin() {
+  const d = new Date();
+  const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  if (player.lastLoginDate !== today) {
+    player.lastLoginDate = today;
+    player.xp = (player.xp || 0) + 10;
+    persistPosition();
+    updateHud();
+    showInteraction(interactionBox, "Daily Dream Event: The Dreamscape remembers you. +10 XP for returning. Three quests await — find the Guide, the Cartographer, and the Gate Keeper.");
+    return true;
+  }
+  return false;
 }
 
 function resize() {
@@ -185,7 +284,12 @@ resize();
 followPlayer(camera, player, WORLD);
 updateHud();
 updateSaveStatus();
-showInteraction(interactionBox, "Click a walkable tile to move. NPCs, doors, resources, portals, and gates respond when you reach them.");
+
+const shownDailyEvent = checkDailyLogin();
+if (!shownDailyEvent) {
+  showInteraction(interactionBox, "Click a walkable tile to move. Find the Guide, Cartographer, or Gate Keeper to begin a quest.");
+}
+
 window.requestAnimationFrame(tick);
 
 window.digitalDreamscapeDebug = {
@@ -195,3 +299,4 @@ window.digitalDreamscapeDebug = {
   requestMoveTo,
   isWalkable: (x, y) => isWalkable(WORLD, x, y),
 };
+

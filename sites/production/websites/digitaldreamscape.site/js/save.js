@@ -1,6 +1,6 @@
 export const SAVE_KEY = "digital_dreamscape_save_v1";
 
-const SAVE_FIELDS = ["id", "name", "x", "y", "direction", "level", "xp", "currency", "visitedMarkers"];
+const SAVE_FIELDS = ["id", "name", "x", "y", "direction", "level", "xp", "currency", "visitedMarkers", "stats", "reputation", "quests", "lastLoginDate"];
 
 export function loadSave(defaultState) {
   try {
