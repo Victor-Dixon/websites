@@ -1,0 +1,67 @@
+name: Deploy XThunder Site
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'sites/production/websites/xthunder.site/**'
+      - 'xthunder.site/**'
+      - '.github/workflows/deploy-xthunder-site.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+      HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+      HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+      HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+      REMOTE_DIR: public_html/xthunder.site
+      SRC_DIR: sites/production/websites/xthunder.site
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify local XThunder reset patch
+        run: |
+          test -f "$SRC_DIR/index.html"
+          grep -q "xthunder-loss-reset-hotfix" "$SRC_DIR/index.html"
+          grep -q "xthunder-force-restart-button" "$SRC_DIR/index.html"
+
+      - name: Install deploy dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsync openssh-client
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$HOSTINGER_SSH_PRIVATE_KEY" > ~/.ssh/hostinger_key
+          chmod 600 ~/.ssh/hostinger_key
+          ssh-keyscan -p "${HOSTINGER_PORT:-22}" "$HOSTINGER_HOST" >> ~/.ssh/known_hosts
+
+      - name: Guard remote target
+        run: |
+          case "$REMOTE_DIR" in
+            *xthunder.site*) echo "REMOTE_GUARD=PASS" ;;
+            *) echo "REMOTE_GUARD=FAIL $REMOTE_DIR"; exit 1 ;;
+          esac
+
+      - name: Deploy XThunder site
+        run: |
+          PORT="${HOSTINGER_PORT:-22}"
+          rsync -az \
+            -e "ssh -i ~/.ssh/hostinger_key -p $PORT -o StrictHostKeyChecking=yes" \
+            "$SRC_DIR/" \
+            "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_DIR/"
+
+      - name: Verify live XThunder reset patch
+        run: |
+          sleep 5
+          curl -LfsS "https://xthunder.site/?nocache=$(date +%s)" -o /tmp/xthunder.html
+          grep -q "xthunder-loss-reset-hotfix" /tmp/xthunder.html
+          grep -q "xthunder-force-restart-button" /tmp/xthunder.html
+          echo "LIVE_XTHUNDER_RESET_PATCH=PASS"

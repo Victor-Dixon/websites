@@ -3,18 +3,143 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mask Zero moved to maskzero.site</title>
-  <link rel="canonical" href="https://maskzero.site/">
-  <meta http-equiv="refresh" content="0; url=https://maskzero.site/">
-  <meta name="robots" content="noindex,follow">
+  <title>The Emergence | dadudekc.site</title>
+  <meta name="description" content="DadudeKC's standalone Emergence and Spark Protocol site.">
+  <link rel="canonical" href="https://dadudekc.site/">
+  <style>
+    :root { --bg:#090812; --panel:rgba(255,255,255,.08); --text:#f7f5ff; --muted:rgba(247,245,255,.72); --accent:#7c3cff; --line:rgba(255,255,255,.18); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at 18% 8%,rgba(124,60,255,.22),transparent 30rem),linear-gradient(180deg,#070610,#101326); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    a { color:#d9c9ff; }
+    .wrap { width:min(100% - 1.25rem,1040px); margin:0 auto; padding:1rem 0 4rem; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1rem 0; }
+    header strong { letter-spacing:.03em; }
+    nav { display:flex; gap:.8rem; flex-wrap:wrap; }
+    nav a { color:var(--muted); text-decoration:none; font-weight:800; }
+    main { border:1px solid var(--line); border-radius:28px; background:linear-gradient(180deg,var(--panel),rgba(255,255,255,.03)); box-shadow:0 28px 80px rgba(0,0,0,.32); padding:clamp(1rem,4vw,2.5rem); }
+    h1 { font-size:clamp(2.4rem,8vw,5rem); line-height:.95; margin:.25rem 0 1rem; }
+    h2 { margin-top:2rem; }
+    p, li { color:var(--muted); line-height:1.65; }
+    p strong, li strong { color:var(--text); }
+    .foot { text-align:center; color:var(--muted); padding:2rem 0 0; }
+    @media(max-width:760px) { header { align-items:flex-start; flex-direction:column; } }
+  </style>
 </head>
-<body data-canonical-project-redirect="dadudekc.site-to-maskzero.site">
-  <main>
-    <h1>Mask Zero moved to maskzero.site</h1>
-    <p>
-      Spark, Emergence, and Mask Zero are the same project after multiple name changes.
-      The canonical home is now <a href="https://maskzero.site/">maskzero.site</a>.
-    </p>
-  </main>
+<body data-dadudekc-site="standalone">
+  <div class="wrap">
+    <header>
+      <strong>dadudekc.site</strong>
+      <nav aria-label="Primary"><a href="/">Home</a><a href="/the-emergence.html">Emergence</a><a href="/spark-generator/">Spark Generator</a><a href="/cards/">Cards</a><a href="/missions/">Missions</a><a href="/battles/">Battles</a></nav>
+    </header>
+    <main>
+<section class="emergence-home">
+  <p><strong>Build in public / first playable demo live</strong></p>
+
+  <h1>The Emergence</h1>
+
+  <p><strong>
+  The Emergence began as a machine for answering “Who would win?” and evolved into a world where the answer could include you.
+  </strong></p>
+
+  <p>
+  This is a fantasy-superhero system built on deterministic mechanics. The backend resolves powers,
+  tiers, capability, upgrades, arena shifts, and battle outcomes. The surface turns those mechanics
+  into a cinematic world.
+  </p>
+
+  <p>
+    <a href="/character-generator/"><strong>Generate your first Spark →</strong></a>
+  </p>
+
+  <h2>What you can do now</h2>
+
+  <ul>
+    <li><strong>Generate your Spark:</strong> create a first public demo character profile.</li>
+    <li><strong>Open Missions:</strong> preview the first playable campaign path.</li>
+    <li><strong>Read the Protocol:</strong> see how the system stays fair underneath the story.</li>
+    <li><strong>Follow the Build Log:</strong> watch the system become playable in public.</li>
+  </ul>
+
+  <h2>What comes next</h2>
+
+  <ul>
+    <li>Port the full Spark Protocol tables into the public generator.</li>
+    <li>Add saved character records.</li>
+    <li>Turn the Battle Simulator into the first “Who would win?” demo.</li>
+    <li>Layer cinematic fight narration over deterministic backend results.</li>
+  </ul>
+
+  <h2>The promise</h2>
+
+  <p>
+  No vague power scaling. No hand-waved outcomes. The story can be cinematic, but the result should
+  come from a system that can be tested, repeated, and improved.
+  </p>
+
+  <p>
+    <a href="/missions/">Open Missions →</a> ·
+    <a href="/battle-simulator/">Battle Simulator coming next →</a>
+  </p>
+</section>
+
+
+<style id="spark-loop-inline-style">
+  .spark-protocol-loop,
+  .spark-bridge-copy {
+    margin: 3rem auto;
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(20,20,38,.92), rgba(75,35,140,.78));
+    color: #f7f5ff;
+  }
+  .spark-protocol-loop .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    opacity: .72;
+    font-size: .82rem;
+  }
+  .spark-loop-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .85rem;
+    margin: 1.4rem 0;
+  }
+  .spark-loop-actions a,
+  .spark-bridge-copy a {
+    display: inline-block;
+    padding: .8rem 1rem;
+    border-radius: 999px;
+    background: #7c3cff;
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
+
+
+<section id="spark-protocol-loop" class="spark-protocol-loop">
+  <p class="eyebrow">Spark Protocol Live Spine</p>
+  <h2>Generate your Spark. Carry it into battle. Read the cinematic outcome.</h2>
+  <p>
+    Emergence is powered by the Spark Protocol: a deterministic character generator and battle loop
+    that turns your answers into a playable identity, then resolves fights through sealed backend logic.
+  </p>
+  <div class="spark-loop-actions">
+    <a href="/spark-generator/">Generate Your Spark</a>
+    <a href="/cards/">View Cards</a>
+    <a href="/missions/">Open Missions</a>
+    <a href="/battles/">Enter the What-If Arena</a>
+    <a href="/the-emergence/">Read The Emergence</a>
+  </div>
+  <ol>
+    <li><strong>Answer the protocol.</strong> Build your domain, tier, traits, and Spark profile.</li>
+    <li><strong>Save the character record.</strong> Carry the profile forward through the live handoff.</li>
+    <li><strong>Enter battle.</strong> The resolver uses deterministic rules while the frontend shows cinematic story.</li>
+  </ol>
+</section>
+
+    </main>
+    <footer class="foot">DadudeKC standalone site · The Emergence · Spark Protocol</footer>
+  </div>
 </body>
 </html>

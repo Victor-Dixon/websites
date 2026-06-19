@@ -1,0 +1,31 @@
+{
+  "id": "kids_planner_execution_loop_001",
+  "generated_at": "2026-06-14T17:27:35.994350+00:00",
+  "status": "built",
+  "dreamvault_task_count": 20,
+  "route_paths": [
+    "routes/weareswarm.online/kids-planner/index.html",
+    "_deploy/weareswarm.online/kids-planner/index.html"
+  ],
+  "planner_updates": [
+    "roadmap.json",
+    "skill_tree.json",
+    "all_tasks.json"
+  ],
+  "discord_ping_artifacts": [
+    "data/discord/pings/kids_planner_execution_loop_001.json",
+    "data/discord/pings/kids_planner_execution_loop_001.md"
+  ],
+  "acceptance": {
+    "task_appears": true,
+    "kid_claims_it": true,
+    "kid_gives_prompt_to_agent": true,
+    "kid_collects_proof": true,
+    "closeout_gets_reviewed": "copy/download closeout generated for adult review",
+    "task_can_be_marked_done": "localStorage local done state",
+    "skill_tree_updated": true,
+    "roadmap_updated": true,
+    "discord_pinged": "artifact created; webhook optional",
+    "websites_updated": true
+  }
+}

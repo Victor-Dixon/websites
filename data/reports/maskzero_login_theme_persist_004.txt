@@ -1,0 +1,20 @@
+TASK=maskzero_login_theme_persist_004
+STATUS=PASS
+ runtime/content/maskzero.site/battles/index.html         |  4 ++--
+ runtime/content/maskzero.site/create-hero/index.html     |  4 ++--
+ runtime/content/maskzero.site/dispatch/index.html        |  4 ++--
+ runtime/content/maskzero.site/how-it-works/index.html    |  4 ++--
+ runtime/content/maskzero.site/index.html                 |  4 ++--
+ runtime/content/maskzero.site/login/index.html           | 16 +++++++++++++---
+ runtime/content/maskzero.site/meridian-map/index.html    |  4 ++--
+ runtime/content/maskzero.site/missions/index.html        |  4 ++--
+ runtime/content/maskzero.site/origin-rules/index.html    |  4 ++--
+ runtime/content/maskzero.site/quiz/index.html            |  4 ++--
+ runtime/content/maskzero.site/roster-rules/index.html    |  4 ++--
+ runtime/content/maskzero.site/spark-dashboard/index.html |  4 ++--
+ runtime/content/maskzero.site/spark-generator/index.html |  4 ++--
+ runtime/content/maskzero.site/spark-login/index.html     | 16 +++++++++++++---
+ runtime/content/maskzero.site/spark-os/index.html        |  4 ++--
+ runtime/content/maskzero.site/spark-signup/index.html    |  4 ++--
+ runtime/content/maskzero.site/the-emergence.html         |  4 ++--
+ 17 files changed, 56 insertions(+), 36 deletions(-)

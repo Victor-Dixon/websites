@@ -1,19 +1,48 @@
 # WeAreSwarm Project Board
 
-generated_at: 2026-06-07T21:16:43.418156+00:00
-projects: 8
+generated_at: 2026-06-13T09:40:00+00:00
+projects: 11
+phase: Maintenance -> Promotion -> Productization -> Revenue
+status: Productization In Progress
 
 ## Buckets
-- promotion_candidate: 1
-- unknown: 6
-- website: 1
+- canonical_core: 2
+- control_plane: 1
+- toolbelt: 2
+- public_surface: 1
+- salvage_complete: 1
+- parked: 4
 
 ## Projects
-- website / public_surface: websites — publish_or_consolidate_under_websites
-- promotion_candidate / candidate: Dream.os-Core — inspect_then_promote_or_archive
-- unknown / needs_review: Agents — inspect
-- unknown / needs_review: cursor-cellphone — inspect
-- unknown / needs_review: HomeSchool_Mastery — inspect
-- unknown / needs_review: osrs — inspect
-- unknown / needs_review: ProfessorSama — inspect
-- unknown / needs_review: TradingRobots — inspect
+- canonical_core / authority: DreamOS_Core — authority
+- canonical_core / authority: DreamVault — authority
+- control_plane / authority: DreamVault — authority
+- toolbelt / toolbelt: AgentTools — preserve_as_toolbelt
+- toolbelt / toolbelt: projectscanner — preserve_as_toolbelt
+- public_surface / public_surface: websites — publish_under_websites
+- salvage_complete / archived: AutoDream — archived
+- parked / parked: HCShinobi — park
+- parked / parked: Spark research — park
+- parked / parked: LSTM trainer — park
+- parked / parked: ML Robot Maker — park
+
+## Active Priorities
+1. prune_tasklist_001
+2. Product Classification
+3. Revenue Activation
+4. DreamScan Distribution
+5. Portfolio Surface Refresh
+
+## Blocked
+- Robinhood Production Authentication — Adult Gate
+
+## Product Pipeline
+- Products Identified: AI Debugger Assistant, Agent Cellphone, Trading Robot Plug, DreamScan, Discord Architect, ProjectScanner
+- Products Productized: Agent Cellphone, Discord Architect, ProjectScanner
+- Products Monetized: pending revenue activation
+
+## Spark Status
+- MVP_SHIPPED
+- AUTH_IMMERSION_FIXED
+- 17 tests passing
+- live domain

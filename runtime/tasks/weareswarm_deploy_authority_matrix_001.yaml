@@ -1,0 +1,28 @@
+id: weareswarm_deploy_authority_matrix_001
+title: Identify canonical WeAreSwarm source and unified deploy authority
+status: closed
+created_at: '2026-06-13'
+closed_at: '2026-06-13'
+owner: dreamos
+purpose: >-
+  Prevent noncanonical roadmap edits by documenting the deploy authority matrix
+  before any public WeAreSwarm roadmap publish lane continues.
+ssot:
+  deployment_config: ops/deployment/sites.yml
+  unified_deployer: ops/deployment/unified_deployer.py
+  runtime_public_contract: runtime/data/weareswarm_public_contract.json
+  route_sources:
+    - routes/weareswarm.online/
+  deploy_outputs:
+    - _deploy/weareswarm.online/
+    - _deploy/weareswarm/
+acceptance:
+  - Confirm weareswarm.online deployer is unified.
+  - Confirm weareswarm.site deployer is unified.
+  - Mark _deploy outputs as generated artifacts, not first-choice SSOT.
+  - Preserve official roadmap publish as blocked until canonical roadmap source is found or created.
+proof:
+  report: data/reports/websites/weareswarm_deploy_authority_matrix_20260613.md
+next_lanes:
+  - docs(roadmap): add DreamOS proof pipeline to canonical roadmap source
+  - deploy(weareswarm): publish roadmap through unified deployer

@@ -800,8 +800,8 @@
 
     mount.innerHTML = [
       '<div class="ecg-provider-fallback">',
-      '<p><strong>Premium image provider:</strong> ' + esc(data.status || 'prompt-only') + '</p>',
-      '<p>' + esc(data.message || 'Prompt-only fallback is active. SVG card remains available.') + '</p>',
+      '<p><strong>Hero image studio:</strong> Standing by</p>',
+      '<p>Live premium image generation is not enabled for this site yet. Your SVG hero dossier remains ready.</p>',
       '</div>'
     ].join('');
   }
@@ -950,6 +950,11 @@
     const sheet = finalPayload.character_sheet || {};
     const powers = finalPayload.powers || [];
     const tone = buildProfileTone(finalPayload);
+    if (!finalPayload.premium_portrait_prompt) {
+      finalPayload = Object.assign({}, finalPayload, {
+        premium_portrait_prompt: compilePremiumPortraitPrompt(finalPayload, tone.codename)
+      });
+    }
     const selectedPowers = sheet.selected_powers || powers.map(function (p) { return p.power; });
 
     const powerList = powers.map(function (p, index) {
@@ -999,10 +1004,15 @@
       '<p>' + esc(tone.hook) + '</p>',
       '</section>',
 
-      '<section class="ecg-profile-panel ecg-profile-wide ecg-premium-prompt-panel">',
-      '<h3>Premium Hero Portrait Prompt</h3>',
-      '<p>This prompt is ready for premium image generation after naming. It avoids franchise names, raw scores, and hidden routing.</p>',
-      '<textarea readonly class="ecg-premium-prompt">' + esc(finalPayload.premium_portrait_prompt || compilePremiumPortraitPrompt(finalPayload, tone.codename)) + '</textarea>',
+      '<section class="ecg-profile-panel ecg-profile-wide ecg-hero-image-panel">',
+      '<p class="ecg-kicker">Hero Image Studio</p>',
+      '<h3>Create the Premium Hero Portrait</h3>',
+      '<p>Your full-body superhero art direction is locked behind the scenes from this Spark profile. Use the creator controls below without technical setup.</p>',
+      '<div class="ecg-hero-utility-grid">',
+      '<div><strong>Art Direction</strong><span>Private and ready</span></div>',
+      '<div><strong>Safety Rules</strong><span>Original hero design only</span></div>',
+      '<div><strong>Fallback</strong><span>SVG dossier stays available</span></div>',
+      '</div>',
       '<div class="ecg-premium-provider-actions">',
       '<button type="button" id="ecg-generate-premium-image">Generate Premium Hero Image</button>',
       '</div>',
