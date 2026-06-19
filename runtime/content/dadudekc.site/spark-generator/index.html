@@ -81,11 +81,149 @@ window.Spark=(function(){
   const letters=["A","B","C","D","E","F","G","H"];
   const key="dreamos.original.spark.static.v1";
   const endpoint="/wp-json/emergence/v1/generate";
+  const accountConfig=window.DreamOSSparkAccount||{};
+  const accountEndpoint=accountConfig.endpoint||"/wp-json/emergence/v1/characters/me";
+  const accountNonce=accountConfig.nonce||"";
+  const accountLoggedIn=accountConfig.loggedIn===true||accountConfig.loggedIn==="1";
+  const accountLoginUrl=accountConfig.loginUrl||"/wp-login.php";
+  const accountRegisterUrl=accountConfig.registerUrl||accountLoginUrl;
+  const accountSingleKey="dreamos.singleSparkCharacter.v1";
 
   function debug(msg){debugEl.textContent=new Date().toLocaleTimeString()+" · "+msg}
   function load(){try{return JSON.parse(sessionStorage.getItem(key)||"{}")||{}}catch(e){return{}}}
   function save(s){sessionStorage.setItem(key,JSON.stringify(s||{}))}
   function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+  function accountHeaders(method){
+    const headers={"Accept":"application/json"};
+    if(method!=="GET")headers["Content-Type"]="application/json";
+    if(accountNonce)headers["X-WP-Nonce"]=accountNonce;
+    return headers;
+  }
+  function asList(value){
+    if(Array.isArray(value))return value.map(x=>String(x||"").trim()).filter(Boolean);
+    if(!value)return [];
+    return String(value).split(/[,|/]+/).map(x=>x.trim()).filter(Boolean);
+  }
+  function accountTitle(character){
+    return character.spark_name||character.character_name||character.title||character.lead_domain||"Saved Spark";
+  }
+  function accountPowers(character){
+    const powers=Array.isArray(character.selected_powers)?character.selected_powers:[];
+    return powers.map(p=>typeof p==="string"?p:(p.power||p.name||"")).filter(Boolean);
+  }
+  function accountCharacterToCardPayload(character){
+    const domains=asList(character.manifested_domains||character.domains||character.lead_domain);
+    return {
+      id:character.card_id||character.id||"account_spark",
+      character_name:accountTitle(character),
+      lead_domain:character.lead_domain||character.archetype||domains[0]||"Spark",
+      manifested:domains,
+      domains:domains,
+      cast:character.cast||character.archetype||"",
+      power_rating:character.power_rating||"",
+      combat_rating:character.combat_rating||"",
+      rarity_tier:character.rarity_tier||"",
+      profile_shape:character.profile_shape||character.summary||"",
+      description:character.summary||character.profile_shape||"",
+      powers:accountPowers(character),
+      selected_powers:character.selected_powers||[],
+      source:character.source||"account-spark"
+    };
+  }
+  function storeAccountCharacterLocally(character){
+    if(!character)return null;
+    try{localStorage.setItem(accountSingleKey,JSON.stringify(character));}catch(e){}
+    if(window.SparkHeroCards){
+      const card=SparkHeroCards.ensureRecord(accountCharacterToCardPayload(character),{source:"account-spark"});
+      try{localStorage.setItem("dreamos.currentSparkCharacter.v1",JSON.stringify(card));}catch(e){}
+      return card;
+    }
+    return character;
+  }
+  function accountCharacterFrom(payload,record){
+    const domains=asList(payload.manifested||payload.domains||payload.lead_domain);
+    const powers=Array.isArray(payload.powers)?payload.powers.map(p=>{
+      if(typeof p==="string")return {power:p,domain:"",lead:false};
+      return {power:p.power||p.name||p.title||"",domain:p.domain||"",lead:!!p.lead};
+    }).filter(p=>p.power):[];
+    return {
+      version:1,
+      source:"dadudekc-spark-generator",
+      visibility:"private",
+      id:record&&record.id?record.id:"",
+      card_id:record&&record.id?record.id:"",
+      spark_name:record&&record.character_name?record.character_name:((payload.lead_domain||"Generated")+" Spark"),
+      title:record&&record.character_name?record.character_name:((payload.lead_domain||"Generated")+" Spark"),
+      character_name:record&&record.character_name?record.character_name:"",
+      archetype:payload.lead_domain?payload.lead_domain+" Spark":"Spark",
+      summary:payload.profile_shape||"Spark profile generated.",
+      cast:payload.cast||"",
+      lead_domain:payload.lead_domain||domains[0]||"",
+      manifested_domains:domains,
+      domains:domains,
+      profile_shape:payload.profile_shape||"",
+      power_rating:payload.spark_signature||payload.provisional_spark_signature||record&&record.power_rating||"",
+      combat_rating:payload.combat_capability||payload.provisional_combat_capability||record&&record.combat_rating||"",
+      rarity_tier:record&&record.rarity_tier?record.rarity_tier:"",
+      team_name:record&&record.team_name?record.team_name:"",
+      selected_powers:powers,
+      battle_ready_note:"Saved Spark quiz result and character card for account reload."
+    };
+  }
+  function accountStatus(message,isError){
+    const el=document.getElementById("spark-account-save-status");
+    if(el)el.textContent=message||"";
+    if(el)el.dataset.error=isError?"1":"0";
+  }
+  async function saveAccountCharacter(payload,record){
+    const character=accountCharacterFrom(payload,record);
+    storeAccountCharacterLocally(character);
+    if(!accountLoggedIn){
+      accountStatus("Saved on this device. Sign in or create an account to keep this Spark when you come back.",false);
+      return {status:"local",character};
+    }
+    try{
+      const res=await fetch(accountEndpoint,{method:"POST",credentials:"same-origin",headers:accountHeaders("POST"),body:JSON.stringify({character})});
+      const data=await res.json();
+      if(!res.ok||data.status!=="saved")throw new Error(data.message||"Account save failed");
+      if(data.character)storeAccountCharacterLocally(data.character);
+      accountStatus("Saved to your account. You can log out and come back without retaking the quiz.",false);
+      return data;
+    }catch(e){
+      accountStatus("Account save failed. Your Spark is still saved on this device.",true);
+      debug("account save failed");
+      return {status:"error",character};
+    }
+  }
+  function renderSavedAccountCharacter(character,state){
+    const card=storeAccountCharacterLocally(character);
+    const name=card&&card.character_name?card.character_name:accountTitle(character);
+    const powers=accountPowers(character).slice(0,3).join(", ")||"Spark profile ready";
+    app.innerHTML=`<section class="panel"><div class="kicker">${state==="loaded"?"Saved to Account":"Saved Spark"}</div><h1>${esc(name)}</h1><p>Your Spark character and quiz result are already saved. You do not need to retake the quiz unless you want to replace this character.</p><div class="result-grid"><div><strong>Archetype</strong><span>${esc(character.lead_domain||character.archetype||"Spark")}</span></div><div><strong>Rarity</strong><span>${esc(character.rarity_tier||"Saved")}</span></div><div><strong>Powers</strong><span>${esc(powers)}</span></div><div><strong>Status</strong><span>${state==="loaded"?"Account synced":"Device saved"}</span></div></div><div class="actions"><button class="primary" type="button" onclick="Spark.openHeroProfile()">Open Hero Profile</button><a class="btn primary" href="/cards/">Open Card Collection</a><a class="btn secondary" href="/battles/?account_character=1">Open Battle Simulator</a><button class="secondary" type="button" onclick="Spark.start()">Replace Character</button></div></section>`;
+    const s=load();
+    s.hero_card=card||s.hero_card||null;
+    s.final_result=accountCharacterToCardPayload(character);
+    save(s);
+    debug(state==="loaded"?"account character loaded":"local character loaded");
+  }
+  async function bootAccountCharacter(){
+    if(accountLoggedIn){
+      try{
+        const res=await fetch(accountEndpoint,{method:"GET",credentials:"same-origin",headers:accountHeaders("GET")});
+        const data=await res.json();
+        if(res.ok&&data.status==="loaded"&&data.character&&!sessionStorage.getItem(key)){
+          renderSavedAccountCharacter(data.character,"loaded");
+        }
+        return;
+      }catch(e){
+        debug("account lookup skipped");
+      }
+    }
+    try{
+      const local=JSON.parse(localStorage.getItem(accountSingleKey)||"null");
+      if(local&&!sessionStorage.getItem(key))renderSavedAccountCharacter(local,"local");
+    }catch(e){}
+  }
   function opts(q){
     const raw=q.options||{};
     const out=[];
@@ -442,8 +580,9 @@ window.Spark=(function(){
     const prompt=buildImagePrompt(r);
     const record=ensureHeroRecord();
     const cardHtml=window.SparkHeroCards&&record?SparkHeroCards.renderCard(record,{onclick:"Spark.openHeroProfile()"}):"";
-    app.innerHTML=`<section class="panel"><div class="kicker">Final Dossier</div><h2>${esc(record&&record.character_name?record.character_name:(r.lead_domain||"Generated")+" Spark")}</h2><div class="result-grid"><div><strong>Cast</strong><span>${esc(r.cast||"Pending")}</span></div><div><strong>Power Rating</strong><span>${esc(r.spark_signature||r.provisional_spark_signature||"Pending")}</span></div><div><strong>Combat Rating</strong><span>${esc(r.combat_capability||r.provisional_combat_capability||"Pending")}</span></div><div><strong>Domains</strong><span>${esc(manifested)}</span></div><div><strong>Rarity Tier</strong><span>${esc(record&&record.rarity_tier?record.rarity_tier:"Common")}</span></div></div><p>${esc(r.profile_shape||"Spark profile generated.")}</p><div class="card-maker"><div class="kicker">Premium Hero Card</div><p>Your generated Spark automatically received a collectible superhero trading card. Upload provider art or your own portrait to replace the generated fallback artwork.</p>${cardHtml}<input type="file" accept="image/*" onchange="Spark.loadCardImage(this)"><canvas id="spark-card-canvas" width="900" height="1260" style="display:none"></canvas></div><div class="panel hero-image-tools" style="margin-top:1rem"><div class="kicker">Hero Image Studio</div><h3>Create your hero art</h3><p>Your superhero art direction is generated privately from this dossier. Upload finished hero art when ready to refresh the premium card.</p><div class="result-grid"><div><strong>Art Direction</strong><span>Private and ready</span></div><div><strong>Safety Rules</strong><span>Original character design</span></div><div><strong>Card Kit</strong><span>Upload art above</span></div></div></div><div class="actions"><button class="primary" type="button" onclick="Spark.openHeroProfile()">Open Hero Profile</button><a class="btn primary" href="/cards/">Open Card Collection</a><a class="btn primary" href="/missions/${record?`?character_id=${encodeURIComponent(record.id)}`:""}">Open Missions</a><button class="secondary" type="button" onclick="Spark.renderCard()">Prepare Card PNG</button><button class="secondary" type="button" onclick="Spark.downloadCard()">Download Card PNG</button><a class="btn secondary" href="/battles/">Open Battle Simulator</a><button class="secondary" type="button" onclick="Spark.reset()">Start Over</button></div><details><summary>Raw protocol output</summary><pre>${esc(JSON.stringify(r,null,2))}</pre></details></section>`;
+    app.innerHTML=`<section class="panel"><div class="kicker">Final Dossier</div><h2>${esc(record&&record.character_name?record.character_name:(r.lead_domain||"Generated")+" Spark")}</h2><div class="result-grid"><div><strong>Cast</strong><span>${esc(r.cast||"Pending")}</span></div><div><strong>Power Rating</strong><span>${esc(r.spark_signature||r.provisional_spark_signature||"Pending")}</span></div><div><strong>Combat Rating</strong><span>${esc(r.combat_capability||r.provisional_combat_capability||"Pending")}</span></div><div><strong>Domains</strong><span>${esc(manifested)}</span></div><div><strong>Rarity Tier</strong><span>${esc(record&&record.rarity_tier?record.rarity_tier:"Common")}</span></div></div><p>${esc(r.profile_shape||"Spark profile generated.")}</p><div class="card-maker"><div class="kicker">Premium Hero Card</div><p>Your generated Spark automatically received a collectible superhero trading card. Upload provider art or your own portrait to replace the generated fallback artwork.</p>${cardHtml}<input type="file" accept="image/*" onchange="Spark.loadCardImage(this)"><canvas id="spark-card-canvas" width="900" height="1260" style="display:none"></canvas></div><div class="panel hero-image-tools" style="margin-top:1rem"><div class="kicker">Hero Image Studio</div><h3>Create your hero art</h3><p>Your superhero art direction is generated privately from this dossier. Upload finished hero art when ready to refresh the premium card.</p><div class="result-grid"><div><strong>Art Direction</strong><span>Private and ready</span></div><div><strong>Safety Rules</strong><span>Original character design</span></div><div><strong>Card Kit</strong><span>Upload art above</span></div></div></div><div class="actions"><button class="primary" type="button" onclick="Spark.openHeroProfile()">Open Hero Profile</button><a class="btn primary" href="/cards/">Open Card Collection</a><a class="btn primary" href="/missions/${record?`?character_id=${encodeURIComponent(record.id)}`:""}">Open Missions</a><button class="secondary" type="button" onclick="Spark.renderCard()">Prepare Card PNG</button><button class="secondary" type="button" onclick="Spark.downloadCard()">Download Card PNG</button><a class="btn secondary" href="/battles/">Open Battle Simulator</a><button class="secondary" type="button" onclick="Spark.reset()">Start Over</button></div><p id="spark-account-save-status" aria-live="polite">Saving Spark to your account...</p><details><summary>Raw protocol output</summary><pre>${esc(JSON.stringify(r,null,2))}</pre></details></section>`;
     sessionStorage.setItem("dreamos.spark.imagePrompt.internal.v1",prompt);
+    saveAccountCharacter(r,record);
     debug("final rendered; character card auto-saved"); setTimeout(renderCollectorCard,80);
   }
   async function post(body){
@@ -453,6 +592,8 @@ window.Spark=(function(){
     return payload;
   }
   function error(e){const box=document.createElement("div");box.className="error";box.textContent=String(e&&e.message?e.message:e);app.prepend(box);debug("error")}
+  bootAccountCharacter();
+
   return {
     start:function(){debug("start");renderDomain();window.scrollTo({top:0,behavior:"smooth"})},
     reset:function(){sessionStorage.removeItem(key);debug("reset");location.reload()},
