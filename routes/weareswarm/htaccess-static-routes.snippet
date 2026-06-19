@@ -1,0 +1,8 @@
+# Static Dream.OS routes — serve rendered index.html before WordPress canonical redirects
+<IfModule mod_rewrite.c>
+RewriteRule ^projects/?$ /projects/index.html [L]
+RewriteRule ^profile/?$ /profile/index.html [L]
+RewriteRule ^live-ops/?$ /live-ops/index.html [L]
+RewriteRule ^feed/?$ /feed/index.html [L]
+RewriteRule ^tasks/?$ /tasks/index.html [L]
+</IfModule>

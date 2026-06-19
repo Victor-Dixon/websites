@@ -1,4 +1,6 @@
 # Local/runtime noise
+__pycache__/
+*.py[cod]
 .DS_Store
 *.tmp
 *.log
@@ -42,3 +44,4 @@ runtime/trading/discord/latest_cpc_closeout_bridge_payload.json
 runtime/logs/discord_architect/
 runtime/env/
 data/exports/
+_deploy/weareswarm/level5/api/.level5-db.php

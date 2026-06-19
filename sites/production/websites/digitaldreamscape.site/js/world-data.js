@@ -123,8 +123,9 @@ export const WORLD = {
       y: 9,
       blocksMovement: true,
       interaction: {
-        type: "dialogue",
-        text: "Welcome to Digital Dreamscape. Click a walkable tile and your explorer will walk there.",
+        type: "quest",
+        questId: "strange_signal",
+        text: "A strange signal pulses from the Silver Observatory.",
       },
     },
     {
@@ -135,8 +136,9 @@ export const WORLD = {
       y: 14,
       blocksMovement: true,
       interaction: {
-        type: "dialogue",
-        text: "The region is bigger than this viewport. Follow the paths to find doors, portals, and resource nodes.",
+        type: "quest",
+        questId: "missing_apprentice",
+        text: "My apprentice has gone missing near the Dream Archive.",
       },
     },
     {
@@ -147,8 +149,9 @@ export const WORLD = {
       y: 40,
       blocksMovement: true,
       interaction: {
-        type: "dialogue",
-        text: "The encounter gate is only a marker for now. Combat will arrive in a later phase.",
+        type: "quest",
+        questId: "broken_machine",
+        text: "The waypoint network is down. I need someone who can help.",
       },
     },
     {
@@ -278,6 +281,66 @@ export const WORLD = {
       interaction: {
         type: "shop_placeholder",
         text: "The market kiosk is closed. Shops and currency sinks will come later.",
+      },
+    },
+    {
+      id: "faction_board_dreamweavers",
+      type: "marker",
+      name: "Dreamweavers Board",
+      x: 16,
+      y: 22,
+      blocksMovement: false,
+      interaction: {
+        type: "message",
+        text: "Dreamweavers — Keepers of knowledge and creative vision. Earn standing by pursuing wisdom and imagination.",
+      },
+    },
+    {
+      id: "faction_board_ironforge",
+      type: "marker",
+      name: "Ironforge Board",
+      x: 32,
+      y: 8,
+      blocksMovement: false,
+      interaction: {
+        type: "message",
+        text: "Ironforge Guild — Masters of discipline and forged structure. Earn standing through methodical effort and reliability.",
+      },
+    },
+    {
+      id: "faction_board_signal_corps",
+      type: "marker",
+      name: "Signal Corps Board",
+      x: 44,
+      y: 14,
+      blocksMovement: false,
+      interaction: {
+        type: "message",
+        text: "Signal Corps — Seekers of truth through purposeful signals. Earn standing by investigating deeply and sharing findings.",
+      },
+    },
+    {
+      id: "faction_board_wildpath",
+      type: "marker",
+      name: "Wildpath Board",
+      x: 8,
+      y: 30,
+      blocksMovement: false,
+      interaction: {
+        type: "message",
+        text: "Wildpath Collective — Wanderers bound by connection to the living world. Earn standing through relationships and empathy.",
+      },
+    },
+    {
+      id: "faction_board_luminary",
+      type: "marker",
+      name: "Luminary Board",
+      x: 50,
+      y: 44,
+      blocksMovement: false,
+      interaction: {
+        type: "message",
+        text: "Luminary Order — Guides who lead with purpose and light. Earn standing by understanding root causes and serving the whole.",
       },
     },
   ],

@@ -1,0 +1,167 @@
+{
+  "generated_at": "2026-06-13T09:40:00+00:00",
+  "intent": "Public DreamOS operating board for authority, toolbelt, productization, distribution, and revenue activation.",
+  "source": "dreamos.operating_dashboard",
+  "current_phase": {
+    "name": "Maintenance -> Promotion -> Productization -> Revenue",
+    "status": "Productization In Progress",
+    "summary": "Discovery and consolidation are largely complete. The active system work is pruning, product classification, distribution, and revenue activation."
+  },
+  "buckets": {
+    "canonical_core": 2,
+    "control_plane": 1,
+    "toolbelt": 2,
+    "public_surface": 1,
+    "salvage_complete": 1,
+    "parked": 4
+  },
+  "projects": [
+    {
+      "name": "DreamOS_Core",
+      "kind": "canonical_core",
+      "status": "authority",
+      "consolidation_action": "authority",
+      "next": "Maintain as canonical DreamOS core authority.",
+      "proof": "Canonical core lane established."
+    },
+    {
+      "name": "DreamVault",
+      "kind": "canonical_core",
+      "status": "authority",
+      "consolidation_action": "authority",
+      "next": "Maintain as DreamOS authority and control plane.",
+      "proof": "Canonical core and control-plane authority established."
+    },
+    {
+      "name": "DreamVault",
+      "kind": "control_plane",
+      "status": "authority",
+      "consolidation_action": "authority",
+      "next": "Keep private authority data out of public pages.",
+      "proof": "Control-plane lane established."
+    },
+    {
+      "name": "AgentTools",
+      "kind": "toolbelt",
+      "status": "toolbelt",
+      "consolidation_action": "preserve_as_toolbelt",
+      "next": "Expose public-safe prompt packs and verification templates when ready.",
+      "proof": "Supporting automation tooling."
+    },
+    {
+      "name": "projectscanner",
+      "kind": "toolbelt",
+      "status": "toolbelt",
+      "consolidation_action": "preserve_as_toolbelt",
+      "next": "Use as the scanner/product engine for repo rescue and classification.",
+      "proof": "Project classification tooling."
+    },
+    {
+      "name": "websites",
+      "kind": "public_surface",
+      "status": "public_surface",
+      "consolidation_action": "publish_under_websites",
+      "next": "Refresh portfolio and focus surfaces around operating proof.",
+      "proof": "Public proof and distribution surface."
+    },
+    {
+      "name": "AutoDream",
+      "kind": "salvage_complete",
+      "status": "archived",
+      "consolidation_action": "archived",
+      "next": "Keep archived; do not present as active promotion candidate.",
+      "proof": "Salvage complete."
+    },
+    {
+      "name": "HCShinobi",
+      "kind": "parked",
+      "status": "parked",
+      "consolidation_action": "park",
+      "next": "Leave parked unless a new product lane is explicitly reopened.",
+      "proof": "Bucket 3 parked."
+    },
+    {
+      "name": "Spark research",
+      "kind": "parked",
+      "status": "parked",
+      "consolidation_action": "park",
+      "next": "Keep research parked while shipped Spark surface remains live proof.",
+      "proof": "Bucket 3 parked."
+    },
+    {
+      "name": "LSTM trainer",
+      "kind": "parked",
+      "status": "parked",
+      "consolidation_action": "park",
+      "next": "Leave parked unless revenue/product need reopens the lane.",
+      "proof": "Bucket 3 parked."
+    },
+    {
+      "name": "ML Robot Maker",
+      "kind": "parked",
+      "status": "parked",
+      "consolidation_action": "park",
+      "next": "Leave parked unless revenue/product need reopens the lane.",
+      "proof": "Bucket 3 parked."
+    }
+  ],
+  "active_priorities": [
+    {
+      "rank": 1,
+      "name": "prune_tasklist_001",
+      "state": "active"
+    },
+    {
+      "rank": 2,
+      "name": "Product Classification",
+      "state": "active"
+    },
+    {
+      "rank": 3,
+      "name": "Revenue Activation",
+      "state": "active"
+    },
+    {
+      "rank": 4,
+      "name": "DreamScan Distribution",
+      "state": "active"
+    },
+    {
+      "rank": 5,
+      "name": "Portfolio Surface Refresh",
+      "state": "active"
+    }
+  ],
+  "blocked": [
+    {
+      "name": "Robinhood Production Authentication",
+      "reason": "Adult Gate"
+    }
+  ],
+  "product_pipeline": {
+    "status": "Productization In Progress",
+    "products_identified": [
+      "AI Debugger Assistant",
+      "Agent Cellphone",
+      "Trading Robot Plug",
+      "DreamScan",
+      "Discord Architect",
+      "ProjectScanner"
+    ],
+    "products_productized": [
+      "Agent Cellphone",
+      "Discord Architect",
+      "ProjectScanner"
+    ],
+    "products_monetized": [],
+    "monetization_note": "Track monetization as offer and distribution surfaces come online rather than reporting lead count as the primary product metric."
+  },
+  "spark_status": {
+    "state": "MVP_SHIPPED",
+    "proof": [
+      "AUTH_IMMERSION_FIXED",
+      "17 tests passing",
+      "live domain"
+    ]
+  }
+}

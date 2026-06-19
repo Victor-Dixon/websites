@@ -1,0 +1,20 @@
+id: meridian_city_map_grid_and_mission_nodes_001
+title: Fix Meridian City map grid and bind mission nodes
+status: ready
+lane: website_ops
+target:
+  - sites/production/websites/dadudekc.site/meridian-dispatch/
+  - runtime/content/meridian/
+objective:
+  - Convert Meridian City map/grid into a functional mission board.
+  - Define initial named missions for each district.
+  - Bind missions to notoriety rewards and faction reputation changes.
+  - Preserve Undercity as hidden/non-map district.
+acceptance:
+  - Five visible districts render as grid/card sections.
+  - Undercity appears as hidden/locked layer, not normal district.
+  - At least one named mission exists per visible district.
+  - Each mission has notoriety reward, faction hooks, risk, and unlock metadata.
+  - Dispatch route shows locked/unlocked mission nodes.
+  - No fake mission completion without saved Spark/account state.
+commit_message: Add Meridian mission grid and notoriety node model

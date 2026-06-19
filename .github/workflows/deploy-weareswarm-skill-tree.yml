@@ -1,0 +1,98 @@
+name: Deploy WeAreSwarm Skill Tree
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+
+on:
+  push:
+    branches:
+      - cursor/repair-weareswarm-white-screen-0b91
+    paths:
+      - .github/workflows/deploy-weareswarm-skill-tree.yml
+      - routes/weareswarm/skill-tree/**
+      - collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/page-skills.php
+
+concurrency:
+  group: weareswarm-skill-tree-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Upload Skill Tree route
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure SSH key
+        env:
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_PORT: "65002"
+        run: |
+          set -euo pipefail
+          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+          chmod 600 "$HOME/.ssh/id_hostinger"
+          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+
+      - name: Upload theme template and render static route
+        env:
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_USER: u996867598
+          HOSTINGER_PORT: "65002"
+          REMOTE_ROOT: /home/u996867598/domains/weareswarm.site/public_html
+          THEME_DIR: /home/u996867598/domains/weareswarm.site/public_html/wp-content/themes/weareswarm-dreamos
+        run: |
+          set -euo pipefail
+          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
+          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
+
+          "${ssh_base[@]}" "set -e
+            if [ -f '$REMOTE_ROOT/skill-tree' ]; then cp '$REMOTE_ROOT/skill-tree' '$REMOTE_ROOT/skill-tree.bak.${GITHUB_RUN_ID}'; fi
+            cp '$THEME_DIR/page-skills.php' '$THEME_DIR/page-skills.php.bak.${GITHUB_RUN_ID}'
+          "
+
+          "${scp_base[@]}" \
+            "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/page-skills.php" \
+            "$remote:$THEME_DIR/page-skills.php"
+
+          render_script="/tmp/render-weareswarm-skill-tree-${GITHUB_RUN_ID}.php"
+          cat > "$render_script" <<'PHP'
+          <?php
+          $root = '/home/u996867598/domains/weareswarm.site/public_html';
+          chdir($root);
+          define('WP_USE_THEMES', false);
+          require $root . '/wp-load.php';
+          include $root . '/wp-content/themes/weareswarm-dreamos/page-skills.php';
+          PHP
+          "${scp_base[@]}" "$render_script" "$remote:$render_script"
+
+          "${ssh_base[@]}" "set -e
+            php -l '$THEME_DIR/page-skills.php'
+            php '$render_script' > '$REMOTE_ROOT/skill-tree'
+            rm -f '$render_script'
+            chmod 644 '$REMOTE_ROOT/skill-tree' '$THEME_DIR/page-skills.php'
+          "
+
+      - name: Verify live Skill Tree
+        run: |
+          set -euo pipefail
+          status="$(curl -L -s -o /tmp/weareswarm-skill-tree.html -w '%{http_code}' --max-time 30 "https://weareswarm.site/skill-tree?cache=${GITHUB_RUN_ID}")"
+          echo "HTTP_STATUS=$status"
+          if [ "$status" != "200" ]; then
+            sed -n '1,80p' /tmp/weareswarm-skill-tree.html
+            exit 1
+          fi
+          grep -q "Capability Graph" /tmp/weareswarm-skill-tree.html
+          grep -q "Neural Progression" /tmp/weareswarm-skill-tree.html
+          grep -q "Distributed Swarm Mesh" /tmp/weareswarm-skill-tree.html
+          grep -q "class=\"shell\"" /tmp/weareswarm-skill-tree.html
+          ! grep -q "wp-block-library" /tmp/weareswarm-skill-tree.html
+          sed -n '1,40p' /tmp/weareswarm-skill-tree.html

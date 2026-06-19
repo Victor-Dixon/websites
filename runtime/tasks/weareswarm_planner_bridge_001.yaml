@@ -1,0 +1,23 @@
+id: weareswarm_planner_bridge_001
+title: Wire planner output into WeAreSwarm public status data
+lane: website_ops
+target: runtime/content/weareswarm.site
+status: done
+intent: >
+  Convert DreamVault planner governance output into a generated public status JSON
+  consumed by the WeAreSwarm projects/tasks surfaces.
+constraints:
+  - no SSH deploy required in this lane
+  - generated JSON only; preserve hardcoded fallback
+  - tolerate missing planner artifacts
+  - do not expose secrets
+inputs:
+  - data/reports/planner/next_lane.json
+outputs:
+  - runtime/content/weareswarm.site/data/swarm-status.generated.json
+  - data/reports/weareswarm_planner_bridge/latest.md
+  - data/reports/planner/refresh_contract.json
+verification:
+  - generated JSON parses
+  - contains projects and unfinished_tasks arrays
+  - git diff limited to bridge/task/generated status artifacts

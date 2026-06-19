@@ -214,9 +214,53 @@
   border: 1px solid rgba(255,255,255,.14);
 }
 
+.ecg-account-panel {
+  margin: 1.25rem 0;
+  padding: 1.15rem;
+  border: 1px solid rgba(125,255,190,.24);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(125,255,190,.16), transparent 18rem),
+    rgba(255,255,255,.055);
+}
+
+.ecg-account-panel h2 {
+  margin: .2rem 0 .65rem;
+}
+
+.ecg-account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+
+.ecg-battle-handoff-panel {
+  border-color: rgba(125,255,190,.22);
+}
+
+.ecg-battle-handoff-panel button {
+  border: 0;
+  border-radius: 999px;
+  padding: .8rem 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ecg-battle-handoff-status {
+  min-height: 1.4rem;
+  margin: .75rem 0 0;
+  opacity: .86;
+  font-weight: 700;
+}
+
 @media (max-width: 720px) {
   .ecg-profile-grid {
     grid-template-columns: 1fr;
+  }
+
+  .ecg-account-actions {
+    display: grid;
   }
 }
 
@@ -387,6 +431,43 @@
   resize: vertical;
 }
 
+.ecg-hero-image-panel {
+  background:
+    radial-gradient(circle at top right, rgba(124,92,255,.18), transparent 20rem),
+    linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+}
+
+.ecg-hero-utility-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .75rem;
+  margin: 1rem 0;
+}
+
+.ecg-hero-utility-grid > div {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  padding: .85rem;
+  background: rgba(0,0,0,.18);
+}
+
+.ecg-hero-utility-grid strong,
+.ecg-hero-utility-grid span {
+  display: block;
+}
+
+.ecg-hero-utility-grid strong {
+  font-size: .76rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .78;
+}
+
+.ecg-hero-utility-grid span {
+  margin-top: .25rem;
+  font-weight: 800;
+}
+
 /* Dream.OS player design influence lane 092 */
 .ecg-cosmetic-grid {
   display: grid;
@@ -412,7 +493,8 @@
 }
 
 @media (max-width: 720px) {
-  .ecg-cosmetic-grid {
+  .ecg-cosmetic-grid,
+  .ecg-hero-utility-grid {
     grid-template-columns: 1fr;
   }
 }

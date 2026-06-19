@@ -1,0 +1,295 @@
+TASK=diagnose_weareswarm_online_deploy_miss_008
+TARGET=weareswarm.online deploy miss after nav shell commit
+PWD=/data/data/com.termux/files/home/projects/websites
+DATE=2026-06-15T16:34:19-05:00
+
+== GIT HEAD ==
+c64b4021 fix(weareswarm-online): standardize navigation shell
+d18a80a5 fix(weareswarm-online): restore navigation menu fallback
+82be92dc ci(xthunder): add guarded Hostinger deploy workflow
+
+LOCAL_HEAD=c64b4021ac75d2052f3ec274f35f21ee32dc2cee
+REMOTE_HEAD=c64b4021ac75d2052f3ec274f35f21ee32dc2cee
+
+== LOCAL MARKERS ==
+CANONICAL_NAV_COUNT=5
+NAV_CSS_LINK_COUNT=5
+NAV_JS_LINK_COUNT=5
+NAV_CSS_FILE=PASS
+NAV_JS_FILE=PASS
+
+== WORKFLOWS ==
+.github/workflows/deploy-freeride-hostinger.yml
+.github/workflows/deploy-weareswarm-online-kids-planner.yml
+.github/workflows/deploy-weareswarm-online.yml
+.github/workflows/deploy-weareswarm-site.yml
+.github/workflows/deploy-weareswarm-skill-tree.yml
+.github/workflows/deploy-weareswarm-theme.yml
+.github/workflows/deploy-xthunder-site.yml
+.github/workflows/emergence-scan-no-reload-browser-smoke.yml
+
+== WORKFLOW REFERENCES ==
+.github/workflows/deploy-freeride-hostinger.yml:1:name: Deploy FreeRideInvestor to Hostinger
+.github/workflows/deploy-freeride-hostinger.yml:20:  deploy:
+.github/workflows/deploy-freeride-hostinger.yml:21:    name: Deploy FreeRideInvestor static site
+.github/workflows/deploy-freeride-hostinger.yml:28:      - name: Install deploy dependencies
+.github/workflows/deploy-freeride-hostinger.yml:35:          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+.github/workflows/deploy-freeride-hostinger.yml:36:          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+.github/workflows/deploy-freeride-hostinger.yml:37:          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+.github/workflows/deploy-freeride-hostinger.yml:40:          : "${HOSTINGER_SSH_PRIVATE_KEY:?missing HOSTINGER_SSH_PRIVATE_KEY}"
+.github/workflows/deploy-freeride-hostinger.yml:41:          : "${HOSTINGER_HOST:?missing HOSTINGER_HOST}"
+.github/workflows/deploy-freeride-hostinger.yml:42:          : "${HOSTINGER_PORT:?missing HOSTINGER_PORT}"
+.github/workflows/deploy-freeride-hostinger.yml:45:          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-freeride-hostinger.yml:46:          chmod 600 "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-freeride-hostinger.yml:47:          ssh-keyscan -T 15 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+.github/workflows/deploy-freeride-hostinger.yml:50:            IdentityFile ~/.ssh/id_hostinger
+.github/workflows/deploy-freeride-hostinger.yml:55:      - name: Write Hostinger deploy env
+.github/workflows/deploy-freeride-hostinger.yml:57:          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+.github/workflows/deploy-freeride-hostinger.yml:58:          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+.github/workflows/deploy-freeride-hostinger.yml:59:          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+.github/workflows/deploy-freeride-hostinger.yml:62:          : "${HOSTINGER_HOST:?missing HOSTINGER_HOST}"
+.github/workflows/deploy-freeride-hostinger.yml:63:          : "${HOSTINGER_USER:?missing HOSTINGER_USER}"
+.github/workflows/deploy-freeride-hostinger.yml:64:          : "${HOSTINGER_PORT:?missing HOSTINGER_PORT}"
+.github/workflows/deploy-freeride-hostinger.yml:66:          cat > "$HOME/.config/dreamos/hostinger_freeride_github_secrets.env" <<EOF
+.github/workflows/deploy-freeride-hostinger.yml:67:          HOSTINGER_HOST=$HOSTINGER_HOST
+.github/workflows/deploy-freeride-hostinger.yml:68:          HOSTINGER_USER=$HOSTINGER_USER
+.github/workflows/deploy-freeride-hostinger.yml:69:          HOSTINGER_PORT=$HOSTINGER_PORT
+.github/workflows/deploy-freeride-hostinger.yml:70:          HOSTINGER_SSH_PRIVATE_KEY_FILE=$HOME/.ssh/id_hostinger
+.github/workflows/deploy-freeride-hostinger.yml:72:          chmod 600 "$HOME/.config/dreamos/hostinger_freeride_github_secrets.env"
+.github/workflows/deploy-freeride-hostinger.yml:95:      - name: Deploy static site to Hostinger
+.github/workflows/deploy-freeride-hostinger.yml:98:          python3 runtime/scripts/hostinger_static_deploy_guarded.py \
+.github/workflows/deploy-freeride-hostinger.yml:99:            --env "$HOME/.config/dreamos/hostinger_freeride_github_secrets.env" \
+.github/workflows/deploy-weareswarm-online.yml:1:name: Deploy WeAreSwarm Online
+.github/workflows/deploy-weareswarm-online.yml:16:      - '_deploy/weareswarm.online/**'
+.github/workflows/deploy-weareswarm-online.yml:17:      - .github/workflows/deploy-weareswarm-online.yml
+.github/workflows/deploy-weareswarm-online.yml:18:      - routes/weareswarm.online/**
+.github/workflows/deploy-weareswarm-online.yml:21:  group: weareswarm-online-deploy
+.github/workflows/deploy-weareswarm-online.yml:25:  deploy:
+.github/workflows/deploy-weareswarm-online.yml:36:          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+.github/workflows/deploy-weareswarm-online.yml:37:          HOSTINGER_HOST: 157.173.214.121
+.github/workflows/deploy-weareswarm-online.yml:38:          HOSTINGER_PORT: "65002"
+.github/workflows/deploy-weareswarm-online.yml:41:          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+.github/workflows/deploy-weareswarm-online.yml:44:          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-online.yml:45:          chmod 600 "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-online.yml:46:          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+.github/workflows/deploy-weareswarm-online.yml:50:          HOSTINGER_HOST: 157.173.214.121
+.github/workflows/deploy-weareswarm-online.yml:51:          HOSTINGER_USER: u996867598
+.github/workflows/deploy-weareswarm-online.yml:52:          HOSTINGER_PORT: "65002"
+.github/workflows/deploy-weareswarm-online.yml:53:          REMOTE_ROOT: /home/u996867598/domains/weareswarm.online/public_html
+.github/workflows/deploy-weareswarm-online.yml:56:          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+.github/workflows/deploy-weareswarm-online.yml:57:          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
+.github/workflows/deploy-weareswarm-online.yml:58:          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
+.github/workflows/deploy-weareswarm-online.yml:67:          "${scp_base[@]}" "routes/weareswarm.online/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"
+.github/workflows/deploy-weareswarm-online.yml:69:          "${scp_base[@]}" "routes/weareswarm.online/kids-planner/index.html" "$remote:$REMOTE_ROOT/kids-planner/index.html"
+.github/workflows/deploy-weareswarm-online.yml:70:          "${scp_base[@]}" "routes/weareswarm.online/data/planner/kids_tasks.json" "$remote:$REMOTE_ROOT/data/planner/kids_tasks.json"
+.github/workflows/deploy-weareswarm-online.yml:71:          "${scp_base[@]}" "routes/weareswarm.online/data/planner/all_tasks.json" "$remote:$REMOTE_ROOT/data/planner/all_tasks.json"
+.github/workflows/deploy-weareswarm-online.yml:72:          "${scp_base[@]}" "routes/weareswarm.online/data/planner/roadmap.json" "$remote:$REMOTE_ROOT/data/planner/roadmap.json"
+.github/workflows/deploy-weareswarm-online.yml:73:          "${scp_base[@]}" "routes/weareswarm.online/data/planner/skill_tree.json" "$remote:$REMOTE_ROOT/data/planner/skill_tree.json"
+.github/workflows/deploy-weareswarm-online.yml:74:          "${scp_base[@]}" "routes/weareswarm.online/skill-tree/index.html" "$remote:$REMOTE_ROOT/skill-tree/index.html"
+.github/workflows/deploy-weareswarm-online.yml:75:          "${scp_base[@]}" "routes/weareswarm.online/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-online-htaccess-snippet.txt"
+.github/workflows/deploy-weareswarm-online.yml:81:            if ! grep -q 'WeAreSwarm.online canonical host' \"\$ht\"; then
+.github/workflows/deploy-weareswarm-online.yml:82:              tmp=\"/tmp/weareswarm-online-htaccess-${GITHUB_RUN_ID}.txt\"
+.github/workflows/deploy-weareswarm-online.yml:83:              cat /tmp/weareswarm-online-htaccess-snippet.txt > \"\$tmp\"
+.github/workflows/deploy-weareswarm-online.yml:88:            rm -f /tmp/weareswarm-online-htaccess-snippet.txt
+.github/workflows/deploy-weareswarm-online.yml:94:          apex="$(curl -sI --max-time 20 'https://weareswarm.online/' | awk 'toupper($1) ~ /^HTTP/ {code=$2} /^location:/ {loc=$2} END {print code "|" loc}')"
+.github/workflows/deploy-weareswarm-online.yml:96:          echo "$apex" | grep -q '^301|https://www.weareswarm.online/'
+.github/workflows/deploy-weareswarm-online.yml:98:          svc_code="$(curl -s -o /tmp/weareswarm-online-services.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.online/dreamos-services/?cache='"${GITHUB_RUN_ID}")"
+.github/workflows/deploy-weareswarm-online.yml:101:          grep -q 'Ship automation that survives real mess' /tmp/weareswarm-online-services.html
+.github/workflows/deploy-weareswarm-online.yml:102:          grep -q 'class="nav"' /tmp/weareswarm-online-services.html
+.github/workflows/deploy-weareswarm-online.yml:103:          grep -q 'Command Center' /tmp/weareswarm-online-services.html
+.github/workflows/deploy-weareswarm-online.yml:105:          hub_code="$(curl -s -o /tmp/weareswarm-online-root.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.online/?cache='"${GITHUB_RUN_ID}")"
+.github/workflows/deploy-weareswarm-online.yml:108:          grep -q 'Dream.OS Command Center' /tmp/weareswarm-online-root.html
+.github/workflows/deploy-weareswarm-online.yml:110:          tree_code="$(curl -s -o /tmp/weareswarm-online-skill-tree.html -w '%{http_code}' --max-time 20 'https://www.weareswarm.online/skill-tree/?cache='"${GITHUB_RUN_ID}")"
+.github/workflows/deploy-weareswarm-online.yml:113:          grep -q 'Swarm Skill Tree' /tmp/weareswarm-online-skill-tree.html
+.github/workflows/deploy-weareswarm-online.yml:114:          grep -q 'Command Core' /tmp/weareswarm-online-skill-tree.html
+.github/workflows/deploy-weareswarm-online.yml:115:          grep -q 'site-header' /tmp/weareswarm-online-skill-tree.html
+.github/workflows/deploy-weareswarm-online.yml:117:# Dream.OS kids planner live verification is handled by deployment step above.
+.github/workflows/deploy-weareswarm-site.yml:1:name: Deploy WeAreSwarm Site
+.github/workflows/deploy-weareswarm-site.yml:14:      - .github/workflows/deploy-weareswarm-site.yml
+.github/workflows/deploy-weareswarm-site.yml:16:      - _deploy/weareswarm/**
+.github/workflows/deploy-weareswarm-site.yml:19:  group: weareswarm-site-deploy
+.github/workflows/deploy-weareswarm-site.yml:23:  deploy:
+.github/workflows/deploy-weareswarm-site.yml:34:          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+.github/workflows/deploy-weareswarm-site.yml:35:          HOSTINGER_HOST: 157.173.214.121
+.github/workflows/deploy-weareswarm-site.yml:36:          HOSTINGER_PORT: "65002"
+.github/workflows/deploy-weareswarm-site.yml:39:          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+.github/workflows/deploy-weareswarm-site.yml:42:          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-site.yml:43:          chmod 600 "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-site.yml:44:          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+.github/workflows/deploy-weareswarm-site.yml:49:          ssh -p "${{ secrets.HOSTINGER_PORT }}" \
+.github/workflows/deploy-weareswarm-site.yml:50:            -i "$HOME/.ssh/id_hostinger" \
+.github/workflows/deploy-weareswarm-site.yml:52:            "${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }}" \
+.github/workflows/deploy-weareswarm-site.yml:53:            "rm -rf /home/u996867598/domains/weareswarm.site/public_html/kids-planner /home/u996867598/domains/weareswarm.site/public_html/data/planner/kids_tasks.json"
+.github/workflows/deploy-weareswarm-site.yml:57:          HOSTINGER_HOST: 157.173.214.121
+.github/workflows/deploy-weareswarm-site.yml:58:          HOSTINGER_USER: u996867598
+.github/workflows/deploy-weareswarm-site.yml:59:          HOSTINGER_PORT: "65002"
+.github/workflows/deploy-weareswarm-site.yml:60:          REMOTE_ROOT: /home/u996867598/domains/weareswarm.site/public_html
+.github/workflows/deploy-weareswarm-site.yml:63:          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+.github/workflows/deploy-weareswarm-site.yml:64:          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
+.github/workflows/deploy-weareswarm-site.yml:65:          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
+.github/workflows/deploy-weareswarm-skill-tree.yml:1:name: Deploy WeAreSwarm Skill Tree
+.github/workflows/deploy-weareswarm-skill-tree.yml:12:      - .github/workflows/deploy-weareswarm-skill-tree.yml
+.github/workflows/deploy-weareswarm-skill-tree.yml:14:      - collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/page-skills.php
+.github/workflows/deploy-weareswarm-skill-tree.yml:17:  group: weareswarm-skill-tree-deploy
+.github/workflows/deploy-weareswarm-skill-tree.yml:21:  deploy:
+.github/workflows/deploy-weareswarm-skill-tree.yml:32:          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+.github/workflows/deploy-weareswarm-skill-tree.yml:33:          HOSTINGER_HOST: 157.173.214.121
+.github/workflows/deploy-weareswarm-skill-tree.yml:34:          HOSTINGER_PORT: "65002"
+.github/workflows/deploy-weareswarm-skill-tree.yml:37:          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+.github/workflows/deploy-weareswarm-skill-tree.yml:40:          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-skill-tree.yml:41:          chmod 600 "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-skill-tree.yml:42:          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+.github/workflows/deploy-weareswarm-skill-tree.yml:46:          HOSTINGER_HOST: 157.173.214.121
+.github/workflows/deploy-weareswarm-skill-tree.yml:47:          HOSTINGER_USER: u996867598
+.github/workflows/deploy-weareswarm-skill-tree.yml:48:          HOSTINGER_PORT: "65002"
+.github/workflows/deploy-weareswarm-skill-tree.yml:49:          REMOTE_ROOT: /home/u996867598/domains/weareswarm.site/public_html
+.github/workflows/deploy-weareswarm-skill-tree.yml:50:          THEME_DIR: /home/u996867598/domains/weareswarm.site/public_html/wp-content/themes/weareswarm-dreamos
+.github/workflows/deploy-weareswarm-skill-tree.yml:53:          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+.github/workflows/deploy-weareswarm-skill-tree.yml:54:          ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
+.github/workflows/deploy-weareswarm-skill-tree.yml:55:          scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
+.github/workflows/deploy-weareswarm-skill-tree.yml:63:            "collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos/page-skills.php" \
+.github/workflows/deploy-weareswarm-skill-tree.yml:69:          $root = '/home/u996867598/domains/weareswarm.site/public_html';
+.github/workflows/deploy-weareswarm-theme.yml:1:name: Deploy WeAreSwarm DreamOS Theme
+.github/workflows/deploy-weareswarm-theme.yml:12:      - .github/workflows/deploy-weareswarm-theme.yml
+.github/workflows/deploy-weareswarm-theme.yml:13:      - collected/hostinger/wordpress/domains/weareswarm.site/**
+.github/workflows/deploy-weareswarm-theme.yml:23:  group: weareswarm-theme-deploy
+.github/workflows/deploy-weareswarm-theme.yml:27:  deploy:
+.github/workflows/deploy-weareswarm-theme.yml:61:          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+.github/workflows/deploy-weareswarm-theme.yml:62:          HOSTINGER_HOST: 157.173.214.121
+.github/workflows/deploy-weareswarm-theme.yml:63:          HOSTINGER_PORT: "65002"
+.github/workflows/deploy-weareswarm-theme.yml:66:          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+.github/workflows/deploy-weareswarm-theme.yml:69:          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-theme.yml:70:          chmod 600 "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-theme.yml:71:          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+.github/workflows/deploy-weareswarm-theme.yml:75:          HOSTINGER_HOST: 157.173.214.121
+.github/workflows/deploy-weareswarm-theme.yml:76:          HOSTINGER_USER: u996867598
+.github/workflows/deploy-weareswarm-theme.yml:77:          HOSTINGER_PORT: "65002"
+.github/workflows/deploy-weareswarm-theme.yml:78:          REMOTE_ROOT: /home/u996867598/domains/weareswarm.site/public_html
+.github/workflows/deploy-weareswarm-theme.yml:79:          THEME_DIR: /home/u996867598/domains/weareswarm.site/public_html/wp-content/themes/weareswarm-dreamos
+.github/workflows/deploy-weareswarm-theme.yml:82:          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+.github/workflows/deploy-weareswarm-theme.yml:83:          ssh_common=(-i "$HOME/.ssh/id_hostinger" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30 -o ConnectionAttempts=3 -o ServerAliveInterval=15 -o ServerAliveCountMax=3)
+.github/workflows/deploy-weareswarm-theme.yml:84:          ssh_base=(ssh "${ssh_common[@]}" -p "$HOSTINGER_PORT" "$remote")
+.github/workflows/deploy-weareswarm-theme.yml:85:          scp_base=(scp "${ssh_common[@]}" -P "$HOSTINGER_PORT")
+.github/workflows/deploy-weareswarm-theme.yml:104:          theme_src="collected/hostinger/wordpress/domains/weareswarm.site/themes/weareswarm-dreamos"
+.github/workflows/deploy-weareswarm-theme.yml:111:          plugin_src="collected/hostinger/wordpress/domains/weareswarm.site/plugins/dreamos-swarm-status"
+.github/workflows/deploy-weareswarm-theme.yml:129:          $root = '/home/u996867598/domains/weareswarm.site/public_html';
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:1:name: Deploy WeAreSwarm Online Kids Planner
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:9:      - 'routes/weareswarm.online/kids-planner/**'
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:10:      - 'routes/weareswarm.online/tasks/**'
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:11:      - 'routes/weareswarm.online/roadmap/**'
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:12:      - 'routes/weareswarm.online/data/planner/kids_tasks.json'
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:13:      - 'routes/weareswarm.online/data/planner/all_tasks.json'
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:14:      - '.github/workflows/deploy-weareswarm-online-kids-planner.yml'
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:17:  deploy-online-planner-routes:
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:26:          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:27:          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:28:          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:31:          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:34:          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:35:          chmod 600 "$HOME/.ssh/id_hostinger"
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:36:          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" || true
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:38:      - name: Deploy planner routes to weareswarm.online
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:40:          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:41:          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:42:          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:43:          REMOTE_ROOT: /home/u996867598/domains/weareswarm.online/public_html
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:47:          test -f routes/weareswarm.online/kids-planner/index.html
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:48:          test -f routes/weareswarm.online/tasks/index.html
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:49:          test -f routes/weareswarm.online/roadmap/index.html
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:50:          test -f routes/weareswarm.online/data/planner/kids_tasks.json
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:52:          ssh -p "$HOSTINGER_PORT" \
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:53:            -i "$HOME/.ssh/id_hostinger" \
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:54:            "$HOSTINGER_USER@$HOSTINGER_HOST" \
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:57:          rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/kids-planner/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/kids-planner/"
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:58:          rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/tasks/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/tasks/"
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:59:          rsync -az --delete -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/roadmap/ "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/roadmap/"
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:61:          rsync -az -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/data/planner/kids_tasks.json "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/data/planner/kids_tasks.json"
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:63:          if [ -f routes/weareswarm.online/data/planner/all_tasks.json ]; then
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:64:            rsync -az -e "ssh -p $HOSTINGER_PORT -i $HOME/.ssh/id_hostinger" routes/weareswarm.online/data/planner/all_tasks.json "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_ROOT/data/planner/all_tasks.json"
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:72:          curl -LfsS https://weareswarm.online/kids-planner/ -o /tmp/kids-planner.html
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:76:          curl -LfsS https://weareswarm.online/tasks/ -o /tmp/tasks.html
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:81:          curl -LfsS https://weareswarm.online/roadmap/ -o /tmp/roadmap.html
+.github/workflows/deploy-weareswarm-online-kids-planner.yml:86:          curl -LfsS https://weareswarm.online/data/planner/kids_tasks.json -o /tmp/kids_tasks.json
+.github/workflows/deploy-xthunder-site.yml:1:name: Deploy XThunder Site
+.github/workflows/deploy-xthunder-site.yml:11:      - '.github/workflows/deploy-xthunder-site.yml'
+.github/workflows/deploy-xthunder-site.yml:14:  deploy:
+.github/workflows/deploy-xthunder-site.yml:17:      HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+.github/workflows/deploy-xthunder-site.yml:18:      HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+.github/workflows/deploy-xthunder-site.yml:19:      HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+.github/workflows/deploy-xthunder-site.yml:20:      HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+.github/workflows/deploy-xthunder-site.yml:21:      REMOTE_DIR: public_html/xthunder.site
+.github/workflows/deploy-xthunder-site.yml:34:      - name: Install deploy dependencies
+.github/workflows/deploy-xthunder-site.yml:42:          printf '%s\n' "$HOSTINGER_SSH_PRIVATE_KEY" > ~/.ssh/hostinger_key
+.github/workflows/deploy-xthunder-site.yml:43:          chmod 600 ~/.ssh/hostinger_key
+.github/workflows/deploy-xthunder-site.yml:44:          ssh-keyscan -p "${HOSTINGER_PORT:-22}" "$HOSTINGER_HOST" >> ~/.ssh/known_hosts
+.github/workflows/deploy-xthunder-site.yml:53:      - name: Deploy XThunder site
+.github/workflows/deploy-xthunder-site.yml:55:          PORT="${HOSTINGER_PORT:-22}"
+.github/workflows/deploy-xthunder-site.yml:57:            -e "ssh -i ~/.ssh/hostinger_key -p $PORT -o StrictHostKeyChecking=yes" \
+.github/workflows/deploy-xthunder-site.yml:59:            "$HOSTINGER_USER@$HOSTINGER_HOST:$REMOTE_DIR/"
+
+== GH WORKFLOW LIST ==
+Deploy DigitalDreamscape repair	active	289514801
+Deploy FreeRideInvestor to Hostinger	active	286143794
+Deploy WeAreSwarm Online Kids Planner	active	295822652
+Deploy WeAreSwarm Online	active	290910855
+Deploy WeAreSwarm repair	active	289510993
+Deploy WeAreSwarm Site	active	290909791
+Deploy WeAreSwarm Skill Tree	active	290691733
+Deploy WeAreSwarm DreamOS Theme	active	290915512
+Deploy XThunder Site	active	296430041
+Emergence Scan No-Reload Browser Smoke	active	286868046
+
+== GH RECENT RUNS ==
+completed	failure	Deploy XThunder Site	Deploy XThunder Site	master	workflow_dispatch	27562649470	30s	2026-06-15T17:01:14Z
+completed	failure	Deploy XThunder Site	Deploy XThunder Site	master	workflow_dispatch	27562458655	29s	2026-06-15T16:57:57Z
+completed	failure	ci(xthunder): add guarded Hostinger deploy workflow	Deploy XThunder Site	master	push	27562458325	29s	2026-06-15T16:57:57Z
+completed	failure	Deploy WeAreSwarm Site	Deploy WeAreSwarm Site	master	workflow_dispatch	27512350728	2m53s	2026-06-14T21:18:44Z
+completed	cancelled	fix(weareswarm): patch live route source visibility	Deploy WeAreSwarm Site	master	push	27512253779	3s	2026-06-14T21:14:39Z
+completed	failure	Deploy WeAreSwarm Site	Deploy WeAreSwarm Site	master	workflow_dispatch	27512253702	2m47s	2026-06-14T21:14:39Z
+completed	success	Deploy WeAreSwarm Site	Deploy WeAreSwarm Site	master	workflow_dispatch	27512071187	22s	2026-06-14T21:07:15Z
+completed	failure	fix(weareswarm): restore visible shell on live site	Deploy WeAreSwarm Site	master	push	27510381357	2m50s	2026-06-14T20:00:44Z
+completed	failure	Deploy WeAreSwarm Online	Deploy WeAreSwarm Online	master	workflow_dispatch	27506607665	11s	2026-06-14T17:30:11Z
+completed	failure	feat(planner): add kids task execution loop	Deploy WeAreSwarm Online Kids Planner	master	push	27506546315	23s	2026-06-14T17:27:40Z
+completed	failure	fix(planner): keep kids feed on weareswarm online only	Deploy WeAreSwarm Site	master	push	27506401500	2m45s	2026-06-14T17:21:50Z
+completed	success	fix(planner): publish DreamVault kids feed to live static data	Deploy WeAreSwarm Online Kids Planner	master	push	27506329962	29s	2026-06-14T17:18:58Z
+
+== LIVE MARKERS ==
+
+URL=https://www.weareswarm.online/tasks/?nocache=1781559262
+CANONICAL_NAV=MISS
+NAV_CSS_LINK=MISS
+NAV_JS_LINK=MISS
+TITLE=WeAreSwarm Tasks
+BYTES=12726
+
+URL=https://www.weareswarm.online/kids-planner/?nocache=1781559263
+CANONICAL_NAV=MISS
+NAV_CSS_LINK=MISS
+NAV_JS_LINK=MISS
+TITLE=WeAreSwarm Kids Planner — Execution Loop
+BYTES=19699
+
+URL=https://www.weareswarm.online/roadmap/?nocache=1781559263
+CANONICAL_NAV=MISS
+NAV_CSS_LINK=MISS
+NAV_JS_LINK=MISS
+TITLE=WeAreSwarm Closeout Roadmap
+BYTES=8928
+
+URL=https://www.weareswarm.online/skill-tree/?nocache=1781559264
+CANONICAL_NAV=MISS
+NAV_CSS_LINK=MISS
+NAV_JS_LINK=MISS
+TITLE=Swarm Skill Tree — weareswarm.online
+BYTES=6791
+
+URL=https://www.weareswarm.online/dreamos-services/?nocache=1781559265
+CANONICAL_NAV=MISS
+NAV_CSS_LINK=MISS
+NAV_JS_LINK=MISS
+TITLE=Dream.OS Services | WeAreSwarm
+BYTES=10859
+
+== STATUS ==
+?? _deploy/freerideinvestor.com/
+?? data/reports/weareswarm_online/deploy_miss_diagnosis_20260615_163419.txt

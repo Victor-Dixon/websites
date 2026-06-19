@@ -1,0 +1,123 @@
+{
+  "task": "audit_weareswarm_online_css_consistency_001",
+  "site": "_deploy/weareswarm.online",
+  "page_count": 5,
+  "failures": [],
+  "warnings": [
+    "inline_style_signature_variants=5",
+    "shell_signature_variants=3"
+  ],
+  "stylesheet_signatures": {
+    "598aac34a2af": {
+      "count": 5,
+      "stylesheets": [
+        "/assets/css/nav-shell.css"
+      ]
+    }
+  },
+  "inline_style_signature_count": 5,
+  "shell_signature_count": 3,
+  "missing_assets": [],
+  "records": [
+    {
+      "route": "/dreamos-services/",
+      "file": "_deploy/weareswarm.online/dreamos-services/index.html",
+      "stylesheets": [
+        "/assets/css/nav-shell.css"
+      ],
+      "stylesheet_signature": "598aac34a2af",
+      "inline_style_blocks": 1,
+      "inline_style_signature": "62ee2a20e9d4",
+      "style_attr_count": 1,
+      "class_count": 25,
+      "shell": {
+        "header": 1,
+        "nav": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "nav_fallback_script": true,
+      "missing_stylesheet_assets": []
+    },
+    {
+      "route": "/kids-planner/",
+      "file": "_deploy/weareswarm.online/kids-planner/index.html",
+      "stylesheets": [
+        "/assets/css/nav-shell.css"
+      ],
+      "stylesheet_signature": "598aac34a2af",
+      "inline_style_blocks": 1,
+      "inline_style_signature": "09d11fb14aa1",
+      "style_attr_count": 0,
+      "class_count": 16,
+      "shell": {
+        "header": 1,
+        "nav": 1,
+        "main": 1,
+        "footer": 0
+      },
+      "nav_fallback_script": true,
+      "missing_stylesheet_assets": []
+    },
+    {
+      "route": "/roadmap/",
+      "file": "_deploy/weareswarm.online/roadmap/index.html",
+      "stylesheets": [
+        "/assets/css/nav-shell.css"
+      ],
+      "stylesheet_signature": "598aac34a2af",
+      "inline_style_blocks": 1,
+      "inline_style_signature": "05161dd8a208",
+      "style_attr_count": 0,
+      "class_count": 28,
+      "shell": {
+        "header": 0,
+        "nav": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "nav_fallback_script": true,
+      "missing_stylesheet_assets": []
+    },
+    {
+      "route": "/skill-tree/",
+      "file": "_deploy/weareswarm.online/skill-tree/index.html",
+      "stylesheets": [
+        "/assets/css/nav-shell.css"
+      ],
+      "stylesheet_signature": "598aac34a2af",
+      "inline_style_blocks": 1,
+      "inline_style_signature": "0af03a0e5845",
+      "style_attr_count": 1,
+      "class_count": 25,
+      "shell": {
+        "header": 1,
+        "nav": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "nav_fallback_script": true,
+      "missing_stylesheet_assets": []
+    },
+    {
+      "route": "/tasks/",
+      "file": "_deploy/weareswarm.online/tasks/index.html",
+      "stylesheets": [
+        "/assets/css/nav-shell.css"
+      ],
+      "stylesheet_signature": "598aac34a2af",
+      "inline_style_blocks": 1,
+      "inline_style_signature": "9742b215c1f9",
+      "style_attr_count": 0,
+      "class_count": 15,
+      "shell": {
+        "header": 0,
+        "nav": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "nav_fallback_script": true,
+      "missing_stylesheet_assets": []
+    }
+  ]
+}

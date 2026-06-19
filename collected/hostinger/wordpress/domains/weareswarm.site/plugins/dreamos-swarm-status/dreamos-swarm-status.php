@@ -43,30 +43,74 @@ function dreamos_swarm_status_data() {
     $data = array(
         'generated_at' => gmdate('c'),
         'updated_at' => gmdate('c'),
-        'headline' => 'The swarm is online and publishing buyer-facing proof.',
+        'headline' => 'DreamOS is operating: maintenance to promotion to productization to revenue.',
+        'current_phase' => array(
+            'name' => 'Maintenance -> Promotion -> Productization -> Revenue',
+            'status' => 'Productization In Progress',
+            'summary' => 'Consolidation is largely closed out; the active work is pruning, classifying products, refreshing portfolio surfaces, and turning shipped capabilities into distribution-ready offers.',
+        ),
+        'consolidation_status' => array(
+            array('name' => 'Planner Authority Established', 'state' => 'complete'),
+            array('name' => 'Task Authority Established', 'state' => 'complete'),
+            array('name' => 'DreamOS Authority Established', 'state' => 'complete'),
+            array('name' => 'Trading Authority Established', 'state' => 'complete'),
+            array('name' => 'Discord Closeout Enforcement', 'state' => 'complete'),
+            array('name' => 'WeAreSwarm Publication Enforcement', 'state' => 'complete'),
+            array('name' => 'AutoDream Archived', 'state' => 'complete'),
+            array('name' => 'Bucket 3 Parked', 'state' => 'complete'),
+        ),
+        'active_priorities' => array(
+            array('rank' => 1, 'name' => 'prune_tasklist_001', 'next' => 'Remove completed or obsolete task residue from the operating task list.'),
+            array('rank' => 2, 'name' => 'Product Classification', 'next' => 'Classify identified capabilities by offer readiness and distribution surface.'),
+            array('rank' => 3, 'name' => 'Revenue Activation', 'next' => 'Attach offers, CTAs, and proof-backed sales surfaces to productized work.'),
+            array('rank' => 4, 'name' => 'DreamScan Distribution', 'next' => 'Move DreamScan from identified product into distribution-ready surface.'),
+            array('rank' => 5, 'name' => 'Portfolio Surface Refresh', 'next' => 'Refresh public cards so they reflect the current operating system, not old discovery work.'),
+        ),
+        'blocked' => array(
+            array('name' => 'Robinhood Production Authentication', 'reason' => 'Adult Gate'),
+        ),
+        'product_pipeline' => array(
+            'status' => 'Productization In Progress',
+            'products_identified' => array('AI Debugger Assistant', 'Agent Cellphone', 'Trading Robot Plug', 'DreamScan', 'Discord Architect', 'ProjectScanner'),
+            'products_productized' => array('Agent Cellphone', 'Discord Architect', 'ProjectScanner'),
+            'products_monetized' => array(),
+            'monetization_note' => 'Revenue activation is pending; the board tracks product readiness before lead count.',
+        ),
+        'repo_board' => array(
+            'canonical_core' => array('DreamOS_Core', 'DreamVault'),
+            'control_plane' => array('DreamVault'),
+            'toolbelt' => array('AgentTools', 'projectscanner'),
+            'public_surface' => array('websites'),
+            'salvage_complete' => array('AutoDream'),
+            'parked' => array('HCShinobi', 'Spark research', 'LSTM trainer', 'ML Robot Maker'),
+        ),
+        'spark_status' => array(
+            'state' => 'MVP_SHIPPED',
+            'proof' => array('AUTH_IMMERSION_FIXED', '17 tests passing', 'live domain'),
+            'next' => 'Keep Spark visible as shipped proof while distribution and portfolio refresh continue.',
+        ),
         'recent_unlocks' => array(
-            array('title' => 'Public Proof Portfolio', 'detail' => 'Twelve project cards now translate internal operations into client and investor proof.', 'status' => 'unlocked', 'proof_url' => '/projects/'),
-            array('title' => 'Closeout Feed Repaired', 'detail' => 'Public-safe shipped-work cards render without a permanent loading or empty state.', 'status' => 'done', 'proof_url' => '/feed/'),
-            array('title' => 'Services Packaged', 'detail' => 'Website Recovery, Repo Rescue, and Automation Operator setup now have price anchors.', 'status' => 'done', 'proof_url' => '/dreamos-services/'),
-            array('title' => 'Status API Expanded', 'detail' => 'Machine-readable state includes projects, feed cards, task lanes, skill tree, and next lane.', 'status' => 'done', 'proof_url' => '/wp-json/dreamos/v1/status'),
+            array('title' => 'Closeout Enforcement Complete', 'detail' => 'Discord and WeAreSwarm publication enforcement are established; closeout_enforcement_001 is complete.', 'status' => 'complete', 'proof_url' => '/feed/'),
+            array('title' => 'Consolidation Closed Out', 'detail' => 'Authority repos, toolbelt repos, public surfaces, archived assets, and parked research are separated.', 'status' => 'complete', 'proof_url' => '/projects/'),
+            array('title' => 'Spark MVP Shipped', 'detail' => 'Spark is live with authentication immersion fixed and 17 tests passing.', 'status' => 'shipped', 'proof_url' => 'https://maskzero.site/'),
+            array('title' => 'Product Pipeline Identified', 'detail' => 'Six products are tracked for productization and revenue activation.', 'status' => 'active', 'proof_url' => '/dreamos-services/'),
         ),
         'active_operations' => array(
-            array('name' => 'Portfolio Recovery', 'state' => 'active', 'next' => 'Promote each card into a full case-study route.'),
-            array('name' => 'Repo Consolidation', 'state' => 'active', 'next' => 'Expose public-safe ProjectScanner summaries and cleanup reports.'),
-            array('name' => 'Revenue Packaging', 'state' => 'active', 'next' => 'Connect service packages to proof cards and intake forms.'),
+            array('name' => 'Product Classification', 'state' => 'active', 'next' => 'Sort identified products by readiness, proof, distribution surface, and offer path.'),
+            array('name' => 'Revenue Activation', 'state' => 'active', 'next' => 'Connect productized work to CTAs, demos, and monetization paths.'),
+            array('name' => 'DreamScan Distribution', 'state' => 'active', 'next' => 'Package DreamScan for distribution and proof-backed promotion.'),
+            array('name' => 'Portfolio Surface Refresh', 'state' => 'active', 'next' => 'Refresh public pages to show operating proof instead of discovery residue.'),
         ),
         'unfinished_tasks' => array(
-            array('task' => 'Website Recovery Sprint offer', 'progress' => '70%', 'next' => 'Add intake form and before/after screenshots.'),
-            array('task' => 'Repo Rescue Sprint offer', 'progress' => '65%', 'next' => 'Publish sample salvage manifest and test gate report.'),
-            array('task' => 'Automation Operator Setup', 'progress' => '60%', 'next' => 'Publish dashboard screenshots and handoff docs sample.'),
-            array('task' => 'ProjectScanner public summaries', 'progress' => '45%', 'next' => 'Sanitize repo findings into client-safe receipts.'),
-            array('task' => 'Kids and family ops lane', 'progress' => '30%', 'next' => 'Define HomeSchool Mastery prototype receipts.'),
+            array('task' => 'prune_tasklist_001', 'progress' => 'active', 'next' => 'Prune stale tasks after closeout enforcement.'),
+            array('task' => 'Revenue CTAs', 'progress' => 'activation', 'next' => 'Attach product-specific CTAs once product classification is public-safe.'),
+            array('task' => 'Robinhood Production Authentication', 'progress' => 'blocked', 'next' => 'Blocked by Adult Gate.'),
         ),
         'task_lanes' => array(
-            array('lane' => 'Revenue', 'items' => array('Service packages', 'Client CTAs', 'Proof-backed offers')),
-            array('lane' => 'Portfolio', 'items' => array('12 proof cards', 'Case study routes', 'Live URL checks')),
-            array('lane' => 'Repo Consolidation', 'items' => array('ProjectScanner summaries', 'deprecation packets', 'promotion plans')),
-            array('lane' => 'Family Ops', 'items' => array('HomeSchool Mastery', 'kids lanes', 'schedule automation')),
+            array('lane' => 'Maintenance', 'items' => array('prune_tasklist_001', 'authority checks', 'closeout hygiene')),
+            array('lane' => 'Promotion', 'items' => array('DreamScan distribution', 'portfolio refresh', 'public proof')),
+            array('lane' => 'Productization', 'items' => array('AI Debugger Assistant', 'Agent Cellphone', 'Trading Robot Plug', 'Discord Architect', 'ProjectScanner')),
+            array('lane' => 'Revenue', 'items' => array('offer CTAs', 'distribution surfaces', 'monetization tracking')),
         ),
         'developer_profile' => array(
             'name' => 'Victor Dixon',
@@ -90,7 +134,7 @@ function dreamos_swarm_status_data() {
             array('skill' => 'Swarm Memory', 'level' => 'Planned', 'proof_url' => '/feed/', 'capabilities' => array('history', 'receipts', 'context recall')),
             array('skill' => 'Distributed Swarm Mesh', 'level' => 'Next', 'proof_url' => '/live-ops/', 'capabilities' => array('parallel agents', 'multi-route verification', 'autonomous closeouts')),
         ),
-        'next_lane' => array('name' => 'Distributed Swarm Mesh', 'target' => 'Connect project receipts, closeout feed, and service CTAs into one live proof loop.'),
+        'next_lane' => array('name' => 'Revenue Activation', 'target' => 'Turn productized DreamOS capabilities into public offers, demos, and monetization paths.'),
     );
 
     return apply_filters('dreamos_swarm_status_data', $data);
@@ -115,7 +159,17 @@ function dreamos_swarm_status_shortcode() {
       <div class="dreamos-section-head">
         <p class="eyebrow">Live Swarm Operations</p>
         <h2><?php echo esc_html($data['headline']); ?></h2>
-        <p>Generated <?php echo esc_html($data['generated_at']); ?>. Recent unlocks, recovery lanes, task lanes, and active system work are published here as proof that the swarm is operating.</p>
+        <p>Generated <?php echo esc_html($data['generated_at']); ?>. Current phase: <?php echo esc_html($data['current_phase']['name']); ?>. Status: <?php echo esc_html($data['current_phase']['status']); ?>.</p>
+      </div>
+
+      <h3>Consolidation Status</h3>
+      <div class="dreamos-ops-table">
+        <?php foreach ($data['consolidation_status'] as $item): ?>
+          <div class="dreamos-op-row">
+            <strong><?php echo esc_html($item['name']); ?></strong>
+            <span><?php echo esc_html(strtoupper($item['state'])); ?></span>
+          </div>
+        <?php endforeach; ?>
       </div>
 
       <div class="dreamos-grid">
@@ -126,6 +180,46 @@ function dreamos_swarm_status_shortcode() {
             <p><?php echo esc_html($unlock['detail']); ?></p>
             <p><a href="<?php echo esc_url($unlock['proof_url']); ?>">Proof route</a></p>
           </article>
+        <?php endforeach; ?>
+      </div>
+
+      <h3>Active Priorities</h3>
+      <div class="dreamos-ops-table">
+        <?php foreach ($data['active_priorities'] as $priority): ?>
+          <div class="dreamos-op-row">
+            <strong><?php echo esc_html($priority['rank'] . '. ' . $priority['name']); ?></strong>
+            <p><?php echo esc_html($priority['next']); ?></p>
+          </div>
+        <?php endforeach; ?>
+      </div>
+
+      <h3>Product Pipeline</h3>
+      <div class="dreamos-ops-table">
+        <div class="dreamos-op-row">
+          <strong>Products Identified</strong>
+          <span><?php echo esc_html(count($data['product_pipeline']['products_identified'])); ?></span>
+          <p><?php echo esc_html(implode(' • ', $data['product_pipeline']['products_identified'])); ?></p>
+        </div>
+        <div class="dreamos-op-row">
+          <strong>Products Productized</strong>
+          <span><?php echo esc_html(count($data['product_pipeline']['products_productized'])); ?></span>
+          <p><?php echo esc_html(implode(' • ', $data['product_pipeline']['products_productized'])); ?></p>
+        </div>
+        <div class="dreamos-op-row">
+          <strong>Products Monetized</strong>
+          <span><?php echo esc_html(count($data['product_pipeline']['products_monetized'])); ?></span>
+          <p><?php echo esc_html($data['product_pipeline']['monetization_note']); ?></p>
+        </div>
+      </div>
+
+      <h3>Blocked</h3>
+      <div class="dreamos-ops-table">
+        <?php foreach ($data['blocked'] as $blocker): ?>
+          <div class="dreamos-op-row">
+            <strong><?php echo esc_html($blocker['name']); ?></strong>
+            <span>BLOCKED</span>
+            <p><?php echo esc_html($blocker['reason']); ?></p>
+          </div>
         <?php endforeach; ?>
       </div>
 

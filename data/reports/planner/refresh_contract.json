@@ -1,0 +1,16 @@
+{
+  "contract_id": "weareswarm_planner_refresh_contract_001",
+  "authoritative_source": "data/reports/planner/next_lane.json",
+  "generated_output": "runtime/content/weareswarm.site/data/swarm-status.generated.json",
+  "bridge_report": "data/reports/weareswarm_planner_bridge/latest.md",
+  "sync_script": "runtime/scripts/sync_weareswarm_planner_status_001.py",
+  "php_consumer": "collected/hostinger/wordpress/domains/weareswarm.site/plugins/dreamos-swarm-status/dreamos-swarm-status.php",
+  "deploy_workflow": ".github/workflows/deploy-weareswarm-theme.yml",
+  "refresh_triggers": [
+    "planner_transition",
+    "pre_deploy",
+    "manual_cliprun"
+  ],
+  "deploy_separate": true,
+  "notes": "SSH deploy and planner refresh are separate lanes. Regenerate JSON before commit or let deploy workflow run sync_weareswarm_planner_status_001.py."
+}

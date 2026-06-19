@@ -1,0 +1,20 @@
+TASK=standardize_weareswarm_online_nav_shell_001
+TARGET=_deploy/weareswarm.online
+CHANGED_FILES=5
+FAILURES=0
+
+CHANGED:
+_deploy/weareswarm.online/dreamos-services/index.html
+_deploy/weareswarm.online/kids-planner/index.html
+_deploy/weareswarm.online/roadmap/index.html
+_deploy/weareswarm.online/skill-tree/index.html
+_deploy/weareswarm.online/tasks/index.html
+
+PAGES:
+_deploy/weareswarm.online/dreamos-services/index.html nav_count=1 css=True js=True links=7
+_deploy/weareswarm.online/kids-planner/index.html nav_count=1 css=True js=True links=7
+_deploy/weareswarm.online/roadmap/index.html nav_count=1 css=True js=True links=7
+_deploy/weareswarm.online/skill-tree/index.html nav_count=1 css=True js=True links=8
+_deploy/weareswarm.online/tasks/index.html nav_count=1 css=True js=True links=7
+
+FAILURE_DETAIL:

@@ -2,8 +2,8 @@
 function weareswarmonline_enqueue_styles() {
     wp_enqueue_style('weareswarmonline-style', get_stylesheet_uri());
 
-    // Tailwind CSS for Hero Animations
-    wp_enqueue_style('tailwind-css', 'https://cdn.tailwindcss.com', array(), null);
+    // Tailwind's CDN endpoint is JavaScript, not a stylesheet.
+    wp_enqueue_script('tailwind-css', 'https://cdn.tailwindcss.com', array(), null, false);
 }
 add_action('wp_enqueue_scripts', 'weareswarmonline_enqueue_styles');
 
@@ -46,10 +46,6 @@ add_action('wp_enqueue_scripts', 'freerideinvestor_optimize_assets', 999);
  * Defer loading of non-critical styles
  */
 function freerideinvestor_defer_styles($html, $handle, $href, $media) {
-    // Defer Tailwind CSS as it's not critical for initial render
-    if ($handle === 'tailwind-css') {
-        return str_replace("rel='stylesheet'", "rel='preload' as='style' onload="this.onload=null;this.rel='stylesheet'"", $html);
-    }
     return $html;
 }
 
@@ -91,7 +87,6 @@ function freerideinvestor_disable_emojis() {
     remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
 }
 add_action('init', 'freerideinvestor_disable_emojis');
-?>
 
 /**
  * Font Corruption Fix - Enqueue CSS Override
@@ -117,4 +112,7 @@ add_action('wp_enqueue_scripts', 'enqueue_font_corruption_fix', 999); // High pr
  * Added automatically by deploy_seo_fix.py
  * Date: 2026-01-24
  */
-require_once get_template_directory() . '/seo-meta-fix.php';
+$weareswarmonline_seo_fix = get_template_directory() . '/seo-meta-fix.php';
+if (file_exists($weareswarmonline_seo_fix)) {
+    require_once $weareswarmonline_seo_fix;
+}

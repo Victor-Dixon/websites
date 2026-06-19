@@ -1,0 +1,22 @@
+id: weareswarm_project_board_001
+title: Build WeAreSwarm public project consolidation board
+lane: website_ops
+target: runtime/content/weareswarm.site/data/project-board.generated.json
+status: active
+intent: >
+  Inventory GitHub repositories and local desktop/laptop project folders,
+  classify consolidation state, and publish a generated public project board.
+constraints:
+  - classify before destructive action
+  - GitHub is primary public source of truth
+  - desktop/laptop folders are local candidates until promoted
+  - no deletion in this lane
+  - no secrets in public JSON
+outputs:
+  - runtime/content/weareswarm.site/data/project-board.generated.json
+  - data/reports/project_board/latest.md
+verification:
+  - JSON parses
+  - projects array exists
+  - canonical/toolbelt/website/promotion/archive buckets are present
+  - no secret-looking env values emitted

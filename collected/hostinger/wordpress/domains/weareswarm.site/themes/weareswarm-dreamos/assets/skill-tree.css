@@ -1,0 +1,33 @@
+.progress-ring{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+.ring{--p:var(--unlock-p,58);width:118px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(var(--green) calc(var(--p)*1%),rgba(255,255,255,.08) 0);box-shadow:0 0 36px rgba(56,255,156,.18)}
+.ring:before{content:"";position:absolute;width:84px;aspect-ratio:1;border-radius:50%;background:#07101d}
+.ring strong{position:relative;color:var(--green);font-size:1.8rem}
+.tree-wrap{padding:30px 38px 52px;position:relative}
+.tree-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}
+.legend{display:flex;gap:10px;flex-wrap:wrap}
+.legend span{border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:8px 10px;background:#ffffff08;color:var(--muted);font-weight:800;font-size:.82rem}
+.legend b{color:var(--cyan)}
+.tree{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.tree:before{content:"";position:absolute;left:4%;right:4%;top:88px;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),var(--green),transparent);box-shadow:0 0 24px rgba(0,245,255,.35);opacity:.5}
+.tier{position:relative;border:1px solid rgba(49,95,134,.74);border-radius:28px;background:linear-gradient(180deg,rgba(13,23,40,.94),rgba(8,17,31,.72));padding:20px;min-height:500px;overflow:hidden}
+.tier:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(0,245,255,.14),transparent 46%);pointer-events:none}
+.tier-top{position:relative;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;margin-bottom:18px}
+.tier-icon{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;color:#06101f;background:linear-gradient(135deg,var(--cyan),var(--green));font-weight:1000;box-shadow:0 16px 40px rgba(0,245,255,.18)}
+.tier h3{margin:0;font-size:1.12rem;letter-spacing:.05em;text-transform:uppercase}
+.tier-desc{grid-column:1/-1;margin:0;color:var(--muted);font-size:.92rem}
+.node{border:1px solid #274466;background:linear-gradient(180deg,#081525,#050d18);border-radius:20px;padding:17px;margin-top:15px;position:relative;transition:.24s ease;box-shadow:inset 0 0 24px #0007,0 10px 35px #0004}
+.node:hover{transform:translateY(-7px) scale(1.015);border-color:var(--cyan);box-shadow:0 20px 70px #00f5ff24,inset 0 0 34px rgba(0,245,255,.05)}
+.node:before{content:"";position:absolute;left:-10px;top:25px;width:16px;height:16px;border-radius:50%;background:var(--cyan);box-shadow:0 0 22px var(--cyan)}
+.node:after{content:"";position:absolute;left:-2px;top:33px;width:2px;height:calc(100% + 15px);background:linear-gradient(var(--cyan),transparent);opacity:.38}
+.node:last-child:after{display:none}
+.state{display:inline-flex;font-size:.68rem;letter-spacing:.12em;font-weight:1000;border-radius:999px;padding:6px 10px;margin-bottom:11px;background:#ffffff10}
+.unlocked{border-color:rgba(56,255,156,.55)}.unlocked .state,.unlocked:before{color:var(--green);background:rgba(56,255,156,.12)}.unlocked:before{background:var(--green)}
+.building{border-color:rgba(168,85,247,.58)}.building .state,.building:before{color:var(--purple);background:rgba(168,85,247,.15)}.building:before{background:var(--purple);box-shadow:0 0 22px var(--purple)}
+.locked{opacity:.68}.locked .state,.locked:before{color:var(--amber);background:rgba(255,176,32,.14)}.locked:before{background:var(--amber);box-shadow:0 0 22px var(--amber)}
+.node h4{margin:0 0 8px;font-size:1.08rem}
+.node p{font-size:.9rem;margin:0}
+.cap{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.cap span{font-size:.72rem;color:#cce6ff;border:1px solid rgba(255,255,255,.12);background:#ffffff08;border-radius:999px;padding:6px 8px}
+@media(max-width:1180px){.tree{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.tree-wrap{padding:24px 18px 34px}.tree{grid-template-columns:1fr}.tree:before{display:none}.tier{min-height:auto}.tree-head{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:no-preference){.node,.tier{animation:rise .58s ease both}.tier:nth-child(2){animation-delay:.07s}.tier:nth-child(3){animation-delay:.14s}.tier:nth-child(4){animation-delay:.21s}}

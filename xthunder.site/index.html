@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#050816">
+<title>XThunder Arena</title><link rel="manifest" href="./manifest.webmanifest">
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#050816;color:#e5f1ff;font-family:system-ui,Segoe UI,Arial,sans-serif}#game{width:100vw;height:100vh;display:block;background:radial-gradient(circle at 50% 20%,#12306a,#050816 62%);touch-action:none}.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(3,7,18,.92);z-index:10}.card{width:min(980px,100%);border:1px solid rgba(103,232,249,.4);background:rgba(8,14,30,.9);border-radius:22px;padding:22px;box-shadow:0 24px 80px #000}h1{margin:0 0 8px;font-size:clamp(38px,8vw,84px);line-height:.9;letter-spacing:-.07em;text-transform:uppercase}.muted{color:#9fb4d3}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:18px 0}.mode,.primary,.ghost{cursor:pointer;border:1px solid rgba(103,232,249,.35);border-radius:16px;padding:14px 16px;color:#e5f1ff;background:rgba(15,23,42,.8);text-align:left}.mode strong{display:block}.primary{background:linear-gradient(135deg,#2563eb,#06b6d4);font-weight:900;text-align:center}.ghost{text-align:center}#hud{position:fixed;inset:0;pointer-events:none;z-index:3;padding:10px}.bar{display:flex;gap:8px;flex-wrap:wrap}.pill{border:1px solid rgba(103,232,249,.35);background:rgba(3,7,18,.65);border-radius:999px;padding:8px 11px;font-size:13px}#message{position:absolute;left:50%;top:18%;transform:translateX(-50%);font-size:clamp(22px,5vw,48px);font-weight:900;color:#facc15;text-align:center;text-shadow:0 3px 24px #000}.touch{position:fixed;inset:auto 0 0 0;z-index:5;pointer-events:none;display:none;padding:18px;justify-content:space-between;align-items:flex-end}.stick{width:118px;height:118px;border-radius:999px;border:1px solid rgba(103,232,249,.5);background:rgba(3,7,18,.45);position:relative;pointer-events:auto}.nub{position:absolute;left:39px;top:39px;width:40px;height:40px;border-radius:999px;background:rgba(103,232,249,.85)}.actions{display:grid;grid-template-columns:repeat(2,64px);gap:10px;pointer-events:auto}.act{height:64px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(15,23,42,.78);color:#fff;font-weight:900}@media(pointer:coarse){.touch{display:flex}}
+</style></head><body>
+<canvas id="game"></canvas><div id="hud"><div class="bar" id="hudbar"></div><div id="message"></div></div>
+<div class="touch"><div class="stick" id="stick"><div class="nub" id="nub"></div></div><div class="actions"><button class="act" data-act="fire">FIRE</button><button class="act" data-act="trap">TRAP</button><button class="act" data-act="swap">SWAP</button><button class="act" data-act="reload">LOAD</button></div></div>
+<main class="screen" id="menu"><section class="card"><h1>XThunder Arena</h1><p class="muted">Playable browser MVP: move, fight arena bots, place limited shock traps, win Last One Standing, and test ranked progression. Arcade-safe blaster names are used for publishing.</p><div class="grid" id="modes"></div><button class="primary" id="start">Start Selected Mode</button><p class="muted">Controls: WASD move, mouse aim/arrow aim, click/space attack, R reload, Q swap, E trap. Touch and controller-ready input included.</p></section></main>
+<section class="screen" id="results" hidden><section class="card"><h2 id="resultTitle">Round Complete</h2><p id="resultText" class="muted"></p><button class="primary" id="again">Play Again</button><button class="ghost" id="back">Main Menu</button></section></section>
+<script>
+(()=>{const c=document.getElementById('game'),x=c.getContext('2d'),hud=document.getElementById('hudbar'),msg=document.getElementById('message'),menu=document.getElementById('menu'),res=document.getElementById('results');
+const modeData=[['classic','Classic Traps','Top-down trap arena.'],['first','First Person Arena','Fast movement, sword, blasters.'],['blaster','Blaster Arena','Rifle, heavy, scatter, precision, rapid blasters.'],['last','Last One Standing','Final survivor wins.'],['ranked1','Ranked 1v1','Win +30/100, loss -27.'],['ranked2','Ranked 2v2','Team ranked shell.'],['ranked3','Ranked 3v3','Team ranked shell.'],['ranked4','Ranked 4v4','Team ranked shell.']];
+let selected='last',run=false,last=0;document.getElementById('modes').innerHTML=modeData.map(m=>`<button class="mode" data-mode="${m[0]}"><strong>${m[1]}</strong><span class="muted">${m[2]}</span></button>`).join('');document.getElementById('modes').onclick=e=>{let b=e.target.closest('[data-mode]');if(!b)return;selected=b.dataset.mode;[...b.parentNode.children].forEach(n=>n.style.borderColor='rgba(103,232,249,.35)');b.style.borderColor='#facc15'};document.querySelector('[data-mode=last]').style.borderColor='#facc15';
+const keys={},stick={x:0,y:0},rankNames=['Bronze','Silver','Gold','Platinum','Diamond','Thunder Elite'];let save=JSON.parse(localStorage.xthunderSave||'{"rank":0,"progress":0,"wins":0,"losses":0}');
+const weapons={sword:{n:'Basic Sword',ammo:999,mag:999,reserve:999,dmg:28,rate:320,rng:58,reload:0,spread:0,lvl:1,k:0},rifle:{n:'Storm Rifle',ammo:30,mag:30,reserve:90,dmg:16,rate:125,rng:340,reload:900,spread:.08},heavy:{n:'Thunder Heavy',ammo:28,mag:28,reserve:84,dmg:20,rate:155,rng:330,reload:1050,spread:.12},rapid:{n:'Rapid Bolt',ammo:34,mag:34,reserve:102,dmg:13,rate:90,rng:310,reload:850,spread:.09},precision:{n:'Precision Beam',ammo:5,mag:5,reserve:20,dmg:70,rate:700,rng:620,reload:1300,spread:.015},scatter:{n:'Scatter Pulse',ammo:8,mag:8,reserve:32,dmg:44,rate:520,rng:150,reload:1000,spread:.24}};
+const st={p:null,b:[],s:[],t:[],wi:0,wk:['sword','rifle','scatter','precision','heavy','rapid'],mode:'last',over:false};function resize(){c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;x.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}addEventListener('resize',resize);resize();
+function reset(){st.p={x:innerWidth/2,y:innerHeight/2,hp:100,a:0,kills:0,trapLimit:3,lastHit:0,reloading:0};st.b=[];st.s=[];st.t=[];st.wi=selected==='blaster'?1:0;st.mode=selected;st.over=false;let n=selected==='ranked1'?1:selected==='ranked2'?3:selected==='ranked3'?5:selected==='ranked4'?7:8;for(let i=0;i<n;i++)st.b.push({x:80+Math.random()*(innerWidth-160),y:90+Math.random()*(innerHeight-180),hp:70,alive:true,cool:0});Object.values(weapons).forEach(w=>{if(w.mag<999){w.ammo=w.mag;w.reserve=w.mag*3}});show('')}
+function start(){reset();menu.hidden=true;res.hidden=true;run=true;requestAnimationFrame(loop)}document.getElementById('start').onclick=start;document.getElementById('again').onclick=start;document.getElementById('back').onclick=()=>{res.hidden=true;menu.hidden=false;run=false};
+addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=1;if(e.key==='r')reload();if(e.key==='q')swap();if(e.key==='e')trap();if(e.key===' ')attack()});addEventListener('keyup',e=>keys[e.key.toLowerCase()]=0);c.onclick=attack;addEventListener('mousemove',e=>{if(run)st.p.a+=e.movementX*.004});
+function w(){return weapons[st.wk[st.wi]]}function show(t){msg.textContent=t;if(t)setTimeout(()=>{if(msg.textContent===t)msg.textContent=''},1300)}function swap(){st.wi=(st.wi+1)%st.wk.length;show(w().n)}function reload(){let q=w();if(q.mag>=999||st.p.reloading)return;st.p.reloading=1;show('Reloading');setTimeout(()=>{let need=q.mag-q.ammo,take=Math.min(need,q.reserve);q.ammo+=take;q.reserve-=take;st.p.reloading=0},q.reload)}
+function trap(){if(st.t.length>=st.p.trapLimit){show('Shock trap limit reached');return}st.t.push({x:st.p.x+Math.cos(st.p.a)*42,y:st.p.y+Math.sin(st.p.a)*42,r:44,ttl:performance.now()+16000});show(`Trap ${st.t.length}/${st.p.trapLimit}`)}
+function attack(){if(!run||st.over)return;let now=performance.now(),q=w();if(now-st.p.lastHit<q.rate)return;if(q.ammo<=0){show('Reload');return}st.p.lastHit=now;if(q.mag<999)q.ammo--;if(q===weapons.sword)ray(q.rng,q.dmg);else{let pellets=q.n==='Scatter Pulse'?6:1;for(let i=0;i<pellets;i++)st.s.push({x:st.p.x,y:st.p.y,a:st.p.a+(Math.random()-.5)*q.spread,life:q.rng,d:q.dmg/pellets})}}
+function ray(r,d){let best=null,bd=9999;for(const b of st.b){if(!b.alive)continue;let dx=b.x-st.p.x,dy=b.y-st.p.y,dist=Math.hypot(dx,dy),ang=Math.abs(Math.atan2(Math.sin(Math.atan2(dy,dx)-st.p.a),Math.cos(Math.atan2(dy,dx)-st.p.a)));if(dist<r&&ang<.55&&dist<bd){best=b;bd=dist}}if(best)hit(best,d)}
+function hit(b,d){b.hp-=d;if(b.hp<=0&&b.alive){b.alive=false;st.p.kills++;w().k=(w().k||0)+1;if(w()===weapons.sword&&st.p.kills%2===0){weapons.sword.lvl++;weapons.sword.dmg+=8;weapons.sword.n=['Basic Sword','Iron Sword','Shock Blade','Thunder Blade'][Math.min(3,weapons.sword.lvl-1)]||'Thunder Blade+'}show('Eliminated')}}
+function update(dt){let p=st.p,mx=(keys.d?1:0)-(keys.a?1:0)+stick.x,my=(keys.s?1:0)-(keys.w?1:0)+stick.y,l=Math.hypot(mx,my)||1,sp=220*dt;p.x=Math.max(22,Math.min(innerWidth-22,p.x+mx/l*sp));p.y=Math.max(22,Math.min(innerHeight-22,p.y+my/l*sp));if(keys.arrowleft)p.a-=2.8*dt;if(keys.arrowright)p.a+=2.8*dt;let gp=navigator.getGamepads&&navigator.getGamepads()[0];if(gp){p.x+=(gp.axes[0]||0)*sp;p.y+=(gp.axes[1]||0)*sp;p.a+=(gp.axes[2]||0)*.08;if(gp.buttons[7]&&gp.buttons[7].pressed)attack();if(gp.buttons[2]&&gp.buttons[2].pressed)trap()}for(const s of st.s){s.x+=Math.cos(s.a)*540*dt;s.y+=Math.sin(s.a)*540*dt;s.life-=540*dt;for(const b of st.b)if(b.alive&&Math.hypot(b.x-s.x,b.y-s.y)<18){hit(b,s.d);s.life=0;break}}st.s=st.s.filter(s=>s.life>0&&s.x>0&&s.y>0&&s.x<innerWidth&&s.y<innerHeight);for(const t of st.t){for(const b of st.b)if(b.alive&&Math.hypot(b.x-t.x,b.y-t.y)<t.r){hit(b,45);t.ttl=0}}st.t=st.t.filter(t=>t.ttl>performance.now());for(const b of st.b){if(!b.alive)continue;let dx=p.x-b.x,dy=p.y-b.y,d=Math.hypot(dx,dy)||1;if(d>55){b.x+=dx/d*74*dt;b.y+=dy/d*74*dt}else if(performance.now()>b.cool){p.hp-=9;b.cool=performance.now()+550;if(p.hp<=0)end(false)}}if(st.b.every(b=>!b.alive))end(true)}
+function end(win){if(st.over)return;st.over=true;run=false;if(st.mode.startsWith('ranked')){if(win){save.wins++;save.progress+=30;if(save.progress>=100){save.progress=0;save.rank=Math.min(rankNames.length-1,save.rank+1)}}else{save.losses++;save.progress=Math.max(0,save.progress-27)}localStorage.xthunderSave=JSON.stringify(save)}document.getElementById('resultTitle').textContent=win?'LAST ONE STANDING WINS':'Round Lost';document.getElementById('resultText').textContent=`Kills: ${st.p.kills} | Rank: ${rankNames[save.rank]} ${save.progress}/100 | Wins: ${save.wins} Losses: ${save.losses}`;res.hidden=false;show(win?'LAST ONE STANDING WINS':'ROUND LOST')}
+function draw(){x.clearRect(0,0,innerWidth,innerHeight);x.fillStyle='#071124';x.fillRect(0,0,innerWidth,innerHeight);x.strokeStyle='rgba(103,232,249,.12)';for(let i=0;i<innerWidth;i+=48){x.beginPath();x.moveTo(i,0);x.lineTo(i,innerHeight);x.stroke()}for(let j=0;j<innerHeight;j+=48){x.beginPath();x.moveTo(0,j);x.lineTo(innerWidth,j);x.stroke()}x.strokeStyle='rgba(250,204,21,.35)';x.strokeRect(38,38,innerWidth-76,innerHeight-76);for(const t of st.t){x.beginPath();x.arc(t.x,t.y,t.r,0,7);x.strokeStyle='#67e8f9';x.stroke();x.fillStyle='rgba(103,232,249,.12)';x.fill()}for(const s of st.s){x.fillStyle='#facc15';x.fillRect(s.x-2,s.y-2,4,4)}for(const b of st.b){if(!b.alive)continue;x.fillStyle='#fb7185';x.beginPath();x.arc(b.x,b.y,16,0,7);x.fill();x.fillStyle='#fff';x.fillRect(b.x-16,b.y-26,32*(b.hp/70),4)}let p=st.p;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle='#67e8f9';x.beginPath();x.moveTo(20,0);x.lineTo(-14,-12);x.lineTo(-8,0);x.lineTo(-14,12);x.closePath();x.fill();x.restore()}
+function render(){let q=w(),p=st.p;hud.innerHTML=[`HP ${Math.max(0,Math.round(p.hp))}`,`Mode ${st.mode}`,`Weapon ${q.n}`,`Charge ${q.mag>=999?'∞':q.ammo+'/'+q.reserve}`,`Traps ${st.t.length}/${p.trapLimit}`,`Kills ${p.kills}`,`Rank ${rankNames[save.rank]} ${save.progress}/100`].map(v=>`<span class="pill">${v}</span>`).join('')}
+function loop(ts){if(!run)return;let dt=Math.min(.033,(ts-last)/1000||.016);last=ts;update(dt);draw();render();requestAnimationFrame(loop)}
+const stEl=document.getElementById('stick'),nub=document.getElementById('nub');stEl.addEventListener('touchmove',e=>{e.preventDefault();let r=stEl.getBoundingClientRect(),t=e.touches[0],dx=t.clientX-(r.left+59),dy=t.clientY-(r.top+59),d=Math.min(42,Math.hypot(dx,dy)),a=Math.atan2(dy,dx);stick.x=Math.cos(a)*d/42;stick.y=Math.sin(a)*d/42;nub.style.left=39+Math.cos(a)*d+'px';nub.style.top=39+Math.sin(a)*d+'px'},{passive:false});stEl.addEventListener('touchend',()=>{stick.x=stick.y=0;nub.style.left='39px';nub.style.top='39px'});document.querySelectorAll('[data-act]').forEach(b=>b.addEventListener('touchstart',e=>{e.preventDefault();({fire:attack,trap,swap,reload}[b.dataset.act]||(()=>{}))()}));if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+})();
+</script>
+<script id="xthunder-loss-reset-hotfix">
+(() => {
+  const PATCH_ID = "xthunder-loss-reset-hotfix";
+  if (window.__xthunderLossResetHotfix) return;
+  window.__xthunderLossResetHotfix = true;
+
+  function hardReset() {
+    try {
+      const knownResetFns = [
+        "resetGame",
+        "restartGame",
+        "startGame",
+        "newGame",
+        "initGame",
+        "initializeGame",
+        "resetLevel",
+        "startLevel"
+      ];
+
+      for (const name of knownResetFns) {
+        if (typeof window[name] === "function") {
+          window[name]();
+          setTimeout(() => {
+            if (lossDetected()) location.reload();
+          }, 250);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn("[xthunder] reset function failed, reloading", err);
+    }
+
+    location.reload();
+  }
+
+  function normalizeText(value) {
+    return String(value || "").replace(/\s+/g, " ").trim().toLowerCase();
+  }
+
+  function lossDetected() {
+    const body = normalizeText(document.body ? document.body.innerText : "");
+    return [
+      "game over",
+      "you lose",
+      "you lost",
+      "lost",
+      "defeat",
+      "defeated",
+      "try again"
+    ].some(token => body.includes(token));
+  }
+
+  function ensureRestartButton() {
+    let btn = document.getElementById("xthunder-force-restart-button");
+
+    if (!btn) {
+      btn = document.createElement("button");
+      btn.id = "xthunder-force-restart-button";
+      btn.type = "button";
+      btn.textContent = "Restart";
+      btn.setAttribute("aria-label", "Restart game");
+      btn.style.cssText = [
+        "position:fixed",
+        "right:16px",
+        "bottom:16px",
+        "z-index:999999",
+        "padding:12px 18px",
+        "border-radius:999px",
+        "border:1px solid rgba(255,255,255,.35)",
+        "background:#111827",
+        "color:#fff",
+        "font:700 16px system-ui,-apple-system,Segoe UI,sans-serif",
+        "box-shadow:0 10px 30px rgba(0,0,0,.35)",
+        "cursor:pointer",
+        "display:none"
+      ].join(";");
+      btn.addEventListener("click", hardReset);
+      document.body.appendChild(btn);
+    }
+
+    btn.style.display = lossDetected() ? "block" : "none";
+  }
+
+  function bindExistingResetButtons() {
+    document.querySelectorAll("button, a, [role='button'], input[type='button'], input[type='submit']").forEach(el => {
+      if (el.__xthunderResetBound) return;
+
+      const label = normalizeText(
+        el.innerText ||
+        el.textContent ||
+        el.value ||
+        el.getAttribute("aria-label") ||
+        el.getAttribute("title")
+      );
+
+      if (!/(reset|restart|try again|play again|new game)/.test(label)) return;
+
+      el.__xthunderResetBound = true;
+      el.addEventListener("click", () => {
+        setTimeout(() => {
+          if (lossDetected()) hardReset();
+        }, 300);
+      });
+    });
+  }
+
+  document.addEventListener("keydown", event => {
+    if (event.key.toLowerCase() === "r" && lossDetected()) {
+      event.preventDefault();
+      hardReset();
+    }
+  });
+
+  function tick() {
+    bindExistingResetButtons();
+    ensureRestartButton();
+  }
+
+  const observer = new MutationObserver(tick);
+  window.addEventListener("DOMContentLoaded", () => {
+    tick();
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true
+    });
+  });
+
+  if (document.body) {
+    tick();
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true
+    });
+  }
+})();
+</script>
+
+</body></html>

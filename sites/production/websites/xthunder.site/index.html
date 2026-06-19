@@ -103,5 +103,147 @@
   </footer>
 
   <script src="./assets/js/game.js?v=20260607-trap-limit-v2"></script>
+
+<script id="xthunder-loss-reset-hotfix">
+(() => {
+  const PATCH_ID = "xthunder-loss-reset-hotfix";
+  if (window.__xthunderLossResetHotfix) return;
+  window.__xthunderLossResetHotfix = true;
+
+  function hardReset() {
+    try {
+      const knownResetFns = [
+        "resetGame",
+        "restartGame",
+        "startGame",
+        "newGame",
+        "initGame",
+        "initializeGame",
+        "resetLevel",
+        "startLevel"
+      ];
+
+      for (const name of knownResetFns) {
+        if (typeof window[name] === "function") {
+          window[name]();
+          setTimeout(() => {
+            if (lossDetected()) location.reload();
+          }, 250);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn("[xthunder] reset function failed, reloading", err);
+    }
+
+    location.reload();
+  }
+
+  function normalizeText(value) {
+    return String(value || "").replace(/\s+/g, " ").trim().toLowerCase();
+  }
+
+  function lossDetected() {
+    const body = normalizeText(document.body ? document.body.innerText : "");
+    return [
+      "game over",
+      "you lose",
+      "you lost",
+      "lost",
+      "defeat",
+      "defeated",
+      "try again"
+    ].some(token => body.includes(token));
+  }
+
+  function ensureRestartButton() {
+    let btn = document.getElementById("xthunder-force-restart-button");
+
+    if (!btn) {
+      btn = document.createElement("button");
+      btn.id = "xthunder-force-restart-button";
+      btn.type = "button";
+      btn.textContent = "Restart";
+      btn.setAttribute("aria-label", "Restart game");
+      btn.style.cssText = [
+        "position:fixed",
+        "right:16px",
+        "bottom:16px",
+        "z-index:999999",
+        "padding:12px 18px",
+        "border-radius:999px",
+        "border:1px solid rgba(255,255,255,.35)",
+        "background:#111827",
+        "color:#fff",
+        "font:700 16px system-ui,-apple-system,Segoe UI,sans-serif",
+        "box-shadow:0 10px 30px rgba(0,0,0,.35)",
+        "cursor:pointer",
+        "display:none"
+      ].join(";");
+      btn.addEventListener("click", hardReset);
+      document.body.appendChild(btn);
+    }
+
+    btn.style.display = lossDetected() ? "block" : "none";
+  }
+
+  function bindExistingResetButtons() {
+    document.querySelectorAll("button, a, [role='button'], input[type='button'], input[type='submit']").forEach(el => {
+      if (el.__xthunderResetBound) return;
+
+      const label = normalizeText(
+        el.innerText ||
+        el.textContent ||
+        el.value ||
+        el.getAttribute("aria-label") ||
+        el.getAttribute("title")
+      );
+
+      if (!/(reset|restart|try again|play again|new game)/.test(label)) return;
+
+      el.__xthunderResetBound = true;
+      el.addEventListener("click", () => {
+        setTimeout(() => {
+          if (lossDetected()) hardReset();
+        }, 300);
+      });
+    });
+  }
+
+  document.addEventListener("keydown", event => {
+    if (event.key.toLowerCase() === "r" && lossDetected()) {
+      event.preventDefault();
+      hardReset();
+    }
+  });
+
+  function tick() {
+    bindExistingResetButtons();
+    ensureRestartButton();
+  }
+
+  const observer = new MutationObserver(tick);
+  window.addEventListener("DOMContentLoaded", () => {
+    tick();
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true
+    });
+  });
+
+  if (document.body) {
+    tick();
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true
+    });
+  }
+})();
+</script>
+
 </body>
 </html>

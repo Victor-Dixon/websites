@@ -1,0 +1,33 @@
+# WeAreSwarm canonical host + HTTPS (managed snippet)
+# Prepended ahead of existing WordPress rules. Back up .htaccess before applying.
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Canonical host: apex -> www
+RewriteCond %{HTTP_HOST} ^weareswarm\.site$ [NC]
+RewriteRule ^ https://www.weareswarm.site%{REQUEST_URI} [R=301,L]
+
+# Serve static hub at site root (do not send / to dreamos-services)
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{DOCUMENT_ROOT}/index.html -f
+RewriteRule ^$ /index.html [L]
+
+# Flat Dream.OS routes — serve extensionless static files before WordPress
+RewriteCond %{DOCUMENT_ROOT}/projects -f
+RewriteRule ^projects/?$ /projects [L]
+RewriteCond %{DOCUMENT_ROOT}/profile -f
+RewriteRule ^profile/?$ /profile [L]
+RewriteCond %{DOCUMENT_ROOT}/live-ops -f
+RewriteRule ^live-ops/?$ /live-ops [L]
+RewriteCond %{DOCUMENT_ROOT}/feed -f
+RewriteRule ^feed/?$ /feed [L]
+RewriteCond %{DOCUMENT_ROOT}/tasks -f
+RewriteRule ^tasks/?$ /tasks [L]
+RewriteCond %{DOCUMENT_ROOT}/skill-tree -f
+RewriteRule ^skill-tree/?$ /skill-tree [L]
+</IfModule>

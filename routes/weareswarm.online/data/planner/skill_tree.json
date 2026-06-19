@@ -1,0 +1,51 @@
+{
+  "last_sync": "2026-06-12T00:00:00Z",
+  "nodes": [
+    {
+      "id": "kids_planner_execution_loop_001",
+      "label": "Kids Planner Execution Loop",
+      "title": "Kids Planner Execution Loop",
+      "status": "unlocked",
+      "tier": "P0",
+      "category": "Planner",
+      "updated_at": "2026-06-14T17:27:35.994350+00:00",
+      "unlocks": [
+        "claim_task",
+        "copy_agent_prompt",
+        "collect_proof",
+        "generate_closeout",
+        "adult_review"
+      ],
+      "depends_on": [
+        "dreamvault_to_weareswarm_kids_feed_bridge_001"
+      ],
+      "route": "/kids-planner/"
+    },
+    {
+      "id": "static_recovery",
+      "title": "Static website recovery",
+      "status": "unlocked",
+      "proof": "Crosby Ultimate Events HTTP 500 recovery"
+    },
+    {
+      "id": "lead_capture",
+      "title": "Lead capture workflow",
+      "status": "unlocked",
+      "proof": "Private CSV capture and export lane"
+    },
+    {
+      "id": "public_data_contract",
+      "title": "Public planner data contract",
+      "status": "unlocked",
+      "proof": "/data/planner/*.json deployed with fallbacks"
+    },
+    {
+      "id": "agentic_exporters",
+      "title": "Agentic exporter automation",
+      "status": "next",
+      "proof": "runtime/tools export scripts generate deploy data"
+    }
+  ],
+  "next_unlock": "Wire exporter inputs to live repo scanner, task logs, and closeout manifests.",
+  "updated_at": "2026-06-14T17:27:35.994350+00:00"
+}
