@@ -1,0 +1,31 @@
+TASK=fix_weareswarm_online_nav_001
+TARGET_REPO=/data/data/com.termux/files/home/projects/websites
+SITE_DIR=_deploy/weareswarm.online
+PATCHED_HTML_FILES=5
+
+SCRIPT_INJECTIONS:
+_deploy/weareswarm.online/dreamos-services/index.html:  <script src="/assets/js/nav-fallback.js" defer></script>
+_deploy/weareswarm.online/skill-tree/index.html:  <script src="/assets/js/nav-fallback.js" defer></script>
+_deploy/weareswarm.online/kids-planner/index.html:  <script src="/assets/js/nav-fallback.js" defer></script>
+_deploy/weareswarm.online/roadmap/index.html:  <script src="/assets/js/nav-fallback.js" defer></script>
+_deploy/weareswarm.online/tasks/index.html:  <script src="/assets/js/nav-fallback.js" defer></script>
+
+NAV_HINTS:
+_deploy/weareswarm.online/assets/js/nav-fallback.js:14:      '[data-nav-toggle], .nav-toggle, .menu-toggle, .hamburger, button[aria-controls], button[aria-expanded]'
+_deploy/weareswarm.online/assets/js/nav-fallback.js:18:      '[data-nav-menu], .nav-menu, .site-nav, nav, header nav'
+_deploy/weareswarm.online/assets/js/nav-fallback.js:26:      var id = toggle.getAttribute("aria-controls") || toggle.getAttribute("data-target");
+_deploy/weareswarm.online/assets/js/nav-fallback.js:36:        var localNav = header.querySelector("[data-nav-menu], .nav-menu, .site-nav, nav");
+_deploy/weareswarm.online/assets/js/nav-fallback.js:53:        var expanded = toggle.getAttribute("aria-expanded") === "true";
+_deploy/weareswarm.online/assets/js/nav-fallback.js:56:        toggle.setAttribute("aria-expanded", String(next));
+_deploy/weareswarm.online/assets/js/nav-fallback.js:76:        toggle.setAttribute("aria-expanded", "false");
+
+GIT_STATUS:
+ M _deploy/weareswarm.online/dreamos-services/index.html
+ M _deploy/weareswarm.online/kids-planner/index.html
+ M _deploy/weareswarm.online/roadmap/index.html
+ M _deploy/weareswarm.online/skill-tree/index.html
+ M _deploy/weareswarm.online/tasks/index.html
+?? _deploy/freerideinvestor.com/
+?? _deploy/weareswarm.online/assets/
+?? data/reports/weareswarm_online/
+?? runtime/tasks/fix_weareswarm_online_nav_001.yaml

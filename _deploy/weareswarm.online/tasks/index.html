@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WeAreSwarm Tasks</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
+:root{--bg:#0a0a0a;--surface:#111;--surface2:#171717;--border:#262626;--amber:#f5a623;--purple:#a78bfa;--green:#39d353;--blue:#58a6ff;--red:#e63946;--text:#d4d4d4;--muted:#777;--white:#f4f4f4;--display:'Bebas Neue',sans-serif;--mono:'Space Mono',monospace;--body:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;min-height:100vh}
+body:before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.14) 2px,rgba(0,0,0,.14) 4px);pointer-events:none;z-index:999}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(10,10,10,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.logo{font-family:var(--display);font-size:1.55rem;color:var(--amber);letter-spacing:.05em}
+.logo span{color:var(--white)}
+.navlinks{display:flex;gap:1rem;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.navlinks a{color:var(--muted)}
+.wrap{width:min(1240px,calc(100% - 2rem));margin:0 auto}
+.hero{padding:4rem 0 2rem}
+.eyebrow{font-family:var(--mono);font-size:.72rem;color:var(--purple);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem}
+h1{font-family:var(--display);font-size:clamp(3.5rem,10vw,7rem);line-height:.9;color:var(--white);letter-spacing:.03em}
+h1 span{color:var(--purple)}
+.intro{font-family:var(--mono);font-size:.88rem;color:var(--muted);max-width:840px;margin-top:1.4rem;line-height:1.9;border-left:2px solid var(--purple);padding-left:1rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:1.2rem 0}
+.stat{background:var(--surface);padding:1.1rem}
+.stat-label{font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.13em;text-transform:uppercase}
+.stat-value{font-family:var(--display);font-size:2rem;color:var(--purple);margin-top:.15rem}
+.toolbar{display:grid;grid-template-columns:1fr 180px 180px 190px;gap:.7rem;margin:1rem 0 1.5rem}
+input,select{background:#0d0d0d;border:1px solid var(--border);color:var(--text);padding:.75rem .9rem;font-family:var(--mono);font-size:.78rem;border-radius:2px;width:100%}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:3rem}
+.card{background:var(--surface);padding:1.2rem;display:flex;flex-direction:column;gap:.85rem;min-height:260px}
+.card:hover{background:var(--surface2)}
+.top{display:flex;justify-content:space-between;gap:.7rem;align-items:flex-start}
+.badges{display:flex;gap:.4rem;flex-wrap:wrap}
+.badge{font-family:var(--mono);font-size:.58rem;color:#000;background:var(--purple);padding:.2rem .45rem;border-radius:2px;font-weight:700;text-transform:uppercase}
+.badge.kids{background:var(--green)}.badge.agent{background:var(--blue)}.badge.victor{background:var(--amber)}
+.priority{font-family:var(--mono);font-size:.6rem;color:var(--amber);border:1px solid rgba(245,166,35,.35);padding:.2rem .45rem;border-radius:2px}
+.title{font-family:var(--display);font-size:1.45rem;color:var(--white);line-height:1;letter-spacing:.04em}
+.meta{display:grid;gap:.3rem;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.meta strong{color:var(--amber);font-weight:400}
+.actions{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:auto}
+.btn{display:inline-block;border-radius:2px;padding:.65rem .8rem;font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.btn-purple{background:var(--purple);color:#000}.btn-amber{background:var(--amber);color:#000}.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.empty,.error,.ok{background:var(--surface);border:1px dashed var(--border);padding:1.3rem;margin-bottom:2rem;color:var(--muted);font-family:var(--mono);font-size:.78rem}
+.error{color:var(--red)}.ok{color:var(--green)}
+footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted);font-family:var(--mono);font-size:.7rem}
+@media(max-width:860px){nav{padding:0 1rem}.navlinks{display:none}.toolbar{grid-template-columns:1fr}.hero{padding:3rem 0 1.5rem}.grid{grid-template-columns:1fr}}
+</style>
+  <link rel="stylesheet" href="/assets/css/nav-shell.css">
+</head>
+<body>
+<nav class="swarm-nav-shell" data-canonical-nav="weareswarm-online" aria-label="Primary navigation">
+  <a class="swarm-nav-brand" href="/">WeAreSwarm</a>
+  <button class="nav-toggle swarm-nav-toggle" type="button" aria-controls="swarm-nav-links" aria-expanded="false">
+    Menu
+  </button>
+  <div id="swarm-nav-links" class="swarm-nav-links" data-nav-menu>
+    <a href="/">Command Center</a>
+    <a href="/focus/">Focus</a>
+    <a href="/roadmap/">Roadmap</a>
+    <a href="/projects/">Projects</a>
+    <a href="/tasks/">Tasks</a>
+    <a href="/skill-tree/">Skill Tree</a>
+    <a href="/dreamos-services/">Services</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Planner Feed</div>
+    <h1>TASK<br><span>BOARD.</span></h1>
+    <p class="intro">
+      Public-safe task feed for Dream.OS operations. The Kids filter is powered by the DreamVault kids planner feed,
+      so junior operator tasks route to the dedicated Kids Planner workflow instead of disappearing from the board.
+    </p>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="stat-label">All Tasks</div><div class="stat-value" id="allCount">—</div></div>
+    <div class="stat"><div class="stat-label">Kids Tasks</div><div class="stat-value" id="kidsCount">—</div></div>
+    <div class="stat"><div class="stat-label">Shown</div><div class="stat-value" id="shownCount">—</div></div>
+    <div class="stat"><div class="stat-label">Feed</div><div class="stat-value">Live</div></div>
+  </section>
+
+  <section class="toolbar">
+    <input id="search" type="search" placeholder="Search tasks..." autocomplete="off">
+    <select id="executorFilter">
+      <option value="all">All executors</option>
+      <option value="kids">Kids</option>
+      <option value="agent">Agent</option>
+      <option value="victor">Victor</option>
+    </select>
+    <select id="statusFilter">
+      <option value="all">All statuses</option>
+      <option value="active">Active</option>
+      <option value="done">Done</option>
+      <option value="blocked">Blocked</option>
+    </select>
+    <select id="sortMode">
+      <option value="priority">Sort priority</option>
+      <option value="title">Sort title</option>
+      <option value="executor">Sort executor</option>
+    </select>
+  </section>
+
+  <section id="status"></section>
+  <section class="grid" id="grid"></section>
+</main>
+
+<footer><div class="wrap">© WeAreSwarm — Planner powered by Dream.OS</div></footer>
+
+<script>
+const ALL_URLS=['/data/planner/all_tasks.json','../data/planner/all_tasks.json'];
+const KIDS_URLS=['/data/planner/kids_tasks.json','../data/planner/kids_tasks.json'];
+let allFeed=[];
+let kidsFeed=[];
+let merged=[];
+
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function arrFromPayload(data){if(Array.isArray(data))return data;if(Array.isArray(data.tasks))return data.tasks;if(Array.isArray(data.items))return data.items;return[]}
+async function fetchFirst(urls){let last=null;for(const url of urls){try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error(url+' returned '+r.status);return await r.json()}catch(e){last=e}}throw last}
+function normalizeTask(t,source){
+  const id=String(t.id||t.task_id||t.slug||t.title||Math.random()).trim();
+  const kids=source==='kids'||t.kid_safe===true||t.executor==='kids'||t.lane==='kids'||t.route_to==='kids';
+  let executor=String(t.executor||t.owner||t.assignee||'agent').toLowerCase();
+  if(kids)executor='kids';
+  if(executor.includes('victor'))executor='victor';
+  if(!['kids','agent','victor'].includes(executor))executor='agent';
+  return {
+    raw:t,
+    id,
+    title:t.title||t.name||id,
+    status:String(t.status||t.state||'active').toLowerCase(),
+    priority:t.priority||t.pri||'P2',
+    project:t.project||t.repo||t.domain||'Dream.OS',
+    source_path:t.source_path||t.path||t.file||'',
+    executor,
+    kids,
+    points:t.points||100,
+    estimated_time_minutes:t.estimated_time_minutes||t.minutes||20
+  };
+}
+function mergeFeeds(){
+  const map=new Map();
+  allFeed.map(t=>normalizeTask(t,'all')).forEach(t=>map.set(t.id,t));
+  kidsFeed.map(t=>normalizeTask(t,'kids')).forEach(t=>map.set(t.id,{...map.get(t.id),...t,executor:'kids',kids:true}));
+  merged=[...map.values()];
+}
+function statusBucket(s){
+  const v=String(s||'active').toLowerCase();
+  if(['done','complete','completed','closed'].includes(v))return'done';
+  if(['blocked','fail','failed'].includes(v))return'blocked';
+  return'active';
+}
+function filtered(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  const ex=document.getElementById('executorFilter').value;
+  const st=document.getElementById('statusFilter').value;
+  const sort=document.getElementById('sortMode').value;
+  let rows=merged.filter(t=>{
+    const blob=JSON.stringify(t).toLowerCase();
+    return (!q||blob.includes(q))&&(ex==='all'||t.executor===ex)&&(st==='all'||statusBucket(t.status)===st);
+  });
+  rows.sort((a,b)=>{
+    if(sort==='title')return a.title.localeCompare(b.title);
+    if(sort==='executor')return a.executor.localeCompare(b.executor)||a.title.localeCompare(b.title);
+    return String(a.priority).localeCompare(String(b.priority))||a.title.localeCompare(b.title);
+  });
+  return rows;
+}
+function render(){
+  const rows=filtered();
+  document.getElementById('allCount').textContent=merged.length;
+  document.getElementById('kidsCount').textContent=merged.filter(t=>t.executor==='kids').length;
+  document.getElementById('shownCount').textContent=rows.length;
+
+  const status=document.getElementById('status');
+  const grid=document.getElementById('grid');
+
+  if(!rows.length){
+    grid.innerHTML='';
+    status.innerHTML='<div class="empty">No matching tasks.</div>';
+    return;
+  }
+
+  status.innerHTML='';
+  grid.innerHTML=rows.map(t=>`
+    <article class="card">
+      <div class="top">
+        <div class="badges">
+          <span class="badge ${esc(t.executor)}">${esc(t.executor)}</span>
+          ${t.kids?'<span class="badge kids">kids planner</span>':''}
+        </div>
+        <span class="priority">${esc(t.priority)}</span>
+      </div>
+      <h2 class="title">${esc(t.title)}</h2>
+      <div class="meta">
+        <div><strong>ID:</strong> ${esc(t.id)}</div>
+        <div><strong>Status:</strong> ${esc(t.status)}</div>
+        <div><strong>Project:</strong> ${esc(t.project)}</div>
+        <div><strong>Source:</strong> ${esc(t.source_path)}</div>
+        <div><strong>Points:</strong> ${esc(t.points)} · <strong>Time:</strong> ${esc(t.estimated_time_minutes)} min</div>
+      </div>
+      <div class="actions">
+        ${t.executor==='kids'?'<a class="btn btn-purple" href="/kids-planner/">Open Kids Planner</a>':'<span class="btn btn-ghost">Agent Lane</span>'}
+        <button class="btn btn-amber" onclick="copyTask('${esc(t.id)}')">Copy ID</button>
+      </div>
+    </article>
+  `).join('');
+}
+async function copyTask(id){try{await navigator.clipboard.writeText(id);alert('Copied task id.')}catch(e){prompt('Copy task id:',id)}}
+async function load(){
+  document.getElementById('status').innerHTML='<div class="empty">Loading task feeds...</div>';
+  try{
+    try{allFeed=arrFromPayload(await fetchFirst(ALL_URLS));}catch(e){allFeed=[]}
+    kidsFeed=arrFromPayload(await fetchFirst(KIDS_URLS));
+    mergeFeeds();
+    const params=new URLSearchParams(location.search);
+    const qParam=params.get('q')||params.get('search')||'';
+    const executorParam=params.get('executor')||'';
+    const statusParam=params.get('status')||'';
+    if(qParam)document.getElementById('search').value=qParam;
+    if(executorParam)document.getElementById('executorFilter').value=executorParam;
+    else if(kidsFeed.length>=20)document.getElementById('executorFilter').value='kids';
+    if(statusParam)document.getElementById('statusFilter').value=statusParam;
+    render();
+  }catch(e){
+    document.getElementById('status').innerHTML='<div class="error">Failed to load task feeds: '+esc(e.message)+'</div>';
+  }
+}
+document.getElementById('search').addEventListener('input',render);
+document.getElementById('executorFilter').addEventListener('change',render);
+document.getElementById('statusFilter').addEventListener('change',render);
+document.getElementById('sortMode').addEventListener('change',render);
+load();
+</script>
+  <script src="/assets/js/nav-fallback.js" defer></script>
+</body>
+</html>

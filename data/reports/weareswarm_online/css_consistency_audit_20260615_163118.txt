@@ -1,0 +1,16 @@
+TASK=audit_weareswarm_online_css_consistency_001
+SITE=_deploy/weareswarm.online
+PAGE_COUNT=5
+FAILURES=0
+WARNINGS=2
+WARN=inline_style_signature_variants=5
+WARN=shell_signature_variants=3
+
+PAGES:
+/dreamos-services/ css=4f53cda18c2b inline=1 style_attrs=1 nav_fallback=True shell={'header': 1, 'nav': 1, 'main': 1, 'footer': 1}
+/kids-planner/ css=4f53cda18c2b inline=1 style_attrs=0 nav_fallback=True shell={'header': 1, 'nav': 0, 'main': 1, 'footer': 0}
+/roadmap/ css=4f53cda18c2b inline=1 style_attrs=0 nav_fallback=True shell={'header': 0, 'nav': 1, 'main': 1, 'footer': 1}
+/skill-tree/ css=4f53cda18c2b inline=1 style_attrs=1 nav_fallback=True shell={'header': 1, 'nav': 1, 'main': 1, 'footer': 1}
+/tasks/ css=4f53cda18c2b inline=1 style_attrs=0 nav_fallback=True shell={'header': 0, 'nav': 1, 'main': 1, 'footer': 1}
+
+REPORT_JSON=data/reports/weareswarm_online/css_consistency_audit_20260615_163118.json

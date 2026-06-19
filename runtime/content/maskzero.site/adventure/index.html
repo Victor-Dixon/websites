@@ -1,0 +1,1091 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Campaign | MaskZero</title>
+<meta name="description" content="Enter Meridian City. Your character, your choices, your story — remembered across every session.">
+<link rel="canonical" href="https://maskzero.site/adventure/">
+<style>
+:root{
+  --bg:#07080e;--panel:rgba(255,255,255,.07);--panel2:rgba(255,255,255,.1);
+  --text:#f4f7fb;--muted:rgba(244,247,251,.72);--line:rgba(255,255,255,.13);
+  --accent:#7dffbe;--violet:#9d7cff;--gold:#ffd166;--danger:#ff4c77;
+}
+*{box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  margin:0;color:var(--text);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 15% 0%,rgba(125,255,190,.14),transparent 30%),
+    radial-gradient(circle at 85% 0%,rgba(157,124,255,.14),transparent 30%),
+    var(--bg);
+  display:flex;flex-direction:column;
+}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+.nav{
+  flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:0 20px;height:60px;
+  background:rgba(7,8,14,.9);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px);z-index:20;
+}
+.nav-brand{font-weight:900;letter-spacing:-.03em;font-size:1.1rem}
+.nav-char{display:flex;align-items:center;gap:10px;font-size:.88rem}
+.nav-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:.28rem .6rem;border-radius:999px;border:1px solid var(--line);
+  background:var(--panel2);font-size:.78rem;font-weight:800;
+  color:var(--accent);letter-spacing:.06em;
+}
+.nav-actions{display:flex;gap:8px}
+.icon-btn{
+  width:36px;height:36px;border:1px solid var(--line);border-radius:10px;
+  background:var(--panel);cursor:pointer;font-size:1rem;
+  display:grid;place-items:center;transition:background .15s;
+}
+.icon-btn:hover{background:var(--panel2)}
+
+/* ── LAYOUT ── */
+.shell{flex:1;display:grid;grid-template-columns:260px 1fr 240px;overflow:hidden;min-height:0}
+@media(max-width:960px){.shell{grid-template-columns:1fr}.sidebar-left,.sidebar-right{display:none}}
+@media(max-width:960px) .sidebar-left.open,.sidebar-right.open{display:block;position:fixed;inset:60px 0 0 0;z-index:19;overflow-y:auto;background:var(--bg);padding:16px}
+
+/* ── SIDEBARS ── */
+.sidebar-left,.sidebar-right{
+  overflow-y:auto;padding:16px;border-right:1px solid var(--line);
+  scrollbar-width:thin;
+}
+.sidebar-right{border-right:none;border-left:1px solid var(--line)}
+.sidebar-left::-webkit-scrollbar,.sidebar-right::-webkit-scrollbar{width:4px}
+.sidebar-left::-webkit-scrollbar-thumb,.sidebar-right::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:4px}
+
+.panel-title{
+  font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line);
+}
+
+/* Character sheet */
+.char-name{font-size:1.2rem;font-weight:900;margin:0 0 2px}
+.char-cast{font-size:.84rem;color:var(--muted);margin:0 0 12px}
+.xp-bar-wrap{margin:10px 0}
+.xp-label{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);font-weight:800;margin-bottom:4px}
+.xp-bar{height:6px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden}
+.xp-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--violet));transition:width .4s}
+
+.trait-list{display:grid;gap:6px;margin:12px 0}
+.trait-row{display:flex;align-items:center;gap:8px;font-size:.82rem}
+.trait-name{width:82px;color:var(--muted);font-weight:800;flex-shrink:0;text-transform:capitalize}
+.trait-bar{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
+.trait-bar span{display:block;height:100%;border-radius:999px;transition:width .4s}
+.trait-val{width:26px;text-align:right;font-size:.75rem;font-weight:900;color:var(--accent)}
+
+.faction-list{display:grid;gap:5px;margin:10px 0}
+.faction-row{display:flex;justify-content:space-between;align-items:center;font-size:.8rem}
+.faction-name{color:var(--muted);font-weight:700;text-transform:capitalize}
+.faction-val{font-weight:900;font-size:.78rem}
+.pos{color:var(--accent)}.neg{color:var(--danger)}.zero{color:var(--muted)}
+
+.inventory-list{display:grid;gap:4px;margin:8px 0;max-height:120px;overflow-y:auto}
+.inv-item{font-size:.82rem;color:var(--muted);padding:4px 8px;background:var(--panel);border-radius:8px}
+
+/* ── MAIN STORY AREA ── */
+.story-area{display:flex;flex-direction:column;overflow:hidden;min-height:0}
+
+.story-log{
+  flex:1;overflow-y:auto;padding:20px;
+  scrollbar-width:thin;
+  scroll-behavior:smooth;
+}
+.story-log::-webkit-scrollbar{width:4px}
+.story-log::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:4px}
+
+/* Story bubbles */
+.msg{margin:0 0 16px;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg-dm .msg-bubble{
+  background:linear-gradient(135deg,var(--panel2),var(--panel));
+  border:1px solid var(--line);border-radius:4px 20px 20px 20px;
+  padding:14px 18px;max-width:84%;
+  font-size:.97rem;line-height:1.65;color:var(--text);
+  white-space:pre-wrap;
+}
+.msg-player .msg-bubble{
+  background:linear-gradient(135deg,rgba(125,255,190,.18),rgba(157,124,255,.14));
+  border:1px solid rgba(125,255,190,.28);border-radius:20px 4px 20px 20px;
+  padding:12px 18px;max-width:76%;margin-left:auto;
+  font-size:.94rem;line-height:1.58;color:var(--text);font-style:italic;
+}
+.msg-dm .msg-label{font-size:.72rem;font-weight:900;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+.msg-player .msg-label{font-size:.72rem;font-weight:900;color:var(--violet);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;text-align:right}
+.msg-system .msg-bubble{
+  text-align:center;color:var(--muted);font-size:.84rem;font-style:italic;
+  border:1px dashed rgba(255,255,255,.1);border-radius:12px;padding:10px 16px;
+  background:transparent;
+}
+.trait-flash{
+  display:inline-flex;align-items:center;gap:4px;margin:8px 0 0;
+  border:1px solid rgba(125,255,190,.28);border-radius:999px;
+  padding:3px 10px;font-size:.75rem;font-weight:900;color:var(--accent);
+  background:rgba(125,255,190,.08);
+}
+.trait-flash.neg{color:var(--danger);border-color:rgba(255,76,119,.28);background:rgba(255,76,119,.08)}
+
+/* Loading / typing indicator */
+.typing-indicator{display:flex;gap:5px;padding:14px 18px;width:fit-content}
+.typing-indicator span{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:bounce .9s infinite}
+.typing-indicator span:nth-child(2){animation-delay:.15s}
+.typing-indicator span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:none}30%{transform:translateY(-6px)}}
+
+/* ── INPUT AREA ── */
+.input-area{
+  flex-shrink:0;border-top:1px solid var(--line);
+  background:rgba(7,8,14,.95);backdrop-filter:blur(8px);
+  padding:14px 20px;
+}
+.choices{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.choice-btn{
+  flex:1;min-width:140px;max-width:calc(50% - 4px);
+  padding:.65rem .9rem;border:1px solid var(--line);border-radius:14px;
+  background:var(--panel);color:var(--text);cursor:pointer;
+  font-size:.88rem;font-weight:700;text-align:left;line-height:1.4;
+  transition:border-color .15s,background .15s;
+}
+.choice-btn:hover:not(:disabled){border-color:var(--accent);background:rgba(125,255,190,.08)}
+.choice-btn:disabled{opacity:.45;cursor:not-allowed}
+.choice-num{color:var(--accent);font-weight:900;margin-right:6px;font-size:.85rem}
+
+.custom-row{display:flex;gap:8px;align-items:center}
+.custom-input{
+  flex:1;padding:.75rem 1rem;border:1px solid var(--line);border-radius:999px;
+  background:var(--panel2);color:var(--text);font-size:.92rem;
+  outline:none;transition:border-color .15s;font-family:inherit;
+}
+.custom-input:focus{border-color:var(--accent)}
+.custom-input::placeholder{color:rgba(244,247,251,.38)}
+.send-btn{
+  padding:.75rem 1.25rem;border:none;border-radius:999px;
+  background:var(--accent);color:#071015;font-weight:900;font-size:.9rem;
+  cursor:pointer;white-space:nowrap;transition:opacity .15s;
+}
+.send-btn:hover:not(:disabled){opacity:.88}
+.send-btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ── SIDEBAR RIGHT - memory ── */
+.memory-section{margin-bottom:18px}
+.memory-entry{
+  font-size:.81rem;color:var(--muted);line-height:1.5;
+  padding:6px 10px;background:var(--panel);border-radius:8px;margin-bottom:5px;
+  border-left:2px solid var(--accent);
+}
+.memory-entry.tier2{border-left-color:var(--violet)}
+.memory-entry.tier3{border-left-color:rgba(255,255,255,.2)}
+
+/* ── EMPTY / NO CHARACTER ── */
+.empty-state{
+  margin:auto;text-align:center;max-width:420px;padding:40px 20px;
+}
+.empty-state h2{font-size:1.8rem;margin:.5rem 0 1rem}
+.empty-state p{color:var(--muted);line-height:1.6;margin:0 0 1.5rem}
+
+/* ── SETTINGS DIALOG ── */
+dialog{
+  border:1px solid var(--line);border-radius:24px;
+  background:linear-gradient(180deg,#0d1020,#080a15);
+  color:var(--text);padding:28px;max-width:420px;width:calc(100% - 40px);
+  box-shadow:0 40px 100px rgba(0,0,0,.6);
+}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+dialog h2{margin:0 0 4px;font-size:1.4rem}
+dialog p{color:var(--muted);margin:0 0 20px;font-size:.9rem;line-height:1.5}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:.82rem;font-weight:800;color:var(--muted);margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase}
+.form-input{
+  width:100%;padding:.75rem 1rem;border:1px solid var(--line);border-radius:12px;
+  background:rgba(255,255,255,.06);color:var(--text);font-size:.92rem;
+  outline:none;font-family:inherit;transition:border-color .15s;
+}
+.form-input:focus{border-color:var(--accent)}
+.dialog-actions{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+.btn-primary{
+  flex:1;padding:.8rem 1rem;border:none;border-radius:999px;
+  background:var(--accent);color:#071015;font-weight:900;font-size:.92rem;cursor:pointer;
+}
+.btn-secondary{
+  padding:.8rem 1rem;border:1px solid var(--line);border-radius:999px;
+  background:var(--panel2);color:var(--text);font-weight:800;font-size:.92rem;cursor:pointer;
+}
+.btn-danger{
+  padding:.8rem 1rem;border:1px solid rgba(255,76,119,.4);border-radius:999px;
+  background:rgba(255,76,119,.12);color:var(--danger);font-weight:800;font-size:.92rem;cursor:pointer;
+}
+
+/* ── TRAIT COLORS ── */
+.t-leadership{background:linear-gradient(90deg,#7dffbe,#65f4d0)}
+.t-creativity{background:linear-gradient(90deg,#9d7cff,#c47cff)}
+.t-discipline{background:linear-gradient(90deg,#ffd166,#ffb340)}
+.t-compassion{background:linear-gradient(90deg,#ff8fa8,#ff6b8a)}
+.t-ambition{background:linear-gradient(90deg,#ff9a62,#ff6a35)}
+.t-power{background:linear-gradient(90deg,#ff4c77,#cc2255)}
+
+/* ── CHAPTER HEADER ── */
+.chapter-header{
+  background:linear-gradient(135deg,rgba(125,255,190,.12),rgba(157,124,255,.1));
+  border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:20px;
+}
+.chapter-kicker{font-size:.72rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.chapter-title{font-size:1.3rem;font-weight:900;margin:0}
+.chapter-meta{font-size:.82rem;color:var(--muted);margin-top:4px}
+
+/* Scrollbar */
+*{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a class="nav-brand" href="/">MaskZero</a>
+  <div class="nav-char" id="nav-char">
+    <span class="nav-badge" id="nav-char-name">Loading…</span>
+    <span class="nav-badge" id="nav-char-level" style="color:var(--gold)">Lv 1</span>
+    <span class="nav-badge" style="color:var(--muted);font-size:.74rem">Campaign</span>
+  </div>
+  <div class="nav-actions">
+    <button class="icon-btn" id="btn-settings" title="Settings &amp; API Key" aria-label="Settings">⚙</button>
+    <button class="icon-btn" id="btn-memory" title="Story Memory" aria-label="Toggle memory sidebar">📖</button>
+    <a class="icon-btn" href="/spark-dashboard/" title="Command Post">🗺</a>
+  </div>
+</nav>
+
+<!-- ── MAIN SHELL ── -->
+<div class="shell" id="shell">
+
+  <!-- ── LEFT SIDEBAR: Character Sheet ── -->
+  <aside class="sidebar-left" id="sidebar-left">
+    <p class="panel-title">Character</p>
+    <div id="char-sheet">
+      <div class="char-name" id="cs-name">—</div>
+      <div class="char-cast" id="cs-cast">—</div>
+      <div class="xp-bar-wrap">
+        <div class="xp-label"><span>XP</span><span id="cs-xp-label">0 / 120</span></div>
+        <div class="xp-bar"><span id="cs-xp-bar" style="width:0%"></span></div>
+      </div>
+      <div class="trait-list" id="cs-traits"></div>
+    </div>
+
+    <p class="panel-title" style="margin-top:20px">Reputation</p>
+    <div class="faction-list" id="cs-factions"></div>
+
+    <p class="panel-title" style="margin-top:20px">Inventory</p>
+    <div class="inventory-list" id="cs-inventory">
+      <div class="inv-item" style="color:rgba(244,247,251,.38);font-style:italic">Empty</div>
+    </div>
+
+    <div style="margin-top:20px">
+      <a href="/quiz/" style="font-size:.82rem;color:var(--muted);text-decoration:underline">← Change Character</a>
+    </div>
+  </aside>
+
+  <!-- ── CENTER: Story Area ── -->
+  <main class="story-area" id="story-area">
+    <div class="story-log" id="story-log" aria-live="polite" aria-label="Story log"></div>
+    <div class="input-area" id="input-area">
+      <div class="choices" id="choices"></div>
+      <div class="custom-row">
+        <input class="custom-input" id="custom-input" type="text"
+               placeholder="Type a custom action…" maxlength="300" autocomplete="off">
+        <button class="send-btn" id="send-btn" disabled>Send</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── RIGHT SIDEBAR: Story Memory ── -->
+  <aside class="sidebar-right" id="sidebar-right">
+    <p class="panel-title">Story Memory</p>
+    <div id="memory-events"></div>
+
+    <p class="panel-title" style="margin-top:20px">District</p>
+    <div id="district-info" style="font-size:.85rem;color:var(--muted);line-height:1.5"></div>
+
+    <p class="panel-title" style="margin-top:20px">Canon Tier</p>
+    <div style="font-size:.82rem;color:var(--muted);line-height:1.6">
+      Campaign choices are <strong style="color:var(--accent)">Tier 1 canon</strong> — they change Meridian City permanently.
+    </div>
+  </aside>
+</div>
+
+<!-- ── SETTINGS DIALOG ── -->
+<dialog id="settings-dialog" aria-label="Settings">
+  <h2>⚙ Settings</h2>
+  <p>Connect an OpenAI key for AI Dungeon Master mode. Without a key the scripted Meridian City adventure runs.</p>
+  <div class="form-group">
+    <label for="api-key-input">OpenAI API Key (optional)</label>
+    <input class="form-input" type="password" id="api-key-input" placeholder="sk-…" autocomplete="off">
+  </div>
+  <div class="form-group">
+    <label for="model-select">Model</label>
+    <select class="form-input" id="model-select">
+      <option value="gpt-4o-mini">gpt-4o-mini (fast, affordable)</option>
+      <option value="gpt-4o">gpt-4o (best quality)</option>
+      <option value="gpt-4-turbo">gpt-4-turbo</option>
+    </select>
+  </div>
+  <div class="dialog-actions">
+    <button class="btn-primary" id="save-settings-btn">Save</button>
+    <button class="btn-secondary" id="close-settings-btn">Cancel</button>
+    <button class="btn-danger" id="reset-campaign-btn">Reset Campaign</button>
+  </div>
+</dialog>
+
+<!-- ── SCRIPTS ── -->
+<script src="../assets/js/spark-engine.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     SCRIPTED ADVENTURE — Meridian City Chapter 1: The Awakening
+     Used when no OpenAI API key is configured.
+     ════════════════════════════════════════════════════════════════════ */
+  var SCENES = {
+    /* ── South Meridian (Leadership / Power / Ambition) ─────────────── */
+    south_01: {
+      text: 'The iron gates of South Meridian rise before you — the Vanguard District, where reputation is currency and strength is the only universal language.\n\nA patrol sergeant stops you at the checkpoint, hand resting on the hilt of his shock-baton. Behind him, the city hums with a tension you can feel in your chest.\n\n"New arrival. State your business."',
+      choices: [
+        { text: 'Stand tall. Announce your name and your Spark.', next:'south_02a', traits:{leadership:3}, xp:8 },
+        { text: 'Study the sergeant — read his posture before responding.', next:'south_02b', traits:{discipline:3}, xp:7 },
+        { text: 'Offer a trade of information for passage.', next:'south_02c', traits:{ambition:2}, xp:6 },
+        { text: 'Ask what the tension is about before answering.', next:'south_02d', traits:{compassion:2,leadership:1}, xp:7 }
+      ]
+    },
+    south_02a: {
+      text: 'Your name lands in the air like a declaration. The sergeant\'s eyes narrow — then a slow, approving nod.\n\n"Vanguard\'s been short on bold ones lately." He steps aside. "Commander Orion\'s holding a briefing at the War Hall. If you\'ve got a Spark worth using, now\'s the time."\n\nThe city opens around you — all stone and firelight and the distant rumble of something vast building underground.',
+      choices: [
+        { text: 'Go straight to Commander Orion\'s briefing.', next:'south_03_orion', traits:{leadership:2}, rep:{vanguard:8}, xp:10 },
+        { text: 'Explore the district first — learn the lay of things.', next:'south_03_explore', traits:{discipline:2}, xp:8 },
+        { text: 'Find the sergeant again and ask what he knows.', next:'south_03_intel', traits:{compassion:1,discipline:1}, xp:7 }
+      ]
+    },
+    south_02b: {
+      text: 'You hold the silence. The sergeant is nervous — micro-tremors in the hands, eyes that keep flickering east. Whatever is building in this city, he knows about it.\n\nHe relaxes slightly under your calm scrutiny. "You\'re either very confident or very stupid." A pause. "Either way. We need people right now. Go to the War Hall."',
+      choices: [
+        { text: 'Go to the War Hall — but watch everyone en route.', next:'south_03_orion', traits:{discipline:3}, xp:10 },
+        { text: 'Ask him directly: what is he afraid of?', next:'south_03_intel', traits:{compassion:2,leadership:1}, xp:9 },
+        { text: 'Thank him and disappear into the city on your own terms.', next:'south_03_explore', traits:{ambition:2}, xp:7 }
+      ]
+    },
+    south_02c: {
+      text: 'The sergeant\'s eyes sharpen. "Information." He repeats the word like he\'s tasting it. "What kind?"\n\nYou don\'t have much yet — but confidence is its own currency. You hint at a network, at knowledge that hasn\'t hit the briefings. He doesn\'t fully believe you, but he\'s intrigued enough to wave you through.\n\n"War Hall. And don\'t try that again without something real."',
+      choices: [
+        { text: 'Head to the War Hall and gather real intelligence.', next:'south_03_orion', traits:{ambition:2}, xp:9 },
+        { text: 'Use the opening to melt into the district unobserved.', next:'south_03_explore', traits:{ambition:1,discipline:2}, xp:8 }
+      ]
+    },
+    south_02d: {
+      text: '"You want to know what\'s happening." The sergeant exhales. "Three districts in 48 hours. Lights out. No damage, no bodies — people just... forget where they are for ten minutes. The Vanguard calls it an energy anomaly. I call it a Spark gone wrong."\n\nHe gestures you through. "War Hall. They\'re building a response team."',
+      choices: [
+        { text: 'Report what you heard to Commander Orion.', next:'south_03_orion', traits:{leadership:2,compassion:1}, rep:{vanguard:6}, xp:10 },
+        { text: 'Investigate the anomaly districts yourself first.', next:'south_03_explore', traits:{discipline:1,ambition:2}, xp:9 }
+      ]
+    },
+    south_03_orion: {
+      text: 'Commander Orion is a presence before she is a person — tall, silver-streaked, with the quiet authority of someone who has ended crises and created them in equal measure.\n\n"Another Spark walks in off the street." She studies you without blinking. "Tell me why I should put you on the response team instead of the waiting list."\n\nThe War Hall is full. Everyone is listening.',
+      choices: [
+        { text: '"Because I don\'t wait." Step forward.', next:'south_04', traits:{leadership:3,power:2}, rep:{vanguard:12}, xp:15, event:'Impressed Commander Orion' },
+        { text: '"Because I already know about the anomalies."', next:'south_04', traits:{discipline:2,ambition:2}, rep:{vanguard:8}, xp:12, event:'Demonstrated intelligence to Orion' },
+        { text: '"Let me observe one briefing first. Then decide."', next:'south_04', traits:{compassion:1,discipline:3}, rep:{vanguard:5}, xp:10, event:'Showed strategic patience to Orion' }
+      ]
+    },
+    south_03_explore: {
+      text: 'You slip into the city\'s rhythm. South Meridian pulses — market stalls selling Spark-forged weapons, faction banners competing for wall space, and in the gaps between buildings, the anomaly-scars: patches where the stone looks slightly wrong, slightly absent.\n\nA hooded figure watches you from an alley. When your eyes meet, they don\'t flinch. They slide a folded note onto a crate and walk away.\n\nThe note reads: *They\'re not accidents. The Vanguard knows. — M*',
+      choices: [
+        { text: 'Follow the figure.', next:'south_04_m', traits:{ambition:2,discipline:1}, xp:12, npc:'The Masked Contact' },
+        { text: 'Pocket the note and head to the War Hall with new information.', next:'south_03_orion', traits:{leadership:1,discipline:2}, xp:10 },
+        { text: 'Investigate one of the anomaly-scars directly.', next:'south_04', traits:{creativity:2,discipline:1}, xp:11 }
+      ]
+    },
+    south_03_intel: {
+      text: 'The sergeant\'s name is Arek. He talks fast — the words compressed by pressure.\n\n"The Vanguard found the source three days ago. A Void Shard buried in the old Coliseum foundation. Every time it pulses, a block radius forgets. Gets larger each time."\n\nHe looks over his shoulder. "If it pulses near the Archive Bridge — the whole central grid goes dark. Every Spark in a mile radius, offline."\n\nArek needs someone who won\'t report this upward before they understand it.',
+      choices: [
+        { text: 'Promise Arek you\'ll handle the shard directly.', next:'south_04', traits:{leadership:3,compassion:2}, xp:13, npc:'Sergeant Arek' },
+        { text: 'Take it to Commander Orion — she needs to know.', next:'south_03_orion', traits:{leadership:2,discipline:1}, rep:{vanguard:8}, xp:11 },
+        { text: 'Ask Arek what he thinks you should do.', next:'south_04', traits:{compassion:3}, xp:10 }
+      ]
+    },
+    south_04_m: {
+      text: 'The hooded figure leads you three blocks east, into a building with no Vanguard markings. Inside: maps, data-slates, and a masked face you recognise from every piece of Meridian mythology you\'ve ever heard.\n\n**Mav Zero.**\n\n"You chose to follow. Good." His voice is precise, unhurried. "The Vanguard has been sitting on a Void Shard for three days, hoping it stabilises. It won\'t. It\'s going to pulse again — bigger. I need someone who isn\'t compromised by faction loyalty to get to that Coliseum."\n\nHe looks at you directly. "That\'s where your Spark comes in."',
+      choices: [
+        { text: '"I\'ll do it. Tell me everything."', next:'south_04', traits:{ambition:3,leadership:2}, xp:18, event:'Met Mav Zero', npc:'Mav Zero' },
+        { text: '"I need to know what\'s in it for Meridian, not just for you."', next:'south_04', traits:{compassion:2,leadership:2}, xp:15, event:'Met Mav Zero', npc:'Mav Zero' },
+        { text: '"Why can\'t you do it yourself?"', next:'south_04', traits:{discipline:3}, xp:12, event:'Met Mav Zero', npc:'Mav Zero' }
+      ]
+    },
+    south_04: {
+      text: 'The Void Coliseum looms at the edge of South Meridian — abandoned since the first Spark war, its stone walls half-eaten by an energy that isn\'t quite darkness and isn\'t quite light.\n\nYou can feel the Shard\'s pulse before you can see it. Every 40 seconds, like a heartbeat. Between pulses, the air tastes like forgotten things.\n\nInside, three Vanguard scouts have already entered. One is sitting against the wall, eyes unfocused, muttering the same three words on a loop. The other two are trying to pull her out.\n\nThe Shard is 30 meters ahead, lodged in the foundation stone.',
+      choices: [
+        { text: 'Go to the scouts first — get the incapacitated one out before proceeding.', next:'south_finale', traits:{compassion:4,leadership:2}, xp:18, event:'Rescued Vanguard scouts' },
+        { text: 'Move straight for the Shard — stopping it protects everyone.', next:'south_finale', traits:{power:3,discipline:2}, xp:16 },
+        { text: 'Call to the two functional scouts — coordinate before acting.', next:'south_finale', traits:{leadership:4,discipline:2}, xp:18, event:'Led Vanguard response team' },
+        { text: 'Wait for the next pulse, time its rhythm, then move in the window.', next:'south_finale', traits:{discipline:5}, xp:20, event:'Mapped the Void Shard rhythm' }
+      ]
+    },
+    south_finale: {
+      text: 'The Shard goes cold the moment your Spark meets it — a rush of resistance, then silence. The scouts recover. The pulse stops.\n\nSouth Meridian doesn\'t know exactly what happened. But they feel the difference.\n\nCommander Orion finds you outside the Coliseum at dawn.\n\n"The Vanguard owes you one." A pause — as close to gratitude as she gets. "Chapter Two begins when you\'re ready. You\'ve earned your place in this city."\n\nMeridian remembers:\n✦ The Coliseum incident, sealed.\n✦ The scouts, recovered.\n✦ Your Spark, noted.',
+      choices: [
+        { text: 'Accept Orion\'s offer and join the Vanguard formally.', next:'END', traits:{leadership:3}, rep:{vanguard:20}, xp:25, event:'Joined the Vanguard', item:'Vanguard Seal' },
+        { text: 'Decline — keep your options open.', next:'END', traits:{ambition:3,discipline:2}, xp:20, event:'Refused the Vanguard' },
+        { text: 'Ask if Mav Zero has any connection to the Vanguard.', next:'END', traits:{creativity:2,discipline:2}, xp:22, event:'Questioned Vanguard-Mav Zero link', npc:'Mav Zero' }
+      ]
+    },
+
+    /* ── North / West Meridian (Discipline / Knowledge) ─────────────── */
+    north_01: {
+      text: 'The Archivist spires rise above North Meridian like needles of compacted knowledge — each tower a different era of the city\'s history, all of them sealed to anyone without clearance.\n\nYou approach the district gatehouse. A scholar in a silver coat barely looks up from her data-slate.\n\n"Purpose?" she asks. A single word, but the weight behind it is a hundred more.',
+      choices: [
+        { text: 'Request access to the restricted archive sections.', next:'north_02a', traits:{discipline:3,ambition:1}, xp:8 },
+        { text: 'Observe the gatehouse procedures before stating your purpose.', next:'north_02b', traits:{discipline:4}, xp:9 },
+        { text: 'Tell the truth: you\'re new, you want to understand the city.', next:'north_02c', traits:{compassion:3}, xp:7 },
+        { text: 'Show her your Spark profile without speaking.', next:'north_02d', traits:{creativity:2,ambition:2}, xp:8 }
+      ]
+    },
+    north_02a: {
+      text: 'The scholar\'s pen stops. She looks at you properly for the first time.\n\n"Restricted access requires Level 4 clearance or an active investigation mandate." A pause. "You have neither."\n\nBut she pulls a provisional badge from her drawer. "Observation deck only. Unless you find a reason for me to change that."',
+      choices: [
+        { text: 'Ask what kind of reason would change it.', next:'north_03', traits:{discipline:2,leadership:1}, xp:9 },
+        { text: 'Accept the badge and find that reason yourself.', next:'north_03', traits:{discipline:3,creativity:1}, xp:10 }
+      ]
+    },
+    north_02b: {
+      text: 'You watch the pattern. Access is granted on knowledge, not authority — scholars who can answer three cross-archive questions get deeper clearance on the spot. The system trusts demonstrated competence.\n\nWhen the scholar finally looks up, you quote back the three most recent archive classifications from the public board — accurately.\n\nShe blinks. "How did you—" A brief re-evaluation. "Come through."',
+      choices: [
+        { text: 'Head directly to the restricted wing.', next:'north_03', traits:{discipline:5,creativity:1}, rep:{archivists:10}, xp:14 },
+        { text: 'Stop and ask about the anomaly reports first.', next:'north_03', traits:{discipline:3,compassion:2}, xp:11 }
+      ]
+    },
+    north_02c: {
+      text: '"New." The scholar considers this like it\'s an interesting answer. Most people who walk in here have agendas. Honesty is unusual.\n\n"The Lost Chronicle is re-opened as of this morning," she says quietly. "First new lead in six years. If you want to understand this city, that\'s where it starts."\n\nShe waves you through without asking anything else.',
+      choices: [
+        { text: 'Go immediately to the Lost Chronicle wing.', next:'north_03', traits:{compassion:2,creativity:2}, rep:{archivists:8}, xp:12 },
+        { text: 'Ask her to explain the Chronicle before proceeding.', next:'north_03', traits:{compassion:3,discipline:1}, xp:10 }
+      ]
+    },
+    north_02d: {
+      text: 'The scholar studies your Spark profile with the focused attention of someone reading a text in a language she almost speaks.\n\n"Your primary domains include Analytical and Discipline." She hands you a deeper-access badge without further explanation. "You\'ll be useful on the Chronicle problem."',
+      choices: [
+        { text: 'Accept the assignment without asking what it entails.', next:'north_03', traits:{discipline:4,ambition:1}, rep:{archivists:12}, xp:12 }
+      ]
+    },
+    north_03: {
+      text: 'The Lost Chronicle Wing is colder than the rest of the archive — a deliberate preservation choice, they say. But the feeling is less climate control and more that something here resists being read.\n\nHead Archivist Vael meets you at the entrance. She\'s three hours into a problem that has kept six scholars awake for two days.\n\n"Three pages of the Chronicle disappeared last night. Not damaged. Not stolen. Disappeared — from inside a sealed vault that was never opened." She turns to you. "The only explanation left is Spark interference. Passive or active, someone with significant manifestation power touched this archive."',
+      choices: [
+        { text: 'Examine the vault yourself — trust your Spark to sense residue.', next:'north_04', traits:{discipline:3,creativity:2}, xp:14 },
+        { text: 'Question the night-shift scholars first.', next:'north_04', traits:{discipline:2,compassion:3}, xp:13 },
+        { text: 'Ask Vael what those three pages contained.', next:'north_04', traits:{discipline:2,leadership:2}, xp:12, npc:'Archivist Vael' },
+        { text: 'Propose cross-referencing the Chronicle against current city anomaly data.', next:'north_04', traits:{creativity:4,discipline:2}, xp:16, event:'Proposed Chronicle-Anomaly link' }
+      ]
+    },
+    north_04: {
+      text: 'The answer comes in pieces:\n\nThe missing pages described the original construction of what Meridian called the Anchor — a Spark-forged foundation stone designed to stabilise the city\'s energy grid. The Anchor was supposed to be inert.\n\nBut cross-referencing the data against the district anomaly map, you see it: the three blackout zones form a perfect triangle. The Anchor is at the centre.\n\nSomething is waking up underneath Meridian City.\n\nVael goes very still when you show her. "You mapped this in three hours." Silence. "No one has mapped this in six years."',
+      choices: [
+        { text: 'Propose going to the Anchor\'s location immediately.', next:'north_finale', traits:{leadership:3,ambition:2}, xp:16 },
+        { text: 'Document everything and share it across districts first.', next:'north_finale', traits:{compassion:3,leadership:2}, xp:14, event:'Shared the Anchor map across districts' },
+        { text: 'Ask Vael who else might already know.', next:'north_finale', traits:{discipline:4}, xp:12, npc:'Archivist Vael' }
+      ]
+    },
+    north_finale: {
+      text: 'The knowledge has weight now. You carry it out of the Archive and into the open air of North Meridian, and Meridian City feels different — like a city that has been holding its breath for years has finally exhaled.\n\nArchivist Vael meets you one more time before you leave.\n\n"The Lost Chronicle just got three new pages." She hands you a sealed data-packet. "Your analysis. Added to the permanent record. Whatever you choose next — the city will remember you started here."\n\nMeridian remembers:\n✦ The Anchor discovery, documented.\n✦ The Chronicle, updated.\n✦ Your Spark, referenced in the Archive index.',
+      choices: [
+        { text: 'Join the Archivists Guild formally.', next:'END', traits:{discipline:3,creativity:2}, rep:{archivists:20}, xp:25, event:'Joined the Archivists Guild', item:'Archivist Seal' },
+        { text: 'Take the data-packet and work independently.', next:'END', traits:{ambition:3,discipline:2}, xp:20, event:'Refused the Archivists' },
+        { text: 'Share the data-packet with the Vanguard as well.', next:'END', traits:{leadership:3,compassion:2}, xp:22, event:'Unified Archivist-Vanguard intelligence', rep:{vanguard:8,archivists:8} }
+      ]
+    },
+
+    /* ── East Meridian (Creativity / Compassion) ─────────────────────── */
+    east_01: {
+      text: 'East Meridian — the Crimson Forge district — is loud and alive. Spark-artisans work in open workshops, innovation competes with invention in every direction, and the air carries the specific energy of things being made that have never existed before.\n\nA young apprentice runs out of a burning workshop.\n\nThe fire is small — manageable. But she is clearly panicking, her Spark flickering visibly around her hands, amplifying the flames rather than helping.',
+      choices: [
+        { text: 'Go in and get her back under control — Spark first, fire second.', next:'east_02a', traits:{compassion:4,leadership:2}, xp:10 },
+        { text: 'Direct other people around you — coordinate a response.', next:'east_02b', traits:{leadership:4,creativity:1}, xp:9 },
+        { text: 'Tell her to breathe. Walk her through suppressing her Spark manually.', next:'east_02c', traits:{compassion:3,discipline:3}, xp:11 },
+        { text: 'Use your own Spark to contain the fire perimeter.', next:'east_02d', traits:{power:3,creativity:2}, xp:9 }
+      ]
+    },
+    east_02a: {
+      text: 'The apprentice\'s name is Cael. The fire was her prototype — a Spark-reactive alloy she\'s been developing for three months. She can\'t stop crying, but she also can\'t stop asking about the formula.\n\nIn the doorway of the ruined workshop, covered in ash and still holding her data-slate against her chest like armour, she says: "It was going to work. I know it was."',
+      choices: [
+        { text: 'Help her reconstruct the formula from memory.', next:'east_03', traits:{compassion:2,creativity:3}, xp:12, npc:'Cael the Apprentice' },
+        { text: 'Ask her to walk you through the design — there might be something salvageable.', next:'east_03', traits:{creativity:4,compassion:1}, xp:13, npc:'Cael the Apprentice' },
+        { text: 'Make sure she\'s safe first before worrying about the prototype.', next:'east_03', traits:{compassion:5}, xp:11, npc:'Cael the Apprentice' }
+      ]
+    },
+    east_02b: {
+      text: 'Three workshop owners respond. The fire is contained in under four minutes. Your coordination is noticed — not just by the people present, but by a tall man watching from the far side of the street who does not look like a craftsman.\n\nHe approaches when the crowd disperses. "Not many new arrivals would do what you just did." He extends a hand. "Forge Master Rhen. You have interesting instincts."',
+      choices: [
+        { text: 'Ask what Rhen does, exactly.', next:'east_03', traits:{leadership:2,creativity:2}, xp:12, npc:'Forge Master Rhen' },
+        { text: 'Deflect the credit and ask about the apprentice.', next:'east_03', traits:{compassion:3,leadership:1}, xp:11, npc:'Forge Master Rhen' }
+      ]
+    },
+    east_02c: {
+      text: 'The apprentice exhales. Her Spark settles. The fire drops to a manageable burn and two others take care of it without drama.\n\nShe stares at you. "How did you know that would work?"\n\nYou\'re not entirely sure. But the combination of discipline and the right words at the right moment — that\'s what Sparks do when they\'re operating correctly.',
+      choices: [
+        { text: 'Tell her about your Spark — she deserves to understand what just happened.', next:'east_03', traits:{compassion:3,creativity:2}, xp:12, npc:'Cael the Apprentice' },
+        { text: 'Suggest she find a mentor before working alone again.', next:'east_03', traits:{compassion:2,leadership:2}, xp:11 }
+      ]
+    },
+    east_02d: {
+      text: 'Your Spark expands outward — a moment of precise, controlled pressure that boxes the fire\'s perimeter and starves it of room. It works.\n\nThe other artisans nearby have stopped. A containment like that, that precise, is unusual. Several are watching with something between admiration and assessment.\n\n"New arrival," someone observes. "Interesting Spark."',
+      choices: [
+        { text: 'Acknowledge the crowd — this is a good moment.', next:'east_03', traits:{leadership:3,creativity:1}, xp:11 },
+        { text: 'Move on quietly. The action was enough.', next:'east_03', traits:{discipline:3,ambition:1}, xp:10 }
+      ]
+    },
+    east_03: {
+      text: 'Forge Master Rhen runs the largest independent Spark-craft studio in the district. The Crimson Forge — not a name the city gave him, but one he built the city around.\n\n"I have a problem," he says without preamble, once you\'re inside. "Someone has been copying Spark-craft designs from this studio. The prototypes get to market before we do. Three times in four months."\n\nHe slides a data-slate across the table. The stolen designs are more refined than the originals — whoever is taking them is improving them.\n\n"That means they understand the work. And they\'re not just after profit."',
+      choices: [
+        { text: 'Offer to find the source — use your Spark to trace the pattern.', next:'east_04', traits:{creativity:3,ambition:2}, xp:14 },
+        { text: 'Ask if there\'s a possibility the designs were independently developed.', next:'east_04', traits:{compassion:2,discipline:3}, xp:12 },
+        { text: 'Look at the refined versions — try to understand the mind behind them.', next:'east_04', traits:{creativity:5,discipline:1}, xp:15, event:'Analysed the Crimson Forge theft' },
+        { text: 'Suggest involving the city\'s network to identify the source.', next:'east_04', traits:{leadership:3,creativity:1}, xp:13 }
+      ]
+    },
+    east_04: {
+      text: 'The pattern becomes clear: the designs are being taken by someone with a strong enough Spark to read the creative resonance in unfinished work. A rare capability. Probably unconscious.\n\nThe last copied design was posted on the public innovation board — unsigned. The person sharing it doesn\'t know it\'s theft. They genuinely believe they\'re helping.\n\nRhen goes quiet when you explain this. Then: "They\'re not stealing. They\'re amplifying."\n\n"Yes," you say. "But they need to be found. And understood."',
+      choices: [
+        { text: 'Propose bringing the unknown amplifier into the Forge as a collaborator.', next:'east_finale', traits:{compassion:3,creativity:3,leadership:1}, xp:16, event:'Proposed the Forge amplifier partnership' },
+        { text: 'Find and confront the person — explain the problem directly.', next:'east_finale', traits:{compassion:2,leadership:3}, xp:14 },
+        { text: 'Report it to city authorities — this is still unauthorized use.', next:'east_finale', traits:{discipline:4}, xp:12 }
+      ]
+    },
+    east_finale: {
+      text: 'The amplifier turns out to be Cael.\n\nThe apprentice from the fire. She\'d been absorbing design resonance from every workshop in the district for months, unconsciously refining everything she touched. She didn\'t know.\n\nWhen you bring her to Rhen, something extraordinary happens: instead of consequences, there is recognition. The Crimson Forge gains its most unusual apprentice.\n\nThe city notes the resolution. East Meridian\'s innovation index rises.\n\nMeridian remembers:\n✦ The Crimson Forge theft, resolved without conflict.\n✦ Cael\'s talent, recognised.\n✦ Your Spark, credited.',
+      choices: [
+        { text: 'Stay to mentor Cael through her early training.', next:'END', traits:{compassion:4,creativity:2}, rep:{crimson_forge:20}, xp:25, event:'Became Cael\'s mentor', item:'Crimson Forge Seal', npc:'Cael the Apprentice' },
+        { text: 'Leave Cael with Rhen and continue into the city.', next:'END', traits:{ambition:3,leadership:2}, xp:20, event:'Resolved the Crimson Forge case' },
+        { text: 'Ask Rhen what else the district needs.', next:'END', traits:{compassion:2,leadership:3}, rep:{crimson_forge:12}, xp:22, event:'Opened an ongoing Forge relationship' }
+      ]
+    },
+
+    /* ── Chapter end ─────────────────────────────────────────────────── */
+    END: {
+      text: '**Chapter 1: Complete.**\n\nYou\'ve taken your first steps in Meridian City. The city has registered your Spark — your choices, your reputation, your presence.\n\nThe story continues.\n\nYour character has been updated. Return when you\'re ready for Chapter 2.',
+      choices: []
+    }
+  };
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     TRAIT COLOR UTILITY
+     ════════════════════════════════════════════════════════════════════ */
+  var TRAIT_COLORS = {
+    leadership:'#7dffbe',creativity:'#9d7cff',discipline:'#ffd166',
+    compassion:'#ff8fa8',ambition:'#ff9a62',power:'#ff4c77'
+  };
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     UI HELPERS
+     ════════════════════════════════════════════════════════════════════ */
+  var $ = function(id){ return document.getElementById(id); };
+
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  function mdLight(s) {
+    // Very light markdown: **bold**, *italic*, newlines
+    return esc(s)
+      .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g,'<em>$1</em>')
+      .replace(/✦/g,'<span style="color:var(--accent)">✦</span>')
+      .replace(/\n/g,'<br>');
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     RENDER CHARACTER SHEET
+     ════════════════════════════════════════════════════════════════════ */
+  function renderSheet(rec) {
+    $('cs-name').textContent = rec.name;
+    $('cs-cast').textContent = rec.cast + (rec.spark_signature ? ' · ' + rec.spark_signature : '');
+    $('nav-char-name').textContent = rec.name;
+    $('nav-char-level').textContent = 'Lv ' + rec.level;
+
+    var xp = SparkEngine.xpProgress(rec);
+    $('cs-xp-label').textContent = xp.current + ' / ' + xp.needed;
+    $('cs-xp-bar').style.width = xp.pct + '%';
+
+    // Traits
+    var traitHtml = '';
+    SparkEngine.TRAIT_KEYS.forEach(function(k) {
+      var v = parseInt(rec.traits[k], 10) || 0;
+      traitHtml += '<div class="trait-row">' +
+        '<span class="trait-name">' + esc(k) + '</span>' +
+        '<div class="trait-bar"><span class="t-' + esc(k) + '" style="width:' + v + '%"></span></div>' +
+        '<span class="trait-val">' + v + '</span></div>';
+    });
+    $('cs-traits').innerHTML = traitHtml;
+
+    // Factions
+    var factionHtml = '';
+    SparkEngine.FACTION_KEYS.forEach(function(k) {
+      var v = parseInt(rec.reputation[k], 10) || 0;
+      var cls = v > 0 ? 'pos' : (v < 0 ? 'neg' : 'zero');
+      var label = k.replace(/_/g,' ');
+      factionHtml += '<div class="faction-row">' +
+        '<span class="faction-name">' + esc(label) + '</span>' +
+        '<span class="faction-val ' + cls + '">' + (v > 0 ? '+' : '') + v + '</span>' +
+        '</div>';
+    });
+    $('cs-factions').innerHTML = factionHtml;
+
+    // Inventory
+    var inv = rec.inventory || [];
+    if (inv.length) {
+      $('cs-inventory').innerHTML = inv.map(function(i) {
+        return '<div class="inv-item">' + esc(i.name || i) + '</div>';
+      }).join('');
+    }
+
+    // District
+    var district = rec.meridian.starting_district || SparkEngine.deriveDistrict(rec.traits);
+    $('district-info').innerHTML =
+      '<strong style="color:var(--accent)">' + esc(SparkEngine.DISTRICT_NAMES[district] || district) + '</strong>' +
+      '<br><span style="color:var(--muted)">' + esc(rec.meridian.reputation_title || '') + '</span>';
+
+    // Memory events
+    var events = (rec.world_events || []).slice(-8).reverse();
+    var memHtml = events.length
+      ? events.map(function(e) {
+          var t = e.tier === 2 ? 'tier2' : '';
+          var txt = e.description || (e.type === 'level_up' ? 'Reached Level ' + e.level : e.type);
+          return '<div class="memory-entry ' + t + '">' + esc(txt) + '</div>';
+        }).join('')
+      : '<div style="font-size:.82rem;color:rgba(244,247,251,.38);font-style:italic">No events yet</div>';
+    $('memory-events').innerHTML = memHtml;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     STORY LOG RENDERING
+     ════════════════════════════════════════════════════════════════════ */
+  function appendMsg(role, text, traitFlashes) {
+    var log = $('story-log');
+    var div = document.createElement('div');
+    div.className = 'msg msg-' + role;
+    var label = role === 'dm' ? 'Dungeon Master' : (role === 'player' ? 'You' : '');
+    var labelHtml = label ? '<div class="msg-label">' + label + '</div>' : '';
+    var flashHtml = '';
+    if (traitFlashes && traitFlashes.length) {
+      flashHtml = '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">' +
+        traitFlashes.map(function(f) {
+          return '<span class="trait-flash' + (f.delta < 0 ? ' neg' : '') + '">' +
+            (f.delta > 0 ? '+' : '') + f.delta + ' ' + f.name + '</span>';
+        }).join('') + '</div>';
+    }
+    div.innerHTML = labelHtml + '<div class="msg-bubble">' + mdLight(text) + flashHtml + '</div>';
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+    return div;
+  }
+
+  function appendTyping() {
+    var log = $('story-log');
+    var div = document.createElement('div');
+    div.className = 'msg msg-dm';
+    div.id = 'typing-indicator';
+    div.innerHTML = '<div class="msg-label">Dungeon Master</div>' +
+      '<div class="msg-bubble"><div class="typing-indicator">' +
+      '<span></span><span></span><span></span></div></div>';
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+    return div;
+  }
+
+  function removeTyping() {
+    var t = $('typing-indicator');
+    if (t) t.remove();
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     CHOICES RENDERING
+     ════════════════════════════════════════════════════════════════════ */
+  var pendingScene = null;
+
+  function renderChoices(choices) {
+    var wrap = $('choices');
+    var sendBtn = $('send-btn');
+    wrap.innerHTML = '';
+    if (!choices || !choices.length) {
+      $('custom-input').disabled = true;
+      sendBtn.disabled = true;
+      // Chapter complete — show restart option
+      wrap.innerHTML = '<a href="/spark-dashboard/" class="choice-btn" style="text-align:center;flex:none;width:auto">' +
+        '→ Go to Command Post</a>' +
+        '<a href="/gauntlet/" class="choice-btn" style="text-align:center;flex:none;width:auto">' +
+        '→ Enter the Gauntlet</a>';
+      return;
+    }
+    $('custom-input').disabled = false;
+    sendBtn.disabled = false;
+    choices.forEach(function(c, i) {
+      var btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.innerHTML = '<span class="choice-num">' + (i+1) + '</span>' + esc(c.text);
+      btn.addEventListener('click', function() {
+        handleChoice(c, c.text);
+      });
+      wrap.appendChild(btn);
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     CHOICE HANDLING + TRAIT UPDATES
+     ════════════════════════════════════════════════════════════════════ */
+  function applyChoiceEffects(choice) {
+    var flashes = [];
+    if (choice.traits) {
+      SparkEngine.updateTraits(choice.traits);
+      Object.keys(choice.traits).forEach(function(k) {
+        if (choice.traits[k] !== 0) {
+          flashes.push({ name: k, delta: choice.traits[k] });
+        }
+      });
+    }
+    if (choice.rep)   SparkEngine.updateReputation(choice.rep);
+    if (choice.xp)    SparkEngine.addXP(choice.xp, 'campaign', 1);
+    if (choice.event) SparkEngine.addWorldEvent(choice.event, 1);
+    if (choice.item)  SparkEngine.addItem(choice.item);
+    if (choice.npc)   SparkEngine.addNPC(choice.npc);
+    return flashes;
+  }
+
+  var busy = false;
+
+  function handleChoice(choiceObj, playerText) {
+    if (busy) return;
+    busy = true;
+    setInputEnabled(false);
+
+    // Log player action
+    appendMsg('player', playerText);
+    SparkEngine.saveStoryEntry('player', playerText);
+
+    var flashes = [];
+    var nextScene = null;
+
+    if (choiceObj) {
+      flashes = applyChoiceEffects(choiceObj);
+      nextScene = choiceObj.next;
+      SparkEngine.updateCampaign({ scene_id: nextScene, active: true });
+    }
+
+    var rec = SparkEngine.load();
+    if (rec) renderSheet(rec);
+
+    // Determine response
+    var apiKey = SparkEngine.getApiKey();
+    if (apiKey) {
+      aiDmRespond(playerText, flashes, nextScene);
+    } else {
+      scriptedRespond(nextScene, flashes);
+    }
+  }
+
+  function setInputEnabled(on) {
+    var btns = $('choices').querySelectorAll('button');
+    btns.forEach(function(b){ b.disabled = !on; });
+    $('custom-input').disabled = !on;
+    $('send-btn').disabled = !on;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     SCRIPTED DM RESPONSE
+     ════════════════════════════════════════════════════════════════════ */
+  function scriptedRespond(nextSceneId, traitFlashes) {
+    appendTyping();
+    setTimeout(function() {
+      removeTyping();
+      var scene = SCENES[nextSceneId];
+      if (!scene) {
+        appendMsg('dm', 'The path forward is unwritten... (scene not found: ' + nextSceneId + ')');
+        busy = false;
+        setInputEnabled(true);
+        return;
+      }
+      appendMsg('dm', scene.text, traitFlashes.length ? traitFlashes : null);
+      SparkEngine.saveStoryEntry('dm', scene.text);
+      pendingScene = scene;
+      renderChoices(scene.choices);
+      busy = false;
+      if (scene.choices.length > 0) setInputEnabled(true);
+    }, 900 + Math.random() * 600);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     AI DM RESPONSE (OpenAI)
+     ════════════════════════════════════════════════════════════════════ */
+  function buildSystemPrompt(rec) {
+    var traits = SparkEngine.TRAIT_KEYS.map(function(k) {
+      return k + ':' + rec.traits[k];
+    }).join(', ');
+    var rep = SparkEngine.FACTION_KEYS.map(function(k) {
+      return k.replace(/_/g,' ') + ':' + rec.reputation[k];
+    }).join(', ');
+    var inv = (rec.inventory||[]).map(function(i){ return i.name||i; }).join(', ') || 'empty';
+    var npcs = (rec.known_npcs||[]).join(', ') || 'none';
+    var events = (rec.world_events||[]).slice(-5).map(function(e){
+      return e.description || e.type;
+    }).join('; ') || 'none';
+    var district = SparkEngine.DISTRICT_NAMES[rec.meridian.starting_district] || 'Meridian City';
+
+    return [
+      'You are the Dungeon Master for MaskZero — an AI-powered manifestation RPG set in Meridian City.',
+      '',
+      'PLAYER CHARACTER:',
+      'Name: ' + rec.name,
+      'Class: ' + rec.cast,
+      'Spark Signature: ' + (rec.spark_signature||'unknown'),
+      'Domains: ' + (rec.domains||[]).join(', '),
+      'Traits: ' + traits,
+      'Starting District: ' + district,
+      'Level: ' + rec.level + ' | XP: ' + rec.xp,
+      '',
+      'WORLD STATE:',
+      'Inventory: ' + inv,
+      'Known NPCs: ' + npcs,
+      'World Events: ' + events,
+      'Faction Reputation: ' + rep,
+      '',
+      'MERIDIAN CITY LORE:',
+      '- North District: Knowledge — Archivists Guild, The Lost Chronicle arc',
+      '- East District: Creativity — Crimson Forge artisans, innovation and theft',
+      '- West District: Discipline — The Order enforcers, hidden truths',
+      '- South District: Power — Vanguard warriors, Void Shard threat',
+      '- Central Meridian: The Crossroads — where all paths converge',
+      '- Mav Zero: Mysterious masked guide, world interpreter, occasional quest giver',
+      '',
+      'DM RULES:',
+      '1. Keep responses under 200 words. Be vivid and specific.',
+      '2. Always end with exactly 3 numbered choices on new lines (format: "1. [choice]").',
+      '3. Never contradict stored world events or established facts.',
+      '4. Personalize the world to this character\'s traits and archetype.',
+      '5. Make each choice reflect a different manifestation path.',
+      '6. The city is dark, complex, layered — it responds to the player.',
+      '7. Mav Zero may appear but should remain mysterious.',
+      '8. After choices, subtly acknowledge which trait the action reflects.'
+    ].join('\n');
+  }
+
+  function buildChoicesFromAIText(text) {
+    // Parse "1. ...\n2. ...\n3. ..." from AI response
+    var lines = text.split('\n');
+    var choices = [];
+    lines.forEach(function(line) {
+      var m = line.match(/^(\d)\.\s+(.+)$/);
+      if (m) {
+        choices.push({ text: m[2].trim(), next: null, traits: {}, xp: 8 });
+      }
+    });
+    return choices;
+  }
+
+  function aiDmRespond(playerText, traitFlashes, hintScene) {
+    var rec = SparkEngine.load();
+    if (!rec) { busy = false; return; }
+
+    var apiKey = SparkEngine.getApiKey();
+    var model  = SparkEngine.getModel();
+
+    // Build message history from story log
+    var log = (rec.campaign.story_log || []).slice(-16);
+    var messages = [{ role:'system', content: buildSystemPrompt(rec) }];
+    log.forEach(function(entry) {
+      messages.push({
+        role: entry.role === 'dm' ? 'assistant' : 'user',
+        content: entry.text
+      });
+    });
+
+    var indicator = appendTyping();
+
+    fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
+      },
+      body: JSON.stringify({
+        model: model,
+        messages: messages,
+        max_tokens: 450,
+        temperature: 0.88
+      })
+    })
+    .then(function(r) {
+      if (!r.ok) {
+        var status = r.status;
+        return r.json().then(function(e){ var err = new Error(e.error && e.error.message || 'API error'); err.status = status; throw err; });
+      }
+      return r.json();
+    })
+    .then(function(data) {
+      removeTyping();
+      var text = data.choices[0].message.content.trim();
+      appendMsg('dm', text, traitFlashes.length ? traitFlashes : null);
+      SparkEngine.saveStoryEntry('dm', text);
+      var aiChoices = buildChoicesFromAIText(text);
+      pendingScene = { text: text, choices: aiChoices };
+      renderChoices(aiChoices);
+      busy = false;
+      setInputEnabled(true);
+    })
+    .catch(function(err) {
+      removeTyping();
+      appendMsg('system', '⚠ AI DM unavailable (' + err.message + '). Falling back to scripted mode.');
+      if (err.status === 401 || err.status === 403) SparkEngine.setApiKey(''); // Clear key on auth failure
+      scriptedRespond(hintScene, traitFlashes);
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     CUSTOM INPUT
+     ════════════════════════════════════════════════════════════════════ */
+  $('send-btn').addEventListener('click', sendCustom);
+  $('custom-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !busy) sendCustom();
+  });
+
+  function sendCustom() {
+    var input = $('custom-input');
+    var text = input.value.trim();
+    if (!text || busy) return;
+    input.value = '';
+    handleChoice({ text:text, traits:{creativity:1}, xp:5 }, text);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     SETTINGS DIALOG
+     ════════════════════════════════════════════════════════════════════ */
+  $('btn-settings').addEventListener('click', function() {
+    $('api-key-input').value = SparkEngine.getApiKey();
+    $('model-select').value  = SparkEngine.getModel();
+    $('settings-dialog').showModal();
+  });
+  $('close-settings-btn').addEventListener('click', function() {
+    $('settings-dialog').close();
+  });
+  $('save-settings-btn').addEventListener('click', function() {
+    SparkEngine.setApiKey($('api-key-input').value);
+    SparkEngine.setModel($('model-select').value);
+    $('settings-dialog').close();
+  });
+  $('reset-campaign-btn').addEventListener('click', function() {
+    if (!confirm('Reset this campaign? Story progress will be lost. Character traits and XP are kept.')) return;
+    var rec = SparkEngine.load();
+    if (rec) {
+      rec.campaign = { chapter:1, scene_id:null, story_log:[], active:false };
+      SparkEngine.save(rec);
+    }
+    $('settings-dialog').close();
+    $('story-log').innerHTML = '';
+    startCampaign();
+  });
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     BOOT
+     ════════════════════════════════════════════════════════════════════ */
+  function startCampaign() {
+    var rec = SparkEngine.load();
+    if (!rec) {
+      // No character — show prompt
+      $('story-log').innerHTML =
+        '<div class="empty-state">' +
+        '<div style="font-size:3rem;margin-bottom:12px">⚡</div>' +
+        '<h2>No Spark found</h2>' +
+        '<p>Create your character first, then return to enter Meridian City.</p>' +
+        '<a href="/quiz/" class="send-btn" style="display:inline-flex;text-decoration:none">Create Your Spark →</a>' +
+        '</div>';
+      setInputEnabled(false);
+      return;
+    }
+
+    renderSheet(rec);
+
+    // Restore story log from saved state
+    var log = (rec.campaign && rec.campaign.story_log) || [];
+    if (log.length > 0) {
+      // Restore previous session
+      log.forEach(function(entry) {
+        appendMsg(entry.role, entry.text);
+      });
+      // Re-render last DM scene choices if available
+      var lastDM = null;
+      for (var i = log.length - 1; i >= 0; i--) {
+        if (log[i].role === 'dm') { lastDM = log[i]; break; }
+      }
+      if (lastDM) {
+        var apiKey = SparkEngine.getApiKey();
+        if (!apiKey) {
+          // Scripted mode: find scene by ID
+          var sid = rec.campaign.scene_id;
+          var scene = sid && SCENES[sid];
+          if (scene) {
+            renderChoices(scene.choices);
+          } else {
+            renderChoices([]);
+          }
+        } else {
+          // AI mode: show custom input only
+          renderChoices([{ text:'Continue the story', next:null, traits:{}, xp:5 }]);
+        }
+      }
+      appendMsg('system', 'Welcome back, ' + rec.name + '. Your story continues.');
+      return;
+    }
+
+    // Fresh campaign start
+    SparkEngine.updateCampaign({ active: true, chapter: 1 });
+
+    // Opening narration based on district
+    var district = rec.meridian.starting_district || SparkEngine.deriveDistrict(rec.traits);
+    var openingScene = district === 'north' || district === 'west' ? 'north_01' :
+                       district === 'east'  || district === 'central' ? 'east_01' : 'south_01';
+
+    var openingText = 'Welcome to Meridian City, **' + rec.name + '**.\n\n' +
+      'Your Spark has been identified. Your manifestation profile has been read by the city before you ever set foot inside it.\n\n' +
+      'The city knows you.\n\n' +
+      'Now you learn it.';
+
+    appendMsg('dm', openingText);
+    SparkEngine.saveStoryEntry('dm', openingText);
+
+    setTimeout(function() {
+      var scene = SCENES[openingScene];
+      if (!scene) return;
+      appendMsg('dm', scene.text);
+      SparkEngine.saveStoryEntry('dm', scene.text);
+      SparkEngine.updateCampaign({ scene_id: openingScene });
+      pendingScene = scene;
+      renderChoices(scene.choices);
+      setInputEnabled(true);
+    }, 400);
+  }
+
+  // Wait for engine to load
+  if (typeof SparkEngine === 'undefined') {
+    document.addEventListener('DOMContentLoaded', startCampaign);
+  } else {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', startCampaign);
+    } else {
+      startCampaign();
+    }
+  }
+
+}());
+</script>
+</body>
+</html>

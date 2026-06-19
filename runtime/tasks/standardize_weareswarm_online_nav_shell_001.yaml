@@ -1,0 +1,14 @@
+id: standardize_weareswarm_online_nav_shell_001
+title: Standardize weareswarm.online navigation shell
+status: ready_for_verification
+lane: website_quality
+target: weareswarm.online
+risk: low
+actions:
+  - add shared nav-shell.css
+  - standardize primary nav markup across deployed pages
+  - preserve nav-fallback.js mobile toggle behavior
+verification:
+  - exactly one canonical nav per html page
+  - shared nav css linked on every html page
+  - nav fallback script linked on every html page

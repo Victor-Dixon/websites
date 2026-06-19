@@ -19,6 +19,7 @@ def test_key_pages_link_to_missions_route():
     pages = [
         CONTENT / "home.html",
         CONTENT / "the-emergence.html",
+        CONTENT / "quiz/index.html",
         CONTENT / "spark-os/index.html",
         CONTENT / "spark-generator/index.html",
         CONTENT / "battles.html",

@@ -370,3 +370,90 @@ dd {
     min-height: 360px;
   }
 }
+
+/* Quest interaction panel */
+.quest-text {
+  margin: 0 0 .85rem;
+  color: var(--silver);
+  font-size: .97rem;
+  line-height: 1.55;
+}
+
+.quest-choices {
+  display: grid;
+  gap: .5rem;
+}
+
+.quest-choice-btn {
+  width: 100%;
+  padding: .7rem 1rem;
+  border: 1px solid rgba(98, 217, 255, .42);
+  border-radius: 14px;
+  color: var(--silver);
+  background: rgba(98, 217, 255, .08);
+  font-size: .92rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+
+.quest-choice-btn:hover {
+  background: rgba(98, 217, 255, .18);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+.quest-choice-btn:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Quest log */
+.quest-log {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: .45rem;
+}
+
+.quest-log li {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem .75rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: .9rem;
+  background: rgba(255, 255, 255, .03);
+}
+
+.quest-available {
+  color: var(--muted);
+}
+
+.quest-active {
+  color: var(--warn);
+  border-color: rgba(255, 209, 102, .28);
+}
+
+.quest-done {
+  color: var(--good);
+  border-color: rgba(118, 240, 170, .28);
+}
+
+.quest-icon {
+  font-size: .85rem;
+  flex-shrink: 0;
+}
+
+/* Compact stat lists for core stats and factions */
+.stat-list--core div,
+.stat-list--factions div {
+  padding: .45rem .65rem;
+}
+
+.stat-list--core dd,
+.stat-list--factions dd {
+  font-size: .9rem;
+}

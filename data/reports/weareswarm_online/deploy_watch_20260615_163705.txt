@@ -1,0 +1,141 @@
+TASK=watch_weareswarm_online_deploys_012
+TARGET=weareswarm.online canonical nav deploy
+MAIN_RUN=27577998715
+KIDS_RUN=27578000198
+DATE=2026-06-15T16:37:05-05:00
+
+== WATCH MAIN DEPLOY ==
+Run Deploy WeAreSwarm Online (27577998715) has already completed with 'failure'
+MAIN_STATUS=1
+
+== MAIN FAILED LOGS ==
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	﻿2026-06-15T21:36:29.7854227Z ##[group]Run set -euo pipefail
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7854729Z ^[[36;1mset -euo pipefail^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7855491Z ^[[36;1mremote="${HOSTINGER_USER}@${HOSTINGER_HOST}"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7856474Z ^[[36;1mssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7857743Z ^[[36;1mscp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7858565Z ^[[36;1m# Dream.OS canonical nav assets^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7859008Z ^[[36;1mif [ -d routes/weareswarm.online/assets ]; then^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7859494Z ^[[36;1m  "${ssh_base[@]}" "mkdir -p '$REMOTE_ROOT/assets'"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7860074Z ^[[36;1m  "${scp_base[@]}" -r routes/weareswarm.online/assets/* "$remote:$REMOTE_ROOT/assets/"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7860584Z ^[[36;1mfi^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7860889Z ^[[36;1m^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7861167Z ^[[36;1m"${ssh_base[@]}" "set -e^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7861642Z ^[[36;1m  mkdir -p '$REMOTE_ROOT/dreamos-services' '$REMOTE_ROOT/skill-tree'^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7862597Z ^[[36;1m  if [ -f '$REMOTE_ROOT/dreamos-services/index.html' ]; then cp '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/dreamos-services/index.html.bak.${GITHUB_RUN_ID}'; fi^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7863783Z ^[[36;1m  if [ -f '$REMOTE_ROOT/skill-tree/index.html' ]; then cp '$REMOTE_ROOT/skill-tree/index.html' '$REMOTE_ROOT/skill-tree/index.html.bak.${GITHUB_RUN_ID}'; fi^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7864773Z ^[[36;1m  if [ -f '$REMOTE_ROOT/.htaccess' ]; then cp '$REMOTE_ROOT/.htaccess' '$REMOTE_ROOT/.htaccess.bak.${GITHUB_RUN_ID}'; fi^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7865828Z ^[[36;1m"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7866127Z ^[[36;1m^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7866722Z ^[[36;1m"${scp_base[@]}" "routes/weareswarm.online/dreamos-services/index.html" "$remote:$REMOTE_ROOT/dreamos-services/index.html"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7867577Z ^[[36;1m"${ssh_base[@]}" "$remote" "mkdir -p '$REMOTE_ROOT/kids-planner' '$REMOTE_ROOT/data/planner'"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7868395Z ^[[36;1m"${scp_base[@]}" "routes/weareswarm.online/kids-planner/index.html" "$remote:$REMOTE_ROOT/kids-planner/index.html"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7869305Z ^[[36;1m"${scp_base[@]}" "routes/weareswarm.online/data/planner/kids_tasks.json" "$remote:$REMOTE_ROOT/data/planner/kids_tasks.json"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7870237Z ^[[36;1m"${scp_base[@]}" "routes/weareswarm.online/data/planner/all_tasks.json" "$remote:$REMOTE_ROOT/data/planner/all_tasks.json"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7871153Z ^[[36;1m"${scp_base[@]}" "routes/weareswarm.online/data/planner/roadmap.json" "$remote:$REMOTE_ROOT/data/planner/roadmap.json"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7872069Z ^[[36;1m"${scp_base[@]}" "routes/weareswarm.online/data/planner/skill_tree.json" "$remote:$REMOTE_ROOT/data/planner/skill_tree.json"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7872966Z ^[[36;1m"${scp_base[@]}" "routes/weareswarm.online/skill-tree/index.html" "$remote:$REMOTE_ROOT/skill-tree/index.html"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7873902Z ^[[36;1m"${scp_base[@]}" "routes/weareswarm.online/htaccess-canonical-www.snippet" "$remote:/tmp/weareswarm-online-htaccess-snippet.txt"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7874792Z ^[[36;1m^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7875447Z ^[[36;1m"${ssh_base[@]}" "set -e^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7876058Z ^[[36;1m  chmod 644 '$REMOTE_ROOT/dreamos-services/index.html' '$REMOTE_ROOT/skill-tree/index.html'^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7876646Z ^[[36;1m  ht='$REMOTE_ROOT/.htaccess'^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7876999Z ^[[36;1m  touch \"\$ht\"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7877421Z ^[[36;1m  if ! grep -q 'WeAreSwarm.online canonical host' \"\$ht\"; then^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7939899Z ^[[36;1m    tmp=\"/tmp/weareswarm-online-htaccess-${GITHUB_RUN_ID}.txt\"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7941010Z ^[[36;1m    cat /tmp/weareswarm-online-htaccess-snippet.txt > \"\$tmp\"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7941978Z ^[[36;1m    echo '' >> \"\$tmp\"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7942608Z ^[[36;1m    cat \"\$ht\" >> \"\$tmp\"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7943567Z ^[[36;1m    mv \"\$tmp\" \"\$ht\"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7944130Z ^[[36;1m  fi^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7944809Z ^[[36;1m  rm -f /tmp/weareswarm-online-htaccess-snippet.txt^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7945891Z ^[[36;1m"^[[0m
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7983277Z shell: /usr/bin/bash -e {0}
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7983643Z env:
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7983954Z   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7984352Z   HOSTINGER_HOST: 157.173.214.121
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7984701Z   HOSTINGER_USER: u996867598
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7985364Z   HOSTINGER_PORT: 65002
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7985827Z   REMOTE_ROOT: /home/u996867598/domains/weareswarm.online/public_html
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:29.7986306Z ##[endgroup]
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:32.9057603Z bash: line 1: u996867598@157.173.214.121: command not found
+Upload services redesign and www canonical rules	Upload dreamos-services, skill-tree, and patch www canonical rules	2026-06-15T21:36:32.9085552Z ##[error]Process completed with exit code 127.
+
+== WATCH KIDS/PLANNER DEPLOY ==
+Run Deploy WeAreSwarm Online Kids Planner (27578000198) has already completed with 'failure'
+KIDS_STATUS=1
+
+== KIDS FAILED LOGS ==
+deploy-online-planner-routes	Verify live planner routes	﻿2026-06-15T21:36:34.5388212Z ##[group]Run set -euo pipefail
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5388638Z ^[[36;1mset -euo pipefail^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5388932Z ^[[36;1msleep 3^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5389187Z ^[[36;1m^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5389617Z ^[[36;1mcurl -LfsS https://weareswarm.online/kids-planner/ -o /tmp/kids-planner.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5390156Z ^[[36;1mgrep -q "Export JSON" /tmp/kids-planner.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5390783Z ^[[36;1mgrep -q "Save Proof" /tmp/kids-planner.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5391123Z ^[[36;1m^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5391465Z ^[[36;1mcurl -LfsS https://weareswarm.online/tasks/ -o /tmp/tasks.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5391935Z ^[[36;1mgrep -q "Kids Tasks" /tmp/tasks.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5392328Z ^[[36;1mgrep -q "kids_tasks.json" /tmp/tasks.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5392714Z ^[[36;1mgrep -q "Open Kids Planner" /tmp/tasks.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5393043Z ^[[36;1m^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5393417Z ^[[36;1mcurl -LfsS https://weareswarm.online/roadmap/ -o /tmp/roadmap.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5393964Z ^[[36;1mgrep -q "Closeout Roadmap" /tmp/roadmap.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5394395Z ^[[36;1mgrep -q "/tasks/?executor=kids" /tmp/roadmap.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5394825Z ^[[36;1mgrep -q "/tasks/?q=swarm%20brain" /tmp/roadmap.html^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5395182Z ^[[36;1m^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5395623Z ^[[36;1mcurl -LfsS https://weareswarm.online/data/planner/kids_tasks.json -o /tmp/kids_tasks.json^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5396890Z ^[[36;1mpython3 -c 'import json; from pathlib import Path; data=json.loads(Path("/tmp/kids_tasks.json").read_text()); count=data.get("count", len(data.get("tasks", []))); print(f"LIVE_KIDS_FEED_COUNT={count}"); assert count >= 20'^[[0m
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5432269Z shell: /usr/bin/bash -e {0}
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:34.5432606Z ##[endgroup]
+deploy-online-planner-routes	Verify live planner routes	2026-06-15T21:36:37.9319561Z ##[error]Process completed with exit code 1.
+
+== RECENT RUNS ==
+completed	failure	Deploy WeAreSwarm Online Kids Planner	Deploy WeAreSwarm Online Kids Planner	master	workflow_dispatch	27578000198	25s	2026-06-15T21:36:15Z
+completed	failure	fix(weareswarm-online): deploy canonical nav from route source	Deploy WeAreSwarm Online Kids Planner	master	push	27577999156	26s	2026-06-15T21:36:14Z
+completed	failure	Deploy WeAreSwarm Online	Deploy WeAreSwarm Online	master	workflow_dispatch	27577998715	22s	2026-06-15T21:36:13Z
+completed	failure	Deploy XThunder Site	Deploy XThunder Site	master	workflow_dispatch	27562649470	30s	2026-06-15T17:01:14Z
+completed	failure	Deploy XThunder Site	Deploy XThunder Site	master	workflow_dispatch	27562458655	29s	2026-06-15T16:57:57Z
+completed	failure	ci(xthunder): add guarded Hostinger deploy workflow	Deploy XThunder Site	master	push	27562458325	29s	2026-06-15T16:57:57Z
+completed	failure	Deploy WeAreSwarm Site	Deploy WeAreSwarm Site	master	workflow_dispatch	27512350728	2m53s	2026-06-14T21:18:44Z
+completed	cancelled	fix(weareswarm): patch live route source visibility	Deploy WeAreSwarm Site	master	push	27512253779	3s	2026-06-14T21:14:39Z
+
+== LIVE VERIFY ==
+
+URL=https://www.weareswarm.online/tasks/?nocache=1781559431
+CANONICAL_NAV=PASS
+NAV_CSS_LINK=PASS
+NAV_JS_LINK=PASS
+BYTES=13237
+
+URL=https://www.weareswarm.online/kids-planner/?nocache=1781559432
+CANONICAL_NAV=PASS
+NAV_CSS_LINK=PASS
+NAV_JS_LINK=PASS
+BYTES=20452
+
+URL=https://www.weareswarm.online/roadmap/?nocache=1781559432
+CANONICAL_NAV=PASS
+NAV_CSS_LINK=PASS
+NAV_JS_LINK=PASS
+BYTES=9439
+
+URL=https://www.weareswarm.online/skill-tree/?nocache=1781559433
+CANONICAL_NAV=MISS
+NAV_CSS_LINK=MISS
+NAV_JS_LINK=MISS
+BYTES=6791
+
+URL=https://www.weareswarm.online/dreamos-services/?nocache=1781559433
+CANONICAL_NAV=PASS
+NAV_CSS_LINK=PASS
+NAV_JS_LINK=PASS
+BYTES=11234
+
+MISS_COUNT=3
+
+== GIT STATUS ==
+?? _deploy/freerideinvestor.com/
+?? data/reports/weareswarm_online/deploy_watch_20260615_163705.txt
+
+DEPLOY_VERIFY=FAIL
