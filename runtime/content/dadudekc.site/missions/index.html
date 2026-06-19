@@ -44,6 +44,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.25);padding:1rem;b
       <a href="/">Home</a>
       <a href="/the-emergence/">Emergence</a>
       <a href="/spark-generator/">Generate Spark</a>
+      <a href="/cards/">Cards</a>
       <a href="/missions/">Missions</a>
       <a href="/battles/">Battles</a>
     </nav>
@@ -59,6 +60,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.25);padding:1rem;b
       </p>
       <div class="actions">
         <a class="btn primary" href="/spark-generator/">Generate or Save a Spark</a>
+        <a class="btn secondary" href="/cards/">View Cards</a>
         <a class="btn secondary" href="/battles/">Open What-If Arena</a>
       </div>
     </section>
@@ -111,7 +113,9 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.25);padding:1rem;b
   const status = document.getElementById("mission-status");
   const savedKey = "dreamos.savedSparkCharacters.v1";
   const currentKey = "dreamos.currentSparkCharacter.v1";
+  const accountSingleKey = "dreamos.singleSparkCharacter.v1";
   const missionKey = "dreamos.currentMission.v1";
+  const accountConfig = window.DreamOSSparkAccount || {};
 
   function esc(s){
     return String(s || "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
@@ -120,6 +124,50 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.25);padding:1rem;b
   function readJson(key, fallback){
     try { return JSON.parse(localStorage.getItem(key) || "null") || fallback; }
     catch(e) { return fallback; }
+  }
+
+  function accountHeaders(){
+    const headers = {"Accept":"application/json"};
+    if (accountConfig.nonce) headers["X-WP-Nonce"] = accountConfig.nonce;
+    return headers;
+  }
+
+  function normalizeAccountCharacter(character){
+    const domains = Array.isArray(character.manifested_domains) ? character.manifested_domains : (Array.isArray(character.domains) ? character.domains : []);
+    const record = {
+      id: character.card_id || character.id || "account_spark",
+      created_at: character.created_at || new Date().toISOString(),
+      source: character.source || "account-spark",
+      character_name: character.character_name || character.spark_name || character.title || "Saved Spark",
+      lead_domain: character.lead_domain || character.archetype || domains[0] || "Spark",
+      manifested: domains,
+      cast: character.cast || character.archetype || "",
+      power_rating: character.power_rating || "",
+      combat_rating: character.combat_rating || "",
+      rarity_tier: character.rarity_tier || "",
+      profile_shape: character.profile_shape || character.summary || "",
+      powers: character.selected_powers || []
+    };
+    localStorage.setItem(accountSingleKey, JSON.stringify(character));
+    localStorage.setItem(currentKey, JSON.stringify(record));
+    localStorage.setItem(savedKey, JSON.stringify([record]));
+    return record;
+  }
+
+  async function hydrateAccountCharacter(){
+    const loggedIn = accountConfig.loggedIn === true || accountConfig.loggedIn === "1";
+    if (!loggedIn) return;
+    try {
+      const response = await fetch(accountConfig.endpoint || "/wp-json/emergence/v1/characters/me", {
+        method: "GET",
+        credentials: "same-origin",
+        headers: accountHeaders()
+      });
+      const data = await response.json();
+      if (response.ok && data.status === "loaded" && data.character) {
+        normalizeAccountCharacter(data.character);
+      }
+    } catch(e) {}
   }
 
   function currentCharacter(){
@@ -162,7 +210,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.25);padding:1rem;b
     status.scrollIntoView({behavior:"smooth", block:"nearest"});
   });
 
-  renderStatus();
+  hydrateAccountCharacter().finally(function(){ renderStatus(); });
 })();
 </script>
 </body>

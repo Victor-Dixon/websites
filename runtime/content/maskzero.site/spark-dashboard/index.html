@@ -417,14 +417,25 @@ html[data-spark-nav="in"] [data-spark-guest-only]{display:none!important}
   .launch-grid{grid-template-columns:repeat(2,1fr)}
 }
   </style>
+  <link rel="stylesheet" href="/assets/css/maskzero-theme.css">
 </head>
 <body>
-  <nav id="spark-auth-nav" class="comic-nav" aria-label="Spark Protocol">
-    <a href="/">Cover</a>
-    <a href="/spark-generator/">Origin Lab</a>
-    <a href="/spark-login/">Log In</a>
-    <a class="pop" href="/spark-signup/">Join The Universe</a>
-  </nav>
+  <nav class="mz-nav" data-mz-nav data-open="false">
+  <div class="mz-nav-inner">
+    <a class="mz-brand" href="/">
+      <span class="mz-brand-mark" aria-hidden="true"></span>
+      <span>MaskZero</span>
+    </a>
+    <button class="mz-nav-toggle" type="button" data-mz-nav-toggle aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <div class="mz-nav-links" data-mz-nav-links>
+      <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
+      <a href="/services/">Services</a>
+      <a href="/proof/">Proof</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
+</nav>
 
   <main class="comic-wrap">
     <span class="issue-tag">Meridian City · Command Post</span>
@@ -557,6 +568,33 @@ html[data-spark-nav="in"] [data-spark-guest-only]{display:none!important}
     </footer>
     </div>
 
+    <!-- ── MANIFESTATION ENGINE PANEL ── -->
+    <section id="manifestation-engine" style="
+      margin:2rem auto;max-width:1120px;padding:0 16px;
+    ">
+      <div id="me-panel" style="
+        border:1px solid rgba(255,255,255,.14);border-radius:24px;
+        background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+        padding:clamp(1rem,4vw,2rem);
+        font-family:Inter,system-ui,sans-serif;color:#f4f7fb;
+      ">
+        <div style="font-size:.72rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#7dffbe;margin-bottom:8px">
+          Manifestation Engine v1.0
+        </div>
+        <h2 style="font-size:1.6rem;font-weight:900;margin:0 0 .5rem">Unified Character State</h2>
+        <p style="color:rgba(244,247,251,.72);margin:0 0 1.5rem;line-height:1.55">
+          All three modes write to one character record. Campaign, Gauntlet, and Arena outcomes are unified here.
+        </p>
+        <div id="me-content" style="color:rgba(244,247,251,.6);font-style:italic">Loading manifestation record…</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:1.5rem">
+          <a href="/adventure/" style="display:inline-flex;align-items:center;padding:.7rem 1.25rem;border-radius:999px;background:#7dffbe;color:#071015;font-weight:900;font-size:.88rem;text-decoration:none">📖 Campaign</a>
+          <a href="/gauntlet/" style="display:inline-flex;align-items:center;padding:.7rem 1.25rem;border-radius:999px;background:rgba(255,76,119,.8);color:#fff;font-weight:900;font-size:.88rem;text-decoration:none">⚡ Gauntlet</a>
+          <a href="/battles/" style="display:inline-flex;align-items:center;padding:.7rem 1.25rem;border-radius:999px;background:rgba(255,209,102,.8);color:#0a0600;font-weight:900;font-size:.88rem;text-decoration:none">🔥 Arena</a>
+          <a href="/quiz/" style="display:inline-flex;align-items:center;padding:.7rem 1.25rem;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);color:#f4f7fb;font-weight:800;font-size:.88rem;text-decoration:none">✦ New Spark</a>
+        </div>
+      </div>
+    </section>
+
     <section class="tier-aside" id="origin-rules">
       <h2 class="section-head">Origin Rules</h2>
       <p class="tier-note">Account tiers — reference copy. The mission starts with Command Post above.</p>
@@ -584,5 +622,73 @@ html[data-spark-nav="in"] [data-spark-guest-only]{display:none!important}
   <script src="/assets/js/spark-account-runtime.js?v=14"></script>
   <script src="/assets/js/spark-auth-nav.js?v=14"></script>
   <script src="/assets/js/spark-dashboard.js?v=8"></script>
+  <script src="/assets/js/spark-engine.js"></script>
+  <script>
+  (function () {
+    function esc(s){ return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])}); }
+    function renderME() {
+      var el = document.getElementById('me-content');
+      if (!el || typeof SparkEngine === 'undefined') return;
+      var rec = SparkEngine.load();
+      if (!rec) {
+        el.innerHTML = '<p style="color:rgba(244,247,251,.55)">No Spark found. <a href="/quiz/" style="color:#7dffbe">Create your character →</a></p>';
+        return;
+      }
+      var trailMap = {leadership:'#7dffbe',creativity:'#9d7cff',discipline:'#ffd166',compassion:'#ff8fa8',ambition:'#ff9a62',power:'#ff4c77'};
+      var xp = SparkEngine.xpProgress(rec);
+      var traitRows = SparkEngine.TRAIT_KEYS.map(function(k){
+        var v = parseInt(rec.traits[k], 10) || 0;
+        var c = trailMap[k]||'#7dffbe';
+        return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:.82rem">' +
+          '<span style="width:82px;color:rgba(244,247,251,.6);font-weight:800;text-transform:capitalize;flex-shrink:0">' + esc(k) + '</span>' +
+          '<div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden">' +
+            '<div style="height:100%;width:' + v + '%;background:' + c + ';border-radius:999px;transition:width .4s"></div>' +
+          '</div>' +
+          '<span style="width:26px;text-align:right;font-size:.75rem;font-weight:900;color:' + c + '">' + v + '</span>' +
+        '</div>';
+      }).join('');
+      var events = (rec.world_events||[]).slice(-5).reverse();
+      var evtHtml = events.length
+        ? events.map(function(e){ return '<div style="font-size:.8rem;padding:5px 10px;border-left:2px solid #7dffbe;background:rgba(255,255,255,.05);border-radius:0 8px 8px 0;color:rgba(244,247,251,.8)">' + esc(e.description||e.type) + '</div>'; }).join('')
+        : '<div style="color:rgba(244,247,251,.38);font-size:.8rem;font-style:italic">No canon events yet</div>';
+
+      var district = rec.meridian && rec.meridian.starting_district
+        ? (SparkEngine.DISTRICT_NAMES[rec.meridian.starting_district] || rec.meridian.starting_district)
+        : 'Unknown';
+
+      el.innerHTML =
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:1.5rem">' +
+          '<div style="border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:14px">' +
+            '<div style="font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,247,251,.5);margin-bottom:4px">Character</div>' +
+            '<div style="font-size:1.2rem;font-weight:900">' + esc(rec.name) + '</div>' +
+            '<div style="font-size:.85rem;color:rgba(244,247,251,.6)">' + esc(rec.cast) + '</div>' +
+            '<div style="font-size:.8rem;color:#ffd166;margin-top:4px">Level ' + rec.level + ' · ' + xp.current + '/' + xp.needed + ' XP</div>' +
+            '<div style="margin-top:8px;height:4px;background:rgba(255,255,255,.08);border-radius:999px"><div style="height:100%;width:' + xp.pct + '%;background:linear-gradient(90deg,#7dffbe,#9d7cff);border-radius:999px"></div></div>' +
+          '</div>' +
+          '<div style="border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:14px">' +
+            '<div style="font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,247,251,.5);margin-bottom:8px">Manifestation Traits</div>' +
+            traitRows +
+          '</div>' +
+          '<div style="border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:14px">' +
+            '<div style="font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,247,251,.5);margin-bottom:8px">Meridian City</div>' +
+            '<div style="font-size:.88rem;margin-bottom:6px;color:#7dffbe">' + esc(district) + '</div>' +
+            '<div style="font-size:.82rem;color:rgba(244,247,251,.6);margin-bottom:8px">' + esc(rec.meridian && rec.meridian.reputation_title || 'The Wanderer') + '</div>' +
+            '<div style="font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,247,251,.5);margin-bottom:6px;margin-top:12px">Mode Status</div>' +
+            '<div style="font-size:.82rem;color:rgba(244,247,251,.7)">Campaign Ch.' + (rec.campaign && rec.campaign.chapter || 1) + ' · ' + (rec.campaign && rec.campaign.active ? '🟢 Active' : '⚪ Not started') + '</div>' +
+            '<div style="font-size:.82rem;color:rgba(244,247,251,.7)">Gauntlet Best: Floor ' + ((rec.gauntlet && rec.gauntlet.highest_floor) || 0) + '</div>' +
+            '<div style="font-size:.82rem;color:rgba(244,247,251,.7)">Arena Runs: ' + ((rec.arena && rec.arena.explored_timelines && rec.arena.explored_timelines.length) || 0) + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,247,251,.5);margin-bottom:8px">Canon Events (Tier 1+2)</div>' +
+        '<div style="display:grid;gap:4px">' + evtHtml + '</div>';
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderME);
+    } else {
+      renderME();
+    }
+  }());
+  </script>
+  <script src="/assets/js/maskzero-nav.js" defer></script>
 </body>
 </html>

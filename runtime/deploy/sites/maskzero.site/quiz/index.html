@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MaskZero Quiz | Spark Protocol</title>
+<meta name="description" content="Take the MaskZero Spark Protocol quiz and generate a playable Spark for Meridian City.">
+<link rel="canonical" href="https://maskzero.site/quiz/">
+<style>
+:root{--bg:#070915;--panel:#11172b;--text:#f7f7fb;--muted:rgba(247,247,251,.72);--line:rgba(255,255,255,.14);--accent:#7dffbe}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:radial-gradient(circle at top left,rgba(125,255,190,.16),transparent 34rem),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.wrap{width:min(100% - 1rem,920px);max-width:calc(100vw - 1rem);margin:0 auto;padding:1rem 0 4rem}
+header{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1rem 0}
+a{color:inherit}
+nav{display:flex;gap:.8rem;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-weight:800}
+.panel{--panel-pad:clamp(1rem,4vw,2rem);max-width:100%;overflow-x:clip;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border-radius:28px;padding:calc(var(--dreamos-spark-menu-offset,0px) + var(--panel-pad)) var(--panel-pad) var(--panel-pad);box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.kicker{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:.8rem;font-weight:950}
+h1{font-size:clamp(2rem,8vw,4.25rem);line-height:.95;margin:.35rem 0 1rem}
+h2{font-size:clamp(1.5rem,5vw,2.25rem)}
+p{color:var(--muted);line-height:1.55}
+button,.btn{min-height:54px;border:0;border-radius:999px;padding:.85rem 1.1rem;font-weight:950;cursor:pointer;touch-action:manipulation}
+.primary{background:var(--accent);color:#071015}
+.secondary{background:rgba(255,255,255,.1);color:var(--text);border:1px solid var(--line)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+.progress{display:flex;gap:1rem;justify-content:space-between;align-items:center;max-width:100%;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:18px;padding:1rem;margin:1rem 0}
+.bar{height:10px;background:rgba(255,255,255,.11);border-radius:999px;overflow:hidden;flex:1;min-width:0}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#9da7ff)}
+.question-list{display:grid;gap:1rem;min-width:0;max-width:100%}
+.question{min-width:0;max-width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:22px;padding:1rem}
+.question p{color:var(--text);font-weight:750}
+.options{display:grid;gap:.65rem;min-width:0;max-width:100%}
+.option{width:100%;max-width:100%;min-width:0;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--text);display:grid;grid-template-columns:2.5rem minmax(0,1fr);gap:.75rem;align-items:center;padding:.85rem;text-align:left}
+.option strong{display:inline-flex;align-items:center;justify-content:center;width:2.25rem;height:2.25rem;border-radius:999px;background:rgba(255,255,255,.15)}
+.option span{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.option[data-selected="1"]{outline:3px solid rgba(125,255,190,.78);background:rgba(125,255,190,.14)}
+.result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}.result-grid div{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:16px;padding:1rem}.result-grid strong,.result-grid span{display:block}
+.debug{position:fixed;left:.75rem;right:.75rem;bottom:.75rem;z-index:99999;padding:.65rem .8rem;border-radius:14px;background:rgba(0,0,0,.82);color:var(--accent);font-size:.85rem;font-weight:850;border:1px solid rgba(125,255,190,.35);pointer-events:none}
+.error{border:1px solid rgba(255,125,125,.55);background:rgba(255,125,125,.12);padding:1rem;border-radius:16px}
+pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.25);padding:1rem;border-radius:16px}
+@media(max-width:760px){.wrap{width:min(100%,calc(100vw - .75rem));max-width:calc(100vw - .75rem)}.progress{display:block;padding:.85rem}.bar{margin-top:.8rem}.result-grid{grid-template-columns:1fr}.panel{--panel-pad:.85rem;border-radius:22px}.question{padding:.85rem;border-radius:18px}.option{grid-template-columns:2.15rem minmax(0,1fr);gap:.55rem;padding:.75rem}.option strong{width:2rem;height:2rem}.actions{display:grid;grid-template-columns:1fr}.actions button,.actions .btn{width:100%}}
+
+.card-maker{margin-top:1rem;border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:22px;padding:1rem}
+.card-maker input{width:100%;padding:.8rem;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--text);margin:.5rem 0 1rem}
+#spark-card-canvas{width:100%;max-width:420px;border-radius:24px;border:1px solid var(--line);background:#111;margin-top:1rem}
+.foot{padding:2rem 0;text-align:center;color:var(--muted);font-size:.92rem}.foot strong{display:block;color:var(--text);font-size:1rem;margin-bottom:.25rem}.attrib{font-size:.82rem;color:rgba(247,247,251,.58)}
+
+</style>
+  <link rel="stylesheet" href="assets/css/maskzero-theme.css">
+</head>
+<body data-maskzero-quiz="dadudekc-migration">
+<div class="wrap">
+<header>
+  <strong>MaskZero</strong>
+  <nav class="mz-nav" data-mz-nav data-open="false">
+  <div class="mz-nav-inner">
+    <a class="mz-brand" href="/">
+      <span class="mz-brand-mark" aria-hidden="true"></span>
+      <span>MaskZero</span>
+    </a>
+    <button class="mz-nav-toggle" type="button" data-mz-nav-toggle aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <div class="mz-nav-links" data-mz-nav-links>
+      <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
+      <a href="/services/">Services</a>
+      <a href="/proof/">Proof</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
+</nav>
+</header>
+<main id="app">
+<section class="panel">
+  <div class="kicker">MaskZero · Spark Protocol</div>
+  <h1>MaskZero Quiz</h1>
+  <p>Take the migrated Spark Protocol quiz, generate your Spark, carry it into Meridian City, and answer the Dispatch.</p>
+  <div class="actions">
+    <button class="primary" type="button" onclick="Spark.start()">Start Spark Quiz</button>
+    <button class="secondary" type="button" onclick="Spark.reset()">Reset</button>
+  </div>
+</section>
+</main>
+<footer class="foot"><strong>MaskZero · Spark Protocol v8.6</strong><span class="attrib">Created by WeAreSwarm · Powered by Dream.OS</span></footer>
+<div id="debug" class="debug">MaskZero quiz ready</div>
+</div>
+
+<script id="bank" type="application/json">{"source":"Protocol_v8_6_f2fc.md","protocol_version":"Spark Protocol v8.6","questionnaire":"28 Domain + 5-per-block Adaptive Flavor","domain_question_count":28,"flavor_question_count":40,"adaptive_flavor_block_size":5,"domain_questions":[{"q":1,"question":"When something genuinely good finally happens to you, what is your honest reaction?","options":{"A":"I start organizing it — already thinking about how to make the most of it.","B":"It bursts out of me. I can't keep it contained and I don't try.","C":"A jolt of energy — I want to be up and moving.","D":"A quiet, settled feeling, like something heavy clicked into place.","E":"I look around at everyone else, reading whether they feel it too.","F":"I keep it to myself for a while before I let anyone know.","G":"I turn it over inwardly, savoring exactly what it means before anything else.","H":"A kind of clarity — like a light switched on and I can finally see the whole shape of things."}},{"q":2,"question":"Someone insults you in a way that actually stings. Underneath, what happens?","options":{"A":"I plant my feet. I'm not going anywhere and I'm not going to crumble.","B":"A hot flare of anger I have to decide whether to let out.","C":"I step back mentally and start analyzing why they said it.","D":"I'm already three comebacks ahead, talking before I've thought.","E":"I go still and quiet and give them nothing to read.","F":"I shift my whole manner to throw them off balance.","G":"I read what's really driving them and answer that, not the insult.","H":"I become very still and watch them, letting them perform while I see through it."}},{"q":3,"question":"What do you trust most about yourself when things get hard?","options":{"A":"That I can quietly remove myself from a bad situation.","B":"That when I finally commit, I commit completely.","C":"That I can take a beating and still be standing.","D":"That I'll instinctively find what the moment needs.","E":"That I can keep a clear head and manage the chaos.","F":"That I'll spot the opening before anyone else does.","G":"That my mind stays mine — clear, sealed, and under my own control.","H":"That I can read what's really happening even when everyone else is blinded by it."}},{"q":4,"question":"How do you most like to occupy a space — a party, an office, a room?","options":{"A":"I read the room and blend into whatever it needs.","B":"I bring the energy; the mood tends to follow me.","C":"I'm a steady, solid presence people can lean on.","D":"I like a vantage point where I can see and steer everything.","E":"I move around constantly; I hate being pinned in one spot.","F":"I prefer the edges, where I can watch without being watched.","G":"I tune into what everyone's actually thinking and move through that.","H":"I find the line between light and dark and stand there, watching both."}},{"q":5,"question":"Which kind of flexibility are you proudest of in yourself?","options":{"A":"How fast I can change direction when plans fall apart.","B":"How much I can take before I bend at all.","C":"How well I can hold many moving parts in my head at once.","D":"How completely I can throw myself into one thing.","E":"How easily I take on whatever a situation asks of me.","F":"How I can slip out of commitments that no longer serve me.","G":"How completely I can keep my own head no matter the noise.","H":"How I can shift between being utterly visible and completely unseen without losing my center."}},{"q":6,"question":"Once you've truly committed to something, which word fits you best?","options":{"A":"Immovable — nothing talks me out of it.","B":"Adaptive — I become whatever finishing it requires.","C":"Discreet — I'd rather no one know it was me.","D":"Quick — I want it done before the moment passes.","E":"Intense — I go all in, full burn.","F":"Deliberate — I steer the whole thing from the background.","G":"Penetrating — I get to the truth of a thing and won't be fooled out of it.","H":"Luminous — when I commit, I become impossible to ignore, or I vanish entirely; either way, it's total."}},{"q":7,"question":"Where does your sense of self-worth honestly come from?","options":{"A":"Carrying loads other people can't.","B":"Knowing I can stay self-contained and need no one.","C":"Being impossible to ignore when I show up.","D":"Being the one who keeps everything organized and running.","E":"Fitting in and thriving anywhere I'm dropped.","F":"Being faster off the mark than everyone around me.","G":"Understanding people more deeply than they understand themselves.","H":"Being the one who sees what others miss, in the light or the dark."}},{"q":8,"question":"Which secret wish is most you?","options":{"A":"To handle a dozen things at once without dropping any.","B":"To go anywhere I want the instant I want to.","C":"To slip into places unseen and leave no trace.","D":"To be so solid that no problem could move me.","E":"To make the natural world feel like an extension of me.","F":"To unleash everything I've got, all at once, just once.","G":"To know what's truly going on inside the people around me.","H":"To be both the light that reveals and the shadow that conceals, as I choose."}},{"q":9,"question":"How do you most naturally reach another person?","options":{"A":"By matching or shifting their emotional temperature.","B":"By being a dependable rock they can hold onto.","C":"By thinking through what they need and arranging it.","D":"By closing the gap fast, before the moment cools.","E":"Quietly, one on one, away from everyone else.","F":"By tuning myself to their mood until we're in sync.","G":"By sensing what they really mean beneath what they say.","H":"By showing them what they keep in shadow — gently, so they can finally see it."}},{"q":10,"question":"When you decide you're going to win, what's your honest first move?","options":{"A":"Hit hard and early, with everything I've got.","B":"Feel out the opponent and adapt to what they show me.","C":"Get there first; speed is my weapon.","D":"Stay unseen and pick my moment.","E":"Take control of the variables and arrange them my way.","F":"Meet them head on and simply outlast and overpower them.","G":"Get inside their head and turn their own intentions against them.","H":"Strike from where they aren't looking, with a precision that arrives like fate."}},{"q":11,"question":"What kind of resilience best describes you?","options":{"A":"I bounce off and keep moving; I don't dwell.","B":"I step back, reassess, and re-plan around the hit.","C":"I absorb it and don't break.","D":"I withdraw, regroup quietly, and re-emerge later.","E":"I get more fired up the harder things push.","F":"I change myself to survive what's coming.","G":"I shield my mind, stay clear, and refuse to be shaken.","H":"I bend around it like light — still present, just arriving from another angle."}},{"q":12,"question":"How do you carry a heavy responsibility?","options":{"A":"I shoulder it and refuse to let it slip.","B":"I break it into parts and manage each one.","C":"I stay loose and handle it by feel as it evolves.","D":"I pour myself into it completely until it's done.","E":"I knock it out fast before it can pile up.","F":"I quietly handle it alone without making it anyone's business.","G":"I hold the whole of it clear in my mind and bring others around to my view.","H":"I carry it in the open for all to see, or bury it so deep only I feel the weight."}},{"q":13,"question":"Which version of 'larger than life' actually appeals to you?","options":{"A":"Being so in tune with everything that I never feel out of place.","B":"Being the mystery no one can quite pin down.","C":"Being the spark that lights up everyone around me.","D":"Being the mind everyone defers to.","E":"Being the one who holds steady when everything shakes.","F":"Being the one who's already gone before you turn around.","G":"Being the one no one can keep a secret from.","H":"Being the revelation that makes everyone reconsider what they thought they knew."}},{"q":14,"question":"What's your favorite way to push toward a goal?","options":{"A":"Let momentum build naturally and ride the wave.","B":"Grind it out; persistence beats talent.","C":"Pull the right resources and people into place around me.","D":"Sprint at it and close the distance fast.","E":"Go at it in passionate, full-throttle bursts.","F":"Work at it quietly until it's suddenly done.","G":"By reading the people in the way and changing their minds.","H":"By illuminating the truth so starkly that the path becomes obvious to everyone."}},{"q":15,"question":"When everything around you speeds up and gets chaotic, what do you rely on?","options":{"A":"My intensity — I rise to meet the noise.","B":"My ability to step out of the way of it.","C":"My reactions; I answer each thing as it comes.","D":"My steadiness; I become the still point.","E":"My overview; I track all of it at once.","F":"My gut read of where things are heading.","G":"My focus — I keep one clear mind while everything else burns.","H":"My clarity — I find the pattern in the noise, the shape in the blur."}},{"q":16,"question":"What does 'staying power' mean to you?","options":{"A":"Always finding a new angle when one path closes.","B":"Burning steady and refusing to let the fire die.","C":"Out-enduring everyone through sheer toughness.","D":"Quietly persisting where no one's even watching.","E":"Bending with conditions instead of fighting them.","F":"Keeping the whole operation coordinated for the long haul.","G":"Holding my own will intact long after others have broken.","H":"The long shadow that stretches across everything, patient and inevitable."}},{"q":17,"question":"How do you most like to be underestimated?","options":{"A":"Let them think I'm harmless and easy to read.","B":"Let them swing at where I was, not where I am.","C":"Let them forget I'm even in the room.","D":"Let them miss that I've already arranged the outcome.","E":"Let them think they can wear me down — they can't.","F":"Let them ignore the pressure building in me until it's too late.","G":"Let them plot in the open — I already know every move before they make it.","H":"Let them think I'm obvious and simple — then show them I have depths they never imagined."}},{"q":18,"question":"Which daydream of scale do you keep returning to?","options":{"A":"Being so attuned I always know exactly what's needed.","B":"One concentrated outpouring of everything in me.","C":"Seeing the whole landscape and crossing it at will.","D":"Standing tall enough to shield everyone behind me.","E":"Holding a whole system in my hands at once.","F":"Slipping into the gaps no one else can find.","G":"Reaching every mind around me and knowing them all at once.","H":"Being the eclipse that stops the world, if only for a moment, so everyone finally sees."}},{"q":19,"question":"What's the most honest engine of your drive?","options":{"A":"Forward grind — once committed I don't stop.","B":"A need for room and an exit in every direction.","C":"Restlessness — I have to be moving.","D":"A heat inside that has to come out or it eats me.","E":"A need to understand and arrange the whole picture.","F":"A deep pull toward the living world and what's real.","G":"A pull to know what's really going on inside everyone around me.","H":"A drive to reveal what is true, or to protect what is true by keeping it in shadow."}},{"q":20,"question":"What's your relationship to your own strength?","options":{"A":"It's loudest when I refuse to be silenced.","B":"It's in how I outthink, not how hard I hit.","C":"It's at its best where no one's looking.","D":"It's raw and direct — the most reliable thing about me.","E":"It comes from how well I read and use my surroundings.","F":"It shows in how fast I recover and re-engage.","G":"It lives in my will and my read of others, not in my body.","H":"It lives in what I allow others to see and what I keep from them."}},{"q":21,"question":"How do you outlast an opponent?","options":{"A":"I make myself hard to find and work from the dark.","B":"I shift with the conditions until theirs run out.","C":"I simply refuse to break until they tire.","D":"I keep my fire up long after theirs burns low.","E":"I make every move of theirs cost more than mine.","F":"I'm just faster than they can keep up with.","G":"I get into their head until their own doubts wear them down.","H":"I fade into shadow and return in light, again and again, until they have nothing left to hit."}},{"q":22,"question":"What feels like your natural element?","options":{"A":"Order — bringing scattered things into one whole.","B":"Open space and the freedom to move through it.","C":"Quiet thresholds and the spaces in between.","D":"Weight and solidity — being the anchor.","E":"A sudden release after a long, contained build.","F":"The instincts and rhythms of the natural world.","G":"The inner world — thought, will, and what goes unsaid.","H":"The threshold — the edge where light meets dark and both become real."}},{"q":23,"question":"Which kind of dominance feels most satisfying?","options":{"A":"Having so much arranged that resistance is pointless.","B":"Becoming exactly what the moment calls for.","C":"Bringing overwhelming intensity at the decisive instant.","D":"Answering every move before it lands.","E":"Being already past them before they notice.","F":"Simply being too solid for the problem to win.","G":"Having a mind no one can resist once I set it on them.","H":"Deciding what is seen and what remains hidden, so they move to the rhythm I set."}},{"q":24,"question":"What's your way of staying connected to the people you care about?","options":{"A":"I bring warmth and lift the mood when it's low.","B":"I keep things steady and organized for everyone.","C":"Quietly and one-on-one, in private.","D":"I show up fast whenever I'm needed.","E":"I sense their moods and meet them where they are.","F":"I'm the steady one they know won't fall over.","G":"I know what's on their mind before they've found the words for it.","H":"I see all of them, even the parts they hide, and I let them know they're still known."}},{"q":25,"question":"What's your truest form of momentum?","options":{"A":"Quick pivots — finding the new route the instant the old one fails.","B":"A plan coming together piece by piece.","C":"Slipping out of sight and reappearing where it counts.","D":"Becoming an unstoppable force once I'm rolling.","E":"Changing shape to break a stuck pattern.","F":"A charge building until it has to discharge.","G":"Knowing exactly what everyone will do before they do it.","H":"A rhythm of showing and concealing, always shifting, never giving them a fixed target."}},{"q":26,"question":"When you build something lasting, what's your method?","options":{"A":"In passionate bursts, then more bursts.","B":"Brute persistence — I force it into being.","C":"Speed — I finish before momentum dies.","D":"I let it grow and take its own evolving shape.","E":"I hold every part in mind and slot them into place.","F":"Quietly, on my own, until it's ready to show.","G":"By understanding people well enough to bring their minds together.","H":"In honest, stark strokes — what is there is there, what is hidden is hidden."}},{"q":27,"question":"What's your instinct when protecting someone you love?","options":{"A":"Take charge and control every variable around them.","B":"Trust my gut and react to the threat as it comes.","C":"Put my own body between them and harm; I won't move.","D":"Bring everything I have down on the threat at once.","E":"Get them up and out, fast, before it reaches them.","F":"Quietly move us both out of danger before it notices.","G":"Get into the threat's mind and make it stand down.","H":"Put them where harm cannot reach them — whether in blinding light or absolute shadow."}},{"q":28,"question":"What's the legacy-feeling you most want to leave?","options":{"A":"That I kept everything running and held it all together.","B":"That I was always there in time when it mattered.","C":"That I changed the very mood of the times.","D":"That I was the immovable thing everything else leaned on.","E":"That I burned bright and gave everything I had.","F":"That I did the quiet, unseen work that mattered.","G":"That I understood people in a way no one else ever did.","H":"That I showed the world what it needed to see — and kept safe what it wasn't ready for."}}],"flavor_questions":[{"q":29,"question":"What do you trust most about your own body?","options":{"A":"That it can take punishment and keep working.","B":"That I can make it harder than anything around me.","C":"That I can expand my reach and cover more ground.","D":"That I can stretch and reshape it to fit the moment.","E":"That once I'm moving, nothing stops me.","F":"That I can become the immovable object."},"domain":"Titan","block":"Titan Block"},{"q":30,"question":"How do you handle being cornered?","options":{"A":"Stand my ground and make them come through me.","B":"Expand my presence until the corner isn't a corner anymore.","C":"Slip out by becoming thin enough to fit the gap.","D":"Hit the weak point in the trap and burst free.","E":"Become so dense they can't push me anywhere I don't want to go.","F":"Charge and let momentum carry me through."},"domain":"Titan","block":"Titan Block"},{"q":31,"question":"What's your favorite way to move something heavy?","options":{"A":"Grab it and lift.","B":"Brace against it and push with my whole frame.","C":"Expand my frame and engulf it.","D":"Stretch around it and pull from every side at once.","E":"Hit it at speed and let impact do the work.","F":"Make myself the anchor and let leverage do the rest."},"domain":"Titan","block":"Titan Block"},{"q":32,"question":"What kind of protection do you naturally provide?","options":{"A":"The shield — I put myself between harm and whoever I'm protecting.","B":"The wall — I become the barrier they can't cross.","C":"The net — I stretch to catch what falls.","D":"The mass — I expand until I'm the terrain itself.","E":"The shock absorber — I take the hit and dissipate it.","F":"The immovable point — I hold the line and nothing pushes me back."},"domain":"Titan","block":"Titan Block"},{"q":33,"question":"When you need to end a fight quickly, what's your honest method?","options":{"A":"One overwhelming blow.","B":"Crush them under mass.","C":"Stretch my reach until they can't escape.","D":"Hit them so hard and fast they never get up.","E":"Become unstoppable and walk through everything they have.","F":"Find the weak point and apply pressure until something breaks."},"domain":"Titan","block":"Titan Block"},{"q":34,"question":"What do you trust most in a chase?","options":{"A":"Raw speed — I can outrun anything on two legs.","B":"Flight — they can't follow where I go.","C":"My reflexes — I react to obstacles before they register.","D":"My danger sense — I feel the trap before it closes.","E":"My ability to climb and cling to any surface.","F":"The vibration I leave behind — it slows them more than it slows me."},"domain":"Velocity","block":"Velocity Block"},{"q":35,"question":"How do you handle an ambush?","options":{"A":"I'm already moving before they finish their swing.","B":"I take to the air and reset the engagement.","C":"I read the setup and dodge the moment before it triggers.","D":"I feel it coming and I'm not there when it lands.","E":"I launch off the nearest wall and come at them from above.","F":"I hit the ground hard and let the shock knock them off balance."},"domain":"Velocity","block":"Velocity Block"},{"q":36,"question":"What's your favorite kind of movement?","options":{"A":"A straight-line sprint, pure and uncomplicated.","B":"Soaring, gliding, free of everything below.","C":"Weaving through chaos like it's a dance.","D":"The sudden lurch when my body moves before my mind catches up.","E":"Vertical — up walls, across ceilings, never earthbound.","F":"The rolling thunder of a vibration-driven charge."},"domain":"Velocity","block":"Velocity Block"},{"q":37,"question":"How do you escape when things go wrong?","options":{"A":"I run. Nothing catches me.","B":"I rise above it and find a new angle.","C":"I read the terrain and slip through the gap they left open.","D":"I feel the danger coming and I'm already gone.","E":"I climb to where they can't follow.","F":"I shake the structure and escape in the collapse."},"domain":"Velocity","block":"Velocity Block"},{"q":38,"question":"What does speed mean to you?","options":{"A":"The ability to close any distance before they react.","B":"The freedom to go where no one can reach me.","C":"The edge that lets me act while they're still deciding.","D":"The sure knowledge that harm arrives behind me, never ahead.","E":"The momentum that turns a fall into a launch.","F":"The wave I ride that arrives before I do."},"domain":"Velocity","block":"Velocity Block"},{"q":39,"question":"What's your relationship to heat?","options":{"A":"I generate it. I am the furnace.","B":"I steal it. I leave things frozen and still.","C":"I channel it into force and throw it.","D":"I ride it like a current, wherever it wants to go.","E":"I turn it into pressure and let it burst.","F":"I drown it until nothing burns."},"domain":"Energy","block":"Energy Block"},{"q":40,"question":"How do you handle a barrier you can't go around?","options":{"A":"Melt it.","B":"Freeze it until it cracks.","C":"Blast it apart.","D":"Shake it until the foundation gives.","E":"Drown it under weight and pressure.","F":"Cut through it with a beam of focused light."},"domain":"Energy","block":"Energy Block"},{"q":41,"question":"What kind of energy feels most natural to you?","options":{"A":"The blunt push of a shockwave.","B":"The hungry spread of flame.","C":"The stillness and silence of extreme cold.","D":"The branching, seeking path of electricity.","E":"The rolling, unstoppable wave of sound.","F":"The patient, crushing weight of water."},"domain":"Energy","block":"Energy Block"},{"q":42,"question":"How do you control a space?","options":{"A":"I fill it with fire — nothing survives the burn.","B":"I freeze it — movement dies, and I decide what thaws.","C":"I blast anything that enters.","D":"I electrify the ground and the air around me.","E":"I let sound do the work — shattering, deafening, overwhelming.","F":"I flood it until the space becomes the weapon."},"domain":"Energy","block":"Energy Block"},{"q":43,"question":"What's your preferred finishing move?","options":{"A":"A concentrated beam that cuts through anything.","B":"An explosion that leaves nothing standing.","C":"A flash-freeze that ends the fight in an instant.","D":"A bolt from above that they never see coming.","E":"A sonic pulse that shatters bone and concrete alike.","F":"A wave that sweeps everything away."},"domain":"Energy","block":"Energy Block"},{"q":44,"question":"What's your favorite way to escape?","options":{"A":"A single step through a portal.","B":"I let the blow pass through me like I'm not there.","C":"I fade from sight and slip away in the confusion.","D":"I compress myself into a space they can't search.","E":"I read their move before they make it and I'm already gone.","F":"I sense the gap in their perimeter and slide through it."},"domain":"Specter","block":"Specter Block"},{"q":45,"question":"How do you gather information?","options":{"A":"I listen — to heartbeats, whispers, and the things they don't say.","B":"I watch — from angles they don't know exist.","C":"I step into their space unseen and hear it all firsthand.","D":"I open a window somewhere safe and observe from there.","E":"I make myself small and overlooked, and they speak freely.","F":"I feel the vibrations of intent through walls and floors."},"domain":"Specter","block":"Specter Block"},{"q":46,"question":"What do you do when confrontation is unavoidable?","options":{"A":"I phase — let their attack pass through, then counter.","B":"I teleport behind them and strike from the blind spot.","C":"I shrink, making myself a target they can't hit.","D":"I vanish and reappear where they're weakest.","E":"I read their tells and strike the moment they commit.","F":"I open a portal beneath them and let gravity finish it."},"domain":"Specter","block":"Specter Block"},{"q":47,"question":"How do you move through a secured building?","options":{"A":"Through walls — solid matter is a suggestion.","B":"Through vents and gaps — small spaces are my highway.","C":"Through shadows — unseen, unheard, untracked.","D":"Through portals — one step in the lobby, one step in the vault.","E":"Through pure perception — I know where everyone is and move around them.","F":"Through vibration — I feel the structure and find the weak path."},"domain":"Specter","block":"Specter Block"},{"q":48,"question":"What's your relationship to solid matter?","options":{"A":"I pass through it like smoke.","B":"I compress until it can't hold me.","C":"I open holes in it and step through.","D":"I sense its structure and exploit its flaws.","E":"I ignore it — I'm not where the matter is.","F":"I become intangible the moment it matters."},"domain":"Specter","block":"Specter Block"},{"q":49,"question":"How do you handle being overwhelmed?","options":{"A":"I cut through the noise — one clean line of action, no waste.","B":"I reveal the whole picture — if I can see it, I can solve it.","C":"I pull the darkness close and let it swallow the chaos.","D":"I find the hidden path out, through gaps no one else sees.","E":"I become the thing they regret touching — cold, grasping, relentless.","F":"I build a shell of something solid and bright and wait it out."},"domain":"Duality","block":"Duality Block"},{"q":50,"question":"What do you trust most when the situation turns?","options":{"A":"That I can see what's really going on, even when it's hidden.","B":"That I can move unseen to where I need to be.","C":"That I can punish anyone who gets too close.","D":"That I can make something real and solid that stands firm.","E":"That I can end the problem from a distance before it grows.","F":"That I can control what is seen and what stays in shadow."},"domain":"Duality","block":"Duality Block"},{"q":51,"question":"How do you recover after being pushed to your limit?","options":{"A":"I retreat into darkness and silence, gathering myself unseen.","B":"I find the gap in their defense and slip through it.","C":"I hold on to what I've taken and use it to get back up.","D":"I build something bright and solid to stand behind while I recover.","E":"I send the pain back at them in a focused, burning line.","F":"I let the light in — strip away everything unreal until only I remain."},"domain":"Duality","block":"Duality Block"},{"q":52,"question":"What quietly satisfies you most about how you handle pressure?","options":{"A":"That I can be anywhere in the dark, and no one knows where.","B":"That I can make the world cold and heavy and only I move through it.","C":"That I can build something radiant that outlasts the storm.","D":"That I can strike with a precision that ends things cleanly.","E":"That I can see what everyone else misses and act on it first.","F":"That I can turn the lights off and make the world mine."},"domain":"Duality","block":"Duality Block"},{"q":53,"question":"How would an old friend sum you up?","options":{"A":"The one who always built something real when everything fell apart.","B":"The one who struck from far away, clean and final.","C":"The one who saw everything coming because they saw everything.","D":"The one who owned the night and everything in it.","E":"The one who was never where you thought, but always where it counted.","F":"The one who took hold and did not let go until it was over."},"domain":"Duality","block":"Duality Block"},{"q":54,"question":"What's your relationship to force?","options":{"A":"I redirect it. Every blow becomes my ammunition.","B":"I absorb it. My shields only grow stronger under attack.","C":"I undo it. I mend what was broken and reset the board.","D":"I amplify it. Gravity becomes a weapon in my hands.","E":"I bind it. Metal and magnetism answer my call.","F":"I multiply it. Every copy adds another angle of attack."},"domain":"Omni","block":"Omni Block"},{"q":55,"question":"How do you protect your allies?","options":{"A":"I raise a barrier between them and harm.","B":"I take the hit and heal the damage before it slows them.","C":"I make the ground beneath the enemy too heavy to move.","D":"I wrap them in fields that turn blades and bullets aside.","E":"I pull rebar from the walls and weave a cage around them.","F":"I surround them with copies of myself — living shields that hit back."},"domain":"Omni","block":"Omni Block"},{"q":56,"question":"What do you do when the enemy has you outnumbered?","options":{"A":"I even the odds — one of me for every one of them.","B":"I lock them in place — gravity is the great equalizer.","C":"I turn their numbers against them — every hit feeds my next strike.","D":"I shield myself and outlast the storm.","E":"I scatter metal debris into a whirling barrier.","F":"I heal faster than they can hurt me."},"domain":"Omni","block":"Omni Block"},{"q":57,"question":"How do you shape the world around you?","options":{"A":"I move things without touching them — pure will, made visible.","B":"I bend gravity until up and down are suggestions.","C":"I summon fields of force that reshape the terrain.","D":"I pull the iron from the earth and build my own fortress.","E":"I duplicate until I am the terrain.","F":"I redirect every force they throw until the world itself turns on them."},"domain":"Omni","block":"Omni Block"},{"q":58,"question":"What's your most natural response to danger?","options":{"A":"I raise a shield — fast, absolute, and unyielding.","B":"I split — one body draws the hit, another delivers the counter.","C":"I heal through it. Pain is temporary; I am not.","D":"I crush them under their own weight.","E":"I turn their momentum into a weapon and throw it back.","F":"I wrap myself in a shell of scrap metal and wait for the opening."},"domain":"Omni","block":"Omni Block"},{"q":59,"question":"What's your instinct in a fight?","options":{"A":"I become the predator — fast, fierce, and final.","B":"I let the environment do the work — roots, vines, and shifting earth.","C":"I change my body until I'm armored, venomous, or untouchable.","D":"I call down wind and rain and let nature finish it.","E":"I release a fog of instinct — fear, lust, rage — and watch them unravel.","F":"I become something they've never seen and don't know how to fight."},"domain":"Primal","block":"Primal Block"},{"q":60,"question":"How do you heal?","options":{"A":"I don't — I adapt so I never need to.","B":"I let the wild take the damage and grow back stronger.","C":"I shift my flesh until the wound is gone.","D":"I accelerate my own biology until I close the gap.","E":"I change form entirely, leaving the damage behind.","F":"I draw vitality from the living things around me."},"domain":"Primal","block":"Primal Block"},{"q":61,"question":"What's your relationship to change?","options":{"A":"I am constant — the world changes around me.","B":"I flow with it — seasons, cycles, and adaptation.","C":"I force it — my body becomes whatever survival demands.","D":"I wear it — a new face for every need.","E":"I trigger it in others — a chemical push that makes them someone else.","F":"I summon it — the weather turns because I will it."},"domain":"Primal","block":"Primal Block"},{"q":62,"question":"How do you mark your territory?","options":{"A":"I reshape the land itself — roots, stone, and growth.","B":"I leave a scent that warns others away.","C":"I become the apex presence — no one challenges the top predator.","D":"I make the air itself heavy with my will — storms, heat, and pressure.","E":"I adapt until the territory is an extension of my body.","F":"I shift between forms so no one knows what rules here."},"domain":"Primal","block":"Primal Block"},{"q":63,"question":"What do you trust most about your own nature?","options":{"A":"That I can become anything I need to be.","B":"That the wild answers my call.","C":"That my body will find a way to survive.","D":"That my presence changes the mood of every room.","E":"That I can wear a thousand faces and none of them are truly me.","F":"That the sky itself moves when I demand it."},"domain":"Primal","block":"Primal Block"},{"q":64,"question":"What's your relationship to truth?","options":{"A":"I know it — I hear what they really think beneath the lie.","B":"I control it — I make them see what I need them to see.","C":"I destroy it — I hit their mind so hard that reality frays.","D":"I protect it — I keep my own thoughts clear and sealed.","E":"I bend it — I move the world without touching it, and who's to say what's real?","F":"I uncover it — I feel their intent before they know it themselves."},"domain":"Mind","block":"Mind Block"},{"q":65,"question":"How do you handle a crowd?","options":{"A":"I read the mood of the whole room at once.","B":"I plant a single thought and watch it spread.","C":"I shield myself from the noise — a wall of silence in a sea of sound.","D":"I push them — one command, and they move like puppets.","E":"I scatter their senses — illusions, whispers, and doubt.","F":"I don't. Crowds are overwhelming; I stay at the edges."},"domain":"Mind","block":"Mind Block"},{"q":66,"question":"What's your preferred battlefield?","options":{"A":"The mind — I fight where they can't see me.","B":"The senses — I make them doubt everything they perceive.","C":"The will — I break their desire to resist.","D":"The physical world — I move objects, not people.","E":"The hidden space — I read their plans before they make them.","F":"The defended self — I let them tire themselves against my walls."},"domain":"Mind","block":"Mind Block"},{"q":67,"question":"How do you win a fight without throwing a punch?","options":{"A":"I make them want to stop.","B":"I show them a reality where they've already lost.","C":"I hit their mind so hard they can't stand.","D":"I read their next move and counter before they think it.","E":"I turn their own weapons against them from across the room.","F":"I wait — they exhaust themselves against my defenses."},"domain":"Mind","block":"Mind Block"},{"q":68,"question":"What do you fear most?","options":{"A":"Having my own mind read.","B":"Losing control of my own thoughts.","C":"Being unable to tell what's real.","D":"Being cut off — alone in a silent head.","E":"Being overwhelmed by too many voices.","F":"Being powerless — unable to move, unable to act."},"domain":"Mind","block":"Mind Block"}]}</script>
+<script>
+/* DreamOS gated flavor + character save v1 */
+/* DreamOS explicit save + AI image prompt v1 */
+/* DreamOS Spark collector card renderer v1 */
+window.Spark=(function(){
+  const app=document.getElementById("app");
+  const debugEl=document.getElementById("debug");
+  const bank=JSON.parse(document.getElementById("bank").textContent);
+  const domain=(bank.domain_questions||[]).slice(0,28);
+  const flavorRaw=bank.flavor_questions||[];
+  const letters=["A","B","C","D","E","F","G","H"];
+  const key="dreamos.original.spark.static.v1";
+  const endpoint="/wp-json/emergence/v1/generate";
+
+  function debug(msg){debugEl.textContent=new Date().toLocaleTimeString()+" · "+msg}
+  function load(){try{return JSON.parse(sessionStorage.getItem(key)||"{}")||{}}catch(e){return{}}}
+  function save(s){sessionStorage.setItem(key,JSON.stringify(s||{}))}
+  function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+  function opts(q){
+    const raw=q.options||{};
+    const out=[];
+    letters.forEach(l=>{if(raw[l]||raw[l.toLowerCase()])out.push([l,raw[l]||raw[l.toLowerCase()]])});
+    return out.length?out:letters.map(l=>[l,"Option "+l]);
+  }
+  function count(ans,qs){return qs.reduce((n,q)=>n+(ans&&ans[String(q.q)]?1:0),0)}
+  function progress(label,n,total){const pct=total?Math.round(n/total*100):0;return `<div class="progress"><strong>${esc(label)}: ${n}/${total}</strong><div class="bar"><span style="width:${pct}%"></span></div></div>`}
+  function qcard(q,answers,phase){
+    const selected=answers[String(q.q)]||"";
+    return `<article class="question"><h3>Q${q.q}</h3><p>${esc(q.question||q.prompt||q.text||("Question "+q.q))}</p><div class="options">${
+      opts(q).map(([l,t])=>`<button class="option" type="button" onclick="Spark.answer('${phase}','${q.q}','${l}')" ${selected===l?'data-selected="1"':''}><strong>${l}</strong><span>${esc(t)}</span></button>`).join("")
+    }</div></article>`
+  }
+  function flavorQuestionDomain(q){
+    return String(
+      q.domain ||
+      q.affinity ||
+      q.group ||
+      q.category ||
+      q.manifested_domain ||
+      q.unlock_domain ||
+      ""
+    ).trim();
+  }
+
+  function questionTextHasDomain(q, domain){
+    const hay = String((q.question||"") + " " + (q.prompt||"") + " " + (q.text||"")).toLowerCase();
+    return hay.indexOf(String(domain||"").toLowerCase()) !== -1;
+  }
+
+  function flavorQuestions(result){
+    const manifestedList=(result.manifested||[]).map(x=>String(x).trim()).filter(Boolean);
+    const manifested=new Set(manifestedList.map(x=>x.toLowerCase()));
+    const list=flavorRaw.map((q,i)=>Object.assign({},q,{q:q.q||q.id||q.number||(i+29)}));
+
+    const direct=list.filter(q=>{
+      const d=flavorQuestionDomain(q);
+      return d && manifested.has(d.toLowerCase());
+    });
+
+    if(direct.length) return direct;
+
+    const inferred=list.filter(q=>{
+      return manifestedList.some(d=>questionTextHasDomain(q,d));
+    });
+
+    if(inferred.length) return inferred;
+
+    // Conservative fallback: if the bank has no domain metadata, do not unlock all 40.
+    // Show a small deterministic slice based on manifested domain count.
+    const limit=Math.max(5, Math.min(list.length, manifestedList.length * 5));
+    return list.slice(0, limit);
+  }
+
+  function saveCharacterRecord(payload){
+    const record={
+      id:"spark_"+Date.now(),
+      created_at:new Date().toISOString(),
+      source:"original-spark-static",
+      lead_domain:payload.lead_domain||"",
+      manifested:payload.manifested||[],
+      cast:payload.cast||"",
+      spark_signature:payload.spark_signature||payload.provisional_spark_signature||null,
+      combat_capability:payload.combat_capability||payload.provisional_combat_capability||null,
+      profile_shape:payload.profile_shape||"",
+      powers:payload.powers||[],
+      raw:payload
+    };
+
+    const keyChars="dreamos.savedSparkCharacters.v1";
+    let chars=[];
+    try{chars=JSON.parse(localStorage.getItem(keyChars)||"[]")||[]}catch(e){chars=[]}
+    chars=[record];
+    localStorage.setItem(keyChars,JSON.stringify(chars));
+    localStorage.setItem("dreamos.singleSparkCharacter.v1",JSON.stringify(record));
+    localStorage.setItem("dreamos.currentSparkCharacter.v1",JSON.stringify(record));
+    return record;
+  }
+
+  function buildImagePrompt(payload){
+    const lead=payload.lead_domain||"Unknown";
+    const manifested=Array.isArray(payload.manifested)?payload.manifested.join(", "):"";
+    const cast=payload.cast||"Unclassified Spark";
+    const signature=payload.spark_signature||payload.provisional_spark_signature||"";
+    const combat=payload.combat_capability||payload.provisional_combat_capability||"";
+    const profile=payload.profile_shape||"";
+    const powers=Array.isArray(payload.powers)
+      ? payload.powers.map(p=>typeof p==="object"?(p.name||p.title||p.power||""):String(p)).filter(Boolean).join(", ")
+      : "";
+
+    return [
+      "Create a cinematic fantasy superhero character portrait.",
+      "Character type: " + lead + " Spark.",
+      "Cast: " + cast + ".",
+      manifested ? "Manifested domains: " + manifested + "." : "",
+      powers ? "Visible powers and motifs: " + powers + "." : "",
+      signature ? "Power signature rating: " + signature + "." : "",
+      combat ? "Combat capability rating: " + combat + "." : "",
+      profile ? "Personality and aura: " + profile + "." : "",
+      "Style: high-detail modern comic-book concept art, dramatic lighting, full-body heroic pose, clean readable silhouette, original character design, no logos, no text, no copyrighted character likeness.",
+      "Composition: character centered, dynamic energy effects tied to their manifested domains, cinematic background, premium trading-card quality."
+    ].filter(Boolean).join(" ");
+  }
+
+  function pendingCharacterRecord(){
+    const s=load();
+    const payload=s.final_result||s.domain_result||{};
+    return {
+      payload,
+      image_prompt: buildImagePrompt(payload)
+    };
+  }
+
+  async function copyText(text){
+    try{
+      await navigator.clipboard.writeText(text);
+      debug("image prompt copied");
+    }catch(e){
+      const area=document.createElement("textarea");
+      area.value=text;
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand("copy");
+      area.remove();
+      debug("image prompt copied fallback");
+    }
+  }
+  function renderDomain(){
+    const s=load();s.phase="domain";s.domain_answers=s.domain_answers||{};save(s);
+    const n=count(s.domain_answers,domain);
+    app.innerHTML=`<section class="panel"><div class="kicker">Pass 1</div><h2>Domain Typing</h2><p>Answer all 28 questions.</p>${progress("Domain pass",n,domain.length)}<div class="question-list">${domain.map(q=>qcard(q,s.domain_answers,"domain")).join("")}</div><div class="actions"><button class="primary" type="button" onclick="Spark.submitDomain()" ${n<domain.length?"disabled":""}>Generate Spark Pass 1</button><button class="secondary" type="button" onclick="Spark.reset()">Reset</button></div></section>`;
+    debug("render domain "+n+"/"+domain.length);
+  }
+  function renderFlavor(){
+    const s=load();const r=s.domain_result||{};s.flavor_answers=s.flavor_answers||{};const qs=flavorQuestions(r);const n=count(s.flavor_answers,qs);save(s);
+    app.innerHTML=`<section class="panel"><div class="kicker">Pass 2</div><h2>${esc(r.lead_domain||"Spark")} Flavor Pass</h2><p><strong>Manifested:</strong> ${esc((r.manifested||[]).join(", ")||"Pending")}</p>${progress("Flavor pass",n,qs.length)}<div class="question-list">${qs.map(q=>qcard(q,s.flavor_answers,"flavor")).join("")}</div><div class="actions"><button class="primary" type="button" onclick="Spark.submitFlavor()" ${qs.length&&n<qs.length?"disabled":""}>Build Final Dossier</button><button class="secondary" type="button" onclick="Spark.reset()">Reset</button></div></section>`;
+    debug("render flavor "+n+"/"+qs.length);
+  }
+
+  function getCardPayload(){
+    const s=load();
+    return s.final_result||s.domain_result||{};
+  }
+
+  function readImageFile(input){
+    const file=input.files&&input.files[0];
+    if(!file){debug("no image selected");return}
+    const reader=new FileReader();
+    reader.onload=function(){
+      sessionStorage.setItem("dreamos.spark.card.image.v1",String(reader.result||""));
+      debug("card image loaded");
+      Spark.renderCard();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function drawWrapped(ctx,text,x,y,maxWidth,lineHeight,maxLines){
+    const words=String(text||"").split(/\s+/);
+    let line="";
+    let lines=0;
+    for(let i=0;i<words.length;i++){
+      const test=line?line+" "+words[i]:words[i];
+      if(ctx.measureText(test).width>maxWidth&&line){
+        ctx.fillText(line,x,y);
+        y+=lineHeight;
+        lines++;
+        line=words[i];
+        if(lines>=maxLines-1)break;
+      }else{
+        line=test;
+      }
+    }
+    if(line&&lines<maxLines)ctx.fillText(line,x,y);
+  }
+
+  function renderCollectorCard(){
+    const canvas=document.getElementById("spark-card-canvas");
+    if(!canvas){debug("card canvas missing");return}
+    const ctx=canvas.getContext("2d");
+    const payload=getCardPayload();
+    const imgData=sessionStorage.getItem("dreamos.spark.card.image.v1")||"";
+
+    canvas.width=900;
+    canvas.height=1260;
+
+    const lead=payload.lead_domain||"Generated";
+    const cast=payload.cast||"Unclassified";
+    const sig=payload.spark_signature||payload.provisional_spark_signature||"?";
+    const combat=payload.combat_capability||payload.provisional_combat_capability||"?";
+    const domains=Array.isArray(payload.manifested)?payload.manifested.join(" · "):"Spark";
+    const profile=payload.profile_shape||"Spark profile generated.";
+
+    const g=ctx.createLinearGradient(0,0,900,1260);
+    g.addColorStop(0,"#11172b");
+    g.addColorStop(.55,"#070915");
+    g.addColorStop(1,"#16281f");
+    ctx.fillStyle=g;
+    ctx.fillRect(0,0,900,1260);
+
+    ctx.strokeStyle="rgba(125,255,190,.95)";
+    ctx.lineWidth=10;
+    ctx.strokeRect(35,35,830,1190);
+
+    ctx.strokeStyle="rgba(255,255,255,.18)";
+    ctx.lineWidth=2;
+    ctx.strokeRect(58,58,784,1144);
+
+    ctx.fillStyle="#7dffbe";
+    ctx.font="800 34px system-ui";
+    ctx.fillText("SPARK PROTOCOL",75,115);
+
+    ctx.fillStyle="#f7f7fb";
+    ctx.font="900 64px system-ui";
+    drawWrapped(ctx,lead+" Spark",75,190,750,70,2);
+
+    ctx.fillStyle="rgba(255,255,255,.75)";
+    ctx.font="700 30px system-ui";
+    ctx.fillText(cast,75,285);
+
+    function drawStats(){
+      ctx.fillStyle="rgba(255,255,255,.08)";
+      ctx.fillRect(75,820,750,120);
+      ctx.strokeStyle="rgba(255,255,255,.18)";
+      ctx.strokeRect(75,820,750,120);
+
+      ctx.fillStyle="#7dffbe";
+      ctx.font="900 30px system-ui";
+      ctx.fillText("SIGNATURE",110,865);
+      ctx.fillText("COMBAT",510,865);
+
+      ctx.fillStyle="#f7f7fb";
+      ctx.font="900 48px system-ui";
+      ctx.fillText(String(sig),110,920);
+      ctx.fillText(String(combat),510,920);
+
+      ctx.fillStyle="rgba(255,255,255,.78)";
+      ctx.font="700 25px system-ui";
+      drawWrapped(ctx,domains,75,990,750,32,2);
+
+      ctx.fillStyle="#f7f7fb";
+      ctx.font="600 27px system-ui";
+      drawWrapped(ctx,profile,75,1080,750,36,4);
+
+      ctx.fillStyle="rgba(125,255,190,.85)";
+      ctx.font="800 24px system-ui";
+      ctx.fillText("MaskZero · What-If Arena Ready",75,1185);
+    }
+
+    if(imgData){
+      const img=new Image();
+      img.onload=function(){
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect ? ctx.roundRect(75,330,750,455,28) : ctx.rect(75,330,750,455);
+        ctx.clip();
+        const scale=Math.max(750/img.width,455/img.height);
+        const w=img.width*scale;
+        const h=img.height*scale;
+        ctx.drawImage(img,75+(750-w)/2,330+(455-h)/2,w,h);
+        ctx.restore();
+        drawStats();
+        debug("collector card rendered");
+      };
+      img.src=imgData;
+    }else{
+      ctx.fillStyle="rgba(255,255,255,.06)";
+      ctx.fillRect(75,330,750,455);
+      ctx.strokeStyle="rgba(255,255,255,.18)";
+      ctx.strokeRect(75,330,750,455);
+      ctx.fillStyle="rgba(255,255,255,.7)";
+      ctx.font="800 34px system-ui";
+      ctx.fillText("Upload AI image or portrait",185,560);
+      drawStats();
+      debug("collector card rendered without image");
+    }
+  }
+
+  function downloadCollectorCard(){
+    const canvas=document.getElementById("spark-card-canvas");
+    if(!canvas){debug("no card canvas");return}
+    const a=document.createElement("a");
+    const payload=getCardPayload();
+    const name=String(payload.lead_domain||"spark").toLowerCase().replace(/[^a-z0-9]+/g,"-");
+    a.href=canvas.toDataURL("image/png");
+    a.download=name+"-spark-card.png";
+    a.click();
+    debug("collector card downloaded");
+  }
+
+  function renderFinal(){
+    const s=load();const r=s.final_result||s.domain_result||{};const manifested=Array.isArray(r.manifested)?r.manifested.join(", "):"Pending";
+    const prompt=buildImagePrompt(r);
+    app.innerHTML=`<section class="panel"><div class="kicker">Final Dossier</div><h2>${esc(r.lead_domain||"Generated")} Spark</h2><div class="result-grid"><div><strong>Cast</strong><span>${esc(r.cast||"Pending")}</span></div><div><strong>Signature</strong><span>${esc(r.spark_signature||r.provisional_spark_signature||"Pending")}</span></div><div><strong>Combat</strong><span>${esc(r.combat_capability||r.provisional_combat_capability||"Pending")}</span></div><div><strong>Domains</strong><span>${esc(manifested)}</span></div></div><p>${esc(r.profile_shape||"Spark profile generated.")}</p><div class="panel hero-image-tools" style="margin-top:1rem"><div class="kicker">Hero Image Studio</div><h3>Create your hero art</h3><p>Your superhero art direction is generated privately from this dossier. Upload the finished hero image when ready to build the collector card.</p><div class="result-grid"><div><strong>Art Direction</strong><span>Private and ready</span></div><div><strong>Safety Rules</strong><span>Original character design</span></div><div><strong>Card Kit</strong><span>Upload art below</span></div></div></div><div class="card-maker"><div class="kicker">Collector Card</div><p>Upload your hero image here to build the Spark collector card.</p><input type="file" accept="image/*" onchange="Spark.loadCardImage(this)"><canvas id="spark-card-canvas" width="900" height="1260"></canvas></div><div class="actions"><button class="primary" type="button" onclick="Spark.saveCharacter()">Save Character</button><a class="btn primary" href="/missions/">Open Missions</a><button class="secondary" type="button" onclick="Spark.renderCard()">Render Collector Card</button><button class="secondary" type="button" onclick="Spark.downloadCard()">Download Card PNG</button><a class="btn secondary" href="/battles/">Open Battle Simulator</a><button class="secondary" type="button" onclick="Spark.reset()">Start Over</button></div><details><summary>Raw protocol output</summary><pre>${esc(JSON.stringify(r,null,2))}</pre></details></section>`;
+    debug("final rendered; waiting for save choice"); setTimeout(renderCollectorCard,80);
+  }
+  async function post(body){
+    const res=await fetch(endpoint,{method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    const payload=await res.json();
+    if(!res.ok)throw new Error(payload.message||("HTTP "+res.status));
+    return payload;
+  }
+  function error(e){const box=document.createElement("div");box.className="error";box.textContent=String(e&&e.message?e.message:e);app.prepend(box);debug("error")}
+  return {
+    start:function(){debug("start");renderDomain();window.scrollTo({top:0,behavior:"smooth"})},
+    reset:function(){sessionStorage.removeItem(key);debug("reset");location.reload()},
+    answer:function(phase,q,val){const s=load();debug("answer "+phase+" Q"+q+"="+val);if(phase==="flavor"){s.phase="flavor";s.flavor_answers=s.flavor_answers||{};s.flavor_answers[String(q)]=val;save(s);renderFlavor()}else{s.phase="domain";s.domain_answers=s.domain_answers||{};s.domain_answers[String(q)]=val;save(s);renderDomain()}},
+    submitDomain:async function(){const s=load();debug("submit domain");try{const r=await post({answers:s.domain_answers||{},source:"original-spark-static"});s.phase="flavor";s.domain_result=r;s.flavor_answers=s.flavor_answers||{};save(s);renderFlavor();window.scrollTo({top:0,behavior:"smooth"})}catch(e){error(e)}},
+    submitFlavor:async function(){const s=load();debug("submit flavor");try{const r=await post({answers:s.domain_answers||{},flavor_answers:s.flavor_answers||{},source:"original-spark-static"});s.phase="final";s.final_result=r;save(s);renderFinal();window.scrollTo({top:0,behavior:"smooth"})}catch(e){error(e)}},
+    saveCharacter:function(){const s=load();const r=s.final_result||s.domain_result;if(!r){debug("nothing to save");return}const character=saveCharacterRecord(r);debug("character saved");app.querySelector(".actions").insertAdjacentHTML("afterbegin",`<a class="btn primary" href="/missions/?character_id=${encodeURIComponent(character.id)}">Open Missions</a>`)},
+    copyImagePrompt:function(){const data=pendingCharacterRecord();copyText(data.image_prompt)},
+    loadCardImage:function(input){readImageFile(input)},
+    renderCard:function(){renderCollectorCard()},
+    downloadCard:function(){downloadCollectorCard()}
+  };
+})();
+</script>
+  <script src="assets/js/maskzero-nav.js" defer></script>
+</body>
+</html>

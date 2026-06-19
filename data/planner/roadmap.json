@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": "kids_planner_execution_loop_001",
+      "title": "Kids Planner Execution Loop",
+      "status": "shipped",
+      "priority": "P0",
+      "updated_at": "2026-06-14T17:27:35.994350+00:00",
+      "summary": "Kids can claim tasks, copy agent prompts, generate closeouts, and submit proof for adult review.",
+      "domain": "weareswarm.online",
+      "route": "/kids-planner/",
+      "depends_on": [
+        "dreamvault_to_weareswarm_kids_feed_bridge_001"
+      ],
+      "proof": [
+        "DreamVault kids tasks live in kids_tasks.json",
+        "Kids planner execution page created",
+        "Closeout copy/download flow created",
+        "Online feed verified"
+      ]
+    }
+  ],
+  "updated_at": "2026-06-14T17:27:35.994350+00:00"
+}
