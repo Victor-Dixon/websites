@@ -1,0 +1,57 @@
+{
+  "canonical_site": "collected/hostinger/wordpress/domains/freerideinvestor.com",
+  "deploy_surface": "runtime/content/freerideinvestor.com",
+  "rule": "freerideinvestor.com is canonical trading content/site. TradingRobotPlug is shared product, not FreerideInvestor canonical.",
+  "canonical": {
+    "path": "/data/data/com.termux/files/home/projects/websites/collected/hostinger/wordpress/domains/freerideinvestor.com",
+    "exists": true,
+    "files": 223
+  },
+  "runtime_static": {
+    "path": "/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor.com",
+    "exists": true,
+    "files": 7
+  },
+  "runtime_deploy": {
+    "path": "/data/data/com.termux/files/home/projects/websites/runtime/deploy/sites/freerideinvestor.com",
+    "exists": true,
+    "files": 1
+  },
+  "sources": [
+    {
+      "path": "/data/data/com.termux/files/home/projects/websites/_shared_plugins/review-before-promotion/FreerideinvestorWebsite",
+      "exists": true,
+      "files": 13
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestor",
+      "exists": true,
+      "files": 22
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/websites/experiments/freeride-legacy-review/freerideinvestorwebsite",
+      "exists": true,
+      "files": 97
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/websites/runtime/salvage/freerideinvestor.com",
+      "exists": true,
+      "files": 26
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor",
+      "exists": true,
+      "files": 5
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/websites/runtime/content/freerideinvestor.com",
+      "exists": true,
+      "files": 7
+    }
+  ],
+  "blocked": [
+    "Do not merge TradingRobotPlug as FreerideInvestor core.",
+    "Do not delete salvage in this lane.",
+    "Do not overwrite canonical files without conflict copy."
+  ]
+}
