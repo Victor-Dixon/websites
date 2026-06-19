@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Create Your Spark Account | MaskZero</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/css/spark-site-shell.css?v=2" />
+  <style>
+:root{
+  --ink:#08080b;
+  --paper:#fff4d6;
+  --cream:#ffeec2;
+  --red:#ff3155;
+  --blue:#2dd4ff;
+  --yellow:#ffd12f;
+  --purple:#7c3cff;
+  --green:#32ff9c;
+  --shadow:#151019;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--ink);
+  font-family:Impact,"Arial Black",system-ui,sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(255,49,85,.35) 0 8%,transparent 9%),
+    radial-gradient(circle at 80% 20%,rgba(45,212,255,.32) 0 9%,transparent 10%),
+    radial-gradient(circle at 70% 80%,rgba(255,209,47,.34) 0 10%,transparent 11%),
+    linear-gradient(135deg,#20122d,#090912 55%,#190f13);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.19;
+  background-image:radial-gradient(#fff 1px,transparent 1px);
+  background-size:8px 8px;
+  mix-blend-mode:screen;
+}
+.comic-nav{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  padding:12px;
+  background:var(--ink);
+  border-bottom:5px solid var(--yellow);
+  box-shadow:0 6px 0 rgba(0,0,0,.45);
+}
+.comic-nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:950;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  padding:8px 10px;
+  border:3px solid transparent;
+}
+.comic-nav a:hover,.comic-nav .pop{
+  color:var(--ink);
+  background:var(--yellow);
+  border-color:#fff;
+  transform:rotate(-1deg);
+}
+.comic-wrap{
+  width:min(1120px,calc(100% - 24px));
+  margin:0 auto;
+  padding:34px 0 76px;
+}
+.issue-tag{
+  display:inline-block;
+  background:var(--yellow);
+  color:var(--ink);
+  border:4px solid var(--ink);
+  box-shadow:6px 6px 0 var(--ink);
+  padding:8px 12px;
+  transform:rotate(-2deg);
+  text-transform:uppercase;
+  font-size:.95rem;
+  letter-spacing:.08em;
+}
+.comic-cover{
+  position:relative;
+  margin-top:24px;
+  border:7px solid var(--ink);
+  background:
+    radial-gradient(circle at 76% 20%,rgba(255,255,255,.95) 0 8%,transparent 9%),
+    linear-gradient(135deg,#ff3155 0 35%,#ffd12f 35% 58%,#2dd4ff 58% 100%);
+  box-shadow:14px 14px 0 rgba(0,0,0,.65);
+  padding:clamp(22px,5vw,54px);
+  overflow:hidden;
+}
+.comic-cover:after{
+  content:"SPARK!";
+  position:absolute;
+  right:-20px;
+  bottom:16px;
+  color:rgba(8,8,11,.12);
+  font-size:clamp(5rem,16vw,13rem);
+  transform:rotate(-11deg);
+  line-height:.8;
+}
+h1{
+  position:relative;
+  z-index:2;
+  margin:12px 0;
+  font-size:clamp(3rem,12vw,8.8rem);
+  line-height:.78;
+  letter-spacing:-.08em;
+  text-transform:uppercase;
+  color:#fff;
+  -webkit-text-stroke:3px var(--ink);
+  text-shadow:7px 7px 0 var(--ink);
+}
+h2{
+  margin:0 0 10px;
+  font-size:clamp(1.7rem,5vw,3rem);
+  line-height:.9;
+  text-transform:uppercase;
+}
+p{
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-weight:800;
+  line-height:1.5;
+}
+.caption{
+  position:relative;
+  z-index:2;
+  display:inline-block;
+  max-width:780px;
+  background:var(--paper);
+  border:5px solid var(--ink);
+  padding:14px 16px;
+  box-shadow:8px 8px 0 var(--ink);
+  font-size:1.08rem;
+}
+.comic-actions{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
+.comic-button{
+  display:inline-block;
+  text-decoration:none;
+  border:5px solid var(--ink);
+  color:var(--ink);
+  background:#fff;
+  padding:13px 16px;
+  box-shadow:6px 6px 0 var(--ink);
+  text-transform:uppercase;
+  font-weight:950;
+  letter-spacing:.04em;
+}
+.comic-button.primary{background:var(--yellow)}
+.comic-button.red{background:var(--red);color:#fff}
+.comic-button.blue{background:var(--blue)}
+.comic-button:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--ink)}
+.panel-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;
+  margin-top:30px;
+}
+.comic-panel{
+  background:var(--paper);
+  border:6px solid var(--ink);
+  box-shadow:9px 9px 0 rgba(0,0,0,.7);
+  padding:18px;
+  transform:rotate(var(--tilt,0deg));
+}
+.comic-panel:nth-child(1){--tilt:-1deg}
+.comic-panel:nth-child(2){--tilt:1deg}
+.comic-panel:nth-child(3){--tilt:-.5deg}
+.comic-panel strong{
+  display:inline-block;
+  background:var(--ink);
+  color:#fff;
+  padding:6px 9px;
+  margin-top:6px;
+}
+.speech{
+  position:relative;
+  background:#fff;
+  border:5px solid var(--ink);
+  border-radius:24px;
+  padding:16px;
+  box-shadow:7px 7px 0 rgba(0,0,0,.7);
+}
+.speech:after{
+  content:"";
+  position:absolute;
+  bottom:-22px;
+  left:34px;
+  border-width:22px 18px 0 0;
+  border-style:solid;
+  border-color:var(--ink) transparent transparent transparent;
+}
+.form-panel{
+  background:var(--paper);
+  border:7px solid var(--ink);
+  box-shadow:12px 12px 0 rgba(0,0,0,.7);
+  padding:22px;
+}
+label{
+  display:block;
+  margin:14px 0 6px;
+  text-transform:uppercase;
+  font-weight:950;
+}
+input{
+  width:100%;
+  border:4px solid var(--ink);
+  padding:13px;
+  font-size:1rem;
+  font-weight:800;
+  background:#fff;
+  color:var(--ink);
+  box-shadow:4px 4px 0 rgba(0,0,0,.25) inset;
+}
+button{
+  cursor:pointer;
+  border:5px solid var(--ink);
+  background:var(--yellow);
+  color:var(--ink);
+  padding:13px 16px;
+  box-shadow:6px 6px 0 var(--ink);
+  text-transform:uppercase;
+  font-weight:950;
+  margin-top:16px;
+  font-family:Impact,"Arial Black",system-ui,sans-serif;
+  letter-spacing:.04em;
+}
+.status{
+  margin-top:14px;
+  font-family:system-ui,sans-serif;
+  font-weight:900;
+}
+.error{color:var(--red)}
+  </style>
+  <link rel="stylesheet" href="assets/css/maskzero-theme.css">
+</head>
+<body>
+  <nav class="mz-nav" data-mz-nav data-open="false">
+  <div class="mz-nav-inner">
+    <a class="mz-brand" href="/">
+      <span class="mz-brand-mark" aria-hidden="true"></span>
+      <span>MaskZero</span>
+    </a>
+    <button class="mz-nav-toggle" type="button" data-mz-nav-toggle aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <div class="mz-nav-links" data-mz-nav-links>
+      <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
+      <a href="/services/">Services</a>
+      <a href="/proof/">Proof</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <main class="comic-wrap">
+    <span class="issue-tag">Secret Identity Registration</span>
+    <section class="comic-cover">
+      <h1>Create Your Spark Account</h1>
+      <div class="caption">
+        Register to lock one official hero (free) or build a premium roster of five Sparks.
+      </div>
+    </section>
+
+    <section class="panel-grid">
+      <article class="comic-panel">
+        <h2>What You Get</h2>
+        <p>Free: one locked hero and access to Meridian Dispatch.</p>
+        <p>Premium: five Sparks for alternate builds and mission roles.</p>
+        <p class="field-help">Your email is used only to save your hero identity and account access.</p>
+      </article>
+
+      <article class="form-panel">
+        <h2>Sign Up</h2>
+        <form id="sparkSignupForm" novalidate>
+          <label for="sparkEmail">Email</label>
+          <input id="sparkEmail" name="email" type="email" autocomplete="email" required aria-required="true">
+
+          <label for="sparkUsername">Display Name</label>
+          <span class="field-help">Optional hero name shown in Meridian City.</span>
+          <input id="sparkUsername" name="username" type="text" autocomplete="username" placeholder="Optional codename">
+
+          <label for="sparkPassword">Password</label>
+          <span class="field-help">Your secret passcode for returning to your hero account. Minimum 8 characters.</span>
+          <div class="password-row">
+            <input id="sparkPassword" name="password" type="password" autocomplete="new-password" minlength="8" required aria-required="true">
+            <button type="button" class="toggle-pass" id="sparkTogglePassword" aria-label="Show password">Show</button>
+          </div>
+
+          <button type="submit" id="sparkSignupSubmit">Create Account</button>
+          <a class="comic-button secondary" href="/spark-login/">I already have an account</a>
+        </form>
+        <div id="sparkSignupStatus" class="status form-status" role="status" aria-live="polite"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-grid">
+      <div><a href="/">Home</a> · <a href="/#how-it-works">How It Works</a></div>
+      <div><a href="/spark-login/">Log In</a> · <a href="mailto:hello@maskzero.site">Contact</a></div>
+    </div>
+    <small>MaskZero · Spark Protocol</small>
+  </footer>
+
+<script>
+(function(){
+  const form = document.getElementById("sparkSignupForm");
+  const status = document.getElementById("sparkSignupStatus");
+  const submitBtn = document.getElementById("sparkSignupSubmit");
+  const toggle = document.getElementById("sparkTogglePassword");
+  const password = document.getElementById("sparkPassword");
+
+  if (toggle && password) {
+    toggle.addEventListener("click", function () {
+      const show = password.type === "password";
+      password.type = show ? "text" : "password";
+      toggle.textContent = show ? "Hide" : "Show";
+      toggle.setAttribute("aria-label", show ? "Hide password" : "Show password");
+    });
+  }
+
+  form.addEventListener("submit", async function(event){
+    event.preventDefault();
+    status.className = "status form-status";
+    submitBtn.disabled = true;
+    status.textContent = "Creating your Spark account...";
+    const payload = {
+      email: document.getElementById("sparkEmail").value.trim(),
+      username: document.getElementById("sparkUsername").value.trim(),
+      password: document.getElementById("sparkPassword").value
+    };
+    if (!payload.email) {
+      status.className = "status error form-status";
+      status.textContent = "Enter a valid email address.";
+      submitBtn.disabled = false;
+      return;
+    }
+    if (payload.password.length < 8) {
+      status.className = "status error form-status";
+      status.textContent = "Password must be at least 8 characters.";
+      submitBtn.disabled = false;
+      return;
+    }
+    try {
+      const res = await fetch("/wp-json/spark/v1/register", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.message || "Could not create account.");
+      const params = new URLSearchParams(window.location.search);
+      const returnTarget = params.get("redirect_to") || params.get("returnUrl");
+      const defaultRedirect = "/spark-generator/";
+      status.textContent = "Account created. Opening the hero creator...";
+      window.location.href = data.redirect || returnTarget || defaultRedirect;
+    } catch (err) {
+      status.className = "status error form-status";
+      status.textContent = err.message || "Could not create account.";
+      submitBtn.disabled = false;
+    }
+  });
+})();
+</script>
+  <script src="/assets/js/spark-site-shell.js?v=1"></script>
+  <script src="/assets/js/spark-account-runtime.js?v=11"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=13"></script>
+  <script src="assets/js/maskzero-nav.js" defer></script>
+</body>
+</html>

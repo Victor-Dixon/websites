@@ -1,0 +1,116 @@
+:root {
+  --mz-bg: #07080d;
+  --mz-text: #f4f7fb;
+  --mz-muted: #a9b3c7;
+  --mz-line: rgba(255,255,255,.14);
+  --mz-panel: rgba(255,255,255,.06);
+  --mz-panel-strong: rgba(255,255,255,.1);
+  --mz-accent: #7cf7d4;
+  --mz-accent-2: #9d7cff;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(124,247,212,.14), transparent 32%),
+    radial-gradient(circle at 85% 0%, rgba(157,124,255,.16), transparent 30%),
+    var(--mz-bg);
+  color: var(--mz-text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+a { color: inherit; }
+
+.mz-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7,8,13,.86);
+  border-bottom: 1px solid var(--mz-line);
+  backdrop-filter: blur(16px);
+}
+
+.mz-nav-inner {
+  width: min(1160px, calc(100% - 32px));
+  min-height: 72px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mz-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: -.04em;
+}
+
+.mz-brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--mz-accent), var(--mz-accent-2));
+}
+
+.mz-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mz-nav-links a {
+  color: var(--mz-muted);
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.mz-nav-links a:hover,
+.mz-nav-links a[aria-current="page"] {
+  color: var(--mz-text);
+  background: var(--mz-panel-strong);
+}
+
+.mz-nav-toggle {
+  display: none;
+  border: 1px solid var(--mz-line);
+  background: var(--mz-panel);
+  color: var(--mz-text);
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-weight: 900;
+}
+
+@media (max-width: 760px) {
+  .mz-nav-toggle { display: inline-flex; }
+
+  .mz-nav-links {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    top: 76px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    background: rgba(7,8,13,.97);
+    border: 1px solid var(--mz-line);
+    border-radius: 18px;
+  }
+
+  .mz-nav[data-open="true"] .mz-nav-links {
+    display: flex;
+  }
+
+  .mz-nav-links a {
+    padding: 14px;
+  }
+}

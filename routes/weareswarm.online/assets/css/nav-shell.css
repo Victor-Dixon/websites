@@ -1,0 +1,115 @@
+:root {
+  --swarm-bg: #05060a;
+  --swarm-panel: rgba(255, 255, 255, 0.065);
+  --swarm-panel-strong: rgba(255, 255, 255, 0.105);
+  --swarm-line: rgba(255, 255, 255, 0.16);
+  --swarm-text: #f8fafc;
+  --swarm-muted: #a7b0c0;
+  --swarm-accent: #f5c84b;
+}
+
+.swarm-nav-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 18px auto 28px;
+  padding: 12px;
+  border: 1px solid var(--swarm-line);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  position: relative;
+  z-index: 50;
+}
+
+.swarm-nav-brand {
+  color: var(--swarm-text);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 8px 12px;
+}
+
+.swarm-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.swarm-nav-links a {
+  color: var(--swarm-muted);
+  text-decoration: none;
+  font-weight: 750;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+  padding: 9px 12px;
+  border-radius: 999px;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.swarm-nav-links a:hover,
+.swarm-nav-links a:focus-visible {
+  color: var(--swarm-text);
+  background: var(--swarm-panel-strong);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.swarm-nav-toggle {
+  display: none;
+  border: 1px solid var(--swarm-line);
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: var(--swarm-panel);
+  color: var(--swarm-text);
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .swarm-nav-shell {
+    border-radius: 24px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .swarm-nav-shell .swarm-nav-brand {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .swarm-nav-toggle {
+    display: inline-flex;
+    align-self: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .swarm-nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    padding-top: 8px;
+  }
+
+  .swarm-nav-links.is-open,
+  .swarm-nav-links.open,
+  .nav-open .swarm-nav-links {
+    display: flex;
+  }
+
+  .swarm-nav-links a {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.045);
+  }
+}

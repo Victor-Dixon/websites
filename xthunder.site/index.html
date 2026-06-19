@@ -32,4 +32,146 @@ function render(){let q=w(),p=st.p;hud.innerHTML=[`HP ${Math.max(0,Math.round(p.
 function loop(ts){if(!run)return;let dt=Math.min(.033,(ts-last)/1000||.016);last=ts;update(dt);draw();render();requestAnimationFrame(loop)}
 const stEl=document.getElementById('stick'),nub=document.getElementById('nub');stEl.addEventListener('touchmove',e=>{e.preventDefault();let r=stEl.getBoundingClientRect(),t=e.touches[0],dx=t.clientX-(r.left+59),dy=t.clientY-(r.top+59),d=Math.min(42,Math.hypot(dx,dy)),a=Math.atan2(dy,dx);stick.x=Math.cos(a)*d/42;stick.y=Math.sin(a)*d/42;nub.style.left=39+Math.cos(a)*d+'px';nub.style.top=39+Math.sin(a)*d+'px'},{passive:false});stEl.addEventListener('touchend',()=>{stick.x=stick.y=0;nub.style.left='39px';nub.style.top='39px'});document.querySelectorAll('[data-act]').forEach(b=>b.addEventListener('touchstart',e=>{e.preventDefault();({fire:attack,trap,swap,reload}[b.dataset.act]||(()=>{}))()}));if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 })();
-</script></body></html>
+</script>
+<script id="xthunder-loss-reset-hotfix">
+(() => {
+  const PATCH_ID = "xthunder-loss-reset-hotfix";
+  if (window.__xthunderLossResetHotfix) return;
+  window.__xthunderLossResetHotfix = true;
+
+  function hardReset() {
+    try {
+      const knownResetFns = [
+        "resetGame",
+        "restartGame",
+        "startGame",
+        "newGame",
+        "initGame",
+        "initializeGame",
+        "resetLevel",
+        "startLevel"
+      ];
+
+      for (const name of knownResetFns) {
+        if (typeof window[name] === "function") {
+          window[name]();
+          setTimeout(() => {
+            if (lossDetected()) location.reload();
+          }, 250);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn("[xthunder] reset function failed, reloading", err);
+    }
+
+    location.reload();
+  }
+
+  function normalizeText(value) {
+    return String(value || "").replace(/\s+/g, " ").trim().toLowerCase();
+  }
+
+  function lossDetected() {
+    const body = normalizeText(document.body ? document.body.innerText : "");
+    return [
+      "game over",
+      "you lose",
+      "you lost",
+      "lost",
+      "defeat",
+      "defeated",
+      "try again"
+    ].some(token => body.includes(token));
+  }
+
+  function ensureRestartButton() {
+    let btn = document.getElementById("xthunder-force-restart-button");
+
+    if (!btn) {
+      btn = document.createElement("button");
+      btn.id = "xthunder-force-restart-button";
+      btn.type = "button";
+      btn.textContent = "Restart";
+      btn.setAttribute("aria-label", "Restart game");
+      btn.style.cssText = [
+        "position:fixed",
+        "right:16px",
+        "bottom:16px",
+        "z-index:999999",
+        "padding:12px 18px",
+        "border-radius:999px",
+        "border:1px solid rgba(255,255,255,.35)",
+        "background:#111827",
+        "color:#fff",
+        "font:700 16px system-ui,-apple-system,Segoe UI,sans-serif",
+        "box-shadow:0 10px 30px rgba(0,0,0,.35)",
+        "cursor:pointer",
+        "display:none"
+      ].join(";");
+      btn.addEventListener("click", hardReset);
+      document.body.appendChild(btn);
+    }
+
+    btn.style.display = lossDetected() ? "block" : "none";
+  }
+
+  function bindExistingResetButtons() {
+    document.querySelectorAll("button, a, [role='button'], input[type='button'], input[type='submit']").forEach(el => {
+      if (el.__xthunderResetBound) return;
+
+      const label = normalizeText(
+        el.innerText ||
+        el.textContent ||
+        el.value ||
+        el.getAttribute("aria-label") ||
+        el.getAttribute("title")
+      );
+
+      if (!/(reset|restart|try again|play again|new game)/.test(label)) return;
+
+      el.__xthunderResetBound = true;
+      el.addEventListener("click", () => {
+        setTimeout(() => {
+          if (lossDetected()) hardReset();
+        }, 300);
+      });
+    });
+  }
+
+  document.addEventListener("keydown", event => {
+    if (event.key.toLowerCase() === "r" && lossDetected()) {
+      event.preventDefault();
+      hardReset();
+    }
+  });
+
+  function tick() {
+    bindExistingResetButtons();
+    ensureRestartButton();
+  }
+
+  const observer = new MutationObserver(tick);
+  window.addEventListener("DOMContentLoaded", () => {
+    tick();
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true
+    });
+  });
+
+  if (document.body) {
+    tick();
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true
+    });
+  }
+})();
+</script>
+
+</body></html>

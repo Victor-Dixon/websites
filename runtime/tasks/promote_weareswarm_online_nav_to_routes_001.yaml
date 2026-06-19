@@ -1,0 +1,16 @@
+id: promote_weareswarm_online_nav_to_routes_001
+title: Promote canonical weareswarm.online nav shell into deploy source
+status: ready_for_verification
+lane: website_deploy_repair
+target: weareswarm.online
+risk: medium
+root_cause: live deploy uses routes/weareswarm.online, not _deploy/weareswarm.online
+actions:
+  - copy canonical nav assets into routes/weareswarm.online/assets
+  - standardize route html navigation markup
+  - wire deploy workflows to ship shared nav assets
+verification:
+  - one canonical nav per route html page
+  - nav css linked in every route html page
+  - nav fallback js linked in every route html page
+  - workflows reference routes/weareswarm.online/assets

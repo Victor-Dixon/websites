@@ -1,0 +1,16 @@
+id: repair_weareswarm_online_deploy_workflows_001
+title: Repair weareswarm.online deploy workflows
+status: ready_for_verification
+lane: website_deploy_repair
+target: weareswarm.online
+risk: medium
+root_cause:
+  - main workflow passed remote twice to ssh_base
+  - kids workflow verified stale page strings after canonical nav rollout
+actions:
+  - remove duplicate remote argument from main ssh_base calls
+  - update kids workflow live verify to canonical nav/css/js markers
+verification:
+  - duplicate ssh remote removed
+  - stale count >=20 assertion removed
+  - canonical nav markers verified

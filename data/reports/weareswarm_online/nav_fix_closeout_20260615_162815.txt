@@ -1,0 +1,23 @@
+TASK=fix_weareswarm_online_nav_001
+TARGET=_deploy/weareswarm.online
+ACTION=scoped closeout for nav fallback
+
+VERIFY_ASSET:
+PASS
+
+VERIFY_HTML_INJECTIONS:
+PASS _deploy/weareswarm.online/dreamos-services/index.html
+PASS _deploy/weareswarm.online/kids-planner/index.html
+PASS _deploy/weareswarm.online/roadmap/index.html
+PASS _deploy/weareswarm.online/skill-tree/index.html
+PASS _deploy/weareswarm.online/tasks/index.html
+
+UNRELATED_UNTRACKED_GUARD:
+?? _deploy/freerideinvestor.com/
+
+SCOPED_DIFF_NAMES:
+_deploy/weareswarm.online/dreamos-services/index.html
+_deploy/weareswarm.online/kids-planner/index.html
+_deploy/weareswarm.online/roadmap/index.html
+_deploy/weareswarm.online/skill-tree/index.html
+_deploy/weareswarm.online/tasks/index.html
