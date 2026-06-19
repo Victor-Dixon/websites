@@ -1,0 +1,13 @@
+task_id: add_deploy_truth_gate_001
+title: Add deploy truth gate for website source/deploy/live verification
+repo: websites
+status: ready
+priority: high
+lane: hostinger
+objective: >
+  Prevent false deploy success by verifying source root, deploy root,
+  workflow mapping, live URL markers, and source/deploy drift.
+verification:
+  - python3 runtime/scripts/deploy_truth_gate.py --help
+  - python3 runtime/scripts/run_deploy_truth_gates.py --site freerideinvestor.com
+closeout_required: true
