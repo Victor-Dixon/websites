@@ -187,6 +187,10 @@
     const flavorQuestionsRaw = bank.flavor_questions || [];
     const letters = ["A","B","C","D","E","F","G","H"];
     const storeKey = "dreamos.sparkOS.clean.v1";
+    const accountConfig = window.DreamOSSparkAccount || {};
+    const accountEndpoint = accountConfig.endpoint || "/wp-json/emergence/v1/characters/me";
+    const accountNonce = accountConfig.nonce || "";
+    const accountLoggedIn = accountConfig.loggedIn === true || accountConfig.loggedIn === "1";
 
     function load() {
       try { return JSON.parse(sessionStorage.getItem(storeKey) || "{}") || {}; }
@@ -199,6 +203,101 @@
 
     function esc(s) {
       return String(s || "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    }
+
+    function accountHeaders(method) {
+      const headers = { "Accept": "application/json" };
+      if (method !== "GET") headers["Content-Type"] = "application/json";
+      if (accountNonce) headers["X-WP-Nonce"] = accountNonce;
+      return headers;
+    }
+
+    function list(value) {
+      if (Array.isArray(value)) return value.map(x => String(x || "").trim()).filter(Boolean);
+      if (!value) return [];
+      return String(value).split(/[,|/]+/).map(x => x.trim()).filter(Boolean);
+    }
+
+    function accountCharacterFrom(payload, record) {
+      const domains = list(payload.manifested || payload.domains || payload.lead_domain);
+      const powers = Array.isArray(payload.powers) ? payload.powers.map(p => {
+        if (typeof p === "string") return { power:p, domain:"", lead:false };
+        return { power:p.power || p.name || p.title || "", domain:p.domain || "", lead:!!p.lead };
+      }).filter(p => p.power) : [];
+      return {
+        version:1,
+        source:"dadudekc-spark-os",
+        visibility:"private",
+        id:record && record.id ? record.id : "",
+        card_id:record && record.id ? record.id : "",
+        spark_name:record && record.character_name ? record.character_name : ((payload.lead_domain || "Generated") + " Spark"),
+        title:record && record.character_name ? record.character_name : ((payload.lead_domain || "Generated") + " Spark"),
+        character_name:record && record.character_name ? record.character_name : "",
+        archetype:payload.lead_domain ? payload.lead_domain + " Spark" : "Spark",
+        summary:payload.profile_shape || "Spark profile generated.",
+        cast:payload.cast || "",
+        lead_domain:payload.lead_domain || domains[0] || "",
+        manifested_domains:domains,
+        domains:domains,
+        profile_shape:payload.profile_shape || "",
+        power_rating:payload.spark_signature || payload.provisional_spark_signature || (record && record.power_rating) || "",
+        combat_rating:payload.combat_capability || payload.provisional_combat_capability || (record && record.combat_rating) || "",
+        rarity_tier:record && record.rarity_tier ? record.rarity_tier : "",
+        selected_powers:powers,
+        battle_ready_note:"Saved Spark OS quiz result and character card for account reload."
+      };
+    }
+
+    function accountStatus(message) {
+      const el = document.getElementById("spark-os-account-status");
+      if (el) el.textContent = message || "";
+    }
+
+    async function saveAccountCharacter(payload, record) {
+      const character = accountCharacterFrom(payload, record);
+      if (window.SparkHeroCards) SparkHeroCards.storeAccountCharacter(character);
+      if (!accountLoggedIn) {
+        accountStatus("Saved on this device. Sign in to keep this Spark on your account.");
+        return;
+      }
+      try {
+        const res = await fetch(accountEndpoint, {
+          method:"POST",
+          credentials:"same-origin",
+          headers:accountHeaders("POST"),
+          body:JSON.stringify({ character })
+        });
+        const data = await res.json();
+        if (!res.ok || data.status !== "saved") throw new Error(data.message || "Account save failed");
+        if (data.character && window.SparkHeroCards) SparkHeroCards.storeAccountCharacter(data.character);
+        accountStatus("Saved to your account. You can come back without retaking the quiz.");
+      } catch (e) {
+        accountStatus("Account save failed. This Spark is still saved on this device.");
+      }
+    }
+
+    async function bootAccountCharacter() {
+      if (!window.SparkHeroCards) return;
+      const card = await SparkHeroCards.loadAccountCharacter();
+      if (!card || sessionStorage.getItem(storeKey)) return;
+      app.innerHTML = `
+        <section class="panel">
+          <div class="kicker">${accountLoggedIn ? "Saved to Account" : "Saved Spark"}</div>
+          <h1>${esc(card.character_name || "Saved Spark")}</h1>
+          <p>Your Spark character and quiz result are already saved. You do not need to retake the quiz unless you want to replace this character.</p>
+          ${SparkHeroCards.renderCard(card, { action:"open-profile" })}
+          <div class="actions">
+            <button class="primary" type="button" data-action="open-profile">Open Hero Profile</button>
+            <a class="btn primary" href="/cards/">Open Card Collection</a>
+            <a class="btn secondary" href="/battles/?account_character=1">Enter Battles</a>
+            <button class="secondary" type="button" data-action="start">Replace Character</button>
+          </div>
+        </section>
+      `;
+      const state = load();
+      state.hero_card = card;
+      state.final_result = card.raw || card;
+      save(state);
     }
 
     function saveCharacterRecord(payload, existingRecord) {
@@ -371,9 +470,11 @@
             <a class="btn secondary" href="/battles/">Enter the What-If Arena</a>
             <button class="secondary" type="button" data-action="reset">Start Over</button>
           </div>
+          <p id="spark-os-account-status" aria-live="polite">Saving Spark to your account...</p>
           <details><summary>Raw protocol output</summary><pre>${esc(JSON.stringify(r, null, 2))}</pre></details>
         </section>
       `;
+      saveAccountCharacter(r, record);
     }
 
     function renderHeroProfile() {
@@ -504,6 +605,8 @@
         }
       }
     });
+
+    bootAccountCharacter();
   })();
   </script>
 </body>
