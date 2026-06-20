@@ -1,0 +1,19 @@
+id: index_public_freeride_legacy_repos_003
+status: ready_for_pr
+lane: github_cleanup
+repo: websites
+created: 2026-06-20T20:28:37.720960+00:00
+target: artifacts/freerideinvestor.com/public_trading_legacy_index.json
+policy:
+  index_only: true
+  source_copied: false
+  bundles_created: false
+  private_repos_blocked: true
+  archive_after_merge_only: true
+repos:
+  - Victor-Dixon/stocktwits-analyzer
+  - Victor-Dixon/trade_analyzer
+  - Victor-Dixon/Auto_Blogger
+  - Victor-Dixon/LSTMmodel_trainer
+  - Victor-Dixon/TradingRobots
+  - Victor-Dixon/SmartStock-pro
