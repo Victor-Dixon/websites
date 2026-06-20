@@ -3,19 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Contact | AriaJet Phone Repair</title>
-  <meta name="description" content="Contact AriaJet Phone Repair for a phone repair quote, device diagnostic, cleaning request, battery replacement, screen replacement, or software troubleshooting.">
+  <title>Contact | AriaJet</title>
+  <meta name="description" content="Contact AriaJet to request an AI-prepared private aviation flight brief with route, timing, passenger, and concierge details.">
   <link rel="stylesheet" href="/assets/style.css">
+  <script defer src="/assets/site.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" aria-label="AriaJet site header">
     <a class="brand" href="/"><span class="brand-mark"></span>AriaJet</a>
-    <nav class="nav-links" aria-label="Main navigation">
+    <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false">
+      <span>Menu</span>
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-links" id="primary-navigation" aria-label="Main navigation">
       <a href="/">Home</a>
-      <a href="/services/">Services</a>
-      <a href="/repair-gallery/">Repair Gallery</a>
-      <a href="/repair-journey/">Repair Journey</a>
+      <a href="/platform/">Platform</a>
+      <a href="/how-it-works/">How It Works</a>
+      <a href="/trust/">Trust</a>
       <a href="/contact/" aria-current="page">Contact</a>
     </nav>
   </header>
@@ -23,77 +28,112 @@
   <main id="main" class="shell">
     <section class="page-hero" aria-labelledby="contact-title">
       <span class="eyebrow">Contact AriaJet</span>
-      <h1 id="contact-title">Get a phone repair quote.</h1>
-      <p class="lead">Tell me what phone you have, what happened, and what you need fixed. I will reply with a plain next step: cleaning, diagnostics, software troubleshooting, or a part estimate.</p>
+      <h1 id="contact-title">Request a private aviation flight brief.</h1>
+      <p class="lead">Tell AriaJet where you need to go, when you want to travel, and what would make the trip feel effortless. The form prepares a structured email brief for concierge follow-up.</p>
       <div class="hero-actions">
-        <a class="button" href="#quote">Get a Quote</a>
-        <a class="button button-secondary" href="mailto:repair@ariajet.site?subject=AriaJet%20repair%20question">Email AriaJet</a>
+        <a class="button" href="#flight-request">Start Flight Request</a>
+        <a class="button button-secondary" href="mailto:concierge@ariajet.site?subject=AriaJet%20flight%20brief">Email Concierge</a>
       </div>
     </section>
 
-    <section class="section" id="quote" aria-labelledby="quote-title">
+    <section class="section" id="flight-request" aria-labelledby="flight-request-title">
       <div class="section-heading">
-        <span class="eyebrow">Quote checklist</span>
-        <h2 id="quote-title">Send these details for a better estimate.</h2>
-        <p>A clear repair request helps avoid guessing and makes it easier to tell whether the device needs parts, cleaning, or a diagnostic check.</p>
+        <span class="eyebrow">Flight request</span>
+        <h2 id="flight-request-title">Share the details for a better first brief.</h2>
+        <p>This static version opens your email client with the request details. Add a secure backend or form provider before treating submissions as guaranteed delivered.</p>
       </div>
       <div class="contact-grid">
-        <article class="contact-card featured">
-          <span class="tag">What to include</span>
-          <h3>Repair request details</h3>
-          <ul class="quote-list">
-            <li>Phone brand and model.</li>
-            <li>What is wrong and when it started.</li>
-            <li>Whether the phone was dropped, got wet, or had a previous repair.</li>
-            <li>What still works: charging, screen, touch, cameras, sound, buttons, Wi-Fi, and calls.</li>
-            <li>Photos of damage if the issue is visible.</li>
-          </ul>
-          <div class="quote-actions">
-            <a class="button" href="mailto:repair@ariajet.site?subject=AriaJet%20repair%20quote&body=Phone%20model%3A%0AIssue%3A%0AWhat%20happened%3A%0AWhat%20still%20works%3A%0APhotos%20available%3A%0A">Email Quote Details</a>
+        <form class="contact-form featured" data-contact-form novalidate>
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" autocomplete="name" required placeholder="Your name">
           </div>
-        </article>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-row">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 000 0000">
+          </div>
+          <div class="form-row">
+            <label for="mission">Mission type</label>
+            <select id="mission" name="mission" required>
+              <option value="">Select one</option>
+              <option>Private charter inquiry</option>
+              <option>Executive travel</option>
+              <option>Family or group travel</option>
+              <option>Concierge planning</option>
+              <option>Operator partnership</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="origin">Origin</label>
+            <input id="origin" name="origin" required placeholder="City or airport">
+          </div>
+          <div class="form-row">
+            <label for="destination">Destination</label>
+            <input id="destination" name="destination" required placeholder="City or airport">
+          </div>
+          <div class="form-row">
+            <label for="dates">Travel date or window</label>
+            <input id="dates" name="dates" required placeholder="Date, time, or flexibility">
+          </div>
+          <div class="form-row">
+            <label for="passengers">Passengers</label>
+            <input id="passengers" name="passengers" inputmode="numeric" required placeholder="Number of travelers">
+          </div>
+          <div class="form-row form-row-full">
+            <label for="message">Concierge notes</label>
+            <textarea id="message" name="message" rows="5" placeholder="Aircraft preferences, luggage, pets, catering, ground transport, timing sensitivity, or privacy needs"></textarea>
+          </div>
+          <div class="form-actions form-row-full">
+            <button class="button" type="submit" data-submit-label="Prepare Flight Brief">Prepare Flight Brief</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
 
-        <article class="contact-card">
-          <span class="tag success">Repair expectations</span>
-          <h3>How AriaJet replies</h3>
-          <p>I will explain the likely next step in simple language. If the repair is outside my current skill level, I will say that directly instead of taking a job I should not take.</p>
-          <div class="metric-line"><strong>Best for</strong><span>phones and small devices</span></div>
-          <div class="metric-line"><strong>First step</strong><span>diagnostic review</span></div>
-          <div class="metric-line"><strong>Priority</strong><span>honest repair value</span></div>
-        </article>
+        <aside class="contact-card">
+          <span class="tag success">What happens next</span>
+          <h3>AriaJet prepares the conversation.</h3>
+          <p>The form organizes your request into a concierge-readable email brief. It is useful for first contact, but it is not a replacement for a secure booking or payment workflow.</p>
+          <div class="metric-line"><strong>Best for</strong><span>first flight brief</span></div>
+          <div class="metric-line"><strong>Response path</strong><span>email handoff</span></div>
+          <div class="metric-line"><strong>Upgrade needed</strong><span>backend delivery</span></div>
+        </aside>
       </div>
     </section>
 
     <section class="section" aria-labelledby="contact-options-title">
       <div class="section-heading">
         <span class="eyebrow">Contact options</span>
-        <h2 id="contact-options-title">Start with the channel that is easiest for you.</h2>
+        <h2 id="contact-options-title">Use the channel that fits the request.</h2>
       </div>
       <div class="card-grid">
         <article class="panel accent">
-          <span class="tag">Email</span>
-          <h3>repair@ariajet.site</h3>
-          <p>Email is best for repair quotes because you can include the model, symptoms, and photos in one place.</p>
+          <span class="tag">Concierge</span>
+          <h3>concierge@ariajet.site</h3>
+          <p>Best for flight brief requests, route questions, private travel planning, and premium service coordination.</p>
           <div class="button-row">
-            <a class="button button-secondary" href="mailto:repair@ariajet.site?subject=AriaJet%20repair%20quote">Send Email</a>
+            <a class="button button-secondary" href="mailto:concierge@ariajet.site?subject=AriaJet%20flight%20brief">Email Concierge</a>
           </div>
         </article>
         <article class="panel">
-          <span class="tag">Before drop-off</span>
-          <h3>Back up your phone if possible</h3>
-          <p>Before any repair, back up important photos, messages, contacts, and files when the phone still turns on.</p>
+          <span class="tag">Operators</span>
+          <h3>Partnership inquiries</h3>
+          <p>Use the form and choose operator partnership so the request includes the right routing context.</p>
         </article>
         <article class="panel">
-          <span class="tag">Safety note</span>
-          <h3>Do not charge swollen or wet devices</h3>
-          <p>If the battery looks swollen or the phone was exposed to liquid, stop charging it and ask for guidance first.</p>
+          <span class="tag">Privacy</span>
+          <h3>Do not send payment details</h3>
+          <p>The current static form is for first-contact flight context only. Never send card numbers or sensitive identity documents through this page.</p>
         </article>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>AriaJet &copy; 2026. Clear repair questions lead to better repair decisions.</p>
+    <p>AriaJet &copy; 2026. Premium flight briefs for AI-powered private aviation coordination.</p>
   </footer>
 </body>
 </html>

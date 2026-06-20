@@ -1,6 +1,6 @@
 # Owner Approval / Deployment Notes: ariajet.site
 
-This static package is the source for the AriaJet Phone Repair website.
+This static package is the source for the AriaJet private aviation website.
 
 ## Domain
 
@@ -12,17 +12,21 @@ rebuild_static
 
 ## Business Purpose
 
-Small independent phone repair and device restoration business that also documents the owner's journey learning electronics repair.
+Premium AI-powered private aviation platform for flight request intake, mission brief preparation, concierge coordination, and trust-building around high-touch travel.
 
 ## Requested Website Content
 
-- Home page with the headline "AriaJet Phone Repair".
-- Prominent "Get a Quote" and "Contact" actions.
-- Services page covering screen replacement, battery replacement, device cleaning, diagnostics, and software troubleshooting.
-- Repair Gallery page for before-and-after repair documentation, repair details, and completed projects.
-- Repair Journey page for repairs completed, lessons learned, current projects, and technician growth.
-- Contact page with quote guidance and customer-safe repair intake details.
-- Modern dark theme with blue accents, fast static pages, and mobile-first responsive layout.
+- Home page with the positioning "Private aviation meets next-generation AI".
+- Premium hero section with aviation visual, clear value proposition, and primary flight brief CTA.
+- Platform page covering AI-powered booking, flight management, concierge services, security, and operator-readiness.
+- How It Works page covering the three-step flow from mission intake to AI-prepared brief to concierge review.
+- Trust page with credibility signals, testimonial placeholders, delivery caveats, and future proof guidance.
+- Contact page with a guided private aviation flight request form.
+- Mobile navigation behavior, consistent buttons/spacing/typography, and lightweight CSS-based visuals.
+
+## Known Launch Caveat
+
+The contact form currently prepares an email draft with loading, success, and error states. A transactional backend or form provider is still required before email delivery can be guaranteed or tested end-to-end.
 
 ## Approval Gate
 
