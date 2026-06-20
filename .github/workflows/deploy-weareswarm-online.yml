@@ -59,9 +59,21 @@ jobs:
           ssh_base=(ssh -i "$HOME/.ssh/id_hostinger" -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1 "$remote")
           scp_base=(scp -i "$HOME/.ssh/id_hostinger" -P "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ConnectionAttempts=1)
           # Dream.OS canonical nav assets
-          if [ -d routes/weareswarm.online/assets ]; then
+          echo "VERIFY=PASS_DEPLOY_SSH_BASE_BUILT"
+          "${ssh_base[@]}" "set -e
+            echo VERIFY=PASS_DEPLOY_SSH_AUTH
+            test -d '$REMOTE_ROOT'
+            echo VERIFY=PASS_DEPLOY_REMOTE_ROOT_EXISTS
+            test -w '$REMOTE_ROOT'
+            echo VERIFY=PASS_DEPLOY_REMOTE_ROOT_WRITABLE
+          "
+
+          if [ -d routes/weareswarm.online/assets ] && [ -n "$(find routes/weareswarm.online/assets -mindepth 1 -maxdepth 1 -print -quit)" ]; then
             "${ssh_base[@]}" "mkdir -p '$REMOTE_ROOT/assets'"
-            "${scp_base[@]}" -r routes/weareswarm.online/assets/* "$remote:$REMOTE_ROOT/assets/"
+            "${scp_base[@]}" -r routes/weareswarm.online/assets/. "$remote:$REMOTE_ROOT/assets/"
+            echo "VERIFY=PASS_DEPLOY_ASSETS_UPLOADED"
+          else
+            echo "VERIFY=SKIP_DEPLOY_ASSETS_EMPTY_OR_MISSING"
           fi
 
           "${ssh_base[@]}" "set -e
