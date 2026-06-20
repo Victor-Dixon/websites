@@ -1,0 +1,64 @@
+{
+  "gate": "weareswarm_online_deploy_truth_gate",
+  "domain": "weareswarm.online",
+  "generated": "2026-06-20T12:39:08-0500",
+  "checks": {
+    "SOURCE_FOCUS_EXISTS": {
+      "ok": true,
+      "detail": "/data/data/com.termux/files/home/projects/websites/_deploy/weareswarm.online/focus/index.html"
+    },
+    "SOURCE_FOCUS_GATE": {
+      "ok": true,
+      "detail": ""
+    },
+    "SOURCE_FOCUS_LEVEL_TEXT": {
+      "ok": true,
+      "detail": ""
+    },
+    "SOURCE_OLD_LEVEL4_COPY_REMOVED": {
+      "ok": true,
+      "detail": ""
+    },
+    "WORKFLOW_EXISTS": {
+      "ok": true,
+      "detail": "/data/data/com.termux/files/home/projects/websites/.github/workflows/deploy-weareswarm-online.yml"
+    },
+    "WORKFLOW_UPLOADS_FOCUS": {
+      "ok": true,
+      "detail": ""
+    },
+    "WORKFLOW_HOSTINGER_TARGET": {
+      "ok": true,
+      "detail": ""
+    },
+    "WORKFLOW_EMPTY_ASSETS_SAFE": {
+      "ok": true,
+      "detail": ""
+    },
+    "LATEST_DEPLOY_SUCCESS": {
+      "ok": true,
+      "detail": "RUN_ID=27878588728 CONCLUSION=success"
+    },
+    "LIVE_FOCUS_GATE": {
+      "ok": true,
+      "detail": ""
+    },
+    "LIVE_CURRENT_VERIFIED_LEVEL": {
+      "ok": true,
+      "detail": ""
+    },
+    "LIVE_OLD_LEVEL4_COPY_REMOVED": {
+      "ok": true,
+      "detail": ""
+    }
+  },
+  "latest_deploy": {
+    "conclusion": "success",
+    "createdAt": "2026-06-20T17:29:15Z",
+    "databaseId": 27878588728,
+    "headSha": "f75215126af1de49ee8fae129c0ff5e61f55fdbd",
+    "status": "completed",
+    "url": "https://github.com/Victor-Dixon/websites/actions/runs/27878588728"
+  },
+  "ok": true
+}

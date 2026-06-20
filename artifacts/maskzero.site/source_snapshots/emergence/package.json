@@ -1,0 +1,35 @@
+{
+  "name": "spark-protocol",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "node apps/discord-bot/src/index.js",
+    "test": "node --test tests/*.test.js",
+    "test:quiz": "node --test tests/quiz_contract.test.js",
+    "test:e2e": "node --test tests/e2e/quiz_flow.e2e.test.js",
+    "test:all": "node --test tests/*.test.js tests/e2e/*.test.js tests/scoring/*.test.js",
+    "test:scoring": "node --test tests/scoring/scoring_engine.test.js",
+    "test:contract": "node --test tests/quiz_contract.test.js",
+    "test:mobile": "npm run test:contract && npm run test:answers && npm run test:e2e && npm run test:scoring && npm run test:adaptive && npm run test:adaptive-progress && npm run test:adaptive-discord && npm run test:adaptive-full && npm run test:stress && npm run test:percentile && npm run test:percentile-distribution && npm run test:ai && npm run test:discord-session && npm run test:math",
+    "test:adaptive": "node --test tests/scoring/adaptive_quiz.test.js",
+    "test:adaptive-progress": "node --test tests/scoring/adaptive_progress.test.js",
+    "test:adaptive-discord": "node --test tests/e2e/adaptive_discord_model.e2e.test.js",
+    "test:answers": "node --test tests/answer_choices.test.js",
+    "test:adaptive-full": "node --test tests/scoring/adaptive_engine_full.test.js",
+    "test:stress": "node --test tests/e2e/adaptive_quiz_stress_percentile.e2e.test.js",
+    "test:percentile": "node --test tests/scoring/percentile_floor.test.js",
+    "test:percentile-distribution": "node --test tests/scoring/percentile_distribution.test.js",
+    "test:ai": "node --test tests/ai/*.test.js",
+    "test:discord-session": "node --test tests/e2e/discord_session_integrity.e2e.test.js",
+    "test:derived-pointer": "node --test tests/e2e/derived_question_pointer.e2e.test.js",
+    "test:quiz-session": "node --test tests/e2e/quiz_session_state_machine.e2e.test.js",
+    "test:view-self-heal": "node --test tests/e2e/quiz_view_self_heal.e2e.test.js",
+    "test:stale-buttons": "node --test tests/e2e/stale_safe_button_quiz.e2e.test.js",
+    "launch": "node scripts/verified_launch.mjs",
+    "test:math": "node --test tests/scoring/math_invariants.test.js"
+  },
+  "type": "module"
+}

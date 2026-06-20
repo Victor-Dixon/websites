@@ -1,150 +1,113 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MaskZero | Spark Protocol in Meridian City</title>
-<meta name="description" content="MaskZero — one character, three modes, one living city. Create your Spark, enter Meridian City, and let every choice shape your identity.">
-<link rel="canonical" href="https://maskzero.site/">
-<style>
-:root{--bg:#070915;--panel:rgba(255,255,255,.07);--panel2:rgba(255,255,255,.105);--text:#f7fbff;--muted:rgba(247,251,255,.74);--line:rgba(255,255,255,.16);--accent:#7dffbe;--violet:#9da7ff;--gold:#ffd166;--danger:#ff4c77}
-*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}
-body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 18% 8%,rgba(125,255,190,.18),transparent 30rem),radial-gradient(circle at 90% 0%,rgba(157,167,255,.18),transparent 32rem),linear-gradient(180deg,#040713,#091225 52%,#050711)}
-a{color:inherit}.wrap{width:min(100% - 1.25rem,1120px);margin:0 auto;padding:1rem 0 3rem}
-.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0}.brand{font-weight:950;letter-spacing:.02em;text-decoration:none}
-.hero,.panel{border:1px solid var(--line);border-radius:30px;background:linear-gradient(180deg,var(--panel),rgba(255,255,255,.025));box-shadow:0 30px 90px rgba(0,0,0,.34);padding:clamp(1.1rem,5vw,3rem)}
-.hero{margin:1.25rem 0 1rem}
-.kicker{color:var(--accent);font-size:.78rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase}
-.hero h1{font-size:clamp(3.2rem,12vw,7rem);line-height:.88;margin:.35rem 0 1rem;letter-spacing:-.08em}
-.tagline{max-width:760px;color:#fff;font-size:clamp(1.25rem,3.5vw,2rem);font-weight:850;line-height:1.2}
-.copy{max-width:780px;color:var(--muted);font-size:1.06rem;line-height:1.68}
-.actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.85rem 1.1rem;border-radius:999px;text-decoration:none;font-weight:950}
-.primary{background:var(--accent);color:#071015}.secondary{background:rgba(255,255,255,.1);border:1px solid var(--line);color:var(--text)}
-/* Mode grid */
-.mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1rem 0}
-.mode-card{border:1px solid var(--line);border-radius:24px;background:var(--panel2);padding:1.25rem;display:flex;flex-direction:column;gap:.5rem;text-decoration:none;transition:border-color .18s,background .18s}
-.mode-card:hover{border-color:var(--accent);background:rgba(125,255,190,.06)}
-.mode-card.campaign{border-color:rgba(125,255,190,.28)}
-.mode-card.gauntlet{border-color:rgba(255,76,119,.22)}
-.mode-card.arena{border-color:rgba(255,209,102,.22)}
-.mode-icon{font-size:1.75rem;line-height:1}
-.mode-tier{font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.mode-card h3{margin:0;font-size:1.25rem;font-weight:900}
-.mode-card p{color:var(--muted);font-size:.88rem;line-height:1.55;margin:0;flex:1}
-.mode-cta{margin-top:.75rem;font-size:.84rem;font-weight:900;color:var(--accent)}
-.mode-card.gauntlet .mode-cta{color:var(--danger)}
-.mode-card.arena .mode-cta{color:var(--gold)}
-/* Architecture */
-.arch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1rem 0}
-.arch-card{border:1px solid var(--line);border-radius:24px;background:var(--panel2);padding:1rem}
-.arch-card h2,.arch-card h3{margin:.15rem 0 .55rem}
-.arch-card p{color:var(--muted);line-height:1.6;font-size:.9rem;margin:0}
-/* Engine diagram */
-.engine-diagram{text-align:center;padding:1.5rem;color:var(--muted);font-size:.9rem;line-height:2}
-.engine-diagram strong{color:var(--accent);font-size:1.05rem}
-.foot{padding:2rem 0;text-align:center;color:var(--muted);font-size:.92rem}.foot strong{display:block;color:var(--text);font-size:1rem;margin-bottom:.25rem}.attrib{font-size:.82rem;color:rgba(247,251,255,.58)}
-@media(max-width:780px){.top{align-items:flex-start;flex-direction:column}.mode-grid,.arch-grid{grid-template-columns:1fr}.hero h1{letter-spacing:-.055em}}
-</style>
-  <link rel="stylesheet" href="/assets/css/maskzero-theme.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MaskZero&trade; | Active Respiratory Protection for Pandemic Readiness</title>
+  <meta name="description" content="MaskZero is a patented personal protective device concept for active respiratory protection using contained UV-C technology, with evidence, regulatory status, and partner materials available by request.">
+  <link rel="canonical" href="https://maskzero.site/">
+  <link rel="stylesheet" href="/assets/css/maskzero.css">
+  
 </head>
 <body>
-<div class="wrap">
-<header class="top"><a class="brand" href="/">MaskZero</a><nav class="mz-nav" data-mz-nav data-open="false">
-  <div class="mz-nav-inner">
-    <a class="mz-brand" href="/"><span class="mz-brand-mark" aria-hidden="true"></span><span>MaskZero</span></a>
-    <button class="mz-nav-toggle" type="button" data-mz-nav-toggle aria-expanded="false" aria-label="Toggle navigation">Menu</button>
-    <div class="mz-nav-links" data-mz-nav-links>
-      <a href="/quiz/">Create Spark</a>
-      <a href="/adventure/">Campaign</a>
-      <a href="/gauntlet/">Gauntlet</a>
-      <a href="/battles/">Arena</a>
-      <a href="/spark-dashboard/">Command Post</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="MaskZero home"><span class="brand-mark" aria-hidden="true"></span><span>MaskZero<small>Respiratory Protection</small></span></a>
+    <nav class="nav-links" aria-label="Primary navigation"><a href="/technology/">Technology</a><a href="/evidence/">Evidence</a><a href="/regulatory/">Regulatory</a><a href="/use-cases/hospitals/">Use Cases</a><a href="/team/">Team</a><a href="/investors-partners/">Investors / Partners</a><a href="/contact/">Contact</a></nav>
+  </header>
+  <main id="main">
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Pandemic readiness respiratory protection</p>
+        <h1>MaskZero&trade;</h1>
+        <p class="lede">Active respiratory protection for pandemic readiness.</p>
+        <p class="sublede">A patented personal protective device designed to capture and neutralize viral pathogens at the point of breath using contained UV-C technology.</p>
+        <div class="actions" aria-label="Primary actions">
+          <a class="btn primary" href="/brief/">Request Technical Brief</a>
+          <a class="btn secondary" href="/use-cases/strategic-partners/">Partner With Us</a>
+          <a class="btn warn" href="/use-cases/investors/">Request Investor Materials</a>
+        </div>
+        <p class="status-line">U.S. utility patent granted. Regulatory pathway and current development status available upon request.</p>
+      </div>
+      <aside class="hero-card device-diagram" aria-label="MaskZero airflow concept diagram">
+        <svg viewBox="0 0 520 360" role="img" aria-labelledby="diagram-title diagram-desc">
+          <title id="diagram-title">Contained UV-C respiratory protection sequence</title>
+          <desc id="diagram-desc">Air enters a device chamber, pathogens are captured or exposed, contained UV-C acts inside the chamber, and cleaned airflow exits.</desc>
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1"><stop stop-color="#6ee7c8"/><stop offset="1" stop-color="#8ab4ff"/></linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <rect x="110" y="72" width="300" height="216" rx="74" fill="rgba(255,255,255,.08)" stroke="rgba(203,223,255,.45)" stroke-width="3"/>
+          <rect x="185" y="110" width="150" height="140" rx="34" fill="rgba(110,231,200,.13)" stroke="url(#g1)" stroke-width="3"/>
+          <path d="M32 180h105" stroke="#6ee7c8" stroke-width="9" stroke-linecap="round" filter="url(#glow)"/>
+          <path d="M383 180h105" stroke="#8ab4ff" stroke-width="9" stroke-linecap="round" filter="url(#glow)"/>
+          <path d="M122 162l32 18-32 18" fill="none" stroke="#6ee7c8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M366 162l32 18-32 18" fill="none" stroke="#8ab4ff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="222" cy="160" r="12" fill="#ff7a90"/>
+          <circle cx="287" cy="195" r="10" fill="#ff7a90"/>
+          <circle cx="255" cy="132" r="7" fill="#ff7a90"/>
+          <path d="M210 232c38-76 63-76 100 0" fill="none" stroke="#d7e8ff" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 12"/>
+          <text x="260" y="314" text-anchor="middle" fill="#f5f9ff" font-size="18" font-weight="800">Contained UV-C chamber</text>
+          <text x="84" y="151" text-anchor="middle" fill="#b7c5d8" font-size="14">Air in</text>
+          <text x="440" y="151" text-anchor="middle" fill="#b7c5d8" font-size="14">Airflow out</text>
+        </svg>
+      </aside>
+    </section>
+    <section aria-label="Proof bar" class="proof-bar">
+      <a href="/evidence/patent/">Patented Technology</a>
+      <a href="/regulatory/">Class II Medical Device Pathway</a>
+      <a href="/manufacturing/">Small-Batch Manufacturing</a>
+      <a href="/evidence/testing-summary/">Independent Testing</a>
+      <a href="/use-cases/strategic-partners/">Hospital / Government / Strategic Partner Readiness</a>
+    </section>
+    <section class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">Why it matters</p><h2>Respiratory readiness needs reusable, evidence-led options.</h2></div>
+        <p>MaskZero is positioned for diligence conversations with hospitals, government preparedness teams, long-term care operators, strategic partners, and investors evaluating active respiratory protection technologies.</p>
+      </div>
+      <div class="grid">
+        <article class="card"><span class="num">01</span><h3>Point-of-breath design</h3><p>Designed around capture or exposure of pathogens in the airflow path, followed by contained UV-C neutralization inside the device architecture.</p><a href="/technology/">Review mechanism</a></article>
+        <article class="card"><span class="num">02</span><h3>Evidence-first posture</h3><p>Major claims are tied to patent, testing, regulatory, and manufacturing evidence pages, with deeper materials available by technical brief or NDA request.</p><a href="/evidence/">Open evidence hub</a></article>
+        <article class="card"><span class="num">03</span><h3>Commercial pathways</h3><p>Use-case pages translate the technology into buyer questions: staff safety, stockpile readiness, high-risk populations, licensing, manufacturing, distribution, and investment diligence.</p><a href="/use-cases/hospitals/">View use cases</a></article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-head"><div><p class="eyebrow">Current status</p><h2>Timeline and 2026 milestone.</h2></div><p class="claim-note">Public status is intentionally conservative. Technical, regulatory, and partner diligence details are available by request.</p></div>
+      <div class="timeline">
+        <div class="timeline-item"><strong>2020</strong><div><b>Invention / patent filing.</b><p>Core active respiratory protection concept and patent pathway initiated.</p></div></div>
+        <div class="timeline-item"><strong>2022</strong><div><b>U.S. utility patent granted.</b><p>Patent position established for the MaskZero device concept.</p></div></div>
+        <div class="timeline-item"><strong>2023</strong><div><b>Industry presentation / regulatory pathway.</b><p>Commercial and Class II medical device pathway discussions organized for partner review.</p></div></div>
+        <div class="timeline-item"><strong>2024</strong><div><b>Engineering and regulatory progress.</b><p>Device architecture, evidence package, safety language, and manufacturing readiness advanced.</p></div></div>
+        <div class="timeline-item"><strong>2025-2026</strong><div><b>Current milestone: evidence package and partner diligence readiness.</b><p>MaskZero is preparing technical, testing, regulatory, manufacturing, and investor materials for qualified hospital, government, manufacturing, distribution, and capital partners. FDA status: Regulatory status available under NDA or partner request.</p></div></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-head"><div><p class="eyebrow">Comparison</p><h2>Respiratory protection landscape.</h2></div><p>Comparison wording is deliberately qualified and should be reviewed against final test data, labeling, and regulatory clearance before procurement use.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Feature</th><th>Cloth Mask</th><th>N95</th><th>PAPR</th><th>MaskZero</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Filters particles</strong></td><td>Partial</td><td>Yes</td><td>Yes</td><td>Device-specific</td></tr>
+            <tr><td><strong>Kills pathogens</strong></td><td>No</td><td>No</td><td>No</td><td><a href="/evidence/testing-summary/">Claimed / evidence-linked</a></td></tr>
+            <tr><td><strong>Source control</strong></td><td>Partial</td><td>Yes</td><td>Yes</td><td>Yes, subject to device configuration and evidence review</td></tr>
+            <tr><td><strong>Reusable</strong></td><td>Varies</td><td>Limited</td><td>Yes</td><td>Likely, subject to final design and instructions for use</td></tr>
+            <tr><td><strong>Pandemic stockpile use</strong></td><td>Limited</td><td>Yes</td><td>Yes</td><td>Yes, subject to regulatory status and procurement requirements</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>MaskZero&trade;</strong>
+      <p>Active respiratory protection for pandemic readiness. Public information is provided for diligence discussions and does not replace regulatory, clinical, legal, or procurement review.</p>
+      <p class="reg-line">FDA status: Regulatory status available under NDA or partner request.</p>
     </div>
-  </div>
-</nav></header>
-
-<main>
-<section class="hero" aria-labelledby="home-title">
-  <div class="kicker">Spark Protocol · Meridian City · One Character</div>
-  <h1 id="home-title">MaskZero</h1>
-  <p class="tagline">One Spark. Three modes. One living city that remembers everything.</p>
-  <p class="copy">Your manifestation assessment generates a character. That character enters Meridian City through Campaign, faces the Gauntlet, and experiments in the Arena — all writing to the same identity. The city evolves around your choices.</p>
-  <div class="actions">
-    <a class="btn primary" href="/quiz/">Create Your Spark</a>
-    <a class="btn secondary" href="/adventure/">Enter Campaign</a>
-    <a class="btn secondary" href="/gauntlet/">The Gauntlet</a>
-  </div>
-</section>
-
-<!-- ── THREE MODES ── -->
-<section aria-labelledby="modes-title">
-  <h2 id="modes-title" style="font-size:1rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.5rem 0 .5rem">Three Modes · One Identity</h2>
-  <div class="mode-grid">
-    <a class="mode-card campaign" href="/adventure/">
-      <div class="mode-icon">📖</div>
-      <div class="mode-tier">Tier 1 Canon</div>
-      <h3>Campaign</h3>
-      <p>AI Dungeon Master. Persistent story. Meridian City reacts to your choices. Every decision is recorded in your character's permanent timeline.</p>
-      <div class="mode-cta">Enter Campaign →</div>
-    </a>
-    <a class="mode-card gauntlet" href="/gauntlet/">
-      <div class="mode-icon">⚡</div>
-      <div class="mode-tier">Tier 2 Canon</div>
-      <h3>Gauntlet</h3>
-      <p>100 floors of escalating pressure. Moral decisions, combat, survival. Every choice shifts your manifestation traits. Who are you under fire?</p>
-      <div class="mode-cta">Enter Gauntlet →</div>
-    </a>
-    <a class="mode-card arena" href="/battles/">
-      <div class="mode-icon">🔥</div>
-      <div class="mode-tier">Tier 3 · Sandbox</div>
-      <h3>What-If Arena</h3>
-      <p>Simulate alternate paths. What if you joined the Shadow Market? What if you became a tyrant? Arena outcomes don't change your main timeline — explore freely.</p>
-      <div class="mode-cta">Enter Arena →</div>
-    </a>
-  </div>
-</section>
-
-<!-- ── ENGINE ARCHITECTURE ── -->
-<section class="panel" aria-label="Architecture overview" style="margin:1rem 0">
-  <div class="kicker">Unified Architecture</div>
-  <h2 style="font-size:1.6rem;font-weight:900;margin:.35rem 0 .75rem">The Manifestation Engine</h2>
-  <p class="copy">Everything writes to one character record. Your traits, reputation, inventory, and story memory accumulate across all modes — building a single evolving identity inside Meridian City.</p>
-  <div class="engine-diagram" aria-label="Architecture diagram">
-    <strong>Manifestation Engine</strong><br>
-    ↓<br>
-    Campaign &nbsp;·&nbsp; Gauntlet &nbsp;·&nbsp; Arena<br>
-    ↓<br>
-    Character Record<br>
-    ↓<br>
-    <strong>Meridian City</strong> — one living world
-  </div>
-  <div class="actions" style="margin-top:1rem">
-    <a class="btn primary" href="/spark-dashboard/">View Command Post</a>
-    <a class="btn secondary" href="/quiz/">Start with Assessment</a>
-  </div>
-</section>
-
-<!-- ── ARCHITECTURE CARDS ── -->
-<div class="arch-grid" aria-label="System overview">
-  <article class="arch-card">
-    <h2>Character</h2>
-    <p>One Spark, generated from your manifestation assessment. Traits, level, reputation, and inventory persist across every session.</p>
-  </article>
-  <article class="arch-card">
-    <h2>Meridian City</h2>
-    <p>Not a static map — a living persistence layer. Every mode reads from and writes to the city. Districts, factions, and NPCs evolve with your choices.</p>
-  </article>
-  <article class="arch-card">
-    <h2>Dream.OS</h2>
-    <p>Real-world task completion feeds character XP. Finish a build, complete a mission, deploy a site — unlock city content and gain faction reputation.</p>
-  </article>
-</div>
-</main>
-
-<footer class="foot"><strong>MaskZero · Spark Protocol v9.0 · Manifestation Engine v1.0</strong><span class="attrib">Created by WeAreSwarm · Powered by Dream.OS</span></footer>
-</div>
-  <script src="/assets/js/spark-engine.js"></script>
-  <script src="/assets/js/maskzero-nav.js" defer></script>
+    <nav aria-label="Footer navigation"><a href="/technology/">Technology</a><a href="/evidence/">Evidence</a><a href="/regulatory/">Regulatory</a><a href="/manufacturing/">Manufacturing</a><a href="/brief/">Technical Overview</a><a href="/contact/">Contact</a></nav>
+  </footer>
+  <script src="/assets/js/maskzero.js" defer></script>
 </body>
 </html>

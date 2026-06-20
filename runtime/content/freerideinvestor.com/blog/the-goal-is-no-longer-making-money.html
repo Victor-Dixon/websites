@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>The Goal Is No Longer Making Money | FreeRideInvestor</title>
+  <meta name="description" content="A FreeRideInvestor personal trading journal entry about being down $37,000 lifetime, the comeback trap, and shifting from making money to keeping it.">
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #b6c2d1;
+      --line: rgba(255,255,255,.13);
+      --accent: #70e1ff;
+      --accent2: #a78bfa;
+      --good: #86efac;
+      --danger: #fb7185;
+      --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #172554 0, var(--bg) 44%);
+      color: var(--text);
+      line-height: 1.68;
+    }
+    a { color: var(--accent); }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,11,18,.86);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner, main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      color: var(--text);
+      font-weight: 950;
+      letter-spacing: -.03em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .nav-links a {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      border-color: var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    main { padding: 56px 0 88px; }
+    article {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+      gap: 28px;
+      align-items: start;
+    }
+    .content { max-width: 760px; }
+    .eyebrow {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
+    h2 {
+      margin: 42px 0 12px;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
+    p, li { color: var(--muted); }
+    p { margin: 0 0 16px; }
+    .lede {
+      color: #e5edf7;
+      font-size: clamp(19px, 2vw, 24px);
+      line-height: 1.45;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      background: rgba(17,24,39,.82);
+      box-shadow: 0 24px 70px rgba(0,0,0,.22);
+    }
+    .scorecard {
+      position: sticky;
+      top: 96px;
+      display: grid;
+      gap: 16px;
+    }
+    .scorecard h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+    .metrics {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+    }
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    .metric:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .metric dt {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .metric dd {
+      margin: 0;
+      color: var(--text);
+      font-weight: 950;
+      text-align: right;
+    }
+    .good { color: var(--good); }
+    .warn { color: var(--warn); }
+    .danger { color: var(--danger); }
+    blockquote {
+      margin: 28px 0;
+      border-left: 4px solid var(--accent);
+      padding: 8px 0 8px 18px;
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: -.03em;
+    }
+    .page-links { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .page-links a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      background: rgba(255,255,255,.05);
+      font-weight: 800;
+      text-decoration: none;
+    }
+    @media (max-width: 920px) {
+      article { grid-template-columns: 1fr; }
+      .scorecard { position: static; }
+    }
+    @media (max-width: 860px) {
+      .nav-inner { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .nav-links { justify-content: flex-start; }
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.tailwind = window.tailwind || {};
+    window.tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            freeride: {
+              bg: "#020617",
+              panel: "#0f172a",
+              cyan: "#70e1ff",
+              violet: "#a78bfa",
+              emerald: "#86efac",
+            },
+          },
+          boxShadow: {
+            glow: "0 0 80px rgba(112,225,255,.18)",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/assets/css/freeride-theme.css">
+</head>
+<body class="freeride-theme bg-slate-950 text-slate-100 antialiased selection:bg-cyan-300/25 selection:text-cyan-50">
+  <nav class="site-nav backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/70" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="/">FreeRideInvestor</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/blog.html" aria-current="page">Blog</a>
+        <a href="/trading-journal.html">Journal</a>
+        <a href="/replay-proof.html">Replay Proof</a>
+        <a href="/day-trade-planner.html">Day Planner</a>
+        <a href="/early-access.html">Early Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <article>
+      <div class="content">
+        <p class="eyebrow">Personal trading journal</p>
+        <h1>The Goal Is No Longer Making Money</h1>
+        <p class="lede">The goal is no longer proving I can make money. The goal is proving I can keep it.</p>
+
+        <h2>The Number Got Bigger</h2>
+        <p>A funny thing happened this morning.</p>
+        <p>I was doing my daily trading introspection and reviewing the numbers.</p>
+        <p>Then I updated a statistic.</p>
+        <p>My lifetime trading losses are no longer down $31,000.</p>
+        <p>They are down $37,000.</p>
+        <p>I laughed.</p>
+        <p>Not because it is funny.</p>
+        <p>Because at some point the number becomes absurd enough that all you can do is laugh.</p>
+        <p>Most traders hide from that number.</p>
+        <p>I do not want to.</p>
+        <p>That number is part of the story.</p>
+        <p>It is tuition.</p>
+        <p>Expensive tuition.</p>
+        <p>But tuition nonetheless.</p>
+
+        <h2>The Problem With Comebacks</h2>
+        <p>A lot of traders think the hardest part is making money.</p>
+        <p>I am starting to think that is wrong.</p>
+        <p>Making money is not the hard part.</p>
+        <p>Keeping it is.</p>
+        <p>Recently I have put together a strong streak.</p>
+        <p>Seven green days.</p>
+        <p>Over $1,100 on the week.</p>
+        <p>The account has been growing.</p>
+        <p>But instead of becoming more confident, I have become more cautious.</p>
+        <p>The question is not:</p>
+        <blockquote>Can I make money?</blockquote>
+        <p>I have already proven I can.</p>
+        <p>The question is:</p>
+        <blockquote>Can I keep it?</blockquote>
+        <p>That is a completely different skill.</p>
+
+        <h2>The Voice In The Back Of My Head</h2>
+        <p>Every trader knows this voice.</p>
+        <p>The one that starts showing up after a winning streak.</p>
+        <p>It whispers:</p>
+        <blockquote>Size up. Press harder. You are seeing the market clearly. Make it back faster.</blockquote>
+        <p>The voice never says:</p>
+        <blockquote>Protect what you have earned. Slow down. Stay disciplined.</blockquote>
+        <p>It always wants acceleration.</p>
+        <p>And acceleration is what destroyed most of my previous accounts.</p>
+
+        <h2>What Changed</h2>
+        <p>The trader that lost $37,000 is not the same trader sitting here today.</p>
+        <p>That trader chased.</p>
+        <p>That trader forced trades.</p>
+        <p>That trader needed money.</p>
+        <p>That trader measured success by how much he made.</p>
+        <p>Today my scorecard looks different.</p>
+        <p>FOMO: 0.</p>
+        <p>Revenge Trading: 0.</p>
+        <p>Need To Make Money Today: 3 out of 10.</p>
+        <p>Patience: 10 out of 10.</p>
+        <p>The goal is not finding action.</p>
+        <p>The goal is finding quality.</p>
+        <p>The goal is not proving I am right.</p>
+        <p>The goal is following the process.</p>
+
+        <h2>The New Objective</h2>
+        <p>My account sits around $795.</p>
+        <p>To get back to $1,000 I need roughly $205.</p>
+        <p>That is it.</p>
+        <p>Not $2,000.</p>
+        <p>Not $20,000.</p>
+        <p>Not a moonshot.</p>
+        <p>Just $205.</p>
+        <p>The old version of me would try to force that in a day.</p>
+        <p>The current version understands that $50 a day gets there in roughly four trading days.</p>
+        <p>Maybe longer.</p>
+        <p>Maybe shorter.</p>
+        <p>But there is no urgency.</p>
+        <p>The market will still be there tomorrow.</p>
+
+        <h2>The Real Metric</h2>
+        <p>Account value matters.</p>
+        <p>Profit and loss matters.</p>
+        <p>But I am starting to believe there is a more important metric.</p>
+        <blockquote>How much profit do I keep?</blockquote>
+        <p>Yesterday I was up around $90.</p>
+        <p>Then I gave most of it back.</p>
+        <p>Then I fought my way back.</p>
+        <p>Then I finished green.</p>
+        <p>The result was good.</p>
+        <p>The process was not perfect.</p>
+        <p>The next level is not finding better entries.</p>
+        <p>The next level is protecting profits once they are earned.</p>
+        <p>That is where professionals separate themselves from gamblers.</p>
+
+        <h2>Looking Forward</h2>
+        <p>I am still down $37,000 lifetime.</p>
+        <p>That fact does not bother me anymore.</p>
+        <p>What matters is whether the next chapter looks different than the last one.</p>
+        <p>Seven green days does not prove anything.</p>
+        <p>A profitable month does not prove anything.</p>
+        <p>Even a profitable year does not prove anything.</p>
+        <p>What proves something is consistency.</p>
+        <p>What proves something is discipline.</p>
+        <p>What proves something is surviving long enough for the edge to compound.</p>
+        <p>The goal is no longer proving I can make money.</p>
+        <p>The goal is proving I can keep it.</p>
+
+        <h2>Midday Update</h2>
+        <p>A few hours after writing this, the account sits at $969.56.</p>
+        <p>Up $174 on the day.</p>
+        <p>No open positions.</p>
+        <p>Cash on the sidelines.</p>
+        <p>What stands out is not the profit.</p>
+        <p>It is how the profit was made.</p>
+        <p>Small wins.</p>
+        <p>Defined risk.</p>
+        <p>No revenge trading.</p>
+        <p>No FOMO.</p>
+        <p>No hero trades.</p>
+        <p>For the first time in a long time, I am starting to feel at home with contracts that have around eight days until expiration.</p>
+        <p>The theta decay is slow enough to let the trade breathe.</p>
+        <p>The position has room to work.</p>
+        <p>The emotional pressure drops dramatically.</p>
+        <p>More importantly, my maximum drawdown on a trade is staying around $50.</p>
+        <p>That is the metric I am beginning to care about.</p>
+        <p>Not how much I can make.</p>
+        <p>How much I can lose.</p>
+        <p>Because if I can repeatedly risk $50 to make $100, $150, or $175, then I am no longer depending on being right all the time.</p>
+        <blockquote>I am depending on math.</blockquote>
+        <p>The account is now only a few dollars away from reclaiming $1,000.</p>
+        <p>A few months ago that number would have felt urgent.</p>
+        <p>Today it does not.</p>
+        <p>The goal is not to get to $1,000.</p>
+        <p>The goal is to build a process that still works after I get there.</p>
+
+        <div class="page-links">
+          <a href="/blog.html">Back to blog</a>
+          <a href="/blog/day-7-the-question-getting-louder.html">Previous entry</a>
+          <a href="/trading-journal.html">Open the working journal</a>
+        </div>
+      </div>
+
+      <aside class="scorecard" aria-label="Keeping profits scorecard">
+        <section class="card">
+          <h2>Current Numbers</h2>
+          <dl class="metrics">
+            <div class="metric">
+              <dt>Lifetime losses</dt>
+              <dd class="danger">-$37,000</dd>
+            </div>
+            <div class="metric">
+              <dt>Account value</dt>
+              <dd class="good">$969.56</dd>
+            </div>
+            <div class="metric">
+              <dt>Goal line</dt>
+              <dd>$1,000</dd>
+            </div>
+            <div class="metric">
+              <dt>Gap to goal</dt>
+              <dd>$30.44</dd>
+            </div>
+            <div class="metric">
+              <dt>Today's P&amp;L</dt>
+              <dd class="good">+$174</dd>
+            </div>
+            <div class="metric">
+              <dt>Open positions</dt>
+              <dd>None</dd>
+            </div>
+            <div class="metric">
+              <dt>Max trade drawdown</dt>
+              <dd class="warn">~$50</dd>
+            </div>
+            <div class="metric">
+              <dt>Weekly P&amp;L</dt>
+              <dd class="good">+$1,100+</dd>
+            </div>
+            <div class="metric">
+              <dt>Green streak</dt>
+              <dd class="good">7 days</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="card">
+          <h2>Process Scorecard</h2>
+          <dl class="metrics">
+            <div class="metric">
+              <dt>FOMO</dt>
+              <dd class="good">0/10</dd>
+            </div>
+            <div class="metric">
+              <dt>Revenge trading</dt>
+              <dd class="good">0/10</dd>
+            </div>
+            <div class="metric">
+              <dt>Need to make money today</dt>
+              <dd>3/10</dd>
+            </div>
+            <div class="metric">
+              <dt>Patience</dt>
+              <dd class="good">10/10</dd>
+            </div>
+            <div class="metric">
+              <dt>Real metric</dt>
+              <dd class="warn">Profit kept</dd>
+            </div>
+          </dl>
+        </section>
+      </aside>
+    </article>
+  </main>
+  <script type="module" src="/assets/js/freeride-market-field.js"></script>
+</body>
+</html>

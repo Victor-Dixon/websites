@@ -1,0 +1,99 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+
+import {
+  calculateDomainScores,
+  calculateFlavorVectors,
+  determinePrimaryDomain,
+  determineTier,
+  determineThreatClass,
+  buildCharacterSheet
+} from '../../packages/scoring-engine/index.js';
+
+test('domain scoring counts first 36 responses only', () => {
+  const responses = {};
+
+  for (let i = 1; i <= 36; i++) {
+    responses[i] = 'A';
+  }
+
+  const scores = calculateDomainScores(responses);
+
+  assert.equal(scores.titan, 36);
+  assert.equal(scores.velocity, 0);
+});
+
+test('flavor vectors count questions 37-72 only', () => {
+  const responses = {};
+
+  for (let i = 37; i <= 72; i++) {
+    responses[i] = 'F';
+  }
+
+  const vectors = calculateFlavorVectors(responses);
+
+  assert.equal(vectors.shadow, 36);
+  assert.equal(vectors.force, 0);
+});
+
+test('tier thresholds classify correctly', () => {
+  assert.equal(determineTier(5), 'T1');
+  assert.equal(determineTier(10), 'T2');
+  assert.equal(determineTier(16), 'T3');
+  assert.equal(determineTier(22), 'T4');
+  assert.equal(determineTier(28), 'T5');
+});
+
+test('threat class resolves correctly', () => {
+  assert.equal(
+    determineThreatClass('T5', { surge: 6 }),
+    'OMEGA'
+  );
+
+  assert.equal(
+    determineThreatClass('T4', { surge: 2 }),
+    'ALPHA'
+  );
+
+  assert.equal(
+    determineThreatClass('T2', { shadow: 14 }),
+    'SIGMA'
+  );
+
+  assert.equal(
+    determineThreatClass('T2', { shadow: 1 }),
+    'STANDARD'
+  );
+});
+
+test('full character sheet builds deterministically', () => {
+  const responses = {};
+
+  for (let i = 1; i <= 36; i++) {
+    responses[i] = 'C';
+  }
+
+  for (let i = 37; i <= 72; i++) {
+    responses[i] = 'F';
+  }
+
+  const sheet = buildCharacterSheet({
+    userId: '123',
+    username: 'Victor',
+    responses
+  });
+
+  assert.equal(sheet.locked, true);
+  assert.equal(sheet.primary_domain, 'velocity');
+  assert.equal(sheet.primary_score, 36);
+  assert.equal(sheet.tier, 'T5');
+  assert.equal(sheet.threat_class, 'ALPHA');
+
+  assert.equal(sheet.domain_scores.velocity, 36);
+  assert.equal(sheet.flavor_vectors.shadow, 36);
+
+  assert.equal(
+    sheet.manifestation.descriptor,
+    'T5 velocity'
+  );
+});

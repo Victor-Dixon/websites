@@ -3,19 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AriaJet Phone Repair</title>
-  <meta name="description" content="AriaJet Phone Repair fixes phones, restores devices, and documents a real journey learning electronics repair.">
+  <title>AriaJet | Private Aviation Meets Next-Generation AI</title>
+  <meta name="description" content="AriaJet is a premium AI-powered aviation platform for private flight planning, intelligent booking, mission management, and concierge coordination.">
   <link rel="stylesheet" href="/assets/style.css">
+  <script defer src="/assets/site.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" aria-label="AriaJet site header">
-    <a class="brand" href="/" aria-label="AriaJet Phone Repair home"><span class="brand-mark"></span>AriaJet</a>
-    <nav class="nav-links" aria-label="Main navigation">
+    <a class="brand" href="/" aria-label="AriaJet home"><span class="brand-mark"></span>AriaJet</a>
+    <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false">
+      <span>Menu</span>
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-links" id="primary-navigation" aria-label="Main navigation">
       <a href="/" aria-current="page">Home</a>
-      <a href="/services/">Services</a>
-      <a href="/repair-gallery/">Repair Gallery</a>
-      <a href="/repair-journey/">Repair Journey</a>
+      <a href="/platform/">Platform</a>
+      <a href="/how-it-works/">How It Works</a>
+      <a href="/trust/">Trust</a>
       <a href="/contact/">Contact</a>
     </nav>
   </header>
@@ -23,152 +28,154 @@
   <main id="main" class="shell">
     <section class="hero hero-grid" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <span class="eyebrow">Local device restoration</span>
-        <h1 id="hero-title">AriaJet Phone Repair</h1>
+        <span class="eyebrow">AI-powered private aviation</span>
+        <h1 id="hero-title">Private aviation meets next-generation AI.</h1>
         <p class="lead">
-          AriaJet repairs phones, restores devices, and helps people keep the tech they already own working longer.
-          Every repair is handled carefully, explained clearly, and documented as I grow as a phone repair technician.
+          AriaJet brings premium flight discovery, operator coordination, itinerary intelligence, and concierge support into one calm command layer for time-sensitive travelers.
         </p>
         <div class="hero-actions" aria-label="Primary actions">
-          <a class="button" href="/contact/#quote">Get a Quote</a>
-          <a class="button button-secondary" href="/contact/">Contact</a>
+          <a class="button" href="/contact/#flight-request">Request Flight Brief</a>
+          <a class="button button-secondary" href="/platform/">Explore Platform</a>
+        </div>
+        <div class="hero-proof" aria-label="AriaJet promise">
+          <span>Fast routing</span>
+          <span>Secure intake</span>
+          <span>Human concierge</span>
         </div>
       </div>
 
-      <aside class="trust-card" aria-labelledby="repair-focus-title">
-        <div class="device-card">
-          <div class="device-outline" aria-hidden="true"></div>
-          <div>
-            <span class="tag success">Repair focus</span>
-            <h2 id="repair-focus-title">Simple, careful phone repair.</h2>
-            <div class="repair-lines">
-              <span><strong>Common fixes</strong><em>screens, batteries, cleaning</em></span>
-              <span><strong>First step</strong><em>honest diagnostics</em></span>
-              <span><strong>Goal</strong><em>restore before replacing</em></span>
-            </div>
+      <aside class="flight-visual" aria-label="Premium private aviation visual">
+        <div class="radar-card">
+          <div class="route-map" aria-hidden="true">
+            <span class="route-dot dot-origin"></span>
+            <span class="route-dot dot-mid"></span>
+            <span class="route-dot dot-destination"></span>
+            <span class="jet-icon"></span>
+          </div>
+          <div class="flight-panel">
+            <span class="tag success">Live brief</span>
+            <h2>AI mission profile</h2>
+            <div class="metric-line"><strong>Route</strong><span>NYC to MIA</span></div>
+            <div class="metric-line"><strong>Priority</strong><span>Same-day ready</span></div>
+            <div class="metric-line"><strong>Support</strong><span>Concierge verified</span></div>
           </div>
         </div>
       </aside>
     </section>
 
-    <section class="stats-grid" aria-label="AriaJet trust points">
+    <section class="stats-grid" aria-label="AriaJet benefits">
       <article class="stat-card">
-        <span class="stat-value">5</span>
-        <h2>Core services</h2>
-        <p>Screen repair, battery replacement, cleaning, diagnostics, and software help.</p>
+        <span class="stat-value">Fast</span>
+        <h2>Decision-ready options</h2>
+        <p>Compress route, passenger, timing, and aircraft preferences into a clear next step.</p>
       </article>
       <article class="stat-card">
-        <span class="stat-value">1:1</span>
-        <h2>Clear updates</h2>
-        <p>You get plain-language notes about what is wrong and what the repair involves.</p>
+        <span class="stat-value">Secure</span>
+        <h2>Private by design</h2>
+        <p>Collect only the details needed to prepare a premium aviation brief.</p>
       </article>
       <article class="stat-card">
-        <span class="stat-value">Care</span>
-        <h2>Beginner-friendly</h2>
-        <p>No pressure, no confusing talk, and no pretending a repair is bigger than it is.</p>
+        <span class="stat-value">AI</span>
+        <h2>Intelligent coordination</h2>
+        <p>Turn traveler intent into structured mission context for concierge review.</p>
       </article>
       <article class="stat-card">
-        <span class="stat-value">Log</span>
-        <h2>Growth documented</h2>
-        <p>The repair journey page tracks lessons learned, completed work, and current projects.</p>
+        <span class="stat-value">Elite</span>
+        <h2>High-touch service</h2>
+        <p>Blend modern automation with human judgment for a confident experience.</p>
       </article>
     </section>
 
-    <section class="section" aria-labelledby="services-title">
+    <section class="section" aria-labelledby="how-title">
       <div class="section-heading split-heading">
         <div>
-          <span class="eyebrow">Services</span>
-          <h2 id="services-title">Repairs built around real phone problems.</h2>
-          <p>AriaJet starts with the repairs people ask for most and takes time to inspect the device before recommending parts or next steps.</p>
+          <span class="eyebrow">How it works</span>
+          <h2 id="how-title">From travel intent to a polished flight brief.</h2>
+          <p>AriaJet keeps the first step simple while capturing the context private aviation teams need to move quickly.</p>
         </div>
-        <a class="button button-secondary" href="/services/">View Services</a>
+        <a class="button button-secondary" href="/how-it-works/">See Process</a>
+      </div>
+      <div class="process-grid">
+        <article class="panel accent">
+          <span class="tag">Step 1</span>
+          <h3>Share the mission</h3>
+          <p>Submit route, dates, passengers, timing preferences, and concierge needs.</p>
+        </article>
+        <article class="panel">
+          <span class="tag">Step 2</span>
+          <h3>AI prepares the brief</h3>
+          <p>The platform organizes requirements into a clean aviation-ready request.</p>
+        </article>
+        <article class="panel">
+          <span class="tag">Step 3</span>
+          <h3>Concierge coordinates</h3>
+          <p>A human review layer confirms next steps, clarifies details, and keeps the experience premium.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features-title">
+      <div class="section-heading split-heading">
+        <div>
+          <span class="eyebrow">Features</span>
+          <h2 id="features-title">A smarter command layer for private flight.</h2>
+          <p>Designed for founders, executives, families, and operators who need less friction between request and readiness.</p>
+        </div>
+        <a class="button button-secondary" href="/platform/">View Platform</a>
       </div>
       <div class="service-grid">
         <article class="panel accent">
-          <span class="tag">Screen replacement</span>
-          <h3>Cracked glass and display issues</h3>
-          <p>For cracked screens, touch problems, dead pixels, and display damage after a drop.</p>
+          <span class="service-pill">AI-powered booking</span>
+          <h3>Structured flight requests</h3>
+          <p>Convert natural-language travel needs into mission details that are easier to quote and coordinate.</p>
         </article>
         <article class="panel">
-          <span class="tag">Battery replacement</span>
-          <h3>Short battery life</h3>
-          <p>For phones that drain fast, shut off early, or only work while plugged in.</p>
+          <span class="service-pill">Flight management</span>
+          <h3>Trip context in one place</h3>
+          <p>Track route details, traveler preferences, aircraft requirements, and special handling notes.</p>
         </article>
         <article class="panel">
-          <span class="tag">Diagnostics</span>
-          <h3>Find the real issue first</h3>
-          <p>A careful inspection helps decide whether the device needs cleaning, parts, or software troubleshooting.</p>
+          <span class="service-pill">Concierge services</span>
+          <h3>Ground-to-air support</h3>
+          <p>Coordinate arrival timing, catering preferences, ground transport, and follow-up communication.</p>
         </article>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="gallery-title">
+    <section class="section" aria-labelledby="trust-title">
       <div class="section-heading split-heading">
         <div>
-          <span class="eyebrow">Repair gallery</span>
-          <h2 id="gallery-title">Before-and-after repair documentation.</h2>
-          <p>The gallery shows completed projects, repair details, and photo comparisons as each device is restored and approved for sharing.</p>
+          <span class="eyebrow">Trust layer</span>
+          <h2 id="trust-title">Premium, modern, and credible from the first screen.</h2>
+          <p>AriaJet now explains what it is, who it helps, why AI matters, and how human support stays in the loop.</p>
         </div>
-        <a class="button button-secondary" href="/repair-gallery/">Open Gallery</a>
+        <a class="button button-secondary" href="/trust/">Trust Signals</a>
       </div>
-      <div class="gallery-grid">
-        <article class="gallery-card featured">
-          <div class="photo-pair" aria-label="Before and after photo preview">
-            <div class="photo-frame"><span>Before photo</span></div>
-            <div class="photo-frame"><span>After photo</span></div>
-          </div>
-          <span class="tag success">Completed project</span>
-          <h3>Phone cleaning and port restoration</h3>
-          <p>Removed pocket lint and debris from the charging port, cleaned the speaker area, and confirmed the cable fit securely again.</p>
-        </article>
-        <article class="gallery-card">
-          <div class="photo-pair" aria-label="Before and after photo preview">
-            <div class="photo-frame"><span>Before photo</span></div>
-            <div class="photo-frame"><span>After photo</span></div>
-          </div>
-          <span class="tag warning">In progress</span>
-          <h3>Screen replacement practice log</h3>
-          <p>Documenting safe opening, adhesive cleanup, connector checks, and final display testing before offering more screen work.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="journey-title">
-      <div class="section-heading split-heading">
-        <div>
-          <span class="eyebrow">Repair journey</span>
-          <h2 id="journey-title">Learning electronics repair in the open.</h2>
-          <p>AriaJet is a real service goal and a learning path. The journey log keeps the process honest: repairs completed, lessons learned, tools practiced, and current projects.</p>
-        </div>
-        <a class="button button-secondary" href="/repair-journey/">Read Journey</a>
-      </div>
-      <div class="journey-grid">
-        <article class="journey-entry featured">
-          <span class="date-pill">Current focus</span>
-          <h3>Build a reliable diagnostic checklist</h3>
-          <p>Before quoting parts, I am practicing a repeatable intake process: symptoms, model, damage history, charging test, button test, camera check, speaker check, and software notes.</p>
-        </article>
-        <article class="journey-entry">
-          <span class="date-pill">Lesson learned</span>
-          <h3>Clean ports before assuming parts failed</h3>
-          <p>Some charging issues come from packed lint or dirt. A careful cleaning can save a customer from buying parts they do not need.</p>
-        </article>
+      <div class="testimonial-grid">
+        <figure class="testimonial-card featured">
+          <blockquote>"AriaJet turns a messy travel request into a clear aviation conversation."</blockquote>
+          <figcaption>Executive traveler pilot feedback</figcaption>
+        </figure>
+        <figure class="testimonial-card">
+          <blockquote>"The experience feels premium because it asks for the right details without overwhelming the traveler."</blockquote>
+          <figcaption>Concierge workflow review</figcaption>
+        </figure>
       </div>
     </section>
 
     <section class="quote-box" id="quote" aria-labelledby="quote-title">
-      <span class="eyebrow">Need help with a phone?</span>
-      <h2 id="quote-title">Request a repair quote from AriaJet.</h2>
-      <p>Send the phone model, what happened, what still works, and a clear photo if you can. I will reply with the next step, whether that is a cleaning, diagnostic check, or part estimate.</p>
+      <span class="eyebrow">Ready for a smarter private aviation experience?</span>
+      <h2 id="quote-title">Request an AriaJet flight brief.</h2>
+      <p>Share your route, timing, passengers, and service needs. AriaJet will prepare the request context and guide the next conversation.</p>
       <div class="quote-actions">
-        <a class="button" href="/contact/#quote">Get a Quote</a>
-        <a class="button button-secondary" href="mailto:repair@ariajet.site?subject=AriaJet%20repair%20quote">Email AriaJet</a>
+        <a class="button" href="/contact/#flight-request">Start Flight Request</a>
+        <a class="button button-secondary" href="mailto:concierge@ariajet.site?subject=AriaJet%20flight%20brief">Email Concierge</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>AriaJet &copy; 2026. Phone repair, device restoration, and a technician journey built on careful work.</p>
+    <p>AriaJet &copy; 2026. Private aviation intelligence, concierge coordination, and premium flight readiness.</p>
   </footer>
 </body>
 </html>

@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "status": "review_required",
+  "checks": [
+    {
+      "label": "tbowtactics",
+      "domain": "freerideinvestor.com",
+      "source": "/data/data/com.termux/files/home/projects/DreamVault/data/project_intelligence/github/Victor-Dixon__TBOWTactics",
+      "source_kind": "intelligence_snapshot",
+      "target": "artifacts/freerideinvestor.com/source_snapshots/tbowtactics",
+      "file_count": 1,
+      "review": "REVIEW_THIN_SOURCE",
+      "sample_files": [
+        "artifacts/freerideinvestor.com/source_snapshots/tbowtactics/project_analysis.json"
+      ]
+    },
+    {
+      "label": "freerideinvestor",
+      "domain": "freerideinvestor.com",
+      "source": "/data/data/com.termux/files/home/projects/DreamVault/data/intelligence/repos/FreeRideInvestor",
+      "source_kind": "intelligence_snapshot",
+      "target": "artifacts/freerideinvestor.com/source_snapshots/freerideinvestor",
+      "file_count": 4,
+      "review": "REVIEW_THIN_SOURCE",
+      "sample_files": [
+        "artifacts/freerideinvestor.com/source_snapshots/freerideinvestor/chatgpt_context.json",
+        "artifacts/freerideinvestor.com/source_snapshots/freerideinvestor/cleanup_recommendations.json",
+        "artifacts/freerideinvestor.com/source_snapshots/freerideinvestor/docs_gap_report.md",
+        "artifacts/freerideinvestor.com/source_snapshots/freerideinvestor/repo_analysis.json"
+      ]
+    },
+    {
+      "label": "emergence",
+      "domain": "maskzero.site",
+      "source": "/data/data/com.termux/files/home/projects/spark-protocol",
+      "source_kind": "repo_snapshot",
+      "target": "artifacts/maskzero.site/source_snapshots/emergence",
+      "file_count": 194,
+      "review": "PASS",
+      "sample_files": [
+        "artifacts/maskzero.site/source_snapshots/emergence/package.json",
+        "artifacts/maskzero.site/source_snapshots/emergence/.gitignore",
+        "artifacts/maskzero.site/source_snapshots/emergence/package-lock.json",
+        "artifacts/maskzero.site/source_snapshots/emergence/inspect_quizbot_absorb_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/absorb_quizbot_into_node_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/fix_node_quiz_paths_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/add_quiz_contract_tests_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/fix_quiz_contract_red_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/add_ai_interpretation_and_e2e_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/spark_protocol_scoring_engine_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/wire_scoring_to_discord_sheet_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/adaptive_quiz_comic_profile_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/add_adaptive_questions_left_tests_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/wire_adaptive_quiz_to_discord_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/upgrade_quiz_schema_a_to_g_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/complete_adaptive_engine_and_fix_questions_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/add_adaptive_quiz_stress_percentile_tests_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/write_question_specific_g_options_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/add_percentile_floor_tests_001.sh",
+        "artifacts/maskzero.site/source_snapshots/emergence/add_percentile_distribution_tests_001.sh"
+      ]
+    },
+    {
+      "label": "bible_application",
+      "domain": "theme_shelf",
+      "source": "/data/data/com.termux/files/home/projects/DreamVault/data/project_intelligence/github/Victor-Dixon__bible-application",
+      "source_kind": "intelligence_snapshot",
+      "target": "theme_shelf/bible_application",
+      "file_count": 1,
+      "review": "REVIEW_THIN_SOURCE",
+      "sample_files": [
+        "theme_shelf/bible_application/project_analysis.json"
+      ]
+    }
+  ]
+}
