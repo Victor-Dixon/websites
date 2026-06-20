@@ -2,6 +2,7 @@
   "domains": {
     "2fdadudekc.site": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -25,8 +26,34 @@
       "status": "NEEDS_TRIAGE",
       "workflow_refs": []
     },
+    "2fmail.google.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [],
+      "domain": "2fmail.google.com",
+      "live": {
+        "apex": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://2fmail.google.com/",
+          "ok": false,
+          "status": null
+        },
+        "www": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://www.2fmail.google.com/",
+          "ok": false,
+          "status": null
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "NEEDS_TRIAGE",
+      "workflow_refs": []
+    },
     "2fmaskzero.site": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -52,6 +79,7 @@
     },
     "2fprismblossom.online": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -77,6 +105,7 @@
     },
     "2fxthunder.site": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -100,8 +129,67 @@
       "status": "NEEDS_TRIAGE",
       "workflow_refs": []
     },
+    "about.codecov.io": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "151.101.1.55",
+        "151.101.129.55",
+        "151.101.193.55",
+        "151.101.65.55"
+      ],
+      "domain": "about.codecov.io",
+      "live": {
+        "apex": {
+          "final_url": "https://about.codecov.io/",
+          "ok": true,
+          "sample": "<!DOCTYPE html>\n\n<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en-US\">\n\n<head profile=\"http://gmpg.org/xfn/11\">\n\n    <meta http-equiv=\"X-UA-Compatible\" conte",
+          "status": 200
+        },
+        "www": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://www.about.codecov.io/",
+          "ok": false,
+          "status": null
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
+    "accounts.google.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "142.250.138.84",
+        "2607:f8b0:4023:1013::54"
+      ],
+      "domain": "accounts.google.com",
+      "live": {
+        "apex": {
+          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Faccounts.google.com%2F&dsh=S-704460140%3A1781977917801080&followup=https%3A%2F%2Faccounts.google.com%2F&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvwXwblWOJ66BYfXL2bvCfEaz4xLPb_2f4vOezx4b76pEZGO-72PcIqwILKATWIBYVgN0cjfKQ",
+          "ok": true,
+          "sample": "<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://accounts.google.com/v3/signin/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name",
+          "status": 200
+        },
+        "www": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://www.accounts.google.com/",
+          "ok": false,
+          "status": null
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "aioseo.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -134,6 +222,7 @@
     },
     "alphavantage.co": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -164,6 +253,7 @@
     },
     "api.anthropic.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -192,6 +282,7 @@
     },
     "api.example.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -217,6 +308,7 @@
     },
     "api.openai.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -245,11 +337,12 @@
     },
     "api.polygon.io": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
-        "198.44.194.44",
-        "198.44.194.67"
+        "198.44.194.166",
+        "198.44.194.38"
       ],
       "domain": "api.polygon.io",
       "live": {
@@ -273,6 +366,7 @@
     },
     "api.tradingrobotplug.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -298,6 +392,7 @@
     },
     "api.w.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -326,6 +421,7 @@
     },
     "api.wordpress.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -354,6 +450,7 @@
     },
     "args.site": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -379,6 +476,7 @@
     },
     "ariajet.site": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo",
         "seed"
@@ -409,6 +507,7 @@
     },
     "biblemath.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -443,6 +542,7 @@
     },
     "cdn.jsdelivr.net": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -477,6 +577,7 @@
     },
     "cdn.tailwindcss.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -509,6 +610,7 @@
     },
     "cdnjs.cloudflare.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -539,6 +641,7 @@
     },
     "chatgpt.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -569,6 +672,7 @@
     },
     "codecov.io": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -596,6 +700,7 @@
     },
     "crosbyultimateevents.com": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo"
       ],
@@ -625,6 +730,7 @@
     },
     "crossbyultimateevents.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -650,6 +756,7 @@
     },
     "dadudekc.com": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo"
       ],
@@ -678,6 +785,7 @@
     },
     "dadudekc.site": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo"
       ],
@@ -707,6 +815,7 @@
     },
     "damage-pop.ai": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -732,6 +841,7 @@
     },
     "day.net": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -757,8 +867,37 @@
       "status": "NEEDS_TRIAGE",
       "workflow_refs": []
     },
+    "developer.wordpress.org": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "198.143.164.252",
+        "2607:f978:5:8002::c68f:a4fc"
+      ],
+      "domain": "developer.wordpress.org",
+      "live": {
+        "apex": {
+          "final_url": "https://developer.wordpress.org/",
+          "ok": true,
+          "sample": "<!DOCTYPE html>\n<html lang=\"en-US\">\n<head>\n\t<meta charset=\"UTF-8\" />\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n<link rel='preload'",
+          "status": 200
+        },
+        "www": {
+          "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.developer.wordpress.org'. (_ssl.c:1032)>",
+          "final_url": "https://www.developer.wordpress.org/",
+          "ok": false,
+          "status": null
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "developers.hostinger.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -789,6 +928,7 @@
     },
     "digitaldreamscape.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -817,6 +957,7 @@
     },
     "digitaldreamscape.site": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo"
       ],
@@ -846,6 +987,7 @@
     },
     "discord.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -877,6 +1019,7 @@
     },
     "docs.pytest.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -907,6 +1050,7 @@
     },
     "domain.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -935,6 +1079,7 @@
     },
     "dreamos.ai": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -963,6 +1108,7 @@
     },
     "email.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -991,6 +1137,7 @@
     },
     "example.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1021,12 +1168,12 @@
     },
     "facebook.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
         "157.240.24.35",
-        "2a03:2880:f162:81:face:b00c:0:25de",
-        "57.144.218.1"
+        "2a03:2880:f162:81:face:b00c:0:25de"
       ],
       "domain": "facebook.com",
       "live": {
@@ -1050,6 +1197,7 @@
     },
     "fighter.ai": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1080,6 +1228,7 @@
     },
     "fonts.googleapis.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1108,6 +1257,7 @@
     },
     "fonts.gstatic.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1134,8 +1284,49 @@
       "status": "NEEDS_TRIAGE",
       "workflow_refs": []
     },
+    "framer.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "143.204.130.110",
+        "143.204.130.2",
+        "143.204.130.25",
+        "143.204.130.86",
+        "2600:9000:21c4:1600:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:2c00:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:3e00:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:4400:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:4a00:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:7200:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:7400:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:f800:10:9b9d:b9c0:93a1",
+        "31.43.160.19",
+        "31.43.161.19"
+      ],
+      "domain": "framer.com",
+      "live": {
+        "apex": {
+          "final_url": "https://www.framer.com/",
+          "ok": true,
+          "sample": "<!doctype html>\r\n<!-- Made in Framer \u00b7 framer.com \u2728 -->\r\n<!-- Published Jun 19, 2026, 2:25 PM UTC -->\r\n<html lang=\"en\" data-redirect-timezone=\"1\">\r\n<head>\r\n\t<me",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://www.framer.com/",
+          "ok": true,
+          "sample": "<!doctype html>\r\n<!-- Made in Framer \u00b7 framer.com \u2728 -->\r\n<!-- Published Jun 19, 2026, 2:25 PM UTC -->\r\n<html lang=\"en\" data-redirect-timezone=\"1\">\r\n<head>\r\n\t<me",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "freerideinvestor.com": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo",
         "seed"
@@ -1168,6 +1359,7 @@
     },
     "gmail.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1187,13 +1379,13 @@
       "domain": "gmail.com",
       "live": {
         "apex": {
-          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&dsh=S2048476163%3A1781977752964076&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvyAok8gf-nPpAmJ4easjGBW88wAX7800oePmPtIE7FuFLe6B4vOcKL7jh89uDFf9pjIA2Zl",
+          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&dsh=S-704460140%3A1781977945255411&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvw2tfBr5BwSlp7eaIU2wJRca7MsK6dj6SsTPApAuUz6b-oYXYjKnXv7Zt4E0NGWbs7UJO-dHg",
           "ok": true,
           "sample": "<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://accounts.google.com/v3/signin/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name",
           "status": 200
         },
         "www": {
-          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&dsh=S-938670893%3A1781977753593526&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvyXn0XU6fY_Me2hPGVuRMnRAvD04F_sG5OFQAKALbiNMQ6pYz-ZsYn2qjH9mhU85EeoJnGxXg",
+          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&dsh=S2048476163%3A1781977945764760&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvxQLFqjj_yJ7lhk55M6nhPZECNh9nrsufoDq92DMkw3PzB-vSfbJocymj959PVo9IzukPRCDQ",
           "ok": true,
           "sample": "<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://accounts.google.com/v3/signin/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name",
           "status": 200
@@ -1204,8 +1396,36 @@
       "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
       "workflow_refs": []
     },
+    "gmpg.org": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "66.155.40.24"
+      ],
+      "domain": "gmpg.org",
+      "live": {
+        "apex": {
+          "final_url": "https://gmpg.org/",
+          "ok": true,
+          "sample": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://www.gmpg.org/",
+          "ok": true,
+          "sample": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "gnu.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1215,29 +1435,30 @@
       "domain": "gnu.org",
       "live": {
         "apex": {
-          "error": "URLError:<urlopen error _ssl.c:1015: The handshake operation timed out>",
-          "final_url": "https://gnu.org/",
-          "ok": false,
-          "status": null
+          "final_url": "https://www.gnu.org/",
+          "ok": true,
+          "sample": "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />",
+          "status": 200
         },
         "www": {
-          "error": "URLError:<urlopen error _ssl.c:1015: The handshake operation timed out>",
           "final_url": "https://www.gnu.org/",
-          "ok": false,
-          "status": null
+          "ok": true,
+          "sample": "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />",
+          "status": 200
         }
       },
       "notes": [],
       "source_candidates": [],
-      "status": "NEEDS_TRIAGE",
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
       "workflow_refs": []
     },
     "googletagmanager.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
-        "172.217.72.97",
+        "142.251.186.97",
         "192.178.220.97",
         "2607:f8b0:4023:100b::61",
         "2607:f8b0:4023:100f::61"
@@ -1262,8 +1483,41 @@
       "status": "NEEDS_TRIAGE",
       "workflow_refs": []
     },
+    "gstatic.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "142.250.26.94",
+        "142.251.116.120",
+        "142.251.116.94",
+        "2607:f8b0:4023:1009::5e",
+        "2607:f8b0:4023:1009::78",
+        "2607:f8b0:4023:100d::5e"
+      ],
+      "domain": "gstatic.com",
+      "live": {
+        "apex": {
+          "error": "HTTP Error 404: Not Found",
+          "final_url": "https://gstatic.com/",
+          "ok": false,
+          "status": 404
+        },
+        "www": {
+          "error": "HTTP Error 404: Not Found",
+          "final_url": "https://www.gstatic.com/",
+          "ok": false,
+          "status": 404
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "NEEDS_TRIAGE",
+      "workflow_refs": []
+    },
     "houstonsipqueen.com": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo"
       ],
@@ -1293,6 +1547,7 @@
     },
     "hpanel.hostinger.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1323,6 +1578,7 @@
     },
     "images.pexels.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1353,6 +1609,7 @@
     },
     "images.unsplash.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1387,6 +1644,7 @@
     },
     "img.shields.io": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1417,6 +1675,7 @@
     },
     "instagram.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1443,9 +1702,69 @@
       "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
       "workflow_refs": []
     },
+    "introvert.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "32.194.223.237",
+        "54.163.2.207"
+      ],
+      "domain": "introvert.com",
+      "live": {
+        "apex": {
+          "final_url": "https://introvert.com/",
+          "ok": true,
+          "sample": "<!DOCTYPE html>\n<html>\n<head>\n\t<meta charset=\"utf-8\">\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n\t<meta name=\"viewport\" content=\"width=device-width,",
+          "status": 200
+        },
+        "www": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://www.introvert.com/",
+          "ok": false,
+          "status": null
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
+    "jsdelivr.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "104.21.8.91",
+        "172.67.130.104",
+        "2606:4700:3033::6815:85b",
+        "2606:4700:3033::ac43:8268"
+      ],
+      "domain": "jsdelivr.com",
+      "live": {
+        "apex": {
+          "final_url": "https://www.jsdelivr.com/",
+          "ok": true,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"><head><meta charset=\"utf-8\">  <meta class=\"r-meta-e\" content=\"width=device-width, initial-scale=1\" name=\"viewport\"> <meta class=",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://www.jsdelivr.com/",
+          "ok": true,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"><head><meta charset=\"utf-8\">  <meta class=\"r-meta-e\" content=\"width=device-width, initial-scale=1\" name=\"viewport\"> <meta class=",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "maskszero.site": {
       "discovered_by": [
-        "hostinger_api"
+        "existing_inventory",
+        "hostinger_api",
+        "repo"
       ],
       "dns_ips": [
         "157.173.214.121",
@@ -1473,6 +1792,7 @@
     },
     "maskzero.site": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo",
         "seed"
@@ -1506,11 +1826,12 @@
     },
     "mz.ai": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
-        "208.98.43.76",
-        "208.98.43.78"
+        "208.98.40.203",
+        "208.98.43.19"
       ],
       "domain": "mz.ai",
       "live": {
@@ -1534,6 +1855,7 @@
     },
     "open.spotify.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1568,6 +1890,7 @@
     },
     "opensource.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1598,6 +1921,7 @@
     },
     "openssh.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1624,9 +1948,39 @@
       "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
       "workflow_refs": []
     },
+    "openssh.org": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "199.185.178.80",
+        "2620:3d:c000:178::80"
+      ],
+      "domain": "openssh.org",
+      "live": {
+        "apex": {
+          "final_url": "https://www.openssh.org/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=en id=project-main>\n\t<meta charset=utf-8>\n\t<title>OpenSSH</title>\n\t<meta name=\"description\" content=\"the main OpenSSH page\">\n\t<link r",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://www.openssh.org/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=en id=project-main>\n\t<meta charset=utf-8>\n\t<title>OpenSSH</title>\n\t<meta name=\"description\" content=\"the main OpenSSH page\">\n\t<link r",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "planetblue.site": {
       "discovered_by": [
-        "hostinger_api"
+        "existing_inventory",
+        "hostinger_api",
+        "repo"
       ],
       "dns_ips": [
         "157.173.214.121",
@@ -1654,6 +2008,7 @@
     },
     "prismblossom.online": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo"
       ],
@@ -1681,8 +2036,40 @@
       "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
       "workflow_refs": []
     },
+    "prod-wf1.discord.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "162.159.128.233",
+        "162.159.135.232",
+        "162.159.136.232",
+        "162.159.137.232",
+        "162.159.138.232"
+      ],
+      "domain": "prod-wf1.discord.com",
+      "live": {
+        "apex": {
+          "final_url": "https://prod-wf1.discord.com/",
+          "ok": true,
+          "sample": "<!DOCTYPE html><!-- Last Published: Fri Jun 19 2026 08:37:10 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain=\"prod-wf1.discord.com\" data-wf-page=\"",
+          "status": 200
+        },
+        "www": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://www.prod-wf1.discord.com/",
+          "ok": false,
+          "status": null
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "python.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1717,6 +2104,7 @@
     },
     "registry.npmjs.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1767,6 +2155,7 @@
     },
     "s.net": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -1792,6 +2181,7 @@
     },
     "s.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -1817,6 +2207,7 @@
     },
     "s.w.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1844,6 +2235,7 @@
     },
     "schemas.wp.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1871,6 +2263,7 @@
     },
     "sefaria.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1901,8 +2294,39 @@
       "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
       "workflow_refs": []
     },
+    "shields.io": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "104.21.80.27",
+        "172.67.173.89",
+        "2606:4700:3031::6815:501b",
+        "2606:4700:3036::ac43:ad59"
+      ],
+      "domain": "shields.io",
+      "live": {
+        "apex": {
+          "final_url": "https://shields.io/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\" dir=\"ltr\" class=\"plugin-pages plugin-id-default\" data-has-hydrated=\"false\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"generator\"",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://www.shields.io/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\" dir=\"ltr\" class=\"plugin-pages plugin-id-default\" data-has-hydrated=\"false\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"generator\"",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "southwestsecret.com": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo",
         "seed"
@@ -1935,6 +2359,7 @@
     },
     "spark-card.ai": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -1958,8 +2383,65 @@
       "status": "NEEDS_TRIAGE",
       "workflow_refs": []
     },
+    "static.cdninstagram.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "157.240.24.63",
+        "2a03:2880:f262:ca:face:b00c:0:43fe"
+      ],
+      "domain": "static.cdninstagram.com",
+      "live": {
+        "apex": {
+          "error": "HTTP Error 404: Not Found",
+          "final_url": "https://static.cdninstagram.com/",
+          "ok": false,
+          "status": 404
+        },
+        "www": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://www.static.cdninstagram.com/",
+          "ok": false,
+          "status": null
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "NEEDS_TRIAGE",
+      "workflow_refs": []
+    },
+    "static.xx.fbcdn.net": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "157.240.24.13",
+        "2a03:2880:f065:e:face:b00c:0:3"
+      ],
+      "domain": "static.xx.fbcdn.net",
+      "live": {
+        "apex": {
+          "final_url": "https://www.facebook.com/",
+          "ok": true,
+          "sample": "<!DOCTYPE html><html id=\"facebook\" class=\"_9dls __fb-light-mode\" lang=\"en\" dir=\"ltr\"><head><link data-default-icon=\"https://static.xx.fbcdn.net/rsrc.php/y1/r/ay",
+          "status": 200
+        },
+        "www": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://www.static.xx.fbcdn.net/",
+          "ok": false,
+          "status": null
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "swarm-intelligence.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1988,23 +2470,22 @@
     },
     "tiktok.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
-        "2.20.178.198",
-        "2.20.178.199",
-        "2.20.178.200",
-        "2.20.178.201",
-        "2.20.178.205",
-        "2.20.178.207",
-        "2.20.178.211",
-        "2.20.178.214",
-        "2.20.178.219",
         "23.201.195.27",
-        "23.201.195.36",
         "23.201.195.41",
-        "23.201.195.44",
-        "23.201.195.5"
+        "23.201.195.5",
+        "23.220.162.202",
+        "23.220.162.206",
+        "23.220.162.207",
+        "23.220.162.208",
+        "23.220.162.210",
+        "23.220.162.214",
+        "23.220.162.215",
+        "23.220.162.216",
+        "23.220.162.219"
       ],
       "domain": "tiktok.com",
       "live": {
@@ -2028,6 +2509,7 @@
     },
     "tradingrobotplug.com": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo"
       ],
@@ -2057,10 +2539,12 @@
     },
     "twitter.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
-        "162.159.140.229"
+        "162.159.140.229",
+        "172.66.0.227"
       ],
       "domain": "twitter.com",
       "live": {
@@ -2084,6 +2568,7 @@
     },
     "unpkg.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2114,6 +2599,7 @@
     },
     "via.placeholder.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2142,6 +2628,7 @@
     },
     "videos.pexels.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2172,6 +2659,7 @@
     },
     "weareswarm.online": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo",
         "seed"
@@ -2210,6 +2698,7 @@
     },
     "weareswarm.site": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo",
         "seed"
@@ -2247,6 +2736,7 @@
     },
     "wordpress.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2273,8 +2763,36 @@
       "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
       "workflow_refs": []
     },
+    "x.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [
+        "172.66.0.227"
+      ],
+      "domain": "x.com",
+      "live": {
+        "apex": {
+          "final_url": "https://x.com/",
+          "ok": true,
+          "sample": "<!DOCTYPE html><html dir=\"ltr\" lang=\"en\"><head><meta charset=\"utf-8\" /><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,maximum-scale=1,user-sc",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://x.com/",
+          "ok": true,
+          "sample": "<!DOCTYPE html><html dir=\"ltr\" lang=\"en\"><head><meta charset=\"utf-8\" /><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,maximum-scale=1,user-sc",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
     "xthunder.site": {
       "discovered_by": [
+        "existing_inventory",
         "hostinger_api",
         "repo"
       ],
@@ -2305,7 +2823,7 @@
       ]
     }
   },
-  "generated": "2026-06-20T12:50:58-0500",
+  "generated": "2026-06-20T12:53:30-0500",
   "hostinger_api_status": "PASS",
   "known_seed_domains": [
     "ariajet.site",
@@ -2319,8 +2837,8 @@
     "active_truth_gated": 1,
     "discovered_needs_mapping": 2,
     "mapped_live_needs_domain_gate": 1,
-    "needs_triage": 77,
-    "total_domains": 78
+    "needs_triage": 92,
+    "total_domains": 93
   },
   "tool": "websites_deploy_truth_gate_index"
 }
