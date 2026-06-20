@@ -1,0 +1,222 @@
+{
+  "domains": {
+    "ariajet.site": {
+      "discovered_by": [
+        "existing_inventory",
+        "repo",
+        "seed"
+      ],
+      "dns_ips": [
+        "157.173.214.121",
+        "2a02:4780:2b:1716:0:3b6a:fe0e:8"
+      ],
+      "domain": "ariajet.site",
+      "live": {
+        "apex": {
+          "final_url": "https://ariajet.site/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n  <title>AriaJet Phone Re",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://www.ariajet.site/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n  <title>AriaJet Phone Re",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": []
+    },
+    "freerideinvestor.com": {
+      "discovered_by": [
+        "existing_inventory",
+        "repo",
+        "seed"
+      ],
+      "dns_ips": [
+        "157.173.214.121",
+        "2a02:4780:2b:1716:0:3b6a:fe0e:5"
+      ],
+      "domain": "freerideinvestor.com",
+      "live": {
+        "apex": {
+          "final_url": "https://freerideinvestor.com/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n  <title>FreeRideInvestor",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://www.freerideinvestor.com/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n  <title>FreeRideInvestor",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": [
+        ".github/workflows/deploy-freeride-hostinger.yml"
+      ]
+    },
+    "maskzero.site": {
+      "discovered_by": [
+        "existing_inventory",
+        "repo",
+        "seed"
+      ],
+      "dns_ips": [
+        "157.173.214.121",
+        "2a02:4780:2b:1716:0:3b6a:fe0e:10"
+      ],
+      "domain": "maskzero.site",
+      "live": {
+        "apex": {
+          "final_url": "https://maskzero.site/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>MaskZero | Spark Proto",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://maskzero.site/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>MaskZero | Spark Proto",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "LIVE_ONLY_NEEDS_REPO_MAPPING",
+      "workflow_refs": [
+        ".github/workflows/deploy-maskzero-site.yml",
+        ".github/workflows/deploy-maskzero-live.yml"
+      ]
+    },
+    "southwestsecret.com": {
+      "discovered_by": [
+        "existing_inventory",
+        "repo",
+        "seed"
+      ],
+      "dns_ips": [
+        "157.173.214.121",
+        "2a02:4780:2b:1716:0:3b6a:fe0e:2"
+      ],
+      "domain": "southwestsecret.com",
+      "live": {
+        "apex": {
+          "error": "HTTP Error 500: Internal Server Error",
+          "final_url": "https://southwestsecret.com/",
+          "ok": false,
+          "status": 500
+        },
+        "www": {
+          "error": "HTTP Error 500: Internal Server Error",
+          "final_url": "https://www.southwestsecret.com/",
+          "ok": false,
+          "status": 500
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "NEEDS_TRIAGE",
+      "workflow_refs": []
+    },
+    "weareswarm.online": {
+      "discovered_by": [
+        "existing_inventory",
+        "repo",
+        "seed"
+      ],
+      "dns_ips": [
+        "157.173.214.121",
+        "2a02:4780:2b:1716:0:3b6a:fe0e:9"
+      ],
+      "domain": "weareswarm.online",
+      "live": {
+        "apex": {
+          "final_url": "https://www.weareswarm.online/",
+          "ok": true,
+          "sample": "<!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\r\n  <title>WeAreSwarm ",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://www.weareswarm.online/",
+          "ok": true,
+          "sample": "<!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\r\n  <title>WeAreSwarm ",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [
+        "_deploy/weareswarm.online",
+        "routes/weareswarm.online",
+        "_deploy/weareswarm",
+        "routes/weareswarm"
+      ],
+      "status": "ACTIVE_TRUTH_GATED",
+      "workflow_refs": [
+        ".github/workflows/deploy-weareswarm-online.yml",
+        ".github/workflows/deploy-weareswarm-online-kids-planner.yml"
+      ]
+    },
+    "weareswarm.site": {
+      "discovered_by": [
+        "existing_inventory",
+        "repo",
+        "seed"
+      ],
+      "dns_ips": [
+        "157.173.214.121",
+        "2a02:4780:2b:1716:0:3b6a:fe0e:6"
+      ],
+      "domain": "weareswarm.site",
+      "live": {
+        "apex": {
+          "final_url": "https://www.weareswarm.site/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />\n  <title>WeAreSwarm \u2014",
+          "status": 200
+        },
+        "www": {
+          "final_url": "https://www.weareswarm.site/",
+          "ok": true,
+          "sample": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />\n  <title>WeAreSwarm \u2014",
+          "status": 200
+        }
+      },
+      "notes": [],
+      "source_candidates": [
+        "_deploy/weareswarm",
+        "routes/weareswarm"
+      ],
+      "status": "MAPPED_LIVE_NEEDS_DOMAIN_GATE",
+      "workflow_refs": [
+        ".github/workflows/deploy-weareswarm-site.yml",
+        ".github/workflows/deploy-weareswarm-skill-tree.yml",
+        ".github/workflows/deploy-weareswarm-theme.yml"
+      ]
+    }
+  },
+  "generated": "2026-06-20T13:51:15-0500",
+  "hostinger_api_status": "NO_TOKEN",
+  "known_seed_domains": [
+    "ariajet.site",
+    "freerideinvestor.com",
+    "maskzero.site",
+    "southwestsecret.com",
+    "weareswarm.online",
+    "weareswarm.site"
+  ],
+  "summary": {
+    "active_truth_gated": 1,
+    "discovered_needs_mapping": 0,
+    "mapped_live_needs_domain_gate": 1,
+    "needs_triage": 5,
+    "total_domains": 6
+  },
+  "tool": "websites_deploy_truth_gate_index"
+}

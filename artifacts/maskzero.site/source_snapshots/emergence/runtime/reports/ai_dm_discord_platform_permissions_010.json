@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "type": "campaign_discord_platform_plan",
+  "campaignId": "the-emergence-demo",
+  "title": "The Emergence: First Signal",
+  "mode": "dry_run",
+  "policy": {
+    "allowedActions": [
+      "create_campaign_category",
+      "create_text_channel",
+      "create_voice_channel",
+      "create_private_gm_channel",
+      "create_thread",
+      "pin_message",
+      "post_recap",
+      "archive_campaign_channel"
+    ],
+    "approvalRequiredActions": [
+      "delete_channel",
+      "modify_server_role",
+      "mention_everyone",
+      "force_character_reroll",
+      "expose_private_gm_notes"
+    ],
+    "limits": {
+      "maxChannelsPerCampaign": 12,
+      "maxThreadsPerSession": 8,
+      "maxMentionsPerMessage": 5
+    }
+  },
+  "actions": [
+    {
+      "action": {
+        "type": "create_campaign_category",
+        "name": "🎲 The Emergence: First Signal",
+        "reason": "Campaign root category"
+      },
+      "decision": {
+        "allowed": true,
+        "status": "allowed",
+        "reason": "Action allowed by AI DM permission policy"
+      }
+    },
+    {
+      "action": {
+        "type": "create_text_channel",
+        "name": "the-emergence-first-signal-table",
+        "parent": "the-emergence-demo",
+        "reason": "Main table chat"
+      },
+      "decision": {
+        "allowed": true,
+        "status": "allowed",
+        "reason": "Action allowed by AI DM permission policy"
+      }
+    },
+    {
+      "action": {
+        "type": "create_text_channel",
+        "name": "the-emergence-first-signal-character-sheets",
+        "parent": "the-emergence-demo",
+        "reason": "Locked character sheet display"
+      },
+      "decision": {
+        "allowed": true,
+        "status": "allowed",
+        "reason": "Action allowed by AI DM permission policy"
+      }
+    },
+    {
+      "action": {
+        "type": "create_text_channel",
+        "name": "the-emergence-first-signal-battle-log",
+        "parent": "the-emergence-demo",
+        "reason": "Battle packets and adjudication logs"
+      },
+      "decision": {
+        "allowed": true,
+        "status": "allowed",
+        "reason": "Action allowed by AI DM permission policy"
+      }
+    },
+    {
+      "action": {
+        "type": "create_text_channel",
+        "name": "the-emergence-first-signal-recaps",
+        "parent": "the-emergence-demo",
+        "reason": "Session recap feed"
+      },
+      "decision": {
+        "allowed": true,
+        "status": "allowed",
+        "reason": "Action allowed by AI DM permission policy"
+      }
+    },
+    {
+      "action": {
+        "type": "create_private_gm_channel",
+        "name": "the-emergence-first-signal-gm-notes",
+        "parent": "the-emergence-demo",
+        "reason": "Private AI DM planning notes"
+      },
+      "decision": {
+        "allowed": true,
+        "status": "allowed",
+        "reason": "Action allowed by AI DM permission policy"
+      }
+    },
+    {
+      "action": {
+        "type": "create_voice_channel",
+        "name": "the-emergence-first-signal-voice",
+        "parent": "the-emergence-demo",
+        "reason": "Live session voice"
+      },
+      "decision": {
+        "allowed": true,
+        "status": "allowed",
+        "reason": "Action allowed by AI DM permission policy"
+      }
+    },
+    {
+      "action": {
+        "type": "pin_message",
+        "channel": "the-emergence-first-signal-character-sheets",
+        "reason": "Pin locked sheet truth"
+      },
+      "decision": {
+        "allowed": true,
+        "status": "allowed",
+        "reason": "Action allowed by AI DM permission policy"
+      }
+    },
+    {
+      "action": {
+        "type": "create_thread",
+        "name": "architect-sheet-thread",
+        "parent": "the-emergence-first-signal-character-sheets",
+        "reason": "Per-character discussion and sheet history"
+      },
+      "decision": {
+        "allowed": true,
+        "status": "allowed",
+        "reason": "Action allowed by AI DM permission policy"
+      }
+    }
+  ],
+  "summary": {
+    "total": 9,
+    "allowed": 9,
+    "blocked": 0
+  }
+}

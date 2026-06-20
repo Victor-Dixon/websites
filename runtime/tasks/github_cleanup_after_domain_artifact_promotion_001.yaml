@@ -1,0 +1,40 @@
+id: github_cleanup_after_domain_artifact_promotion_001
+status: blocked_until_new_home_pushed
+lane: github_cleanup
+repo: websites
+created: 2026-06-20T08:37:47.546624
+policy:
+  delete_repos: false
+  archive_only_after:
+    - websites commit exists
+    - websites branch pushed
+    - artifacts/repo_migration_manifest.json reviewed
+candidates:
+  - label: tbowtactics
+    repo: Victor-Dixon/TBOWTactics
+    source: /data/data/com.termux/files/home/projects/_repo_migration_sources/TBOWTactics
+    new_home: artifacts/freerideinvestor.com/source_snapshots/tbowtactics
+    source_is_git: true
+    new_home_file_count: 65
+    cleanup_action: archive_after_new_home_pushed
+  - label: freerideinvestor
+    repo: Victor-Dixon/FreeRideInvestor
+    source: /data/data/com.termux/files/home/projects/_repo_migration_sources/FreeRideInvestor
+    new_home: artifacts/freerideinvestor.com/source_snapshots/freerideinvestor
+    source_is_git: true
+    new_home_file_count: 94
+    cleanup_action: archive_after_new_home_pushed
+  - label: emergence
+    repo: spark-protocol
+    source: /data/data/com.termux/files/home/projects/spark-protocol
+    new_home: artifacts/maskzero.site/source_snapshots/emergence
+    source_is_git: true
+    new_home_file_count: 194
+    cleanup_action: review_before_archive
+  - label: bible_application
+    repo: Victor-Dixon/bible-application
+    source: /data/data/com.termux/files/home/projects/_repo_migration_sources/bible-application
+    new_home: theme_shelf/bible_application
+    source_is_git: true
+    new_home_file_count: 11
+    cleanup_action: archive_after_new_home_pushed

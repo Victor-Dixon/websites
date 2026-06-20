@@ -23,7 +23,10 @@
       filter:blur(28px);animation:pulse 5s ease-in-out infinite;pointer-events:none}
     .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 80px;position:relative}
     nav{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:70px}
-    .mark{font:900 12px var(--mono);letter-spacing:.16em;color:var(--green);border:1px solid #00ff9c55;background:#00ff9c10;padding:7px 10px;border-radius:999px}
+    .brand-logo{display:inline-flex;align-items:center;max-width:260px;height:48px;text-decoration:none;flex:0 0 auto;border:0;padding:0;background:transparent;border-radius:0}
+    nav a.brand-logo{border:0;padding:0;background:transparent;color:inherit;border-radius:0}
+    .brand-logo:hover{text-decoration:none}
+    .brand-logo img{display:block;height:42px;width:auto;max-width:100%;object-fit:contain}
     .navlinks{display:flex;gap:10px;flex-wrap:wrap}
     a{color:inherit;text-decoration:none}
     .navlinks a{font:700 11px var(--mono);color:#a7bbb4;border:1px solid #18342d;padding:8px 10px;border-radius:999px;background:#07100d99}
@@ -51,14 +54,14 @@
     .footer{margin-top:70px;color:#52645e;font:11px var(--mono);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     @keyframes pulse{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
     @keyframes rise{to{transform:translateY(0);opacity:1}}
-    @media(max-width:720px){nav{align-items:flex-start;display:block}.navlinks{margin-top:14px}.hero{min-height:60vh}}
+    @media(max-width:720px){nav{align-items:flex-start;display:block}.navlinks{margin-top:14px}.hero{min-height:60vh}.brand-logo{max-width:230px;height:44px}.brand-logo img{height:38px}}
   </style>
 </head>
 <body>
   <div class="spark"></div>
   <main class="wrap">
     <nav>
-      <a class="mark" href="/">WEARESWARM</a>
+      <a class="brand-logo" href="/" aria-label="We Are Swarm home"><img src="/assets/we-are-swarm-logo.png" alt="We Are Swarm"></a>
       <div class="navlinks">
         <a href="/level10/">LEVEL 10</a>
         <a href="https://www.weareswarm.online/level5/">PROOF</a>

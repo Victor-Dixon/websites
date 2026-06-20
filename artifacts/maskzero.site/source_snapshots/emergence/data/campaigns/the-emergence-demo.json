@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "the-emergence-demo",
+  "title": "The Emergence: First Signal",
+  "dmMode": "ai_dm",
+  "seed": "the-emergence-demo-seed",
+  "status": "active",
+  "createdAt": "2026-05-24T00:00:00.000Z",
+  "updatedAt": "2026-05-24T00:00:00.000Z",
+  "party": [
+    {
+      "discordUserId": "100000000000002",
+      "discordUsername": "victor_demo",
+      "activeRole": "Architect",
+      "character": {
+        "name": "Architect",
+        "percentile": 85,
+        "threatClassification": "City Block-Level Potential",
+        "domains": [
+          {
+            "name": "Mind",
+            "score": 35,
+            "tier": "T5"
+          }
+        ],
+        "powers": [
+          {
+            "name": "Telepathy",
+            "tier": "T5",
+            "flavorScore": 3,
+            "domain": "Mind",
+            "classification": "co-primary"
+          },
+          {
+            "name": "Mind Control",
+            "tier": "T5",
+            "flavorScore": 3,
+            "domain": "Mind",
+            "classification": "co-primary"
+          }
+        ],
+        "threatTags": [
+          "Mind Control"
+        ]
+      }
+    }
+  ],
+  "state": {
+    "act": 1,
+    "scene": 1,
+    "location": "AEGIS intake safehouse",
+    "tension": 1,
+    "openThreads": [
+      "The party has been flagged by AEGIS after abnormal manifestation signatures.",
+      "A city-wide anomaly pulse has started waking dormant threats."
+    ],
+    "inventory": [],
+    "defeatedEnemies": [],
+    "unresolvedThreats": []
+  }
+}

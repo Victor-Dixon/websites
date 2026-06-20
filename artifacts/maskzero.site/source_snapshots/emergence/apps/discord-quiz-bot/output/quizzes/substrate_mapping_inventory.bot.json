@@ -1,0 +1,942 @@
+{
+  "title": "Substrate Mapping Inventory",
+  "form_id": "SMI-7.3",
+  "version": "Revision 4",
+  "preamble": "This form is administered by Registry Classification Services to individuals who have recently manifested or who have been identified as probable carriers. It is not a diagnostic instrument. It is not a measure of character, intelligence, or potential. The Registry uses the information gathered here to understand the nature of what has occurred — to the extent that understanding is possible.\n\nThere are no correct answers. The questions that feel most uncomfortable are usually the most useful.",
+  "instructions": "Use the following scale for all numbered items:\n1 — This almost never describes me\n2 — This rarely describes me\n3 — This sometimes describes me\n4 — This often describes me\n5 — This is almost always true of me\n\nFor forced-choice items (marked FC), select the option that more accurately describes you — not the one you'd prefer to be true. For checklist items (marked EC), check every statement that applies.\n\nAnswer each question as it first arrives to you. The considered answer and the honest answer are not always the same thing. This instrument is designed to find the gap between them.",
+  "questions": [
+    {
+      "id": "1",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "When I commit to something, I complete it. Not because the cost isn't real — it always is — but because I accounted for the cost before I committed.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "C5",
+        "domain": "Conscientiousness"
+      }
+    },
+    {
+      "id": "2",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I've made choices primarily to see what would happen, without a clear practical case for choosing that way.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "O4",
+        "domain": "Openness"
+      }
+    },
+    {
+      "id": "3",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "When I have a position, I state it — even in rooms where stating it costs something.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "E3",
+        "domain": "Extraversion"
+      }
+    },
+    {
+      "id": "4",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "When someone I don't know is visibly hurt or frightened, I notice it in my body before I notice it in my thoughts.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "A6",
+        "domain": "Agreeableness"
+      }
+    },
+    {
+      "id": "5",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I've experienced something I recognized, after the fact, as genuine rage — not frustration, not irritation, but a complete and cold internal fact.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "N2",
+        "domain": "Neuroticism"
+      }
+    },
+    {
+      "id": "6",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I'm moved by things that most people pass through without reaction. The feeling tends to stay.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "O3",
+        "domain": "Openness"
+      }
+    },
+    {
+      "id": "7",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I've remained at something past the point when it was reasonable to — not because I couldn't stop, but because stopping wasn't what I was willing to do.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "C4",
+        "domain": "Conscientiousness"
+      }
+    },
+    {
+      "id": "8",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "Inactivity registers as discomfort before it registers as rest.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "E4",
+        "domain": "Extraversion"
+      }
+    },
+    {
+      "id": "9",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I've given up something significant for someone else. Not as a trade. Not with an expectation of return. Because they needed it and I was able.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "A3",
+        "domain": "Agreeableness"
+      }
+    },
+    {
+      "id": "10",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "Under enough of the right kind of sustained pressure, I find a limit.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "N6",
+        "domain": "Neuroticism",
+        "calibrator": true,
+        "calibrator_type": "reverse"
+      }
+    },
+    {
+      "id": "11",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I find the argument more interesting than the conclusion it supports.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "O5",
+        "domain": "Openness"
+      }
+    },
+    {
+      "id": "12",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "The most important obligations I hold are ones I made to myself, not to other people.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "C3",
+        "domain": "Conscientiousness"
+      }
+    },
+    {
+      "id": "13",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I've sought out difficulty or risk that had no practical justification — not for what the risk produced, but because the risk itself felt alive.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "E5",
+        "domain": "Extraversion"
+      }
+    },
+    {
+      "id": "14",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "When someone presents a good reason I hadn't considered, I adjust my position.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "A4",
+        "domain": "Agreeableness",
+        "calibrator": true,
+        "calibrator_type": "context_dependent"
+      }
+    },
+    {
+      "id": "15",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I spend time on problems that haven't happened yet — not productively, but because I can't stop.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "N1",
+        "domain": "Neuroticism"
+      }
+    },
+    {
+      "id": "16",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "Certain ways of doing things feel correct in a way I can't fully articulate. I'll adjust them even when no one else would notice the difference.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "O2",
+        "domain": "Openness"
+      }
+    },
+    {
+      "id": "17",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I notice when something is out of place before I've consciously decided to pay attention.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "C2",
+        "domain": "Conscientiousness"
+      }
+    },
+    {
+      "id": "18",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "Meeting new people is genuinely interesting to me — not a performance of sociability, but an actual source of information and sometimes pleasure.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "E1",
+        "domain": "Extraversion"
+      }
+    },
+    {
+      "id": "19",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "There are things I will not do. The list isn't long. The items on it are not negotiable.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "A2",
+        "domain": "Agreeableness"
+      }
+    },
+    {
+      "id": "20",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I've acted on something before I finished deciding whether I should.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "N5",
+        "domain": "Neuroticism"
+      }
+    },
+    {
+      "id": "21",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I construct internal scenarios — alternatives, invented contexts, possibilities — without a practical reason for doing so.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "O1",
+        "domain": "Openness"
+      }
+    },
+    {
+      "id": "22",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "Before I decide something is ready to proceed, I've already thought through what happens when it goes wrong.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "C6",
+        "domain": "Conscientiousness"
+      }
+    },
+    {
+      "id": "23",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "My default state, when nothing specific is wrong, is something close to forward momentum.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "E6",
+        "domain": "Extraversion"
+      }
+    },
+    {
+      "id": "24",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "If something I did is worth recognizing, I'm more comfortable with it being visible in what it accomplished than in how I looked doing it.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "A5",
+        "domain": "Agreeableness"
+      }
+    },
+    {
+      "id": "25",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "There are periods when very little feels worth the effort it takes.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "N3",
+        "domain": "Neuroticism"
+      }
+    },
+    {
+      "id": "26",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I've arrived at conclusions others found unusual by following the logic rather than the convention.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "O6",
+        "domain": "Openness"
+      }
+    },
+    {
+      "id": "27",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "When I take on something, I expect to complete it — not because I always do, but because I don't start things I intend to fail.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "C1",
+        "domain": "Conscientiousness"
+      }
+    },
+    {
+      "id": "28",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I come back from time spent in a large group more energized than when I arrived.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "E2",
+        "domain": "Extraversion"
+      }
+    },
+    {
+      "id": "29",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I assume people have reasonable explanations for their behavior until I have evidence otherwise.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "A1",
+        "domain": "Agreeableness"
+      }
+    },
+    {
+      "id": "30",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I'm aware, in real time, of how I'm coming across to other people — even when that awareness changes nothing about what I'm doing.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "N4",
+        "domain": "Neuroticism"
+      }
+    },
+    {
+      "id": "31",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "The experiences that have changed me most were cognitive — ideas that rearranged something, rather than events that happened to me.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "O3+O5",
+        "domain": "Openness",
+        "combined": true
+      }
+    },
+    {
+      "id": "32",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I've been the last person still invested in something that everyone around me had moved on from. At the time, this didn't seem unusual.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "C4+C5",
+        "domain": "Conscientiousness",
+        "combined": true
+      }
+    },
+    {
+      "id": "33",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "When I'm in a situation where something needs to happen, I move toward it rather than waiting for someone else.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "E3+E4",
+        "domain": "Extraversion",
+        "combined": true
+      }
+    },
+    {
+      "id": "34",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I feel responsible for people near me in a way that goes beyond what's practical or proportionate — not just people I've chosen, but sometimes people I've simply encountered.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "A3+A6",
+        "domain": "Agreeableness",
+        "combined": true
+      }
+    },
+    {
+      "id": "35",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I've surprised myself by how quickly I moved, or how far I went, when something needed to be stopped.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "N2+N5",
+        "domain": "Neuroticism",
+        "combined": true
+      }
+    },
+    {
+      "id": "36",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "When I think about the future, I'm more likely to build possibilities I don't expect to use than to plan for the one I will.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "O4+O1",
+        "domain": "Openness",
+        "combined": true
+      }
+    },
+    {
+      "id": "37",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "The most important expectations I hold are ones I've set for myself. Receiving them from someone else — even someone I respect — would make them feel less binding, not more.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "C3+C1",
+        "domain": "Conscientiousness",
+        "combined": true
+      }
+    },
+    {
+      "id": "38",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I feel most like myself when I'm in proximity to other people rather than apart from them.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "E1+E2",
+        "domain": "Extraversion",
+        "combined": true
+      }
+    },
+    {
+      "id": "39",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "I can change my position when I'm genuinely wrong. What I can't do is change it when I'm not.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "A2+A4",
+        "domain": "Agreeableness",
+        "combined": true,
+        "tension": true
+      }
+    },
+    {
+      "id": "40",
+      "section": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "question": "The distance between who I need to be and who I am is something I'm aware of most of the time.",
+      "options": [
+        "1. This almost never describes me",
+        "2. This rarely describes me",
+        "3. This sometimes describes me",
+        "4. This often describes me",
+        "5. This is almost always true of me"
+      ],
+      "meta": {
+        "facet": "N1+N3",
+        "domain": "Neuroticism",
+        "combined": true,
+        "calibrator": true,
+        "calibrator_type": "calibrator"
+      }
+    },
+    {
+      "id": "FC-1",
+      "section": "SECTION II — PREFERENTIAL PROFILE",
+      "type": "forced_choice",
+      "question": "In a crisis, I am more useful as:",
+      "options": [
+        "A. The person who acts",
+        "B. The person who sees what others are missing"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "FC-2",
+      "section": "SECTION II — PREFERENTIAL PROFILE",
+      "type": "forced_choice",
+      "question": "When I am most fully myself, it is:",
+      "options": [
+        "A. In motion",
+        "B. In stillness"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "FC-3",
+      "section": "SECTION II — PREFERENTIAL PROFILE",
+      "type": "forced_choice",
+      "question": "If I could know one thing about a stranger immediately:",
+      "options": [
+        "A. What they're feeling",
+        "B. What they intend"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "FC-4",
+      "section": "SECTION II — PREFERENTIAL PROFILE",
+      "type": "forced_choice",
+      "question": "When something I care about is threatened, my first movement is:",
+      "options": [
+        "A. Between the threat and what I care about",
+        "B. To remove the threat before it arrives"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "FC-5",
+      "section": "SECTION II — PREFERENTIAL PROFILE",
+      "type": "forced_choice",
+      "question": "Over the course of my life, I have been shaped more by:",
+      "options": [
+        "A. Choices I made",
+        "B. Things that happened to me"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "FC-6",
+      "section": "SECTION II — PREFERENTIAL PROFILE",
+      "type": "forced_choice",
+      "question": "At my most effective, I operate:",
+      "options": [
+        "A. Alone",
+        "B. As part of something larger than myself"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-1",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "I have been physically restrained — by another person, by a situation, by circumstance — while trying to do something I intended to do anyway.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-2",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "I've sustained a physical injury and not mentioned it to the person I was with.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-3",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "More than one person, on separate occasions, has used the word \"intense\" or a direct synonym to describe me — not as a compliment.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-4",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "I've arrived somewhere in the middle of a crisis and known, before anyone told me, what needed to happen.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-5",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "I've noticed something wrong with a structure, plan, or system before any visible sign confirmed it.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-6",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "I've felt the mood of a space change when I entered it — not because of anything I said or did, but because I was present.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-7",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "More than one person, in separate contexts, has told me they feel safer when I'm nearby.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-8",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "I've continued to function at a level that caused someone watching to visibly react to what I was absorbing or enduring.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-9",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "I have a relationship — with a person, a place, or a purpose — that I actively choose not to explain to most people.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-10",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "I've had a moment in which everything I was or felt became completely clear — not calm, but clear. This has happened more than once.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-11",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "I've hit a limit I was certain was not there.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    },
+    {
+      "id": "EC-12",
+      "section": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "question": "The most significant commitment I've ever made was one I didn't announce.",
+      "options": [
+        "A. Applies",
+        "B. Does not apply"
+      ],
+      "meta": {}
+    }
+  ],
+  "scoring": {
+    "saturation_primary_indicators": [
+      1,
+      7,
+      12,
+      19,
+      32,
+      35,
+      37
+    ],
+    "saturation_calibrators": [
+      10,
+      14,
+      40
+    ],
+    "saturation_ec_primary": [
+      "EC-3",
+      "EC-9",
+      "EC-10",
+      "EC-12"
+    ],
+    "saturation_ec_calibrator": [
+      "EC-11"
+    ],
+    "count_low_indicators": [
+      12,
+      37,
+      38
+    ],
+    "count_high_indicators": [
+      2,
+      13,
+      31,
+      6,
+      34,
+      5
+    ]
+  }
+}

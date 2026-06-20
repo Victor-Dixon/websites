@@ -8,7 +8,7 @@
     body{margin:0;background:#05070c;color:#eef4ff;font-family:Inter,system-ui,sans-serif;line-height:1.55}
     a{color:#78f0c3;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:30px 20px}
     .nav{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:42px;padding:12px 14px;border:1px solid #243248;border-radius:999px;background:#0b111d}
-    .brand{font-weight:950;text-transform:uppercase;letter-spacing:.1em}.links{display:flex;gap:7px;flex-wrap:wrap}.links a{padding:7px 11px;border:1px solid #243248;border-radius:999px;color:#a8b4c7}
+    .brand-logo{display:inline-flex;align-items:center;max-width:260px;height:48px;text-decoration:none;flex:0 0 auto;border:0;padding:0;background:transparent;border-radius:0}.nav a.brand-logo{border:0;padding:0;background:transparent;color:inherit;border-radius:0}.brand-logo:hover{text-decoration:none}.brand-logo img{display:block;height:42px;width:auto;max-width:100%;object-fit:contain}.links{display:flex;gap:7px;flex-wrap:wrap}.links a{padding:7px 11px;border:1px solid #243248;border-radius:999px;color:#a8b4c7}
     h1{font-size:clamp(2.35rem,6vw,5rem);line-height:.95;margin:14px 0 18px;letter-spacing:-.06em}h2{font-size:1.8rem;margin:0 0 14px}h3{margin:0 0 8px}
     p,li{color:#a8b4c7}.eyebrow{color:#ffd166;font-weight:900;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem}
     section{padding:30px 0;border-top:1px solid rgba(255,255,255,.08)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
@@ -17,53 +17,129 @@
     .proof{font-family:ui-monospace,monospace;color:#d9e6f8;background:#070b13;border:1px solid #243248;border-radius:14px;padding:12px;font-size:.86rem}
     blockquote{margin:12px 0;padding:14px 18px;border-left:4px solid #78f0c3;background:#0b111d;color:#eef4ff;font-weight:800}
     footer{padding:36px 0;border-top:1px solid rgba(255,255,255,.08);color:#a8b4c7}
+    @media(max-width:640px){.nav{align-items:flex-start;flex-direction:column}.links{justify-content:flex-start}.brand-logo{max-width:230px;height:44px}.brand-logo img{height:38px}}
   </style>
 </head>
 <body>
 <main class="wrap">
   <nav class="nav">
-    <div class="brand">WeAreSwarm</div>
+    <a class="brand-logo" href="/" aria-label="We Are Swarm home"><img src="/assets/we-are-swarm-logo.png" alt="We Are Swarm"></a>
     <div class="links">
       <a href="/">Command Center</a><a href="/focus/">Focus</a><a href="/roadmap/">Roadmap</a><a href="/projects/">Projects</a><a href="/tasks/">Tasks</a><a href="/skill-tree/">Skill Tree</a><a href="/dreamos-services/">Services</a>
     </div>
   </nav>
 
   <header>
-    <div class="eyebrow">Dream.OS Current Mission</div>
-    <h1>Level 4 → Level 5 is the proper lane.</h1>
-    <p>Dream.OS is moving from Victor-driven execution into autonomous team operation. Consolidation remains useful, but it is no longer the primary blocker.</p>
-    <div class="proof">CURRENT_MATURITY=Level 4 Dream.OS Operator → Level 5 Autonomous Teams<br>PRIMARY_OBJECTIVE=route work without Victor manually coordinating every task</div>
-  </header>
+    <div class="eyebrow"></footer>
 
-  <section>
-    <h2>Level 5 Exit Criteria</h2>
-    <div class="grid">
-      <article class="card active"><span class="tag">Active</span><h3>Automatic Task Routing</h3><p>Dream.OS determines whether work goes to Kids Planner, Agent Planner, Human Review, or Adult Gate.</p></article>
-      <article class="card active"><span class="tag">Active</span><h3>Task Claiming</h3><p>Humans and agents can claim work independently. Victor is not assigning every task manually.</p></article>
-      <article class="card active"><span class="tag">Active</span><h3>Proof-Based Completion</h3><p>Tasks close only with proof: URL, commit, screenshot, artifact, or test result.</p></article>
-      <article class="card active"><span class="tag">Active</span><h3>Multi-Operator Execution</h3><p>Victor, kids, Scott, and agents can move work forward without everything depending on one router.</p></article>
-      <article class="card gold"><span class="tag gold">Revenue</span><h3>Revenue Engine</h3><p>Milestones: $100/day, $180/day, then $500/day through systems, services, and repeatable delivery.</p></article>
-      <article class="card gold"><span class="tag gold">In Progress</span><h3>Kids + Agent Planner</h3><p>Claim task, generate agent prompt, submit proof, earn credit, and return artifacts.</p></article>
+
+<!-- DREAMOS_FOCUS_RESET_START -->
+<section id="dreamos-focus-reset" class="dreamos-focus-reset" style="margin:3rem auto;max-width:1120px;padding:2rem;border:1px solid rgba(120,160,255,.28);border-radius:24px;background:linear-gradient(135deg,rgba(7,12,24,.96),rgba(18,22,45,.92));box-shadow:0 0 48px rgba(72,118,255,.16);color:#eef4ff;">
+  <p style="letter-spacing:.18em;text-transform:uppercase;color:#8fb4ff;font-weight:700;margin:0 0 .75rem;">Dream.OS Focus</p>
+  <h1 style="font-size:clamp(2rem,5vw,4rem);line-height:1;margin:0 0 1rem;">Autonomy Reset: One Lane, One Closure</h1>
+  <p style="font-size:1.1rem;line-height:1.7;color:#c9d7ff;max-width:820px;margin:0 0 1.5rem;">
+    Yesterday proved the system can coordinate, but not yet close autonomously. Today’s operating mode is Level 1:
+    one owner, one artifact, one verifier, one closeout, one commit-ready result.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1.5rem 0;">
+    <div style="padding:1rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);">
+      <strong style="display:block;color:#ffffff;font-size:1.15rem;">Current Mode</strong>
+      <span style="color:#9fd3ff;">Level 1 Autonomy</span>
     </div>
-  </section>
-
-  <section>
-    <h2>Background, Not Blocker</h2>
-    <div class="grid">
-      <article class="card"><h3>Repo Consolidation</h3><p>Still important, but moved to background swarm activity.</p></article>
-      <article class="card"><h3>Variant Comparisons</h3><p>Future agents can classify, compare, and recommend promotions.</p></article>
-      <article class="card"><h3>Archive Cleanup</h3><p>Useful for hygiene, not required for Level 5 proof.</p></article>
+    <div style="padding:1rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);">
+      <strong style="display:block;color:#ffffff;font-size:1.15rem;">P0 Target</strong>
+      <span style="color:#9fd3ff;">lane_011 signed manifest</span>
     </div>
-  </section>
+    <div style="padding:1rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);">
+      <strong style="display:block;color:#ffffff;font-size:1.15rem;">Execution Owner</strong>
+      <span style="color:#9fd3ff;">Agent-1</span>
+    </div>
+    <div style="padding:1rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);">
+      <strong style="display:block;color:#ffffff;font-size:1.15rem;">Verifier</strong>
+      <span style="color:#9fd3ff;">Agent-4 verify-only</span>
+    </div>
+  </div>
 
-  <section>
-    <h2>Dream.OS Definition</h2>
-    <blockquote>Dream.OS is not a repository.</blockquote>
-    <blockquote>Dream.OS is an operating system for routing work between humans, AI agents, knowledge systems, and economic engines.</blockquote>
-    <p>Current priority: achieve Level 5 Autonomous Teams. All work is evaluated against that objective.</p>
-  </section>
+  <div style="margin-top:1.5rem;padding:1.25rem;border-left:4px solid #7aa2ff;background:rgba(122,162,255,.08);border-radius:14px;">
+    <h2 style="margin:.2rem 0 .75rem;font-size:1.35rem;">Today’s Rule</h2>
+    <p style="margin:0;color:#dbe6ff;line-height:1.65;">
+      No swarm. No new planner lanes. No background promises. No dry-run counted as done.
+      The system earns autonomy only by closing one useful lane with proof.
+    </p>
+  </div>
 
-  <footer>Focus: Level 5 Autonomous Teams over endless consolidation.</footer>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.5rem;">
+    <div style="padding:1rem;border-radius:16px;background:rgba(0,0,0,.22);">
+      <h3 style="margin:0 0 .5rem;color:#ffffff;">Agent-1</h3>
+      <p style="margin:0;color:#c9d7ff;">Produce <code>agent1_lane011_signed_prune_manifest_001.json</code>. No deletes.</p>
+    </div>
+    <div style="padding:1rem;border-radius:16px;background:rgba(0,0,0,.22);">
+      <h3 style="margin:0 0 .5rem;color:#ffffff;">Agent-3</h3>
+      <p style="margin:0;color:#c9d7ff;">Standby. Planner lane closed. No execution unless a new planner lane is assigned.</p>
+    </div>
+    <div style="padding:1rem;border-radius:16px;background:rgba(0,0,0,.22);">
+      <h3 style="margin:0 0 .5rem;color:#ffffff;">Agent-4</h3>
+      <p style="margin:0;color:#c9d7ff;">Verify only after Agent-1 manifest exists. Refresh stale SSOT proof if required.</p>
+    </div>
+  </div>
+
+  <p style="margin:1.5rem 0 0;color:#8fa6d8;font-size:.95rem;">
+    Build signal: autonomy is earned by closure, not coordination volume.
+  </p>
+</section>
+<!-- DREAMOS_FOCUS_RESET_END -->
+
+
+
+<!-- AUTONOMY_LEVEL_GATE_START -->
+<section id="autonomy-level-gate" style="margin:3rem auto;max-width:1120px;padding:2rem;border:1px solid rgba(120,160,255,.28);border-radius:24px;background:linear-gradient(135deg,rgba(7,12,24,.96),rgba(18,22,45,.92));box-shadow:0 0 48px rgba(72,118,255,.16);color:#eef4ff;">
+  <p style="letter-spacing:.18em;text-transform:uppercase;color:#8fb4ff;font-weight:700;margin:0 0 .75rem;">Autonomy Gate</p>
+  <h1 style="font-size:clamp(2rem,5vw,4rem);line-height:1;margin:0 0 1rem;">Current Verified Level: No verified autonomy level</h1>
+  <p style="font-size:1.08rem;line-height:1.7;color:#c9d7ff;max-width:860px;margin:0 0 1.25rem;">
+    Dream.OS autonomy is now test-gated. No artifact means fail. No test pass means no level promotion.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.5rem 0;">
+    <div style="padding:1rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);">
+      <strong style="display:block;color:#ffffff;font-size:1.15rem;">Verified Level</strong>
+      <span style="color:#9fd3ff;">No verified level</span>
+    </div>
+    <div style="padding:1rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);">
+      <strong style="display:block;color:#ffffff;font-size:1.15rem;">Next Gate</strong>
+      <span style="color:#9fd3ff;">L0</span>
+    </div>
+    <div style="padding:1rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);">
+      <strong style="display:block;color:#ffffff;font-size:1.15rem;">First Failed Check</strong>
+      <span style="color:#9fd3ff;">agent_workspaces_present</span>
+    </div>
+  </div>
+
+  <div style="margin-top:1.25rem;padding:1rem;border-left:4px solid #7aa2ff;background:rgba(122,162,255,.08);border-radius:14px;">
+    <strong style="display:block;margin-bottom:.35rem;color:#ffffff;">Required Fix</strong>
+    <span style="color:#dbe6ff;">agent_workspaces</span>
+  </div>
+
+  <h2 style="margin:1.75rem 0 .75rem;font-size:1.35rem;">Promotion Rules</h2>
+  <table style="width:100%;border-collapse:collapse;color:#dbe6ff;">
+    <thead>
+      <tr>
+        <th style="text-align:left;padding:.6rem;border-bottom:1px solid rgba(255,255,255,.18);">Level</th>
+        <th style="text-align:left;padding:.6rem;border-bottom:1px solid rgba(255,255,255,.18);">Name</th>
+        <th style="text-align:left;padding:.6rem;border-bottom:1px solid rgba(255,255,255,.18);">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>L0</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>manual_control</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>FAIL</td></tr><tr><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>L1</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>single_lane_closure</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>FAIL</td></tr><tr><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>L2</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>refresh_assisted_autonomy</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>FAIL</td></tr><tr><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>L3</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>multi_agent_a2a</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>FAIL</td></tr><tr><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>L4</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>thea_bridge</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>FAIL</td></tr><tr><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>L5</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>overnight_autonomy</td><td style='padding:.6rem;border-bottom:1px solid rgba(255,255,255,.08);'>FAIL</td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin:1.25rem 0 0;color:#8fa6d8;font-size:.95rem;">
+    Last gate report: 2026-06-20T12:08:09.842047+00:00. Autonomy is earned by proof artifacts, not coordination volume.
+  </p>
+</section>
+<!-- AUTONOMY_LEVEL_GATE_END -->
+
 </main>
 </body>
 </html>

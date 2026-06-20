@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+    name="FreerideInvestor" 
+    version="1.8.2" 
+    author="Your Name" 
+    description="Stock research tool with AI-generated day trade plans, historical data visualization, and customizable email alerts.">
+    
+    <structure>
+        <!-- Asset Files -->
+        <assets>
+            <!-- CSS Files -->
+            <css>
+                <file 
+                    name="dashboard.css" 
+                    type="stylesheet" 
+                    description="Core styles for the FreerideInvestor plugin">
+                    <![CDATA[
+    /*--------------------------------------------------------------
+      Base Styles
+    --------------------------------------------------------------*/
+    /* Use Freeride Investor's Brand Variables */
+    :root {
+      --color-black: #000000;
+      --color-dark-grey: #1E1E1E;
+      --color-dark-green: #003300;
+      --color-light-dark-green: #116611;
+      --color-nav-hover-bg: #228822;
+      --color-dark-bg: #121212;
+      --color-dark-bg-alt: #1A1A1A;
+    
+      --color-text-base: #EDEDED;
+      --color-text-muted: #BBBBBB;
+      --color-accent: var(--color-light-dark-green);
+      --color-border: #333333;
+    
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+    
+      --font-family-base: 'Roboto', sans-serif;
+      --font-size-base: 16px;
+      --line-height-base: 1.5;
+      --box-shadow-light: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      --box-shadow-hover: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    }
+    
+    /*--------------------------------------------------------------
+      Freeride Investor Plugin Styles
+    --------------------------------------------------------------*/
+    
+    /* Main Plugin Container */
+    .stock-research-dashboard {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: var(--spacing-md);
+      background-color: var(--color-dark-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      box-shadow: var(--box-shadow-light);
+      color: var(--color-text-base);
+    }
+    
+    /* Headings */
+    .stock-research-dashboard h1 {
+      font-size: 2rem;
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-md);
+      text-align: center;
+    }
+    
+    /* Input & Button Styles */
+    #stock-research-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    #stock-research-form input {
+      flex: 1 1 60%;
+      padding: var(--spacing-xs);
+      margin-right: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      background-color: var(--color-dark-grey);
+      color: var(--color-text-base);
+    }
+    
+    #stock-research-form button {
+      flex: 1 1 auto;
+      background-color: var(--color-accent);
+      color: var(--color-black);
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: 4px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    
+    #stock-research-form button:hover {
+      background-color: var(--color-nav-hover-bg);
+      transform: translateY(-2px);
+    }
+    
+    /* Results Section */
+    #stocks-container {
+      margin-top: var(--spacing-lg);
+    }
+    
+    .stock-section {
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-md);
+      background-color: var(--color-dark-grey);
+      border-radius: 8px;
+      box-shadow: var(--box-shadow-light);
+    }
+    
+    .stock-section h2 {
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .stock-section p {
+      color: var(--color-text-muted);
+    }
+    
+    /* News List */
+    .stock-data ul {
+      list-style: disc;
+      padding-left: var(--spacing-md);
+    }
+    
+    .stock-data ul li a {
+      color: var(--color-text-base);
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+    
+    .stock-data ul li a:hover {
+      color: var(--color-accent);
+    }
+    
+    /* Charts Section */
+    .historical-chart canvas {
+      width: 100% !important;
+      height: 400px !important;
+    }
+    
+    /* Trade Plan Section */
+    .trade-plan {
+      background-color: var(--color-dark-bg-alt);
+      padding: var(--spacing-md);
+      border-radius: 8px;
+      margin-top: var(--spacing-md);
+    }
+    
+    .trade-plan h3 {
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .trade-plan pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background-color: var(--color-dark-grey);
+      padding: var(--spacing-sm);
+      border-radius: 4px;
+      color: var(--color-text-muted);
+    }
+    
+    /* Spinner Styles */
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border-left-color: var(--color-accent);
+      animation: spin 1s ease infinite;
+      margin: var(--spacing-md) auto;
+    }
+    
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    /* Rest of the CSS styles */
+                        ]]>
+                    </file>
+                </css>
+    
+                <!-- JavaScript Files -->
+                <js>
+                    <file 
+                        name="dashboard.js" 
+                        type="script" 
+                        description="Interactive behaviors for stock research and alert forms">
+                        <![CDATA[
+    jQuery(document).ready(function ($) {
+        // Handle Stock Research Form Submission
+        $('#stock-research-form').on('submit', function (e) {
+            e.preventDefault();
+    
+            const symbolsInput = $('#stock-symbol').val().trim();
+            if (symbolsInput === '') {
+                alert(freerideAjax.strings.enterSymbols);
+                return;
+            }
+    
+            $.ajax({
+                url: freerideAjax.ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'fri_fetch_stock_data',
+                    security: freerideAjax.nonce,
+                    stock_symbols: symbolsInput,
+                },
+                beforeSend: function () {
+                    $('#stocks-container').html('<p>' + freerideAjax.strings.loading + '</p>');
+                },
+                success: function (response) {
+                    if (response.success) {
+                        let html = '';
+                        $.each(response.data, function (symbol, stock) {
+                            if (stock.error) {
+                                html += `<div class="stock-error">${stock.error}</div>`;
+                            } else {
+                                html += `
+                                    <div class="stock-info">
+                                        <h2>${symbol}</h2>
+                                        <p>${freerideAjax.strings.price} ${stock.stock_data['05. price']}</p>
+                                        <p>${freerideAjax.strings.changePercent} ${stock.stock_data['10. change percent']}</p>
+                                        <p>${freerideAjax.strings.sentimentScore} ${stock.sentiment}</p>
+                                        <h3>${freerideAjax.strings.aiTradePlan}</h3>
+                                        <p>${stock.plan}</p>
+                                        <h3>${freerideAjax.strings.recentNews}</h3>
+                                        <ul>
+                                            ${stock.news.map(newsItem => `<li>${newsItem.headline}</li>`).join('')}
+                                        </ul>
+                                        <h3>Historical Data (Last 30 Days)</h3>
+                                        <canvas id="chart-${symbol}" width="400" height="200"></canvas>
+                                    </div>
+                                `;
+                            }
+                        });
+                        $('#stocks-container').html(html);
+    
+                        // Initialize Charts
+                        $.each(response.data, function (symbol, stock) {
+                            if (stock.historical_data && !stock.error) {
+                                const ctx = document.getElementById(`chart-${symbol}`).getContext('2d');
+                                const dates = stock.historical_data.map(entry => entry.date).reverse();
+                                const closes = stock.historical_data.map(entry => entry.close).reverse();
+    
+                                new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: dates,
+                                        datasets: [{
+                                            label: `${symbol} Closing Prices`,
+                                            data: closes,
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: false
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        });
+    
+                    } else {
+                        $('#stocks-container').html(`<p>${freerideAjax.strings.unexpectedError}</p>`);
+                    }
+                },
+                error: function () {
+                    $('#stocks-container').html(`<p>${freerideAjax.strings.unexpectedError}</p>`);
+                }
+            });
+        });
+    
+        // Handle Alert Form Submission
+        $('#alert-form').on('submit', function (e) {
+            e.preventDefault();
+    
+            const email = $('#alert-email').val().trim();
+            const symbol = $('#alert-symbol').val().trim().toUpperCase();
+            const alert_type = $('#alert-type').val();
+            const condition_value = $('#alert-value').val().trim();
+    
+            if (email === '' || !validateEmail(email)) {
+                alert(freerideAjax.strings.emailRequired);
+                return;
+            }
+    
+            if (symbol === '') {
+                alert(freerideAjax.strings.symbolRequired);
+                return;
+            }
+    
+            if (alert_type === '' || condition_value === '') {
+                alert(freerideAjax.strings.conditionRequired);
+                return;
+            }
+    
+            if (isNaN(condition_value)) {
+                alert(freerideAjax.strings.conditionRequired);
+                return;
+            }
+    
+            $.ajax({
+                url: freerideAjax.ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'fri_set_alert',
+                    security: freerideAjax.nonce,
+                    alert_email: email,
+                    alert_symbol: symbol,
+                    alert_type: alert_type,
+                    alert_value: condition_value,
+                },
+                beforeSend: function () {
+                    $('#alert-message').html('<p>' + freerideAjax.strings.loading + '</p>');
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $('#alert-message').html(`<p style="color: green;">${freerideAjax.strings.alertSuccess}</p>`);
+                        $('#alert-form')[0].reset();
+                    } else {
+                        $('#alert-message').html(`<p style="color: red;">${freerideAjax.strings.alertError}</p>`);
+                    }
+                },
+                error: function () {
+                    $('#alert-message').html(`<p style="color: red;">${freerideAjax.strings.alertError}</p>`);
+                }
+            });
+        });
+    
+        // Email validation function
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\\.,;:\s@\"]+\.)+[^<>()[\]\\.,;:\s@\"]{2,})$/i;
+            return re.test(String(email).toLowerCase());
+        }
+    });
+    
+    /*--------------------------------------------------------------
+      Base Styles
+    --------------------------------------------------------------*/
+    
+    /* Use Freeride Investor's Brand Variables */
+    :root {
+      --color-black: #000000;
+      --color-dark-grey: #1E1E1E;
+      --color-dark-green: #003300;
+      --color-light-dark-green: #116611;
+      --color-nav-hover-bg: #228822;
+      --color-dark-bg: #121212;
+      --color-dark-bg-alt: #1A1A1A;
+    
+      --color-text-base: #EDEDED;
+      --color-text-muted: #BBBBBB;
+      --color-accent: var(--color-light-dark-green);
+      --color-border: #333333;
+    
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+    
+      --font-family-base: 'Roboto', sans-serif;
+      --font-size-base: 16px;
+      --line-height-base: 1.5;
+      --box-shadow-light: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      --box-shadow-hover: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    }
+    
+    /*--------------------------------------------------------------
+      Freeride Investor Plugin Styles
+    --------------------------------------------------------------*/
+    
+    /* Main Plugin Container */
+    .stock-research-dashboard {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: var(--spacing-md);
+      background-color: var(--color-dark-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      box-shadow: var(--box-shadow-light);
+      color: var(--color-text-base);
+    }
+    
+    /* Headings */
+    .stock-research-dashboard h1 {
+      font-size: 2rem;
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-md);
+      text-align: center;
+    }
+    
+    /* Input & Button Styles */
+    #stock-research-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    #stock-research-form input {
+      flex: 1 1 60%;
+      padding: var(--spacing-xs);
+      margin-right: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      background-color: var(--color-dark-grey);
+      color: var(--color-text-base);
+    }
+    
+    #stock-research-form button {
+      flex: 1 1 auto;
+      background-color: var(--color-accent);
+      color: var(--color-black);
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: 4px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    
+    #stock-research-form button:hover {
+      background-color: var(--color-nav-hover-bg);
+      transform: translateY(-2px);
+    }
+    
+    /* Results Section */
+    #stocks-container {
+      margin-top: var(--spacing-lg);
+    }
+    
+    .stock-section {
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-md);
+      background-color: var(--color-dark-grey);
+      border-radius: 8px;
+      box-shadow: var(--box-shadow-light);
+    }
+    
+    .stock-section h2 {
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .stock-section p {
+      color: var(--color-text-muted);
+    }
+    
+    /* News List */
+    .stock-data ul {
+      list-style: disc;
+      padding-left: var(--spacing-md);
+    }
+    
+    .stock-data ul li a {
+      color: var(--color-text-base);
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+    
+    .stock-data ul li a:hover {
+      color: var(--color-accent);
+    }
+    
+    /* Charts Section */
+    .historical-chart canvas {
+      width: 100% !important;
+      height: 400px !important;
+    }
+    
+    /* Trade Plan Section */
+    .trade-plan {
+      background-color: var(--color-dark-bg-alt);
+      padding: var(--spacing-md);
+      border-radius: 8px;
+      margin-top: var(--spacing-md);
+    }
+    
+    .trade-plan h3 {
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .trade-plan pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background-color: var(--color-dark-grey);
+      padding: var(--spacing-sm);
+      border-radius: 4px;
+      color: var(--color-text-muted);
+    }
+    
+    /* Spinner Styles */
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border-left-color: var(--color-accent);
+      animation: spin 1s ease infinite;
+      margin: var(--spacing-md) auto;
+    }
+    
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    /* Rest of the CSS styles */
+                        ]]>
+                    </file>
+                </js>
+            </assets>
+    
+            <!-- Include Files -->
+            <includes>
+                <file 
+                    name="fetch_data.py" 
+                    type="script" 
+                    language="python" 
+                    description="Python script for fetching stock data using APIs">
+                    <![CDATA[
+    #!/usr/bin/env python3
+    import os
+    import sys
+    import json
+    import requests
+    from datetime import datetime, timedelta
+    
+    def fetch_stock_data(symbols, alpha_vantage_api_key, finnhub_api_key, news_api_key):
+        data = {}
+        for symbol in symbols.split(','):
+            symbol = symbol.strip().upper()
+            if not symbol:
+                continue
+    
+            data[symbol] = {}
+            
+            # Fetch latest price from Alpha Vantage
+            try:
+                av_response = requests.get(
+                    'https://www.alphavantage.co/query',
+                    params={
+                        'function': 'GLOBAL_QUOTE',
+                        'symbol': symbol,
+                        'apikey': alpha_vantage_api_key
+                    },
+                    timeout=10
+                )
+                av_data = av_response.json()
+                if 'Global Quote' in av_data and '05. price' in av_data['Global Quote']:
+                    latest_price = float(av_data['Global Quote']['05. price'])
+                    data[symbol]['latest_price'] = latest_price
+                else:
+                    data[symbol]['latest_price'] = None
+                    data[symbol]['error'] = 'Alpha Vantage: No price data found.'
+            except Exception as e:
+                data[symbol]['latest_price'] = None
+                data[symbol]['error'] = f'Alpha Vantage: {str(e)}'
+    
+            # Fetch historical data from Finnhub
+            try:
+                # Define the time range for historical data (last 30 days)
+                end_date = datetime.utcnow()
+                start_date = end_date - timedelta(days=30)
+                finnhub_response = requests.get(
+                    'https://finnhub.io/api/v1/stock/candle',
+                    params={
+                        'symbol': symbol,
+                        'resolution': 'D',
+                        'from': int(start_date.timestamp()),
+                        'to': int(end_date.timestamp()),
+                    },
+                    headers={
+                        'X-Finnhub-Token': finnhub_api_key
+                    },
+                    timeout=10
+                )
+                finnhub_data = finnhub_response.json()
+                if finnhub_data.get('s') == 'ok':
+                    historical = []
+                    for ts, close in zip(finnhub_data['t'], finnhub_data['c']):
+                        date = datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d')
+                        historical.append({'date': date, 'close': close})
+                    data[symbol]['historical_data'] = historical
+                else:
+                    data[symbol]['historical_data'] = []
+                    data[symbol]['error'] = 'Finnhub: No historical data found.'
+            except Exception as e:
+                data[symbol]['historical_data'] = []
+                data[symbol]['error'] = f'Finnhub: {str(e)}'
+    
+            # Fetch news from News API
+            try:
+                news_response = requests.get(
+                    'https://newsapi.org/v2/everything',
+                    params={
+                        'q': symbol,
+                        'apiKey': news_api_key,
+                        'pageSize': 5,
+                        'sortBy': 'publishedAt',
+                        'language': 'en',
+                    },
+                    timeout=10
+                )
+                news_data = news_response.json()
+                if news_data.get('status') == 'ok':
+                    news = []
+                    for article in news_data.get('articles', []):
+                        news.append({
+                            'headline': article.get('title', ''),
+                            'summary': article.get('description', ''),
+                            'url': article.get('url', ''),
+                            'datetime': article.get('publishedAt', '')
+                        })
+                    data[symbol]['news'] = news
+                else:
+                    data[symbol]['news'] = []
+                    data[symbol]['error'] = 'News API: No news data found.'
+            except Exception as e:
+                data[symbol]['news'] = []
+                data[symbol]['error'] = f'News API: {str(e)}'
+    
+        return data
+    
+    if __name__ == "__main__":
+        if len(sys.argv) != 2:
+            print(json.dumps({"error": "No symbols provided."}))
+            sys.exit(1)
+    
+        symbols_str = sys.argv[1]
+        alpha_vantage_api_key = os.getenv('ALPHA_VANTAGE_API_KEY')
+        finnhub_api_key = os.getenv('FINNHUB_API_KEY')
+        news_api_key = os.getenv('NEWS_API_KEY')
+    
+        if not all([alpha_vantage_api_key, finnhub_api_key, news_api_key]):
+            print(json.dumps({"error": "Missing one or more API keys."}))
+            sys.exit(1)
+    
+        data = fetch_stock_data(symbols_str, alpha_vantage_api_key, finnhub_api_key, news_api_key)
+        print(json.dumps(data))
+                    ]]>
+                </file>
+    
+                <file 
+                    name="uninstall.php" 
+                    type="script" 
+                    language="php" 
+                    description="Plugin uninstallation script to clean up database tables and options">
+                    <![CDATA[
+    <?php
+    /**
+     * Uninstall FreerideInvestor Plugin
+     *
+     * @package FreerideInvestor
+     */
+    
+    if (!defined('WP_UNINSTALL_PLUGIN')) {
+        exit; // Exit if accessed directly.
+    }
+    
+    // Example: If you stored any options, delete them here.
+    // delete_option('freerideinvestor_option_name');
+    
+    // If you created custom database tables, drop them.
+    global $wpdb;
+    $table1 = $wpdb->prefix . 'freerideinvestor_portfolio';
+    $table2 = $wpdb->prefix . 'freerideinvestor_settings';
+    
+    $wpdb->query("DROP TABLE IF EXISTS $table1");
+    $wpdb->query("DROP TABLE IF EXISTS $table2");
+    
+    // Add any other cleanup tasks here.
+    ?>
+                    ]]>
+                </file>
+    
+                <file 
+                    name="freerideinvestor.php" 
+                    type="script" 
+                    language="php" 
+                    description="Main WordPress plugin file">
+                    <![CDATA[
+    <?php
+    /**
+     * Plugin Name: FreerideInvestor
+     * Description: Stock research tool with AI-generated day trade plans, historical data visualization, and customizable email alerts.
+     * Version: 1.8.2
+     * Author: Your Name
+     * Text Domain: freeride-investor
+     */
+    
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
+    
+    // Enable debugging via wp-config.php or define here
+    if (!defined('FRI_DEBUG')) {
+        define('FRI_DEBUG', defined('WP_DEBUG') && WP_DEBUG);
+    }
+    
+    // Define constants for API keys (ensure these are set in wp-config.php)
+    if (!defined('ALPHA_VANTAGE_API_KEY')) {
+        define('ALPHA_VANTAGE_API_KEY', 'YOUR_ALPHA_VANTAGE_API_KEY');
+    }
+    if (!defined('FINNHUB_API_KEY')) {
+        define('FINNHUB_API_KEY', 'YOUR_FINNHUB_API_KEY');
+    }
+    if (!defined('OPENAI_API_KEY')) {
+        define('OPENAI_API_KEY', 'YOUR_OPENAI_API_KEY');
+    }
+    
+    // Define log file path
+    define('FRI_LOG_FILE', plugin_dir_path(__FILE__) . 'debug.log');
+    
+    /**
+     * Custom Logger Function
+     *
+     * Logs messages to a dedicated log file or WordPress error log.
+     *
+     * @param string $level   Log level: INFO, WARNING, ERROR
+     * @param string $message Log message
+     */
+    function fri_log($level, $message) {
+        // Only log if debugging is enabled
+        if (!FRI_DEBUG) {
+            return;
+        }
+    
+        $time = current_time('mysql');
+        $formatted_message = "[$time] [$level] $message" . PHP_EOL;
+    
+        // Write to custom log file if writable, fallback to error_log otherwise
+        if (is_writable(plugin_dir_path(__FILE__))) {
+            file_put_contents(FRI_LOG_FILE, $formatted_message, FILE_APPEND);
+        } else {
+            error_log($formatted_message);
+        }
+    }
+    
+    /**
+     * Admin Notices for Critical Errors
+     */
+    add_action('admin_notices', 'fri_admin_notices');
+    function fri_admin_notices() {
+        // Check if there's a transient set for admin notices
+        if ($notice = get_transient('fri_admin_notice')) {
+            ?>
+            <div class="notice notice-error is-dismissible">
+                <p><?php echo esc_html($notice); ?></p>
+            </div>
+            <?php
+            // Delete the transient after displaying the notice
+            delete_transient('fri_admin_notice');
+        }
+    }
+    
+    /**
+     * Function to set admin notices
+     *
+     * @param string $message The message to display.
+     */
+    function fri_set_admin_notice($message) {
+        // Set a transient to display the admin notice
+        set_transient('fri_admin_notice', $message, 30); // Expires in 30 seconds
+    }
+    
+    /**
+     * Helper function to make API requests
+     *
+     * @param string $url The API endpoint.
+     * @param string $method The HTTP method: 'GET', 'POST', etc.
+     * @param string|null $body The request body for POST requests.
+     * @param array $headers Additional headers.
+     * @return array|WP_Error The API response or WP_Error on failure.
+     */
+    function fri_make_api_request($url, $method = 'GET', $body = null, $headers = []) {
+        $args = [
+            'method'  => $method,
+            'headers' => $headers,
+            'timeout' => 30, // Set a timeout for the request
+        ];
+    
+        if ($body) {
+            $args['body'] = $body;
+        }
+    
+        fri_log('INFO', "Making API request to URL: $url");
+        $start_time = microtime(true);
+        $response = wp_remote_request($url, $args);
+        $end_time = microtime(true);
+        $response_time = round($end_time - $start_time, 4);
+        fri_log('INFO', "API response time: {$response_time} seconds");
+    
+        if (is_wp_error($response)) {
+            fri_log('ERROR', "API request failed: " . $response->get_error_message());
+            return new WP_Error('api_error', __('Error making API request.', 'freeride-investor'));
+        }
+    
+        $body = wp_remote_retrieve_body($response);
+        fri_log('INFO', "API Response Body (truncated): " . substr($body, 0, 500));
+    
+        $data = json_decode($body, true);
+    
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            fri_log('ERROR', "JSON decode error: " . json_last_error_msg());
+            return new WP_Error('json_error', __('Error decoding API response.', 'freeride-investor'));
+        }
+    
+        return $data;
+    }
+    
+    // Additional functionalities of the plugin
+    // 1. AJAX Handlers
+    // 2. Shortcodes
+    // 3. Email Alert System
+    // 4. Scheduled Tasks
+    
+    ?>
+                    ]]>
+                </file>
+            </includes>
+        </structure>
+    </project>

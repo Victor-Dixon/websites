@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Task Intelligence | WeAreSwarm</title>
+  <style>
+    body{margin:0;background:#050816;color:white;font-family:system-ui,Arial,sans-serif}
+    main{max-width:1200px;margin:auto;padding:20px}
+    .hero,.panel,.task{border:1px solid rgba(56,189,248,.22);background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,10,60,.82));border-radius:20px;padding:16px;margin-bottom:14px}
+    h1{font-size:clamp(36px,8vw,76px);margin:0}
+    .eyebrow{color:#67e8f9;text-transform:uppercase;letter-spacing:.18em;font-weight:900;font-size:12px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+    input,select{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:white}
+    .task{display:grid;gap:8px}
+    .meta{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12px}
+    .stale{border-color:rgba(248,113,113,.55)}
+    code{color:#a7f3d0;overflow-wrap:anywhere}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <p class="eyebrow">WeAreSwarm Online</p>
+    <h1>Task Intelligence</h1>
+    <p>Generated from DreamVault runtime/tasks. Stale tasks are flagged automatically.</p>
+  </section>
+
+  <section class="panel grid">
+    <input id="q" placeholder="Search all tasks">
+    <select id="status"><option value="">All statuses</option></select>
+    <select id="project"><option value="">All projects</option></select>
+    <select id="stale"><option value="">All</option><option value="true">Stale only</option><option value="false">Fresh only</option></select>
+  </section>
+
+  <section class="panel">
+    <div id="summary"></div>
+  </section>
+
+  <section id="tasks"></section>
+</main>
+<script>
+let allTasks = [];
+
+async function load() {
+  const res = await fetch('/data/tasks/task_intelligence_latest.json', {cache:'no-store'});
+  const data = await res.json();
+  allTasks = data.tasks || [];
+  hydrateFilters();
+  render();
+}
+
+function hydrateFilters(){
+  for (const [id,key] of [['status','status'],['project','project']]) {
+    const el = document.getElementById(id);
+    const old = el.value;
+    const vals = [...new Set(allTasks.map(t => t[key]).filter(Boolean))].sort();
+    el.innerHTML = `<option value="">All ${id}s</option>` + vals.map(v=>`<option>${v}</option>`).join('');
+    el.value = old;
+  }
+}
+
+function render(){
+  const q = document.getElementById('q').value.toLowerCase();
+  const status = document.getElementById('status').value;
+  const project = document.getElementById('project').value;
+  const stale = document.getElementById('stale').value;
+
+  const filtered = allTasks.filter(t => {
+    const blob = JSON.stringify(t).toLowerCase();
+    return (!q || blob.includes(q))
+      && (!status || t.status === status)
+      && (!project || t.project === project)
+      && (!stale || String(t.stale) === stale);
+  });
+
+  document.getElementById('summary').innerHTML =
+    `<strong>${filtered.length}</strong> shown / <strong>${allTasks.length}</strong> total · <strong>${allTasks.filter(t=>t.stale).length}</strong> stale`;
+
+  document.getElementById('tasks').innerHTML = filtered.map(t => `
+    <article class="task ${t.stale ? 'stale' : ''}">
+      <h3>${t.title}</h3>
+      <div class="meta">
+        <span class="pill">${t.status}</span>
+        <span class="pill">${t.priority}</span>
+        <span class="pill">${t.project}</span>
+        <span class="pill">${t.category}</span>
+        ${t.stale ? `<span class="pill">STALE: ${t.stale_reason}</span>` : ''}
+      </div>
+      <p>${t.objective || ''}</p>
+      <code>${t.path}</code>
+    </article>
+  `).join('');
+}
+
+['q','status','project','stale'].forEach(id => document.getElementById(id).addEventListener('input', render));
+load();
+</script>
+</body>
+</html>
