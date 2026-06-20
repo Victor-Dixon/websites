@@ -1,273 +1,17 @@
 {
-"ariajet.site": {
-  "site_url": "https://ariajet.site",
-  "deployment_method": "rest_api",
-  "rest_api": {
-    "username": "DadudeKC@Gmail.com",
-    "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
-    "site_url": "https://ariajet.site"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/ariajet.site/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
-},
-"crosbyultimateevents.com": {
-  "site_url": "https://crosbyultimateevents.com",
-  "deployment_method": "rest_api",
-  "rest_api": {
-    "username": "dadudeKC@Gmail.com",
-    "app_password": "udje VjlR o4XL EI96 8y2L vH47",
-    "site_url": "https://crosbyultimateevents.com"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/crosbyultimateevents.com/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
-},
-"houstonsipqueen.com": {
-  "site_url": "https://houstonsipqueen.com",
-  "deployment_method": "sftp",
-  "rest_api": {
-    "username": "dadudeKC@Gmail.com",
-    "app_password": "TAUs Schk Sh67 lUbL y6Gh zJp8",
-    "site_url": "https://houstonsipqueen.com"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/houstonsipqueen.com/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
-},
-"digitaldreamscape.site": {
-  "site_url": "https://digitaldreamscape.site",
-  "path": "sites/production/websites/digitaldreamscape.site",
-  "deployment_method": "sftp",
-  "rest_api": {
-    "username": "DadudeKC@Gmail.com",
-    "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
-    "site_url": "https://digitaldreamscape.site"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/digitaldreamscape.site/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  },
-  "deploy_files": [
-    "sites/production/websites/digitaldreamscape.site/.htaccess",
-    "sites/production/websites/digitaldreamscape.site/index.html",
-    "sites/production/websites/digitaldreamscape.site/explore.html",
-    "sites/production/websites/digitaldreamscape.site/style.css",
-    "sites/production/websites/digitaldreamscape.site/js/world-data.js",
-    "sites/production/websites/digitaldreamscape.site/js/save.js",
-    "sites/production/websites/digitaldreamscape.site/js/pathfinding.js",
-    "sites/production/websites/digitaldreamscape.site/js/player.js",
-    "sites/production/websites/digitaldreamscape.site/js/avatar.js",
-    "sites/production/websites/digitaldreamscape.site/js/camera.js",
-    "sites/production/websites/digitaldreamscape.site/js/world-renderer.js",
-    "sites/production/websites/digitaldreamscape.site/js/interactions.js",
-    "sites/production/websites/digitaldreamscape.site/js/explore.js"
-  ]
-},
-"freerideinvestor.com": {
-  "site_url": "https://freerideinvestor.com",
-  "deployment_method": "rest_api",
-  "rest_api": {
-    "username": "DadudeKC@Gmail.com",
-    "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
-    "site_url": "https://freerideinvestor.com"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/freerideinvestor.com/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
-},
-"prismblossom.online": {
-  "site_url": "https://prismblossom.online",
-  "deployment_method": "rest_api",
-  "rest_api": {
-    "username": "carmyn",
-    "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
-    "site_url": "https://prismblossom.online"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/prismblossom.online/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
-},
-"southwestsecret.com": {
-  "site_url": "https://southwestsecret.com",
-  "deployment_method": "rest_api",
-  "rest_api": {
-    "username": "DadudeKC@Gmail.com",
-    "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
-    "site_url": "https://southwestsecret.com"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/southwestsecret.com/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
-},
-"tradingrobotplug.com": {
-  "site_url": "https://tradingrobotplug.com",
-  "deployment_method": "rest_api",
-  "rest_api": {
-    "username": "DadudeKC@Gmail.com",
-    "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
-    "site_url": "https://tradingrobotplug.com"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/tradingrobotplug.com/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
-},
-"weareswarm.online": {
-  "site_url": "https://weareswarm.online",
-  "deployment_method": "rest_api",
-  "rest_api": {
-    "username": "DadudeKC@Gmail.com",
-    "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
-    "site_url": "https://weareswarm.online"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/weareswarm.online/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
-},
-"weareswarm.site": {
-  "site_url": "https://weareswarm.site",
-  "deployment_method": "rest_api",
-  "rest_api": {
-    "username": "DadudeKC@Gmail.com",
-    "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
-    "site_url": "https://weareswarm.site"
-  },
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/weareswarm.site/public_html",
-    "port": 65002
-  },
-  "seo_deployment": {
-    "method": "functions.php",
-    "target_file": "wp-content/themes/{active_theme}/functions.php"
-  },
-  "ux_deployment": {
-    "method": "additional_css",
-    "target_file": "wp-content/themes/{active_theme}/style.css"
-  }
-},
-"dadudekc.com": {
-  "site_url": "https://dadudekc.com",
+  "ariajet.site": {
+    "site_url": "https://ariajet.site",
     "deployment_method": "rest_api",
     "rest_api": {
       "username": "DadudeKC@Gmail.com",
       "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
-    "site_url": "https://dadudekc.com"
+      "site_url": "https://ariajet.site"
     },
     "sftp": {
       "host": "157.173.214.121",
       "username": "u996867598",
       "password": "Falcons#1247",
-    "remote_path": "domains/dadudekc.com/public_html",
+      "remote_path": "domains/ariajet.site/public_html",
       "port": 65002
     },
     "seo_deployment": {
@@ -279,97 +23,343 @@
       "target_file": "wp-content/themes/{active_theme}/style.css"
     }
   },
-"dadudekc.site": {
-  "site_url": "https://dadudekc.site",
-  "path": "runtime/content/dadudekc.site",
-  "site_role": "standalone_static_site",
-  "deployment_method": "sftp",
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/dadudekc.site/public_html",
-    "port": 65002
+  "crosbyultimateevents.com": {
+    "site_url": "https://crosbyultimateevents.com",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "dadudeKC@Gmail.com",
+      "app_password": "udje VjlR o4XL EI96 8y2L vH47",
+      "site_url": "https://crosbyultimateevents.com"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/crosbyultimateevents.com/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
   },
-  "deploy_files": [
-    "runtime/content/dadudekc.site/.htaccess",
-    "runtime/content/dadudekc.site/index.html",
-    "runtime/content/dadudekc.site/assets/js/spark-auth-nav.js",
-    "runtime/content/dadudekc.site/battle-simulator.html",
-    "runtime/content/dadudekc.site/battles.html",
-    "runtime/content/dadudekc.site/battles/index.html",
-    "runtime/content/dadudekc.site/character-generator.html",
-    "runtime/content/dadudekc.site/client-preview.html",
-    "runtime/content/dadudekc.site/home.html",
-    "runtime/content/dadudekc.site/missions/index.html",
-    "runtime/content/dadudekc.site/protocol.html",
-    "runtime/content/dadudekc.site/spark-generator/index.html",
-    "runtime/content/dadudekc.site/spark-os/index.html",
-    "runtime/content/dadudekc.site/the-emergence.html"
-  ]
-},
-"maskzero.site": {
-  "site_url": "https://maskzero.site",
-  "path": "runtime/content/maskzero.site",
-  "canonical_host": "https://maskzero.site",
-  "www_policy": "301_redirect_to_canonical_host",
-  "brand_hierarchy": {
-    "primary_brand": "MaskZero",
-    "experience_system": "Spark Protocol",
-    "world": "Meridian City",
-    "attribution": "Created by WeAreSwarm · Powered by Dream.OS"
+  "houstonsipqueen.com": {
+    "site_url": "https://houstonsipqueen.com",
+    "deployment_method": "sftp",
+    "rest_api": {
+      "username": "dadudeKC@Gmail.com",
+      "app_password": "TAUs Schk Sh67 lUbL y6Gh zJp8",
+      "site_url": "https://houstonsipqueen.com"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/houstonsipqueen.com/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
   },
-  "deployment_method": "sftp",
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/maskzero.site/public_html",
-    "port": 65002
+  "digitaldreamscape.site": {
+    "site_url": "https://digitaldreamscape.site",
+    "path": "sites/production/websites/digitaldreamscape.site",
+    "deployment_method": "sftp",
+    "rest_api": {
+      "username": "DadudeKC@Gmail.com",
+      "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
+      "site_url": "https://digitaldreamscape.site"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/digitaldreamscape.site/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    },
+    "deploy_files": [
+      "sites/production/websites/digitaldreamscape.site/.htaccess",
+      "sites/production/websites/digitaldreamscape.site/index.html",
+      "sites/production/websites/digitaldreamscape.site/explore.html",
+      "sites/production/websites/digitaldreamscape.site/style.css",
+      "sites/production/websites/digitaldreamscape.site/js/world-data.js",
+      "sites/production/websites/digitaldreamscape.site/js/save.js",
+      "sites/production/websites/digitaldreamscape.site/js/pathfinding.js",
+      "sites/production/websites/digitaldreamscape.site/js/player.js",
+      "sites/production/websites/digitaldreamscape.site/js/avatar.js",
+      "sites/production/websites/digitaldreamscape.site/js/camera.js",
+      "sites/production/websites/digitaldreamscape.site/js/world-renderer.js",
+      "sites/production/websites/digitaldreamscape.site/js/interactions.js",
+      "sites/production/websites/digitaldreamscape.site/js/explore.js"
+    ]
   },
-  "deploy_files": [
-    "runtime/content/maskzero.site/.htaccess",
-    "runtime/content/maskzero.site/index.html",
-    "runtime/content/maskzero.site/create-hero/index.html",
-    "runtime/content/maskzero.site/how-it-works/index.html",
-    "runtime/content/maskzero.site/origin-rules/index.html",
-    "runtime/content/maskzero.site/roster-rules/index.html",
-    "runtime/content/maskzero.site/login/index.html",
-    "runtime/content/maskzero.site/spark-login/index.html",
-    "runtime/content/maskzero.site/spark-signup/index.html",
-    "runtime/content/maskzero.site/spark-dashboard/index.html",
-    "runtime/content/maskzero.site/meridian-map/index.html",
-    "runtime/content/maskzero.site/dispatch/index.html",
-    "runtime/content/maskzero.site/assets/js/spark-auth-nav.js",
-    "runtime/content/maskzero.site/battle-simulator.html",
-    "runtime/content/maskzero.site/battles.html",
-    "runtime/content/maskzero.site/battles/index.html",
-    "runtime/content/maskzero.site/character-generator.html",
-    "runtime/content/maskzero.site/client-preview.html",
-    "runtime/content/maskzero.site/home.html",
-    "runtime/content/maskzero.site/missions/index.html",
-    "runtime/content/maskzero.site/protocol.html",
-    "runtime/content/maskzero.site/quiz/index.html",
-    "runtime/content/maskzero.site/spark-generator/index.html",
-    "runtime/content/maskzero.site/spark-os/index.html",
-    "runtime/content/maskzero.site/the-emergence.html"
-  ]
-},
-"xthunder.site": {
-  "site_url": "https://xthunder.site",
-  "path": "sites/production/websites/xthunder.site",
-  "deployment_method": "sftp",
-  "sftp": {
-    "host": "157.173.214.121",
-    "username": "u996867598",
-    "password": "Falcons#1247",
-    "remote_path": "domains/xthunder.site/public_html",
-    "port": 65002
+  "freerideinvestor.com": {
+    "site_url": "https://freerideinvestor.com",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "DadudeKC@Gmail.com",
+      "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
+      "site_url": "https://freerideinvestor.com"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/freerideinvestor.com/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
   },
-  "deploy_files": [
-    "sites/production/websites/xthunder.site/index.html",
-    "sites/production/websites/xthunder.site/assets/css/style.css",
-    "sites/production/websites/xthunder.site/assets/js/game.js"
-  ]
-}
+  "prismblossom.online": {
+    "site_url": "https://prismblossom.online",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "carmyn",
+      "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
+      "site_url": "https://prismblossom.online"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/prismblossom.online/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
+  },
+  "southwestsecret.com": {
+    "site_url": "https://southwestsecret.com",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "DadudeKC@Gmail.com",
+      "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
+      "site_url": "https://southwestsecret.com"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/southwestsecret.com/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
+  },
+  "tradingrobotplug.com": {
+    "site_url": "https://tradingrobotplug.com",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "DadudeKC@Gmail.com",
+      "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
+      "site_url": "https://tradingrobotplug.com"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/tradingrobotplug.com/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
+  },
+  "weareswarm.online": {
+    "site_url": "https://weareswarm.online",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "DadudeKC@Gmail.com",
+      "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
+      "site_url": "https://weareswarm.online"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/weareswarm.online/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
+  },
+  "weareswarm.site": {
+    "site_url": "https://weareswarm.site",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "DadudeKC@Gmail.com",
+      "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
+      "site_url": "https://weareswarm.site"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/weareswarm.site/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
+  },
+  "dadudekc.com": {
+    "site_url": "https://dadudekc.com",
+    "deployment_method": "rest_api",
+    "rest_api": {
+      "username": "DadudeKC@Gmail.com",
+      "app_password": "KHtl XOwZ FNgJ WTzF HUqc mUvP",
+      "site_url": "https://dadudekc.com"
+    },
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/dadudekc.com/public_html",
+      "port": 65002
+    },
+    "seo_deployment": {
+      "method": "functions.php",
+      "target_file": "wp-content/themes/{active_theme}/functions.php"
+    },
+    "ux_deployment": {
+      "method": "additional_css",
+      "target_file": "wp-content/themes/{active_theme}/style.css"
+    }
+  },
+  "dadudekc.site": {
+    "site_url": "https://dadudekc.site",
+    "path": "runtime/content/dadudekc.site",
+    "canonical_target": "https://maskzero.site",
+    "deployment_method": "sftp",
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/dadudekc.site/public_html",
+      "port": 65002
+    },
+    "deploy_files": [
+      "runtime/content/dadudekc.site/.htaccess",
+      "runtime/content/dadudekc.site/index.html"
+    ]
+  },
+  "maskzero.site": {
+    "site_url": "https://maskzero.site",
+    "path": "runtime/content/maskzero.site",
+    "deployment_method": "sftp",
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/maskzero.site/public_html",
+      "port": 65002
+    },
+    "deploy_files": [
+      "runtime/content/maskzero.site/.well-known/deploy.json",
+      "runtime/content/maskzero.site/assets/css/maskzero.css",
+      "runtime/content/maskzero.site/assets/docs/maskzero-technical-overview.pdf",
+      "runtime/content/maskzero.site/assets/js/maskzero.js",
+      "runtime/content/maskzero.site/assets/js/spark-auth-nav.js",
+      "runtime/content/maskzero.site/battle-simulator.html",
+      "runtime/content/maskzero.site/battle-simulator/index.html",
+      "runtime/content/maskzero.site/battles.html",
+      "runtime/content/maskzero.site/battles/index.html",
+      "runtime/content/maskzero.site/brief/index.html",
+      "runtime/content/maskzero.site/character-generator.html",
+      "runtime/content/maskzero.site/character-generator/index.html",
+      "runtime/content/maskzero.site/client-preview.html",
+      "runtime/content/maskzero.site/contact/index.html",
+      "runtime/content/maskzero.site/evidence/index.html",
+      "runtime/content/maskzero.site/evidence/patent/index.html",
+      "runtime/content/maskzero.site/evidence/testing-summary/index.html",
+      "runtime/content/maskzero.site/home.html",
+      "runtime/content/maskzero.site/index.html",
+      "runtime/content/maskzero.site/investors-partners/index.html",
+      "runtime/content/maskzero.site/manufacturing/index.html",
+      "runtime/content/maskzero.site/missions/index.html",
+      "runtime/content/maskzero.site/protocol.html",
+      "runtime/content/maskzero.site/regulatory/index.html",
+      "runtime/content/maskzero.site/spark-generator/index.html",
+      "runtime/content/maskzero.site/spark-os/index.html",
+      "runtime/content/maskzero.site/team/index.html",
+      "runtime/content/maskzero.site/technology/index.html",
+      "runtime/content/maskzero.site/the-emergence.html",
+      "runtime/content/maskzero.site/the-emergence/index.html",
+      "runtime/content/maskzero.site/use-cases/government-defense/index.html",
+      "runtime/content/maskzero.site/use-cases/hospitals/index.html",
+      "runtime/content/maskzero.site/use-cases/investors/index.html",
+      "runtime/content/maskzero.site/use-cases/long-term-care/index.html",
+      "runtime/content/maskzero.site/use-cases/strategic-partners/index.html"
+    ]
+  },
+  "xthunder.site": {
+    "site_url": "https://xthunder.site",
+    "path": "sites/production/websites/xthunder.site",
+    "deployment_method": "sftp",
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/xthunder.site/public_html",
+      "port": 65002
+    },
+    "deploy_files": [
+      "sites/production/websites/xthunder.site/index.html",
+      "sites/production/websites/xthunder.site/assets/css/style.css",
+      "sites/production/websites/xthunder.site/assets/js/game.js"
+    ]
+  }
 }
