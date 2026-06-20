@@ -8,7 +8,7 @@ RewriteRule ^(.*)$ https://maskzero.site/$1 [R=301,L,NE]
 RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]
 RewriteCond %{REQUEST_METHOD} GET [NC]
 RewriteRule ^wp-login\.php$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]
-RewriteRule ^\.spark-auth/ - [F,L]
+RewriteRule ^\.spark-auth(/.*)?$ - [F,L]
 
 # Static clean-url aliases for migrated Spark pages that live as .html files.
 RewriteRule ^the-emergence/?$ /the-emergence.html [L]
