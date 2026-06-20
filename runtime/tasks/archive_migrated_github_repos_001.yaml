@@ -2,15 +2,25 @@ id: archive_migrated_github_repos_001
 status: completed
 lane: github_cleanup
 repo: websites
-created: 2026-06-20T11:54:34-05:00
+created: 2026-06-20T11:58:33-05:00
 policy:
   delete_repos: false
   archive_only: true
-  required_remote_head: caede242d5d30b6f5175c3b0bbd83773c0e2b03c
-archived:
-  - Victor-Dixon/TBOWTactics
-  - Victor-Dixon/FreeRideInvestor
-  - Victor-Dixon/bible-application
+  idempotent: true
+  required_remote_head: 451de86ddc1068facbc50d69374a54b2c93f6dd2
+archived_or_already_archived:
+  - repo: Victor-Dixon/TBOWTactics
+    before: true
+    action: SKIP_ALREADY_ARCHIVED
+    after: true
+  - repo: Victor-Dixon/FreeRideInvestor
+    before: true
+    action: SKIP_ALREADY_ARCHIVED
+    after: true
+  - repo: Victor-Dixon/bible-application
+    before: true
+    action: SKIP_ALREADY_ARCHIVED
+    after: true
 skipped:
   - repo: spark-protocol
     reason: review_before_archive
