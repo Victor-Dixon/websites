@@ -6,7 +6,7 @@ on:
 jobs:
   ssh-auth:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
 
     steps:
       - name: Probe Hostinger SSH auth and remote root
@@ -32,22 +32,29 @@ jobs:
           printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
           chmod 600 "$HOME/.ssh/id_hostinger"
 
-          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts"
-          echo "VERIFY=PASS_SSH_KEYSCAN"
+          if ssh-keyscan -T 10 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts" 2>/tmp/keyscan.err; then
+            echo "VERIFY=PASS_SSH_KEYSCAN"
+          else
+            echo "VERIFY=WARN_SSH_KEYSCAN_FAILED_NONFATAL"
+            echo "KEYSCAN_ERR=$(cat /tmp/keyscan.err | tr '\n' ' ' | cut -c1-240)"
+          fi
 
           remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
 
-          ssh -i "$HOME/.ssh/id_hostinger" \
+          set +e
+          ssh -v \
+            -i "$HOME/.ssh/id_hostinger" \
             -p "$HOSTINGER_PORT" \
             -o BatchMode=yes \
             -o StrictHostKeyChecking=accept-new \
-            -o ConnectTimeout=20 \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o ConnectTimeout=25 \
             -o ConnectionAttempts=1 \
             "$remote" \
             "set -e
              echo VERIFY=PASS_SSH_AUTH
              echo WHOAMI=\$(whoami)
-             echo PWD=\$(pwd)
+             echo REMOTE_PWD=\$(pwd)
              test -d '$REMOTE_ROOT'
              echo VERIFY=PASS_REMOTE_ROOT_EXISTS
              ls -ld '$REMOTE_ROOT'
@@ -56,6 +63,21 @@ jobs:
              else
                echo VERIFY=FAIL_REMOTE_ROOT_NOT_WRITABLE
                exit 1
-             fi"
+             fi" > /tmp/ssh.out 2> /tmp/ssh.err
+          rc=$?
+          set -e
 
-          echo "VERIFY=PASS_SSH_AUTH_REMOTE_ROOT_PROBE"
+          echo "SSH_RC=$rc"
+
+          echo "== SSH STDOUT =="
+          cat /tmp/ssh.out || true
+
+          echo "== SSH STDERR IMPORTANT =="
+          grep -E "debug1:|Permission denied|Connection|kex_exchange|closed|refused|timed out|Authentications|Offering public key|Server accepts key|Host key|REMOTE HOST IDENTIFICATION" /tmp/ssh.err | head -220 || true
+
+          if [ "$rc" = "0" ]; then
+            echo "VERIFY=PASS_SSH_AUTH_REMOTE_ROOT_PROBE"
+          else
+            echo "VERIFY=FAIL_SSH_AUTH_REMOTE_ROOT_PROBE"
+            exit 1
+          fi
