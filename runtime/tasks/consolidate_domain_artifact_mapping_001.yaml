@@ -1,0 +1,22 @@
+id: consolidate_domain_artifact_mapping_001
+status: ready_for_review
+lane: repo_consolidation
+repo: websites
+created: 2026-06-20T08:31:40.521682
+target:
+  - artifacts/freerideinvestor.com/source_snapshots/tbowtactics
+  - artifacts/freerideinvestor.com/source_snapshots/freerideinvestor
+  - artifacts/maskzero.site/source_snapshots/emergence
+  - theme_shelf/bible_application
+policy:
+  destructive_actions: forbidden
+  source_repos_deleted: false
+verification_required:
+  - artifacts/domain_artifact_map.json exists
+  - copied file counts reviewed
+  - git diff reviewed before commit
+notes:
+  - tbowtactics maps to freerideinvestor.com artifacts.
+  - freerideinvestor maps to freerideinvestor.com artifacts.
+  - emergence maps to maskzero.site artifacts.
+  - Bible application maps to dormant theme shelf.

@@ -1,0 +1,40 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:TBOWTactics}",
+            "name": "Debug TBOWTactics",
+            "program": "${workspaceFolder:TBOWTactics}/.build/debug/TBOWTactics",
+            "preLaunchTask": "swift: Build Debug TBOWTactics"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:TBOWTactics}",
+            "name": "Release TBOWTactics",
+            "program": "${workspaceFolder:TBOWTactics}/.build/release/TBOWTactics",
+            "preLaunchTask": "swift: Build Release TBOWTactics"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:TBOWTactics}",
+            "name": "Debug TBOWTacticsCLI",
+            "program": "${workspaceFolder:TBOWTactics}/.build/debug/TBOWTacticsCLI",
+            "preLaunchTask": "swift: Build Debug TBOWTacticsCLI"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:TBOWTactics}",
+            "name": "Release TBOWTacticsCLI",
+            "program": "${workspaceFolder:TBOWTactics}/.build/release/TBOWTacticsCLI",
+            "preLaunchTask": "swift: Build Release TBOWTacticsCLI"
+        }
+    ]
+}

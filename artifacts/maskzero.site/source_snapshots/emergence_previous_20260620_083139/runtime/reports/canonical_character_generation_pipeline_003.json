@@ -1,0 +1,34 @@
+{
+  "name": "Livewire",
+  "percentile": 87,
+  "threatClassification": "City Block-Level Potential",
+  "domains": [
+    {
+      "name": "Energy",
+      "score": 35,
+      "tier": "T5"
+    },
+    {
+      "name": "Mind",
+      "score": 9,
+      "tier": "T2"
+    }
+  ],
+  "powers": [
+    {
+      "name": "Electrokinesis",
+      "tier": "T5",
+      "flavorScore": 6,
+      "domain": "Energy"
+    },
+    {
+      "name": "Mind Control",
+      "tier": "T2",
+      "flavorScore": 6,
+      "domain": "Mind"
+    }
+  ],
+  "threatTags": [
+    "Mind Control"
+  ]
+}

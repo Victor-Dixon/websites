@@ -1,0 +1,583 @@
+{
+  "title": "SUBSTRATE MAPPING INVENTORY",
+  "form_id": "SMI-7.5",
+  "version": "Revision 6",
+  "administered_by": "Registry Classification Services",
+  "distribution": "Restricted Distribution: Subject-Facing Sections Open / Interpretation Guide: Classification Level 3+",
+  "preamble": "This form is administered by Registry Classification Services to individuals who have recently manifested or who have been identified as probable carriers. It is not a diagnostic instrument. It is not a measure of character, intelligence, or potential. The Registry uses the information gathered here to characterize what has occurred, to the extent that characterization is possible.\n\nThere are no correct answers. The questions that feel most uncomfortable are usually the most useful.",
+  "instructions": "The instrument contains 55 Likert items, 6 forced-choice items, and 12 experiential checklist items. Most respondents complete it in 30–45 minutes. There is no time limit.\n\nUse the following scale for all numbered items:\n\n- **1** — This almost never describes me\n- **2** — This rarely describes me\n- **3** — This sometimes describes me\n- **4** — This often describes me\n- **5** — This is almost always true of me\n\nFor forced-choice items (marked FC), select the option that more accurately describes you. Not the one you would prefer to be true. The one that is.\n\nFor checklist items (marked EC), check every statement that applies. Each item asks about things you have done or that have happened to you, not things you believe you would do.\n\nAnswer each question as it first arrives to you. The considered answer and the honest answer are not always the same.\n\n---",
+  "sections": [
+    {
+      "id": "section_i",
+      "title": "SECTION I — BEHAVIORAL INVENTORY",
+      "type": "scale",
+      "scale_min": 1,
+      "scale_max": 5,
+      "scale_labels": {
+        "1": "This almost never describes me",
+        "2": "This rarely describes me",
+        "3": "This sometimes describes me",
+        "4": "This often describes me",
+        "5": "This is almost always true of me"
+      },
+      "questions": [
+        {
+          "id": 1,
+          "facet": "C5 — Self-Discipline",
+          "domain": "Conscientiousness",
+          "text": "I finish projects I start, even when they take longer than I expected."
+        },
+        {
+          "id": 2,
+          "facet": "O4 — Adventurousness",
+          "domain": "Openness",
+          "text": "I have changed my routines or choices simply to try something different."
+        },
+        {
+          "id": 3,
+          "facet": "E3 — Assertiveness",
+          "domain": "Extraversion",
+          "text": "I state my opinions clearly in meetings or group discussions, even when they differ from what others are saying."
+        },
+        {
+          "id": 4,
+          "facet": "A6 — Sympathy",
+          "domain": "Agreeableness",
+          "text": "I feel physical discomfort when I see someone hurt or frightened in person."
+        },
+        {
+          "id": 5,
+          "facet": "N2 — Anger",
+          "domain": "Neuroticism",
+          "text": "I have experienced sustained anger that did not dissipate within hours."
+        },
+        {
+          "id": 6,
+          "facet": "O3 — Emotionality",
+          "domain": "Openness",
+          "text": "I remain affected by things — art, news, encounters — longer than the people around me do."
+        },
+        {
+          "id": 7,
+          "facet": "C4 — Achievement-Striving",
+          "domain": "Conscientiousness",
+          "text": "I have continued working on something after every other person involved had stopped."
+        },
+        {
+          "id": 8,
+          "facet": "E4 — Activity Level",
+          "domain": "Extraversion",
+          "text": "I become restless when I sit still for extended periods without something to do."
+        },
+        {
+          "id": 9,
+          "facet": "A3 — Altruism",
+          "domain": "Agreeableness",
+          "text": "I have given significant time, money, or assistance to someone with no expectation of return."
+        },
+        {
+          "id": 10,
+          "facet": "N6 — Vulnerability",
+          "domain": "Neuroticism",
+          "notes": "Calibrator (reverse)",
+          "text": "Under sustained pressure, I have lost the ability to function effectively."
+        },
+        {
+          "id": 11,
+          "facet": "O5 — Intellect",
+          "domain": "Openness",
+          "text": "I follow chains of reasoning even when they lead to conclusions I dislike."
+        },
+        {
+          "id": 12,
+          "facet": "C3 — Dutifulness (internal)",
+          "domain": "Conscientiousness",
+          "text": "I treat promises I have made to myself as more binding than promises I have made to others."
+        },
+        {
+          "id": 13,
+          "facet": "E5 — Excitement-Seeking",
+          "domain": "Extraversion",
+          "text": "I have sought out physically risky activities for the experience itself."
+        },
+        {
+          "id": 14,
+          "facet": "A4 — Cooperation",
+          "domain": "Agreeableness",
+          "notes": "Calibrator (context-dep.)",
+          "text": "I modify my position when someone presents a reasonable counter-argument."
+        },
+        {
+          "id": 15,
+          "facet": "N1 — Anxiety",
+          "domain": "Neuroticism",
+          "text": "I think about problems that have not yet happened."
+        },
+        {
+          "id": 16,
+          "facet": "O2 — Aesthetic Sensitivity",
+          "domain": "Openness",
+          "text": "I notice when something has been arranged, designed, or executed slightly wrong, and it bothers me."
+        },
+        {
+          "id": 17,
+          "facet": "C2 — Orderliness",
+          "domain": "Conscientiousness",
+          "text": "I notice when something is out of place before I have consciously decided to look for it."
+        },
+        {
+          "id": 18,
+          "facet": "E1 — Friendliness",
+          "domain": "Extraversion",
+          "text": "I enjoy meeting people I have not met before."
+        },
+        {
+          "id": 19,
+          "facet": "A2 — Morality (fixed)",
+          "domain": "Agreeableness",
+          "text": "There are specific actions I would refuse to take regardless of payment, threat, or consequence."
+        },
+        {
+          "id": 20,
+          "facet": "N5 — Impulsiveness",
+          "domain": "Neuroticism",
+          "text": "I have acted on a decision before I finished considering it."
+        },
+        {
+          "id": 21,
+          "facet": "O1 — Imagination",
+          "domain": "Openness",
+          "text": "I construct detailed scenarios in my head that have no practical purpose."
+        },
+        {
+          "id": 22,
+          "facet": "C6 — Cautiousness",
+          "domain": "Conscientiousness",
+          "text": "Before starting something, I think through what could go wrong."
+        },
+        {
+          "id": 23,
+          "facet": "E6 — Positive Emotions",
+          "domain": "Extraversion",
+          "text": "My default mood, when nothing specific is wrong, is cheerful or energetic."
+        },
+        {
+          "id": 24,
+          "facet": "A5 — Modesty",
+          "domain": "Agreeableness",
+          "text": "I am uncomfortable when others draw attention to my accomplishments."
+        },
+        {
+          "id": 25,
+          "facet": "N3 — Depression",
+          "domain": "Neuroticism",
+          "text": "There are extended periods when I find little worth the effort it takes."
+        },
+        {
+          "id": 26,
+          "facet": "O6 — Liberalism",
+          "domain": "Openness",
+          "text": "I have reached conclusions that conflict with the conventional view in my community."
+        },
+        {
+          "id": 27,
+          "facet": "C1 — Self-Efficacy",
+          "domain": "Conscientiousness",
+          "text": "When I take on a task, I expect to complete it successfully."
+        },
+        {
+          "id": 28,
+          "facet": "E2 — Gregariousness",
+          "domain": "Extraversion",
+          "text": "I leave large social gatherings with more energy than I arrived with."
+        },
+        {
+          "id": 29,
+          "facet": "A1 — Trust",
+          "domain": "Agreeableness",
+          "text": "I assume people are being truthful with me unless I have specific reason to doubt them."
+        },
+        {
+          "id": 30,
+          "facet": "N4 — Self-Consciousness",
+          "domain": "Neuroticism",
+          "text": "I am aware of how I am being perceived during interactions, even when that awareness changes nothing about what I do."
+        },
+        {
+          "id": 31,
+          "facet": "O3 + O5",
+          "domain": "Openness",
+          "notes": "Combined",
+          "text": "The experiences that have changed me most have been ideas or concepts more than events."
+        },
+        {
+          "id": 32,
+          "facet": "C4 + C5",
+          "domain": "Conscientiousness",
+          "notes": "Combined",
+          "text": "I have been the last person still invested in something while everyone around me had moved on. At the time, this did not strike me as unusual."
+        },
+        {
+          "id": 33,
+          "facet": "E3 + E4",
+          "domain": "Extraversion",
+          "notes": "Combined",
+          "text": "When something needs doing in a group, I move to do it before someone else can."
+        },
+        {
+          "id": 34,
+          "facet": "A3 + A6",
+          "domain": "Agreeableness",
+          "notes": "Combined",
+          "text": "I feel responsible for the safety of people I have not personally chosen, including strangers nearby."
+        },
+        {
+          "id": 35,
+          "facet": "N2 + N5",
+          "domain": "Neuroticism",
+          "notes": "Combined",
+          "text": "I have surprised myself by how quickly or how far I moved when something needed to be stopped."
+        },
+        {
+          "id": 36,
+          "facet": "O4 + O1",
+          "domain": "Openness",
+          "notes": "Combined",
+          "text": "When I think about the future, I consider possibilities I do not expect to actually pursue."
+        },
+        {
+          "id": 37,
+          "facet": "C3 + C1",
+          "domain": "Conscientiousness",
+          "notes": "Combined",
+          "text": "Expectations I set for myself feel more binding than expectations set by other people."
+        },
+        {
+          "id": 38,
+          "facet": "E1 + E2",
+          "domain": "Extraversion",
+          "notes": "Combined",
+          "text": "I feel most like myself in the presence of other people rather than apart from them."
+        },
+        {
+          "id": 39,
+          "facet": "A2 + A4",
+          "domain": "Agreeableness",
+          "notes": "Combined (tension)",
+          "text": "I have held my position in disagreements after most others in the room had conceded."
+        },
+        {
+          "id": 40,
+          "facet": "N1 + N3",
+          "domain": "Neuroticism",
+          "notes": "Combined (calibrator)",
+          "text": "I am regularly aware of a gap between who I am and who I think I should be."
+        },
+        {
+          "id": 41,
+          "facet": "O1 — Imagination",
+          "domain": "Openness",
+          "notes": "Supplement (Q21 cross-check)",
+          "text": "When I daydream, my daydreams are detailed and developed rather than vague impressions."
+        },
+        {
+          "id": 42,
+          "facet": "C1 — Self-Efficacy",
+          "domain": "Conscientiousness",
+          "notes": "Supplement (Q27 cross-check)",
+          "text": "When I encounter something difficult, I expect to figure it out eventually."
+        },
+        {
+          "id": 43,
+          "facet": "E2 — Gregariousness",
+          "domain": "Extraversion",
+          "notes": "Supplement (Q28 cross-check)",
+          "text": "I prefer to spend time alone or with one other person rather than in groups."
+        },
+        {
+          "id": 44,
+          "facet": "A4 — Cooperation",
+          "domain": "Agreeableness",
+          "notes": "Supplement (Q14 cross-check)",
+          "text": "I have ended disagreements by yielding my preferred outcome in order to preserve a working relationship."
+        },
+        {
+          "id": 45,
+          "facet": "N6 — Vulnerability",
+          "domain": "Neuroticism",
+          "notes": "Calibrator (Q10 cross-check)",
+          "text": "When situations become overwhelming, I lose the ability to think clearly."
+        },
+        {
+          "id": 46,
+          "facet": "O2 — Aesthetic Sensitivity",
+          "domain": "Openness",
+          "notes": "Supplement (Q16 cross-check)",
+          "text": "I am moved by visual beauty in a way I would describe as physical."
+        },
+        {
+          "id": 47,
+          "facet": "C2 — Orderliness",
+          "domain": "Conscientiousness",
+          "notes": "Supplement (Q17 cross-check)",
+          "text": "I maintain consistent systems for my belongings, my schedule, or my work."
+        },
+        {
+          "id": 48,
+          "facet": "A3 — Altruism",
+          "domain": "Agreeableness",
+          "notes": "Supplement (Q9 cross-check)",
+          "text": "I find it difficult to walk past someone who is visibly in need."
+        },
+        {
+          "id": 49,
+          "facet": "—",
+          "domain": "—",
+          "notes": "Validity (impression management)",
+          "text": "I have presented my abilities or accomplishments more favorably than was accurate."
+        },
+        {
+          "id": 50,
+          "facet": "A6 — Sympathy",
+          "domain": "Agreeableness",
+          "notes": "Supplement (Q4 cross-check)",
+          "text": "I have stayed with someone in distress longer than was convenient because leaving would have made things worse for them."
+        },
+        {
+          "id": 51,
+          "facet": "C6 — Cautiousness",
+          "domain": "Conscientiousness",
+          "notes": "Supplement (Q22 cross-check)",
+          "text": "I rarely make decisions I later regret."
+        },
+        {
+          "id": 52,
+          "facet": "A1 — Trust",
+          "domain": "Agreeableness",
+          "notes": "Supplement (Q29 cross-check)",
+          "text": "When someone makes a promise to me, I expect them to keep it."
+        },
+        {
+          "id": 53,
+          "facet": "C5 — Self-Discipline (reverse)",
+          "domain": "Conscientiousness",
+          "notes": "Validity (Q1/Q7 consistency)",
+          "text": "I sometimes leave projects unfinished when something more interesting comes up."
+        },
+        {
+          "id": 54,
+          "facet": "A2 — Morality (behavioral)",
+          "domain": "Agreeableness",
+          "notes": "Supplement (Q19 cross-check)",
+          "text": "I have refused to participate in something I was expected to participate in, on principle."
+        },
+        {
+          "id": 55,
+          "facet": "C3 — Dutifulness (reverse)",
+          "domain": "Conscientiousness",
+          "notes": "Validity (Q12/Q37 consistency)",
+          "text": "What other people expect of me weighs more heavily on my decisions than what I expect of myself."
+        }
+      ]
+    },
+    {
+      "id": "section_ii",
+      "title": "SECTION II — PREFERENTIAL PROFILE",
+      "type": "forced_choice",
+      "instructions": "For each item, select the option that more accurately describes you.",
+      "questions": [
+        {
+          "id": "FC-1",
+          "text": "In a crisis, I am more useful as:",
+          "options": [
+            {
+              "label": "A",
+              "text": "The person who acts"
+            },
+            {
+              "label": "B",
+              "text": "The person who sees what others are missing"
+            }
+          ]
+        },
+        {
+          "id": "FC-2",
+          "text": "I feel most like myself when I am:",
+          "options": [
+            {
+              "label": "A",
+              "text": "Doing something"
+            },
+            {
+              "label": "B",
+              "text": "Watching, listening, or thinking"
+            }
+          ]
+        },
+        {
+          "id": "FC-3",
+          "text": "If I could know one thing about a stranger immediately, I would want to know:",
+          "options": [
+            {
+              "label": "A",
+              "text": "What they are feeling"
+            },
+            {
+              "label": "B",
+              "text": "What they intend"
+            }
+          ]
+        },
+        {
+          "id": "FC-4",
+          "text": "When something I care about is threatened, my first physical movement is:",
+          "options": [
+            {
+              "label": "A",
+              "text": "To position myself between the threat and what I care about"
+            },
+            {
+              "label": "B",
+              "text": "To move toward the threat to eliminate it"
+            }
+          ]
+        },
+        {
+          "id": "FC-5",
+          "text": "Over the course of my life, I have been shaped more by:",
+          "options": [
+            {
+              "label": "A",
+              "text": "Choices I made"
+            },
+            {
+              "label": "B",
+              "text": "Things that happened to me"
+            }
+          ]
+        },
+        {
+          "id": "FC-6",
+          "text": "At my most effective, I operate:",
+          "options": [
+            {
+              "label": "A",
+              "text": "Alone"
+            },
+            {
+              "label": "B",
+              "text": "As part of something larger than myself"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section_iii",
+      "title": "SECTION III — EXPERIENTIAL RECORD",
+      "type": "checkbox",
+      "instructions": "Check every item that accurately describes something you have done or that has happened to you.",
+      "questions": [
+        {
+          "id": "EC-1",
+          "text": "I have been physically restrained — by another person, by a situation, by circumstance — while attempting to do something I intended to do anyway."
+        },
+        {
+          "id": "EC-2",
+          "text": "I have sustained a physical injury and not mentioned it to the person I was with."
+        },
+        {
+          "id": "EC-3",
+          "text": "Multiple people, in separate contexts, have used the word \"intense\" or a direct synonym to describe me, and it was not meant as a compliment."
+        },
+        {
+          "id": "EC-4",
+          "text": "I have arrived in the middle of an emergency and known what needed to happen before anyone told me."
+        },
+        {
+          "id": "EC-5",
+          "text": "I have noticed something wrong with a structure, plan, or system before any visible sign confirmed it."
+        },
+        {
+          "id": "EC-6",
+          "text": "Other people have reported that the mood of a room shifted when I entered, without my having said or done anything."
+        },
+        {
+          "id": "EC-7",
+          "text": "Multiple people, in separate contexts, have told me they feel safer when I am nearby."
+        },
+        {
+          "id": "EC-8",
+          "text": "I have continued to function during something painful or difficult while observers visibly reacted to what I was enduring."
+        },
+        {
+          "id": "EC-9",
+          "text": "I have a relationship — with a person, a place, or a purpose — that I actively choose not to explain to most people."
+        },
+        {
+          "id": "EC-10",
+          "text": "I have experienced moments of complete internal clarity, where what I was and what I felt was unambiguous to me. This has happened more than once."
+        },
+        {
+          "id": "EC-11",
+          "text": "I have reached a limit I had been certain was not there."
+        },
+        {
+          "id": "EC-12",
+          "text": "The most significant commitment I have ever made was one I did not announce."
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "saturation_primary_indicators": [
+      7,
+      12,
+      19,
+      27,
+      32,
+      35,
+      37
+    ],
+    "saturation_calibrators": [
+      10,
+      45,
+      14,
+      44,
+      40
+    ],
+    "saturation_ec_primary": [
+      "EC-3",
+      "EC-9",
+      "EC-10",
+      "EC-12"
+    ],
+    "saturation_ec_calibrator": [
+      "EC-11"
+    ],
+    "validity_indices": [
+      49,
+      53,
+      55
+    ],
+    "count_low_indicators": [
+      12,
+      37,
+      55,
+      38,
+      28,
+      43
+    ],
+    "count_high_indicators": [
+      2,
+      13,
+      31,
+      6,
+      41,
+      34,
+      5,
+      48,
+      50
+    ]
+  }
+}

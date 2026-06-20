@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "locked": true,
+  "discordUserId": "100000000000002",
+  "discordUsername": "victor_demo",
+  "quizVersion": "spark-protocol-v5",
+  "character": {
+    "name": "Architect",
+    "percentile": 85,
+    "threatClassification": "City Block-Level Potential",
+    "domains": [
+      {
+        "name": "Mind",
+        "score": 35,
+        "tier": "T5"
+      }
+    ],
+    "powers": [
+      {
+        "name": "Telepathy",
+        "tier": "T5",
+        "flavorScore": 3,
+        "domain": "Mind",
+        "classification": "co-primary"
+      },
+      {
+        "name": "Mind Control",
+        "tier": "T5",
+        "flavorScore": 3,
+        "domain": "Mind",
+        "classification": "co-primary"
+      }
+    ],
+    "threatTags": [
+      "Mind Control"
+    ]
+  },
+  "activeRole": "Architect",
+  "createdAt": "2026-05-24T00:00:00.000Z",
+  "updatedAt": "2026-05-24T00:00:00.000Z"
+}

@@ -1,0 +1,73 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+
+import {
+  adaptiveProgress,
+  currentAdaptiveQuestionIds,
+  domainFlavorRange,
+  manifestedDomains,
+  calculateDomainScores
+} from '../../packages/scoring-engine/index.js';
+
+test('adaptive engine starts at domain phase only', () => {
+  const progress = adaptiveProgress({});
+  assert.equal(progress.total, 36);
+  assert.equal(progress.answered, 0);
+  assert.equal(progress.remaining, 36);
+  assert.equal(progress.complete, false);
+});
+
+test('each domain maps to a valid sub-affinity range', () => {
+  for (const domain of ['titan', 'bulwark', 'velocity', 'inferno', 'specter', 'omni', 'primal']) {
+    const [start, end] = domainFlavorRange(domain);
+    assert.equal(end - start + 1, 6);
+    assert.ok(start >= 37);
+    assert.ok(end <= 72);
+  }
+});
+
+test('G answers manifest omni and expand to omni block only', () => {
+  const responses = {};
+  for (let i = 1; i <= 36; i++) responses[i] = 'G';
+
+  const scores = calculateDomainScores(responses);
+  const domains = manifestedDomains(scores);
+  const ids = currentAdaptiveQuestionIds(responses);
+  const progress = adaptiveProgress(responses);
+
+  assert.deepEqual(domains, ['omni']);
+  assert.equal(ids.length, 42);
+  assert.deepEqual(ids.slice(-6), [61, 62, 63, 64, 65, 66]);
+  assert.equal(progress.remaining, 6);
+});
+
+test('adaptive questions left updates as manifested block is answered', () => {
+  const responses = {};
+  for (let i = 1; i <= 36; i++) responses[i] = 'G';
+
+  assert.equal(adaptiveProgress(responses).remaining, 6);
+
+  responses[61] = 'A';
+  responses[62] = 'B';
+
+  const progress = adaptiveProgress(responses);
+  assert.equal(progress.total, 42);
+  assert.equal(progress.answered, 38);
+  assert.equal(progress.remaining, 4);
+  assert.deepEqual(progress.remaining_ids, [63, 64, 65, 66]);
+});
+
+test('adaptive quiz completes without asking irrelevant flavor blocks', () => {
+  const responses = {};
+  for (let i = 1; i <= 36; i++) responses[i] = 'G';
+  for (let i = 61; i <= 66; i++) responses[i] = 'C';
+
+  const ids = currentAdaptiveQuestionIds(responses);
+  const progress = adaptiveProgress(responses);
+
+  assert.equal(ids.includes(43), false);
+  assert.equal(ids.includes(55), false);
+  assert.equal(ids.includes(67), false);
+  assert.equal(progress.complete, true);
+  assert.equal(progress.remaining, 0);
+});
