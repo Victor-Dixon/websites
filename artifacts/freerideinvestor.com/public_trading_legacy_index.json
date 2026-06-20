@@ -1,0 +1,80 @@
+{
+  "id": "public_freeride_legacy_index_001",
+  "created": "2026-06-20T20:28:37.710457+00:00",
+  "policy": {
+    "publicWebsitesOnly": true,
+    "privateReposBlocked": true,
+    "sourceCopied": false,
+    "bundlesCreated": false,
+    "reason": "Legacy repos contain noisy/generated/session/raw artifacts; public index is safer than public source copy."
+  },
+  "targetDomain": "freerideinvestor.com",
+  "repos": [
+    {
+      "nameWithOwner": "Victor-Dixon/Auto_Blogger",
+      "url": "https://github.com/Victor-Dixon/Auto_Blogger",
+      "description": "Auto Blogger: project workspace for Dream.OS portfolio, automation, experiments, or consolidation review.",
+      "isArchived": false,
+      "isPrivate": false,
+      "pushedAt": "2026-05-25T10:52:24Z",
+      "updatedAt": "2026-06-18T12:26:37Z",
+      "migrationAction": "index_only_no_source_copy",
+      "archivePolicy": "archive_after_index_pr_merged"
+    },
+    {
+      "nameWithOwner": "Victor-Dixon/LSTMmodel_trainer",
+      "url": "https://github.com/Victor-Dixon/LSTMmodel_trainer",
+      "description": "Machine-learning and AI experimentation repo for model workflows, prototypes, and consolidation reference.",
+      "isArchived": false,
+      "isPrivate": false,
+      "pushedAt": "2026-05-25T09:22:26Z",
+      "updatedAt": "2026-06-18T12:26:39Z",
+      "migrationAction": "index_only_no_source_copy",
+      "archivePolicy": "archive_after_index_pr_merged"
+    },
+    {
+      "nameWithOwner": "Victor-Dixon/SmartStock-pro",
+      "url": "https://github.com/Victor-Dixon/SmartStock-pro",
+      "description": "Trading research project for strategy analysis, market tooling, backtesting, and risk-management experiments.",
+      "isArchived": false,
+      "isPrivate": false,
+      "pushedAt": "2026-05-25T09:19:16Z",
+      "updatedAt": "2026-06-18T12:26:48Z",
+      "migrationAction": "index_only_no_source_copy",
+      "archivePolicy": "archive_after_index_pr_merged"
+    },
+    {
+      "nameWithOwner": "Victor-Dixon/stocktwits-analyzer",
+      "url": "https://github.com/Victor-Dixon/stocktwits-analyzer",
+      "description": "Trading research project for strategy analysis, market tooling, backtesting, and risk-management experiments.",
+      "isArchived": false,
+      "isPrivate": false,
+      "pushedAt": "2026-05-29T01:56:30Z",
+      "updatedAt": "2026-06-18T12:26:27Z",
+      "migrationAction": "index_only_no_source_copy",
+      "archivePolicy": "archive_after_index_pr_merged"
+    },
+    {
+      "nameWithOwner": "Victor-Dixon/trade_analyzer",
+      "url": "https://github.com/Victor-Dixon/trade_analyzer",
+      "description": "Trading research project for strategy analysis, market tooling, backtesting, and risk-management experiments.",
+      "isArchived": false,
+      "isPrivate": false,
+      "pushedAt": "2026-05-25T10:56:45Z",
+      "updatedAt": "2026-06-18T12:26:35Z",
+      "migrationAction": "index_only_no_source_copy",
+      "archivePolicy": "archive_after_index_pr_merged"
+    },
+    {
+      "nameWithOwner": "Victor-Dixon/TradingRobots",
+      "url": "https://github.com/Victor-Dixon/TradingRobots",
+      "description": "Trading research project for strategy analysis, market tooling, backtesting, and risk-management experiments.",
+      "isArchived": false,
+      "isPrivate": false,
+      "pushedAt": "2026-05-25T09:19:22Z",
+      "updatedAt": "2026-06-13T13:18:39Z",
+      "migrationAction": "index_only_no_source_copy",
+      "archivePolicy": "archive_after_index_pr_merged"
+    }
+  ]
+}
