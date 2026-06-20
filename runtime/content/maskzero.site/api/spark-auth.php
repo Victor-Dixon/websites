@@ -241,5 +241,6 @@ try {
     }
     spark_auth_json(['ok' => false, 'message' => 'Unknown Spark auth action.'], 404);
 } catch (Throwable $error) {
-    spark_auth_json(['ok' => false, 'message' => 'Spark auth server error.', 'debug' => $error->getMessage()], 500);
+    error_log('MaskZero Spark auth error: ' . $error->getMessage());
+    spark_auth_json(['ok' => false, 'message' => 'Spark auth server error.'], 500);
 }
