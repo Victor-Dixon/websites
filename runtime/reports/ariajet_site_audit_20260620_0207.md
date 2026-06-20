@@ -53,6 +53,22 @@ The branch updates the static source into a premium AI-powered private aviation 
 - The redesign uses CSS-based visuals rather than adding heavy image files.
 - Future photography/video should be compressed and measured before deployment.
 
+## Verification Performed
+
+Local browser verification was run with Playwright against a static server for the AriaJet package.
+
+Passed checks:
+
+- Main pages loaded without HTTP errors: `/`, `/platform/`, `/how-it-works/`, `/trust/`, `/contact/`.
+- Internal navigation and CTA links returned non-error responses.
+- Legacy repair URLs redirected to the new aviation information architecture:
+  - `/services/` -> `/platform/`
+  - `/repair-gallery/` -> `/trust/`
+  - `/repair-journey/` -> `/how-it-works/`
+- Mobile navigation toggle appeared at small viewport width, updated `aria-expanded`, and navigated correctly.
+- Flight brief form showed a required-field error state when submitted empty.
+- Flight brief form showed a success state after valid input and prepared the email handoff.
+
 ## Remaining Launch Requirement
 
 Add a secure form backend or form provider before launch if AriaJet needs guaranteed delivery, server-side validation, CRM routing, spam protection, or audit logs for submitted flight requests.
