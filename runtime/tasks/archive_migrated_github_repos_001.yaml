@@ -2,12 +2,12 @@ id: archive_migrated_github_repos_001
 status: completed
 lane: github_cleanup
 repo: websites
-created: 2026-06-20T11:58:33-05:00
+created: 2026-06-20T12:00:01-05:00
 policy:
   delete_repos: false
   archive_only: true
   idempotent: true
-  required_remote_head: 451de86ddc1068facbc50d69374a54b2c93f6dd2
+  required_remote_head: a0bfba7db3180efc69d7ff98a653704235c95cc8
 archived_or_already_archived:
   - repo: Victor-Dixon/TBOWTactics
     before: true
