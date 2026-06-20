@@ -1,0 +1,1148 @@
+{
+  "target": "https://maskzero.site",
+  "generated": "2026-06-20T01:39:44.160Z",
+  "pages": [
+    {
+      "route": "/",
+      "url": "https://maskzero.site/",
+      "status": 200,
+      "title": "MaskZero | Spark Protocol in Meridian City",
+      "h1": "MASKZERO",
+      "links": [
+        {
+          "text": "MASKZERO",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "CREATE HERO",
+          "href": "https://maskzero.site/create-hero/"
+        },
+        {
+          "text": "HOW IT WORKS",
+          "href": "https://maskzero.site/how-it-works/"
+        },
+        {
+          "text": "MERIDIAN CITY",
+          "href": "https://maskzero.site/meridian-map/"
+        },
+        {
+          "text": "DISPATCH",
+          "href": "https://maskzero.site/dispatch/"
+        },
+        {
+          "text": "LOGIN",
+          "href": "https://maskzero.site/login/"
+        },
+        {
+          "text": "CREATE YOUR SPARK",
+          "href": "https://maskzero.site/create-hero/"
+        },
+        {
+          "text": "ANSWER THE DISPATCH",
+          "href": "https://maskzero.site/dispatch/"
+        }
+      ],
+      "buttons": [],
+      "inputs": [],
+      "hasSharedNav": false,
+      "hasMaskzeroThemeCss": false,
+      "hasLegacyDadudekcBranding": false,
+      "screenshot": "/workspace/runtime/reports/maskzero_site_audit_20260620_013933/screenshots/home.png",
+      "errors": []
+    },
+    {
+      "route": "/spark-signup/",
+      "url": "https://maskzero.site/spark-signup/",
+      "status": 200,
+      "title": "Create Your Spark Account | MaskZero",
+      "h1": "CREATE YOUR SPARK ACCOUNT",
+      "links": [
+        {
+          "text": "Cover",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "Origin Lab",
+          "href": "https://maskzero.site/create-hero/"
+        },
+        {
+          "text": "Log In",
+          "href": "https://maskzero.site/login/"
+        },
+        {
+          "text": "Join The Universe",
+          "href": "https://maskzero.site/spark-signup/"
+        },
+        {
+          "text": "I ALREADY HAVE AN ACCOUNT",
+          "href": "https://maskzero.site/spark-login/"
+        },
+        {
+          "text": "Home",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "How It Works",
+          "href": "https://maskzero.site/#how-it-works"
+        },
+        {
+          "text": "Log In",
+          "href": "https://maskzero.site/spark-login/"
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@maskzero.site"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "MENU",
+          "type": "button"
+        },
+        {
+          "text": "Close Menu",
+          "type": "button"
+        },
+        {
+          "text": "SHOW",
+          "type": "button"
+        },
+        {
+          "text": "CREATE ACCOUNT",
+          "type": "submit"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "required": true
+        }
+      ],
+      "hasSharedNav": false,
+      "hasMaskzeroThemeCss": false,
+      "hasLegacyDadudekcBranding": false,
+      "screenshot": "/workspace/runtime/reports/maskzero_site_audit_20260620_013933/screenshots/_spark-signup_.png",
+      "errors": []
+    },
+    {
+      "route": "/spark-login/",
+      "url": "https://maskzero.site/spark-login/",
+      "status": 200,
+      "title": "Log In | Spark Protocol",
+      "h1": "LOG IN",
+      "links": [
+        {
+          "text": "Cover",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "Origin Lab",
+          "href": "https://maskzero.site/create-hero/"
+        },
+        {
+          "text": "Log In",
+          "href": "https://maskzero.site/login/"
+        },
+        {
+          "text": "Join The Universe",
+          "href": "https://maskzero.site/spark-signup/"
+        },
+        {
+          "text": "CREATE ACCOUNT",
+          "href": "https://maskzero.site/spark-signup/"
+        },
+        {
+          "text": "Forgot password?",
+          "href": "https://maskzero.site/spark-login/?help=lost-password"
+        },
+        {
+          "text": "Home",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "Create Account",
+          "href": "https://maskzero.site/spark-signup/"
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@maskzero.site"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "MENU",
+          "type": "button"
+        },
+        {
+          "text": "Close Menu",
+          "type": "button"
+        },
+        {
+          "text": "SHOW",
+          "type": "button"
+        },
+        {
+          "text": "LOG IN",
+          "type": "submit"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "log",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "pwd",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "redirect_to",
+          "type": "hidden",
+          "required": false
+        },
+        {
+          "name": "rememberme",
+          "type": "hidden",
+          "required": false
+        }
+      ],
+      "hasSharedNav": false,
+      "hasMaskzeroThemeCss": false,
+      "hasLegacyDadudekcBranding": false,
+      "screenshot": "/workspace/runtime/reports/maskzero_site_audit_20260620_013933/screenshots/_spark-login_.png",
+      "errors": []
+    },
+    {
+      "route": "/spark-generator/",
+      "url": "https://maskzero.site/spark-generator/",
+      "status": 200,
+      "title": "MaskZero Quiz | Spark Protocol",
+      "h1": "MASKZERO QUIZ",
+      "links": [
+        {
+          "text": "HOME",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "QUIZ",
+          "href": "https://maskzero.site/quiz/"
+        },
+        {
+          "text": "EMERGENCE",
+          "href": "https://maskzero.site/the-emergence/"
+        },
+        {
+          "text": "MISSIONS",
+          "href": "https://maskzero.site/missions/"
+        },
+        {
+          "text": "BATTLES",
+          "href": "https://maskzero.site/battles/"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "START SPARK QUIZ",
+          "type": "button"
+        },
+        {
+          "text": "RESET",
+          "type": "button"
+        },
+        {
+          "text": "Continue To Flavor Pass",
+          "type": "button"
+        }
+      ],
+      "inputs": [],
+      "hasSharedNav": false,
+      "hasMaskzeroThemeCss": false,
+      "hasLegacyDadudekcBranding": false,
+      "screenshot": "/workspace/runtime/reports/maskzero_site_audit_20260620_013933/screenshots/_spark-generator_.png",
+      "errors": []
+    },
+    {
+      "route": "/spark-dashboard/",
+      "url": "https://maskzero.site/spark-dashboard/",
+      "status": 200,
+      "title": "Command Post | Spark Protocol",
+      "h1": "COMMAND POST",
+      "links": [
+        {
+          "text": "Cover",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "Origin Lab",
+          "href": "https://maskzero.site/create-hero/"
+        },
+        {
+          "text": "Log In",
+          "href": "https://maskzero.site/login/"
+        },
+        {
+          "text": "Join The Universe",
+          "href": "https://maskzero.site/spark-signup/"
+        },
+        {
+          "text": "CREATE HERO",
+          "href": "https://maskzero.site/spark-signup/"
+        },
+        {
+          "text": "LOG IN",
+          "href": "https://maskzero.site/spark-login/?redirect_to=%2Fspark-dashboard%2F"
+        },
+        {
+          "text": "LOG IN TO START QUIZ",
+          "href": "https://maskzero.site/spark-login/?redirect_to=%2Fspark-generator%2F"
+        },
+        {
+          "text": "LOG IN TO UNLOCK DISPATCH",
+          "href": "https://maskzero.site/spark-login/?redirect_to=%2Fmeridian-dispatch%2F"
+        },
+        {
+          "text": "START QUIZ",
+          "href": "https://maskzero.site/spark-login/?redirect_to=%2Fspark-generator%2F"
+        },
+        {
+          "text": "OPEN DISPATCH",
+          "href": "https://maskzero.site/spark-login/?redirect_to=%2Fmeridian-dispatch%2F"
+        },
+        {
+          "text": "OPEN MAP",
+          "href": "https://maskzero.site/spark-login/?redirect_to=%2Fmeridian-map%2F"
+        },
+        {
+          "text": "cover",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "create one official hero",
+          "href": "https://maskzero.site/spark-signup/"
+        },
+        {
+          "text": "Open",
+          "href": "https://maskzero.site/spark-generator/"
+        },
+        {
+          "text": "Open",
+          "href": "https://maskzero.site/meridian-dispatch/"
+        },
+        {
+          "text": "Open",
+          "href": "https://maskzero.site/spark-battle/"
+        },
+        {
+          "text": "Inbox\n        MaskZero field reports",
+          "href": "https://maskzero.site/spark-inbox/"
+        },
+        {
+          "text": "Dispatch\n        Headlines become missions",
+          "href": "https://maskzero.site/meridian-dispatch/"
+        },
+        {
+          "text": "Map\n        Sectors A1–P15",
+          "href": "https://maskzero.site/meridian-map/"
+        },
+        {
+          "text": "News\n        City wire & advisories",
+          "href": "https://maskzero.site/news/"
+        },
+        {
+          "text": "Generator\n        Origin quiz & hero lock",
+          "href": "https://maskzero.site/spark-generator/"
+        },
+        {
+          "text": "Battle Sim\n        v8.6 duel resolver",
+          "href": "https://maskzero.site/spark-battle/"
+        },
+        {
+          "text": "Gauntlet\n        Meridian trials",
+          "href": "https://maskzero.site/spark-gauntlet/"
+        },
+        {
+          "text": "Open Inbox",
+          "href": "https://maskzero.site/spark-inbox/"
+        },
+        {
+          "text": "Respond To Mission",
+          "href": "https://maskzero.site/meridian-dispatch/"
+        },
+        {
+          "text": "Generate Spark",
+          "href": "https://maskzero.site/spark-generator/"
+        },
+        {
+          "text": "Account Rules",
+          "href": "https://maskzero.site/spark-account/"
+        },
+        {
+          "text": "View Cover",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "Origin Rules",
+          "href": "https://maskzero.site/spark-dashboard/#origin-rules"
+        },
+        {
+          "text": "Log Out",
+          "href": "https://maskzero.site/spark-logout/"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "MENU",
+          "type": "button"
+        },
+        {
+          "text": "Close Menu",
+          "type": "button"
+        }
+      ],
+      "inputs": [],
+      "hasSharedNav": false,
+      "hasMaskzeroThemeCss": false,
+      "hasLegacyDadudekcBranding": false,
+      "screenshot": "/workspace/runtime/reports/maskzero_site_audit_20260620_013933/screenshots/_spark-dashboard_.png",
+      "errors": []
+    },
+    {
+      "route": "/quiz/",
+      "url": "https://maskzero.site/quiz/",
+      "status": 200,
+      "title": "MaskZero Quiz | Spark Protocol",
+      "h1": "MASKZERO QUIZ",
+      "links": [
+        {
+          "text": "HOME",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "QUIZ",
+          "href": "https://maskzero.site/quiz/"
+        },
+        {
+          "text": "EMERGENCE",
+          "href": "https://maskzero.site/the-emergence/"
+        },
+        {
+          "text": "MISSIONS",
+          "href": "https://maskzero.site/missions/"
+        },
+        {
+          "text": "BATTLES",
+          "href": "https://maskzero.site/battles/"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "START SPARK QUIZ",
+          "type": "button"
+        },
+        {
+          "text": "RESET",
+          "type": "button"
+        }
+      ],
+      "inputs": [],
+      "hasSharedNav": false,
+      "hasMaskzeroThemeCss": false,
+      "hasLegacyDadudekcBranding": false,
+      "screenshot": "/workspace/runtime/reports/maskzero_site_audit_20260620_013933/screenshots/_quiz_.png",
+      "errors": []
+    },
+    {
+      "route": "/missions/",
+      "url": "https://maskzero.site/missions/",
+      "status": 200,
+      "title": "Dispatch Missions | MaskZero",
+      "h1": "ANSWER THE DISPATCH.",
+      "links": [
+        {
+          "text": "HOME",
+          "href": "https://maskzero.site/"
+        },
+        {
+          "text": "HOW IT WORKS",
+          "href": "https://maskzero.site/how-it-works/"
+        },
+        {
+          "text": "GENERATE SPARK",
+          "href": "https://maskzero.site/spark-generator/"
+        },
+        {
+          "text": "MISSIONS",
+          "href": "https://maskzero.site/missions/"
+        },
+        {
+          "text": "BATTLES",
+          "href": "https://maskzero.site/battles/"
+        },
+        {
+          "text": "GENERATE OR SAVE A SPARK",
+          "href": "https://maskzero.site/spark-generator/"
+        },
+        {
+          "text": "OPEN WHAT-IF ARENA",
+          "href": "https://maskzero.site/battles/"
+        },
+        {
+          "text": "GENERATE YOUR SPARK",
+          "href": "https://maskzero.site/spark-generator/"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "SELECT MISSION",
+          "type": "button"
+        },
+        {
+          "text": "SELECT MISSION",
+          "type": "button"
+        },
+        {
+          "text": "SELECT MISSION",
+          "type": "button"
+        }
+      ],
+      "inputs": [],
+      "hasSharedNav": false,
+      "hasMaskzeroThemeCss": false,
+      "hasLegacyDadudekcBranding": false,
+      "screenshot": "/workspace/runtime/reports/maskzero_site_audit_20260620_013933/screenshots/_missions_.png",
+      "errors": []
+    },
+    {
+      "route": "/spark/",
+      "url": "https://maskzero.site/spark/",
+      "status": 404,
+      "title": "This Page Does Not Exist",
+      "h1": "This Page Does Not Exist",
+      "links": [],
+      "buttons": [],
+      "inputs": [],
+      "hasSharedNav": false,
+      "hasMaskzeroThemeCss": false,
+      "hasLegacyDadudekcBranding": false,
+      "screenshot": "/workspace/runtime/reports/maskzero_site_audit_20260620_013933/screenshots/_spark_.png",
+      "errors": [
+        "console:error: Failed to load resource: the server responded with a status of 404 ()",
+        "console:error: Failed to load resource: the server responded with a status of 404 ()"
+      ]
+    }
+  ],
+  "linkChecks": [
+    {
+      "from": "/",
+      "text": "MASKZERO",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/",
+      "text": "CREATE HERO",
+      "href": "https://maskzero.site/create-hero/",
+      "status": 200
+    },
+    {
+      "from": "/",
+      "text": "HOW IT WORKS",
+      "href": "https://maskzero.site/how-it-works/",
+      "status": 200
+    },
+    {
+      "from": "/",
+      "text": "MERIDIAN CITY",
+      "href": "https://maskzero.site/meridian-map/",
+      "status": 200
+    },
+    {
+      "from": "/",
+      "text": "DISPATCH",
+      "href": "https://maskzero.site/dispatch/",
+      "status": 200
+    },
+    {
+      "from": "/",
+      "text": "LOGIN",
+      "href": "https://maskzero.site/login/",
+      "status": 200
+    },
+    {
+      "from": "/",
+      "text": "CREATE YOUR SPARK",
+      "href": "https://maskzero.site/create-hero/",
+      "status": 200
+    },
+    {
+      "from": "/",
+      "text": "ANSWER THE DISPATCH",
+      "href": "https://maskzero.site/dispatch/",
+      "status": 200
+    },
+    {
+      "from": "/spark-signup/",
+      "text": "Cover",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/spark-signup/",
+      "text": "Origin Lab",
+      "href": "https://maskzero.site/create-hero/",
+      "status": 200
+    },
+    {
+      "from": "/spark-signup/",
+      "text": "Log In",
+      "href": "https://maskzero.site/login/",
+      "status": 200
+    },
+    {
+      "from": "/spark-signup/",
+      "text": "Join The Universe",
+      "href": "https://maskzero.site/spark-signup/",
+      "status": 200
+    },
+    {
+      "from": "/spark-signup/",
+      "text": "I ALREADY HAVE AN ACCOUNT",
+      "href": "https://maskzero.site/spark-login/",
+      "status": 200
+    },
+    {
+      "from": "/spark-signup/",
+      "text": "Home",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/spark-signup/",
+      "text": "How It Works",
+      "href": "https://maskzero.site/#how-it-works",
+      "status": 200
+    },
+    {
+      "from": "/spark-signup/",
+      "text": "Log In",
+      "href": "https://maskzero.site/spark-login/",
+      "status": 200
+    },
+    {
+      "from": "/spark-login/",
+      "text": "Cover",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/spark-login/",
+      "text": "Origin Lab",
+      "href": "https://maskzero.site/create-hero/",
+      "status": 200
+    },
+    {
+      "from": "/spark-login/",
+      "text": "Log In",
+      "href": "https://maskzero.site/login/",
+      "status": 200
+    },
+    {
+      "from": "/spark-login/",
+      "text": "Join The Universe",
+      "href": "https://maskzero.site/spark-signup/",
+      "status": 200
+    },
+    {
+      "from": "/spark-login/",
+      "text": "CREATE ACCOUNT",
+      "href": "https://maskzero.site/spark-signup/",
+      "status": 200
+    },
+    {
+      "from": "/spark-login/",
+      "text": "Forgot password?",
+      "href": "https://maskzero.site/spark-login/?help=lost-password",
+      "status": 200
+    },
+    {
+      "from": "/spark-login/",
+      "text": "Home",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/spark-login/",
+      "text": "Create Account",
+      "href": "https://maskzero.site/spark-signup/",
+      "status": 200
+    },
+    {
+      "from": "/spark-generator/",
+      "text": "HOME",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/spark-generator/",
+      "text": "QUIZ",
+      "href": "https://maskzero.site/quiz/",
+      "status": 200
+    },
+    {
+      "from": "/spark-generator/",
+      "text": "EMERGENCE",
+      "href": "https://maskzero.site/the-emergence/",
+      "status": 200
+    },
+    {
+      "from": "/spark-generator/",
+      "text": "MISSIONS",
+      "href": "https://maskzero.site/missions/",
+      "status": 200
+    },
+    {
+      "from": "/spark-generator/",
+      "text": "BATTLES",
+      "href": "https://maskzero.site/battles/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Cover",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Origin Lab",
+      "href": "https://maskzero.site/create-hero/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Log In",
+      "href": "https://maskzero.site/login/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Join The Universe",
+      "href": "https://maskzero.site/spark-signup/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "CREATE HERO",
+      "href": "https://maskzero.site/spark-signup/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "LOG IN",
+      "href": "https://maskzero.site/spark-login/?redirect_to=%2Fspark-dashboard%2F",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "LOG IN TO START QUIZ",
+      "href": "https://maskzero.site/spark-login/?redirect_to=%2Fspark-generator%2F",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "LOG IN TO UNLOCK DISPATCH",
+      "href": "https://maskzero.site/spark-login/?redirect_to=%2Fmeridian-dispatch%2F",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "START QUIZ",
+      "href": "https://maskzero.site/spark-login/?redirect_to=%2Fspark-generator%2F",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "OPEN DISPATCH",
+      "href": "https://maskzero.site/spark-login/?redirect_to=%2Fmeridian-dispatch%2F",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "OPEN MAP",
+      "href": "https://maskzero.site/spark-login/?redirect_to=%2Fmeridian-map%2F",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "cover",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "create one official hero",
+      "href": "https://maskzero.site/spark-signup/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Open",
+      "href": "https://maskzero.site/spark-generator/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Open",
+      "href": "https://maskzero.site/meridian-dispatch/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Open",
+      "href": "https://maskzero.site/spark-battle/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Inbox\n        MaskZero field reports",
+      "href": "https://maskzero.site/spark-inbox/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Dispatch\n        Headlines become missions",
+      "href": "https://maskzero.site/meridian-dispatch/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Map\n        Sectors A1–P15",
+      "href": "https://maskzero.site/meridian-map/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "News\n        City wire & advisories",
+      "href": "https://maskzero.site/news/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Generator\n        Origin quiz & hero lock",
+      "href": "https://maskzero.site/spark-generator/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Battle Sim\n        v8.6 duel resolver",
+      "href": "https://maskzero.site/spark-battle/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Gauntlet\n        Meridian trials",
+      "href": "https://maskzero.site/spark-gauntlet/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Open Inbox",
+      "href": "https://maskzero.site/spark-inbox/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Respond To Mission",
+      "href": "https://maskzero.site/meridian-dispatch/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Generate Spark",
+      "href": "https://maskzero.site/spark-generator/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Account Rules",
+      "href": "https://maskzero.site/spark-account/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "View Cover",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Origin Rules",
+      "href": "https://maskzero.site/spark-dashboard/#origin-rules",
+      "status": 200
+    },
+    {
+      "from": "/spark-dashboard/",
+      "text": "Log Out",
+      "href": "https://maskzero.site/spark-logout/",
+      "status": 200
+    },
+    {
+      "from": "/quiz/",
+      "text": "HOME",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/quiz/",
+      "text": "QUIZ",
+      "href": "https://maskzero.site/quiz/",
+      "status": 200
+    },
+    {
+      "from": "/quiz/",
+      "text": "EMERGENCE",
+      "href": "https://maskzero.site/the-emergence/",
+      "status": 200
+    },
+    {
+      "from": "/quiz/",
+      "text": "MISSIONS",
+      "href": "https://maskzero.site/missions/",
+      "status": 200
+    },
+    {
+      "from": "/quiz/",
+      "text": "BATTLES",
+      "href": "https://maskzero.site/battles/",
+      "status": 200
+    },
+    {
+      "from": "/missions/",
+      "text": "HOME",
+      "href": "https://maskzero.site/",
+      "status": 200
+    },
+    {
+      "from": "/missions/",
+      "text": "HOW IT WORKS",
+      "href": "https://maskzero.site/how-it-works/",
+      "status": 200
+    },
+    {
+      "from": "/missions/",
+      "text": "GENERATE SPARK",
+      "href": "https://maskzero.site/spark-generator/",
+      "status": 200
+    },
+    {
+      "from": "/missions/",
+      "text": "MISSIONS",
+      "href": "https://maskzero.site/missions/",
+      "status": 200
+    },
+    {
+      "from": "/missions/",
+      "text": "BATTLES",
+      "href": "https://maskzero.site/battles/",
+      "status": 200
+    },
+    {
+      "from": "/missions/",
+      "text": "GENERATE OR SAVE A SPARK",
+      "href": "https://maskzero.site/spark-generator/",
+      "status": 200
+    },
+    {
+      "from": "/missions/",
+      "text": "OPEN WHAT-IF ARENA",
+      "href": "https://maskzero.site/battles/",
+      "status": 200
+    },
+    {
+      "from": "/missions/",
+      "text": "GENERATE YOUR SPARK",
+      "href": "https://maskzero.site/spark-generator/",
+      "status": 200
+    }
+  ],
+  "theme": {
+    "sharedNavFound": [],
+    "missingSharedNav": [
+      "/",
+      "/spark-signup/",
+      "/spark-login/",
+      "/spark-generator/",
+      "/spark-dashboard/",
+      "/quiz/",
+      "/missions/",
+      "/spark/"
+    ],
+    "legacyBranding": []
+  },
+  "forms": [
+    {
+      "route": "/spark-signup/",
+      "inputs": [
+        {
+          "name": "email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "required": true
+        }
+      ],
+      "buttons": [
+        {
+          "text": "MENU",
+          "type": "button"
+        },
+        {
+          "text": "Close Menu",
+          "type": "button"
+        },
+        {
+          "text": "SHOW",
+          "type": "button"
+        },
+        {
+          "text": "CREATE ACCOUNT",
+          "type": "submit"
+        }
+      ]
+    },
+    {
+      "route": "/spark-login/",
+      "inputs": [
+        {
+          "name": "log",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "pwd",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "redirect_to",
+          "type": "hidden",
+          "required": false
+        },
+        {
+          "name": "rememberme",
+          "type": "hidden",
+          "required": false
+        }
+      ],
+      "buttons": [
+        {
+          "text": "MENU",
+          "type": "button"
+        },
+        {
+          "text": "Close Menu",
+          "type": "button"
+        },
+        {
+          "text": "SHOW",
+          "type": "button"
+        },
+        {
+          "text": "LOG IN",
+          "type": "submit"
+        }
+      ]
+    },
+    {
+      "route": "/spark-generator/",
+      "inputs": [],
+      "buttons": [
+        {
+          "text": "START SPARK QUIZ",
+          "type": "button"
+        },
+        {
+          "text": "RESET",
+          "type": "button"
+        },
+        {
+          "text": "Continue To Flavor Pass",
+          "type": "button"
+        }
+      ]
+    },
+    {
+      "route": "/spark-dashboard/",
+      "inputs": [],
+      "buttons": [
+        {
+          "text": "MENU",
+          "type": "button"
+        },
+        {
+          "text": "Close Menu",
+          "type": "button"
+        }
+      ]
+    },
+    {
+      "route": "/quiz/",
+      "inputs": [],
+      "buttons": [
+        {
+          "text": "START SPARK QUIZ",
+          "type": "button"
+        },
+        {
+          "text": "RESET",
+          "type": "button"
+        }
+      ]
+    },
+    {
+      "route": "/missions/",
+      "inputs": [],
+      "buttons": [
+        {
+          "text": "SELECT MISSION",
+          "type": "button"
+        },
+        {
+          "text": "SELECT MISSION",
+          "type": "button"
+        },
+        {
+          "text": "SELECT MISSION",
+          "type": "button"
+        }
+      ]
+    }
+  ],
+  "verdict": "FAIL",
+  "failures": [
+    "/spark/ returned bad status: 404",
+    "/spark/ has browser console/page errors",
+    "Theme/nav missing on: /, /spark-signup/, /spark-login/, /spark-generator/, /spark-dashboard/, /quiz/, /missions/, /spark/"
+  ]
+}

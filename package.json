@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "audit:maskzero": "node tools/maskzero_site_audit.mjs"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.44.0"
+  }
+}
