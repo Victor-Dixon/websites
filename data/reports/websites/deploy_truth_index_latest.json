@@ -1,5 +1,30 @@
 {
   "domains": {
+    "2faccounts.google.com": {
+      "discovered_by": [
+        "repo"
+      ],
+      "dns_ips": [],
+      "domain": "2faccounts.google.com",
+      "live": {
+        "apex": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://2faccounts.google.com/",
+          "ok": false,
+          "status": null
+        },
+        "www": {
+          "error": "URLError:<urlopen error [Errno 7] No address associated with hostname>",
+          "final_url": "https://www.2faccounts.google.com/",
+          "ok": false,
+          "status": null
+        }
+      },
+      "notes": [],
+      "source_candidates": [],
+      "status": "NEEDS_TRIAGE",
+      "workflow_refs": []
+    },
     "2fdadudekc.site": {
       "discovered_by": [
         "existing_inventory",
@@ -28,6 +53,7 @@
     },
     "2fmail.google.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [],
@@ -131,6 +157,7 @@
     },
     "about.codecov.io": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -161,16 +188,17 @@
     },
     "accounts.google.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
-        "142.250.138.84",
+        "142.250.115.84",
         "2607:f8b0:4023:1013::54"
       ],
       "domain": "accounts.google.com",
       "live": {
         "apex": {
-          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Faccounts.google.com%2F&dsh=S-704460140%3A1781977917801080&followup=https%3A%2F%2Faccounts.google.com%2F&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvwXwblWOJ66BYfXL2bvCfEaz4xLPb_2f4vOezx4b76pEZGO-72PcIqwILKATWIBYVgN0cjfKQ",
+          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Faccounts.google.com%2F&dsh=S1178056942%3A1781978069000712&followup=https%3A%2F%2Faccounts.google.com%2F&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvxVlMOkhhbH0cW_2gK0lS6ACnOLYgLb0rAA3cxk0GwHCFO5Z2DtTrdilrMuCCXRjlb2WTwE",
           "ok": true,
           "sample": "<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://accounts.google.com/v3/signin/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name",
           "status": 200
@@ -341,8 +369,8 @@
         "repo"
       ],
       "dns_ips": [
-        "198.44.194.166",
-        "198.44.194.38"
+        "198.44.194.44",
+        "198.44.194.52"
       ],
       "domain": "api.polygon.io",
       "live": {
@@ -869,6 +897,7 @@
     },
     "developer.wordpress.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1066,10 +1095,10 @@
           "status": 200
         },
         "www": {
+          "error": "HTTP Error 403: Forbidden",
           "final_url": "https://www.domain.com/",
-          "ok": true,
-          "sample": "\n<!DOCTYPE HTML>\n<html lang=\"en\">\n    <head>\r\n<meta charset=\"UTF-8\"/>\r\n<title>Domain Names, Site Builder, Hosting, and More | Domain.com</title>\r\n<meta name=\"de",
-          "status": 200
+          "ok": false,
+          "status": 403
         }
       },
       "notes": [],
@@ -1173,7 +1202,8 @@
       ],
       "dns_ips": [
         "157.240.24.35",
-        "2a03:2880:f162:81:face:b00c:0:25de"
+        "2a03:2880:f162:81:face:b00c:0:25de",
+        "57.144.200.1"
       ],
       "domain": "facebook.com",
       "live": {
@@ -1286,6 +1316,7 @@
     },
     "framer.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1293,14 +1324,14 @@
         "143.204.130.2",
         "143.204.130.25",
         "143.204.130.86",
-        "2600:9000:21c4:1600:10:9b9d:b9c0:93a1",
-        "2600:9000:21c4:2c00:10:9b9d:b9c0:93a1",
-        "2600:9000:21c4:3e00:10:9b9d:b9c0:93a1",
-        "2600:9000:21c4:4400:10:9b9d:b9c0:93a1",
-        "2600:9000:21c4:4a00:10:9b9d:b9c0:93a1",
-        "2600:9000:21c4:7200:10:9b9d:b9c0:93a1",
-        "2600:9000:21c4:7400:10:9b9d:b9c0:93a1",
-        "2600:9000:21c4:f800:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:1a00:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:3800:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:5800:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:9000:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:b800:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:c200:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:c400:10:9b9d:b9c0:93a1",
+        "2600:9000:21c4:e000:10:9b9d:b9c0:93a1",
         "31.43.160.19",
         "31.43.161.19"
       ],
@@ -1367,10 +1398,6 @@
         "142.250.113.18",
         "142.250.113.19",
         "142.250.113.83",
-        "172.217.72.17",
-        "172.217.72.18",
-        "172.217.72.19",
-        "172.217.72.83",
         "2607:f8b0:4023:1000::11",
         "2607:f8b0:4023:1000::12",
         "2607:f8b0:4023:1000::13",
@@ -1379,13 +1406,13 @@
       "domain": "gmail.com",
       "live": {
         "apex": {
-          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&dsh=S-704460140%3A1781977945255411&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvw2tfBr5BwSlp7eaIU2wJRca7MsK6dj6SsTPApAuUz6b-oYXYjKnXv7Zt4E0NGWbs7UJO-dHg",
+          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&dsh=S1178056942%3A1781978086420412&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvwfpeKZiQo6WkEpw32MHIJvXhOi5l7jXO0atMDRlBCG60beFoyByLfDMW64y8SznjMrFSp3hw",
           "ok": true,
           "sample": "<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://accounts.google.com/v3/signin/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name",
           "status": 200
         },
         "www": {
-          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&dsh=S2048476163%3A1781977945764760&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvxQLFqjj_yJ7lhk55M6nhPZECNh9nrsufoDq92DMkw3PzB-vSfbJocymj959PVo9IzukPRCDQ",
+          "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&dsh=S1779450899%3A1781978086914372&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AcDsRvw-sllGZurQ7bip5IIAfw7CLIFy1YB4CEbLPpuYpEkMuomgj2sTYLPK4CQg891qPCKvj9Xn",
           "ok": true,
           "sample": "<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://accounts.google.com/v3/signin/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name",
           "status": 200
@@ -1398,6 +1425,7 @@
     },
     "gmpg.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1435,10 +1463,10 @@
       "domain": "gnu.org",
       "live": {
         "apex": {
-          "final_url": "https://www.gnu.org/",
-          "ok": true,
-          "sample": "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />",
-          "status": 200
+          "error": "URLError:<urlopen error _ssl.c:1015: The handshake operation timed out>",
+          "final_url": "https://gnu.org/",
+          "ok": false,
+          "status": null
         },
         "www": {
           "final_url": "https://www.gnu.org/",
@@ -1485,10 +1513,11 @@
     },
     "gstatic.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
-        "142.250.26.94",
+        "142.250.114.94",
         "142.251.116.120",
         "142.251.116.94",
         "2607:f8b0:4023:1009::5e",
@@ -1704,6 +1733,7 @@
     },
     "introvert.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1732,6 +1762,7 @@
     },
     "jsdelivr.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -1950,6 +1981,7 @@
     },
     "openssh.org": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2038,6 +2070,7 @@
     },
     "prod-wf1.discord.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2296,6 +2329,7 @@
     },
     "shields.io": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2385,6 +2419,7 @@
     },
     "static.cdninstagram.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2413,6 +2448,7 @@
     },
     "static.xx.fbcdn.net": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2474,18 +2510,21 @@
         "repo"
       ],
       "dns_ips": [
-        "23.201.195.27",
-        "23.201.195.41",
-        "23.201.195.5",
-        "23.220.162.202",
-        "23.220.162.206",
-        "23.220.162.207",
-        "23.220.162.208",
-        "23.220.162.210",
-        "23.220.162.214",
-        "23.220.162.215",
-        "23.220.162.216",
-        "23.220.162.219"
+        "23.201.96.133",
+        "23.201.96.134",
+        "23.201.96.142",
+        "23.201.96.144",
+        "23.201.96.148",
+        "23.201.96.169",
+        "23.205.109.75",
+        "23.205.109.80",
+        "23.205.109.84",
+        "23.205.109.86",
+        "23.205.109.87",
+        "23.205.109.88",
+        "23.205.109.90",
+        "23.205.109.91",
+        "23.205.109.92"
       ],
       "domain": "tiktok.com",
       "live": {
@@ -2543,7 +2582,6 @@
         "repo"
       ],
       "dns_ips": [
-        "162.159.140.229",
         "172.66.0.227"
       ],
       "domain": "twitter.com",
@@ -2765,6 +2803,7 @@
     },
     "x.com": {
       "discovered_by": [
+        "existing_inventory",
         "repo"
       ],
       "dns_ips": [
@@ -2823,7 +2862,7 @@
       ]
     }
   },
-  "generated": "2026-06-20T12:53:30-0500",
+  "generated": "2026-06-20T12:56:17-0500",
   "hostinger_api_status": "PASS",
   "known_seed_domains": [
     "ariajet.site",
@@ -2837,8 +2876,8 @@
     "active_truth_gated": 1,
     "discovered_needs_mapping": 2,
     "mapped_live_needs_domain_gate": 1,
-    "needs_triage": 92,
-    "total_domains": 93
+    "needs_triage": 93,
+    "total_domains": 94
   },
   "tool": "websites_deploy_truth_gate_index"
 }
