@@ -7,8 +7,16 @@
     "/wp-json/emergence/v1/session"
   ];
 
+  function hasSparkAuthCookie() {
+    return document.cookie.indexOf("maskzero_spark_session") !== -1;
+  }
+
   function hasWordPressCookie() {
     return document.cookie.indexOf("wordpress_logged_in") !== -1;
+  }
+
+  function hasAuthCookie() {
+    return hasSparkAuthCookie() || hasWordPressCookie();
   }
 
   function normalizeSession(payload) {
@@ -52,7 +60,7 @@
       return {
         ok: true,
         data: {
-          logged_in: hasWordPressCookie(),
+          logged_in: hasAuthCookie(),
           user: null,
           raw: null
         }
@@ -79,6 +87,8 @@
   window.SparkAccountRuntime = {
     session: session,
     hasWordPressCookie: hasWordPressCookie,
+    hasSparkAuthCookie: hasSparkAuthCookie,
+    hasAuthCookie: hasAuthCookie,
     announce: announce
   };
 })();
