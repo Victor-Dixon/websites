@@ -1,0 +1,12 @@
+id: prune_duplicate_previous_snapshots_001
+status: completed
+lane: repo_consolidation
+repo: websites
+created: 2026-06-20T11:52:33-05:00
+policy:
+  destructive_scope: duplicate_previous_snapshot_dirs_only
+  source_repos_deleted: false
+  current_snapshots_preserved: true
+  git_bundles_preserved: true
+removed_count: 8
+source_list: /data/data/com.termux/files/home/.dreamos/reports/domain_artifact_mapping/previous_snapshot_dirs_20260620_115232.txt
