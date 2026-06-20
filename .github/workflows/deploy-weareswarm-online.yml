@@ -146,4 +146,10 @@ jobs:
           grep -q 'Command Core' /tmp/weareswarm-online-skill-tree.html
           grep -q 'data-canonical-nav="weareswarm-online"' /tmp/weareswarm-online-skill-tree.html
 
+      - name: Run deploy truth gate
+        env:
+          DEPLOY_TRUTH_GATE_SKIP_LATEST: "1"
+        run: |
+          runtime/tools/weareswarm-online-deploy-truth-gate.sh
+
 # Dream.OS kids planner live verification is handled by deployment step above.

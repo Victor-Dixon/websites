@@ -47,24 +47,30 @@ check("WORKFLOW_HOSTINGER_TARGET", "157.173.214.121" in wf and "65002" in wf and
 check("WORKFLOW_EMPTY_ASSETS_SAFE", "SKIP_DEPLOY_ASSETS_EMPTY_OR_MISSING" in wf)
 
 latest_ok = False
-try:
-    raw = subprocess.check_output(
-        [
-            "gh", "run", "list",
-            "--workflow", "deploy-weareswarm-online.yml",
-            "--limit", "1",
-            "--json", "databaseId,status,conclusion,headSha,createdAt,url",
-        ],
-        text=True,
-        stderr=subprocess.STDOUT,
-    )
-    runs = json.loads(raw)
-    latest = runs[0] if runs else {}
-    result["latest_deploy"] = latest
-    latest_ok = latest.get("status") == "completed" and latest.get("conclusion") == "success"
-    check("LATEST_DEPLOY_SUCCESS", latest_ok, f"RUN_ID={latest.get('databaseId')} CONCLUSION={latest.get('conclusion')}")
-except Exception as e:
-    check("LATEST_DEPLOY_SUCCESS", False, f"gh_error={e}")
+skip_latest = os.environ.get("DEPLOY_TRUTH_GATE_SKIP_LATEST", "").strip() in {"1", "true", "TRUE", "yes", "YES"}
+
+if skip_latest:
+    result["latest_deploy"] = {"skipped": True, "reason": "running inside current deploy workflow"}
+    check("LATEST_DEPLOY_SUCCESS", True, "skipped_inside_running_workflow")
+else:
+    try:
+        raw = subprocess.check_output(
+            [
+                "gh", "run", "list",
+                "--workflow", "deploy-weareswarm-online.yml",
+                "--limit", "1",
+                "--json", "databaseId,status,conclusion,headSha,createdAt,url",
+            ],
+            text=True,
+            stderr=subprocess.STDOUT,
+        )
+        runs = json.loads(raw)
+        latest = runs[0] if runs else {}
+        result["latest_deploy"] = latest
+        latest_ok = latest.get("status") == "completed" and latest.get("conclusion") == "success"
+        check("LATEST_DEPLOY_SUCCESS", latest_ok, f"RUN_ID={latest.get('databaseId')} CONCLUSION={latest.get('conclusion')}")
+    except Exception as e:
+        check("LATEST_DEPLOY_SUCCESS", False, f"gh_error={e}")
 
 live_ok = False
 try:
