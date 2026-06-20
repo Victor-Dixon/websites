@@ -216,13 +216,32 @@ def classify(domain, discovered_by, srcs, refs, live):
 
 def main():
     existing = load_existing_inventory()
-    repo_domains = scan_repo_domains()
+    repo_domains_raw = scan_repo_domains()
     hostinger_domains, hostinger_status = fetch_hostinger_domains()
 
+    # Ownership rule:
+    # - Hostinger API + seed domains are authoritative.
+    # - Repo text is NOT authoritative by itself because HTML/JS/docs contain CDN,
+    #   social, package-registry, and third-party domains.
+    # - Repo domains count only when they are explicitly in deploy/route dirs,
+    #   or already recognized by Hostinger/seed.
+    repo_domains = {}
+    for d, sources in repo_domains_raw.items():
+        strong_dir = any(src.startswith("dir:") for src in sources)
+        owned_signal = d in SEED_DOMAINS or d in hostinger_domains
+        if strong_dir or owned_signal:
+            repo_domains[d] = sources
+
+    existing_domains = set((existing.get("domains") or {}).keys())
+    existing_owned = {
+        d for d in existing_domains
+        if d in SEED_DOMAINS or d in hostinger_domains or d in repo_domains
+    }
+
     all_domains = set(SEED_DOMAINS)
-    all_domains |= set(repo_domains.keys())
     all_domains |= hostinger_domains
-    all_domains |= set((existing.get("domains") or {}).keys())
+    all_domains |= set(repo_domains.keys())
+    all_domains |= existing_owned
 
     domains = {}
     for domain in sorted(clean_domain(d) for d in all_domains if is_domain(clean_domain(d))):
