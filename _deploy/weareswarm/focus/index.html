@@ -8,7 +8,7 @@
     body{margin:0;background:#05070c;color:#eef4ff;font-family:Inter,system-ui,sans-serif;line-height:1.55}
     a{color:#78f0c3;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:30px 20px}
     .nav{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:42px;padding:12px 14px;border:1px solid #243248;border-radius:999px;background:#0b111d}
-    .brand{font-weight:950;text-transform:uppercase;letter-spacing:.1em}.links{display:flex;gap:7px;flex-wrap:wrap}.links a{padding:7px 11px;border:1px solid #243248;border-radius:999px;color:#a8b4c7}
+    .brand-logo{display:inline-flex;align-items:center;max-width:260px;height:48px;text-decoration:none;flex:0 0 auto;border:0;padding:0;background:transparent;border-radius:0}.nav a.brand-logo{border:0;padding:0;background:transparent;color:inherit;border-radius:0}.brand-logo:hover{text-decoration:none}.brand-logo img{display:block;height:42px;width:auto;max-width:100%;object-fit:contain}.links{display:flex;gap:7px;flex-wrap:wrap}.links a{padding:7px 11px;border:1px solid #243248;border-radius:999px;color:#a8b4c7}
     h1{font-size:clamp(2.35rem,6vw,5rem);line-height:.95;margin:14px 0 18px;letter-spacing:-.06em}h2{font-size:1.8rem;margin:0 0 14px}h3{margin:0 0 8px}
     p,li{color:#a8b4c7}.eyebrow{color:#ffd166;font-weight:900;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem}
     section{padding:30px 0;border-top:1px solid rgba(255,255,255,.08)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
@@ -17,12 +17,13 @@
     .proof{font-family:ui-monospace,monospace;color:#d9e6f8;background:#070b13;border:1px solid #243248;border-radius:14px;padding:12px;font-size:.86rem}
     blockquote{margin:12px 0;padding:14px 18px;border-left:4px solid #78f0c3;background:#0b111d;color:#eef4ff;font-weight:800}
     footer{padding:36px 0;border-top:1px solid rgba(255,255,255,.08);color:#a8b4c7}
+    @media(max-width:640px){.nav{align-items:flex-start;flex-direction:column}.links{justify-content:flex-start}.brand-logo{max-width:230px;height:44px}.brand-logo img{height:38px}}
   </style>
 </head>
 <body>
 <main class="wrap">
   <nav class="nav">
-    <div class="brand">WeAreSwarm</div>
+    <a class="brand-logo" href="/" aria-label="We Are Swarm home"><img src="/assets/we-are-swarm-logo.png" alt="We Are Swarm"></a>
     <div class="links">
       <a href="/">Command Center</a><a href="/focus/">Focus</a><a href="/roadmap/">Roadmap</a><a href="/projects/">Projects</a><a href="/tasks/">Tasks</a><a href="/skill-tree/">Skill Tree</a><a href="/dreamos-services/">Services</a>
     </div>
