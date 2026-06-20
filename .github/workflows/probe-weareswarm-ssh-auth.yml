@@ -1,0 +1,61 @@
+name: Probe WeAreSwarm SSH Auth
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ssh-auth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+
+    steps:
+      - name: Probe Hostinger SSH auth and remote root
+        env:
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_HOST: 157.173.214.121
+          HOSTINGER_PORT: "65002"
+          HOSTINGER_USER: u996867598
+          REMOTE_ROOT: /home/u996867598/domains/weareswarm.online/public_html
+        run: |
+          set -euo pipefail
+
+          echo "HOSTINGER_HOST=$HOSTINGER_HOST"
+          echo "HOSTINGER_PORT=$HOSTINGER_PORT"
+          echo "HOSTINGER_USER=$HOSTINGER_USER"
+          echo "REMOTE_ROOT=$REMOTE_ROOT"
+
+          test -n "$HOSTINGER_SSH_PRIVATE_KEY"
+          echo "VERIFY=PASS_SECRET_PRESENT"
+
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf "%s\n" "$HOSTINGER_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_hostinger"
+          chmod 600 "$HOME/.ssh/id_hostinger"
+
+          ssh-keyscan -T 20 -p "$HOSTINGER_PORT" "$HOSTINGER_HOST" >> "$HOME/.ssh/known_hosts"
+          echo "VERIFY=PASS_SSH_KEYSCAN"
+
+          remote="${HOSTINGER_USER}@${HOSTINGER_HOST}"
+
+          ssh -i "$HOME/.ssh/id_hostinger" \
+            -p "$HOSTINGER_PORT" \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=accept-new \
+            -o ConnectTimeout=20 \
+            -o ConnectionAttempts=1 \
+            "$remote" \
+            "set -e
+             echo VERIFY=PASS_SSH_AUTH
+             echo WHOAMI=\$(whoami)
+             echo PWD=\$(pwd)
+             test -d '$REMOTE_ROOT'
+             echo VERIFY=PASS_REMOTE_ROOT_EXISTS
+             ls -ld '$REMOTE_ROOT'
+             if [ -w '$REMOTE_ROOT' ]; then
+               echo VERIFY=PASS_REMOTE_ROOT_WRITABLE
+             else
+               echo VERIFY=FAIL_REMOTE_ROOT_NOT_WRITABLE
+               exit 1
+             fi"
+
+          echo "VERIFY=PASS_SSH_AUTH_REMOTE_ROOT_PROBE"
