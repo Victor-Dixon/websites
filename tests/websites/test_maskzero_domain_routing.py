@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import re
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -104,7 +105,7 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
 
     assert "RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
     assert "RewriteRule ^wp-login\\.php$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
-    assert "RewriteRule ^\\.spark-auth/ - [F,L]" in htaccess
+    assert "RewriteRule ^\\.spark-auth(/.*)?$ - [F,L]" in htaccess
     assert "RewriteRule ^the-emergence/?$ /the-emergence.html [L]" in htaccess
     assert "RewriteRule ^meridian-dispatch/?$ /dispatch/ [R=302,L,NE]" in htaccess
     assert "RewriteRule ^spark-battle/?$ /battles/ [R=302,L,NE]" in htaccess
@@ -176,7 +177,9 @@ def test_maskzero_migrated_pages_use_comic_book_skin():
     missing = []
     for route in pages:
         html = (MASKZERO / route).read_text(encoding="utf-8")
-        if 'class="maskzero-comic-skin' not in html or "/assets/css/maskzero-comic-theme.css" not in html:
+        class_tokens = re.findall(r'class=["\']([^"\']+)["\']', html)
+        has_comic_skin = any("maskzero-comic-skin" in tokens.split() for tokens in class_tokens)
+        if not has_comic_skin or "/assets/css/maskzero-comic-theme.css" not in html:
             missing.append(route)
 
     assert not missing, f"MaskZero pages missing comic skin: {missing}"
