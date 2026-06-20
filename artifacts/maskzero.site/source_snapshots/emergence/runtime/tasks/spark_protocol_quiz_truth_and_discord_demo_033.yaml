@@ -1,0 +1,49 @@
+id: spark_protocol_quiz_truth_and_discord_demo_033
+title: Stabilize quiz truth flow and improve Discord character demo
+owner: ChatGPT
+status: planned
+priority: high
+lane: spark_protocol_quiz_truth_and_discord_demo_033
+objective: >
+  Add governed tests and repairs so the adaptive quiz completes reliably,
+  locked character sheets persist correctly, scoring math remains canonical,
+  and Discord displays a richer deterministic character sheet. Also emit a
+  reproducible AI image prompt artifact for demo use.
+scope:
+  includes:
+    - tests/e2e/quiz_truth_flow.e2e.test.js
+    - tests/scoring/locked_sheet_contract.test.js
+    - tests/discord/character_sheet_render.test.mjs
+    - packages/quiz-button-session/index.js
+    - packages/scoring-engine/index.js
+    - packages/discord-flow/src/quizToLockedCharacter.mjs
+    - runtime/reports/discord_seed_campaign_content_033.mjs
+    - runtime/reports/demo_character_image_prompt_033.json
+    - runtime/reports/demo_character_image_prompt_033.md
+  excludes:
+    - wrong-server cleanup
+    - destructive Discord operations
+acceptance_criteria:
+  - adaptive quiz completes without freeze across deterministic and mixed answer paths
+  - answered qids persist correctly after affinity transition
+  - completed quiz builds locked deterministic character sheet
+  - locked sheet includes canonical version field and non-empty tier
+  - percentile remains bounded and deterministic
+  - character save/load round-trips without mutation
+  - Discord seed content includes deterministic locked character presentation
+  - AI image prompt artifact is emitted from locked sheet truth
+verification:
+  - node --test tests/e2e/quiz_truth_flow.e2e.test.js
+  - node --test tests/scoring/locked_sheet_contract.test.js
+  - node --test tests/discord/character_sheet_render.test.mjs
+  - npm test
+deliverables:
+  - repaired runtime code
+  - passing tests
+  - seeded Discord content script
+  - image prompt artifact
+notes:
+  - Use script-file mode
+  - Avoid nested heredocs
+  - Prefer deterministic outputs
+  - Do not perform wrong-server cleanup in this lane

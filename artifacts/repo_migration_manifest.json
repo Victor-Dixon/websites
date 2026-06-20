@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "generated": "2026-06-20T08:37:47.546138",
+  "policy": "new_home_first_archive_later_no_delete",
+  "checks": [
+    {
+      "label": "tbowtactics",
+      "repo": "Victor-Dixon/TBOWTactics",
+      "source": "/data/data/com.termux/files/home/projects/_repo_migration_sources/TBOWTactics",
+      "new_home": "artifacts/freerideinvestor.com/source_snapshots/tbowtactics",
+      "cleanup_action": "archive_after_new_home_pushed",
+      "source_exists": true,
+      "source_is_git": true,
+      "source_head": "a66da29",
+      "source_remote": "git@github.com:Victor-Dixon/TBOWTactics.git",
+      "new_home_exists": true,
+      "new_home_file_count": 65
+    },
+    {
+      "label": "freerideinvestor",
+      "repo": "Victor-Dixon/FreeRideInvestor",
+      "source": "/data/data/com.termux/files/home/projects/_repo_migration_sources/FreeRideInvestor",
+      "new_home": "artifacts/freerideinvestor.com/source_snapshots/freerideinvestor",
+      "cleanup_action": "archive_after_new_home_pushed",
+      "source_exists": true,
+      "source_is_git": true,
+      "source_head": "ddccc8d",
+      "source_remote": "git@github.com:Victor-Dixon/FreeRideInvestor.git",
+      "new_home_exists": true,
+      "new_home_file_count": 94
+    },
+    {
+      "label": "emergence",
+      "repo": "spark-protocol",
+      "source": "/data/data/com.termux/files/home/projects/spark-protocol",
+      "new_home": "artifacts/maskzero.site/source_snapshots/emergence",
+      "cleanup_action": "review_before_archive",
+      "source_exists": true,
+      "source_is_git": true,
+      "source_head": "760dc33",
+      "source_remote": "git@github.com:Victor-Dixon/The-emergence-.git",
+      "new_home_exists": true,
+      "new_home_file_count": 194
+    },
+    {
+      "label": "bible_application",
+      "repo": "Victor-Dixon/bible-application",
+      "source": "/data/data/com.termux/files/home/projects/_repo_migration_sources/bible-application",
+      "new_home": "theme_shelf/bible_application",
+      "cleanup_action": "archive_after_new_home_pushed",
+      "source_exists": true,
+      "source_is_git": true,
+      "source_head": "4c00ae1",
+      "source_remote": "git@github.com:Victor-Dixon/bible-application.git",
+      "new_home_exists": true,
+      "new_home_file_count": 11
+    }
+  ]
+}

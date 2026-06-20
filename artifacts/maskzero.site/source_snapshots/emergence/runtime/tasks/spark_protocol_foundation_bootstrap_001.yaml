@@ -1,0 +1,19 @@
+task_id: spark_protocol_foundation_bootstrap_001
+
+objective: >
+  Bootstrap Spark Protocol MVP runtime and Discord bot foundation.
+
+deliverables:
+  - monorepo structure
+  - discord bot skeleton
+  - slash command registration
+  - runtime config scaffold
+  - bootstrap report
+
+verification:
+  - npm install succeeds
+  - bot starts successfully
+  - slash commands register
+  - /ping responds
+
+status: seeded

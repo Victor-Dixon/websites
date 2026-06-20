@@ -1,0 +1,37 @@
+/*--------------------------------------------------------------
+  Main SCSS File
+--------------------------------------------------------------*/
+
+/* 1. Abstracts */
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+
+/* 2. Vendors */
+@import 'vendors/bootstrap';
+
+/* 3. Base */
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/base';
+
+/* 4. Layout */
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/grid';
+
+/* 5. Components */
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/tables';
+@import 'components/modals';
+
+/* 6. Pages */
+@import 'pages/home';
+
+/* 7. Themes */
+@import 'themes/dark';
+
+/* 8. Utilities */
+@import 'utilities/utilities';
+@import 'utilities/helpers';
