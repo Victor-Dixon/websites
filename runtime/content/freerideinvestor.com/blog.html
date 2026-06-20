@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Day Trade Planner | FreeRideInvestor</title>
-  <meta name="description" content="FreeRideInvestor day trade planner rebuild placeholder.">
+  <title>Blog | FreeRideInvestor</title>
+  <meta name="description" content="Personal trading journal entries and process notes from FreeRideInvestor.">
   <style>
     :root {
       --bg: #080b12;
@@ -14,6 +14,8 @@
       --line: rgba(255,255,255,.13);
       --accent: #70e1ff;
       --accent2: #a78bfa;
+      --good: #86efac;
+      --danger: #fb7185;
     }
     * { box-sizing: border-box; }
     body {
@@ -73,18 +75,54 @@
     }
     main { padding: 64px 0 80px; }
     h1 { margin: 0 0 16px; font-size: clamp(40px, 7vw, 76px); line-height: .95; letter-spacing: -.06em; }
-    p, li { color: var(--muted); }
+    h2 { margin: 0 0 10px; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.04em; }
+    p { color: var(--muted); }
     .sub { max-width: 780px; font-size: 20px; }
+    .eyebrow {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .posts {
+      display: grid;
+      gap: 18px;
+      margin-top: 32px;
+    }
     .card {
+      display: block;
       border: 1px solid var(--line);
       border-radius: 22px;
-      padding: 22px;
+      padding: 24px;
       background: rgba(17,24,39,.82);
       box-shadow: 0 24px 70px rgba(0,0,0,.22);
-      margin-top: 24px;
+      text-decoration: none;
     }
-    ol { display: grid; gap: 10px; padding-left: 24px; }
-    .page-links { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .card:hover {
+      border-color: rgba(112,225,255,.45);
+      background: rgba(23,32,51,.9);
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 9px;
+      color: var(--good);
+      background: rgba(134,239,172,.08);
+    }
+    .warning { color: var(--danger); font-weight: 900; }
     @media (max-width: 860px) {
       .nav-inner { align-items: flex-start; flex-direction: column; padding: 14px 0; }
       .nav-links { justify-content: flex-start; }
@@ -120,33 +158,53 @@
       <a class="brand" href="/">FreeRideInvestor</a>
       <div class="nav-links">
         <a href="/">Home</a>
-        <a href="/blog.html">Blog</a>
+        <a href="/blog.html" aria-current="page">Blog</a>
         <a href="/trading-journal.html">Journal</a>
         <a href="/replay-proof.html">Replay Proof</a>
-        <a href="/day-trade-planner.html" aria-current="page">Day Planner</a>
+        <a href="/day-trade-planner.html">Day Planner</a>
         <a href="/early-access.html">Early Access</a>
       </div>
     </div>
   </nav>
   <main>
-    <h1>Day Trade Planner</h1>
-    <p class="sub">Plan the session before the first fill, then use the journal to compare plan against behavior.</p>
-    <section class="card">
-      <h2>Planned workflow</h2>
-      <ol>
-        <li>Define thesis.</li>
-        <li>Set invalidation.</li>
-        <li>Set max loss and stop behavior.</li>
-        <li>Track fills.</li>
-        <li>Replay behavior after close.</li>
-        <li>Generate next-rule candidate.</li>
-      </ol>
+    <p class="eyebrow">Personal trading journal</p>
+    <h1>FreeRideInvestor Blog</h1>
+    <p class="sub">Process notes from a small-account trading journey: discipline, sizing, risk, confidence, and the behavior behind each result.</p>
+
+    <section class="posts" aria-label="Recent blog posts">
+      <a class="card" href="/blog/the-day-i-turned-247-into-a-700-lesson.html">
+        <div class="meta">
+          <span>Latest</span>
+          <span>June 19, 2026</span>
+          <span class="tag">Trading journal</span>
+        </div>
+        <h2>The Day I Turned $247 Into a $700 Lesson</h2>
+        <p>The system identified the danger. The trader ignored it. That is a different problem than having no system at all.</p>
+        <p class="warning">Read the entry -></p>
+      </a>
+
+      <a class="card" href="/blog/the-goal-is-no-longer-making-money.html">
+        <div class="meta">
+          <span>Previous</span>
+          <span>June 18, 2026</span>
+          <span class="tag">Trading journal</span>
+        </div>
+        <h2>The Goal Is No Longer Making Money</h2>
+        <p>Midday update: account at $969.56, up $174 on the day, with no open positions and risk staying defined.</p>
+        <p class="warning">Read the entry -></p>
+      </a>
+
+      <a class="card" href="/blog/day-7-the-question-getting-louder.html">
+        <div class="meta">
+          <span>Day 7</span>
+          <span>June 18, 2026</span>
+          <span class="tag">Trading journal</span>
+        </div>
+        <h2>Day 7: The Question Getting Louder</h2>
+        <p>The most interesting part is not the P&amp;L. It is the fact that confidence is falling while results are improving.</p>
+        <p class="warning">Read the entry -></p>
+      </a>
     </section>
-    <div class="page-links">
-      <a href="/trading-journal.html">Open the working journal</a>
-      <a href="/replay-proof.html">View replay proof</a>
-      <a href="/early-access.html">Request early access</a>
-    </div>
   </main>
   <script type="module" src="/assets/js/freeride-market-field.js"></script>
 </body>

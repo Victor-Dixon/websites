@@ -20,9 +20,20 @@ Agent-powered trading journal:
 ## Pages
 
 - `index.html` — sales funnel homepage
+- `blog.html` — personal trading journal blog index
+- `blog/the-day-i-turned-247-into-a-700-lesson.html` — personal journal entry on breaking process
+- `blog/the-goal-is-no-longer-making-money.html` — personal journal entry on keeping profits
+- `blog/day-7-the-question-getting-louder.html` — Day 7 journal entry
 - `early-access.html` — intake/lead capture placeholder
 - `replay-proof.html` — product proof page
 - `day-trade-planner.html` — day planner rebuild placeholder
+
+## Theme Assets
+
+- `assets/css/freeride-theme.css` — shared glass/gradient theme layer
+- `assets/js/freeride-market-field.js` — Three.js market-field background animation
+
+The static pages use Tailwind via the CDN for utility classes and Three.js r184 via an ES module CDN import for progressive visual enhancement.
 
 ## Salvage Policy
 

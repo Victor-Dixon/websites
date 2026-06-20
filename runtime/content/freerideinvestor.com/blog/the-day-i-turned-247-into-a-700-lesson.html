@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>The Day I Turned $247 Into a $700 Lesson | FreeRideInvestor</title>
+  <meta name="description" content="A FreeRideInvestor personal trading journal entry about turning a $247 green day into a nearly $700 lesson after ignoring warning signs and breaking process.">
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #b6c2d1;
+      --line: rgba(255,255,255,.13);
+      --accent: #70e1ff;
+      --accent2: #a78bfa;
+      --good: #86efac;
+      --danger: #fb7185;
+      --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #172554 0, var(--bg) 44%);
+      color: var(--text);
+      line-height: 1.68;
+    }
+    a { color: var(--accent); }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,11,18,.86);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner, main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      color: var(--text);
+      font-weight: 950;
+      letter-spacing: -.03em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .nav-links a {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      border-color: var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    main { padding: 56px 0 88px; }
+    article {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+      gap: 28px;
+      align-items: start;
+    }
+    .content { max-width: 760px; }
+    .eyebrow {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
+    h2 {
+      margin: 42px 0 12px;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
+    p, li { color: var(--muted); }
+    p { margin: 0 0 16px; }
+    ul {
+      display: grid;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding-left: 24px;
+    }
+    .lede {
+      color: #e5edf7;
+      font-size: clamp(19px, 2vw, 24px);
+      line-height: 1.45;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      background: rgba(17,24,39,.82);
+      box-shadow: 0 24px 70px rgba(0,0,0,.22);
+    }
+    .scorecard {
+      position: sticky;
+      top: 96px;
+      display: grid;
+      gap: 16px;
+    }
+    .scorecard h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+    .metrics {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+    }
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    .metric:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .metric dt {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .metric dd {
+      margin: 0;
+      color: var(--text);
+      font-weight: 950;
+      text-align: right;
+    }
+    .good { color: var(--good); }
+    .warn { color: var(--warn); }
+    .danger { color: var(--danger); }
+    blockquote {
+      margin: 28px 0;
+      border-left: 4px solid var(--accent);
+      padding: 8px 0 8px 18px;
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: -.03em;
+    }
+    .page-links { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .page-links a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      background: rgba(255,255,255,.05);
+      font-weight: 800;
+      text-decoration: none;
+    }
+    @media (max-width: 920px) {
+      article { grid-template-columns: 1fr; }
+      .scorecard { position: static; }
+    }
+    @media (max-width: 860px) {
+      .nav-inner { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .nav-links { justify-content: flex-start; }
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.tailwind = window.tailwind || {};
+    window.tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            freeride: {
+              bg: "#020617",
+              panel: "#0f172a",
+              cyan: "#70e1ff",
+              violet: "#a78bfa",
+              emerald: "#86efac",
+            },
+          },
+          boxShadow: {
+            glow: "0 0 80px rgba(112,225,255,.18)",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/assets/css/freeride-theme.css">
+</head>
+<body class="freeride-theme bg-slate-950 text-slate-100 antialiased selection:bg-cyan-300/25 selection:text-cyan-50">
+  <nav class="site-nav backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/70" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="/">FreeRideInvestor</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/blog.html" aria-current="page">Blog</a>
+        <a href="/trading-journal.html">Journal</a>
+        <a href="/replay-proof.html">Replay Proof</a>
+        <a href="/day-trade-planner.html">Day Planner</a>
+        <a href="/early-access.html">Early Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <article>
+      <div class="content">
+        <p class="eyebrow">Personal trading journal</p>
+        <h1>The Day I Turned $247 Into a $700 Lesson</h1>
+        <p class="lede">The market did not expose a weakness in Tesla. It exposed a weakness in me.</p>
+
+        <h2>The Slip</h2>
+        <p>A few days ago I was feeling pretty good.</p>
+        <p>The account had climbed back over $1,000.</p>
+        <p>I had already made withdrawals.</p>
+        <p>I had paid for food.</p>
+        <p>I had upgraded Cursor to the $200 plan.</p>
+        <p>The account was not just growing.</p>
+        <p>It was producing cash.</p>
+        <p>Then I lost almost $700.</p>
+        <p>Not because Tesla surprised me.</p>
+        <p>Not because of news.</p>
+        <p>Not because my strategy stopped working.</p>
+        <p>Because I slipped.</p>
+
+        <h2>The Warning Signs Were Already There</h2>
+        <p>This is the embarrassing part.</p>
+        <p>The warning signs were not hidden.</p>
+        <p>I literally wrote them down.</p>
+        <p>During my morning introspection I talked about:</p>
+        <ul>
+          <li>Confidence</li>
+          <li>FOMO</li>
+          <li>Need to make money</li>
+          <li>Fear that the streak would end</li>
+        </ul>
+        <p>The system worked.</p>
+        <p>It identified the danger.</p>
+        <p>The trader ignored it.</p>
+        <p>That is a very different problem than having no system at all.</p>
+
+        <h2>Where It Went Wrong</h2>
+        <p>The day started great.</p>
+        <p>I was up around $247.</p>
+        <p>The account had crossed back over $1,000.</p>
+        <p>Mission accomplished.</p>
+        <p>I could have stopped.</p>
+        <p>Instead I started defending a position.</p>
+        <p>Then I started trading around the position.</p>
+        <p>Then I started trying to recover losses.</p>
+        <p>Then came the moment that changed everything.</p>
+        <p>I bought a 0DTE.</p>
+        <p>Then I doubled down.</p>
+        <p>Then I doubled down again.</p>
+        <p>Within minutes hundreds of dollars disappeared.</p>
+        <blockquote>The trader who made the first $247 and the trader who lost the next $700 were not the same trader.</blockquote>
+        <p>One was following a plan.</p>
+        <p>One was gambling.</p>
+
+        <h2>The Most Important Discovery</h2>
+        <p>I do not think the lesson is:</p>
+        <blockquote>Never lose money.</blockquote>
+        <p>The lesson is:</p>
+        <blockquote>Notice when you stop following your own process.</blockquote>
+        <p>The 8 DTE trades had been working.</p>
+        <p>The slower theta helped.</p>
+        <p>The risk was manageable.</p>
+        <p>The positions could breathe.</p>
+        <p>The 0DTE trade was not part of the strategy.</p>
+        <p>It was an emotional reaction.</p>
+        <p>The market simply charged tuition for it.</p>
+
+        <h2>The Hole In My Strategy</h2>
+        <p>This loss exposed something important.</p>
+        <p>I track:</p>
+        <ul>
+          <li>Focus</li>
+          <li>Energy</li>
+          <li>Confidence</li>
+          <li>FOMO</li>
+          <li>Revenge trading</li>
+        </ul>
+        <p>But I never established hard limits tied to those scores.</p>
+        <p>What happens when confidence drops?</p>
+        <p>What happens when the need-to-make-money score rises?</p>
+        <p>What happens when I start trying to recover losses?</p>
+        <p>The answer cannot be:</p>
+        <blockquote>Trade anyway.</blockquote>
+        <p>Those metrics need consequences.</p>
+        <p>Otherwise they are just observations.</p>
+
+        <h2>The Free Ride Investor Philosophy</h2>
+        <p>Ironically, the account is still positive largely because of withdrawals.</p>
+        <p>The withdrawals saved the account.</p>
+        <p>Every time I took money out, I reduced risk.</p>
+        <p>Every time I took money out, I locked in progress.</p>
+        <p>Every time I took money out, I protected myself from myself.</p>
+        <p>That is becoming the core idea behind Free Ride Investor.</p>
+        <p>Take money out.</p>
+        <p>Enjoy life.</p>
+        <p>Pay for tools.</p>
+        <p>Fund leverage.</p>
+        <p>Build businesses.</p>
+        <p>Then let the market's money stay in the market.</p>
+        <p>The goal is not to become a screenshot millionaire.</p>
+        <p>The goal is to create a system that produces real-world value.</p>
+
+        <h2>The New Challenge</h2>
+        <p>I am not funding the account again.</p>
+        <p>I am not trying to win the money back.</p>
+        <p>I am not trying to get revenge on the market.</p>
+        <p>I am going to earn the account back.</p>
+        <p>Phase by phase.</p>
+        <ul>
+          <li>$250 bankroll</li>
+          <li>$500 bankroll</li>
+          <li>$1,000 bankroll</li>
+          <li>$2,500 bankroll</li>
+          <li>$5,000 bankroll</li>
+          <li>$10,000 bankroll</li>
+        </ul>
+        <p>Each level must be earned.</p>
+        <p>Each level must prove discipline.</p>
+        <p>Each level must prove that the previous mistake has actually been fixed.</p>
+        <p>Because a bigger account does not solve discipline problems.</p>
+        <p>It magnifies them.</p>
+
+        <h2>Final Thought</h2>
+        <p>The most valuable thing I learned from losing $700 was not about options.</p>
+        <p>It was about myself.</p>
+        <p>The market did not expose a weakness in Tesla.</p>
+        <p>It exposed a weakness in me.</p>
+        <p>That is painful.</p>
+        <p>It is embarrassing.</p>
+        <p>But it is also useful.</p>
+        <p>Because now I know exactly what needs to be fixed before the next climb begins.</p>
+        <p>And this time, I am not trying to get the money back.</p>
+        <p>I am trying to earn the trader back.</p>
+
+        <div class="page-links">
+          <a href="/blog.html">Back to blog</a>
+          <a href="/blog/the-goal-is-no-longer-making-money.html">Previous entry</a>
+          <a href="/trading-journal.html">Open the working journal</a>
+        </div>
+      </div>
+
+      <aside class="scorecard" aria-label="Lesson scorecard">
+        <section class="card">
+          <h2>Trade Breakdown</h2>
+          <dl class="metrics">
+            <div class="metric">
+              <dt>Early day gain</dt>
+              <dd class="good">+$247</dd>
+            </div>
+            <div class="metric">
+              <dt>Loss</dt>
+              <dd class="danger">~-$700</dd>
+            </div>
+            <div class="metric">
+              <dt>Account milestone</dt>
+              <dd>$1,000+</dd>
+            </div>
+            <div class="metric">
+              <dt>Trigger</dt>
+              <dd>0DTE</dd>
+            </div>
+            <div class="metric">
+              <dt>Failure mode</dt>
+              <dd>Double down</dd>
+            </div>
+            <div class="metric">
+              <dt>Real lesson</dt>
+              <dd class="warn">Process break</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="card">
+          <h2>Rebuild Phases</h2>
+          <dl class="metrics">
+            <div class="metric">
+              <dt>Phase 1</dt>
+              <dd>$250</dd>
+            </div>
+            <div class="metric">
+              <dt>Phase 2</dt>
+              <dd>$500</dd>
+            </div>
+            <div class="metric">
+              <dt>Phase 3</dt>
+              <dd>$1,000</dd>
+            </div>
+            <div class="metric">
+              <dt>Phase 4</dt>
+              <dd>$2,500</dd>
+            </div>
+            <div class="metric">
+              <dt>Phase 5</dt>
+              <dd>$5,000</dd>
+            </div>
+            <div class="metric">
+              <dt>Phase 6</dt>
+              <dd>$10,000</dd>
+            </div>
+          </dl>
+        </section>
+      </aside>
+    </article>
+  </main>
+  <script type="module" src="/assets/js/freeride-market-field.js"></script>
+</body>
+</html>
