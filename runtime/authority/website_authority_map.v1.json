@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "rule": "No site consolidation may move content across roles without a promotion manifest and verifier pass.",
+  "sites": {
+    "weareswarm.site": {
+      "role": "public_movement_front_door",
+      "required_keywords_any": ["swarm", "movement", "showcase", "proof", "recruit", "vision"],
+      "forbidden_keywords": ["internal task queue", "agent routing console", "private planner"]
+    },
+    "weareswarm.online": {
+      "role": "swarm_operating_system",
+      "required_keywords_any": ["missions", "skill tree", "planner", "level", "focus", "dashboard"],
+      "forbidden_keywords": ["sales funnel", "marketing-only landing"]
+    },
+    "maskzero.site": {
+      "role": "spark_emergence_character_universe",
+      "required_keywords_any": ["spark", "emergence", "meridian", "gauntlet", "what-if", "character"],
+      "forbidden_keywords": ["Victor Dixon portfolio", "FreerideInvestor", "robot plugin sales"]
+    },
+    "digitaldreamscape.site": {
+      "role": "provisional_gameplay_world",
+      "required_keywords_any": ["world", "quest", "faction", "campaign", "region", "gameplay"],
+      "forbidden_keywords": ["canonical Spark/Emergence authority"]
+    },
+    "dadudekc.site": {
+      "role": "victor_dixon_portfolio_services",
+      "required_keywords_any": ["portfolio", "services", "automation", "Dream.OS", "case study", "contact"],
+      "forbidden_keywords": ["canonical Spark home", "canonical Emergence home", "Meridian City canon"]
+    },
+    "freerideinvestor.com": {
+      "role": "trading_education_operations",
+      "required_keywords_any": ["trading", "journal", "market", "discipline", "performance", "trade"],
+      "forbidden_keywords": ["Spark canon", "Swarm internal execution", "robot plugin product authority"]
+    },
+    "tradingrobotplug.com": {
+      "role": "robot_plugin_trading_platform",
+      "required_keywords_any": ["robot", "plugin", "paper", "signal", "proof", "risk"],
+      "forbidden_keywords": ["personal trading journal canonical", "Spark canon"]
+    }
+  }
+}

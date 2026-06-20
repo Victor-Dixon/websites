@@ -1,0 +1,82 @@
+{
+  "authority_file": "/data/data/com.termux/files/home/projects/websites/runtime/authority/website_authority_map.v1.json",
+  "sites": {
+    "weareswarm.site": {
+      "role": "public_movement_front_door",
+      "exists": true,
+      "required_hits": [
+        "swarm",
+        "proof"
+      ],
+      "forbidden_hits": [],
+      "ok": true
+    },
+    "weareswarm.online": {
+      "role": "swarm_operating_system",
+      "exists": true,
+      "required_hits": [
+        "missions",
+        "skill tree",
+        "planner",
+        "level",
+        "focus",
+        "dashboard"
+      ],
+      "forbidden_hits": [],
+      "ok": true
+    },
+    "maskzero.site": {
+      "role": "spark_emergence_character_universe",
+      "exists": true,
+      "required_hits": [
+        "spark",
+        "emergence",
+        "meridian",
+        "gauntlet",
+        "what-if",
+        "character"
+      ],
+      "forbidden_hits": [],
+      "ok": true
+    },
+    "digitaldreamscape.site": {
+      "role": "provisional_gameplay_world",
+      "exists": true,
+      "required_hits": [
+        "world",
+        "quest",
+        "faction",
+        "region"
+      ],
+      "forbidden_hits": [],
+      "ok": true
+    },
+    "dadudekc.site": {
+      "role": "victor_dixon_portfolio_services",
+      "exists": true,
+      "required_hits": [],
+      "forbidden_hits": [],
+      "ok": false
+    },
+    "freerideinvestor.com": {
+      "role": "trading_education_operations",
+      "exists": true,
+      "required_hits": [
+        "trading",
+        "journal",
+        "market",
+        "discipline",
+        "trade"
+      ],
+      "forbidden_hits": [],
+      "ok": true
+    },
+    "tradingrobotplug.com": {
+      "role": "robot_plugin_trading_platform",
+      "exists": false,
+      "required_hits": [],
+      "forbidden_hits": [],
+      "ok": false
+    }
+  }
+}
