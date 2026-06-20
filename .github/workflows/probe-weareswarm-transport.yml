@@ -1,0 +1,67 @@
+name: Probe WeAreSwarm Transport
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+
+    steps:
+      - name: Probe SSH/FTP/HTTPS transport
+        run: |
+          set -u
+
+          echo "PROBE_TARGET=weareswarm.online"
+          echo "RUNNER=$(hostname)"
+
+          hosts=(
+            "157.173.214.121"
+            "weareswarm.online"
+            "www.weareswarm.online"
+            "ftp.weareswarm.online"
+          )
+
+          ports=(
+            "443"
+            "22"
+            "65002"
+            "21"
+            "990"
+            "2222"
+          )
+
+          echo "== DNS =="
+          for h in "${hosts[@]}"; do
+            echo "DNS_CHECK=$h"
+            getent ahostsv4 "$h" || true
+          done
+
+          echo "== TCP MATRIX =="
+          found_admin_transport=0
+
+          for h in "${hosts[@]}"; do
+            for p in "${ports[@]}"; do
+              echo "TEST HOST=$h PORT=$p"
+              if timeout 10 bash -lc "cat < /dev/null > /dev/tcp/$h/$p" 2>/tmp/tcp.err; then
+                echo "TCP=OPEN HOST=$h PORT=$p"
+                if [ "$p" != "443" ]; then
+                  found_admin_transport=1
+                fi
+              else
+                msg="$(cat /tmp/tcp.err | tr '\n' ' ' | cut -c1-180)"
+                echo "TCP=CLOSED HOST=$h PORT=$p MSG=$msg"
+              fi
+            done
+          done
+
+          echo "FOUND_ADMIN_TRANSPORT=$found_admin_transport"
+
+          if [ "$found_admin_transport" = "1" ]; then
+            echo "VERIFY=PASS_GITHUB_CAN_REACH_ADMIN_TRANSPORT"
+          else
+            echo "VERIFY=FAIL_GITHUB_CANNOT_REACH_SSH_OR_FTP_TRANSPORT"
+          fi
+
+          echo "VERIFY=PASS_GITHUB_TRANSPORT_PROBE_COMPLETED"
