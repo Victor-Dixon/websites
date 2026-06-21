@@ -81,8 +81,21 @@ includesAll(css, [
   "@media (max-width: 760px)",
   "@media (max-width: 430px)",
   "position: relative",
-  "height: 58vh",
+  "visual-composition-bounded-canvas",
+  "height: clamp(270px, 46svh, 430px)",
+  "height: clamp(238px, 42svh, 360px)",
+  "env(safe-area-inset-bottom)",
 ], "mobile tactical layout");
+
+includesAll(css, [
+  ".combat-hud",
+  "min-height: 6.1rem",
+  ".unit-status-card",
+  "min-height: 4.75rem",
+  ".battle-command",
+  ".combat-preview-panel",
+  "min-height: 8.25rem",
+], "visible non-zero HUD panels");
 
 includesAll(html, [
   'id="combat-hud"',
@@ -107,6 +120,8 @@ includesAll(renderer, [
   "shadowBlur",
   "FUTURE_ISO",
   "drawFuturisticIsoFacet",
+  "mobileScale",
+  "roundRect",
 ], "canvas tactical overlay");
 
 includesAll(tactical, [
@@ -115,6 +130,10 @@ includesAll(tactical, [
   "dangerTiles",
   "objectiveTiles",
   "battlePreview",
+  "inBattle",
+  "mode: inBattle ? \"battle\" : \"exploration\"",
+  "movementTiles: inBattle ? movementTiles(world, player) : []",
+  "dangerTiles: inBattle ? dangerTiles(world) : []",
 ], "tactical graphics state");
 
 includesAll(terrainAtlas, [
@@ -168,6 +187,12 @@ includesAll(explore, [
   "setTransform",
   "spriteSheetStatus",
   "terrainAtlasStatus",
+  "visualCompositionStatus",
+  "explorationRangeHidden",
+  "actionButtonCount",
+  "combatHudHeight",
+  "unitStatusHeight",
+  "battlePreviewHeight",
 ], "explore tactical wiring");
 
 includesAll(camera, [
@@ -188,6 +213,7 @@ includesAll(player, [
   "dreamblade-cadet-spritesheet.svg",
   "frameWidth",
   "animations",
+  "scale: .96",
   "Dreamblade Cadet",
   "combat",
   "maxHp",

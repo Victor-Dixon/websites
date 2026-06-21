@@ -102,13 +102,15 @@ function battlePreview(world, player) {
   };
 }
 
-export function createTacticalGraphicsState(world, player) {
+export function createTacticalGraphicsState(world, player, options = {}) {
   const maxHp = player.combat?.maxHp || 28;
   const currentHp = Math.min(maxHp, player.combat?.hp || maxHp);
+  const inBattle = options.mode === "battle" || player.combat?.inBattle === true;
 
   return {
-    movementTiles: movementTiles(world, player),
-    dangerTiles: dangerTiles(world),
+    mode: inBattle ? "battle" : "exploration",
+    movementTiles: inBattle ? movementTiles(world, player) : [],
+    dangerTiles: inBattle ? dangerTiles(world) : [],
     objectiveTiles: objectiveTiles(world),
     selectedUnit: {
       name: player.name || "Explorer",

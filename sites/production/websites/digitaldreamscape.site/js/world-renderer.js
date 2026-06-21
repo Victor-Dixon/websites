@@ -328,15 +328,31 @@ function drawPlayer(ctx, camera, world, player, renderState = {}) {
   const screen = tileToScreen(camera, world, player);
   const centerX = screen.x + (size / 2);
   const centerY = screen.y + (size / 2);
+  const mobileScale = camera.width <= 760 ? 1.38 : camera.width <= 980 ? 1.18 : 1;
+  const pulse = Math.sin((renderState.frameTime || 0) / 360);
 
-  ctx.fillStyle = "rgba(98, 217, 255, .18)";
+  ctx.save();
+  ctx.fillStyle = "rgba(0, 0, 0, .34)";
   ctx.beginPath();
-  ctx.ellipse(centerX, centerY + 11, 18, 7, 0, 0, Math.PI * 2);
+  ctx.ellipse(centerX, centerY + 14, 22 * mobileScale, 8 * mobileScale, 0, 0, Math.PI * 2);
   ctx.fill();
+
+  ctx.shadowColor = "rgba(92, 244, 255, .55)";
+  ctx.shadowBlur = 12 + (pulse * 3);
+  ctx.fillStyle = "rgba(92, 244, 255, .18)";
+  ctx.beginPath();
+  ctx.ellipse(centerX, centerY + 11, 19 * mobileScale, 8 * mobileScale, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 209, 102, .7)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.ellipse(centerX, centerY + 11, 17 * mobileScale, 6 * mobileScale, 0, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.restore();
 
   drawLayeredAvatar(ctx, centerX, centerY, player, {
     frameTime: renderState.frameTime || 0,
-    tileSize: size,
+    tileSize: size * mobileScale,
   });
 }
 
@@ -440,13 +456,21 @@ function drawTacticalTile(ctx, camera, world, tile, style) {
   }
 
   ctx.save();
+  ctx.shadowColor = style.stroke;
+  ctx.shadowBlur = 10;
   ctx.fillStyle = style.glow;
-  ctx.fillRect(screen.x + 5, screen.y + 5, size - 10, size - 10);
+  ctx.beginPath();
+  ctx.roundRect(screen.x + 5, screen.y + 5, size - 10, size - 10, 7);
+  ctx.fill();
   ctx.fillStyle = style.fill;
-  ctx.fillRect(screen.x + 7, screen.y + 7, size - 14, size - 14);
+  ctx.beginPath();
+  ctx.roundRect(screen.x + 8, screen.y + 8, size - 16, size - 16, 6);
+  ctx.fill();
   ctx.strokeStyle = style.stroke;
   ctx.lineWidth = 2;
-  ctx.strokeRect(screen.x + 6, screen.y + 6, size - 12, size - 12);
+  ctx.beginPath();
+  ctx.roundRect(screen.x + 6, screen.y + 6, size - 12, size - 12, 7);
+  ctx.stroke();
   ctx.strokeStyle = "rgba(255, 255, 255, .36)";
   ctx.beginPath();
   ctx.moveTo(screen.x + (size / 2), screen.y + 8);
@@ -515,7 +539,7 @@ export function renderWorld(ctx, world, camera, player, renderState = {}) {
       const screenX = (x * size) - camera.x;
       const screenY = (y * size) - camera.y;
       drawTerrainTile(ctx, screenX, screenY, size, world.terrain[y]?.[x], x, y, renderState.frameTime || 0);
-      ctx.strokeStyle = "rgba(76, 201, 255, .16)";
+      ctx.strokeStyle = "rgba(92, 244, 255, .075)";
       ctx.lineWidth = 1;
       ctx.strokeRect(screenX, screenY, size, size);
     }

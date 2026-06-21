@@ -61,13 +61,14 @@ const camera = createCamera(canvas, WORLD);
 const renderState = {
   destination: null,
   targetObject: null,
-  tactical: createTacticalGraphicsState(WORLD, player),
+  mode: "exploration",
+  tactical: createTacticalGraphicsState(WORLD, player, { mode: "exploration" }),
 };
 
 let lastStepAt = 0;
 
 function updateCombatHud() {
-  renderState.tactical = createTacticalGraphicsState(WORLD, player);
+  renderState.tactical = createTacticalGraphicsState(WORLD, player, { mode: renderState.mode });
 
   const { selectedUnit, preview } = renderState.tactical;
   const hpPercent = selectedUnit.maxHp > 0 ? Math.round((selectedUnit.hp / selectedUnit.maxHp) * 100) : 0;
@@ -333,5 +334,22 @@ window.digitalDreamscapeDebug = {
   isWalkable: (x, y) => isWalkable(WORLD, x, y),
   spriteSheetStatus: () => getSpriteSheetAnimatorStatus(player),
   terrainAtlasStatus: () => getTerrainAtlasStatus(),
+  visualCompositionStatus: () => ({
+    mode: renderState.mode,
+    tacticalRangeVisible: renderState.tactical.mode === "battle",
+    explorationRangeHidden: renderState.tactical.mode === "exploration"
+      && renderState.tactical.movementTiles.length === 0
+      && renderState.tactical.dangerTiles.length === 0,
+    combatHudVisible: Boolean(document.getElementById("combat-hud")),
+    unitStatusCardVisible: Boolean(document.getElementById("unit-status-card")),
+    battlePreviewVisible: Boolean(document.getElementById("combat-preview-panel")),
+    actionButtonCount: document.querySelectorAll(".battle-command").length,
+    combatHudHeight: getComputedStyle(document.getElementById("combat-hud")).height,
+    unitStatusHeight: getComputedStyle(document.getElementById("unit-status-card")).height,
+    battlePreviewHeight: getComputedStyle(document.getElementById("combat-preview-panel")).height,
+    canvasCssHeight: getComputedStyle(canvas).height,
+    spriteSheet: getSpriteSheetAnimatorStatus(player),
+    terrainAtlas: getTerrainAtlasStatus().manifestStatus,
+  }),
 };
 
