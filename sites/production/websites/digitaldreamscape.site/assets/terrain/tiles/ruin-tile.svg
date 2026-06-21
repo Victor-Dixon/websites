@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="ruin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dce6f7"/>
+      <stop offset=".52" stop-color="#7f8aa4"/>
+      <stop offset="1" stop-color="#323a55"/>
+    </linearGradient>
+    <linearGradient id="goldDust" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#5cf4ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="8" fill="#1c2439"/>
+  <path d="M4 10 L32 2 L60 10 L60 52 L32 62 L4 52 Z" fill="url(#ruin)" stroke="#f7fbff" stroke-opacity=".28"/>
+  <path d="M8 20 L23 12 L32 22 L47 14 L57 20 L57 34 L42 40 L31 32 L17 39 L8 33 Z" fill="#aeb9cf" opacity=".55" stroke="#172037" stroke-opacity=".36"/>
+  <path d="M12 49 L25 39 L35 49 L51 40 L58 47 L32 60 Z" fill="#59647d" opacity=".52" stroke="#151d34" stroke-opacity=".46"/>
+  <path d="M23 13 L27 28 L22 39 L34 49 L32 59" stroke="#111a30" stroke-opacity=".45" fill="none" stroke-width="2"/>
+  <path d="M43 17 L37 31 L49 37 L46 50" stroke="#edf4ff" stroke-opacity=".24" fill="none"/>
+  <path d="M13 54 H51" stroke="url(#goldDust)" stroke-opacity=".45" stroke-width="2"/>
+  <circle cx="45" cy="28" r="2.2" fill="#5cf4ff" opacity=".5"/>
+</svg>

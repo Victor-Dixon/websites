@@ -1,13 +1,14 @@
 import { drawLayeredAvatar } from "./avatar.js";
+import { drawAtlasProp, drawAtlasTerrainTile } from "./terrain-atlas.js";
 
 const TERRAIN_STYLES = {
-  grass: { fill: "#2f8d52", accent: "#3cae64" },
-  path: { fill: "#9a8257", accent: "#b79a68" },
-  plain: { fill: "#5b9f69", accent: "#78ba7c" },
-  water: { fill: "#175d9e", accent: "#2180cb" },
-  wall: { fill: "#20293f", accent: "#3b4663" },
-  tree: { fill: "#174f35", accent: "#2a7a4c" },
-  rock: { fill: "#4d5870", accent: "#6d7891" },
+  grass: { fill: "#37a35d", accent: "#8ee489", shadow: "#1e6c43" },
+  path: { fill: "#c09a5a", accent: "#ffd990", shadow: "#7a5a35" },
+  plain: { fill: "#6dc978", accent: "#b8f38d", shadow: "#438a55" },
+  water: { fill: "#1e78c8", accent: "#65d5ff", shadow: "#0e4c8a" },
+  wall: { fill: "#293858", accent: "#6f82b7", shadow: "#151d34" },
+  tree: { fill: "#20864d", accent: "#65cf72", shadow: "#114b32" },
+  rock: { fill: "#71809a", accent: "#c7d1e6", shadow: "#3e4a60" },
 };
 
 const OBJECT_STYLES = {
@@ -37,6 +38,18 @@ const TACTICAL_TILE_STYLES = {
   },
 };
 
+const FUTURE_ISO = {
+  cyan: "rgba(92, 244, 255, .42)",
+  magenta: "rgba(255, 92, 255, .28)",
+  gold: "rgba(255, 209, 102, .38)",
+  shadow: "rgba(0, 0, 0, .22)",
+};
+
+function tileNoise(x, y) {
+  const value = Math.sin((x * 127.1) + (y * 311.7)) * 43758.5453;
+  return value - Math.floor(value);
+}
+
 function tileToScreen(camera, world, tile) {
   return {
     x: (tile.x * world.tileSize) - camera.x,
@@ -44,19 +57,145 @@ function tileToScreen(camera, world, tile) {
   };
 }
 
-function drawTerrainTile(ctx, x, y, size, terrainType) {
+function drawAtlasTileFinish(ctx, x, y, size, terrainType, tileX, tileY, frameTime) {
+  const noise = tileNoise(tileX, tileY);
+
+  if (terrainType === "water") {
+    const shimmer = Math.sin((frameTime / 420) + tileX + tileY) * 1.4;
+    ctx.strokeStyle = "rgba(230, 255, 255, .22)";
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.moveTo(x + 7, y + 17 + shimmer);
+    ctx.lineTo(x + 18, y + 14 - shimmer);
+    ctx.lineTo(x + 30, y + 17 + shimmer);
+    ctx.stroke();
+    return;
+  }
+
+  if (terrainType === "grass" || terrainType === "plain") {
+    ctx.strokeStyle = noise > .58 ? "rgba(255, 255, 255, .12)" : "rgba(12, 70, 43, .2)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x + 10 + ((tileX * 5) % 12), y + 24);
+    ctx.lineTo(x + 14 + ((tileX * 5) % 12), y + 16);
+    ctx.stroke();
+    return;
+  }
+
+  if (terrainType === "path") {
+    ctx.strokeStyle = "rgba(255, 238, 190, .14)";
+    ctx.beginPath();
+    ctx.moveTo(x + 6, y + 22 + (noise * 4));
+    ctx.lineTo(x + size - 8, y + 18 + (noise * 3));
+    ctx.stroke();
+  }
+}
+
+function drawTerrainTile(ctx, x, y, size, terrainType, tileX = 0, tileY = 0, frameTime = 0) {
   const style = TERRAIN_STYLES[terrainType] || TERRAIN_STYLES.grass;
+  const inset = 2;
+
+  if (drawAtlasTerrainTile(ctx, terrainType, x, y, size)) {
+    drawAtlasTileFinish(ctx, x, y, size, terrainType, tileX, tileY, frameTime);
+    return true;
+  }
+
+  ctx.fillStyle = "rgba(0, 0, 0, .16)";
+  ctx.fillRect(x + 2, y + 4, size - 1, size - 1);
+
   ctx.fillStyle = style.fill;
   ctx.fillRect(x, y, size, size);
-  ctx.fillStyle = style.accent;
-  ctx.globalAlpha = .18;
-  ctx.fillRect(x + 3, y + 3, size - 6, size - 6);
+  ctx.fillStyle = style.shadow;
+  ctx.globalAlpha = .28;
+  ctx.fillRect(x, y + size - 7, size, 7);
   ctx.globalAlpha = 1;
 
-  ctx.fillStyle = "rgba(255, 255, 255, .08)";
+  ctx.fillStyle = style.accent;
+  ctx.globalAlpha = .22;
+  ctx.fillRect(x + inset + 1, y + inset + 1, size - ((inset + 1) * 2), size - ((inset + 1) * 2));
+  ctx.globalAlpha = 1;
+
+  ctx.fillStyle = "rgba(255, 255, 255, .16)";
   ctx.fillRect(x + 3, y + 3, size - 6, 2);
-  ctx.fillStyle = "rgba(5, 9, 20, .16)";
-  ctx.fillRect(x + 3, y + size - 5, size - 6, 2);
+
+  drawFuturisticIsoFacet(ctx, x, y, size, terrainType, tileX, tileY);
+
+  const noise = tileNoise(tileX, tileY);
+  if (terrainType === "grass" || terrainType === "plain") {
+    ctx.strokeStyle = noise > .5 ? "rgba(255, 255, 255, .18)" : "rgba(13, 75, 44, .34)";
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 2; i += 1) {
+      const bladeX = x + 8 + ((tileX * 7 + tileY * 11 + i * 9) % (size - 14));
+      const bladeY = y + 11 + ((tileY * 5 + i * 8) % (size - 18));
+      ctx.beginPath();
+      ctx.moveTo(bladeX, bladeY + 5);
+      ctx.lineTo(bladeX + 3, bladeY);
+      ctx.stroke();
+    }
+  } else if (terrainType === "path") {
+    ctx.fillStyle = "rgba(255, 247, 214, .22)";
+    ctx.fillRect(x + 8 + ((tileX * 3) % 8), y + 9, 7, 3);
+    ctx.fillRect(x + 17, y + 20 + ((tileY * 5) % 5), 8, 3);
+  } else if (terrainType === "water") {
+    const shimmer = Math.sin((frameTime / 380) + tileX + tileY) * 2;
+    ctx.strokeStyle = "rgba(215, 248, 255, .42)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x + 5, y + 11 + shimmer);
+    ctx.lineTo(x + 14, y + 9 - shimmer);
+    ctx.lineTo(x + 24, y + 12 + shimmer);
+    ctx.stroke();
+  } else if (terrainType === "tree") {
+    ctx.fillStyle = "rgba(255, 255, 255, .2)";
+    ctx.beginPath();
+    ctx.arc(x + 10, y + 10, 4, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (terrainType === "rock") {
+    ctx.fillStyle = "rgba(255, 255, 255, .18)";
+    ctx.fillRect(x + 9, y + 8, 9, 3);
+    ctx.fillStyle = "rgba(0, 0, 0, .18)";
+    ctx.fillRect(x + 12, y + 19, 10, 4);
+  }
+  return false;
+}
+
+function drawFuturisticIsoFacet(ctx, x, y, size, terrainType, tileX, tileY) {
+  // Futuristic/isometric-lite graphics pass: diamond facets give the 2D grid a premium 2.5D tactical read.
+  const centerX = x + (size / 2);
+  const centerY = y + (size / 2);
+  const pulse = tileNoise(tileX, tileY) > .76;
+  const accent = terrainType === "water"
+    ? FUTURE_ISO.cyan
+    : terrainType === "path"
+      ? FUTURE_ISO.gold
+      : terrainType === "wall" || terrainType === "rock"
+        ? "rgba(180, 205, 255, .24)"
+        : "rgba(255, 255, 255, .18)";
+
+  ctx.save();
+  ctx.strokeStyle = pulse ? FUTURE_ISO.magenta : accent;
+  ctx.lineWidth = pulse ? 1.5 : 1;
+  ctx.beginPath();
+  ctx.moveTo(centerX, y + 5);
+  ctx.lineTo(x + size - 5, centerY);
+  ctx.lineTo(centerX, y + size - 5);
+  ctx.lineTo(x + 5, centerY);
+  ctx.closePath();
+  ctx.stroke();
+
+  if (pulse) {
+    ctx.fillStyle = "rgba(255, 92, 255, .09)";
+    ctx.fill();
+  }
+
+  ctx.strokeStyle = "rgba(92, 244, 255, .18)";
+  ctx.beginPath();
+  ctx.moveTo(x + 7, centerY);
+  ctx.lineTo(x + size - 7, centerY);
+  ctx.moveTo(centerX, y + 7);
+  ctx.lineTo(centerX, y + size - 7);
+  ctx.stroke();
+  ctx.restore();
 }
 
 function drawLabel(ctx, text, x, y) {
@@ -76,8 +215,15 @@ function drawBuilding(ctx, camera, world, object) {
   const width = object.width * size;
   const height = object.height * size;
 
+  ctx.fillStyle = "rgba(0, 0, 0, .24)";
+  ctx.fillRect(screen.x + 7, screen.y + 10, width - 5, height - 2);
+
   ctx.fillStyle = OBJECT_STYLES.building;
   ctx.fillRect(screen.x + 2, screen.y + 2, width - 4, height - 4);
+  ctx.fillStyle = "rgba(255, 209, 102, .5)";
+  ctx.fillRect(screen.x + 8, screen.y + 8, width - 16, 7);
+  ctx.fillStyle = "rgba(7, 16, 36, .22)";
+  ctx.fillRect(screen.x + 8, screen.y + height - 16, width - 16, 8);
   ctx.strokeStyle = "rgba(255, 255, 255, .28)";
   ctx.lineWidth = 2;
   ctx.strokeRect(screen.x + 3, screen.y + 3, width - 6, height - 6);
@@ -90,11 +236,29 @@ function drawBuilding(ctx, camera, world, object) {
     ctx.fillRect(door.x + 13, door.y + 13, 6, 6);
   }
 
+  ctx.fillStyle = "rgba(76, 201, 255, .42)";
+  for (let wx = screen.x + 14; wx < screen.x + width - 14; wx += 24) {
+    ctx.fillRect(wx, screen.y + 23, 8, 10);
+  }
+
+  ctx.strokeStyle = FUTURE_ISO.cyan;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(screen.x + 12, screen.y + height - 10);
+  ctx.lineTo(screen.x + width - 12, screen.y + height - 10);
+  ctx.stroke();
+
   drawLabel(ctx, object.name, screen.x + (width / 2), screen.y + 2);
 }
 
 function drawObject(ctx, camera, world, object) {
   if (object.type === "building") {
+    if (drawAtlasProp(ctx, object, camera, world)) {
+      const size = world.tileSize;
+      const screen = tileToScreen(camera, world, object);
+      drawLabel(ctx, object.name, screen.x + (((object.width || 1) * size) / 2), screen.y + 2);
+      return;
+    }
     drawBuilding(ctx, camera, world, object);
     return;
   }
@@ -105,17 +269,47 @@ function drawObject(ctx, camera, world, object) {
   const centerY = screen.y + (size / 2);
   const color = OBJECT_STYLES[object.type] || OBJECT_STYLES.marker;
 
+  if (drawAtlasProp(ctx, object, camera, world)) {
+    drawLabel(ctx, object.name, centerX, screen.y + 1);
+    return;
+  }
+
+  ctx.save();
+  if (object.type === "portal" || object.type === "gate" || object.type === "resource") {
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 18;
+  }
+
+  ctx.fillStyle = "rgba(0, 0, 0, .22)";
+  ctx.beginPath();
+  ctx.ellipse(centerX, centerY + 11, 13, 5, 0, 0, Math.PI * 2);
+  ctx.fill();
+
   ctx.fillStyle = color;
   ctx.strokeStyle = "rgba(5, 9, 20, .65)";
   ctx.lineWidth = 3;
 
   if (object.type === "npc") {
+    ctx.fillStyle = "#071024";
+    ctx.beginPath();
+    ctx.arc(centerX, centerY - 3, 11, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = color;
     ctx.beginPath();
     ctx.arc(centerX, centerY - 3, 9, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
-    ctx.fillRect(centerX - 7, centerY + 5, 14, 12);
+    ctx.fillStyle = "#4cc9ff";
+    ctx.fillRect(centerX - 8, centerY + 5, 16, 12);
+    ctx.fillStyle = "#071024";
+    ctx.fillRect(centerX - 4, centerY - 5, 2, 3);
+    ctx.fillRect(centerX + 3, centerY - 5, 2, 3);
   } else if (object.type === "resource") {
+    ctx.fillStyle = "rgba(118, 240, 170, .28)";
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 16, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = color;
     ctx.beginPath();
     ctx.moveTo(centerX, screen.y + 5);
     ctx.lineTo(screen.x + size - 5, centerY + 8);
@@ -124,6 +318,11 @@ function drawObject(ctx, camera, world, object) {
     ctx.fill();
     ctx.stroke();
   } else if (object.type === "portal") {
+    ctx.fillStyle = "rgba(76, 201, 255, .24)";
+    ctx.beginPath();
+    ctx.ellipse(centerX, centerY, 16, 21, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = color;
     ctx.beginPath();
     ctx.ellipse(centerX, centerY, 10, 15, 0, 0, Math.PI * 2);
     ctx.fill();
@@ -131,8 +330,23 @@ function drawObject(ctx, camera, world, object) {
     ctx.strokeStyle = "rgba(255, 255, 255, .72)";
     ctx.stroke();
   } else if (object.type === "gate") {
-    ctx.fillRect(screen.x + 6, screen.y + 6, size - 12, size - 12);
-    ctx.strokeRect(screen.x + 6, screen.y + 6, size - 12, size - 12);
+    ctx.fillStyle = "rgba(255, 77, 109, .24)";
+    ctx.fillRect(screen.x + 3, screen.y + 3, size - 6, size - 6);
+    ctx.fillStyle = color;
+    ctx.fillRect(screen.x + 7, screen.y + 7, size - 14, size - 14);
+    ctx.strokeRect(screen.x + 7, screen.y + 7, size - 14, size - 14);
+    ctx.strokeStyle = "rgba(255, 255, 255, .72)";
+    ctx.beginPath();
+    ctx.moveTo(screen.x + 10, screen.y + 10);
+    ctx.lineTo(screen.x + size - 10, screen.y + size - 10);
+    ctx.moveTo(screen.x + size - 10, screen.y + 10);
+    ctx.lineTo(screen.x + 10, screen.y + size - 10);
+    ctx.stroke();
+    ctx.strokeStyle = FUTURE_ISO.magenta;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 16, 0, Math.PI * 2);
+    ctx.stroke();
   } else {
     ctx.beginPath();
     ctx.arc(centerX, centerY, 10, 0, Math.PI * 2);
@@ -140,6 +354,7 @@ function drawObject(ctx, camera, world, object) {
     ctx.stroke();
   }
 
+  ctx.restore();
   drawLabel(ctx, object.name, centerX, screen.y + 1);
 }
 
@@ -148,16 +363,119 @@ function drawPlayer(ctx, camera, world, player, renderState = {}) {
   const screen = tileToScreen(camera, world, player);
   const centerX = screen.x + (size / 2);
   const centerY = screen.y + (size / 2);
+  const mobileScale = camera.width <= 760 ? 1.38 : camera.width <= 980 ? 1.18 : 1;
+  const pulse = Math.sin((renderState.frameTime || 0) / 360);
 
-  ctx.fillStyle = "rgba(98, 217, 255, .18)";
+  ctx.save();
+  ctx.fillStyle = "rgba(0, 0, 0, .34)";
   ctx.beginPath();
-  ctx.arc(centerX, centerY, 17, 0, Math.PI * 2);
+  ctx.ellipse(centerX, centerY + 14, 22 * mobileScale, 8 * mobileScale, 0, 0, Math.PI * 2);
   ctx.fill();
+
+  ctx.shadowColor = "rgba(92, 244, 255, .55)";
+  ctx.shadowBlur = 12 + (pulse * 3);
+  ctx.fillStyle = "rgba(92, 244, 255, .18)";
+  ctx.beginPath();
+  ctx.ellipse(centerX, centerY + 11, 19 * mobileScale, 8 * mobileScale, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 209, 102, .7)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.ellipse(centerX, centerY + 11, 17 * mobileScale, 6 * mobileScale, 0, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.restore();
 
   drawLayeredAvatar(ctx, centerX, centerY, player, {
     frameTime: renderState.frameTime || 0,
-    tileSize: size,
+    tileSize: size * mobileScale,
   });
+}
+
+function drawTerrainProp(ctx, camera, world, prop) {
+  drawAtlasProp(ctx, prop, camera, world);
+}
+
+export function sortRenderablesByY(a, b) {
+  return (a.sortY - b.sortY) || (a.sortX - b.sortX) || a.kind.localeCompare(b.kind);
+}
+
+function terrainPropForTile(world, x, y, terrainType) {
+  if (!["tree", "rock", "wall"].includes(terrainType)) return null;
+  const isBorderWall = terrainType === "wall" && (x === 0 || y === 0 || x === world.width - 1 || y === world.height - 1);
+
+  if (terrainType === "wall" && !isBorderWall && tileNoise(x, y) < .7) return null;
+
+  return {
+    id: `terrain_${terrainType}_${x}_${y}`,
+    type: terrainType,
+    atlasKey: terrainType === "tree" ? "pineTree" : "stoneRuinWall",
+    x,
+    y,
+    drawWidth: terrainType === "tree" ? 60 : 48,
+    drawHeight: terrainType === "tree" ? 90 : 52,
+    anchorX: .5,
+    anchorY: 1,
+  };
+}
+
+function collectVisibleRenderables(world, camera, player, startX, startY, endX, endY) {
+  const size = world.tileSize;
+  const renderables = [];
+
+  for (let y = startY; y <= endY; y += 1) {
+    for (let x = startX; x <= endX; x += 1) {
+      const terrainProp = terrainPropForTile(world, x, y, world.terrain[y]?.[x]);
+      if (terrainProp) {
+        renderables.push({
+          kind: "terrain-prop",
+          object: terrainProp,
+          sortX: x,
+          sortY: y + 1,
+        });
+      }
+    }
+  }
+
+  world.objects
+    .filter((object) => {
+      const objectWidth = (object.width || 1) * size;
+      const objectHeight = (object.height || 1) * size;
+      const screen = tileToScreen(camera, world, object);
+      return screen.x + objectWidth >= -64
+        && screen.y + objectHeight >= -96
+        && screen.x <= camera.width + 64
+        && screen.y <= camera.height + 96;
+    })
+    .forEach((object) => {
+      renderables.push({
+        kind: "object",
+        object,
+        sortX: object.x,
+        sortY: object.y + (object.height || 1),
+      });
+    });
+
+  renderables.push({
+    kind: "player",
+    sortX: player.x,
+    sortY: player.y + .92,
+  });
+
+  return renderables.sort(sortRenderablesByY);
+}
+
+function drawSortedRenderable(ctx, camera, world, player, renderState, renderable) {
+  if (renderable.kind === "player") {
+    drawPlayer(ctx, camera, world, player, renderState);
+    return;
+  }
+
+  if (renderable.kind === "terrain-prop") {
+    drawTerrainProp(ctx, camera, world, renderable.object);
+    return;
+  }
+
+  drawObject(ctx, camera, world, renderable.object);
 }
 
 function drawTacticalTile(ctx, camera, world, tile, style) {
@@ -173,13 +491,36 @@ function drawTacticalTile(ctx, camera, world, tile, style) {
   }
 
   ctx.save();
+  ctx.shadowColor = style.stroke;
+  ctx.shadowBlur = 10;
   ctx.fillStyle = style.glow;
-  ctx.fillRect(screen.x + 5, screen.y + 5, size - 10, size - 10);
+  ctx.beginPath();
+  ctx.roundRect(screen.x + 5, screen.y + 5, size - 10, size - 10, 7);
+  ctx.fill();
   ctx.fillStyle = style.fill;
-  ctx.fillRect(screen.x + 7, screen.y + 7, size - 14, size - 14);
+  ctx.beginPath();
+  ctx.roundRect(screen.x + 8, screen.y + 8, size - 16, size - 16, 6);
+  ctx.fill();
   ctx.strokeStyle = style.stroke;
   ctx.lineWidth = 2;
-  ctx.strokeRect(screen.x + 6, screen.y + 6, size - 12, size - 12);
+  ctx.beginPath();
+  ctx.roundRect(screen.x + 6, screen.y + 6, size - 12, size - 12, 7);
+  ctx.stroke();
+  ctx.strokeStyle = "rgba(255, 255, 255, .36)";
+  ctx.beginPath();
+  ctx.moveTo(screen.x + (size / 2), screen.y + 8);
+  ctx.lineTo(screen.x + size - 8, screen.y + (size / 2));
+  ctx.lineTo(screen.x + (size / 2), screen.y + size - 8);
+  ctx.lineTo(screen.x + 8, screen.y + (size / 2));
+  ctx.closePath();
+  ctx.stroke();
+  ctx.strokeStyle = FUTURE_ISO.cyan;
+  ctx.beginPath();
+  ctx.moveTo(screen.x + (size / 2), screen.y + 11);
+  ctx.lineTo(screen.x + (size / 2), screen.y + size - 11);
+  ctx.moveTo(screen.x + 11, screen.y + (size / 2));
+  ctx.lineTo(screen.x + size - 11, screen.y + (size / 2));
+  ctx.stroke();
   ctx.fillStyle = "rgba(255, 255, 255, .22)";
   ctx.fillRect(screen.x + 9, screen.y + 9, size - 18, 2);
   ctx.restore();
@@ -232,29 +573,20 @@ export function renderWorld(ctx, world, camera, player, renderState = {}) {
     for (let x = startX; x <= endX; x += 1) {
       const screenX = (x * size) - camera.x;
       const screenY = (y * size) - camera.y;
-      drawTerrainTile(ctx, screenX, screenY, size, world.terrain[y]?.[x]);
-      ctx.strokeStyle = "rgba(76, 201, 255, .16)";
-      ctx.lineWidth = 1;
-      ctx.strokeRect(screenX, screenY, size, size);
+      const usedAtlas = drawTerrainTile(ctx, screenX, screenY, size, world.terrain[y]?.[x], x, y, renderState.frameTime || 0);
+      if (!usedAtlas) {
+        ctx.strokeStyle = "rgba(92, 244, 255, .06)";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(screenX, screenY, size, size);
+      }
     }
   }
 
   drawTacticalOverlay(ctx, camera, world, renderState.tactical);
   drawPath(ctx, camera, world, player.path, renderState.destination);
 
-  world.objects
-    .filter((object) => {
-      const objectWidth = (object.width || 1) * size;
-      const objectHeight = (object.height || 1) * size;
-      const screen = tileToScreen(camera, world, object);
-      return screen.x + objectWidth >= -64
-        && screen.y + objectHeight >= -64
-        && screen.x <= camera.width + 64
-        && screen.y <= camera.height + 64;
-    })
-    .forEach((object) => drawObject(ctx, camera, world, object));
-
-  drawPlayer(ctx, camera, world, player, renderState);
+  collectVisibleRenderables(world, camera, player, startX, startY, endX, endY)
+    .forEach((renderable) => drawSortedRenderable(ctx, camera, world, player, renderState, renderable));
 
   ctx.fillStyle = "rgba(5, 9, 20, .76)";
   ctx.fillRect(12, 12, 172, 30);

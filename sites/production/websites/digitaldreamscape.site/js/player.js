@@ -7,8 +7,37 @@ export const defaultPlayerState = {
   y: 8,
   direction: "south",
   avatar: {
-    style: "anime_tactical_toon_layered_2d",
+    style: "sprite_sheet_with_toon_fallback",
     layers: ["aura", "cape", "base_body", "hair", "outfit", "boots", "weapon"],
+    spriteSheet: {
+      enabled: true,
+      preferSprite: true,
+      suppressFallbackWhileLoading: true,
+      src: "./assets/sprites/dreamblade-cadet-spritesheet.svg",
+      autoLayout: {
+        enabled: true,
+        rows: 4,
+        mode: "grid",
+        animationPreset: "auto",
+      },
+      scale: 1.18,
+      anchorX: .5,
+      anchorY: .92,
+      imageSmoothing: false,
+      glowColor: "rgba(92, 244, 255, .48)",
+      glowBlur: 14,
+      rows: {
+        south: 0,
+        west: 1,
+        east: 2,
+        north: 3,
+      },
+      animations: {
+        idle: { frames: [0, 1, 2, 1], fps: 4 },
+        walk: { frames: [0, 1, 2, 3], fps: 9 },
+        attack: { frames: [1, 2, 3, 2], fps: 10 },
+      },
+    },
   },
   combat: {
     className: "Dreamblade Cadet",
@@ -52,6 +81,14 @@ export function createPlayerState(savedState = {}) {
   return {
     ...defaultPlayerState,
     ...savedState,
+    avatar: {
+      ...defaultPlayerState.avatar,
+      ...(savedState.avatar || {}),
+      spriteSheet: {
+        ...defaultPlayerState.avatar.spriteSheet,
+        ...((savedState.avatar || {}).spriteSheet || {}),
+      },
+    },
     stats: { ...defaultPlayerState.stats, ...(savedState.stats || {}) },
     reputation: { ...defaultPlayerState.reputation, ...(savedState.reputation || {}) },
     combat: { ...defaultPlayerState.combat, ...(savedState.combat || {}) },

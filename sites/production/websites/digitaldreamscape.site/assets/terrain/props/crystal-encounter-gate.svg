@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="112" viewBox="0 0 96 112">
+  <defs>
+    <linearGradient id="c" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff6ff"/>
+      <stop offset=".45" stop-color="#ff5cff"/>
+      <stop offset="1" stop-color="#5145ff"/>
+    </linearGradient>
+    <radialGradient id="core" cx=".5" cy=".45" r=".55">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".38" stop-color="#5cf4ff"/>
+      <stop offset="1" stop-color="#3d2dff"/>
+    </radialGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+  <ellipse cx="48" cy="98" rx="34" ry="10" fill="rgba(0,0,0,.38)"/>
+  <path d="M20 91 L32 72 H64 L76 91 L62 103 H34 Z" fill="#303a56" stroke="#10182c" stroke-width="4"/>
+  <path d="M48 5 L79 31 L71 78 L48 105 L25 78 L17 31 Z" fill="url(#c)" opacity=".35" filter="url(#glow)"/>
+  <path d="M48 5 L79 31 L71 78 L48 105 L25 78 L17 31 Z" fill="url(#c)" stroke="#150d2f" stroke-width="4"/>
+  <path d="M48 7 V103" stroke="#fff" stroke-opacity=".5" stroke-width="3"/>
+  <path d="M19 32 L48 48 L77 32" stroke="#fff" stroke-opacity=".45" fill="none" stroke-width="3"/>
+  <path d="M27 78 L48 48 L69 78" stroke="#1a123e" stroke-opacity=".34" fill="none" stroke-width="3"/>
+  <circle cx="48" cy="52" r="12" fill="url(#core)" opacity=".78"/>
+  <path d="M18 92 Q48 76 78 92" stroke="#5cf4ff" stroke-opacity=".58" fill="none" stroke-width="3"/>
+  <path d="M14 67 Q48 41 82 67" stroke="#ffd166" stroke-opacity=".28" fill="none" stroke-width="2"/>
+</svg>
