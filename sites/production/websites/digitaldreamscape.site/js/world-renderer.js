@@ -37,6 +37,13 @@ const TACTICAL_TILE_STYLES = {
   },
 };
 
+const FUTURE_ISO = {
+  cyan: "rgba(92, 244, 255, .42)",
+  magenta: "rgba(255, 92, 255, .28)",
+  gold: "rgba(255, 209, 102, .38)",
+  shadow: "rgba(0, 0, 0, .22)",
+};
+
 function tileNoise(x, y) {
   const value = Math.sin((x * 127.1) + (y * 311.7)) * 43758.5453;
   return value - Math.floor(value);
@@ -70,6 +77,8 @@ function drawTerrainTile(ctx, x, y, size, terrainType, tileX = 0, tileY = 0, fra
 
   ctx.fillStyle = "rgba(255, 255, 255, .16)";
   ctx.fillRect(x + 3, y + 3, size - 6, 2);
+
+  drawFuturisticIsoFacet(ctx, x, y, size, terrainType, tileX, tileY);
 
   const noise = tileNoise(tileX, tileY);
   if (terrainType === "grass" || terrainType === "plain") {
@@ -107,6 +116,45 @@ function drawTerrainTile(ctx, x, y, size, terrainType, tileX = 0, tileY = 0, fra
     ctx.fillStyle = "rgba(0, 0, 0, .18)";
     ctx.fillRect(x + 12, y + 19, 10, 4);
   }
+}
+
+function drawFuturisticIsoFacet(ctx, x, y, size, terrainType, tileX, tileY) {
+  // Futuristic/isometric-lite graphics pass: diamond facets give the 2D grid a premium 2.5D tactical read.
+  const centerX = x + (size / 2);
+  const centerY = y + (size / 2);
+  const pulse = tileNoise(tileX, tileY) > .76;
+  const accent = terrainType === "water"
+    ? FUTURE_ISO.cyan
+    : terrainType === "path"
+      ? FUTURE_ISO.gold
+      : terrainType === "wall" || terrainType === "rock"
+        ? "rgba(180, 205, 255, .24)"
+        : "rgba(255, 255, 255, .18)";
+
+  ctx.save();
+  ctx.strokeStyle = pulse ? FUTURE_ISO.magenta : accent;
+  ctx.lineWidth = pulse ? 1.5 : 1;
+  ctx.beginPath();
+  ctx.moveTo(centerX, y + 5);
+  ctx.lineTo(x + size - 5, centerY);
+  ctx.lineTo(centerX, y + size - 5);
+  ctx.lineTo(x + 5, centerY);
+  ctx.closePath();
+  ctx.stroke();
+
+  if (pulse) {
+    ctx.fillStyle = "rgba(255, 92, 255, .09)";
+    ctx.fill();
+  }
+
+  ctx.strokeStyle = "rgba(92, 244, 255, .18)";
+  ctx.beginPath();
+  ctx.moveTo(x + 7, centerY);
+  ctx.lineTo(x + size - 7, centerY);
+  ctx.moveTo(centerX, y + 7);
+  ctx.lineTo(centerX, y + size - 7);
+  ctx.stroke();
+  ctx.restore();
 }
 
 function drawLabel(ctx, text, x, y) {
@@ -151,6 +199,13 @@ function drawBuilding(ctx, camera, world, object) {
   for (let wx = screen.x + 14; wx < screen.x + width - 14; wx += 24) {
     ctx.fillRect(wx, screen.y + 23, 8, 10);
   }
+
+  ctx.strokeStyle = FUTURE_ISO.cyan;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(screen.x + 12, screen.y + height - 10);
+  ctx.lineTo(screen.x + width - 12, screen.y + height - 10);
+  ctx.stroke();
 
   drawLabel(ctx, object.name, screen.x + (width / 2), screen.y + 2);
 }
@@ -235,6 +290,11 @@ function drawObject(ctx, camera, world, object) {
     ctx.moveTo(screen.x + size - 10, screen.y + 10);
     ctx.lineTo(screen.x + 10, screen.y + size - 10);
     ctx.stroke();
+    ctx.strokeStyle = FUTURE_ISO.magenta;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 16, 0, Math.PI * 2);
+    ctx.stroke();
   } else {
     ctx.beginPath();
     ctx.arc(centerX, centerY, 10, 0, Math.PI * 2);
@@ -290,6 +350,13 @@ function drawTacticalTile(ctx, camera, world, tile, style) {
   ctx.lineTo(screen.x + (size / 2), screen.y + size - 8);
   ctx.lineTo(screen.x + 8, screen.y + (size / 2));
   ctx.closePath();
+  ctx.stroke();
+  ctx.strokeStyle = FUTURE_ISO.cyan;
+  ctx.beginPath();
+  ctx.moveTo(screen.x + (size / 2), screen.y + 11);
+  ctx.lineTo(screen.x + (size / 2), screen.y + size - 11);
+  ctx.moveTo(screen.x + 11, screen.y + (size / 2));
+  ctx.lineTo(screen.x + size - 11, screen.y + (size / 2));
   ctx.stroke();
   ctx.fillStyle = "rgba(255, 255, 255, .22)";
   ctx.fillRect(screen.x + 9, screen.y + 9, size - 18, 2);

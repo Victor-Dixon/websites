@@ -51,6 +51,10 @@ includesAll(css, [
   "--dd-panel-glass",
   "--dd-hp-green",
   "--dd-outline-ink",
+  "--dd-neon-cyan",
+  "--dd-neon-magenta",
+  "--dd-deep-space",
+  "--dd-holo-line",
 ], "style tokens");
 
 includesAll(css, [
@@ -77,6 +81,8 @@ includesAll(renderer, [
   "drawTacticalOverlay",
   "tileNoise",
   "shadowBlur",
+  "FUTURE_ISO",
+  "drawFuturisticIsoFacet",
 ], "canvas tactical overlay");
 
 includesAll(tactical, [

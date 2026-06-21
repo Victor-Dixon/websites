@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#05030d">
+  <title>MeTuber Cartoon Capture</title>
+  <link rel="stylesheet" href="./assets/capture.css">
+</head>
+<body>
+  <main class="capture-screen" data-metuber-capture>
+    <section class="camera-stage" aria-label="MeTuber camera preview">
+      <video class="camera-preview filter-cartoon" data-camera-preview autoplay playsinline muted></video>
+      <img class="capture-photo is-hidden filter-cartoon" data-capture-photo alt="Captured MeTuber frame">
+      <canvas class="capture-canvas" data-capture-canvas aria-hidden="true"></canvas>
+      <div class="cartoon-aura" aria-hidden="true"></div>
+      <div class="toon-bubbles" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </section>
+
+    <section class="permission-overlay is-visible" data-permission-overlay aria-live="polite">
+      <div class="permission-card">
+        <span class="permission-badge" aria-hidden="true">MT</span>
+        <p class="eyebrow">MeTuber Studio</p>
+        <h1>Enable your camera to start cartoon mode.</h1>
+        <p>MeTuber needs camera access for live capture, filter previews, and story posts.</p>
+        <button class="primary-pill" type="button" data-enable-camera>Enable Camera</button>
+        <p class="permission-note" data-permission-note>Camera permission has not been requested yet.</p>
+      </div>
+    </section>
+
+    <header class="top-capture-bar" aria-label="Capture top controls">
+      <button class="glass-icon" type="button" aria-label="Close capture screen" data-close-capture>
+        <span aria-hidden="true">X</span>
+      </button>
+      <button class="mode-pill" type="button" data-mode-pill>
+        <span class="mode-pulse" aria-hidden="true"></span>
+        <span data-mode-title>MeTuber Cartoon Mode</span>
+      </button>
+      <button class="glass-icon text-tool" type="button" aria-label="Add text">
+        <span aria-hidden="true">T</span>
+      </button>
+    </header>
+
+    <nav class="right-tool-rail" aria-label="Creative tools">
+      <button type="button" data-tool="text"><span aria-hidden="true">T</span><strong>Text</strong></button>
+      <button type="button" data-tool="draw"><span aria-hidden="true">~</span><strong>Draw</strong></button>
+      <button type="button" data-tool="stickers"><span aria-hidden="true">*</span><strong>Stickers</strong></button>
+      <button type="button" data-tool="cut"><span aria-hidden="true">[]</span><strong>Cut</strong></button>
+      <button type="button" data-tool="music"><span aria-hidden="true">mu</span><strong>Music</strong></button>
+      <button type="button" data-tool="voice"><span aria-hidden="true">mic</span><strong>Voice</strong></button>
+      <button type="button" data-tool="effects"><span aria-hidden="true">fx</span><strong>Effects</strong></button>
+      <button type="button" data-tool="more" data-more-tools><span aria-hidden="true">...</span><strong>More</strong></button>
+    </nav>
+
+    <section class="tool-sheet" data-tool-sheet aria-label="More camera actions" hidden>
+      <button type="button" data-flip-camera>Flip camera</button>
+      <button type="button" data-restart-camera>Restart camera</button>
+      <button type="button" data-debug-toggle>Debug view</button>
+    </section>
+
+    <section class="filter-carousel" aria-label="MeTuber filters" data-filter-carousel></section>
+
+    <section class="bottom-capture-controls" aria-label="Capture controls">
+      <button class="save-button" type="button" aria-label="Save capture" data-save-capture>
+        <span aria-hidden="true">DL</span>
+      </button>
+      <button class="capture-button" type="button" aria-label="Capture photo" data-capture-button>
+        <span class="capture-ring" aria-hidden="true"></span>
+      </button>
+      <button class="post-button" type="button" data-post-button>Post</button>
+    </section>
+
+    <section class="debug-panel" data-debug-panel aria-label="Debug controls" hidden>
+      <strong>MeTuber debug</strong>
+      <p data-debug-status>Camera idle</p>
+      <div>
+        <button type="button" data-debug-start>Start Camera</button>
+        <button type="button" data-debug-stop>Stop Camera</button>
+        <button type="button" data-debug-flip>Flip Camera</button>
+      </div>
+    </section>
+
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+  </main>
+
+  <script type="module" src="./assets/capture.js"></script>
+</body>
+</html>
