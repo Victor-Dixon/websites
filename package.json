@@ -1,8 +1,48 @@
 {
+  "name": "skymotion-ai",
+  "version": "1.0.0",
+  "description": "SkyMotion AI - AI-powered animation generation studio and creator community.",
+  "private": true,
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint app lib next.config.ts eslint.config.mjs --max-warnings=0",
+    "typecheck": "next typegen && tsc --noEmit",
     "audit:maskzero": "node tools/maskzero_site_audit.mjs"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victor-Dixon/websites.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Victor-Dixon/websites/issues"
+  },
+  "homepage": "https://github.com/Victor-Dixon/websites#readme",
   "dependencies": {
-    "@playwright/test": "^1.44.0"
+    "@playwright/test": "^1.44.0",
+    "@supabase/supabase-js": "^2.108.2",
+    "next": "^16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/node": "^26.0.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.9",
+    "tailwindcss": "^4.3.1",
+    "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "postcss": "^8.5.15"
   }
 }
