@@ -8,6 +8,8 @@ const files = {
   css: path.join(siteRoot, "style.css"),
   renderer: path.join(siteRoot, "js/world-renderer.js"),
   tactical: path.join(siteRoot, "js/tactical-graphics.js"),
+  terrainAtlas: path.join(siteRoot, "js/terrain-atlas.js"),
+  terrainManifest: path.join(siteRoot, "assets/terrain/terrain-atlas-manifest.json"),
   spriteAnimator: path.join(siteRoot, "js/sprite-sheet-animator.js"),
   spriteSheet: path.join(siteRoot, "assets/sprites/dreamblade-cadet-spritesheet.svg"),
   explore: path.join(siteRoot, "js/explore.js"),
@@ -16,6 +18,18 @@ const files = {
   player: path.join(siteRoot, "js/player.js"),
   task: path.join(root, "runtime/tasks/digital_dreamscape_anime_tactical_graphics_001.yaml"),
 };
+
+const terrainAssetFiles = [
+  "assets/terrain/tiles/grass-tile.svg",
+  "assets/terrain/tiles/moss-grass-tile.svg",
+  "assets/terrain/tiles/dirt-path-tile.svg",
+  "assets/terrain/tiles/cracked-stone-tile.svg",
+  "assets/terrain/tiles/water-tile.svg",
+  "assets/terrain/props/stone-ruin-wall.svg",
+  "assets/terrain/props/pine-tree.svg",
+  "assets/terrain/props/crystal-encounter-gate.svg",
+  "assets/terrain/props/waypoint-pedestal.svg",
+].map((relativePath) => path.join(siteRoot, relativePath));
 
 function read(file) {
   return fs.readFileSync(file, "utf8");
@@ -37,6 +51,8 @@ const html = read(files.html);
 const css = read(files.css);
 const renderer = read(files.renderer);
 const tactical = read(files.tactical);
+const terrainAtlas = read(files.terrainAtlas);
+const terrainManifest = read(files.terrainManifest);
 const spriteAnimator = read(files.spriteAnimator);
 const spriteSheet = read(files.spriteSheet);
 const explore = read(files.explore);
@@ -83,6 +99,10 @@ includesAll(renderer, [
   "dangerTiles",
   "objectiveTiles",
   "drawTacticalOverlay",
+  "drawAtlasTerrainTile",
+  "drawAtlasProp",
+  "collectVisibleRenderables",
+  "sortRenderablesByY",
   "tileNoise",
   "shadowBlur",
   "FUTURE_ISO",
@@ -96,6 +116,33 @@ includesAll(tactical, [
   "objectiveTiles",
   "battlePreview",
 ], "tactical graphics state");
+
+includesAll(terrainAtlas, [
+  "TERRAIN_ATLAS_MANIFEST_URL",
+  "drawAtlasTerrainTile",
+  "drawAtlasProp",
+  "getTerrainAtlasStatus",
+  "loadTerrainAtlasManifest",
+  "preloadTerrainAtlas",
+], "terrain atlas loader");
+
+includesAll(terrainManifest, [
+  "digital_dreamscape_premium_terrain_atlas_v1",
+  "grass-tile.svg",
+  "moss-grass-tile.svg",
+  "dirt-path-tile.svg",
+  "cracked-stone-tile.svg",
+  "water-tile.svg",
+  "stone-ruin-wall.svg",
+  "pine-tree.svg",
+  "crystal-encounter-gate.svg",
+  "waypoint-pedestal.svg",
+], "terrain atlas manifest");
+
+terrainAssetFiles.forEach((file) => {
+  assert(fs.existsSync(file), `required terrain asset missing: ${path.relative(root, file)}`);
+  includesAll(read(file), ["<svg"], `terrain asset ${path.basename(file)}`);
+});
 
 includesAll(spriteAnimator, [
   "drawSpriteSheetAvatar",
@@ -120,6 +167,7 @@ includesAll(explore, [
   "preview-defender",
   "setTransform",
   "spriteSheetStatus",
+  "terrainAtlasStatus",
 ], "explore tactical wiring");
 
 includesAll(camera, [
@@ -163,6 +211,13 @@ Object.entries(files).forEach(([label, file]) => {
   const content = read(file);
   restrictedNames.forEach((name) => {
     assert(!content.includes(name), `${label} contains restricted reference name: ${name}`);
+  });
+});
+
+terrainAssetFiles.forEach((file) => {
+  const content = read(file);
+  restrictedNames.forEach((name) => {
+    assert(!content.includes(name), `${path.basename(file)} contains restricted reference name: ${name}`);
   });
 });
 

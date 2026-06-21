@@ -1,0 +1,37 @@
+{
+  "id": "digital_dreamscape_premium_terrain_atlas_v1",
+  "version": 1,
+  "tileSize": 64,
+  "tiles": {
+    "grass": "./assets/terrain/tiles/grass-tile.svg",
+    "moss": "./assets/terrain/tiles/moss-grass-tile.svg",
+    "path": "./assets/terrain/tiles/dirt-path-tile.svg",
+    "stone": "./assets/terrain/tiles/cracked-stone-tile.svg",
+    "water": "./assets/terrain/tiles/water-tile.svg"
+  },
+  "props": {
+    "stoneRuinWall": "./assets/terrain/props/stone-ruin-wall.svg",
+    "pineTree": "./assets/terrain/props/pine-tree.svg",
+    "crystalEncounterGate": "./assets/terrain/props/crystal-encounter-gate.svg",
+    "waypointPedestal": "./assets/terrain/props/waypoint-pedestal.svg"
+  },
+  "terrainMap": {
+    "grass": "grass",
+    "plain": "moss",
+    "path": "path",
+    "water": "water",
+    "wall": "stone",
+    "tree": "moss",
+    "rock": "stone"
+  },
+  "propMap": {
+    "building": "stoneRuinWall",
+    "tree": "pineTree",
+    "wall": "stoneRuinWall",
+    "rock": "stoneRuinWall",
+    "gate": "crystalEncounterGate",
+    "portal": "waypointPedestal",
+    "marker": "waypointPedestal",
+    "resource": "crystalEncounterGate"
+  }
+}

@@ -1,4 +1,5 @@
 import { drawLayeredAvatar } from "./avatar.js";
+import { drawAtlasProp, drawAtlasTerrainTile } from "./terrain-atlas.js";
 
 const TERRAIN_STYLES = {
   grass: { fill: "#37a35d", accent: "#8ee489", shadow: "#1e6c43" },
@@ -59,6 +60,11 @@ function tileToScreen(camera, world, tile) {
 function drawTerrainTile(ctx, x, y, size, terrainType, tileX = 0, tileY = 0, frameTime = 0) {
   const style = TERRAIN_STYLES[terrainType] || TERRAIN_STYLES.grass;
   const inset = 2;
+
+  if (drawAtlasTerrainTile(ctx, terrainType, x, y, size)) {
+    drawFuturisticIsoFacet(ctx, x, y, size, terrainType, tileX, tileY);
+    return;
+  }
 
   ctx.fillStyle = "rgba(0, 0, 0, .16)";
   ctx.fillRect(x + 2, y + 4, size - 1, size - 1);
@@ -212,6 +218,12 @@ function drawBuilding(ctx, camera, world, object) {
 
 function drawObject(ctx, camera, world, object) {
   if (object.type === "building") {
+    if (drawAtlasProp(ctx, object, camera, world)) {
+      const size = world.tileSize;
+      const screen = tileToScreen(camera, world, object);
+      drawLabel(ctx, object.name, screen.x + (((object.width || 1) * size) / 2), screen.y + 2);
+      return;
+    }
     drawBuilding(ctx, camera, world, object);
     return;
   }
@@ -221,6 +233,11 @@ function drawObject(ctx, camera, world, object) {
   const centerX = screen.x + (size / 2);
   const centerY = screen.y + (size / 2);
   const color = OBJECT_STYLES[object.type] || OBJECT_STYLES.marker;
+
+  if (drawAtlasProp(ctx, object, camera, world)) {
+    drawLabel(ctx, object.name, centerX, screen.y + 1);
+    return;
+  }
 
   ctx.save();
   if (object.type === "portal" || object.type === "gate" || object.type === "resource") {
@@ -323,6 +340,93 @@ function drawPlayer(ctx, camera, world, player, renderState = {}) {
   });
 }
 
+function drawTerrainProp(ctx, camera, world, prop) {
+  drawAtlasProp(ctx, prop, camera, world);
+}
+
+export function sortRenderablesByY(a, b) {
+  return (a.sortY - b.sortY) || (a.sortX - b.sortX) || a.kind.localeCompare(b.kind);
+}
+
+function terrainPropForTile(world, x, y, terrainType) {
+  if (!["tree", "rock", "wall"].includes(terrainType)) return null;
+  const isBorderWall = terrainType === "wall" && (x === 0 || y === 0 || x === world.width - 1 || y === world.height - 1);
+
+  if (terrainType === "wall" && !isBorderWall && tileNoise(x, y) < .7) return null;
+
+  return {
+    id: `terrain_${terrainType}_${x}_${y}`,
+    type: terrainType,
+    atlasKey: terrainType === "tree" ? "pineTree" : "stoneRuinWall",
+    x,
+    y,
+    drawWidth: terrainType === "tree" ? 42 : 38,
+    drawHeight: terrainType === "tree" ? 62 : 42,
+    anchorX: .5,
+    anchorY: 1,
+  };
+}
+
+function collectVisibleRenderables(world, camera, player, startX, startY, endX, endY) {
+  const size = world.tileSize;
+  const renderables = [];
+
+  for (let y = startY; y <= endY; y += 1) {
+    for (let x = startX; x <= endX; x += 1) {
+      const terrainProp = terrainPropForTile(world, x, y, world.terrain[y]?.[x]);
+      if (terrainProp) {
+        renderables.push({
+          kind: "terrain-prop",
+          object: terrainProp,
+          sortX: x,
+          sortY: y + 1,
+        });
+      }
+    }
+  }
+
+  world.objects
+    .filter((object) => {
+      const objectWidth = (object.width || 1) * size;
+      const objectHeight = (object.height || 1) * size;
+      const screen = tileToScreen(camera, world, object);
+      return screen.x + objectWidth >= -64
+        && screen.y + objectHeight >= -96
+        && screen.x <= camera.width + 64
+        && screen.y <= camera.height + 96;
+    })
+    .forEach((object) => {
+      renderables.push({
+        kind: "object",
+        object,
+        sortX: object.x,
+        sortY: object.y + (object.height || 1),
+      });
+    });
+
+  renderables.push({
+    kind: "player",
+    sortX: player.x,
+    sortY: player.y + .92,
+  });
+
+  return renderables.sort(sortRenderablesByY);
+}
+
+function drawSortedRenderable(ctx, camera, world, player, renderState, renderable) {
+  if (renderable.kind === "player") {
+    drawPlayer(ctx, camera, world, player, renderState);
+    return;
+  }
+
+  if (renderable.kind === "terrain-prop") {
+    drawTerrainProp(ctx, camera, world, renderable.object);
+    return;
+  }
+
+  drawObject(ctx, camera, world, renderable.object);
+}
+
 function drawTacticalTile(ctx, camera, world, tile, style) {
   const size = world.tileSize;
   const screen = tileToScreen(camera, world, tile);
@@ -420,19 +524,8 @@ export function renderWorld(ctx, world, camera, player, renderState = {}) {
   drawTacticalOverlay(ctx, camera, world, renderState.tactical);
   drawPath(ctx, camera, world, player.path, renderState.destination);
 
-  world.objects
-    .filter((object) => {
-      const objectWidth = (object.width || 1) * size;
-      const objectHeight = (object.height || 1) * size;
-      const screen = tileToScreen(camera, world, object);
-      return screen.x + objectWidth >= -64
-        && screen.y + objectHeight >= -64
-        && screen.x <= camera.width + 64
-        && screen.y <= camera.height + 64;
-    })
-    .forEach((object) => drawObject(ctx, camera, world, object));
-
-  drawPlayer(ctx, camera, world, player, renderState);
+  collectVisibleRenderables(world, camera, player, startX, startY, endX, endY)
+    .forEach((renderable) => drawSortedRenderable(ctx, camera, world, player, renderState, renderable));
 
   ctx.fillStyle = "rgba(5, 9, 20, .76)";
   ctx.fillRect(12, 12, 172, 30);
