@@ -7,8 +7,13 @@ export const defaultPlayerState = {
   y: 8,
   direction: "south",
   avatar: {
-    style: "pseudo_3d_layered_2d",
+    style: "anime_tactical_toon_layered_2d",
     layers: ["aura", "cape", "base_body", "hair", "outfit", "boots", "weapon"],
+  },
+  combat: {
+    className: "Dreamblade Cadet",
+    hp: 28,
+    maxHp: 28,
   },
   walking: false,
   path: [],
@@ -49,6 +54,7 @@ export function createPlayerState(savedState = {}) {
     ...savedState,
     stats: { ...defaultPlayerState.stats, ...(savedState.stats || {}) },
     reputation: { ...defaultPlayerState.reputation, ...(savedState.reputation || {}) },
+    combat: { ...defaultPlayerState.combat, ...(savedState.combat || {}) },
     quests: { ...(savedState.quests || {}) },
     walking: false,
     path: [],

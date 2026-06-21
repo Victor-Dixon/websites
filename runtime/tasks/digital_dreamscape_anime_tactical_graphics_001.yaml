@@ -1,0 +1,60 @@
+id: digital_dreamscape_anime_tactical_graphics_001
+title: Digital Dreamscape Anime Tactical Graphics Pass
+project: digital_dreamscape
+status: ready
+lane: graphics_upgrade
+owner: cursor
+priority: high
+
+objective: >
+  Convert Digital Dreamscape's first playable visual layer toward an original
+  anime tactical fantasy RPG style using cel-shaded characters, readable tactical
+  grid overlays, glowing magic VFX, and clean combat HUD components.
+
+constraints:
+  - Do not copy third-party tactical RPG assets, names, UI, characters, logos, models, or exact designs.
+  - Preserve Digital Dreamscape lore and original identity.
+  - Keep the change small and reversible.
+  - Add theme layer before deep gameplay rewrites.
+  - Verify with build/lint/tests when available.
+
+visual_targets:
+  camera:
+    - 3/4 top-down tactical view
+    - cinematic battle zoom hook
+  map:
+    - blue movement grid
+    - red danger grid
+    - yellow objective tiles
+    - soft fantasy terrain palette
+  characters:
+    - cel-shaded/toon material
+    - clean silhouettes
+    - expressive anime face direction
+    - readable class colors
+  ui:
+    - bottom combat HUD
+    - HP bar
+    - unit card
+    - command menu
+    - battle preview panel
+  effects:
+    - bloom/glow magic accents
+    - simple slash/projectile impact VFX
+    - readable damage numbers
+
+acceptance:
+  - movement grid renders
+  - enemy danger grid renders
+  - combat HUD renders
+  - battle preview renders
+  - style tokens exist
+  - no copyrighted reference names are introduced
+  - existing app still builds
+
+verify:
+  - npm run verify:digital-dreamscape-graphics
+  - npm run lint || true
+  - npm run build || true
+
+commit_message: "feat: add anime tactical graphics pass for digital dreamscape"

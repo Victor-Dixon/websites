@@ -1,4 +1,13 @@
 :root {
+  --dd-bg-night: #071024;
+  --dd-blue-move: #4cc9ff;
+  --dd-red-danger: #ff4d6d;
+  --dd-gold-objective: #ffd166;
+  --dd-magic-violet: #9b5cff;
+  --dd-panel-dark: rgba(6, 12, 31, .9);
+  --dd-panel-glass: rgba(255, 255, 255, .12);
+  --dd-hp-green: #73f5a2;
+  --dd-outline-ink: #071024;
   --bg: #050914;
   --bg-soft: #0b1430;
   --panel: rgba(10, 20, 45, .84);
@@ -31,8 +40,8 @@ body {
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
-    radial-gradient(circle at 20% -10%, rgba(98, 217, 255, .28), transparent 31rem),
-    radial-gradient(circle at 86% 8%, rgba(141, 116, 255, .24), transparent 28rem),
+    radial-gradient(circle at 20% -10%, rgba(76, 201, 255, .34), transparent 31rem),
+    radial-gradient(circle at 86% 8%, rgba(155, 92, 255, .28), transparent 28rem),
     radial-gradient(circle at 50% 110%, rgba(40, 102, 255, .18), transparent 42rem),
     linear-gradient(180deg, #050914 0%, #071024 48%, #050914 100%);
   line-height: 1.5;
@@ -231,32 +240,219 @@ h3 {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 26px;
-  background: #050914;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(118, 240, 170, .12), transparent 18rem),
+    radial-gradient(circle at 78% 35%, rgba(155, 92, 255, .14), transparent 20rem),
+    var(--dd-bg-night);
   box-shadow: var(--shadow);
 }
 
+.game-panel::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(125deg, rgba(255, 255, 255, .08), transparent 36%),
+    radial-gradient(circle at 50% 20%, transparent 36%, rgba(5, 9, 20, .18) 100%);
+  mix-blend-mode: screen;
+}
+
 #world-canvas {
+  position: relative;
+  z-index: 0;
   display: block;
   width: 100%;
   height: min(72vh, 720px);
   min-height: 480px;
   cursor: crosshair;
-  image-rendering: pixelated;
+  image-rendering: auto;
+  filter: saturate(1.16) contrast(1.04);
 }
 
 .interaction-box {
   position: absolute;
   left: 1rem;
   right: 1rem;
-  bottom: 1rem;
+  bottom: 8.75rem;
+  z-index: 4;
   min-height: 3rem;
   padding: .85rem 1rem;
-  border: 1px solid rgba(98, 217, 255, .42);
+  border: 1px solid rgba(76, 201, 255, .42);
   border-radius: 18px;
   color: var(--silver);
-  background: rgba(5, 9, 20, .78);
+  background: var(--dd-panel-dark);
   box-shadow: 0 12px 32px rgba(0, 0, 0, .28);
   backdrop-filter: blur(12px);
+}
+
+/* Anime tactical graphics controls: canvas overlays live in js/world-renderer.js,
+   while these HUD classes define the first readable battle UI layer. */
+.combat-hud {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .9rem;
+  align-items: stretch;
+  padding: .8rem;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(7, 16, 36, .92), rgba(21, 24, 56, .76)),
+    var(--dd-panel-glass);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, .42),
+    0 0 34px rgba(76, 201, 255, .18);
+  backdrop-filter: blur(18px);
+}
+
+.unit-status-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .85rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.unit-portrait {
+  display: grid;
+  place-items: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border: 3px solid var(--dd-outline-ink);
+  border-radius: 22px;
+  color: var(--dd-outline-ink);
+  background:
+    radial-gradient(circle at 48% 30%, #ffe0b7 0 16%, transparent 17%),
+    linear-gradient(135deg, var(--dd-blue-move), var(--dd-magic-violet));
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, .55),
+    0 0 28px rgba(76, 201, 255, .26);
+  font-weight: 950;
+}
+
+.unit-status-copy {
+  min-width: 0;
+}
+
+.unit-status-copy .eyebrow,
+.combat-preview-panel .eyebrow {
+  margin-bottom: .2rem;
+}
+
+.unit-status-card h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.8vw, 2rem);
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+
+.unit-class {
+  margin: .2rem 0 .5rem;
+  color: var(--dd-gold-objective);
+  font-size: .9rem;
+  font-weight: 850;
+}
+
+.hp-row {
+  display: grid;
+  grid-template-columns: auto minmax(5rem, 1fr) auto;
+  gap: .55rem;
+  align-items: center;
+  color: var(--muted);
+  font-size: .85rem;
+  font-weight: 850;
+}
+
+.hp-meter {
+  height: .68rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  background: rgba(5, 9, 20, .62);
+}
+
+.hp-meter i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--dd-hp-green), #d9ffe7);
+  box-shadow: 0 0 18px rgba(115, 245, 162, .52);
+}
+
+.battle-command-menu {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(5.4rem, 1fr));
+  gap: .55rem;
+  align-content: center;
+}
+
+.battle-command {
+  min-height: 3.4rem;
+  padding: .7rem .85rem;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 16px;
+  color: var(--text);
+  background: rgba(255, 255, 255, .08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+  font-weight: 950;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.battle-command--attack {
+  color: #071024;
+  background: linear-gradient(135deg, var(--dd-gold-objective), #fff0a6);
+  box-shadow: 0 0 26px rgba(255, 209, 102, .32);
+}
+
+.battle-command--skill {
+  background: linear-gradient(135deg, rgba(155, 92, 255, .78), rgba(76, 201, 255, .44));
+  box-shadow: 0 0 26px rgba(155, 92, 255, .28);
+}
+
+.battle-command:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, .36);
+}
+
+.combat-preview-panel {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 5;
+  width: min(18rem, calc(100% - 2rem));
+  padding: .85rem;
+  border: 1px solid rgba(255, 209, 102, .32);
+  border-radius: 20px;
+  background:
+    linear-gradient(160deg, rgba(7, 16, 36, .92), rgba(26, 19, 54, .8)),
+    var(--dd-panel-glass);
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, .36),
+    0 0 28px rgba(255, 209, 102, .16);
+  backdrop-filter: blur(18px);
+}
+
+.combat-preview-panel dl {
+  display: grid;
+  gap: .45rem;
+  margin: 0;
+}
+
+.combat-preview-panel dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: .85rem;
+  padding: .42rem .55rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .06);
 }
 
 .hud {
@@ -339,10 +535,17 @@ dd {
 .swatch.water { background: #175d9e; }
 .swatch.blocked { background: #24324d; }
 .swatch.marker { background: #62d9ff; }
+.swatch.move { background: var(--dd-blue-move); }
+.swatch.danger { background: var(--dd-red-danger); }
+.swatch.objective { background: var(--dd-gold-objective); }
 
 @media (max-width: 980px) {
   .game-shell,
   .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .combat-hud {
     grid-template-columns: 1fr;
   }
 
@@ -364,6 +567,27 @@ dd {
 
   .game-shell {
     padding: .5rem;
+  }
+
+  .combat-hud {
+    left: .5rem;
+    right: .5rem;
+    bottom: .5rem;
+  }
+
+  .battle-command-menu {
+    grid-template-columns: 1fr;
+  }
+
+  .interaction-box {
+    left: .5rem;
+    right: .5rem;
+    bottom: 16rem;
+  }
+
+  .unit-portrait {
+    width: 3.7rem;
+    height: 3.7rem;
   }
 
   #world-canvas {

@@ -19,6 +19,55 @@
   <main class="game-shell">
     <section class="game-panel" aria-label="Digital Dreamscape world">
       <canvas id="world-canvas" width="960" height="640" aria-label="Explorable Digital Dreamscape map"></canvas>
+      <!-- Anime tactical graphics pass: this bottom HUD is the first combat UI slice. -->
+      <div class="combat-hud" id="combat-hud" aria-label="Tactical combat commands">
+        <article class="unit-status-card" id="unit-status-card">
+          <div class="unit-portrait" aria-hidden="true">
+            <span>DD</span>
+          </div>
+          <div class="unit-status-copy">
+            <p class="eyebrow">Selected Unit</p>
+            <h2 id="combat-unit-name">Explorer</h2>
+            <p class="unit-class" id="combat-unit-class">Dreamblade Cadet</p>
+            <div class="hp-row" aria-label="Unit hit points">
+              <span>HP</span>
+              <div class="hp-meter">
+                <i id="combat-hp-bar" style="width: 100%"></i>
+              </div>
+              <strong id="combat-hp-text">28 / 28</strong>
+            </div>
+          </div>
+        </article>
+
+        <nav class="battle-command-menu" aria-label="Battle command menu">
+          <button class="battle-command battle-command--attack" type="button">Attack</button>
+          <button class="battle-command" type="button">Wait</button>
+          <button class="battle-command battle-command--skill" type="button">Skill</button>
+        </nav>
+      </div>
+
+      <aside class="combat-preview-panel" id="combat-preview-panel" aria-label="Battle preview">
+        <p class="eyebrow">Battle Preview</p>
+        <dl>
+          <div>
+            <dt>Attacker</dt>
+            <dd id="preview-attacker">Explorer</dd>
+          </div>
+          <div>
+            <dt>Defender</dt>
+            <dd id="preview-defender">Encounter Gate</dd>
+          </div>
+          <div>
+            <dt>Damage</dt>
+            <dd id="preview-damage">12-18</dd>
+          </div>
+          <div>
+            <dt>Hit</dt>
+            <dd id="preview-hit">82%</dd>
+          </div>
+        </dl>
+      </aside>
+
       <div class="interaction-box" id="interaction-box" role="status" aria-live="polite">
         Click a walkable tile to begin exploring.
       </div>
@@ -132,6 +181,9 @@
           <span><i class="swatch water"></i>Water</span>
           <span><i class="swatch blocked"></i>Blocked</span>
           <span><i class="swatch marker"></i>Interactable</span>
+          <span><i class="swatch move"></i>Move</span>
+          <span><i class="swatch danger"></i>Danger</span>
+          <span><i class="swatch objective"></i>Objective</span>
         </div>
       </div>
     </aside>
