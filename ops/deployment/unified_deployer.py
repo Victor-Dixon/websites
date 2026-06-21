@@ -222,6 +222,10 @@ def find_static_files(site_domain: str) -> List[Path]:
         ".svg",
         ".ico",
         ".pdf",
+        ".woff",
+        ".woff2",
+        ".ttf",
+        ".otf",
     }
     deployable_names = {".htaccess"}
     ignored_dirs = {"__pycache__", ".git", "node_modules"}

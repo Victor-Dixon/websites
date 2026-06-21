@@ -129,6 +129,15 @@ sites:
     deploy_method: sftp
     notes: "Evidence-first MaskZero commercial landing system with technical, regulatory, and partner diligence pages."
 
+  maskszero.site:
+    path: runtime/content/maskszero.site
+    deployer: unified
+    verify_url: https://maskszero.site/
+    remote_root: public_html/maskszero.site
+    enabled: true
+    deploy_method: sftp
+    notes: "SkyMotion AI static Next.js/Tailwind/Three.js app deployed through unified_deployer."
+
   xthunder.site:
     path: sites/production/websites/xthunder.site
     deployer: unified
