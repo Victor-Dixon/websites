@@ -1,0 +1,64 @@
+name: Deploy MasksZero Live
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'next.config.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'postcss.config.mjs'
+      - 'public/**'
+      - 'tsconfig.json'
+      - '.github/workflows/deploy-maskszero-live.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build SkyMotion static export
+        run: npm run build:maskszero
+
+      - name: Verify static payload
+        run: |
+          test -f out/index.html
+          test -d out/_next/static
+          grep -R "Three.js DreamMotion" out/index.html
+          grep -R "SkyMotion AI" out/index.html
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy to Hostinger maskszero.site
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          HOSTINGER_PASS: ${{ secrets.HOSTINGER_PASS }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          MASKSZERO_REMOTE_ROOT: ${{ secrets.MASKSZERO_REMOTE_ROOT }}
+        run: |
+          test -n "$HOSTINGER_HOST"
+          test -n "$HOSTINGER_USER"
+          test -n "$HOSTINGER_PASS"
+          PORT="${HOSTINGER_PORT:-21}"
+          REMOTE_ROOT="${MASKSZERO_REMOTE_ROOT:-public_html/maskszero.site}"
+          lftp -u "$HOSTINGER_USER","$HOSTINGER_PASS" -p "$PORT" "$HOSTINGER_HOST" -e "
+            set ssl:verify-certificate no;
+            mirror -R --delete --verbose out \"$REMOTE_ROOT\";
+            bye
+          "
