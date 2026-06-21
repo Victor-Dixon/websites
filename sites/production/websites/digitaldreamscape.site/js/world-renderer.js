@@ -57,13 +57,47 @@ function tileToScreen(camera, world, tile) {
   };
 }
 
+function drawAtlasTileFinish(ctx, x, y, size, terrainType, tileX, tileY, frameTime) {
+  const noise = tileNoise(tileX, tileY);
+
+  if (terrainType === "water") {
+    const shimmer = Math.sin((frameTime / 420) + tileX + tileY) * 1.4;
+    ctx.strokeStyle = "rgba(230, 255, 255, .22)";
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.moveTo(x + 7, y + 17 + shimmer);
+    ctx.lineTo(x + 18, y + 14 - shimmer);
+    ctx.lineTo(x + 30, y + 17 + shimmer);
+    ctx.stroke();
+    return;
+  }
+
+  if (terrainType === "grass" || terrainType === "plain") {
+    ctx.strokeStyle = noise > .58 ? "rgba(255, 255, 255, .12)" : "rgba(12, 70, 43, .2)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x + 10 + ((tileX * 5) % 12), y + 24);
+    ctx.lineTo(x + 14 + ((tileX * 5) % 12), y + 16);
+    ctx.stroke();
+    return;
+  }
+
+  if (terrainType === "path") {
+    ctx.strokeStyle = "rgba(255, 238, 190, .14)";
+    ctx.beginPath();
+    ctx.moveTo(x + 6, y + 22 + (noise * 4));
+    ctx.lineTo(x + size - 8, y + 18 + (noise * 3));
+    ctx.stroke();
+  }
+}
+
 function drawTerrainTile(ctx, x, y, size, terrainType, tileX = 0, tileY = 0, frameTime = 0) {
   const style = TERRAIN_STYLES[terrainType] || TERRAIN_STYLES.grass;
   const inset = 2;
 
   if (drawAtlasTerrainTile(ctx, terrainType, x, y, size)) {
-    drawFuturisticIsoFacet(ctx, x, y, size, terrainType, tileX, tileY);
-    return;
+    drawAtlasTileFinish(ctx, x, y, size, terrainType, tileX, tileY, frameTime);
+    return true;
   }
 
   ctx.fillStyle = "rgba(0, 0, 0, .16)";
@@ -122,6 +156,7 @@ function drawTerrainTile(ctx, x, y, size, terrainType, tileX = 0, tileY = 0, fra
     ctx.fillStyle = "rgba(0, 0, 0, .18)";
     ctx.fillRect(x + 12, y + 19, 10, 4);
   }
+  return false;
 }
 
 function drawFuturisticIsoFacet(ctx, x, y, size, terrainType, tileX, tileY) {
@@ -376,8 +411,8 @@ function terrainPropForTile(world, x, y, terrainType) {
     atlasKey: terrainType === "tree" ? "pineTree" : "stoneRuinWall",
     x,
     y,
-    drawWidth: terrainType === "tree" ? 42 : 38,
-    drawHeight: terrainType === "tree" ? 62 : 42,
+    drawWidth: terrainType === "tree" ? 50 : 42,
+    drawHeight: terrainType === "tree" ? 74 : 46,
     anchorX: .5,
     anchorY: 1,
   };
@@ -538,10 +573,12 @@ export function renderWorld(ctx, world, camera, player, renderState = {}) {
     for (let x = startX; x <= endX; x += 1) {
       const screenX = (x * size) - camera.x;
       const screenY = (y * size) - camera.y;
-      drawTerrainTile(ctx, screenX, screenY, size, world.terrain[y]?.[x], x, y, renderState.frameTime || 0);
-      ctx.strokeStyle = "rgba(92, 244, 255, .075)";
-      ctx.lineWidth = 1;
-      ctx.strokeRect(screenX, screenY, size, size);
+      const usedAtlas = drawTerrainTile(ctx, screenX, screenY, size, world.terrain[y]?.[x], x, y, renderState.frameTime || 0);
+      if (!usedAtlas) {
+        ctx.strokeStyle = "rgba(92, 244, 255, .06)";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(screenX, screenY, size, size);
+      }
     }
   }
 

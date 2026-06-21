@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="stonePath" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f1dfb0"/>
+      <stop offset=".48" stop-color="#a98d65"/>
+      <stop offset="1" stop-color="#5d4a39"/>
+    </linearGradient>
+    <linearGradient id="moss" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#98f08b"/>
+      <stop offset="1" stop-color="#247047"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="8" fill="#35281f"/>
+  <path d="M4 10 L32 2 L60 10 L60 52 L32 62 L4 52 Z" fill="url(#stonePath)" stroke="#fff0c8" stroke-opacity=".28"/>
+  <path d="M7 19 L23 13 L34 22 L50 15 L58 20 L58 33 L43 39 L31 31 L15 38 L7 32 Z" fill="#d6bf8f" opacity=".58" stroke="#5b4534" stroke-opacity=".34"/>
+  <path d="M7 39 L20 34 L33 42 L47 36 L58 42 L58 51 L32 60 L7 51 Z" fill="#8f7759" opacity=".46" stroke="#3f3027" stroke-opacity=".4"/>
+  <path d="M24 14 L22 34 M35 23 L33 42 M46 36 L46 48" stroke="#2e231d" stroke-opacity=".28"/>
+  <path d="M11 50 Q20 44 31 51 T55 48" stroke="url(#moss)" stroke-width="3" stroke-linecap="round" opacity=".55" fill="none"/>
+  <circle cx="17" cy="21" r="2" fill="#fff4c9" opacity=".45"/>
+  <circle cx="45" cy="20" r="2" fill="#fff4c9" opacity=".35"/>
+</svg>

@@ -6,8 +6,10 @@ const FALLBACK_MANIFEST = {
   tiles: {
     grass: "./assets/terrain/tiles/grass-tile.svg",
     moss: "./assets/terrain/tiles/moss-grass-tile.svg",
-    path: "./assets/terrain/tiles/dirt-path-tile.svg",
+    path: "./assets/terrain/tiles/stone-path-tile.svg",
+    dirtPath: "./assets/terrain/tiles/dirt-path-tile.svg",
     stone: "./assets/terrain/tiles/cracked-stone-tile.svg",
+    ruin: "./assets/terrain/tiles/ruin-tile.svg",
     water: "./assets/terrain/tiles/water-tile.svg",
   },
   props: {
@@ -21,9 +23,9 @@ const FALLBACK_MANIFEST = {
     plain: "moss",
     path: "path",
     water: "water",
-    wall: "stone",
+    wall: "ruin",
     tree: "moss",
-    rock: "stone",
+    rock: "ruin",
   },
   propMap: {
     building: "stoneRuinWall",
