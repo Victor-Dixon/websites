@@ -88,9 +88,45 @@
     setText("stat-dispatch-note", "Mission board restored.");
     renderMissions();
     renderSparkCard(loggedIn, user);
+    wireOwnerPanelLink(window.SPARK_ACCOUNT || { logged_in: loggedIn, user: user });
+    if (window.SparkAuthNav && typeof window.SparkAuthNav.refresh === "function") {
+      window.SparkAuthNav.refresh(loggedIn);
+    }
     if (window.SparkAccountRuntime && typeof window.SparkAccountRuntime.announce === "function") {
       window.SparkAccountRuntime.announce(loggedIn, user || null);
     }
+  }
+
+  function hasAdminPanelAccess(account) {
+    account = account || {};
+    if (account.is_owner) return true;
+    if (account.can_access_admin_panel) return true;
+    if (account.game_role && account.game_role !== "player") return true;
+    var user = account.user;
+    if (user && user.is_owner) return true;
+    if (user && user.can_access_admin_panel) return true;
+    if (user && user.game_role && user.game_role !== "player") return true;
+    return false;
+  }
+
+  function wireOwnerPanelLink(account) {
+    var showAdmin = hasAdminPanelAccess(account);
+    var existing = document.getElementById("launch-owner-panel");
+    if (!showAdmin) {
+      if (existing) existing.remove();
+      return;
+    }
+    if (existing) return;
+    var grid = document.querySelector(".launch-grid");
+    if (!grid) return;
+    var tile = document.createElement("a");
+    tile.className = "launch-tile";
+    tile.id = "launch-owner-panel";
+    tile.href = "/spark-owner/";
+    tile.innerHTML = account.is_owner || (account.user && account.user.is_owner)
+      ? "<strong>Owner Panel</strong><span>Account lookup &amp; roles</span>"
+      : "<strong>Admin Panel</strong><span>Site tools &amp; ops</span>";
+    grid.appendChild(tile);
   }
 
   function boot() {

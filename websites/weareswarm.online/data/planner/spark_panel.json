@@ -1,6 +1,6 @@
 {
   "schema": "weareswarm.online.spark_panel.v2",
-  "generated_at": "2026-06-13T12:00:00+00:00",
+  "generated_at": "2026-06-21T19:14:17+00:00",
   "source": "spark_relocation_maskzero_2026-06-13",
   "title": "Spark / MaskZero",
   "subtitle": "MZSpark universe, character systems, battle arcs, and manifestation engine.",
@@ -45,13 +45,28 @@
     "Integrate Spark progression with Dream.OS skill and achievement systems"
   ],
   "blockers": [],
-  "blockers_note": "None — Previous dadudekc.com DNS blocker retired from active planning.",
+  "blockers_note": "None \u2014 Previous dadudekc.com DNS blocker retired from active planning.",
   "progress": [
-    { "label": "Spark Migration", "percent": 80 },
-    { "label": "Manifestation Engine", "percent": 70 },
-    { "label": "Character Universe", "percent": 50 },
-    { "label": "Battle Arc Content", "percent": 30 },
-    { "label": "Public Launch", "percent": 40 }
+    {
+      "label": "Spark Migration",
+      "percent": 80
+    },
+    {
+      "label": "Manifestation Engine",
+      "percent": 70
+    },
+    {
+      "label": "Character Universe",
+      "percent": 50
+    },
+    {
+      "label": "Battle Arc Content",
+      "percent": 30
+    },
+    {
+      "label": "Public Launch",
+      "percent": 40
+    }
   ],
   "mission_loop": {
     "MISSION_LOOP": "MVP_SHIPPED",

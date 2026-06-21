@@ -39,6 +39,33 @@
   }
 
   let sessionPromise = null;
+  let mePromise = null;
+  let rosterCache = null;
+
+  function dispatchRosterEvent(result){
+    document.dispatchEvent(new CustomEvent("spark:roster", {
+      detail: { result, roster: rosterCache }
+    }));
+    if (window.SparkAuthNav && typeof window.SparkAuthNav.refreshRoster === "function") {
+      window.SparkAuthNav.refreshRoster();
+    }
+    return result;
+  }
+
+  function applyRosterData(data){
+    if (!data || typeof data !== "object") return;
+    rosterCache = data;
+    window.SPARK_ACCOUNT = Object.assign({}, window.SPARK_ACCOUNT || {}, data);
+  }
+
+  function canAccessOriginLabFromRoster(roster){
+    if (!roster || typeof roster !== "object") return true;
+    if (typeof roster.can_access_origin_lab === "boolean") {
+      return roster.can_access_origin_lab;
+    }
+    if (!roster.logged_in) return true;
+    return true;
+  }
 
   function dispatchSessionEvent(result){
     const loggedIn = !!(result.ok && result.data && result.data.logged_in);
@@ -57,6 +84,9 @@
     }
     sessionPromise = jsonFetch("/wp-json/spark/v1/session").then(function(result){
       window.SPARK_ACCOUNT = Object.assign({}, window.SPARK_ACCOUNT || {}, result.data || {});
+      if (result.ok && result.data && typeof result.data.can_access_origin_lab === "boolean") {
+        applyRosterData(result.data);
+      }
       return dispatchSessionEvent(result);
     }).catch(function(err){
       sessionPromise = null;
@@ -65,6 +95,49 @@
       return failure;
     });
     return sessionPromise;
+  }
+
+  function me(){
+    if (mePromise) {
+      return mePromise;
+    }
+    mePromise = session().then(function(sessionResult){
+      const loggedIn = !!(sessionResult.ok && sessionResult.data && sessionResult.data.logged_in);
+      if (!loggedIn) {
+        applyRosterData(sessionResult.data || { logged_in: false, can_access_origin_lab: true });
+        return dispatchRosterEvent({ ok: true, status: 200, data: rosterCache || {} });
+      }
+      return jsonFetch("/wp-json/spark/v1/me", { headers: nonceHeaders() }).then(function(result){
+        if (result.ok && result.data) {
+          applyRosterData(result.data);
+        }
+        return dispatchRosterEvent(result);
+      });
+    }).catch(function(err){
+      mePromise = null;
+      return { ok: false, status: "FETCH_ERROR", data: { message: String(err && err.message || err) } };
+    });
+    return mePromise;
+  }
+
+  function roster(){
+    if (rosterCache) {
+      return Promise.resolve({ ok: true, status: 200, data: rosterCache });
+    }
+    return me();
+  }
+
+  async function ensureRoster(){
+    await session();
+    if (isLoggedIn()) {
+      await me();
+    }
+    return rosterCache;
+  }
+
+  function canAccessOriginLab(){
+    if (!isLoggedIn()) return true;
+    return canAccessOriginLabFromRoster(rosterCache || window.SPARK_ACCOUNT);
   }
 
   async function hero(){
@@ -87,6 +160,41 @@
       method:"POST",
       headers: nonceHeaders(),
       body: JSON.stringify({ name: String(newName || "").trim() })
+    });
+  }
+
+  async function leaderboard(board, limit){
+    var query = "?board=" + encodeURIComponent(board || "notoriety");
+    if (limit) query += "&limit=" + encodeURIComponent(String(limit));
+    return jsonFetch("/wp-json/spark/v1/leaderboard" + query);
+  }
+
+  async function leaderboardsCatalog(){
+    return jsonFetch("/wp-json/spark/v1/leaderboards");
+  }
+
+  async function inboxSummary(){
+    await session();
+    return jsonFetch("/wp-json/spark/v1/inbox/summary", {headers: nonceHeaders()});
+  }
+
+  async function inboxList(limit){
+    await session();
+    var q = limit ? "?limit=" + encodeURIComponent(String(limit)) : "";
+    return jsonFetch("/wp-json/spark/v1/inbox" + q, {headers: nonceHeaders()});
+  }
+
+  async function inboxMessage(id){
+    await session();
+    return jsonFetch("/wp-json/spark/v1/inbox/" + encodeURIComponent(String(id)), {headers: nonceHeaders()});
+  }
+
+  async function markInboxRead(id){
+    await session();
+    return jsonFetch("/wp-json/spark/v1/inbox/" + encodeURIComponent(String(id)) + "/read", {
+      method: "POST",
+      headers: nonceHeaders(),
+      body: JSON.stringify({})
     });
   }
 
@@ -252,7 +360,7 @@
 
     if (loggedIn) {
       const label = (sessionResult.data && (sessionResult.data.display_name || sessionResult.data.user_login)) || "Operator";
-      lede.textContent = "Signed in as " + label + ". Your command post is at /spark-dashboard/ — Dispatch, Generator, and News are wired.";
+      lede.textContent = "Signed in as " + label + ". Command Post is live — Dispatch, Generator, and News are wired.";
       if (quizLink) quizLink.href = "/spark-generator/";
       if (unlockPanel) unlockPanel.hidden = true;
     } else {
@@ -291,9 +399,19 @@
 
   window.SparkAccountRuntime = {
     session,
+    me,
+    roster,
+    ensureRoster,
+    canAccessOriginLab,
     hero,
     save,
     renameSpark,
+    leaderboard,
+    leaderboardsCatalog,
+    inboxSummary,
+    inboxList,
+    inboxMessage,
+    markInboxRead,
     applySparkName,
     renameLocalSpark,
     isLoggedIn,

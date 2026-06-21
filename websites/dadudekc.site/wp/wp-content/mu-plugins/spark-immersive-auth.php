@@ -708,7 +708,7 @@ button{
 
     <a href="/">Cover</a>
 
-    <a href="/spark-account/">Origin Rules</a>
+    <a href="/spark-generator/">Origin Lab</a>
 
     <a href="/spark-login/">Log In</a>
 
@@ -764,9 +764,9 @@ button{
 
   </main>
 
-  <script src="/assets/js/spark-account-runtime.js?v=4"></script>
+  <script src="/assets/js/spark-account-runtime.js?v=10"></script>
 
-  <script src="/assets/js/spark-auth-nav.js?v=7"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=10"></script>
 
 </body>
 

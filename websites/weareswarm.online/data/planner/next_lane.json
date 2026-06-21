@@ -1,39 +1,88 @@
 {
+  "schema": "dreamvault.planner.next_lane.v1",
+  "generated_at": "2026-06-21T19:13:30+00:00",
+  "source": "dynamic_planner_001",
+  "next_lane": "lane_002_planner_surface_001",
+  "next_task": "runtime/tasks/lane_002_planner_surface_001.yaml",
+  "rationale": "Dynamic planner: unlocks none",
+  "reason": "Dynamic planner: unlocks none",
+  "execute": false,
+  "human_gate": false,
+  "awaiting_operator": null,
+  "unlock_summary": [],
+  "parallel_recommendations": [],
+  "blocked_until": [],
   "approved_tasks": [
     {
-      "priority": "P1",
-      "rationale": "Promotion candidate blocked until salvage manifest",
+      "task_id": "lane_002_planner_surface_001",
+      "priority": "P2",
       "repo": "DreamVault",
       "status": "approved",
-      "task_id": "autodream_salvage_manifest_001"
+      "rationale": "",
+      "human_gate": false
     },
     {
+      "task_id": "runtime_core_clone_salvage_manifest_001",
       "priority": "P1",
-      "rationale": "Runtime foundation manifest for /tasks bridge",
       "repo": "DreamVault",
       "status": "pending",
-      "task_id": "build_autonomous_runtime_manifest_014"
+      "rationale": "Runtime SSOT manual review; cross-repo scan shows fork drift between clone pair",
+      "human_gate": true
     },
     {
-      "priority": "P1",
-      "rationale": "Runtime SSOT salvage blocked until proof gates and human decision",
+      "task_id": "add_discord_action_controls_057",
+      "priority": "P2",
       "repo": "DreamVault",
-      "status": "blocked",
-      "task_id": "runtime_core_clone_salvage_manifest_001"
+      "status": "pending",
+      "rationale": "Human gate \u2014 awaiting operator",
+      "human_gate": true
+    },
+    {
+      "task_id": "add_discord_operator_e2e_smoke_061",
+      "priority": "P2",
+      "repo": "DreamVault",
+      "status": "pending",
+      "rationale": "Human gate \u2014 awaiting operator",
+      "human_gate": true
+    },
+    {
+      "task_id": "add_hostinger_dashboard_deploy_manifest_065",
+      "priority": "P2",
+      "repo": "DreamVault",
+      "status": "pending",
+      "rationale": "Human gate \u2014 awaiting operator",
+      "human_gate": true
+    },
+    {
+      "task_id": "add_specialized_controller_test_suite_082",
+      "priority": "P2",
+      "repo": "DreamVault",
+      "status": "pending",
+      "rationale": "Human gate \u2014 awaiting operator",
+      "human_gate": true
+    },
+    {
+      "task_id": "agenttools_canonical_dispatcher_034",
+      "priority": "P0",
+      "repo": "DreamVault",
+      "status": "pending",
+      "rationale": "Human gate \u2014 awaiting operator",
+      "human_gate": true
+    },
+    {
+      "task_id": "agenttools_revitalization_032",
+      "priority": "P0",
+      "repo": "DreamVault",
+      "status": "pending",
+      "rationale": "Human gate \u2014 awaiting operator",
+      "human_gate": true
+    },
+    {
+      "task_id": "build_autonomous_runtime_manifest_014",
+      "priority": "P1",
+      "repo": "DreamVault",
+      "status": "pending",
+      "rationale": "Runtime foundation manifest for /tasks bridge"
     }
-  ],
-  "blocked_until": [
-    "inventory",
-    "overlap_check",
-    "unique_asset_salvage"
-  ],
-  "execute": false,
-  "generated_at": "2026-06-08T00:09:39+00:00",
-  "next_lane": "autodream_salvage_manifest_001",
-  "next_task": "runtime/tasks/autodream_salvage_manifest_001.yaml",
-  "prior_lane": "project_consolidation_decision_manifest_001",
-  "rationale": "Promotion candidate blocked until salvage manifest",
-  "reason": "Promotion candidate blocked until salvage manifest",
-  "schema": "dreamvault.planner.next_lane.v1",
-  "source": "project_consolidation_next_lanes_001"
+  ]
 }

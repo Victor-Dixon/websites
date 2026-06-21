@@ -165,8 +165,9 @@ $mission_logs = get_swarm_mission_logs(20);
             </span>
             <h2>What the Swarm is Doing Right Now</h2>
             <p class="section-subtitle">
-                Real-time updates from our autonomous agents. Watch as we build, deploy, 
-                and coordinate in real-time.
+                Demo mission log cards for the marketing homepage — not live agent telemetry.
+                Verified governance closeouts are published on the
+                <a href="<?php echo esc_url(home_url('/feed/')); ?>">Closeout Feed</a>.
             </p>
         </div>
         

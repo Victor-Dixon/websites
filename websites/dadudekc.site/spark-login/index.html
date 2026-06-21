@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <title>Log In | Spark Protocol</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/css/spark-site-shell.css?v=2" />
   <style>
 :root{
   --ink:#08080b;
@@ -41,9 +42,6 @@ body:before{
   mix-blend-mode:screen;
 }
 .comic-nav{
-  position:sticky;
-  top:0;
-  z-index:50;
   display:flex;
   gap:10px;
   justify-content:center;
@@ -249,48 +247,78 @@ button{
   </style>
 </head>
 <body>
-  <nav id="spark-auth-nav" class="comic-nav" aria-label="Spark Protocol">
-    <a href="/">Cover</a>
-    <a href="/spark-account/">Origin Rules</a>
-    <a href="/spark-login/" class="pop">Log In</a>
-    <a class="pop" href="/spark-signup/">Join The Universe</a>
-  </nav>
+  <nav id="spark-auth-nav" class="comic-nav site-header" aria-label="Spark Protocol site navigation"></nav>
 
   <main class="comic-wrap">
     <span class="issue-tag">Return Of The Hero</span>
     <section class="comic-cover">
       <h1>Log In</h1>
-      <div class="caption">Resume your story. Your command post awaits in Meridian City.</div>
+      <div class="caption">Resume your story. Your Command Post and Meridian missions await.</div>
     </section>
 
     <section class="form-panel">
-      <form method="post" action="/wp-login.php">
-        <label for="user_login">Email or Hero Name</label>
-        <input id="user_login" name="log" type="text" autocomplete="username" required>
+      <form method="post" action="/wp-login.php" id="sparkLoginForm">
+        <label for="user_login">Email or Display Name</label>
+        <input id="user_login" name="log" type="text" autocomplete="username" required aria-required="true">
 
-        <label for="user_pass">Secret Passcode</label>
-        <input id="user_pass" name="pwd" type="password" autocomplete="current-password" required>
+        <label for="user_pass">Password</label>
+        <span class="field-help">Your secret passcode for this hero account.</span>
+        <div class="password-row">
+          <input id="user_pass" name="pwd" type="password" autocomplete="current-password" required aria-required="true">
+          <button type="button" class="toggle-pass" id="sparkLoginTogglePassword" aria-label="Show password">Show</button>
+        </div>
 
-        <input type="hidden" name="redirect_to" value="/">
+        <input type="hidden" name="redirect_to" value="/spark-dashboard/">
         <input type="hidden" name="rememberme" value="forever">
 
-        <button type="submit">Log In</button>
-        <a class="comic-button" href="/spark-signup/">Create Account</a>
+        <button type="submit" id="sparkLoginSubmit">Log In</button>
+        <a class="comic-button secondary" href="/spark-signup/">Create Account</a>
+        <p class="field-help"><a href="/wp-login.php?action=lostpassword">Forgot password?</a></p>
       </form>
+      <div id="sparkLoginStatus" class="status form-status" role="status" aria-live="polite"></div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-grid">
+      <div><a href="/">Home</a> · <a href="/spark-signup/">Create Account</a></div>
+      <div><a href="mailto:hello@dadudekc.site">Contact</a></div>
+    </div>
+    <small>Spark Protocol · dadudekc.site</small>
+  </footer>
 
 <script id="sparkLoginRedirectPatch">
 (function(){
   const params = new URLSearchParams(window.location.search);
-  const DEFAULT_REDIRECT = "/";
+  const DEFAULT_REDIRECT = "/spark-dashboard/";
   const redirect = params.get("redirect_to") || params.get("returnUrl") || DEFAULT_REDIRECT;
   const safe = redirect.startsWith("/") && !redirect.startsWith("//") ? redirect : DEFAULT_REDIRECT;
   const input = document.querySelector('input[name="redirect_to"]');
   if (input) input.value = safe;
+
+  const toggle = document.getElementById("sparkLoginTogglePassword");
+  const password = document.getElementById("user_pass");
+  if (toggle && password) {
+    toggle.addEventListener("click", function () {
+      const show = password.type === "password";
+      password.type = show ? "text" : "password";
+      toggle.textContent = show ? "Hide" : "Show";
+    });
+  }
+
+  const form = document.getElementById("sparkLoginForm");
+  const status = document.getElementById("sparkLoginStatus");
+  const submitBtn = document.getElementById("sparkLoginSubmit");
+  if (form && status && submitBtn) {
+    form.addEventListener("submit", function () {
+      submitBtn.disabled = true;
+      status.textContent = "Signing in…";
+    });
+  }
 })();
 </script>
-  <script src="/assets/js/spark-account-runtime.js?v=6"></script>
-  <script src="/assets/js/spark-auth-nav.js?v=7"></script>
+  <script src="/assets/js/spark-site-shell.js?v=1"></script>
+  <script src="/assets/js/spark-account-runtime.js?v=11"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=13"></script>
 </body>
 </html>

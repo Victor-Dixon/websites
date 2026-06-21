@@ -29,6 +29,25 @@ get_header();
         <!-- Projects Grid -->
         <section class="projects-section">
             <div class="projects-grid">
+
+                <article class="project-card cosmic-card">
+                    <div class="project-icon">📱</div>
+                    <h3 class="project-title"><?php _e('Cracked Screen Glowup', 'ariajet-cosmic'); ?></h3>
+                    <img
+                        src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/phone-lock-screen.png'); ?>"
+                        alt="<?php esc_attr_e('iPhone lock screen with glowing abstract wallpaper — AriaJet glowup project', 'ariajet-cosmic'); ?>"
+                        loading="lazy"
+                        width="200"
+                        height="356"
+                        style="width:100%;max-width:200px;border-radius:12px;margin:0 auto 1rem;display:block;"
+                    >
+                    <p class="project-description">
+                        <?php _e('Real before-and-after phone photos documenting Aria\'s screen glow-up transformation.', 'ariajet-cosmic'); ?>
+                    </p>
+                    <a href="<?php echo esc_url(home_url('/cracked-screen-glowup/')); ?>" class="cosmic-button accent">
+                        <?php _e('View Glowup', 'ariajet-cosmic'); ?>
+                    </a>
+                </article>
                 
                 <article class="project-card cosmic-card">
                     <div class="project-icon">🎮</div>

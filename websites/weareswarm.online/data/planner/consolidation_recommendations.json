@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T00:02:37+00:00",
+  "generated_at": "2026-06-09T19:03:11+00:00",
   "recommendations": [
     {
       "action": "inspect_manually",
@@ -39,17 +39,6 @@
       "blockers": [],
       "canonical_target": null,
       "domain": "automation toolbelt",
-      "lane_id": "projectscanner",
-      "reason": "Standalone toolbelt supporting canonical repos; not a Dream.OS variant.",
-      "repo": "projectscanner",
-      "repo_root": "D:\\projectscanner",
-      "risk": 55
-    },
-    {
-      "action": "keep_as_toolbelt",
-      "blockers": [],
-      "canonical_target": null,
-      "domain": "automation toolbelt",
       "lane_id": "agent-tools",
       "reason": "Standalone toolbelt supporting canonical repos; not a Dream.OS variant.",
       "repo": "agent-tools",
@@ -65,6 +54,17 @@
       "reason": "Classified from repo inspection of websites.",
       "repo": "websites",
       "repo_root": "D:\\websites",
+      "risk": 55
+    },
+    {
+      "action": "keep_as_toolbelt",
+      "blockers": [],
+      "canonical_target": null,
+      "domain": "automation toolbelt",
+      "lane_id": "projectscanner",
+      "reason": "Standalone toolbelt supporting canonical repos; not a Dream.OS variant.",
+      "repo": "projectscanner",
+      "repo_root": "D:\\projectscanner",
       "risk": 55
     },
     {

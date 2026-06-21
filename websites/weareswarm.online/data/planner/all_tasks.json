@@ -1,13 +1,13 @@
 {
   "schema": "dreamvault.planner_feed.v1",
-  "generated_at": "2026-06-16T23:43:07+00:00",
+  "generated_at": "2026-06-21T19:13:57+00:00",
   "export_script": "runtime/scripts/task_prune_and_kids_route_001.py",
   "source_dirs": [
     "runtime/tasks",
     "tasks",
     "data/tasks"
   ],
-  "task_count": 930,
+  "task_count": 879,
   "tasks": [
     {
       "id": "repair_agent_cellphone",
@@ -723,6 +723,52 @@
       "executor": "agent"
     },
     {
+      "id": "agent4_captain_operating_sop_001",
+      "title": "Agent-4 Captain Operating SOP (Multitask Mode)",
+      "status": "active",
+      "lane": "governance",
+      "priority": "P0",
+      "owner": "Agent-4",
+      "source_path": "runtime/tasks/agent4_captain_operating_sop_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
+      "id": "agent_session_closeout_publish_requirement_001",
+      "title": "Publish Discord closeout + website feed after every agent session",
+      "status": "active",
+      "lane": "governance",
+      "priority": "P0",
+      "owner": "",
+      "source_path": "runtime/tasks/agent_session_closeout_publish_requirement_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": false,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
       "id": "agenttools_broad_test_gate_050",
       "title": "Run broad AgentTools test gate",
       "status": "active",
@@ -868,6 +914,29 @@
       "priority": "P0",
       "owner": "",
       "source_path": "runtime/tasks/agenttools_revitalization_032.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
+      "id": "agenttools_runtime_verification_matrix_001",
+      "title": "AgentTools runtime verification matrix \u2014 inventory to runtime proof",
+      "status": "active",
+      "lane": "agenttools",
+      "priority": "P0",
+      "owner": "Agent-1",
+      "source_path": "runtime/tasks/agenttools_runtime_verification_matrix_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -1160,29 +1229,6 @@
       "executor": "agent"
     },
     {
-      "id": "branch_governance_architect_001",
-      "title": "Portfolio branch governance via github-architect-bot",
-      "status": "active",
-      "lane": "repo_governance",
-      "priority": "P0",
-      "owner": "",
-      "source_path": "runtime/tasks/branch_governance_architect_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "build_daily_tsla_trade_packet_001",
       "title": "Build daily TSLA trade packet",
       "status": "active",
@@ -1253,6 +1299,29 @@
       },
       "executor": "victor",
       "victor_reason": "Owner: victor"
+    },
+    {
+      "id": "captain_website_fleet_execute_001",
+      "title": "Captain execute \u2014 website fleet consolidation (move, not manifest)",
+      "status": "active",
+      "lane": "website_fleet_execute",
+      "priority": "P0",
+      "owner": "Agent-1",
+      "source_path": "runtime/tasks/captain_website_fleet_execute_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
     },
     {
       "id": "chatgpt_bash_extractor_001",
@@ -1346,6 +1415,30 @@
         "requires_adult_gate": false
       },
       "executor": "agent"
+    },
+    {
+      "id": "crossrepo_scanner_dedup_enforcement_001",
+      "title": "Cross-repo scanner dedup enforcement (SSOT requires scan proof + quarantine manifest)",
+      "status": "active",
+      "lane": "governance",
+      "priority": "P0",
+      "owner": "victor",
+      "source_path": "runtime/tasks/crossrepo_scanner_dedup_enforcement_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": false,
+        "no_billing_required": true,
+        "no_destructive_repo_action": false,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "victor",
+      "victor_reason": "Owner: victor"
     },
     {
       "id": "customer_extraction_001",
@@ -1674,29 +1767,6 @@
       "executor": "agent"
     },
     {
-      "id": "discord_projectscanner_bot_inventory_001",
-      "title": "Inventory Discord bots from ProjectScanner truth",
-      "status": "blocked",
-      "lane": "discord_infrastructure",
-      "priority": "P0",
-      "owner": "",
-      "source_path": "runtime/tasks/discord_projectscanner_bot_inventory_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "dreamapply_closeout_outputs_087",
       "title": "DreamApply Closeout Outputs",
       "status": "planned",
@@ -1843,29 +1913,6 @@
       "priority": "P0",
       "owner": "",
       "source_path": "runtime/tasks/dreamos_agent_governance_skillpack_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "dreamos_core_salvage_matrix_001",
-      "title": "Classify Dream.os-Core inspection-pack artifacts for safe salvage into DreamOS, DreamVault, AgentTools, archive reference, or duplicate rejection.",
-      "status": "active",
-      "lane": "repo_governance",
-      "priority": "P0",
-      "owner": "",
-      "source_path": "runtime/tasks/dreamos_core_salvage_matrix_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -2252,6 +2299,121 @@
       "executor": "kids"
     },
     {
+      "id": "lane_006_website_revenue_cluster_001",
+      "title": "Audit and improve revenue-cluster websites: FreerideInvestor + TradingRobotPlug.",
+      "status": "approved",
+      "lane": "website_revenue_cluster",
+      "priority": "P0",
+      "owner": "Agent-1",
+      "source_path": "runtime/tasks/lane_006_website_revenue_cluster_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
+      "id": "lane_008_co_captain_website_intake_001",
+      "title": "Co-Captain website cycle \u2014 merge DONE/BLOCKED from Agents 1, 3, 4 website lanes.",
+      "status": "in_progress",
+      "lane": "co_captain_website_intake",
+      "priority": "P0",
+      "owner": "Agent-2",
+      "source_path": "runtime/tasks/lane_008_co_captain_website_intake_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
+      "id": "lane_009_agent_cellphone_v2_consolidation_001",
+      "title": "Absorb Agent_Cellphone_V2_Repository into [path redacted] SSOT. Hash-verify then",
+      "status": "active",
+      "lane": "consolidation",
+      "priority": "P0",
+      "owner": "Agent-1",
+      "source_path": "runtime/tasks/lane_009_agent_cellphone_v2_consolidation_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": false,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
+      "id": "lane_010_co_captain_intake_001",
+      "title": "Co-Captain intake for lane_010: enforce messaging_efficiency_rules_001, block duplicate",
+      "status": "active",
+      "lane": "lane_010_repo_sprawl_consolidation_001",
+      "priority": "P0",
+      "owner": "Agent-2",
+      "source_path": "runtime/tasks/lane_010_co_captain_intake_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
+      "id": "lane_010_repo_sprawl_consolidation_001",
+      "title": "Reduce fleet repo sprawl to declared SSOT hubs. Inventory complete; execute hash-verify",
+      "status": "active",
+      "lane": "consolidation",
+      "priority": "P0",
+      "owner": "Agent-1",
+      "source_path": "runtime/tasks/lane_010_repo_sprawl_consolidation_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": false,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
       "id": "lead_cursor_sync_and_dispatch_001",
       "title": "Lead Cursor sync and dispatch lane",
       "status": "active",
@@ -2283,52 +2445,6 @@
       "priority": "P0",
       "owner": "",
       "source_path": "runtime/tasks/llm_adapter_boundary_policy_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "master_task_reset_for_repo_governance_001",
-      "title": "Reset DreamVault task authority for the repo professionalization campaign. Existing master task lists, old ledgers, and historical runtime tasks are stale by default and may only be used as inspiration/reference, not as execution authority.",
-      "status": "active",
-      "lane": "repo_governance",
-      "priority": "P0",
-      "owner": "",
-      "source_path": "runtime/tasks/master_task_reset_for_repo_governance_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "next_lane_alignment_001",
-      "title": "Align CPC NEXT_LANE reporting with actual runtime strategic priority so planner, closeout reports, autonomy gates, and operator guidance resolve to the same highest-priority executable lane.",
-      "status": "queued",
-      "lane": "orchestration",
-      "priority": "P0",
-      "owner": "",
-      "source_path": "runtime/tasks/next_lane_alignment_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -2482,6 +2598,29 @@
       },
       "executor": "victor",
       "victor_reason": "Recent profitable TSLA trade was executed outside the Dream.OS trading suite. Promote trading runtime activation above general intelligence operationalization so tomorrow's market session has governed signal capture, Discord decision cards,"
+    },
+    {
+      "id": "private_trading_secret_scan_gate_002",
+      "title": "Private trading full-tree secret scan gate (Phase 2)",
+      "status": "hold",
+      "lane": "github_cleanup",
+      "priority": "P0",
+      "owner": "Agent-3",
+      "source_path": "runtime/tasks/private_trading_secret_scan_gate_002.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": false,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
     },
     {
       "id": "projectscanner_dedup_authority_pipeline_001",
@@ -2652,6 +2791,29 @@
       "priority": "P0",
       "owner": "",
       "source_path": "runtime/tasks/robinhood_mcp_connection_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "export_excluded",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": false,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": false,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
+      "id": "robinhood_weekly_pnl_visibility_001",
+      "title": "Robinhood weekly P&L visibility for swarm (read-only)",
+      "status": "active",
+      "lane": "trading",
+      "priority": "P0",
+      "owner": "",
+      "source_path": "runtime/tasks/robinhood_weekly_pnl_visibility_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -2875,6 +3037,29 @@
       "executor": "agent"
     },
     {
+      "id": "unified_message_bus_revival_001",
+      "title": "Unified message bus revival \u2014 Thea + 4-agent + system + Discord ingress",
+      "status": "ready",
+      "lane": "messaging",
+      "priority": "P0",
+      "owner": "Agent-4",
+      "source_path": "runtime/tasks/unified_message_bus_revival_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
       "id": "update_agent_roles_031",
       "title": "Update Dream.OS startup agent roles",
       "status": "new",
@@ -3013,6 +3198,30 @@
       "executor": "agent"
     },
     {
+      "id": "absorb_discord_commander_into_architect_ssot_001",
+      "title": "Absorb Discord Commander functionality into Discord Architect SSOT",
+      "status": "pending",
+      "lane": "governance",
+      "priority": "P1",
+      "owner": "victor",
+      "source_path": "runtime/tasks/absorb_discord_commander_into_architect_ssot_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": false,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "victor",
+      "victor_reason": "Owner: victor"
+    },
+    {
       "id": "add_execution_gate_engine_001",
       "title": "Add autonomous execution gate engine",
       "status": "active",
@@ -3080,30 +3289,6 @@
         "requires_adult_gate": false
       },
       "executor": "agent"
-    },
-    {
-      "id": "agent_cellphone_v2_salvage_001",
-      "title": "Salvage legacy Agent_Cellphone features into canonical V2 desktop tree",
-      "status": "active",
-      "lane": "desktop_consolidation",
-      "priority": "P1",
-      "owner": "",
-      "source_path": "runtime/tasks/agent_cellphone_v2_salvage_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": true,
-        "no_secret_required": false,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": true
-      },
-      "executor": "victor",
-      "victor_reason": "Human gate \u2014 awaiting operator"
     },
     {
       "id": "audit_autonomous_runtime_discovery_001",
@@ -3315,37 +3500,13 @@
       "executor": "agent"
     },
     {
-      "id": "dream_os_core_manual_review_001",
-      "title": "Dream.os-Core manual review (linked clone pair)",
-      "status": "pending",
+      "id": "dreamos_core_runtime_ssot_salvage_promotion_002",
+      "title": "DreamOS_Core runtime SSOT salvage promotion (REPORT_ONLY)",
+      "status": "ready",
       "lane": "consolidation",
       "priority": "P1",
       "owner": "codex",
-      "source_path": "runtime/tasks/dream_os_core_manual_review_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": true
-      },
-      "executor": "victor",
-      "victor_reason": "Human gate \u2014 awaiting operator"
-    },
-    {
-      "id": "dreamos_core_manual_review_001",
-      "title": "DreamOS_Core manual review vs DreamVault src/dreamvault",
-      "status": "pending",
-      "lane": "consolidation",
-      "priority": "P1",
-      "owner": "codex",
-      "source_path": "runtime/tasks/dreamos_core_manual_review_001.yaml",
+      "source_path": "runtime/tasks/dreamos_core_runtime_ssot_salvage_promotion_002.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -3502,30 +3663,6 @@
       "executor": "agent"
     },
     {
-      "id": "github_architect_bot_role_review_001",
-      "title": "github-architect-bot role review (evidence dossier)",
-      "status": "pending",
-      "lane": "consolidation",
-      "priority": "P1",
-      "owner": "codex",
-      "source_path": "runtime/tasks/github_architect_bot_role_review_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": true
-      },
-      "executor": "victor",
-      "victor_reason": "Human gate \u2014 awaiting operator"
-    },
-    {
       "id": "kids_planner_proof_import_001",
       "title": "Import Kids Planner work logs into DreamVault proof reports",
       "status": "ready",
@@ -3596,6 +3733,30 @@
       "executor": "agent"
     },
     {
+      "id": "metuber_pat_rotation_001",
+      "title": "MeTuber embedded PAT rotation and remote hygiene",
+      "status": "queued",
+      "lane": "website_repo_consolidation_001",
+      "priority": "P1",
+      "owner": "Agent-1",
+      "source_path": "runtime/tasks/metuber_pat_rotation_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": false,
+        "no_secret_required": false,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": true
+      },
+      "executor": "victor",
+      "victor_reason": "Human gate \u2014 awaiting operator"
+    },
+    {
       "id": "outreach_pack_015",
       "title": "Build DreamScan outreach pack using Victor voice",
       "status": "new",
@@ -3642,6 +3803,52 @@
       "executor": "agent"
     },
     {
+      "id": "private_trading_repo_cleanup_gate_001",
+      "title": "Private trading repo cleanup gate \u2014 inventory, classify, proof-first plan",
+      "status": "active",
+      "lane": "github_cleanup",
+      "priority": "P1",
+      "owner": "Agent-3",
+      "source_path": "runtime/tasks/private_trading_repo_cleanup_gate_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": false,
+        "no_billing_required": true,
+        "no_destructive_repo_action": false,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
+      "id": "professorsama_homeschool_consolidation_001",
+      "title": "Merge Victor-Dixon/ProfessorSama into Victor-Dixon/HomeSchool_Mastery (ai_tutor/).",
+      "status": "in_progress",
+      "lane": "consolidation",
+      "priority": "P1",
+      "owner": "Agent-1",
+      "source_path": "runtime/tasks/professorsama_homeschool_consolidation_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
       "id": "promote_master_task_ledger_as_ssot_001",
       "title": "Promote master task ledger as planner source of truth",
       "status": "active",
@@ -3667,7 +3874,7 @@
     {
       "id": "runtime_core_clone_salvage_manifest_001",
       "title": "Runtime core clone salvage manifest (REPORT_ONLY)",
-      "status": "blocked",
+      "status": "salvage_ready",
       "lane": "consolidation",
       "priority": "P1",
       "owner": "codex",
@@ -3687,6 +3894,29 @@
       },
       "executor": "victor",
       "victor_reason": "Human gate \u2014 awaiting operator"
+    },
+    {
+      "id": "s2a_hard_onboard_agent3_001",
+      "title": "S2A hard onboarding \u2014 Agent-3 with Co-Captain Agent-2",
+      "status": "active",
+      "lane": "s2a_onboarding",
+      "priority": "P1",
+      "owner": "Agent-2",
+      "source_path": "runtime/tasks/s2a_hard_onboard_agent3_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": false,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
     },
     {
       "id": "send_trading_discord_card_001",
@@ -3737,6 +3967,29 @@
       "victor_reason": "Owner: Victor"
     },
     {
+      "id": "superpowered_hcshinobi_consolidation_001",
+      "title": "Merge Victor-Dixon/Superpowered-TTRPG into Victor-Dixon/HCshinobi.",
+      "status": "planned",
+      "lane": "consolidation",
+      "priority": "P1",
+      "owner": "Agent-1",
+      "source_path": "runtime/tasks/superpowered_hcshinobi_consolidation_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": true,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
       "id": "synthesize_agenttools_operationalization_001",
       "title": "Synthesize AgentTools operationalization tasks",
       "status": "active",
@@ -3758,30 +4011,6 @@
         "requires_adult_gate": false
       },
       "executor": "agent"
-    },
-    {
-      "id": "thea_role_review_001",
-      "title": "Victor-Dixon__Thea role review (evidence dossier)",
-      "status": "pending",
-      "lane": "consolidation",
-      "priority": "P1",
-      "owner": "codex",
-      "source_path": "runtime/tasks/thea_role_review_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": true
-      },
-      "executor": "victor",
-      "victor_reason": "Human gate \u2014 awaiting operator"
     },
     {
       "id": "tradingrobotplug_backtest_salvage_diff_001",
@@ -4592,52 +4821,6 @@
       "executor": "agent"
     },
     {
-      "id": "add_dreamclose_skill_tree_031",
-      "title": "add_dreamclose_skill_tree_031",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/add_dreamclose_skill_tree_031.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "add_dreamintel_command_001",
-      "title": "add_dreamintel_command_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/add_dreamintel_command_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "add_dreamos_manifesto_001",
       "title": "add_dreamos_manifesto_001",
       "status": "ready",
@@ -5174,29 +5357,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/add_mobile_safe_pytest_profile_002.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "add_next_lane_planner_001",
-      "title": "add_next_lane_planner_001",
-      "status": "unknown",
-      "lane": "operator_planning",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/add_next_lane_planner_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -6160,29 +6320,6 @@
       "victor_reason": "Owner: Victor"
     },
     {
-      "id": "agent_cellphone_thea_cursor_bridge",
-      "title": "Rework Thea ChatGPT capture into Agent Cellphone Cursor delivery",
-      "status": "ready",
-      "lane": "",
-      "priority": "",
-      "owner": "lead_cursor_agent",
-      "source_path": "runtime/tasks/agent_cellphone_thea_cursor_bridge.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "agent_preflight_prompt_generation_001",
       "title": "Generate safe Dream.OS agent preflight prompt",
       "status": "ready",
@@ -6190,52 +6327,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/agent_preflight_prompt_generation_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "agent_website_planner_publish_requirement_001",
-      "title": "agent_website_planner_publish_requirement_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/agent_website_planner_publish_requirement_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "agenttools_inventory_cleanup_001",
-      "title": "agenttools_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "agenttools_control_plane",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/agenttools_inventory_cleanup_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -6266,29 +6357,6 @@
       "kids_routing": {
         "ai_heavy_lift": false,
         "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "animated_roadmap_skill_tree_024",
-      "title": "animated_roadmap_skill_tree_024",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/animated_roadmap_skill_tree_024.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
         "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": true,
@@ -6620,29 +6688,6 @@
       "executor": "agent"
     },
     {
-      "id": "auto_refresh_dreamclose_skill_tree_040",
-      "title": "auto_refresh_dreamclose_skill_tree_040",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/auto_refresh_dreamclose_skill_tree_040.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "autodream_delete_dod_001",
       "title": "Define deletion-grade acceptance criteria for safely retiring AutoDream.Os after salvage.",
       "status": "active",
@@ -6683,29 +6728,6 @@
         "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": false,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "autodream_salvage_disposition_matrix_001",
-      "title": "autodream_salvage_disposition_matrix_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/autodream_salvage_disposition_matrix_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
         "no_live_trading_action": true,
         "requires_adult_gate": false
       },
@@ -6804,29 +6826,6 @@
       "executor": "agent"
     },
     {
-      "id": "bootstrap_cpc_runtime_packet_001",
-      "title": "bootstrap_cpc_runtime_packet_001",
-      "status": "unknown",
-      "lane": "operator_runtime",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/bootstrap_cpc_runtime_packet_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "bot_market_card_publish_001",
       "title": "Publish TSLA cognition card to",
       "status": "unknown",
@@ -6864,29 +6863,6 @@
       "kids_routing": {
         "ai_heavy_lift": false,
         "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "branch_retirement_manifest_001",
-      "title": "branch_retirement_manifest_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/branch_retirement_manifest_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
         "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": true,
@@ -7402,6 +7378,29 @@
       "executor": "agent"
     },
     {
+      "id": "captain_agent1_consolidation_execute_001",
+      "title": "captain_agent1_consolidation_execute_001",
+      "status": "unknown",
+      "lane": "",
+      "priority": "",
+      "owner": "",
+      "source_path": "runtime/tasks/captain_agent1_consolidation_execute_001.yaml",
+      "kid_safe": false,
+      "parent_approved": false,
+      "kids_routable": false,
+      "kids_route_reason": "no_match",
+      "kids_routing": {
+        "ai_heavy_lift": false,
+        "copy_paste_ready": false,
+        "no_secret_required": true,
+        "no_billing_required": true,
+        "no_destructive_repo_action": true,
+        "no_live_trading_action": true,
+        "requires_adult_gate": false
+      },
+      "executor": "agent"
+    },
+    {
       "id": "characterize_ai_debugger_planner_005",
       "title": "Characterize AI_Debugger_Assistant planner.py behavior with isolated DreamVault tests before any promotion decision.",
       "status": "unknown",
@@ -7455,29 +7454,6 @@
       "priority": "",
       "owner": "Charlie",
       "source_path": "runtime/tasks/cleanup/charlie_preserve_trading_source_002.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "chatgpt_path_pack_cgpack_001",
-      "title": "chatgpt_path_pack_cgpack_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/chatgpt_path_pack_cgpack_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -7770,75 +7746,6 @@
       "executor": "agent"
     },
     {
-      "id": "cleanup_progress_tracker_001",
-      "title": "cleanup_progress_tracker_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/cleanup_progress_tracker_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "cliprun_packet_preflight_001",
-      "title": "cliprun_packet_preflight_001",
-      "status": "unknown",
-      "lane": "operator_tooling",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/cliprun_packet_preflight_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "close_discord_architect_refactor_blocked_permission_001",
-      "title": "Close Discord Architect refactor as blocked by Discord permissions",
-      "status": "blocked",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/governance/close_discord_architect_refactor_blocked_permission_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "close_generated_report_governance_hardening_001",
       "title": "close_generated_report_governance_hardening_001",
       "status": "planned",
@@ -7846,98 +7753,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/repo_fleet/close_generated_report_governance_hardening_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "close_preflight_packet_noise_001",
-      "title": "close_preflight_packet_noise_001",
-      "status": "unknown",
-      "lane": "operator_tooling",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/close_preflight_packet_noise_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "close_runtime_packet_samples_001",
-      "title": "close_runtime_packet_samples_001",
-      "status": "unknown",
-      "lane": "operator_tooling",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/close_runtime_packet_samples_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "close_runtime_pids_noise_001",
-      "title": "close_runtime_pids_noise_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/close_runtime_pids_noise_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "codex_consolidation_fast_lane_001",
-      "title": "codex_consolidation_fast_lane_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/codex_consolidation_fast_lane_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -8123,29 +7938,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/continuation_authority_resolver_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "contract_leads_inventory_cleanup_001",
-      "title": "contract_leads_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/contract_leads_inventory_cleanup_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -9795,29 +9587,6 @@
       "executor": "agent"
     },
     {
-      "id": "dadudekc_website_inventory_cleanup_001",
-      "title": "dadudekc_website_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/dadudekc_website_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "dadudekc_wp_account_first_home_001",
       "title": "Replace active WordPress homepage with account-first Spark funnel",
       "status": "implemented",
@@ -10020,52 +9789,6 @@
         "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": false,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "desktop_planner_domain_adapter_001",
-      "title": "desktop_planner_domain_adapter_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/desktop_planner_domain_adapter_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "desktop_planner_sync_next_lane_001",
-      "title": "desktop_planner_sync_next_lane_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/desktop_planner_sync_next_lane_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
         "no_live_trading_action": true,
         "requires_adult_gate": false
       },
@@ -10349,29 +10072,6 @@
       "executor": "agent"
     },
     {
-      "id": "discord_teks_tester_inventory_cleanup_001",
-      "title": "discord_teks_tester_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/discord_teks_tester_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "discord_trading_cognition_router_001",
       "title": "Route trading cognition packets through Discord Architect with explicit channel assignment and preview rendering.",
       "status": "unknown",
@@ -10548,29 +10248,6 @@
         "ai_heavy_lift": false,
         "copy_paste_ready": false,
         "no_secret_required": false,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "dreambranch_pr_linkage_001",
-      "title": "dreambranch_pr_linkage_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/dreambranch_pr_linkage_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": true,
         "no_live_trading_action": true,
@@ -10925,29 +10602,6 @@
       "executor": "agent"
     },
     {
-      "id": "dreamtradedata_inventory_cleanup_001",
-      "title": "dreamtradedata_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/dreamtradedata_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "dreamvault_governance_baseline_001",
       "title": "dreamvault_governance_baseline_001",
       "status": "unknown",
@@ -11001,29 +10655,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/dreamvault_legacy_subsystem_boundary_118.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "dynamic_planner_engine_001",
-      "title": "dynamic_planner_engine_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/dynamic_planner_engine_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -11100,29 +10731,6 @@
       "kids_routing": {
         "ai_heavy_lift": false,
         "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "emit_cliprun_runtime_packet_001",
-      "title": "emit_cliprun_runtime_packet_001",
-      "status": "unknown",
-      "lane": "operator_tooling",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/emit_cliprun_runtime_packet_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
         "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": true,
@@ -11477,29 +11085,6 @@
       "executor": "agent"
     },
     {
-      "id": "fix_cliprun_core_tempfile_context_001",
-      "title": "fix_cliprun_core_tempfile_context_001",
-      "status": "unknown",
-      "lane": "operator_tooling",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/fix_cliprun_core_tempfile_context_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "fix_cpc_clipboard_report_collision_003",
       "title": "fix_cpc_clipboard_report_collision_003",
       "status": "unknown",
@@ -11507,121 +11092,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/fix_cpc_clipboard_report_collision_003.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "fix_next_lane_campaign_status_detection_001",
-      "title": "fix_next_lane_campaign_status_detection_001",
-      "status": "unknown",
-      "lane": "operator_planning",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/fix_next_lane_campaign_status_detection_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "fix_next_lane_completion_detection_001",
-      "title": "fix_next_lane_completion_detection_001",
-      "status": "unknown",
-      "lane": "operator_planning",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/fix_next_lane_completion_detection_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "fix_next_lane_intelligence_boost_001",
-      "title": "fix_next_lane_intelligence_boost_001",
-      "status": "unknown",
-      "lane": "operator_planning",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/fix_next_lane_intelligence_boost_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "fix_next_lane_project_priority_001",
-      "title": "fix_next_lane_project_priority_001",
-      "status": "unknown",
-      "lane": "operator_planning",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/fix_next_lane_project_priority_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "fix_public_project_board_sync_001",
-      "title": "fix_public_project_board_sync_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/fix_public_project_board_sync_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -11822,52 +11292,6 @@
       "executor": "agent"
     },
     {
-      "id": "focusforge_inventory_cleanup_001",
-      "title": "focusforge_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/focusforge_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "freerideinvestor_inventory_cleanup_001",
-      "title": "freerideinvestor_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/freerideinvestor_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "freerideinvestor_website_consolidation_inspection_001",
       "title": "freerideinvestor_website_consolidation_inspection_001",
       "status": "unknown",
@@ -11921,29 +11345,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/governance/generate_discord_architect_admin_invite_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "generate_project_intelligence_bundles_001",
-      "title": "generate_project_intelligence_bundles_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/generate_project_intelligence_bundles_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -12020,29 +11421,6 @@
       "kids_routing": {
         "ai_heavy_lift": false,
         "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "gpt_automation_inventory_cleanup_001",
-      "title": "gpt_automation_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/gpt_automation_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
         "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": true,
@@ -12197,29 +11575,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/trading/harden_tsla_minute_collector_source_selection_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "homeschool_mastery_inventory_cleanup_001",
-      "title": "homeschool_mastery_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/homeschool_mastery_inventory_cleanup_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -13294,29 +12649,6 @@
       "executor": "agent"
     },
     {
-      "id": "patch_cliprun_agent_context_001",
-      "title": "patch_cliprun_agent_context_001",
-      "status": "unknown",
-      "lane": "operator_tooling",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/patch_cliprun_agent_context_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "patch_cliprun_clipboard_002",
       "title": "patch_cliprun_clipboard_002",
       "status": "unknown",
@@ -13573,29 +12905,6 @@
       "executor": "agent"
     },
     {
-      "id": "plan_cliprun_intelligence_v2_001",
-      "title": "plan_cliprun_intelligence_v2_001",
-      "status": "unknown",
-      "lane": "operator_tooling",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/plan_cliprun_intelligence_v2_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "plan_dreamvault_generated_report_ignore_patch_001",
       "title": "plan_dreamvault_generated_report_ignore_patch_001",
       "status": "planned",
@@ -13833,29 +13142,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/product_controller_activation_099.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "professorsama_inventory_cleanup_001",
-      "title": "professorsama_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/professorsama_inventory_cleanup_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -14148,29 +13434,6 @@
       "executor": "agent"
     },
     {
-      "id": "projectscanner_inventory_cleanup_001",
-      "title": "projectscanner_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/projectscanner_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "projectscanner_prompt_registry_001",
       "title": "Register canonical ProjectScanner prompts and classify each prompt by operational role.",
       "status": "unknown",
@@ -14277,29 +13540,6 @@
       "kids_routing": {
         "ai_heavy_lift": false,
         "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "promote_cleanup_campaign_status_001",
-      "title": "promote_cleanup_campaign_status_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/promote_cleanup_campaign_status_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
         "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": true,
@@ -14845,29 +14085,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/governance/refactor_cpc_discord_gamified_closeout_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "reframe_next_up_as_planner_output_001",
-      "title": "reframe_next_up_as_planner_output_001",
-      "status": "unknown",
-      "lane": "operator_planning",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/reframe_next_up_as_planner_output_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -15693,29 +14910,6 @@
       "executor": "agent"
     },
     {
-      "id": "run_projectscanner_ecosystem_scan_001",
-      "title": "run_projectscanner_ecosystem_scan_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/run_projectscanner_ecosystem_scan_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "run_projectscanner_task_authority_pass_010",
       "title": "run_projectscanner_task_authority_pass_010",
       "status": "unknown",
@@ -15831,29 +15025,6 @@
       "executor": "agent"
     },
     {
-      "id": "salvage_agent_cellphone_v2_20260511_053440",
-      "title": "salvage_agent_cellphone_v2_20260511_053440",
-      "status": "salvage_manifest_created",
-      "lane": "repo_salvage",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/salvage_agent_cellphone_v2_20260511_053440.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "salvage_website_asset_deltas_001",
       "title": "Salvage website asset deltas",
       "status": "ready",
@@ -15923,29 +15094,6 @@
       "executor": "agent"
     },
     {
-      "id": "socialmediamanager_inventory_cleanup_001",
-      "title": "socialmediamanager_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/socialmediamanager_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "stage_core_contracts_004",
       "title": "stage_core_contracts_004",
       "status": "unknown",
@@ -15992,29 +15140,6 @@
       "executor": "agent"
     },
     {
-      "id": "stocktwits_analyzer_inventory_cleanup_001",
-      "title": "stocktwits_analyzer_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/stocktwits_analyzer_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "structural_fingerprint_layer_001",
       "title": "Generate structural repo fingerprints for higher-signal ecosystem reasoning.",
       "status": "active",
@@ -16029,29 +15154,6 @@
       "kids_routing": {
         "ai_heavy_lift": false,
         "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "synchronize_intelligence_architecture_001",
-      "title": "synchronize_intelligence_architecture_001",
-      "status": "unknown",
-      "lane": "architecture_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/synchronize_intelligence_architecture_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
         "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": true,
@@ -16107,29 +15209,6 @@
       "executor": "agent"
     },
     {
-      "id": "tdd_next_lane_planner_campaign_closure_001",
-      "title": "tdd_next_lane_planner_campaign_closure_001",
-      "status": "unknown",
-      "lane": "operator_planning",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/tdd_next_lane_planner_campaign_closure_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "temporal_integrity_quarantine_003",
       "title": "Quarantine synthetic future-date trading datasets",
       "status": "unknown",
@@ -16153,75 +15232,6 @@
       "executor": "agent"
     },
     {
-      "id": "test_operator_loop_success",
-      "title": "Test operator loop success",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/test_operator_loop_success.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "test_staged_core_contracts_005",
-      "title": "test_staged_core_contracts_005",
-      "status": "unknown",
-      "lane": "repo_salvage",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/test_staged_core_contracts_005.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "thea_inventory_cleanup_001",
-      "title": "thea_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/thea_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "thea_workflow_bridge_boundary_114",
       "title": "Define Thea workflow bridge boundary",
       "status": "unknown",
@@ -16229,52 +15239,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/thea_workflow_bridge_boundary_114.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "track_cliprun_contract_template_001",
-      "title": "track_cliprun_contract_template_001",
-      "status": "unknown",
-      "lane": "operator_tooling",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/track_cliprun_contract_template_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "trade_analyzer_inventory_cleanup_001",
-      "title": "trade_analyzer_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/trade_analyzer_inventory_cleanup_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -16475,29 +15439,6 @@
       "executor": "agent"
     },
     {
-      "id": "trading_system_consolidation_execute_001",
-      "title": "trading_system_consolidation_execute_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/trading_system_consolidation_execute_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
       "id": "trading_thesis_event_pipeline_001",
       "title": "Convert conversational trading analysis into structured runtime cognition artifacts for Discord, website, and DreamVault.",
       "status": "unknown",
@@ -16512,52 +15453,6 @@
       "kids_routing": {
         "ai_heavy_lift": false,
         "copy_paste_ready": true,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "tradingrobotplugweb_inventory_cleanup_001",
-      "title": "tradingrobotplugweb_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/tradingrobotplugweb_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "troop_inventory_cleanup_001",
-      "title": "troop_inventory_cleanup_001",
-      "status": "unknown",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/troop_inventory_cleanup_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
         "no_secret_required": true,
         "no_billing_required": true,
         "no_destructive_repo_action": true,
@@ -16735,29 +15630,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/trading/verify_discord_report_quarantine_closure_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "victor_os_salvage_execute_001",
-      "title": "victor_os_salvage_execute_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/victor_os_salvage_execute_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -17103,29 +15975,6 @@
       "priority": "",
       "owner": "",
       "source_path": "runtime/tasks/weareswarm_showcase_cpc_planner_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "website_deploy_persistence_001",
-      "title": "website_deploy_persistence_001",
-      "status": "unknown",
-      "lane": "",
-      "priority": "",
-      "owner": "",
-      "source_path": "runtime/tasks/website_deploy_persistence_001.yaml",
       "kid_safe": false,
       "parent_approved": false,
       "kids_routable": false,
@@ -19857,29 +18706,6 @@
         "ai_heavy_lift": false,
         "copy_paste_ready": false,
         "no_secret_required": true,
-        "no_billing_required": true,
-        "no_destructive_repo_action": true,
-        "no_live_trading_action": true,
-        "requires_adult_gate": false
-      },
-      "executor": "agent"
-    },
-    {
-      "id": "discord_commander_toolbelt_promotion_001",
-      "title": "Promote Discord Commander into agent-tools toolbelt",
-      "status": "pending",
-      "lane": "",
-      "priority": "high",
-      "owner": "cursor_multi_agent",
-      "source_path": "runtime/tasks/discord_commander_toolbelt_promotion_001.yaml",
-      "kid_safe": false,
-      "parent_approved": false,
-      "kids_routable": false,
-      "kids_route_reason": "no_match",
-      "kids_routing": {
-        "ai_heavy_lift": false,
-        "copy_paste_ready": false,
-        "no_secret_required": false,
         "no_billing_required": true,
         "no_destructive_repo_action": true,
         "no_live_trading_action": true,

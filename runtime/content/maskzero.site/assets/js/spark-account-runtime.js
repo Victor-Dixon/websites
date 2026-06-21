@@ -19,14 +19,27 @@
       payload.authenticated === true ||
       !!payload.user;
 
-    return {
-      ok: true,
-      data: {
-        logged_in: loggedIn,
-        user: payload.user || payload.account || null,
-        raw: payload
-      }
+    var user = payload.user || payload.account || null;
+    var data = {
+      logged_in: loggedIn,
+      user: user,
+      raw: payload
     };
+
+    if (payload.game_role) data.game_role = payload.game_role;
+    if (payload.is_owner === true) data.is_owner = true;
+    if (payload.can_access_admin_panel === true) data.can_access_admin_panel = true;
+    if (user && user.game_role) data.game_role = user.game_role;
+    if (user && user.is_owner) data.is_owner = true;
+    if (user && user.can_access_admin_panel) data.can_access_admin_panel = true;
+    if (payload.email) data.email = payload.email;
+    if (payload.display_name) data.display_name = payload.display_name;
+    if (user && user.email) data.email = user.email;
+    if (user && user.display_name) data.display_name = user.display_name;
+
+    window.SPARK_ACCOUNT = Object.assign({}, window.SPARK_ACCOUNT || {}, data);
+
+    return { ok: true, data: data };
   }
 
   function fetchJson(url) {

@@ -7,12 +7,16 @@
   <meta name="description" content="Ops roadmap: active campaign lanes, consolidation sequence, and parallel revenue tracks from the DreamVault planner — evidence-backed proof lanes.">
   <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <link rel="stylesheet" href="/data/shared/command-hive.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/data/shared/command-hive-config.js"></script>
 </head>
-<body>
+<body class="hive-body">
   <nav class="site-nav"></nav>
 
   <main class="container">
-    <header class="hero">
+    <header class="hero hive-mission-header">
+      <p class="hive-chip hive-chip--live">Maturity Ladder</p>
       <h1>Command Center Roadmap</h1>
       <p>Ops roadmap: active campaign lanes, consolidation sequence, and parallel revenue tracks from the DreamVault planner.</p>
       <div class="meta-row">
@@ -20,6 +24,16 @@
         <span class="badge" id="sync-meta">Loading sync metadata…</span>
       </div>
     </header>
+
+    <section class="panel hive-glass" style="margin-bottom: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Ops maturity ladder</h2>
+          <p class="subtitle">Locked / active / unlocked campaign phases</p>
+        </div>
+      </div>
+      <div class="panel-body" id="maturity-ladder"></div>
+    </section>
 
     <div class="grid-2">
       <section class="panel">
@@ -72,9 +86,15 @@
   </main>
 
   <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/proof-feed-rail.js"></script>
+  <script src="/data/shared/command-hive-shell.js"></script>
   <script src="/data/shared/focus-dashboard.js"></script>
   <script src="/data/shared/roadmap-dashboard.js"></script>
+  <script src="/data/shared/roadmap-maturity.js"></script>
   <script>
+    if (window.RoadmapMaturity) {
+      RoadmapMaturity.renderMaturityLadder(document.getElementById("maturity-ladder"));
+    }
     (async function () {
       const FD = window.FocusDashboard;
       const RD = window.RoadmapDashboard;

@@ -21,6 +21,7 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Optional
 
+
 # Add deployment tools to path
 sys.path.insert(0, str(Path(__file__).parent))
 
@@ -37,6 +38,23 @@ def repo_root() -> Path:
     return Path(__file__).parent.parent.parent
 
 
+def load_deploy_env() -> None:
+    """Load HOSTINGER_* from gitignored deploy env (desktop persistence)."""
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        return
+    for env_path in (
+        Path("D:/websites/.env.deploy.local"),
+        repo_root() / ".env.deploy.local",
+        Path("D:/Agent_Cellphone_V2_Repository/.env"),
+        Path.home() / ".hostinger_env",
+    ):
+        if env_path.exists():
+            load_dotenv(env_path, override=False)
+            break
+
+
 def load_site_registry() -> Dict:
     """Load site registry from config/sites_registry.json."""
     registry_path = repo_root() / "config" / "sites_registry.json"
@@ -44,6 +62,43 @@ def load_site_registry() -> Dict:
         with open(registry_path, 'r') as f:
             return json.load(f)
     return {}
+
+
+def load_sites_yml_site(site_domain: str) -> Dict:
+    """Load deploy manifest for one site from ops/deployment/sites.yml."""
+    sites_yml = Path(__file__).parent / "sites.yml"
+    if not sites_yml.exists():
+        return {}
+    try:
+        import yaml  # type: ignore
+    except ImportError:
+        return {}
+    try:
+        with open(sites_yml, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f) or {}
+    except Exception:
+        return {}
+    sites = data.get("sites") or {}
+    entry = sites.get(site_domain)
+    return entry if isinstance(entry, dict) else {}
+
+
+def merge_deploy_manifest(site_config: Dict, yml_entry: Dict) -> Dict:
+    """Merge sites.yml deploy fields into site_configs.json entry."""
+    merged = dict(site_config)
+    if not yml_entry:
+        return merged
+    if yml_entry.get("path") and not merged.get("path"):
+        merged["path"] = yml_entry["path"]
+    for key in ("deploy_files", "deploy_dirs"):
+        yml_vals = yml_entry.get(key) or []
+        cfg_vals = list(merged.get(key) or [])
+        for item in yml_vals:
+            if item not in cfg_vals:
+                cfg_vals.append(item)
+        if cfg_vals:
+            merged[key] = cfg_vals
+    return merged
 
 
 def resolve_site_base_dir(site_domain: str) -> tuple[Path, str]:
@@ -205,12 +260,21 @@ def get_files_to_deploy(site_domain: str, site_config: Dict) -> List[Path]:
     files.extend(plugin_files)
     
     # Add specific files from site config if defined
+    base_path = repo_root()
     if 'deploy_files' in site_config:
-        base_path = repo_root()
         for file_path in site_config['deploy_files']:
             full_path = base_path / file_path
             if full_path.exists():
                 files.append(full_path)
+
+    # Expand deploy_dirs (static site trees; see xthunder.site / weareswarm.online in sites.yml)
+    if 'deploy_dirs' in site_config:
+        for dir_path in site_config['deploy_dirs']:
+            full_dir = base_path / dir_path
+            if full_dir.is_dir():
+                for candidate in full_dir.rglob('*'):
+                    if candidate.is_file():
+                        files.append(candidate)
     
     return list(set(files))  # Remove duplicates
 
@@ -313,8 +377,9 @@ def deploy_site(site_domain: str, site_config: Dict, dry_run: bool = False) -> b
             sftp_base = site_config.get('sftp', {}).get('remote_path', '') or getattr(
                 deployer, 'remote_path', ''
             )
-            if 'wp/wp-content' in str(file_path):
-                parts = str(file_path).split('wp/wp-content/')
+            normalized_file_path = str(file_path).replace('\\', '/')
+            if 'wp/wp-content' in normalized_file_path:
+                parts = normalized_file_path.split('wp/wp-content/')
                 if len(parts) > 1 and sftp_base:
                     remote_path = f"{sftp_base}/wp-content/{parts[1]}"
             elif sftp_base:
@@ -358,6 +423,7 @@ def deploy_site(site_domain: str, site_config: Dict, dry_run: bool = False) -> b
 
 def main():
     """Main execution."""
+    load_deploy_env()
     parser = argparse.ArgumentParser(description='Unified Website Deployer')
     parser.add_argument('--all', action='store_true', help='Deploy to all websites')
     parser.add_argument('--site', type=str, help='Deploy to specific site (domain name)')
@@ -418,7 +484,10 @@ def main():
     # Deploy each site
     results = {}
     for site_domain in sites_to_deploy:
-        site_config = site_configs.get(site_domain, {})
+        site_config = merge_deploy_manifest(
+            site_configs.get(site_domain, {}),
+            load_sites_yml_site(site_domain),
+        )
         results[site_domain] = deploy_site(site_domain, site_config, args.dry_run)
     
     # Summary

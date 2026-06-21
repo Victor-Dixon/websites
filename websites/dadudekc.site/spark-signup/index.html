@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <title>Create Your Spark Account | dadudekc.site</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/css/spark-site-shell.css?v=2" />
   <style>
 :root{
   --ink:#08080b;
@@ -41,9 +42,6 @@ body:before{
   mix-blend-mode:screen;
 }
 .comic-nav{
-  position:sticky;
-  top:0;
-  z-index:50;
   display:flex;
   gap:10px;
   justify-content:center;
@@ -249,61 +247,97 @@ button{
   </style>
 </head>
 <body>
-  <nav id="spark-auth-nav" class="comic-nav" aria-label="Spark Protocol">
-    <a href="/">Cover</a>
-    <a href="/spark-account/">Origin Rules</a>
-    <a href="/spark-login/">Log In</a>
-    <a class="pop" href="/spark-signup/">Join The Universe</a>
-  </nav>
+  <nav id="spark-auth-nav" class="comic-nav site-header" aria-label="Spark Protocol site navigation"></nav>
 
   <main class="comic-wrap">
     <span class="issue-tag">Secret Identity Registration</span>
     <section class="comic-cover">
       <h1>Create Your Spark Account</h1>
       <div class="caption">
-        Register your secret identity. Free heroes get one official Spark. Paid rosters get five.
+        Register to lock one official hero (free) or build a premium roster of five Sparks.
       </div>
     </section>
 
     <section class="panel-grid">
       <article class="comic-panel">
-        <h2>Account Rules</h2>
-        <p>Anonymous: preview only.<br>Free: one Spark.<br>Paid: five Sparks.</p>
+        <h2>What You Get</h2>
+        <p>Free: one locked hero and access to Meridian Dispatch.</p>
+        <p>Premium: five Sparks for alternate builds and mission roles.</p>
+        <p class="field-help">Your email is used only to save your hero identity and account access.</p>
       </article>
 
       <article class="form-panel">
         <h2>Sign Up</h2>
-        <form id="sparkSignupForm">
+        <form id="sparkSignupForm" novalidate>
           <label for="sparkEmail">Email</label>
-          <input id="sparkEmail" type="email" autocomplete="email" required>
+          <input id="sparkEmail" name="email" type="email" autocomplete="email" required aria-required="true">
 
-          <label for="sparkUsername">Hero Name</label>
-          <input id="sparkUsername" type="text" autocomplete="username" placeholder="Optional">
+          <label for="sparkUsername">Display Name</label>
+          <span class="field-help">Optional hero name shown in Meridian City.</span>
+          <input id="sparkUsername" name="username" type="text" autocomplete="username" placeholder="Optional codename">
 
-          <label for="sparkPassword">Secret Passcode</label>
-          <input id="sparkPassword" type="password" autocomplete="new-password" minlength="8" required>
+          <label for="sparkPassword">Password</label>
+          <span class="field-help">Your secret passcode for returning to your hero account. Minimum 8 characters.</span>
+          <div class="password-row">
+            <input id="sparkPassword" name="password" type="password" autocomplete="new-password" minlength="8" required aria-required="true">
+            <button type="button" class="toggle-pass" id="sparkTogglePassword" aria-label="Show password">Show</button>
+          </div>
 
-          <button type="submit">Create Account</button>
-          <a class="comic-button" href="/spark-login/">I already have an account</a>
+          <button type="submit" id="sparkSignupSubmit">Create Account</button>
+          <a class="comic-button secondary" href="/spark-login/">I already have an account</a>
         </form>
-        <div id="sparkSignupStatus" class="status"></div>
+        <div id="sparkSignupStatus" class="status form-status" role="status" aria-live="polite"></div>
       </article>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-grid">
+      <div><a href="/">Home</a> · <a href="/#how-it-works">How It Works</a></div>
+      <div><a href="/spark-login/">Log In</a> · <a href="mailto:hello@dadudekc.site">Contact</a></div>
+    </div>
+    <small>Spark Protocol · dadudekc.site</small>
+  </footer>
 
 <script>
 (function(){
   const form = document.getElementById("sparkSignupForm");
   const status = document.getElementById("sparkSignupStatus");
+  const submitBtn = document.getElementById("sparkSignupSubmit");
+  const toggle = document.getElementById("sparkTogglePassword");
+  const password = document.getElementById("sparkPassword");
+
+  if (toggle && password) {
+    toggle.addEventListener("click", function () {
+      const show = password.type === "password";
+      password.type = show ? "text" : "password";
+      toggle.textContent = show ? "Hide" : "Show";
+      toggle.setAttribute("aria-label", show ? "Hide password" : "Show password");
+    });
+  }
+
   form.addEventListener("submit", async function(event){
     event.preventDefault();
-    status.className = "status";
+    status.className = "status form-status";
+    submitBtn.disabled = true;
     status.textContent = "Creating your Spark account...";
     const payload = {
       email: document.getElementById("sparkEmail").value.trim(),
       username: document.getElementById("sparkUsername").value.trim(),
       password: document.getElementById("sparkPassword").value
     };
+    if (!payload.email) {
+      status.className = "status error form-status";
+      status.textContent = "Enter a valid email address.";
+      submitBtn.disabled = false;
+      return;
+    }
+    if (payload.password.length < 8) {
+      status.className = "status error form-status";
+      status.textContent = "Password must be at least 8 characters.";
+      submitBtn.disabled = false;
+      return;
+    }
     try {
       const res = await fetch("/wp-json/spark/v1/register", {
         method: "POST",
@@ -315,17 +349,19 @@ button{
       if (!res.ok) throw new Error(data.message || "Could not create account.");
       const params = new URLSearchParams(window.location.search);
       const returnTarget = params.get("redirect_to") || params.get("returnUrl");
-      const defaultRedirect = "/";
-      status.textContent = "Account created. Opening your command post...";
+      const defaultRedirect = "/spark-generator/";
+      status.textContent = "Account created. Opening the hero creator...";
       window.location.href = data.redirect || returnTarget || defaultRedirect;
     } catch (err) {
-      status.className = "status error";
+      status.className = "status error form-status";
       status.textContent = err.message || "Could not create account.";
+      submitBtn.disabled = false;
     }
   });
 })();
 </script>
-  <script src="/assets/js/spark-account-runtime.js?v=4"></script>
-  <script src="/assets/js/spark-auth-nav.js?v=7"></script>
+  <script src="/assets/js/spark-site-shell.js?v=1"></script>
+  <script src="/assets/js/spark-account-runtime.js?v=11"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=13"></script>
 </body>
 </html>

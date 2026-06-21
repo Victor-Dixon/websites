@@ -7,12 +7,16 @@
   <meta name="description" content="DreamOS maintenance phase command center — governance, productization, and Spark / MaskZero status on weareswarm.online">
   <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <link rel="stylesheet" href="/data/shared/command-hive.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/data/shared/command-hive-config.js"></script>
 </head>
-<body>
+<body class="hive-body">
   <nav class="site-nav"></nav>
 
   <main class="container">
-    <header class="hero">
+    <header class="hero hive-mission-header">
+      <p class="hive-chip hive-chip--claimed">Mission Control</p>
       <h1>Focus / Command Center</h1>
       <p id="hero-subtitle">DreamOS maintenance and promotion phase — governance enforcement, productization, and revenue activation.</p>
       <div class="meta-row">
@@ -138,6 +142,8 @@
   </main>
 
   <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/proof-feed-rail.js"></script>
+  <script src="/data/shared/command-hive-shell.js"></script>
   <script src="/data/shared/focus-dashboard.js"></script>
   <script>
     (async function () {

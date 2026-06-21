@@ -51,6 +51,54 @@ final class Dadudekc_Spark_Hero_Profile_API {
             'callback' => [__CLASS__, 'leaderboard'],
             'permission_callback' => '__return_true',
         ]);
+
+        register_rest_route(self::REST_NS, '/leaderboards', [
+            'methods' => 'GET',
+            'callback' => [__CLASS__, 'leaderboards_catalog'],
+            'permission_callback' => '__return_true',
+        ]);
+    }
+
+    private static function leaderboard_boards(): array {
+        return [
+            'notoriety' => [
+                'id' => 'notoriety',
+                'label' => 'Notoriety',
+                'description' => 'Overall city standing from feats, combat, and missions.',
+                'metric' => 'notoriety',
+            ],
+            'wins' => [
+                'id' => 'wins',
+                'label' => 'Battle Wins',
+                'description' => 'Victories recorded in Meridian duels and trials.',
+                'metric' => 'wins',
+            ],
+            'dispatch' => [
+                'id' => 'dispatch',
+                'label' => 'Dispatch Responses',
+                'description' => 'Headlines answered across Meridian City.',
+                'metric' => 'dispatch_responses',
+            ],
+            'missions' => [
+                'id' => 'missions',
+                'label' => 'Missions Completed',
+                'description' => 'Field operations marked complete.',
+                'metric' => 'missions_completed',
+            ],
+        ];
+    }
+
+    private static function metric_value(array $record, string $board, int $notoriety): int {
+        switch ($board) {
+            case 'wins':
+                return intval($record['wins'] ?? 0);
+            case 'dispatch':
+                return intval($record['dispatch_responses'] ?? 0);
+            case 'missions':
+                return intval($record['missions_completed'] ?? 0);
+            default:
+                return $notoriety;
+        }
     }
 
     private static function latest_spark(int $user_id): array {
@@ -158,21 +206,34 @@ final class Dadudekc_Spark_Hero_Profile_API {
         $notoriety = self::calculate_notoriety($payload, $record, $feats);
         update_user_meta($user_id, self::NOTORIETY_META, $notoriety);
 
-        return new WP_REST_Response([
+        $roster = class_exists('Dadudekc_Spark_Account_API')
+            ? Dadudekc_Spark_Account_API::roster_for_user($user_id)
+            : [];
+
+        return new WP_REST_Response(array_merge([
             'hero_name' => $hero_name ?: 'Unnamed Spark',
             'rank' => self::rank_for($notoriety),
             'notoriety' => $notoriety,
+            'rename_limit' => class_exists('Spark_Name_Policy')
+                ? Spark_Name_Policy::rename_rate_status($user_id)
+                : null,
             'spark' => [
                 'title' => $payload['title'] ?? ($spark['title'] ?? 'Unawakened Spark'),
                 'lead_domain' => $payload['lead_domain'] ?? ($spark['lead_domain'] ?? 'Unknown'),
                 'manifested' => array_values((array) ($payload['manifested'] ?? ($spark['manifested'] ?? []))),
                 'power_signature_rating' => intval($payload['power_signature_rating'] ?? 0),
                 'combat_capability_rating' => intval($payload['combat_capability_rating'] ?? 0),
+                'visual_prompt' => (string) ($payload['visual_prompt'] ?? ($spark['visual_prompt'] ?? '')),
+                'portrait_url' => (string) (
+                    $payload['portrait_url']
+                    ?? ($spark['portrait_url'] ?? get_user_meta($user_id, 'spark_hero_portrait_url', true))
+                    ?: '/assets/img/spark-hero-placeholder.svg'
+                ),
             ],
             'moves' => self::moves_for($payload),
             'record' => $record,
             'feats' => array_values($feats),
-        ], 200);
+        ], $roster), 200);
     }
 
     public static function add_feat(WP_REST_Request $request) {
@@ -208,18 +269,31 @@ final class Dadudekc_Spark_Hero_Profile_API {
         }
 
         $name = sanitize_text_field((string) ($params['name'] ?? ''));
-        if ($name === '') {
-            return new WP_REST_Response([
-                'code' => 'spark_name_required',
-                'message' => 'Spark name is required.',
-            ], 400);
-        }
 
-        if (strlen($name) > 64) {
-            return new WP_REST_Response([
-                'code' => 'spark_name_too_long',
-                'message' => 'Spark name must be 64 characters or fewer.',
-            ], 400);
+        if (class_exists('Spark_Name_Policy')) {
+            $rate_error = Spark_Name_Policy::can_rename($user_id);
+            if ($rate_error) {
+                return new WP_REST_Response($rate_error, 429);
+            }
+
+            $validation = Spark_Name_Policy::validate_name($name);
+            if ($validation) {
+                return new WP_REST_Response($validation, 400);
+            }
+        } else {
+            if ($name === '') {
+                return new WP_REST_Response([
+                    'code' => 'spark_name_required',
+                    'message' => 'Spark name is required.',
+                ], 400);
+            }
+
+            if (strlen($name) > 64) {
+                return new WP_REST_Response([
+                    'code' => 'spark_name_too_long',
+                    'message' => 'Spark name must be 64 characters or fewer.',
+                ], 400);
+            }
         }
 
         $saved = get_user_meta($user_id, self::SPARKS_META, true);
@@ -228,6 +302,19 @@ final class Dadudekc_Spark_Hero_Profile_API {
                 'code' => 'spark_not_found',
                 'message' => 'Save a Spark before renaming.',
             ], 404);
+        }
+
+        $current_name = get_user_meta($user_id, 'spark_hero_name', true);
+        if ($current_name && strcasecmp((string) $current_name, $name) === 0) {
+            return new WP_REST_Response([
+                'renamed' => true,
+                'hero_name' => $name,
+                'name' => $name,
+                'unchanged' => true,
+                'rename_limit' => class_exists('Spark_Name_Policy')
+                    ? Spark_Name_Policy::rename_rate_status($user_id)
+                    : null,
+            ], 200);
         }
 
         $idx = count($saved) - 1;
@@ -240,15 +327,35 @@ final class Dadudekc_Spark_Hero_Profile_API {
         update_user_meta($user_id, self::SPARKS_META, array_values($saved));
         update_user_meta($user_id, 'spark_hero_name', $name);
 
+        if (class_exists('Spark_Name_Policy')) {
+            Spark_Name_Policy::record_rename($user_id);
+        }
+
         return new WP_REST_Response([
             'renamed' => true,
             'hero_name' => $name,
             'name' => $name,
+            'rename_limit' => class_exists('Spark_Name_Policy')
+                ? Spark_Name_Policy::rename_rate_status($user_id)
+                : null,
+        ], 200);
+    }
+
+    public static function leaderboards_catalog(WP_REST_Request $request): WP_REST_Response {
+        return new WP_REST_Response([
+            'boards' => array_values(self::leaderboard_boards()),
         ], 200);
     }
 
     public static function leaderboard(WP_REST_Request $request) {
-        $users = get_users(['number' => 100, 'fields' => ['ID', 'display_name', 'user_login']]);
+        $board = sanitize_key((string) ($request->get_param('board') ?? 'notoriety'));
+        $boards = self::leaderboard_boards();
+        if (!isset($boards[$board])) {
+            $board = 'notoriety';
+        }
+
+        $limit = max(1, min(50, intval($request->get_param('limit') ?? 10)));
+        $users = get_users(['number' => 200, 'fields' => ['ID', 'display_name', 'user_login']]);
         $rows = [];
 
         foreach ($users as $user) {
@@ -273,28 +380,43 @@ final class Dadudekc_Spark_Hero_Profile_API {
                 $hero_name = $user->display_name ?: $user->user_login;
             }
 
+            $metric = self::metric_value($record, $board, $notoriety);
+            if ($metric <= 0 && $board !== 'notoriety') {
+                continue;
+            }
+
             $rows[] = [
                 'hero_name' => $hero_name,
                 'rank' => self::rank_for($notoriety),
                 'notoriety' => $notoriety,
                 'lead_domain' => $payload['lead_domain'] ?? 'Unknown',
                 'wins' => intval($record['wins'] ?? 0),
+                'losses' => intval($record['losses'] ?? 0),
                 'missions_completed' => intval($record['missions_completed'] ?? 0),
+                'dispatch_responses' => intval($record['dispatch_responses'] ?? 0),
+                'score' => $metric,
             ];
         }
 
         usort($rows, function ($a, $b) {
+            $score_cmp = intval($b['score']) <=> intval($a['score']);
+            if ($score_cmp !== 0) {
+                return $score_cmp;
+            }
             return intval($b['notoriety']) <=> intval($a['notoriety']);
         });
 
         $ranked = [];
         $i = 1;
-        foreach ($rows as $row) {
+        foreach (array_slice($rows, 0, $limit) as $row) {
             $row['place'] = $i++;
             $ranked[] = $row;
         }
 
-        return new WP_REST_Response(['leaders' => $ranked], 200);
+        return new WP_REST_Response([
+            'board' => $boards[$board],
+            'leaders' => $ranked,
+        ], 200);
     }
 }
 

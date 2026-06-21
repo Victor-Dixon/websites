@@ -1,100 +1,19 @@
 {
   "buckets": {
-    "toolbelt": [
+    "canonical_core": [
       {
-        "project": "agent-tools",
-        "domain": "automation toolbelt",
-        "action": "keep_as_toolbelt",
-        "status": 80,
-        "is_canonical": false,
+        "action": "inspect_manually",
         "capabilities": [
           "run_verification_gates"
         ],
-        "canonical_id": "AgentTools",
-        "tagline": "Agent toolbelt utilities",
-        "description": "Toolbelt repository for agent utilities, adapters, command helpers, and reusable automation support scripts."
-      },
-      {
-        "project": "projectscanner",
-        "domain": "automation toolbelt",
-        "action": "keep_as_toolbelt",
-        "status": 80,
-        "is_canonical": false,
-        "capabilities": [
-          "run_verification_gates"
-        ],
-        "canonical_id": "projectscanner",
-        "tagline": "Portfolio scanner and authority graph",
-        "description": "Toolbelt scanner for repo discovery, authority graphs, duplicate detection, and portfolio/consolidation intelligence."
-      }
-    ],
-    "promotion_candidate": [
-      {
-        "project": "Victor-Dixon__AutoDream.Os",
         "domain": "Dream.OS governance/runtime automation",
-        "action": "promote_into_canonical",
-        "status": 80,
-        "is_canonical": false,
-        "capabilities": [
-          "dispatch_lane_tasks",
-          "run_verification_gates",
-          "verify_task_gates"
-        ],
-        "canonical_id": "AutoDream.Os",
-        "tagline": "Dream.OS-adjacent automation patterns",
-        "description": "Promotion candidate containing automation patterns or Dream.OS-adjacent systems that require salvage review before canonical promotion."
-      },
-      {
-        "project": "Victor-Dixon__SWARM",
-        "domain": "Dream.OS governance/runtime automation",
-        "action": "promote_into_canonical",
-        "status": 20,
-        "is_canonical": false,
-        "capabilities": [
-          "dispatch_lane_tasks",
-          "run_verification_gates",
-          "verify_task_gates"
-        ],
-        "canonical_id": "SWARM",
-        "tagline": "Swarm coordination systems",
-        "description": "Promotion candidate for swarm-facing systems, public task flows, or coordination logic that may feed WeAreSwarm."
-      },
-      {
-        "project": "Victor-Dixon__Victor.os",
-        "domain": "Dream.OS governance/runtime automation",
-        "action": "promote_into_canonical",
-        "status": 80,
-        "is_canonical": false,
-        "capabilities": [
-          "dispatch_lane_tasks",
-          "run_verification_gates",
-          "verify_task_gates"
-        ],
-        "canonical_id": "Victor.os",
-        "tagline": "Personal OS experiments",
-        "description": "Promotion candidate containing personal operating-system experiments and reusable automation ideas that require inspection before merge."
-      }
-    ],
-    "inspect_manually": [
-      {
+        "is_canonical": true,
         "project": "DreamOS_Core",
-        "domain": "Dream.OS governance/runtime automation",
-        "action": "inspect_manually",
-        "status": 80,
-        "is_canonical": false,
-        "capabilities": [
-          "run_verification_gates"
-        ],
-        "canonical_id": "DreamOS_Core",
-        "tagline": "Legacy/core overlap candidate",
-        "description": "Manual inspection candidate with possible legacy/core overlap."
+        "public_surfaces": [],
+        "status": 80
       },
       {
-        "project": "DreamVault",
-        "domain": "Dream.OS governance/runtime automation",
-        "action": "inspect_manually",
-        "status": 80,
-        "is_canonical": false,
+        "action": "preserve_as_canonical",
         "capabilities": [
           "aggregate_project_capabilities",
           "architect_consolidation",
@@ -105,35 +24,32 @@
           "flow_b_strategy_loop",
           "governed_paper_trading"
         ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": true,
+        "project": "DreamVault",
         "public_surfaces": [
           "weareswarm.site/projects",
           "weareswarm.site/tasks"
         ],
-        "canonical_id": "DreamVault",
-        "tagline": "Planning and report authority",
-        "description": "Current planning/report authority and task/report archive; inspect carefully before treating as canonical code."
-      },
+        "status": 80
+      }
+    ],
+    "plugin": [
       {
-        "project": "Victor-Dixon__Thea",
-        "domain": "automation toolbelt",
         "action": "inspect_manually",
-        "status": 65,
-        "is_canonical": false,
         "capabilities": [
           "dispatch_lane_tasks",
           "run_verification_gates",
           "verify_task_gates"
         ],
-        "canonical_id": "Thea",
-        "tagline": "Inspect before promotion",
-        "description": "Manual inspection candidate; classify by actual contents before promotion."
+        "domain": "automation toolbelt",
+        "is_canonical": false,
+        "project": "Victor-Dixon__Thea",
+        "public_surfaces": [],
+        "status": 65
       },
       {
-        "project": "github-architect-bot",
-        "domain": "automation toolbelt",
         "action": "inspect_manually",
-        "status": 20,
-        "is_canonical": false,
         "capabilities": [
           "aggregate_project_capabilities",
           "architect_consolidation",
@@ -144,59 +60,129 @@
           "governed_paper_trading",
           "manage_repo_lifecycle"
         ],
-        "public_surfaces": [
-          "weareswarm.site/projects",
-          "weareswarm.site/tasks"
-        ],
-        "canonical_id": "github-architect-bot",
-        "tagline": "GitHub automation candidate",
-        "description": "Manual inspection candidate for GitHub automation and repo management capabilities."
-      },
-      {
-        "project": "Dream.os-Core",
-        "domain": "Dream.OS governance/runtime automation",
-        "action": "inspect_manually",
-        "status": 5,
+        "domain": "automation toolbelt",
         "is_canonical": false,
-        "capabilities": [
-          "run_verification_gates"
-        ],
-        "canonical_id": "Dream.os-Core",
-        "tagline": "Legacy/core overlap candidate",
-        "description": "Manual inspection candidate with possible legacy/core overlap."
+        "project": "github-architect-bot",
+        "public_surfaces": [],
+        "status": 20
       }
     ],
     "public_surface": [
       {
-        "project": "websites",
-        "domain": "public web surface",
         "action": "keep_as_public_surface",
-        "status": 80,
-        "is_canonical": false,
         "capabilities": [
           "dispatch_lane_tasks",
           "run_verification_gates",
           "verify_task_gates"
         ],
+        "domain": "public web surface",
+        "is_canonical": false,
+        "project": "websites",
         "public_surfaces": [
           "weareswarm.site",
           "public website"
         ],
-        "canonical_id": "websites",
-        "tagline": "Multi-site deploy monorepo",
-        "description": "Package-based WordPress architecture plus static surfaces like weareswarm.online. Deploy via unified_deployer."
+        "status": 80
+      }
+    ],
+    "toolbelt": [
+      {
+        "action": "keep_as_toolbelt",
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "domain": "automation toolbelt",
+        "is_canonical": false,
+        "project": "agent-tools",
+        "public_surfaces": [],
+        "status": 80
+      },
+      {
+        "action": "keep_as_toolbelt",
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "domain": "automation toolbelt",
+        "is_canonical": false,
+        "project": "projectscanner",
+        "public_surfaces": [],
+        "status": 80
+      }
+    ],
+    "variant": [
+      {
+        "action": "inspect_manually",
+        "capabilities": [
+          "run_verification_gates"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": false,
+        "project": "Dream.os-Core",
+        "public_surfaces": [],
+        "status": 5
+      },
+      {
+        "action": "archived_donor",
+        "capabilities": [
+          "governed_paper_trading",
+          "run_verification_gates"
+        ],
+        "domain": "trading automation",
+        "is_canonical": false,
+        "project": "TradingRobotPlug",
+        "public_surfaces": [],
+        "status": 0
+      },
+      {
+        "action": "archived_donor",
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": false,
+        "project": "Victor-Dixon__AutoDream.Os",
+        "public_surfaces": [],
+        "status": 0
+      },
+      {
+        "action": "promote_into_canonical",
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": false,
+        "project": "Victor-Dixon__SWARM",
+        "public_surfaces": [],
+        "status": 20
+      },
+      {
+        "action": "promote_into_canonical",
+        "capabilities": [
+          "dispatch_lane_tasks",
+          "run_verification_gates",
+          "verify_task_gates"
+        ],
+        "domain": "Dream.OS governance/runtime automation",
+        "is_canonical": false,
+        "project": "Victor-Dixon__Victor.os",
+        "public_surfaces": [],
+        "status": 80
       }
     ]
   },
-  "generated_at": "2026-06-09T19:03:11+00:00",
+  "generated_at": "2026-06-12T12:00:00+00:00",
   "public_safe": true,
   "schema": "dreamvault.planner.public_project_board.v1",
   "source": "aggregate_project_domain_mapping_001",
   "totals": {
+    "canonical_core": 2,
+    "plugin": 2,
+    "public_surface": 1,
     "toolbelt": 2,
-    "promotion_candidate": 3,
-    "inspect_manually": 5,
-    "public_surface": 1
-  },
-  "truth_map_applied": true
+    "variant": 5
+  }
 }

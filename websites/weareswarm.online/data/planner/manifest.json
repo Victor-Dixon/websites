@@ -1,6 +1,6 @@
 {
   "schema": "weareswarm.online.planner_manifest.v1",
-  "synced_at": "2026-06-12T10:48:42+00:00",
+  "synced_at": "2026-06-21T19:14:18+00:00",
   "source": "dreamvault_sync",
   "mode": "local_only",
   "dreamvault_planner_root": "D:/DreamVault/data/reports/planner",
@@ -11,12 +11,17 @@
     "closeout-feed.json",
     "consolidation_recommendations.json",
     "dynamic_planner_panel.json",
+    "focus_panel.json",
+    "homepage_panel.json",
     "kids_planner_tasks.json",
     "kids_tasks.json",
+    "l5_scoreboard.json",
     "manifest.json",
     "next_lane.json",
     "onboarding_panel.json",
+    "operator_blockers.json",
     "operator_outcome_reset_001.json",
+    "portfolio_products.json",
     "project_capability_index.json",
     "project_consolidation_decision_manifest_001.json",
     "project_consolidation_next_lanes_001.json",
@@ -24,6 +29,7 @@
     "project_domain_map.json",
     "project_domain_mapping_manual_review_001.json",
     "projects_board_enriched.json",
+    "projects_full.json",
     "public_project_board.json",
     "repo_consolidation_candidates.json",
     "revenue_operator_panel.json",
@@ -45,6 +51,9 @@
     "project_consolidation_next_lanes_001.json",
     "strategic_active_queue.json",
     "task_inventory_report.json",
+    "operator_blockers.json",
+    "all_tasks.json",
+    "kids_tasks.json",
     "kids_planner_tasks.json",
     "skill_events.json",
     "spark_panel.json",
@@ -62,7 +71,6 @@
     "project_consolidation_decision_manifest_001.json",
     "operator_outcome_reset_001.json"
   ],
-  "refresh_command": "python D:/DreamVault/runtime/scripts/sync_planner_reports_to_weareswarm_online_001.py --local-only",
-  "public_safe": true,
-  "projects_board_enriched": "projects_board_enriched.json"
+  "refresh_command": "python runtime/scripts/sync_planner_reports_to_weareswarm_online_001.py --local-only",
+  "public_safe": true
 }

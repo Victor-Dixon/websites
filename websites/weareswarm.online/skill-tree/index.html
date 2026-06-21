@@ -8,19 +8,18 @@
   <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
   <link rel="stylesheet" href="/skill-tree/skill-tree-sphere.css">
-  <link rel="stylesheet" href="/skill-tree/skill-tree-movement-theme.css">
+  <link rel="stylesheet" href="/data/shared/command-hive.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/data/shared/command-hive-config.js"></script>
 </head>
-<body class="swarm-movement">
+<body class="hive-body">
   <nav class="site-nav"></nav>
 
   <main class="container">
-    <header class="hero skill-hero">
-      <p class="badge ok movement-kicker">Be the Light · WeAreSwarm × Dream.OS</p>
+    <header class="hero skill-hero hive-mission-header">
+      <p class="hive-chip hive-chip--pass">Capability Map</p>
       <h1>Swarm Skill Tree</h1>
-      <p class="movement-manifesto">
-        The operating myth made visible — every unlock is a ceremony, every node proof that the
-        movement ships. Follow the ascension grid; the swarm advances when production work lands.
-      </p>
+      <p>Evidence-backed Dream.OS capability map — sphere grid with live unlock states from the planner.</p>
       <div class="meta-row">
         <span class="badge ok" id="live-badge">● Planner bridge</span>
         <span class="badge" id="sync-meta">Loading sync metadata…</span>
@@ -91,6 +90,8 @@
   </main>
 
   <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/proof-feed-rail.js"></script>
+  <script src="/data/shared/command-hive-shell.js"></script>
   <script src="/data/shared/focus-dashboard.js"></script>
   <script src="/data/shared/skill-tree-dashboard.js"></script>
   <script src="/skill-tree/skill-tree-sphere.js"></script>

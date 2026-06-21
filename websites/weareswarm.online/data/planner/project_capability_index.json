@@ -80,6 +80,11 @@
       "owner_repo": "DreamVault",
       "planner_weight": 97,
       "status": "verified",
+      "proof_paths": [
+        "runtime/scripts/lead_cursor_sync_001.py",
+        "run_conversation.py",
+        "data/conversation_links.json"
+      ],
       "unlocks": [
         "enable_flow_b_strategy_loop"
       ]

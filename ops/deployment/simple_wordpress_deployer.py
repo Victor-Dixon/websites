@@ -27,8 +27,10 @@ def load_hostinger_env_credentials():
     import os
     from dotenv import load_dotenv
     
-    # Try multiple .env locations
+    # Try multiple .env locations (repo-local deploy file first)
     env_paths = [
+        Path("D:/websites/.env.deploy.local"),
+        Path(".env.deploy.local"),
         Path(".env"),  # Current directory
         Path("D:/Agent_Cellphone_V2_Repository/.env"),  # Windows main repo
         Path.home() / ".hostinger_env",  # Home directory
@@ -150,8 +152,10 @@ class SimpleWordPressDeployer:
         import os
         from dotenv import load_dotenv
         
-        # Try multiple .env locations
+        # Try multiple .env locations (repo-local deploy file first)
         env_paths = [
+            Path("D:/websites/.env.deploy.local"),
+            Path(".env.deploy.local"),
             Path(".env"),  # Current directory
             Path("D:/Agent_Cellphone_V2_Repository/.env"),  # Windows main repo
             Path.home() / ".hostinger_env",  # Home directory

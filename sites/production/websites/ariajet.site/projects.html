@@ -116,6 +116,31 @@
             opacity: 0.9;
         }
 
+        .project-card img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: var(--spacing-5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .project-link {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            padding: var(--spacing-4) var(--spacing-8);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin-top: var(--spacing-4);
+        }
+
+        .project-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
         .coming-soon {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -155,6 +180,19 @@
         <h1 class="page-title">PROJECTS</h1>
 
         <div class="projects-grid">
+            <div class="project-card">
+                <h3>📱 Cracked Screen Glowup</h3>
+                <img
+                    src="/wp-content/themes/ariajet-cosmic/assets/images/phone-lock-screen.png"
+                    alt="iPhone lock screen with glowing abstract wallpaper — AriaJet glowup project"
+                    loading="lazy"
+                    width="200"
+                    height="356"
+                >
+                <p>Real before-and-after phone photos documenting Aria's screen glow-up transformation.</p>
+                <a href="cracked-screen-glowup.html" class="project-link">View Glowup</a>
+            </div>
+
             <div class="project-card">
                 <h3>🎮 Game Development</h3>
                 <p>Creating fun and interactive games like Aria's Wild World and Wildlife Adventure.</p>

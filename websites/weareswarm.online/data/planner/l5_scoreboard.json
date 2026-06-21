@@ -1,5 +1,7 @@
 {
   "agents": [
+    "Agent-1",
+    "Agent-4",
     "cpc_dispatch",
     "discord_closeout_md",
     "dreamlane",
@@ -13,8 +15,8 @@
     "task_fsm"
   ],
   "db_path": "D:\\DreamVault\\data\\l5\\scoreboard.db",
-  "event_count": 81,
-  "generated_at": "2026-06-17T02:56:14+00:00",
+  "event_count": 124,
+  "generated_at": "2026-06-21T00:03:53+00:00",
   "mission_loop": {
     "current_mission": null,
     "handoff": null,
@@ -22,6 +24,561 @@
     "updated_at": "2026-06-17T02:29:40+00:00"
   },
   "recent_events": [
+    {
+      "agent": "operator",
+      "created_at": "2026-06-20T23:58:15+00:00",
+      "event_type": "closeout_pass",
+      "id": 124,
+      "metadata": {
+        "lane": "agent2_consolidation_dedup_closeout_20260620",
+        "proof_hash": "02c2d9f04ae6f56630240929f88397e8",
+        "repo": "DreamVault"
+      },
+      "score": 25.0,
+      "task_id": "agent2_consolidation_dedup_closeout_20260620"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-20T23:53:08+00:00",
+      "event_type": "closeout_pass",
+      "id": 123,
+      "metadata": {
+        "lane": "agent4_lane011_manifest_verify_001",
+        "proof_hash": "176b2ad65e4d988f43434787805099b3",
+        "repo": "DreamVault"
+      },
+      "score": 25.0,
+      "task_id": "agent4_lane011_manifest_verify_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-20T02:18:02+00:00",
+      "event_type": "closeout_pass",
+      "id": 122,
+      "metadata": {
+        "lane": "agent2_session_closeout_20260618",
+        "proof_hash": "b64575176518279a62d5021f2a25af9b",
+        "repo": "DreamVault"
+      },
+      "score": 25.0,
+      "task_id": "agent2_session_closeout_20260618"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-18T21:35:11+00:00",
+      "event_type": "closeout_pass",
+      "id": 121,
+      "metadata": {
+        "lane": "agent4_captain_proof_session_closeout_001",
+        "proof_hash": "df4bd363f984a354d09180f31199eef7",
+        "repo": "DreamVault"
+      },
+      "score": 25.0,
+      "task_id": "agent4_captain_proof_session_closeout_001"
+    },
+    {
+      "agent": "Agent-1",
+      "created_at": "2026-06-18T02:05:03+00:00",
+      "event_type": "closeout_pass",
+      "id": 120,
+      "metadata": {
+        "lane": "agent_1_closeout",
+        "proof_hash": "4a1ab9d38a37cfd01fff1e2649c1a983",
+        "repo": "DreamVault"
+      },
+      "score": 25.0,
+      "task_id": "agent_1_closeout"
+    },
+    {
+      "agent": "Agent-4",
+      "created_at": "2026-06-18T00:42:00+00:00",
+      "event_type": "closeout_pass",
+      "id": 119,
+      "metadata": {
+        "lane": "proof_automation",
+        "proof_hash": "ab69acf0552c6acd12082c1c8788fb01",
+        "repo": "DreamVault"
+      },
+      "score": 25.0,
+      "task_id": "l6_proof_automation_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-18T00:35:00+00:00",
+      "event_type": "closeout_pass",
+      "id": 118,
+      "metadata": {
+        "lane": "co_captain_intake",
+        "proof_hash": "82e1e89b954ef174b1d61e6e7ace8abe",
+        "repo": "DreamVault"
+      },
+      "score": 25.0,
+      "task_id": "lane_004_co_captain_intake_001"
+    },
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-18T00:04:05+00:00",
+      "event_type": "cpc_closeout",
+      "id": 96,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T03-25-58-0500"
+    },
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-18T00:04:05+00:00",
+      "event_type": "cpc_closeout",
+      "id": 97,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T12-00-00-00-00"
+    },
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-18T00:04:05+00:00",
+      "event_type": "cpc_closeout",
+      "id": 98,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T03-06-54-0500"
+    },
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-18T00:04:05+00:00",
+      "event_type": "cpc_closeout",
+      "id": 99,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T03-04-50-0500"
+    },
+    {
+      "agent": "cpc_dispatch",
+      "created_at": "2026-06-18T00:04:05+00:00",
+      "event_type": "cpc_closeout",
+      "id": 100,
+      "metadata": {
+        "category": "DreamOS CPC",
+        "lane": "required_project_surface_contract_002",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "cpc-2026-06-12T02-58-22-0500"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-18T00:00:10+00:00",
+      "event_type": "cpc_closeout",
+      "id": 101,
+      "metadata": {
+        "category": "governance",
+        "lane": "governance",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "legacy_closeout_backlog_clear_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-17T23:58:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 91,
+      "metadata": {
+        "lane": "legacy_closeout_backlog_clear_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\legacy_closeout_backlog_clear_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "legacy_closeout_backlog_clear_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-06-17T23:58:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 102,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "lane_003_execution_proof_001 L6 automation (now unblocked)",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "legacy_closeout_backlog_clear_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-17T23:58:00+00:00",
+      "event_type": "closeout_pass",
+      "id": 117,
+      "metadata": {
+        "lane": "legacy_closeout_backlog_clear_001",
+        "proof_hash": "2e59cb79cdbeb9e80bbe7c3225b3bbc4",
+        "repo": "DreamVault"
+      },
+      "score": 25.0,
+      "task_id": "legacy_closeout_backlog_clear_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-17T23:57:54+00:00",
+      "event_type": "cpc_closeout",
+      "id": 103,
+      "metadata": {
+        "category": "governance",
+        "lane": "governance",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "swarm_salvage_manifest_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-17T23:57:44+00:00",
+      "event_type": "cpc_closeout",
+      "id": 104,
+      "metadata": {
+        "category": "governance",
+        "lane": "governance",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "duplicate_dreamvault_path_review_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-17T23:57:40+00:00",
+      "event_type": "cpc_closeout",
+      "id": 105,
+      "metadata": {
+        "category": "governance",
+        "lane": "governance",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "branch_governance_architect_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-17T23:57:38+00:00",
+      "event_type": "cpc_closeout",
+      "id": 106,
+      "metadata": {
+        "category": "governance",
+        "lane": "governance",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "ai_debugger_assist_proof_gap_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 86,
+      "metadata": {
+        "lane": "ai_debugger_assist_proof_gap_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\ai_debugger_assist_proof_gap_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "ai_debugger_assist_proof_gap_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 87,
+      "metadata": {
+        "lane": "duplicate_dreamvault_path_review_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\duplicate_dreamvault_path_review_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "duplicate_dreamvault_path_review_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 88,
+      "metadata": {
+        "lane": "github_architect_bot_role_review_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\github_architect_bot_role_review_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "github_architect_bot_role_review_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 89,
+      "metadata": {
+        "lane": "swarm_salvage_manifest_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\swarm_salvage_manifest_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "swarm_salvage_manifest_001"
+    },
+    {
+      "agent": "operator",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 90,
+      "metadata": {
+        "lane": "thea_role_review_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\thea_role_review_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "thea_role_review_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 107,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "Component-level promotion per thea_promotion_matrix.md",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "thea_role_review_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 108,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "promotion_manifest lane \u2014 human approval before SWARM asset promotion",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "swarm_salvage_manifest_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 109,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "Operator confirm live delete policy before production branch cleanup",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "github_architect_bot_role_review_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 110,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "Operator byte-compare sign-off before scheduling mirror prune",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "duplicate_dreamvault_path_review_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-06-17T23:55:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 111,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "Wire agent-tools toolbelt integration for live session dispatch",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "ai_debugger_assist_proof_gap_001"
+    },
+    {
+      "agent": "skill_tree",
+      "created_at": "2026-06-17T13:01:03+00:00",
+      "event_type": "skill_event",
+      "id": 95,
+      "metadata": {
+        "proof_path": "standin_captain_messaging_restore_001.yaml",
+        "source": "skill_events.json"
+      },
+      "score": 5.0,
+      "task_id": "standin_captain_messaging_restore_001"
+    },
+    {
+      "agent": "skill_tree",
+      "created_at": "2026-06-17T12:02:36+00:00",
+      "event_type": "skill_event",
+      "id": 94,
+      "metadata": {
+        "proof_path": "branch_audit_001.py",
+        "source": "skill_events.json"
+      },
+      "score": 10.0,
+      "task_id": "branch_governance_architect_001"
+    },
+    {
+      "agent": "skill_tree",
+      "created_at": "2026-06-17T11:46:45+00:00",
+      "event_type": "skill_event",
+      "id": 93,
+      "metadata": {
+        "proof_path": "branch_audit_001.py",
+        "source": "skill_events.json"
+      },
+      "score": 10.0,
+      "task_id": "branch_governance_architect_001"
+    },
+    {
+      "agent": "skill_tree",
+      "created_at": "2026-06-17T11:46:08+00:00",
+      "event_type": "skill_event",
+      "id": 92,
+      "metadata": {
+        "proof_path": "branch_audit_001.py",
+        "source": "skill_events.json"
+      },
+      "score": 10.0,
+      "task_id": "branch_governance_architect_001"
+    },
+    {
+      "agent": "Agent-4",
+      "created_at": "2026-06-17T11:46:01.275690+00:00",
+      "event_type": "closeout_pass",
+      "id": 82,
+      "metadata": {
+        "lane": "branch_governance_architect_001",
+        "proof_hash": "9bd7a0216ae586f9129bc73901b28c4b",
+        "repo": "DreamVault"
+      },
+      "score": 85.0,
+      "task_id": "branch_governance_architect_001"
+    },
+    {
+      "agent": "Agent-4",
+      "created_at": "2026-06-17T11:46:01.275690+00:00",
+      "event_type": "closeout_backfill",
+      "id": 85,
+      "metadata": {
+        "lane": "branch_governance_architect_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\branch_governance_architect_001.json",
+        "source": "closeout_json"
+      },
+      "score": 85.0,
+      "task_id": "branch_governance_architect_001"
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "created_at": "2026-06-17T11:46:01.275690+00:00",
+      "event_type": "cpc_closeout",
+      "id": 112,
+      "metadata": {
+        "category": "agent_closeout",
+        "lane": "Operator review 14 dry-run branch delete candidates",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "branch_governance_architect_001"
+    },
+    {
+      "agent": "operator-1",
+      "created_at": "2026-06-17T03:35:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 84,
+      "metadata": {
+        "lane": "deploy_l5_scoreboard_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\deploy_l5_scoreboard_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "deploy_l5_scoreboard_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-17T03:35:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 113,
+      "metadata": {
+        "category": "governance",
+        "lane": "l5_scoreboard_runtime_refresh_001",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "deploy_l5_scoreboard_001"
+    },
+    {
+      "agent": "operator-1",
+      "created_at": "2026-06-17T02:30:00+00:00",
+      "event_type": "closeout_backfill",
+      "id": 83,
+      "metadata": {
+        "lane": "l5_sqlite_to_static_scoreboard_001",
+        "path": "D:\\DreamVault\\data\\closeouts\\by_repo\\DreamVault\\l5_sqlite_to_static_scoreboard_001.json",
+        "source": "closeout_json"
+      },
+      "score": 25.0,
+      "task_id": "l5_sqlite_to_static_scoreboard_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-17T02:30:00+00:00",
+      "event_type": "cpc_closeout",
+      "id": 114,
+      "metadata": {
+        "category": "governance",
+        "lane": "governance",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "l5_sqlite_to_static_scoreboard_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-17T01:52:12+00:00",
+      "event_type": "cpc_closeout",
+      "id": 115,
+      "metadata": {
+        "category": "governance",
+        "lane": "governance",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "thea_role_review_001"
+    },
+    {
+      "agent": "discord_closeout_md",
+      "created_at": "2026-06-17T01:52:06+00:00",
+      "event_type": "cpc_closeout",
+      "id": 116,
+      "metadata": {
+        "category": "governance",
+        "lane": "governance",
+        "source": "closeout_feed"
+      },
+      "score": 15.0,
+      "task_id": "github_architect_bot_role_review_001"
+    },
     {
       "agent": "cpc_dispatch",
       "created_at": "2026-06-16T23:49:49+00:00",
@@ -746,316 +1303,46 @@
       },
       "score": 1.0,
       "task_id": "planned_test"
-    },
-    {
-      "agent": "task_fsm",
-      "created_at": "2026-05-18T00:22:31.770127+00:00",
-      "event_type": "journal:task_running",
-      "id": 40,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "running"
-      },
-      "score": 1.0,
-      "task_id": "planned_test"
-    },
-    {
-      "agent": "task_fsm",
-      "created_at": "2026-05-18T00:22:31.767973+00:00",
-      "event_type": "journal:task_claimed",
-      "id": 39,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "claimed"
-      },
-      "score": 1.0,
-      "task_id": "planned_test"
-    },
-    {
-      "agent": "dreamlane",
-      "created_at": "2026-05-09T20:49:51.786649+00:00",
-      "event_type": "journal:task_completed",
-      "id": 38,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
-    },
-    {
-      "agent": "dreamlane",
-      "created_at": "2026-05-09T20:49:51.786360+00:00",
-      "event_type": "journal:task_running",
-      "id": 37,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "running"
-      },
-      "score": 1.0,
-      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-09T20:49:48.542293+00:00",
-      "event_type": "journal:discord_delivery_attempt",
-      "id": 36,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "discord_journal_payload_delivery"
-    },
-    {
-      "agent": "dreamlane",
-      "created_at": "2026-05-09T19:49:51.033148+00:00",
-      "event_type": "journal:task_completed",
-      "id": 35,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
-    },
-    {
-      "agent": "dreamlane",
-      "created_at": "2026-05-09T19:49:51.032756+00:00",
-      "event_type": "journal:task_running",
-      "id": 34,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "running"
-      },
-      "score": 1.0,
-      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-09T19:49:46.811375+00:00",
-      "event_type": "journal:discord_delivery_attempt",
-      "id": 33,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "discord_journal_payload_delivery"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-08T18:51:52.437246+00:00",
-      "event_type": "journal:discord_delivery_attempt",
-      "id": 32,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "discord_journal_payload_delivery"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-08T18:50:45.930050+00:00",
-      "event_type": "journal:discord_delivery_attempt",
-      "id": 31,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "discord_journal_payload_delivery"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-08T18:37:21.518402+00:00",
-      "event_type": "journal:discord_delivery_attempt",
-      "id": 30,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "discord_journal_payload_delivery"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-08T18:36:48.272359+00:00",
-      "event_type": "journal:discord_delivery_attempt",
-      "id": 29,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "discord_journal_payload_delivery"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-08T18:29:57.322808+00:00",
-      "event_type": "journal:discord_delivery_attempt",
-      "id": 28,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "discord_journal_payload_delivery"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-08T18:27:05.162920+00:00",
-      "event_type": "journal:discord_delivery_attempt",
-      "id": 27,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "discord_journal_payload_delivery"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-08T18:27:04.361683+00:00",
-      "event_type": "journal:discord_delivery_attempt",
-      "id": 26,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "discord_journal_payload_delivery"
-    },
-    {
-      "agent": "dreamlane",
-      "created_at": "2026-05-08T17:30:57.181093+00:00",
-      "event_type": "journal:task_completed",
-      "id": 25,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
-    },
-    {
-      "agent": "dreamlane",
-      "created_at": "2026-05-08T17:30:57.178465+00:00",
-      "event_type": "journal:task_running",
-      "id": 24,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "running"
-      },
-      "score": 1.0,
-      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
-    },
-    {
-      "agent": "dreamlane",
-      "created_at": "2026-05-08T17:28:20.970109+00:00",
-      "event_type": "journal:task_completed",
-      "id": 23,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
-    },
-    {
-      "agent": "dreamlane",
-      "created_at": "2026-05-08T17:28:20.967323+00:00",
-      "event_type": "journal:task_running",
-      "id": 22,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "running"
-      },
-      "score": 1.0,
-      "task_id": "add_replay_safe_runtime_snapshots_dreamlane"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-07T16:30:34.104403+00:00",
-      "event_type": "journal:append_check",
-      "id": 21,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "verified"
-      },
-      "score": 1.0,
-      "task_id": "growth_test"
-    },
-    {
-      "agent": "pytest",
-      "created_at": "2026-05-07T16:30:34.065643+00:00",
-      "event_type": "journal:task_transition",
-      "id": 20,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "running"
-      },
-      "score": 1.0,
-      "task_id": "runtime_test"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-07T16:30:00.053057+00:00",
-      "event_type": "journal:journal_smoke",
-      "id": 19,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "completed"
-      },
-      "score": 1.0,
-      "task_id": "smoke"
-    },
-    {
-      "agent": "runtime",
-      "created_at": "2026-05-07T16:29:59.262277+00:00",
-      "event_type": "journal:append_check",
-      "id": 18,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "verified"
-      },
-      "score": 1.0,
-      "task_id": "growth_test"
-    },
-    {
-      "agent": "pytest",
-      "created_at": "2026-05-07T16:29:59.254656+00:00",
-      "event_type": "journal:task_transition",
-      "id": 17,
-      "metadata": {
-        "source": "execution_journal.jsonl",
-        "state": "running"
-      },
-      "score": 1.0,
-      "task_id": "runtime_test"
     }
   ],
   "schema": "dreamvault.l5_scoreboard.v1",
   "schema_version": 1,
   "scoreboard": [
     {
+      "agent": "Agent-4",
+      "lane": "branch_governance_architect_001",
+      "last_event_at": "2026-06-17T11:46:01.275690+00:00",
+      "total_score": 170.0
+    },
+    {
       "agent": "operator-1",
       "lane": "auto_master_task_post_proof_001",
       "last_event_at": "2026-05-22T15:38:00.618712+00:00",
-      "total_score": 85.0
+      "total_score": 170.0
     },
     {
       "agent": "operator-1",
       "lane": "dreamclose_discord_auto_ping_test_001",
       "last_event_at": "2026-05-22T13:08:46.674080+00:00",
-      "total_score": 85.0
+      "total_score": 170.0
     },
     {
       "agent": "cpc_dispatch",
       "lane": "required_project_surface_contract_002",
-      "last_event_at": "2026-06-16T23:49:49+00:00",
-      "total_score": 75.0
+      "last_event_at": "2026-06-18T00:04:05+00:00",
+      "total_score": 150.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "governance",
+      "last_event_at": "2026-06-17T01:52:06+00:00",
+      "total_score": 120.0
+    },
+    {
+      "agent": "operator",
+      "lane": "productization",
+      "last_event_at": "2026-06-13T21:10:00+00:00",
+      "total_score": 100.0
     },
     {
       "agent": "live_build_feed",
@@ -1070,10 +1357,70 @@
       "total_score": 60.0
     },
     {
-      "agent": "operator",
-      "lane": "productization",
-      "last_event_at": "2026-06-13T21:10:00+00:00",
+      "agent": "Agent-4",
+      "lane": "proof_automation",
+      "last_event_at": "2026-06-18T00:42:00+00:00",
       "total_score": 50.0
+    },
+    {
+      "agent": "operator",
+      "lane": "legacy_closeout_backlog_clear_001",
+      "last_event_at": "2026-06-17T23:58:00+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "operator",
+      "lane": "deploy_investor_dashboard_001",
+      "last_event_at": "2026-06-13T21:15:00+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "operator",
+      "lane": "deploy_weareswarm_surfaces_001",
+      "last_event_at": "2026-06-13T10:55:00+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "operator",
+      "lane": "weareswarm_homepage_deploy_001",
+      "last_event_at": "2026-06-13T10:42:00+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "operator",
+      "lane": "scoped_commit_sweep_001",
+      "last_event_at": "2026-06-13T10:30:00+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "operator",
+      "lane": "portfolio_deploy_001",
+      "last_event_at": "2026-06-13T10:30:00+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "operator",
+      "lane": "product_revenue_classification_001",
+      "last_event_at": "2026-06-13T10:05:43+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "operator",
+      "lane": "prune_tasklist_001",
+      "last_event_at": "2026-06-13T09:36:00+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "operator",
+      "lane": "closeout_enforcement_001",
+      "last_event_at": "2026-06-12T14:00:00+00:00",
+      "total_score": 50.0
+    },
+    {
+      "agent": "skill_tree",
+      "lane": "dreamos_core_salvage_matrix_001",
+      "last_event_at": "2026-06-17T13:01:03+00:00",
+      "total_score": 35.0
     },
     {
       "agent": "discord_closeout_md",
@@ -1083,50 +1430,80 @@
     },
     {
       "agent": "operator",
-      "lane": "deploy_investor_dashboard_001",
-      "last_event_at": "2026-06-13T21:15:00+00:00",
+      "lane": "agent2_consolidation_dedup_closeout_20260620",
+      "last_event_at": "2026-06-20T23:58:15+00:00",
       "total_score": 25.0
     },
     {
       "agent": "operator",
-      "lane": "deploy_weareswarm_surfaces_001",
-      "last_event_at": "2026-06-13T10:55:00+00:00",
+      "lane": "agent4_lane011_manifest_verify_001",
+      "last_event_at": "2026-06-20T23:53:08+00:00",
       "total_score": 25.0
     },
     {
       "agent": "operator",
-      "lane": "weareswarm_homepage_deploy_001",
-      "last_event_at": "2026-06-13T10:42:00+00:00",
+      "lane": "agent2_session_closeout_20260618",
+      "last_event_at": "2026-06-20T02:18:02+00:00",
       "total_score": 25.0
     },
     {
       "agent": "operator",
-      "lane": "scoped_commit_sweep_001",
-      "last_event_at": "2026-06-13T10:30:00+00:00",
+      "lane": "agent4_captain_proof_session_closeout_001",
+      "last_event_at": "2026-06-18T21:35:11+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "Agent-1",
+      "lane": "agent_1_closeout",
+      "last_event_at": "2026-06-18T02:05:03+00:00",
       "total_score": 25.0
     },
     {
       "agent": "operator",
-      "lane": "portfolio_deploy_001",
-      "last_event_at": "2026-06-13T10:30:00+00:00",
+      "lane": "co_captain_intake",
+      "last_event_at": "2026-06-18T00:35:00+00:00",
       "total_score": 25.0
     },
     {
       "agent": "operator",
-      "lane": "product_revenue_classification_001",
-      "last_event_at": "2026-06-13T10:05:43+00:00",
+      "lane": "ai_debugger_assist_proof_gap_001",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
       "total_score": 25.0
     },
     {
       "agent": "operator",
-      "lane": "prune_tasklist_001",
-      "last_event_at": "2026-06-13T09:36:00+00:00",
+      "lane": "duplicate_dreamvault_path_review_001",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
       "total_score": 25.0
     },
     {
       "agent": "operator",
-      "lane": "closeout_enforcement_001",
-      "last_event_at": "2026-06-12T14:00:00+00:00",
+      "lane": "github_architect_bot_role_review_001",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator",
+      "lane": "swarm_salvage_manifest_001",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator",
+      "lane": "thea_role_review_001",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator-1",
+      "lane": "deploy_l5_scoreboard_001",
+      "last_event_at": "2026-06-17T03:35:00+00:00",
+      "total_score": 25.0
+    },
+    {
+      "agent": "operator-1",
+      "lane": "l5_sqlite_to_static_scoreboard_001",
+      "last_event_at": "2026-06-17T02:30:00+00:00",
       "total_score": 25.0
     },
     {
@@ -1134,6 +1511,54 @@
       "lane": "branch_governance_architect_001",
       "last_event_at": "2026-06-16T23:39:40+00:00",
       "total_score": 20.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "lane_003_execution_proof_001 L6 automation (now unblocked)",
+      "last_event_at": "2026-06-17T23:58:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "Component-level promotion per thea_promotion_matrix.md",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "promotion_manifest lane \u2014 human approval before SWARM asset promotion",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "Operator confirm live delete policy before production branch cleanup",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "Operator byte-compare sign-off before scheduling mirror prune",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "Wire agent-tools toolbelt integration for live session dispatch",
+      "last_event_at": "2026-06-17T23:55:00+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "dreamvault_closeout_json",
+      "lane": "Operator review 14 dry-run branch delete candidates",
+      "last_event_at": "2026-06-17T11:46:01.275690+00:00",
+      "total_score": 15.0
+    },
+    {
+      "agent": "discord_closeout_md",
+      "lane": "l5_scoreboard_runtime_refresh_001",
+      "last_event_at": "2026-06-17T03:35:00+00:00",
+      "total_score": 15.0
     },
     {
       "agent": "discord_closeout_md",
@@ -1265,9 +1690,9 @@
   "source": "dreamvault_l5_sqlite",
   "table_counts": {
     "mission_loop_state": 1,
-    "proof_receipts": 29,
-    "score_events": 81,
-    "scoreboard": 37,
-    "verified_tasks": 28
+    "proof_receipts": 57,
+    "score_events": 124,
+    "scoreboard": 63,
+    "verified_tasks": 44
   }
 }

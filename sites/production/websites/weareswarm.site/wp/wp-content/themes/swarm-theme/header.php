@@ -45,6 +45,7 @@
                     echo '<li><a href="' . home_url('/') . '">Home</a></li>';
                     echo '<li><a href="' . home_url('/agents/') . '">Agents</a></li>';
                     echo '<li><a href="' . home_url('/missions/') . '">Missions</a></li>';
+                    echo '<li><a href="' . home_url('/feed/') . '">Feed</a></li>';
                     echo '<li><a href="' . home_url('/about-we-are-swarm-multi-agent-intelligence-system/') . '">About</a></li>';
                     echo '</ul>';
                 }

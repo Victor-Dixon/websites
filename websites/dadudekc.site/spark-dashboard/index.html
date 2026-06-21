@@ -314,6 +314,38 @@ body:before{
 }
 .spark-rename-status.ok{color:#0b5d2b}
 .spark-rename-status.err{color:#8b1030}
+.leaderboard-panel{margin-top:28px}
+.leaderboard-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.leaderboard-tab{
+  border:4px solid var(--ink);
+  background:#fff;
+  color:var(--ink);
+  padding:8px 12px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:4px 4px 0 rgba(0,0,0,.35);
+  font-family:Impact,"Arial Black",system-ui,sans-serif;
+  text-transform:uppercase;
+}
+.leaderboard-tab.active{background:var(--yellow)}
+.leaderboard-table{width:100%;border-collapse:collapse;background:#fff;border:5px solid var(--ink);box-shadow:8px 8px 0 rgba(0,0,0,.55)}
+.leaderboard-table th,.leaderboard-table td{
+  padding:10px 12px;
+  border-bottom:2px solid rgba(8,8,11,.12);
+  text-align:left;
+  font-family:system-ui,sans-serif;
+  font-weight:800;
+}
+.leaderboard-table th{background:var(--cream);text-transform:uppercase;font-size:.82rem}
+.leaderboard-table tr:last-child td{border-bottom:none}
+.leaderboard-note{font-family:system-ui,sans-serif;font-weight:700;color:rgba(255,244,214,.85);margin:0 0 12px}
+.inbox-panel{margin-top:28px}
+.inbox-preview{background:#fff;border:5px solid var(--ink);padding:16px;box-shadow:7px 7px 0 rgba(0,0,0,.55);font-family:system-ui,sans-serif;font-weight:700}
+.inbox-preview.unread{border-color:var(--red)}
+.inbox-count{display:inline-block;background:var(--red);color:#fff;padding:4px 10px;border:3px solid var(--ink);margin-left:8px;font-weight:900}
+.hero-profile-grid{display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:start}
+.hero-portrait{width:140px;height:180px;object-fit:cover;border:5px solid var(--ink);box-shadow:6px 6px 0 rgba(0,0,0,.55);background:#fff}
+@media (max-width:640px){.hero-profile-grid{grid-template-columns:1fr}.hero-portrait{width:100%;max-width:220px;height:auto;aspect-ratio:3/4}}
 .comic-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
 .comic-button{
   display:inline-block;
@@ -350,6 +382,36 @@ body:before{
   margin:0;
 }
 .gauntlet-soon{opacity:.72;cursor:default;pointer-events:none;background:#2a3140;color:#d8dee8}
+html[data-spark-nav="out"] [data-spark-auth-only]{display:none!important}
+html[data-spark-nav="in"] [data-spark-guest-only]{display:none!important}
+.comic-cover{
+  position:relative;margin-top:24px;border:7px solid var(--ink);
+  background:radial-gradient(circle at 76% 20%,rgba(255,255,255,.95) 0 8%,transparent 9%),linear-gradient(135deg,#ff3155 0 35%,#ffd12f 35% 58%,#2dd4ff 58% 100%);
+  box-shadow:14px 14px 0 rgba(0,0,0,.65);padding:clamp(22px,5vw,54px);overflow:hidden;
+}
+.comic-cover h1{
+  position:relative;z-index:2;margin:12px 0;font-size:clamp(3rem,12vw,8.8rem);line-height:.78;
+  letter-spacing:-.08em;text-transform:uppercase;color:#fff;-webkit-text-stroke:3px var(--ink);text-shadow:7px 7px 0 var(--ink);
+}
+.caption{
+  position:relative;z-index:2;display:inline-block;max-width:780px;background:var(--paper);
+  border:5px solid var(--ink);padding:14px 16px;box-shadow:8px 8px 0 var(--ink);font-size:1.08rem;
+  font-family:system-ui,sans-serif;font-weight:800;line-height:1.5;
+}
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:28px}
+.hub-panel{background:#fff;border:5px solid var(--ink);box-shadow:7px 7px 0 rgba(0,0,0,.65);padding:16px}
+.hub-panel h2{font-size:1.35rem;margin:0 0 8px;text-transform:uppercase}
+.hub-panel p{font-size:.98rem;margin:0 0 12px;font-family:system-ui,sans-serif;font-weight:800;line-height:1.45}
+.speech{position:relative;background:#fff;border:5px solid var(--ink);border-radius:24px;padding:16px;box-shadow:7px 7px 0 rgba(0,0,0,.7);margin-top:30px}
+.unlock-list{margin:10px 0 0;padding-left:20px;font-family:system-ui,sans-serif;font-weight:800;line-height:1.55}
+.unlock-list a{color:var(--purple);font-weight:950}
+.tier-aside{margin-top:36px;padding-top:18px;border-top:5px dashed var(--yellow)}
+.tier-note{font-size:.95rem;color:rgba(255,244,214,.8);margin:0 0 14px;font-family:system-ui,sans-serif;font-weight:800}
+.panel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:14px}
+.comic-panel{background:var(--paper);border:6px solid var(--ink);box-shadow:9px 9px 0 rgba(0,0,0,.7);padding:18px;transform:rotate(var(--tilt,0deg))}
+.comic-panel:nth-child(1){--tilt:-1deg}.comic-panel:nth-child(2){--tilt:1deg}.comic-panel:nth-child(3){--tilt:-.5deg}
+.comic-panel strong{display:inline-block;background:var(--ink);color:#fff;padding:6px 9px;margin-top:6px}
+.tier-compact .comic-panel{padding:14px}.tier-compact h2{font-size:1.2rem}
 @media (max-width:640px){
   .stat-strip{grid-template-columns:1fr}
   .launch-grid{grid-template-columns:repeat(2,1fr)}
@@ -358,14 +420,54 @@ body:before{
 </head>
 <body>
   <nav id="spark-auth-nav" class="comic-nav" aria-label="Spark Protocol">
-    <a href="/spark-dashboard/" class="pop">Command Post</a>
-    <a href="/spark-account/">Origin Rules</a>
-    <a href="/spark-logout/">Log Out</a>
+    <a href="/">Cover</a>
+    <a href="/spark-generator/">Origin Lab</a>
+    <a href="/spark-login/">Log In</a>
+    <a class="pop" href="/spark-signup/">Join The Universe</a>
   </nav>
 
   <main class="comic-wrap">
     <span class="issue-tag">Meridian City · Command Post</span>
 
+    <section class="comic-cover" data-spark-guest-only>
+      <h1>Command Post</h1>
+      <div class="caption" id="hub-lede">Your command post for hero identity, the origin quiz, and Meridian field ops.</div>
+      <div class="comic-actions">
+        <a class="comic-button primary" href="/spark-signup/">Create Hero</a>
+        <a class="comic-button blue" href="/spark-login/?redirect_to=%2Fspark-dashboard%2F">Log In</a>
+        <a class="comic-button red" href="/spark-login/?redirect_to=%2Fspark-generator%2F">Log In to Start Quiz</a>
+        <a class="comic-button" href="/spark-login/?redirect_to=%2Fmeridian-dispatch%2F">Log In to Unlock Dispatch</a>
+      </div>
+    </section>
+
+    <section class="hub-grid" data-spark-guest-only>
+      <article class="hub-panel">
+        <h2>Origin Quiz</h2>
+        <p>28 questions reveal your manifested domains. Pass 1 is local; sign in to lock your hero.</p>
+        <a class="comic-button red" href="/spark-login/?redirect_to=%2Fspark-generator%2F">Start Quiz</a>
+      </article>
+      <article class="hub-panel">
+        <h2>Meridian Dispatch</h2>
+        <p>Headlines become missions once your hero is locked.</p>
+        <a class="comic-button" href="/spark-login/?redirect_to=%2Fmeridian-dispatch%2F">Open Dispatch</a>
+      </article>
+      <article class="hub-panel">
+        <h2>Meridian Map</h2>
+        <p>Grid sectors A1–P15 — every Spark response shifts sector atmosphere.</p>
+        <a class="comic-button blue" href="/spark-login/?redirect_to=%2Fmeridian-map%2F">Open Map</a>
+      </article>
+    </section>
+
+    <section class="speech" id="unlock-panel" data-spark-guest-only>
+      <h2>What Unlocks</h2>
+      <ul class="unlock-list">
+        <li><strong>Anonymous:</strong> preview the <a href="/" data-spark-cover>cover</a> only.</li>
+        <li><strong>Free account:</strong> <a href="/spark-signup/">create one official hero</a> (1 Spark).</li>
+        <li><strong>Command Post:</strong> this page becomes your signed-in home base.</li>
+      </ul>
+    </section>
+
+    <div data-spark-auth-only hidden>
     <section class="dashboard-hero">
       <h1 id="dash-greeting">Welcome Back</h1>
       <div class="dashboard-lede" id="dash-lede">Loading your command post…</div>
@@ -393,6 +495,10 @@ body:before{
 
     <h2 class="section-head">Quick Launch</h2>
     <div class="launch-grid">
+      <a class="launch-tile" href="/spark-inbox/">
+        <strong>Inbox</strong>
+        <span>MaskZero field reports</span>
+      </a>
       <a class="launch-tile" href="/meridian-dispatch/">
         <strong>Dispatch</strong>
         <span>Headlines become missions</span>
@@ -405,7 +511,7 @@ body:before{
         <strong>News</strong>
         <span>City wire &amp; advisories</span>
       </a>
-      <a class="launch-tile" href="/spark-generator/">
+      <a class="launch-tile" id="launch-generator" href="/spark-generator/">
         <strong>Generator</strong>
         <span>Origin quiz &amp; hero lock</span>
       </a>
@@ -419,6 +525,25 @@ body:before{
       </a>
     </div>
 
+    <section class="spark-card inbox-panel" id="maskzero-inbox-panel" data-spark-auth-only hidden>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <h2 class="section-head" style="margin:0">MaskZero Inbox</h2>
+        <span class="inbox-count" id="dash-inbox-count" hidden>0 unread</span>
+      </div>
+      <div class="inbox-preview" id="dash-inbox-preview">Loading MaskZero messages…</div>
+      <div class="comic-actions" style="margin-top:14px">
+        <a class="comic-button primary" href="/spark-inbox/">Open Inbox</a>
+        <a class="comic-button red" href="/meridian-dispatch/">Respond To Mission</a>
+      </div>
+    </section>
+
+    <section class="spark-card leaderboard-panel" id="leaderboard-panel" data-spark-auth-only hidden>
+      <h2 class="section-head">City Leaderboards</h2>
+      <p class="leaderboard-note" id="leaderboard-note">Track notoriety, dispatch responses, wins, and completed missions.</p>
+      <div class="leaderboard-tabs" id="leaderboard-tabs" role="tablist" aria-label="Leaderboard categories"></div>
+      <div id="leaderboard-body"><p>Loading standings…</p></div>
+    </section>
+
     <section class="spark-card" id="spark-identity-card">
       <h2>Your Spark</h2>
       <p>Loading hero file…</p>
@@ -427,13 +552,37 @@ body:before{
     <footer class="dash-footer">
       <p class="dash-footer-note">Issue #001 · Emergency Edition — you are signed in to Meridian City.</p>
       <a class="comic-button" href="/" data-spark-cover>View Cover</a>
-      <a class="comic-button blue" href="/spark-account/">Account Hub</a>
+      <a class="comic-button blue" href="#origin-rules">Origin Rules</a>
       <a class="comic-button red" href="/spark-logout/">Log Out</a>
     </footer>
+    </div>
+
+    <section class="tier-aside" id="origin-rules">
+      <h2 class="section-head">Origin Rules</h2>
+      <p class="tier-note">Account tiers — reference copy. The mission starts with Command Post above.</p>
+      <div class="panel-grid tier-compact">
+        <article class="comic-panel">
+          <h2>Anonymous</h2>
+          <p>Preview only. Cannot create a locked Spark.</p>
+          <strong>0 Sparks</strong>
+        </article>
+        <article class="comic-panel">
+          <h2>Free</h2>
+          <p>One official Spark identity on your account.</p>
+          <strong>1 Spark</strong>
+        </article>
+        <article class="comic-panel">
+          <h2>Paid</h2>
+          <p>Roster of Sparks for alternate builds and mission roles.</p>
+          <strong>5 Sparks</strong>
+        </article>
+      </div>
+    </section>
   </main>
 
-  <script src="/assets/js/spark-account-runtime.js?v=8"></script>
-  <script src="/assets/js/spark-auth-nav.js?v=7"></script>
-  <script src="/assets/js/spark-dashboard.js?v=3"></script>
+  <script src="/assets/js/spark-site-shell.js?v=1"></script>
+  <script src="/assets/js/spark-account-runtime.js?v=14"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=14"></script>
+  <script src="/assets/js/spark-dashboard.js?v=8"></script>
 </body>
 </html>

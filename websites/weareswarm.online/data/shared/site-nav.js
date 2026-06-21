@@ -4,6 +4,7 @@
   var LINKS = [
     { href: "/", label: "Hub" },
     { href: "/focus/", label: "Focus" },
+    { href: "/blockers/", label: "Blockers" },
     { href: "/kids-planner/", label: "Kids Planner" },
     { href: "/tasks/", label: "Tasks" },
     { href: "/projects/", label: "Projects" },

@@ -112,6 +112,12 @@
       color: var(--muted);
       margin: 0 0 10px;
     }
+    .headline-live {
+      border-left: 6px solid var(--red);
+      padding-left: 14px;
+      background: rgba(142, 31, 31, 0.06);
+    }
+    .tag-live { background: var(--red); color: #fff; border-color: var(--red); }
     .meta {
       display: flex;
       flex-wrap: wrap;
@@ -165,13 +171,13 @@
       visibility: hidden;
     }
   </style>
-  <script src="/assets/js/spark-account-runtime.js?v=4"></script>
+  <script src="/assets/js/spark-account-runtime.js?v=10"></script>
   <script src="/assets/js/spark-auth-guard.js?v=4" data-spark-require-auth></script>
 </head>
 <body>
   <nav id="spark-auth-nav" class="spark-nav" aria-label="Spark Protocol">
     <a href="/">Home</a>
-    <a href="/spark-account/">Build Account</a>
+    <a href="/spark-generator/">Origin Lab</a>
     <a href="/spark-login/">Log In</a>
     <a class="cta" href="/spark-signup/">Sign Up</a>
   </nav>
@@ -208,51 +214,14 @@
 
         <section class="box">
           <h3>About This Feed</h3>
-          <p class="small">Stories scaffolded from the Meridian World Bible. Full CMS syndication lands in a later lane.</p>
+          <p class="small">Editorial stories plus live field reports when Sparks answer the Dispatch. Player actions publish here automatically.</p>
         </section>
       </aside>
     </section>
   </main>
 
+  <script src="/assets/js/meridian-news-client.js?v=1"></script>
   <script>
-    const articles = [
-      {
-        title: "AEGIS Meridian Field Office Posts Annual Registry Summary",
-        deck: "Threat Class assessments held steady across the coastal metro as the agency emphasized procedural continuity over spectacle.",
-        section: "Registry",
-        district: "Central Meridian",
-        body: "The largest AEGIS field office on the eastern seaboard released its annual summary without naming individual masks. Officials cited \"stable containment posture\" and reminded the public that registration remains voluntary for Tier 1 and 2 manifestations."
-      },
-      {
-        title: "Trials Season Opens With Gauntlet Record on the Line",
-        deck: "Sanctioned athletic trials return to broadcast — a fixture where low Threat Class champions can still be the best in the city at something.",
-        section: "Trials",
-        district: "Arena District",
-        body: "Obstacle gauntlets, speed courses, and lift events resume under AEGIS observation. Organizers expect record viewership as masks who would lose any duel compete for civic glory instead."
-      },
-      {
-        title: "Harbor Advisory: Night Lane Closures Continue",
-        deck: "Port authorities cite infrastructure work; independent observers note increased mask traffic along the waterfront.",
-        section: "District",
-        district: "Harbor",
-        body: "Meridian's port remains where things move unseen — natural ground for smugglers, fixers, and the masks who answer to no faction banner. AEGIS issued a routine advisory and no Threat Class changes."
-      },
-      {
-        title: "Uptown Philanthropy Gala Funds Community Restoration Charter",
-        deck: "Sterling Holdings hosted its annual benefit; critics note the institution's quiet role in sealing inconvenient histories.",
-        section: "Society",
-        district: "Uptown",
-        body: "The gala raised millions for community restoration programs — the legal instrument by which a mask's criminal past can be sealed in exchange for cooperation. To most of Meridian, Sterling Holdings remains a byword for trust."
-      },
-      {
-        title: "God's Armor Patrols Expand in Lower Tenements",
-        deck: "The vigilante network protects people other powers ignore — no registry, no press office, only results that almost look like miracles.",
-        section: "Civil",
-        district: "Lower Meridian",
-        body: "Residents report increased night patrols along market streets. AEGIS neither confirmed nor denied coordination with the unregistered network."
-      }
-    ];
-
     document.getElementById("editionDate").textContent = new Date().toLocaleDateString(undefined, {
       weekday: "short",
       year: "numeric",
@@ -260,20 +229,13 @@
       day: "numeric"
     });
 
-    document.getElementById("newsFeed").innerHTML = articles.map(function (a) {
-      return (
-        '<article class="headline-card">' +
-          '<div class="meta">' +
-            '<span class="tag">' + a.section + '</span>' +
-            '<span class="tag">' + a.district + '</span>' +
-          '</div>' +
-          '<h2>' + a.title + '</h2>' +
-          '<p><em>' + a.deck + '</em></p>' +
-          '<p>' + a.body + '</p>' +
-        '</article>'
-      );
-    }).join("");
+    if (window.MeridianNewsClient) {
+      window.MeridianNewsClient.loadNewsfeed({
+        target: document.getElementById("newsFeed"),
+        limit: 24
+      });
+    }
   </script>
-  <script src="/assets/js/spark-auth-nav.js?v=7"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=11"></script>
 </body>
 </html>

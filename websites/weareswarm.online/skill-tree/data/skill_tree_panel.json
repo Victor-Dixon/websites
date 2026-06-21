@@ -1,15 +1,15 @@
 {
   "schema": "weareswarm.online.skill_tree_panel.v1",
-  "generated_at": "2026-06-13T10:48:12+00:00",
+  "generated_at": "2026-06-21T19:13:52+00:00",
   "source": "auto_portfolio_surface_sync",
   "summary": {
     "total_nodes": 81,
     "unlocked": 48,
-    "advanced": 17,
-    "building": 16,
+    "advanced": 18,
+    "building": 15,
     "locked": 0,
-    "unlocked_or_advanced": 65,
-    "progress_percent": 80,
+    "unlocked_or_advanced": 66,
+    "progress_percent": 81,
     "verified_capabilities": 16,
     "branch_count": 5
   },
@@ -1309,8 +1309,8 @@
           "id": "offer_ai_debugger_assist",
           "label": "AI Debugger Assistant — productized debug sessions",
           "branch": "revenue_frontier",
-          "status": "building",
-          "description": "Rank #10 · maturity=scaffold",
+          "status": "advanced",
+          "description": "Rank #10 · maturity=operational_preview",
           "capabilities": [
             "$150",
             "AI_Debugger_Assistant"
@@ -1320,13 +1320,13 @@
           ],
           "source": "portfolio_revenue_inventory",
           "grid": {
-            "x": -522.8,
-            "y": 794.4,
-            "tier": 10,
+            "x": -111.7,
+            "y": 153.7,
+            "tier": 2,
             "angle_deg": 126.0
           },
           "prerequisites": [
-            "revenue_automation"
+            "cap_governed_paper_trading"
           ]
         },
         {
@@ -1345,13 +1345,13 @@
           ],
           "source": "portfolio_revenue_inventory",
           "grid": {
-            "x": -111.7,
-            "y": 153.7,
-            "tier": 2,
+            "x": -203.1,
+            "y": 204.7,
+            "tier": 3,
             "angle_deg": 126.0
           },
           "prerequisites": [
-            "cap_governed_paper_trading"
+            "offer_ai_debugger_assist"
           ]
         },
         {
@@ -1375,7 +1375,7 @@
             "angle_deg": 126.0
           },
           "prerequisites": [
-            "offer_ai_debugger_assist"
+            "revenue_automation"
           ]
         },
         {
@@ -1417,9 +1417,9 @@
           ],
           "source": "structural_proof",
           "grid": {
-            "x": -203.1,
-            "y": 204.7,
-            "tier": 3,
+            "x": -187.8,
+            "y": 333.3,
+            "tier": 4,
             "angle_deg": 126.0
           },
           "prerequisites": [
@@ -1442,9 +1442,9 @@
           ],
           "source": "portfolio_revenue_inventory",
           "grid": {
-            "x": -187.8,
-            "y": 333.3,
-            "tier": 4,
+            "x": -279.2,
+            "y": 384.3,
+            "tier": 5,
             "angle_deg": 126.0
           },
           "prerequisites": [
@@ -1467,9 +1467,9 @@
           ],
           "source": "portfolio_revenue_inventory",
           "grid": {
-            "x": -279.2,
-            "y": 384.3,
-            "tier": 5,
+            "x": -370.6,
+            "y": 435.3,
+            "tier": 6,
             "angle_deg": 126.0
           },
           "prerequisites": [
@@ -1491,9 +1491,9 @@
           ],
           "source": "portfolio_revenue_inventory",
           "grid": {
-            "x": -370.6,
-            "y": 435.3,
-            "tier": 6,
+            "x": -355.3,
+            "y": 563.9,
+            "tier": 7,
             "angle_deg": 126.0
           },
           "prerequisites": [
@@ -1538,9 +1538,9 @@
           ],
           "source": "portfolio_revenue_inventory",
           "grid": {
-            "x": -355.3,
-            "y": 563.9,
-            "tier": 7,
+            "x": -446.7,
+            "y": 614.9,
+            "tier": 8,
             "angle_deg": 126.0
           },
           "prerequisites": [
@@ -1564,9 +1564,9 @@
           ],
           "source": "structural_proof",
           "grid": {
-            "x": -446.7,
-            "y": 614.9,
-            "tier": 8,
+            "x": -538.2,
+            "y": 665.8,
+            "tier": 9,
             "angle_deg": 126.0
           },
           "prerequisites": [
@@ -1613,9 +1613,9 @@
           ],
           "source": "structural_proof",
           "grid": {
-            "x": -538.2,
-            "y": 665.8,
-            "tier": 9,
+            "x": -522.8,
+            "y": 794.4,
+            "tier": 10,
             "angle_deg": 126.0
           },
           "prerequisites": [
@@ -2098,10 +2098,10 @@
     }
   ],
   "next_unlock": {
-    "label": "AI Debugger Assistant — productized debug sessions",
+    "label": "Auto_Blogger content automation lane (blog + social syndication)",
     "branch": "revenue_frontier",
     "proof_hint": "data/reports/marketing/portfolio_revenue_inventory_001.json",
-    "trigger": "Close proof gap for AI Debugger Assistant — productized debug sessions."
+    "trigger": "Close proof gap for Auto_Blogger content automation lane (blog + social syndication)."
   },
   "operator_signal": "No fake roadmap. Nodes unlock only with proof references.",
   "sources": [

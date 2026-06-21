@@ -59,6 +59,17 @@ python ops/deployment/deployment_pipeline.py --validate-only
 python ops/deployment/deployment_pipeline.py --health-check
 ```
 
+### weareswarm.online (static Command Center)
+
+```powershell
+cd D:\websites
+.\ops\deployment\deploy_weareswarm.ps1              # prompt for SFTP password if needed
+.\ops\deployment\deploy_weareswarm.ps1 -SaveCreds   # save to .env.deploy.local (gitignored)
+.\ops\deployment\deploy_weareswarm.ps1 -SyncFirst   # sync planner JSON then deploy
+```
+
+Copy `.env.deploy.example` → `.env.deploy.local` for non-interactive deploys. See `websites/weareswarm.online/focus/DEPLOY.md`.
+
 ### Legacy Tools (Still Supported)
 
 ```bash

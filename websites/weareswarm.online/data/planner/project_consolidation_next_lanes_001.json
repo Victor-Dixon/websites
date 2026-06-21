@@ -1,7 +1,7 @@
 {
   "schema": "dreamvault.planner.project_consolidation_next_lanes.v1",
   "lane_id": "project_consolidation_decision_manifest_001",
-  "generated_at": "2026-06-08T00:02:15+00:00",
+  "generated_at": "2026-06-17T02:09:10+00:00",
   "execute": false,
   "lanes": [
     {
@@ -12,22 +12,55 @@
       "rationale": "Normalized decision matrix; DreamVault conflict resolved"
     },
     {
+      "lane_id": "dreamvault_layout_quarantine_001",
+      "status": "complete",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_paths": [
+        "dreamvault/agents",
+        "dreamvault/trading"
+      ],
+      "canonical_winner": "src/dreamvault/",
+      "execute": true,
+      "quarantine_manifest": "data/quarantine/dreamvault_layout_001/quarantine_manifest_dreamvault_layout_001.json",
+      "scan_report": "data/reports/consolidation/cross_repo_quarantine_scan_001.json",
+      "rationale": "Empty layout shells and pycache quarantined; compat shims retained at dreamvault/__init__.py"
+    },
+    {
+      "lane_id": "cross_repo_quarantine_scan_001",
+      "status": "complete",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "scanner": "runtime/scripts/cross_repo_quarantine_scan_001.py",
+      "scan_roots": [
+        "D:\\DreamVault",
+        "D:\\dream-os-hardened-v33",
+        "D:\\Dream.os-Core",
+        "D:\\DreamOS_Core"
+      ],
+      "execute": false,
+      "outputs": [
+        "data/reports/consolidation/cross_repo_quarantine_scan_001.json",
+        "data/reports/consolidation/cross_repo_quarantine_scan_001.md"
+      ],
+      "rationale": "Cross-repo Python basename overlap indexed; no deletes"
+    },
+    {
       "lane_id": "autodream_salvage_manifest_001",
-      "status": "pending",
+      "status": "complete",
       "task_yaml": "runtime/tasks/autodream_salvage_manifest_001.yaml",
       "parent_lane": "project_consolidation_decision_manifest_001",
       "target_repo": "Victor-Dixon__AutoDream.Os",
       "blocked_until": [
-        "inventory",
-        "overlap_check",
-        "unique_asset_salvage"
+        "tests",
+        "promotion_manifest",
+        "human_approval"
       ],
       "execute": false,
-      "rationale": "Promotion candidate blocked until salvage manifest"
+      "rationale": "Salvage manifest complete; promotion blocked on human_approval",
+      "salvage_manifest": "data/reports/project_consolidation/salvage_manifest_autodream_001.json"
     },
     {
       "lane_id": "victor_os_salvage_manifest_001",
-      "status": "pending",
+      "status": "complete",
       "task_yaml": "runtime/tasks/victor_os_salvage_manifest_001.yaml",
       "parent_lane": "project_consolidation_decision_manifest_001",
       "target_repo": "Victor-Dixon__Victor.os",
@@ -37,63 +70,91 @@
         "unique_asset_salvage"
       ],
       "execute": false,
-      "rationale": "Promotion candidate blocked until salvage manifest"
+      "superseded_by": "victor_os_salvage_execute_001",
+      "salvage_manifest": "data/manifests/salvage/victor_os_salvage_manifest_20260609_055956.json",
+      "execute_report": "data/reports/salvage/victor_os_salvage_execute_20260609_055956.md",
+      "rationale": "Salvage execute complete (2115 staged); pruned from active feed",
+      "order": 1
+    },
+    {
+      "lane_id": "victor_os_salvage_execute_001",
+      "status": "complete",
+      "task_yaml": "runtime/tasks/victor_os_salvage_execute_001.yaml",
+      "parent_lane": "victor_os_salvage_manifest_001",
+      "target_repo": "Victor-Dixon__Victor.os",
+      "execute": false,
+      "rationale": "Salvage execute complete (2115 staged); pruned from active feed",
+      "order": 1
     },
     {
       "lane_id": "swarm_salvage_manifest_001",
-      "status": "pending",
+      "status": "complete",
       "task_yaml": "runtime/tasks/swarm_salvage_manifest_001.yaml",
       "parent_lane": "project_consolidation_decision_manifest_001",
       "target_repo": "Victor-Dixon__SWARM",
       "blocked_until": [
-        "inventory",
-        "overlap_check",
-        "unique_asset_salvage"
+        "promotion_manifest",
+        "human_approval"
       ],
       "execute": false,
-      "rationale": "Promotion candidate blocked until salvage manifest"
+      "rationale": "Promotion candidate blocked until salvage manifest",
+      "order": 2,
+      "salvage_manifest": "data/reports/salvage/swarm_salvage_manifest_001.json"
+    },
+    {
+      "lane_id": "runtime_core_clone_salvage_manifest_001",
+      "status": "pending_human_gate",
+      "task_yaml": "runtime/tasks/runtime_core_clone_salvage_manifest_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repos": [
+        "Dream.os-Core",
+        "DreamOS_Core"
+      ],
+      "blocked_until": [
+        "human runtime_ssot_decision"
+      ],
+      "execute": false,
+      "rationale": "Runtime SSOT manual review; cross-repo scan shows fork drift between clone pair",
+      "cross_link": "data/reports/consolidation/cross_repo_quarantine_scan_001.json",
+      "order": 3,
+      "salvage_manifest": "data/reports/salvage/runtime_core_clone_salvage_manifest_001.json",
+      "per_target_manifests": [
+        "data/reports/runtime_consolidation/salvage_manifest_dream_os_core.json",
+        "data/reports/runtime_consolidation/salvage_manifest_dreamos_core.json"
+      ],
+      "ssot_decision_packet": "data/reports/runtime_consolidation/runtime_ssot_decision_packet_001.json"
     },
     {
       "lane_id": "dreamos_core_manual_review_001",
-      "status": "pending",
+      "status": "complete",
       "task_yaml": "runtime/tasks/dreamos_core_manual_review_001.yaml",
       "parent_lane": "project_consolidation_decision_manifest_001",
       "target_repo": "DreamOS_Core",
       "execute": false,
-      "rationale": "Runtime SSOT manual review; linked to runtime_core_clone_salvage_manifest_001",
-      "cross_link": "runtime/tasks/runtime_core_clone_salvage_manifest_001.yaml"
+      "rationale": "Runtime SSOT manual review; 5 byte-identical basenames vs DreamVault src/dreamvault",
+      "order": 4,
+      "evidence_dossier": "data/reports/runtime_consolidation/dreamos_core_manual_review_001.json",
+      "blocked_until": [
+        "human runtime_ssot_decision"
+      ]
     },
     {
       "lane_id": "dream_os_core_manual_review_001",
-      "status": "pending",
+      "status": "complete",
       "task_yaml": "runtime/tasks/dream_os_core_manual_review_001.yaml",
       "parent_lane": "project_consolidation_decision_manifest_001",
       "target_repo": "Dream.os-Core",
       "execute": false,
       "rationale": "Runtime SSOT manual review; linked to runtime_core_clone_salvage_manifest_001",
-      "cross_link": "runtime/tasks/runtime_core_clone_salvage_manifest_001.yaml"
-    },
-    {
-      "lane_id": "github_architect_bot_role_review_001",
-      "status": "pending",
-      "task_yaml": "runtime/tasks/github_architect_bot_role_review_001.yaml",
-      "parent_lane": "project_consolidation_decision_manifest_001",
-      "target_repo": "github-architect-bot",
-      "execute": false,
-      "rationale": "User gate: inspect_manually until evidence proves role"
-    },
-    {
-      "lane_id": "thea_role_review_001",
-      "status": "pending",
-      "task_yaml": "runtime/tasks/thea_role_review_001.yaml",
-      "parent_lane": "project_consolidation_decision_manifest_001",
-      "target_repo": "Victor-Dixon__Thea",
-      "execute": false,
-      "rationale": "Plugin/toolbelt role review"
+      "order": 5,
+      "evidence_dossier": "data/reports/runtime_consolidation/dream_os_core_manual_review_001.json",
+      "blocked_until": [
+        "human runtime_ssot_decision"
+      ]
     },
     {
       "lane_id": "duplicate_dreamvault_path_review_001",
-      "status": "pending",
+      "status": "complete",
       "task_yaml": "runtime/tasks/duplicate_dreamvault_path_review_001.yaml",
       "parent_lane": "project_consolidation_decision_manifest_001",
       "target_paths": [
@@ -103,7 +164,36 @@
       ],
       "canonical_winner": "D:\\DreamVault",
       "execute": false,
-      "rationale": "Byte-compare mirror paths against canonical D:\\DreamVault before any prune"
+      "rationale": "External mirror paths; byte-compare before any prune",
+      "order": 6,
+      "report": "data/reports/salvage/duplicate_dreamvault_path_review_001.json"
+    },
+    {
+      "lane_id": "github_architect_bot_role_review_001",
+      "status": "complete",
+      "task_yaml": "runtime/tasks/github_architect_bot_role_review_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repo": "github-architect-bot",
+      "proven_role": "toolbelt",
+      "execute": false,
+      "rationale": "Role proven: internal GitHub mutation toolbelt (not governance SSOT)",
+      "order": 7,
+      "evidence_dossier": "data/reports/governance/github_architect_bot_role_review_001.json"
+    },
+    {
+      "lane_id": "thea_role_review_001",
+      "status": "complete",
+      "task_yaml": "runtime/tasks/thea_role_review_001.yaml",
+      "parent_lane": "project_consolidation_decision_manifest_001",
+      "target_repo": "Victor-Dixon__Thea",
+      "proven_role": "plugin",
+      "execute": false,
+      "rationale": "Role proven: Dreamscape plugin + toolbelt; salvage scrapers to AgentTools",
+      "order": 8,
+      "evidence_dossier": "data/reports/governance/thea_role_review_001.json"
     }
-  ]
+  ],
+  "next_lane": "scoped_commit_sweep_001",
+  "consolidation_finalize": "data/reports/consolidation/consolidation_lanes_finalize_001.md",
+  "operating_phase": "maintenance"
 }

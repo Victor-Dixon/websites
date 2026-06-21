@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 const SPARK_AUTH_COOKIE = 'maskzero_spark_session';
 const SPARK_AUTH_TTL = 1209600; // 14 days
+const SPARK_ROOT_OWNER_EMAIL = 'dadudekc@gmail.com';
 
 function spark_auth_json(array $payload, int $status = 200): void {
     http_response_code($status);
@@ -168,11 +169,247 @@ function spark_auth_check_password(string $password, array &$user): bool {
     return true;
 }
 
+function spark_auth_user_role(array $user): string {
+    $stored = strtolower((string)($user['game_role'] ?? ''));
+    if (in_array($stored, ['owner', 'admin', 'dev', 'moderator'], true)) {
+        return $stored;
+    }
+    $email = spark_auth_normalize_email((string)($user['email'] ?? ''));
+    if ($email === spark_auth_normalize_email(SPARK_ROOT_OWNER_EMAIL)) {
+        return 'owner';
+    }
+    return 'player';
+}
+
+function spark_auth_user_is_owner(array $user): bool {
+    return spark_auth_user_role($user) === 'owner';
+}
+
+function spark_auth_user_can_access_admin_panel(array $user): bool {
+    return spark_auth_user_role($user) !== 'player';
+}
+
+function spark_auth_role_capabilities(string $role): array {
+    $map = [
+        'owner' => ['lookup_accounts', 'view_account_detail', 'grant_roles', 'revoke_roles', 'view_admin_log', 'view_debug_status', 'manage_ops'],
+        'admin' => ['lookup_accounts', 'view_account_detail', 'view_admin_log', 'manage_ops'],
+        'dev' => ['lookup_accounts', 'view_account_detail', 'view_debug_status', 'manage_ops'],
+        'moderator' => ['lookup_accounts', 'view_account_detail'],
+        'player' => [],
+    ];
+    return $map[$role] ?? $map['player'];
+}
+
+function spark_auth_require_admin(): array {
+    $current = spark_auth_current_session();
+    if (!$current) {
+        spark_auth_json(['ok' => false, 'message' => 'Sign in required.'], 401);
+    }
+    if (!spark_auth_user_can_access_admin_panel($current['user'])) {
+        spark_auth_json(['ok' => false, 'message' => 'Elevated MaskZero role required.'], 403);
+    }
+    return $current;
+}
+
+function spark_auth_audit(string $action, string $targetId, array $meta = []): void {
+    $current = spark_auth_current_session();
+    $actorId = $current ? (string)($current['user']['id'] ?? '') : 'system';
+    $log = spark_auth_read('admin_audit.json');
+    if (!is_array($log)) {
+        $log = [];
+    }
+    $log[] = [
+        'created_at' => gmdate('c'),
+        'action' => $action,
+        'actor_user_id' => $actorId,
+        'target_user_id' => $targetId,
+        'metadata' => $meta,
+    ];
+    if (count($log) > 500) {
+        $log = array_slice($log, -500);
+    }
+    spark_auth_write('admin_audit.json', $log);
+}
+
+function spark_auth_account_summary(array $user): array {
+    return [
+        'user_id' => (string)($user['id'] ?? ''),
+        'email' => (string)($user['email'] ?? ''),
+        'display_name' => (string)($user['display_name'] ?? ''),
+        'game_role' => spark_auth_user_role($user),
+        'is_root_owner' => spark_auth_normalize_email((string)($user['email'] ?? '')) === spark_auth_normalize_email(SPARK_ROOT_OWNER_EMAIL),
+        'created_at' => (string)($user['created_at'] ?? ''),
+        'migrated_from' => (string)($user['migrated_from'] ?? ''),
+    ];
+}
+
+function spark_auth_owner_session(): void {
+    $current = spark_auth_require_admin();
+    $user = $current['user'];
+    $role = spark_auth_user_role($user);
+    spark_auth_json([
+        'ok' => true,
+        'logged_in' => true,
+        'user_id' => (string)($user['id'] ?? ''),
+        'email' => (string)($user['email'] ?? ''),
+        'display_name' => (string)($user['display_name'] ?? ''),
+        'game_role' => $role,
+        'is_owner' => spark_auth_user_is_owner($user),
+        'is_root_owner' => spark_auth_normalize_email((string)($user['email'] ?? '')) === spark_auth_normalize_email(SPARK_ROOT_OWNER_EMAIL),
+        'can_access_admin_panel' => true,
+        'capabilities' => spark_auth_role_capabilities($role),
+    ]);
+}
+
+function spark_auth_owner_search(string $query): void {
+    spark_auth_require_admin();
+    $query = trim($query);
+    if ($query === '') {
+        spark_auth_json(['ok' => true, 'results' => []]);
+    }
+
+    $users = spark_auth_read('users.json');
+    $needle = strtolower($query);
+    $results = [];
+    foreach ($users as $user) {
+        if (!is_array($user)) {
+            continue;
+        }
+        $hay = strtolower(implode(' ', [
+            (string)($user['id'] ?? ''),
+            (string)($user['email'] ?? ''),
+            (string)($user['display_name'] ?? ''),
+            (string)($user['user_login'] ?? ''),
+        ]));
+        if (strpos($hay, $needle) === false) {
+            continue;
+        }
+        $results[] = spark_auth_account_summary($user);
+        if (count($results) >= 25) {
+            break;
+        }
+    }
+
+    spark_auth_json(['ok' => true, 'query' => $query, 'results' => $results]);
+}
+
+function spark_auth_owner_user(string $targetId): void {
+    spark_auth_require_admin();
+    $targetId = trim($targetId);
+    if ($targetId === '') {
+        spark_auth_json(['ok' => false, 'message' => 'User ID required.'], 422);
+    }
+
+    $users = spark_auth_read('users.json');
+    foreach ($users as $user) {
+        if (!is_array($user)) {
+            continue;
+        }
+        if ((string)($user['id'] ?? '') === $targetId) {
+            spark_auth_json(['ok' => true, 'account' => spark_auth_account_summary($user)]);
+        }
+    }
+    spark_auth_json(['ok' => false, 'message' => 'Account not found.'], 404);
+}
+
+function spark_auth_owner_set_role(array $input, bool $revoke): void {
+    $current = spark_auth_require_admin();
+    $actor = $current['user'];
+    if (!spark_auth_user_is_owner($actor)) {
+        spark_auth_json(['ok' => false, 'message' => 'Only owners can change roles.'], 403);
+    }
+
+    $targetId = trim((string)($input['user_id'] ?? $input['target_id'] ?? ''));
+    $newRole = $revoke ? 'player' : strtolower(trim((string)($input['role'] ?? 'player')));
+    $valid = ['owner', 'admin', 'dev', 'moderator', 'player'];
+    if (!in_array($newRole, $valid, true)) {
+        spark_auth_json(['ok' => false, 'message' => 'Invalid role.'], 422);
+    }
+
+    $users = spark_auth_read('users.json');
+    $found = false;
+    foreach ($users as $index => $user) {
+        if (!is_array($user) || (string)($user['id'] ?? '') !== $targetId) {
+            continue;
+        }
+        $found = true;
+        $email = spark_auth_normalize_email((string)($user['email'] ?? ''));
+        if ($email === spark_auth_normalize_email(SPARK_ROOT_OWNER_EMAIL) && $newRole !== 'owner') {
+            spark_auth_json(['ok' => false, 'message' => 'Root owner role cannot be removed.'], 403);
+        }
+        $previous = spark_auth_user_role($user);
+        if ($newRole === 'player') {
+            unset($users[$index]['game_role']);
+        } else {
+            $users[$index]['game_role'] = $newRole;
+        }
+        spark_auth_write('users.json', array_values($users));
+        spark_auth_audit($revoke ? 'revoke_role' : 'grant_role', $targetId, [
+            'previous_role' => $previous,
+            'new_role' => $newRole,
+        ]);
+        spark_auth_json([
+            'ok' => true,
+            'user_id' => $targetId,
+            'game_role' => $newRole,
+            'account' => spark_auth_account_summary($users[$index]),
+        ]);
+    }
+
+    if (!$found) {
+        spark_auth_json(['ok' => false, 'message' => 'Account not found.'], 404);
+    }
+}
+
+function spark_auth_owner_audit(?string $targetId): void {
+    spark_auth_require_admin();
+    $actor = spark_auth_current_session()['user'];
+    $caps = spark_auth_role_capabilities(spark_auth_user_role($actor));
+    if (!in_array('view_admin_log', $caps, true)) {
+        spark_auth_json(['ok' => false, 'message' => 'Audit log access denied.'], 403);
+    }
+
+    $log = spark_auth_read('admin_audit.json');
+    if (!is_array($log)) {
+        $log = [];
+    }
+    $entries = array_reverse($log);
+    if ($targetId) {
+        $entries = array_values(array_filter($entries, static function ($row) use ($targetId) {
+            return is_array($row) && (string)($row['target_user_id'] ?? '') === $targetId;
+        }));
+    }
+    spark_auth_json(['ok' => true, 'entries' => array_slice($entries, 0, 100)]);
+}
+
+function spark_auth_owner_debug(): void {
+    $current = spark_auth_require_admin();
+    $caps = spark_auth_role_capabilities(spark_auth_user_role($current['user']));
+    if (!in_array('view_debug_status', $caps, true)) {
+        spark_auth_json(['ok' => false, 'message' => 'Debug access denied.'], 403);
+    }
+
+    $users = spark_auth_read('users.json');
+    $sessions = spark_auth_read('sessions.json');
+    spark_auth_json([
+        'ok' => true,
+        'user_count' => is_array($users) ? count($users) : 0,
+        'active_sessions' => is_array($sessions) ? count($sessions) : 0,
+        'storage_dir' => 'protected',
+        'root_owner_email' => SPARK_ROOT_OWNER_EMAIL,
+        'php_version' => PHP_VERSION,
+    ]);
+}
+
 function spark_auth_public_user(array $user): array {
+    $role = spark_auth_user_role($user);
     return [
         'id' => (string)($user['id'] ?? ''),
         'email' => (string)($user['email'] ?? ''),
         'display_name' => (string)($user['display_name'] ?? ''),
+        'game_role' => $role,
+        'is_owner' => spark_auth_user_is_owner($user),
+        'can_access_admin_panel' => spark_auth_user_can_access_admin_panel($user),
     ];
 }
 
@@ -364,10 +601,16 @@ function spark_auth_session(): void {
         spark_auth_json(['ok' => true, 'logged_in' => false, 'user' => null]);
     }
 
+    $public = spark_auth_public_user($current['user']);
     spark_auth_json([
         'ok' => true,
         'logged_in' => true,
-        'user' => spark_auth_public_user($current['user']),
+        'user' => $public,
+        'game_role' => $public['game_role'],
+        'is_owner' => $public['is_owner'],
+        'can_access_admin_panel' => $public['can_access_admin_panel'],
+        'email' => $public['email'],
+        'display_name' => $public['display_name'],
     ]);
 }
 
@@ -389,6 +632,27 @@ try {
     }
     if ($action === 'import') {
         spark_auth_import($input);
+    }
+    if ($action === 'owner_session') {
+        spark_auth_owner_session();
+    }
+    if ($action === 'owner_search') {
+        spark_auth_owner_search((string)($_GET['q'] ?? $input['q'] ?? ''));
+    }
+    if ($action === 'owner_user') {
+        spark_auth_owner_user((string)($_GET['id'] ?? $input['id'] ?? ''));
+    }
+    if ($action === 'owner_grant_role') {
+        spark_auth_owner_set_role($input, false);
+    }
+    if ($action === 'owner_revoke_role') {
+        spark_auth_owner_set_role($input, true);
+    }
+    if ($action === 'owner_audit') {
+        spark_auth_owner_audit(trim((string)($_GET['target_id'] ?? $input['target_id'] ?? '')) ?: null);
+    }
+    if ($action === 'owner_debug') {
+        spark_auth_owner_debug();
     }
     spark_auth_json(['ok' => false, 'message' => 'Unknown Spark auth action.'], 404);
 } catch (Throwable $error) {

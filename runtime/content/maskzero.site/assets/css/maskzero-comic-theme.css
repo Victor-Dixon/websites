@@ -36,6 +36,43 @@ body.maskzero-comic-skin > * {
   z-index: 1;
 }
 
+body.maskzero-comic-skin .comic-nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 12px;
+  background: var(--ink);
+  border-bottom: 5px solid var(--yellow);
+  box-shadow: 0 6px 0 rgba(0,0,0,.45);
+}
+
+body.maskzero-comic-skin .comic-nav a,
+body.maskzero-comic-skin .comic-nav button {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 950;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  border: 3px solid transparent;
+  background: transparent;
+  font-family: Impact, "Arial Black", system-ui, sans-serif;
+  cursor: pointer;
+}
+
+body.maskzero-comic-skin .comic-nav a:hover,
+body.maskzero-comic-skin .comic-nav .pop {
+  color: var(--ink);
+  background: var(--yellow);
+  border-color: #fff;
+  transform: rotate(-1deg);
+}
+
 body.maskzero-comic-skin a {
   color: inherit;
 }
@@ -229,6 +266,7 @@ body.maskzero-comic-skin .mission:nth-child(even) {
   --tilt: 1deg;
 }
 
+body.maskzero-comic-skin .comic-actions,
 body.maskzero-comic-skin .actions,
 body.maskzero-comic-skin .cta-row,
 body.maskzero-comic-skin .spark-loop-actions {
@@ -346,6 +384,220 @@ body.maskzero-comic-skin footer strong {
   color: #fff;
 }
 
+body.maskzero-comic-skin .comic-wrap {
+  width: min(1120px, calc(100% - 24px));
+  margin: 0 auto;
+  padding: 34px 0 76px;
+}
+
+body.maskzero-comic-skin .comic-cover {
+  position: relative;
+  margin-top: 24px;
+  border: 7px solid var(--ink);
+  background:
+    radial-gradient(circle at 76% 20%, rgba(255,255,255,.95) 0 8%, transparent 9%),
+    linear-gradient(135deg, #ff3155 0 35%, #ffd12f 35% 58%, #2dd4ff 58% 100%);
+  box-shadow: 14px 14px 0 rgba(0,0,0,.65);
+  padding: clamp(22px, 5vw, 54px);
+  overflow: hidden;
+}
+
+body.maskzero-comic-skin .comic-cover::after {
+  content: "SPARK!";
+  position: absolute;
+  right: -20px;
+  bottom: 16px;
+  color: rgba(8,8,11,.12);
+  font-size: clamp(5rem, 16vw, 13rem);
+  transform: rotate(-11deg);
+  line-height: .8;
+  pointer-events: none;
+}
+
+body.maskzero-comic-skin .issue-tag {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 4px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 8px 12px;
+  transform: rotate(-2deg);
+  text-transform: uppercase;
+  font-size: .95rem;
+  letter-spacing: .08em;
+}
+
+body.maskzero-comic-skin .comic-section {
+  margin-top: 30px;
+}
+
+body.maskzero-comic-skin .section-head {
+  margin-bottom: 18px;
+}
+
+body.maskzero-comic-skin .section-title {
+  font-size: clamp(1.7rem, 5vw, 3rem);
+  margin: 0 0 10px;
+}
+
+body.maskzero-comic-skin .protocol-band {
+  background: var(--cream);
+  border: 6px solid var(--ink);
+  box-shadow: 9px 9px 0 rgba(0,0,0,.7);
+  padding: 22px;
+}
+
+body.maskzero-comic-skin .split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+body.maskzero-comic-skin .terminal {
+  background: var(--ink);
+  border: 5px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--yellow);
+  padding: 16px;
+}
+
+body.maskzero-comic-skin .terminal-line {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 3px dashed rgba(255, 209, 47, .35);
+  color: var(--paper);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+body.maskzero-comic-skin .terminal-line:last-child {
+  border-bottom: 0;
+}
+
+body.maskzero-comic-skin .terminal-line code {
+  min-width: 88px;
+  color: var(--green);
+  font-family: Consolas, "SFMono-Regular", monospace;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+body.maskzero-comic-skin .card-number {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 16px;
+  background: var(--yellow);
+  border: 4px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-weight: 950;
+}
+
+body.maskzero-comic-skin .meter {
+  height: 12px;
+  border: 3px solid var(--ink);
+  background: #fff;
+  overflow: hidden;
+  margin: 14px 0;
+}
+
+body.maskzero-comic-skin .meter span {
+  display: block;
+  width: 72%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--yellow), var(--red), var(--blue));
+}
+
+body.maskzero-comic-skin .readout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+body.maskzero-comic-skin .readout {
+  background: #fff;
+  border: 4px solid var(--ink);
+  padding: 12px;
+}
+
+body.maskzero-comic-skin .readout strong {
+  display: block;
+  font-size: 1.1rem;
+}
+
+body.maskzero-comic-skin .readout span {
+  display: block;
+  margin-top: 4px;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+body.maskzero-comic-skin .status-chip {
+  display: inline-block;
+  background: var(--green);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  padding: 6px 10px;
+  font-size: .82rem;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+body.maskzero-comic-skin .issue small {
+  display: inline-block;
+  color: var(--red);
+  font-size: .78rem;
+  font-weight: 950;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+body.maskzero-comic-skin .spark-bridge-copy {
+  margin-top: 30px;
+  background: var(--paper);
+  border: 6px solid var(--ink);
+  box-shadow: 9px 9px 0 rgba(0,0,0,.7);
+  padding: 22px;
+}
+
+body.maskzero-comic-skin .spark-bridge-copy a {
+  text-decoration: none;
+}
+
+body.maskzero-comic-skin .comic-button {
+  display: inline-block;
+  text-decoration: none;
+  border: 5px solid var(--ink);
+  color: var(--ink);
+  background: #fff;
+  padding: 13px 16px;
+  box-shadow: 6px 6px 0 var(--ink);
+  text-transform: uppercase;
+  font-weight: 950;
+  letter-spacing: .04em;
+}
+
+body.maskzero-comic-skin .comic-button.primary {
+  background: var(--yellow);
+}
+
+body.maskzero-comic-skin .comic-button.blue {
+  background: var(--blue);
+}
+
+body.maskzero-comic-skin .comic-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 var(--ink);
+}
+
 @media (max-width: 760px) {
   body.maskzero-comic-skin .top,
   body.maskzero-comic-skin header:not(.hero) {
@@ -356,5 +608,10 @@ body.maskzero-comic-skin footer strong {
   body.maskzero-comic-skin h1 {
     -webkit-text-stroke: 2px var(--ink);
     text-shadow: 5px 5px 0 var(--ink);
+  }
+
+  body.maskzero-comic-skin .split,
+  body.maskzero-comic-skin .readout-grid {
+    grid-template-columns: 1fr;
   }
 }

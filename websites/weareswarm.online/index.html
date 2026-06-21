@@ -7,9 +7,28 @@
   <meta name="description" content="Dream.OS venture studio — an operating system for building. Governed portfolio network, proof-backed surfaces, productization toward investor layer.">
   <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
   <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <link rel="stylesheet" href="/data/shared/command-hive.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/data/shared/command-hive-config.js"></script>
 </head>
-<body>
+<body class="hive-body">
   <nav class="site-nav"></nav>
+
+  <div class="hive-hero-wrap">
+    <canvas id="swarm-hero-canvas" aria-hidden="true"></canvas>
+    <div class="hive-hero-overlay">
+      <p class="hive-chip hive-chip--live">Command Hive</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-hive-text mt-3 mb-2">Dream.OS Operator Hub</h1>
+      <p class="text-hive-muted text-sm md:text-base max-w-xl">Autonomous operating system — governed portfolio, proof receipts, live deploys.</p>
+      <div class="hive-stack-label">
+        <span>Dream.OS Brain</span>
+        <span>DreamVault SSOT</span>
+        <span>Agent Runners</span>
+        <span>Proof Receipts</span>
+        <span>Live Deploys</span>
+      </div>
+    </div>
+  </div>
 
   <main class="container">
     <header class="hero planner-hero">
@@ -124,7 +143,11 @@
     </p>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="/data/shared/swarm-hero-three.js"></script>
   <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/proof-feed-rail.js"></script>
+  <script src="/data/shared/command-hive-shell.js"></script>
   <script src="/data/shared/focus-dashboard.js"></script>
   <script src="/data/shared/planner-home.js"></script>
 </body>

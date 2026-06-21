@@ -1,18 +1,24 @@
 (function () {
   "use strict";
 
-  var NAV_ASSET_VERSION = "7";
+  var NAV_ASSET_VERSION = "14";
   var navEl = null;
   var navIsComic = false;
+  var originLabBlocked = false;
 
   var GUEST_LINKS = [
-    { href: "/", label: "Home", comicLabel: "Cover", key: "home" },
+    { href: "/", label: "Home", comicLabel: "Home", key: "home" },
     {
-      href: "/spark-account/",
-      label: "Build Account",
-      comicLabel: "Origin Rules",
-      key: "account",
-      accent: true
+      href: "/spark-generator/",
+      label: "Create Hero",
+      comicLabel: "Create Hero",
+      key: "generator"
+    },
+    {
+      href: "/#how-it-works",
+      label: "How It Works",
+      comicLabel: "How It Works",
+      key: "how"
     }
   ];
 
@@ -24,12 +30,20 @@
     accent: true
   };
 
-  var AUTH_LINKS = [
-    { href: "/news/", label: "Meridian News", key: "news" },
-    { href: "/meridian-dispatch/", label: "Dispatch", key: "dispatch" },
-    { href: "/meridian-map/", label: "Map", key: "map" },
-    { href: "/spark-gauntlet/", label: "The Gauntlet", comicLabel: "Trials", key: "gauntlet" },
-    { href: "/spark-battle/", label: "Battle Sim", key: "battle" }
+  var LOGGED_IN_LINKS = [
+    LOGGED_IN_HOME,
+    {
+      href: "/spark-inbox/",
+      label: "Inbox",
+      comicLabel: "MaskZero Inbox",
+      key: "inbox"
+    },
+    {
+      href: "/spark-generator/",
+      label: "Create Hero",
+      comicLabel: "Create Hero",
+      key: "generator"
+    }
   ];
 
   function injectNavGuardCSS() {
@@ -58,29 +72,56 @@
     if (path.indexOf("/meridian-dispatch") === 0) return "dispatch";
     if (path.indexOf("/meridian-map") === 0) return "map";
     if (path.indexOf("/spark-dashboard") === 0) return "dashboard";
+    if (path.indexOf("/spark-inbox") === 0) return "inbox";
     if (path.indexOf("/spark-account") === 0) return "account";
     if (path.indexOf("/spark-login") === 0) return "login";
     if (path.indexOf("/spark-signup") === 0) return "signup";
     if (path.indexOf("/spark-logout") === 0) return "logout";
     if (path.indexOf("/spark-generator") === 0) return "generator";
+    if (path === "/" && window.location.hash === "#how-it-works") return "how";
+    if (path.indexOf("/how-it-works") === 0) return "how";
     if (path.indexOf("/spark-gauntlet") === 0) return "gauntlet";
     if (path.indexOf("/spark-battle") === 0) return "battle";
+    if (path.indexOf("/spark-owner") === 0) return "owner";
     return "";
   }
 
+  var OWNER_PANEL_LINK = {
+    href: "/spark-owner/",
+    label: "Owner Panel",
+    comicLabel: "Owner Panel",
+    key: "owner",
+    accent: true,
+    ownerOnly: true,
+  };
+
+  var UPGRADE_ROSTER_LINK = {
+    href: "/spark-dashboard/#origin-rules",
+    label: "Upgrade Roster",
+    comicLabel: "Upgrade Roster",
+    key: "generator",
+    accent: true
+  };
+
+  function sessionIsOwner() {
+    var account = window.SPARK_ACCOUNT || {};
+    return !!account.is_owner;
+  }
+
   function linksForSession(loggedIn) {
-    if (!loggedIn) {
-      return GUEST_LINKS.slice();
+    var links = loggedIn ? LOGGED_IN_LINKS.slice() : GUEST_LINKS.slice();
+    if (loggedIn && sessionIsOwner()) {
+      links.splice(1, 0, OWNER_PANEL_LINK);
     }
-    return [
-      LOGGED_IN_HOME,
-      {
-        href: "/spark-account/",
-        label: "Account",
-        comicLabel: "Origin Rules",
-        key: "account"
-      }
-    ].concat(AUTH_LINKS);
+    if (loggedIn && originLabBlocked) {
+      return links.map(function (link) {
+        if (link.key === "generator") {
+          return UPGRADE_ROSTER_LINK;
+        }
+        return link;
+      });
+    }
+    return links;
   }
 
   function linkLabel(link, isComic) {
@@ -102,11 +143,18 @@
     var html = "";
 
     linksForSession(loggedIn).forEach(function (link) {
-      var style = linkStyle(link, active === link.key);
+      var isActive = active === link.key;
+      var style = linkStyle(link, isActive);
+      var aria = isActive ? ' aria-current="page"' : "";
+      if (html) {
+        html += " ";
+      }
       html +=
         '<a href="' +
         link.href +
-        '" style="' +
+        '"' +
+        aria +
+        ' style="' +
         style +
         '">' +
         linkLabel(link, false) +
@@ -115,12 +163,11 @@
 
     if (loggedIn) {
       html +=
-        '<a href="/spark-generator/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Generator</a>' +
-        '<a href="/spark-logout/" style="padding:8px 10px;border-radius:10px;background:#ff3155;color:#fff;text-decoration:none;font-weight:900">Log Out</a>';
+        ' <a href="/spark-logout/" style="padding:8px 10px;border-radius:10px;background:#ff3155;color:#fff;text-decoration:none;font-weight:900">Log Out</a>';
     } else {
       html +=
-        '<a href="/spark-login/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Log In</a>' +
-        '<a href="/spark-signup/" style="padding:8px 10px;border-radius:10px;background:#78f0ff;color:#061019;text-decoration:none;font-weight:900">Sign Up</a>';
+        ' <a href="/spark-login/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Log In</a>' +
+        ' <a href="/spark-signup/" style="padding:8px 10px;border-radius:10px;background:#78f0ff;color:#061019;text-decoration:none;font-weight:900">Create Account</a>';
     }
 
     nav.innerHTML = html;
@@ -131,25 +178,29 @@
     var html = "";
 
     linksForSession(loggedIn).forEach(function (link) {
-      var cls = active === link.key ? ' class="pop"' : "";
+      var isActive = active === link.key;
+      var cls = isActive ? ' class="pop"' : "";
+      var aria = isActive ? ' aria-current="page"' : "";
+      if (html) {
+        html += " ";
+      }
       html +=
         '<a href="' +
         link.href +
         '"' +
         cls +
+        aria +
         ">" +
         linkLabel(link, true) +
         "</a>";
     });
 
     if (loggedIn) {
-      html +=
-        '<a href="/spark-generator/">Generator</a>' +
-        '<a href="/spark-logout/">Log Out</a>';
+      html += ' <a href="/spark-logout/">Log Out</a>';
     } else {
       html +=
-        '<a href="/spark-login/">Log In</a>' +
-        '<a class="pop" href="/spark-signup/">Join The Universe</a>';
+        ' <a href="/spark-login/">Log In</a>' +
+        ' <a class="pop" href="/spark-signup/">Create Account</a>';
     }
 
     nav.innerHTML = html;
@@ -213,7 +264,25 @@
     return cookieIndicatesLoggedIn();
   }
 
+  function resolveOriginLabBlocked() {
+    var runtime = window.SparkAccountRuntime;
+    if (runtime && typeof runtime.canAccessOriginLab === "function") {
+      return !runtime.canAccessOriginLab();
+    }
+    var account = window.SPARK_ACCOUNT || {};
+    if (account.logged_in && typeof account.can_access_origin_lab === "boolean") {
+      return !account.can_access_origin_lab;
+    }
+    return false;
+  }
+
+  function refreshRoster() {
+    originLabBlocked = resolveOriginLabBlocked();
+    apply(resolveLoggedIn());
+  }
+
   function refresh(loggedIn) {
+    originLabBlocked = resolveOriginLabBlocked();
     apply(resolveLoggedIn(loggedIn));
   }
 
@@ -242,7 +311,14 @@
         if (!loggedIn && cookieIndicatesLoggedIn()) {
           loggedIn = true;
         }
+        originLabBlocked = resolveOriginLabBlocked();
         apply(loggedIn);
+        if (loggedIn && typeof runtime.me === "function") {
+          return runtime.me().then(function () {
+            originLabBlocked = resolveOriginLabBlocked();
+            apply(loggedIn);
+          });
+        }
       })
       .catch(function () {
         apply(cookieIndicatesLoggedIn());
@@ -251,9 +327,14 @@
 
   window.SparkAuthNav = {
     refresh: refresh,
+    refreshRoster: refreshRoster,
     version: NAV_ASSET_VERSION
   };
   window.SPARK_NAV_ASSET_VERSION = NAV_ASSET_VERSION;
+
+  document.addEventListener("spark:roster", function () {
+    refreshRoster();
+  });
 
   document.addEventListener("spark:session", function (event) {
     var detail = (event && event.detail) || {};

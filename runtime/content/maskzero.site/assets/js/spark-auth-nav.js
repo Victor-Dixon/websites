@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var NAV_ASSET_VERSION = "10";
+  var NAV_ASSET_VERSION = "11";
   var navEl = null;
   var navIsComic = false;
   var menuToggleEl = null;
@@ -40,6 +40,34 @@
       key: "account"
     }
   ];
+
+  var OWNER_PANEL_LINK = {
+    href: "/spark-owner/",
+    label: "Owner Panel",
+    comicLabel: "Owner Panel",
+    key: "owner",
+    accent: true
+  };
+
+  function sessionHasAdminAccess() {
+    var account = window.SPARK_ACCOUNT || {};
+    if (account.is_owner) return true;
+    if (account.can_access_admin_panel) return true;
+    if (account.game_role && account.game_role !== "player") return true;
+    var user = account.user;
+    if (user && user.is_owner) return true;
+    if (user && user.can_access_admin_panel) return true;
+    if (user && user.game_role && user.game_role !== "player") return true;
+    return false;
+  }
+
+  function linksForSession(loggedIn) {
+    var links = loggedIn ? LOGGED_IN_LINKS.slice() : GUEST_LINKS.slice();
+    if (loggedIn && sessionHasAdminAccess()) {
+      links.splice(1, 0, OWNER_PANEL_LINK);
+    }
+    return links;
+  }
 
   function injectNavGuardCSS() {
     if (document.getElementById("spark-nav-guard-css")) {
@@ -86,11 +114,8 @@
     if (path.indexOf("/create-hero") === 0 || path.indexOf("/spark-generator") === 0) return "generator";
     if (path.indexOf("/spark-gauntlet") === 0) return "gauntlet";
     if (path.indexOf("/spark-battle") === 0) return "battle";
+    if (path.indexOf("/spark-owner") === 0) return "owner";
     return "";
-  }
-
-  function linksForSession(loggedIn) {
-    return loggedIn ? LOGGED_IN_LINKS.slice() : GUEST_LINKS.slice();
   }
 
   function linkLabel(link, isComic) {

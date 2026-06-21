@@ -1,17 +1,47 @@
 {
   "schema": "weareswarm.online.skill_tree_panel.v1",
-  "generated_at": "2026-06-09T19:24:15+00:00",
+  "generated_at": "2026-06-21T19:14:17+00:00",
   "source": "dreamvault_sync",
   "summary": {
-    "total_nodes": 80,
-    "unlocked": 49,
-    "advanced": 17,
-    "building": 14,
+    "total_nodes": 81,
+    "unlocked": 48,
+    "advanced": 18,
+    "building": 15,
     "locked": 0,
     "unlocked_or_advanced": 66,
-    "progress_percent": 82,
+    "progress_percent": 81,
     "verified_capabilities": 16,
     "branch_count": 5
+  },
+  "layout": {
+    "type": "sphere_grid",
+    "hub": {
+      "id": "dreamos_core",
+      "label": "Dream.OS Core",
+      "branch": "hub",
+      "status": "unlocked",
+      "description": "Central coordination node \u2014 all capability branches radiate from here.",
+      "capabilities": [
+        "planner bridge",
+        "evidence gates",
+        "operator lanes"
+      ],
+      "proof": [],
+      "source": "sphere_grid_hub",
+      "grid": {
+        "x": 0,
+        "y": 0,
+        "tier": 0,
+        "angle_deg": 0
+      },
+      "prerequisites": []
+    },
+    "bounds": {
+      "min_x": -1519.2,
+      "min_y": -835.8,
+      "max_x": 2513.1,
+      "max_y": 1238.7
+    }
   },
   "branches": [
     {
@@ -32,7 +62,16 @@
             "hosting audits"
           ],
           "proof": [],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": 0.0,
+            "y": -760.0,
+            "tier": 8,
+            "angle_deg": -90.0
+          },
+          "prerequisites": [
+            "website_admin"
+          ]
         },
         {
           "id": "cap_publish_website_status",
@@ -46,7 +85,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": -44.0,
+            "y": -95.0,
+            "tier": 1,
+            "angle_deg": -90.0
+          },
+          "prerequisites": [
+            "dreamos_core"
+          ]
         },
         {
           "id": "cap_run_verification_gates",
@@ -60,7 +108,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 0.0,
+            "y": -190.0,
+            "tier": 2,
+            "angle_deg": -90.0
+          },
+          "prerequisites": [
+            "cap_publish_website_status"
+          ]
         },
         {
           "id": "cap_sync_public_status",
@@ -74,7 +131,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 44.0,
+            "y": -285.0,
+            "tier": 3,
+            "angle_deg": -90.0
+          },
+          "prerequisites": [
+            "cap_run_verification_gates"
+          ]
         },
         {
           "id": "verification_gates",
@@ -91,7 +157,16 @@
             "tests/test_runtime_spine.py",
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": -44.0,
+            "y": -380.0,
+            "tier": 4,
+            "angle_deg": -90.0
+          },
+          "prerequisites": [
+            "cap_sync_public_status"
+          ]
         },
         {
           "id": "cap_verify_task_gates",
@@ -105,7 +180,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 0.0,
+            "y": -475.0,
+            "tier": 5,
+            "angle_deg": -90.0
+          },
+          "prerequisites": [
+            "verification_gates"
+          ]
         },
         {
           "id": "website_admin",
@@ -123,7 +207,16 @@
             "runtime/scripts/run_deploy_weareswarm_canonical_052.sh",
             "runtime/scripts/sync_planner_reports_to_weareswarm_online_001.py"
           ],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": -44.0,
+            "y": -665.0,
+            "tier": 7,
+            "angle_deg": -90.0
+          },
+          "prerequisites": [
+            "project_websites"
+          ]
         },
         {
           "id": "project_websites",
@@ -139,7 +232,16 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": 44.0,
+            "y": -570.0,
+            "tier": 6,
+            "angle_deg": -90.0
+          },
+          "prerequisites": [
+            "cap_verify_task_gates"
+          ]
         }
       ]
     },
@@ -161,7 +263,16 @@
             "closeout packets"
           ],
           "proof": [],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": 2349.1,
+            "y": -763.3,
+            "tier": 26,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "swarm_runtime"
+          ]
         },
         {
           "id": "cap_dispatch_lane_tasks",
@@ -175,7 +286,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 76.8,
+            "y": -71.2,
+            "tier": 1,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "dreamos_core"
+          ]
         },
         {
           "id": "runtime_distributed_ownership",
@@ -192,7 +312,16 @@
             "dreamvault/task_leases.py",
             "tests/test_task_leases.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 180.7,
+            "y": -58.7,
+            "tier": 2,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "cap_dispatch_lane_tasks"
+          ]
         },
         {
           "id": "runtime_dreamclose_continuity",
@@ -209,7 +338,16 @@
             "dreamvault/closeout_prompt.py",
             "tests/test_closeout_prompt.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 284.6,
+            "y": -46.2,
+            "tier": 3,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_distributed_ownership"
+          ]
         },
         {
           "id": "runtime_dreamhelp_agent_alignment",
@@ -225,7 +363,16 @@
             "dreamvault/dreamhelp.py",
             "tests/test_dreamhelp.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 347.8,
+            "y": -159.3,
+            "tier": 4,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_dreamclose_continuity"
+          ]
         },
         {
           "id": "runtime_dreamlearn_workload_learning",
@@ -241,7 +388,16 @@
             "dreamvault/dreamlearn.py",
             "tests/test_dreamlearn.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 451.8,
+            "y": -146.8,
+            "tier": 5,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_dreamhelp_agent_alignment"
+          ]
         },
         {
           "id": "dreamos_runtime",
@@ -255,7 +411,16 @@
             "dreamresume continuity"
           ],
           "proof": [],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": 2453.1,
+            "y": -750.8,
+            "tier": 27,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "automation_ops"
+          ]
         },
         {
           "id": "project_dreamos_core",
@@ -269,7 +434,16 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": 555.7,
+            "y": -134.3,
+            "tier": 6,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_dreamlearn_workload_learning"
+          ]
         },
         {
           "id": "project_dreamvault",
@@ -285,13 +459,21 @@
             "emit_intelligence_packet",
             "emit_planner_transition",
             "flow_b_strategy_loop",
-            "governed_paper_trading",
-            "manage_repo_lifecycle"
+            "governed_paper_trading"
           ],
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": 618.9,
+            "y": -247.3,
+            "tier": 7,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "project_dreamos_core"
+          ]
         },
         {
           "id": "runtime_dreamlane_lane_compiler",
@@ -308,7 +490,16 @@
             "dreamvault/dreamlane.py",
             "tests/test_dreamlane.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 722.8,
+            "y": -234.9,
+            "tier": 8,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "project_dreamvault"
+          ]
         },
         {
           "id": "cap_emit_discord_cards",
@@ -322,7 +513,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 826.8,
+            "y": -222.4,
+            "tier": 9,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_dreamlane_lane_compiler"
+          ]
         },
         {
           "id": "cap_emit_planner_transition",
@@ -336,7 +536,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 889.9,
+            "y": -335.4,
+            "tier": 10,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "cap_emit_discord_cards"
+          ]
         },
         {
           "id": "runtime_execution_journal_foundation",
@@ -353,7 +562,16 @@
             "dreamvault/execution_journal.py",
             "tests/test_execution_journal.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 993.9,
+            "y": -322.9,
+            "tier": 11,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "cap_emit_planner_transition"
+          ]
         },
         {
           "id": "flow_b_strategy_loop",
@@ -374,7 +592,16 @@
             "data/reports/lead_sync/chatgpt_sync_latest.md",
             "runtime/tasks/lead_cursor_sync_and_dispatch_001.yaml"
           ],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": 1097.8,
+            "y": -310.4,
+            "tier": 12,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_execution_journal_foundation"
+          ]
         },
         {
           "id": "cap_flow_b_strategy_loop",
@@ -388,7 +615,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 1161.0,
+            "y": -423.5,
+            "tier": 13,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "flow_b_strategy_loop"
+          ]
         },
         {
           "id": "runtime_governed_event_schema",
@@ -406,7 +642,16 @@
             "dreamvault/event_types.py",
             "tests/test_event_schema.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 1264.9,
+            "y": -411.0,
+            "tier": 14,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "cap_flow_b_strategy_loop"
+          ]
         },
         {
           "id": "runtime_journal_replay_reconstruction",
@@ -423,7 +668,16 @@
             "dreamvault/journal_replay.py",
             "tests/test_journal_replay.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 1368.9,
+            "y": -398.5,
+            "tier": 15,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_governed_event_schema"
+          ]
         },
         {
           "id": "runtime_lifecycle_governance",
@@ -438,7 +692,16 @@
             "dreamvault/task_fsm.py",
             "tests/test_task_fsm.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 1432.0,
+            "y": -511.6,
+            "tier": 16,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_journal_replay_reconstruction"
+          ]
         },
         {
           "id": "cap_map_domain_models",
@@ -452,7 +715,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 1536.0,
+            "y": -499.1,
+            "tier": 17,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_lifecycle_governance"
+          ]
         },
         {
           "id": "runtime_prompt_governance",
@@ -468,7 +740,16 @@
             "runtime/prompts/token_registry.yaml",
             "scripts/validate_runtime_prompts.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 1639.9,
+            "y": -486.6,
+            "tier": 18,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "cap_map_domain_models"
+          ]
         },
         {
           "id": "runtime_prompt_library_canonicalization",
@@ -486,7 +767,16 @@
             "dreamvault/prompt_loader.py",
             "tests/test_prompt_loader.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 1703.1,
+            "y": -599.6,
+            "tier": 19,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_prompt_governance"
+          ]
         },
         {
           "id": "runtime_resume_continuity",
@@ -502,7 +792,16 @@
             "dreamvault/resume.py",
             "tests/test_resume.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 1807.0,
+            "y": -587.1,
+            "tier": 20,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_prompt_library_canonicalization"
+          ]
         },
         {
           "id": "runtime_runtime_planning",
@@ -518,7 +817,16 @@
             "dreamvault/planner_cli.py",
             "tests/test_planner_cli.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 1911.0,
+            "y": -574.6,
+            "tier": 21,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_resume_continuity"
+          ]
         },
         {
           "id": "runtime_runtime_spine_verification",
@@ -533,7 +841,16 @@
           "proof": [
             "tests/test_runtime_spine.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 1974.1,
+            "y": -687.7,
+            "tier": 22,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_runtime_planning"
+          ]
         },
         {
           "id": "cap_select_next_lane",
@@ -547,7 +864,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 2078.1,
+            "y": -675.2,
+            "tier": 23,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_runtime_spine_verification"
+          ]
         },
         {
           "id": "swarm_runtime",
@@ -563,7 +889,16 @@
           "proof": [
             "runtime/tasks"
           ],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": 2245.2,
+            "y": -775.8,
+            "tier": 25,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "runtime_task_execution_spine"
+          ]
         },
         {
           "id": "runtime_task_execution_spine",
@@ -579,7 +914,16 @@
             "dreamvault/task_runner.py",
             "tests/test_task_runner.py"
           ],
-          "source": "dreamvault_runtime_skills"
+          "source": "dreamvault_runtime_skills",
+          "grid": {
+            "x": 2182.0,
+            "y": -662.7,
+            "tier": 24,
+            "angle_deg": -18.0
+          },
+          "prerequisites": [
+            "cap_select_next_lane"
+          ]
         }
       ]
     },
@@ -587,7 +931,7 @@
       "id": "recovery_loop",
       "title": "03 \u2014 Recovery Loop",
       "subtitle": "Rescue repos, ship proof",
-      "node_count": 14,
+      "node_count": 15,
       "nodes": [
         {
           "id": "cap_aggregate_project_capabilities",
@@ -601,7 +945,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 91.4,
+            "y": 51.0,
+            "tier": 1,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "dreamos_core"
+          ]
         },
         {
           "id": "cap_architect_consolidation",
@@ -615,7 +968,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 111.7,
+            "y": 153.7,
+            "tier": 2,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "cap_aggregate_project_capabilities"
+          ]
         },
         {
           "id": "project_dream_os_core",
@@ -629,7 +991,16 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": 467.0,
+            "y": 717.6,
+            "tier": 9,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "project_victor_dixon_thea"
+          ]
         },
         {
           "id": "cap_emit_intelligence_packet",
@@ -643,7 +1014,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 131.9,
+            "y": 256.4,
+            "tier": 3,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "cap_architect_consolidation"
+          ]
         },
         {
           "id": "cap_manage_repo_lifecycle",
@@ -657,7 +1037,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 259.0,
+            "y": 281.6,
+            "tier": 4,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "cap_emit_intelligence_packet"
+          ]
         },
         {
           "id": "operator_intelligence",
@@ -671,7 +1060,16 @@
             "cockpit snapshots"
           ],
           "proof": [],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": 594.0,
+            "y": 742.7,
+            "tier": 10,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "project_dream_os_core"
+          ]
         },
         {
           "id": "repo_rescue",
@@ -688,7 +1086,16 @@
             "data/reports/planner/project_capability_index.json",
             "data/planner/public_project_board.json"
           ],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": 279.2,
+            "y": 384.3,
+            "tier": 5,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "cap_manage_repo_lifecycle"
+          ]
         },
         {
           "id": "cap_scan_repo_topology",
@@ -702,7 +1109,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": 299.4,
+            "y": 487.0,
+            "tier": 6,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "repo_rescue"
+          ]
         },
         {
           "id": "swarm_memory",
@@ -716,14 +1132,47 @@
             "event schema"
           ],
           "proof": [],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": 614.2,
+            "y": 845.4,
+            "tier": 11,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "operator_intelligence"
+          ]
+        },
+        {
+          "id": "project_tradingrobotplug",
+          "label": "TradingRobotPlug",
+          "branch": "recovery_loop",
+          "status": "building",
+          "description": "Portfolio bucket: variant \u00b7 archived_donor",
+          "capabilities": [
+            "governed_paper_trading",
+            "run_verification_gates"
+          ],
+          "proof": [
+            "data/planner/public_project_board.json"
+          ],
+          "source": "public_project_board",
+          "grid": {
+            "x": 634.5,
+            "y": 948.1,
+            "tier": 12,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "swarm_memory"
+          ]
         },
         {
           "id": "project_victor_dixon_autodream_os",
           "label": "Victor-Dixon__AutoDream.Os",
           "branch": "recovery_loop",
-          "status": "unlocked",
-          "description": "Portfolio bucket: variant \u00b7 promote_into_canonical",
+          "status": "building",
+          "description": "Portfolio bucket: variant \u00b7 archived_donor",
           "capabilities": [
             "dispatch_lane_tasks",
             "run_verification_gates",
@@ -732,7 +1181,16 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": 761.5,
+            "y": 973.3,
+            "tier": 13,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "project_tradingrobotplug"
+          ]
         },
         {
           "id": "project_victor_dixon_swarm",
@@ -748,7 +1206,16 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": 781.8,
+            "y": 1076.0,
+            "tier": 14,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "project_victor_dixon_autodream_os"
+          ]
         },
         {
           "id": "project_victor_dixon_thea",
@@ -764,7 +1231,16 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": 446.7,
+            "y": 614.9,
+            "tier": 8,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "project_victor_dixon_victor_os"
+          ]
         },
         {
           "id": "project_victor_dixon_victor_os",
@@ -780,7 +1256,16 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": 426.5,
+            "y": 512.1,
+            "tier": 7,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "cap_scan_repo_topology"
+          ]
         },
         {
           "id": "project_github_architect_bot",
@@ -801,7 +1286,16 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": 802.0,
+            "y": 1178.7,
+            "tier": 15,
+            "angle_deg": 54.0
+          },
+          "prerequisites": [
+            "project_victor_dixon_swarm"
+          ]
         }
       ]
     },
@@ -815,8 +1309,8 @@
           "id": "offer_ai_debugger_assist",
           "label": "AI Debugger Assistant \u2014 productized debug sessions",
           "branch": "revenue_frontier",
-          "status": "building",
-          "description": "Rank #10 \u00b7 maturity=scaffold",
+          "status": "advanced",
+          "description": "Rank #10 \u00b7 maturity=operational_preview",
           "capabilities": [
             "$150",
             "AI_Debugger_Assistant"
@@ -824,7 +1318,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -111.7,
+            "y": 153.7,
+            "tier": 2,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "cap_governed_paper_trading"
+          ]
         },
         {
           "id": "offer_swarm_ops_consulting",
@@ -840,7 +1343,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -203.1,
+            "y": 204.7,
+            "tier": 3,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_ai_debugger_assist"
+          ]
         },
         {
           "id": "offer_auto_blogger_saas",
@@ -855,7 +1367,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -614.2,
+            "y": 845.4,
+            "tier": 11,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "revenue_automation"
+          ]
         },
         {
           "id": "offer_contract_leads_b2b",
@@ -870,7 +1391,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -705.7,
+            "y": 896.4,
+            "tier": 12,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_auto_blogger_saas"
+          ]
         },
         {
           "id": "distributed_swarm_mesh",
@@ -885,7 +1415,16 @@
           "proof": [
             "runtime/scripts/swarm_revenue_operator_001.py"
           ],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": -187.8,
+            "y": 333.3,
+            "tier": 4,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_swarm_ops_consulting"
+          ]
         },
         {
           "id": "offer_dreamscan_local_business_starter",
@@ -901,7 +1440,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -279.2,
+            "y": 384.3,
+            "tier": 5,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "distributed_swarm_mesh"
+          ]
         },
         {
           "id": "offer_dreamscan_repo_audit",
@@ -917,7 +1465,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -370.6,
+            "y": 435.3,
+            "tier": 6,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_dreamscan_local_business_starter"
+          ]
         },
         {
           "id": "offer_trading_signals_discord",
@@ -932,7 +1489,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -355.3,
+            "y": 563.9,
+            "tier": 7,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_dreamscan_repo_audit"
+          ]
         },
         {
           "id": "cap_governed_paper_trading",
@@ -946,7 +1512,16 @@
           "proof": [
             "data/reports/planner/project_capability_index.json"
           ],
-          "source": "project_capability_index"
+          "source": "project_capability_index",
+          "grid": {
+            "x": -20.2,
+            "y": 102.7,
+            "tier": 1,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "dreamos_core"
+          ]
         },
         {
           "id": "offer_content_voice_retainer",
@@ -961,7 +1536,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -446.7,
+            "y": 614.9,
+            "tier": 8,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_trading_signals_discord"
+          ]
         },
         {
           "id": "outreach_engine",
@@ -978,7 +1562,16 @@
             "data/marketing/lead_tracker_001.json",
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": -538.2,
+            "y": 665.8,
+            "tier": 9,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_content_voice_retainer"
+          ]
         },
         {
           "id": "offer_projectscanner_audit_pack",
@@ -993,7 +1586,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -690.3,
+            "y": 1025.0,
+            "tier": 13,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_contract_leads_b2b"
+          ]
         },
         {
           "id": "revenue_automation",
@@ -1009,7 +1611,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "structural_proof"
+          "source": "structural_proof",
+          "grid": {
+            "x": -522.8,
+            "y": 794.4,
+            "tier": 10,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "outreach_engine"
+          ]
         },
         {
           "id": "offer_spark_quiz_funnel",
@@ -1024,7 +1635,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -781.8,
+            "y": 1076.0,
+            "tier": 14,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_projectscanner_audit_pack"
+          ]
         },
         {
           "id": "offer_planner_governance_saas",
@@ -1039,7 +1659,16 @@
           "proof": [
             "data/reports/marketing/portfolio_revenue_inventory_001.json"
           ],
-          "source": "portfolio_revenue_inventory"
+          "source": "portfolio_revenue_inventory",
+          "grid": {
+            "x": -873.2,
+            "y": 1127.0,
+            "tier": 15,
+            "angle_deg": 126.0
+          },
+          "prerequisites": [
+            "offer_spark_quiz_funnel"
+          ]
         }
       ]
     },
@@ -1063,7 +1692,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -103.9,
+            "y": 12.5,
+            "tier": 1,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "dreamos_core"
+          ]
         },
         {
           "id": "agenttools_agent_ops",
@@ -1080,7 +1718,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -180.7,
+            "y": -58.7,
+            "tier": 2,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_toolbelt"
+          ]
         },
         {
           "id": "agenttools_analysis",
@@ -1100,7 +1747,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -257.5,
+            "y": -129.9,
+            "tier": 3,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_agent_ops"
+          ]
         },
         {
           "id": "agenttools_captain",
@@ -1120,7 +1776,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -375.0,
+            "y": -75.6,
+            "tier": 4,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_analysis"
+          ]
         },
         {
           "id": "agenttools_debug",
@@ -1139,7 +1804,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -451.8,
+            "y": -146.8,
+            "tier": 5,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_captain"
+          ]
         },
         {
           "id": "agenttools_discord",
@@ -1160,7 +1834,16 @@
             "agent-tools/tools_inventory.json",
             "agent-tools/mcp_servers"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -528.5,
+            "y": -218.0,
+            "tier": 6,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_debug"
+          ]
         },
         {
           "id": "agenttools_general",
@@ -1180,7 +1863,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -646.0,
+            "y": -163.6,
+            "tier": 7,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_discord"
+          ]
         },
         {
           "id": "agenttools_github",
@@ -1196,7 +1888,16 @@
             "agent-tools/tools_inventory.json",
             "agent-tools/mcp_servers"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -993.9,
+            "y": -322.9,
+            "tier": 11,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "project_projectscanner"
+          ]
         },
         {
           "id": "agenttools_infrastructure",
@@ -1212,7 +1913,16 @@
             "agent-tools/tools_inventory.json",
             "agent-tools/mcp_servers"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -1070.6,
+            "y": -394.1,
+            "tier": 12,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_github"
+          ]
         },
         {
           "id": "agenttools_monitoring",
@@ -1227,7 +1937,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -1188.2,
+            "y": -339.8,
+            "tier": 13,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_infrastructure"
+          ]
         },
         {
           "id": "agenttools_security",
@@ -1242,7 +1961,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -1264.9,
+            "y": -411.0,
+            "tier": 14,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_monitoring"
+          ]
         },
         {
           "id": "agenttools_testing",
@@ -1256,7 +1984,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -1341.7,
+            "y": -482.2,
+            "tier": 15,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_security"
+          ]
         },
         {
           "id": "agenttools_validation",
@@ -1276,7 +2013,16 @@
           "proof": [
             "agent-tools/tools_inventory.json"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -722.8,
+            "y": -234.9,
+            "tier": 8,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_general"
+          ]
         },
         {
           "id": "agenttools_web",
@@ -1291,7 +2037,16 @@
             "agent-tools/tools_inventory.json",
             "agent-tools/mcp_servers"
           ],
-          "source": "agent_tools_inventory"
+          "source": "agent_tools_inventory",
+          "grid": {
+            "x": -1459.2,
+            "y": -427.9,
+            "tier": 16,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_testing"
+          ]
         },
         {
           "id": "project_agent_tools",
@@ -1305,7 +2060,16 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": -799.6,
+            "y": -306.1,
+            "tier": 9,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "agenttools_validation"
+          ]
         },
         {
           "id": "project_projectscanner",
@@ -1319,16 +2083,25 @@
           "proof": [
             "data/planner/public_project_board.json"
           ],
-          "source": "public_project_board"
+          "source": "public_project_board",
+          "grid": {
+            "x": -917.1,
+            "y": -251.7,
+            "tier": 10,
+            "angle_deg": 198.0
+          },
+          "prerequisites": [
+            "project_agent_tools"
+          ]
         }
       ]
     }
   ],
   "next_unlock": {
-    "label": "AI Debugger Assistant \u2014 productized debug sessions",
+    "label": "Auto_Blogger content automation lane (blog + social syndication)",
     "branch": "revenue_frontier",
     "proof_hint": "data/reports/marketing/portfolio_revenue_inventory_001.json",
-    "trigger": "Close proof gap for AI Debugger Assistant \u2014 productized debug sessions."
+    "trigger": "Close proof gap for Auto_Blogger content automation lane (blog + social syndication)."
   },
   "operator_signal": "No fake roadmap. Nodes unlock only with proof references.",
   "sources": [

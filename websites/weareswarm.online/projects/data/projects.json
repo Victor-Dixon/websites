@@ -1,6 +1,6 @@
 {
   "schema": "weareswarm.online.projects_surface.v1",
-  "generated_at": "2026-06-13T10:48:12+00:00",
+  "generated_at": "2026-06-21T19:13:52+00:00",
   "source": "auto_portfolio_surface_sync",
   "authority_root": "D:/DreamVault",
   "portfolio_schema": "weareswarm.online.portfolio_products.v2",
@@ -434,6 +434,14 @@
   },
   "active_runtime_tasks": [
     {
+      "task_id": "absorb_discord_commander_into_architect_ssot_001",
+      "title": "Absorb Discord Commander functionality into Discord Architect SSOT",
+      "status": "pending",
+      "lane": "governance",
+      "priority": "P1",
+      "repo": "DreamVault"
+    },
+    {
       "task_id": "add_account_aware_trading_risk_engine_007",
       "title": "",
       "status": "active",
@@ -666,14 +674,6 @@
       "repo": "DreamVault"
     },
     {
-      "task_id": "add_dreamclose_skill_tree_031",
-      "title": "",
-      "status": "",
-      "lane": "",
-      "priority": "",
-      "repo": "DreamVault"
-    },
-    {
       "task_id": "add_dreamclose_stale_unlock_detector_041",
       "title": "Add DreamClose stale unlock detector",
       "status": "planned",
@@ -687,14 +687,6 @@
       "status": "planned",
       "lane": "",
       "priority": "critical",
-      "repo": "DreamVault"
-    },
-    {
-      "task_id": "add_dreamintel_command_001",
-      "title": "",
-      "status": "",
-      "lane": "repo_cleanup_governance",
-      "priority": "",
       "repo": "DreamVault"
     },
     {
@@ -832,8 +824,16 @@
       "lane": "",
       "priority": "",
       "repo": "DreamVault"
+    },
+    {
+      "task_id": "add_hostinger_dashboard_deploy_manifest_065",
+      "title": "Add Hostinger dashboard deploy manifest",
+      "status": "pending",
+      "lane": "deploy",
+      "priority": "",
+      "repo": "DreamVault"
     }
   ],
-  "active_task_count": 946,
+  "active_task_count": 901,
   "public_safe": true
 }

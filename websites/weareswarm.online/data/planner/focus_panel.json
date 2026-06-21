@@ -1,52 +1,42 @@
 {
   "schema": "weareswarm.online.focus_panel.v1",
-  "generated_at": "2026-06-12T12:00:00+00:00",
-  "source": "portfolio_publication_lane",
-  "phase": "maintenance",
-  "hero_subtitle": "DreamOS maintenance and promotion — productization and revenue activation in progress.",
+  "generated_at": "2026-06-20T02:30:00+00:00",
+  "source": "agent3_session_closeout_lane_011",
+  "phase": "consolidation_handoff",
+  "hero_subtitle": "Agent-3 lane_011 planner closed — manifest READY; Agent-4 verify gate next; Thea relay wired.",
+  "active_lane": "lane_011_thea_repo_consolidation_001",
+  "active_agent": "Agent-3",
+  "active_agent_status": "CLOSED",
+  "next_owner": "Agent-4",
   "metrics": [
-    { "label": "Repositories Classified", "status": "COMPLETE", "tone": "ok" },
-    { "label": "Authority Decisions", "status": "COMPLETE", "tone": "ok" },
-    { "label": "Governance Enforcement", "status": "COMPLETE", "tone": "ok" },
-    { "label": "Visibility Enforcement", "status": "COMPLETE", "tone": "ok" },
-    { "label": "Productization", "status": "IN PROGRESS", "tone": "warn" },
-    { "label": "Revenue Activation", "status": "IN PROGRESS", "tone": "warn" }
+    { "label": "Agent-3 lane_011 Planner", "status": "COMPLETE", "tone": "ok" },
+    { "label": "Signed Manifest (Agent-1)", "status": "READY", "tone": "ok" },
+    { "label": "Agent-4 Verify Gate", "status": "NEXT", "tone": "warn" },
+    { "label": "Thea Strategic Confirm", "status": "PENDING PASTE", "tone": "warn" },
+    { "label": "Thea ChatGPT Relay", "status": "WIRED", "tone": "ok" }
   ],
   "status_items": [
-    { "icon": "ok", "text": "Closeout enforcement implemented" },
-    { "icon": "ok", "text": "Discord publication enforcement implemented" },
-    { "icon": "ok", "text": "WeAreSwarm publication enforcement implemented" },
-    { "icon": "ok", "text": "Planner authority established" },
-    { "icon": "ok", "text": "Task authority established" },
-    { "icon": "ok", "text": "DreamOS authority established" },
-    { "icon": "ok", "text": "Trading authority established" },
-    { "icon": "ok", "text": "AutoDream archived" },
-    { "icon": "ok", "text": "Bucket 3 parked" },
-    { "icon": "warn", "text": "Task pruning in progress" },
-    { "icon": "warn", "text": "Productization in progress" },
-    { "icon": "block", "text": "Robinhood gate pending adult approval" }
+    { "icon": "ok", "text": "lane_011 matrix delivered (Agent-3 planner closed)" },
+    { "icon": "ok", "text": "agent1_lane011_signed_prune_manifest_001.json READY" },
+    { "icon": "ok", "text": "Thea relay protocol committed (a3b46e94)" },
+    { "icon": "warn", "text": "THEA_RESPONSE_REQUIRED — operator paste to 6a35e808" },
+    { "icon": "warn", "text": "Agent-4 verify-ready gate pending" },
+    { "icon": "block", "text": "lane_005 FTP HOLD — not reopened" }
   ],
   "consolidation": {
     "title": "Consolidation Status",
-    "status_heading": "Status: COMPLETE",
+    "status_heading": "Status: lane_011 HANDOFF",
     "completed": [
-      "Planner Authority",
-      "Task Authority",
-      "DreamOS Authority",
-      "Trading Authority",
-      "Discord Commander Verification",
-      "AutoDream Archive",
-      "Bucket 3 Project Parking",
-      "Closeout Enforcement",
-      "Discord Publication Enforcement",
-      "WeAreSwarm Publication Enforcement"
+      "Agent-3 lane_011 planner matrix",
+      "Agent-3 Thea ChatGPT relay protocol",
+      "Agent-1 signed prune manifest"
     ],
     "remaining": [
-      "Task pruning",
-      "Product classification",
-      "Revenue activation",
-      "Robinhood authentication gate"
+      "Agent-4 verify-ready gate",
+      "Thea lane_011 strategic confirm (operator paste)",
+      "lane_009/010 manifest gates (Agent-1)",
+      "lane_005 FTP deploy"
     ],
-    "operating_phase": "Maintenance → Promotion → Productization → Revenue"
+    "operating_phase": "Verify → Execute → Thea confirm"
   }
 }
