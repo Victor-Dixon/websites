@@ -84,13 +84,13 @@ includesAll(explore, [
 ], "explore tactical wiring");
 
 includesAll(avatar, [
-  "anime_tactical",
   "hairHighlight",
   "trim",
   "shadowBlur",
 ], "toon avatar pass");
 
 includesAll(player, [
+  "anime_tactical",
   "Dreamblade Cadet",
   "combat",
   "maxHp",
