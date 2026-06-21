@@ -155,3 +155,36 @@ sites/
 ```
 
 This architecture eliminates the duplication problem while maintaining flexibility and scalability! 🚀
+
+## VPS deployment (Ubuntu 24.04)
+
+The `deploy/vps/websites/` package prepares this repo for Dream.OS VPS runtime: static preview, health checks, and dashboard JSON export. It runs **beside** Hostinger SFTP deploy and GitHub Actions — workflows under `.github/workflows/` are unchanged.
+
+### Install on VPS
+
+```bash
+git clone git@github.com:Victor-Dixon/websites.git /opt/dreamos/repos/websites
+cd /opt/dreamos/repos/websites
+bash deploy/vps/websites/scripts/install.sh
+```
+
+Edit `/opt/dreamos/secrets/websites.env` (from `deploy/vps/websites/.env.example`).
+
+### VPS commands
+
+```bash
+bash deploy/vps/websites/scripts/healthcheck.sh
+bash deploy/vps/websites/scripts/preview.sh              # http://127.0.0.1:8080
+bash deploy/vps/websites/scripts/export_dashboard_inputs.sh
+```
+
+### Expected VPS layout
+
+- Repo: `/opt/dreamos/repos/websites`
+- Dream.OS dashboard JSON input: `/opt/dreamos/runtime/dashboard`
+- Public static root: `/var/www/dreamos-sites`
+- Exported dashboard JSON: `/var/www/dreamos-sites/data/dashboard`
+
+See `deploy/vps/websites/README.md` for nginx example, folder layout, and audit notes.
+
+**Warning:** Never commit secrets to `public/` or site `data/` folders. Use `/opt/dreamos/secrets/websites.env` on the VPS only.
