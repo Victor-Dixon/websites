@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Battle Sim | Spark Protocol v8.6</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Spark Protocol Battle Sim v8.6 — arena roll, odds assessment, commit-and-roll lottery, cinematic duel resolution." />
+  <style>
+:root{
+  --ink:#08080b;
+  --paper:#fff4d6;
+  --red:#ff3155;
+  --blue:#2dd4ff;
+  --yellow:#ffd12f;
+  --green:#32ff9c;
+  --muted:#62594d;
+}
+*{box-sizing:border-box}
+html[data-spark-auth="pending"] body{visibility:hidden}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,49,85,.3),transparent 14rem),
+    radial-gradient(circle at 85% 25%,rgba(45,212,255,.2),transparent 16rem),
+    linear-gradient(160deg,#120a18,#06060a 60%);
+}
+.comic-nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;
+  padding:12px;background:#08080b;border-bottom:5px solid var(--yellow);
+  box-shadow:0 6px 0 rgba(0,0,0,.45);
+  font-family:Impact,"Arial Black",system-ui,sans-serif;
+}
+.comic-nav a{
+  color:#fff;text-decoration:none;font-weight:950;text-transform:uppercase;
+  padding:8px 10px;border:3px solid transparent;letter-spacing:.03em;
+}
+.comic-nav a:hover,.comic-nav .pop{color:var(--ink);background:var(--yellow);border-color:#fff}
+.wrap{width:min(960px,calc(100% - 24px));margin:0 auto;padding:28px 0 64px}
+.masthead{
+  background:var(--paper);border:6px solid var(--ink);
+  box-shadow:10px 10px 0 rgba(0,0,0,.65);padding:clamp(18px,4vw,36px);margin-bottom:20px;
+}
+.kicker{
+  display:inline-block;background:var(--red);color:#fff;
+  border:3px solid var(--ink);padding:6px 10px;
+  text-transform:uppercase;font-family:Impact,system-ui,sans-serif;font-size:.85rem;letter-spacing:.06em;
+}
+h1{
+  margin:12px 0 8px;font-family:Impact,"Arial Black",system-ui,sans-serif;
+  font-size:clamp(2.4rem,9vw,5rem);line-height:.88;text-transform:uppercase;letter-spacing:-.04em;
+}
+.lede{color:var(--muted);line-height:1.5;margin:0;font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1.4fr;gap:18px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.panel{
+  background:rgba(255,244,214,.96);border:4px solid var(--ink);
+  box-shadow:7px 7px 0 rgba(0,0,0,.55);padding:16px;
+}
+.panel h2{
+  margin:0 0 10px;font-family:Impact,system-ui,sans-serif;
+  font-size:1.35rem;text-transform:uppercase;border-bottom:2px solid var(--ink);padding-bottom:6px;
+}
+.small{font-size:.92rem;color:var(--muted);line-height:1.45}
+label{display:block;margin:12px 0 6px;font-family:Impact,system-ui,sans-serif;text-transform:uppercase;font-size:.9rem}
+select,button{
+  font-family:Impact,"Arial Black",system-ui,sans-serif;
+  border:4px solid var(--ink);padding:11px 14px;font-size:1rem;font-weight:900;
+}
+select{width:100%;background:#fff}
+button{
+  cursor:pointer;background:var(--yellow);color:var(--ink);
+  box-shadow:5px 5px 0 var(--ink);text-transform:uppercase;margin-top:14px;width:100%;
+}
+button:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+button:disabled{opacity:.6;cursor:wait;transform:none}
+.check-row{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.9rem}
+.check-row input{width:auto}
+#battle-story{min-height:200px;line-height:1.55}
+#battle-story .story p{margin:0 0 14px}
+.result-tag{
+  display:inline-block;padding:6px 12px;border:3px solid var(--ink);
+  font-family:Impact,system-ui,sans-serif;text-transform:uppercase;font-weight:900;margin-bottom:12px;
+}
+.result-tag.win{background:var(--green)}
+.result-tag.loss{background:var(--red);color:#fff}
+.showwork{
+  margin-top:16px;padding:12px;background:rgba(0,0,0,.08);
+  border:2px dashed var(--ink);font-family:ui-monospace,monospace;font-size:.82rem;white-space:pre-wrap;
+}
+#battle-meta{margin-top:10px;font-size:.85rem;color:var(--muted);font-style:italic}
+.protocol-note{
+  margin-top:18px;padding:12px;border-left:5px solid var(--blue);
+  background:rgba(45,212,255,.08);font-size:.9rem;line-height:1.45;
+}
+  </style>
+  <script src="/assets/js/spark-account-runtime.js?v=10"></script>
+  <script src="/assets/js/spark-auth-guard.js?v=5" data-spark-require-auth></script>
+</head>
+<body>
+  <nav id="spark-auth-nav" class="comic-nav" aria-label="Spark Protocol">
+    <a href="/">Cover</a>
+    <a href="/spark-generator/">Origin Lab</a>
+    <a href="/spark-login/">Log In</a>
+    <a class="pop" href="/spark-signup/">Join The Universe</a>
+  </nav>
+
+  <main class="wrap spark-battle-sim" id="spark-battle-sim">
+    <header class="masthead">
+      <span class="kicker">Spark Protocol · v8.6</span>
+      <h1>Battle Sim</h1>
+      <p class="lede">
+        Locked sheets. Rolled arena. Committed odds. One binding lottery — then the fight writes itself.
+        The machinery stays sealed; you get the story.
+      </p>
+    </header>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Your Fighter</h2>
+        <div id="spark-fighter-box" class="small">Loading Spark identity…</div>
+
+        <label for="opponent-select">Opponent</label>
+        <select id="opponent-select" aria-label="Select opponent">
+          <option value="">Loading roster…</option>
+        </select>
+
+        <label class="check-row">
+          <input type="checkbox" id="showwork-toggle" />
+          SHOWWORK (operator receipt)
+        </label>
+
+        <button type="button" id="run-battle">Run Duel</button>
+
+        <p class="protocol-note">
+          Step 0 rolls the arena. Step 1 assesses odds against EFFECTIVE CC + gear and terrain fit.
+          Step 2 commits the threshold, then draws the outcome. Step 3 narrates backward from the roll.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>Fight Story</h2>
+        <div id="battle-story" class="small">Select an opponent and run a duel. The first complete pass is binding — no re-rolls.</div>
+        <div id="battle-meta"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="/assets/js/spark-battle-sim.js?v=1"></script>
+  <script src="/assets/js/spark-auth-nav.js?v=10"></script>
+</body>
+</html>

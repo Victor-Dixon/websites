@@ -7,6 +7,7 @@ tsconfig.tsbuildinfo
 
 .env
 .env.local
+<<<<<<< origin/master
 .env.development.local
 .env.test.local
 .env.production.local
@@ -15,6 +16,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+=======
+.env.*.local
+.env.deploy.local
+
+# Deployment credentials (never commit secrets)
+.deploy_credentials/
+ops/deployment/secrets/
+>>>>>>> feat/dadudekc-spark-dashboard
 
 .DS_Store
 *.pem

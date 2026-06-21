@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Command Center — weareswarm.online</title>
+  <meta name="description" content="DreamOS maintenance phase command center — governance, productization, and Spark / MaskZero status on weareswarm.online">
+  <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <link rel="stylesheet" href="/data/shared/command-hive.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/data/shared/command-hive-config.js"></script>
+</head>
+<body class="hive-body">
+  <nav class="site-nav"></nav>
+
+  <main class="container">
+    <header class="hero hive-mission-header">
+      <p class="hive-chip hive-chip--claimed">Mission Control</p>
+      <h1>Focus / Command Center</h1>
+      <p id="hero-subtitle">DreamOS maintenance and promotion phase — governance enforcement, productization, and revenue activation.</p>
+      <div class="meta-row">
+        <span class="badge ok" id="live-badge">● Live board</span>
+        <span class="badge" id="sync-meta">Loading sync metadata…</span>
+      </div>
+    </header>
+
+    <section class="metric-grid" id="focus-metrics" aria-label="Consolidation metrics"></section>
+
+    <section class="panel panel--full" id="consolidation-status">
+      <div class="panel-header">
+        <div>
+          <h2>Consolidation Status</h2>
+          <p class="subtitle">Completed gates, active work, and blockers</p>
+        </div>
+        <span class="badge ok" id="phase-badge">Consolidation Complete</span>
+      </div>
+      <div class="panel-body">
+        <ul class="status-checklist" id="focus-status-list"></ul>
+      </div>
+    </section>
+
+    <section class="panel panel--full" id="main-focuses">
+      <div class="panel-header">
+        <div>
+          <h2>Main Focuses</h2>
+          <p class="subtitle">Current operator priorities</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="focus-grid" id="main-focuses-grid"></div>
+      </div>
+    </section>
+
+    <section class="panel panel--full" id="revenue-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Revenue Operator</h2>
+          <p class="subtitle">dreamscan_first_lead_001 · swarm_60k_60d_001</p>
+        </div>
+        <span class="badge warn" id="revenue-status">loading</span>
+      </div>
+      <div class="panel-body">
+        <dl class="status-grid" id="revenue-kv"></dl>
+        <p class="section-title">Daily targets</p>
+        <div class="pill-row" id="revenue-targets"></div>
+        <p class="section-title">Funnel pipeline</p>
+        <div class="pill-row" id="revenue-funnel"></div>
+        <p class="section-title">Marketing operator (HITL)</p>
+        <div class="pill-row" id="revenue-marketing-operator"></div>
+        <p class="section-title">Approval queue</p>
+        <div class="pill-row" id="revenue-approval-queue"></div>
+        <p class="section-title">Daily operator</p>
+        <p class="mono-note" id="revenue-operator">—</p>
+      </div>
+    </section>
+
+    <div class="grid-2">
+      <section class="panel" id="consolidation-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Consolidation Panel</h2>
+            <p class="subtitle" id="consolidation-lane-subtitle">Status: COMPLETE</p>
+          </div>
+          <span class="badge ok" id="consolidation-source">complete</span>
+        </div>
+        <div class="panel-body">
+          <div id="consolidation-content"></div>
+        </div>
+      </section>
+
+      <section class="panel" id="spark-panel">
+        <div class="panel-header">
+          <div>
+            <h2 id="spark-panel-title">Spark / MaskZero</h2>
+            <p class="subtitle" id="spark-panel-subtitle">MZSpark universe, character systems, battle arcs, and manifestation engine.</p>
+          </div>
+          <span class="badge warn" id="spark-status">loading</span>
+        </div>
+        <div class="panel-body spark-panel-body">
+          <div class="spark-section">
+            <p class="section-title">Project overview</p>
+            <dl class="status-grid" id="spark-kv"></dl>
+          </div>
+
+          <div class="section-divider" aria-hidden="true"></div>
+
+          <div class="spark-section">
+            <p class="section-title">Current project state</p>
+            <ul class="status-checklist" id="spark-state-list"></ul>
+          </div>
+
+          <div class="section-divider" aria-hidden="true"></div>
+
+          <div class="spark-section">
+            <p class="section-title">Progress</p>
+            <div id="spark-progress"></div>
+          </div>
+
+          <div class="section-divider" aria-hidden="true"></div>
+
+          <div class="spark-section">
+            <p class="section-title">Reason</p>
+            <p class="result-line" id="spark-reason">—</p>
+            <p class="section-title">Next actions</p>
+            <ul class="list" id="spark-actions"></ul>
+            <p class="section-title">Blockers</p>
+            <p class="mono-note" id="spark-blockers">—</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <p class="footer-note">
+      Cross-links:
+      <a href="/">Command Center</a> ·
+      <a href="/projects/">Projects</a> ·
+      <a href="/tasks/">Tasks</a> ·
+      <a href="https://weareswarm.site/feed/">Closeout Feed (site)</a> ·
+      Data refresh via DreamVault sync script (no secrets exposed).
+    </p>
+  </main>
+
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/proof-feed-rail.js"></script>
+  <script src="/data/shared/command-hive-shell.js"></script>
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script>
+    (async function () {
+      const FD = window.FocusDashboard;
+      if (!FD || typeof FD.fetchJsonSettled !== "function") {
+        document.getElementById("sync-meta").textContent =
+          "focus-dashboard.js missing fetchJsonSettled — redeploy data/shared/";
+        document.getElementById("live-badge").className = "badge block";
+        document.getElementById("live-badge").textContent = "● Partial data";
+        return;
+      }
+
+      const {
+        fetchJsonSettled,
+        setSyncMeta,
+        renderRevenuePanel,
+        renderMainFocuses,
+        renderSparkPanel,
+        renderMetricCards,
+        renderFocusStatus,
+        renderConsolidationPanel,
+      } = FD;
+
+      const [
+        manifestResult,
+        focusPanelResult,
+        sparkResult,
+        revenueResult,
+      ] = await Promise.all([
+        fetchJsonSettled("manifest.json"),
+        fetchJsonSettled("focus_panel.json", {}),
+        fetchJsonSettled("spark_panel.json", { spark_project: {}, project_state: {}, progress: [] }),
+        fetchJsonSettled("revenue_operator_panel.json", {}),
+      ]);
+
+      const manifest = manifestResult.data || {};
+      const focusPanel = focusPanelResult.data || {};
+      const spark = sparkResult.data || { spark_project: {}, project_state: {}, progress: [] };
+      const revenue = revenueResult.data || {};
+
+      const failed = [
+        !manifestResult.ok && "manifest.json",
+        !focusPanelResult.ok && "focus_panel.json",
+        !sparkResult.ok && "spark_panel.json",
+        !revenueResult.ok && "revenue_operator_panel.json",
+      ].filter(Boolean);
+
+      if (manifestResult.ok) {
+        setSyncMeta(manifest);
+      } else if (failed.length) {
+        document.getElementById("sync-meta").textContent =
+          "Partial load · missing: " + failed.join(", ");
+      }
+
+      const heroSubtitle = document.getElementById("hero-subtitle");
+      if (heroSubtitle && focusPanel.hero_subtitle) {
+        heroSubtitle.textContent = focusPanel.hero_subtitle;
+      }
+
+      try {
+        renderMetricCards(document.getElementById("focus-metrics"), focusPanel.metrics);
+        renderFocusStatus(document.getElementById("focus-status-list"), focusPanel.status_items);
+
+        const phaseBadge = document.getElementById("phase-badge");
+        if (phaseBadge) {
+          phaseBadge.textContent = focusPanel.consolidation && focusPanel.consolidation.status_heading
+            ? focusPanel.consolidation.status_heading.replace("Status: ", "") + " ✓"
+            : "Consolidation Complete";
+        }
+
+        document.getElementById("consolidation-source").textContent =
+          (focusPanel.consolidation && focusPanel.consolidation.status_heading) || "complete";
+
+        const laneSubtitle = document.getElementById("consolidation-lane-subtitle");
+        if (laneSubtitle && focusPanel.consolidation) {
+          laneSubtitle.textContent = focusPanel.consolidation.status_heading || "Status: COMPLETE";
+        }
+
+        renderConsolidationPanel(
+          document.getElementById("consolidation-content"),
+          focusPanel.consolidation
+        );
+      } catch (err) {
+        document.getElementById("consolidation-source").textContent = "render error";
+        console.error("consolidation panel", err);
+      }
+
+      try {
+        renderMainFocuses(document.getElementById("main-focuses-grid"), {
+          focusPanel: focusPanel,
+          spark: spark,
+          revenue: revenue,
+        });
+      } catch (err) {
+        console.error("main focuses", err);
+      }
+
+      try {
+        renderRevenuePanel(revenue);
+      } catch (err) {
+        document.getElementById("revenue-status").textContent = "unavailable";
+        console.error("revenue panel", err);
+      }
+
+      try {
+        renderSparkPanel(spark);
+      } catch (err) {
+        document.getElementById("spark-status").textContent = "render error";
+        console.error("spark panel", err);
+      }
+
+      if (failed.length) {
+        document.getElementById("live-badge").className = "badge warn";
+        document.getElementById("live-badge").textContent = "● Partial data";
+      }
+    })();
+  </script>
+</body>
+</html>

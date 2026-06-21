@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Closeout Feed — weareswarm.online</title>
+  <meta name="description" content="Verified Dream.OS closeout receipts — proof of shipped work when safe to publish.">
+  <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+</head>
+<body>
+  <nav class="site-nav"></nav>
+
+  <main class="container">
+    <header class="hero">
+      <h1>Closeout Feed</h1>
+      <p>Chronological proof surface for shipped Dream.OS work. Governance lane closeouts from DreamVault appear here when verified and public-safe.</p>
+      <div class="meta-row">
+        <span class="badge" id="sync-meta">Loading…</span>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Verified closeouts</h2>
+          <p class="subtitle">Published proof cards from DreamVault governance lanes</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="closeout-grid" id="closeout-feed-grid"></div>
+        <p class="empty-state" id="closeout-feed-empty" hidden>No closeouts published yet.</p>
+        <p class="footer-note" style="margin-top:1.25rem;border:none;padding:0;">
+          Synced from <code>data/reports/discord/closeouts/</code> and DreamVault closeout packets. Planner surfaces: <a href="/">Command Center</a> · <a href="/tasks/">Tasks</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script src="/data/shared/closeout-feed.js"></script>
+  <script>
+    (async function () {
+      const FD = window.FocusDashboard;
+      if (!FD) return;
+      const result = await FD.fetchJsonSettled("manifest.json");
+      if (result.ok) FD.setSyncMeta(result.data);
+    })();
+  </script>
+</body>
+</html>

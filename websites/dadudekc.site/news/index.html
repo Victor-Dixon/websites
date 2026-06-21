@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Meridian News | Spark Protocol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Meridian City headlines from the Age of Masks — AEGIS advisories, district reports, and Trial coverage." />
+  <style>
+    :root {
+      --paper: #f3ead7;
+      --ink: #1b1712;
+      --muted: #62594d;
+      --line: #2b2116;
+      --red: #8e1f1f;
+      --accent: #ffd12f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #18130d;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .spark-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      background: rgba(8, 10, 18, .94);
+      border-bottom: 1px solid rgba(255, 255, 255, .14);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .spark-nav a {
+      color: #f5f7fb;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 6px 8px;
+    }
+    .spark-nav a.active { color: var(--accent); }
+    .spark-nav a.cta {
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #78f0ff;
+      color: #061019;
+      font-weight: 900;
+    }
+    .paper {
+      max-width: 1120px;
+      margin: 24px auto;
+      background: var(--paper);
+      padding: 22px;
+      border: 1px solid #d0bd98;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
+    }
+    .masthead {
+      text-align: center;
+      border-bottom: 4px double var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+    .eyebrow {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 9vw, 5.6rem);
+      line-height: .88;
+      text-transform: uppercase;
+      letter-spacing: -.05em;
+    }
+    .tagline {
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 20px;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .eyebrow { display: block; text-align: center; }
+    }
+    .headline-card {
+      border-bottom: 2px solid var(--line);
+      padding: 14px 0;
+    }
+    .headline-card:first-child { padding-top: 0; }
+    .headline-card h2 {
+      font-size: clamp(1.45rem, 4vw, 2.4rem);
+      line-height: .98;
+      margin: 0 0 8px;
+      text-transform: uppercase;
+    }
+    .headline-card p {
+      line-height: 1.45;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+    .headline-live {
+      border-left: 6px solid var(--red);
+      padding-left: 14px;
+      background: rgba(142, 31, 31, 0.06);
+    }
+    .tag-live { background: var(--red); color: #fff; border-color: var(--red); }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 8px 0 10px;
+    }
+    .tag {
+      border: 1px solid var(--line);
+      padding: 3px 7px;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      background: rgba(255, 255, 255, .22);
+    }
+    .button-link {
+      border: 1px solid var(--line);
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 800;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-family: system-ui, sans-serif;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .box {
+      border: 2px solid var(--line);
+      padding: 12px;
+      margin-bottom: 14px;
+      background: rgba(255, 255, 255, .18);
+    }
+    .box h3 {
+      margin: 0 0 8px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 5px;
+      font-size: 1rem;
+    }
+    .small {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.45;
+    }
+    .dispatch-callout {
+      border-left: 5px solid var(--red);
+      padding: 10px 12px;
+      background: rgba(142, 31, 31, .08);
+      margin-top: 8px;
+    }
+    html[data-spark-auth="pending"] body {
+      visibility: hidden;
+    }
+  </style>
+  <script src="/assets/js/spark-account-runtime.js?v=10"></script>
+  <script src="/assets/js/spark-auth-guard.js?v=4" data-spark-require-auth></script>
+</head>
+<body>
+  <nav id="spark-auth-nav" class="spark-nav" aria-label="Spark Protocol">
+    <a href="/">Home</a>
+    <a href="/spark-generator/">Origin Lab</a>
+    <a href="/spark-login/">Log In</a>
+    <a class="cta" href="/spark-signup/">Sign Up</a>
+  </nav>
+
+  <main class="paper">
+    <header class="masthead">
+      <div class="eyebrow">
+        <span>Meridian City · Age of Masks</span>
+        <span id="editionDate"></span>
+        <span>AEGIS public bulletin</span>
+      </div>
+      <h1>Meridian News</h1>
+      <div class="tagline">The city’s front page — districts, Trials, and the registry in plain sight.</div>
+    </header>
+
+    <section class="grid">
+      <div id="newsFeed"></div>
+
+      <aside>
+        <section class="box">
+          <h3>Live Crisis Desk</h3>
+          <p class="small">Breaking field reports and deployable headlines run on the Dispatch — not the wire service.</p>
+          <div class="dispatch-callout">
+            <strong>Meridian Dispatch</strong>
+            <p class="small">Select a headline, deploy your Spark, and file a field report when the crisis resolves.</p>
+            <a class="button-link" href="/meridian-dispatch/">Open Dispatch</a>
+          </div>
+        </section>
+
+        <section class="box">
+          <h3>District Watch</h3>
+          <p class="small">Meridian reads by its districts. Harbor runs contraband lanes; Uptown holds old money; the Undercity keeps the fastest unwatched paths.</p>
+        </section>
+
+        <section class="box">
+          <h3>About This Feed</h3>
+          <p class="small">Editorial stories plus live field reports when Sparks answer the Dispatch. Player actions publish here automatically.</p>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="/assets/js/meridian-news-client.js?v=1"></script>
+  <script>
+    document.getElementById("editionDate").textContent = new Date().toLocaleDateString(undefined, {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric"
+    });
+
+    if (window.MeridianNewsClient) {
+      window.MeridianNewsClient.loadNewsfeed({
+        target: document.getElementById("newsFeed"),
+        limit: 24
+      });
+    }
+  </script>
+  <script src="/assets/js/spark-auth-nav.js?v=11"></script>
+</body>
+</html>

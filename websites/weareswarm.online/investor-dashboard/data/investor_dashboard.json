@@ -1,0 +1,130 @@
+{
+  "schema": "weareswarm.online.investor_dashboard.v1",
+  "task_id": "investor_dashboard_001",
+  "generated_at": "2026-06-13T21:04:21+00:00",
+  "source": "build_investor_dashboard",
+  "authority_root": "D:\\DreamVault",
+  "site_root": "D:\\websites\\websites\\weareswarm.online",
+  "metrics": {
+    "active_task_count": {
+      "value": 924,
+      "source": "runtime/planner/all_tasks.json",
+      "proof_href": "/tasks/",
+      "field": "task_count"
+    },
+    "completed_prune_count": {
+      "value": 11,
+      "source": "D:\\DreamVault\\data\\reports\\task_prune\\latest_summary.json",
+      "proof_href": null,
+      "field": "counts.completed_prune_candidates"
+    },
+    "stale_prune_count": {
+      "value": 22,
+      "source": "D:\\DreamVault\\data\\reports\\task_prune\\latest_summary.json",
+      "proof_href": null,
+      "field": "counts.stale_prune_candidates"
+    },
+    "kids_routable_task_count": {
+      "value": 5,
+      "source": "D:\\DreamVault\\runtime\\planner\\kids_tasks.json",
+      "proof_href": "/kids-planner/",
+      "field": "task_count"
+    },
+    "portfolio_project_count": {
+      "value": 9,
+      "source": "D:\\websites\\websites\\weareswarm.online\\projects\\data\\projects.json",
+      "proof_href": "/projects/",
+      "field": "products.length"
+    },
+    "revenue_class_coverage": {
+      "value": 100.0,
+      "classified": 16,
+      "total": 16,
+      "missing": [],
+      "taxonomy": [
+        "Revenue Engine",
+        "Lead Gen",
+        "Internal Tool",
+        "Client Asset",
+        "Research",
+        "Experimental",
+        "Archived"
+      ],
+      "source": "D:\\websites\\websites\\weareswarm.online\\portfolio\\data\\revenue_classes.json",
+      "proof_href": "/portfolio/",
+      "field": "products[].revenue_class"
+    },
+    "latest_closeout_feed_timestamp": {
+      "value": "2026-06-13T14:00:00+00:00",
+      "source": "D:\\websites\\websites\\weareswarm.online\\feed\\data\\feed.json",
+      "proof_href": "/feed/",
+      "field": "items[].timestamp"
+    },
+    "surface_sync_health": {
+      "value": "healthy",
+      "passed": true,
+      "generated_at": "2026-06-13T10:48:12+00:00",
+      "counts": {
+        "products": 9,
+        "feed_items": 54,
+        "skill_tree_nodes": 81
+      },
+      "source": "D:\\DreamVault\\data\\reports\\surface_sync\\auto_portfolio_surface_sync_latest.json",
+      "proof_href": null
+    },
+    "deploy_status": {
+      "status": "surfaces_synced",
+      "surface_sync_passed": true,
+      "surface_outputs_present": true,
+      "deploy_task_feed_pass": false,
+      "detail": "surface_sync_pending",
+      "source": "data\\reports\\surface_sync\\auto_portfolio_surface_sync_latest.json"
+    }
+  },
+  "links": [
+    {
+      "href": "/projects/",
+      "label": "Projects",
+      "proof": "projects/data/projects.json"
+    },
+    {
+      "href": "/portfolio/",
+      "label": "Portfolio",
+      "proof": "portfolio/data/revenue_classes.json"
+    },
+    {
+      "href": "/skill-tree/",
+      "label": "Skill Tree",
+      "proof": "skill-tree/data/skill_tree_panel.json"
+    },
+    {
+      "href": "/feed/",
+      "label": "Closeout Feed",
+      "proof": "feed/data/feed.json"
+    },
+    {
+      "href": "/tasks/",
+      "label": "Task Planner",
+      "proof": "data/planner/all_tasks.json"
+    },
+    {
+      "href": "/focus/",
+      "label": "Focus / Command Center",
+      "proof": "data/planner/focus_panel.json"
+    },
+    {
+      "href": "/kids-planner/",
+      "label": "Kids Planner",
+      "proof": "data/planner/kids_tasks.json"
+    }
+  ],
+  "inputs": {
+    "all_tasks": "D:\\DreamVault\\runtime\\planner\\all_tasks.json",
+    "kids_tasks": "D:\\DreamVault\\runtime\\planner\\kids_tasks.json",
+    "surface_sync_report": "D:\\DreamVault\\data\\reports\\surface_sync\\auto_portfolio_surface_sync_latest.json",
+    "prune_summary": "D:\\DreamVault\\data\\reports\\task_prune\\latest_summary.json",
+    "projects": "D:\\websites\\websites\\weareswarm.online\\projects\\data\\projects.json",
+    "revenue_classes": "D:\\websites\\websites\\weareswarm.online\\portfolio\\data\\revenue_classes.json",
+    "feed": "D:\\websites\\websites\\weareswarm.online\\feed\\data\\feed.json"
+  }
+}

@@ -1,0 +1,154 @@
+id: dadudekc_services_redesign_001
+title: Redesign dadudekc.site to sell Victor's services
+status: completed
+priority: P0
+owner: Victor
+site: dadudekc.site
+type: conversion_redesign
+
+objective:
+  Redesign dadudekc.site from a creative/demo site into a clear service-selling personal business site for Victor Dixon.
+
+positioning:
+  name: Victor Dixon
+  headline: AI Automation Systems for Small Businesses, Creators, and Operators
+  role:
+    - Dream.OS architect
+    - automation builder
+    - multi-agent systems operator
+    - workflow systems designer
+  audience:
+    - small business owners
+    - local service businesses
+    - creators
+    - operators with messy workflows
+    - security companies
+    - solo founders
+
+primary_cta:
+  label: Book a Strategy Call
+  target: contact section or calendar link
+
+secondary_cta:
+  label: See What I Can Build
+  target: services or case studies section
+
+homepage_sections:
+  - hero:
+      headline: AI Automation Systems for Small Businesses, Creators, and Operators
+      subheadline: I help businesses turn messy workflows into websites, dashboards, onboarding systems, AI assistants, and automation pipelines that actually save time.
+      trust_line: Built by Victor Dixon — Dream.OS architect, automation builder, and multi-agent systems operator.
+      primary_button: Book a Strategy Call
+      secondary_button: See What I Can Build
+
+  - pain:
+      headline: Your business is leaking time through manual work.
+      bullets:
+        - Tasks stuck in texts, notes, or spreadsheets
+        - Employees asking the same questions repeatedly
+        - No clean onboarding process
+        - A website that does not explain or sell services
+        - Leads coming in without automation
+        - No dashboard showing what is actually happening
+
+  - services:
+      headline: What I Build
+      items:
+        - Business websites that explain, sell, and capture leads
+        - AI-assisted onboarding portals for employees and contractors
+        - Internal dashboards for tasks, records, and operations
+        - Discord, Slack, and email automation systems
+        - Custom GPT and agent workflows for repeat business processes
+        - Multi-site portfolio and deployment systems
+
+  - packages:
+      headline: Service Packages
+      items:
+        - name: Website + AI Upgrade
+          best_for: Local businesses with outdated websites
+          starting_at: $500+
+        - name: Employee Onboarding Portal
+          best_for: Security, service, and field teams
+          starting_at: $750+
+        - name: Automation Audit
+          best_for: Businesses drowning in manual work
+          starting_at: $150+
+        - name: Custom AI Workflow System
+          best_for: Operators who need dashboards and tools
+          starting_at: $1,500+
+        - name: Ongoing Automation Partner
+          best_for: Monthly support and iteration
+          starting_at: $300/mo+
+
+  - proof:
+      headline: Proof of Work
+      bullets:
+        - Dream.OS multi-agent automation system
+        - WeAreSwarm planner and task systems
+        - FreeRideInvestor trading cockpit
+        - Digital Dreamscape game and world experiments
+        - Discord automation and agent command systems
+        - Small business website automation lanes
+
+  - case_studies:
+      headline: Example Builds
+      items:
+        - title: Security Company Website + Onboarding
+          problem: A security company needs a professional site, lead capture, site-specific rules, and employee onboarding.
+          solution: A clean business website with service pages, intake forms, onboarding documents, AI-assisted FAQ, and training portal.
+          value: Less owner repetition, better employee readiness, and stronger sales presence.
+        - title: WeAreSwarm Planner
+          problem: Family and student projects need task visibility, ownership, and records.
+          solution: A planner that lets users view tasks, claim work, track completion, and build accountability.
+          value: Turns scattered ideas into managed execution.
+        - title: Dream.OS
+          problem: Too many repos, agents, tasks, and workflows become impossible to manage manually.
+          solution: A self-healing automation operating system using task artifacts, verification gates, terminal lanes, and repo-level discipline.
+          value: Faster execution with less chaos.
+
+  - contact:
+      headline: Want to automate the messy part of your business?
+      body: Send me your website, workflow, or business problem. I will tell you what I would fix first.
+      fields:
+        - name
+        - email
+        - business
+        - current website
+        - biggest workflow problem
+      cta: Request an Automation Audit
+
+design_direction:
+  style: sharp, credible, operator-focused
+  avoid:
+    - childish game-first presentation
+    - vague AI buzzwords
+    - too many universe/lore sections
+    - cluttered demo grids
+  use:
+    - dark professional palette
+    - strong typography
+    - clear service cards
+    - proof cards
+    - simple contact flow
+    - mobile-first layout
+
+technical_requirements:
+  - Preserve existing routes unless intentionally replaced.
+  - Homepage must sell services first.
+  - Add or update /services route.
+  - Add or update /case-studies route.
+  - Add or update /contact route.
+  - Add metadata for AI automation, websites, onboarding portals, and business workflow systems.
+  - Add clear CTAs above the fold.
+  - Ensure mobile layout is clean.
+  - Ensure build passes.
+
+verification:
+  - npm install
+  - npm run build
+  - Search for old headline/copy that conflicts with service positioning.
+  - Confirm homepage has hero, services, packages, proof, case studies, and contact CTA.
+  - Confirm mobile layout does not hide CTA.
+  - git diff --stat
+
+commit_message: "Redesign dadudekc.site as service-selling portfolio"

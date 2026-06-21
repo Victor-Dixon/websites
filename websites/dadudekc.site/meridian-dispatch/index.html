@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Meridian Dispatch | Spark Protocol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --paper: #f3ead7;
+      --ink: #1b1712;
+      --muted: #62594d;
+      --line: #2b2116;
+      --red: #8e1f1f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #18130d;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .paper {
+      max-width: 1120px;
+      margin: 24px auto;
+      background: var(--paper);
+      padding: 22px;
+      border: 1px solid #d0bd98;
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    }
+    .masthead {
+      text-align: center;
+      border-bottom: 4px double var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+    .eyebrow {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 9vw, 6.4rem);
+      line-height: .88;
+      text-transform: uppercase;
+      letter-spacing: -.05em;
+    }
+    .tagline {
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 20px;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .eyebrow { display: block; text-align: center; }
+    }
+    .headline-card {
+      border-bottom: 2px solid var(--line);
+      padding: 14px 0;
+    }
+    .headline-card:first-child { padding-top: 0; }
+    .headline-card.district-focus {
+      border-left: 5px solid var(--red);
+      padding-left: 12px;
+      background: rgba(142,31,31,.06);
+    }
+    .headline-card h2 {
+      font-size: clamp(1.65rem, 5vw, 3.2rem);
+      line-height: .94;
+      margin: 0 0 8px;
+      text-transform: uppercase;
+    }
+    .headline-card p {
+      line-height: 1.45;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 8px 0 10px;
+    }
+    .tag {
+      border: 1px solid var(--line);
+      padding: 3px 7px;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      background: rgba(255,255,255,.22);
+    }
+    button, .button-link {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 800;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-family: system-ui, sans-serif;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+    button.selected-approach {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .box {
+      border: 2px solid var(--line);
+      padding: 12px;
+      margin-bottom: 14px;
+      background: rgba(255,255,255,.18);
+    }
+    .box h3 {
+      margin: 0 0 8px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 5px;
+    }
+    .meters {
+      display: grid;
+      gap: 8px;
+      font-family: system-ui, sans-serif;
+      font-size: .9rem;
+    }
+    .meter-row {
+      display: grid;
+      grid-template-columns: 1fr 36px;
+      gap: 8px;
+      border-bottom: 1px dotted rgba(0,0,0,.35);
+      padding-bottom: 3px;
+    }
+    .approaches {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    @media (max-width: 520px) {
+      .approaches { grid-template-columns: 1fr; }
+    }
+    .result {
+      white-space: pre-wrap;
+      background: rgba(0,0,0,.06);
+      border: 1px solid var(--line);
+      padding: 10px;
+      min-height: 120px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+    .followup {
+      border-left: 5px solid var(--red);
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      background: rgba(142,31,31,.08);
+    }
+    .small {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.4;
+    }
+    .nav {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-family: system-ui, sans-serif;
+    }
+    html[data-spark-auth="pending"] body {
+      visibility: hidden;
+    }
+  </style>
+  <script src="/assets/js/spark-account-runtime.js?v=13"></script>
+  <script src="/assets/js/spark-auth-guard.js?v=4" data-spark-require-auth></script>
+  <script src="/assets/js/meridian-world-client.js?v=1"></script>
+</head>
+<body>
+<nav id="spark-auth-nav" aria-label="Spark Protocol" style="position:sticky;top:0;z-index:9999;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px 12px;background:rgba(8,10,18,.94);border-bottom:1px solid rgba(255,255,255,.14);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <a href="/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Home</a>
+  <a href="/spark-generator/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Origin Lab</a>
+  <a href="/spark-login/" style="color:#f5f7fb;text-decoration:none;font-weight:800">Log In</a>
+  <a href="/spark-signup/" style="padding:8px 10px;border-radius:10px;background:#78f0ff;color:#061019;text-decoration:none;font-weight:900">Sign Up</a>
+</nav>
+
+
+  <main class="paper">
+    <header class="masthead">
+      <div class="eyebrow">
+        <span>Meridian City · Age of Masks</span>
+        <span id="editionDate"></span>
+        <span>AEGIS advisories subject to redaction</span>
+      </div>
+      <h1>The Meridian Dispatch</h1>
+      <div class="tagline">The city changes when Sparks answer the call.</div>
+      <nav class="nav">
+        <a class="button-link" href="../spark-generator/">Spark Generator</a>
+        <a class="button-link" href="../">Home</a>
+      </nav>
+    </header>
+
+    <section class="grid">
+      <div>
+        <section class="box">
+          <h3>Active Spark</h3>
+          <div id="sparkBox" class="small"></div>
+        </section>
+
+        <section id="headlines"></section>
+
+        <section class="box">
+          <h3>Respond To The Crisis</h3>
+          <div id="selectedStory" class="small">Select a headline to deploy your Spark.</div>
+          <div class="approaches">
+            <button type="button" data-approach="direct">Direct Intervention</button>
+            <button type="button" data-approach="strategy">Investigate & Strategize</button>
+            <button type="button" data-approach="protect">Protect Civilians</button>
+            <button type="button" data-approach="stealth">Move Unseen</button>
+          </div>
+          <label for="missionResponse" style="display:block;margin-top:14px;font-weight:800">How does your hero respond?</label>
+          <textarea id="missionResponse" rows="5" maxlength="4000" placeholder="Describe your hero's action in Meridian City. MaskZero will file the consequences to your inbox." style="width:100%;padding:12px;border:2px solid var(--line);font-family:Georgia,serif;font-size:1rem"></textarea>
+          <p class="small">Premium users receive cinematic MaskZero narration. Free accounts receive a standard field report.</p>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <button type="button" id="submitAnswers" disabled>Submit Answers</button>
+            <span id="submitHint" class="small">Select a headline and response approach, then submit to shift the map atmosphere.</span>
+          </div>
+        </section>
+
+        <section class="box">
+          <h3>Result Filed</h3>
+          <div id="result" class="result">No field report filed yet.</div>
+        </section>
+      </div>
+
+      <aside>
+        <section class="box">
+          <h3>District Pressure Index</h3>
+          <div id="meters" class="meters"></div>
+        </section>
+
+        <section class="box">
+          <h3>Follow-Up Articles</h3>
+          <div id="followups"></div>
+        </section>
+
+        <section class="box">
+          <h3>Faction Desk</h3>
+          <p class="small"><strong>AEGIS:</strong> Order is maintained through registry, posture, and containment.</p>
+          <p class="small"><strong>Sterling Holdings:</strong> Civic trust on the surface. Debt and control underneath.</p>
+          <p class="small"><strong>God's Armor:</strong> Protects the abandoned first, paperwork second.</p>
+          <p class="small"><strong>The Undercity:</strong> Protects its own. Surface problems stay surface problems until they do not.</p>
+        </section>
+
+        <section class="box">
+          <h3>Controls</h3>
+          <button class="secondary" id="resetWorld">Reset World</button>
+          <button class="secondary" id="clearFollowups">Clear Follow-Ups</button>
+        </section>
+      </aside>
+    </section>
+  
+
+<section class="panel" id="meridian-map-ledger">
+  <div class="kicker">Mission Ledger</div>
+  <h2>Open The Meridian Map</h2>
+  <p>Choose the battlefield before accepting the next dispatch.</p>
+  <a class="button" href="/meridian-map/">Open Map</a>
+</section>
+
+</main>
+
+  <script>
+    const LS_WORLD = "meridian.worldState.v1";
+    const LS_LOG = "meridian.missionLog.v1";
+    const LS_FOLLOWUPS = "meridian.dispatchFollowups.v1";
+    const LS_DISTRICT = "meridian.selectedDistrict.v1";
+    const LS_SPARK_KEYS = [
+      "dreamos.savedSparkCharacters.v1",
+      "spark.savedCharacter.v1",
+      "spark.character.v1"
+    ];
+
+    const defaultWorld = {
+      hope: 5,
+      fear: 5,
+      damage: 3,
+      sterling_control: 5,
+      aegis_pressure: 5,
+      gods_armor_trust: 5,
+      undercity_secrecy: 7
+    };
+
+    const meterLabels = {
+      hope: "Hope",
+      fear: "Fear",
+      damage: "Damage",
+      sterling_control: "Sterling Control",
+      aegis_pressure: "AEGIS Pressure",
+      gods_armor_trust: "God's Armor Trust",
+      undercity_secrecy: "Undercity Secrecy"
+    };
+
+    const stories = [
+      {
+        id: "drowned_quarter_collapse",
+        headline: "Canal Wall Collapse Leaves Families Trapped",
+        dek: "Residents in the Drowned Quarter report delayed AEGIS response as floodwater cuts off two blocks.",
+        district: "The Drowned Quarter",
+        district_id: "drowned_quarter",
+        coord: "F9",
+        faction: "God's Armor",
+        favored: ["protect", "strategy"],
+        reward: "Drowned Quarter Defender",
+        effects: {
+          success: { hope: 2, fear: -1, damage: -1, gods_armor_trust: 2 },
+          mixed: { hope: 1, damage: 1, aegis_pressure: 1 },
+          fail: { fear: 2, damage: 2, sterling_control: 1 }
+        }
+      },
+      {
+        id: "irongate_sterling_freight",
+        headline: "Unmarked Sterling Freight Moves Through Irongate After Midnight",
+        dek: "Dockworkers say manifests were changed after the fact. Sterling Holdings denies irregularities.",
+        district: "Irongate",
+        district_id: "irongate",
+        coord: "D7",
+        faction: "Sterling Holdings",
+        favored: ["stealth", "strategy"],
+        reward: "Freightline Witness",
+        effects: {
+          success: { sterling_control: -2, hope: 1, undercity_secrecy: -1 },
+          mixed: { sterling_control: -1, aegis_pressure: 1, fear: 1 },
+          fail: { sterling_control: 2, fear: 1, undercity_secrecy: 1 }
+        }
+      },
+      {
+        id: "spindle_redacted_dossier",
+        headline: "Redacted AEGIS Dossier Found Near Spindle Field Office",
+        dek: "Officials call the document counterfeit. Mask advocates call it evidence of quiet containment expansion.",
+        district: "The Spindle",
+        district_id: "spindle",
+        coord: "I2",
+        faction: "AEGIS",
+        favored: ["strategy", "stealth"],
+        reward: "Redacted Witness",
+        effects: {
+          success: { aegis_pressure: -1, hope: 1, fear: -1 },
+          mixed: { aegis_pressure: 2, hope: 1 },
+          fail: { aegis_pressure: 3, fear: 1 }
+        }
+      },
+      {
+        id: "ladderways_debt_clash",
+        headline: "Debt Collectors Spark Market Clash In The Ladderways",
+        dek: "Witnesses say the dispute began after a Sterling-linked lender attempted to seize a family stall.",
+        district: "The Ladderways",
+        district_id: "ladderways",
+        coord: "H6",
+        faction: "Civilians",
+        favored: ["protect", "direct"],
+        reward: "Ladderways Shield",
+        effects: {
+          success: { hope: 2, fear: -1, sterling_control: -1, gods_armor_trust: 1 },
+          mixed: { hope: 1, damage: 1 },
+          fail: { fear: 2, damage: 1, sterling_control: 1 }
+        }
+      }
+    ];
+
+    let selected = null;
+    let selectedApproach = null;
+
+    function updateSubmitState() {
+      const btn = document.getElementById("submitAnswers");
+      const hint = document.getElementById("submitHint");
+      const ready = !!(selected && selectedApproach);
+      if (btn) btn.disabled = !ready;
+      if (hint) {
+        hint.textContent = ready
+          ? "Ready to file your response and shift sector " + selected.coord + " on the Meridian map."
+          : "Select a headline and response approach, then submit to shift the map atmosphere.";
+      }
+    }
+
+    document.getElementById("editionDate").textContent =
+      new Date().toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+
+    function readJSON(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function writeJSON(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function clamp(n) {
+      return Math.max(0, Math.min(10, Number(n) || 0));
+    }
+
+    function escapeHTML(str) {
+      return String(str).replace(/[&<>"']/g, ch => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[ch]));
+    }
+
+    function loadSpark() {
+      for (const key of LS_SPARK_KEYS) {
+        const value = readJSON(key, null);
+        if (Array.isArray(value) && value.length) return value[value.length - 1];
+        if (value && typeof value === "object") return value;
+      }
+      return null;
+    }
+
+    function sparkName(spark) {
+      return spark?.name || spark?.codename || spark?.spark_name || "Anonymous Spark";
+    }
+
+    function sparkDomains(spark) {
+      const raw = spark?.domains || spark?.manifested_domains || spark?.domain || [];
+      if (Array.isArray(raw)) return raw.join(", ");
+      return raw || "Unregistered";
+    }
+
+    function getWorld() {
+      return readJSON(LS_WORLD, {...defaultWorld});
+    }
+
+    function setWorld(world) {
+      writeJSON(LS_WORLD, world);
+    }
+
+    function renderSpark() {
+      const spark = loadSpark();
+      const el = document.getElementById("sparkBox");
+      if (!spark) {
+        el.innerHTML = "No saved Spark detected. You may still answer a headline as an anonymous field asset.";
+        return;
+      }
+      el.innerHTML = `<strong>${escapeHTML(sparkName(spark))}</strong><br>Manifested Domains: ${escapeHTML(sparkDomains(spark))}`;
+    }
+
+    function renderHeadlines() {
+      const selectedDistrict = readJSON(LS_DISTRICT, null);
+      const districtFilter = selectedDistrict?.name || null;
+      const el = document.getElementById("headlines");
+      el.innerHTML = stories.map((s) => {
+        const isMatch = districtFilter && s.district === districtFilter;
+        return `
+        <article class="headline-card${isMatch ? " district-focus" : ""}">
+          <h2>${escapeHTML(s.headline)}</h2>
+          <p>${escapeHTML(s.dek)}</p>
+          <div class="meta">
+            <span class="tag">${escapeHTML(s.district)}</span>
+            <span class="tag">${escapeHTML(s.faction)}</span>
+            <span class="tag">Reward: ${escapeHTML(s.reward)}</span>
+            ${isMatch ? '<span class="tag">Battlefield Selected</span>' : ""}
+          </div>
+          <button data-story="${s.id}">Respond As Spark</button>
+        </article>
+      `;
+      }).join("");
+
+      el.querySelectorAll("[data-story]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          selected = stories.find(s => s.id === btn.dataset.story);
+          selectedApproach = null;
+          document.querySelectorAll("[data-approach]").forEach(function (node) {
+            node.classList.remove("selected-approach");
+          });
+          document.getElementById("selectedStory").innerHTML =
+            `<strong>${escapeHTML(selected.headline)}</strong><br>
+             ${escapeHTML(selected.district)} · Sector ${escapeHTML(selected.coord)} · Favored responses: ${selected.favored.join(", ")}`;
+          updateSubmitState();
+        });
+      });
+    }
+
+    function renderMeters() {
+      const world = getWorld();
+      document.getElementById("meters").innerHTML = Object.entries(world).map(([key, value]) => `
+        <div class="meter-row">
+          <span>${escapeHTML(meterLabels[key] || key)}</span>
+          <strong>${clamp(value)}</strong>
+        </div>
+      `).join("");
+    }
+
+    function renderFollowups() {
+      const followups = readJSON(LS_FOLLOWUPS, []);
+      const el = document.getElementById("followups");
+      if (!followups.length) {
+        el.innerHTML = `<p class="small">No follow-up articles filed yet.</p>`;
+        return;
+      }
+      el.innerHTML = followups.slice(0, 8).map(f => `
+        <article class="followup">
+          <strong>${escapeHTML(f.headline)}</strong>
+          <p class="small">${escapeHTML(f.copy)}</p>
+        </article>
+      `).join("");
+    }
+
+    function resolve(story, approach) {
+      const spark = loadSpark();
+      const power = Number(spark?.power_rating || spark?.power || spark?.rating || 50);
+      const combat = Number(spark?.combat_rating || spark?.combat || 40);
+      const favoredBonus = story.favored.includes(approach) ? 18 : 0;
+      const roll = Math.floor(Math.random() * 28);
+      const score = Math.round(power * .35 + combat * .35 + favoredBonus + roll);
+
+      let result = "mixed";
+      if (score >= 65) result = "success";
+      if (score < 43) result = "fail";
+
+      const effects = story.effects[result];
+      const world = getWorld();
+      for (const [key, delta] of Object.entries(effects)) {
+        world[key] = clamp((world[key] ?? 5) + delta);
+      }
+      setWorld(world);
+
+      const name = sparkName(spark);
+      const outcomeHeadline = {
+        success: `${story.district} Stabilizes After Spark Response`,
+        mixed: `Spark Response Leaves ${story.district} Divided`,
+        fail: `${story.district} Pressure Rises After Failed Intervention`
+      }[result];
+
+      const outcomeCopy = {
+        success: `${name} answered the Dispatch call. Witnesses report the crisis was contained and public confidence improved.`,
+        mixed: `${name} intervened, but the situation remains unstable. Officials and residents disagree over what happened next.`,
+        fail: `${name} survived the encounter, but the underlying threat expanded. The city records the failure as pressure, not closure.`
+      }[result];
+
+      const followups = readJSON(LS_FOLLOWUPS, []);
+      followups.unshift({
+        id: `${story.id}_${Date.now()}`,
+        headline: outcomeHeadline,
+        copy: outcomeCopy,
+        created_at: new Date().toISOString()
+      });
+      writeJSON(LS_FOLLOWUPS, followups.slice(0, 20));
+
+      const log = readJSON(LS_LOG, []);
+      log.unshift({
+        id: `${story.id}_${Date.now()}`,
+        title: story.headline,
+        district: story.district,
+        approach,
+        result,
+        reward: result === "fail" ? "Field Scar" : story.reward,
+        effects,
+        created_at: new Date().toISOString()
+      });
+      writeJSON(LS_LOG, log.slice(0, 50));
+
+      return {
+        story,
+        approach,
+        result,
+        reward: result === "fail" ? "Field Scar" : story.reward,
+        effects,
+        outcomeHeadline,
+        outcomeCopy
+      };
+    }
+
+    function renderResult(result) {
+      const deltas = Object.entries(result.effects)
+        .map(([k, v]) => `${meterLabels[k] || k}: ${v > 0 ? "+" : ""}${v}`)
+        .join("\n");
+
+      document.getElementById("result").textContent =
+`FIELD REPORT
+
+Headline:
+${result.story.headline}
+
+Response:
+${result.approach}
+
+Outcome:
+${result.result.toUpperCase()}
+
+Follow-Up Filed:
+${result.outcomeHeadline}
+
+${result.outcomeCopy}
+
+World Impact:
+${deltas}
+
+Reward:
+${result.reward}
+
+Map Influence:
+Sector ${result.story.coord} atmosphere shifted to ${(result.serverCoord && result.serverCoord.atmosphere) || "pending sync"}.
+${result.totalSubmissions ? "Collective Spark responses filed citywide: " + result.totalSubmissions : ""}
+
+View the battlefield:
+/meridian-map/?sector=${result.story.coord}`;
+    }
+
+    document.querySelectorAll("[data-approach]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!selected) {
+          document.getElementById("result").textContent = "Select a headline first.";
+          return;
+        }
+        selectedApproach = btn.dataset.approach;
+        document.querySelectorAll("[data-approach]").forEach(function (node) {
+          node.classList.toggle("selected-approach", node === btn);
+        });
+        updateSubmitState();
+      });
+    });
+
+    document.getElementById("submitAnswers").addEventListener("click", async () => {
+      if (!selected || !selectedApproach) {
+        document.getElementById("result").textContent = "Select a headline and approach before submitting.";
+        return;
+      }
+
+      const submitBtn = document.getElementById("submitAnswers");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting…";
+
+      try {
+        if (window.SparkAccountRuntime && typeof window.SparkAccountRuntime.session === "function") {
+          await window.SparkAccountRuntime.session();
+        }
+
+        const result = resolve(selected, selectedApproach);
+        let serverPayload = null;
+
+        if (window.MeridianWorld && typeof window.MeridianWorld.submitDispatch === "function") {
+          serverPayload = await window.MeridianWorld.submitDispatch({
+            story_id: selected.id,
+            approach: selectedApproach,
+            result: result.result,
+            coord: selected.coord,
+            district_id: selected.district_id || "",
+            headline: selected.headline,
+            spark_name: sparkName(loadSpark()),
+            effects: result.effects,
+            custom_response: String(document.getElementById("missionResponse")?.value || "").trim()
+          });
+          if (serverPayload && serverPayload.global && window.MeridianWorld.mergeGlobal) {
+            window.MeridianWorld.mergeGlobal(serverPayload);
+          }
+        }
+
+        result.serverCoord = serverPayload && serverPayload.coord ? serverPayload.coord : null;
+        result.totalSubmissions = serverPayload && serverPayload.total_submissions ? serverPayload.total_submissions : null;
+
+        renderResult(result);
+        renderMeters();
+        renderFollowups();
+        var inboxNote = "";
+        if (serverPayload && serverPayload.inbox && serverPayload.inbox.message_id) {
+          inboxNote = "\n\nMaskZero filed a report to your inbox.";
+          if (serverPayload.inbox.premium) {
+            inboxNote += " Premium narration delivered.";
+          }
+          inboxNote += "\nOpen Inbox: /spark-inbox/";
+        }
+        document.getElementById("result").textContent += inboxNote + "\n\nOpen the map to see your sector change live.";
+      } catch (err) {
+        document.getElementById("result").textContent =
+          "Local report filed, but shared map sync failed: " + (err.message || String(err)) +
+          "\n\nYour answer still updated this browser's District Pressure Index.";
+      } finally {
+        submitBtn.textContent = "Submit Answers";
+        updateSubmitState();
+      }
+    });
+
+    document.querySelectorAll("[data-approach]").forEach(function (node) {
+      node.addEventListener("dblclick", function (ev) {
+        ev.preventDefault();
+      });
+    });
+
+    document.getElementById("resetWorld").addEventListener("click", () => {
+      setWorld({...defaultWorld});
+      renderMeters();
+      document.getElementById("result").textContent = "District Pressure Index reset.";
+    });
+
+    document.getElementById("clearFollowups").addEventListener("click", () => {
+      writeJSON(LS_FOLLOWUPS, []);
+      renderFollowups();
+      document.getElementById("result").textContent = "Follow-up articles cleared.";
+    });
+
+    renderSpark();
+    renderHeadlines();
+    renderMeters();
+    renderFollowups();
+    updateSubmitState();
+
+    const districtParam = new URLSearchParams(window.location.search).get("district");
+    if (districtParam) {
+      fetch("/assets/data/meridian_districts.json")
+        .then(res => res.ok ? res.json() : null)
+        .then(config => {
+          const match = config?.districts?.find(d => d.district_id === districtParam);
+          if (!match) return;
+          writeJSON(LS_DISTRICT, {
+            district_id: match.district_id,
+            name: match.name,
+            selected_at: new Date().toISOString()
+          });
+          const banner = document.getElementById("selectedStory");
+          if (banner) {
+            banner.innerHTML = `<strong>Battlefield:</strong> ${escapeHTML(match.name)} — headlines for this district are highlighted.`;
+          }
+          renderHeadlines();
+        })
+        .catch(() => {});
+    } else {
+      const savedDistrict = readJSON(LS_DISTRICT, null);
+      if (savedDistrict?.name) {
+        const banner = document.getElementById("selectedStory");
+        if (banner && !banner.textContent.trim()) {
+          banner.innerHTML = `<strong>Battlefield:</strong> ${escapeHTML(savedDistrict.name)} — headlines for this district are highlighted.`;
+        }
+      }
+    }
+  </script>
+  <script src="/assets/js/spark-auth-nav.js?v=13"></script>
+</body>
+</html>

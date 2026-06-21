@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command Center Roadmap — weareswarm.online</title>
+  <meta name="description" content="Ops roadmap: active campaign lanes, consolidation sequence, and parallel revenue tracks from the DreamVault planner — evidence-backed proof lanes.">
+  <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <link rel="stylesheet" href="/data/shared/command-hive.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/data/shared/command-hive-config.js"></script>
+</head>
+<body class="hive-body">
+  <nav class="site-nav"></nav>
+
+  <main class="container">
+    <header class="hero hive-mission-header">
+      <p class="hive-chip hive-chip--live">Maturity Ladder</p>
+      <h1>Command Center Roadmap</h1>
+      <p>Ops roadmap: active campaign lanes, consolidation sequence, and parallel revenue tracks from the DreamVault planner.</p>
+      <div class="meta-row">
+        <span class="badge ok" id="live-badge">● Planner bridge</span>
+        <span class="badge" id="sync-meta">Loading sync metadata…</span>
+      </div>
+    </header>
+
+    <section class="panel hive-glass" style="margin-bottom: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Ops maturity ladder</h2>
+          <p class="subtitle">Locked / active / unlocked campaign phases</p>
+        </div>
+      </div>
+      <div class="panel-body" id="maturity-ladder"></div>
+    </section>
+
+    <div class="grid-2">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Next lane</h2>
+            <p class="subtitle">next_lane.json + dynamic planner</p>
+          </div>
+        </div>
+        <div class="panel-body" id="next-lane-panel"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Parallel tracks</h2>
+            <p class="subtitle">Revenue · distribution · marketing scheduler</p>
+          </div>
+        </div>
+        <div class="panel-body" id="parallel-lanes"></div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Active campaign queue</h2>
+          <p class="subtitle">strategic_active_queue.json</p>
+        </div>
+        <a class="badge" href="/tasks/">Task queue</a>
+      </div>
+      <div class="panel-body" id="active-queue"></div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Consolidation sequence</h2>
+          <p class="subtitle">project_consolidation_next_lanes_001.json</p>
+        </div>
+        <a class="badge" href="/focus/">Focus board</a>
+      </div>
+      <div class="panel-body" id="consolidation-lanes"></div>
+    </section>
+
+    <footer class="site-footer-crosslink" style="margin-top:2rem;padding:1.25rem 1.5rem;border:1px solid var(--panel-border);border-radius:var(--radius);background:var(--bg-elevated);display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+      <p style="margin:0;color:var(--muted);max-width:36rem;line-height:1.6;font-size:0.95rem;">Looking for the public movement narrative — Signal, Swarm, Proof, Ascension, and the Level 10 ladder?</p>
+      <a class="badge" href="https://www.weareswarm.site/roadmap/" style="white-space:nowrap;">Movement vision → weareswarm.site/roadmap/</a>
+    </footer>
+  </main>
+
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/proof-feed-rail.js"></script>
+  <script src="/data/shared/command-hive-shell.js"></script>
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script src="/data/shared/roadmap-dashboard.js"></script>
+  <script src="/data/shared/roadmap-maturity.js"></script>
+  <script>
+    if (window.RoadmapMaturity) {
+      RoadmapMaturity.renderMaturityLadder(document.getElementById("maturity-ladder"));
+    }
+    (async function () {
+      const FD = window.FocusDashboard;
+      const RD = window.RoadmapDashboard;
+      if (!FD || !RD) return;
+
+      const [manifestResult, queueResult, nextLaneResult, lanesResult, dynamicResult] = await Promise.all([
+        FD.fetchJsonSettled("manifest.json"),
+        FD.fetchJsonSettled("strategic_active_queue.json"),
+        FD.fetchJsonSettled("next_lane.json"),
+        FD.fetchJsonSettled("project_consolidation_next_lanes_001.json", { lanes: [] }),
+        FD.fetchJsonSettled("dynamic_planner_panel.json", {}),
+      ]);
+
+      if (manifestResult.ok) FD.setSyncMeta(manifestResult.data);
+      else document.getElementById("sync-meta").textContent = "Partial load · manifest unavailable";
+
+      RD.renderNextLanePanel(
+        document.getElementById("next-lane-panel"),
+        nextLaneResult.data || {},
+        dynamicResult.data || {}
+      );
+      RD.renderParallelLanes(document.getElementById("parallel-lanes"), queueResult.data || {});
+      RD.renderActiveQueue(document.getElementById("active-queue"), queueResult.data || {});
+      RD.renderConsolidationLanes(document.getElementById("consolidation-lanes"), lanesResult.data || {});
+
+      const failed = [manifestResult, queueResult, nextLaneResult, lanesResult].filter(function (r) { return !r.ok; });
+      if (failed.length) {
+        document.getElementById("live-badge").className = "badge warn";
+        document.getElementById("live-badge").textContent = "● Partial data";
+      }
+    })();
+  </script>
+</body>
+</html>

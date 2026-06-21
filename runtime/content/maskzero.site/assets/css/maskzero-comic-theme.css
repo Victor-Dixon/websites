@@ -1,0 +1,617 @@
+:root {
+  --ink: #08080b;
+  --paper: #fff4d6;
+  --cream: #ffeec2;
+  --red: #ff3155;
+  --blue: #2dd4ff;
+  --yellow: #ffd12f;
+  --purple: #7c3cff;
+  --green: #32ff9c;
+}
+
+body.maskzero-comic-skin {
+  color: var(--ink);
+  font-family: Impact, "Arial Black", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,49,85,.35) 0 8%, transparent 9%),
+    radial-gradient(circle at 80% 20%, rgba(45,212,255,.32) 0 9%, transparent 10%),
+    radial-gradient(circle at 70% 80%, rgba(255,209,47,.34) 0 10%, transparent 11%),
+    linear-gradient(135deg, #20122d, #090912 55%, #190f13);
+}
+
+body.maskzero-comic-skin::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .19;
+  background-image: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 8px 8px;
+  mix-blend-mode: screen;
+  z-index: 0;
+}
+
+body.maskzero-comic-skin > * {
+  position: relative;
+  z-index: 1;
+}
+
+body.maskzero-comic-skin .comic-nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 12px;
+  background: var(--ink);
+  border-bottom: 5px solid var(--yellow);
+  box-shadow: 0 6px 0 rgba(0,0,0,.45);
+}
+
+body.maskzero-comic-skin .comic-nav a,
+body.maskzero-comic-skin .comic-nav button {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 950;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  border: 3px solid transparent;
+  background: transparent;
+  font-family: Impact, "Arial Black", system-ui, sans-serif;
+  cursor: pointer;
+}
+
+body.maskzero-comic-skin .comic-nav a:hover,
+body.maskzero-comic-skin .comic-nav .pop {
+  color: var(--ink);
+  background: var(--yellow);
+  border-color: #fff;
+  transform: rotate(-1deg);
+}
+
+body.maskzero-comic-skin a {
+  color: inherit;
+}
+
+body.maskzero-comic-skin .wrap,
+body.maskzero-comic-skin .site,
+body.maskzero-comic-skin main {
+  width: min(1120px, calc(100% - 24px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.maskzero-comic-skin .top,
+body.maskzero-comic-skin header:not(.hero) {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto 28px;
+  padding: 12px;
+  background: var(--ink);
+  border-bottom: 5px solid var(--yellow);
+  box-shadow: 0 6px 0 rgba(0,0,0,.45);
+}
+
+body.maskzero-comic-skin .brand,
+body.maskzero-comic-skin header strong {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 950;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+body.maskzero-comic-skin nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+body.maskzero-comic-skin nav a,
+body.maskzero-comic-skin .nav a,
+body.maskzero-comic-skin .nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 950;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  border: 3px solid transparent;
+  border-radius: 0;
+}
+
+body.maskzero-comic-skin nav a:hover,
+body.maskzero-comic-skin .nav a:hover,
+body.maskzero-comic-skin .nav-links a:hover {
+  color: var(--ink);
+  background: var(--yellow);
+  border-color: #fff;
+  transform: rotate(-1deg);
+}
+
+body.maskzero-comic-skin .hero,
+body.maskzero-comic-skin .panel,
+body.maskzero-comic-skin .arena,
+body.maskzero-comic-skin .device {
+  position: relative;
+  margin-top: 24px;
+  border: 7px solid var(--ink);
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 76% 20%, rgba(255,255,255,.95) 0 8%, transparent 9%),
+    linear-gradient(135deg, #ff3155 0 35%, #ffd12f 35% 58%, #2dd4ff 58% 100%);
+  box-shadow: 14px 14px 0 rgba(0,0,0,.65);
+  padding: clamp(22px, 5vw, 54px);
+  overflow: hidden;
+}
+
+body.maskzero-comic-skin .hero::after,
+body.maskzero-comic-skin .panel:first-child::after {
+  content: "SPARK!";
+  position: absolute;
+  right: -20px;
+  bottom: 16px;
+  color: rgba(8,8,11,.12);
+  font-size: clamp(5rem, 16vw, 13rem);
+  transform: rotate(-11deg);
+  line-height: .8;
+  pointer-events: none;
+}
+
+body.maskzero-comic-skin h1 {
+  position: relative;
+  z-index: 2;
+  margin: 12px 0;
+  color: #fff;
+  -webkit-text-stroke: 3px var(--ink);
+  text-shadow: 7px 7px 0 var(--ink);
+  text-transform: uppercase;
+  font-size: clamp(3rem, 12vw, 8.8rem);
+  line-height: .78;
+  letter-spacing: -.08em;
+}
+
+body.maskzero-comic-skin h2,
+body.maskzero-comic-skin h3 {
+  color: var(--ink);
+  text-transform: uppercase;
+  line-height: .95;
+}
+
+body.maskzero-comic-skin .kicker,
+body.maskzero-comic-skin .eyebrow,
+body.maskzero-comic-skin .badge {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 4px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 8px 12px;
+  transform: rotate(-2deg);
+  text-transform: uppercase;
+  font-size: .95rem;
+  letter-spacing: .08em;
+  font-weight: 950;
+}
+
+body.maskzero-comic-skin p,
+body.maskzero-comic-skin li,
+body.maskzero-comic-skin .copy,
+body.maskzero-comic-skin .tagline,
+body.maskzero-comic-skin .section-copy,
+body.maskzero-comic-skin .subhead {
+  color: var(--ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+body.maskzero-comic-skin .tagline,
+body.maskzero-comic-skin .copy,
+body.maskzero-comic-skin .subhead,
+body.maskzero-comic-skin .caption,
+body.maskzero-comic-skin .dashboard-lede {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  max-width: 780px;
+  background: var(--paper);
+  border: 5px solid var(--ink);
+  padding: 14px 16px;
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+body.maskzero-comic-skin .grid,
+body.maskzero-comic-skin .grid-3,
+body.maskzero-comic-skin .issue-grid,
+body.maskzero-comic-skin .panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+
+body.maskzero-comic-skin .card,
+body.maskzero-comic-skin .issue,
+body.maskzero-comic-skin .glass,
+body.maskzero-comic-skin .mission,
+body.maskzero-comic-skin .comic-panel {
+  background: var(--paper);
+  border: 6px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 9px 9px 0 rgba(0,0,0,.7);
+  padding: 18px;
+  transform: rotate(var(--tilt, 0deg));
+}
+
+body.maskzero-comic-skin .card:nth-child(odd),
+body.maskzero-comic-skin .issue:nth-child(odd),
+body.maskzero-comic-skin .mission:nth-child(odd) {
+  --tilt: -1deg;
+}
+
+body.maskzero-comic-skin .card:nth-child(even),
+body.maskzero-comic-skin .issue:nth-child(even),
+body.maskzero-comic-skin .mission:nth-child(even) {
+  --tilt: 1deg;
+}
+
+body.maskzero-comic-skin .comic-actions,
+body.maskzero-comic-skin .actions,
+body.maskzero-comic-skin .cta-row,
+body.maskzero-comic-skin .spark-loop-actions {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+body.maskzero-comic-skin .btn,
+body.maskzero-comic-skin button,
+body.maskzero-comic-skin .comic-button,
+body.maskzero-comic-skin .spark-loop-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border: 5px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: #fff;
+  padding: 13px 16px;
+  box-shadow: 6px 6px 0 var(--ink);
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: Impact, "Arial Black", system-ui, sans-serif;
+  font-weight: 950;
+  letter-spacing: .04em;
+}
+
+body.maskzero-comic-skin .btn.primary,
+body.maskzero-comic-skin .primary,
+body.maskzero-comic-skin button.primary {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+body.maskzero-comic-skin .btn.secondary,
+body.maskzero-comic-skin .secondary {
+  background: var(--blue);
+  color: var(--ink);
+}
+
+body.maskzero-comic-skin .btn:hover,
+body.maskzero-comic-skin button:hover,
+body.maskzero-comic-skin .comic-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 var(--ink);
+}
+
+body.maskzero-comic-skin .question-list {
+  display: grid;
+  gap: 1rem;
+}
+
+body.maskzero-comic-skin .question {
+  background: var(--paper);
+  border: 6px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 9px 9px 0 rgba(0,0,0,.7);
+  padding: 18px;
+}
+
+body.maskzero-comic-skin .option {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: .75rem;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-height: 62px;
+  text-align: left;
+  background: #fff;
+}
+
+body.maskzero-comic-skin .option strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+}
+
+body.maskzero-comic-skin .option[data-selected="1"] {
+  outline: 4px solid var(--green);
+  background: var(--cream);
+}
+
+body.maskzero-comic-skin .progress,
+body.maskzero-comic-skin .bar {
+  border: 4px solid var(--ink);
+  background: var(--paper);
+  border-radius: 0;
+}
+
+body.maskzero-comic-skin .bar span {
+  background: linear-gradient(90deg, var(--yellow), var(--red), var(--blue));
+}
+
+body.maskzero-comic-skin .foot,
+body.maskzero-comic-skin footer {
+  color: var(--paper);
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 800;
+}
+
+body.maskzero-comic-skin .foot strong,
+body.maskzero-comic-skin footer strong {
+  color: #fff;
+}
+
+body.maskzero-comic-skin .comic-wrap {
+  width: min(1120px, calc(100% - 24px));
+  margin: 0 auto;
+  padding: 34px 0 76px;
+}
+
+body.maskzero-comic-skin .comic-cover {
+  position: relative;
+  margin-top: 24px;
+  border: 7px solid var(--ink);
+  background:
+    radial-gradient(circle at 76% 20%, rgba(255,255,255,.95) 0 8%, transparent 9%),
+    linear-gradient(135deg, #ff3155 0 35%, #ffd12f 35% 58%, #2dd4ff 58% 100%);
+  box-shadow: 14px 14px 0 rgba(0,0,0,.65);
+  padding: clamp(22px, 5vw, 54px);
+  overflow: hidden;
+}
+
+body.maskzero-comic-skin .comic-cover::after {
+  content: "SPARK!";
+  position: absolute;
+  right: -20px;
+  bottom: 16px;
+  color: rgba(8,8,11,.12);
+  font-size: clamp(5rem, 16vw, 13rem);
+  transform: rotate(-11deg);
+  line-height: .8;
+  pointer-events: none;
+}
+
+body.maskzero-comic-skin .issue-tag {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 4px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 8px 12px;
+  transform: rotate(-2deg);
+  text-transform: uppercase;
+  font-size: .95rem;
+  letter-spacing: .08em;
+}
+
+body.maskzero-comic-skin .comic-section {
+  margin-top: 30px;
+}
+
+body.maskzero-comic-skin .section-head {
+  margin-bottom: 18px;
+}
+
+body.maskzero-comic-skin .section-title {
+  font-size: clamp(1.7rem, 5vw, 3rem);
+  margin: 0 0 10px;
+}
+
+body.maskzero-comic-skin .protocol-band {
+  background: var(--cream);
+  border: 6px solid var(--ink);
+  box-shadow: 9px 9px 0 rgba(0,0,0,.7);
+  padding: 22px;
+}
+
+body.maskzero-comic-skin .split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+body.maskzero-comic-skin .terminal {
+  background: var(--ink);
+  border: 5px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--yellow);
+  padding: 16px;
+}
+
+body.maskzero-comic-skin .terminal-line {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 3px dashed rgba(255, 209, 47, .35);
+  color: var(--paper);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+body.maskzero-comic-skin .terminal-line:last-child {
+  border-bottom: 0;
+}
+
+body.maskzero-comic-skin .terminal-line code {
+  min-width: 88px;
+  color: var(--green);
+  font-family: Consolas, "SFMono-Regular", monospace;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+body.maskzero-comic-skin .card-number {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 16px;
+  background: var(--yellow);
+  border: 4px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-weight: 950;
+}
+
+body.maskzero-comic-skin .meter {
+  height: 12px;
+  border: 3px solid var(--ink);
+  background: #fff;
+  overflow: hidden;
+  margin: 14px 0;
+}
+
+body.maskzero-comic-skin .meter span {
+  display: block;
+  width: 72%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--yellow), var(--red), var(--blue));
+}
+
+body.maskzero-comic-skin .readout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+body.maskzero-comic-skin .readout {
+  background: #fff;
+  border: 4px solid var(--ink);
+  padding: 12px;
+}
+
+body.maskzero-comic-skin .readout strong {
+  display: block;
+  font-size: 1.1rem;
+}
+
+body.maskzero-comic-skin .readout span {
+  display: block;
+  margin-top: 4px;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+body.maskzero-comic-skin .status-chip {
+  display: inline-block;
+  background: var(--green);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  padding: 6px 10px;
+  font-size: .82rem;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+body.maskzero-comic-skin .issue small {
+  display: inline-block;
+  color: var(--red);
+  font-size: .78rem;
+  font-weight: 950;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+body.maskzero-comic-skin .spark-bridge-copy {
+  margin-top: 30px;
+  background: var(--paper);
+  border: 6px solid var(--ink);
+  box-shadow: 9px 9px 0 rgba(0,0,0,.7);
+  padding: 22px;
+}
+
+body.maskzero-comic-skin .spark-bridge-copy a {
+  text-decoration: none;
+}
+
+body.maskzero-comic-skin .comic-button {
+  display: inline-block;
+  text-decoration: none;
+  border: 5px solid var(--ink);
+  color: var(--ink);
+  background: #fff;
+  padding: 13px 16px;
+  box-shadow: 6px 6px 0 var(--ink);
+  text-transform: uppercase;
+  font-weight: 950;
+  letter-spacing: .04em;
+}
+
+body.maskzero-comic-skin .comic-button.primary {
+  background: var(--yellow);
+}
+
+body.maskzero-comic-skin .comic-button.blue {
+  background: var(--blue);
+}
+
+body.maskzero-comic-skin .comic-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 var(--ink);
+}
+
+@media (max-width: 760px) {
+  body.maskzero-comic-skin .top,
+  body.maskzero-comic-skin header:not(.hero) {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  body.maskzero-comic-skin h1 {
+    -webkit-text-stroke: 2px var(--ink);
+    text-shadow: 5px 5px 0 var(--ink);
+  }
+
+  body.maskzero-comic-skin .split,
+  body.maskzero-comic-skin .readout-grid {
+    grid-template-columns: 1fr;
+  }
+}

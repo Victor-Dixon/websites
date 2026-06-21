@@ -1,0 +1,57 @@
+{
+  "schema": "weareswarm.online.projects_full.v1",
+  "generated": "2026-06-12T10:49:40Z",
+  "count": 3,
+  "source": "export_projects_feed.py",
+  "scanner_out": "D:\\DreamVault\\data\\reports\\projectscanner\\projects.json",
+  "projects": [
+    {
+      "repo_name": "ai_dm",
+      "display_name": "ai_dm",
+      "description": "Project in the Victor-Dixon portfolio; metadata pending manual enrichment.",
+      "type": "Python project",
+      "scale": "lightweight",
+      "entry_points": [
+        "__init__.py"
+      ],
+      "last_updated": "2025-08-09",
+      "owner": "Victor",
+      "canonical_id": "ai_dm",
+      "tagline": "Portfolio project",
+      "stars": 0,
+      "issues": 0
+    },
+    {
+      "repo_name": "game_core",
+      "display_name": "game_core",
+      "description": "Project in the Victor-Dixon portfolio; metadata pending manual enrichment.",
+      "type": "Python project",
+      "scale": "lightweight",
+      "entry_points": [
+        "__init__.py"
+      ],
+      "last_updated": "2025-08-09",
+      "owner": "Victor",
+      "canonical_id": "game_core",
+      "tagline": "Portfolio project",
+      "stars": 0,
+      "issues": 0
+    },
+    {
+      "repo_name": "tests",
+      "display_name": "tests",
+      "description": "Project in the Victor-Dixon portfolio; metadata pending manual enrichment.",
+      "type": "Python project",
+      "scale": "lightweight",
+      "entry_points": [
+        "test_smoke_portfolio_clearance.py"
+      ],
+      "last_updated": "2025-08-09",
+      "owner": "Victor",
+      "canonical_id": "tests",
+      "tagline": "Portfolio project",
+      "stars": 0,
+      "issues": 0
+    }
+  ]
+}

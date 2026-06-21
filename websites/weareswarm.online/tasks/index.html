@@ -1,3 +1,4 @@
+<<<<<<< origin/master
 <!doctype html>
 <html lang="en">
 <head>
@@ -99,3 +100,159 @@ load();
 </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks — weareswarm.online</title>
+  <meta name="description" content="DreamVault strategic task queue bridge on weareswarm.online">
+  <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+</head>
+<body>
+  <nav class="site-nav"></nav>
+
+  <main class="container">
+    <header class="hero">
+      <h1>Tasks</h1>
+      <p>Strategic active queue and next-lane approvals — planner bridge.</p>
+      <div class="meta-row">
+        <span class="badge" id="sync-meta">Loading…</span>
+        <a class="badge" href="/">Command Center</a>
+        <a class="badge" href="/focus/">Focus board</a>
+        <a class="badge" href="/projects/">Projects</a>
+      </div>
+    </header>
+
+    <div class="grid-2">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Active queue</h2>
+            <p class="subtitle">strategic_active_queue.json</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <dl class="kv">
+            <dt>Campaign</dt><dd id="campaign">—</dd>
+            <dt>Next lane</dt><dd id="queue-next">—</dd>
+            <dt>Rule</dt><dd id="deferred-rule">—</dd>
+            <dt>Runtime active</dt><dd id="runtime-count">—</dd>
+            <dt>Master ledger</dt><dd id="master-count">—</dd>
+          </dl>
+          <p class="section-title">Campaign queued tasks</p>
+          <ul class="list" id="active-queue"></ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Next lane approvals</h2>
+            <p class="subtitle">next_lane.json</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <dl class="kv" id="next-lane-kv"></dl>
+          <p class="section-title">Approved tasks</p>
+          <div class="table-wrap">
+            <table id="approved-table">
+              <thead>
+                <tr>
+                  <th>Task ID</th>
+                  <th>Priority</th>
+                  <th>Repo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Master task ledger</h2>
+          <p class="subtitle" id="master-source">docs/planning/MASTER_TASK_LIST.md</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table id="master-table">
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Project</th>
+                <th>Lane</th>
+                <th>Task</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="full-task-feed" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Full task feed</h2>
+          <p class="subtitle">DreamVault runtime/tasks → all_tasks.json</p>
+        </div>
+        <span class="badge ok" data-feed-meta>Loading feed…</span>
+      </div>
+      <div class="panel-body">
+        <div class="feed-toolbar">
+          <div class="feed-filters" data-feed-filters>
+            <a href="?executor=all" data-filter="all">All</a>
+            <a href="?executor=agent" data-filter="agent">Agent</a>
+            <a href="?executor=kids" data-filter="kids">Kids</a>
+            <a href="?executor=victor" data-filter="victor">Victor only</a>
+          </div>
+          <input class="feed-search" type="search" placeholder="Search id, title, lane…" id="feed-search" aria-label="Search tasks">
+          <a class="badge" href="/kids-planner/">Kids planner · <span data-kids-count>—</span></a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Owner</th>
+                <th>Lane</th>
+                <th>Status</th>
+                <th>Executor</th>
+              </tr>
+            </thead>
+            <tbody data-feed-tbody></tbody>
+          </table>
+        </div>
+        <p class="empty-state" data-feed-empty hidden>No tasks match this filter.</p>
+        <div class="feed-pagination" data-feed-pagination></div>
+        <p class="footer-note" style="margin-top: 1rem;">
+          Kids lane feed: <code>/data/planner/kids_tasks.json</code> ·
+          Kanban planner: <a href="/kids-planner/">/kids-planner/</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script src="/data/shared/tasks-paginated.js"></script>
+  <script src="/data/shared/tasks-dashboard.js"></script>
+  <noscript>
+    <p class="empty-state" style="margin: 1rem 0;">
+      Tasks dashboard requires JavaScript. Planner JSON is at
+      <a href="/data/planner/strategic_active_queue.json">strategic_active_queue.json</a>.
+    </p>
+  </noscript>
+</body>
+</html>
+>>>>>>> feat/dadudekc-spark-dashboard

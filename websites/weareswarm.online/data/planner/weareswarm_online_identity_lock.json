@@ -1,0 +1,40 @@
+{
+  "schema": "weareswarm.online.identity_lock.v1",
+  "generated_at": "2026-06-08T00:00:00+00:00",
+  "lane_id": "weareswarm_online_planner_refocus_001",
+  "weareswarm.online": {
+    "primary_role": "Dream.OS Planner",
+    "emotional_job": "reduce Victor's cognitive load",
+    "operational_job": "convert repo/task chaos into clear next actions",
+    "secondary_role": "public proof layer",
+    "NOT_primary": [
+      "portfolio",
+      "agency showcase",
+      "generic command center",
+      "client case-study wall"
+    ]
+  },
+  "weareswarm.site": {
+    "primary_role": "legacy/reference source only (Agents/Missions concepts)",
+    "do_not_use_as": "canonical planner"
+  },
+  "homepage_module_order": [
+    "operating_state",
+    "approved_next_actions",
+    "blocked_review",
+    "repo_consolidation",
+    "ecosystem_projects",
+    "active_lanes",
+    "verified_closeouts",
+    "capability_unlocks"
+  ],
+  "routes": {
+    "/": "planner dashboard",
+    "/focus/": "operating focus",
+    "/tasks/": "approved task queue",
+    "/projects/": "repo/domain board",
+    "/feed/": "closeout receipts",
+    "/skill-tree/": "capability unlocks",
+    "/roadmap/": "future lanes"
+  }
+}

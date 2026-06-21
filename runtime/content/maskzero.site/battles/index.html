@@ -122,6 +122,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
+<<<<<<< origin/master
   <link rel="stylesheet" href="/assets/css/maskzero-theme.css">
 </head>
 <body data-dreamos-battle-character-reader="1">
@@ -140,6 +141,13 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
       <a href="/contact/">Contact</a>
     </div>
   </div>
+=======
+<link rel="stylesheet" href="/assets/css/maskzero-comic-theme.css?v=1">
+</head>
+<body data-dreamos-battle-character-reader="1" class="maskzero-comic-skin">
+<nav class="spark-route-link spark-missions-route-link" aria-label="MaskZero missions">
+  <a href="/missions/">Open Missions</a>
+>>>>>>> feat/dadudekc-spark-dashboard
 </nav>
 
 <div class="wrap">
@@ -149,28 +157,45 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
       <div class="links">
         <a href="/">Home</a>
         <a href="/spark-generator/">Generate Spark</a>
+<<<<<<< origin/master
         <a href="/missions/">Missions</a>
+=======
+>>>>>>> feat/dadudekc-spark-dashboard
         <a href="/the-emergence/">Emergence</a>
       </div>
     </nav>
     <div class="hero">
       <div>
+<<<<<<< origin/master
         <div class="kicker">What-If Arena · Tier 3 Sandbox</div>
         <h1>Your card vs AI.</h1>
         <p>
           Load your saved Spark card, then throw that character into a
           cinematic AI matchup. <strong style="color:var(--gold)">Arena outcomes are simulated — they don't change your main timeline.</strong> Explore alternate paths freely.
+=======
+        <div class="kicker">What-If Arena</div>
+        <h1>Your card vs AI.</h1>
+        <p>
+          Load your one saved Spark card, then throw that character into a
+          cinematic AI matchup with live damage drops and power themed attacks.
+>>>>>>> feat/dadudekc-spark-dashboard
         </p>
         <div class="toolbar">
           <a class="btn primary" href="/spark-generator/">Create Another Card</a>
           <button class="secondary" type="button" id="shuffle-ai">Shuffle AI</button>
+<<<<<<< origin/master
           <a class="btn secondary" href="/adventure/" style="text-decoration:none">← Campaign Mode</a>
+=======
+>>>>>>> feat/dadudekc-spark-dashboard
         </div>
       </div>
       <aside class="hero-card">
         <strong>Battle flow</strong>
         <p>1. Choose a saved card. 2. Lock in against an AI rival. 3. Tap Battle to trade attacks until somebody drops.</p>
+<<<<<<< origin/master
         <p style="font-size:.82em;color:rgba(0,0,0,.55);margin-top:.5rem">Arena fights log to your character as Tier 3 canon — Meridian City notes what you explored.</p>
+=======
+>>>>>>> feat/dadudekc-spark-dashboard
       </aside>
     </div>
     <div id="battle-app"></div>
@@ -496,6 +521,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
       state.finished=true;
       state.resolving=false;
       addFeed(`<strong>${esc(cardName(player))}</strong> wins the projection.`);
+<<<<<<< origin/master
       // Log Arena outcome as Tier 3 canon (sandbox — does not change main timeline)
       if(typeof SparkEngine!=="undefined"){
         const rival=ai();
@@ -504,6 +530,8 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
         );
         SparkEngine.addXP(5,"arena",3);
       }
+=======
+>>>>>>> feat/dadudekc-spark-dashboard
       setTimeout(render,760);
       return;
     }
@@ -514,6 +542,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
       const aAttack=attackName(currentRival);
       const aDamage=damage(currentRival,currentPlayer);
       state.playerHp=Math.max(0,state.playerHp-aDamage);
+<<<<<<< origin/master
       if(state.playerHp<=0){
         state.finished=true;
         // Log Arena loss as Tier 3
@@ -523,6 +552,9 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
           );
         }
       }
+=======
+      if(state.playerHp<=0)state.finished=true;
+>>>>>>> feat/dadudekc-spark-dashboard
       state.resolving=false;
       addFeed(`<strong>${esc(cardName(currentRival))}</strong> answers with ${esc(aAttack)} for <strong>${aDamage}</strong> damage.${state.finished?" AI wins the projection.":""}`);
       render();
@@ -561,7 +593,10 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
   boot();
 })();
 </script>
+<<<<<<< origin/master
   <script src="/assets/js/spark-engine.js"></script>
   <script src="/assets/js/maskzero-nav.js" defer></script>
+=======
+>>>>>>> feat/dadudekc-spark-dashboard
 </body>
 </html>

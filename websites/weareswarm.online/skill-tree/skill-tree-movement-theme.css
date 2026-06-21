@@ -1,0 +1,214 @@
+/**
+ * WeAreSwarm movement / cult-following aesthetic for skill-tree.
+ * Scoped to body.swarm-movement — does not affect kids-planner or other pages.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap");
+
+body.swarm-movement {
+  --movement-green: #4ade80;
+  --movement-green-dim: rgba(74, 222, 128, 0.55);
+  --movement-gold: #f5c542;
+  --movement-void: #030508;
+  --accent: var(--movement-green);
+  --accent-2: var(--movement-gold);
+  --cyan: var(--movement-green);
+  --ok: var(--movement-green);
+  --panel: rgba(12, 18, 14, 0.92);
+  --panel-border: rgba(74, 222, 128, 0.22);
+  background:
+    radial-gradient(ellipse at 50% -15%, rgba(74, 222, 128, 0.14) 0%, transparent 42%),
+    radial-gradient(ellipse at 85% 20%, rgba(245, 197, 66, 0.06) 0%, transparent 35%),
+    radial-gradient(ellipse at 10% 80%, rgba(74, 222, 128, 0.05) 0%, transparent 40%),
+    linear-gradient(180deg, #05080a 0%, var(--movement-void) 55%, #000 100%);
+}
+
+body.swarm-movement::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(74, 222, 128, 0.015) 2px,
+    rgba(74, 222, 128, 0.015) 3px
+  );
+  opacity: 0.6;
+}
+
+body.swarm-movement .container {
+  position: relative;
+  z-index: 1;
+}
+
+body.swarm-movement .site-nav {
+  border-bottom-color: rgba(74, 222, 128, 0.18);
+  background: rgba(3, 5, 8, 0.94);
+}
+
+body.swarm-movement .site-nav .brand:hover,
+body.swarm-movement .site-nav .links a.active {
+  color: var(--movement-green);
+  text-shadow: 0 0 12px rgba(74, 222, 128, 0.45);
+}
+
+body.swarm-movement .hero.skill-hero {
+  text-align: center;
+  padding: 1.5rem 0 1rem;
+}
+
+body.swarm-movement .movement-kicker {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.25);
+  border: 1px solid rgba(74, 222, 128, 0.45);
+  background: rgba(74, 222, 128, 0.08);
+}
+
+body.swarm-movement .hero.skill-hero h1 {
+  font-family: "Orbitron", var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: #f0fdf4;
+  text-shadow: 0 0 28px rgba(74, 222, 128, 0.35);
+  margin: 0.65rem 0 0.75rem;
+}
+
+body.swarm-movement .movement-manifesto {
+  max-width: 42rem;
+  margin: 0 auto;
+  color: rgba(232, 237, 244, 0.88);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+body.swarm-movement .movement-section-title {
+  font-family: "Orbitron", var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--movement-green);
+  text-shadow: 0 0 14px rgba(74, 222, 128, 0.3);
+}
+
+body.swarm-movement .movement-section-lead {
+  color: rgba(139, 156, 179, 0.95);
+}
+
+body.swarm-movement .movement-empty {
+  font-style: italic;
+  color: rgba(74, 222, 128, 0.75);
+}
+
+body.swarm-movement .hud-card::before {
+  background: linear-gradient(90deg, var(--movement-green), var(--movement-gold));
+}
+
+body.swarm-movement .hud-card strong {
+  color: var(--movement-green);
+  text-shadow: 0 0 12px rgba(74, 222, 128, 0.35);
+}
+
+body.swarm-movement .view-tab.active {
+  color: #ecfdf5;
+  border-color: rgba(74, 222, 128, 0.75);
+  box-shadow: 0 0 18px rgba(74, 222, 128, 0.28);
+}
+
+body.swarm-movement .view-tab:hover {
+  border-color: rgba(74, 222, 128, 0.45);
+}
+
+body.swarm-movement .sphere-shell {
+  border-color: rgba(74, 222, 128, 0.22);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(74, 222, 128, 0.14), transparent 42%),
+    radial-gradient(circle at 18% 12%, rgba(245, 197, 66, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(5, 8, 10, 0.98), rgba(0, 0, 0, 0.99));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), inset 0 0 100px rgba(74, 222, 128, 0.05);
+}
+
+body.swarm-movement .sphere-shell::before {
+  background: conic-gradient(from 120deg, transparent, rgba(74, 222, 128, 0.08), transparent 28%);
+}
+
+body.swarm-movement .sphere-grid-ring {
+  stroke: rgba(74, 222, 128, 0.1);
+}
+
+body.swarm-movement .sphere-link.unlocked {
+  stroke: rgba(74, 222, 128, 0.6);
+  filter: drop-shadow(0 0 4px rgba(74, 222, 128, 0.4));
+}
+
+body.swarm-movement .sphere-node.unlocked .node-orb,
+body.swarm-movement .sphere-node.advanced .node-orb {
+  fill: rgba(74, 222, 128, 0.42);
+  stroke: rgba(134, 239, 172, 0.95);
+  filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.6));
+}
+
+body.swarm-movement .sphere-node.current .node-orb {
+  fill: rgba(245, 197, 66, 0.55);
+  stroke: rgba(255, 220, 120, 1);
+  filter: drop-shadow(0 0 16px rgba(245, 197, 66, 0.8));
+}
+
+body.swarm-movement .legend-unlocked::before {
+  background: var(--movement-green);
+  box-shadow: 0 0 8px var(--movement-green);
+}
+
+body.swarm-movement .ceremony-kicker,
+body.swarm-movement .ceremony-export-card .export-brand {
+  color: var(--movement-green);
+}
+
+body.swarm-movement .ceremony-modal {
+  border-color: rgba(74, 222, 128, 0.4);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(74, 222, 128, 0.14), transparent 40%),
+    linear-gradient(165deg, rgba(8, 14, 10, 0.98), rgba(3, 5, 8, 0.99));
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 48px rgba(74, 222, 128, 0.14);
+}
+
+body.swarm-movement .ceremony-title {
+  color: #ecfdf5;
+}
+
+body.swarm-movement .ceremony-next-lane {
+  color: var(--movement-green);
+}
+
+body.swarm-movement .ceremony-timeline-item:hover,
+body.swarm-movement .ceremony-timeline-item.active {
+  border-color: rgba(74, 222, 128, 0.55);
+  box-shadow: 0 0 16px rgba(74, 222, 128, 0.16);
+}
+
+body.swarm-movement .tl-task {
+  color: #ecfdf5;
+}
+
+body.swarm-movement .ceremony-btn.primary {
+  border-color: rgba(74, 222, 128, 0.65);
+  box-shadow: 0 0 16px rgba(74, 222, 128, 0.22);
+}
+
+body.swarm-movement .panel-note {
+  border-color: rgba(74, 222, 128, 0.18);
+  background: rgba(8, 12, 10, 0.65);
+}
+
+body.swarm-movement a {
+  color: var(--movement-green);
+}
+
+body.swarm-movement a:hover {
+  color: #86efac;
+}

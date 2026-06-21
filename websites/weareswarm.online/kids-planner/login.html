@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Kids Agent Planner</title>
+  <meta name="description" content="Family login for WeAreSwarm Kids Agent Planner">
+  <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="site-nav"></nav>
+
+  <main class="container kids-planner login-page">
+    <header class="hero login-hero">
+      <h1>🔐 Kids Planner Login</h1>
+      <p>Pick your profile and enter your PIN. Parents see the admin panel; kids see the task board.</p>
+    </header>
+
+    <section class="panel login-panel">
+      <div class="panel-body">
+        <form id="login-form" class="login-form" autocomplete="off">
+          <div class="login-field">
+            <label for="user-select" class="toolbar-label">Who are you?</label>
+            <select id="user-select" class="kid-select login-select" required aria-label="Select profile">
+              <option value="">Loading profiles…</option>
+            </select>
+          </div>
+
+          <div class="login-field">
+            <label for="pin-input" class="toolbar-label">PIN</label>
+            <input
+              type="password"
+              id="pin-input"
+              class="login-pin"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="8"
+              placeholder="Enter your PIN"
+              required
+              aria-label="PIN"
+            />
+          </div>
+
+          <label class="login-remember">
+            <input type="checkbox" id="remember-me" />
+            Remember me on this device
+          </label>
+
+          <p class="login-error" id="login-error" role="alert" hidden></p>
+
+          <button type="submit" class="btn btn-primary login-submit" id="btn-login">Sign in</button>
+        </form>
+
+        <p class="login-hint">First time? Ask a parent for your PIN. Change default PINs after first login.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("login-form");
+      var userSelect = document.getElementById("user-select");
+      var pinInput = document.getElementById("pin-input");
+      var rememberCb = document.getElementById("remember-me");
+      var errorEl = document.getElementById("login-error");
+      var btnLogin = document.getElementById("btn-login");
+
+      function showError(msg) {
+        errorEl.textContent = msg;
+        errorEl.hidden = !msg;
+      }
+
+      function nextUrl() {
+        var params = new URLSearchParams(window.location.search);
+        var next = params.get("next") || "/kids-planner/";
+        if (!next.startsWith("/kids-planner")) return "/kids-planner/";
+        return next;
+      }
+
+      if (window.SiteNav && window.SiteNav.LINKS) {
+        var exists = window.SiteNav.LINKS.some(function (l) {
+          return l.href === "/kids-planner/";
+        });
+        if (!exists) {
+          window.SiteNav.LINKS.splice(2, 0, { href: "/kids-planner/", label: "Kids Planner" });
+        }
+      }
+
+      KidsAuth.getSession().then(function (session) {
+        if (session) window.location.href = nextUrl();
+      });
+
+      KidsAuth.loadUsers().then(function (users) {
+        userSelect.innerHTML = '<option value="">Select profile…</option>';
+        users.forEach(function (u) {
+          var opt = document.createElement("option");
+          opt.value = u.id;
+          var roleLabel = u.role === "parent" ? " (Parent)" : u.role === "kid" ? " (Kid)" : "";
+          opt.textContent = u.display_name + roleLabel;
+          userSelect.appendChild(opt);
+        });
+      }).catch(function () {
+        userSelect.innerHTML = '<option value="">Could not load profiles</option>';
+        showError("Could not load user list. Try again later.");
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        showError("");
+        var userId = userSelect.value;
+        var pin = pinInput.value.trim();
+        if (!userId || !pin) {
+          showError("Pick a profile and enter your PIN.");
+          return;
+        }
+        btnLogin.disabled = true;
+        btnLogin.textContent = "Signing in…";
+        KidsAuth.login(userId, pin, rememberCb.checked)
+          .then(function () {
+            window.location.href = nextUrl();
+          })
+          .catch(function (err) {
+            showError(err && err.message === "Wrong PIN" ? "Wrong PIN — try again." : "Login failed. Try again.");
+            pinInput.value = "";
+            pinInput.focus();
+          })
+          .finally(function () {
+            btnLogin.disabled = false;
+            btnLogin.textContent = "Sign in";
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

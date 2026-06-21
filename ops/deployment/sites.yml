@@ -41,7 +41,17 @@ sites:
     remote_root: public_html
     enabled: true
     deploy_method: sftp
+<<<<<<< origin/master
     notes: "Build-in-public site"
+=======
+    deploy_files:
+      - sites/production/websites/ariajet.site/cracked-screen-glowup.html
+      - sites/production/websites/ariajet.site/projects.html
+    deploy_dirs:
+      - sites/production/websites/ariajet.site/assets/images
+      - sites/production/websites/ariajet.site/wp/wp-content/themes/ariajet-cosmic/assets/images
+    notes: "Build-in-public site; static glowup page + theme image assets via deploy_dirs"
+>>>>>>> feat/dadudekc-spark-dashboard
 
   dadudekc.com:
     path: websites/dadudekc.com
@@ -74,6 +84,7 @@ sites:
     path: websites/weareswarm.online
     deployer: unified
     verify_url: https://weareswarm.online/.well-known/deploy.json
+<<<<<<< origin/master
     remote_root: public_html/weareswarm.online  # Addon domain
     enabled: true
     deploy_method: sftp
@@ -90,16 +101,79 @@ sites:
 
   houstonsipqueen.com:
     path: websites/houstonsipqueen.com
+=======
+    remote_root: domains/weareswarm.online/public_html
+    enabled: true
+    deploy_method: sftp
+    deploy_files:
+      - websites/weareswarm.online/index.html
+      - websites/weareswarm.online/.well-known/deploy.json
+    deploy_dirs:
+      - websites/weareswarm.online/focus
+      - websites/weareswarm.online/projects
+      - websites/weareswarm.online/portfolio
+      - websites/weareswarm.online/investor-dashboard
+      - websites/weareswarm.online/tasks
+      - websites/weareswarm.online/skill-tree
+      - websites/weareswarm.online/roadmap
+      - websites/weareswarm.online/level5
+      - websites/weareswarm.online/blockers
+      - websites/weareswarm.online/feed
+      - websites/weareswarm.online/kids-planner
+      - websites/weareswarm.online/data/planner
+      - websites/weareswarm.online/data/kids-planner
+      - websites/weareswarm.online/data/shared
+    notes: "Command Center static (focus/projects/tasks/planner/kids-planner); unified_deployer deploy_files+deploy_dirs; SSOT websites/weareswarm.online"
+
+  weareswarm.site:
+    path: sites/production/websites/weareswarm.site
+    deployer: unified
+    verify_url: https://weareswarm.site/.well-known/deploy.json
+    remote_root: domains/weareswarm.site/public_html
+    enabled: true
+    deploy_method: sftp
+    deploy_dirs:
+      - sites/production/websites/weareswarm.site/feed
+      - sites/production/websites/weareswarm.site/closeouts
+      - sites/production/websites/weareswarm.site/data
+      - sites/production/websites/weareswarm.site/level10
+      - sites/production/websites/weareswarm.site/roadmap
+    deploy_files:
+      - sites/production/websites/weareswarm.site/index.html
+      - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/front-page.php
+      - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/header.php
+      - sites/production/websites/weareswarm.site/wp/wp-content/themes/swarm-theme/page-feed.php
+    notes: "Movement layer static (index, level10, movement roadmap) + swarm-theme PHP + /feed + /closeouts + data JSON"
+
+  houstonsipqueen.com:
+    path: sites/production/websites/houstonsipqueen.com
+>>>>>>> feat/dadudekc-spark-dashboard
     deployer: unified
     verify_url: https://houstonsipqueen.com/.well-known/deploy.json
     remote_root: public_html
     enabled: true
     deploy_method: sftp
+<<<<<<< origin/master
     notes: "Build-in-public site"
+=======
+    deploy_files:
+      - sites/production/houstonsipqueen.com/index.html
+      - sites/production/houstonsipqueen.com/site-config.json
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/front-page.php
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/style.css
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/page-quote.php
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/functions.php
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/header.php
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen/footer.php
+    deploy_dirs:
+      - sites/production/websites/houstonsipqueen.com/wp/wp-content/themes/houstonsipqueen
+    notes: "Bridal conversion homepage + WP theme; production_sync SSOT (static index + theme)"
+>>>>>>> feat/dadudekc-spark-dashboard
 
   digitaldreamscape.site:
     path: sites/production/websites/digitaldreamscape.site
     deployer: unified
+<<<<<<< origin/master
     verify_url: https://digitaldreamscape.site/.well-known/deploy.json
     remote_root: public_html/digitaldreamscape.site  # Addon domain
     enabled: true
@@ -119,15 +193,140 @@ sites:
       - sites/production/websites/digitaldreamscape.site/js/interactions.js
       - sites/production/websites/digitaldreamscape.site/js/explore.js
     notes: "Static Digital Dreamscape world walker MVP (addon domain)"
+=======
+    verify_url: https://digitaldreamscape.site/explore.html
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    deploy_dirs:
+      - sites/production/websites/digitaldreamscape.site
+    notes: "Digital Dreamscape Dreamfield MVP — static explore game"
+
+  dadudekc.site:
+    path: websites/dadudekc.site
+    deployer: unified
+    verify_url: https://dadudekc.site/.well-known/deploy.json
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    deploy_files:
+      - websites/dadudekc.site/.htaccess
+      - websites/dadudekc.site/index.html
+      - websites/dadudekc.site/services/index.html
+      - websites/dadudekc.site/case-studies/index.html
+      - websites/dadudekc.site/contact/index.html
+      - websites/dadudekc.site/assets/css/services-site.css
+      - websites/dadudekc.site/assets/js/services-site.js
+      - websites/dadudekc.site/spark-dashboard/index.html
+      - websites/dadudekc.site/news/index.html
+      - websites/dadudekc.site/spark-login/index.html
+      - websites/dadudekc.site/spark-signup/index.html
+      - websites/dadudekc.site/spark-account/index.html
+      - websites/dadudekc.site/spark-logout/index.php
+      - websites/dadudekc.site/spark-generator/index.html
+      - websites/dadudekc.site/spark-battle/index.html
+      - websites/dadudekc.site/assets/js/spark-battle-sim.js
+      - websites/dadudekc.site/assets/data/battle_opponents.json
+      - websites/dadudekc.site/meridian-dispatch/index.html
+      - websites/dadudekc.site/meridian-map/index.html
+      - websites/dadudekc.site/meridian-map/map.js
+      - websites/dadudekc.site/meridian-map/missions.json
+      - websites/dadudekc.site/meridian-city/index.html
+      - websites/dadudekc.site/meridian-city/map.js
+      - websites/dadudekc.site/meridian-city/missions.json
+      - websites/dadudekc.site/meridian-city/news/index.html
+      - websites/dadudekc.site/meridian-city/news/newsfeed.json
+      - websites/dadudekc.site/meridian-city/news/news.js
+      - websites/dadudekc.site/assets/js/spark-account-runtime.js
+      - websites/dadudekc.site/assets/js/spark-auth-guard.js
+      - websites/dadudekc.site/assets/js/spark-auth-nav.js
+      - websites/dadudekc.site/assets/css/spark-site-shell.css
+      - websites/dadudekc.site/assets/js/spark-site-shell.js
+      - websites/dadudekc.site/assets/js/spark-dashboard.js
+      - websites/dadudekc.site/assets/js/spark-domain-score-v86.js
+      - websites/dadudekc.site/assets/js/meridian-world-client.js
+      - websites/dadudekc.site/assets/js/spark-gauntlet-sim.js
+      - websites/dadudekc.site/assets/data/gauntlet_obstacle_catalog.json
+      - websites/dadudekc.site/assets/data/gauntlet_courses.json
+      - websites/dadudekc.site/spark-gauntlet/index.html
+      - websites/dadudekc.site/spark-auth-gate.php
+      - websites/dadudekc.site/assets/data/meridian_districts.json
+      - websites/dadudekc.site/assets/maps/meridian-city-map.png
+      - websites/dadudekc.site/assets/img/spark-logout-hero.png
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-immersive-auth.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-account-api.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-name-policy.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-premium.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-inbox.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-maskzero-narrator.php
+      - websites/dadudekc.site/spark-inbox/index.html
+      - websites/dadudekc.site/assets/css/spark-inbox.css
+      - websites/dadudekc.site/assets/js/spark-inbox.js
+      - websites/dadudekc.site/assets/img/spark-hero-placeholder.svg
+      - websites/dadudekc.site/assets/js/meridian-news-client.js
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-save-api.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-hero-profile-api.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-score-api.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-meridian-world-api.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-game-roles.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-admin-audit-log.php
+      - websites/dadudekc.site/wp/wp-content/mu-plugins/spark-owner-panel.php
+      - websites/dadudekc.site/spark-owner/index.html
+      - websites/dadudekc.site/spark-owner-gate.php
+      - websites/dadudekc.site/assets/css/spark-owner-panel.css
+      - websites/dadudekc.site/assets/js/spark-owner-panel.js
+      - websites/dadudekc.site/spark-mission-admin/index.html
+      - websites/dadudekc.site/spark-mission-admin-gate.php
+      - websites/dadudekc.site/assets/js/spark-mission-admin.js
+      - websites/dadudekc.site/assets/css/spark-mission-admin.css
+      - websites/dadudekc.site/assets/data/missions.json
+      - websites/dadudekc.site/assets/data/mission.schema.json
+      - websites/dadudekc.site/missions/mission.template.json
+      - websites/dadudekc.site/docs/spark/MISSION_SCHEMA.md
+      - websites/dadudekc.site/docs/spark/MISSION_AI_PROMPT.md
+      - websites/dadudekc.site/spark-city-admin/index.html
+      - websites/dadudekc.site/spark-city-admin-gate.php
+      - websites/dadudekc.site/assets/css/spark-city-admin.css
+      - websites/dadudekc.site/assets/js/spark-city-admin.js
+      - websites/dadudekc.site/assets/js/spark-city-map-player.js
+      - websites/dadudekc.site/assets/data/spark/city_map.json
+      - websites/dadudekc.site/assets/data/city_map.schema.json
+      - websites/dadudekc.site/assets/data/spark/schemas/city_map.schema.json
+      - websites/dadudekc.site/assets/data/spark/templates/quadrant.template.json
+      - websites/dadudekc.site/assets/spark/map/.gitkeep
+      - websites/dadudekc.site/docs/spark/CITY_MAP_SCHEMA.md
+      - websites/dadudekc.site/docs/spark/CITY_MAP_AI_PROMPT.md
+      - websites/dadudekc.site/wp-content/themes/dreamos-emergence/parts/header.html
+      - websites/dadudekc.site/wp-content/themes/dreamos-emergence/templates/front-page.html
+    notes: "Spark Protocol — static index.html + WP Emergence; immersive auth + Battle Sim v8.6 + Meridian News nav"
+>>>>>>> feat/dadudekc-spark-dashboard
 
   maskzero.site:
     path: runtime/content/maskzero.site
     deployer: unified
+<<<<<<< origin/master
     verify_url: https://maskzero.site/.well-known/deploy.json
     remote_root: public_html
     enabled: true
     deploy_method: sftp
     notes: "Evidence-first MaskZero commercial landing system with technical, regulatory, and partner diligence pages."
+=======
+    verify_url: https://maskzero.site/
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    deploy_files:
+      - runtime/content/maskzero.site/.htaccess
+      - runtime/content/maskzero.site/api/spark-auth.php
+      - runtime/content/maskzero.site/api/class-phpass.php
+      - runtime/content/maskzero.site/spark-login/index.html
+      - runtime/content/maskzero.site/spark-logout/index.html
+      - runtime/content/maskzero.site/spark-signup/index.html
+      - runtime/content/maskzero.site/spark-dashboard/index.html
+      - runtime/content/maskzero.site/assets/js/spark-account-runtime.js
+      - runtime/content/maskzero.site/assets/js/spark-auth-nav.js
+    notes: "MaskZero first-party auth overlay — runtime/content/maskzero.site SSOT; WP user migration via ops/migration/run_maskzero_user_migration.py"
+>>>>>>> feat/dadudekc-spark-dashboard
 
   xthunder.site:
     path: sites/production/websites/xthunder.site
@@ -139,8 +338,24 @@ sites:
     deploy_files:
       - sites/production/websites/xthunder.site/index.html
       - sites/production/websites/xthunder.site/assets/css/style.css
+<<<<<<< origin/master
       - sites/production/websites/xthunder.site/assets/js/game.js
     notes: "Storm Siege playable game; SFTP via unified_deployer"
+=======
+      - sites/production/websites/xthunder.site/assets/js/main.js
+    notes: "Static global-chat game landing; SFTP via unified_deployer"
+
+  planetblue.site:
+    path: sites/production/websites/planetblue.site
+    deployer: unified
+    verify_url: https://planetblue.site/
+    remote_root: public_html
+    enabled: true
+    deploy_method: sftp
+    deploy_dirs:
+      - sites/production/websites/planetblue.site
+    notes: "Planet Blue tactical RPG static MVP; standalone product lane (not WeAreSwarm/Scott)"
+>>>>>>> feat/dadudekc-spark-dashboard
 
 # Deployment configuration
 deployment:

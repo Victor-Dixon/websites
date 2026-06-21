@@ -245,6 +245,7 @@ button{
 }
 .error{color:var(--red)}
   </style>
+<<<<<<< origin/master
   <link rel="stylesheet" href="/assets/css/maskzero-theme.css">
 </head>
 <body>
@@ -264,6 +265,11 @@ button{
     </div>
   </div>
 </nav>
+=======
+</head>
+<body>
+  <nav id="spark-auth-nav" class="comic-nav site-header" aria-label="Spark Protocol site navigation"></nav>
+>>>>>>> feat/dadudekc-spark-dashboard
 
   <main class="comic-wrap">
     <span class="issue-tag">Secret Identity Registration</span>
@@ -355,7 +361,11 @@ button{
       return;
     }
     try {
+<<<<<<< origin/master
       const res = await fetch("/wp-json/spark/v1/register", {
+=======
+      const res = await fetch("/api/spark-auth.php?action=register", {
+>>>>>>> feat/dadudekc-spark-dashboard
         method: "POST",
         credentials: "same-origin",
         headers: {"Content-Type": "application/json"},
@@ -379,6 +389,9 @@ button{
   <script src="/assets/js/spark-site-shell.js?v=1"></script>
   <script src="/assets/js/spark-account-runtime.js?v=11"></script>
   <script src="/assets/js/spark-auth-nav.js?v=13"></script>
+<<<<<<< origin/master
   <script src="/assets/js/maskzero-nav.js" defer></script>
+=======
+>>>>>>> feat/dadudekc-spark-dashboard
 </body>
 </html>

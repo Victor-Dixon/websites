@@ -36,8 +36,10 @@ def load_hostinger_env_credentials():
     """Load Hostinger credentials from environment variables or .env file."""
     import os
     
-    # Try multiple .env locations
+    # Try multiple .env locations (repo-local deploy file first)
     env_paths = [
+        Path("D:/websites/.env.deploy.local"),
+        Path(".env.deploy.local"),
         Path(".env"),  # Current directory
         Path("D:/Agent_Cellphone_V2_Repository/.env"),  # Windows main repo
         Path.home() / ".hostinger_env",  # Home directory
@@ -158,8 +160,10 @@ class SimpleWordPressDeployer:
         # Try to get credentials from Hostinger environment variables first
         import os
         
-        # Try multiple .env locations
+        # Try multiple .env locations (repo-local deploy file first)
         env_paths = [
+            Path("D:/websites/.env.deploy.local"),
+            Path(".env.deploy.local"),
             Path(".env"),  # Current directory
             Path("D:/Agent_Cellphone_V2_Repository/.env"),  # Windows main repo
             Path.home() / ".hostinger_env",  # Home directory

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Gauntlet | Meridian Trials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+:root{
+  --ink:#0a0a0f;
+  --paper:#fff4d6;
+  --cream:#ffeec2;
+  --red:#ff3155;
+  --blue:#2dd4ff;
+  --yellow:#ffd12f;
+  --green:#32ff9c;
+  --muted:#5c5368;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--ink);
+  font-family:Impact,"Arial Black",system-ui,sans-serif;
+  background:
+    radial-gradient(circle at 15% 12%,rgba(255,49,85,.28) 0 8%,transparent 9%),
+    radial-gradient(circle at 85% 18%,rgba(50,255,156,.22) 0 9%,transparent 10%),
+    linear-gradient(160deg,#1a1024,#090912 60%,#120d14);
+}
+.comic-nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;
+  padding:12px;background:var(--ink);border-bottom:5px solid var(--yellow);
+  box-shadow:0 6px 0 rgba(0,0,0,.45);
+}
+.comic-nav a{
+  color:#fff;text-decoration:none;font-weight:950;letter-spacing:.03em;
+  text-transform:uppercase;padding:8px 10px;border:3px solid transparent;
+}
+.comic-nav a:hover,.comic-nav .pop{
+  color:var(--ink);background:var(--yellow);border-color:#fff;transform:rotate(-1deg);
+}
+.wrap{width:min(1080px,calc(100% - 24px));margin:0 auto;padding:28px 0 72px}
+.issue-tag{
+  display:inline-block;background:var(--green);color:var(--ink);
+  border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+  padding:8px 12px;transform:rotate(-1deg);text-transform:uppercase;
+  font-size:.92rem;letter-spacing:.08em;
+}
+.hero-panel{
+  margin-top:22px;border:7px solid var(--ink);background:var(--paper);
+  box-shadow:14px 14px 0 rgba(0,0,0,.65);padding:clamp(20px,4vw,40px);
+}
+h1{
+  margin:10px 0;font-size:clamp(2.6rem,10vw,5.5rem);line-height:.82;
+  text-transform:uppercase;letter-spacing:-.06em;
+}
+.lede{
+  font-family:system-ui,sans-serif;font-weight:800;line-height:1.5;font-size:1.05rem;
+  max-width:720px;
+}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.panel{
+  background:#fff;border:5px solid var(--ink);box-shadow:8px 8px 0 rgba(0,0,0,.55);
+  padding:16px;
+}
+.panel h2{margin:0 0 8px;font-size:1.35rem;text-transform:uppercase}
+.panel p,.panel li{
+  font-family:system-ui,sans-serif;font-weight:700;line-height:1.45;font-size:.95rem;
+}
+label{display:block;margin:10px 0 4px;text-transform:uppercase;font-size:.85rem}
+select,textarea{
+  width:100%;border:4px solid var(--ink);padding:10px;font-weight:800;
+  font-family:system-ui,sans-serif;background:#fff;
+}
+textarea{min-height:320px;resize:vertical;line-height:1.45;font-weight:600}
+.btn{
+  display:inline-block;border:5px solid var(--ink);background:var(--yellow);
+  color:var(--ink);padding:12px 16px;text-decoration:none;text-transform:uppercase;
+  font-weight:950;cursor:pointer;box-shadow:6px 6px 0 var(--ink);margin-top:12px;
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--ink)}
+.btn.red{background:var(--red);color:#fff}
+.btn.blue{background:var(--blue)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.leg-list{margin:8px 0 0;padding-left:18px}
+.status{
+  margin-top:12px;padding:12px;border:4px solid var(--ink);
+  font-family:system-ui,sans-serif;font-weight:900;background:var(--cream);
+}
+.standings{margin-top:10px}
+.standing-row{
+  display:flex;justify-content:space-between;gap:12px;padding:8px 0;
+  border-bottom:2px dotted rgba(0,0,0,.25);font-family:system-ui,sans-serif;font-weight:800;
+}
+.standing-row.place-1{background:rgba(50,255,156,.15);padding:8px}
+.broadcast{
+  margin-top:24px;background:#0f0f14;color:#e8e4dc;border:6px solid var(--yellow);
+  padding:20px;box-shadow:10px 10px 0 rgba(0,0,0,.7);
+}
+.broadcast h2{color:var(--yellow);margin:0 0 12px;text-transform:uppercase}
+.broadcast pre{
+  white-space:pre-wrap;font-family:Georgia,"Times New Roman",serif;
+  font-size:1rem;line-height:1.55;margin:0;
+}
+.showwork{
+  margin-top:16px;padding:14px;background:#1a1a22;border:3px dashed var(--muted);
+  color:#b8b0a8;font-family:ui-monospace,monospace;font-size:.82rem;
+  white-space:pre-wrap;
+}
+html[data-spark-auth="pending"] body{visibility:hidden}
+.check-row{display:flex;align-items:center;gap:8px;margin-top:10px;font-family:system-ui,sans-serif;font-weight:800;font-size:.9rem}
+  </style>
+  <script src="/assets/js/spark-account-runtime.js?v=10"></script>
+  <script src="/assets/js/spark-auth-guard.js?v=4" data-spark-require-auth></script>
+  <script src="/assets/js/spark-auth-nav.js?v=10"></script>
+  <script src="/assets/js/spark-gauntlet-sim.js?v=1"></script>
+</head>
+<body>
+  <nav id="spark-auth-nav" class="comic-nav" aria-label="Spark Protocol">
+    <a href="/">Cover</a>
+    <a href="/spark-generator/">Origin Lab</a>
+    <a href="/spark-login/">Log In</a>
+    <a class="pop" href="/spark-signup/">Join The Universe</a>
+  </nav>
+
+  <main class="wrap">
+    <span class="issue-tag">Meridian Trials · Part XIV</span>
+    <section class="hero-panel">
+      <h1>The Gauntlet</h1>
+      <p class="lede">
+        AEGIS-sanctioned athletic competition — obstacle courses, speed runs, and lift events
+        where the powered show the city what they can do. Not a duel. A different question entirely.
+      </p>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Your Entry</h2>
+        <div id="spark-entry" class="status">Loading Spark...</div>
+        <label for="course-select">Select Course</label>
+        <select id="course-select" aria-label="Gauntlet course"></select>
+        <p id="course-flavor" style="margin-top:10px;color:var(--muted)"></p>
+        <h3 style="margin:14px 0 6px;text-transform:uppercase;font-size:1rem">Course Legs</h3>
+        <ol id="leg-preview" class="leg-list"></ol>
+        <label class="check-row">
+          <input type="checkbox" id="showwork-toggle" />
+          Operator SHOWWORK receipt
+        </label>
+        <button type="button" class="btn red" id="run-gauntlet">Run The Gauntlet</button>
+        <a class="btn blue" href="/spark-dashboard/">Back to Command Post</a>
+      </section>
+
+      <section class="panel">
+        <h2>Standings</h2>
+        <div id="standings" class="standings">
+          <p class="lede" style="font-size:.95rem">Select a course and run the Trials to file a broadcast result.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="broadcast" id="broadcast-panel" hidden>
+      <h2>Trials Broadcast</h2>
+      <pre id="broadcast-text"></pre>
+      <div class="showwork" id="showwork-block" hidden></div>
+    </section>
+  </main>
+
+  <script>
+(function () {
+  "use strict";
+
+  var sim = window.SparkGauntletSim;
+  var runtime = window.SparkAccountRuntime;
+  var catalog = null;
+  var courses = [];
+  var playerSheet = null;
+  var playerSpark = null;
+
+  function esc(s) {
+    return String(s || "").replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function readLocalHero() {
+    var keys = [
+      "spark.localHeroDossier.v1", "spark.localHero.v1", "spark.finalDossier.v1",
+      "spark.lastSavedHero.v1", "dreamos.savedSparkCharacters.v1"
+    ];
+    for (var i = 0; i < keys.length; i++) {
+      try {
+        var raw = localStorage.getItem(keys[i]);
+        if (!raw) continue;
+        var parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length) return parsed[parsed.length - 1];
+        if (parsed && typeof parsed === "object") return parsed;
+      } catch (e) {}
+    }
+    return null;
+  }
+
+  async function loadPlayerSpark() {
+    if (runtime && typeof runtime.hero === "function") {
+      try {
+        var res = await runtime.hero();
+        if (res.ok && res.data && (res.data.hero || res.data.codename || res.data.name)) {
+          return res.data.hero || res.data;
+        }
+      } catch (e) {}
+    }
+    return readLocalHero();
+  }
+
+  function renderSparkEntry() {
+    var el = document.getElementById("spark-entry");
+    if (!playerSheet) {
+      el.innerHTML = "No Spark on file. <a href=\"/spark-generator/\">Complete the origin quiz</a> first.";
+      document.getElementById("run-gauntlet").disabled = true;
+      return;
+    }
+    var powers = (playerSheet.powers_public || []).join(", ") || "manifested domains";
+    el.innerHTML =
+      "<strong>" + esc(playerSheet.codename) + "</strong><br>" +
+      "Public read: " + esc(powers) + "<br>" +
+      "Gear: " + (playerSheet.gear && playerSheet.gear.length ? "declared" : "none this event");
+  }
+
+  function selectedCourse() {
+    var id = document.getElementById("course-select").value;
+    return courses.find(function (c) { return c.course_id === id; });
+  }
+
+  function renderCourseOptions() {
+    var sel = document.getElementById("course-select");
+    sel.innerHTML = courses.map(function (c) {
+      return "<option value=\"" + esc(c.course_id) + "\">" + esc(c.name) + "</option>";
+    }).join("");
+    sel.addEventListener("change", renderLegPreview);
+    renderLegPreview();
+  }
+
+  function renderLegPreview() {
+    var course = selectedCourse();
+    if (!course || !catalog) return;
+    document.getElementById("course-flavor").textContent = course.flavor || "";
+    var ol = document.getElementById("leg-preview");
+    ol.innerHTML = course.legs.map(function (leg, i) {
+      var o = catalog.obstacles[leg.obstacle_id];
+      var type = o && o.leg_type === "gate" ? "hard edge" : "raw run";
+      return "<li><strong>" + esc(o ? o.name : leg.obstacle_id) + "</strong> — " + type + "</li>";
+    }).join("");
+  }
+
+  function renderStandings(result) {
+    var el = document.getElementById("standings");
+    el.innerHTML = result.runs.map(function (run) {
+      return "<div class=\"standing-row place-" + run.finish_place + "\">" +
+        "<span>#" + run.finish_place + " " + esc(run.sheet.codename) + "</span>" +
+        "<span>" + sim.formatSeconds(run.total_seconds) + "</span></div>";
+    }).join("");
+  }
+
+  function runGauntlet() {
+    var course = selectedCourse();
+    if (!course || !playerSheet || !catalog) return;
+
+    var roster = [playerSheet].concat(course.competitors.filter(function (c) {
+      return c.spark_id !== playerSheet.spark_id;
+    }));
+
+    var result = sim.simulate(course, roster, catalog);
+    var showWork = document.getElementById("showwork-toggle").checked;
+    var broadcast = sim.generateBroadcast(course, result, catalog, { showWork: showWork });
+
+    renderStandings(result);
+    document.getElementById("broadcast-panel").hidden = false;
+    document.getElementById("broadcast-text").textContent = broadcast.narration;
+    var sw = document.getElementById("showwork-block");
+    if (broadcast.showwork) {
+      sw.hidden = false;
+      sw.textContent = broadcast.showwork;
+    } else {
+      sw.hidden = true;
+      sw.textContent = "";
+    }
+
+    try {
+      var log = JSON.parse(localStorage.getItem("spark.gauntletLog.v1") || "[]");
+      log.unshift({
+        course_id: course.course_id,
+        course_name: course.name,
+        finish_place: result.runs.find(function (r) { return r.sheet.spark_id === playerSheet.spark_id; }).finish_place,
+        total_seconds: result.runs.find(function (r) { return r.sheet.spark_id === playerSheet.spark_id; }).total_seconds,
+        at: new Date().toISOString()
+      });
+      localStorage.setItem("spark.gauntletLog.v1", JSON.stringify(log.slice(0, 20)));
+    } catch (e) {}
+  }
+
+  async function boot() {
+    if (!sim) return;
+
+    var catRes = await fetch("/assets/data/gauntlet_obstacle_catalog.json?v=1");
+    catalog = await catRes.json();
+
+    var courseRes = await fetch("/assets/data/gauntlet_courses.json?v=1");
+    var coursePayload = await courseRes.json();
+    courses = (coursePayload.courses || []).map(sim.normalizeCourse);
+
+    playerSpark = await loadPlayerSpark();
+    playerSheet = sim.sheetFromSpark(playerSpark);
+
+    renderSparkEntry();
+    renderCourseOptions();
+
+    document.getElementById("run-gauntlet").addEventListener("click", runGauntlet);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+  </script>
+</body>
+</html>

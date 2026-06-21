@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "auth_method": "pin_sha256",
+  "generated_at": "2026-06-11T12:00:00Z",
+  "notes": "PIN hashes only \u2014 no plaintext credentials. Regenerate with runtime/scripts/generate_kids_planner_pin_hash.py. Demo PIN 1234 for family MVP \u2014 Victor should rotate PINs before wider use.",
+  "users": [
+    {
+      "id": "victor",
+      "display_name": "Victor",
+      "role": "parent",
+      "salt": "2b6b832d8723b763",
+      "pin_hash": "eb9bba32d7a2fd0d7718bee012cd468f090495a03745fe209a74da99adbf30a5"
+    },
+    {
+      "id": "aria",
+      "display_name": "Aria",
+      "role": "kid",
+      "salt": "9b24195e0132519a",
+      "pin_hash": "3aba78ce53d591efb7f2c00e18a92be17fd51940c134c58f2d13c7b2aa8cebb8"
+    },
+    {
+      "id": "charlie",
+      "display_name": "Charlie",
+      "role": "kid",
+      "salt": "b2d6d16cd4184d7b",
+      "pin_hash": "ee25542d2da50d7efb455769a15620e9391a5e794732c8e35cdd03d50a4f589b"
+    },
+    {
+      "id": "chris",
+      "display_name": "Chris",
+      "role": "kid",
+      "salt": "394a3786c2aa646d",
+      "pin_hash": "4118e41b2521fc3f7735dde3444de2f64705eade972ec74f6644174c915747d2"
+    },
+    {
+      "id": "guest",
+      "display_name": "Guest",
+      "role": "guest",
+      "salt": "8f882f2220939932",
+      "pin_hash": "32282ec24fd130f5907f0582225203743eebf07a713d9919f4d0266bce9a9413"
+    }
+  ]
+}

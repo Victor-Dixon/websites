@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investor Dashboard — weareswarm.online</title>
+  <meta name="description" content="Evidence-based investor metrics for Dream.OS — active tasks, portfolio coverage, revenue taxonomy, surface sync health, and deploy status from proof artifacts only.">
+  <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+  <link rel="stylesheet" href="/data/shared/command-hive.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/data/shared/command-hive-config.js"></script>
+</head>
+<body class="hive-body">
+  <nav class="site-nav"></nav>
+
+  <main class="container">
+    <header class="hero hive-mission-header">
+      <p class="hive-chip hive-chip--pass">Proof-backed</p>
+      <h1>Investor Dashboard</h1>
+      <p id="hero-subtitle">Proof-backed operational metrics — every number links to its source artifact. No marketing estimates.</p>
+      <div class="meta-row">
+        <span class="badge ok" id="live-badge">● Artifact-backed</span>
+        <span class="badge" id="sync-meta">Loading sync metadata…</span>
+      </div>
+    </header>
+
+    <section class="stats-hero" id="investor-stats" aria-live="polite">
+      <div class="stat-card">
+        <span class="stat-value" id="metric-active-tasks">—</span>
+        <span class="stat-label">Active tasks</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="metric-kids-routable">—</span>
+        <span class="stat-label">Kids-routable</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="metric-portfolio-projects">—</span>
+        <span class="stat-label">Portfolio products</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="metric-revenue-coverage">—</span>
+        <span class="stat-label">Revenue class coverage</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="metric-completed-prune">—</span>
+        <span class="stat-label">Completed prune candidates</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="metric-stale-prune">—</span>
+        <span class="stat-label">Stale prune candidates</span>
+      </div>
+    </section>
+
+    <section class="panel panel--full" id="health-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Surface &amp; deploy health</h2>
+          <p class="subtitle">From auto_portfolio_surface_sync report and closeout feed deploy receipts</p>
+        </div>
+        <span class="badge" id="deploy-badge">loading</span>
+      </div>
+      <div class="panel-body">
+        <dl class="status-grid" id="health-kv"></dl>
+      </div>
+    </section>
+
+    <section class="panel panel--full" id="proof-links-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Proof surfaces</h2>
+          <p class="subtitle">Navigate to authoritative JSON and planner views</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="pill-row" id="surface-links"></div>
+      </div>
+    </section>
+
+    <section class="panel panel--full" id="metrics-detail-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Metric provenance</h2>
+          <p class="subtitle">investor_dashboard.json — source path per metric</p>
+        </div>
+        <span class="badge ok" id="schema-badge">loading</span>
+      </div>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table id="metrics-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Source artifact</th>
+                <th>Proof link</th>
+              </tr>
+            </thead>
+            <tbody id="metrics-table-body">
+              <tr><td colspan="4" class="empty-state">Loading investor dashboard data…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <p class="mono-note" id="load-error" hidden></p>
+  </main>
+
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/proof-feed-rail.js"></script>
+  <script src="/data/shared/command-hive-shell.js"></script>
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script src="/data/shared/investor-dashboard.js"></script>
+  <script>
+    (function () {
+      if (window.InvestorDashboard && window.InvestorDashboard.mount) {
+        window.InvestorDashboard.mount();
+      }
+    })();
+  </script>
+</body>
+</html>

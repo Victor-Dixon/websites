@@ -1,0 +1,92 @@
+{
+  "schema": "weareswarm.online.spark_panel.v2",
+  "generated_at": "2026-06-21T19:14:17+00:00",
+  "source": "spark_relocation_maskzero_2026-06-13",
+  "title": "Spark / MaskZero",
+  "subtitle": "MZSpark universe, character systems, battle arcs, and manifestation engine.",
+  "spark_project": {
+    "brand_id": "mzspark",
+    "display_name": "MZSpark",
+    "brand": "MZSpark",
+    "description": "Interactive character manifestation platform combining character creation, progression systems, battle narratives, AI-driven story arcs, and public-facing Spark experiences.",
+    "status": "ACTIVE_RELOCATION",
+    "lane": "character_universe",
+    "canonical_domain": "maskzero.site",
+    "legacy_surface": "dadudekc.site",
+    "repository": "The-emergence",
+    "mission_state": "SPARK_RELOCATION_ACTIVE",
+    "public_surface": "Migration in progress to maskzero.site",
+    "sources": [
+      "D:/DreamVault/runtime/apps/animation_studio/brands/mzspark.yaml",
+      "Victor-Dixon/The-emergence"
+    ]
+  },
+  "project_state": {
+    "completed": [
+      "Spark identity established",
+      "Manifestation system prototype completed",
+      "Character framework and battle narrative concepts defined",
+      "Auth immersion research completed",
+      "Migration from dadudekc.site initiated"
+    ],
+    "in_progress": [
+      "Public Spark experience moving to maskzero.site",
+      "Character roster expansion",
+      "Battle arc content production",
+      "Manifestation onboarding redesign"
+    ]
+  },
+  "reason": "Spark is no longer a personal portfolio initiative. The project now belongs under the MaskZero ecosystem alongside the broader character, manifestation, and immersive experience roadmap.",
+  "next_actions": [
+    "Complete Spark migration to maskzero.site",
+    "Build character roster explorer",
+    "Launch manifestation onboarding flow",
+    "Publish first battle-story arc series",
+    "Integrate Spark progression with Dream.OS skill and achievement systems"
+  ],
+  "blockers": [],
+  "blockers_note": "None \u2014 Previous dadudekc.com DNS blocker retired from active planning.",
+  "progress": [
+    {
+      "label": "Spark Migration",
+      "percent": 80
+    },
+    {
+      "label": "Manifestation Engine",
+      "percent": 70
+    },
+    {
+      "label": "Character Universe",
+      "percent": 50
+    },
+    {
+      "label": "Battle Arc Content",
+      "percent": 30
+    },
+    {
+      "label": "Public Launch",
+      "percent": 40
+    }
+  ],
+  "mission_loop": {
+    "MISSION_LOOP": "MVP_SHIPPED",
+    "commit": "5cced4a0",
+    "tests": 17,
+    "build_target": "desktop",
+    "modules": [
+      "mission_board",
+      "city_state",
+      "mission_resolver"
+    ],
+    "handoff": "data/reports/spark_game_loop/spark_game_loop_desktop_only_001.md"
+  },
+  "legacy_site": {
+    "domain": "dadudekc.site",
+    "role": "Victor portfolio / services / personal brand",
+    "note": "Spark public experiences are relocating to maskzero.site; dadudekc.site remains the legacy surface during migration."
+  },
+  "retired_planning": {
+    "dadudekc_com_dns_blocker": "retired",
+    "note": "dadudekc.com DNS blocker removed from active planning surfaces."
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "capabilities": [
+    {
+      "blockers": [],
+      "capability_id": "aggregate_project_capabilities",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "aggregate_project_capabilities",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_aggregate_project_capabilities"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "architect_consolidation",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "architect_consolidation",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_architect_consolidation"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "dispatch_lane_tasks",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "dispatch_lane_tasks",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_dispatch_lane_tasks"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "emit_discord_cards",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "emit_discord_cards",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_emit_discord_cards"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "emit_intelligence_packet",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "emit_intelligence_packet",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_emit_intelligence_packet"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "emit_planner_transition",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "emit_planner_transition",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_emit_planner_transition"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "flow_b_strategy_loop",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "flow_b_strategy_loop",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "proof_paths": [
+        "runtime/scripts/lead_cursor_sync_001.py",
+        "run_conversation.py",
+        "data/conversation_links.json"
+      ],
+      "unlocks": [
+        "enable_flow_b_strategy_loop"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "governed_paper_trading",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "governed_paper_trading",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_governed_paper_trading"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "manage_repo_lifecycle",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "manage_repo_lifecycle",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_manage_repo_lifecycle"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "map_domain_models",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "map_domain_models",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_map_domain_models"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "publish_website_status",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "publish_website_status",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_publish_website_status"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "run_verification_gates",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "run_verification_gates",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_run_verification_gates"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "scan_repo_topology",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "scan_repo_topology",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_scan_repo_topology"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "select_next_lane",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "select_next_lane",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_select_next_lane"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "sync_public_status",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "sync_public_status",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_sync_public_status"
+      ]
+    },
+    {
+      "blockers": [],
+      "capability_id": "verify_task_gates",
+      "domain": "Dream.OS governance/runtime automation",
+      "id": "verify_task_gates",
+      "owner_repo": "DreamVault",
+      "planner_weight": 97,
+      "status": "verified",
+      "unlocks": [
+        "enable_verify_task_gates"
+      ]
+    }
+  ],
+  "generated_at": "2026-06-09T19:03:11+00:00",
+  "schema": "dreamvault.planner.project_capability_index.v1"
+}

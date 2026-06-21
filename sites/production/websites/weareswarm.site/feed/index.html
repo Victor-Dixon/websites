@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Closeout Feed — WeAreSwarm</title>
+  <meta name="description" content="Build-in-public closeout receipts from DreamVault and Discord lane closeouts — work from any device.">
+  <link rel="stylesheet" href="/data/closeout-feed.css">
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/level10/">Level 10</a>
+    <a href="https://www.weareswarm.online/level5/">Proof</a>
+    <a href="/roadmap/">Roadmap</a>
+    <a href="/feed/" aria-current="page">Feed</a>
+    <a href="https://www.weareswarm.online/">Command Center</a>
+  </nav>
+
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">Build in public</p>
+      <h1>Closeout Feed</h1>
+      <p class="lede">
+        Unified activity surface for DreamVault governance closeouts and Discord lane receipts.
+        Synced from the repo SSOT — visible on the web regardless of which device shipped the work.
+      </p>
+      <p class="sync-meta" id="sync-meta">Loading feed…</p>
+    </header>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Recent closeouts</h2>
+        <p>Chronological proof cards when public-safe</p>
+      </div>
+      <div class="closeout-grid" id="closeout-feed-grid"></div>
+      <p class="empty-state" id="closeout-feed-empty" hidden>No closeouts published yet.</p>
+    </section>
+
+    <footer class="footer-note">
+      SSOT: <code>data/closeouts/feed.jsonl</code> in DreamVault.
+      Refresh: <code>python runtime/scripts/export_closeout_feed.py</code>
+    </footer>
+  </main>
+
+  <script src="/data/closeout-feed.js"></script>
+</body>
+</html>

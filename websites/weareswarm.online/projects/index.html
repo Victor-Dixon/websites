@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — weareswarm.online</title>
+  <meta name="description" content="Dream.OS product portfolio — operational systems, proof artifacts, revenue potential, and live surfaces.">
+  <link rel="stylesheet" href="/data/shared/weareswarm-theme.css">
+  <link rel="stylesheet" href="/data/shared/focus-dashboard.css">
+</head>
+<body>
+  <nav class="site-nav"></nav>
+
+  <main class="container">
+    <header class="hero">
+      <h1>Product Portfolio</h1>
+      <p>Operational Dream.OS products and services — status, proof, revenue potential, and live surfaces.</p>
+      <div class="meta-row">
+        <span class="badge ok" id="live-badge">● Planner bridge</span>
+        <span class="badge" id="sync-meta">Loading…</span>
+      </div>
+    </header>
+
+    <section class="stats-hero" id="stats-hero" aria-live="polite">
+      <div class="stat-card"><span class="stat-value" id="stat-products">8</span><span class="stat-label">Products</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-revenue-engines">—</span><span class="stat-label">Revenue engines</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-lead-gen">—</span><span class="stat-label">Lead gen</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-github">—</span><span class="stat-label">GitHub repos</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-scanner">—</span><span class="stat-label">Scanner nodes</span></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Product outcomes</h2>
+          <p class="subtitle">portfolio_products.json — revenue class + sellable use case</p>
+        </div>
+        <span class="badge ok" id="products-badge">loading</span>
+      </div>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table id="products-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Revenue Class</th>
+                <th>Status</th>
+                <th>Proof</th>
+                <th>Sellable Use Case</th>
+                <th>Live Surface</th>
+              </tr>
+            </thead>
+            <tbody id="products-table-body">
+              <tr><td colspan="6" class="empty-state">Loading product portfolio…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>GitHub portfolio grid</h2>
+          <p class="subtitle">projects_full.json — stars, issues, last push (reference)</p>
+        </div>
+        <span class="badge warn" id="feed-badge">—</span>
+      </div>
+      <div class="panel-body" id="github-grid">
+        <p class="empty-state" id="feed-loading">Loading GitHub portfolio…</p>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem; display:none;" id="planner-board-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Planner repo index</h2>
+          <p class="subtitle">Internal reference — projects_board_enriched.json</p>
+        </div>
+        <span class="badge warn" id="source-badge">—</span>
+      </div>
+      <div class="panel-body" id="planner-cards">
+        <p class="empty-state" id="board-loading">Loading planner board…</p>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Revenue &amp; productized offers</h2>
+          <p class="subtitle">portfolio_revenue_inventory_001.json</p>
+        </div>
+        <a class="badge" href="/focus/#revenue-panel">Revenue operator</a>
+      </div>
+      <div class="panel-body" id="products-grid">
+        <p class="empty-state">Loading products…</p>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-header">
+        <div>
+          <h2>Domain index</h2>
+          <p class="subtitle">Bounded contexts per domain (reference)</p>
+        </div>
+        <a class="badge" href="/focus/">Focus board</a>
+      </div>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table id="domains-table">
+            <thead>
+              <tr>
+                <th>Domain</th>
+                <th>Contexts</th>
+                <th>Owner</th>
+                <th>Bucket</th>
+                <th>Repos</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 1.5rem;" id="scanner-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Projectscanner intelligence</h2>
+          <p class="subtitle">Public-safe authority graph summary</p>
+        </div>
+        <span class="badge" id="scanner-badge">—</span>
+      </div>
+      <div class="panel-body" id="scanner-summary"></div>
+    </section>
+  </main>
+
+  <script src="/data/shared/site-nav.js"></script>
+  <script src="/data/shared/focus-dashboard.js"></script>
+  <script src="/data/shared/projects-dashboard.js"></script>
+  <script>
+    (async function () {
+      const FD = window.FocusDashboard;
+      const PD = window.ProjectsDashboard;
+      const syncMeta = document.getElementById("sync-meta");
+      const liveBadge = document.getElementById("live-badge");
+
+      if (!FD || !PD) {
+        if (syncMeta) syncMeta.textContent = "Dashboard scripts missing — redeploy data/shared/";
+        return;
+      }
+
+      function showError(msg) {
+        if (syncMeta) syncMeta.textContent = msg;
+        if (liveBadge) {
+          liveBadge.className = "badge block";
+          liveBadge.textContent = "● Load error";
+        }
+      }
+
+      function setStat(id, value) {
+        const node = document.getElementById(id);
+        if (node) node.textContent = value != null ? String(value) : "—";
+      }
+
+      try {
+        const [manifestResult, productsResult, enrichedResult, feedResult, boardResult, indexResult, ecosystemResult] = await Promise.all([
+          FD.fetchJsonSettled("manifest.json"),
+          FD.fetchJsonSettled("portfolio_products.json", { products: [] }),
+          FD.fetchJsonSettled("projects_board_enriched.json"),
+          FD.fetchJsonSettled("projects_full.json", { projects: [] }),
+          FD.fetchJsonSettled("public_project_board.json", { buckets: {} }),
+          FD.fetchJsonSettled("project_domain_index.json", { domains: [] }),
+          FD.fetchJsonSettled("swarm_ecosystem_projects.json", { projects: [] }),
+        ]);
+
+        const manifest = manifestResult.data || {};
+        const productsPanel = productsResult.data || {};
+        const enriched = enrichedResult.data;
+        const feed = feedResult.data || {};
+        const board = boardResult.data || {};
+        const index = indexResult.data || {};
+        const ecosystem = ecosystemResult.data || {};
+
+        if (manifestResult.ok) FD.setSyncMeta(manifest);
+        else if (feed.generated) {
+          syncMeta.textContent = "Feed · " + String(feed.generated).slice(0, 19);
+        } else if (syncMeta) {
+          syncMeta.textContent = "Board loaded · manifest unavailable";
+        }
+
+        const feedLoading = document.getElementById("feed-loading");
+        if (feedLoading) feedLoading.remove();
+        const boardLoading = document.getElementById("board-loading");
+        if (boardLoading) boardLoading.remove();
+
+        const productRows = productsPanel.products || [];
+        PD.renderProductOutcomesTable(document.getElementById("products-table-body"), productRows);
+        const productsBadge = document.getElementById("products-badge");
+        if (productsBadge) {
+          productsBadge.textContent = productsResult.ok ? (productRows.length + " products") : "fallback";
+          productsBadge.className = "badge " + (productsResult.ok ? "ok" : "warn");
+        }
+        setStat("stat-products", productRows.length || 8);
+        const revenueEngineCount = productRows.filter(function (p) {
+          return p.revenue_class === "Revenue Engine";
+        }).length;
+        const leadGenCount = productRows.filter(function (p) {
+          return p.revenue_class === "Lead Gen";
+        }).length;
+        setStat("stat-revenue-engines", revenueEngineCount || "—");
+        setStat("stat-lead-gen", leadGenCount || "—");
+
+        const githubCount = (feed.projects || []).length;
+        setStat("stat-github", githubCount || "—");
+
+        if (feedResult.ok && githubCount) {
+          PD.renderProjectsFeedGrid(document.getElementById("github-grid"), feed);
+          document.getElementById("feed-badge").textContent = feed.source || "github";
+          document.getElementById("feed-badge").className = "badge ok";
+          if (liveBadge) {
+            liveBadge.className = "badge ok";
+            liveBadge.textContent = "● Live feed";
+          }
+        } else {
+          document.getElementById("github-grid").innerHTML = "";
+          document.getElementById("github-grid").appendChild(FD.el("p", {
+            className: "empty-state",
+            text: "projects_full.json unavailable — run export_projects_feed.py",
+          }));
+        }
+
+        if (enrichedResult.ok && enriched) {
+          const stats = enriched.stats || {};
+          setStat("stat-productized", stats.productized);
+          setStat("stat-scanner", stats.authority_nodes != null ? stats.authority_nodes.toLocaleString() : "—");
+
+          document.getElementById("source-badge").textContent =
+            (enriched.board_meta && enriched.board_meta.source) || enriched.source || "enriched";
+          document.getElementById("source-badge").className = "badge ok";
+
+          PD.renderProductsGrid(document.getElementById("products-grid"), enriched.products);
+          PD.renderDomainTable(document.getElementById("domains-table"), { domains: enriched.domains });
+          PD.renderScannerSummary(document.getElementById("scanner-summary"), enriched);
+        } else {
+          document.getElementById("source-badge").textContent = board.source || manifest.source || "planner";
+          PD.renderDomainTable(document.getElementById("domains-table"), index);
+          if (liveBadge && !boardResult.ok) {
+            liveBadge.className = "badge warn";
+            liveBadge.textContent = "● Partial data";
+          }
+        }
+
+        const allFailed = !feedResult.ok && !enrichedResult.ok && !boardResult.ok;
+        if (allFailed) {
+          showError("Could not load planner JSON — run export_projects_board.py and deploy.");
+        }
+      } catch (err) {
+        showError("Unexpected error: " + (err && err.message ? err.message : String(err)));
+      }
+    })();
+  </script>
+</body>
+</html>
