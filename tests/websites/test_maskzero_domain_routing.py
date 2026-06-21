@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import re
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -83,6 +84,7 @@ def test_maskzero_required_routes_have_static_sources():
         "origin-rules/index.html",
         "roster-rules/index.html",
         "login/index.html",
+        "spark-account/index.html",
         "meridian-map/index.html",
         "dispatch/index.html",
     ]
@@ -102,14 +104,85 @@ def test_maskzero_login_hands_off_to_spark_account_flow():
     login = (MASKZERO / "login/index.html").read_text(encoding="utf-8")
 
     assert "RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
+    assert "RewriteRule ^wp-login\\.php$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]" in htaccess
+    assert "RewriteRule ^\\.spark-auth(/.*)?$ - [F,L]" in htaccess
+    assert "RewriteRule ^the-emergence/?$ /the-emergence.html [L]" in htaccess
+    assert "RewriteRule ^meridian-dispatch/?$ /dispatch/ [R=302,L,NE]" in htaccess
+    assert "RewriteRule ^spark-battle/?$ /battles/ [R=302,L,NE]" in htaccess
+    assert "runtime/content/maskzero.site/api/spark-auth.php" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-login/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/spark-logout/index.html" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-signup/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/spark-account/index.html" in sites["maskzero.site"]["deploy_files"]
     assert "runtime/content/maskzero.site/spark-dashboard/index.html" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/css/maskzero-comic-theme.css" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/css/spark-site-shell.css" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/js/spark-account-runtime.js" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/js/spark-dashboard.js" in sites["maskzero.site"]["deploy_files"]
+    assert "runtime/content/maskzero.site/assets/js/spark-site-shell.js" in sites["maskzero.site"]["deploy_files"]
     assert '<link rel="canonical" href="https://maskzero.site/spark-login/">' in login
     assert "url=/spark-login/?redirect_to=%2Fspark-dashboard%2F" in login
-    assert "Log In" in (MASKZERO / "spark-login/index.html").read_text(encoding="utf-8")
-    assert "Create Account" in (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
+    spark_login = (MASKZERO / "spark-login/index.html").read_text(encoding="utf-8")
+    assert "Log In" in spark_login
+    assert 'target="sparkLoginFrame"' in spark_login
+    assert 'name="sparkLoginFrame"' in spark_login
+    assert "event.preventDefault()" in spark_login
+    assert 'action="/api/spark-auth.php?action=login"' in spark_login
+    assert 'fetch("/api/spark-auth.php?action=login"' in spark_login
+    assert 'fetch("/wp-login.php"' not in spark_login
+    assert 'href="/spark-login/?help=lost-password"' in spark_login
+    assert 'href="/wp-login.php?action=lostpassword"' not in spark_login
+    assert 'window.location.href = target' in spark_login
+    assert "Login did not complete" in spark_login
+    assert 'id="sparkLoginDebugLog"' in spark_login
+    assert "Login debug started. Passwords are never logged." in spark_login
+    assert "MaskZero auth response" in spark_login
+    assert "detectAuthClues" in spark_login
+    assert "password_supplied" in spark_login
+    assert 'document.getElementById("user_pass").value' in spark_login
+    assert "password:" not in spark_login.lower()
+    signup = (MASKZERO / "spark-signup/index.html").read_text(encoding="utf-8")
+    runtime = (MASKZERO / "assets/js/spark-account-runtime.js").read_text(encoding="utf-8")
+    auth_api = (MASKZERO / "api/spark-auth.php").read_text(encoding="utf-8")
+    logout = (MASKZERO / "spark-logout/index.html").read_text(encoding="utf-8")
+    assert "Create Account" in signup
+    assert 'fetch("/api/spark-auth.php?action=register"' in signup
+    assert '"/api/spark-auth.php?action=session"' in runtime
+    assert "maskzero_spark_session" in auth_api
+    assert "password_hash" in auth_api
+    assert "password_verify" in auth_api
+    assert "/.spark-auth" in auth_api
+    assert 'fetch("/api/spark-auth.php?action=logout"' in logout
+    assert "Spark Account" in (MASKZERO / "spark-account/index.html").read_text(encoding="utf-8")
     assert "Command Post" in (MASKZERO / "spark-dashboard/index.html").read_text(encoding="utf-8")
+
+
+def test_maskzero_migrated_pages_use_comic_book_skin():
+    pages = [
+        "index.html",
+        "create-hero/index.html",
+        "how-it-works/index.html",
+        "dispatch/index.html",
+        "meridian-map/index.html",
+        "origin-rules/index.html",
+        "roster-rules/index.html",
+        "spark-account/index.html",
+        "quiz/index.html",
+        "spark-generator/index.html",
+        "spark-os/index.html",
+        "missions/index.html",
+        "battles/index.html",
+    ]
+
+    missing = []
+    for route in pages:
+        html = (MASKZERO / route).read_text(encoding="utf-8")
+        class_tokens = re.findall(r'class=["\']([^"\']+)["\']', html)
+        has_comic_skin = any("maskzero-comic-skin" in tokens.split() for tokens in class_tokens)
+        if not has_comic_skin or "/assets/css/maskzero-comic-theme.css" not in html:
+            missing.append(route)
+
+    assert not missing, f"MaskZero pages missing comic skin: {missing}"
 
 
 def test_maskzero_quiz_restores_migrated_spark_flow_as_primary_route():

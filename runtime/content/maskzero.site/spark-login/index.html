@@ -244,26 +244,31 @@ button{
   font-weight:900;
 }
 .error{color:var(--red)}
+.spark-login-debug{
+  margin-top:22px;
+  background:#fff;
+  border:6px solid var(--ink);
+  box-shadow:9px 9px 0 rgba(0,0,0,.7);
+  padding:16px;
+}
+.spark-login-debug h2{font-size:1.5rem}
+.spark-login-debug pre{
+  margin:12px 0 0;
+  white-space:pre-wrap;
+  overflow:auto;
+  max-height:360px;
+  background:#11131d;
+  color:#7dffbe;
+  border:4px solid var(--ink);
+  padding:12px;
+  font-family:Consolas,"SFMono-Regular",monospace;
+  font-size:.88rem;
+  line-height:1.45;
+}
   </style>
-  <link rel="stylesheet" href="/assets/css/maskzero-theme.css">
 </head>
 <body>
-  <nav class="mz-nav" data-mz-nav data-open="false">
-  <div class="mz-nav-inner">
-    <a class="mz-brand" href="/">
-      <span class="mz-brand-mark" aria-hidden="true"></span>
-      <span>MaskZero</span>
-    </a>
-    <button class="mz-nav-toggle" type="button" data-mz-nav-toggle aria-expanded="false" aria-label="Toggle navigation">Menu</button>
-    <div class="mz-nav-links" data-mz-nav-links>
-      <a href="/">Home</a>
-      <a href="/projects/">Projects</a>
-      <a href="/services/">Services</a>
-      <a href="/proof/">Proof</a>
-      <a href="/contact/">Contact</a>
-    </div>
-  </div>
-</nav>
+  <nav id="spark-auth-nav" class="comic-nav site-header" aria-label="Spark Protocol site navigation"></nav>
 
   <main class="comic-wrap">
     <span class="issue-tag">Return Of The Hero</span>
@@ -273,7 +278,7 @@ button{
     </section>
 
     <section class="form-panel">
-      <form method="post" action="/wp-login.php" id="sparkLoginForm">
+      <form method="post" action="/api/spark-auth.php?action=login" target="sparkLoginFrame" id="sparkLoginForm">
         <label for="user_login">Email or Display Name</label>
         <input id="user_login" name="log" type="text" autocomplete="username" required aria-required="true">
 
@@ -286,21 +291,23 @@ button{
 
         <input type="hidden" name="redirect_to" value="/spark-dashboard/">
         <input type="hidden" name="rememberme" value="forever">
-
         <button type="submit" id="sparkLoginSubmit">Log In</button>
         <a class="comic-button secondary" href="/spark-signup/">Create Account</a>
-        <p class="field-help"><a href="/wp-login.php?action=lostpassword">Forgot password?</a></p>
-      
-<div class="mz-card" style="padding:14px;margin:16px 0;">
-  <label style="display:flex;gap:10px;align-items:center;color:var(--mz-muted);font-weight:800;">
-    <input id="maskzero-remember-device" type="checkbox" checked>
-    Stay logged in on this device
-  </label>
-  <p data-maskzero-login-status style="margin:8px 0 0;color:var(--mz-muted);font-size:14px;"></p>
-</div>
-
-</form>
+        <p class="field-help"><a href="/spark-login/?help=lost-password">Forgot password?</a></p>
+      </form>
+      <iframe
+        id="sparkLoginFrame"
+        name="sparkLoginFrame"
+        title="Spark login handoff"
+        style="position:absolute;width:1px;height:1px;border:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden"
+        aria-hidden="true"
+      ></iframe>
       <div id="sparkLoginStatus" class="status form-status" role="status" aria-live="polite"></div>
+      <section class="spark-login-debug" aria-labelledby="sparkLoginDebugTitle">
+        <h2 id="sparkLoginDebugTitle">Login Debug</h2>
+        <p class="field-help">Safe diagnostics only. Passwords are never printed.</p>
+        <pre id="sparkLoginDebugLog" aria-live="polite">Waiting for a login attempt.</pre>
+      </section>
     </section>
   </main>
 
@@ -321,6 +328,8 @@ button{
   const input = document.querySelector('input[name="redirect_to"]');
   if (input) input.value = safe;
 
+  const help = params.get("help");
+
   const toggle = document.getElementById("sparkLoginTogglePassword");
   const password = document.getElementById("user_pass");
   if (toggle && password) {
@@ -331,13 +340,152 @@ button{
     });
   }
 
+  function hasLoggedInCookie() {
+    return document.cookie.indexOf("wordpress_logged_in") !== -1 ||
+      document.cookie.indexOf("maskzero_spark_session") !== -1;
+  }
+
   const form = document.getElementById("sparkLoginForm");
+  const frame = document.getElementById("sparkLoginFrame");
   const status = document.getElementById("sparkLoginStatus");
   const submitBtn = document.getElementById("sparkLoginSubmit");
-  if (form && status && submitBtn) {
-    form.addEventListener("submit", function () {
+  const debugLog = document.getElementById("sparkLoginDebugLog");
+  let loginPending = false;
+  let attempt = 0;
+
+  function debugLine(label, data) {
+    if (!debugLog) return;
+    const time = new Date().toLocaleTimeString();
+    const safeData = data && typeof data === "object" ? JSON.stringify(data, null, 2) : String(data || "");
+    debugLog.textContent += "\n[" + time + "] " + label + (safeData ? "\n" + safeData : "");
+  }
+
+  function resetDebug() {
+    if (!debugLog) return;
+    debugLog.textContent = "Login debug started. Passwords are never logged.";
+  }
+
+  function detectAuthClues(payload, text) {
+    const lowered = String((payload && payload.message) || text || "").toLowerCase();
+    const clues = [];
+    if (lowered.indexOf("incorrect") !== -1) clues.push("incorrect credential message");
+    if (lowered.indexOf("invalid username") !== -1) clues.push("invalid username");
+    if (lowered.indexOf("unknown email") !== -1) clues.push("unknown email");
+    if (lowered.indexOf("already has") !== -1) clues.push("existing account");
+    if (lowered.indexOf("password") !== -1) clues.push("password-related response");
+    if (lowered.indexOf("cookie") !== -1) clues.push("cookie-related response");
+    return clues.length ? clues : ["no obvious MaskZero auth error clue found"];
+  }
+
+  if (help === "lost-password" && status) {
+    status.className = "status form-status";
+    status.textContent = "Password reset is handled by MaskZero support right now. Email hello@maskzero.site and we will reset your access.";
+    debugLine("Help route", "lost-password message shown on custom page");
+  }
+
+  if (form && frame && status && submitBtn) {
+    async function submitWithCustomPage(event) {
+      event.preventDefault();
+      loginPending = true;
+      attempt += 1;
+      resetDebug();
       submitBtn.disabled = true;
       status.textContent = "Signing in…";
+      debugLine("Attempt " + attempt + " started", {
+        page: window.location.pathname,
+        redirect_to: safe,
+        username_supplied: !!document.getElementById("user_login").value.trim(),
+        password_supplied: !!document.getElementById("user_pass").value,
+        endpoint: "/api/spark-auth.php?action=login",
+        maskzero_cookie_visible_before_post: document.cookie.indexOf("maskzero_spark_session") !== -1,
+        logged_in_cookie_before_post: hasLoggedInCookie()
+      });
+
+      try {
+        const res = await fetch("/api/spark-auth.php?action=login", {
+          method: "POST",
+          body: new FormData(form),
+          credentials: "same-origin",
+          redirect: "follow"
+        });
+
+        const text = await res.text().catch(function () { return ""; });
+        let payload = {};
+        try {
+          payload = text ? JSON.parse(text) : {};
+        } catch (err) {
+          payload = {};
+        }
+        const clues = detectAuthClues(payload, text);
+        debugLine("MaskZero auth response", {
+          http_status: res.status,
+          ok: res.ok,
+          endpoint: "/api/spark-auth.php?action=login",
+          redirected: res.redirected,
+          response_bytes: text.length,
+          response_ok: payload.ok === true,
+          response_logged_in: payload.logged_in === true,
+          response_message: payload.message || "",
+          logged_in_cookie_after_post: hasLoggedInCookie(),
+          maskzero_cookie_visible_after_post: document.cookie.indexOf("maskzero_spark_session") !== -1,
+          clues: clues
+        });
+
+        if (payload.ok === true && payload.logged_in === true) {
+          const target = payload.redirect && payload.redirect.startsWith("/") ? payload.redirect : safe;
+          debugLine("Result", "Login appears successful. Redirecting custom page to " + target);
+          window.location.href = target;
+          return;
+        }
+
+        status.className = "status error form-status";
+        status.textContent = payload.message || "Login did not complete. Check your username and password, then try again.";
+        debugLine("Result", "Login rejected or did not create a MaskZero session.");
+      } catch (err) {
+        status.className = "status error form-status";
+        status.textContent = "Login could not connect. Please try again in a moment.";
+        debugLine("Fetch error", err && err.message ? err.message : String(err));
+      } finally {
+        if (!hasLoggedInCookie()) {
+          submitBtn.disabled = false;
+          loginPending = false;
+          debugLine("Attempt " + attempt + " finished", {
+            loginPending: loginPending,
+            submit_button_enabled: !submitBtn.disabled,
+            logged_in_cookie_final: hasLoggedInCookie()
+          });
+        }
+      }
+    }
+
+    form.addEventListener("submit", submitWithCustomPage);
+
+    frame.addEventListener("load", function () {
+      if (!loginPending) return;
+
+      let framePath = "";
+      try {
+        framePath = frame.contentWindow.location.pathname || "";
+      } catch (err) {
+        framePath = "";
+        debugLine("Frame fallback", "Could not inspect frame path: " + (err && err.message ? err.message : String(err)));
+      }
+      debugLine("Frame fallback load", {
+        frame_path: framePath || "(unreadable or blank)",
+        logged_in_cookie: hasLoggedInCookie()
+      });
+
+      if (hasLoggedInCookie() || framePath.indexOf(safe.replace(/\/+$/, "")) === 0 || framePath.indexOf("/spark-dashboard") === 0) {
+        debugLine("Frame fallback result", "Login appears successful. Redirecting to " + safe);
+        window.location.href = safe;
+        return;
+      }
+
+      submitBtn.disabled = false;
+      status.className = "status error form-status";
+      status.textContent = "Login did not complete. Check your username and password, then try again.";
+      debugLine("Frame fallback result", "Login did not complete.");
+      loginPending = false;
     });
   }
 })();
@@ -345,7 +493,5 @@ button{
   <script src="/assets/js/spark-site-shell.js?v=1"></script>
   <script src="/assets/js/spark-account-runtime.js?v=11"></script>
   <script src="/assets/js/spark-auth-nav.js?v=13"></script>
-  <script src="/assets/js/maskzero-nav.js" defer></script>
-  <script src="/assets/js/maskzero-persist-login.js" defer></script>
 </body>
 </html>

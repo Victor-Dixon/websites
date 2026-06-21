@@ -122,24 +122,11 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
-  <link rel="stylesheet" href="/assets/css/maskzero-theme.css">
+<link rel="stylesheet" href="/assets/css/maskzero-comic-theme.css?v=1">
 </head>
-<body data-dreamos-battle-character-reader="1">
-<nav class="mz-nav" data-mz-nav data-open="false">
-  <div class="mz-nav-inner">
-    <a class="mz-brand" href="/">
-      <span class="mz-brand-mark" aria-hidden="true"></span>
-      <span>MaskZero</span>
-    </a>
-    <button class="mz-nav-toggle" type="button" data-mz-nav-toggle aria-expanded="false" aria-label="Toggle navigation">Menu</button>
-    <div class="mz-nav-links" data-mz-nav-links>
-      <a href="/">Home</a>
-      <a href="/projects/">Projects</a>
-      <a href="/services/">Services</a>
-      <a href="/proof/">Proof</a>
-      <a href="/contact/">Contact</a>
-    </div>
-  </div>
+<body data-dreamos-battle-character-reader="1" class="maskzero-comic-skin">
+<nav class="spark-route-link spark-missions-route-link" aria-label="MaskZero missions">
+  <a href="/missions/">Open Missions</a>
 </nav>
 
 <div class="wrap">
@@ -149,28 +136,25 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
       <div class="links">
         <a href="/">Home</a>
         <a href="/spark-generator/">Generate Spark</a>
-        <a href="/missions/">Missions</a>
         <a href="/the-emergence/">Emergence</a>
       </div>
     </nav>
     <div class="hero">
       <div>
-        <div class="kicker">What-If Arena · Tier 3 Sandbox</div>
+        <div class="kicker">What-If Arena</div>
         <h1>Your card vs AI.</h1>
         <p>
-          Load your saved Spark card, then throw that character into a
-          cinematic AI matchup. <strong style="color:var(--gold)">Arena outcomes are simulated — they don't change your main timeline.</strong> Explore alternate paths freely.
+          Load your one saved Spark card, then throw that character into a
+          cinematic AI matchup with live damage drops and power themed attacks.
         </p>
         <div class="toolbar">
           <a class="btn primary" href="/spark-generator/">Create Another Card</a>
           <button class="secondary" type="button" id="shuffle-ai">Shuffle AI</button>
-          <a class="btn secondary" href="/adventure/" style="text-decoration:none">← Campaign Mode</a>
         </div>
       </div>
       <aside class="hero-card">
         <strong>Battle flow</strong>
         <p>1. Choose a saved card. 2. Lock in against an AI rival. 3. Tap Battle to trade attacks until somebody drops.</p>
-        <p style="font-size:.82em;color:rgba(0,0,0,.55);margin-top:.5rem">Arena fights log to your character as Tier 3 canon — Meridian City notes what you explored.</p>
       </aside>
     </div>
     <div id="battle-app"></div>
@@ -496,14 +480,6 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
       state.finished=true;
       state.resolving=false;
       addFeed(`<strong>${esc(cardName(player))}</strong> wins the projection.`);
-      // Log Arena outcome as Tier 3 canon (sandbox — does not change main timeline)
-      if(typeof SparkEngine!=="undefined"){
-        const rival=ai();
-        SparkEngine.logArenaTimeline(
-          cardName(player)+" defeated "+cardName(rival)+" in the What-If Arena ["+state.arena+"]"
-        );
-        SparkEngine.addXP(5,"arena",3);
-      }
       setTimeout(render,760);
       return;
     }
@@ -514,15 +490,7 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
       const aAttack=attackName(currentRival);
       const aDamage=damage(currentRival,currentPlayer);
       state.playerHp=Math.max(0,state.playerHp-aDamage);
-      if(state.playerHp<=0){
-        state.finished=true;
-        // Log Arena loss as Tier 3
-        if(typeof SparkEngine!=="undefined"){
-          SparkEngine.logArenaTimeline(
-            cardName(currentPlayer)+" lost to "+cardName(currentRival)+" in the What-If Arena ["+state.arena+"]"
-          );
-        }
-      }
+      if(state.playerHp<=0)state.finished=true;
       state.resolving=false;
       addFeed(`<strong>${esc(cardName(currentRival))}</strong> answers with ${esc(aAttack)} for <strong>${aDamage}</strong> damage.${state.finished?" AI wins the projection.":""}`);
       render();
@@ -561,7 +529,5 @@ pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.26);padding:1rem;b
   boot();
 })();
 </script>
-  <script src="/assets/js/spark-engine.js"></script>
-  <script src="/assets/js/maskzero-nav.js" defer></script>
 </body>
 </html>

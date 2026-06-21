@@ -6,5 +6,24 @@ RewriteRule ^(.*)$ https://maskzero.site/$1 [R=301,L,NE]
 
 # /login/ is a public alias for the restored Spark account login flow.
 RewriteRule ^login/?$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]
+RewriteCond %{REQUEST_METHOD} GET [NC]
+RewriteRule ^wp-login\.php$ /spark-login/?redirect_to=%2Fspark-dashboard%2F [R=302,L,NE]
+RewriteRule ^\.spark-auth(/.*)?$ - [F,L]
+
+# Static clean-url aliases for migrated Spark pages that live as .html files.
+RewriteRule ^the-emergence/?$ /the-emergence.html [L]
+RewriteRule ^character-generator/?$ /character-generator.html [L]
+RewriteRule ^battle-simulator/?$ /battle-simulator.html [L]
+RewriteRule ^protocol/?$ /protocol.html [L]
+RewriteRule ^client-preview/?$ /client-preview.html [L]
+RewriteRule ^home/?$ /home.html [L]
+RewriteRule ^battle/?$ /battles/ [R=302,L,NE]
+
+# Backfill route names referenced by the restored Command Post.
+RewriteRule ^meridian-dispatch/?$ /dispatch/ [R=302,L,NE]
+RewriteRule ^spark-battle/?$ /battles/ [R=302,L,NE]
+RewriteRule ^spark-gauntlet/?$ /missions/ [R=302,L,NE]
+RewriteRule ^spark-inbox/?$ /dispatch/ [R=302,L,NE]
+RewriteRule ^news/?$ /dispatch/ [R=302,L,NE]
 
 DirectoryIndex index.html index.php

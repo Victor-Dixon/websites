@@ -355,7 +355,7 @@ button{
       return;
     }
     try {
-      const res = await fetch("/wp-json/spark/v1/register", {
+      const res = await fetch("/api/spark-auth.php?action=register", {
         method: "POST",
         credentials: "same-origin",
         headers: {"Content-Type": "application/json"},

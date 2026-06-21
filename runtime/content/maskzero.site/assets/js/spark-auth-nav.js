@@ -236,7 +236,8 @@
   }
 
   function cookieIndicatesLoggedIn() {
-    return document.cookie.indexOf("wordpress_logged_in") !== -1;
+    return document.cookie.indexOf("wordpress_logged_in") !== -1 ||
+      document.cookie.indexOf("maskzero_spark_session") !== -1;
   }
 
   function resolveLoggedIn(explicit) {
