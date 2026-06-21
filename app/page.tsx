@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { AnimationDuration, AnimationStyle, StoryScene } from "@/lib/prompt-engine";
-import type { RenderSource } from "@/lib/render-queue";
+import { DreamMotionStage } from "@/components/DreamMotionStage";
+import { enhancePrompt, generateStoryScenes, type AnimationDuration, type AnimationStyle, type StoryScene } from "@/lib/prompt-engine";
+import { createRenderJob, type RenderSource } from "@/lib/render-queue";
 
 type ControlKey =
   | "cameraZoom"
@@ -76,13 +77,7 @@ export default function Home() {
   async function enhanceCurrentPrompt() {
     setIsEnhancing(true);
     try {
-      const response = await fetch("/api/prompt/enhance", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt, style, duration }),
-      });
-      const data = (await response.json()) as { enhancedPrompt?: string };
-      setEnhancedPrompt(data.enhancedPrompt ?? examplePrompt);
+      setEnhancedPrompt(enhancePrompt({ prompt, style, duration }));
     } finally {
       setIsEnhancing(false);
     }
@@ -91,40 +86,21 @@ export default function Home() {
   async function buildStory() {
     setIsStoryboarding(true);
     try {
-      const response = await fetch("/api/story", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ idea: storyIdea }),
-      });
-      const data = (await response.json()) as { scenes?: StoryScene[] };
-      setStoryScenes(data.scenes ?? []);
+      setStoryScenes(generateStoryScenes(storyIdea));
     } finally {
       setIsStoryboarding(false);
     }
   }
 
   async function queueRenderJob() {
-    const response = await fetch("/api/render/jobs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        prompt: enhancedPrompt,
-        style,
-        duration,
-        source,
-        controls,
-      }),
+    const job = createRenderJob({
+      prompt: enhancedPrompt,
+      style,
+      duration,
+      source,
+      controls,
     });
-    const data = (await response.json()) as {
-      job?: { id: string; status: string; progress: number; storagePath: string };
-      error?: string;
-    };
-
-    if (data.job) {
-      setRenderStatus(`${data.job.id} ${data.job.status} at ${data.job.progress}% -> ${data.job.storagePath}`);
-    } else {
-      setRenderStatus(data.error ?? "Unable to queue render");
-    }
+    setRenderStatus(`${job.id} ${job.status} at ${job.progress}% -> ${job.storagePath}`);
   }
 
   return (
@@ -204,15 +180,13 @@ export default function Home() {
               <span className="text-xs text-slate-400">Shot 08 / Act 02</span>
             </div>
             <div className="relative h-80 overflow-hidden rounded-[1.25rem] bg-[radial-gradient(circle_at_50%_20%,rgba(125,211,252,0.6),transparent_22%),linear-gradient(150deg,#0f172a,#111827_48%,#2e1065)]">
+              <DreamMotionStage />
               <div className="absolute left-10 top-14 h-28 w-28 rounded-full bg-amber-200/70 blur-xl" />
               <div className="absolute bottom-[-4rem] left-[-2rem] h-56 w-72 rounded-[50%] bg-cyan-200/20 blur-sm" />
               <div className="absolute bottom-[-5rem] right-[-3rem] h-64 w-80 rounded-[50%] bg-fuchsia-300/20 blur-sm" />
-              <div className="absolute left-1/2 top-1/2 h-36 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/80 shadow-[0_0_80px_rgba(255,255,255,0.8)]" />
-              <div className="absolute left-[43%] top-[39%] h-9 w-9 rounded-full bg-slate-950" />
-              <div className="absolute left-[53%] top-[39%] h-9 w-9 rounded-full bg-slate-950" />
               <div className="timeline-pulse absolute bottom-6 left-6 right-6 h-2 origin-left rounded-full bg-gradient-to-r from-cyan-300 via-fuchsia-400 to-white" />
               <div className="absolute bottom-10 left-6 rounded-xl bg-slate-950/70 px-3 py-2 text-xs text-cyan-100 backdrop-blur">
-                Camera orbit + magical cloud particles
+                Three.js camera orbit + magical cloud particles
               </div>
             </div>
             <div className="mt-4 grid grid-cols-4 gap-2">
