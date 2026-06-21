@@ -8,6 +8,8 @@ const files = {
   css: path.join(siteRoot, "style.css"),
   renderer: path.join(siteRoot, "js/world-renderer.js"),
   tactical: path.join(siteRoot, "js/tactical-graphics.js"),
+  spriteAnimator: path.join(siteRoot, "js/sprite-sheet-animator.js"),
+  spriteSheet: path.join(siteRoot, "assets/sprites/dreamblade-cadet-spritesheet.svg"),
   explore: path.join(siteRoot, "js/explore.js"),
   avatar: path.join(siteRoot, "js/avatar.js"),
   camera: path.join(siteRoot, "js/camera.js"),
@@ -35,6 +37,8 @@ const html = read(files.html);
 const css = read(files.css);
 const renderer = read(files.renderer);
 const tactical = read(files.tactical);
+const spriteAnimator = read(files.spriteAnimator);
+const spriteSheet = read(files.spriteSheet);
 const explore = read(files.explore);
 const avatar = read(files.avatar);
 const camera = read(files.camera);
@@ -93,12 +97,29 @@ includesAll(tactical, [
   "battlePreview",
 ], "tactical graphics state");
 
+includesAll(spriteAnimator, [
+  "drawSpriteSheetAvatar",
+  "getSpriteSheetAnimatorStatus",
+  "DEFAULT_DIRECTION_ROWS",
+  "frameWidth",
+  "frameHeight",
+], "sprite sheet animator");
+
+includesAll(spriteSheet, [
+  "<svg",
+  "dreamblade",
+  "viewBox=\"0 0 256 256\"",
+  "href=\"#south\"",
+  "href=\"#north\"",
+], "sample sprite sheet asset");
+
 includesAll(explore, [
   "createTacticalGraphicsState",
   "updateCombatHud",
   "preview-attacker",
   "preview-defender",
   "setTransform",
+  "spriteSheetStatus",
 ], "explore tactical wiring");
 
 includesAll(camera, [
@@ -108,13 +129,17 @@ includesAll(camera, [
 ], "high-DPI tactical canvas");
 
 includesAll(avatar, [
+  "drawSpriteSheetAvatar",
   "hairHighlight",
   "trim",
   "shadowBlur",
 ], "toon avatar pass");
 
 includesAll(player, [
-  "anime_tactical",
+  "sprite_sheet_with_toon_fallback",
+  "dreamblade-cadet-spritesheet.svg",
+  "frameWidth",
+  "animations",
   "Dreamblade Cadet",
   "combat",
   "maxHp",

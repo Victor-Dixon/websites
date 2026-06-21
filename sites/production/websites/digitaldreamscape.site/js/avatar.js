@@ -1,3 +1,5 @@
+import { drawSpriteSheetAvatar } from "./sprite-sheet-animator.js";
+
 export const AVATAR_LAYER_PLAN = [
   "aura",
   "cape",
@@ -151,6 +153,10 @@ const LAYER_DRAWERS = {
 };
 
 export function drawLayeredAvatar(ctx, centerX, centerY, player, options = {}) {
+  if (drawSpriteSheetAvatar(ctx, centerX, centerY, player, options)) {
+    return;
+  }
+
   const frame = getAvatarFrame(player, options.frameTime || 0);
   const palette = { ...DEFAULT_PALETTE, ...(player.avatar?.palette || {}) };
   const layers = player.avatar?.layers || AVATAR_LAYER_PLAN;

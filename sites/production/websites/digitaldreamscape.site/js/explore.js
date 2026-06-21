@@ -8,6 +8,7 @@ import { advanceQuest, questSummary } from "./quests.js";
 import { getFactionStanding } from "./factions.js";
 import { renderWorld } from "./world-renderer.js";
 import { createTacticalGraphicsState } from "./tactical-graphics.js";
+import { getSpriteSheetAnimatorStatus } from "./sprite-sheet-animator.js";
 
 const STEP_DELAY_MS = 145;
 
@@ -329,5 +330,6 @@ window.digitalDreamscapeDebug = {
   camera,
   requestMoveTo,
   isWalkable: (x, y) => isWalkable(WORLD, x, y),
+  spriteSheetStatus: () => getSpriteSheetAnimatorStatus(player),
 };
 
