@@ -345,6 +345,18 @@
       "runtime/content/maskzero.site/use-cases/strategic-partners/index.html"
     ]
   },
+  "maskszero.site": {
+    "site_url": "https://maskszero.site",
+    "path": "runtime/content/maskszero.site",
+    "deployment_method": "sftp",
+    "sftp": {
+      "host": "157.173.214.121",
+      "username": "u996867598",
+      "password": "Falcons#1247",
+      "remote_path": "domains/maskszero.site/public_html",
+      "port": 65002
+    }
+  },
   "xthunder.site": {
     "site_url": "https://xthunder.site",
     "path": "sites/production/websites/xthunder.site",
