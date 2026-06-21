@@ -4,6 +4,7 @@ export function createCamera(canvas, world) {
     y: 0,
     width: canvas.width,
     height: canvas.height,
+    pixelRatio: 1,
     worldPixelWidth: world.width * world.tileSize,
     worldPixelHeight: world.height * world.tileSize,
   };
@@ -13,14 +14,18 @@ export function resizeCamera(camera, canvas, world) {
   const rect = canvas.getBoundingClientRect();
   const width = Math.max(320, Math.floor(rect.width));
   const height = Math.max(320, Math.floor(rect.height));
+  const pixelRatio = Math.min(2, window.devicePixelRatio || 1);
+  const backingWidth = Math.floor(width * pixelRatio);
+  const backingHeight = Math.floor(height * pixelRatio);
 
-  if (canvas.width !== width || canvas.height !== height) {
-    canvas.width = width;
-    canvas.height = height;
+  if (canvas.width !== backingWidth || canvas.height !== backingHeight) {
+    canvas.width = backingWidth;
+    canvas.height = backingHeight;
   }
 
   camera.width = width;
   camera.height = height;
+  camera.pixelRatio = pixelRatio;
   camera.worldPixelWidth = world.width * world.tileSize;
   camera.worldPixelHeight = world.height * world.tileSize;
 }

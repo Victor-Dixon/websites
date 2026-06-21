@@ -269,6 +269,7 @@ function tick(timestamp) {
     }
   }
 
+  ctx.setTransform(camera.pixelRatio || 1, 0, 0, camera.pixelRatio || 1, 0, 0);
   renderWorld(ctx, WORLD, camera, player, renderState);
   window.requestAnimationFrame(tick);
 }

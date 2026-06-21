@@ -10,6 +10,7 @@ const files = {
   tactical: path.join(siteRoot, "js/tactical-graphics.js"),
   explore: path.join(siteRoot, "js/explore.js"),
   avatar: path.join(siteRoot, "js/avatar.js"),
+  camera: path.join(siteRoot, "js/camera.js"),
   player: path.join(siteRoot, "js/player.js"),
   task: path.join(root, "runtime/tasks/digital_dreamscape_anime_tactical_graphics_001.yaml"),
 };
@@ -36,6 +37,7 @@ const renderer = read(files.renderer);
 const tactical = read(files.tactical);
 const explore = read(files.explore);
 const avatar = read(files.avatar);
+const camera = read(files.camera);
 const player = read(files.player);
 const task = read(files.task);
 
@@ -50,6 +52,13 @@ includesAll(css, [
   "--dd-hp-green",
   "--dd-outline-ink",
 ], "style tokens");
+
+includesAll(css, [
+  "@media (max-width: 760px)",
+  "@media (max-width: 430px)",
+  "position: relative",
+  "height: 58vh",
+], "mobile tactical layout");
 
 includesAll(html, [
   'id="combat-hud"',
@@ -66,6 +75,8 @@ includesAll(renderer, [
   "dangerTiles",
   "objectiveTiles",
   "drawTacticalOverlay",
+  "tileNoise",
+  "shadowBlur",
 ], "canvas tactical overlay");
 
 includesAll(tactical, [
@@ -81,7 +92,14 @@ includesAll(explore, [
   "updateCombatHud",
   "preview-attacker",
   "preview-defender",
+  "setTransform",
 ], "explore tactical wiring");
+
+includesAll(camera, [
+  "pixelRatio",
+  "devicePixelRatio",
+  "backingWidth",
+], "high-DPI tactical canvas");
 
 includesAll(avatar, [
   "hairHighlight",
