@@ -172,6 +172,13 @@ includesAll(spriteAnimator, [
   "drawSpriteSheetAvatar",
   "getSpriteSheetAnimatorStatus",
   "DEFAULT_DIRECTION_ROWS",
+  "COMMON_AI_SHEET_COLUMNS",
+  "occupiedGroupsFromAlpha",
+  "inferColumns",
+  "resolveLayout",
+  "frameRect",
+  "autoLayout",
+  "useManualAnimations",
   "frameWidth",
   "frameHeight",
 ], "sprite sheet animator");
@@ -216,7 +223,8 @@ includesAll(avatar, [
 includesAll(player, [
   "sprite_sheet_with_toon_fallback",
   "dreamblade-cadet-spritesheet.svg",
-  "frameWidth",
+  "autoLayout",
+  "animationPreset",
   "animations",
   "scale: .96",
   "Dreamblade Cadet",

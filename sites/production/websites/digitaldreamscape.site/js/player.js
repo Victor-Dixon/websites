@@ -12,8 +12,12 @@ export const defaultPlayerState = {
     spriteSheet: {
       enabled: true,
       src: "./assets/sprites/dreamblade-cadet-spritesheet.svg",
-      frameWidth: 64,
-      frameHeight: 64,
+      autoLayout: {
+        enabled: true,
+        rows: 4,
+        mode: "grid",
+        animationPreset: "auto",
+      },
       scale: .96,
       anchorX: .5,
       anchorY: .86,
