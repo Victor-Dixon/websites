@@ -19,6 +19,24 @@ const OBJECT_STYLES = {
   gate: "#ff7a8a",
 };
 
+const TACTICAL_TILE_STYLES = {
+  movement: {
+    fill: "rgba(76, 201, 255, .22)",
+    stroke: "rgba(76, 201, 255, .72)",
+    glow: "rgba(76, 201, 255, .28)",
+  },
+  danger: {
+    fill: "rgba(255, 77, 109, .2)",
+    stroke: "rgba(255, 77, 109, .78)",
+    glow: "rgba(255, 77, 109, .24)",
+  },
+  objective: {
+    fill: "rgba(255, 209, 102, .24)",
+    stroke: "rgba(255, 209, 102, .82)",
+    glow: "rgba(255, 209, 102, .28)",
+  },
+};
+
 function tileToScreen(camera, world, tile) {
   return {
     x: (tile.x * world.tileSize) - camera.x,
@@ -34,6 +52,11 @@ function drawTerrainTile(ctx, x, y, size, terrainType) {
   ctx.globalAlpha = .18;
   ctx.fillRect(x + 3, y + 3, size - 6, size - 6);
   ctx.globalAlpha = 1;
+
+  ctx.fillStyle = "rgba(255, 255, 255, .08)";
+  ctx.fillRect(x + 3, y + 3, size - 6, 2);
+  ctx.fillStyle = "rgba(5, 9, 20, .16)";
+  ctx.fillRect(x + 3, y + size - 5, size - 6, 2);
 }
 
 function drawLabel(ctx, text, x, y) {
@@ -137,6 +160,46 @@ function drawPlayer(ctx, camera, world, player, renderState = {}) {
   });
 }
 
+function drawTacticalTile(ctx, camera, world, tile, style) {
+  const size = world.tileSize;
+  const screen = tileToScreen(camera, world, tile);
+  if (
+    screen.x > camera.width
+    || screen.y > camera.height
+    || screen.x + size < 0
+    || screen.y + size < 0
+  ) {
+    return;
+  }
+
+  ctx.save();
+  ctx.fillStyle = style.glow;
+  ctx.fillRect(screen.x + 5, screen.y + 5, size - 10, size - 10);
+  ctx.fillStyle = style.fill;
+  ctx.fillRect(screen.x + 7, screen.y + 7, size - 14, size - 14);
+  ctx.strokeStyle = style.stroke;
+  ctx.lineWidth = 2;
+  ctx.strokeRect(screen.x + 6, screen.y + 6, size - 12, size - 12);
+  ctx.fillStyle = "rgba(255, 255, 255, .22)";
+  ctx.fillRect(screen.x + 9, screen.y + 9, size - 18, 2);
+  ctx.restore();
+}
+
+function drawTacticalOverlay(ctx, camera, world, tacticalState = {}) {
+  // Anime tactical graphics pass: these overlays are data-driven by js/tactical-graphics.js.
+  (tacticalState.movementTiles || []).forEach((tile) => {
+    drawTacticalTile(ctx, camera, world, tile, TACTICAL_TILE_STYLES.movement);
+  });
+
+  (tacticalState.dangerTiles || []).forEach((tile) => {
+    drawTacticalTile(ctx, camera, world, tile, TACTICAL_TILE_STYLES.danger);
+  });
+
+  (tacticalState.objectiveTiles || []).forEach((tile) => {
+    drawTacticalTile(ctx, camera, world, tile, TACTICAL_TILE_STYLES.objective);
+  });
+}
+
 function drawPath(ctx, camera, world, path, destination) {
   const size = world.tileSize;
 
@@ -170,12 +233,13 @@ export function renderWorld(ctx, world, camera, player, renderState = {}) {
       const screenX = (x * size) - camera.x;
       const screenY = (y * size) - camera.y;
       drawTerrainTile(ctx, screenX, screenY, size, world.terrain[y]?.[x]);
-      ctx.strokeStyle = "rgba(5, 9, 20, .18)";
+      ctx.strokeStyle = "rgba(76, 201, 255, .16)";
       ctx.lineWidth = 1;
       ctx.strokeRect(screenX, screenY, size, size);
     }
   }
 
+  drawTacticalOverlay(ctx, camera, world, renderState.tactical);
   drawPath(ctx, camera, world, player.path, renderState.destination);
 
   world.objects

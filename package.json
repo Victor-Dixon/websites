@@ -12,7 +12,8 @@
     "start": "next start",
     "lint": "eslint app lib next.config.ts eslint.config.mjs --max-warnings=0",
     "typecheck": "next typegen && tsc --noEmit",
-    "audit:maskzero": "node tools/maskzero_site_audit.mjs"
+    "audit:maskzero": "node tools/maskzero_site_audit.mjs",
+    "verify:digital-dreamscape-graphics": "node tools/verify_digital_dreamscape_anime_tactical_graphics.mjs"
   },
   "repository": {
     "type": "git",

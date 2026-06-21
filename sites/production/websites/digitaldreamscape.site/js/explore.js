@@ -7,6 +7,7 @@ import { applyInteraction, findNearbyInteractable, showInteraction } from "./int
 import { advanceQuest, questSummary } from "./quests.js";
 import { getFactionStanding } from "./factions.js";
 import { renderWorld } from "./world-renderer.js";
+import { createTacticalGraphicsState } from "./tactical-graphics.js";
 
 const STEP_DELAY_MS = 145;
 
@@ -37,6 +38,16 @@ const factionEls = {
 };
 
 const questLogEl = document.getElementById("quest-log");
+const combatEls = {
+  unitName: document.getElementById("combat-unit-name"),
+  unitClass: document.getElementById("combat-unit-class"),
+  hpBar: document.getElementById("combat-hp-bar"),
+  hpText: document.getElementById("combat-hp-text"),
+  attacker: document.getElementById("preview-attacker"),
+  defender: document.getElementById("preview-defender"),
+  damage: document.getElementById("preview-damage"),
+  hit: document.getElementById("preview-hit"),
+};
 
 const loadedPlayer = loadSave({
   ...defaultPlayerState,
@@ -48,9 +59,26 @@ const camera = createCamera(canvas, WORLD);
 const renderState = {
   destination: null,
   targetObject: null,
+  tactical: createTacticalGraphicsState(WORLD, player),
 };
 
 let lastStepAt = 0;
+
+function updateCombatHud() {
+  renderState.tactical = createTacticalGraphicsState(WORLD, player);
+
+  const { selectedUnit, preview } = renderState.tactical;
+  const hpPercent = selectedUnit.maxHp > 0 ? Math.round((selectedUnit.hp / selectedUnit.maxHp) * 100) : 0;
+
+  if (combatEls.unitName) combatEls.unitName.textContent = selectedUnit.name;
+  if (combatEls.unitClass) combatEls.unitClass.textContent = selectedUnit.className;
+  if (combatEls.hpBar) combatEls.hpBar.style.width = `${hpPercent}%`;
+  if (combatEls.hpText) combatEls.hpText.textContent = `${selectedUnit.hp} / ${selectedUnit.maxHp}`;
+  if (combatEls.attacker) combatEls.attacker.textContent = preview.attacker;
+  if (combatEls.defender) combatEls.defender.textContent = preview.defender;
+  if (combatEls.damage) combatEls.damage.textContent = preview.damage;
+  if (combatEls.hit) combatEls.hit.textContent = preview.hit;
+}
 
 function updateHud(statusText = null) {
   nameEl.textContent = player.name;
@@ -79,6 +107,8 @@ function updateHud(statusText = null) {
       return `<li class="${cls}"><span class="quest-icon">${icon}</span>${q.title}</li>`;
     }).join("");
   }
+
+  updateCombatHud();
 }
 
 function updateSaveStatus(savedPayload = null) {
