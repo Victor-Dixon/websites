@@ -11,6 +11,8 @@ export const defaultPlayerState = {
     layers: ["aura", "cape", "base_body", "hair", "outfit", "boots", "weapon"],
     spriteSheet: {
       enabled: true,
+      preferSprite: true,
+      suppressFallbackWhileLoading: true,
       src: "./assets/sprites/dreamblade-cadet-spritesheet.svg",
       autoLayout: {
         enabled: true,
@@ -18,12 +20,12 @@ export const defaultPlayerState = {
         mode: "grid",
         animationPreset: "auto",
       },
-      scale: .96,
+      scale: 1.18,
       anchorX: .5,
-      anchorY: .86,
-      imageSmoothing: true,
-      glowColor: "rgba(92, 244, 255, .35)",
-      glowBlur: 10,
+      anchorY: .92,
+      imageSmoothing: false,
+      glowColor: "rgba(92, 244, 255, .48)",
+      glowBlur: 14,
       rows: {
         south: 0,
         west: 1,

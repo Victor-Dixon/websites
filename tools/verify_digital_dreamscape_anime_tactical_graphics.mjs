@@ -99,10 +99,17 @@ includesAll(css, [
   "min-height: 8.25rem",
 ], "visible non-zero HUD panels");
 
+includesAll(css, [
+  "unit-portrait--sprite",
+  "dreamblade-cadet-spritesheet.svg",
+  "background-size: 100% 100%, 400% 400%",
+], "Dreamblade unit card portrait");
+
 includesAll(html, [
   'id="combat-hud"',
   'id="combat-preview-panel"',
   'id="unit-status-card"',
+  'unit-portrait unit-portrait--sprite',
   'class="battle-command battle-command--attack"',
   'class="battle-command"',
   'class="battle-command battle-command--skill"',
@@ -125,6 +132,8 @@ includesAll(renderer, [
   "drawFuturisticIsoFacet",
   "mobileScale",
   "roundRect",
+  "drawLayeredAvatar",
+  "centerY + 14",
 ], "canvas tactical overlay");
 
 includesAll(tactical, [
@@ -146,6 +155,9 @@ includesAll(terrainAtlas, [
   "getTerrainAtlasStatus",
   "loadTerrainAtlasManifest",
   "preloadTerrainAtlas",
+  "propDrawSize",
+  "crystalEncounterGate",
+  "pineTree",
 ], "terrain atlas loader");
 
 includesAll(terrainManifest, [
@@ -167,6 +179,16 @@ terrainAssetFiles.forEach((file) => {
   assert(fs.existsSync(file), `required terrain asset missing: ${path.relative(root, file)}`);
   includesAll(read(file), ["<svg"], `terrain asset ${path.basename(file)}`);
 });
+
+includesAll(read(path.join(siteRoot, "assets/terrain/props/pine-tree.svg")), [
+  "leafGlow",
+  "pShadow",
+], "premium pine tree prop");
+
+includesAll(read(path.join(siteRoot, "assets/terrain/props/crystal-encounter-gate.svg")), [
+  "radialGradient id=\"core\"",
+  "Q48 76 78 92",
+], "premium crystal encounter gate prop");
 
 includesAll(spriteAnimator, [
   "drawSpriteSheetAvatar",
@@ -215,6 +237,9 @@ includesAll(camera, [
 
 includesAll(avatar, [
   "drawSpriteSheetAvatar",
+  "getSpriteSheetAnimatorStatus",
+  "drawSpriteLoadingHero",
+  "suppressFallbackWhileLoading",
   "hairHighlight",
   "trim",
   "shadowBlur",
@@ -222,11 +247,14 @@ includesAll(avatar, [
 
 includesAll(player, [
   "sprite_sheet_with_toon_fallback",
+  "preferSprite",
+  "suppressFallbackWhileLoading",
   "dreamblade-cadet-spritesheet.svg",
   "autoLayout",
   "animationPreset",
   "animations",
-  "scale: .96",
+  "scale: 1.18",
+  "anchorY: .92",
   "Dreamblade Cadet",
   "combat",
   "maxHp",

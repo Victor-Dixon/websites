@@ -112,6 +112,30 @@ function propKeyForObject(object) {
   return manifest.propMap?.[object.type] || null;
 }
 
+function propDrawSize(propKey, object, size, widthTiles, heightTiles) {
+  if (object.drawWidth || object.drawHeight) {
+    return {
+      width: object.drawWidth || Math.max(size * widthTiles, size),
+      height: object.drawHeight || Math.max(size * heightTiles, size * 1.3),
+    };
+  }
+
+  if (propKey === "pineTree") return { width: 60, height: 90 };
+  if (propKey === "crystalEncounterGate") return { width: 74, height: 92 };
+  if (propKey === "waypointPedestal") return { width: 54, height: 62 };
+  if (propKey === "stoneRuinWall") {
+    return {
+      width: Math.max(size * widthTiles, 56),
+      height: Math.max(size * heightTiles, 56),
+    };
+  }
+
+  return {
+    width: Math.max(size * widthTiles, size),
+    height: Math.max(size * heightTiles, size * 1.3),
+  };
+}
+
 export function drawAtlasTerrainTile(ctx, terrainType, x, y, size) {
   const manifest = atlasState.manifest;
   const tileKey = tileKeyForTerrain(terrainType);
@@ -135,8 +159,9 @@ export function drawAtlasProp(ctx, object, camera, world) {
   const heightTiles = object.height || 1;
   const screenX = (object.x * size) - camera.x;
   const screenY = (object.y * size) - camera.y;
-  const drawWidth = object.drawWidth || Math.max(size * widthTiles, propKey === "pineTree" ? 46 : size);
-  const drawHeight = object.drawHeight || Math.max(size * heightTiles, propKey === "pineTree" ? 68 : size * 1.3);
+  const drawSize = propDrawSize(propKey, object, size, widthTiles, heightTiles);
+  const drawWidth = drawSize.width;
+  const drawHeight = drawSize.height;
   const anchorX = object.anchorX ?? .5;
   const anchorY = object.anchorY ?? 1;
   const baseX = screenX + ((widthTiles * size) / 2);

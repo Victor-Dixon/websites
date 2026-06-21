@@ -1,4 +1,4 @@
-import { drawSpriteSheetAvatar } from "./sprite-sheet-animator.js";
+import { drawSpriteSheetAvatar, getSpriteSheetAnimatorStatus } from "./sprite-sheet-animator.js";
 
 export const AVATAR_LAYER_PLAN = [
   "aura",
@@ -152,12 +152,49 @@ const LAYER_DRAWERS = {
   weapon: drawWeapon,
 };
 
+function drawSpriteLoadingHero(ctx, frame) {
+  const breathe = frame.frame ? -1 : 0;
+
+  ctx.save();
+  ctx.shadowColor = "rgba(92, 244, 255, .45)";
+  ctx.shadowBlur = 12;
+  ctx.fillStyle = "rgba(7, 16, 36, .86)";
+  ctx.strokeStyle = "rgba(92, 244, 255, .62)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(-14, -34 + breathe, 28, 44, 9);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = "rgba(255, 209, 102, .78)";
+  ctx.fillRect(-10, -22 + breathe, 20, 4);
+  ctx.fillStyle = "rgba(92, 244, 255, .46)";
+  ctx.fillRect(-8, -12 + breathe, 16, 14);
+  ctx.strokeStyle = "rgba(245, 248, 255, .82)";
+  ctx.beginPath();
+  ctx.moveTo(15, -24 + breathe);
+  ctx.lineTo(21, 12 + breathe);
+  ctx.stroke();
+  ctx.restore();
+}
+
 export function drawLayeredAvatar(ctx, centerX, centerY, player, options = {}) {
   if (drawSpriteSheetAvatar(ctx, centerX, centerY, player, options)) {
     return;
   }
 
   const frame = getAvatarFrame(player, options.frameTime || 0);
+  const spriteSheet = player.avatar?.spriteSheet;
+  const spriteIsPrimary = Boolean(spriteSheet?.src && spriteSheet.preferSprite !== false);
+  if (spriteIsPrimary && spriteSheet.suppressFallbackWhileLoading !== false && getSpriteSheetAnimatorStatus(player) === "loading") {
+    ctx.save();
+    const scale = Math.max(.85, (options.tileSize || 32) / 32);
+    ctx.translate(Math.round(centerX), Math.round(centerY + 4 + frame.bob));
+    ctx.scale(scale, scale);
+    drawSpriteLoadingHero(ctx, frame);
+    ctx.restore();
+    return;
+  }
+
   const palette = { ...DEFAULT_PALETTE, ...(player.avatar?.palette || {}) };
   const layers = player.avatar?.layers || AVATAR_LAYER_PLAN;
   const scale = Math.max(.85, (options.tileSize || 32) / 32);

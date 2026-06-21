@@ -364,6 +364,20 @@ h3 {
   font-weight: 950;
 }
 
+.unit-portrait--sprite {
+  background-color: #071024;
+  background-image:
+    radial-gradient(circle at 50% 70%, rgba(92, 244, 255, .22), transparent 44%),
+    url("./assets/sprites/dreamblade-cadet-spritesheet.svg");
+  background-position: center, 0 0;
+  background-size: 100% 100%, 400% 400%;
+  background-repeat: no-repeat;
+}
+
+.unit-portrait--sprite span {
+  opacity: 0;
+}
+
 .unit-status-copy {
   min-width: 0;
 }

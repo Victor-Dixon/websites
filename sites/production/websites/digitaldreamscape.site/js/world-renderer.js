@@ -411,8 +411,8 @@ function terrainPropForTile(world, x, y, terrainType) {
     atlasKey: terrainType === "tree" ? "pineTree" : "stoneRuinWall",
     x,
     y,
-    drawWidth: terrainType === "tree" ? 50 : 42,
-    drawHeight: terrainType === "tree" ? 74 : 46,
+    drawWidth: terrainType === "tree" ? 60 : 48,
+    drawHeight: terrainType === "tree" ? 90 : 52,
     anchorX: .5,
     anchorY: 1,
   };
