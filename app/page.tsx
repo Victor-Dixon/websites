@@ -910,7 +910,7 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <form id="login" onSubmit={submitLogin} className="glass-panel rounded-[2rem] p-6">
+          <form id="login" onSubmit={submitLogin} noValidate className="glass-panel rounded-[2rem] p-6">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-cyan-200">Login</p>
             <h3 className="mt-3 text-3xl font-black text-white">Save projects and exports.</h3>
             <p className="mt-3 leading-7 text-slate-300">
