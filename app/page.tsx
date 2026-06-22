@@ -4,7 +4,7 @@ import { type ChangeEvent, type FormEvent, useMemo, useRef, useState } from "rea
 import { DreamMotionStage } from "@/components/DreamMotionStage";
 import { createSkyMotionSupabaseClient } from "@/lib/supabase";
 import { enhancePrompt, type AnimationDuration, type AnimationStyle, type StoryScene } from "@/lib/prompt-engine";
-import { type RenderJob, type RenderJobRequest, type RenderSource } from "@/lib/render-queue";
+import { type RenderSource } from "@/lib/render-queue";
 
 type ControlKey =
   | "cameraZoom"
@@ -42,10 +42,10 @@ interface TemplateCardData {
 
 const navItems = [
   { label: "Home", href: "#home" },
-  { label: "Create", href: "#create" },
+  { label: "Create", href: "/dashboard/" },
   { label: "Templates", href: "#templates" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Login", href: "#login" },
+  { label: "Login", href: "/login/" },
 ];
 
 const styles: AnimationStyle[] = ["cinematic", "anime", "cartoon", "realistic", "fantasy", "3d"];
@@ -221,30 +221,13 @@ const placeholderScenes: StoryScene[] = [
 
 const delay = (durationMs: number) => new Promise((resolve) => window.setTimeout(resolve, durationMs));
 
-async function postJson<TResponse>(url: string, payload: unknown): Promise<TResponse> {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-  const data = (await response.json()) as TResponse & { error?: string };
-
-  if (!response.ok) {
-    throw new Error(data.error ?? `Request failed with status ${response.status}`);
-  }
-
-  return data;
-}
-
 export default function Home() {
   const promptRef = useRef<HTMLTextAreaElement | null>(null);
   const supabase = useMemo(() => createSkyMotionSupabaseClient(), []);
   const [prompt, setPrompt] = useState(videoExamples[0].prompt);
   const [enhancedPrompt, setEnhancedPrompt] = useState(enhancePrompt({ prompt: videoExamples[0].prompt, style: "anime", duration: "10s" }));
   const [storyIdea, setStoryIdea] = useState("a courier discovers that storms are living creatures");
-  const [storyScenes, setStoryScenes] = useState<StoryScene[]>(placeholderScenes);
+  const [storyScenes] = useState<StoryScene[]>(placeholderScenes);
   const [style, setStyle] = useState<AnimationStyle>("anime");
   const [duration, setDuration] = useState<AnimationDuration>("10s");
   const [source, setSource] = useState<RenderSource>("text");
@@ -279,9 +262,10 @@ export default function Home() {
 
   function startFirstMovie() {
     setSource("text");
-    setRenderStatus("Prompt studio opened. Refine the scene, then queue your first render.");
-    scrollToSection("create");
-    window.setTimeout(() => promptRef.current?.focus(), 450);
+    setRenderStatus("Create an account to generate movies. Opening the gated dashboard...");
+    window.setTimeout(() => {
+      window.location.href = "/dashboard/";
+    }, 350);
   }
 
   function watchDemo() {
@@ -326,13 +310,10 @@ export default function Home() {
 
   async function enhanceCurrentPrompt() {
     setIsEnhancing(true);
-    setRenderStatus("Enhancing prompt through /api/prompt/enhance...");
+    setRenderStatus("Account required. Opening the dashboard to enhance prompts...");
     try {
-      const data = await postJson<{ enhancedPrompt: string }>("/api/prompt/enhance", { prompt, style, duration });
-      setEnhancedPrompt(data.enhancedPrompt);
-      setRenderStatus("Prompt enhanced. Queue a render when the scene direction looks right.");
-    } catch (error) {
-      setRenderStatus(error instanceof Error ? `Prompt enhancement failed: ${error.message}` : "Prompt enhancement failed.");
+      await delay(250);
+      window.location.href = "/dashboard/";
     } finally {
       setIsEnhancing(false);
     }
@@ -341,14 +322,10 @@ export default function Home() {
   async function buildStory() {
     setIsStoryboarding(true);
     setSource("dreammotion");
-    setRenderStatus("DreamMotion is requesting scene generation through /api/story...");
+    setRenderStatus("Account required. Opening the dashboard Story Builder...");
     try {
-      const data = await postJson<{ title: string; scenes: StoryScene[] }>("/api/story", { idea: storyIdea });
-      setStoryScenes(data.scenes);
-      setEnhancedPrompt(data.scenes[0]?.prompt ?? enhancedPrompt);
-      setRenderStatus("Storyboard generated. Review the shots, then queue a movie render.");
-    } catch (error) {
-      setRenderStatus(error instanceof Error ? `Story generation failed: ${error.message}` : "Story generation failed.");
+      await delay(250);
+      window.location.href = "/dashboard/";
     } finally {
       setIsStoryboarding(false);
     }
@@ -356,20 +333,10 @@ export default function Home() {
 
   async function queueRenderJob() {
     setIsRendering(true);
-    setRenderStatus("Building render package through /api/render/jobs...");
+    setRenderStatus("Account required. Opening the dashboard render queue...");
     try {
-      const request: RenderJobRequest = {
-        prompt: enhancedPrompt,
-        style,
-        duration,
-        source,
-        controls,
-      };
-      const data = await postJson<{ job: RenderJob }>("/api/render/jobs", request);
-      const { job } = data;
-      setRenderStatus(`${job.id} ${job.status} at ${job.progress}% in ${job.eta}. Output: ${job.storagePath}`);
-    } catch (error) {
-      setRenderStatus(error instanceof Error ? `Render queue failed: ${error.message}` : "Render queue failed.");
+      await delay(250);
+      window.location.href = "/dashboard/";
     } finally {
       setIsRendering(false);
     }
