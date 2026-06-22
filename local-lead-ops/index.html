@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Lead Ops — Revenue Demo</title>
+  <meta name="description" content="Demo surface for Local Lead Ops: broken site audit, lead capture, automated follow-up, and proof reporting for local contractors.">
+  <link rel="stylesheet" href="assets/local-lead-ops.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="./">Local <span>Lead Ops</span></a>
+      <nav class="nav" aria-label="Page sections">
+        <a href="#offer">Offer</a>
+        <a href="#audit">Audit</a>
+        <a href="#capture">Capture</a>
+        <a href="#followup">Follow-up</a>
+        <a href="#cockpit">Cockpit</a>
+        <a href="sample-report.html">Sample report</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <p class="kicker">30-day earning sprint · sellable demo</p>
+      <h1>Turn broken local sites into booked jobs.</h1>
+      <p class="lead">
+        Local Lead Ops finds where your website leaks calls and form fills, fixes the first blocker fast,
+        then installs capture + follow-up so no lead sits cold. This page is a mock-safe sales demo — no real
+        client data, no outbound sends.
+      </p>
+
+      <div class="pricing" id="offer">
+        <article class="price-card">
+          <h3>First Fix</h3>
+          <p class="price">$250</p>
+          <p>One high-impact repair: broken form, slow mobile load, or missing call tracking.</p>
+        </article>
+        <article class="price-card featured">
+          <h3>Lead Capture + Follow-up Setup</h3>
+          <p class="price">$750</p>
+          <p>Form, routing rules, approval cockpit, and automated follow-up sequence (operator-approved).</p>
+        </article>
+        <article class="price-card">
+          <h3>Monitoring Retainer</h3>
+          <p class="price">$500<small>/mo</small></p>
+          <p>Monthly leak scan, proof report, and queue health checks with before/after snapshots.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="grid-2" id="audit">
+      <article class="panel">
+        <h2>Broken site audit</h2>
+        <p>We scan mobile UX, form health, and call-to-action visibility — the three places local contractors lose jobs.</p>
+        <ul class="leak-list">
+          <li>
+            <span class="badge high">Critical</span>
+            <div>
+              <strong>Contact form returns 404 on submit</strong>
+              <p>Visitors complete the form; nothing is stored. Estimated 4–6 lost leads/month.</p>
+            </div>
+          </li>
+          <li>
+            <span class="badge med">High</span>
+            <div>
+              <strong>Click-to-call buried below fold on mobile</strong>
+              <p>Phone number requires scroll on 78% of mobile sessions in demo data.</p>
+            </div>
+          </li>
+          <li>
+            <span class="badge med">High</span>
+            <div>
+              <strong>No after-hours capture path</strong>
+              <p>After 6pm traffic hits a voicemail wall with no SMS or callback option.</p>
+            </div>
+          </li>
+        </ul>
+        <p style="margin-top:0.75rem"><a href="sample-report.html">View full sample proof report →</a></p>
+      </article>
+
+      <article class="panel">
+        <h2>Lead leak score</h2>
+        <div class="score-ring" aria-label="Lead leak score 38 out of 100">
+          <strong>38</strong>
+        </div>
+        <p style="text-align:center;margin:0">Demo score for <em>Example Local Contractor</em></p>
+        <p style="text-align:center;font-size:0.9rem">
+          62% of inbound interest is at risk before first human contact.
+        </p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Before / after proof</h2>
+      <div class="before-after">
+        <div class="ba-card">
+          <p class="kicker" style="color:var(--danger)">Before</p>
+          <ul>
+            <li>Form submit fails silently</li>
+            <li>No lead notification</li>
+            <li>Follow-up depends on memory</li>
+            <li>Owner checks voicemail once daily</li>
+          </ul>
+        </div>
+        <div class="ba-arrow" aria-hidden="true">→</div>
+        <div class="ba-card after">
+          <p class="kicker">After Local Lead Ops</p>
+          <ul>
+            <li>Capture form stores every inquiry locally</li>
+            <li>Operator approval before any send</li>
+            <li>24h / 72h follow-up timeline staged</li>
+            <li>Monthly proof report with checklist</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <article class="panel" id="capture">
+        <h2>Lead capture form (demo)</h2>
+        <p>Submit below to see local-only capture behavior. No email, SMS, or API calls are made.</p>
+        <form id="demo-lead-form" class="form-grid" novalidate>
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Alex Demo" autocomplete="name">
+          </label>
+          <label>
+            Service needed
+            <select name="service">
+              <option value="Roof repair">Roof repair</option>
+              <option value="HVAC tune-up">HVAC tune-up</option>
+              <option value="Emergency plumbing">Emergency plumbing</option>
+              <option value="General estimate">General estimate</option>
+            </select>
+          </label>
+          <label>
+            Message (optional)
+            <textarea name="message" placeholder="Leak in guest bathroom ceiling…"></textarea>
+          </label>
+          <div class="btn-row">
+            <button type="submit" class="btn primary">Submit demo lead</button>
+            <button type="reset" class="btn secondary">Reset</button>
+          </div>
+        </form>
+        <div id="demo-result" class="demo-result" role="status" aria-live="polite"></div>
+        <p class="disclaimer">
+          Demo page. No client data is submitted from this sample form.
+        </p>
+      </article>
+
+      <article class="panel" id="followup">
+        <h2>Automated follow-up timeline</h2>
+        <p>Sequences are explained and staged for operator approval — never auto-sent from this demo.</p>
+        <div class="timeline" id="followup-timeline">
+          <div class="timeline-step active">
+            <div class="step-dot">1</div>
+            <div>
+              <strong>Lead captured</strong>
+              <p>Form data saved to approval queue. Owner gets cockpit notification (demo).</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-dot">2</div>
+            <div>
+              <strong>+15 minutes — acknowledgment draft</strong>
+              <p>“Thanks for reaching out. We’ll confirm your slot shortly.” Ready for one-click approve.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-dot">3</div>
+            <div>
+              <strong>+24 hours — gentle nudge</strong>
+              <p>If no booking yet, send availability windows and direct call option.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-dot">4</div>
+            <div>
+              <strong>+72 hours — close loop</strong>
+              <p>Final follow-up with “still need help?” and link to book. Mark cold if no response.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" id="cockpit">
+      <h2>Approval cockpit preview</h2>
+      <p>Operators review every outbound step before anything leaves the queue.</p>
+      <div class="cockpit">
+        <div class="cockpit-row">
+          <span>Queue</span>
+          <span id="cockpit-queue">0 demo leads staged</span>
+        </div>
+        <div class="cockpit-row">
+          <span>Next action</span>
+          <span id="cockpit-status">Waiting for demo submission</span>
+        </div>
+        <div class="cockpit-row">
+          <span>Outbound mode</span>
+          <span>Disabled (demo)</span>
+        </div>
+        <div class="cockpit-row">
+          <span>Proof report</span>
+          <span><a href="sample-report.html">sample-report.html</a></span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p>Local Lead Ops · static revenue demo · no deploy · no secrets · no real client names</p>
+    </footer>
+  </div>
+  <script src="assets/local-lead-ops.js"></script>
+</body>
+</html>

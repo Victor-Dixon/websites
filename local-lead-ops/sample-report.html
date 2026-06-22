@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Proof Report — Example Local Contractor</title>
+  <meta name="description" content="Mock Local Lead Ops proof report for Example Local Contractor. Demo data only.">
+  <link rel="stylesheet" href="assets/local-lead-ops.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="./">Local <span>Lead Ops</span></a>
+      <nav class="nav">
+        <a href="index.html">← Back to demo</a>
+      </nav>
+    </header>
+
+    <section class="hero report-hero">
+      <p class="kicker">Proof report · demo data</p>
+      <h1>Example Local Contractor</h1>
+      <p class="lead">
+        Monthly lead leak audit generated for sales demonstration. All metrics are illustrative.
+        No real client data was used.
+      </p>
+      <div class="report-meta">
+        <span class="badge">Report date: Jun 21, 2026</span>
+        <span class="badge">Lead leak score: 38/100</span>
+        <span class="badge">3 leaks found</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Executive summary</h2>
+      <p>
+        Example Local Contractor’s website captures interest but fails to convert it into booked jobs.
+        The contact form error alone likely costs 4–6 leads per month. Combined with mobile CTA placement
+        and missing after-hours capture, an estimated <strong>62% of inbound interest is at risk</strong>
+        before first human contact.
+      </p>
+    </section>
+
+    <section class="grid-3">
+      <article class="panel">
+        <h2>Leak #1 — Form failure</h2>
+        <p><span class="badge high">Critical</span></p>
+        <p><strong>Impact:</strong> Submit button posts to a removed endpoint. Users see a generic error or blank page.</p>
+        <p><strong>Recommended fix:</strong> $250 first fix — restore form handler, add success confirmation, test on mobile.</p>
+      </article>
+      <article class="panel">
+        <h2>Leak #2 — Mobile CTA</h2>
+        <p><span class="badge med">High</span></p>
+        <p><strong>Impact:</strong> Phone link appears after two scrolls on typical phones. Emergency searches bounce.</p>
+        <p><strong>Recommended fix:</strong> Sticky call bar + shortened hero on mobile breakpoints.</p>
+      </article>
+      <article class="panel">
+        <h2>Leak #3 — After hours</h2>
+        <p><span class="badge med">High</span></p>
+        <p><strong>Impact:</strong> 34% of demo traffic hits the site outside business hours with no capture path.</p>
+        <p><strong>Recommended fix:</strong> $750 setup — after-hours form, approval queue, 15m / 24h / 72h sequence.</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Recommended package</h2>
+      <div class="pricing">
+        <article class="price-card">
+          <h3>First Fix</h3>
+          <p class="price">$250</p>
+          <p>Repair form submission and verify mobile capture this week.</p>
+        </article>
+        <article class="price-card featured">
+          <h3>Setup</h3>
+          <p class="price">$750</p>
+          <p>Lead capture, follow-up drafts, approval cockpit, operator training.</p>
+        </article>
+        <article class="price-card">
+          <h3>Retainer</h3>
+          <p class="price">$500<small>/mo</small></p>
+          <p>Monthly rescans, proof reports, and queue health monitoring.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Proof checklist</h2>
+      <ul class="checklist">
+        <li>Contact form submits successfully on Chrome mobile (demo pass)</li>
+        <li>Lead appears in approval queue within 30 seconds (demo pass)</li>
+        <li>Follow-up drafts generated at T+15m, T+24h, T+72h (staged, not sent)</li>
+        <li>Before/after screenshots attached to monthly report (demo placeholder)</li>
+        <li>Owner can approve or skip each outbound step from cockpit</li>
+        <li>No auto-send enabled without explicit operator approval</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Before / after snapshot</h2>
+      <div class="before-after">
+        <div class="ba-card">
+          <p class="kicker" style="color:var(--danger)">Before</p>
+          <p>Lead leak score <strong>38</strong>. Silent form failures. No follow-up system.</p>
+        </div>
+        <div class="ba-arrow" aria-hidden="true">→</div>
+        <div class="ba-card after">
+          <p class="kicker">Projected after setup</p>
+          <p>Target score <strong>82</strong>. Captured leads, staged follow-up, monthly proof.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="disclaimer">
+      Demo report only. Example Local Contractor is a fictional business for sales demonstration.
+      No client data is submitted from this sample.
+    </p>
+
+    <footer class="foot">
+      <p><a href="index.html">Return to Local Lead Ops demo</a></p>
+    </footer>
+  </div>
+</body>
+</html>

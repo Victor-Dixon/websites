@@ -1,0 +1,41 @@
+task_id: local_lead_ops_demo_surface_001
+title: Local Lead Ops sellable demo surface
+status: completed
+owner: Agent-2
+lane: revenue
+priority: high
+
+summary: >
+  Static revenue proof page for Local Lead Ops inside the websites repo.
+  Mock-safe demo with broken site audit, lead capture form, follow-up timeline,
+  approval cockpit, sample report, and pricing ($250 / $750 / $500mo).
+
+route: local-lead-ops/
+
+files:
+  - local-lead-ops/index.html
+  - local-lead-ops/sample-report.html
+  - local-lead-ops/assets/local-lead-ops.css
+  - local-lead-ops/assets/local-lead-ops.js
+  - runtime/tasks/local_lead_ops_demo_surface_001.yaml
+  - runtime/reports/local_lead_ops_demo_surface_001.md
+
+guards:
+  - no_deploy
+  - no_outbound_email_sms
+  - no_api_keys
+  - no_real_client_names
+  - no_agent3_maskzero_bridge
+  - no_agent4_dreambank_prune
+
+verification:
+  form_local_only: pass
+  prices_visible: pass
+  proof_report_linked: pass
+  no_secrets: pass
+  git_scope_limited: pass
+
+commit_message: "feat: add local lead ops demo surface"
+
+created_at: "2026-06-21"
+completed_at: "2026-06-21"
