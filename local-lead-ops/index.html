@@ -3,31 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Local Lead Ops — Revenue Demo</title>
+  <title>Local Lead Ops — WeAreSwarm Revenue Demo</title>
   <meta name="description" content="Demo surface for Local Lead Ops: broken site audit, lead capture, automated follow-up, and proof reporting for local contractors.">
   <link rel="stylesheet" href="assets/local-lead-ops.css">
 </head>
 <body>
-  <div class="wrap">
-    <header class="topbar">
-      <a class="brand" href="./">Local <span>Lead Ops</span></a>
-      <nav class="nav" aria-label="Page sections">
-        <a href="#offer">Offer</a>
-        <a href="#audit">Audit</a>
-        <a href="#capture">Capture</a>
-        <a href="#followup">Follow-up</a>
-        <a href="#cockpit">Cockpit</a>
-        <a href="sample-report.html">Sample report</a>
-      </nav>
-    </header>
+  <nav class="topnav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/level10/">Level 10</a>
+    <a href="https://www.weareswarm.online/level5/">Proof</a>
+    <a href="/roadmap/">Roadmap</a>
+    <a href="/feed/">Feed</a>
+    <a href="/local-lead-ops/" aria-current="page">Local Lead Ops</a>
+    <a href="https://www.weareswarm.online/">Command Center</a>
+  </nav>
 
-    <section class="hero">
-      <p class="kicker">30-day earning sprint · sellable demo</p>
+  <main class="shell">
+    <nav class="subnav" aria-label="Page sections">
+      <a href="#offer">Offer</a>
+      <a href="#audit">Audit</a>
+      <a href="#capture">Capture</a>
+      <a href="#followup">Follow-up</a>
+      <a href="#cockpit">Cockpit</a>
+      <a href="sample-report.html">Sample report</a>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">Week 1 revenue proof · sellable demo</p>
       <h1>Turn broken local sites into booked jobs.</h1>
-      <p class="lead">
+      <p class="lede">
         Local Lead Ops finds where your website leaks calls and form fills, fixes the first blocker fast,
-        then installs capture + follow-up so no lead sits cold. This page is a mock-safe sales demo — no real
-        client data, no outbound sends.
+        then installs capture + follow-up so no lead sits cold. Mock-safe sales demo — no real client data,
+        no outbound sends.
       </p>
 
       <div class="pricing" id="offer">
@@ -47,7 +54,7 @@
           <p>Monthly leak scan, proof report, and queue health checks with before/after snapshots.</p>
         </article>
       </div>
-    </section>
+    </header>
 
     <section class="grid-2" id="audit">
       <article class="panel">
@@ -85,7 +92,7 @@
           <strong>38</strong>
         </div>
         <p style="text-align:center;margin:0">Demo score for <em>Example Local Contractor</em></p>
-        <p style="text-align:center;font-size:0.9rem">
+        <p style="text-align:center;font-size:0.9rem;color:var(--muted)">
           62% of inbound interest is at risk before first human contact.
         </p>
       </article>
@@ -95,7 +102,7 @@
       <h2>Before / after proof</h2>
       <div class="before-after">
         <div class="ba-card">
-          <p class="kicker" style="color:var(--danger)">Before</p>
+          <p class="eyebrow" style="color:var(--red);margin-bottom:8px">Before</p>
           <ul>
             <li>Form submit fails silently</li>
             <li>No lead notification</li>
@@ -105,7 +112,7 @@
         </div>
         <div class="ba-arrow" aria-hidden="true">→</div>
         <div class="ba-card after">
-          <p class="kicker">After Local Lead Ops</p>
+          <p class="eyebrow" style="margin-bottom:8px">After Local Lead Ops</p>
           <ul>
             <li>Capture form stores every inquiry locally</li>
             <li>Operator approval before any send</li>
@@ -208,10 +215,10 @@
       </div>
     </section>
 
-    <footer class="foot">
-      <p>Local Lead Ops · static revenue demo · no deploy · no secrets · no real client names</p>
+    <footer class="footer-note">
+      Local Lead Ops · WeAreSwarm revenue demo · mock-safe · no real client names
     </footer>
-  </div>
+  </main>
   <script src="assets/local-lead-ops.js"></script>
 </body>
 </html>

@@ -8,18 +8,25 @@
   <link rel="stylesheet" href="assets/local-lead-ops.css">
 </head>
 <body>
-  <div class="wrap">
-    <header class="topbar">
-      <a class="brand" href="./">Local <span>Lead Ops</span></a>
-      <nav class="nav">
-        <a href="index.html">← Back to demo</a>
-      </nav>
-    </header>
+  <nav class="topnav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/level10/">Level 10</a>
+    <a href="https://www.weareswarm.online/level5/">Proof</a>
+    <a href="/roadmap/">Roadmap</a>
+    <a href="/feed/">Feed</a>
+    <a href="/local-lead-ops/" aria-current="page">Local Lead Ops</a>
+    <a href="https://www.weareswarm.online/">Command Center</a>
+  </nav>
 
-    <section class="hero report-hero">
-      <p class="kicker">Proof report · demo data</p>
+  <main class="shell">
+    <nav class="subnav">
+      <a href="index.html">← Back to demo</a>
+    </nav>
+
+    <header class="hero report-hero">
+      <p class="eyebrow">Proof report · demo data</p>
       <h1>Example Local Contractor</h1>
-      <p class="lead">
+      <p class="lede">
         Monthly lead leak audit generated for sales demonstration. All metrics are illustrative.
         No real client data was used.
       </p>
@@ -28,7 +35,7 @@
         <span class="badge">Lead leak score: 38/100</span>
         <span class="badge">3 leaks found</span>
       </div>
-    </section>
+    </header>
 
     <section class="panel">
       <h2>Executive summary</h2>
@@ -98,12 +105,12 @@
       <h2>Before / after snapshot</h2>
       <div class="before-after">
         <div class="ba-card">
-          <p class="kicker" style="color:var(--danger)">Before</p>
+          <p class="eyebrow" style="color:var(--red);margin-bottom:8px">Before</p>
           <p>Lead leak score <strong>38</strong>. Silent form failures. No follow-up system.</p>
         </div>
         <div class="ba-arrow" aria-hidden="true">→</div>
         <div class="ba-card after">
-          <p class="kicker">Projected after setup</p>
+          <p class="eyebrow" style="margin-bottom:8px">Projected after setup</p>
           <p>Target score <strong>82</strong>. Captured leads, staged follow-up, monthly proof.</p>
         </div>
       </div>
@@ -114,9 +121,9 @@
       No client data is submitted from this sample.
     </p>
 
-    <footer class="foot">
-      <p><a href="index.html">Return to Local Lead Ops demo</a></p>
+    <footer class="footer-note">
+      <a href="index.html">Return to Local Lead Ops demo</a>
     </footer>
-  </div>
+  </main>
 </body>
 </html>

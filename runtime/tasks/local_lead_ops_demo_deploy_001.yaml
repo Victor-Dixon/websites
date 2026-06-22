@@ -1,0 +1,40 @@
+task_id: local_lead_ops_demo_deploy_001
+title: Deploy Local Lead Ops demo to weareswarm.site
+status: completed
+owner: Agent-2
+lane: revenue
+priority: high
+
+summary: >
+  Public deploy of scoped local-lead-ops/ demo to weareswarm.site.
+  Theme aligned to WeAreSwarm static surfaces. Week 1 proof URL live.
+
+public_url: https://weareswarm.site/local-lead-ops/
+sample_report_url: https://weareswarm.site/local-lead-ops/sample-report.html
+deploy_domain: weareswarm.site
+deploy_method: scoped_sftp
+source_demo_commit: 215e7d92
+
+deployed_files:
+  - local-lead-ops/index.html
+  - local-lead-ops/sample-report.html
+  - local-lead-ops/assets/local-lead-ops.css
+  - local-lead-ops/assets/local-lead-ops.js
+
+verification:
+  public_index: pass
+  public_css: pass
+  public_js: pass
+  public_sample_report: pass
+  pricing_visible: pass
+  disclaimer_visible: pass
+  status: LOCAL_LEAD_OPS_PUBLIC_DEMO_LIVE
+
+guards:
+  - no_unrelated_deploy
+  - no_feed_portfolio_changes
+  - no_outbound_network
+  - no_secrets_in_artifacts
+
+created_at: "2026-06-22"
+completed_at: "2026-06-22"
