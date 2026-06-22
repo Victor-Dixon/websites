@@ -3,8 +3,8 @@
 import { type ChangeEvent, type FormEvent, useMemo, useRef, useState } from "react";
 import { DreamMotionStage } from "@/components/DreamMotionStage";
 import { createSkyMotionSupabaseClient } from "@/lib/supabase";
-import { enhancePrompt, generateStoryScenes, type AnimationDuration, type AnimationStyle, type StoryScene } from "@/lib/prompt-engine";
-import { createRenderJob, type RenderSource } from "@/lib/render-queue";
+import { enhancePrompt, type AnimationDuration, type AnimationStyle, type StoryScene } from "@/lib/prompt-engine";
+import { type RenderJob, type RenderJobRequest, type RenderSource } from "@/lib/render-queue";
 
 type ControlKey =
   | "cameraZoom"
@@ -221,6 +221,23 @@ const placeholderScenes: StoryScene[] = [
 
 const delay = (durationMs: number) => new Promise((resolve) => window.setTimeout(resolve, durationMs));
 
+async function postJson<TResponse>(url: string, payload: unknown): Promise<TResponse> {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = (await response.json()) as TResponse & { error?: string };
+
+  if (!response.ok) {
+    throw new Error(data.error ?? `Request failed with status ${response.status}`);
+  }
+
+  return data;
+}
+
 export default function Home() {
   const promptRef = useRef<HTMLTextAreaElement | null>(null);
   const supabase = useMemo(() => createSkyMotionSupabaseClient(), []);
@@ -309,11 +326,13 @@ export default function Home() {
 
   async function enhanceCurrentPrompt() {
     setIsEnhancing(true);
-    setRenderStatus("Enhancing prompt with cinematic motion, camera, and export notes...");
+    setRenderStatus("Enhancing prompt through /api/prompt/enhance...");
     try {
-      await delay(450);
-      setEnhancedPrompt(enhancePrompt({ prompt, style, duration }));
+      const data = await postJson<{ enhancedPrompt: string }>("/api/prompt/enhance", { prompt, style, duration });
+      setEnhancedPrompt(data.enhancedPrompt);
       setRenderStatus("Prompt enhanced. Queue a render when the scene direction looks right.");
+    } catch (error) {
+      setRenderStatus(error instanceof Error ? `Prompt enhancement failed: ${error.message}` : "Prompt enhancement failed.");
     } finally {
       setIsEnhancing(false);
     }
@@ -322,13 +341,14 @@ export default function Home() {
   async function buildStory() {
     setIsStoryboarding(true);
     setSource("dreammotion");
-    setRenderStatus("DreamMotion is splitting the idea into scenes...");
+    setRenderStatus("DreamMotion is requesting scene generation through /api/story...");
     try {
-      await delay(500);
-      const scenes = generateStoryScenes(storyIdea);
-      setStoryScenes(scenes);
-      setEnhancedPrompt(scenes[0]?.prompt ?? enhancedPrompt);
+      const data = await postJson<{ title: string; scenes: StoryScene[] }>("/api/story", { idea: storyIdea });
+      setStoryScenes(data.scenes);
+      setEnhancedPrompt(data.scenes[0]?.prompt ?? enhancedPrompt);
       setRenderStatus("Storyboard generated. Review the shots, then queue a movie render.");
+    } catch (error) {
+      setRenderStatus(error instanceof Error ? `Story generation failed: ${error.message}` : "Story generation failed.");
     } finally {
       setIsStoryboarding(false);
     }
@@ -336,24 +356,27 @@ export default function Home() {
 
   async function queueRenderJob() {
     setIsRendering(true);
-    setRenderStatus("Building render package and reserving queue capacity...");
+    setRenderStatus("Building render package through /api/render/jobs...");
     try {
-      await delay(650);
-      const job = createRenderJob({
+      const request: RenderJobRequest = {
         prompt: enhancedPrompt,
         style,
         duration,
         source,
         controls,
-      });
+      };
+      const data = await postJson<{ job: RenderJob }>("/api/render/jobs", request);
+      const { job } = data;
       setRenderStatus(`${job.id} ${job.status} at ${job.progress}% in ${job.eta}. Output: ${job.storagePath}`);
+    } catch (error) {
+      setRenderStatus(error instanceof Error ? `Render queue failed: ${error.message}` : "Render queue failed.");
     } finally {
       setIsRendering(false);
     }
   }
 
   function exportMovie() {
-    setRenderStatus("Export package prepared: MP4 master, vertical cutdown, captions, and thumbnail manifest.");
+    setRenderStatus("Coming soon: final MP4 export requires the rendering backend to finish and publish a completed movie file.");
   }
 
   function selectPlan(planName: string) {
@@ -384,7 +407,9 @@ export default function Home() {
         setLoginStatus(`Magic link sent to ${email}. Check your inbox to continue.`);
       } else {
         await delay(450);
-        setLoginStatus(`Creator email saved for ${selectedPlan}. Configure Supabase env vars to send live magic links.`);
+        setLoginStatus(
+          `Coming soon: secure email login for ${selectedPlan} requires Supabase environment variables before magic links can be sent.`,
+        );
       }
     } catch (error) {
       setLoginStatus(error instanceof Error ? error.message : "Unable to start login. Please try again.");
@@ -603,7 +628,7 @@ export default function Home() {
                 onClick={exportMovie}
                 className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3 font-black text-white transition hover:-translate-y-1 hover:bg-white/10"
               >
-                Export Movie
+                Export Movie (Coming Soon)
               </button>
             </div>
           </div>
