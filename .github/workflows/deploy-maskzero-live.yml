@@ -1,0 +1,81 @@
+name: Deploy MaskZero Live
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'runtime/content/maskzero.site/**'
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'public/api/**'
+      - 'next.config.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy-maskzero-live.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build SkyMotion studio for maskzero.site/studio
+        env:
+          NEXT_PUBLIC_AI_VIDEO_API_URL: /api/ai-video
+          NEXT_PUBLIC_BASE_PATH: /studio
+        run: |
+          npm run build:maskszero
+          rm -rf runtime/content/maskzero.site/studio
+          mkdir -p runtime/content/maskzero.site/studio
+          cp -R out/. runtime/content/maskzero.site/studio/
+
+      - name: Sync PHP APIs into maskzero content tree
+        run: |
+          mkdir -p runtime/content/maskzero.site/api/ai-video
+          cp public/api/spark-auth.php runtime/content/maskzero.site/api/
+          cp public/api/spark-entitlements.php runtime/content/maskzero.site/api/
+          cp public/api/spark-billing.php runtime/content/maskzero.site/api/
+          cp public/api/spark-narration.php runtime/content/maskzero.site/api/
+          cp public/api/class-phpass.php runtime/content/maskzero.site/api/
+          cp public/api/ai-video/jobs.php runtime/content/maskzero.site/api/ai-video/
+          cp public/.htaccess runtime/content/maskzero.site/.htaccess
+
+      - name: Verify payload
+        run: |
+          test -f runtime/content/maskzero.site/index.html
+          test -f runtime/content/maskzero.site/api/spark-auth.php
+          test -f runtime/content/maskzero.site/api/spark-narration.php
+          test -f runtime/content/maskzero.site/api/ai-video/jobs.php
+          test -f runtime/content/maskzero.site/studio/index.html
+          test -f runtime/content/maskzero.site/assets/js/spark-narration-client.js
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy to Hostinger
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          HOSTINGER_PASS: ${{ secrets.HOSTINGER_PASS }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+        run: |
+          test -n "$HOSTINGER_HOST"
+          test -n "$HOSTINGER_USER"
+          test -n "$HOSTINGER_PASS"
+          PORT="${HOSTINGER_PORT:-21}"
+          lftp -u "$HOSTINGER_USER","$HOSTINGER_PASS" -p "$PORT" "$HOSTINGER_HOST" -e "
+            set ssl:verify-certificate no;
+            mirror -R --delete --verbose runtime/content/maskzero.site public_html/maskzero.site;
+            bye
+          "
