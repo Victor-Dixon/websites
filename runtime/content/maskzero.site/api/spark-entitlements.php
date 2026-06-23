@@ -139,7 +139,7 @@ function spark_ent_require_render_access(): array {
     if (!$current) {
         spark_ent_json([
             'error' => 'auth_required',
-            'message' => 'Sign in to generate SkyMotion previews.',
+            'message' => 'Sign in to generate MaskZero Studio previews.',
             'login_url' => '/spark-login/?redirect_to=' . rawurlencode('/'),
         ], 401);
     }
@@ -147,7 +147,7 @@ function spark_ent_require_render_access(): array {
     if (!spark_ent_user_can_render($current['user'])) {
         spark_ent_json([
             'error' => 'payment_required',
-            'message' => 'Subscribe or buy render credits to generate SkyMotion previews.',
+            'message' => 'Subscribe or buy render credits to generate MaskZero Studio previews.',
             'subscribe_url' => '/spark-signup/',
             'billing_url' => '/api/spark-billing.php?action=checkout',
         ], 402);

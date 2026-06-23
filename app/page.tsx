@@ -51,7 +51,7 @@ const controlLabels: Array<{ key: ControlKey; label: string; detail: string }> =
 const dashboardSections = ["Home", "Create Animation", "My Projects", "AI Story Builder", "Community", "Settings"];
 
 const studioProjects = [
-  { title: "Cloud Kingdom Pilot", status: "Ready for 4K export", folder: "DreamMotion Films" },
+  { title: "Cloud Kingdom Pilot", status: "Ready for 4K export", folder: "Spark Motion Films" },
   { title: "Neon Samurai Loop", status: "Rendering sound design", folder: "Anime Tests" },
   { title: "Ocean City Reveal", status: "Needs voice pass", folder: "Client Pitches" },
 ];
@@ -231,26 +231,29 @@ export default function Home() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden px-4 py-5 text-slate-100 sm:px-6 lg:px-8">
-      <div className="aurora-orb pointer-events-none absolute left-[-8rem] top-20 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl" />
-      <div className="aurora-orb pointer-events-none absolute right-[-10rem] top-80 h-96 w-96 rounded-full bg-fuchsia-500/20 blur-3xl" />
+    <main className="relative min-h-screen overflow-hidden px-4 py-5 text-[var(--cream)] sm:px-6 lg:px-8">
+      <div className="aurora-orb pointer-events-none absolute left-[-8rem] top-20 h-72 w-72 rounded-full bg-[var(--red)]/20 blur-3xl" />
+      <div className="aurora-orb pointer-events-none absolute right-[-10rem] top-80 h-96 w-96 rounded-full bg-[var(--purple)]/20 blur-3xl" />
 
-      <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-slate-950/60 px-4 py-3 shadow-2xl shadow-cyan-950/30 backdrop-blur-xl">
-        <a href="#home" className="flex items-center gap-3" aria-label="SkyMotion AI home">
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-cyan-400 text-lg font-black text-slate-950 shadow-lg shadow-cyan-400/30">
-            SK
+      <nav className="studio-nav comic-nav mx-auto flex max-w-7xl items-center justify-between rounded-none px-4 py-3">
+        <a href="/" className="flex items-center gap-3" aria-label="MaskZero home">
+          <span className="grid h-11 w-11 place-items-center rounded-none border-4 border-[var(--ink)] bg-[var(--yellow)] text-lg font-black text-[var(--ink)]">
+            MZ
           </span>
           <span>
-            <span className="block text-sm font-semibold uppercase tracking-[0.32em] text-cyan-200">SkyMotion</span>
-            <span className="block text-xs text-slate-400">AI Film Studio</span>
+            <span className="block text-sm font-semibold uppercase tracking-[0.32em] text-[var(--yellow)]">MaskZero</span>
+            <span className="block text-xs text-[var(--cream)]">Spark Animation Studio</span>
           </span>
         </a>
         <div className="hidden items-center gap-1 lg:flex">
-          {dashboardSections.map((item) => (
+          <a href="/" className="rounded-none px-4 py-2 text-sm transition hover:bg-[var(--yellow)] hover:text-[var(--ink)]">Home</a>
+          <a href="/quiz/" className="rounded-none px-4 py-2 text-sm transition hover:bg-[var(--yellow)] hover:text-[var(--ink)]">Quiz</a>
+          <a href="/spark-dashboard/" className="rounded-none px-4 py-2 text-sm transition hover:bg-[var(--yellow)] hover:text-[var(--ink)]">Dashboard</a>
+          {dashboardSections.slice(1, 3).map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase().replaceAll(" ", "-")}`}
-              className="rounded-full px-4 py-2 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+              className="rounded-none px-4 py-2 text-sm transition hover:bg-[var(--yellow)] hover:text-[var(--ink)]"
             >
               {item}
             </a>
@@ -289,15 +292,15 @@ export default function Home() {
 
       <section id="home" className="mx-auto grid max-w-7xl gap-8 pb-14 pt-10 lg:grid-cols-[1.05fr_0.95fr] lg:pb-20 lg:pt-16">
         <div className="flex flex-col justify-center">
-          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
-            DreamMotion™ production engine live
+          <div className="studio-badge mb-5 inline-flex w-fit items-center gap-2 rounded-none px-4 py-2 text-xs">
+            Spark Motion™ production engine live
           </div>
-          <h1 className="text-balance text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="studio-heading text-balance text-5xl font-black tracking-tight sm:text-6xl lg:text-7xl">
             Turn ideas, images, and clips into cinematic animated movies.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            SkyMotion AI combines text-to-video generation, image animation, AI storyboarding, voices, music,
-            render queues, cloud storage, and a creator community in one futuristic studio.
+          <p className="studio-copy mt-6 max-w-2xl text-lg leading-8">
+            MaskZero Studio combines text-to-video generation, image animation, AI storyboarding, voices, music,
+            render queues, cloud storage, and the Spark creator community in one comic-book studio.
           </p>
           <div className="mt-8 grid gap-3 sm:flex">
             <a
@@ -307,10 +310,10 @@ export default function Home() {
               Generate animation
             </a>
             <a
-              href="#dreammotion"
+              href="#spark-motion"
               className="rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-center font-bold text-white transition hover:bg-white/10"
             >
-              Explore DreamMotion™
+              Explore Spark Motion™
             </a>
           </div>
           <div className="mt-8 grid grid-cols-3 gap-3">
@@ -449,7 +452,7 @@ export default function Home() {
               <div className="mt-4 rounded-2xl border border-amber-300/30 bg-amber-300/10 p-4 text-sm text-amber-100">
                 <p className="font-bold">Account required</p>
                 <p className="mt-1 leading-7">
-                  Create a MaskZero account and pay for SkyMotion access before generating live video previews.
+                  Create a MaskZero account and unlock studio render access before generating live video previews.
                 </p>
                 <div className="mt-3 flex flex-wrap gap-3">
                   <a href={sparkSignupUrl()} className="rounded-full bg-white px-4 py-2 font-bold text-slate-950">
@@ -493,7 +496,7 @@ export default function Home() {
               <p className="mt-4 rounded-2xl border border-emerald-300/20 bg-emerald-400/10 p-3 text-sm text-emerald-100">
                 {isStaff
                   ? "Owner/admin access — live renders are free on your account."
-                  : `SkyMotion access active (${authSession?.spark_plan || "paid"}${authSession?.skymotion_render_credits ? ` · ${authSession.skymotion_render_credits} credits` : ""}).`}
+                  : `MaskZero Studio access active (${authSession?.spark_plan || "paid"}${authSession?.skymotion_render_credits ? ` · ${authSession.skymotion_render_credits} credits` : ""}).`}
               </p>
             ) : null}
           </div>
@@ -555,14 +558,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="dreammotion" className="mx-auto max-w-7xl py-10">
+      <section id="spark-motion" className="mx-auto max-w-7xl py-10">
         <div className="glass-panel overflow-hidden rounded-[2rem] p-5 sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.28em] text-cyan-200">Proprietary feature</p>
-              <h2 className="mt-3 text-4xl font-black text-white sm:text-5xl">DreamMotion™ builds the whole movie.</h2>
-              <p className="mt-4 leading-8 text-slate-300">
-                Give SkyMotion AI one simple idea and DreamMotion™ automatically generates characters, backgrounds,
+              <p className="studio-panel-title text-sm font-black">MaskZero engine</p>
+              <h2 className="studio-heading mt-3 text-4xl font-black sm:text-5xl">Spark Motion™ builds the whole movie.</h2>
+              <p className="studio-copy mt-4 leading-8">
+                Give MaskZero Studio one Spark idea and Spark Motion™ automatically generates characters, backgrounds,
                 camera angles, animation sequences, voice acting, sound effects, and the final rendered movie package.
               </p>
             </div>
@@ -750,7 +753,7 @@ const placeholderScenes: StoryScene[] = [
   {
     id: "placeholder-01",
     title: "Opening discovery",
-    prompt: "Enter a story idea and SkyMotion will create the first cinematic scene with characters and mood.",
+    prompt: "Enter a story idea and MaskZero Studio will create the first cinematic scene with characters and mood.",
     camera: "Dolly-in with subtle parallax.",
     audio: "Ambient tone and first line cue.",
     duration: "10s",

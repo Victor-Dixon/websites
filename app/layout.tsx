@@ -9,23 +9,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SkyMotion AI | AI Animated Video Studio",
+  title: "MaskZero Studio | Spark Animation Engine",
   description:
-    "Generate cinematic animated videos from prompts, images, and clips with SkyMotion AI's DreamMotion filmmaking engine.",
+    "Generate cinematic Spark character animations from prompts, images, and clips inside the MaskZero comic universe.",
   keywords: [
-    "AI animation",
+    "MaskZero",
+    "Spark animation",
     "text to video",
-    "image animation",
+    "character portrait",
     "AI filmmaking",
-    "video generation",
-    "DreamMotion",
+    "Spark Motion",
   ],
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#030712",
+  themeColor: "#20122d",
 };
 
 export default function RootLayout({
@@ -35,7 +35,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body>{children}</body>
+      <head>
+        <link rel="stylesheet" href="/assets/css/maskzero-comic-theme.css" />
+      </head>
+      <body className="maskzero-comic-skin">{children}</body>
     </html>
   );
 }

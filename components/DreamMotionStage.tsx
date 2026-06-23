@@ -142,7 +142,7 @@ export function DreamMotionStage() {
   return (
     <div
       ref={mountRef}
-      aria-label="Three.js DreamMotion holographic animation preview"
+      aria-label="Three.js Spark Motion holographic animation preview"
       className="absolute inset-0"
       role="img"
     />
